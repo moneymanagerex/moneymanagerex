@@ -1,0 +1,282 @@
+<?xml version="1.0" ?>
+
+<!--
+    MMEX build scripts.
+    Copyright (C) 2009, 2010 VaDiM.
+
+    MoneyManagerEx application.
+-->
+
+<makefile>
+
+    <!-- Default root of sources is dir where output script will be created.
+         autoconf generates Makefile in trunk/mmex but others in trunk/mmex/build/msw.
+    -->
+
+    <if cond="FORMAT!='autoconf'">
+    <set-srcdir>../..</set-srcdir>
+    </if>
+
+
+    <include file="common.bkl"/>
+
+
+    <!-- MoneyManagerEx application -->
+
+    <exe id="mmex" template="mmex_common">
+
+        <app-type>gui</app-type>
+        <win32-res>resources/mmex.rc</win32-res>
+
+        <install-to cond="FORMAT=='autoconf'">$(BINDIR)</install-to>
+        <install-to cond="FORMAT!='autoconf'">$(PREFIX)/mmex/bin</install-to>
+
+    </exe>
+
+
+    <!-- "make install" targets for all formats except VC++ IDE.
+         Windows command "copy" can't copy multiple files.
+         "make ininstall" doesn't work on Windows due to wrong generation of command "-del".
+         "make ininstall" doesn't delete directories.
+    -->
+
+    <using module="datafiles"/>
+
+    <if cond="FORMAT=='autoconf'">
+
+	<data-files>
+            <install-to>$(DATADIR)/mmex/res</install-to>
+        <srcdir>$(SRCDIR)/resources</srcdir>
+        <files>kaching.wav mmex.ico currency_seed.csv</files>
+    </data-files>
+
+	<data-files>
+        <install-to>$(DATADIR)/mmex/po</install-to>
+        <srcdir>$(SRCDIR)/po</srcdir>
+        <files>*.mo</files>
+    </data-files>
+
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex</install-to>
+            <srcdir>$(SRCDIR)/doc</srcdir>
+        <files>*.txt</files>
+    </data-files>
+
+    <!-- data-files-tree generates wrong commands in bakefile v.0.2.8 -->
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help</install-to>
+        <srcdir>$(SRCDIR)/doc/help</srcdir>
+            <files>*.html *.png</files>
+    </data-files>
+
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/german</install-to>
+        <srcdir>$(SRCDIR)/doc/help/german</srcdir>
+        <files>*</files>
+    </data-files>
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/french</install-to>
+        <srcdir>$(SRCDIR)/doc/help/french</srcdir>
+        <files>*</files>
+    </data-files>
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/hungarian</install-to>
+        <srcdir>$(SRCDIR)/doc/help/hungarian</srcdir>
+        <files>*</files>
+    </data-files>
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/italian</install-to>
+        <srcdir>$(SRCDIR)/doc/help/italian</srcdir>
+        <files>*</files>
+    </data-files>
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/polish</install-to>
+        <srcdir>$(SRCDIR)/doc/help/polish</srcdir>
+        <files>*</files>
+    </data-files>
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/russian</install-to>
+        <srcdir>$(SRCDIR)/doc/help/russian</srcdir>
+        <files>*</files>
+    </data-files>
+	<data-files>
+        <install-to>$(DATADIR)/doc/mmex/help/spanish</install-to>
+        <srcdir>$(SRCDIR)/doc/help/spanish</srcdir>
+        <files>*</files>
+    </data-files>
+
+	<data-files>
+        <install-to>$(DATADIR)/applications</install-to>
+        <srcdir>$(SRCDIR)/resources</srcdir>
+        <files>mmex.desktop</files>
+    </data-files>
+
+	<data-files>
+        <install-to>$(DATADIR)/icons/hicolor/scalable/apps</install-to>
+        <srcdir>$(SRCDIR)/graphics</srcdir>
+        <files>mmex.svg</files>
+    </data-files>
+
+	<data-files>
+        <install-to>$(DATADIR)/man/man1</install-to>
+        <srcdir>$(SRCDIR)/doc</srcdir>
+        <files>mmex.1.gz</files>
+    </data-files>
+    </if>
+
+    <if cond="FORMAT!='autoconf'">
+
+	<!-- runtime/* -> mmex -->
+
+    <data-files>
+        <install-to>$(PREFIX)/mmex</install-to>
+        <srcdir>$(SRCDIR)/doc</srcdir>
+        <files>*.txt</files>
+    </data-files>
+
+    <data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+        <files>currency_seed.csv</files>
+    </data-files>
+
+        <data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+        <files>mmex.ico</files>
+    </data-files>
+
+        <data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/resources</srcdir>
+        <files>kaching.wav</files>
+    </data-files>
+
+    <!-- doc -> mmex/help -->
+
+    <data-files>
+        <install-to>$(PREFIX)/mmex/help</install-to>
+        <srcdir>$(SRCDIR)/doc/help</srcdir>
+        <files>*.html</files>
+    </data-files>
+
+        <data-files>
+        <install-to>$(PREFIX)/mmex/help</install-to>
+        <srcdir>$(SRCDIR)/doc/help</srcdir>
+        <files>*.png</files>
+    </data-files>
+
+    <!-- po/* -> mmex/po -->
+
+    <data-files>
+        <install-to>$(PREFIX)/mmex/po</install-to>
+        <srcdir>$(SRCDIR)/po</srcdir>
+        <files>*.mo</files>
+    </data-files>
+
+    </if>
+
+    <!-- generation of translation files -->
+
+    <subproject id="po">
+        <dependency-of>all</dependency-of>
+        <dir>$(SRCDIR)/po</dir>
+    </subproject>
+
+
+    <!-- Generation of InnoSetup installations on Windows, makefiles only -->
+
+    <subproject id="setup" cond="PLATFORM_WIN32=='1' and FORMAT in('msvc','mingw')">
+
+        <depends>all</depends>
+        <installable>no</installable>
+        <dir>$(SRCDIR)/setup/win</dir>
+
+        <set var="SHARED">
+            <if cond="WX_SHARED=='0'">-static</if>
+            <if cond="WX_SHARED=='1'">-shared</if>
+        </set>
+
+        <set var="UNICODE">
+            <if cond="WX_UNICODE=='0'">-ansi</if>
+            <if cond="WX_UNICODE=='1'">-unicode</if>
+        </set>
+
+        <set var="DEBUG">
+            <if cond="WX_DEBUG=='1'">-debug</if>
+        </set>
+
+        <set var="HARDWARE">$(TARGETCPUPOSTFIX)</set>
+
+        <set var="HARDWARE_CPU">
+            <if cond="not isdefined('VSTUDIO_VER')">$(CPU_ARCH)</if>
+            <if cond="VSTUDIO_VER=='2010'">$(CPU_ARCH)</if>
+            <if cond="TARGET_CPU=='AMD64'">amd64</if>
+            <if cond="1">$(CPU_ARCH)</if>
+        </set>
+
+
+        <!-- Select VC++ runtime libraries to embed into setup.
+             We deploying Visual C++ library DLLs as private side-by-side assemblies.
+
+             With this technique, it is enough to copy a folder with DLLs and manifests for dependent assemblies to the
+             application's local folder. The operating system's loader, when executing the application, still looks for
+             dependent assemblies in the WinSxS folder first; however when a corresponding assembly cannot be found,
+             the loader loads a private assembly from this sub-directory.
+
+             FIXME:
+             Visual C++ Express does not create %PROGDIR%\Microsoft Visual Studio X.0\VC\Redist\ during installation
+             on the development computer. To redistribute Visual C++ libraries with applications built with
+             Visual C++ Express, please use Visual C++ Redistributable Packages (VCRedist_*.exe). Visual C++ Express
+             does not install this package.
+
+             Use Visual C++ Redistributable Package (VCRedist_x86.exe, VCRedist_x64.exe, VCRedist_ia64.exe) to install
+             all Visual C++ libraries as shared side-by-side assemblies into the native assembly cache (WinSxS folder).
+             This package is installed by Visual Studio into %WindowsSdkDir%\Bootstrapper\Packages\ folder and can also
+             be downloaded from the Microsoft site. Redistributing Visual C++ libraries using this package is recommended
+             for applications built with Visual C++ Express and for cases when deployment of all Visual C++ libraries
+             at once is desirable.
+
+             vcredist_*.exe installs only the release versions of Visual C++ DLLs. Debug versions should only be
+             deployed as private assemblies. For debug applications, use debug DLLs from \vc\redist\debug_nonredist\.
+             However, remote debugging may not work for an application that deploys debug versions of Visual C++ libraries
+             as private assemblies.
+        -->
+
+        <set var="CRT_DLLS">
+
+            <if cond="WX_DEBUG=='0' and FORMAT.startswith('msv')">
+                $(envvar('VCINSTALLDIR') + '\\redist\\' + HARDWARE_CPU + '\\Microsoft.VC' + CRT_VERSION + '.CRT\\*')
+            </if>
+
+            <if cond="WX_DEBUG=='1' and FORMAT.startswith('msv')">
+                $(envvar('VCINSTALLDIR') + '\\redist\\Debug_NonRedist\\' + HARDWARE_CPU + '\\Microsoft.VC' + CRT_VERSION + '.DebugCRT\\*')
+            </if>
+
+            <if cond="FORMAT=='mingw'">$(envvar('MINGWDIR') + '\\bin\\libgcc_s_*.dll')</if>
+
+        </set>
+
+        <set var="TARGET_DIR">$('..\\..\\build\msw' + ifthenelse(BUILDDIR=='.', '', '\\' + BUILDDIR))</set>
+
+        <target>
+            APP_EXE_PATH="$(TARGET_DIR)\mmex.exe" BUILD_OPTS="$(SHARED)$(UNICODE)$(DEBUG)$(HARDWARE)" CPU_ARCH="$(HARDWARE_CPU)" CRT_DLLS="$(CRT_DLLS)" FORMAT="$(FORMAT)" all
+        </target>
+
+    </subproject>
+
+
+    <!-- unit tests target (not dependency of 'all'): -->
+
+    <subproject id="check">
+
+        <target>check</target>
+        <installable>no</installable>
+
+        <dir cond="FORMAT=='autoconf'">$(BUILDDIR)/src/tests</dir>
+        <dir cond="FORMAT!='autoconf'">tests</dir>
+
+    </subproject>
+
+
+</makefile>

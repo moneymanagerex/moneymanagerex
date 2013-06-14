@@ -1,0 +1,474 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+
+	<meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252"><title></title>
+	
+	<meta name="GENERATOR" content="OpenOffice.org 3.3  (Win32)">
+	<meta name="AUTHOR" content="Stefano Giorgio">
+	<meta name="CREATED" content="20110710;15312700">
+	<meta name="CHANGEDBY" content="Stefano Giorgio">
+	<meta name="CHANGED" content="20110716;8055567">
+	<meta name="CHANGEDBY" content="Stefano Giorgio"></head><body dir="ltr" lang="en-US">
+<h1><a name="custom_sql_top"></a><br><br>
+</h1>
+<table style="page-break-inside: avoid;" border="0" cellpadding="4" cellspacing="0" width="100%">
+	<col width="213*">
+	<col width="43*">
+	<tbody><tr valign="top">
+		<td width="83%">
+			<h1><font><font><font face="Verdana"><font size="6">Informes SQL personalizados</font></font></font></font></h1>
+		</td>
+		<td width="17%">
+			<p><a href="./index.html"><font face="Verdana"><font size="4"><b>Inicio</b></font></font></a></p>
+		</td>
+	</tr>
+</tbody></table>
+<ul>
+	<li><p><a href="#intro"><font></font></a><font><a href="#intro"><font face="Verdana">Introducción</font></a></font></p>
+	</li><li><p><a href="#running_reports"><font></font></a><font><a href="#running_reports"><font face="Verdana">Ejecución de informes mediante el árbol de navegación</font></a></font></p>
+	</li><li><p><a href="#database_structure"><font></font></a><font><a href="#database_structure"><font face="Verdana">Estructura de la base de datos de MMEX</font></a></font></p>
+	</li><li><p><a href="#sql_scripting_intro"><font></font></a><font><a href="#sql_scripting_intro"><font face="Verdana">SQL
+	Scripting (Introducción)</font></a></font></p>
+</li></ul>
+<p><br><br>
+</p>
+<hr>
+<h1><a name="intro"></a><font face="Verdana"><font size="3"><br></font>Introducción</font></h1>
+<p><font face="Verdana"><font size="3">Los informes SQL personalizados
+permiten al usuario crear informes que se ajusten a sus necesidades.
+Esto se consigue escribiendo un script SQL que se comunica directamente
+con la base de datos</font></font><font face="Verdana"><font size="3">, y que se añade al árbol de navegación de MMEX.</font></font></p>
+<p><font face="Verdana"><font size="3"><b>La interfaz del gestor de informes SQL personalizados posee las siguientes características:</b></font></font></p>
+<table border="1" cellpadding="4" cellspacing="3" width="100%">
+	<col width="46*">
+	<col width="210*">
+	<tbody><tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Campo de texto </font></font><font face="Verdana"><font size="3"><b>Título del informe</b></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">Se utiliza para darle un título&nbsp;y acceder al script en el árbol de navegación.</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Casilla de verificación<span style="font-weight: bold;"></span></font></font></p><p><font face="Verdana"><font size="3"><span style="font-weight: bold;"></span></font></font><span style="font-family: Verdana;"><span style="font-weight: bold;">Encabezado</span></span></p>
+		</td>
+		<td width="82%">
+			<p style="font-weight: normal;"><font face="Verdana"><font size="3">Se puede añadir un encabezado sin un script asociado. Un elemento del menú tiene un script asociado.</font></font></p>
+			<p><font face="Verdana"><font size="3"><b>Cuando está marcado:</b> Permite usar un título como encabezado en el árbol de navegación. </font></font>
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Casilla de verificación</font></font></p><p><font face="Verdana"><font size="3"><b>Submenú</b></font></font>
+			</p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3"><b>Cuando está marcado</b></font></font><font face="Verdana"><font size="3"><b>:</b>
+El título aparecerá en el árbol de navegación como un submenú bajo el
+elemento anterior, el cual no tiene que ser necesariamente un
+encabezado.</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Campo de texto</font></font></p><p><font face="Verdana"><font size="3"><b>Código del script SQL</b><br><br></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">En este campo se escribe el propio script.</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Botón </font></font><font face="Verdana"><font size="3"><span style="font-weight: bold;">Cargar</span></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">Cargar un script ya existente desde un fichero.</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Botón </font></font><font face="Verdana"><font size="3"><span style="font-weight: bold;">Guardar</span></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">Guardar los cambios realizados sobre un script. </font></font>
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Botón </font></font><font face="Verdana"><font size="3"><b>Ejecutar</b></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">Permite ejecutar el script sin cerrar la ventana.<br><span style="font-weight: bold;">Advertencia</span>: Los errores pueden dar como resultado la pérdida del script si no se guarda antes. </font></font>
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Botón </font></font><font face="Verdana"><font size="3"><b>Limpiar</b></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">Limpia el campo de código del script SQL.</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="18%">
+			<p><font face="Verdana"><font size="3">Botón </font></font><font face="Verdana"><font size="3"><b>Cerrar</b></font></font></p>
+		</td>
+		<td width="82%">
+			<p><font face="Verdana"><font size="3">Cierra la ventana sin guardar. Es una manera de cancelar. </font></font>
+			</p>
+		</td>
+	</tr>
+</tbody></table>
+<p><span style="font-family: Verdana;">Una vez que se crea el script y se guarda en MMEX, se puede acceder fácilmente al informe a través del árbol de navegación.</span></p>
+<p><span style="font-family: Verdana;">La creación de un nuevo informe SQL personalizado se realiza mediante:</span></p>
+<ul>
+	<li><p><font face="Verdana"><font size="3">La opción del menú: Herramientas –&gt; Informes SQL personalizados</font></font></p>
+	</li><li><p><font face="Verdana"><font size="3">El icono de la barra de herramientas</font></font></p>
+</li></ul><span style="font-family: Verdana;">Esto abrirá la ventana de
+gestión de informes SQL personalizados, y permite al usuario escribir
+directamente un script y guardarlo como fichero.<br><br>Existen scripts
+SQL personalizados de utilidad disponibles en el foro de MMEX en
+Internet, al que se puede acceder de las siguientes maneras:</span><ul><li><p><font face="Verdana"><font size="3">Utilizando la opción del menú: </font></font><font face="Verdana"><font size="3"><b>Ayuda
+	–&gt; Informar de problemas o dar retroalimentación</b></font></font></p>
+	</li><li><p><font face="Verdana"><font size="3">Buscar el foro denominado:
+	</font></font><font face="Verdana"><font size="3"><b>Custom SQL Report
+	Scripts</b></font></font></p>
+</li></ul>
+<p><font face="Verdana"><font size="4"><b>Recomendaciones</b>:</font></font></p>
+<ul>
+	<li><p>Para scripts nuevos, utilice un título práctico para su informe.</p>
+	</li><li><p>Guarde el script antes de ejecutarlo en el <font face="Verdana"><font size="3">Gestor de informes SQL personalizados.</font></font><br><b>Nota:</b> Los errores en el script pueden hacer que se pierda si no se guarda primero.</p>
+	</li><li><p>Utilice el menú emergente del árbol de navegación para editar el fichero si es necesario.</p>
+</li></ul>
+<p><font size="4"><b>Nota</b>:</font></p>
+<ul>
+	<li><p>Todos los títulos de los scripts se guardan en un fíchero de índice llamado:
+			<b>CustomSQLReportIndex.txt</b><b></b></p>
+	</li><li><p style="font-weight: normal;">Los informes SQL personalizados se pueden eliminar borrando el fichero de índice.</p>
+	</li><li><p style="font-weight: normal;">Los informes se pueden reorganizar modificando directamente el fichero de índice.</p>
+</li></ul>
+<p><br><br>
+</p>
+<p><br><br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<col width="213*">
+	<col width="43*">
+	<tbody><tr valign="top">
+		<td width="83%">
+			<p><a href="#custom_sql_top"><font face="Verdana"><b>Volver arriba</b></font></a></p>
+		</td>
+		<td width="17%">
+			<p><a href="./index.html"><font face="Verdana"><b>Inicio</b></font></a></p>
+		</td>
+	</tr>
+</tbody></table>
+<p><br><br>
+</p>
+<hr>
+<h1><a name="running_reports"></a><font face="Verdana"><font size="3"><br></font>Ejecución de informes mediante el árbol de navegación</font></h1><p><font face="Verdana">Los informes creados por el gestor de informes
+personalizados se graban permanentemente en el árbol de navegación. Al
+informe se le da un nombre al guardarse. Mediante el título del
+informe, el usuario puede:</font></p>
+<ul><li><p><font face="Verdana">Ejecutar el informe</font></p>
+	</li><li><p><font face="Verdana">Editar el informe</font></p>
+	</li><li><p><font face="Verdana">Borrar el informe</font></p>
+</li></ul>
+<p><font face="Verdana">Se puede guardar un título de informe sin un
+script SQL asociado. Se utiliza como título para agrupar varios
+scripts. En ese caso el árbol de navegación se comporta de forma
+similar a los informes estándar. Los informes sólo se pueden anidar en
+un nivel de profundidad.</font></p><p><br><br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<col width="213*">
+	<col width="43*">
+	<tbody><tr valign="top">
+		<td width="83%">
+			<p><a href="#custom_sql_top"><font face="Verdana"><b>Volver arriba</b></font></a></p>
+		</td>
+		<td width="17%">
+			<p><a href="./index.html"><font face="Verdana"><b>Inicio</b></font></a></p>
+		</td>
+	</tr>
+</tbody></table>
+<p><br><br>
+</p>
+<hr>
+<h1><a name="database_structure"></a><font face="Verdana"><font size="3"><br></font>Estructura de la base de datos de MMEX</font></h1>
+<p><font face="Verdana"><font size="3">Para poder crear ficheros de
+script, necesitamos entender la estructura subyacente de la base de
+datos. Esta estructura se muestra a continuación:</font></font><br><br><br>
+</p>
+<table border="1" cellpadding="4" cellspacing="3" width="100%">
+	<col width="256*">
+	<tbody><tr>
+		<td bgcolor="#e6e6e6" valign="top" width="100%">
+			<p style="background: rgb(230, 230, 230) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><font face="Verdana"><b>Estructura básica de MMEX</b></font></p>
+		</td>
+	</tr>
+	<tr>
+		<td valign="top" width="100%">
+			<p><img style="border: 0px solid ; width: 910px; height: 636px;" alt="mmex_db_structure" src="../mmex_db_structure.png" name="graphics1" align="left"><br clear="left"><br>
+			</p>
+		</td>
+	</tr>
+</tbody></table>
+<p><font face="Verdana"><font size="3"><br></font></font><br><br>
+</p>
+<p><font face="Verdana"><font size="4"><b>Información de tabla</b></font></font></p>
+<p><font face="Verdana"><font size="3">Esta imagen muestra los nombres
+de tabla con sus campos asociados, y los enlaces que conectan las
+tablas mediante sus claves primarias.</font></font></p>
+<table border="1" cellpadding="4" cellspacing="3" width="100%">
+	<col width="77*">
+	<col width="179*">
+	<tbody><tr valign="top">
+		<td bgcolor="#e6e6e6" width="30%">
+			<p><font face="Verdana"><font size="4"><b>Nombres de tabla</b></font></font></p>
+		</td>
+		<td bgcolor="#e6e6e6" width="70%">
+			<p><font face="Verdana"><font size="4"><b>Descripción de la tabla</b></font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>InfoTable_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene ajustes específicos de la base de datos.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>CurrencyFormats_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene los valores de las divisas de la base de datos.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>AccountList_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene todos los nombres de cuenta, y los datos específicos de cada cuenta.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>Payee_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene todos los beneficiarios, y la última categoría usada por cada uno.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>Category_V1</p>
+		</td>
+		<td width="70%">
+			<p>Es una lista de todas las categorías del sistema.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>SubCategory_V1</p>
+		</td>
+		<td width="70%">
+			<p>Es una lista de todas las subcategorías del sistema.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>CheckingAccount_V1</p>
+		</td>
+		<td width="70%">
+			<p>Es la tabla principal donde se mantienen todas las transacciones.</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>SplitTransactions_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene los datos asociados a las transacciones divididas.</p>
+		</td>
+	</tr>
+</tbody></table>
+<p><br><br>
+</p>
+<table border="1" cellpadding="4" cellspacing="3" width="100%">
+	<col width="77*">
+	<col width="179*">
+	<tbody><tr valign="top">
+		<td bgcolor="#e6e6e6" width="30%">
+			<p><font face="Verdana"><font size="4"><b>Tablas no mostradas en el diagrama</b></font></font></p>
+		</td>
+		<td bgcolor="#e6e6e6" width="70%">
+			<p><br>
+			</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>Stock_V1</p>
+		</td>
+		<td width="70%">
+			<p>Utilizada para acciones y enlazada con la tabla: AccountList_V1 mediante el campo HeldAt</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>Assets_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene todos los detalles de los activos</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>BudgetYear_V1</p>
+		</td>
+		<td width="70%">
+			<p>El año específico de un presupuesto</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>BudgetTable_V1</p>
+		</td>
+		<td width="70%">
+			<p>Detalles de presupuestos</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>BudgetSplitTransactions_V1</p>
+		</td>
+		<td width="70%">
+			<p>Transacciones divididas para presupuestos</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="30%">
+			<p>BillDeposit_V1</p>
+		</td>
+		<td width="70%">
+			<p>Contiene todos los detalles de las transacciones periódicas. Similar a la tabla: CheckingAccountV1</p>
+		</td>
+	</tr>
+</tbody></table>
+<p><br><br>
+</p>
+<p><br><br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<col width="213*">
+	<col width="43*">
+	<tbody><tr valign="top">
+		<td width="83%">
+			<p><a href="#custom_sql_top"><font face="Verdana"><b>Volver arriba</b></font></a></p>
+		</td>
+		<td width="17%">
+			<p><a href="./index.html"><font face="Verdana"><b>Inicio</b></font></a></p>
+		</td>
+	</tr>
+</tbody></table>
+<p><br><br>
+</p>
+<hr>
+<p><a name="sql_scripting_intro"></a><font face="Verdana"><font size="3"><br></font></font><font face="Verdana"><font size="6"><b>SQL
+Scripting (Introducción)</b></font></font></p><p><font face="Verdana"><font size="3">Intentar enseñar programación
+SQL sobrepasa el alcance de este fichero de ayuda, pero a continuación
+se encuentra una guía rápida para comprender los scripts, y
+posiblemente crear los suyos propios si los necesita.</font></font></p>
+<p><font size="6"><font face="Verdana"><font size="3">Al crear scripts, el principal comando que usaríamos es la sentencia </font></font><font face="Verdana"><font size="3"><b>SELECT</b></font></font><font face="Verdana"><font size="3">.</font></font></font></p>
+<p><font face="Verdana"><font size="3">El formato básico es:</font></font></p><table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<col width="72*">
+	<col width="184*">
+	<tbody><tr valign="top"><td bgcolor="#ffffcc" width="28%">
+			<p><font face="Verdana"><font size="6"><font size="3"><b>SELECT</b></font>
+			<font size="3">&lt;nombre&gt; </font></font></font>
+			</p>
+		</td><td bgcolor="#ffffcc" width="72%">
+			<p><font face="Verdana"><font size="3">&lt;nombre&gt; representa el nombre de los campos de la tabla, o * para todos los nombres. </font></font>
+			</p>
+		</td></tr>
+	<tr valign="top"><td bgcolor="#ffffcc" width="28%">
+			<p><font face="Verdana"><font size="6"><font size="3"><b>FROM</b></font>
+			<font size="3">&lt;tabla&gt; </font></font></font>
+			</p>
+		</td><td bgcolor="#ffffcc" width="72%">
+			<p><font face="Verdana"><font size="3">&lt;tabla&gt; representa la tabla o tablas sobre las que se dirige el comando.</font></font></p>
+		</td></tr>
+	<tr valign="top"><td bgcolor="#ffffcc" width="28%">
+			<p><font face="Verdana"><font size="6"><font size="3"><b>WHERE</b></font>
+			<font size="3">&lt;condición&gt;</font></font></font></p>
+		</td><td bgcolor="#ffffcc" width="72%">
+			<p><font face="Verdana"><font size="3">[opcional] aquí comprobamos alguna condición.</font></font></p>
+		</td></tr>
+	<tr valign="top"><td bgcolor="#ffffcc" width="28%">
+			<p><font face="Verdana"><font size="3"><b>ORDER BY</b> &lt;parámetro&gt;</font></font></p>
+		</td><td bgcolor="#ffffcc" width="72%">
+			<p><font face="Verdana"><font size="3">[opcional] ordena la salida por este parámetro.</font></font></p>
+		</td></tr>
+</tbody></table>
+<p><font face="Verdana"><font size="3"><br></font></font><font face="Verdana"><font size="3">Ejemplos:</font></font>
+</p><p><font face="Verdana"><font size="3"><b>SELECT * FROM
+AccountList_V1;</b><br>* Mostraría todos los campos de la tabla:
+AccountList_V1</font></font></p>
+<p><font face="Verdana"><font size="3"><b>SELECT AccountName, Status
+FROM AccountList_V1 where AccountType = “Term”;</b></font></font><font face="Verdana"><font size="3"><br>*
+Mostraría los nombres y el estado de las cuentas a plazo de la tabla: AccountList_V1</font></font></p><hr>
+<p><font face="Verdana"><font size="4"><b>Aquí se describe un script más complejo:</b></font></font><br><br><br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<col width="256*">
+	<tbody><tr><td bgcolor="#e6e6e6" valign="top" width="100%">
+			<p><font face="Verdana"><font size="3"><b>Aunque este script es poco útil, sirve para describir algunos principios básicos.</b></font></font></p>
+		</td></tr>
+	<tr>
+		<td bgcolor="#ffffcc" valign="top" width="100%">
+			<p style="background: rgb(255, 255, 204) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><font face="Verdana"><font size="3"><b>select</b>
+			pT.PayeeName payee,<br>&nbsp;&nbsp;&nbsp;&nbsp;cT.CategName,<br>&nbsp;&nbsp;&nbsp;&nbsp;scT.SubCategName
+			<br><b>from</b> payee_v1 pT,<br>&nbsp;&nbsp;&nbsp;&nbsp;category_v1
+			cT,<br>&nbsp;&nbsp;&nbsp;&nbsp;subcategory_v1 scT
+			<br><b>where</b><br>&nbsp;&nbsp;&nbsp;&nbsp;pT.categID =
+			cT.categID and pT.subCategID = scT.subCategID<br><b>order
+			by</b><br>&nbsp;&nbsp;&nbsp;&nbsp;payee</font></font></p>
+		</td>
+	</tr>
+</tbody></table>
+<p><font face="Verdana"><font size="3"><br></font></font><font face="Verdana"><font size="3">En el ejemplo vemos que el nombre de la tabla es: payee_V1 y el nombre del campo es PayeeName</font></font>
+</p><p style="margin-bottom: 0in;"><font face="Verdana"><font size="3">En la cláusula <b>FROM</b> vemos el nombre de la tabla: payee_V1 <b>pT<br></b>*
+Aquí el <b>pT</b> del final actúa como un alias para el nombre de tabla.</font></font></p>
+<p><font face="Verdana"><font size="3">Ahora en el&nbsp;<b>SELECT</b> vemos:
+<b>pT.</b>PayeeName <b>payee</b> <br>* El <b>pT.</b> se utiliza para establecer la tabla a la que pertenece el campo PayeeName<br>* El <b>payee</b> del final es un alias para la combinación tabla.nombredecampo<br><br>Podemos separar tablas y nombres de campos con comas, como vemos en este ejemplo.</font></font></p>
+<p><font face="Verdana"><font size="3">En la cláusula <b>WHERE</b> vemos: pT.categID = cT.categID<br>* Aquí hacemos una comprobación para asegurarnos que los dos campos son el mismo en ambas tablas.</font></font></p>
+<p><font face="Verdana"><font size="3">Ahora en la cláusula <b>ORDER BY</b> podemos utlizar el nombre simplificado de </font></font><font face="Verdana"><font size="3"><b>payee </b></font></font><font face="Verdana"><font size="3">que definimos en la cláusula <b>SELECT</b>.</font></font></p>
+<p><font face="Verdana"><font size="3">Espero que esta pequeña introducción aclare un poco el funcionamiento de los scripts que se ven en la sección&nbsp;</font></font><font face="Verdana"><font size="3">Custom SQL Report Scripts del foro de MMEX</font></font><font face="Verdana"><font size="3">.</font></font></p><p><br><br><br>
+</p>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+	<col width="213*">
+	<col width="43*">
+	<tbody><tr valign="top">
+		<td width="83%">
+			<p><a href="#custom_sql_top"><font face="Verdana"><b>Volver arriba</b></font></a></p>
+		</td>
+		<td width="17%">
+			<p><a href="./index.html"><font face="Verdana"><b>Inicio</b></font></a></p>
+		</td>
+	</tr>
+</tbody></table>
+<p><br><br>
+</p>
+<hr>
+<p><br><br>
+</p>
+</body></html>

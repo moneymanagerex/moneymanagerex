@@ -1,0 +1,1921 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE>Money Manager Ex User Manual</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.3  (Win32)">
+	<META NAME="CREATED" CONTENT="0;0">
+	<META NAME="CHANGEDBY" CONTENT="Stefano Giorgio">
+	<META NAME="CHANGED" CONTENT="20120304;17344045">
+	<META NAME="CHANGEDBY" CONTENT="Stefano Giorgio">
+	<STYLE TYPE="text/css">
+	<!--
+		H2.cjk { font-family: "SimSun" }
+		H2.ctl { font-family: "Mangal" }
+		H3.cjk { font-family: "SimSun" }
+		H3.ctl { font-family: "Mangal" }
+		H5.cjk { font-family: "SimSun" }
+		H5.ctl { font-family: "Mangal" }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H2 CLASS="western" ALIGN=CENTER><A NAME="top"></A><FONT FACE="Verdana"><BR>Money
+Manager Ex User Manual<BR><FONT SIZE=3>MMEX 0.9.9.0</FONT></FONT></H2>
+<HR>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=208*>
+	<COL WIDTH=48*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=81%>
+			<UL>
+				<LI><P STYLE="margin-bottom: 0in"><A HREF="#introduction"><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">Introduction</SPAN></FONT></A></P>
+				<LI><P STYLE="margin-bottom: 0in"><A HREF="#financial_health"><FONT FACE="Verdana">Working
+				towards better Financial Health</FONT></A></P>
+				<LI><P STYLE="margin-bottom: 0in"><A HREF="#concepts"><FONT FACE="Verdana">Money
+				Manager Ex Concepts</FONT></A></P>
+				<LI><P><A HREF="#recommendation"><FONT FACE="Verdana">Recommendations</FONT></A></P>
+			</UL>
+		</TD>
+		<TD WIDTH=19%>
+
+			<A HREF="french/index.html">French Version</A><BR>
+			<A HREF="italian/index.html">Italian Version</A><BR>
+			<A HREF="russian/index.html">Russian Version</A><BR>
+			<A HREF="spanish/index.html">Spanish Version</A><BR>
+			<A HREF="polish/index.html">Polish Version</A><BR>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><FONT FACE="Verdana"><B>Database Management</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal"><BR>*
+				<A HREF="#create_database">Creating a New Database</A><BR>*
+				<A HREF="#encrypting_database">Encrypting a Database</A><BR>*
+				<A HREF="#switching_databases">Switching Databases</A></SPAN></FONT></P>
+			</UL>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><FONT FACE="Verdana"><B>Working with</B></FONT><FONT FACE="Verdana">:<BR>*
+				<A HREF="#currencies">Currencies</A><BR>* <A HREF="#categories">Categories</A><BR>*
+				<A HREF="#payees">Payees</A></FONT></P>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><FONT FACE="Verdana"><B>Account Management</B></FONT><FONT FACE="Verdana"><BR>*
+				<A HREF="#create_account">Creating New Accounts</A><BR>* <A HREF="#editaccounts">Editing
+				Account Information</A><BR>* <A HREF="#creating_new_transaction">Creating
+				New Transactions</A><BR>* <A HREF="#edittrans">Editing and
+				Updating Transactions</A><BR>* <A HREF="#rectrans">Reconciling &amp;
+				Balancing Transactions</A><BR>* <A HREF="#followup">Flagging
+				Transactions for Followup</A></FONT></P>
+				<LI><P><A HREF="#account_setup"><FONT FACE="Verdana"><B>Account
+				Setup Example</B></FONT></A></P>
+			</UL>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><FONT FACE="Verdana"><B>Import From</B></FONT> <FONT FACE="Verdana"><BR>*
+				<A HREF="#importQIF">QIF Files</A> <BR>* <A HREF="#importUnivCSV">Universal
+				CSV Importer</A> </FONT>
+				</P>
+				<LI><P><A HREF="#importcsvtips"><FONT FACE="Verdana"><B>Tips for
+				creating CSV Files</B></FONT></A></P>
+				<LI><P><FONT FACE="Verdana"><B>Export To</B></FONT> <FONT FACE="Verdana"><BR>*
+				<A HREF="#exportcsv">CSV Files</A> <BR>* <A HREF="#export_qif">QIF
+				Files</A></FONT></P>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><A HREF="#reports"><FONT FACE="Verdana"><B>Reports</B></FONT></A><FONT FACE="Verdana"><BR>*
+				<A HREF="#financialYearReport">Financial Year Reports</A><BR>*
+				<A HREF="#transaction_report">Transaction Reports</A><BR>* <A HREF="#cashFlowReport">Cash
+				Flow Reports</A><BR>* <A HREF="custom_reports.html">Custom Reports</A></FONT></P>
+			</UL>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><A HREF="investment.html"><FONT FACE="Verdana"><B>Stock
+				Investments</B></FONT></A></P>
+				<LI><P><A HREF="#assets"><FONT FACE="Verdana"><B>Assets</B></FONT></A></P>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><A HREF="#repeating_transactions"><FONT FACE="Verdana"><B>Repeating
+				Transactions</B></FONT></A></P>
+				<LI><P><A HREF="#transfilter"><FONT FACE="Verdana"><B>Transaction
+				Report Filter</B></FONT></A></P>
+			</UL>
+		</TD>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><A HREF="budget.html"><FONT FACE="Verdana"><B>Budgeting</B></FONT></A></P>
+				<LI><P><A HREF="#print"><FONT FACE="Verdana"><B>Printing</B></FONT></A></P>
+			</UL>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<UL>
+				<LI><P><A HREF="#options"><FONT FACE="Verdana"><B>MMEX Options</B></FONT></A></P>
+			</UL>
+		</TD>
+		<TD WIDTH=50%>
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#faq"><FONT FACE="Verdana">Frequently
+	Asked Questions</FONT></A></P>
+</UL>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<HR>
+<H3 CLASS="western"><A NAME="introduction"></A><FONT FACE="Verdana"><BR>Introduction</FONT></H3>
+<P><FONT FACE="Verdana, sans-serif"><B>Money Manager Ex (MMEX) </B>is
+a personal money management system, for any one starting out in
+keeping track of their money, and their spending habits. Based on
+simple principles, thus allowing anyone with little, to no knowledge
+of finance and general book keeping, to successfully manage their
+money. <SPAN STYLE="font-weight: normal">MMEX does this by attempting
+to models the real financial world, to help us (the user) maintain
+our personal finances.</SPAN> The Money Manager EX Software, is Open
+Source, and free to use.</FONT></P>
+<P><FONT FACE="Verdana, sans-serif">The primary goal of MMEX is to
+simplify the process of tracking financial information, in an easy to
+use program that can be used as regular as necessary, to help us keep
+track of where our money comes from and more importantly, where our
+money goes, in order to make better financial decisions for our
+future.</FONT></P>
+<P><FONT FACE="Verdana, sans-serif">Think of Money Manager Ex as a
+computer checkbook which enables you to balance your accounts,
+organize, manage and generate reports for your finances. </FONT>
+</P>
+<P><FONT FACE="Verdana">It is also a great way to keep abreast of
+your financial worth.</FONT></P>
+<P><FONT FACE="Verdana">The purpose of this manual is to give you
+(the user) some basic instructions for using MMEX. This instruction
+manual will evolve as the program evolves. So check the help system
+with each update and see what's new and how to better utilize MMEX. </FONT>
+</P>
+<H5 CLASS="western"><FONT FACE="Verdana"><A HREF="#top">Back to Top</A><BR></FONT><BR><BR>
+</H5>
+<HR>
+<H3 CLASS="western"><A NAME="financial_health"></A><FONT FACE="Verdana"><BR>Working
+towards better Financial Health</FONT></H3>
+<P><FONT FACE="Verdana">Becoming organized financially requires some
+amount of discipline. Financial management can become complicated
+when there is no clear understanding of how much money we are
+getting, regarded as income as opposed to our expenses which is how
+much money we spend. Debt usually results when our cash flow is
+restricted because our expenses exceed our income. Then we need to
+borrow money to maintain our cash flow to enable us to purchase our
+necessary items.</FONT></P>
+<P><FONT FACE="Verdana">The first step towards better Financial
+Health, is to maintain good financial records. It is only when we
+have a clear understanding of where our money goes, that we can make
+an informed decision of where to cut back on our expenses when our
+cash flow becomes tight. If we do need to borrow money, we can then
+better manage our debts as well.</FONT></P>
+<P><FONT FACE="Verdana">Did you realize you spent $600 in buying DVD
+movies last year? How many times did you watch them? Do you think now
+that the $600 would have been better spent on the unexpected
+maintenance on the auto that came up yesterday? Of course there is no
+right or wrong answer to how you should spend your money. After all,
+it is you who earned that money and the right to spend it whichever
+way you see fit. But you can always make your money work harder for
+you.<BR><BR>Here's where personal finance software comes in. They
+help you slice/dice the financial data to give you better insight
+into what is going on. Always remember the software can only be as
+good as the data it has to process. Garbage In Garbage Out. But if
+you have started thinking of even using Personal finance software,
+you are well on your way to making every dollar count.</FONT></P>
+<P><FONT FACE="Verdana">Read on how to work with Money Manager Ex.</FONT></P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="concepts"></A><FONT FACE="Verdana"><BR>Money
+Manager Ex Concepts</FONT></H3>
+<P><FONT FACE="Verdana">Money Manager EX models the real world to
+help us maintain our personal finances.</FONT></P>
+<P><FONT FACE="Verdana">Generally we receive money from someone for a
+service we provide, or a product that we sell. This is regarded as
+Income or as a </FONT><A HREF="#trans_types"><FONT FACE="Verdana"><B>Deposit</B></FONT></A>
+<FONT FACE="Verdana">to our system. When we purchase an item or use a
+service, the money that we spend is regarded as an expense or
+</FONT><A HREF="#trans_types"><FONT FACE="Verdana"><B>Withdrawal</B></FONT></A>
+<FONT FACE="Verdana">to our system. In MMEX, the people that give us
+money or receive our money are regarded as the </FONT><A HREF="#payees"><FONT FACE="Verdana"><B>Payees</B></FONT></A>
+<FONT FACE="Verdana">of the system.</FONT></P>
+<P><FONT FACE="Verdana">As we hopefully do not spend all the money we
+receive, we would obviously need a place to keep our money. This is
+generally, some financial institution, or several institutions or in
+our pocket. MMEX tags these places as </FONT><A HREF="#create_account"><FONT FACE="Verdana"><B>Accounts</B></FONT></A><FONT FACE="Verdana">.
+</FONT>
+</P>
+<P><FONT FACE="Verdana">When we spend or receive money, we see this
+as a </FONT><A HREF="#creating_new_transaction"><FONT FACE="Verdana"><I><B>transaction</B></I></FONT></A><FONT FACE="Verdana"><I><SPAN STYLE="font-weight: normal">,
+and the reason for our income or expense is our </SPAN></I></FONT><A HREF="#categories"><FONT FACE="Verdana"><I><B>category</B></I></FONT></A><FONT FACE="Verdana"><I><SPAN STYLE="font-weight: normal">.
+There will be times where we need to transfer money from one place to
+another, such as a withdrawal from an ATM, and this type of
+transaction is known as a </SPAN></I></FONT><A HREF="#trans_types"><FONT FACE="Verdana"><I><B>transfer</B></I></FONT></A><FONT FACE="Verdana"><I><SPAN STYLE="font-weight: normal">.</SPAN></I></FONT></P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=51*>
+	<COL WIDTH=205*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=20%>
+			<P STYLE="font-weight: normal"><FONT FACE="Verdana"><I>This can be
+			simplified as shown in the following diagram:</I></FONT></P>
+		</TD>
+		<TD WIDTH=80%>
+			<P><IMG SRC="mmex_concept.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=581 HEIGHT=338 BORDER=0>
+						</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><FONT FACE="Verdana">One other important thing to consider is the
+</FONT><A HREF="#currencies"><FONT FACE="Verdana"><B>currency</B></FONT></A>
+<FONT FACE="Verdana">we use to perform the transactions.</FONT></P>
+<P><FONT FACE="Verdana">With all of these things to keep track of,
+MMEX uses a </FONT><A HREF="#create_database"><FONT FACE="Verdana"><B>database</B></FONT></A>
+<FONT FACE="Verdana">to store and connect all these entities
+together.</FONT></P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="recommendation"></A><FONT FACE="Verdana"><BR>Recommendations</FONT></H3>
+<P><FONT FACE="Verdana">The database that MMEX generates, known as
+the <B>.mmb</B> file, becomes an important file for you to maintain.
+Depending on circumstances, security features such as encryption can
+be employed, which is recognized as a <B>.emb</B> file. This is where
+we can attach a password to the database, and will require a password
+every time MMEX is opened.</FONT></P>
+<P><FONT FACE="Verdana"><B>When encrypting your database, Don't
+forget your password</B>.</FONT></P>
+<P><FONT FACE="Verdana">As with any computer system, the data we
+produce is important to us, and therefore need to safeguard against
+system malfunction. MMEX has a backup system where it can produce a
+dated copy when the database is opened, and/or produce a dated copy
+of the database when changes have been detected. Up to 4 backups are
+maintained for each database when the system is initialized and/or
+when system changes have been detected, and the system shuts down.</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Always backup your .mmb or .emb database
+	file regularly.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Always keep backup copies on other
+	devices to protect against hardware failure.</FONT></P>
+	<LI><P><FONT FACE="Verdana">When upgrading to a new version of MMEX,
+	make sure you backup your .mmb or .emb database file before doing
+	so.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the Menu Tools--&gt;Options... to
+	set up the level of backup required.</FONT></P>
+</UL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="create_database"></A><FONT FACE="Verdana"><BR>Creating
+a New Database</FONT></H3>
+<P><FONT FACE="Verdana">When MMEX initially starts up, it will
+attempt to load the last database that was opened. If no database
+existed, the user is presented with the option to either open an
+existing database, or create a new one.</FONT></P>
+<P><FONT FACE="Verdana">If you need to create a new database file,
+from the Menu, Select <B>File-&gt;New Database</B>.</FONT></P>
+<P><FONT FACE="Verdana">This will prompt you to specify a new name
+for your .mmb database file, at the location you specify. Your new
+database file is now created and the New Database Wizard will be
+displayed to help you initialize the new database and assist in
+<A HREF="#create_account">creating your first account</A>.</FONT></P>
+<P><FONT FACE="Verdana">The New Database Wizard will request you to
+set the Base </FONT><FONT FACE="Verdana"><B>Currency</B></FONT> <FONT FACE="Verdana">and
+a </FONT><FONT FACE="Verdana"><B>User Name</B></FONT><FONT FACE="Verdana">.</FONT></P>
+<P><FONT FACE="Verdana">MMEX comes with a default set of currencies
+which you can use, to correspond to your countries currency settings.
+New accounts will then use this </FONT><FONT FACE="Verdana"><B>Base
+Currency</B></FONT> <FONT FACE="Verdana">setting as the default. This
+allows accounts from different countries to reflect the value in the
+base currency.</FONT></P>
+<P><FONT FACE="Verdana">To help identify the purpose of the database,
+a </FONT><FONT FACE="Verdana"><B>User Name</B></FONT> <FONT FACE="Verdana">is
+requested. This is optional, as it is only used as a title on the
+Home Page, and in reports.</FONT></P>
+<P><FONT FACE="Verdana">Both these settings can later be changed if
+required by selecting the menu: </FONT><FONT FACE="Verdana"><B>Tools
+-&gt;Options</B></FONT> 
+</P>
+<P><FONT FACE="Verdana">The database name will be displayed on the
+title bar which helps remind you which database file is open.<BR></FONT><FONT FACE="Verdana"><B>The
+new .mmb database file is not encrypted.</B></FONT></P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="encrypting_database"></A><FONT FACE="Verdana"><BR>Encrypting
+your database file.</FONT></H3>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">The database can
+now be encrypted as follows: on the Menu, Select <B>File-&gt;Save
+Database As</B></FONT></P>
+<OL>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Select your
+	location, and select your .mmb file or create a new name for your
+	database.</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Change the
+	<B>Save As Type:</B> to Encrypted MMB Files (*.emb), then <B>Save</B></FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Enter a
+	password for your file &ndash; <B>You will need the password when
+	opening the database file.</B></FONT></P>
+</OL>
+<P><FONT FACE="Verdana"><B>Tips:</B></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Remember to make backups of your .mmb or
+	.emb database files. </FONT>
+	</P>
+	<LI><P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">Database
+	file is not encrypted:</SPAN><BR>That means anyone else having the
+	proper know how, can actually open the file and read the contents.
+	So make sure that if you are storing any sensitive financial
+	information, it is properly guarded.</FONT></P>
+	<LI><P><FONT FACE="Verdana">For encrypted database files: <B>Remember
+	your password</B>.</FONT></P>
+</OL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="switching_databases"></A><BR><FONT FACE="Verdana, sans-serif">Switching
+Databases</FONT></H3>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">For users having
+multiple databases, the user can easily switch between the databases
+by using the Menu item: <B>File-&gt;Recent Files...</B></FONT></P>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">This will save
+the last five recently used files. The list will show 6 entries as
+the first entry on the list is the file currently being used.</FONT></P>
+<P><FONT FACE="Verdana"><B>Clearing the list.</B></FONT></P>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">When the list is
+cleared, all the items in the list are cleared. When MMEX shuts down,
+the currently opened database will be saved as the last opened file.
+This will appear in the recent file list as the first entry when MMEX
+is restarted.</FONT></P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="create_account"></A><FONT FACE="Verdana"><BR>Creating
+New Accounts</FONT></H3>
+<P><FONT FACE="Verdana">When creating a new database file, you will
+automatically be requested to create a new account.</FONT></P>
+<P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">To manually
+create a new account, from the Menu, Select </SPAN></FONT><FONT FACE="Verdana"><B>Accounts-&gt;New
+Account</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">.</SPAN></FONT></P>
+<P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">This will
+bring up the </SPAN></FONT><FONT FACE="Verdana"><B>Add Account
+Wizard</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">.
+The wizard will assist in collecting the important information of the
+Name and Type of Account. </SPAN></FONT><FONT FACE="Verdana"><B>The
+Type of Account is not changeable</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">,
+but the name can changed when <A HREF="#editaccounts">editing account
+information</A>.</SPAN></FONT></P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><B>Name of the
+Account:</B></FONT> <FONT FACE="Verdana">This is a required field.
+The recommendation is to name your accounts uniquely and in relation
+to real world accounts. Example: With CitiBank, we have a Savings
+account and a credit card Visa account. You could name your accounts
+as &quot;CitiBank Savings&quot; and &ldquo;Citibank Visa&rdquo;.</FONT></P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<P><FONT FACE="Verdana"><B>Type of Account: </B>MMEX currently
+supports three types of accounts:</FONT></P>
+<OL>
+	<LI><P>&ldquo;<FONT FACE="Verdana"><I><B>Checking&rdquo;</B></I></FONT>
+	<FONT FACE="Verdana"><B>Account:</B></FONT> <FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">This
+	is the most common type of account used for MMEX, and can handle
+	most common account types, such as checking accounts, savings
+	accounts, and credit card accounts.</SPAN></FONT> <FONT FACE="Verdana">Also
+	known as Bank Account, and supports three kinds of transactions.
+	These are withdrawal, deposit and transfers. </FONT>
+	</P>
+	<LI><P>&ldquo;<FONT FACE="Verdana"><B>Term&rdquo; Accounts:</B></FONT>
+	<FONT FACE="Verdana">similar to Checking Accounts with the exception
+	that they appear in their own section on the home page and can be
+	shown or hidden for normal day usage. For a better explanation see
+	the <A HREF="#account_setup">account setup example</A>.<BR><BR>These
+	kinds of accounts cover specialized accounts such as Cash Term
+	Accounts, Bank Mortgage accounts, Loan accounts, or investment
+	accounts with regular income or expenditure that you need to keep
+	track of. These accounts have their own balance section on the Home
+	Page. These accounts also, supports three kinds of transactions.</FONT></P>
+	<LI><P><FONT FACE="Verdana"><B>&quot;</B></FONT><FONT FACE="Verdana"><I><B>Investment</B></I></FONT><FONT FACE="Verdana"><B>&quot;
+	Account:</B></FONT> <FONT FACE="Verdana">The other type of account
+	that MMEX supports is an &quot;Investment&quot; Account. This type
+	of account allows you to track stock/bonds/mutual funds investments
+	and possibly other investments you may own.</FONT></P>
+</OL>
+<P><FONT FACE="Verdana">To properly setup accounts, you should have
+balance information for the accounts you want to add to MMEX. You can
+get this information from your most recent bank, investment and
+credit card statements. To track additional information about this
+account, optionally you can enter your account details such as
+Account Number, Held At, Website, Contact info and Access Info. You
+can enter additional notes about the account in the notes field.</FONT></P>
+<P><FONT FACE="Verdana">Most accounts have some kind of balance in
+them, for example say in a credit card account, you have a current
+balance of $2304.67, you could put that value in the initial balance
+field. Going forward you only need to add transactions beyond that
+date when you had the balance.</FONT></P>
+<P><FONT FACE="Verdana"><B>The Account</B></FONT> <FONT FACE="Verdana"><B>Status</B></FONT>
+<FONT FACE="Verdana">can be set to &quot;Open&quot; or &quot;Closed&quot;.
+Closed accounts are just that. They are no longer active. Setting
+this status is just a way to de-clutter your view in your tree view
+navigation pane. Permanent settings are made by changing the View
+Options on the Menu, Tools-&gt;Options, you can hide the closed
+accounts. See <A HREF="#navTreeTips">Tips on Navigation
+Tree</A><BR><BR></FONT><FONT FACE="Verdana"><B>Currency:</B></FONT>
+<FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">This is
+initially set to the database Base Currency setting which was
+initially set when creating the database. Y</SPAN></FONT><FONT FACE="Verdana">ou
+can set the currency that is associated with this account and can be
+different to the base currency. </FONT>
+</P>
+<P><FONT FACE="Verdana">The exchange rate for the currency can be
+changed using the menu: </FONT><FONT FACE="Verdana"><B>Tools
+-&gt;Organize Currency</B></FONT></P>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">Example: You live
+in the USA using US Dollars, and have an Italian bank account using
+the Euro. Most of your accounts are in USD. What is the real value of
+your Italian bank account? By changing the exchange rate for the
+Italian Euro, you can get the correct value of your accounts.</FONT></P>
+<P><FONT FACE="Verdana">You also can mark accounts as a </FONT><FONT FACE="Verdana"><SPAN LANG="en-US">'Favorite</SPAN></FONT>
+<FONT FACE="Verdana">Account'. This again is used to change the
+accounts that are visible in the navigation bar. See <A HREF="#navTreeTips">Tips
+on Navigation Tree</A></FONT></P>
+<P><FONT FACE="Verdana"><B>Tips:</B></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Use the toolbar icon for quick selection
+	of the Add Account Wizard.</FONT></P>
+</OL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="account_setup"></A><FONT FACE="Verdana"><B><BR>Account
+Setup Example:</B></FONT></H3>
+<P><FONT FACE="Verdana">We have a savings account with $1250, a check
+account with $500, a MasterCard owing $250, a Visa Card owing $475, a
+home mortgage loan of $230,965 and an education fund to send the
+children to college in the future currently at $5000 earning
+interest.<BR>We would set up the following accounts:</FONT></P>
+<TABLE WIDTH=615 BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
+	<COL WIDTH=178>
+	<COL WIDTH=224>
+	<COL WIDTH=187>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P><B>Account Type</B></P>
+			</TD>
+			<TD WIDTH=224>
+				<P><B>Account Name</B></P>
+			</TD>
+			<TD WIDTH=187>
+				<P><B>Initial Balance</B></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P>Check/Savings</P>
+			</TD>
+			<TD WIDTH=224>
+				<P>Savings</P>
+			</TD>
+			<TD WIDTH=187 SDVAL="1250" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
+				<P>$1,250.00</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=224>
+				<P>Check</P>
+			</TD>
+			<TD WIDTH=187 SDVAL="500" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
+				<P>$500.00</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=224>
+				<P>MasterCard</P>
+			</TD>
+			<TD WIDTH=187 SDVAL="-250" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
+				<P><FONT COLOR="#ff0000">-$250.00</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=224>
+				<P>Visa Card</P>
+			</TD>
+			<TD WIDTH=187 SDVAL="-475" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
+				<P><FONT COLOR="#ff0000">-$475.00</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P>Term</P>
+			</TD>
+			<TD WIDTH=224>
+				<P>Home Mortgage</P>
+			</TD>
+			<TD WIDTH=187 SDVAL="-230965" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
+				<P><FONT COLOR="#ff0000">-$230,965.00</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=178>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=224>
+				<P>Education Fund</P>
+			</TD>
+			<TD WIDTH=187 SDVAL="5000" SDNUM="3081;0;[$$-409]#,##0.00;[RED]-[$$-409]#,##0.00">
+				<P>$5,000.00</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><FONT FACE="Verdana"><BR>On the Home Page the balances would be
+$1025 for Bank accounts, and $-225,965 for Term Accounts</FONT></P>
+<P><FONT FACE="Verdana">When a payment is made from your Savings
+Account to your MasterCard with a <A HREF="#transfer">Transfer</A>
+Transaction the balance on the home page remains the same. When a
+payment is made from your savings to your home mortgage, the balance
+on the home page will reflect the payment. Now you can determine the
+amount of money you have on a day to day basis. Regular payments can
+also be set up from your savings account to your mortgage account
+using <A HREF="#repeating_transactions">Repeating Transactions</A>.</FONT></P>
+<H3 CLASS="western"><A NAME="navTreeTips"></A><FONT FACE="Verdana"><B><BR>Tip
+on</B></FONT> <FONT FACE="Verdana">using the Navigation Tree and Home
+page:</FONT></H3>
+<P><FONT FACE="Verdana">As more accounts are created the Navigation
+Tree and Home page can become very large.<BR>This views can be
+temporarily changed to show or hide the appropriate section:</FONT></P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=ROWS>
+	<COL WIDTH=40*>
+	<COL WIDTH=216*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=15%>
+			<P><FONT FACE="Verdana">Navigation Tree:</FONT></P>
+		</TD>
+		<TD WIDTH=85%>
+			<P><FONT FACE="Verdana">Expand/Contract the Bank and Term Account
+			branches using the +/- nodes on the navigation tree.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=15%>
+			<P><FONT FACE="Verdana">Home Page:</FONT></P>
+		</TD>
+		<TD WIDTH=85%>
+			<P><FONT FACE="Verdana">Using the menu: View -&gt;Bank Accounts
+			and/or menu: View -&gt;Term Accounts</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><FONT FACE="Verdana">Using a mouse Right-Click on:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Bank Accounts in the Navigation tree,
+	will allow all accounts or only favorite accounts to be shown,
+	temporarily changing the permanent settings, as well as other useful
+	options.</FONT></P>
+</UL>
+<UL>
+	<LI><P><FONT FACE="Verdana">Any account name under Bank or Term
+	accounts, to bring up other useful options.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana">To make the change permanent, change the
+options using the menu: Tools -&gt;Options --&gt;View Options</FONT></P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="editaccounts"></A><FONT FACE="Verdana"><BR>Editing
+Account Information</FONT></H3>
+<P><FONT FACE="Verdana">Once you have created an account, you can
+edit any of the account information fields in the following ways:</FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Using menu <B>Accounts</B> &ndash;&gt;
+	<B>Edit Account</B><BR>The list of account will be displayed where
+	the required account is selected.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Selecting the account name in the
+	navigation pane<BR>Right click to bring up the pop-up menu and
+	select &quot;</FONT><FONT FACE="Verdana"><B>Edit Account</B></FONT><FONT FACE="Verdana">&quot;</FONT></P>
+</OL>
+<P><FONT FACE="Verdana">This will bring up the account information
+dialog where the required fields can be changed.</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Edit the account details</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the &quot;OK&quot; button to save
+	the account information.</FONT></P>
+</UL>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="creating_new_transaction"></A><FONT FACE="Verdana"><BR>Creating
+New Transactions</FONT></H3>
+<P><FONT FACE="Verdana">Once you have created a new account, and
+selected the required account from the navigation tree, or the home
+page, the displayed account can have new transactions added as
+follows:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Using the New button at the bottom of
+	the Account View screen,</FONT></P>
+	<LI><P><FONT FACE="Verdana">By selecting an existing transaction and
+	using the mouse Right-Click, and select the appropriate action on
+	the pop-up menu screen.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><B>New/Edit Transaction Dialog</B></FONT></P>
+<P><FONT FACE="Verdana">This dialog box will appear for new
+transactions. Use this dialog to enter the following details:</FONT></P>
+<UL>
+	<LI><P><B>Date</B> - This is generally the date of the transaction.
+	Defaults to current day and can be changed.</P>
+	<LI><P><B>Status</B> - The default is None, but can be changed to
+	Reconciled by the options settings.</P>
+	<LI><P><B>Type</B> - Refer to Transaction Types below.</P>
+	<LI><P><B>Amount</B> &ndash; Enter the amount fro the transaction.
+	The 2<SUP>nd</SUP> amount field is associated with the Advanced
+	Check-box and will be activated only for Transfer transactions.</P>
+	<LI><P><B>Advanced</B> &ndash; For a transfer transaction, when the
+	amount in the &ldquo;From&rdquo; Account is different to the &rdquo;To&rdquo;
+	Account, the difference is recorded in the separate fields. This can
+	for currency rate changes.</P>
+</UL>
+<P><FONT FACE="Verdana"><I><B>Transaction Status:</B></I></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><FONT FACE="Verdana"><I><B>Unreconciled</B></I><I>:
+	When you enter a transaction, it initially is in the state of
+	&quot;Unreconciled&quot;. Which means the transaction has not been
+	reconciled with your bank/credit card company's balance.</I></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><FONT FACE="Verdana"><I><B>Reconciled:</B></I>
+	<I>Once the transaction is checked and verified with a credit card
+	company's balance information, it can be marked as reconciled.</I></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><FONT FACE="Verdana"><I><B>Void:</B></I>
+	<I>If you entered a transaction that later became invalid or you
+	canceled the transaction, instead of deleting the transaction you
+	can also mark it as void so you have a record of the transaction.</I></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in; font-weight: normal"><FONT FACE="Verdana"><I><B>Flag
+	For Followup:</B></I> <I>This status marks transactions as needing
+	more action. For example, you receive a balance statement from the
+	financial institution and you notice that the transaction amount is
+	different between what you recorded and what is in the statement.
+	You can mark it as flag for follow up so that you can followup with
+	the financial institution.</I></FONT></P>
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="trans_types"></A><FONT FACE="Verdana"><I><B>Duplicate:</B></I>
+	<I><SPAN STYLE="font-weight: normal">The status will be
+	automatically be changed to duplicate if it is recognized as such.</SPAN></I></FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><I><B>Transaction Types:</B></I> </FONT>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><I><B>Withdrawal:
+	</B></I>is one where one makes a payment and is an expense.</FONT></P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><I><B>Deposit:</B></I>
+	is one where money is received and is an income. </FONT>
+	</P>
+	<LI><P><A NAME="transfer"></A><FONT FACE="Verdana"><I><B>Transfer:</B></I></FONT>
+	<FONT FACE="Verdana">is one where a withdrawal is made from one
+	account and is deposited into another account.<BR>This type of
+	transaction is not included in Income/Expense calculations.</FONT></P>
+</UL>
+<P><A HREF="#payees"><FONT FACE="Verdana"><I><B>Payee:</B></I></FONT></A>
+<FONT FACE="Verdana">This is a person or an organization to whom the
+money goes or comes from. </FONT>
+</P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Clicking the payee button opens up the
+	payee dialog. You can select the payee from that dialog or create a
+	new payee for immediate use.</FONT></P>
+</UL>
+<P><A HREF="#categories"><FONT FACE="Verdana"><I><B>Category:</B></I></FONT></A>
+<FONT FACE="Verdana">Category selects the kind of expense/income for
+the transaction. </FONT>
+</P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Clicking the category button opens up
+	the category dialog. You can select the category from the dialog or
+	create a new category for immediate use.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><B>Split:</B></FONT> <FONT FACE="Verdana">This
+check-box will activate the Split Transactions Dialog</FONT></P>
+<UL>
+	<LI><P>Split Transactions allows multiple categories to be recorded
+	for a single transaction.</P>
+	<LI><P>Can allow a transaction to have Income and Expense categories
+	recorded as deposit and withdrawals, provided the overall
+	transaction type is observed and remains positive, for Deposit and
+	Withdrawal transactions.</P>
+</UL>
+<P><FONT FACE="Verdana"><B>Note: <FONT COLOR="#ff0000">Do not use the
+same category for Deposit and Withdrawal transactions</FONT>, as this
+will upset overall balance figures.</B></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana"><I><B>Transaction Number:</B></I> is a
+	field to enter any kind of number associated with the transaction
+	like check number. </FONT>
+	</P>
+	<LI><P><FONT FACE="Verdana"><B>Notes</B></FONT><FONT FACE="Verdana">:
+	This field can be used to record any special notes with regards to
+	the transaction. The button under Notes can be used to select
+	commonly used field notes.</FONT></P>
+</UL>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="edittrans"></A><FONT FACE="Verdana"><BR>Editing
+and Updating Transactions</FONT></H3>
+<P><FONT FACE="Verdana">Editing existing transactions can be achieved
+in a number of ways:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">select the transaction and then click
+	the edit button.</FONT></P>
+	<LI><P><FONT FACE="Verdana">double-click the selected transaction.</FONT></P>
+	<LI><P><FONT FACE="Verdana">press enter on the selection. </FONT>
+	</P>
+</UL>
+<P><FONT FACE="Verdana">Any of these actions will open the
+transaction dialog box containing the details of the selected
+transaction. Make the changes and click OK to save the changes.</FONT></P>
+<P><A NAME="transaction_filtering"></A><FONT FACE="Verdana"><BR><B>Transaction
+Filtering in Accounts</B></FONT></P>
+<P><FONT FACE="Verdana">Transactions can be filtered by either fixed
+filters or, by using the Transaction Filter in the Account View. This
+will allow the user to limit the visible transactions to those
+defined by the appropriate filter. These filtered transactions can
+then be easily selected and individually modified.</FONT></P>
+<P><FONT FACE="Verdana">These visible transactions can also be
+deleted in bulk if so desired.<BR>Note: <FONT COLOR="#ff0000">Caution
+is advised when deleting transactions.</FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="rectrans"></A><FONT FACE="Verdana"><BR>Reconciling
+and Balancing Transactions</FONT></H3>
+<P><FONT FACE="Verdana"><B>Unreconciled Transactions:</B></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">This means that they have not been
+	verified with the statement from the financial institution.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><B>Reconciled Transactions:</B></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">A transaction can be considered
+	reconciled when the details of the transaction match that from the
+	financial institution.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana">In MMEX, reconciled and unreconciled
+transactions are shown by different icons. When bank details are not
+checked against a bank statement, the user can select to set the
+default as Reconciled when creating transactions in the Options
+settings.</FONT></P>
+<P STYLE="font-style: normal"><FONT FACE="Verdana"><B>Tip:</B></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">To mark a transaction as reconciled,
+	just select the transaction and hit the 'r' or 'R' key. To mark a
+	transaction as unreconciled, just select the transaction and hit the
+	'u' or 'U' key. </FONT>
+	</P>
+</UL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="followup"></A><FONT FACE="Verdana"><BR>Flagging
+transactions for followup</FONT></H3>
+<P><FONT FACE="Verdana">Some transactions might have some issues that
+you want to follow up on. Mark these as with status of flag for
+followup. This is indicated in MMEX with a different icon.</FONT></P>
+<P STYLE="font-style: normal; font-weight: normal; text-decoration: none">
+<FONT FACE="Verdana"><B>Tip</B>:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">To mark a transaction as requiring
+	followup, just select the transaction and hit the 'f or 'F' key. </FONT>
+	</P>
+</UL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="currencies"></A><FONT FACE="Verdana"><BR>Working
+with Currencies</FONT></H3>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">As MMEX can be
+used in many countries, MMEX need to consider the currency for the
+country of use. When creating a new database, the </FONT><FONT FACE="Verdana"><B>Base
+Currency </B></FONT><FONT FACE="Verdana">is set to the currency used
+in the user's country. If the user's currency setting is not listed
+in the default currencies, the user can create their own currency
+Listing.</FONT></P>
+<P><FONT FACE="Verdana">MMEX allows us to work with more than one
+currency. Each account has its own currency setting, and will default
+to the base currency. When we set accounts with different currencies,
+the transactions we create in these accounts will reflect the
+currency of the account.</FONT></P>
+<P><FONT FACE="Verdana">When transactions in different currencies are
+detected, MMEX will display a Currency Summary on the Home Page. This
+will reflect the amount and conversion rate for each currency being
+used.</FONT></P>
+<P><FONT FACE="Verdana">You can manage Currencies by using the menu
+item: </FONT><FONT FACE="Verdana"><B>Tools -&gt; Organize Currency</B></FONT><FONT FACE="Verdana">.</FONT></P>
+<P><FONT FACE="Verdana"><B>To Add a new Currency</B></FONT><FONT FACE="Verdana">:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Use the </FONT><FONT FACE="Verdana"><B>Add</B></FONT>
+	<FONT FACE="Verdana">button in the Currency Dialog</FONT></P>
+	<LI><P><FONT FACE="Verdana">Provide a suitable name for your new
+	currency.<BR>Note: This name is not changeable, but the currency can
+	be deleted if not being used.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Adjust the currency values in the
+	<B>Currency Manager.</B><BR>The Currency Manager is also available
+	when editing a currency.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the <B>Update</B> button to save the
+	changes before closing.<BR>Note: All changes will be lost if the
+	Update button is not used before Closing.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">When more
+than one currency is being used, the </SPAN><B>Conversion to Base
+Rate</B> <SPAN STYLE="font-weight: normal">needs to be set. This will
+allow the value of the currency to properly reflect the value at the
+base rate.</SPAN></FONT></P>
+<P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">To allow
+Automatic Currency updates, the </SPAN><B>Currency Symbol</B> <SPAN STYLE="font-weight: normal">needs
+to be set for the particular currency being used.</SPAN></FONT></P>
+<P><FONT FACE="Verdana">To use the menu item: <B>Tools &ndash;&gt;
+Online Update Currency Rate</B>, the following must occur:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Activate the option from the </FONT><FONT FACE="Verdana"><B>Tools
+	&ndash;&gt; Options... Others</B></FONT> <FONT FACE="Verdana">page.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Set the Currency Symbol for all
+	currencies requiring update.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Set the base currency value 1</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><B>Tips:</B></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Use the toolbar icon for quick selection
+	of the Organize Currencies dialog</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Use the
+	up/down keys to navigate the currency selection.</FONT></P>
+</OL>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="categories"></A><FONT FACE="Verdana"><BR>Working
+with Categories</FONT></H3>
+<P><FONT FACE="Verdana"><B>Categories indicate the reason an
+expenditure is made or an income is received.</B></FONT> 
+</P>
+<P><FONT FACE="Verdana">A Category is generally used to record Income
+or Expenses. Because MMEX allows us to transfer money between
+accounts, it is also recommended to use categories to record
+transfers. This will allow us to determine what money is being
+transferred for a specific reason, such as a repayment to a loan.
+This will not be seen as an income or expense in the overall picture.
+</FONT><FONT FACE="Verdana"><B>Using the same category for an income
+and an expense will upset balance figures</B></FONT><FONT FACE="Verdana">.</FONT></P>
+<P><FONT FACE="Verdana">Example: If we want to record the the value
+of running a car, we would set up the following:<BR>Category:
+Car,<BR>Subcategory: Fuel, Maintenance, Registration, Insurance, <B>Fuel
+Reimbursed<BR></B>The first 4 subcategories are used to record
+expenses. If we are reimbursed for fuel costs for any reason, we
+would need to use <B>Fuel Reimbursed</B> as an Income subcategory.
+This would then allow us to determine the correct amount we are
+spending on fuel to run the car. This will become clearer when we are
+using Budgets.</FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=4><B>Split Categories</B></FONT></FONT></P>
+<P><FONT FACE="Verdana">When adding a new transaction, we can use
+more that one category to record a transaction. This is known as a
+split category.</FONT></P>
+<P><FONT FACE="Verdana">The overall split category transaction is
+either a withdrawal or a deposit. Although the categories within the
+split, need to reflect the overall transaction type, each category
+can be classified as a withdrawal or deposit within the split. </FONT>
+</P>
+<P><FONT FACE="Verdana">Split categories can easily be viewed for a
+transaction by using a pop-up menu selection when a split category
+entry exists.</FONT></P>
+<P><FONT FACE="Verdana"><B>Note:</B><BR>Withdrawal Screen: Deposits
+are displayed as negative. <BR>Deposit Screen: Withdrawals are
+displayed as negative.</FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=4><B>Managing Our Categories</B></FONT></FONT></P>
+<P><FONT FACE="Verdana">You can manage Categories by using the menu
+item: </FONT><FONT FACE="Verdana"><B>Tools -&gt; Organize
+Categories</B></FONT><FONT FACE="Verdana">.<BR>Once the category
+dialog opens, you can add new categories and subcategories.</FONT></P>
+<P><FONT FACE="Verdana"><B>To Add a new Category</B>:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Select </FONT><FONT FACE="Verdana"><B>Categories</B></FONT>
+	<FONT FACE="Verdana">at the root of the tree (At the top),</FONT></P>
+	<LI><P><FONT FACE="Verdana">type the new category name into the text
+	box</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the the </FONT><FONT FACE="Verdana"><B>Add</B></FONT>
+	<FONT FACE="Verdana">button.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana">The new category will appear at the bottom,
+and will be resorted when the dialog box is re-opened.</FONT></P>
+<P><FONT FACE="Verdana"><B>To Add a new Subcategory:</B></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Select the category that you wish the
+	subcategory to belong to</FONT></P>
+	<LI><P><FONT FACE="Verdana">type the new subcategory name into the
+	text box</FONT></P>
+	<LI><P><FONT FACE="Verdana">use the the <B>Add</B> button.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana">You can also change the names by selecting
+the category/subcategory in the list , modify the name in the text
+box, then use the Edit button. Use a similar action to delete the
+category/subcategory in the list.</FONT></P>
+<P><FONT FACE="Verdana"><B>Note:</B> You cannot delete categories
+which are being used by any transactions.</FONT></P>
+<P><FONT FACE="Verdana">Ensure that no transactions use this
+category/subcategory, combination. This can be done by:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Editing the transaction and changing the
+	category/subcategory.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Deleting the transaction using this
+	category/subcategory.</FONT></P>
+</UL>
+<UL>
+	<LI><P><FONT FACE="Verdana">using the menu item: </FONT><FONT FACE="Verdana"><B>Tools
+	&ndash;&gt; Relocation of... Categories</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">,
+	where you can move all categories of a particular name to an
+	alternate category/subcategory combination.</SPAN></FONT></P>
+</UL>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">This would then
+make the category free so it can then be deleted.</FONT></P>
+<P><FONT FACE="Verdana"><B>Tips:</B></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Use the toolbar icon for quick selection
+	of the Organize Categories dialog</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the up/down keys to navigate the
+	tree selection.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Don't use the same category for Income
+	and Expense, as this will cause incorrect balance calculations.</FONT></P>
+</OL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="payees"></A><FONT FACE="Verdana"><BR>Working
+with Payees</FONT></H3>
+<P><FONT FACE="Verdana"><B>Payees are the people or institutions that
+give us money, or <BR>the people or institutions who we pay, for our
+goods and services.</B></FONT></P>
+<P><FONT FACE="Verdana">You can manage Payees by using the menu item:
+</FONT><FONT FACE="Verdana"><B>Tools &ndash;&gt; Organize Payees</B></FONT><FONT FACE="Verdana">.
+</FONT>
+</P>
+<P><FONT FACE="Verdana">Once the payee dialog opens you can add new
+payees, edit or delete existing payees.</FONT></P>
+<P><FONT FACE="Verdana">T<B>o Add a new Payee:</B></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Enter the name of the payee in the
+	Filter Payees box</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the Add button</FONT></P>
+</UL>
+<P><FONT FACE="Verdana">You can also select the payee in the list,
+then use the Edit or Delete button to perform the required action.</FONT></P>
+<P><FONT FACE="Verdana"><B>Note:</B> You cannot delete payees which
+are being used by any transactions.</FONT></P>
+<P><FONT FACE="Verdana">To delete a payee, ensure that no
+transactions use this payee. This can be done by:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Editing the transaction and changing the
+	payee.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Deleting the transaction using this
+	payee.</FONT></P>
+	<LI><P><FONT FACE="Verdana">By using the menu item: </FONT><FONT FACE="Verdana"><B>Tools
+	&ndash;&gt; Relocation of... Payees</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">,
+	where you can move all payees of a particular name to an alternate
+	name. </SPAN></FONT>
+	</P>
+</UL>
+<P STYLE="font-weight: normal"><FONT FACE="Verdana">This would then
+make the payee free so it can then be deleted.</FONT></P>
+<P><FONT FACE="Verdana"><B>Tips:</B></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Use the toolbar icon for quick selection
+	of the Organize Payees dialog</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Use the
+	up/down keys to navigate the payee selection.</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Use the % as
+	a wild-card to match many characters in the filter.</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Use _ to
+	match a single character in the filter.</FONT></P>
+</OL>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="importQIF"></A><FONT FACE="Verdana"><BR>Importing
+From QIF Files</FONT></H3>
+<P><FONT FACE="Verdana">Quicken Interchange Format (QIF) is an open
+specification for reading and writing financial data to media (i.e.
+files). A QIF file typically has the following structure:<BR><BR>!Type:type
+identifier string<BR>[single character line code]Literal String
+Data<BR>...<BR>^<BR>[single character line code]Literal String
+Data<BR>...<BR>^<BR><BR>Each record ends with a ^ (caret). <BR>See
+example QIF transaction <BR><BR>!Type:Bank Header<BR>D6/ 1/94 Date
+<BR>T-1,000.00 Amount<BR>N1005 number<BR>PBank Of Mortgage Payee <BR>^
+End of transaction <BR><BR>QIF is older than Open Financial Exchange
+(OFX). The inability to reconcile imported transactions against the
+current account information is one of the primary shortcomings of
+QIF. It is commonly supported by financial institutions to supply
+down-loadable information to account holders. <BR><BR>MMEX can import
+transactions from specific types of QIF formats into an account.
+<BR><BR>The types are the following: (You can find the type of QIF by
+opening in a text editor) <BR>!Type:Bank Bank account transactions
+<BR>!Type:Cash Cash account transactions <BR>!Type:CCard Credit card
+account transactions <BR><BR><B>Important Note (1)</B>: The date
+format option has to match that of the date format in the QIF file,
+otherwise, date parsing by MMEX will fail and will result in
+transactions having incorrect dates. <BR><BR><B>Important Note (2)</B>:
+After importing from QIF, all transactions will have a &quot;Follow
+Flag&quot; as it its status. You can mark all transactions with this
+flag using the bulk status setting commands using the right click
+menu in the account view. </FONT>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="importUnivCSV"></A><FONT FACE="Verdana"><BR>Importing
+From Universal CSV Format</FONT></H3>
+<P><FONT FACE="Verdana">To alleviate the problem of users having to
+pre-format their bank transaction CSV files into the fixed format
+MMEX requires, MMEX also allows users to import CSV files where the
+order of fields is completely freeform. To use this importer, select
+the account you want to import into and then select the order of
+fields in the CSV file by picking and choosing from the list of
+possible fields. MMEX will now import the CSV file using the format
+information specified by the user. MMEX can import from a wide
+variety of formats. One of them is a fixed format CSV file. This file
+format exactly matches the CSV format that MMEX can export. So it can
+be useful to move data from one .mmb database file to another .mmb
+database file. To easily see the format of the CSV file, you can try
+exporting an account to a CSV file and then analyzing the format
+created.<BR><BR>The CSV field options are as follows:<BR><I><B>Date</B></I>
+- Date of the transaction (In the format specified in
+Options-&gt;DateFormat)<BR><I><B>Payee</B></I> - To whom the
+transaction was made. In the case of a transfer transaction, this
+indicates the name of the account from which the transfer was made or
+to the account the transfer was made.<BR><I><B>Amount (+/-)</B></I> -
+The transaction amount. If it is a positive value it is a deposit,
+negative value is a withdrawal.<BR><I><B>Category</B></I> - The
+category of the transaction<BR><I><B>SubCategory</B></I> - The
+subcategory of the transaction <BR><I><B>Notes</B></I> - Transaction
+Notes<BR><I><B>Number</B></I> - Transaction Number<BR><I><B>Withdrawal</B></I>
+- An +ive amount that is considered as a withdrawal. (Do not use if
+specifying Amount (+/-))<BR><I><B>Deposit</B></I> - An +ive amount
+that is considered as a deposit. (Do not use if specifying Amount
+(+/-))<BR><I><B>Don't Care</B></I> - Ignore this field<BR><BR>Note
+that the transactions from a CSV file can only be imported into a
+single MMEX account.<BR><BR><B>Important Note (1)</B>: The date
+format option has to match that of the date format in the QIF file,
+otherwise, date parsing by MMEX will fail and will result in
+transactions having incorrect dates. <BR><BR><B>Important Note (2)</B>:
+After importing from QIF, all transactions will have a &quot;Follow
+Flag&quot; as it its status. You can mark all transactions with this
+flag using the bulk status setting commands using the right click
+menu in the account view.</FONT></P>
+<P><!-- creating csv tips added by terry wick 9/14/2007 --><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="importcsvtips"></A><FONT FACE="Verdana"><BR>Tips
+for creating CSV Files</FONT></H3>
+<UL>
+	<LI><P><FONT FACE="Verdana">When creating your CSV file be sure that
+	you remove the commas from your deposits and withdrawals. This can
+	be done easily through a program such as Excel or OpenOffice Calc. </FONT>
+	</P>
+</UL>
+<UL>
+	<LI><P><FONT FACE="Verdana">Or you can change the delimiter to be
+	used by MMEX by choosing Tools &ndash;&gt; Options and changing the
+	&quot;Import/Export Settings&quot; in the &quot;General&quot; option
+	settings. </FONT>
+	</P>
+</UL>
+<UL>
+	<LI><P><FONT FACE="Verdana">You do not need to include balance
+	values in your CSV File.</FONT></P>
+</UL>
+<UL>
+	<LI><P><FONT FACE="Verdana">Note that the transactions from a CSV
+	file can only be imported into a single MMEX account.</FONT></P>
+</UL>
+<P><!-- end of tips addition from terry wick --><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="exportcsv"></A><FONT FACE="Verdana"><BR>Exporting
+to CSV Files</FONT></H3>
+<P><FONT FACE="Verdana">MMEX can export to a fixed format CSV file.
+This file format exactly matches the CSV format that MMEX can import.
+So it can be useful to move data from one .mmb database file to
+another .mmb database file. To easily see the format of the CSV file,
+you can try exporting an account to a CSV file and then analyzing the
+format created.<BR><BR>The general format is as follows:<BR><I><B>Date</B></I>
+- Date of the transaction (Displayed in the format specified in
+Options-&gt;DateFormat)<BR><I><B>Payee</B></I> - To whom the
+transaction was made. In the case of a transfer transaction, this
+indicates the name of the account from which the transfer was made or
+to the account the transfer was made.<BR><I><B>Transaction Type</B></I>
+- This can either be &quot;<I>Withdrawal</I>&quot; or
+&quot;<I>Deposit</I>&quot;<BR><I><B>Amount</B></I> - The transaction
+amount as a positive value<BR><I><B>Category</B></I> - The category
+of the transaction<BR><I><B>SubCategory</B></I> - The subcategory of
+the transaction if any (otherwise blank)<BR><I><B>Notes</B></I> -
+Transaction Notes<BR><BR>Note that the transactions from an account
+can be exported to a single CSV file.</FONT></P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="export_qif"></A><FONT FACE="Verdana"><BR>Exporting
+to QIF Files</FONT></H3>
+<P><FONT FACE="Verdana">MMEX can export an account to a file of the
+format: QIF.</FONT></P>
+<P><FONT FACE="Verdana">This format can also be used by MMEX to
+<A HREF="#importQIF">reload into an account</A>.</FONT></P>
+<P><FONT FACE="Verdana">Caution: Although Transfer transactions will
+be reloaded into a single account, they will not function correctly.</FONT></P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="repeating_transactions"></A><FONT FACE="Verdana"><BR>Repeating
+Transactions</FONT></H3>
+<P><FONT FACE="Verdana">These are special transactions that we set up
+in order to have the transaction entered into the data base at some
+future date. These transactions generally occur at regular intervals,
+such as the payment of a bill.</FONT></P>
+<P><FONT FACE="Verdana">These transactions:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Are displayed as reminders on the Home
+	Page within 15 Days of the due date.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Can be set up to activate automatically
+	on the due date.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Can be set up to activate &ndash;
+	allowing the user to adjust any values on the due date.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><B>Repeating Transactions</B></FONT> <FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">can
+be accessed</SPAN></FONT> <FONT FACE="Verdana">from the navigation
+tree or from the menu item Tools-&gt;Repeating Transactions. This
+will display the Repeating Transactions page.</FONT></P>
+<P><FONT FACE="Verdana">To create a new transaction, use the </FONT><FONT FACE="Verdana"><B>New
+</B></FONT><FONT FACE="Verdana">button:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Set up the Repeating Transactions
+	Details, defining which account the transaction will go to when the
+	transaction is entered.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Set the date of the </FONT><FONT FACE="Verdana"><B>Next
+	Occurrence</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">,<BR>except
+	for Repeats: </SPAN></FONT><FONT FACE="Verdana"><B>In x Days</B></FONT><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">/Months.</SPAN></FONT></P>
+	<LI><P><FONT FACE="Verdana">Select the Repeats as &ldquo;daily&rdquo;,
+	&ldquo;weekly&rdquo; etc.</FONT></P>
+	<LI><P><FONT FACE="Verdana"><B>Times Repeated:<BR></B></FONT><FONT FACE="Verdana">-
+	Enter the number of times this will occur.<BR></FONT><FONT FACE="Verdana"><B>-
+	</B></FONT><FONT FACE="Verdana">No number means: Repeat
+	indefinitely.</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">For Repeats:
+	</FONT><FONT FACE="Verdana"><B>In x Days</B></FONT><FONT FACE="Verdana">/Months<BR>-
+	Set the Start date of the activity.<BR>- Set the period in Days or
+	months depending on the selection.<BR>- Use the </FONT><FONT FACE="Verdana"><B>Next</B></FONT>
+	<FONT FACE="Verdana">button to advance the date to the occurrence
+	Date.<BR>- Changes to the period will reactivate the </FONT><FONT FACE="Verdana"><B>Next</B></FONT>
+	<FONT FACE="Verdana">button. Once the transaction has been entered,
+	the activity becomes inactive.</FONT></P>
+	<LI><P STYLE="font-weight: normal"><FONT FACE="Verdana">Repeats:
+	</FONT><FONT FACE="Verdana"><B>Every x Days</B></FONT><FONT FACE="Verdana">/Months<BR>Similar
+	to regular repeats with the exception that the period is stated in
+	Days or Months</FONT></P>
+	<LI><P><FONT FACE="Verdana">Set up the Transaction Details section,
+	similar to <A HREF="#creating_new_transaction">creating new
+	transactions</A>.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">These
+transaction will be displayed as:</SPAN></FONT> <FONT FACE="Verdana"><B>Upcoming
+Transactions</B></FONT> <FONT FACE="Verdana"><SPAN STYLE="font-weight: normal">on
+the home page within 15 days of the due date.</SPAN></FONT></P>
+<P><FONT FACE="Verdana"><B>Note:</B></FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">When we enter the transaction, we can
+	change the amount, payee, category, status and date if required.</FONT></P>
+	<LI><P><FONT FACE="Verdana"><B>Entering a transaction before it is
+	due</B></FONT><FONT FACE="Verdana">, will gray out the transaction
+	in the associated account until the day it becomes active.</FONT></P>
+	<LI><P><FONT FACE="Verdana">To use the <A HREF="#cashFlowReport">Cash
+	Flow Reports</A> we need to set up repeating transactions.</FONT></P>
+</OL>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="assets"></A><FONT FACE="Verdana"><BR>Assets</FONT></H3>
+<P><FONT FACE="Verdana">MMEX allows you to track fixed assets like
+cars, houses, land and others. Each asset can have its value
+appreciate by a certain rate per year, depreciate by a certain rate
+per year, or not change in value. The total assets are added to your
+total financial worth. </FONT>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="transfilter"></A><FONT FACE="Verdana"><BR>Transaction
+Report Filter</FONT></H3>
+<P><FONT FACE="Verdana">MMEX allows you to search for transactions
+that meet certain criteria. This can be done using the <A HREF="#transaction_filtering">Transaction
+Filter</A>, located Account View or as a <A HREF="#transaction_report">Transaction
+Report.</A>  </FONT>
+</P>
+<P><FONT FACE="Verdana">For a Transaction Report, the resulting list
+of transactions can be printed or saved as a HTML file.</FONT></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="reports"></A><A NAME="budgeting"></A><FONT FACE="Verdana"><BR>Reports</FONT></H3>
+<P><FONT FACE="Verdana">MMEX allows a variety of reports. <BR>All the
+reports can also be printed if required using the menu:
+<B>File-&gt;Print... --&gt;Current View</B></FONT></P>
+<P><FONT FACE="Verdana">Select the appropriate report under the
+Reports node in the navigation tree. Some reports require some user
+input, some do not. Once you view a report, you can print the report
+using the print options in the menu.</FONT></P>
+<P><A NAME="financialYearReport"></A><FONT FACE="Verdana"><BR><B>Financial
+Year Reports:</B> (Required by various countries)</FONT></P>
+<P><FONT FACE="Verdana">These reports generally do not start at the
+beginning of the calendar year, and appear as branches of the main
+report titles. These reports cover:</FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana">Previous Financial Year.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Current Financial Year.</FONT></P>
+</OL>
+<P><FONT FACE="Verdana">By default the start date of a financial year
+is 1</FONT><SUP><FONT FACE="Verdana">st</FONT></SUP> <FONT FACE="Verdana">July
+of the year.</FONT></P>
+<P><FONT FACE="Verdana">The start date can be changed by the user to
+start on any day of any month, within a 12 month period by using the
+menu </FONT><FONT FACE="Verdana"><B>Tools -&gt;Options</B></FONT>
+<FONT FACE="Verdana">then selecting the </FONT><FONT FACE="Verdana"><B>General</B></FONT>
+<FONT FACE="Verdana">panel.</FONT></P>
+<P><A NAME="transaction_report"></A><FONT FACE="Verdana"><B><BR>Transaction
+Reports:</B> </FONT>
+</P>
+<OL>
+	<LI><P><FONT FACE="Verdana">This allows the user to generate
+	specific reports based on selected user requirements.</FONT></P>
+	<LI><P><FONT FACE="Verdana">Also known as the <A HREF="#transfilter">Transaction
+	Report Filter</A>.</FONT></P>
+</OL>
+<P><A NAME="cashFlowReport"></A><FONT FACE="Verdana">A Transaction
+Report is generally used to locate specific transactions made within
+Bank or Term type accounts. This report can also be used to display
+specific details for a particular account.</FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT FACE="Verdana"><B>Transaction Report - transfer transactions
+may upset balance totals.</B> </FONT>
+</P>
+<P><FONT FACE="Verdana">Since a transfer transaction is a withdrawal
+from one account and a deposit to another account, a transaction
+report done on multiple accounts looses the reference point for
+determining weather the transaction is a deposit or withdrawal.</FONT></P>
+<P><FONT FACE="Verdana">When a transaction report is used for a
+specific account, it will generate a report that will match the
+account details. The reference point for transfers in known for this
+report, which will reflect in the report having correct balances
+displayed.</FONT></P>
+<P><FONT FACE="Verdana"><BR><BR><BR><B>Cash flow Reports</B></FONT></P>
+<P><FONT FACE="Verdana">This report projects the amount of funds
+available, based on future commitments.</FONT></P>
+<P><FONT FACE="Verdana">Future commitments are determined from the
+<A HREF="#repeating_transactions">Repeating Transactions</A> that are
+set up for the various accounts. The report will then use the
+Repeating Transactions for the various accounts, and reflect forward
+10 years on a monthly basis. This becomes a prediction of the amount
+of money that may be available each month based on current payments.</FONT></P>
+<P><BR><BR>
+</P>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="print"></A><FONT FACE="Verdana"><BR>Printing</FONT></H3>
+<P><FONT FACE="Verdana">MMEX supports printing of all reports that
+can be viewed. </FONT>
+</P>
+<P><FONT FACE="Verdana">The print options are available under the
+menu, File-&gt;Print... Current View</FONT></P>
+<P><FONT FACE="Verdana">Recommendations:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Use the page setup option to reformat
+	the page if necessary</FONT></P>
+	<LI><P><FONT FACE="Verdana">Use the print preview option to check
+	the layout of the report before printing.</FONT></P>
+</UL>
+<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to Top</FONT></A></H5>
+<HR>
+<H3 CLASS="western"><A NAME="options"></A><FONT FACE="Verdana"><BR>MMEX
+Options</FONT></H3>
+<P><FONT FACE="Verdana">You can modify some run time behavior of MMEX
+by changing the options in the Options Dialog.</FONT></P>
+<P><FONT FACE="Verdana">Access from the menu with <B>Tools-&gt;Options</B></FONT></P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
+	<COL WIDTH=45*>
+	<COL WIDTH=211*>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18% BGCOLOR="#e6e6e6">
+				<P><FONT FACE="Verdana"><B>General Panel</B></FONT></P>
+			</TD>
+			<TD WIDTH=82% BGCOLOR="#e6e6e6">
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>User Name<BR></B><SPAN STYLE="font-weight: normal">Optional</SPAN></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">This field is used as a title on the Home
+				Page, and on Reports.<BR>Leaving this field blank, will remove
+				the Home Page and Report titles.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Language</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">This is the language used by the MMEX
+				GUI. MMEX might require a restart before all GUI elements have
+				the new language.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Base Currency:</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">The base currency setting is used to set
+				the currency of the database. Individual accounts will use this
+				as the default, but can be changed if different currencies as
+				required.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Date Format:</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">The date format setting is used to
+				control how dates should be displayed and also how dates should
+				be parsed when importing QIF, CSV files.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><B>Financial Year</B></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Sets the start Day and Month for a
+				Financial Year period, as opposed to a calendar year. This is
+				used in Budgets and Reports.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Database<BR>Backup</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Sets the way the backups are performed
+				when MMEX starts.</FONT></P>
+				<UL>
+					<LI><P><FONT FACE="Verdana"><B>Create a new backup when MMEX
+					Starts</B><BR>This copies the database to a new file with
+					today's date, when MMEX Starts.<BR>The file will not be over
+					written when MMEX starts up again. When there are more that 4
+					backup files, the oldest file is deleted.</FONT></P>
+					<LI><P><FONT FACE="Verdana"><B>Update database changes to
+					database backup on exit.</B><BR>When MMEX shuts down, the
+					existing database will be copied to a backup database file for
+					that day when changes to the database have been detected. When
+					changes are made on the same day, the existing backup is over
+					written. When there are more that 4 backup files, the oldest
+					file is deleted.</FONT></P>
+				</UL>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
+	<COL WIDTH=45*>
+	<COL WIDTH=211*>
+	<TBODY>
+		<TR>
+			<TD COLSPAN=2 WIDTH=100% VALIGN=TOP BGCOLOR="#e6e6e6">
+				<P><FONT FACE="Verdana"><B>View Options Panel</B></FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Account View</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">This sets the Navigation tree's visible
+				accounts, according to status.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Transaction View</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">This determines which transactions are
+				seen as default in the Account View.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><B>Font Size</B></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">This will set the font being used on the
+				Home Page and in Reports.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><B>Tree View<BR>Expand Section</B></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Sets the account types being expanded
+				when in the navigation tree is refreshed.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><B>Home Page</B><BR><B>Expand Section</B></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Sets the account types being expanded
+				when the home page is refreshed.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><BR>
+				</P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=NONE>
+	<COL WIDTH=45*>
+	<COL WIDTH=211*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18% BGCOLOR="#e6e6e6">
+			<P><FONT FACE="Verdana"><B>Colors Panel</B></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana">Allows the user to modify colors in MMEX
+			to suit his/her style.</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=ROWS>
+	<COL WIDTH=45*>
+	<COL WIDTH=211*>
+	<TR>
+		<TD COLSPAN=2 WIDTH=100% VALIGN=TOP BGCOLOR="#e6e6e6">
+			<P><FONT FACE="Verdana"><B>Import/Export Panel</B></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><I><B>CSV Limiter</B></I></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana">This is used as the delimiting character
+			when parsing CSV files. This is useful to modify from the default
+			',' when dealing with currencies that use ',' to denote decimal
+			points in amounts. </FONT>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<H5 CLASS="western"><BR><BR>
+</H5>
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
+	<COL WIDTH=45*>
+	<COL WIDTH=211*>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18% BGCOLOR="#e6e6e6">
+				<P><FONT FACE="Verdana"><B>Others Panel</B></FONT></P>
+			</TD>
+			<TD WIDTH=82% BGCOLOR="#e6e6e6">
+				<P><BR>
+				</P>
+			</TD>
+		</TR>
+	</TBODY>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>New Transactions</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Changes the default settings for the
+				New/Edit Transactions Dialog</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana"><I><B>Stock Quote Web Page</B></I></FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">This URL is used by the Refresh button on
+				the Stock Investments page.</FONT></P>
+				<P><FONT FACE="Verdana">This URL is also used by the New/Edit
+				Stock dialog, to display the web page for the listed stock.</FONT></P>
+				<P><FONT FACE="Verdana">The default is yahoo finance.
+				Alternatively other sites can be used if necessary.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana">Use Original date... </FONT>
+				</P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Activate to use the date of the
+				transaction date when using paste transaction, in account view.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana">Use sound...</FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Activate to plays a sound when a
+				transaction is entered.</FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=18%>
+				<P><FONT FACE="Verdana">Enable online currency...</FONT></P>
+			</TD>
+			<TD WIDTH=82%>
+				<P><FONT FACE="Verdana">Activate to allow currencies to be
+				updated via the internet.</FONT></P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<H5 CLASS="western"><FONT FACE="Verdana"><BR><A HREF="#top">Back to
+Top</A></FONT></H5>
+<HR>
+<H3 CLASS="western"><A NAME="faq"></A><FONT FACE="Verdana"><BR>Frequently
+Asked Questions</FONT></H3>
+<OL>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><A HREF="#contribute">How
+	can I contribute?</A> </FONT>
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><A HREF="#nameex">What's
+	the reason for the EX in the name of the software?</A> </FONT>
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><A HREF="#database1">Is
+	the .mmb file format proprietary? And is my data safe?</A> </FONT>
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><A HREF="#usbkey">Can
+	MMEX run from a USB Key?</A> </FONT>
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><FONT FACE="Verdana"><A HREF="#safety">How
+	do I know MMEX is not trying to steal my sensitive financial
+	information?</A> </FONT>
+	</P>
+	<LI><P><FONT FACE="Verdana"><A HREF="#statements">How do I print
+	account statements using MMEX?</A> </FONT>
+	</P>
+</OL>
+<HR>
+<H3 CLASS="western"><A NAME="contribute"></A><FONT FACE="Verdana"><BR>How
+can I contribute?</FONT></H3>
+<P><A NAME="contribute1"></A><FONT FACE="Verdana">You can contribute
+by </FONT>
+</P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute2"></A><FONT FACE="Verdana">Reporting
+	bugs</FONT> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute3"></A><FONT FACE="Verdana">Translating
+	to your language</FONT> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute4"></A><FONT FACE="Verdana">Helping
+	spread the word</FONT> 
+	</P>
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute5"></A><FONT FACE="Verdana">If
+	you are a C++ expert, by helping extend MMEX developing code. </FONT>
+	</P>
+	<LI><P><FONT FACE="Verdana">If you are really very happy because you
+	saved a lot of money by using MMEX, you can donate to the MMEX
+	project. </FONT>
+	</P>
+</UL>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to
+			Top</FONT></A></H5>
+		</TD>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#faq"><FONT FACE="Verdana">Back to
+			Frequently Asked Questions</FONT></A></H5>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3 CLASS="western"><A NAME="nameex"></A><FONT FACE="Verdana"><BR>What's
+the reason for the EX in the name of the software?</FONT></H3>
+<P><FONT FACE="Verdana">Originally I developed a personal finance
+software called Money Manager. It was written in .NET and more of a
+learning exercise than serious software development. It grew far
+beyond the original design. The software was frozen and work began on
+a new version which had a similar user interface and features, but
+written in C++.&nbsp; </FONT>
+</P>
+<P><FONT FACE="Verdana">Usually Microsoft names their second version
+of their improved software APIs with an Ex extension as in
+doSomething() and doSomethingEx(). So I just followed the model and
+tacked on a 'Ex' to the end. </FONT>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to
+			Top</FONT></A></H5>
+		</TD>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#faq"><FONT FACE="Verdana">Back to
+			Frequently Asked Questions</FONT></A></H5>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3 CLASS="western"><A NAME="database1"></A><FONT FACE="Verdana"><BR>Is
+the .mmb format proprietary? And, Is my data safe? </FONT>
+</H3>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=13*>
+	<COL WIDTH=243*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=5%>
+			<P><FONT FACE="Verdana"><B>No</B></FONT></P>
+		</TD>
+		<TD WIDTH=95%>
+			<P STYLE="font-weight: normal"><FONT FACE="Verdana">.mmb file is
+			not proprietary.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=5%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=95%>
+			<P STYLE="font-weight: normal"><FONT FACE="Verdana">MMEX uses
+			SQLite databases to store user data. That means that the .mmb file
+			is a regular SQLite database. SQLite is one of the smallest, free
+			relational database systems around and there are tons of tools to
+			open and access SQLite databases. SQLiteSpy and SQLite Browser
+			(http://sqlitebrowser.sourceforge.net/) are two such utilities.
+			Once you open the database using these tools, you can do anything
+			you want with the data. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=5%>
+			<P><FONT FACE="Verdana"><B>Yes</B></FONT></P>
+		</TD>
+		<TD WIDTH=95%>
+			<P><FONT FACE="Verdana">Your data is completely safe.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=5%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=95%>
+			<P><FONT FACE="Verdana">The data is self contained on your PC, (or
+			<A HREF="#usbkey">USB stick</A> if you have made it portable). To
+			further protect your data, <A HREF="#encryptDatabase">encryption
+			can now be added.</A> This applies a password to your database
+			file, and can only be opened by MMEX or any other software if you
+			have the correct password.</FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><FONT FACE="Verdana"><BR></FONT><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to
+			Top</FONT></A></H5>
+		</TD>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#faq"><FONT FACE="Verdana">Back to
+			Frequently Asked Questions</FONT></A></H5>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3 CLASS="western"><A NAME="usbkey"></A><FONT FACE="Verdana"><BR>Can
+MMEX run from a USB Key?</FONT></H3>
+<P><A NAME="usbkey1"></A><FONT FACE="Verdana"><B>Yes.</B></FONT></P>
+<P><FONT FACE="Verdana">MMEX is a portable application which means
+ability to run without installation, for example, from USB flash
+drive. If MMEX finds mmexini.db3 in its folder, it assumes portable
+mode. Copy mmex's files to USB Key and copy yours mmexini.db3 to
+mmex's folder on that drive.</FONT></P>
+<P><FONT FACE="Verdana">To make MMEX portable:</FONT></P>
+<OL>
+	<LI><P><FONT FACE="Verdana"><B>On Windows (assume F:\ is USB flash
+	drive)</B></FONT><FONT FACE="Verdana"><BR>Copy &quot;C:\Program
+	Files\MoneyManagerEx&quot; to <A HREF="../help">F:\</A><BR>Copy
+	&quot;%APPDATA%\MoneyManagerEx\mmexini.db3&quot; to
+	<A HREF="../help">F:\MoneyManagerEx</A><BR>Copy your database file
+	to any folder on <A HREF="../help">F:\</A><BR></FONT><BR><BR>
+	</P>
+	<LI><P><FONT FACE="Verdana"><B>On Unix (assume /media/disk is
+	mounted USB flash drive)</B></FONT><FONT FACE="Verdana"><BR>Compile
+	mmex from sources as usually,<BR>and</FONT> <FONT FACE="Verdana">make
+	install prefix=/media/disk<BR>cp ~/.mmex/mmexini.db3
+	/media/disk/mmex/share/mmex<BR><BR>or if you want to copy mmex which
+	has already installed in /usr<BR>cp /usr/bin/mmex
+	/media/disk/mmex/bin<BR>cp /usr/share/mmex /media/disk/mmex/share<BR>cp
+	/usr/share/doc/mmex /media/disk/mmex/share/doc<BR>cp
+	~/.mmex/mmexini.db3 /media/disk/mmex/share/mmex<BR></FONT><BR><BR>
+	</P>
+</OL>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to
+			Top</FONT></A></H5>
+		</TD>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#faq"><FONT FACE="Verdana">Back to
+			Frequently Asked Questions</FONT></A></H5>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3 CLASS="western"><A NAME="safety"></A><FONT FACE="Verdana"><BR>How
+do I know MMEX is not trying to steal my sensitive financial
+information?</FONT></H3>
+<P><A NAME="safety1"></A><FONT FACE="Verdana">Generally, with any
+closed source program, you have to depend upon the vendor's word
+regarding safety of the data. But with MMEX being open source, you
+can verify this claim yourself. Even if you are not a C++ expert, you
+can rest assured that anyone can access the source code at any time
+and verify the legitimacy of MMEX's intentions. MMEX does not connect
+to the internet unless you explicitly asked it do so (like checking
+for an update etc). <BR></FONT><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to
+			Top</FONT></A></H5>
+		</TD>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#faq"><FONT FACE="Verdana">Back to
+			Frequently Asked Questions</FONT></A></H5>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3 CLASS="western"><A NAME="statements"></A><FONT FACE="Verdana"><BR>How
+do I print account statements using MMEX?</FONT></H3>
+<P><A NAME="statements1"></A><FONT FACE="Verdana">To print a
+statement with transactions from any arbitrary set of criteria, use
+the Transaction Filter to select the transactions you want and then
+do a print from the menu. File -&gt;Print... -&gt;Current View</FONT></P>
+<P><FONT FACE="Verdana">The Transaction Filter is accessed from
+Reports --&gt; Transaction Reports on the Navigation Tree, or<BR>from
+the Quick Navigation buttons in the top left hand corner of MMEX.</FONT></P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=128*>
+	<COL WIDTH=128*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#top"><FONT FACE="Verdana">Back to
+			Top</FONT></A></H5>
+		</TD>
+		<TD WIDTH=50%>
+			<H5 CLASS="western"><A HREF="#faq"><FONT FACE="Verdana">Back to
+			Frequently Asked Questions</FONT></A></H5>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H5 CLASS="western"><FONT FACE="Verdana">Copyright &ordf; 2005-2011&nbsp;
+CodeLathe LLC. All rights reserved.</FONT></H5>
+</BODY>
+</HTML>

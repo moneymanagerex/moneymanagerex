@@ -1,0 +1,81 @@
+-------------------------------------------------------------------------------
+1. Required Libraries
+-------------------------------------------------------------------------------
+- wxWidgets >= 2.9.4 (www.wxwidgets.org)
+- GNU GetText
+
+Prepackaged Libraries
+- sqlite3
+- wxSqlite3
+- UnitTest++
+
+-------------------------------------------------------------------------------
+2. Building Money Manager Ex
+-------------------------------------------------------------------------------
+2.1. Microsoft Windows: read build\msw\readme.txt for build instructions.
+
+2.2. Building on Linux
+     
+2.2.1. Pre-built Binaries
+       If you don't want to build MMEX, you can download prebuilt binary packages 
+       for UBUNTU and SUSE.
+
+2.2.2. Building from Source.
+
+       GENERIC INSTRUCTIONS
+
+    1. Download & install the latest wxWidgets for wxGTK:
+       tar xfv wxGTK-2.8.11.tar.gz
+       cd wxGTK-2.8.11
+       ./configure --disable-shared --enable-unicode
+       sudo make install
+
+    2. cd trunk/mmex
+	mkdir release
+	cd release
+	../configure
+	make
+	make check
+
+	mkdir share
+	mkdir share/doc/
+	mkdir share/doc/mmex
+	mkdir share/mmex
+	mkdir share/mmex/res
+	ln -s ../../../../doc/help share/doc/mmex/
+	ln -s ../../../../doc/version.txt share/doc/mmex/
+	ln -s ../../../../doc/contrib.txt share/doc/mmex/
+	ln -s ../../../../doc/license.txt share/doc/mmex/
+
+	ln -s ../../../po share/mmex/
+	ln -s ../../../../resources/mmex.ico share/mmex/res/
+	ln -s ../../../../resources/splash.png share/mmex/res/
+
+       sudo make install
+       /usr/bin/mmex &
+
+       UBUNTU SPECIFIC INSTRUCTIONS
+
+       With apt-get support, it is a little easier to do this in Ubuntu.
+
+    1. [Optional] Install Dev Tools by the following: sudo apt-get install build-essential
+
+    2. Install these packages
+       libwxgtk2.X-X, 
+       libwxgtk2.X-X-dev
+
+    3. Execute step #2 from generic instructions.
+
+-------------------------------------------------------------------------------
+3. REGENERATING AUTOMAKE FILES
+-------------------------------------------------------------------------------
+If for some reason, you need to regenerate AutoMake files.
+This might be required if you are adding new source files to MMEX 
+or if bakefile's script(s) has modified.
+
+1. Download and install latest version of Bakefile, www.bakefile.org.
+2. cd trunk/mmex
+   chmod a+rx bootstrap
+   ./bootstrap
+
+-------------------------------------------------------------------------------

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XML_DIZ_INFO>
+	<MASTER_PAD_VERSION_INFO>
+		<MASTER_PAD_VERSION>3.01</MASTER_PAD_VERSION>
+		<MASTER_PAD_EDITOR>PADGen 3.0.1.37 http://www.padgen.org</MASTER_PAD_EDITOR>
+		<MASTER_PAD_INFO>Portable Application Description, or PAD for short, is a data set that is used by shareware authors to disseminate information to anyone interested in their software products. To find out more go to http://www.asp-shareware.org/pad</MASTER_PAD_INFO>
+	</MASTER_PAD_VERSION_INFO>
+	<Company_Info>
+		<Company_Name>CodeLathe LLC</Company_Name>
+		<Address_1>6601 W Plano Pkwy, #414</Address_1>
+		<Address_2 />
+		<City_Town>Plano</City_Town>
+		<State_Province>Tx</State_Province>
+		<Zip_Postal_Code>75093</Zip_Postal_Code>
+		<Country>USA</Country>
+		<Company_WebSite_URL>http://www.codelathe.com</Company_WebSite_URL>
+		<Contact_Info>
+			<Author_First_Name>Madhan</Author_First_Name>
+			<Author_Last_Name>Kanagavel</Author_Last_Name>
+			<Author_Email>madhan@yahoo.com</Author_Email>
+			<Contact_First_Name>Madhan</Contact_First_Name>
+			<Contact_Last_Name>Kanagavel</Contact_Last_Name>
+			<Contact_Email>madhan@yahoo.com</Contact_Email>
+		</Contact_Info>
+		<Support_Info>
+			<Sales_Email>support@codelathe.com</Sales_Email>
+			<Support_Email>support@codelathe.com</Support_Email>
+			<General_Email>support@codelathe.com</General_Email>
+			<Sales_Phone />
+			<Support_Phone />
+			<General_Phone />
+			<Fax_Phone />
+		</Support_Info>
+	</Company_Info>
+	<Program_Info>
+		<Program_Name>Money Manager Ex</Program_Name>
+		<Program_Version>0.9.3.0</Program_Version>
+		<Program_Release_Month>07</Program_Release_Month>
+		<Program_Release_Day>30</Program_Release_Day>
+		<Program_Release_Year>2008</Program_Release_Year>
+		<Program_Cost_Dollars>0</Program_Cost_Dollars>
+		<Program_Cost_Other_Code />
+		<Program_Cost_Other>0</Program_Cost_Other>
+		<Program_Type>Freeware</Program_Type>
+		<Program_Release_Status>New Release</Program_Release_Status>
+		<Program_Install_Support>Install and Uninstall</Program_Install_Support>
+		<Program_OS_Support>Windows2000,WinXP,Windows2003,Windows Vista Starter,Windows Vista Home Basic,Windows Vista Home Premium,Windows Vista Business,Windows Vista Enterprise,Windows Vista Ultimate,Windows Vista Home Basic x64,Windows Vista Home Premium x64,Windows Vista Business x64,Windows Vista Enterprise x64,Windows Vista Ultimate x64</Program_OS_Support>
+		<Program_Language>English,ChineseSimplified,ChineseTraditional,Czech,Dutch,French,Greek,Hebrew,Portuguese,Romanian,Russian,Swedish,Tamil,Ukrainian,Vietnamese</Program_Language>
+		<Program_Change_Info />
+		<Program_Specific_Category>Home/Hobby</Program_Specific_Category>
+		<Program_Category_Class>Home &amp; Hobby::Personal Finance</Program_Category_Class>
+		<Program_System_Requirements>Windows, Linux, </Program_System_Requirements>
+		<File_Info>
+			<File_Size_Bytes>2503161</File_Size_Bytes>
+			<File_Size_K>2444</File_Size_K>
+			<File_Size_MB>2.39</File_Size_MB>
+		</File_Info>
+		<Expire_Info>
+			<Has_Expire_Info>N</Has_Expire_Info>
+			<Expire_Count />
+			<Expire_Based_On>Days</Expire_Based_On>
+			<Expire_Other_Info />
+			<Expire_Month />
+			<Expire_Day />
+			<Expire_Year />
+		</Expire_Info>
+	</Program_Info>
+	<Program_Descriptions>
+		<English>
+			<Keywords>Money Manager, Personal Finance, Accounts, Bank, Currency</Keywords>
+			<Char_Desc_45>Personal Money Management Software</Char_Desc_45>
+			<Char_Desc_80>free, open-source, cross-platform, easy-to-use personal finance software</Char_Desc_80>
+			<Char_Desc_250>Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. </Char_Desc_250>
+			<Char_Desc_450> Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. It is also a great tool to get a bird's eye view of your financial worth. Money Manager includes all the basic features that 90% of users would want to see in a personal finance application. </Char_Desc_450>
+			<Char_Desc_2000> Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. It is also a great tool to get a bird's eye view of your financial worth.
+
+Money Manager includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user-friendliness - something one can use everyday.
+
+Main Features
+
+    * Intuitive. Simple, Fast, Clean
+    * AES Encryption Support
+    * Maintain checking, credit card, savings, stock investment accounts
+    * Budgeting
+    * Maintain and Track Fixed Assets with depreciation
+    * Reminders for recurring Bills and Deposits
+    * Simple one click reporting
+    * Cash Flow Forecasting
+    * Graphs, Piecharts
+    * Does not require an install. Can run from a USB key.
+    * International language support (Available in 24 languages)
+    * Import data from any CSV format, QIF [ Microsoft Money ]
+    * Printing, Exporting to HTML, CSV
+    * Non-Proprietary SQLite Database
+    * Read more in the Features Page.</Char_Desc_2000>
+		</English>
+	</Program_Descriptions>
+	<Web_Info>
+		<Application_URLs>
+			<Application_Info_URL>http://www.codelathe.com/mmex/</Application_Info_URL>
+			<Application_Order_URL />
+			<Application_Screenshot_URL>http://www.codelathe.com/mmex/homess.png</Application_Screenshot_URL>
+			<Application_Icon_URL>http://www.codelathe.com/mmex/mmex.png</Application_Icon_URL>
+			<Application_XML_File_URL />
+		</Application_URLs>
+		<Download_URLs>
+			<Primary_Download_URL>http://prdownloads.sourceforge.net/moneymanagerex/mmgrex_setup_0_9_3_0u.exe?download</Primary_Download_URL>
+			<Secondary_Download_URL />
+			<Additional_Download_URL_1 />
+			<Additional_Download_URL_2 />
+		</Download_URLs>
+	</Web_Info>
+	<Permissions>
+		<Distribution_Permissions>==========================
+GNU GENERAL PUBLIC LICENSE
+==========================
+Copyright (C) 2005-2008 Madhan Kanagavel
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+
+
+</Distribution_Permissions>
+		<EULA>==========================
+GNU GENERAL PUBLIC LICENSE
+==========================
+Copyright (C) 2005-2008 Madhan Kanagavel
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+
+
+</EULA>
+	</Permissions>
+	<ASP>
+		<ASP_FORM>Y</ASP_FORM>
+		<ASP_Member>N</ASP_Member>
+		<ASP_Member_Number />
+	</ASP>
+</XML_DIZ_INFO>

@@ -1,0 +1,38 @@
+/* XPM */
+static const char *reconciled_xpm[] = {
+/* columns rows colors const chars-per-pixel */
+"16 16 16 1",
+". c Black",
+"o c #8EA8C0",
+"= c #727272",
+"  c None",
+"- c #889FB6",
+"+ c #7E94AA",
+"& c #404040",
+": c #98B2CC",
+"* c #ACB9C5",
+"@ c #8299AF",
+"X c #C8D7E5",
+"$ c #C4CED6",
+"O c #9DB8D2",
+"# c #D6E1EB",
+"% c #ACBED0",
+"; c #B1BFCB",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"            ..  ",
+"           .Xo. ",
+"          .XO+. ",
+"  ..     .XO@.  ",
+" .##.   .XO@.   ",
+" .$O%. .XO@.    ",
+"  &%O%.#O@.     ",
+"  .*OOOO@.      ",
+"   =-OO@.       ",
+"   .;:+.        ",
+"    ...         ",
+"                ",
+"                "
+};

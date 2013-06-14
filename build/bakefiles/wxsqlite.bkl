@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<!-- 
+    MMEX build scripts.
+    Copyright (C) 2009, 2010 VaDiM.
+
+    wxsqlite3 library.
+-->
+
+<makefile>
+
+    <lib id="wxsqlite" template="compiler_common,wx-lib">
+
+        <!-- disable precompiled headers for wxWidgets -->
+        <define>NOPCH</define>
+
+        <define>SQLITE_HAS_CODEC</define>
+        <define>WXSQLITE3_HAVE_CODEC</define>
+        <define>WXSQLITE3_HAVE_METADATA</define>
+
+        <include>$(SRCDIR)/lib/sqlite</include>
+        <include>$(SRCDIR)/lib/wxsqlite</include>
+
+    	<!-- paths relative to trunk/mmex -->
+
+        <set var="SRC">lib/wxsqlite</set>
+
+        <headers>$(fileList(SRC + '/wx/*.h'))</headers>
+        <sources>$(SRC)/wxsqlite3.cpp</sources>
+
+    </lib>
+
+</makefile>

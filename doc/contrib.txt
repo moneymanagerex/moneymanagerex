@@ -1,0 +1,144 @@
+##Active Developers
+Nikolay          [Nikolay]
+Lisheng          [guanlisheng]
+Stefano          [stef145g]
+Pat              [omalleypat]
+=======================================
+##Code Builds/Fixes/Patches
+Alex Ukhov
+Bettega Stefano
+Greg Newton
+Ho Yin Kwok
+hykwok
+Igor
+jblough
+Jeancf
+Mike 		 [u4ear]
+Paulo Lopes
+Pieter
+Priyank Bolia
+Rohit Kumar
+Stuart
+Vadim
+Vat
+Wesley Ellis 	 [elliswr]
+
+---------------------------------------
+##Translations
+Brazilian Portuguese
+-- Jose Carlos
+Bulgarian
+-- Ivan Gyokov
+Croatian
+-- Goran Bobanovic
+Czech
+-- Josef Remes, PepaR
+Dutch
+-- Theo Kamphuis
+Dutch (Belgian)
+-- Rol, wimvhs
+Englsh (UK)
+-- mcrossley
+French
+-- Berry As, Jean-Christophe, bipop,
+-- drambeau, Ben, Ghislain Baudichaud
+-- phira
+German
+-- Schrempfi, goe, STiGMaTa_ch,
+-- Kai Kajus Noack
+-- Renato
+Greek
+-- Panagiotis Pentzeridis
+-- Polvar
+Hebrew
+-- Ykpui
+Hungarian
+-- Csaba, Zoltan Levardy [zlevardy]
+-- Toroka
+Indonesian
+-- Dindin
+Italian
+-- Maurizio [Mau13]
+-- Claudio
+Norwegian
+-- Fredrik Strand, Torbjorn Kvande
+Polish
+-- Damian_pl
+-- Andrzej 
+Portuguese (Portugal)
+-- Fatela
+Romanian
+-- Munteanu & Florin
+Russian
+-- KarmaSV, Nikolay, Churzzz, Vadim
+Simple Chinese
+-- Liu Ming
+Slovak
+-- Abadyba, Misko B
+Spanish
+-- jorgeb
+-- Javier, Roberto
+Swedish
+-- Tomplast
+Tr. Chinese
+-- Kysouke
+Tamil
+-- Gopi Gopalakrishnan,
+-- Muguntharaj Subramanian
+Turkish
+-- Murat Bilgen
+Ukrainian
+-- Leonid Shturma
+Vietnamese
+-- Nicky, Luu Cong Thanh, Toan [nktvnvn]
+=======================================
+
+##User Manual
+English
+-- Stefano 	 [stef145g]
+-- Tina P, Terry Wick
+Italian
+-- Maurizio 	 [Mau13]
+French
+-- catacotox
+-- phira 	 [phira]
+Gernam
+-- Renato 	 [Renato]
+Hungarian
+-- Toroka 	 [Toroka]
+Russian 
+-- Nikolay 	 [Nikolay]
+Polish
+-- Damian_pl
+Spanish
+-- jorgeb
+
+---------------------------------------
+##Art and Icons
+Greg Chapman
+
+http://openclipart.org
+http://www.famfamfam.com/lab/icons/silk
+
+---------------------------------------
+##Sponsors
+William Thompson
+Robert Gumpright
+Jason McWhorter
+Stephen Murray
+Peter Robinson
+Steve Light
+Andrew Ireland
+David Adams
+FusedNet(fusednetwork.com)
+William Metz
+Emmanuel Poirier
+Jamshed S
+Humberto Mendez Ocana
+Marco Berri
+Michelle Sarkis
+Gabriele Falistocco
+jchalmers
+willmetz
+---------------------------------------
+

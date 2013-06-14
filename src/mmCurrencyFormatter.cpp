@@ -1,0 +1,104 @@
+/*******************************************************
+ Copyright (C) 2006 Madhan Kanagavel
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#include "mmCurrencyFormatter.h"
+#include "singleton.h"
+#include <wx/numformatter.h>
+
+//----------------------------------------------------------------------------
+const wxChar g_def_decimal_point = '.';
+int g_def_scale = 100;
+
+
+CurrencyFormatter::CurrencyFormatter()
+{
+    loadDefaultSettings();
+}
+
+void CurrencyFormatter::loadDefaultSettings()
+{
+    m_pfx_symbol = "$";
+    m_sfx_symbol.clear();
+
+    m_decimal_point = g_def_decimal_point;
+    m_group_separator = ',';
+
+    m_unit_name = "dollar";
+    m_cent_name = "cent";
+
+    m_scale = g_def_scale;
+}
+
+void CurrencyFormatter::loadSettings(
+    const wxString &pfx,
+    const wxString &sfx,
+    wxChar dec,
+    wxChar grp,
+    const wxString &unit,
+    const wxString &cent,
+    int scale)
+
+{
+    m_pfx_symbol = pfx;
+    m_sfx_symbol = sfx;
+
+    m_decimal_point = wxIsprint(dec) ? dec : g_def_decimal_point;
+    m_group_separator = grp;
+
+    m_unit_name = unit;
+    m_cent_name = cent;
+
+    m_scale = scale > 0 ? scale : g_def_scale;
+}
+
+void CurrencyFormatter::loadSettings(const mmCurrency &cur)
+{
+    wxUniChar dec = cur.dec_.IsEmpty() ? wxUniChar('\0') : cur.dec_.GetChar(0);
+    wxUniChar grp = cur.grp_.IsEmpty() ? wxUniChar('\0') : cur.grp_.GetChar(0);
+
+    loadSettings(cur.pfxSymbol_, cur.sfxSymbol_, dec, grp, cur.unit_, cur.cent_, cur.scaleDl_);
+}
+
+CurrencyFormatter& CurrencyFormatter::instance()
+{
+    return Singleton<CurrencyFormatter>::instance();
+}
+
+wxString CurrencyFormatter::float2String(double val)
+{
+    wxString d2s = wxNumberFormatter::ToString(val, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
+    //TODO: Remove it with new wx release
+    d2s.Replace("-,", "-");
+    return d2s;
+}
+
+wxString CurrencyFormatter::float2Money(double val)
+{
+    const CurrencyFormatter &fmt = CurrencyFormatter::instance();
+    wxString d2s = wxNumberFormatter::ToString(val, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
+    d2s.Prepend(fmt.getPrefix());
+    d2s.Append(fmt.getSuffix());
+    //TODO: Remove it with new wx release
+    d2s.Replace("-,", "-");
+    return d2s;
+}
+
+bool CurrencyFormatter::formatCurrencyToDouble(const wxString& str, double& val)
+{
+    return wxNumberFormatter::FromString(str , &val);
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" ?>
+
+<!-- 
+    MMEX build scripts.
+    Copyright (C) 2009 VaDiM.
+
+    MMEX Unit Tests application.
+-->
+
+<makefile>
+
+    <!-- Default root of sources is dir where output script will be created.
+         autoconf generates Makefile in trunk/mmex/src/tests but others in trunk/mmex/build/msw/tests.
+    -->
+
+    <if cond="FORMAT=='autoconf'">
+        <set-srcdir>../..</set-srcdir>
+    </if>
+
+    <if cond="FORMAT!='autoconf'">
+        <set-srcdir>../../..</set-srcdir>
+    </if>
+    
+    
+    <include file="common.bkl"/>
+    <include file="UnitTest++.bkl"/>
+
+
+    <!-- unit tests console application -->
+
+    <exe id="mmex_tests" template="mmex_common">
+
+        <app-type>console</app-type>
+        <library>UnitTestPP</library>
+
+	<include>$(SRCDIR)/src</include>
+	<include>$(SRCDIR)/lib/UnitTest++</include>
+
+
+    	<!-- IMPLEMENT_APP(mmGUIApp) in mmex.cpp defines main() on Unixes, see wx\app.h.
+             But mmex_tests.cpp also defines main(). 
+        -->
+
+    	<!-- relative to trunk/mmex -->
+
+    	<set var="SRC">src/tests</set>
+
+        <headers>$(fileList(SRC + '/*.h'))</headers>
+        <sources>$(fileList(SRC + '/*.cpp'))</sources>
+
+        <win32-res>$(SRC)/mmex_tests.rc</win32-res>
+
+    </exe>
+
+    
+    <!-- 
+         make check
+         All formats expect MS VisualStudio projects.
+    -->
+
+    <action id="check" cond="not FORMAT.endswith('prj')">
+
+        <depends>all</depends>
+	<is-phony>on</is-phony>
+
+        <!-- "&&" is "&amp;&amp;" in XML -->
+
+    	<set var="COPY">
+            <if cond="TOOLSET=='win32'">copy /Y</if>
+            <if cond="TOOLSET=='unix'">cp</if>
+        </set>
+
+    	<set var="MKDIR">
+            <if cond="TOOLSET=='win32'">mkdir</if>
+            <if cond="TOOLSET=='unix'">mkdir -p</if>
+        </set>
+
+        <set var="RES_DIR">
+            <if cond="FORMAT!='autoconf'">$(BUILDDIR)/res</if>
+            <if cond="FORMAT=='autoconf'">$(BUILDDIR)/share/mmex/res</if>
+        </set>
+
+        <command>
+            -$(MKDIR) $(nativePaths(RES_DIR))
+            $(COPY) $(nativePaths(SRCDIR + '/resources/currency_seed.csv')) $(nativePaths(RES_DIR))
+        </command>
+
+        <command cond="FORMAT!='autoconf'">
+            $(nativePaths(BUILDDIR + '/mmex_tests' + EXEEXT))
+        </command>
+
+        <command cond="FORMAT=='autoconf'">
+            ./mmex_tests
+	</command>
+
+        <clean-files>$(RES_DIR)/currency_seed.csv</clean-files>
+
+    </action>
+
+
+</makefile>

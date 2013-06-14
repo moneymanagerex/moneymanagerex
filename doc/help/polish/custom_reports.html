@@ -1,0 +1,589 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Stefano Giorgio">
+	<META NAME="CREATED" CONTENT="20110710;15312700">
+	<META NAME="CHANGEDBY" CONTENT="Damian">
+	<META NAME="CHANGED" CONTENT="20110718;17103300">
+</HEAD>
+<BODY LANG="pl-PL" DIR="LTR">
+<H1><A NAME="custom_sql_top"></A><BR><BR>
+</H1>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0 STYLE="page-break-inside: avoid">
+	<COL WIDTH=213*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=83%>
+			<H1><FONT FACE="Verdana"><FONT SIZE=6>Własne raporty SQL</FONT></FONT></H1>
+		</TD>
+		<TD WIDTH=17%>
+			<P><A HREF="./index.html"><FONT FACE="Verdana"><FONT SIZE=4><B>Powrót do Pomocy</B></FONT></FONT></A></P>
+		</TD>
+	</TR>
+</TABLE>
+<UL>
+	<LI><P><A HREF="#intro"><FONT FACE="Verdana">Wstęp</FONT></A></P>
+	<LI><P><A HREF="#running_reports"><FONT FACE="Verdana">Uruchamianie
+	raportów przez drzewko nawigacji</FONT></A></P>
+	<LI><P><A HREF="#database_structure"><FONT FACE="Verdana">Struktura
+	bazy danych MMEX</FONT></A></P>
+	<LI><P><A HREF="#sql_scripting_intro"><FONT FACE="Verdana">Skrypty
+	SQL (wprowadzenie)</FONT></A></P>
+</UL>
+<P><BR><BR>
+</P>
+<HR>
+<H1><A NAME="intro"></A><FONT FACE="Verdana"><FONT SIZE=3><BR></FONT>Wstęp</FONT></H1>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Własne raporty SQL pozwalają
+użytkownikowi tworzyć unikatowe raporty odpowiadające jego 
+potrzebom. Można to osiągnąć pisząc własny skrypt SQL, który
+komunikuje się wprost z bazą danych i jest następnie dodany do drzewka nawigacji
+MMEX.</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3><B>Okienko menedżera własnych raportów SQL
+posiada następujące funkcje:</B></FONT></FONT></P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=46*>
+	<COL WIDTH=210*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Tytuł raportu</B> - Pole
+			tekstowe</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>Używa się go do nadania skryptowi
+			tytułu, który jest następnie wyświetlany w drzewku nawigacji.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Nagłówek</B> - Pole wyboru</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P STYLE="font-weight: normal"><FONT FACE="Verdana"><FONT SIZE=3>
+			Nagłówek może być dodany bez powiązanego skryptu. Pozycja menu posiada
+			powiązany skrypt.</FONT></FONT></P>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Kiedy jest zaznaczone:</B> Pozwala
+			na użycie tytułu jako nagłówka w drzewku nawigacji. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Podkategoria</B> - Pole wyboru</FONT></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Kiedy jest zaznaczone: </B>Drzewko
+			nawigacji ustawi tytuł jako podkategorię pod poprzednią pozycją menu.
+			Pozycja menu niekoniecznie musi być nagłówkiem.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Skrypt źródłowy SQL</B><BR> - Pole
+			tekstowe</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>W tym polu należy wpisać treść
+			skryptu.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Wczytaj</B> - Przycisk</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>Wczytuje z pliku wskazany, istniejący
+			skrypt.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Zapisz</B> - Przycisk</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>Zachowuje zmiany wprowadzone do
+			skryptu. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Uruchom</B> - Przycisk</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>Pozwala na wykonanie skryptu
+			bez zamykania okna menedżera.<BR><B>Uwaga:</B> Błędy w skrypcie
+			mogą być powodem utraty wszystkich nie zapisanych uprzednio zmian. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Wyczyść</B> - Przycisk</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>Czyści pole wpisywania źródłowego
+			skryptu SQL.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Zamknij</B> - Przycisk</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=82%>
+			<P><FONT FACE="Verdana"><FONT SIZE=3>Zamyka okno menedżera bez
+			zapisywania. To sposób na anulowanie okna menedżera. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Po utworzeniu skryptu i
+zachowaniu go, odpowiadający mu raport może być łatwo dostępny
+poprzez panel drzewka nawigacji MMEX.</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Tworzenie nowego własnego
+raportu SQL odbywa się przez wybór:</FONT></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana"><FONT SIZE=3>Pozycji w menu: Narzędzia
+	–&gt; Własne raporty SQL</FONT></FONT></P>
+	<LI><P><FONT FACE="Verdana"><FONT SIZE=3>Odpowiedniej ikonki na
+	pasku narzędzi.</FONT></FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Spowoduje to otwarcie Menadżera
+własnych raportów SQL i umożliwi uzytkownikowi bezpośrednie
+wpisanie skryptu i zapisanie go jako pliku.</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Użyteczne skrypty SQL są także
+dostępne na internetowym forum programu MMEX. Forum to   można
+wywołać:</FONT></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana"><FONT SIZE=3>Używając pozycji menu:
+	</FONT></FONT><FONT FACE="Verdana"><FONT SIZE=3><B>Pomoc </B></FONT></FONT><FONT FACE="Verdana"><FONT SIZE=3><B>–&gt;
+	Raportuj błędy</B></FONT></FONT></P>
+	<LI><P><FONT FACE="Verdana"><FONT SIZE=3>Przeszukaj tematy w bloku:
+	</FONT></FONT><FONT FACE="Verdana"><FONT SIZE=3><B>Custom SQL Report
+	Scripts</B></FONT></FONT></P>
+</UL>
+<P><FONT FACE="Verdana"><FONT SIZE=3><B>Zalecenia</B>:</FONT></FONT></P>
+<UL>
+	<LI><P>Nadawaj użyteczne nazwy tworzonym skryptom.</P>
+	<LI><P>Zapisuj skrypt przed uruchomieniem go w  <FONT FACE="Verdana"><FONT SIZE=3>Menadżerze
+	własnych raportów SQL</FONT></FONT>.<BR><B>Uwaga</B><B>:</B> Błędy
+	skryptu mogą spowodować jego utratę jeżeli nie jest uprzednio
+	zapisany.</P>
+	<LI><P>Użyj menu podręcznego w drzewku nawigacji do rozpoczęcia
+	edycji skryptu.</P>
+</UL>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=4 CELLSPACING=0 STYLE="page-break-inside: avoid">
+	<COL WIDTH=17*>
+	<COL WIDTH=239*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=7%>
+			<P><B>Uwaga:</B></P>
+		</TD>
+		<TD WIDTH=93%>
+			<P>Wszystkie tytuły skryptów są zapisywane w pliku indeksu o
+			tytule: <B>CustomSQLReportIndex.txt</B></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=7%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=93%>
+			<P>Własne raporty SQL mogą zostać usunięte  przez skasowanie
+			pliku indeksu.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=7%>
+			<P><BR>
+			</P>
+		</TD>
+		<TD WIDTH=93%>
+			<P>Reporty mogą zostać przeorganizowane przez bezpośrednią
+			modyfikację pliku indeksu.</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=213*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=83%>
+			<P><A HREF="#custom_sql_top"><FONT FACE="Verdana"><B>Do spisu treści</B></FONT></A></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P><A HREF="./index.html"><FONT FACE="Verdana"><B>Powrót do Pomocy</B></FONT></A></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<HR>
+<H1><A NAME="running_reports"></A><FONT FACE="Verdana"><FONT SIZE=3><BR></FONT>Uruchamianie
+raportów przez drzewko nawigacji</FONT></H1>
+<P><FONT FACE="Verdana">Raporty utworzone przez Menedżera własnych
+raportów są na stałe zapisane w drzewku nawigacji. Raport
+otrzymuję nazwę w momencie jego zapisu. Używając tej nazwy,
+użytkownik może:</FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana">Uruchomić raport </FONT>
+	</P>
+	<LI><P><FONT FACE="Verdana">Edytować raport</FONT></P>
+	<LI><P><FONT FACE="Verdana">Usunąć raport.</FONT></P>
+</UL>
+<P><FONT FACE="Verdana">Tytuł raportu może być zapisany bez
+połączonego z nim skryptu SQL. Jest to używane do tytułowania
+grup skryptów. Wówczas drzewko nawigacji zachowuje się podobnie do
+standardowych raportów. Raporty mogą być zagnieżdżone tylko do
+jednego poziomu wgłąb.</FONT></P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=213*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=83%>
+			<P><A HREF="#custom_sql_top"><FONT FACE="Verdana"><B>Do spisu treści</B></FONT></A></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P><A HREF="./index.html"><FONT FACE="Verdana"><B>Powrót do Pomocy</B></FONT></A></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<HR>
+<H1><A NAME="database_structure"></A><FONT FACE="Verdana"><FONT SIZE=3><BR></FONT>Struktura
+bazy danych MMEX</FONT></H1>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Aby tworzyć skrypty, należy
+dobrze zrozumieć wewnętrzną strukturę bazy danych. Struktura ta
+jest przedstawiona poniżej:</FONT></FONT></P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=256*>
+	<TR>
+		<TD WIDTH=100% VALIGN=TOP BGCOLOR="#e6e6e6">
+			<P STYLE="background: #e6e6e6"><FONT FACE="Verdana"><B>Podstawowa
+			struktura pliku danych MMEX</B></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=100% VALIGN=TOP>
+			<P><IMG SRC="../mmex_db_structure.png" NAME="graphics1" ALIGN=LEFT BORDER=0><BR CLEAR=LEFT><BR>
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><FONT FACE="Verdana"><FONT SIZE=3><BR></FONT></FONT><BR><BR>
+</P>
+<P><FONT FACE="Verdana"><FONT SIZE=4><B>Tabela informacyjna</B></FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><A NAME="result_box"></A><FONT FACE="Verdana"><FONT SIZE=3><SPAN LANG="pl-PL">Ten
+obrazek przedstawia nazwy tabel wraz z ich polami oraz linki, które
+łączą tabele za pomocą podstawowego pola indeksu tabeli.</SPAN> </FONT></FONT>
+</P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=77*>
+	<COL WIDTH=179*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30% BGCOLOR="#e6e6e6">
+			<P><FONT FACE="Verdana"><FONT SIZE=4><B>Nazwy tabel</B></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70% BGCOLOR="#e6e6e6">
+			<P><FONT FACE="Verdana"><FONT SIZE=4><B>Opis tabel</B></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>InfoTable_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera ustawienia specyficzne dla bazy danych.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>CurrencyFormats_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera sposób formatowania waluty dla bazy danych.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>AccountList_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera nazwy wszystkich kont i dane specyficzne dla konta.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>Payee_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera wszystkich beneficjentów oraz ostatnią kategorię
+			użytą przez danego beneficjenta.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>Category_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Jest to lista wszystkich kategorii w bazie danych.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>SubCategory_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Jest to lista wszystkich podkategorii w bazie danych.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>CheckingAccount_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Jest to główna tabela, w której utrzymywane są wszystkie
+			transakcje.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>SplitTransactions_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera wszystkie dane związane z podzielonymi transakcjami (z
+			opcją 'Podział')</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=77*>
+	<COL WIDTH=179*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30% BGCOLOR="#e6e6e6">
+			<P><FONT FACE="Verdana"><FONT SIZE=4><B>Tabele nie pokazane na
+			diagramie</B></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=70% BGCOLOR="#e6e6e6">
+			<P><BR>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>Stock_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Używana dla 'Akcji i papierów wartościowych' i jest
+			połączona z tabelą: AccountList_V1 z użyciem pola 'HeldAt' 
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>Assets_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera szczegóły Środków trwałych</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>BudgetYear_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Szczegóły roku budżetowego</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>BudgetTable_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Szczegóły budżetu</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>BudgetSplitTransactions_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Podzielone transakcje dla budżetowania</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=30%>
+			<P>BillDeposit_V1</P>
+		</TD>
+		<TD WIDTH=70%>
+			<P>Zawiera wszystkie detale 'Transakcji powtarzanych'. Podobna do
+			tabeli: CheckingAccountV1</P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=213*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=83%>
+			<P><A HREF="#custom_sql_top"><FONT FACE="Verdana"><B>Do spisu treści</B></FONT></A></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P><A HREF="./index.html"><FONT FACE="Verdana"><B>Powrót do Pomocy</B></FONT></A></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<HR>
+<P><A NAME="sql_scripting_intro"></A><FONT FACE="Verdana"><FONT SIZE=3><BR></FONT></FONT><FONT FACE="Verdana"><FONT SIZE=6><B>Scripty
+SQL (wprowadzenie)</B></FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Próba nauczenia programowania
+SQL wykracza poza zakres tego pliku pomocy do programu, ale poniżej
+zamieszczono krótki przewodnik do zrozumienia skryptów, który może
+wystarczyć to stworzenia własnych, prostych skryptów.</FONT></FONT></P>
+<P><FONT SIZE=6><FONT FACE="Verdana"><FONT SIZE=3>W czasie tworzenia
+skryptu, główną komendą, którą będziemy używać będzie
+</FONT></FONT><FONT FACE="Verdana"><FONT SIZE=3><B>SELECT</B></FONT></FONT><FONT FACE="Verdana"><FONT SIZE=3>.</FONT></FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Podstawowy format to:</FONT></FONT></P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=72*>
+	<COL WIDTH=184*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=6><FONT SIZE=3><B>SELECT</B></FONT>
+			<FONT SIZE=3>&lt;nazwa&gt; </FONT></FONT></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=72% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=3>&lt;nazwa&gt; reprezentuje
+			nazwy pól tabeli, lub * dla wszystkich nazw. </FONT></FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=6><FONT SIZE=3><B>FROM</B></FONT>
+			<FONT SIZE=3>&lt;tabela&gt; </FONT></FONT></FONT>
+			</P>
+		</TD>
+		<TD WIDTH=72% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=3>&lt;tabela&gt; reprezentuje
+			tabelę lub tabele, które są celem komendy.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=6><FONT SIZE=3><B>WHERE</B></FONT>
+			<FONT SIZE=3>&lt;warunek jest spełniony&gt;</FONT></FONT></FONT></P>
+		</TD>
+		<TD WIDTH=72% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=3>[opcjonalnie] tu testujemy
+			niektóre warunki.</FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=28% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>ORDER BY</B> &lt;parametr&gt;</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=72% BGCOLOR="#ffffcc">
+			<P><FONT FACE="Verdana"><FONT SIZE=3>[opcjonalnie] sortowanie
+			wyjścia poprzez ten parametr</FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><FONT FACE="Verdana"><FONT SIZE=3><BR>Przykłady:</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3><B>SELECT * FROM
+AccountList_V1;</B><BR>* Wyświetli wszystkie pola tabeli:
+AccountList_V1</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3><B>SELECT AccountName, Status
+FROM AccountList_V1 where AccountType = “Term”;</B></FONT></FONT><FONT FACE="Verdana"><FONT SIZE=3><BR>*
+Wyświetli nazwy Kont terminowych i ich status z tabeli:
+AccountList_V1</FONT></FONT></P>
+<HR>
+<P><FONT FACE="Verdana"><FONT SIZE=4><B>Tu opis bardziej złożonego
+skryptu:<BR></B></FONT></FONT><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=256*>
+	<TR>
+		<TD WIDTH=100% VALIGN=TOP BGCOLOR="#e6e6e6">
+			<P><FONT FACE="Verdana"><FONT SIZE=3><B>Chociaż ten skrypt jest
+			bezużyteczny, obrazuje niektóre podstawowe zasady.</B></FONT></FONT></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH=100% VALIGN=TOP BGCOLOR="#ffffcc">
+			<P STYLE="background: #ffffcc"><FONT FACE="Verdana"><FONT SIZE=3><B>select</B>
+			pT.PayeeName payee,<BR>&nbsp;&nbsp;&nbsp;&nbsp;cT.CategName,<BR>&nbsp;&nbsp;&nbsp;&nbsp;scT.SubCategName
+			<BR><B>from</B> payee_v1 pT,<BR>&nbsp;&nbsp;&nbsp;&nbsp;category_v1
+			cT,<BR>&nbsp;&nbsp;&nbsp;&nbsp;subcategory_v1 scT
+			<BR><B>where</B><BR>&nbsp;&nbsp;&nbsp;&nbsp;pT.categID =
+			cT.categID and pT.subCategID = scT.subCategID<BR><B>order
+			by</B><BR>&nbsp;&nbsp;&nbsp;&nbsp;payee</FONT></FONT></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><FONT FACE="Verdana"><FONT SIZE=3><BR>W tym przykładzie widzimy,
+że nazwa tabeli to: payee_V1 a nazwa pola to PayeeName</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana"><FONT SIZE=3>W
+członie <B>FROM</B> widać nazwę tabeli: payee_V1 <B>pT<BR></B>*
+znaki <B>pT</B> na końcu działają jako alias dla nazwy tabeli.</FONT></FONT></P>
+<P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana"><FONT SIZE=3>Teraz
+w komendzie <B>SELECT</B> widzimy: <B>pT.</B>PayeeName <B>payee</B>
+<BR>* <B>pT.</B> jest tu użyte do określenia tabeli zawierającej
+pole PayeeName<BR>* <B>payee</B> na końcu komendy, jest aliasem dla
+kombinacji: table.fieldname (tabela.nazwapola)<BR></FONT></FONT><BR>
+<FONT FACE="Verdana"><FONT SIZE=3>Możemy oddzielić nazwy tabel i
+pól przecinkami, jeżeli komenda obejmuje więcej tabel i pól –
+jak w przykładzie.<BR></FONT></FONT>
+</P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>W poleceniu <B>WHERE</B> widać:
+pT.categID = cT.categID<BR>* Jest to test upewniający nas, że te
+dwa pola są takie same w obydwu tabelach.</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Teraz w komendzie <B>ORDER BY</B>,
+można użyć uproszczonej nazwy <B>payee, </B><SPAN STYLE="font-weight: normal">którą
+zdefiniowaliśmy w poleceniu</SPAN> <B>SELECT</B>.</FONT></FONT></P>
+<P><FONT FACE="Verdana"><FONT SIZE=3>Mam nadzieję, że ten krótki
+wstęp pozbawi skrypty aury tajemniczości i efekty tego będzie można zobaczyć
+na Forum  MMEX w sekcji Custom SQL Report Scripts.<BR></FONT></FONT><BR><BR>
+</P>
+<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
+	<COL WIDTH=213*>
+	<COL WIDTH=43*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=83%>
+			<P><A HREF="#custom_sql_top"><FONT FACE="Verdana"><B>Do spisu treści</B></FONT></A></P>
+		</TD>
+		<TD WIDTH=17%>
+			<P><A HREF="./index.html"><FONT FACE="Verdana"><B>Powrót do Pomocy</B></FONT></A></P>
+		</TD>
+	</TR>
+</TABLE>
+<P><BR><BR>
+</P>
+<HR>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

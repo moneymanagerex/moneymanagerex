@@ -1,0 +1,6597 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Money Manager Ex\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-12 13:07+0400\n"
+"PO-Revision-Date: 2013-04-12 13:07+0400\n"
+"Last-Translator: Nikolay <vomikan@mail.ru>\n"
+"Language-Team: TheZeal Software\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Bookmarks: -1,-1,526,-1,-1,-1,-1,-1,-1,-1\n"
+"X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: wxTRANSLATE;_\n"
+"X-Poedit-SearchPath-0: src\n"
+
+#: src/aboutdialog.cpp:45 src/aboutdialog.cpp:136
+#, fuzzy
+msgid "About"
+msgstr "O nas"
+
+#: src/aboutdialog.cpp:103 src/mmex.cpp:2477
+msgid "Visit us on Facebook"
+msgstr ""
+
+#: src/aboutdialog.cpp:123 src/mmex.cpp:3311
+msgid "Version: "
+msgstr "Verzija:"
+
+#: src/aboutdialog.cpp:141
+msgid "Developers"
+msgstr ""
+
+#: src/aboutdialog.cpp:146
+#, fuzzy
+msgid "Translators"
+msgstr "Transakcije"
+
+#: src/aboutdialog.cpp:151
+msgid "Artwork"
+msgstr ""
+
+#: src/aboutdialog.cpp:156
+msgid "Sponsors"
+msgstr ""
+
+#: src/appstartdialog.cpp:51
+msgid " Start Page"
+msgstr " Začetna stran"
+
+#: src/appstartdialog.cpp:101
+msgid "Open Last Opened Database"
+msgstr "Odpri zadnjo odprto bazo podatkov"
+
+#: src/appstartdialog.cpp:104
+msgid "Create a New Database"
+msgstr "Kreiraj novo bazo podatkov"
+
+#: src/appstartdialog.cpp:105
+msgid "Create a new database file to get started"
+msgstr "Kreiraj novo bazo podatkov za pričetek dela"
+
+#: src/appstartdialog.cpp:108
+msgid "Open Existing Database"
+msgstr "Odpri obstoječo bazo podatkov"
+
+#: src/appstartdialog.cpp:109
+msgid "Open an already created database file with extension (*.mmb)"
+msgstr "Odpri že kreirano bazo podatkov s končnico (*.mmb)"
+
+#: src/appstartdialog.cpp:112
+msgid "Read Documentation"
+msgstr "Preberi dokumentacijo"
+
+#: src/appstartdialog.cpp:113
+msgid "Read the user manual"
+msgstr "Preberi navodila za uporabo"
+
+#: src/appstartdialog.cpp:118
+msgid "Visit Website for more information"
+msgstr "Za več informacij obiščite spletno stran"
+
+#: src/appstartdialog.cpp:119
+#, fuzzy, c-format
+msgid "Open the %s website for latest news, updates etc"
+msgstr " spletno stran z zadnjimi novicami, posodobitvami ipd."
+
+#: src/appstartdialog.cpp:129
+#, fuzzy, c-format
+msgid "Show this window next time %s starts"
+msgstr "Naslednjič prikaži to okno"
+
+#: src/appstartdialog.cpp:161
+#, fuzzy, c-format
+msgid "Open the previously opened database : %s"
+msgstr "Odpri prejšnjo odprto bazo podatkov: "
+
+#: src/assetdialog.cpp:56
+msgid "New/Edit Asset"
+msgstr "Nova/Uredi aktiva"
+
+#: src/assetdialog.cpp:116
+msgid "Asset Details"
+msgstr "Podrobnosti Premoženja"
+
+#: src/assetdialog.cpp:128 src/assetspanel.cpp:359
+#: src/maincurrencydialog.cpp:162 src/reports/summaryassets.cpp:39
+#: src/reports/summarystocks.cpp:160
+msgid "Name"
+msgstr "Naziv"
+
+#: src/assetdialog.cpp:131
+msgid "Enter the name of the asset"
+msgstr "Vnesi naziv Premoženja"
+
+#: src/assetdialog.cpp:134 src/assetspanel.cpp:372
+#: src/billsdepositsdialog.cpp:407 src/mmcheckingpanel.cpp:81
+#: src/stockdialog.cpp:144 src/transdialog.cpp:354 src/univcsvdialog.cpp:89
+#: src/univcsvdialog.cpp:901 src/reports/cashflow.cpp:86
+#: src/reports/summaryassets.cpp:38 src/reports/transactions.cpp:69
+msgid "Date"
+msgstr "Datum"
+
+#: src/assetdialog.cpp:139
+msgid "Specify the date of purchase of asset"
+msgstr "Vnesi datum nakupa Premoženja"
+
+#: src/assetdialog.cpp:141
+msgid "Asset Type"
+msgstr "Tip Premoženja"
+
+#: src/assetdialog.cpp:149
+msgid "Select type of asset"
+msgstr "Izberi tip Premoženja"
+
+#: src/assetdialog.cpp:154 src/assetdialog.cpp:233 src/assetspanel.cpp:368
+#: src/stockdialog.cpp:189 src/stockspanel.cpp:367
+#: src/reports/summarystocks.cpp:168
+msgid "Value"
+msgstr "Vrednost"
+
+#: src/assetdialog.cpp:157
+msgid "Enter the current value of the asset"
+msgstr "Vnesi trenutno vrednost premoženja"
+
+#: src/assetdialog.cpp:160 src/assetspanel.cpp:517
+msgid "Change in Value"
+msgstr "Sprememba vrednosti"
+
+#: src/assetdialog.cpp:170
+msgid "Specify if the value of the asset changes over time"
+msgstr "Navedite ali se vrednost premoženja s časom spreminja"
+
+#: src/assetdialog.cpp:174
+#, fuzzy
+msgid "% Rate"
+msgstr "Datum"
+
+#: src/assetdialog.cpp:178
+#, fuzzy, c-format
+msgid "Enter the rate at which the asset changes its value in % per year"
+msgstr "Enter the rate at which the asset changes its value in % per year"
+
+#: src/assetdialog.cpp:182 src/assetspanel.cpp:376
+#: src/billsdepositsdialog.cpp:522 src/billsdepositspanel.cpp:167
+#: src/filtertransdialog.cpp:287 src/mmcheckingpanel.cpp:89
+#: src/newacctdialog.cpp:217 src/stockdialog.cpp:194 src/stockspanel.cpp:370
+#: src/transactionfilterdialog.cpp:188 src/transdialog.cpp:493
+#: src/univcsvdialog.cpp:95 src/univcsvdialog.cpp:899
+#: src/reports/summaryassets.cpp:42 src/reports/transactions.cpp:77
+msgid "Notes"
+msgstr "Opombe"
+
+#: src/assetdialog.cpp:187
+msgid "Enter notes associated with this asset"
+msgstr "Vnesi opombe vezane na premoženje"
+
+#: src/assetdialog.cpp:233 src/assetdialog.cpp:239 src/assetdialog.cpp:251
+#: src/assetdialog.cpp:262 src/util.cpp:461
+msgid "Invalid Entry"
+msgstr "Napačen vnos"
+
+#: src/assetdialog.cpp:239 src/assetdialog.cpp:262
+msgid "Invalid Value "
+msgstr "Napačna vrednost"
+
+#: src/assetdialog.cpp:251
+msgid "Rate of Change in Value"
+msgstr "Stopnja spremembe vrednosti"
+
+#: src/assetspanel.cpp:83
+msgid "&New Asset"
+msgstr "&Nova lastnina"
+
+#: src/assetspanel.cpp:85
+#, fuzzy
+msgid "D&uplicate Asset"
+msgstr "Podvoji"
+
+#: src/assetspanel.cpp:87
+msgid "&Edit Asset"
+msgstr "&Uredi lastnino"
+
+#: src/assetspanel.cpp:88
+msgid "&Delete Asset"
+msgstr "&Izbriši lastnino"
+
+#: src/assetspanel.cpp:178
+msgid "Do you really want to delete the Asset?"
+msgstr "Ali zares želiš izbrisati lastnino?"
+
+#: src/assetspanel.cpp:179
+msgid "Confirm Asset Deletion"
+msgstr "Potrdi brisanje lastnine"
+
+#: src/assetspanel.cpp:317 src/mmex.cpp:1127 src/mmex.cpp:1195
+#: src/mmex.cpp:2393 src/mmhomepagepanel.cpp:439 src/mmhomepagepanel.cpp:971
+#: src/mmreportspanel.cpp:110 src/reports/summary.cpp:157
+msgid "Assets"
+msgstr "Premoženje"
+
+#: src/assetspanel.cpp:330 src/assetspanel.cpp:548 src/assetspanel.cpp:581
+#: src/mmex.cpp:2040 src/optionsdialog.cpp:93 src/qif_export.cpp:108
+msgid "All"
+msgstr "Vse"
+
+#: src/assetspanel.cpp:333 src/splittransactionsdialog.cpp:127
+#: src/stockspanel.cpp:788 src/reports/incexpensesfinancialperiod.cpp:152
+#: src/reports/incexpesestime.cpp:110 src/reports/summarystocks.cpp:138
+msgid "Total:"
+msgstr "Skupaj:"
+
+#: src/assetspanel.cpp:364 src/billsdepositsdialog.cpp:445
+#: src/billsdepositspanel.cpp:162 src/filtertransdialog.cpp:241
+#: src/mmhomepagepanel.cpp:586 src/splitdetailsdialog.cpp:107
+#: src/transactionfilterdialog.cpp:160 src/transdialog.cpp:382
+#: src/reports/budgetingperf.cpp:103 src/reports/incexpenses.cpp:53
+#: src/reports/summaryassets.cpp:40 src/reports/transactions.cpp:74
+msgid "Type"
+msgstr "Vrsta"
+
+#: src/assetspanel.cpp:407
+msgid "New Asset"
+msgstr "Nova lastnina"
+
+#: src/assetspanel.cpp:411
+msgid "Edit Asset"
+msgstr "Uredi lastnino"
+
+#: src/assetspanel.cpp:416
+msgid "Delete Asset"
+msgstr "Izbriši lastnino"
+
+#: src/assetspanel.cpp:451
+#, c-format
+msgid "Total: %s"
+msgstr "Skupaj: %s"
+
+#: src/billsdepositsdialog.cpp:55
+#, fuzzy
+msgid "Repeat Transaction - Auto Execution Checking"
+msgstr "Podrobnosti ponavljajoče transakcije"
+
+#: src/billsdepositsdialog.cpp:201 src/billsdepositsdialog.cpp:1101
+#: src/mmtransaction.cpp:277 src/qif_import.cpp:701
+#: src/transactionfilterdialog.cpp:127 src/transdialog.cpp:962
+msgid "Split Category"
+msgstr "Razdeli kategorijo"
+
+#: src/billsdepositsdialog.cpp:263 src/transdialog.cpp:326
+msgid "Transaction Details"
+msgstr "Podrobnosti transakcije"
+
+#: src/billsdepositsdialog.cpp:269
+msgid "Calendar"
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:291
+msgid "Repeating Transaction Details"
+msgstr "Podrobnosti ponavljajoče transakcije"
+
+#: src/billsdepositsdialog.cpp:298 src/reports/summary.cpp:43
+msgid "Account Name"
+msgstr "Naziv rečuna"
+
+#: src/billsdepositsdialog.cpp:299 src/billsdepositsdialog.cpp:575
+#: src/billsdepositsdialog.cpp:593 src/billsdepositsdialog.cpp:663
+msgid "Select Account"
+msgstr "Izberi račun"
+
+#: src/billsdepositsdialog.cpp:309
+#, fuzzy
+msgid "Specify the Account that will own the repeating transaction"
+msgstr "Določi znesek te transakcije"
+
+#: src/billsdepositsdialog.cpp:324
+msgid "Specify the date of the next bill or deposit"
+msgstr "Določite datum naslednjega računa ali vplačila"
+
+#: src/billsdepositsdialog.cpp:328
+msgid "Retard or advance the date of the 'next occurrence"
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:334
+msgid "Next Occurrence"
+msgstr "Naslednje ponavljanje"
+
+#: src/billsdepositsdialog.cpp:338 src/billsdepositsdialog.cpp:1246
+msgid "Repeats"
+msgstr "Se ponavlja"
+
+#: src/billsdepositsdialog.cpp:352
+msgid "Next"
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:354
+msgid "Advance the Next Occurance Date with the specified values"
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:362 src/billsdepositsdialog.cpp:1286
+msgid "Times Repeated"
+msgstr "Število ponavljanj"
+
+#: src/billsdepositsdialog.cpp:373
+msgid "Set to 'Auto Execute' on the 'Next Occurrence' date."
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:374
+msgid "Automatic Execution will require user acknowledgement."
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:377
+msgid "Set 'Auto Execute' without user acknowlegement."
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:379
+msgid "Automatic Execution will occur without user interaction"
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:398 src/transdialog.cpp:503
+msgid "Specify the date of the transaction"
+msgstr "Določi datum transakcije"
+
+#: src/billsdepositsdialog.cpp:401 src/transdialog.cpp:504
+#, fuzzy
+msgid "Retard or advance the date of the transaction"
+msgstr "Določi datum transakcije"
+
+#: src/billsdepositsdialog.cpp:418 src/filtertransdialog.cpp:238
+#: src/transactionfilterdialog.cpp:218 src/transdialog.cpp:505
+msgid "Specify the status for the transaction"
+msgstr "Določi status transakcije"
+
+#: src/billsdepositsdialog.cpp:420 src/filtertransdialog.cpp:226
+#: src/mmcheckingpanel.cpp:84 src/transactionfilterdialog.cpp:144
+#: src/transdialog.cpp:369 src/reports/transactions.cpp:72
+msgid "Status"
+msgstr "Status"
+
+#: src/billsdepositsdialog.cpp:435 src/splitdetailsdialog.cpp:117
+#: src/transdialog.cpp:506
+msgid "Specify the type of transactions to be created."
+msgstr "Določi tip transakcije ki bo kreirana."
+
+#: src/billsdepositsdialog.cpp:436 src/transdialog.cpp:377
+msgid "Advanced"
+msgstr "Napredno"
+
+#: src/billsdepositsdialog.cpp:439 src/transdialog.cpp:507
+#, fuzzy
+msgid "Allows the setting of different amounts in the FROM and TO accounts."
+msgstr "Določi račun za transfer"
+
+#: src/billsdepositsdialog.cpp:449 src/billsdepositsdialog.cpp:700
+#: src/transdialog.cpp:499
+msgid "Specify the amount for this transaction"
+msgstr "Določi znesek te transakcije"
+
+#: src/billsdepositsdialog.cpp:450 src/transdialog.cpp:500
+#, fuzzy
+msgid "Specify the amount to be transfered"
+msgstr "Določi znesek te transakcije"
+
+#: src/billsdepositsdialog.cpp:452 src/billsdepositsdialog.cpp:827
+#: src/billsdepositsdialog.cpp:837 src/billsdepositspanel.cpp:163
+#: src/budgetingpanel.cpp:241 src/mmhomepagepanel.cpp:587
+#: src/splitdetailsdialog.cpp:126 src/splittransactionsdialog.cpp:121
+#: src/transdialog.cpp:406 src/transdialog.cpp:811 src/transdialog.cpp:828
+#: src/reports/budgetcategorysummary.cpp:111 src/reports/categexp.cpp:61
+#: src/reports/incexpenses.cpp:54 src/reports/payee.cpp:37
+#: src/reports/transactions.cpp:75
+msgid "Amount"
+msgstr "Znesek"
+
+#: src/billsdepositsdialog.cpp:460 src/transdialog.cpp:252
+#, fuzzy
+msgid "Specify the transfer amount in the To Account"
+msgstr "Določi račun za transfer"
+
+#: src/billsdepositsdialog.cpp:470 src/billsdepositsdialog.cpp:725
+#: src/billsdepositsdialog.cpp:794 src/billsdepositspanel.cpp:160
+#: src/filtertransdialog.cpp:196 src/mmcheckingpanel.cpp:83
+#: src/transactionfilterdialog.cpp:117 src/transdialog.cpp:279
+#: src/transdialog.cpp:421 src/transdialog.cpp:862 src/univcsvdialog.cpp:90
+#: src/reports/payee.cpp:36 src/reports/transactions.cpp:71
+msgid "Payee"
+msgstr "Prejemnik"
+
+#: src/billsdepositsdialog.cpp:472 src/billsdepositsdialog.cpp:768
+#: src/transactionfilterdialog.cpp:120
+msgid "Select Payee"
+msgstr "Izberi prejemnika"
+
+#: src/billsdepositsdialog.cpp:474 src/transdialog.cpp:509
+#, fuzzy
+msgid "Specify where the transaction is going to"
+msgstr "Določi kam gre in od kod prihaja transakcija "
+
+#: src/billsdepositsdialog.cpp:475 src/transdialog.cpp:284
+#, fuzzy
+msgid "Specify where the transaction is coming from"
+msgstr "Določi kam gre in od kod prihaja transakcija "
+
+#: src/billsdepositsdialog.cpp:484
+msgid "Select To Acct"
+msgstr "V korist računa"
+
+#: src/billsdepositsdialog.cpp:486 src/transdialog.cpp:265
+#, fuzzy
+msgid "Specify which account the transfer is going to"
+msgstr "Izberite račun iz kojeg se dogaja transakcija"
+
+#: src/billsdepositsdialog.cpp:492 src/transdialog.cpp:446
+msgid "Split"
+msgstr "Razdeli"
+
+#: src/billsdepositsdialog.cpp:495 src/transdialog.cpp:510
+#, fuzzy
+msgid "Use split Categories"
+msgstr "Razdeli kategorijo"
+
+#: src/billsdepositsdialog.cpp:501 src/billsdepositsdialog.cpp:804
+#: src/billsdepositsdialog.cpp:812 src/budgetingpanel.cpp:238
+#: src/filtertransdialog.cpp:213 src/mmcheckingpanel.cpp:85
+#: src/mmhomepagepanel.cpp:808 src/splitdetailsdialog.cpp:120
+#: src/splittransactionsdialog.cpp:116 src/transactionfilterdialog.cpp:133
+#: src/transdialog.cpp:456 src/transdialog.cpp:818 src/transdialog.cpp:835
+#: src/univcsvdialog.cpp:92 src/reports/budgetcategorysummary.cpp:109
+#: src/reports/budgetingperf.cpp:102 src/reports/categexp.cpp:60
+#: src/reports/categovertimeperf.cpp:235 src/reports/transactions.cpp:73
+msgid "Category"
+msgstr "Kategorija"
+
+#: src/billsdepositsdialog.cpp:502 src/billsdepositsdialog.cpp:644
+#: src/billsdepositsdialog.cpp:1110 src/mmcategory.cpp:194
+#: src/transactionfilterdialog.cpp:137 src/transdialog.cpp:164
+#: src/transdialog.cpp:785 src/transdialog.cpp:966
+msgid "Select Category"
+msgstr "Izberi kategorijo"
+
+#: src/billsdepositsdialog.cpp:512 src/transdialog.cpp:512
+msgid "Specify any associated check number or transaction number"
+msgstr "Določi povezano številko čeka ali številko transakcije"
+
+#: src/billsdepositsdialog.cpp:514 src/filtertransdialog.cpp:279
+#: src/mmcheckingpanel.cpp:82 src/transactionfilterdialog.cpp:179
+#: src/transdialog.cpp:471 src/reports/transactions.cpp:76
+msgid "Number"
+msgstr "Številka"
+
+#: src/billsdepositsdialog.cpp:520 src/transdialog.cpp:514
+msgid "Specify any text notes you want to add to this transaction."
+msgstr "Vpiši opombe katere želiš dodati tej transakciji."
+
+#: src/billsdepositsdialog.cpp:575
+#, fuzzy
+msgid "Choose Bank Account or Term Account"
+msgstr "Izberi bančni račun"
+
+#: src/billsdepositsdialog.cpp:593 src/billsdepositsdialog.cpp:663
+#, fuzzy
+msgid "Account name"
+msgstr "Naziv rečuna"
+
+#: src/billsdepositsdialog.cpp:699
+msgid "Specify where the transaction is going to or coming from "
+msgstr "Določi kam gre in od kod prihaja transakcija "
+
+#: src/billsdepositsdialog.cpp:703
+#, fuzzy
+msgid "Specify which account the transfer is comming from"
+msgstr "Izberite račun iz kojeg se dogaja transakcija"
+
+#: src/billsdepositsdialog.cpp:706
+msgid "Specify to whom the transaction is going to or coming from "
+msgstr "Določite komu je namenjena transakcija ali od koga prihaja"
+
+#: src/billsdepositsdialog.cpp:735 src/billsdepositsdialog.cpp:758
+#: src/transdialog.cpp:268 src/transdialog.cpp:285
+msgid "From"
+msgstr "Od"
+
+#: src/billsdepositsdialog.cpp:746
+msgid "Select From Account"
+msgstr "Izberite iz katerega računa"
+
+#: src/billsdepositsdialog.cpp:759 src/transdialog.cpp:263
+msgid "To"
+msgstr "V korist"
+
+#: src/billsdepositsdialog.cpp:760
+msgid "Select To Account"
+msgstr "Določite na kateri račun"
+
+#: src/billsdepositsdialog.cpp:796
+#, fuzzy
+msgid "From Account"
+msgstr "V breme računa"
+
+#: src/billsdepositsdialog.cpp:847 src/transdialog.cpp:849
+#, fuzzy
+msgid "Advanced Amount"
+msgstr "Napredno"
+
+#: src/billsdepositsdialog.cpp:855 src/billsdepositspanel.cpp:161
+#: src/filtertransdialog.cpp:169 src/qif_import.cpp:943
+#: src/transdialog.cpp:289 src/transdialog.cpp:415 src/transdialog.cpp:795
+#: src/reports/transactions.cpp:70
+msgid "Account"
+msgstr "Račun"
+
+#: src/billsdepositsdialog.cpp:865 src/transdialog.cpp:886
+#, fuzzy
+msgid "To Account"
+msgstr "Na Račun"
+
+#: src/billsdepositsdialog.cpp:871
+msgid "From and To Account cannot be the same."
+msgstr "Na in v breme Računa ne moreta biti ista."
+
+#: src/billsdepositsdialog.cpp:871 src/budgetentrydialog.cpp:250
+#: src/currencydialog.cpp:277 src/currencydialog.cpp:286
+#: src/dbwrapper.cpp:1401 src/dbwrapper.cpp:1408 src/filtertransdialog.cpp:388
+#: src/filtertransdialog.cpp:398 src/maincurrencydialog.cpp:253
+#: src/maincurrencydialog.cpp:358 src/mmex.cpp:3368 src/newacctdialog.cpp:342
+#: src/splitdetailsdialog.cpp:181 src/splitdetailsdialog.cpp:190
+#: src/stockdialog.cpp:276 src/stockdialog.cpp:290 src/stockdialog.cpp:308
+msgid "Error"
+msgstr "Napaka"
+
+#: src/billsdepositsdialog.cpp:1200
+#, fuzzy
+msgid "Specify the transfer amount in the From Account"
+msgstr "Določi račun za transfer"
+
+#: src/billsdepositsdialog.cpp:1247
+#, fuzzy
+msgid "Activates"
+msgstr "Povečanje vrednosti"
+
+#: src/billsdepositsdialog.cpp:1249
+msgid "Period: Days"
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:1250
+#, fuzzy
+msgid "Period: Months"
+msgstr "Štiri mesece"
+
+#: src/billsdepositsdialog.cpp:1259 src/billsdepositsdialog.cpp:1273
+msgid "Specify period in Days to activate."
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:1259 src/billsdepositsdialog.cpp:1266
+msgid "Becomes blank when not active."
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:1266 src/billsdepositsdialog.cpp:1280
+#, fuzzy
+msgid "Specify period in Months to activate."
+msgstr "Določite tip računa ki bo ustvarjen"
+
+#: src/billsdepositsdialog.cpp:1273 src/billsdepositsdialog.cpp:1280
+msgid "Leave blank when not active."
+msgstr ""
+
+#: src/billsdepositsdialog.cpp:1287
+#, fuzzy
+msgid "Specify the number of times this series repeats."
+msgstr "Določi število ponavljanj. Posti prazno, če se ponavlja neskončno."
+
+#: src/billsdepositsdialog.cpp:1287
+#, fuzzy
+msgid "Leave blank if this series continues forever."
+msgstr "Določi število ponavljanj. Posti prazno, če se ponavlja neskončno."
+
+#: src/billsdepositspanel.cpp:120 src/mmex.cpp:1134
+#: src/mmhomepagepanel.cpp:965 src/mmreportspanel.cpp:104
+msgid "Repeating Transactions"
+msgstr "Ponavljajoče transakcije"
+
+#: src/billsdepositspanel.cpp:135 src/mmcheckingpanel.cpp:560
+#: src/mmcheckingpanel.cpp:1203 src/filtertransdialog.h:14
+msgid "Transaction Filter"
+msgstr "Filter transakcij"
+
+#: src/billsdepositspanel.cpp:158
+msgid "Next Due Date"
+msgstr "Naslednji rok plačila"
+
+#: src/billsdepositspanel.cpp:165 src/budgetingpanel.cpp:240
+#: src/reports/budgetcategorysummary.cpp:112
+msgid "Frequency"
+msgstr "Pogostost"
+
+#: src/billsdepositspanel.cpp:166
+msgid "Remaining Days"
+msgstr "Preostalo dni"
+
+#: src/billsdepositspanel.cpp:203
+#, fuzzy
+msgid "New Bills & Deposit Series"
+msgstr "Novo ponavljanje Računov && Vplačil"
+
+#: src/billsdepositspanel.cpp:207
+#, fuzzy
+msgid "Edit Bills & Deposit Series"
+msgstr "Uredi ponavljanja Računov && Vplačil"
+
+#: src/billsdepositspanel.cpp:212
+#, fuzzy
+msgid "Delete Bills & Deposit Series"
+msgstr "Izbriši ponavljanja Računov && Vplačil"
+
+#: src/billsdepositspanel.cpp:216
+msgid "En&ter"
+msgstr ""
+
+#: src/billsdepositspanel.cpp:218
+#, fuzzy
+msgid "Enter Next Bills & Deposit Occurrence"
+msgstr "Vnesi naslednje ponavljanje Računov && Vplačil"
+
+#: src/billsdepositspanel.cpp:222
+msgid "&Skip"
+msgstr ""
+
+#: src/billsdepositspanel.cpp:223
+#, fuzzy
+msgid "Skip Next Bills & Deposit Occurrence"
+msgstr "Vnesi naslednje ponavljanje Računov && Vplačil"
+
+#: src/billsdepositspanel.cpp:306 src/mmhomepagepanel.cpp:651
+msgid " days remaining"
+msgstr " prostalo dni"
+
+#: src/billsdepositspanel.cpp:311 src/billsdepositspanel.cpp:318
+#: src/billsdepositspanel.cpp:456 src/mmhomepagepanel.cpp:656
+#: src/mmhomepagepanel.cpp:663
+msgid "Inactive"
+msgstr ""
+
+#: src/billsdepositspanel.cpp:316 src/mmhomepagepanel.cpp:661
+msgid " days overdue!"
+msgstr " dni prekoračeno!"
+
+#: src/billsdepositspanel.cpp:412
+#, fuzzy
+msgid "Enter next Occurrence..."
+msgstr "Vnesite naslednje ponavljanje"
+
+#: src/billsdepositspanel.cpp:414
+#, fuzzy
+msgid "Skip next Occurrence"
+msgstr "Naslednje ponavljanje"
+
+#: src/billsdepositspanel.cpp:416
+#, fuzzy
+msgid "&New Bills && Deposit Series..."
+msgstr "&Novi Računi && Vplačila ponavljanje"
+
+#: src/billsdepositspanel.cpp:417
+#, fuzzy
+msgid "&Edit Bills && Deposit Series..."
+msgstr "&Uredi Račun && Vplačilo ponavljanje"
+
+#: src/billsdepositspanel.cpp:418
+#, fuzzy
+msgid "&Delete Bills && Deposit Series..."
+msgstr "&Izbriši Račun && Vplačilo ponavljanja"
+
+#: src/billsdepositspanel.cpp:510
+msgid "Do you really want to delete the series?"
+msgstr "Ali zares želite izbrisati ponavljanje?"
+
+#: src/billsdepositspanel.cpp:511
+msgid "Confirm Series Deletion"
+msgstr "Potrdite brisanje ponavljanja"
+
+#: src/budgetentrydialog.cpp:134
+#, fuzzy
+msgid "Category: "
+msgstr "Kategorija"
+
+#: src/budgetentrydialog.cpp:138
+#, fuzzy
+msgid "Estimated:"
+msgstr "Predvideno"
+
+#: src/budgetentrydialog.cpp:140
+#, fuzzy
+msgid "Actual:"
+msgstr "Dejansko"
+
+#: src/budgetentrydialog.cpp:148
+#, fuzzy
+msgid "Sub Category: "
+msgstr "Podkategorija: \n"
+
+#: src/budgetentrydialog.cpp:161 src/reports/transactions.cpp:210
+msgid "Type:"
+msgstr "Tip:"
+
+#: src/budgetentrydialog.cpp:165
+msgid "Expense"
+msgstr "Izdatki"
+
+#: src/budgetentrydialog.cpp:166 src/dbwrapper.cpp:147
+#: src/mmgraphincexpensesmonth.cpp:19 src/reports/categovertimeperf.cpp:172
+#: src/reports/incexpensesfinancialperiod.cpp:66
+#: src/reports/incexpesestime.cpp:38
+msgid "Income"
+msgstr "Prihodki"
+
+#: src/budgetentrydialog.cpp:172
+msgid "Specify whether this category is an income or an expense category"
+msgstr "Določi ali je ta kategorija prihodkovna ali izdatkovna"
+
+#: src/budgetentrydialog.cpp:175
+msgid "Frequency:"
+msgstr "Pogostost:"
+
+#: src/budgetentrydialog.cpp:179 src/optionsdialog.cpp:544 src/constants.h:102
+#: src/constants.h:124
+msgid "None"
+msgstr "Brez"
+
+#: src/budgetentrydialog.cpp:180 src/constants.h:103
+msgid "Weekly"
+msgstr "Tedensko"
+
+#: src/budgetentrydialog.cpp:181 src/constants.h:104
+msgid "Bi-Weekly"
+msgstr "Dvotedensko"
+
+#: src/budgetentrydialog.cpp:182 src/constants.h:105
+msgid "Monthly"
+msgstr "Mesečno"
+
+#: src/budgetentrydialog.cpp:183 src/constants.h:106
+msgid "Bi-Monthly"
+msgstr "Dvomesečno"
+
+#: src/budgetentrydialog.cpp:184 src/constants.h:107
+msgid "Quarterly"
+msgstr "Trimesečno"
+
+#: src/budgetentrydialog.cpp:185 src/constants.h:108
+msgid "Half-Yearly"
+msgstr "Polletno"
+
+#: src/budgetentrydialog.cpp:186 src/constants.h:109
+msgid "Yearly"
+msgstr "Letno"
+
+#: src/budgetentrydialog.cpp:187 src/constants.h:112
+msgid "Daily"
+msgstr "Dnevno"
+
+#: src/budgetentrydialog.cpp:193
+msgid "Specify the frequency of the expense or deposit"
+msgstr "Določi pogostost izdatka ali vplačila"
+
+#: src/budgetentrydialog.cpp:197
+msgid "Amount:"
+msgstr "Znesek:"
+
+#: src/budgetentrydialog.cpp:204
+msgid "Enter the amount budgeted for this category."
+msgstr "Vnesi predvideni proračun za to kategorijo."
+
+#: src/budgetentrydialog.cpp:250 src/filtertransdialog.cpp:388
+#: src/filtertransdialog.cpp:398 src/splitdetailsdialog.cpp:190
+msgid "Invalid Amount Entered "
+msgstr "Vnešen napačen znesek "
+
+#: src/budgetingpanel.cpp:85 src/budgetingpanel.cpp:113
+msgid "View All Budget Categories"
+msgstr "Pregled vseh proračunskih kategorij"
+
+#: src/budgetingpanel.cpp:87 src/budgetingpanel.cpp:114
+msgid "View Non-Zero Budget Categories"
+msgstr "Pregled vseh proračunskih kategorij ki niso nič"
+
+#: src/budgetingpanel.cpp:89 src/budgetingpanel.cpp:115
+msgid "View Income Budget Categories"
+msgstr "Pregled prihodkovnih proračunskih kategorij"
+
+#: src/budgetingpanel.cpp:91 src/budgetingpanel.cpp:116
+msgid "View Expense Budget Categories"
+msgstr "Pregled izdatkovnih proračunskih kategorij"
+
+#: src/budgetingpanel.cpp:93 src/budgetingpanel.cpp:118
+#, fuzzy
+msgid "View Budget Category Summary"
+msgstr "Pregled vseh proračunskih kategorij"
+
+#: src/budgetingpanel.cpp:136
+#, fuzzy, c-format
+msgid "Financial Year: %s - %i"
+msgstr "Preteklo leto"
+
+#: src/budgetingpanel.cpp:140
+#, fuzzy, c-format
+msgid "Year: %s"
+msgstr "Letno"
+
+#: src/budgetingpanel.cpp:145
+#, fuzzy, c-format
+msgid "Month: %s"
+msgstr "Mesec"
+
+#: src/budgetingpanel.cpp:147
+#, fuzzy, c-format
+msgid "Budget Setup for %s"
+msgstr "Nastavitve proračuna za "
+
+#: src/budgetingpanel.cpp:209
+#, fuzzy
+msgid "Income: "
+msgstr "Prihodki:"
+
+#: src/budgetingpanel.cpp:210 src/budgetingpanel.cpp:218
+#, fuzzy
+msgid "Estimated: "
+msgstr "Predvideno"
+
+#: src/budgetingpanel.cpp:212 src/budgetingpanel.cpp:220
+#, fuzzy
+msgid "Actual: "
+msgstr "Dejansko"
+
+#: src/budgetingpanel.cpp:214 src/budgetingpanel.cpp:222
+#, fuzzy
+msgid "Difference: "
+msgstr "Razlika:"
+
+#: src/budgetingpanel.cpp:217
+#, fuzzy
+msgid "Expenses: "
+msgstr "Izdatki:"
+
+#: src/budgetingpanel.cpp:239 src/reports/budgetcategorysummary.cpp:110
+msgid "Sub Category"
+msgstr "Podkategorija"
+
+#: src/budgetingpanel.cpp:242 src/reports/budgetcategorysummary.cpp:113
+#: src/reports/budgetingperf.cpp:158 src/reports/budgetingperf.cpp:236
+msgid "Estimated"
+msgstr "Predvideno"
+
+#: src/budgetingpanel.cpp:243 src/reports/budgetcategorysummary.cpp:114
+#: src/reports/budgetingperf.cpp:169 src/reports/budgetingperf.cpp:246
+msgid "Actual"
+msgstr "Dejansko"
+
+#: src/budgetyeardialog.cpp:100
+#, fuzzy
+msgid "&Add Year"
+msgstr "&Dodaj proračunsko leto"
+
+#: src/budgetyeardialog.cpp:102
+msgid "Add a new budget year"
+msgstr "Dodaj novo proračunsko leto"
+
+#: src/budgetyeardialog.cpp:105
+#, fuzzy
+msgid "&Add Month"
+msgstr "Mesec"
+
+#: src/budgetyeardialog.cpp:107
+#, fuzzy
+msgid "Add a new budget month"
+msgstr "Dodaj novo proračunsko leto"
+
+#: src/budgetyeardialog.cpp:110 src/mmcheckingpanel.cpp:650
+#: src/mmcheckingpanel.cpp:1374
+msgid "&Delete"
+msgstr "&Izbriši"
+
+#: src/budgetyeardialog.cpp:112
+#, fuzzy
+msgid "Delete existing budget"
+msgstr "Izbriši obstoječo proračunsko leto"
+
+#: src/budgetyearentrydialog.cpp:47
+#, fuzzy
+msgid "Budget Month Entry"
+msgstr "Vnos proračunskega leta"
+
+#: src/budgetyearentrydialog.cpp:75
+msgid "Budget Year:"
+msgstr "Proračunsko leto:"
+
+#: src/budgetyearentrydialog.cpp:82
+msgid ""
+"Specify the required year.\n"
+"Use Spin buttons to increase or decrease the year."
+msgstr ""
+
+#: src/budgetyearentrydialog.cpp:88
+#, fuzzy
+msgid "Budget Month:"
+msgstr "Tekoči mesec"
+
+#: src/budgetyearentrydialog.cpp:95
+msgid ""
+"Specify the required month.\n"
+"Use Spin buttons to increase or decrease the month."
+msgstr ""
+
+#: src/budgetyearentrydialog.cpp:100
+msgid "Base Budget On:"
+msgstr "Izdelaj proračun na osnovi:"
+
+#: src/budgetyearentrydialog.cpp:111
+msgid "Specify year to base budget on."
+msgstr "Določi leto na katero se bo nanašal proračun."
+
+#: src/budgetyearentrydialog.cpp:128 src/qif_export.cpp:177
+#: src/qif_import.cpp:224 src/transdialog.cpp:526
+#, fuzzy
+msgid "&OK"
+msgstr "Potrdi"
+
+#: src/budgetyearentrydialog.cpp:131 src/qif_export.cpp:178
+#: src/qif_import.cpp:225 src/transdialog.cpp:527 src/univcsvdialog.cpp:335
+#, fuzzy
+msgid "&Cancel"
+msgstr "Prekliči"
+
+#: src/budgetyearentrydialog.cpp:152
+msgid "Budget Year already exists"
+msgstr "Proračunsko leto že obstaja"
+
+#: src/categdialog.cpp:97 src/mmex.cpp:1258 src/qif_export.cpp:100
+msgid "Categories"
+msgstr "Kategorije"
+
+#: src/categdialog.cpp:167 src/mmex.cpp:2364
+msgid "Reassign all categories to another category"
+msgstr ""
+
+#: src/categdialog.cpp:169
+#, fuzzy
+msgid "Expand"
+msgstr "Izdatki"
+
+#: src/categdialog.cpp:174 src/payeedialog.cpp:98
+msgid "Show All"
+msgstr ""
+
+#: src/categdialog.cpp:176
+#, fuzzy
+msgid "Show all hidden categories"
+msgstr "Pregled vseh proračunskih kategorij"
+
+#: src/categdialog.cpp:199
+msgid "Enter the name of the category to add or edit here"
+msgstr "Vnesi ime kategorije katero dodajaš ali urejaš"
+
+#: src/categdialog.cpp:206
+msgid "Add a new category"
+msgstr "Dodaj novo kategorijo"
+
+#: src/categdialog.cpp:210
+msgid "Edit the name of an existing category"
+msgstr "Uredi ime obstoječe kategorije"
+
+#: src/categdialog.cpp:214
+msgid ""
+"Delete an existing category. The category cannot be used by existing "
+"transactions."
+msgstr ""
+"Izbriši obstoječo kategorijo. Kategorija ne sme biti uporabljena v "
+"obstoječih transakcijah."
+
+#: src/categdialog.cpp:220 src/maincurrencydialog.cpp:203
+#: src/payeedialog.cpp:158
+msgid "&Select"
+msgstr "&Izberi"
+
+#: src/categdialog.cpp:222
+msgid ""
+"Select the currently selected category as the selected category for the "
+"transaction"
+msgstr "Izberi trenutno izbrano kategorijo za transakcijo"
+
+#: src/categdialog.cpp:234
+#, fuzzy
+msgid "Enter the name for the new category:"
+msgstr "Vnesi naziv prejemnika ki ga dodajaš:"
+
+#: src/categdialog.cpp:235
+#, fuzzy
+msgid "Add Category"
+msgstr "Kategorija"
+
+#: src/categdialog.cpp:243
+msgid "Category with same name exists"
+msgstr "Obstaja kategorija z istim imenom"
+
+#: src/categdialog.cpp:244
+msgid ""
+"Tip: If category added now, check bottom of list.\n"
+"Category will be in sorted order next time dialog appears"
+msgstr ""
+
+#: src/categdialog.cpp:245 src/categdialog.cpp:265 src/categdialog.cpp:277
+#, fuzzy
+msgid "Organise Categories: Adding Error"
+msgstr "Uredi kategorije"
+
+#: src/categdialog.cpp:264
+msgid "Sub Category with same name exists"
+msgstr "Obstaja podkategorija z istim imenom"
+
+#: src/categdialog.cpp:276
+msgid "Invalid Parent Category. Choose Root or Main Category node."
+msgstr "Napačna nadkategorija. Izberi osnovno ali glavno kategorijo."
+
+#: src/categdialog.cpp:285
+msgid ""
+"Tip: Change all transactions using this Category to\n"
+"another Category using the relocate command:"
+msgstr ""
+
+#: src/categdialog.cpp:287
+msgid ""
+"Tip: Change all transactions using this Sub-Category to\n"
+"another Sub-Category using the relocate command:"
+msgstr ""
+
+#: src/categdialog.cpp:289
+msgid "Tools -> Relocation of -> Categories"
+msgstr ""
+
+#: src/categdialog.cpp:291
+#, fuzzy
+msgid "Organise Categories: Delete Error"
+msgstr "Uredi kategorije"
+
+#: src/categdialog.cpp:311
+#, fuzzy
+msgid "Category in use."
+msgstr "Kategorija je v uporabi"
+
+#: src/categdialog.cpp:319
+#, fuzzy
+msgid "Sub-Category in use."
+msgstr "Podkategorija je v uporabi"
+
+#: src/categdialog.cpp:424 src/payeedialog.cpp:313
+#, c-format
+msgid "Enter a new name for %s"
+msgstr "Vnesi nov naziv za %s"
+
+#: src/categdialog.cpp:426
+#, fuzzy
+msgid "Edit Category"
+msgstr "Razdeli kategorijo"
+
+#: src/categdialog.cpp:438
+msgid "Update Failed"
+msgstr "Posodobitev ni uspela"
+
+#: src/categdialog.cpp:440
+#, fuzzy
+msgid "Organise Categories"
+msgstr "Uredi kategorije"
+
+#: src/categdialog.cpp:491 src/mmex.cpp:3818
+#, fuzzy
+msgid "Category Relocation Completed."
+msgstr "Kategorija ne more biti prazna"
+
+#: src/categdialog.cpp:492 src/mmex.cpp:3819 src/mmex.cpp:3837
+#: src/payeedialog.cpp:336
+#, c-format
+msgid "Records have been updated in the database: %s"
+msgstr ""
+
+#: src/categdialog.cpp:495 src/mmex.cpp:3822
+msgid "MMEX must be shutdown and restarted for all the changes to be seen."
+msgstr ""
+
+#: src/categdialog.cpp:496 src/mmex.cpp:3823
+#, fuzzy
+msgid "Category Relocation Result"
+msgstr "Kategorija ne more biti prazna"
+
+#: src/categdialog.cpp:572
+#, fuzzy
+msgid "Hide Selected Category"
+msgstr "Izberi kategorijo"
+
+#: src/categdialog.cpp:573
+#, fuzzy
+msgid "Unhide Selected Category"
+msgstr "Izberi kategorijo"
+
+#: src/categdialog.cpp:575
+#, fuzzy
+msgid "Clear Settings"
+msgstr "&Nastavitve"
+
+#: src/chart.cpp:218 src/chart.cpp:415
+msgid "Legend:"
+msgstr "Legenda:"
+
+#: src/constants.cpp:97
+msgid "MMEX is using the following support products"
+msgstr ""
+
+#: src/currencydialog.cpp:135
+#, fuzzy
+msgid "Converted to:"
+msgstr "Pretvorjena PB!"
+
+#: src/currencydialog.cpp:147
+msgid "Shown As: "
+msgstr ""
+
+#: src/currencydialog.cpp:176
+msgid "Currency Name"
+msgstr "Naziv valute."
+
+#: src/currencydialog.cpp:186
+msgid "Currency Symbol"
+msgstr "Simbol valute"
+
+#: src/currencydialog.cpp:196
+msgid "Unit Name"
+msgstr "Naziv denarne enote"
+
+#: src/currencydialog.cpp:200
+msgid "Cents Name"
+msgstr "Naziv stotine denarne enote"
+
+#: src/currencydialog.cpp:204
+msgid "Prefix Symbol"
+msgstr "Simbol predpone"
+
+#: src/currencydialog.cpp:208
+msgid "Suffix Symbol"
+msgstr "Simbol pripone"
+
+#: src/currencydialog.cpp:212
+msgid "Decimal Char"
+msgstr "Decimalna vejica"
+
+#: src/currencydialog.cpp:216
+msgid "Grouping Char"
+msgstr "Grouping char"
+
+#: src/currencydialog.cpp:220
+msgid "Scale"
+msgstr "Razmerje"
+
+#: src/currencydialog.cpp:225
+msgid "Conversion to Base Rate"
+msgstr "Tečaj glede na glavno valuto"
+
+#: src/currencydialog.cpp:229
+msgid "Other currency conversion rate. Set Base Currency to 1."
+msgstr ""
+
+#: src/currencydialog.cpp:232
+msgid "Base Rate Conversion Sample:"
+msgstr ""
+
+#: src/currencydialog.cpp:240
+msgid "Value Display Sample:"
+msgstr ""
+
+#: src/currencydialog.cpp:251
+msgid "&Update"
+msgstr "&Posodobitev"
+
+#: src/currencydialog.cpp:253
+msgid "Save any changes made"
+msgstr ""
+
+#: src/currencydialog.cpp:255
+msgid "&Close"
+msgstr "&Zapri"
+
+#: src/currencydialog.cpp:257
+msgid "Any changes will be lost without update"
+msgstr ""
+
+#: src/currencydialog.cpp:277
+msgid "Scale should be greater than zero"
+msgstr "Tečajbi moral biti večji od nič"
+
+#: src/currencydialog.cpp:286
+#, fuzzy
+msgid "Base Conversion Rate should be positive"
+msgstr "Osnovno menjalno razmerje bi moralo biti večji od nič"
+
+#: src/customreportdialog.cpp:133 src/customreportindex.cpp:42
+#: src/customreportindex.cpp:168 src/mmex.cpp:1154
+#, fuzzy
+msgid "Custom Reports"
+msgstr "SQL poročilo po meri"
+
+#: src/customreportdialog.cpp:189
+msgid "Script type:"
+msgstr ""
+
+#: src/customreportdialog.cpp:190
+msgid "SQL"
+msgstr ""
+
+#: src/customreportdialog.cpp:190
+msgid "Lua"
+msgstr ""
+
+#: src/customreportdialog.cpp:196
+msgid "Heading"
+msgstr ""
+
+#: src/customreportdialog.cpp:199
+msgid "Sub-Menu"
+msgstr ""
+
+#: src/customreportdialog.cpp:202
+#, fuzzy
+msgid "Report Title:"
+msgstr "&Uvoz datoteke"
+
+#: src/customreportdialog.cpp:207
+msgid "Report Title is used as the file name of the SQL script."
+msgstr ""
+
+#: src/customreportdialog.cpp:228 src/customreportdialog.cpp:503
+#, fuzzy
+msgid "Custom script:"
+msgstr "Po meri SQL poročilo"
+
+#: src/customreportdialog.cpp:241
+msgid "Locate and load a script file into the script area."
+msgstr ""
+
+#: src/customreportdialog.cpp:245
+msgid "Save the script to file name set by the Report Title."
+msgstr ""
+
+#: src/customreportdialog.cpp:249
+msgid "Clear the Source script area"
+msgstr ""
+
+#: src/customreportdialog.cpp:260
+msgid "&Run"
+msgstr ""
+
+#: src/customreportdialog.cpp:262
+msgid "Test script. Save before running."
+msgstr ""
+
+#: src/customreportdialog.cpp:266
+msgid "Save changes before closing. Changes without Save will be lost."
+msgstr ""
+
+#: src/customreportdialog.cpp:292
+#, fuzzy
+msgid "Load Custom SQL file:"
+msgstr "Po meri SQL okno"
+
+#: src/customreportdialog.cpp:292
+#, fuzzy
+msgid "Load Custom Lua file:"
+msgstr "Po meri SQL okno"
+
+#: src/customreportdialog.cpp:324 src/dbwrapper.cpp:220
+#: src/univcsvdialog.cpp:455 src/univcsvdialog.cpp:555
+#: src/univcsvdialog.cpp:918 src/univcsvdialog.cpp:1156
+msgid "Unable to open file."
+msgstr "Ni možno odpreti datoteke."
+
+#: src/customreportdialog.cpp:342
+msgid "Please supply the Report Title before saving"
+msgstr ""
+
+#: src/customreportdialog.cpp:362
+msgid ""
+" entry location:\n"
+"\n"
+"OK....: Insert before selected entry\n"
+"Cancel: Add at bottom of List."
+msgstr ""
+
+#: src/customreportdialog.cpp:382 src/univcsvdialog.cpp:502
+msgid "Unable to write to file."
+msgstr "Ni možno zapisati v datoteko."
+
+#: src/customreportdialog.cpp:489 src/customreportdialog.cpp:590
+#, fuzzy
+msgid "New SQL Custom Report"
+msgstr "SQL poročilo po meri"
+
+#: src/customreportdialog.cpp:490 src/customreportdialog.cpp:598
+#, fuzzy
+msgid "New Lua Custom Report"
+msgstr "SQL poročilo po meri"
+
+#: src/customreportdialog.cpp:492
+#, fuzzy
+msgid "Delete Custom Report"
+msgstr "SQL poročilo po meri"
+
+#: src/customreportdialog.cpp:550
+msgid "Delete the Custom Report Title:"
+msgstr ""
+
+#: src/customreportdialog.cpp:556
+#, fuzzy
+msgid "Do you want to delete the SQL file as well?"
+msgstr "Ali zares želite izbrisati ponavljanje?"
+
+#: src/customreportdialog.cpp:559
+#, fuzzy
+msgid "Do you want to delete the Lua file as well?"
+msgstr "Ali zares želite izbrisati ponavljanje?"
+
+#: src/customreportdialog.cpp:628
+#, c-format
+msgid "Line: %ld position: %ld"
+msgstr ""
+
+#: src/customreportdisplay.cpp:47
+msgid "SQL Query will modify your Data. Proceed??"
+msgstr "SQL poizvedba bo spremenila vaše podatke. Nadaljujem?"
+
+#: src/customreportdisplay.cpp:47
+msgid "Warning"
+msgstr "Opozorilo"
+
+#: src/customreportdisplay.cpp:51
+msgid "SQL query discarded by user"
+msgstr ""
+
+#: src/customreportdisplay.cpp:67 src/dbwrapper.cpp:160 src/dbwrapper.cpp:315
+#: src/dbwrapper.cpp:354 src/dbwrapper.cpp:473 src/dbwrapper.cpp:536
+#: src/dbwrapper.cpp:572 src/dbwrapper.cpp:594 src/dbwrapper.cpp:619
+#: src/dbwrapper.cpp:650 src/dbwrapper.cpp:672 src/dbwrapper.cpp:708
+#: src/dbwrapper.cpp:731 src/dbwrapper.cpp:751 src/dbwrapper.cpp:810
+#: src/dbwrapper.cpp:849 src/dbwrapper.cpp:882 src/dbwrapper.cpp:911
+#: src/dbwrapper.cpp:930 src/dbwrapper.cpp:951 src/dbwrapper.cpp:1003
+#: src/dbwrapper.cpp:1141 src/dbwrapper.cpp:1159 src/dbwrapper.cpp:1178
+#: src/dbwrapper.cpp:1237 src/dbwrapper.cpp:1254 src/dbwrapper.cpp:1300
+#: src/lua_interface.cpp:254 src/mmex_settings.cpp:123
+#: src/mmex_settings.cpp:152 src/db/splittransaction.cpp:127
+#: src/db/subcategory.cpp:119
+#, c-format
+msgid "Error: %s"
+msgstr "Napaka: %s"
+
+#: src/customreportdisplay.cpp:107
+msgid "Dababase updated succesfully"
+msgstr ""
+
+#: src/customreportdisplay.cpp:125
+#, fuzzy
+msgid "Custom Report: "
+msgstr "Po meri SQL poročilo"
+
+#: src/customreportdisplay.cpp:137
+msgid "Cannot execute unknown Script type"
+msgstr ""
+
+#: src/customreportindex.cpp:44
+msgid "Report Name[|Report Filename.sql[|SUB]]"
+msgstr ""
+
+#: src/customreportindex.cpp:193
+#, fuzzy, c-format
+msgid "Select the Custom Report %s"
+msgstr "SQL poročilo po meri"
+
+#: src/customreportindex.cpp:321
+msgid "Cannot locate file: "
+msgstr ""
+
+#: src/dbwrapper.cpp:89
+msgid "Telephone"
+msgstr "Telefon"
+
+#: src/dbwrapper.cpp:89
+msgid "Electricity"
+msgstr "Elektrika"
+
+#: src/dbwrapper.cpp:90 src/dbwrapper.cpp:106
+msgid "Gas"
+msgstr "Plin"
+
+#: src/dbwrapper.cpp:90
+msgid "Internet"
+msgstr "Internet"
+
+#: src/dbwrapper.cpp:91
+msgid "Rent"
+msgstr "Najem"
+
+#: src/dbwrapper.cpp:91
+msgid "Cable TV"
+msgstr "Kabelska TV"
+
+#: src/dbwrapper.cpp:92
+msgid "Water"
+msgstr "Voda"
+
+#: src/dbwrapper.cpp:94
+msgid "Bills"
+msgstr "Položnice"
+
+#: src/dbwrapper.cpp:97
+msgid "Groceries"
+msgstr "Živila"
+
+#: src/dbwrapper.cpp:97
+msgid "Dining out"
+msgstr "Gostilne, restavracije"
+
+#: src/dbwrapper.cpp:98
+msgid "Food"
+msgstr "Hrana"
+
+#: src/dbwrapper.cpp:101
+msgid "Movies"
+msgstr "Filmi"
+
+#: src/dbwrapper.cpp:101
+msgid "Video Rental"
+msgstr "Izposoja filmov"
+
+#: src/dbwrapper.cpp:102
+msgid "Magazines"
+msgstr "Revije, časopisi"
+
+#: src/dbwrapper.cpp:103
+msgid "Leisure"
+msgstr "Prosti čas"
+
+#: src/dbwrapper.cpp:106
+msgid "Maintenance"
+msgstr "Vzdrževanje"
+
+#: src/dbwrapper.cpp:107
+msgid "Parking"
+msgstr "Parkirnina"
+
+#: src/dbwrapper.cpp:107
+msgid "Registration"
+msgstr "Registracija"
+
+#: src/dbwrapper.cpp:108 src/db/assets.h:32
+msgid "Automobile"
+msgstr "Avto"
+
+#: src/dbwrapper.cpp:111
+msgid "Books"
+msgstr "Knjige"
+
+#: src/dbwrapper.cpp:112
+msgid "Tuition"
+msgstr "Šolnine"
+
+#: src/dbwrapper.cpp:112 src/dbwrapper.cpp:117 src/dbwrapper.cpp:138
+#: src/newacctdialog.cpp:227 src/optionsdialog.cpp:704
+msgid "Others"
+msgstr "Ostalo"
+
+#: src/dbwrapper.cpp:113
+msgid "Education"
+msgstr "Izobraževanje"
+
+#: src/dbwrapper.cpp:116
+msgid "Clothing"
+msgstr "Obleka"
+
+#: src/dbwrapper.cpp:117
+msgid "Furnishing"
+msgstr "Notranja oprema"
+
+#: src/dbwrapper.cpp:118
+msgid "Homeneeds"
+msgstr "Gospodinjstvo"
+
+#: src/dbwrapper.cpp:121 src/dbwrapper.cpp:128
+msgid "Health"
+msgstr "Zdravje"
+
+#: src/dbwrapper.cpp:122
+msgid "Dental"
+msgstr "Zobna"
+
+#: src/dbwrapper.cpp:122
+msgid "Eyecare"
+msgstr "Okolist"
+
+#: src/dbwrapper.cpp:123
+msgid "Physician"
+msgstr "Zdravnik"
+
+#: src/dbwrapper.cpp:123
+msgid "Prescriptions"
+msgstr "Recepti"
+
+#: src/dbwrapper.cpp:124
+msgid "Healthcare"
+msgstr "Zdravstvo"
+
+#: src/dbwrapper.cpp:127
+msgid "Auto"
+msgstr "Avto"
+
+#: src/dbwrapper.cpp:127
+msgid "Life"
+msgstr "Življenje"
+
+#: src/dbwrapper.cpp:128
+msgid "Home"
+msgstr "Dom"
+
+#: src/dbwrapper.cpp:129
+msgid "Insurance"
+msgstr "Zavarovanje"
+
+#: src/dbwrapper.cpp:132
+msgid "Travel"
+msgstr "Potovanja"
+
+#: src/dbwrapper.cpp:132
+msgid "Lodging"
+msgstr "Nastanitev"
+
+#: src/dbwrapper.cpp:133
+msgid "Sightseeing"
+msgstr "Znamenitosti"
+
+#: src/dbwrapper.cpp:134
+msgid "Vacation"
+msgstr "Počitnice"
+
+#: src/dbwrapper.cpp:137
+msgid "Income Tax"
+msgstr "Prejeti davki"
+
+#: src/dbwrapper.cpp:137
+msgid "House Tax"
+msgstr "Davek na napremičnine"
+
+#: src/dbwrapper.cpp:138
+msgid "Water Tax"
+msgstr "Vodni davek"
+
+#: src/dbwrapper.cpp:139
+msgid "Taxes"
+msgstr "Davki"
+
+#: src/dbwrapper.cpp:141
+msgid "Miscellaneous"
+msgstr "Razno"
+
+#: src/dbwrapper.cpp:142
+msgid "Gifts"
+msgstr "Darila"
+
+#: src/dbwrapper.cpp:145
+msgid "Salary"
+msgstr "Plača"
+
+#: src/dbwrapper.cpp:145
+msgid "Reimbursement/Refunds"
+msgstr "Poplačila/Vračila"
+
+#: src/dbwrapper.cpp:146
+msgid "Investment Income"
+msgstr "Investicijski prihodki"
+
+#: src/dbwrapper.cpp:149
+msgid "Other Income"
+msgstr "Ostali prihodki"
+
+#: src/dbwrapper.cpp:150
+msgid "Other Expenses"
+msgstr "Ostali izdatki"
+
+#: src/dbwrapper.cpp:151 src/filtertransdialog.cpp:251 src/qif_import.cpp:553
+#: src/reports/transactions.cpp:118 src/constants.h:135
+msgid "Transfer"
+msgstr "Prenos"
+
+#: src/dbwrapper.cpp:220 src/currencydialog.h:23
+msgid "Currency Manager"
+msgstr "Urejevalnik Valut"
+
+#: src/dbwrapper.cpp:1379
+#, c-format
+msgid "Write error: %s"
+msgstr ""
+
+#: src/dbwrapper.cpp:1387
+#, fuzzy
+msgid "When database file opening:"
+msgstr "Izberite in odprite datoteko podatkovne baze"
+
+#: src/dbwrapper.cpp:1391
+#, fuzzy
+msgid "Can't open file"
+msgstr "Ni možno odpreti datoteke."
+
+#: src/dbwrapper.cpp:1391
+msgid "You must specify path to another database file"
+msgstr ""
+
+#: src/dbwrapper.cpp:1395
+msgid "An incorrect password given for an encrypted file"
+msgstr ""
+
+#: src/dbwrapper.cpp:1396
+msgid "or"
+msgstr ""
+
+#: src/dbwrapper.cpp:1397
+msgid "Attempt to open a File that is not a database file"
+msgstr ""
+
+#: src/dbwrapper.cpp:1404
+#, fuzzy
+msgid "Database::open: Exception"
+msgstr "Ni odprte podatkovne baze"
+
+#: src/dbwrapper.cpp:1406
+msgid "Continue ?"
+msgstr ""
+
+#: src/filtertransdialog.cpp:149
+#, fuzzy
+msgid " Specify "
+msgstr "Določi tip"
+
+#: src/filtertransdialog.cpp:180 src/transactionfilterdialog.cpp:102
+#, fuzzy
+msgid "Date Range"
+msgstr "Določi časovni razpon"
+
+#: src/filtertransdialog.cpp:247 src/mmcheckingpanel.cpp:86
+#: src/splitdetailsdialog.cpp:112 src/splittransactionsdialog.cpp:131
+#: src/univcsvdialog.cpp:97 src/reports/transactions.cpp:113
+#: src/constants.h:133
+msgid "Withdrawal"
+msgstr "Izplačilo"
+
+#: src/filtertransdialog.cpp:249 src/mmcheckingpanel.cpp:87
+#: src/splitdetailsdialog.cpp:113 src/splittransactionsdialog.cpp:136
+#: src/univcsvdialog.cpp:98 src/reports/transactions.cpp:110
+#: src/constants.h:134
+msgid "Deposit"
+msgstr "Polog"
+
+#: src/filtertransdialog.cpp:263
+#, fuzzy
+msgid "Amount Range"
+msgstr "Določi razpon zneska"
+
+#: src/filtertransdialog.cpp:473 src/reports/budget.cpp:124
+#, fuzzy, c-format
+msgid "From %s till %s"
+msgstr "%s na %s"
+
+#: src/filtertransdialog.cpp:571
+#, fuzzy
+msgid "Min: "
+msgstr "Dobiček Izguba"
+
+#: src/filtertransdialog.cpp:571
+#, fuzzy
+msgid "Max: "
+msgstr "Maj"
+
+#: src/htmlbuilder.cpp:37
+msgid "Report"
+msgstr "Poročilo"
+
+#: src/htmlbuilder.cpp:85 src/reports/budget.cpp:119
+#, fuzzy, c-format
+msgid "Today's Date: %s"
+msgstr "Današnji datum:"
+
+#: src/lua_interface.cpp:91
+#, fuzzy, c-format
+msgid "Error: %s\n"
+msgstr "Napaka: %s"
+
+#: src/lua_interface.cpp:239
+msgid "Please, use read only access to DB in this function"
+msgstr ""
+
+#: src/lua_interface.cpp:369 src/lua_interface.cpp:420
+msgid "mmGetTableChoice: Array not recognised"
+msgstr ""
+
+#: src/lua_interface.cpp:409
+msgid "mmGetColumnChoice: This is not a 2 dimentional array"
+msgstr ""
+
+#: src/lua_interface.cpp:517
+#, c-format
+msgid "Base conversion for currency symbol: %s has not been set."
+msgstr ""
+
+#: src/lua_interface.cpp:617
+#, c-format
+msgid "HTML_BUILDER: Syntax error function: %s"
+msgstr ""
+
+#: src/maincurrencydialog.cpp:140 src/mmex.cpp:2433
+msgid "Online update currency rate"
+msgstr "Online osvežitev stopnje valute"
+
+#: src/maincurrencydialog.cpp:144
+msgid "Currency List"
+msgstr "Seznam valut"
+
+#: src/maincurrencydialog.cpp:155 src/stockdialog.cpp:153
+#: src/reports/summarystocks.cpp:161
+msgid "Symbol"
+msgstr "Simbol"
+
+#: src/maincurrencydialog.cpp:176 src/mmhomepagepanel.cpp:509
+#, fuzzy
+msgid "Base Rate"
+msgstr "Datum"
+
+#: src/maincurrencydialog.cpp:234
+msgid "Name of Currency to Add"
+msgstr "Ime valute ki bo dodana"
+
+#: src/maincurrencydialog.cpp:234
+msgid "Add Currency"
+msgstr "Dodaj valuto"
+
+#: src/maincurrencydialog.cpp:258
+#, fuzzy
+msgid "Attempt to Add a currency which already exists!"
+msgstr "Ime valute že obstaja!"
+
+#: src/maincurrencydialog.cpp:259 src/maincurrencydialog.cpp:289
+#: src/maincurrencydialog.cpp:294 src/maincurrencydialog.h:29
+msgid "Currency Dialog"
+msgstr "Okno Valut"
+
+#: src/maincurrencydialog.cpp:288
+msgid ""
+"Attempt to delete a currency being used by an account\n"
+" or as the base currency."
+msgstr ""
+
+#: src/maincurrencydialog.cpp:293
+#, fuzzy
+msgid "Do you really want to delete the selected Currency?"
+msgstr "Ali zares želiš izrisati transakcijo?"
+
+#: src/maincurrencydialog.cpp:352 src/mmcurrency.cpp:338 src/mmex.cpp:3363
+msgid "Currency rate updated"
+msgstr "Stopnja valute osvežena"
+
+#: src/maincurrencydialog.cpp:385
+#, fuzzy
+msgid "Set as Base Currency"
+msgstr "Osnovna valuta"
+
+#: src/mmcheckingpanel.cpp:88 src/mmhomepagepanel.cpp:159
+#: src/reports/summary.cpp:44
+msgid "Balance"
+msgstr "Bilanca"
+
+#: src/mmcheckingpanel.cpp:491
+#, fuzzy
+msgid "View Un-Reconciled"
+msgstr "Poglej Neusklajene"
+
+#: src/mmcheckingpanel.cpp:492
+#, fuzzy
+msgid "View All Except Reconciled"
+msgstr "Prikaži vse razen usklajenih transakcij"
+
+#: src/mmcheckingpanel.cpp:571 src/mmcheckingpanel.cpp:870
+#, fuzzy
+msgid "Displayed Bal: "
+msgstr "Prikaži"
+
+#: src/mmcheckingpanel.cpp:577
+#, fuzzy
+msgid "Account Bal: "
+msgstr "Računi"
+
+#: src/mmcheckingpanel.cpp:579
+#, fuzzy
+msgid "Reconciled Bal: "
+msgstr "Usklajeno"
+
+#: src/mmcheckingpanel.cpp:581
+#, fuzzy
+msgid "Diff: "
+msgstr "Razlika:"
+
+#: src/mmcheckingpanel.cpp:641
+msgid "&New"
+msgstr "&Novo"
+
+#: src/mmcheckingpanel.cpp:642 src/mmex.cpp:2540
+msgid "New Transaction"
+msgstr "Nova transakcija"
+
+#: src/mmcheckingpanel.cpp:645
+msgid "&Edit"
+msgstr "&Uredi"
+
+#: src/mmcheckingpanel.cpp:646
+#, fuzzy
+msgid "Edit selected transaction"
+msgstr "Izbriši transakcijo"
+
+#: src/mmcheckingpanel.cpp:651
+#, fuzzy
+msgid "Delete selected transaction"
+msgstr "Izbriši vse označene transakcije"
+
+#: src/mmcheckingpanel.cpp:655
+#, fuzzy
+msgid "D&uplicate"
+msgstr "Podvoji"
+
+#: src/mmcheckingpanel.cpp:656
+#, fuzzy
+msgid "Duplicate selected transaction"
+msgstr "Izbriši vse označene transakcije"
+
+#: src/mmcheckingpanel.cpp:662
+#, fuzzy
+msgid "Search"
+msgstr "Marec"
+
+#: src/mmcheckingpanel.cpp:664
+msgid "Enter any string to find it in the nearest transaction notes"
+msgstr ""
+
+#: src/mmcheckingpanel.cpp:777
+#, fuzzy, c-format
+msgid "From %s to %s"
+msgstr "%s na %s"
+
+#: src/mmcheckingpanel.cpp:966
+#, fuzzy, c-format
+msgid "Account View : %s"
+msgstr "Pogled računa: "
+
+#: src/mmcheckingpanel.cpp:1185
+#, fuzzy
+msgid "View All transactions"
+msgstr "Prikaži vse transakcije"
+
+#: src/mmcheckingpanel.cpp:1201
+msgid "Transaction Filter will interfere with this filtering."
+msgstr ""
+
+#: src/mmcheckingpanel.cpp:1202
+#, fuzzy
+msgid "Please deactivate Transaction Filter"
+msgstr "Filter transakcij"
+
+#: src/mmcheckingpanel.cpp:1346
+msgid "&New Transaction"
+msgstr "&Nova transakcija"
+
+#: src/mmcheckingpanel.cpp:1348
+msgid "&Edit Transaction"
+msgstr "&Uredi transakcijo"
+
+#: src/mmcheckingpanel.cpp:1350
+msgid "&Copy Transaction"
+msgstr "&Kopiraj transakcijo"
+
+#: src/mmcheckingpanel.cpp:1352
+#, fuzzy
+msgid "D&uplicate Transaction"
+msgstr "Prikaži podvojene transakcije"
+
+#: src/mmcheckingpanel.cpp:1354
+#, fuzzy
+msgid "&Move Transaction"
+msgstr "&Nova transakcija"
+
+#: src/mmcheckingpanel.cpp:1357
+msgid "&Paste Transaction"
+msgstr "&Prilepi transakcijo"
+
+#: src/mmcheckingpanel.cpp:1362
+#, fuzzy
+msgid "&View Split Categories"
+msgstr "Pregled vseh proračunskih kategorij"
+
+#: src/mmcheckingpanel.cpp:1369
+msgid "&Delete Transaction"
+msgstr "&Izbriši transakcijo"
+
+#: src/mmcheckingpanel.cpp:1372
+msgid "Delete all transactions in current view"
+msgstr "Izbriši vse transakcije v trenutnem pogledu."
+
+#: src/mmcheckingpanel.cpp:1373
+#, fuzzy
+msgid "Delete Viewed \"Follow Up\" Trans."
+msgstr "Prikaži vse transakcije"
+
+#: src/mmcheckingpanel.cpp:1378
+msgid "Mark As &Reconciled"
+msgstr "Označi kot &Usklajeno"
+
+#: src/mmcheckingpanel.cpp:1380
+msgid "Mark As &Unreconciled"
+msgstr "Označi kot &Neusklajeno"
+
+#: src/mmcheckingpanel.cpp:1382
+msgid "Mark As &Void"
+msgstr "Označi kot &Prazno"
+
+#: src/mmcheckingpanel.cpp:1384
+msgid "Mark For &Followup"
+msgstr "Označi kot &Sledeč"
+
+#: src/mmcheckingpanel.cpp:1386
+msgid "Mark As &Duplicate"
+msgstr "Označi kot &Duplikat"
+
+#: src/mmcheckingpanel.cpp:1391
+msgid "as Reconciled"
+msgstr "kot usklajeno"
+
+#: src/mmcheckingpanel.cpp:1392
+msgid "as Unreconciled"
+msgstr "kot neusklajeno"
+
+#: src/mmcheckingpanel.cpp:1393
+msgid "as Void"
+msgstr "kot Prazno"
+
+#: src/mmcheckingpanel.cpp:1394
+msgid "as needing Followup"
+msgstr "kot potreben sledeč"
+
+#: src/mmcheckingpanel.cpp:1395
+msgid "as Duplicate"
+msgstr "kot duplikat"
+
+#: src/mmcheckingpanel.cpp:1396
+#, fuzzy
+msgid "Mark all being viewed"
+msgstr "Označi vse"
+
+#: src/mmcheckingpanel.cpp:1449
+msgid "Do you really want to delete all the transactions shown?"
+msgstr "Ali zres želite izbrisati vse prikazane transakcije?"
+
+#: src/mmcheckingpanel.cpp:1450 src/mmcheckingpanel.cpp:1459
+#: src/mmcheckingpanel.cpp:1746
+msgid "Confirm Transaction Deletion"
+msgstr "Potrdi brisanje transakcije"
+
+#: src/mmcheckingpanel.cpp:1458
+#, fuzzy
+msgid "Do you really want to delete all the \"Follow Up\" transactions shown?"
+msgstr "Ali zares želite izbrisati vse označene transakcije?"
+
+#: src/mmcheckingpanel.cpp:1745
+#, fuzzy
+msgid "Do you really want to delete the selected transaction?"
+msgstr "Ali zares želiš izrisati transakcijo?"
+
+#: src/mmcheckingpanel.cpp:1841
+#, fuzzy
+msgid "Moving Transaction from "
+msgstr "Prikaži današnje transakcije"
+
+#: src/mmcheckingpanel.cpp:1841
+msgid " to..."
+msgstr ""
+
+#: src/mmcheckingpanel.cpp:1844 src/stockspanel.cpp:178
+#, fuzzy
+msgid "Select the destination Account "
+msgstr "Določite na kateri račun"
+
+#: src/mmcurrency.cpp:289
+msgid "Could not find base currency symbol!"
+msgstr "Ni bilo možno najti simbola valute!"
+
+#: src/mmcurrency.cpp:360
+#, c-format
+msgid "%s\t: %s -> %s\n"
+msgstr ""
+
+#: src/mmex.cpp:91
+msgid ""
+"Fatal error occured.\n"
+"Application will be terminated."
+msgstr ""
+"Prišlo je do precej hude napake.\n"
+"Program se bo zaprl."
+
+#: src/mmex.cpp:246
+msgid "New Database Wizard"
+msgstr "Čarovnik za kreiranje nove podatkovne baze"
+
+#: src/mmex.cpp:267
+msgid "The next pages will help you create a new database."
+msgstr ""
+
+#: src/mmex.cpp:268
+#, fuzzy
+msgid "Your database file is stored with an extension of .mmb."
+msgstr "Odpri že kreirano bazo podatkov s končnico (*.mmb)"
+
+#: src/mmex.cpp:269
+msgid ""
+"As this file contains important financial information,\n"
+"we recommended creating daily backups with the Options\n"
+"setting: 'Backup before opening', and store your backups\n"
+"in a separate location."
+msgstr ""
+
+#: src/mmex.cpp:270
+msgid ""
+"The database can later be encrypted if required, by\n"
+"using the option: 'Save database as' and changing the\n"
+"file type before saving."
+msgstr ""
+
+#: src/mmex.cpp:315 src/optionsdialog.cpp:190
+msgid "Set Currency"
+msgstr "Določite valuto"
+
+#: src/mmex.cpp:323
+msgid "Base Currency for account"
+msgstr "Osnovna valuta računa"
+
+#: src/mmex.cpp:333
+#, fuzzy
+msgid ""
+"Specify the base (or default) currency to be used for the\n"
+"database. The base currency can later be changed by using\n"
+"the options dialog. New accounts, will use this currency by\n"
+"default, and can be changed when editing account details."
+msgstr ""
+"\n"
+"Določite privzeto valuto ki bo uporabljena \n"
+"z bazo podatkov. Valuto lahko spremenite \n"
+"za vsak račun posebej.\n"
+
+#: src/mmex.cpp:341 src/optionsdialog.cpp:159
+msgid "User Name"
+msgstr "Uporabniško ime"
+
+#: src/mmex.cpp:348
+msgid "(Optional) Specify a title or your name."
+msgstr ""
+
+#: src/mmex.cpp:349
+msgid "Used as a database title for displayed and printed reports."
+msgstr ""
+
+#: src/mmex.cpp:361 src/qif_import.cpp:953
+msgid "Base Currency Not Set"
+msgstr "Osnovna valuta ni določena"
+
+#: src/mmex.cpp:361 src/mmex.cpp:2211 src/mmex.cpp:2523
+msgid "New Database"
+msgstr "Nova baza podatkov"
+
+#: src/mmex.cpp:387
+msgid "Add Account Wizard"
+msgstr "Čarovnik za dodajanje računa"
+
+#: src/mmex.cpp:395
+#, fuzzy
+msgid ""
+" models all transactions as belonging to accounts.\n"
+"\n"
+"The next pages will help you create a new account.\n"
+"\n"
+"To help you get started, begin by making a list of all\n"
+"financial institutions where you hold an account."
+msgstr ""
+" smatra vse transakcije kot da pripadaju računom.\n"
+"\n"
+" Naslednje strani Vam bodo v pomoč pri ustvarjanju novega računa. \n"
+"\n"
+"Da bi čim lažje začeli, najprej ustvarite seznam vseh\n"
+"finančnih institucij kjer imate račune."
+
+#: src/mmex.cpp:432
+msgid "Account Name Invalid"
+msgstr "Napačen naziv računa"
+
+#: src/mmex.cpp:432 src/mmex.cpp:510 src/mmex.cpp:2320 src/mmex.cpp:2527
+#: src/newacctdialog.h:23
+msgid "New Account"
+msgstr "Nov račun"
+
+#: src/mmex.cpp:446
+msgid "Name of the Account"
+msgstr "Naziv računa"
+
+#: src/mmex.cpp:450
+#, fuzzy
+msgid "Specify a descriptive name for the account."
+msgstr "Določi status transakcije"
+
+#: src/mmex.cpp:451
+#, fuzzy
+msgid ""
+"This is generally the name of a financial institution\n"
+"where the account is held. For example: 'ABC Bank'."
+msgstr ""
+"\n"
+"Določite opisno ime za račun. Ponavadi je to \n"
+"naziv finančne institucije v kateri se nahaja račun. \n"
+"Na primer 'NLB'."
+
+#: src/mmex.cpp:464
+msgid "Checking/Savings"
+msgstr "Transakcijski/Varčevalni"
+
+#: src/mmex.cpp:465 src/newacctdialog.cpp:166
+msgid "Investment"
+msgstr "Investicije"
+
+#: src/mmex.cpp:466 src/newacctdialog.cpp:167
+msgid "Term"
+msgstr ""
+
+#: src/mmex.cpp:469 src/newacctdialog.cpp:293
+msgid "Specify the type of account to be created."
+msgstr "Določite tip računa ki bo ustvarjen"
+
+#: src/mmex.cpp:473
+msgid "Type of Account"
+msgstr "Tip računa"
+
+#: src/mmex.cpp:478
+#, fuzzy
+msgid "Select the type of account you want to create:"
+msgstr "Določite tip računa ki bo ustvarjen"
+
+#: src/mmex.cpp:479
+#, fuzzy
+msgid ""
+"General bank accounts cover a wide variety of account\n"
+"types like Checking, Savings and Credit card type accounts."
+msgstr ""
+"\n"
+"Izberite tip računa ki ga želite kreirati:\n"
+"\n"
+"Splošni bančni račun pokriva širok razpon računov\n"
+" vrste Transakcijski, Varčevalni ali Kreditna kartica."
+
+#: src/mmex.cpp:483
+#, fuzzy
+msgid ""
+"Investment accounts are specialized accounts that only\n"
+"have stock/mutual fund investments associated with them."
+msgstr ""
+"\n"
+"Investicijski računi so posebni računi na katere \n"
+"so vezane samo delnice/investicijski skladi. \n"
+
+#: src/mmex.cpp:487
+msgid ""
+"Term accounts are specialized bank accounts. Intended for asset\n"
+"type accounts such as Term Deposits and Bonds. These accounts\n"
+"can have regular money coming in and out, being outside the\n"
+"general income stream."
+msgstr ""
+
+#: src/mmex.cpp:508
+#, fuzzy
+msgid "Base Account Currency Not set."
+msgstr "Osnovna valuta ni določena"
+
+#: src/mmex.cpp:509
+#, fuzzy
+msgid "Set that first using Tools->Options menu and then add a new account."
+msgstr ""
+"Valuta osnovnega računa ni določena.\n"
+"Najprej nastavite to, pojdite na menu->opcije in nato dodajte nov račun"
+
+#: src/mmex.cpp:684
+#, fuzzy
+msgid "Toolbar"
+msgstr "&Orodna vrstica"
+
+#: src/mmex.cpp:826 src/mmex.cpp:1107 src/optionsdialog.cpp:342
+#: src/optionsdialog.cpp:362
+msgid "Bank Accounts"
+msgstr "Bančni računi"
+
+#: src/mmex.cpp:827 src/mmex.cpp:1115 src/optionsdialog.cpp:349
+#: src/optionsdialog.cpp:369
+#, fuzzy
+msgid "Term Accounts"
+msgstr "V breme računa"
+
+#: src/mmex.cpp:828 src/mmex.cpp:1121 src/mmex.cpp:1190
+#: src/mmhomepagepanel.cpp:356
+msgid "Stocks"
+msgstr "Delnice"
+
+#: src/mmex.cpp:920
+#, fuzzy
+msgid " Auto Repeat Transactions"
+msgstr "Ponavljajoče transakcije"
+
+#: src/mmex.cpp:1078
+msgid "Navigation"
+msgstr "Navigacija"
+
+#: src/mmex.cpp:1101
+msgid "Home Page"
+msgstr "Osnovna stran"
+
+#: src/mmex.cpp:1142 src/mmex.cpp:2378
+msgid "Budget Setup"
+msgstr "Nastavitve proračuna"
+
+#: src/mmex.cpp:1147
+msgid "Reports"
+msgstr "Poročila"
+
+#: src/mmex.cpp:1187 src/reports/summary.cpp:33
+msgid "Summary of Accounts"
+msgstr "Povzetek računov"
+
+#: src/mmex.cpp:1199 src/mmex.cpp:1708
+msgid "Where the Money Goes"
+msgstr "Kam gre denar"
+
+#: src/mmex.cpp:1202 src/mmex.cpp:1233 src/mmex.cpp:1261 src/mmex.cpp:1289
+#: src/mmex.cpp:1317
+msgid "Last Calendar Month"
+msgstr "Zadnji koledarski mesec"
+
+#: src/mmex.cpp:1203
+#, fuzzy
+msgid "Where the Money Goes - Last Calendar Month"
+msgstr "Zadnji koledarski mesec"
+
+#: src/mmex.cpp:1205 src/mmhomepagepanel.cpp:572
+msgid "Current Month"
+msgstr "Tekoči mesec"
+
+#: src/mmex.cpp:1206 src/mmex.cpp:1757 src/mmhomepagepanel.cpp:573
+#, fuzzy
+msgid "Current Month to Date"
+msgstr "Tekoči mesec"
+
+#: src/mmex.cpp:1209
+#, fuzzy
+msgid "Where the Money Goes - Current Month"
+msgstr "Kam gre denar"
+
+#: src/mmex.cpp:1211 src/mmex.cpp:1239 src/mmex.cpp:1267 src/mmex.cpp:1295
+#: src/mmex.cpp:1323 src/mmhomepagepanel.cpp:800
+msgid "Last 30 Days"
+msgstr "Zadnjih 30 dni"
+
+#: src/mmex.cpp:1212
+#, fuzzy
+msgid "Where the Money Goes - 30 Days"
+msgstr "Kam gre denar"
+
+#: src/mmex.cpp:1214 src/mmex.cpp:1242 src/mmex.cpp:1270 src/mmex.cpp:1298
+#: src/mmex.cpp:1326
+msgid "Last Year"
+msgstr "Preteklo leto"
+
+#: src/mmex.cpp:1215
+#, fuzzy
+msgid "Where the Money Goes - Last Year"
+msgstr "Kam gre denar"
+
+#: src/mmex.cpp:1217 src/mmex.cpp:1245 src/mmex.cpp:1273 src/mmex.cpp:1301
+#: src/mmex.cpp:1329
+msgid "Current Year"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:1218
+#, fuzzy
+msgid "Where the Money Goes - Current Year"
+msgstr "Kam gre denar"
+
+#: src/mmex.cpp:1222 src/mmex.cpp:1250 src/mmex.cpp:1278 src/mmex.cpp:1306
+#: src/mmex.cpp:1334
+#, fuzzy
+msgid "Last Financial Year"
+msgstr "Preteklo leto"
+
+#: src/mmex.cpp:1223
+#, fuzzy
+msgid "Where the Money Goes - Last Financial Year"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1225 src/mmex.cpp:1253 src/mmex.cpp:1281 src/mmex.cpp:1309
+#: src/mmex.cpp:1337
+#, fuzzy
+msgid "Current Financial Year"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:1226
+#, fuzzy
+msgid "Where the Money Goes - Current Financial Year"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:1230 src/mmex.cpp:1728
+msgid "Where the Money Comes From"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1234
+#, fuzzy
+msgid "Where the Money Comes From - Last Calendar Month"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1237
+#, fuzzy
+msgid "Where the Money Comes From - Current Month"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1240
+#, fuzzy
+msgid "Where the Money Comes From - 30 Days"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1243
+#, fuzzy
+msgid "Where the Money Comes From - Last Year"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1246
+#, fuzzy
+msgid "Where the Money Comes From - Current Year"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1251
+#, fuzzy
+msgid "Where the Money Comes From - Last Financial Year"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1254
+#, fuzzy
+msgid "Where the Money Comes From - Current Financial Year"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1262
+#, fuzzy
+msgid "Categories - Last Calendar Month"
+msgstr "Zadnji koledarski mesec"
+
+#: src/mmex.cpp:1265
+#, fuzzy
+msgid "Categories - Current Month"
+msgstr "Poglej tekoči mesec"
+
+#: src/mmex.cpp:1268
+#, fuzzy
+msgid "Categories - 30 Days"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1271
+#, fuzzy
+msgid "Categories - Last Year"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1274
+#, fuzzy
+msgid "Categories - Current Year"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:1279
+#, fuzzy
+msgid "Categories - Last Financial Year"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1282
+msgid "Categories - Current Financial Year"
+msgstr ""
+
+#: src/mmex.cpp:1286
+#, fuzzy
+msgid "Payees"
+msgstr "Prejemnik"
+
+#: src/mmex.cpp:1290
+#, fuzzy
+msgid "Payees - Last Calendar Month"
+msgstr "Zadnji koledarski mesec"
+
+#: src/mmex.cpp:1293
+#, fuzzy
+msgid "Payees - Current Month"
+msgstr "Poglej tekoči mesec"
+
+#: src/mmex.cpp:1296
+#, fuzzy
+msgid "Payees - Last 30 Days"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1299
+#, fuzzy
+msgid "Payees - Last Year"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1302
+#, fuzzy
+msgid "Payees - Current Year"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:1307
+#, fuzzy
+msgid "Payees - Last Financial Year"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:1310
+#, fuzzy
+msgid "Payees - Current Financial Year"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:1314 src/reports/incexpenses.cpp:45
+msgid "Income vs Expenses"
+msgstr "Prihodki vs Izdatki"
+
+#: src/mmex.cpp:1318
+#, fuzzy
+msgid "Income vs Expenses - Last Calendar Month"
+msgstr "Prihodki vs Izdatki: Tekoči mesec"
+
+#: src/mmex.cpp:1321
+#, fuzzy
+msgid "Income vs Expenses - Current Month"
+msgstr "Prihodki vs Izdatki: Tekoči mesec"
+
+#: src/mmex.cpp:1324
+#, fuzzy
+msgid "Income vs Expenses - 30 Days"
+msgstr "Prihodki vs Izdatki - Celotno obdobje"
+
+#: src/mmex.cpp:1327
+#, fuzzy
+msgid "Income vs Expenses - Last Year"
+msgstr "Prihodki vs Izdatki - Celotno obdobje"
+
+#: src/mmex.cpp:1330
+#, fuzzy
+msgid "Income vs Expenses - Current Year"
+msgstr "Prihodki vs Izdatki: Tekoči mesec"
+
+#: src/mmex.cpp:1335
+#, fuzzy
+msgid "Income vs Expenses - Last Financial Year"
+msgstr "Prihodki vs Izdatki za leto: "
+
+#: src/mmex.cpp:1338
+#, fuzzy
+msgid "Income vs Expenses - Current Financial Year"
+msgstr "Prihodki vs Izdatki za leto: "
+
+#: src/mmex.cpp:1341
+#, fuzzy
+msgid "All Time"
+msgstr "&CSV Datoteke"
+
+#: src/mmex.cpp:1342 src/mmex.cpp:1784
+msgid "Income vs Expenses - All Time"
+msgstr "Prihodki vs Izdatki - Celotno obdobje"
+
+#: src/mmex.cpp:1345
+msgid "Transaction Report"
+msgstr "Poročilo o transakcijah"
+
+#: src/mmex.cpp:1361
+msgid "Budget Performance"
+msgstr "Izvršitev proračuna"
+
+#: src/mmex.cpp:1364
+#, fuzzy
+msgid "Budget Category Summary"
+msgstr "Vnos proračunskega leta"
+
+#: src/mmex.cpp:1392 src/mmex.cpp:3186
+msgid "Cash Flow"
+msgstr "Denarni tok"
+
+#: src/mmex.cpp:1395
+#, fuzzy
+msgid "Cash Flow - With Bank Accounts"
+msgstr "Denarni tok - za posamezne račune"
+
+#: src/mmex.cpp:1400
+#, fuzzy
+msgid "Cash Flow - With Term Accounts"
+msgstr "Denarni tok - za posamezne račune"
+
+#: src/mmex.cpp:1404
+msgid "Cash Flow - Specific Accounts"
+msgstr "Denarni tok - za posamezne račune"
+
+#: src/mmex.cpp:1408
+#, fuzzy
+msgid "Daily Cash Flow - Specific Accounts"
+msgstr "Denarni tok - za posamezne račune"
+
+#: src/mmex.cpp:1412 src/mmhomepagepanel.cpp:901
+msgid "Transaction Statistics"
+msgstr "Statistika transakcij"
+
+#: src/mmex.cpp:1417
+msgid "Help"
+msgstr "Pomoč"
+
+#: src/mmex.cpp:1583
+msgid "Budget report being generated... Please wait."
+msgstr ""
+
+#: src/mmex.cpp:1718
+#, fuzzy
+msgid "Where the Money Goes - Current Month to Date"
+msgstr "Kam gre denar"
+
+#: src/mmex.cpp:1738
+#, fuzzy
+msgid "Where the Money Comes From - Current Month to Date"
+msgstr "Od kod prihaja denar"
+
+#: src/mmex.cpp:1746
+#, fuzzy
+msgid "Category Report"
+msgstr "Kategorija"
+
+#: src/mmex.cpp:1746
+msgid "Category Report being generated... Please wait."
+msgstr ""
+
+#: src/mmex.cpp:1765
+#, fuzzy
+msgid "Payee Report"
+msgstr "Prejemnik "
+
+#: src/mmex.cpp:1775
+#, fuzzy
+msgid "Payees - Current Month to Date"
+msgstr "Poglej tekoči mesec"
+
+#: src/mmex.cpp:1820
+#, fuzzy
+msgid "Income vs Expenses - Current Month to Date"
+msgstr "Prihodki vs Izdatki: Tekoči mesec"
+
+#: src/mmex.cpp:1930
+msgid "Do you really want to delete the account?"
+msgstr "Ali zares želiš izrisati račun?"
+
+#: src/mmex.cpp:1931 src/mmex.cpp:3710
+msgid "Confirm Account Deletion"
+msgstr "Potrdi brisanje računa"
+
+#: src/mmex.cpp:1951
+msgid "MMEX has been opened without an active database."
+msgstr ""
+
+#: src/mmex.cpp:1951
+msgid "MMEX: Menu Popup Error"
+msgstr ""
+
+#: src/mmex.cpp:1980 src/mmex.cpp:2019 src/mmex.cpp:2330
+msgid "&Edit Account"
+msgstr "&Uredi račun"
+
+#: src/mmex.cpp:1981 src/mmex.cpp:2018 src/mmex.cpp:2336
+msgid "&Delete Account"
+msgstr "&Izbriši račun"
+
+#: src/mmex.cpp:1983
+msgid "&Launch Account Website"
+msgstr "&Odpri spletno stran računa"
+
+#: src/mmex.cpp:2017 src/mmex.cpp:2320
+msgid "New &Account"
+msgstr "Nov &Račun"
+
+#: src/mmex.cpp:2020
+#, fuzzy
+msgid "Account &List (Home)"
+msgstr "Računi &Seznam"
+
+#: src/mmex.cpp:2029 src/mmex.cpp:2033 src/mmex.cpp:2231 src/mmex.cpp:2237
+#, fuzzy
+msgid "&CSV Files..."
+msgstr "&CSV Datoteke"
+
+#: src/mmex.cpp:2030 src/mmex.cpp:2034 src/mmex.cpp:2232 src/mmex.cpp:2238
+#, fuzzy
+msgid "&QIF Files..."
+msgstr "&QIF Datoteke"
+
+#: src/mmex.cpp:2031 src/mmex.cpp:2234 src/univcsvdialog.cpp:329
+msgid "&Export"
+msgstr "&Izvoz"
+
+#: src/mmex.cpp:2035 src/mmex.cpp:2239 src/univcsvdialog.cpp:322
+msgid "&Import"
+msgstr "&Uvoz"
+
+#: src/mmex.cpp:2041 src/mmex.cpp:2524 src/newacctdialog.cpp:177
+#: src/optionsdialog.cpp:94
+msgid "Open"
+msgstr "Odprt"
+
+#: src/mmex.cpp:2042 src/optionsdialog.cpp:95
+msgid "Favorites"
+msgstr "Priljubljeni"
+
+#: src/mmex.cpp:2043 src/optionsdialog.cpp:270
+msgid "Accounts Visible"
+msgstr "Vidni računi"
+
+#: src/mmex.cpp:2054
+#, fuzzy
+msgid "Edit Custom Report"
+msgstr "SQL poročilo po meri"
+
+#: src/mmex.cpp:2211
+msgid "&New Database\tCtrl-N"
+msgstr "&Nova baza podatkov\tCtrl-N"
+
+#: src/mmex.cpp:2213
+msgid "&Open Database\tCtrl-O"
+msgstr "&Odpri bazo podatkov\tCtrl-O"
+
+#: src/mmex.cpp:2213 src/mmex.cpp:2524
+msgid "Open Database"
+msgstr "Odpri bazo podatkov"
+
+#: src/mmex.cpp:2215
+msgid "Save Database &As"
+msgstr "Shrani bazo podatkov &kot"
+
+#: src/mmex.cpp:2215
+msgid "Save Database As"
+msgstr "Shrani bazo podatkov kot"
+
+#: src/mmex.cpp:2223
+msgid "&Recent Files..."
+msgstr ""
+
+#: src/mmex.cpp:2225
+msgid "&Clear Recent Files"
+msgstr ""
+
+#: src/mmex.cpp:2231 src/univcsvdialog.cpp:882
+msgid "Export to CSV"
+msgstr "Izvoz v CSV"
+
+#: src/mmex.cpp:2232 src/qif_export.cpp:562
+msgid "Export to QIF"
+msgstr "Izvoz v QIF"
+
+#: src/mmex.cpp:2233
+msgid "&Report to HTML"
+msgstr "&Poročilo v HTML"
+
+#: src/mmex.cpp:2233
+msgid "Export to HTML"
+msgstr "Izvoz v HTML"
+
+#: src/mmex.cpp:2237
+msgid "Import from any CSV file"
+msgstr "Uvoz iz katere koli CSV datoteke"
+
+#: src/mmex.cpp:2238
+msgid "Import from QIF"
+msgstr "Uvoz iz QIF"
+
+#: src/mmex.cpp:2244
+msgid "Page Set&up..."
+msgstr "Nastavitve &strani..."
+
+#: src/mmex.cpp:2244
+msgid "Setup page printing options"
+msgstr "Nastavitve tiskanja strani"
+
+#: src/mmex.cpp:2250 src/mmex.cpp:2256
+msgid "Current &View"
+msgstr "Trenutni &pogled"
+
+#: src/mmex.cpp:2250
+msgid "Preview current report"
+msgstr "Predogled trenutnega poročila"
+
+#: src/mmex.cpp:2252
+msgid "Print Pre&view..."
+msgstr "Pred&ogled tiskanja..."
+
+#: src/mmex.cpp:2256
+msgid "Print current report"
+msgstr "Tiskaj trenutno poročilo"
+
+#: src/mmex.cpp:2259
+msgid "&Print..."
+msgstr "&Tiskanje..."
+
+#: src/mmex.cpp:2264
+msgid "E&xit\tAlt-X"
+msgstr "E&xit\tAlt-X"
+
+#: src/mmex.cpp:2264
+msgid "Quit this program"
+msgstr "Izhod iz programa"
+
+#: src/mmex.cpp:2271
+msgid "&Toolbar"
+msgstr "&Orodna vrstica"
+
+#: src/mmex.cpp:2271
+msgid "Show/Hide the toolbar"
+msgstr "Prikaži/Skrij orodno vrstico"
+
+#: src/mmex.cpp:2273
+msgid "&Navigation"
+msgstr "&Navigacija"
+
+#: src/mmex.cpp:2273
+msgid "Show/Hide the Navigation tree control"
+msgstr "Prikaži/Skrij navigacijsko drevo"
+
+#: src/mmex.cpp:2275
+#, fuzzy
+msgid "&Bank Accounts"
+msgstr "Bančni računi"
+
+#: src/mmex.cpp:2275
+msgid "Show/Hide Bank Accounts on Summary page"
+msgstr ""
+
+#: src/mmex.cpp:2277
+#, fuzzy
+msgid "Term &Accounts"
+msgstr "&Računi"
+
+#: src/mmex.cpp:2277
+msgid "Show/Hide Term Accounts on Summary page"
+msgstr ""
+
+#: src/mmex.cpp:2279
+#, fuzzy
+msgid "&Stock Accounts"
+msgstr "Bančni računi"
+
+#: src/mmex.cpp:2279
+msgid "Show/Hide Stock Accounts on Summary page"
+msgstr ""
+
+#: src/mmex.cpp:2281
+#, fuzzy
+msgid "Budgets: As &Financial Years"
+msgstr "Tekoče leto"
+
+#: src/mmex.cpp:2281
+msgid "Display Budgets in Financial Year Format"
+msgstr ""
+
+#: src/mmex.cpp:2283
+msgid "Budgets: &Include Transfers in Totals"
+msgstr ""
+
+#: src/mmex.cpp:2283
+#, fuzzy
+msgid "Include the transfer transactions in the Budget Totals"
+msgstr " transferne transakcije niso uvožene."
+
+#: src/mmex.cpp:2285
+#, fuzzy
+msgid "Budget Setup: &Without Summaries"
+msgstr "Nastavitve proračuna za "
+
+#: src/mmex.cpp:2285
+msgid "Display the Budget Setup without category summaries"
+msgstr ""
+
+#: src/mmex.cpp:2287
+msgid "Budget Summary: Include &Categories"
+msgstr ""
+
+#: src/mmex.cpp:2287
+msgid "Include the categories in the Budget Category Summary"
+msgstr ""
+
+#: src/mmex.cpp:2289
+#, fuzzy
+msgid "Ignore F&uture Transactions"
+msgstr "Bodoče transakcije"
+
+#: src/mmex.cpp:2289
+#, fuzzy
+msgid "Ignore Future transactions"
+msgstr "Bodoče transakcije"
+
+#: src/mmex.cpp:2326
+msgid "Account &List"
+msgstr "Računi &Seznam"
+
+#: src/mmex.cpp:2326 src/mmex.cpp:2528
+msgid "Show Account List"
+msgstr "Prikaži seznam računov"
+
+#: src/mmex.cpp:2330 src/newacctdialog.cpp:81
+msgid "Edit Account"
+msgstr "Uredi račun"
+
+#: src/mmex.cpp:2336
+msgid "Delete Account from database"
+msgstr "Izbriši račun iz baze podatkov"
+
+#: src/mmex.cpp:2348
+#, fuzzy
+msgid "Organize &Categories..."
+msgstr "Uredi &Kategorije"
+
+#: src/mmex.cpp:2348 src/mmex.cpp:2530 src/categdialog.h:23
+msgid "Organize Categories"
+msgstr "Uredi kategorije"
+
+#: src/mmex.cpp:2353
+#, fuzzy
+msgid "Organize &Payees..."
+msgstr "Uredi &Prejemnike"
+
+#: src/mmex.cpp:2353 src/mmex.cpp:2531 src/payeedialog.cpp:54
+msgid "Organize Payees"
+msgstr "Uredi prejemnike"
+
+#: src/mmex.cpp:2358
+#, fuzzy
+msgid "Organize Currency..."
+msgstr "Uredi &valute"
+
+#: src/mmex.cpp:2358 src/mmex.cpp:2532
+msgid "Organize Currency"
+msgstr "Uredi valute"
+
+#: src/mmex.cpp:2364
+#, fuzzy
+msgid "&Categories..."
+msgstr "Kategorije"
+
+#: src/mmex.cpp:2367
+#, fuzzy
+msgid "&Payees..."
+msgstr "Prejemnik"
+
+#: src/mmex.cpp:2367
+msgid "Reassign all payees to another payee"
+msgstr ""
+
+#: src/mmex.cpp:2371
+msgid "Relocation of..."
+msgstr ""
+
+#: src/mmex.cpp:2371
+#, fuzzy
+msgid "Relocate Categories && Payees"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/mmex.cpp:2378
+msgid "&Budget Setup"
+msgstr "&Nastavitve proračuna"
+
+#: src/mmex.cpp:2386
+msgid "&Repeating Transactions"
+msgstr "&Ponavljajoče transakcije"
+
+#: src/mmex.cpp:2386
+msgid "Bills && Deposits"
+msgstr "Računi && Vplačila"
+
+#: src/mmex.cpp:2393
+msgid "&Assets"
+msgstr "&Premoženje"
+
+#: src/mmex.cpp:2401
+#, fuzzy
+msgid "&Transaction Report Filter..."
+msgstr "&Filter transakcij"
+
+#: src/mmex.cpp:2401 src/mmex.cpp:2534
+#, fuzzy
+msgid "Transaction Report Filter"
+msgstr "Poročilo o transakcijah"
+
+#: src/mmex.cpp:2409
+#, fuzzy
+msgid "Custom Reports..."
+msgstr "SQL poročilo po meri"
+
+#: src/mmex.cpp:2409
+msgid "Create or modify reports for the Reports section"
+msgstr ""
+
+#: src/mmex.cpp:2417 src/mmex.cpp:2538
+#, fuzzy
+msgid "&Options..."
+msgstr "&Opcije"
+
+#: src/mmex.cpp:2417 src/mmex.cpp:2538
+msgid "Show the Options Dialog"
+msgstr "Prikaži okno z opcijami"
+
+#: src/mmex.cpp:2424
+msgid "Convert Encrypted &DB"
+msgstr "Pretvori kodirano &PB"
+
+#: src/mmex.cpp:2425
+msgid "Convert Encrypted DB to Non-Encrypted DB"
+msgstr "Pretvori kodirano PB v nekodirano PB"
+
+#: src/mmex.cpp:2432
+msgid "Online &Update Currency Rate"
+msgstr "Online &osvežitev stopnje valute"
+
+#: src/mmex.cpp:2441
+msgid "&Help\tCtrl-F1"
+msgstr "&Pomoč\tCtrl-F1"
+
+#: src/mmex.cpp:2441
+msgid "Show the Help file"
+msgstr "Prikaži pomoč"
+
+#: src/mmex.cpp:2446
+msgid "&Show App Start Dialog"
+msgstr "&Pokaži začetno okno aplikacije"
+
+#: src/mmex.cpp:2446
+msgid "App Start Dialog"
+msgstr "Začetno okno aplikacije"
+
+#: src/mmex.cpp:2455
+msgid "Check for &Updates"
+msgstr "Preveri &Posodobitve"
+
+#: src/mmex.cpp:2455
+msgid "Check For Updates"
+msgstr "Preveri posodobitve"
+
+#: src/mmex.cpp:2463
+msgid "Visit MMEX Forum or &Report New Issues."
+msgstr ""
+
+#: src/mmex.cpp:2463
+#, fuzzy
+msgid ""
+"Visit the MMEX forum. See existing user comments, or report new issues with "
+"the software."
+msgstr "Pošlji e-mail na mail-seznam za prijavo težav s programom"
+
+#: src/mmex.cpp:2471
+msgid "Register/View Release &Notifications."
+msgstr ""
+
+#: src/mmex.cpp:2471
+msgid "Sign up to Notification Mailing List or View existing announcements."
+msgstr ""
+
+#: src/mmex.cpp:2482
+msgid "&About..."
+msgstr "&O programu..."
+
+#: src/mmex.cpp:2482
+msgid "Show about dialog"
+msgstr "Prikaži okno o programu"
+
+#: src/mmex.cpp:2487
+msgid "&File"
+msgstr "&Datoteka"
+
+#: src/mmex.cpp:2488
+msgid "&Accounts"
+msgstr "&Računi"
+
+#: src/mmex.cpp:2489
+msgid "&Tools"
+msgstr "&Orodja"
+
+#: src/mmex.cpp:2490
+msgid "&View"
+msgstr "&Pogled"
+
+#: src/mmex.cpp:2491
+msgid "&Help"
+msgstr "&Pomoč"
+
+#: src/mmex.cpp:2523 src/mmex.cpp:2540
+msgid "New"
+msgstr "Novo"
+
+#: src/mmex.cpp:2528
+msgid "Account List"
+msgstr "Seznam računov"
+
+#: src/mmex.cpp:2530
+msgid "Show Organize Categories Dialog"
+msgstr "Prikaži okno za urejanje kategorij"
+
+#: src/mmex.cpp:2531
+msgid "Show Organize Payees Dialog"
+msgstr "Prikaži okno za urejanje prejemnikov"
+
+#: src/mmex.cpp:2532
+msgid "Show Organize Currency Dialog"
+msgstr "Prikaži okno za urejanje valut"
+
+#: src/mmex.cpp:2536 src/customreportdialog.h:27
+#, fuzzy
+msgid "Custom Reports Manager"
+msgstr "Po meri SQL poročilo"
+
+#: src/mmex.cpp:2536
+#, fuzzy
+msgid "Create new Custom Reports"
+msgstr "SQL poročilo po meri"
+
+#: src/mmex.cpp:2570
+msgid "Enter database's password"
+msgstr "Vnesi geslo podatkovne baze"
+
+#: src/mmex.cpp:2575
+#, fuzzy
+msgid "Opening MMEX Database - Error"
+msgstr "Odpri obstoječo bazo podatkov"
+
+#: src/mmex.cpp:2596 src/mmex.cpp:2644
+msgid " - No File opened "
+msgstr " - Nobena datoteka ni odprta "
+
+#: src/mmex.cpp:2598
+msgid ""
+"Sorry. The Database version is too old or Database password is incorrect"
+msgstr ""
+"Oprostite. Verzija baze podatkov je prestara ali pa je geslo baze podatkov "
+"napačno"
+
+#: src/mmex.cpp:2647
+#, fuzzy
+msgid "Cannot locate previously opened database.\n"
+msgstr "Odpri prejšnjo odprto bazo podatkov: "
+
+#: src/mmex.cpp:2649
+msgid "Password not entered for encrypted Database.\n"
+msgstr ""
+
+#: src/mmex.cpp:2667
+msgid "portable mode"
+msgstr "prenosni način"
+
+#: src/mmex.cpp:2715
+msgid "Choose database file to create"
+msgstr "Izberite datoteko podatkovne baze"
+
+#: src/mmex.cpp:2737
+msgid "Choose database file to open"
+msgstr "Izberite in odprite datoteko podatkovne baze"
+
+#: src/mmex.cpp:2754
+msgid "Choose Encrypted database file to open"
+msgstr "Izberite in odprite kodirano podatkovno bazo"
+
+#: src/mmex.cpp:2764
+msgid "Enter password for database"
+msgstr "Vnesi geslo za podatkovno bazo"
+
+#: src/mmex.cpp:2769
+msgid "Choose database file to Save As"
+msgstr "Izberi datoteko podatkovne baze"
+
+#: src/mmex.cpp:2791
+msgid "Converted DB!"
+msgstr "Pretvorjena PB!"
+
+#: src/mmex.cpp:2791
+msgid "MMEX message"
+msgstr "MMEX sporočilo"
+
+#: src/mmex.cpp:2806 src/mmex.cpp:2826
+msgid "Save database file as"
+msgstr "Shrani datoteko podatkovne baze kot"
+
+#: src/mmex.cpp:2826
+msgid "Can't copy file to itself"
+msgstr "Ne morem kopirati datoteke same vase"
+
+#: src/mmex.cpp:2839
+msgid "Enter password for new database"
+msgstr "Vnesi geslo za novo podatkovno bazo"
+
+#: src/mmex.cpp:2911
+#, fuzzy
+msgid "No account available to import"
+msgstr "Ni razpoložljivega računa! Izvoz ni možen!"
+
+#: src/mmex.cpp:2911 src/univcsvdialog.cpp:455 src/univcsvdialog.cpp:502
+#: src/univcsvdialog.cpp:529 src/univcsvdialog.cpp:555
+#: src/univcsvdialog.cpp:572 src/univcsvdialog.cpp:918
+#, fuzzy
+msgid "Universal CSV Import"
+msgstr "Okno Splošno CSV uvažanje"
+
+#: src/mmex.cpp:2960
+msgid "Term Account views have been temporarly turned on."
+msgstr ""
+
+#: src/mmex.cpp:2961
+msgid ""
+"To maintain this view, change the defaults by using:\n"
+"\n"
+"Tools -> Options\n"
+"View Options"
+msgstr ""
+
+#: src/mmex.cpp:2963
+msgid "This message will not be displayed in future."
+msgstr ""
+
+#: src/mmex.cpp:2964
+#, fuzzy
+msgid "Initial Term Account Activation"
+msgstr "Potrdi brisanje računa"
+
+#: src/mmex.cpp:3186
+msgid "Choose Accounts"
+msgstr "Izberite račune"
+
+#: src/mmex.cpp:3230
+msgid "MMEX Options have been updated."
+msgstr ""
+
+#: src/mmex.cpp:3234
+msgid "Recommendation: Shut down and restart MMEX."
+msgstr ""
+
+#: src/mmex.cpp:3235
+msgid "This will allow all MMEX option updates to take effect."
+msgstr ""
+
+#: src/mmex.cpp:3237 src/optionsdialog.h:29
+#, fuzzy
+msgid "New MMEX Options"
+msgstr "Nastavitve pogleda"
+
+#: src/mmex.cpp:3323 src/mmex.cpp:3353
+msgid "MMEX System Information Check"
+msgstr ""
+
+#: src/mmex.cpp:3342
+msgid "New update available!"
+msgstr "Nova posodobitev obstaja!"
+
+#: src/mmex.cpp:3347
+msgid "You have the latest version installed!"
+msgstr "Imate naloženo zadnjo verzijo!"
+
+#: src/mmex.cpp:3352
+msgid "Proceed to website: "
+msgstr ""
+
+#: src/mmex.cpp:3644
+#, fuzzy
+msgid "No account available to edit!"
+msgstr "Noben Račun ni dostopen!"
+
+#: src/mmex.cpp:3644 src/mmex.cpp:3661 src/mmex.cpp:3685 src/mmex.cpp:3702
+#: src/qif_export.cpp:106
+msgid "Accounts"
+msgstr "Računi"
+
+#: src/mmex.cpp:3661
+msgid "Choose Account to Edit"
+msgstr "Izberite račun za urejanje"
+
+#: src/mmex.cpp:3685
+#, fuzzy
+msgid "No account available to delete!"
+msgstr "Noben Račun ni dostopen!"
+
+#: src/mmex.cpp:3702
+msgid "Choose Account to Delete"
+msgstr "Izberite račun za brisanje"
+
+#: src/mmex.cpp:3708
+#, fuzzy
+msgid "Are you sure you want to delete\n"
+msgstr "Ali zares želiš izbrisati lastnino?"
+
+#: src/mmex.cpp:3709
+#, fuzzy
+msgid " account: "
+msgstr " znesek "
+
+#: src/mmex.cpp:3836 src/payeedialog.cpp:335
+#, fuzzy
+msgid "Payee Relocation Completed."
+msgstr "Kategorija ne more biti prazna"
+
+#: src/mmex.cpp:3840 src/payeedialog.cpp:339
+msgid "Payee Relocation Result"
+msgstr ""
+
+#: src/mmex.cpp:3896
+#, fuzzy
+msgid "Setting new Database file"
+msgstr "Shrani datoteko podatkovne baze kot"
+
+#: src/mmex.cpp:3897
+msgid "Please wait while the new database is being loaded."
+msgstr ""
+
+#: src/mmgraphincexpensesmonth.cpp:20 src/reports/categovertimeperf.cpp:172
+#: src/reports/incexpensesfinancialperiod.cpp:67
+#: src/reports/incexpesestime.cpp:39
+msgid "Expenses"
+msgstr "Izdatki"
+
+#: src/mmgraphpie.cpp:34
+#, fuzzy
+msgid "All Others"
+msgstr "Ostalo"
+
+#: src/mmhelppanel.cpp:64
+msgid "&Back"
+msgstr ""
+
+#: src/mmhelppanel.cpp:65
+msgid "&Forward"
+msgstr ""
+
+#: src/mmhelppanel.cpp:67
+msgid " Help"
+msgstr " Pomoč"
+
+#: src/mmhomepagepanel.cpp:158 src/constants.h:125
+msgid "Reconciled"
+msgstr "Usklajeno"
+
+#: src/mmhomepagepanel.cpp:176 src/mmhomepagepanel.cpp:412
+#: src/reports/summary.cpp:148
+#, fuzzy
+msgid "Stocks Total:"
+msgstr "Skupaj:"
+
+#: src/mmhomepagepanel.cpp:199
+#, fuzzy
+msgid "Bank Account"
+msgstr "Bančni računi"
+
+#: src/mmhomepagepanel.cpp:252 src/reports/summary.cpp:81
+#, fuzzy
+msgid "Bank Accounts Total:"
+msgstr "Bančni računi"
+
+#: src/mmhomepagepanel.cpp:276
+#, fuzzy
+msgid "Term Account"
+msgstr "V breme računa"
+
+#: src/mmhomepagepanel.cpp:327 src/reports/summary.cpp:123
+#, fuzzy
+msgid "Term Accounts Total:"
+msgstr "V breme računa"
+
+#: src/mmhomepagepanel.cpp:357 src/stockspanel.cpp:368
+#: src/reports/summarystocks.cpp:167
+msgid "Gain/Loss"
+msgstr "Dobiček/Izguba"
+
+#: src/mmhomepagepanel.cpp:358 src/reports/cashflow.cpp:87
+#: src/reports/trx_stats.cpp:62
+msgid "Total"
+msgstr "Skupaj"
+
+#: src/mmhomepagepanel.cpp:508 src/newacctdialog.cpp:348
+#: src/optionsdialog.cpp:182
+msgid "Currency"
+msgstr "Valuta"
+
+#: src/mmhomepagepanel.cpp:510 src/mmhomepagepanel.cpp:810
+msgid "Summary"
+msgstr "Povzetek"
+
+#: src/mmhomepagepanel.cpp:575
+#, fuzzy, c-format
+msgid "Income vs Expenses: %s"
+msgstr "Prihodki vs Izdatki"
+
+#: src/mmhomepagepanel.cpp:591 src/reports/incexpenses.cpp:66
+#: src/reports/payee.cpp:89
+msgid "Income:"
+msgstr "Prihodki:"
+
+#: src/mmhomepagepanel.cpp:596 src/reports/incexpenses.cpp:71
+#: src/reports/payee.cpp:93
+msgid "Expenses:"
+msgstr "Izdatki:"
+
+#: src/mmhomepagepanel.cpp:601 src/reports/incexpenses.cpp:76
+msgid "Difference:"
+msgstr "Razlika:"
+
+#: src/mmhomepagepanel.cpp:715
+msgid "Upcoming Transactions"
+msgstr "Prihodnje Transakcije"
+
+#: src/mmhomepagepanel.cpp:800
+#, fuzzy
+msgid "Top Withdrawals: "
+msgstr "Izplačilo"
+
+#: src/mmhomepagepanel.cpp:809 src/reports/summarystocks.cpp:163
+msgid "Quantity"
+msgstr ""
+
+#: src/mmhomepagepanel.cpp:874
+#, c-format
+msgid "Week&nbsp;#%d"
+msgstr ""
+
+#: src/mmhomepagepanel.cpp:906
+#, fuzzy
+msgid "Follow Up On Transactions: "
+msgstr "Prihodnje Transakcije"
+
+#: src/mmhomepagepanel.cpp:912
+#, fuzzy
+msgid "Total Transactions: "
+msgstr "Skupaj transakcije"
+
+#: src/mmhomepagepanel.cpp:936 src/reports/summarystocks.cpp:148
+#, fuzzy
+msgid "Grand Total:"
+msgstr "Skupaj:"
+
+#: src/mmreportspanel.cpp:82
+msgid "REPORTS"
+msgstr "POROČILA"
+
+#: src/mmreportspanel.cpp:156
+#, c-format
+msgid "File %s not found"
+msgstr ""
+
+#: src/mmtransaction.cpp:184
+msgid "Payee not found in database for Account: "
+msgstr ""
+
+#: src/mmtransaction.cpp:187
+msgid "Subsequent errors not displayed."
+msgstr ""
+
+#: src/mmtransaction.cpp:188
+msgid "MMEX DATABASE ERROR"
+msgstr ""
+
+#: src/newacctdialog.cpp:157
+msgid "Account Name:"
+msgstr "Ime računa:"
+
+#: src/newacctdialog.cpp:162
+msgid "Account Type:"
+msgstr "Tip računa:"
+
+#: src/newacctdialog.cpp:165
+msgid "Checking"
+msgstr "Preverjanje"
+
+#: src/newacctdialog.cpp:174
+msgid "Account Status:"
+msgstr "Status računa:"
+
+#: src/newacctdialog.cpp:178
+msgid "Closed"
+msgstr "Zaprt"
+
+#: src/newacctdialog.cpp:186 src/newacctdialog.cpp:401 src/qif_import.cpp:469
+#, fuzzy, c-format
+msgid "Initial Balance: %s"
+msgstr "Začetna bilanca:"
+
+#: src/newacctdialog.cpp:193 src/univcsvdialog.cpp:1181
+msgid "Currency:"
+msgstr "Valuta:"
+
+#: src/newacctdialog.cpp:196
+msgid "Select Currency"
+msgstr "Izberi valuto"
+
+#: src/newacctdialog.cpp:207
+msgid "Favorite Account"
+msgstr "Priljubljeni račun"
+
+#: src/newacctdialog.cpp:236
+msgid "Account Number:"
+msgstr "Številka računa:"
+
+#: src/newacctdialog.cpp:242
+msgid "Held At:"
+msgstr "Odprt pri:"
+
+#: src/newacctdialog.cpp:248
+msgid "Website:"
+msgstr "Spletna stran:"
+
+#: src/newacctdialog.cpp:253
+msgid "Contact:"
+msgstr "Stik:"
+
+#: src/newacctdialog.cpp:259
+msgid "Access Info:"
+msgstr "Dostopne informacije:"
+
+#: src/newacctdialog.cpp:292
+msgid "Enter the Name of the Account. This name can be renamed at any time."
+msgstr "Vnesite ime računa. Ime lahko spremenite kadarkoli."
+
+#: src/newacctdialog.cpp:294
+msgid ""
+"Specify if this account has been closed. Closed accounts are inactive in "
+"most calculations, reporting etc."
+msgstr ""
+"Določite da je ta račun zaprt. Zaprti računi niso aktivni v večini "
+"kalkulacij, poročil ipd. "
+
+#: src/newacctdialog.cpp:295
+msgid "Enter the initial balance in this account."
+msgstr "Vnesite začetno bilanco za ta račun."
+
+#: src/newacctdialog.cpp:296
+msgid "Specify the currency to be used by this account."
+msgstr "Določite valuto ki bo uporabljena za ta račun."
+
+#: src/newacctdialog.cpp:297
+msgid ""
+"Select whether this is an account that is used often. This is used to filter "
+"accounts display view."
+msgstr ""
+"Izberite če je to račun ki ga uporabljate pogosteje. To se uporablja za "
+"filtriranje računov pri izpisu."
+
+#: src/newacctdialog.cpp:298
+msgid "Enter user notes and details about this account."
+msgstr "Vnesit opombe in podrobnosti o tem računu."
+
+#: src/newacctdialog.cpp:299
+msgid "Enter the Account Number associated with this account."
+msgstr "Vnesite številko računa povezanega s tem računom."
+
+#: src/newacctdialog.cpp:300
+msgid ""
+"Enter the name of the financial institution in which the account is held."
+msgstr "Vnesite ime finančne institucije pri kateri je odprt račun."
+
+#: src/newacctdialog.cpp:301
+msgid "Enter the URL of the website for the financial institution."
+msgstr "Vnesite spletno stran finančne institucije."
+
+#: src/newacctdialog.cpp:302
+msgid "Enter any contact information for the financial institution."
+msgstr "Vnesite kontaktno informacijo finančne institucije. "
+
+#: src/newacctdialog.cpp:303
+msgid ""
+"Enter any login/access information for the financial institution. This is "
+"not secure as anyone with access to the mmb file can access it."
+msgstr ""
+"Vnesite dostopne informacije finančne institucije. PODATKI NISO VARNI. VSAK "
+"Z DOSTOPOM DO .mmb DATOTEKE LAHKO DOSTOPA DO PODATKOV."
+
+#: src/newacctdialog.cpp:335
+msgid "Account Name "
+msgstr "Ime računa"
+
+#: src/newacctdialog.cpp:342
+msgid "Account Name already exists"
+msgstr "Ime računa že obstaja"
+
+#: src/newacctdialog.cpp:444
+msgid "Image #"
+msgstr ""
+
+#: src/optionsdialog.cpp:150
+#, fuzzy
+msgid "Display Heading"
+msgstr "Prikaži"
+
+#: src/optionsdialog.cpp:164
+msgid "The User Name is used as a title for the database."
+msgstr ""
+
+#: src/optionsdialog.cpp:169
+msgid "Language"
+msgstr "Jezik"
+
+#: src/optionsdialog.cpp:178
+msgid "Specify the language to use"
+msgstr "Določite kateri jezik naj se uporablja"
+
+#: src/optionsdialog.cpp:188
+msgid "Base Currency"
+msgstr "Osnovna valuta"
+
+#: src/optionsdialog.cpp:195
+#, fuzzy
+msgid "Sets the default currency for the database."
+msgstr "Določite valuto ki bo uporabljena za ta račun."
+
+#: src/optionsdialog.cpp:199 src/qif_import.cpp:174
+msgid "Date Format"
+msgstr "Oblika datuma"
+
+#: src/optionsdialog.cpp:209
+msgid "Specify the date format for display"
+msgstr "Določite obliko datuma ki bo prikazana"
+
+#: src/optionsdialog.cpp:213
+msgid "Set"
+msgstr "Nastavi"
+
+#: src/optionsdialog.cpp:219
+msgid "New date format sample:"
+msgstr ""
+
+#: src/optionsdialog.cpp:224
+#, fuzzy
+msgid "Financial Year"
+msgstr "Preteklo leto"
+
+#: src/optionsdialog.cpp:231
+#, fuzzy
+msgid "Start Day"
+msgstr " Začetna stran"
+
+#: src/optionsdialog.cpp:236
+msgid "Specify Day for start of financial year"
+msgstr ""
+
+#: src/optionsdialog.cpp:240
+#, fuzzy
+msgid "Start Month"
+msgstr "Tekoči mesec"
+
+#: src/optionsdialog.cpp:252
+#, fuzzy
+msgid "Specify month for start of financial year"
+msgstr "Določi znesek te transakcije"
+
+#: src/optionsdialog.cpp:262 src/optionsdialog.cpp:701
+msgid "View Options"
+msgstr "Nastavitve pogleda"
+
+#: src/optionsdialog.cpp:284
+msgid "Specify which accounts are visible"
+msgstr "Določite kateri računi so vidni"
+
+#: src/optionsdialog.cpp:287
+msgid "Transactions Visible"
+msgstr "Vidne transakcije"
+
+#: src/optionsdialog.cpp:310
+msgid "Specify which transactions are visible by default"
+msgstr "Določite kateri računi so vidni privzeto"
+
+#: src/optionsdialog.cpp:312
+msgid "Report Font Size"
+msgstr "Velikost pisave Poročila"
+
+#: src/optionsdialog.cpp:315
+msgid "XSmall"
+msgstr ""
+
+#: src/optionsdialog.cpp:316
+msgid "Small"
+msgstr ""
+
+#: src/optionsdialog.cpp:317
+msgid "Normal"
+msgstr ""
+
+#: src/optionsdialog.cpp:318
+msgid "Large"
+msgstr ""
+
+#: src/optionsdialog.cpp:319
+msgid "XLarge"
+msgstr ""
+
+#: src/optionsdialog.cpp:320
+msgid "XXLarge"
+msgstr ""
+
+#: src/optionsdialog.cpp:321
+msgid "Huge"
+msgstr ""
+
+#: src/optionsdialog.cpp:331
+msgid "Specify which font size is used on the report tables"
+msgstr "Določite kakšna velikost pisave je uporabljena v tabelah poročila"
+
+#: src/optionsdialog.cpp:335
+msgid "Navigation Tree Expansion Options"
+msgstr ""
+
+#: src/optionsdialog.cpp:344
+msgid "Expand Bank Accounts in Trew View when tree is refreshed"
+msgstr ""
+
+#: src/optionsdialog.cpp:351
+msgid "Expand Term Accounts in Trew View when tree is refreshed"
+msgstr ""
+
+#: src/optionsdialog.cpp:355
+#, fuzzy
+msgid "Home Page Expansion Options"
+msgstr "Osnovna stran"
+
+#: src/optionsdialog.cpp:364
+msgid "Expand Bank Accounts on home page when page is refreshed"
+msgstr ""
+
+#: src/optionsdialog.cpp:371
+msgid "Expand Term Accounts on home page when page is refreshed"
+msgstr ""
+
+#: src/optionsdialog.cpp:376
+#, fuzzy
+msgid "Stock Accounts"
+msgstr "Bančni računi"
+
+#: src/optionsdialog.cpp:378
+msgid "Expand Stock Accounts on home page when page is refreshed"
+msgstr ""
+
+#: src/optionsdialog.cpp:381
+#, fuzzy
+msgid "View Budgets as Financial Years"
+msgstr "Top kategorije zadnjih 30 dni"
+
+#: src/optionsdialog.cpp:386
+#, fuzzy
+msgid "View Budgets with 'transfer' transactions"
+msgstr "Pregled podvojenih transakcij"
+
+#: src/optionsdialog.cpp:391
+msgid "View Budgets Setup Without Budget Summaries"
+msgstr ""
+
+#: src/optionsdialog.cpp:396
+#, fuzzy
+msgid "View Budget Summary Report without Categories"
+msgstr "Pregled vseh proračunskih kategorij"
+
+#: src/optionsdialog.cpp:401
+#, fuzzy
+msgid "View Reports without Future Transactions"
+msgstr "Prikaži vse usklajene transakcije"
+
+#: src/optionsdialog.cpp:415
+#, fuzzy
+msgid "Colour Settings"
+msgstr "&Nastavitve"
+
+#: src/optionsdialog.cpp:424 src/optionsdialog.cpp:427
+msgid "Nav Tree"
+msgstr "Navigacijsko drevo"
+
+#: src/optionsdialog.cpp:425
+msgid "Specify the color for the nav tree"
+msgstr "Določite barvo navigacijskega drevesa"
+
+#: src/optionsdialog.cpp:431 src/optionsdialog.cpp:434
+msgid "List Background"
+msgstr "Ozadje seznama"
+
+#: src/optionsdialog.cpp:432
+msgid "Specify the color for the list background"
+msgstr "Določite barvo za ozadje seznama"
+
+#: src/optionsdialog.cpp:438 src/optionsdialog.cpp:441
+msgid "List Row 0"
+msgstr "Vrstica 0 seznama"
+
+#: src/optionsdialog.cpp:439
+msgid "Specify the color for the list row 0"
+msgstr "Določite barvo za vrstico 0 seznama"
+
+#: src/optionsdialog.cpp:445 src/optionsdialog.cpp:448
+msgid "List Row 1"
+msgstr "Vrstica 1 seznama"
+
+#: src/optionsdialog.cpp:446
+msgid "Specify the color for the list row 1"
+msgstr "Določite barvo za vrstico 1 seznama"
+
+#: src/optionsdialog.cpp:452 src/optionsdialog.cpp:455
+msgid "List Border"
+msgstr "Okvir seznama"
+
+#: src/optionsdialog.cpp:453
+msgid "Specify the color for the list Border"
+msgstr "Določite barvo okvirja seznama"
+
+#: src/optionsdialog.cpp:459 src/optionsdialog.cpp:462
+msgid "List Details"
+msgstr "Podrobnosti seznama"
+
+#: src/optionsdialog.cpp:460
+msgid "Specify the color for the list details"
+msgstr "Določite barvo podrobnosti seznama"
+
+#: src/optionsdialog.cpp:466 src/optionsdialog.cpp:470
+msgid "Future Transactions"
+msgstr "Bodoče transakcije"
+
+#: src/optionsdialog.cpp:467
+msgid "Specify the color for future transactions"
+msgstr "Določite barvo bodočih transakcij"
+
+#: src/optionsdialog.cpp:474
+msgid "Restore Defaults"
+msgstr "Vrni privzeto"
+
+#: src/optionsdialog.cpp:475
+msgid "Restore Default Colors"
+msgstr "Nastavi privzete barve"
+
+#: src/optionsdialog.cpp:478
+#, fuzzy
+msgid "User Colors"
+msgstr "Barve"
+
+#: src/optionsdialog.cpp:485
+msgid "1"
+msgstr ""
+
+#: src/optionsdialog.cpp:490
+msgid "2"
+msgstr ""
+
+#: src/optionsdialog.cpp:495
+msgid "3"
+msgstr ""
+
+#: src/optionsdialog.cpp:500
+msgid "4"
+msgstr ""
+
+#: src/optionsdialog.cpp:505
+msgid "5"
+msgstr ""
+
+#: src/optionsdialog.cpp:510
+msgid "6"
+msgstr ""
+
+#: src/optionsdialog.cpp:515
+msgid "7"
+msgstr ""
+
+#: src/optionsdialog.cpp:525
+msgid "Stock Quote Web Page"
+msgstr "Spletna stran stanja delnic"
+
+#: src/optionsdialog.cpp:532
+msgid "Clear the field to Reset the value to system default."
+msgstr ""
+
+#: src/optionsdialog.cpp:537
+#, fuzzy
+msgid "New Transaction Dialog Settings"
+msgstr "Okno Razdeli Transakcije"
+
+#: src/optionsdialog.cpp:545
+#, fuzzy
+msgid "Last Used"
+msgstr "Preteklo leto"
+
+#: src/optionsdialog.cpp:555
+msgid "Last used for payee"
+msgstr ""
+
+#: src/optionsdialog.cpp:573
+#, fuzzy
+msgid "Default Date:"
+msgstr "Izberi prejemnika"
+
+#: src/optionsdialog.cpp:575
+#, fuzzy
+msgid "Default Payee:"
+msgstr "Izberi prejemnika"
+
+#: src/optionsdialog.cpp:577
+#, fuzzy
+msgid "Default Category:"
+msgstr "Izberi kategorijo"
+
+#: src/optionsdialog.cpp:579
+#, fuzzy
+msgid "Default Status:"
+msgstr "Status računa:"
+
+#: src/optionsdialog.cpp:593
+msgid "Use Original Date when Pasting Transactions"
+msgstr "Uporabi prvoten datum pri lepljenju transakcij"
+
+#: src/optionsdialog.cpp:595
+msgid ""
+"Select whether to use the original transaction date or current date when "
+"copying/pasting transactions"
+msgstr ""
+"Izberite ali želite uporabiti prvoten datum transakcije ali današnji datum "
+"ko kopirate/lepite transakcije"
+
+#: src/optionsdialog.cpp:598
+msgid "Use Transaction Sound"
+msgstr "Uporabi zvok za transakcije"
+
+#: src/optionsdialog.cpp:600
+msgid "Select whether to use sounds when entering transactions"
+msgstr "Izberite ali naj se sliši zvok pri vnosu transakcij"
+
+#: src/optionsdialog.cpp:603
+#, fuzzy
+msgid "Enable online currency update"
+msgstr "Online osvežitev stopnje valute"
+
+#: src/optionsdialog.cpp:605
+#, fuzzy
+msgid "Enable or disable get data from Yahoo.com to update currency rate"
+msgstr ""
+"Omogoči ali onemogoči prejem podatkov iz centralne evropske banke za "
+"osvežitev valute"
+
+#: src/optionsdialog.cpp:609
+#, fuzzy
+msgid "Database Backup"
+msgstr "Ni odprte podatkovne baze"
+
+#: src/optionsdialog.cpp:615
+#, fuzzy
+msgid "Create a new backup when MMEX Start"
+msgstr "Kreiraj novo bazo podatkov za pričetek dela"
+
+#: src/optionsdialog.cpp:617
+msgid ""
+"When MMEX Starts,\n"
+"creates the backup database: dbFile_start_YYYY-MM-DD.ext."
+msgstr ""
+
+#: src/optionsdialog.cpp:621
+msgid "Backup database on exit."
+msgstr ""
+
+#: src/optionsdialog.cpp:623
+msgid ""
+"When MMEX shuts down and changes made to database,\n"
+"creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
+msgstr ""
+
+#: src/optionsdialog.cpp:629
+msgid "Specify max number of backup files"
+msgstr ""
+
+#: src/optionsdialog.cpp:632
+#, fuzzy
+msgid "Max Files"
+msgstr "&CSV Datoteke"
+
+#: src/optionsdialog.cpp:646
+msgid "Import/Export Settings"
+msgstr "Uvoz/Izvoz nastavitve"
+
+#: src/optionsdialog.cpp:652 src/univcsvdialog.cpp:296
+msgid "CSV Delimiter"
+msgstr "CSV ločilo"
+
+#: src/optionsdialog.cpp:663 src/univcsvdialog.cpp:273
+msgid "User Defined"
+msgstr ""
+
+#: src/optionsdialog.cpp:664 src/univcsvdialog.cpp:273
+msgid "Comma"
+msgstr ""
+
+#: src/optionsdialog.cpp:667 src/univcsvdialog.cpp:273
+msgid "Semicolon"
+msgstr ""
+
+#: src/optionsdialog.cpp:670 src/univcsvdialog.cpp:273
+msgid "TAB"
+msgstr ""
+
+#: src/optionsdialog.cpp:674 src/univcsvdialog.cpp:280
+msgid "Specify the delimiter to use when importing/exporting CSV files"
+msgstr "Določite katero ločilo se uporabi pri uvozu/izvozu CSV datoteke "
+
+#: src/optionsdialog.cpp:700
+msgid "General"
+msgstr "Splošno"
+
+#: src/optionsdialog.cpp:702
+msgid "Colors"
+msgstr "Barve"
+
+#: src/optionsdialog.cpp:703
+#, fuzzy
+msgid "Import/Export"
+msgstr "Uvoz/Izvoz nastavitve"
+
+#: src/optionsdialog.cpp:752
+msgid "Remember to update currency rate"
+msgstr "Ne pozabi osvežiti stopnje valute"
+
+#: src/optionsdialog.cpp:752
+msgid "Important note"
+msgstr "Pomembna opomba"
+
+#: src/payeedialog.cpp:95
+#, fuzzy
+msgid "Change all transactions using one Payee to another Payee"
+msgstr "Pregled vseh transakcij"
+
+#: src/payeedialog.cpp:100
+msgid "Show all hidden payees"
+msgstr ""
+
+#: src/payeedialog.cpp:114
+#, fuzzy
+msgid "Filter"
+msgstr "&Datoteka"
+
+#: src/payeedialog.cpp:125
+msgid "Hide"
+msgstr ""
+
+#: src/payeedialog.cpp:144
+#, fuzzy
+msgid "Tools"
+msgstr "&Orodja"
+
+#: src/payeedialog.cpp:166
+#, fuzzy
+msgid ""
+"Enter a search string.  You can use * as a wildcard to match zero or more "
+"characters or ? to match a single character."
+msgstr ""
+"Vnesi iskalno geslo.  You can use % as a wildcard to match zero or more "
+"characters or _ to match a single character."
+
+#: src/payeedialog.cpp:167
+msgid "Add a new payee name"
+msgstr "Dodajte naziv novega prejemnika"
+
+#: src/payeedialog.cpp:168
+msgid "Change the name of an existing payee"
+msgstr "Spremenite naziv obostoječega prejemnika"
+
+#: src/payeedialog.cpp:169
+msgid ""
+"Delete the selected payee. The payee cannot be used by an existing "
+"transaction."
+msgstr ""
+"Izbrišite izbranega prejemnika. Prejemnik ne sme biti uporabljen v "
+"obstoječih transakcijah."
+
+#: src/payeedialog.cpp:170
+msgid ""
+"Select the currently selected payee as the selected payee for the transaction"
+msgstr "Izberite trenutno označenega prejemnika za transakcijo"
+
+#: src/payeedialog.cpp:245
+#, fuzzy
+msgid "Enter the name for the new payee:"
+msgstr "Vnesi naziv prejemnika ki ga dodajaš:"
+
+#: src/payeedialog.cpp:246 src/payeedialog.cpp:253
+#, fuzzy
+msgid "Organize Payees: Add Payee"
+msgstr "Uredi prejemnike"
+
+#: src/payeedialog.cpp:253
+msgid "Payee with same name exists"
+msgstr "Obstaja prejemnik z istim imenom"
+
+#: src/payeedialog.cpp:276
+#, fuzzy
+msgid "Payee in use."
+msgstr "Prejemnik je aktiven"
+
+#: src/payeedialog.cpp:279
+msgid ""
+"Tip: Change all transactions using this Payee to another Payee\n"
+"using the relocate command:"
+msgstr ""
+
+#: src/payeedialog.cpp:280
+msgid "Tools -> Relocation of -> Payees"
+msgstr ""
+
+#: src/payeedialog.cpp:281
+#, fuzzy
+msgid "Organize Payees: Delete Error"
+msgstr "Uredi prejemnike"
+
+#: src/payeedialog.cpp:314
+msgid "Edit Payee Name"
+msgstr "Uredi naziv prejemnika"
+
+#: src/qif_export.cpp:77
+#, fuzzy
+msgid "Parameters"
+msgstr "Prejemnik"
+
+#: src/qif_export.cpp:82
+#, fuzzy
+msgid "Log"
+msgstr "Nastanitev"
+
+#: src/qif_export.cpp:89
+msgid "QIF"
+msgstr ""
+
+#: src/qif_export.cpp:89
+msgid "CSV"
+msgstr ""
+
+#: src/qif_export.cpp:117 src/qif_import.cpp:194
+#, fuzzy
+msgid "From Date"
+msgstr "Iz:"
+
+#: src/qif_export.cpp:126 src/qif_import.cpp:204
+#, fuzzy
+msgid "To Date"
+msgstr "Datum"
+
+#: src/qif_export.cpp:137
+msgid "Write to File"
+msgstr ""
+
+#: src/qif_export.cpp:140 src/qif_import.cpp:158 src/univcsvdialog.cpp:224
+#, fuzzy
+msgid "File Name:"
+msgstr "Naziv denarne enote"
+
+#: src/qif_export.cpp:141 src/qif_import.cpp:159
+msgid "Choose &file"
+msgstr ""
+
+#: src/qif_export.cpp:163 src/univcsvdialog.cpp:347
+msgid "Clear"
+msgstr ""
+
+#: src/qif_export.cpp:197
+msgid "Choose Account to Export from:"
+msgstr "Izberite račun za izvoz:"
+
+#: src/qif_export.cpp:198 src/qif_export.cpp:260 src/qif_export.h:7
+msgid "QIF Export"
+msgstr "QIF izvoz"
+
+#: src/qif_export.cpp:221 src/qif_import.cpp:853
+#, fuzzy
+msgid "QIF Files"
+msgstr "&QIF Datoteke"
+
+#: src/qif_export.cpp:221 src/univcsvdialog.cpp:768
+#, fuzzy
+msgid "CSV Files"
+msgstr "&CSV Datoteke"
+
+#: src/qif_export.cpp:223
+msgid "Choose QIF data file to Export"
+msgstr "Izberite QIF datoteko za izvoz"
+
+#: src/qif_export.cpp:224 src/univcsvdialog.cpp:769
+msgid "Choose CSV data file to Export"
+msgstr "Izberite CSV datoteko za izvoz"
+
+#: src/qif_export.cpp:240
+#, fuzzy
+msgid "No Account available for export"
+msgstr "Ni razpoložljivega računa! Izvoz ni možen!"
+
+#: src/qif_export.cpp:244
+#, fuzzy
+msgid "No Accounts selected for export"
+msgstr "Ni razpoložljivega računa! Izvoz ni možen!"
+
+#: src/qif_export.cpp:248
+#, fuzzy
+msgid "File name is empty"
+msgstr "Datum ni vpisan,"
+
+#: src/qif_export.cpp:252
+msgid "To Date less than From Date"
+msgstr ""
+
+#: src/qif_export.cpp:396
+#, fuzzy
+msgid "Categories exported"
+msgstr "Kategorija"
+
+#: src/qif_export.cpp:559
+#, fuzzy, c-format
+msgid "Number of transactions exported: %ld"
+msgstr "Poročilo o transakcijah"
+
+#: src/qif_import.cpp:186
+#, fuzzy
+msgid "Missing Accounts"
+msgstr "Bančni računi"
+
+#: src/qif_import.cpp:295
+msgid ""
+"To import QIF files correctly, the date format in the QIF file must match "
+"the date option set in MMEX."
+msgstr ""
+
+#: src/qif_import.cpp:296
+#, fuzzy
+msgid "Are you are sure you want to proceed with the import?"
+msgstr "Ali zares želiš izbrisati lastnino?"
+
+#: src/qif_import.cpp:297 src/qif_import.cpp:501 src/qif_import.cpp:842
+#: src/qif_import.h:2
+msgid "QIF Import"
+msgstr "QIF Uvoz"
+
+#: src/qif_import.cpp:382
+#, fuzzy
+msgid "Line: "
+msgstr "Vrsta :"
+
+#: src/qif_import.cpp:382
+#, fuzzy
+msgid " Unknown QIF line: "
+msgstr " nepravilen QIF tip vrste"
+
+#: src/qif_import.cpp:396
+#, fuzzy, c-format
+msgid "Importing account type: %s"
+msgstr "Uvažanje računa tipa : "
+
+#: src/qif_import.cpp:468 src/qif_import.cpp:656
+#, fuzzy, c-format
+msgid "Added account '%s'"
+msgstr " znesek "
+
+#: src/qif_import.cpp:475 src/qif_import.cpp:497
+#, fuzzy, c-format
+msgid "Line: %ld"
+msgstr "Vrsta :"
+
+#: src/qif_import.cpp:476
+#, fuzzy, c-format
+msgid "Account name: %s"
+msgstr "Naziv rečuna"
+
+#: src/qif_import.cpp:496
+#, fuzzy
+msgid "Cannot process these QIF Account Types yet."
+msgstr "Takih tipov računov še ni možno obdelati"
+
+#: src/qif_import.cpp:526
+#, fuzzy, c-format
+msgid "Line: %ld invalid amount, skipping."
+msgstr " napačen znesek, preskočitev."
+
+#: src/qif_import.cpp:568 src/qif_import.cpp:632
+#, fuzzy, c-format
+msgid "Added category: %s"
+msgstr "Kategorija"
+
+#: src/qif_import.cpp:574
+#, fuzzy, c-format
+msgid "Added subcategory: %s"
+msgstr "Dodaj novo kategorijo"
+
+#: src/qif_import.cpp:611
+#, fuzzy
+msgid "Date is missing"
+msgstr "Datum ni vpisan,"
+
+#: src/qif_import.cpp:617
+#, fuzzy
+msgid "Amount is missing"
+msgstr "Znesek ni vpisan"
+
+#: src/qif_import.cpp:624
+#, fuzzy
+msgid "Category is missing"
+msgstr "Kategorija"
+
+#: src/qif_import.cpp:626 src/qif_import.cpp:685 src/univcsvdialog.cpp:443
+msgid "Unknown"
+msgstr "Nepoznano"
+
+#: src/qif_import.cpp:668
+#, fuzzy
+msgid "Account missing"
+msgstr "Seznam računov"
+
+#: src/qif_import.cpp:683
+#, fuzzy
+msgid "Payee missing"
+msgstr "Prejemnik "
+
+#: src/qif_import.cpp:691
+#, fuzzy, c-format
+msgid "Payee Added: %s"
+msgstr "Prejemnik "
+
+#: src/qif_import.cpp:806
+#, fuzzy, c-format
+msgid "Transactions imported from QIF: %ld"
+msgstr " transakcije uvožene iz QIF"
+
+#: src/qif_import.cpp:835
+msgid "Import finished successfully"
+msgstr ""
+
+#: src/qif_import.cpp:839 src/univcsvdialog.cpp:743
+msgid "Imported transactions discarded by user!"
+msgstr ""
+
+#: src/qif_import.cpp:854
+#, fuzzy
+msgid "Choose QIF data file to Import"
+msgstr "Izberite QIF datoteko za uvoz"
+
+#: src/qif_import.cpp:896
+#, fuzzy, c-format
+msgid "Line %i"
+msgstr "Vrsta :"
+
+#: src/qif_import.cpp:942
+#, fuzzy
+msgid "Choose Account to Import to"
+msgstr "Izberite račun v katerega uvažate podatke:"
+
+#: src/recentfiles.cpp:99
+msgid "Empty"
+msgstr ""
+
+#: src/relocatecategorydialog.cpp:85
+msgid "Relocate all source categories to the destination category"
+msgstr ""
+
+#: src/relocatecategorydialog.cpp:88
+#, fuzzy
+msgid "Source Category"
+msgstr "Podkategorija"
+
+#: src/relocatecategorydialog.cpp:91
+#, fuzzy
+msgid "Destination Category"
+msgstr "Razdeli kategorijo"
+
+#: src/relocatecategorydialog.cpp:104 src/relocatepayeedialog.cpp:104
+msgid "Relocate:"
+msgstr ""
+
+#: src/relocatecategorydialog.cpp:105 src/relocatepayeedialog.cpp:105
+#, fuzzy
+msgid "to:"
+msgstr " Na:"
+
+#: src/relocatecategorydialog.cpp:164 src/relocatepayeedialog.cpp:137
+#, fuzzy
+msgid "Please Confirm:"
+msgstr "Prosim počakajte"
+
+#: src/relocatecategorydialog.cpp:165
+msgid "Changing all categories of: "
+msgstr ""
+
+#: src/relocatecategorydialog.cpp:166
+#, fuzzy
+msgid "to category: "
+msgstr "Kategorija: \n"
+
+#: src/relocatecategorydialog.cpp:168
+msgid "Category Relocation Confirmation"
+msgstr ""
+
+#: src/relocatepayeedialog.cpp:76
+msgid "Relocate all source payees to the destination payee"
+msgstr ""
+
+#: src/relocatepayeedialog.cpp:139
+#, c-format
+msgid ""
+"Changing all payees of: %s \n"
+"\n"
+"  to payee: %s"
+msgstr ""
+
+#: src/relocatepayeedialog.cpp:142
+msgid "Payee Relocation Confirmation"
+msgstr ""
+
+#: src/splitdetailsdialog.cpp:97
+#, fuzzy
+msgid "Split Transaction Details"
+msgstr "Podrobnosti transakcije"
+
+#: src/splitdetailsdialog.cpp:181
+msgid "Invalid Category Entered "
+msgstr "Vnešena napačna kategorija"
+
+#: src/splittransactionsdialog.cpp:106
+#, fuzzy
+msgid " Split Category Details"
+msgstr "Razdeli kategorijo"
+
+#: src/splittransactionsdialog.cpp:178
+msgid "&Select Category"
+msgstr "&Izberi kategorijo"
+
+#: src/stockdialog.cpp:125
+msgid "Stock Investment Details"
+msgstr "Podrobnosti investicije v vrednostne papirje"
+
+#: src/stockdialog.cpp:135
+msgid "Stock Name"
+msgstr "Naziv delnice"
+
+#: src/stockdialog.cpp:139
+msgid "Enter the stock company name"
+msgstr "Vnesite naziv podjetja katerega so delnice"
+
+#: src/stockdialog.cpp:149
+msgid "Specify the purchase date of the stock investment"
+msgstr "Navedite datum nakupa vrednostnih papirjev"
+
+#: src/stockdialog.cpp:158
+#, fuzzy
+msgid "Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"
+msgstr "Vnesite simbol delnic (opcija)"
+
+#: src/stockdialog.cpp:161 src/stockspanel.cpp:366
+msgid "Number of Shares"
+msgstr "Število delnic"
+
+#: src/stockdialog.cpp:166
+msgid "Enter number of shares held"
+msgstr "Vnesite število vaših delnic"
+
+#: src/stockdialog.cpp:168 src/reports/summarystocks.cpp:164
+msgid "Purchase Price"
+msgstr "Nakupna cena"
+
+#: src/stockdialog.cpp:173
+msgid "Enter purchase price for each stock"
+msgstr "Vnesite nakupno cenu za vsako delnico"
+
+#: src/stockdialog.cpp:175 src/reports/summarystocks.cpp:165
+msgid "Current Price"
+msgstr "Trenutna cena"
+
+#: src/stockdialog.cpp:180
+msgid "Enter current stock price"
+msgstr "Vnesite trenutno ceno delnice"
+
+#: src/stockdialog.cpp:182 src/reports/summarystocks.cpp:166
+msgid "Commission"
+msgstr "Provizija"
+
+#: src/stockdialog.cpp:187
+msgid "Enter any commission paid"
+msgstr "Vnesite plačane provizije"
+
+#: src/stockdialog.cpp:199
+msgid "Enter notes associated with this investment"
+msgstr "Vnesi opombe vezane na to investicijo"
+
+#: src/stockdialog.cpp:211
+msgid "Will display the web page for the specified Stock symbol"
+msgstr ""
+
+#: src/stockdialog.cpp:263
+msgid "Held At"
+msgstr "Naloženo pri"
+
+#: src/stockdialog.cpp:276
+msgid "Invalid number of shares entered "
+msgstr "Vnešeno napačno število delnic"
+
+#: src/stockdialog.cpp:290
+msgid "Invalid purchase price entered "
+msgstr "Vnešena napačna nakupna cena"
+
+#: src/stockdialog.cpp:308
+msgid "Invalid commission entered "
+msgstr "Vnešen napačen znesek provizije"
+
+#: src/stockspanel.cpp:82
+msgid "&New Stock Investment"
+msgstr "&Nova borzna investicija"
+
+#: src/stockspanel.cpp:84
+msgid "&Edit Stock Investment"
+msgstr "&Uredi borzno investicijo"
+
+#: src/stockspanel.cpp:85
+msgid "&Delete Stock Investment"
+msgstr "&Izbriši borzno investicijo"
+
+#: src/stockspanel.cpp:151
+msgid "Do you really want to delete the stock investment?"
+msgstr "Ali zares želite izbrisati borzno investicijo?"
+
+#: src/stockspanel.cpp:152
+msgid "Confirm Stock Investment Deletion"
+msgstr "Potrdite brisanje borzne investicije"
+
+#: src/stockspanel.cpp:176
+#, fuzzy, c-format
+msgid "Moving Transaction from %s to..."
+msgstr "Prikaži današnje transakcije"
+
+#: src/stockspanel.cpp:335
+msgid "Refresh Stock Prices from Yahoo"
+msgstr "Osveži cene delnic z Yahoo-ja"
+
+#: src/stockspanel.cpp:364 src/reports/summarystocks.cpp:162
+msgid "Purchase Date"
+msgstr "Datum nakupa"
+
+#: src/stockspanel.cpp:365
+msgid "Share Name"
+msgstr "Naziv delnice"
+
+#: src/stockspanel.cpp:369
+msgid "Current"
+msgstr "Trenutno"
+
+#: src/stockspanel.cpp:396
+msgid "New Stock Investment"
+msgstr "Nova borzna investicija"
+
+#: src/stockspanel.cpp:400
+msgid "Edit Stock Investment"
+msgstr "Uredi borzno investicijo"
+
+#: src/stockspanel.cpp:405
+msgid "Delete Stock Investment"
+msgstr "Izbriši borzno investicijo"
+
+#: src/stockspanel.cpp:409
+#, fuzzy
+msgid "&Move"
+msgstr "Filmi"
+
+#: src/stockspanel.cpp:410
+msgid "Move selected transaction to another account"
+msgstr ""
+
+#: src/stockspanel.cpp:437
+#, fuzzy, c-format
+msgid "Stock Investments: %s"
+msgstr "Borzna investicija:"
+
+#: src/stockspanel.cpp:463
+#, fuzzy
+msgid "Total: "
+msgstr "Skupaj:"
+
+#: src/stockspanel.cpp:463
+#, fuzzy
+msgid "Invested: "
+msgstr "Investicije"
+
+#: src/stockspanel.cpp:469
+#, fuzzy
+msgid "Gain: "
+msgstr "Dobiček Izguba"
+
+#: src/stockspanel.cpp:471
+msgid "Loss: "
+msgstr ""
+
+#: src/stockspanel.cpp:601
+msgid "Connecting..."
+msgstr ""
+
+#: src/stockspanel.cpp:715
+#, c-format
+msgid "%s on %s"
+msgstr "%s na %s"
+
+#: src/stockspanel.cpp:719
+msgid "Stock prices successfully updated"
+msgstr ""
+
+#: src/stockspanel.cpp:720 src/stockspanel.cpp:742
+#, c-format
+msgid "Last updated %s"
+msgstr ""
+
+#: src/stockspanel.cpp:787
+#, fuzzy
+msgid "Symbol: "
+msgstr "Simbol"
+
+#: src/transactionfilterdialog.cpp:88
+#, fuzzy
+msgid " Filter Settings "
+msgstr "Nastavitve pogleda"
+
+#: src/transactionfilterdialog.cpp:217
+msgid "Filter Split categories. Include the category for further filtering."
+msgstr ""
+
+#: src/transactionfilterdialog.cpp:219
+msgid "Specify the type of transaction."
+msgstr "Določi tip transakcije"
+
+#: src/transactionfilterdialog.cpp:220
+msgid "Will search for the given text in the Notes field"
+msgstr ""
+
+#: src/transactionfilterdialog.cpp:221
+msgid "Activates the filter: Will add selected items to display"
+msgstr ""
+
+#: src/transactionfilterdialog.cpp:222
+msgid "Deactivates the filter"
+msgstr ""
+
+#: src/transdialog.cpp:267
+#, fuzzy
+msgid "Specify which account the transfer is going from"
+msgstr "Izberite račun iz kojeg se dogaja transakcija"
+
+#: src/transdialog.cpp:278
+#, fuzzy
+msgid "Specify to whom the transaction is going to"
+msgstr "Določi kam gre in od kod prihaja transakcija "
+
+#: src/transdialog.cpp:288
+#, fuzzy
+msgid "Specify account for the transaction"
+msgstr "Določi znesek te transakcije"
+
+#: src/transdialog.cpp:511
+msgid "Specify the category for this transaction"
+msgstr "Izberi kategorijo za to transakcijo"
+
+#: src/transdialog.cpp:513
+msgid "Populate Transaction #"
+msgstr "Izpolnite transakcijo #"
+
+#: src/transdialog.cpp:868
+#, fuzzy, c-format
+msgid ""
+"Do you want to add new payee: \n"
+"%s?"
+msgstr "Ali zares želite izbrisati ponavljanje?"
+
+#: src/transdialog.cpp:869
+msgid "Confirm to add new payee"
+msgstr ""
+
+#: src/transdialog.cpp:1201
+#, fuzzy
+msgid "Duplicate Transaction"
+msgstr "Prikaži podvojene transakcije"
+
+#: src/univcsvdialog.cpp:91
+msgid "Amount(+/-)"
+msgstr "Znesek(+/-)"
+
+#: src/univcsvdialog.cpp:93
+msgid "SubCategory"
+msgstr "Podkategorija"
+
+#: src/univcsvdialog.cpp:94 src/univcsvdialog.cpp:890
+msgid "#"
+msgstr ""
+
+#: src/univcsvdialog.cpp:96
+msgid "Don't Care"
+msgstr "Vseeno"
+
+#: src/univcsvdialog.cpp:99
+msgid "To/From(+/-)"
+msgstr ""
+
+#: src/univcsvdialog.cpp:144
+msgid "Specify the order of fields in the CSV file"
+msgstr "Določite zaporedje polj v CSV datoteki"
+
+#: src/univcsvdialog.cpp:175
+msgid "&MMEX format"
+msgstr ""
+
+#: src/univcsvdialog.cpp:177
+msgid "MMEX standard format"
+msgstr ""
+
+#: src/univcsvdialog.cpp:193
+#, fuzzy
+msgid "&Up"
+msgstr "&Posodobitev"
+
+#: src/univcsvdialog.cpp:195
+#, fuzzy
+msgid "Move Up"
+msgstr "Pomakni &navzgor"
+
+#: src/univcsvdialog.cpp:198
+#, fuzzy
+msgid "&Down"
+msgstr "Pomakni &navzdol"
+
+#: src/univcsvdialog.cpp:200
+msgid "Move &Down"
+msgstr "Pomakni &navzdol"
+
+#: src/univcsvdialog.cpp:203
+#, fuzzy
+msgid "&Open"
+msgstr "Odprt"
+
+#: src/univcsvdialog.cpp:205
+#, fuzzy
+msgid "Load Template"
+msgstr "&Naloži predlogo"
+
+#: src/univcsvdialog.cpp:208
+#, fuzzy
+msgid "Save As..."
+msgstr "Prejemnik"
+
+#: src/univcsvdialog.cpp:210
+#, fuzzy
+msgid "Save Template"
+msgstr "Shrani &kot predlogo"
+
+#: src/univcsvdialog.cpp:233
+#, fuzzy
+msgid "&Search"
+msgstr "Marec"
+
+#: src/univcsvdialog.cpp:244
+#, fuzzy
+msgid "Account: "
+msgstr "Računi"
+
+#: src/univcsvdialog.cpp:256
+#, fuzzy
+msgid "Date Format: "
+msgstr "Oblika datuma"
+
+#: src/univcsvdialog.cpp:325
+#, fuzzy
+msgid "Import File"
+msgstr "&Uvoz datoteke"
+
+#: src/univcsvdialog.cpp:332
+#, fuzzy
+msgid "Export File"
+msgstr "&Uvoz datoteke"
+
+#: src/univcsvdialog.cpp:448
+#, fuzzy
+msgid "Choose Universal CSV format file to load"
+msgstr "Izberite CSV datoteko za izvoz"
+
+#: src/univcsvdialog.cpp:491
+#, fuzzy
+msgid "Choose Universal CSV format file to save"
+msgstr "Izberite CSV datoteko za izvoz"
+
+#: src/univcsvdialog.cpp:528
+msgid ""
+"Incorrect fields specified for CSV import! Requires at least Date, Amount "
+"and Payee."
+msgstr ""
+"Navedeno je napačno polje za CSV uvoz! Potrebni so vsaj datum, znesek in "
+"prejemnik..."
+
+#: src/univcsvdialog.cpp:573
+#, fuzzy
+msgid "Transactions imported from CSV: "
+msgstr " transakcije uvožene iz QIF"
+
+#: src/univcsvdialog.cpp:581
+#, fuzzy
+msgid ""
+"Transactions imported from CSV\n"
+"to account "
+msgstr " transakcije uvožene iz QIF"
+
+#: src/univcsvdialog.cpp:612 src/univcsvdialog.cpp:614
+#: src/univcsvdialog.cpp:637 src/univcsvdialog.cpp:639
+#: src/univcsvdialog.cpp:703 src/univcsvdialog.cpp:704
+msgid "Line : "
+msgstr "Vrsta :"
+
+#: src/univcsvdialog.cpp:613 src/univcsvdialog.cpp:615
+msgid " file contains insufficient number of tokens"
+msgstr " datoteka vsebuje premajhno število znakov"
+
+#: src/univcsvdialog.cpp:638 src/univcsvdialog.cpp:640
+msgid ""
+" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
+msgstr " Eno od sledečih polj: datum, prejemnik, znesek, tip manjka, preskočim"
+
+#: src/univcsvdialog.cpp:703 src/univcsvdialog.cpp:704
+msgid " imported OK."
+msgstr " uvoženo OK."
+
+#: src/univcsvdialog.cpp:710
+#, fuzzy, c-format
+msgid "Total Lines : %d"
+msgstr "Skupaj Aktiva:"
+
+#: src/univcsvdialog.cpp:712
+#, fuzzy, c-format
+msgid "Total Imported : %d"
+msgstr "Skupen znesek:"
+
+#: src/univcsvdialog.cpp:714
+#, c-format
+msgid "Log file written to : %s"
+msgstr ""
+
+#: src/univcsvdialog.cpp:717
+#, fuzzy
+msgid "Please confirm saving..."
+msgstr "Prosim počakajte"
+
+#: src/univcsvdialog.cpp:718
+#, fuzzy
+msgid "Importing CSV"
+msgstr "Uvoz iz CSV"
+
+#: src/univcsvdialog.cpp:722
+#, fuzzy
+msgid "Imported transactions have been flagged so you can review them."
+msgstr ""
+"Skupaj vrstic : %d.\n"
+"Skupaj uvoženih : %d\n"
+"Log datoteka zapisana na: %s.\n"
+"\n"
+"Uvožene transakcije so označene, da jih lahko preverite."
+
+#: src/univcsvdialog.cpp:730
+msgid "Transactions saved to database in account: "
+msgstr ""
+
+#: src/univcsvdialog.cpp:881
+#, fuzzy, c-format
+msgid "Transactions exported: %ld"
+msgstr "Poročilo o transakcijah"
+
+#: src/univcsvdialog.cpp:1146
+#, fuzzy
+msgid "Choose CSV data file to import"
+msgstr "Izberite CSV datoteko za izvoz"
+
+#: src/util.cpp:402
+msgid "January"
+msgstr "Januar"
+
+#: src/util.cpp:402
+msgid "February"
+msgstr "Februar"
+
+#: src/util.cpp:402
+msgid "March"
+msgstr "Marec"
+
+#: src/util.cpp:402
+msgid "April"
+msgstr "April"
+
+#: src/util.cpp:402
+msgid "May "
+msgstr "Maj"
+
+#: src/util.cpp:402
+msgid "June"
+msgstr "Junij"
+
+#: src/util.cpp:403
+msgid "July"
+msgstr "Julij"
+
+#: src/util.cpp:403
+msgid "August"
+msgstr "Avgust"
+
+#: src/util.cpp:403
+msgid "September"
+msgstr "September"
+
+#: src/util.cpp:403
+msgid "October"
+msgstr "Oktober"
+
+#: src/util.cpp:403
+msgid "November"
+msgstr "November"
+
+#: src/util.cpp:403
+msgid "December"
+msgstr "December"
+
+#: src/util.cpp:414
+msgid "Jan"
+msgstr "Jan"
+
+#: src/util.cpp:414
+msgid "Feb"
+msgstr "Feb"
+
+#: src/util.cpp:414
+msgid "Mar"
+msgstr "Mar"
+
+#: src/util.cpp:414
+msgid "Apr"
+msgstr "Apr"
+
+#: src/util.cpp:414
+msgid "May"
+msgstr "Maj"
+
+#: src/util.cpp:414
+msgid "Jun"
+msgstr "Jun"
+
+#: src/util.cpp:415
+msgid "Jul"
+msgstr "Jul"
+
+#: src/util.cpp:415
+msgid "Aug"
+msgstr "Avg"
+
+#: src/util.cpp:415
+msgid "Sep"
+msgstr "Sep"
+
+#: src/util.cpp:415
+msgid "Oct"
+msgstr "Okt"
+
+#: src/util.cpp:415
+msgid "Nov"
+msgstr "Nov"
+
+#: src/util.cpp:415
+msgid "Dec"
+msgstr "Dec"
+
+#: src/util.cpp:460
+#, fuzzy, c-format
+msgid "Entry %s is invalid"
+msgstr " je napačen."
+
+#: src/util.cpp:770
+msgid ""
+"MMEX allows you to track fixed assets like cars, houses, land and others. "
+"Each asset can have its value appreciate by a certain rate per year, "
+"depreciate by a certain rate per year, or not change in value. The total "
+"assets are added to your total financial worth."
+msgstr ""
+
+#: src/util.cpp:774
+msgid "Using MMEX it is possible to track stocks/mutual funds investments."
+msgstr ""
+
+#: src/util.cpp:779
+msgid ""
+"MMEX allows regular payments to be set up as transactions. These "
+"transactions can also be regular deposits, or transfers that will occur at "
+"some future time. These transactions act a reminder that an event is about "
+"to occur, and appears on the Home Page 14 days before the transaction is "
+"due. "
+msgstr ""
+
+#: src/util.cpp:780
+msgid ""
+"Tip: These transactions can be set up to activate – allowing the user to "
+"adjust any values on the due date."
+msgstr ""
+
+#: src/util.cpp:939
+msgid "Syntax error in the URL string"
+msgstr ""
+
+#: src/util.cpp:940
+msgid "Found no protocol which can get this URL"
+msgstr ""
+
+#: src/util.cpp:941
+msgid "A host name is required for this protocol"
+msgstr ""
+
+#: src/util.cpp:942
+msgid "A path is required for this protocol"
+msgstr ""
+
+#: src/util.cpp:943
+msgid "Connection error"
+msgstr ""
+
+#: src/util.cpp:944
+msgid "An error occurred during negotiation"
+msgstr ""
+
+#: src/util.cpp:945
+msgid "Cannot get data from WWW!"
+msgstr "Ne morem do podatkov iz WWW!"
+
+#: src/util.cpp:946
+#, fuzzy
+msgid "Unknown error"
+msgstr "Nepoznano"
+
+#: src/reports/budget.cpp:181
+#, fuzzy
+msgid "Financial Year: "
+msgstr "Preteklo leto"
+
+#: src/reports/budget.cpp:183
+#, fuzzy
+msgid "Year: "
+msgstr "Letno"
+
+#: src/reports/budget.cpp:185
+#, fuzzy
+msgid "Month: "
+msgstr "Mesec"
+
+#: src/reports/budgetcategorysummary.cpp:94
+#, fuzzy
+msgid "Budget Categories for "
+msgstr "Pregled vseh proračunskih kategorij"
+
+#: src/reports/budgetcategorysummary.cpp:96
+#, fuzzy
+msgid "Budget Category Summary for "
+msgstr "Nastavitve proračuna za "
+
+#: src/reports/budgetcategorysummary.cpp:97
+#, fuzzy
+msgid "( Estimated Vs Actual )"
+msgstr "Predvideno proti Trenutno"
+
+#: src/reports/budgetcategorysummary.cpp:292
+#, fuzzy
+msgid "Estimated Income: "
+msgstr "Predvideni prihodki: Dejanski prihodki: "
+
+#: src/reports/budgetcategorysummary.cpp:293
+#, fuzzy
+msgid "Actual Income: "
+msgstr "Prihodki:"
+
+#: src/reports/budgetcategorysummary.cpp:294
+#, fuzzy
+msgid "Difference Income: "
+msgstr "Razlika:"
+
+#: src/reports/budgetcategorysummary.cpp:296
+#, fuzzy
+msgid "Estimated Expenses: "
+msgstr "Predvideni izdatki: Dejanski izdatki: "
+
+#: src/reports/budgetcategorysummary.cpp:297
+#, fuzzy
+msgid "Actual Expenses: "
+msgstr "Izdatki:"
+
+#: src/reports/budgetcategorysummary.cpp:298
+#, fuzzy
+msgid "Difference Expenses: "
+msgstr "Ostali izdatki"
+
+#: src/reports/budgetingperf.cpp:95
+#, fuzzy
+msgid "Budget Performance for "
+msgstr "Izvršitev proračuna"
+
+#: src/reports/budgetingperf.cpp:115 src/reports/categovertimeperf.cpp:172
+#: src/reports/categovertimeperf.cpp:242
+msgid "Overall"
+msgstr "Vse skupaj"
+
+#: src/reports/budgetingperf.cpp:116
+msgid "%"
+msgstr "%"
+
+#: src/reports/cashflow.cpp:43
+#, fuzzy, c-format
+msgid "Cash Flow Forecast for %d Years Ahead"
+msgstr "Napoved denarnega toka za vse račune - leto dni vnaprej"
+
+#: src/reports/cashflow.cpp:45
+#, fuzzy
+msgid "Accounts: "
+msgstr "Računi"
+
+#: src/reports/cashflow.cpp:49
+#, fuzzy
+msgid "All Accounts"
+msgstr "Računi"
+
+#: src/reports/cashflow.cpp:51
+#, fuzzy
+msgid "All Bank Accounts"
+msgstr "Bančni računi"
+
+#: src/reports/cashflow.cpp:53
+#, fuzzy
+msgid "All Term Accounts"
+msgstr "V breme računa"
+
+#: src/reports/cashflow.cpp:88 src/reports/incexpensesfinancialperiod.cpp:68
+#: src/reports/incexpesestime.cpp:40
+msgid "Difference"
+msgstr "Razlika"
+
+#: src/reports/categexp.cpp:141
+#, fuzzy
+msgid "Category Total: "
+msgstr "Kategorija"
+
+#: src/reports/categexp.cpp:156
+msgid "Grand Total: "
+msgstr ""
+
+#: src/reports/categovertimeperf.cpp:214
+#, c-format
+msgid "Category Income/Expenses Over Last %d Months "
+msgstr "Kategorije Prihodkov/Izdatkov tekom zadnjih %ih mesecev"
+
+#: src/reports/incexpensesfinancialperiod.cpp:55
+#, fuzzy
+msgid "Income vs Expenses for Financial Year: "
+msgstr "Prihodki vs Izdatki za leto: "
+
+#: src/reports/incexpensesfinancialperiod.cpp:64
+#: src/reports/incexpesestime.cpp:36
+#, fuzzy
+msgid "Year"
+msgstr "Letno"
+
+#: src/reports/incexpensesfinancialperiod.cpp:65
+#: src/reports/incexpesestime.cpp:37 src/reports/trx_stats.cpp:32
+msgid "Month"
+msgstr "Mesec"
+
+#: src/reports/incexpesestime.cpp:19
+#, fuzzy, c-format
+msgid "Income vs Expenses for Year: %d"
+msgstr "Prihodki vs Izdatki za leto: "
+
+#: src/reports/incexpesestime.cpp:22
+#, fuzzy
+msgid "Income vs Expenses - Last 12 months"
+msgstr "Prihodki vs Izdatki: Tekoči mesec"
+
+#: src/reports/payee.cpp:98
+#, fuzzy
+msgid "Payees Total: "
+msgstr "Kategorija"
+
+#: src/reports/summary.cpp:167
+msgid "Total Balance on all Accounts"
+msgstr "Skupna bilanca vseh računov"
+
+#: src/reports/summaryassets.cpp:31
+msgid "Summary of Assets"
+msgstr "Povzetek Aktive"
+
+#: src/reports/summaryassets.cpp:41
+#, fuzzy
+msgid "Current Value"
+msgstr "Trenutni &pogled"
+
+#: src/reports/summaryassets.cpp:64
+msgid "Total Assets: "
+msgstr "Skupaj Aktiva:"
+
+#: src/reports/summarystocks.cpp:48
+msgid "Summary of Stocks"
+msgstr "Povzetek borznih investicij"
+
+#: src/reports/transactions.cpp:53
+#, fuzzy
+msgid "Transaction List "
+msgstr "Seznam transakcij"
+
+#: src/reports/transactions.cpp:56
+#, fuzzy, c-format
+msgid "Transaction List for Account: %s"
+msgstr "Seznam transakcij"
+
+#: src/reports/transactions.cpp:175
+msgid "Total Amount: "
+msgstr "Skupen znesek:"
+
+#: src/reports/transactions.cpp:183
+msgid ""
+"<b>Note:</b> Transactions contain <b>'transfers'</b> may either be added or "
+"subtracted to the <b>'Total Amount'</b> depending on last selected account."
+msgstr ""
+
+#: src/reports/transactions.cpp:190
+#, fuzzy
+msgid "Account:"
+msgstr "Računi"
+
+#: src/reports/transactions.cpp:194
+#, fuzzy
+msgid "Date Range:"
+msgstr "Določi časovni razpon"
+
+#: src/reports/transactions.cpp:198
+#, fuzzy
+msgid "Payee:"
+msgstr "Prejemnik "
+
+#: src/reports/transactions.cpp:202
+#, fuzzy
+msgid "Category:"
+msgstr "Kategorija"
+
+#: src/reports/transactions.cpp:203
+#, fuzzy
+msgid "Subcategory:"
+msgstr "Podkategorija"
+
+#: src/reports/transactions.cpp:203
+msgid "Any"
+msgstr ""
+
+#: src/reports/transactions.cpp:207
+#, fuzzy
+msgid "Status:"
+msgstr "Status"
+
+#: src/reports/transactions.cpp:213
+#, fuzzy
+msgid "Amount Range:"
+msgstr "Določi razpon zneska"
+
+#: src/reports/transactions.cpp:216
+#, fuzzy
+msgid "Number:"
+msgstr "Številka"
+
+#: src/reports/transactions.cpp:219
+msgid "Notes:"
+msgstr "Opombe:"
+
+#: src/reports/transactions.cpp:224
+#, fuzzy
+msgid "Filtering Details: "
+msgstr "Filtriraj prejemnike:"
+
+#: src/reports/trx_stats.cpp:21
+msgid "Transaction Statistics for "
+msgstr "Statistika transakcij za"
+
+#: src/billsdepositsdialog.h:24
+msgid "New/Edit Repeating Transaction"
+msgstr "Nova/Uredi ponavljajoča transakcija"
+
+#: src/budgetentrydialog.h:23
+#, fuzzy
+msgid "Budget Entry Details"
+msgstr "Okno za vnos proračuna"
+
+#: src/budgetyeardialog.h:23
+#, fuzzy
+msgid "Budget Editor"
+msgstr "Urejevalnik proračunskega leta"
+
+#: src/budgetyearentrydialog.h:23
+msgid "Budget Year Entry"
+msgstr "Vnos proračunskega leta"
+
+#: src/constants.h:60
+msgid "View All Transactions"
+msgstr "Prikaži vse transakcije"
+
+#: src/constants.h:61
+msgid "View Reconciled"
+msgstr "Poglej Usklajene"
+
+#: src/constants.h:62
+#, fuzzy
+msgid "View Not-Reconciled"
+msgstr "Poglej Usklajene"
+
+#: src/constants.h:63
+msgid "View UnReconciled"
+msgstr "Poglej Neusklajene"
+
+#: src/constants.h:64
+#, fuzzy
+msgid "View Void"
+msgstr "Poglej današnje"
+
+#: src/constants.h:65
+#, fuzzy
+msgid "View Flagged"
+msgstr "Prikaži označene transakcije"
+
+#: src/constants.h:66
+#, fuzzy
+msgid "View Duplicates"
+msgstr "Podvoji"
+
+#: src/constants.h:67
+msgid "View Today"
+msgstr "Poglej današnje"
+
+#: src/constants.h:68
+msgid "View Current Month"
+msgstr "Poglej tekoči mesec"
+
+#: src/constants.h:69
+#, fuzzy
+msgid "View Last 30 days"
+msgstr "Poglej 30 dni"
+
+#: src/constants.h:70
+#, fuzzy
+msgid "View Last 90 days"
+msgstr "Poglej 90 dni"
+
+#: src/constants.h:71
+msgid "View Last Month"
+msgstr "Poglej zadnji mesec"
+
+#: src/constants.h:72
+#, fuzzy
+msgid "View Last 3 Months"
+msgstr "Poglej zadnji mesec"
+
+#: src/constants.h:73
+#, fuzzy
+msgid "View Last 365 days"
+msgstr "Poglej 30 dni"
+
+#: src/constants.h:74
+#, fuzzy
+msgid "View Current Year"
+msgstr "Tekoče leto"
+
+#: src/constants.h:110
+msgid "Four Months"
+msgstr "Štiri mesece"
+
+#: src/constants.h:111
+msgid "Four Weeks"
+msgstr "Štiri tedne"
+
+#: src/constants.h:113
+#, c-format
+msgid "In %s Days"
+msgstr ""
+
+#: src/constants.h:114
+#, fuzzy, c-format
+msgid "In %s Months"
+msgstr "Mesec"
+
+#: src/constants.h:115
+#, c-format
+msgid "Every %s Days"
+msgstr ""
+
+#: src/constants.h:116
+#, fuzzy, c-format
+msgid "Every %s Months"
+msgstr "Mesec"
+
+#: src/constants.h:117
+msgid "Monthly (last day)"
+msgstr ""
+
+#: src/constants.h:118
+msgid "Monthly (last business day)"
+msgstr ""
+
+#: src/constants.h:126
+msgid "Void"
+msgstr "Prazno"
+
+#: src/constants.h:127
+msgid "Follow up"
+msgstr "Sledi"
+
+#: src/constants.h:128
+msgid "Duplicate"
+msgstr "Podvoji"
+
+#: src/constants.h:140
+msgid "Sunday"
+msgstr "Nedelja"
+
+#: src/constants.h:141
+msgid "Monday"
+msgstr "Ponedeljek"
+
+#: src/constants.h:142
+msgid "Tuesday"
+msgstr "Torek"
+
+#: src/constants.h:143
+msgid "Wednesday"
+msgstr "Sreda"
+
+#: src/constants.h:144
+msgid "Thursday"
+msgstr "Četrtek"
+
+#: src/constants.h:145
+msgid "Friday"
+msgstr "Petek"
+
+#: src/constants.h:146
+msgid "Saturday"
+msgstr "Sobota"
+
+#: src/constants.h:150
+msgid "Recommendation: Always backup your .mmb database file regularly."
+msgstr ""
+
+#: src/constants.h:151
+msgid ""
+"Recommendation: If upgrading to a new version of MMEX, make sure you backup "
+"your .mmb database file before doing so."
+msgstr ""
+
+#: src/constants.h:152
+msgid ""
+"Recommendation: Use copy (Ctrl+С) and paste (Ctrl+V) for frequently used "
+"transactions."
+msgstr ""
+
+#: src/constants.h:153
+msgid "Tip: Remember to make backups of your .mmb."
+msgstr ""
+
+#: src/constants.h:154
+msgid ""
+"Tip: The .mmb file is not encrypted. That means anyone else having the "
+"proper know how can actually open the file and read the contents. So make "
+"sure that if you are storing any sensitive financial information it is "
+"properly guarded."
+msgstr ""
+
+#: src/constants.h:155
+msgid ""
+"Tip: To mark a transaction as reconciled, just select the transaction and "
+"hit the 'r' or 'R' key. To mark a transaction as unreconciled, just select "
+"the transaction and hit the 'u' or 'U' key."
+msgstr ""
+
+#: src/constants.h:156
+msgid ""
+"Tip: To mark a transaction as requiring followup, just select the "
+"transaction and hit the 'f' or 'F' key."
+msgstr ""
+
+#: src/constants.h:157
+msgid ""
+"Tip: MMEX supports printing of all reports that can be viewed. The print "
+"options are available under the menu, File->Print."
+msgstr ""
+
+#: src/constants.h:158
+msgid ""
+"Tip: You can modify some runtime behavior of MMEX by changing the options in "
+"the Options Dialog. "
+msgstr ""
+
+#: src/constants.h:159
+msgid ""
+"Tip: To print a statement with transactions from any arbitary set of "
+"criteria, use the transaction filter to select the transactions you want and "
+"then do a print from the menu."
+msgstr ""
+
+#: src/constants.h:160
+msgid ""
+"Tip: Set exchange rate for currencies in case if you have accounts with "
+"different currencies."
+msgstr ""
+
+#: src/constants.h:162
+msgid ""
+"Organize Categories Dialog Tip: Pressing the h key will cycle through all "
+"categories starting with the letter h"
+msgstr ""
+
+#: src/constants.h:163
+msgid ""
+"Organize Categories Dialog Tip: Pressing 2 key combination will cycle "
+"through all categories starting with that key combination. Example: Pressing "
+"ho will select Homeneeds, Home, House Tax, etc..."
+msgstr ""
+
+#: src/constants.h:164
+msgid ""
+"Organize Payees Dialog Tip: Using the * key as a wildcard when using the "
+"filter. Example: *c shows Chemist and Doctor, *c*m shows Chemist only."
+msgstr ""
+
+#: src/constants.h:166
+#, c-format
+msgid ""
+"Tip to get out of debt: Pay yourself 10% first. Put this into an account "
+"that is hard to touch. Make sure it is a chore to get the money out (you "
+"have to drive to the bank), so you will only tap it consciously and for "
+"major expenses."
+msgstr ""
+
+#: src/constants.h:167
+msgid "Tip to get out of debt: Establish an emergency fund."
+msgstr ""
+
+#: src/constants.h:168
+msgid "Tip to get out of debt: Stop acquiring new debt."
+msgstr ""
+
+#: src/constants.h:169
+msgid "Tip to get out of debt: Create a realistic budget for your expenses."
+msgstr ""
+
+#: src/constants.h:170
+msgid "Tip to get out of debt: Spend less than you earn."
+msgstr ""
+
+#: src/constants.h:171
+msgid "Tip to get out of debt: Pay more than the minimum."
+msgstr ""
+
+#: src/constants.h:172
+msgid ""
+"Before going to a shop and buy something: take the time making a list of "
+"what you really need. In the shop buy what is in your list."
+msgstr ""
+
+#: src/fileviewerdialog.h:26
+msgid "View File Contents"
+msgstr "Poglej vsebino datoteke"
+
+#: src/relocatecategorydialog.h:24
+#, fuzzy
+msgid "Relocate Category Dialog"
+msgstr "Izberi kategorijo"
+
+#: src/relocatepayeedialog.h:24
+#, fuzzy
+msgid "Relocate Payee Dialog"
+msgstr "Prikaži okno za urejanje prejemnikov"
+
+#: src/splitdetailsdialog.h:34
+msgid "Split Detail Dialog"
+msgstr "Okno Razdeli Podrobnosti"
+
+#: src/splittransactionsdialog.h:41
+msgid "Split Transaction Dialog"
+msgstr "Okno Razdeli Transakcije"
+
+#: src/stockdialog.h:23
+msgid "New/Edit Stock Investment"
+msgstr "Nova/Uredi borzna investicija"
+
+#: src/transactionfilterdialog.h:24
+#, fuzzy
+msgid "MMEX Account View: Transaction Filter"
+msgstr "Filter transakcij"
+
+#: src/transdialog.h:24
+msgid "New/Edit Transaction"
+msgstr "Nova/Uredi Transakcija"
+
+#: src/univcsvdialog.h:27
+#, fuzzy
+msgid "Universal CSV Dialog"
+msgstr "Okno Splošno CSV uvažanje"
+
+#: src/db/assets.h:31
+msgid "Property"
+msgstr "Lastnina"
+
+#: src/db/assets.h:33
+msgid "Household Object"
+msgstr "Predmed v gospodinjstvu"
+
+#: src/db/assets.h:34
+msgid "Art"
+msgstr "Umetnine"
+
+#: src/db/assets.h:35
+msgid "Jewellery"
+msgstr "Nakit"
+
+#: src/db/assets.h:36
+msgid "Cash"
+msgstr "Gotovina"
+
+#: src/db/assets.h:37
+msgid "Other"
+msgstr "Ostalo"
+
+#~ msgid "About "
+#~ msgstr "O nas"
+
+#~ msgid "Appreciates"
+#~ msgstr "Povečanje vrednosti"
+
+#~ msgid "Depreciates"
+#~ msgstr "Zmanjšanje vrednosti"
+
+#~ msgid "Viewing All Budget Categories"
+#~ msgstr "Pregled vseh proračunskih kategorij"
+
+#~ msgid "OK"
+#~ msgstr "Potrdi"
+
+#~ msgid "Cancel"
+#~ msgstr "Prekliči"
+
+#, fuzzy
+#~ msgid "Deletion completed"
+#~ msgstr "Kategorija ne more biti prazna"
+
+#, fuzzy
+#~ msgid "Data Insertion completed"
+#~ msgstr "Kategorija ne more biti prazna"
+
+#, fuzzy
+#~ msgid "to "
+#~ msgstr " Na:"
+
+#, fuzzy
+#~ msgid "Please deactivate: "
+#~ msgstr "Prosim počakajte"
+
+#, fuzzy
+#~ msgid "&Duplicate Transaction"
+#~ msgstr "Prikaži podvojene transakcije"
+
+#, fuzzy
+#~ msgid "Categories - Current Month to Date"
+#~ msgstr "Poglej tekoči mesec"
+
+#, fuzzy
+#~ msgid "Import &QIF File"
+#~ msgstr "&Uvoz datoteke"
+
+#~ msgid "Unable to connect!"
+#~ msgstr "Povezava ni uspela!"
+
+#, fuzzy
+#~ msgid "Add Payee. Error: %s"
+#~ msgstr "Dodaj prejemnika"
+
+#~ msgid "Init Balance "
+#~ msgstr "Začetna bilanca"
+
+#, fuzzy
+#~ msgid "Select accounts"
+#~ msgstr "Izberi račun"
+
+#, fuzzy
+#~ msgid "No account available for import"
+#~ msgstr "Ni razpoložljivega računa! Izvoz ni možen!"
+
+#, fuzzy
+#~ msgid "QIF Files "
+#~ msgstr "&QIF Datoteke"
+
+#, fuzzy
+#~ msgid "Transactions imported from QIF"
+#~ msgstr " transakcije uvožene iz QIF"
+
+#, fuzzy
+#~ msgid "to account "
+#~ msgstr " znesek "
+
+#~ msgid " : "
+#~ msgstr " : "
+
+#~ msgid " account name "
+#~ msgstr " naziv računa"
+
+#~ msgid "Transaction Type is empty"
+#~ msgstr "Tip transakcije ni vpisan"
+
+#~ msgid "Category is empty, marking transaction as Unknown category"
+#~ msgstr ""
+#~ "Kategorija ni vpisana, Transakcija bo označena kot Neznana kategorija"
+
+#~ msgid ""
+#~ "Skipping QIF transaction because date, type, amount is empty/invalid, "
+#~ "transaction skipped had "
+#~ msgstr ""
+#~ "Preskočena QIF transakcija ker datum, tip, znesek ni vnešen/pravilen"
+
+#~ msgid " payee "
+#~ msgstr " prejemnik "
+
+#~ msgid " type "
+#~ msgstr " tip "
+
+#~ msgid " amount "
+#~ msgstr " znesek "
+
+#~ msgid " date "
+#~ msgstr "Datum"
+
+#, fuzzy
+#~ msgid "Total Imported : "
+#~ msgstr "Skupen znesek:"
+
+#~ msgid "From: "
+#~ msgstr "Iz:"
+
+#, fuzzy
+#~ msgid "to: "
+#~ msgstr " Na:"
+
+#~ msgid "Stock Investments"
+#~ msgstr "Investicije v delnice"
+
+#~ msgid "Entry "
+#~ msgstr "Vnos"
+
+#~ msgid "Update Currency Rate"
+#~ msgstr "Osveži stopnjo valute"
+
+#~ msgid "Find Payee: "
+#~ msgstr "Poišči prejemnika"
+
+#~ msgid "Filter Payees: "
+#~ msgstr "Filtriraj prejemnike:"
+
+#, fuzzy
+#~ msgid "Add"
+#~ msgstr "&Dodaj"
+
+#, fuzzy
+#~ msgid "Remove"
+#~ msgstr "&Odstrani"
+
+#~ msgid "Num Shares"
+#~ msgstr "Št. delnic"
+
+#, fuzzy
+#~ msgid "Select To Account-"
+#~ msgstr "Določite na kateri račun"
+
+#, fuzzy
+#~ msgid "for Account: "
+#~ msgstr "Na Račun"
+
+#~ msgid "Category cannot be empty"
+#~ msgstr "Kategorija ne more biti prazna"
+
+#, fuzzy
+#~ msgid "From "
+#~ msgstr "Iz:"
+
+#, fuzzy
+#~ msgid "Source Payee"
+#~ msgstr "Izberi prejemnika"
+
+#, fuzzy
+#~ msgid "to payee: "
+#~ msgstr " prejemnik "
+
+#, fuzzy
+#~ msgid "Create a new SQL report"
+#~ msgstr "SQL poročilo po meri"
+
+#, fuzzy
+#~ msgid "Edit..."
+#~ msgstr "&Uredi"
+
+#, fuzzy
+#~ msgid "Edit an existing SQL report"
+#~ msgstr "Uredi ime obstoječe kategorije"
+
+#, fuzzy
+#~ msgid "Delete..."
+#~ msgstr "&Izbriši"
+
+#, fuzzy
+#~ msgid "Custom SQL Manager"
+#~ msgstr "Privzeta SQL poizvedba"
+
+#, fuzzy
+#~ msgid " to Delete:"
+#~ msgstr "&Izbriši"
+
+#, fuzzy
+#~ msgid "&Save"
+#~ msgstr "&Shrani SQL"
+
+#, fuzzy
+#~ msgid "Sub-Category"
+#~ msgstr "Podkategorija"
+
+#, fuzzy
+#~ msgid "Type: "
+#~ msgstr "Tip:"
+
+#, fuzzy
+#~ msgid "Notes: "
+#~ msgstr "Opombe: \n"
+
+#~ msgid "Open the "
+#~ msgstr "Odpri"
+
+#~ msgid " starts"
+#~ msgstr " začne"
+
+#, fuzzy
+#~ msgid "Close"
+#~ msgstr "&Zapri"
+
+#~ msgid "Category "
+#~ msgstr "Kategorija"
+
+#, fuzzy
+#~ msgid "App"
+#~ msgstr "Apr"
+
+#, fuzzy
+#~ msgid "Income......."
+#~ msgstr "Prihodki"
+
+#, fuzzy
+#~ msgid "Expenses..."
+#~ msgstr "Izdatki"
+
+#, fuzzy
+#~ msgid "Do you want to browse to locate another file?"
+#~ msgstr ""
+#~ "Ne najdem predhodno odprte baze podatkov.\n"
+#~ "Ali želite poiskati datoteko?"
+
+#~ msgid "Please Wait"
+#~ msgstr "Prosim počakajte"
+
+#~ msgid "Opening Database File && Verifying Integrity"
+#~ msgstr "Odpiranje baze podatkov && Verifikacija"
+
+#~ msgid "No database!"
+#~ msgstr "Ni podatkovne baze!"
+
+#~ msgid "Incorrect XML data (#1)!"
+#~ msgstr "Napačni XML podatki (#1)!"
+
+#~ msgid "Incorrect XML data (#2)!"
+#~ msgstr "Napačni XML podatki (#2)!"
+
+#~ msgid "Incorrect XML data (#3)!"
+#~ msgstr "Napačni XML podatki (#3)!"
+
+#~ msgid "Incorrect XML data (#4)!"
+#~ msgstr "Napačni XML podatki (#4)!"
+
+#~ msgid "Incorrect XML data (#5)!"
+#~ msgstr "Napačni XML podatki (#5)!"
+
+#~ msgid "Incorrect XML data (#6)!"
+#~ msgstr "Napačni XML podatki (#6)!"
+
+#~ msgid "Incorrect XML data (#7)!"
+#~ msgstr "Napačni XML podatki (#6)!"
+
+#~ msgid "Account View Options"
+#~ msgstr "Nastavitve pogleda računa"
+
+#~ msgid "Transaction View Options"
+#~ msgstr "Nastavitve pogleda transakcij"
+
+#~ msgid "Font Size Options"
+#~ msgstr "Nastavitve velikosti pisave"
+
+#, fuzzy
+#~ msgid ""
+#~ "Enable online currency update \n"
+#~ "(Get data from European Central Bank)"
+#~ msgstr "Omogoči online osvežitev valute (iz centralne evropske banke)"
+
+#~ msgid "Date  "
+#~ msgstr "Datum"
+
+#~ msgid "Accessing Database"
+#~ msgstr "Dostopam v bazo podatkov"
+
+#~ msgid "View Reconciled Transactions"
+#~ msgstr "Prikaži vse usklajene transakcije"
+
+#~ msgid "View Un-Reconciled Transactions"
+#~ msgstr "Prikaži vse neusklajene transakcije"
+
+#~ msgid "View All Except Reconciled Transactions"
+#~ msgstr "Prikaži vse razen usklajenih transakcij"
+
+#~ msgid "View Void Transactions"
+#~ msgstr "Prikaži prazne transakcije"
+
+#, fuzzy
+#~ msgid "View \"Follow Up\" Transactions"
+#~ msgstr "Prikaži vse transakcije"
+
+#~ msgid "View Duplicate Transactions"
+#~ msgstr "Prikaži podvojene transakcije"
+
+#, fuzzy
+#~ msgid "View Transactions for today"
+#~ msgstr "Prikaži današnje transakcije"
+
+#, fuzzy
+#~ msgid "View Transactions for current month"
+#~ msgstr "Prikaži transakcije tekočega meseca"
+
+#, fuzzy
+#~ msgid "View Transactions for last 30 days"
+#~ msgstr "Prikaži transakcije zadnjih 30 dni"
+
+#, fuzzy
+#~ msgid "View Transactions for last 90 days"
+#~ msgstr "Prikaži transakcije zadnjih 30 dni"
+
+#, fuzzy
+#~ msgid "View Transactions for last month"
+#~ msgstr "Prikaži transakcije preteklega meseca"
+
+#, fuzzy
+#~ msgid "View Transactions for last 3 months"
+#~ msgstr "Prikaži transakcije zadnjih 3 mesecev"
+
+#~ msgid "Viewing all transactions"
+#~ msgstr "Pregled vseh transakcij"
+
+#~ msgid "Viewing Reconciled transactions"
+#~ msgstr "Pregled usklajenih transakcij"
+
+#~ msgid "Viewing All Except Reconciled Transactions"
+#~ msgstr "Pregled vseh razen usklajenih transakcij"
+
+#~ msgid "Viewing Un-Reconciled transactions"
+#~ msgstr "Pregled neusklajenih transakcij"
+
+#, fuzzy
+#~ msgid "Viewing transactions for today"
+#~ msgstr "Pregled današnjih transakcij"
+
+#, fuzzy
+#~ msgid "Viewing transactions for current month"
+#~ msgstr "Pregled transakcij tekočega meseca"
+
+#, fuzzy
+#~ msgid "Viewing transactions for last 30 days"
+#~ msgstr "Pregled transakcij zadnjih 30 dni"
+
+#, fuzzy
+#~ msgid "Viewing transactions for last 90 days"
+#~ msgstr "Pregled transakcij zadnjih 30 dni"
+
+#, fuzzy
+#~ msgid "Viewing transactions for last month"
+#~ msgstr "Pregled transakcj preteklega meseca"
+
+#, fuzzy
+#~ msgid "Viewing transactions for last 3 months"
+#~ msgstr "Pregled transakcij zadnjih 3 mesecev"
+
+#~ msgid "Viewing All except Reconciled Transactions"
+#~ msgstr "Pregled vseh razen usklajenih transakcij"
+
+#, fuzzy
+#~ msgid "Viewing Follow-Up transactions"
+#~ msgstr "Pregled vseh transakcij"
+
+#~ msgid "Viewing duplicate transactions"
+#~ msgstr "Pregled podvojenih transakcij"
+
+#~ msgid "Viewing Void transactions"
+#~ msgstr "Pregled praznih transakcij"
+
+#~ msgid "  and contributors from around the world"
+#~ msgstr "  in sodelavci iz celega sveta"
+
+#~ msgid "Released under the GNU GPL License"
+#~ msgstr "Program pod GNU GPL licenco"
+
+#~ msgid "Version History"
+#~ msgstr "Zgodovina verzije"
+
+#~ msgid "Contributors"
+#~ msgstr "Sodelavci"
+
+#~ msgid "Using Language : "
+#~ msgstr "Uporabljen jezik: "
+
+#~ msgid "Yahoo Server"
+#~ msgstr "Yahoo strežnik"
+
+#~ msgid "finance.au.yahoo.com"
+#~ msgstr "finance.au.yahoo.com"
+
+#~ msgid ""
+#~ "Do not enter anything except the server name (or IP address, if you're "
+#~ "feeling lucky)"
+#~ msgstr ""
+#~ "Ne vnašajte ničesar razen imena strežnika (ali IP naslova, če mislite da "
+#~ "veste)"
+
+#~ msgid "Yahoo Suffix"
+#~ msgstr "Yahoo pripona"
+
+#~ msgid ""
+#~ "Enter the suffix used by Yahoo for the market of your stocks. \n"
+#~ "If your stocks are in multiple markets, leave this blank and add  the "
+#~ "suffix to each symbol in your portfolio."
+#~ msgstr ""
+#~ "Vnesite pripono katero uporablja Yahoo za borzo na kateri se nahajajo "
+#~ "vaše delnice. \n"
+#~ "Če se Vaše delnice nahajajo na več borzah, pustite to polje prazno in "
+#~ "dodajte pripono vsakemu simbolu v Vašem portfoliju."
+
+#~ msgid "Market open from"
+#~ msgstr "Borza je odprta od"
+
+#~ msgid "Allow for any delay in quotes"
+#~ msgstr "Dovoljena zakasnitev pri prevzemanju trenutnih cen"
+
+#~ msgid ":"
+#~ msgstr ":"
+
+#~ msgid "to"
+#~ msgstr "za"
+
+#~ msgid "&Refresh prices every"
+#~ msgstr "&Osveži cene vsakih"
+
+#~ msgid "minutes while market is open"
+#~ msgstr "minut ko je borza odprta"
+
+#~ msgid ""
+#~ "Enter the name of the financial institution where the investment is held"
+#~ msgstr "Vnesite naziv finančne institucije kjer se nahaja investicija"
+
+#, fuzzy
+#~ msgid "Display Stock Web Page"
+#~ msgstr "Spletna stran z vrednostmi delnic"
+
+#~ msgid "Choose Investment Account"
+#~ msgstr "Izberite investicijski račun"
+
+#~ msgid "Transaction Number"
+#~ msgstr "Številka transakcije"
+
+#, fuzzy
+#~ msgid "Account  :"
+#~ msgstr "Račun"
+
+#~ msgid "Idle"
+#~ msgstr "Prazen"
+
+#~ msgid "&Refresh"
+#~ msgstr "&Osveži"
+
+#~ msgid "&Settings"
+#~ msgstr "&Nastavitve"
+
+#~ msgid "Change settings for automatic refresh"
+#~ msgstr "Spremeni nastavitve za samodejno osvežavanje"
+
+#~ msgid "never!"
+#~ msgstr "nikoli!"
+
+#~ msgid ""
+#~ "Automatic stock quote refresh is disabled. \n"
+#~ "Last update: %s"
+#~ msgstr ""
+#~ "Samodejno osveževanje cen delnic je onemogočeno. \n"
+#~ "Zadnja osvežitev: %s"
+
+#~ msgid ""
+#~ "Automatic stock quote refresh idle - Out of Hours. \n"
+#~ "Last update: %s"
+#~ msgstr ""
+#~ "Samodejno osveževanje cen delnic ne deluje - izven delovnega časa. \n"
+#~ "Zadnja osvežitev: %s"
+
+#~ msgid "Automatic stock quote refresh in progress..."
+#~ msgstr "Samodejno osveževanje cen delnic poteka..."
+
+#~ msgid ""
+#~ "Automatic stock quote refresh successful. \n"
+#~ "Last update: %s"
+#~ msgstr ""
+#~ "Samodejno osveževanje cen delnic je bilo uspešno.  \n"
+#~ "Zadnja osvežitev: %s"
+
+#~ msgid ""
+#~ "Automatic stock quote refresh Failed. \n"
+#~ "Last successful update: %s"
+#~ msgstr ""
+#~ "Samodejno osveževanje cen delnic ni uspelo. \n"
+#~ "Zadnja uspešna osvežitev: %s"
+
+#~ msgid ""
+#~ "Automatic stock quote refresh not started. \n"
+#~ "Last update: %s"
+#~ msgstr ""
+#~ "Samodejno osveževanje cen delnic se ni začelo. \n"
+#~ "Zadnja uspešna osvežitev: %s"
+
+#~ msgid "Stock Download"
+#~ msgstr "Osveževanje cen delnic"
+
+#, fuzzy
+#~ msgid " Total:"
+#~ msgstr "Skupaj:"
+
+#~ msgid "Options"
+#~ msgstr "Opcije"
+
+#, fuzzy
+#~ msgid "Delete all \"Follow Up\" transactions"
+#~ msgstr "Izbriši vse označene transakcije"
+
+#~ msgid "Viewing All Transactions"
+#~ msgstr "Prikaži vse transakcije"
+
+#, fuzzy
+#~ msgid ""
+#~ "Account Bal: %s      Reconciled Bal: %s      Diff: %s      Displayed Bal: "
+#~ "%s"
+#~ msgstr "Bilanca računa : %s      Usklajena bilanca : %s"
+
+#, fuzzy
+#~ msgid "123456.78"
+#~ msgstr "1234567.89"
+
+#, fuzzy
+#~ msgid "Diference: "
+#~ msgstr "Razlika:"
+
+#~ msgid "&Universal CSV Files"
+#~ msgstr "&Univerzalne CSV Datoteke"
+
+#~ msgid "&Report Issues or Feedback"
+#~ msgstr "&Prijavi napako ali pošlji povratno informacijo"
+
+#~ msgid "Be &notified of new releases"
+#~ msgstr "Prijavi se &za prejem obvestil o novih različicah"
+
+#~ msgid "Sign up for the announcement mailing list"
+#~ msgstr "Prijavi se na obvestila"
+
+#~ msgid "Check Update"
+#~ msgstr "Preveri posodobitve"
+
+#~ msgid ""
+#~ "No investment accounts found. You can create one using the Accounts menu."
+#~ msgstr ""
+#~ "Ni nobenega investicijskega računa. Kreiraš lahko nov račun v menu-ju "
+#~ "Računi"
+
+#~ msgid "Investment Accounts"
+#~ msgstr "Investicijski računi"
+
+#~ msgid "Company"
+#~ msgstr "Podjetje"
+
+#~ msgid "Number Shares"
+#~ msgstr "Število Delnic"
+
+#~ msgid "Gain Loss"
+#~ msgstr "Dobiček Izguba"
+
+#~ msgid "Total Stock Investments: "
+#~ msgstr "Skupne investicije v vrednostne papirje: "
+
+#~ msgid "Transaction Type"
+#~ msgstr "Vrsta transakcije"
+
+#~ msgid "Amount to be recorded in To Account"
+#~ msgstr "Znesek ki bo shranjen na računu"
+
+#~ msgid "To Account Amount Entry"
+#~ msgstr "Vnesi znesek v korist računa"
+
+#~ msgid "Invalid To Amount Entered "
+#~ msgstr "Vnešen napačen znesek"
+
+#~ msgid "Select From"
+#~ msgstr "Izberi od"
+
+#~ msgid "Select To"
+#~ msgstr "Izberi na kateri račun"
+
+#~ msgid "Estimated Income: %s Actual Income:  %s"
+#~ msgstr "Predvideni prihodki: %s Dejanski prihodki: %s"
+
+#~ msgid "Estimated Expenses: %s Actual Expenses:  %s"
+#~ msgstr "Predvideni izdatki: %s Dejanski izdatki: %s"
+
+#~ msgid "&Delete Budget Year"
+#~ msgstr "&Izbriši proračunsko leto"
+
+#~ msgid "Enter the year in YYYY format to specify year"
+#~ msgstr "Vnesi leto v formatu YYYY"
+
+#~ msgid "Year is not valid"
+#~ msgstr "Leto ni pravilno"
+
+#, fuzzy
+#~ msgid "&Load"
+#~ msgstr "&Naloži SQL"
+
+#, fuzzy
+#~ msgid "Save Custom SQL file:"
+#~ msgstr "Po meri SQL okno"
+
+#~ msgid ""
+#~ "\n"
+#~ "%s\n"
+#~ "Not a writeable database\n"
+#~ "You must have write permission to that file"
+#~ msgstr ""
+#~ "\n"
+#~ "%s\n"
+#~ "Ni možno pisati v podatkovno bazo\n"
+#~ "Imeti morate dovoljenje za pisanje v datoteko"
+
+#~ msgid "Specify Account"
+#~ msgstr "Določi račun"
+
+#~ msgid "Specify Payee"
+#~ msgstr "Določi prejemnika"
+
+#~ msgid "Specify Category"
+#~ msgstr "Določi kategorijo"
+
+#~ msgid "Specify Status"
+#~ msgstr "Določi status"
+
+#~ msgid "Specify Number"
+#~ msgstr "Določi številko"
+
+#~ msgid "Specify Notes"
+#~ msgstr "Vnesi opombe"
+
+#~ msgid "Viewing Flagged transactions"
+#~ msgstr "Pregled označenih transakcij"
+
+#~ msgid "Budgeting"
+#~ msgstr "Izdelava proračuna"
+
+#~ msgid "To Whom the Money Goes"
+#~ msgstr "Komu gre denar"
+
+#~ msgid "Budget Setup and Performance"
+#~ msgstr "Nastavitve in izvajanje proračuna"
+
+#~ msgid "&MMEX CSV Files"
+#~ msgstr "&MMEX CSV Datoteke"
+
+#~ msgid "MM.&NET CSV Files"
+#~ msgstr "MM.&NET CSV Datoteke"
+
+#~ msgid "Import from MMEX CSV"
+#~ msgstr "Uvoz iz MMEX CSV"
+
+#~ msgid "Import from MM.NET CSV"
+#~ msgstr "Uvoz iz MM.NET CSV"
+
+#, fuzzy
+#~ msgid "Top Transactions Last 30 Days"
+#~ msgstr "Prikaži transakcije zadnjih 30 dni"
+
+#~ msgid " : Restart"
+#~ msgstr ": Ponovni zagon"
+
+#~ msgid "General Settings"
+#~ msgstr "Glavne nastavitve"
+
+#~ msgid "Sample Date"
+#~ msgstr "Primer datuma"
+
+#~ msgid "Specify the User Name"
+#~ msgstr "Določite uporabniško ime"
+
+#, fuzzy
+#~ msgid "Tree View Options: Expand Section"
+#~ msgstr "Nastavitve pogleda"
+
+#, fuzzy
+#~ msgid "Financial Year Settings"
+#~ msgstr "Glavne nastavitve"
+
+#, fuzzy
+#~ msgid "Backup before opening"
+#~ msgstr "Naredite varnostno kopijo baze podatkov preden oprete"
+
+#, fuzzy
+#~ msgid ""
+#~ "Select whether to create a _YYYY-MM-DD.bak file before opening the "
+#~ "database"
+#~ msgstr ""
+#~ "Izberi ali naj se kreira .bak datoteka ko odpirate datoteko baze podatkov"
+
+#, fuzzy
+#~ msgid "Daily Update, before opening"
+#~ msgstr "Naredite varnostno kopijo baze podatkov preden oprete"
+
+#~ msgid " cannot process Account Types yet "
+#~ msgstr " tipov računov še ni možno obdelati"
+
+#~ msgid "Budget Performance for Year : "
+#~ msgstr "Izvrševanje proračuna za leto:"
+
+#~ msgid "Budget setup for Year : "
+#~ msgstr "Nastavitve proračuna za leto:"
+
+#~ msgid " To: "
+#~ msgstr " Na:"
+
+#, fuzzy
+#~ msgid "Percent/Year: "
+#~ msgstr "Tekoče leto"
+
+#~ msgid "Add CSV field"
+#~ msgstr "Dodaj CSV polje"
+
+#~ msgid "CSV Field"
+#~ msgstr "CSV polje"
+
+#~ msgid "Choose MM.NET CSV data file to import"
+#~ msgstr "Izberi MM.NET CSV datoteko za uvoz"
+
+#, fuzzy
+#~ msgid "Importing CSV MM.NET"
+#~ msgstr "Uvoz iz MM.NET CSV"
+
+#, fuzzy
+#~ msgid "No account available for export!"
+#~ msgstr "Ni razpoložljivega računa! Izvoz ni možen!"
+
+#~ msgid "CSV Export"
+#~ msgstr "CSV izvoz"
+
+#, fuzzy
+#~ msgid "No account available for import."
+#~ msgstr "Ni razpoložljivega računa! Izvoz ni možen!"
+
+#~ msgid "Import from CSV"
+#~ msgstr "Uvoz iz CSV"
+
+#, fuzzy
+#~ msgid "Choose account to import to:"
+#~ msgstr "Izberite račun v katerega uvažate podatke:"
+
+#, fuzzy
+#~ msgid "Transactions imported from CSV"
+#~ msgstr " transakcije uvožene iz QIF"
+
+#~ msgid " missing date, skipping."
+#~ msgstr " manjka datum, preskočim."
+
+#~ msgid " missing payee, skipping."
+#~ msgstr " manjka prejemnik, preskočim."
+
+#~ msgid " missing transaction type, skipping."
+#~ msgstr " manjka tip transakcije, preskočim."
+
+#~ msgid " missing amount, skipping."
+#~ msgstr " manjka znesek, preskočim."
+
+#, fuzzy
+#~ msgid " check delimiters. Possible amount error, skipping."
+#~ msgstr " manjka znesek, preskočim."
+
+#, fuzzy
+#~ msgid " has excessive items. Check delimiters in numbers, skipping."
+#~ msgstr " manjka znesek, preskočim."
+
+#~ msgid ""
+#~ "one of the following fields: date, payee, transaction type, amount "
+#~ "strings is empty, skipping"
+#~ msgstr ""
+#~ "eno od naslednjih polj: datum, prejemnik, tip transakcije, znesek je "
+#~ "prazno, preskočim."
+
+#~ msgid " unrecognized transaction type, skipping."
+#~ msgstr " neznan tip transakcije, preskočim."
+
+#~ msgid ""
+#~ "Please verify that the CSV file from MMEX.NET contains only one account!"
+#~ msgstr "Prosim preverite da je v CSV datoteki iz MMEX.NET samo en račun!"
+
+#~ msgid " missing category, skipping."
+#~ msgstr " manjka kategorija, preskočim."
+
+#~ msgid ""
+#~ " One of the following fields: date, payee, transaction type, amount, "
+#~ "category strings is empty, skipping"
+#~ msgstr ""
+#~ " Eno od naslednjih polj: datum, prejemnik, tip transakcije, znesek, "
+#~ "kategorija je prazno, preskočim."
+
+#~ msgid " invalid date, skipping."
+#~ msgstr " napačen datum, preskočim."
+
+#~ msgid "Filter Transactions"
+#~ msgstr "Filter transakcij"
+
+#~ msgid "Options Dialog"
+#~ msgstr "Okno opcije"
+
+#, fuzzy
+#~ msgid "Tools -> Options"
+#~ msgstr "Opcije"
+
+#, fuzzy
+#~ msgid "This is generally the name of a financial institution"
+#~ msgstr "Vnesite kontaktno informacijo finančne institucije. "
+
+#, fuzzy
+#~ msgid "Investment accounts are specialized accounts that only"
+#~ msgstr ""
+#~ "\n"
+#~ "Investicijski računi so posebni računi na katere \n"
+#~ "so vezane samo delnice/investicijski skladi. \n"
+
+#, fuzzy
+#~ msgid "Stock Investment Page Selection"
+#~ msgstr "Potrdite brisanje borzne investicije"
+
+#~ msgid "No Account available! Cannot Import! Create a new account first!"
+#~ msgstr ""
+#~ "Na razpolago ni računov! Uvoz ni možen! Najprej ustvarite nov račun!"
+
+#~ msgid "CSV Import"
+#~ msgstr "CSV uvoz"
+
+#~ msgid ""
+#~ "Total Lines : %d \n"
+#~ "Total Imported : %d\n"
+#~ "\n"
+#~ "Log file written to : %s.\n"
+#~ "\n"
+#~ "Imported transactions have been flagged so you can review them. "
+#~ msgstr ""
+#~ "Skupaj vrstic: %d \n"
+#~ "Skupaj uvoženih: %d\n"
+#~ "\n"
+#~ "Log datoteka zapisana na: %s.\n"
+#~ "\n"
+#~ "Uvožene transakcije so označene da jih boste lahko preverili."
+
+#~ msgid "Delete Transaction"
+#~ msgstr "Izbriši transakcijo"
+
+#~ msgid ""
+#~ "The next pages will help you create a new database.\n"
+#~ "\n"
+#~ "Your database file is stored with an extension of .mmb.\n"
+#~ "\n"
+#~ "Make sure to make backups of this file \n"
+#~ "and to store it carefully as it contains important \n"
+#~ "financial information."
+#~ msgstr ""
+#~ "Sledeče strani Vam bodo v pomoč pri kreiranju nove baze podatkov.\n"
+#~ "\n"
+#~ "Vaša baza podatkov je shranjena v datoteki s končnico .mmb.\n"
+#~ "\n"
+#~ "Naredite varnostno kopijo te datoteke \n"
+#~ "in jo shranite na varno ker vsebuje pomembne\n"
+#~ "finančne podatke."
+
+#~ msgid ""
+#~ "(Optional)Specify your name. Mainly used for reporting and in printing "
+#~ "reports.\n"
+#~ msgstr "(Opcija) Navedite Vaše ime. Vglavnem se uporablja v poročilih.\n"
+
+#~ msgid ""
+#~ "To import QIF files correctly, the date option set in MMEX \n"
+#~ " must match the format of the date in the QIF file.\n"
+#~ "Are you are sure you want to proceed with the import?"
+#~ msgstr ""
+#~ "Za pravilen uvoz QIF datotek, mora nastavitev datuma v MMEX-u \n"
+#~ "ustrezati formatu datuma v QIF datoteki.\n"
+#~ "Ali ste prepričani da želite nadaljevati z uvozom?"
+
+#~ msgid "Confirm QIF import"
+#~ msgstr "Potrdi QIF Uvoz"
+
+#~ msgid "Adding payee "
+#~ msgstr "Dodajanje prejemnika"
+
+#, fuzzy
+#~ msgid ""
+#~ "When not selected, the payee default is set to the most frequently used "
+#~ "payee for the current account."
+#~ msgstr "Izberite trenutno označenega prejemnika za transakcijo"
+
+#~ msgid "&New Series"
+#~ msgstr "&Novo ponavljanje"
+
+#~ msgid "&Edit Series"
+#~ msgstr "&Uredi ponavljanja"
+
+#~ msgid "&Delete Series"
+#~ msgstr "&Izbriši ponavljanja"
+
+#~ msgid "Enter &Transaction"
+#~ msgstr "Vnesi &transakcijo"
+
+#~ msgid "Error adding Category"
+#~ msgstr "Napaka pri dodajanju kategorije."
+
+#~ msgid "Value of 123456.78 will be"
+#~ msgstr "Vrednost 123456.78 bo"
+
+#~ msgid "C  "
+#~ msgstr "C"
+
+#~ msgid "&Stock Investments"
+#~ msgstr "&Investicije v delnice"
+
+#~ msgid "Error opening database"
+#~ msgstr "Napaka pri odpiranju baze podatkov"
+
+#~ msgid "Total of Accounts:"
+#~ msgstr "Skupaj na računih:"
+
+#~ msgid "Follow Up On "
+#~ msgstr "Sledenje"
+
+#, fuzzy
+#~ msgid "Expand Bank Accounts"
+#~ msgstr "Bančni računi"
+
+#, fuzzy
+#~ msgid "Expand Term Accounts"
+#~ msgstr "Bančni računi"
+
+#~ msgid "Total: %s Invested: %s Gain: %s "
+#~ msgstr "Skupaj: %s Investirano: %s Dobiček: %s "
+
+#~ msgid "Total: %s Invested: %s Loss: %s "
+#~ msgstr "Skupaj: %s Investirano: %s Izguba: %s "
+
+#~ msgid "&Go To.."
+#~ msgstr "&Pojdi na.."
+
+#~ msgid "Cash Flow Forecast For All Accounts - A Year Ahead"
+#~ msgstr "Napoved denarnega toka za vse račune - leto dni vnaprej"
+
+#, fuzzy
+#~ msgid "Today's Date: <b>"
+#~ msgstr "Današnji datum:"
+
+#~ msgid "Rate of Change"
+#~ msgstr "Stopnja spremembe"
+
+#~ msgid "Specify advanced settings for transaction"
+#~ msgstr "Določi napredne nastavitve transakcije"
+
+#~ msgid "Edit Transaction"
+#~ msgstr "Uredi transakcijo"
+
+#~ msgid "Powered by wxWidgets, SQLite, wxSQLite(by Ulrich Telle)"
+#~ msgstr "Powered by wxWidgets, SQLite, wxSQLite (by Urlich Telle-a)"
+
+#~ msgid "&Run Query"
+#~ msgstr "&Zaženi poizvedbo"
+
+#~ msgid "Category         : "
+#~ msgstr "Kategorija         :"
+
+#~ msgid "Sub Category  : "
+#~ msgstr "Podkategorija  :"
+
+#~ msgid "Notes               : "
+#~ msgstr "Opombe               :"
+
+#~ msgid "Unable to convert db successfully. Check Password!"
+#~ msgstr "Neuspela pretvorba PB. Preverite geslo!"
+
+#~ msgid "QFX Import"
+#~ msgstr "QFX Uvoz"
+
+#~ msgid ""
+#~ "Enter the payee name to be added or make edits to an existing payee name"
+#~ msgstr ""
+#~ "Vnesite naziv prejemnika katerega dodajate ali uredite naziv obstoječega "
+#~ "prejemnika"
+
+#~ msgid "Type a Payee Name in the Text Box and then press Add."
+#~ msgstr "Vpišite ime prejemnika v okvirček za besedilo in pritisnite Dodaj."
+
+#~ msgid "Delete Account"
+#~ msgstr "Izbriši račun"
+
+#~ msgid "Statement not accessible"
+#~ msgstr "Navedba ni dostopna"
+
+#~ msgid "Out of memory"
+#~ msgstr "Zmanjkalo spomina"
+
+#~ msgid "Cannot decode binary"
+#~ msgstr "Ni možno dekodiranje binarne kode"
+
+#~ msgid "Invalid field index"
+#~ msgstr "Napačno polje kazala"
+
+#~ msgid "Invalid field name"
+#~ msgstr "Napačno ime polja"
+
+#~ msgid "Invalid row index"
+#~ msgstr "Napačen indeks vrstice"
+
+#~ msgid "Invalid scalar query"
+#~ msgstr "Napačna številčna poizvedba"
+
+#~ msgid "Error clearing bindings"
+#~ msgstr "Napaka pri brisanju povezav"
+
+#~ msgid "Web Page"
+#~ msgstr "Domača stran"
+
+#~ msgid "Invalid current price entered "
+#~ msgstr "Vnešena napačna trenutna cena"
