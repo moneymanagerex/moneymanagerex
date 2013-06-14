@@ -158,7 +158,7 @@ void createDefaultCategories(wxSQLite3Database* db)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::createDefaultCategories: Exception", e.GetMessage());
+        wxLogDebug("Database::createDefaultCategories: %s", e.GetMessage());
         wxLogError("insert into [SUB]CATEGORY_V1. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -267,7 +267,7 @@ bool mmDBWrapper::checkDBVersion(wxSQLite3Database* db)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::checkDBVersion: Exception", e.GetMessage());
+        wxLogDebug("Database::checkDBVersion: %s", e.GetMessage());
     }
     return result;
 }
@@ -313,7 +313,7 @@ int mmDBWrapper::createAllDataView(wxSQLite3Database* db)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::createAllDataView: Exception", e.GetMessage());
+        wxLogDebug("Database::createAllDataView: %s", e.GetMessage());
         wxLogError("create AllData view. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         iError = e.GetErrorCode();
     }
@@ -352,7 +352,7 @@ void removeCruft(wxSQLite3Database* db)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::removeCruft: Exception", e.GetMessage());
+        wxLogDebug("Database::removeCruft: %s", e.GetMessage());
         wxLogError("Remove Cruft. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -471,7 +471,7 @@ bool mmDBWrapper::deleteCategoryWithConstraints(wxSQLite3Database* db, int categ
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::deleteCategoryWithConstraints: Exception", e.GetMessage());
+        wxLogDebug("Database::deleteCategoryWithConstraints: %s", e.GetMessage());
         wxLogError("Delete Category with Constraints. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         return false;
     }
@@ -534,7 +534,7 @@ bool mmDBWrapper::deleteSubCategoryWithConstraints(wxSQLite3Database* db, int ca
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::deleteSubCategoryWithConstraints: Exception", e.GetMessage());
+        wxLogDebug("Database::deleteSubCategoryWithConstraints: %s", e.GetMessage());
         wxLogError("Delete SubCategory with Constraints. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         return false;
     }
@@ -570,7 +570,7 @@ bool mmDBWrapper::updateCategory(wxSQLite3Database* db, int categID,
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::updateCategory: Exception", e.GetMessage());
+        wxLogDebug("Database::updateCategory: %s", e.GetMessage());
         wxLogError("update [SUB]CATEGORY_V1. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     return true;
@@ -592,7 +592,7 @@ bool mmDBWrapper::addCategory(wxSQLite3Database* db, const wxString &newName)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::addCategory: Exception", e.GetMessage());
+        wxLogDebug("Database::addCategory: %s", e.GetMessage());
         wxLogError("insert into CATEGORY_V1. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     return rows_affected == 1;
@@ -617,7 +617,7 @@ bool mmDBWrapper::addSubCategory(wxSQLite3Database* db, int categID, const wxStr
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::addSubCategory: Exception", e.GetMessage());
+        wxLogDebug("Database::addSubCategory: %s", e.GetMessage());
         wxLogError("insert into SUBCATEGORY_V1. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     mmOptions::instance().databaseUpdated_ = true;
@@ -648,7 +648,7 @@ bool mmDBWrapper::deleteTransaction(wxSQLite3Database* db, int transID)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::deleteTransaction: Exception", e.GetMessage());
+        wxLogDebug("Database::deleteTransaction: %s", e.GetMessage());
         wxLogError("Delete Transaction. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         return false;
     }
@@ -670,7 +670,7 @@ int mmDBWrapper::relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourc
     catch(const wxSQLite3Exception& e)
     {
         err = e.GetExtendedErrorCode();
-        wxLogDebug("update checkingaccount_v1 : Exception", e.GetMessage());
+        wxLogDebug("update checkingaccount_v1 : %s", e.GetMessage());
         wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     return err;
@@ -706,7 +706,7 @@ int mmDBWrapper::relocateCategory(wxSQLite3Database* db,
     catch(const wxSQLite3Exception& e)
     {
         err = e.GetExtendedErrorCode();
-        wxLogDebug("update checkingaccount_v1 : Exception", e.GetMessage());
+        wxLogDebug("update checkingaccount_v1 : %s", e.GetMessage());
         wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     return err;
@@ -729,7 +729,7 @@ bool mmDBWrapper::updateTransactionWithStatus(wxSQLite3Database &db, int transID
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Database::updateTransactionWithStatus: Exception", e.GetMessage());
+        wxLogDebug("Database::updateTransactionWithStatus: %s", e.GetMessage());
         wxLogError("Update Transaction With Status. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         return false;
     }
@@ -749,7 +749,7 @@ void mmDBWrapper::addBudgetYear(wxSQLite3Database* db, const wxString &year)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::addBudgetYear: Exception", e.GetMessage());
+        wxLogDebug("Function::addBudgetYear: %s", e.GetMessage());
         wxLogError("Add Budget Year. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -808,7 +808,7 @@ void mmDBWrapper::updateYearForID(wxSQLite3Database* db, const wxString& yearNam
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::updateYearForID: Exception", e.GetMessage());
+        wxLogDebug("Function::updateYearForID: %s", e.GetMessage());
         wxLogError("Update Year For ID. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -847,7 +847,7 @@ bool mmDBWrapper::copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYea
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::copyBudgetYear: Exception", e.GetMessage());
+        wxLogDebug("Function::copyBudgetYear: %s", e.GetMessage());
         wxLogError("Copy Budget Year. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     return true;
@@ -880,7 +880,7 @@ bool mmDBWrapper::deleteBudgetYear(wxSQLite3Database* db, const wxString& yearNa
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::deleteBudgetYear: Exception", e.GetMessage());
+        wxLogDebug("Function::deleteBudgetYear: %s", e.GetMessage());
         wxLogError("Delete Budget Year. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
     return true;
@@ -909,7 +909,7 @@ void mmDBWrapper::addBudgetEntry(wxSQLite3Database* db, int budgetYearID,
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::addBudgetEntry: Exception", e.GetMessage());
+        wxLogDebug("Function::addBudgetEntry: %s", e.GetMessage());
         wxLogError("Add Budget Entry. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -928,7 +928,7 @@ void mmDBWrapper::deleteBudgetEntry(wxSQLite3Database* db, int budgetEntryID)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::deleteBudgetEntry: Exception", e.GetMessage());
+        wxLogDebug("Function::deleteBudgetEntry: %s", e.GetMessage());
         wxLogError("delete from BUDGETTABLE_V1. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -949,7 +949,7 @@ void mmDBWrapper::updateBudgetEntry(wxSQLite3Database* db,
         addBudgetEntry(db, budgetYearID, categID, subCategID, period, amount);
     } catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::updateBudgetEntry: Exception", e.GetMessage());
+        wxLogDebug("Function::updateBudgetEntry: %s", e.GetMessage());
         wxLogError("delete from BUDGETTABLE_V1. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -1001,7 +1001,7 @@ void mmDBWrapper::deleteBDSeries(wxSQLite3Database* db, int bdID)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::deleteBDSeries: Exception", e.GetMessage());
+        wxLogDebug("Function::deleteBDSeries: %s", e.GetMessage());
         wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -1138,7 +1138,7 @@ void mmDBWrapper::completeBDInSeries(wxSQLite3Database* db, int bdID)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::completeBDInSeries: Exception", e.GetMessage());
+        wxLogDebug("Function::completeBDInSeries: %s", e.GetMessage());
         wxLogError("Complete BD In Series. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -1156,7 +1156,7 @@ void mmDBWrapper::deleteStockInvestment(wxSQLite3Database* db, int stockID)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::deleteStockInvestment: Exception", e.GetMessage());
+        wxLogDebug("Function::deleteStockInvestment: %s", e.GetMessage());
         wxLogError("Delete Stock Investment. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -1175,7 +1175,7 @@ bool mmDBWrapper::moveStockInvestment(wxSQLite3Database* db, int stockID, int to
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::moveStockInvestment: Exception", e.GetMessage());
+        wxLogDebug("Function::moveStockInvestment: %s", e.GetMessage());
         wxLogError("Delete Stock Investment. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         return false;
     }
@@ -1234,7 +1234,7 @@ void mmDBWrapper::removeSplitsForAccount(wxSQLite3Database* db, int accountID)
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::removeSplitsForAccount: Exception", e.GetMessage());
+        wxLogDebug("Function::removeSplitsForAccount: %s", e.GetMessage());
         wxLogError("Remove Splits For Account. " + wxString::Format(_("Error: %s"), e.GetMessage()));
     }
 }
@@ -1298,7 +1298,7 @@ int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, std::vector<wxStri
     }
     catch(const wxSQLite3Exception& e)
     {
-        wxLogDebug("Function::mmSQLiteExecuteUpdate: Exception", e.GetMessage());
+        wxLogDebug("Function::mmSQLiteExecuteUpdate: %s", e.GetMessage());
         wxLogError("mmSQLiteExecuteUpdate. " + wxString::Format(_("Error: %s"), e.GetMessage()));
         iError = e.GetErrorCode();
     }
@@ -1351,8 +1351,8 @@ std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, con
     }
     catch (const wxSQLite3Exception& e)
     {
-        //wxLogError("Database::open: Exception: %s", e.GetMessage());
-        //wxLogDebug("Database::open: Exception: %s", e.GetMessage());
+        //wxLogError("Database::open: %s: %s", e.GetMessage());
+        //wxLogDebug("Database::open: %s: %s", e.GetMessage());
         err = e.GetErrorCode();
         errStr << e.GetMessage();
     }
@@ -1403,7 +1403,7 @@ std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, con
         s << "\n" << _("Error") << err << "\n";
     }
 
-    wxSafeShowMessage(_("Database::open: Exception"), s);
+    wxSafeShowMessage(_("Database::open: %s"), s);
 
     s << errStr << "\n\n" << _("Continue ?");
 
