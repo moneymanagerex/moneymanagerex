@@ -23,19 +23,16 @@
 
 void mmSplitTransactionEntries::addSplit(std::shared_ptr<mmSplitTransactionEntry> split)
 {
-    total_ += split->splitAmount_;
     entries_.push_back(split);
 }
 
-double mmSplitTransactionEntries::getUpdatedTotalSplits()
-{
-    total_ = 0.0;
-    for (size_t i = 0; i < entries_.size(); ++i)
-    {
-        total_ += entries_[i]->splitAmount_;
-    }
+double mmSplitTransactionEntries::getTotalSplits() const
+{ 
+    double total = 0.0;
+    for (const auto& tran: this->entries_)
+        total += tran->splitAmount_;
 
-    return total_;
+    return total;
 }
 
 void mmSplitTransactionEntries::removeSplit(int splitID)
@@ -52,7 +49,6 @@ void mmSplitTransactionEntries::removeSplit(int splitID)
 
 void mmSplitTransactionEntries::removeSplitByIndex(int splitIndex)
 {
-    total_ -= entries_[splitIndex]->splitAmount_;
     entries_.erase(entries_.begin() + splitIndex);
 }
 
@@ -91,7 +87,6 @@ void mmSplitTransactionEntries::updateToDB(std::shared_ptr<wxSQLite3Database>& d
 void mmSplitTransactionEntries::loadFromBDDB(mmCoreDB* core, int bdID)
 {
     entries_.clear();
-    total_ = 0.0;
 
     wxSQLite3Statement st = core->db_->PrepareStatement(SELECT_ROW_FROM_BUDGETSPLITTRANSACTIONS_V1);
    st.Bind(1, bdID);
@@ -318,7 +313,6 @@ double mmBankTransaction::value(int accountID) const
 void mmBankTransaction::getSplitTransactions(mmSplitTransactionEntries* splits) const
 {
     splits->entries_.clear();
-    splits->total_ = 0.0;
 
     wxSQLite3Statement st = db_->PrepareStatement(SELECT_ROW_FROM_SPLITTRANSACTIONS_V1);
     st.Bind(1, transactionID());

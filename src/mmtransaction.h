@@ -56,11 +56,11 @@ public:
 class mmSplitTransactionEntries
 {
 public:
-    mmSplitTransactionEntries() : total_() {}
+    mmSplitTransactionEntries() {}
 
     size_t numEntries() const { return entries_.size(); }
-    double getTotalSplits() const { return total_; }
-    double getUpdatedTotalSplits();
+    double getTotalSplits() const;
+    double getUpdatedTotalSplits() const;
 
     void addSplit(std::shared_ptr<mmSplitTransactionEntry> split);
     void removeSplit(int splitID);
@@ -70,7 +70,6 @@ public:
     void loadFromBDDB(mmCoreDB* core, int bdID);
 
     std::vector<std::shared_ptr<mmSplitTransactionEntry> > entries_;
-    double total_;
 };
 
 class mmBankTransaction : public mmTransaction
