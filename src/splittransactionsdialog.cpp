@@ -225,12 +225,7 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    // Update the total amount of all splits
-    if (split_->numEntries() > 0)
-        transAmount_->SetLabel(CurrencyFormatter::float2String(split_->getTotalSplits()));
-    else
-         transAmount_->SetLabel(CurrencyFormatter::float2String(0.0));
-
+    transAmount_->SetLabel(CurrencyFormatter::float2String(split_->getTotalSplits()));
 }
 
 long SplitTransactionDialog::GetSelectedItem()
