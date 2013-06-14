@@ -550,7 +550,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
         const wxString header = _("Stock prices successfully updated");
         stock_details_->SetLabel(header);
         stock_details_short_->SetLabel(wxString::Format(_("Last updated %s"), strLastUpdate_));
-        wxMessageDialog msgDlg(this, sError, header, wxOK|wxICON_EXCLAMATION);
+        wxMessageDialog msgDlg(this, sError, header);
         msgDlg.ShowModal();
     }
     else
@@ -558,7 +558,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
         refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_red_xpm).Scale(16,16)));
         stock_details_->SetLabel(sError);
         stock_details_short_->SetLabel(_("Error"));
-        mmShowErrorMessage(this, sError, _("Error"));
+        mmShowErrorMessage(this, sError, _("Error"), wxOK|wxICON_ERROR);
     }
 }
 
