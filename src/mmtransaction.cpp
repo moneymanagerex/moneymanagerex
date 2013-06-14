@@ -154,14 +154,12 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
     return this->transactionID_ < tran.transactionID_;
 }
 
-void mmBankTransaction::updateAllData(mmCoreDB* core,
-                                      int accountID,
-                                      std::shared_ptr<mmCurrency> currencyPtr,
-                                      bool forceUpdate
-                                      )
+void mmBankTransaction::updateAllData(mmCoreDB* core
+    , int accountID, std::shared_ptr<mmCurrency> currencyPtr
+    , bool forceUpdate )
 {
-    deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -1;
-    withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -1;
+    deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
+    withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
     if ((isInited_) && (transType_ != TRANS_TYPE_TRANSFER_STR) && !forceUpdate) return;
 
     /* Load the Account Currency Settings for Formatting Strings */
@@ -221,7 +219,7 @@ void mmBankTransaction::updateAllData(mmCoreDB* core,
         {
             withdrawalStr_ = transAmtString_;
             withdrawal_amt_ = amt_;
-            deposit_amt_ = -1;
+            deposit_amt_ = -amt_;
             payeeStr_      = toAccount;
         }
         else if (toAccountID_ == accountID)
@@ -229,7 +227,7 @@ void mmBankTransaction::updateAllData(mmCoreDB* core,
             depositStr_ = transToAmtString_;
             payeeStr_   = fromAccount;
             deposit_amt_ = toAmt_;
-            withdrawal_amt_ = -1;
+            withdrawal_amt_ = -toAmt_;
         }
     }
 
