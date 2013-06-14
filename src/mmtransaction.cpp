@@ -165,6 +165,8 @@ void mmBankTransaction::updateAllData(mmCoreDB* core,
                                       bool forceUpdate
                                       )
 {
+    deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -1;
+    withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -1;
     if ((isInited_) && (transType_ != TRANS_TYPE_TRANSFER_STR) && !forceUpdate) return;
 
     /* Load the Account Currency Settings for Formatting Strings */
@@ -222,13 +224,17 @@ void mmBankTransaction::updateAllData(mmCoreDB* core,
 
         if (accountID_ == accountID)
         {
-         withdrawalStr_ = transAmtString_;
-         payeeStr_      = toAccount;
+            withdrawalStr_ = transAmtString_;
+            withdrawal_amt_ = amt_;
+            deposit_amt_ = -1;
+            payeeStr_      = toAccount;
         }
         else if (toAccountID_ == accountID)
         {
-         depositStr_ = transToAmtString_;
-         payeeStr_   = fromAccount;
+            depositStr_ = transToAmtString_;
+            payeeStr_   = fromAccount;
+            deposit_amt_ = toAmt_;
+            withdrawal_amt_ = -1;
         }
     }
 

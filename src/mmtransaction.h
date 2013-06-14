@@ -119,9 +119,11 @@ public:
     wxString transAmtString_;
     wxString transToAmtString_;
     wxString fromAccountStr_;
-    wxString withdrawalStr_;
-    wxString depositStr_;
     wxString fullCatStr_;
+    wxString withdrawalStr_;
+    double withdrawal_amt_;
+    wxString depositStr_;
+    double deposit_amt_;
 
     double balance_;
     wxString balanceStr_;
@@ -184,7 +186,7 @@ public:
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true, bool with_date = true) const;
 
-	// The setting asDeposit is only valid if evaluateTransfer is true
+    // The setting asDeposit is only valid if evaluateTransfer is true
     double getAmountForCategory(int categID, int subcategID, bool ignoreDate, const wxDateTime &dtBegin, const wxDateTime &dtEnd, bool evaluateTransfer = false, bool asDeposit = false, bool ignoreFuture = false) const;
     double getAmountForPayee(int payeeID, bool ignoreDate, const wxDateTime &dtbegin, const wxDateTime &dtEnd, bool ignoreFuture = false) const;
     wxDateTime getLastDate(int accountID) const;
