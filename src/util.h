@@ -94,9 +94,9 @@ wxString mmGetNiceDateSimpleString( const wxDateTime &dt );
 std::map<wxString,wxString> date_formats_map();
 
 wxString inQuotes(wxString label, wxString& delimiter);
-wxString adjustedExportAmount(wxString amtSeparator, wxString strValue);
+wxString adjustedExportAmount(const wxString& amtSeparator, const wxString& strValue);
 
-void correctEmptyFileExt(wxString ext, wxString & fileName );
+void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
 void mmLoadColorsFromDatabase(std::shared_ptr<MMEX_IniSettings> pIniSettings);
 wxColour mmGetColourFromString( const wxString& str );

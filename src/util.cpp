@@ -67,7 +67,7 @@ wxString selectLanguageDlg(wxWindow *parent, const wxString &langPath, bool verb
 
 
 //----------------------------------------------------------------------------
-void correctEmptyFileExt(wxString ext, wxString & fileName)
+void correctEmptyFileExt(const wxString& ext, wxString & fileName)
 {
     wxFileName tempFileName(fileName);
     if (tempFileName.GetExt().IsEmpty())
@@ -317,16 +317,17 @@ wxColour mmColors::userDefColor7 = wxColour(0,0,128);
 
 //*-------------------------------------------------------------------------*//
 
-wxString adjustedExportAmount(wxString amtSeparator, wxString strValue)
+wxString adjustedExportAmount(const wxString& amtSeparator, const wxString& strValue)
 {
     // if number does not have a decimal point, add one to user requirements
-    int dp = strValue.Find(".");
+    wxString value = strValue;
+    int dp = value.Find(".");
     if (dp < 0)
-        strValue << amtSeparator << "0";
+        value<< amtSeparator << "0";
     else
-        strValue.Replace(".",amtSeparator);
+        value.Replace(".",amtSeparator);
 
-    return strValue;
+    return value;
 }
 
 wxString Tips(wxString type)
