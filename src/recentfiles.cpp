@@ -19,19 +19,6 @@
 #include "recentfiles.h"
 #include "guiid.h"
 
-//RecentDatabaseFiles::RecentDatabaseFiles(std::shared_ptr<MMEX_IniSettings> pIniSettings, int listSize, wxString dbIndexName)
-//: pIniSettings_(pIniSettings)
-//, menuRecentFiles_(NULL)
-//, recentListSize_(listSize)
-//, dbIndexName_(dbIndexName)
-//{
-//    for (int index = 0; index < recentListSize_; ++ index)
-//    {
-//        recentFileList_.Add(wxEmptyString);
-//    }
-//    loadRecentList();
-//}
-
 RecentDatabaseFiles::RecentDatabaseFiles(std::shared_ptr<MMEX_IniSettings> pIniSettings, wxMenu *menuRecentFiles)
 : pIniSettings_(pIniSettings)
 , menuRecentFiles_(menuRecentFiles)
