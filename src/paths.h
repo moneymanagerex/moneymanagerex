@@ -31,19 +31,19 @@ class wxIcon;
 namespace mmex
 {
 
-enum EDocFile { F_README, F_CONTRIB, F_LICENSE, F_VERSION, HTML_INDEX, HTML_CUSTOM_SQL, HTML_INVESTMENT, HTML_BUDGET, DOC_FILES_MAX };
+enum EDocFile { F_README = 0, F_CONTRIB, F_LICENSE, F_VERSION, HTML_INDEX, HTML_CUSTOM_SQL, HTML_INVESTMENT, HTML_BUDGET, DOC_FILES_MAX };
 wxString getPathDoc(const EDocFile& f);
 
-enum EResFile { PROGRAM_ICON, TRANS_SOUND, CURRENCY_DB_SEED, RES_FILES_MAX };
+enum EResFile { PROGRAM_ICON = 0, TRANS_SOUND, CURRENCY_DB_SEED, RES_FILES_MAX };
 wxString getPathResource(EResFile f);
 
 // use instead of getPathResource(PROGRAM_ICON)
 const wxIcon& getProgramIcon();
 
-enum ESharedFile { LANG_DIR, SHARED_FILES_MAX };
+enum ESharedFile { LANG_DIR = 0, SHARED_FILES_MAX };
 wxString getPathShared(ESharedFile f);
 
-enum EUserFile { SETTINGS, CUSTOM_REPORTS, DIRECTORY, USER_FILES_MAX };
+enum EUserFile { SETTINGS = 0, CUSTOM_REPORTS, DIRECTORY, USER_FILES_MAX };
 wxString getPathUser(EUserFile f);
 
 bool isPortableMode();
