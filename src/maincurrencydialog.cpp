@@ -23,6 +23,7 @@
 #include "util.h"
 #include "defs.h"
 #include "paths.h"
+#include "validators.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
@@ -94,16 +95,17 @@ void mmMainCurrencyDialog::fillControls()
     currencyListBox_->DeleteAllItems();
     int baseCurrencyID = core_->currencyList_.GetBaseCurrencySettings();
 
+    wxVector<wxVariant> data;
     for (const auto& currency: core_->currencyList_.currencies_)
     {
         int currencyID = currency->currencyID_;
 
-        wxVector<wxVariant> data;
+        data.clear();
         data.push_back( wxVariant(baseCurrencyID == currencyID) );
         data.push_back( wxVariant(currency->currencySymbol_) );
         data.push_back( wxVariant(currency->currencyName_) );
         data.push_back( wxVariant(wxString()<<currency->baseConv_) );
-        currencyListBox_->AppendItem(data,(wxUIntPtr)currencyID);
+        currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
     }
 }
 
@@ -133,14 +135,13 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW|wxALL, 5);
 
-    currencyListBox_ = new wxDataViewListCtrl( this, wxID_ANY, wxDefaultPosition, wxSize(-1, 200));
+    currencyListBox_ = new wxDataViewListCtrl( this
+        , wxID_ANY, wxDefaultPosition, wxSize(-1, 200), -1, calcValidator());
 
     currencyListBox_ ->AppendToggleColumn( ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30 );
     currencyListBox_ ->AppendTextColumn( ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60);
     currencyListBox_ ->AppendTextColumn( ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170);
     currencyListBox_ ->AppendTextColumn( ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 60 );
-    wxFloatingPointValidator<double> validator(4, NULL , wxNUM_VAL_NO_TRAILING_ZEROES );
-    currencyListBox_ ->SetValidator(validator);
 
     itemBoxSizer3->Add(currencyListBox_, 1, wxGROW|wxALL, 1);
 

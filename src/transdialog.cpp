@@ -26,6 +26,7 @@
 #include "categdialog.h"
 #include "payeedialog.h"
 #include "splittransactionsdialog.h"
+#include "validators.h"
 
 #include <wx/valnum.h>
 
@@ -389,13 +390,13 @@ void mmTransDialog::CreateControls()
 
     textAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
-        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, wxFloatingPointValidator<double>());
+        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, calcValidator());
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
     toTextAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
-        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, wxFloatingPointValidator<double>());
+        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, calcValidator());
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
