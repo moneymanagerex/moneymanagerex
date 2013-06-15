@@ -753,10 +753,10 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
     /**********************************************************************************
      Stage 1
      For the account being viewed, we need to get:
-     1. All entries for the account to determine account balances. [ v_transPtr ]
+     1. All entries for the account to determine account balances. [ account_transPtr ]
      2. All entries for the account to be displayed.               [ m_trans    ]
     **********************************************************************************/
-    int numTransactions = 0;
+	int numTransactions = 0;
     std::vector<mmBankTransaction*> account_transPtr;
     for (const auto& pBankTransaction: core_->bTransactionList_.transactions_)
     {
@@ -831,16 +831,10 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
         visible_transPtr = m_trans;
     }
 
-    for (size_t i = 0; i < visible_transPtr.size(); ++i)
+    for (const auto& i : visible_transPtr)
     {
-        bool ok = visible_transPtr[i] != 0;
-        wxASSERT(ok);
-
-        if (!ok) continue;
-
-        mmBankTransaction* transPtr = visible_transPtr[i];
-        initBalance = getBalance( transPtr, initBalance);
-        setBalance( transPtr, initBalance);
+        initBalance = getBalance( i, initBalance);
+        setBalance( i, initBalance);
     }
 
     /**********************************************************************************
@@ -862,7 +856,7 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
     if (m_listCtrlAccount->m_selectedIndex > -1)
     {
         long i = 0;
-        for (const auto & pTrans : m_trans)
+        for (const auto & pTrans : visible_transPtr)
         {
             if (trans_id == pTrans->transactionID() && trans_id > 0) {
                 m_listCtrlAccount->m_selectedIndex = i;
@@ -878,6 +872,10 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
             m_listCtrlAccount->EnsureVisible(static_cast<long>(m_trans.size()) - 1);
         else
             m_listCtrlAccount->EnsureVisible(0);
+    }
+    else if (m_trans.size() > 0)
+    {
+        m_listCtrlAccount->EnsureVisible(m_listCtrlAccount->m_selectedIndex);
     }
     else
     {
@@ -1088,6 +1086,8 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     if (m_cp->m_listCtrlAccount->GetSelectedItemCount()>1)
         m_cp->btnEdit_->Enable(false);
 
+    //TODO: transaction id should be stored to provide proper line selection
+    //m_cp->m_listCtrlAccount->SetSelectedTransactionId(m_cp->m_listCtrlAccount->GetItem...);
 }
 //----------------------------------------------------------------------------
 
@@ -1255,7 +1255,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     {
         m_cp->core_->db_.get()->Begin();
 
-        for (size_t i = 0; i < m_cp->m_trans.size(); ++i)
+        for (size_t  i = 0; i < m_cp->m_trans.size(); ++i)
         {
             int transID = m_cp->m_trans[i]->transactionID();
             if (mmDBWrapper::updateTransactionWithStatus(*m_cp->getDb(), transID, status))
@@ -1286,9 +1286,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
 
     setColumnImage(m_sortCol, m_asc ? ICON_ASC : ICON_DESC);
 
-    m_cp->sortTable();
-    if (m_cp->m_trans.size() > 0)
-        RefreshItems(0, static_cast<long>(m_cp->m_trans.size()) - 1); // refresh everything
+    m_cp->initVirtualListControl();
 
     m_cp->core_->iniSettings_->SetIntSetting("CHECK_SORT_COL", g_sortcol);
 
