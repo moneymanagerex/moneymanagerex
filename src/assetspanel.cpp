@@ -20,7 +20,7 @@
 #include "constants.h"
 
 /*******************************************************/
-BEGIN_EVENT_TABLE(mmAssetsListCtrl, wxListCtrl)
+BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(IDC_PANEL_STOCKS_LISTCTRL,   mmAssetsListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(mmAssetsListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(mmAssetsListCtrl::OnMouseLeftClick)
@@ -40,9 +40,7 @@ END_EVENT_TABLE()
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent,
 const wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-: wxListCtrl(parent, id, pos, size, style)
-, m_attr1(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont)
-, m_attr2(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont)
+: mmListCtrl(parent, id, pos, size, style)
 , cp_(cp)
 , selectedIndex_(-1)
 {}
@@ -113,12 +111,6 @@ int mmAssetsListCtrl::OnGetItemImage(long item) const
     }
 
     return image_id;
-}
-
-wxListItemAttr* mmAssetsListCtrl::OnGetItemAttr(long item) const
-{
-    /* Returns the alternating background pattern */
-    return item % 2 ? (wxListItemAttr *)&m_attr2 : (wxListItemAttr *)&m_attr1;
 }
 
 void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)

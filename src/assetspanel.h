@@ -18,12 +18,11 @@
 #include "mmpanelbase.h"
 #include "db/assets.h"
 
-class wxListCtrl;
 class wxListEvent;
 class mmAssetsPanel;
 
 /* Custom ListCtrl class that implements virtual LC style */
-class mmAssetsListCtrl: public wxListCtrl
+class mmAssetsListCtrl: public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(mmAssetsListCtrl)
     DECLARE_EVENT_TABLE()
@@ -41,8 +40,6 @@ public:
     void doRefreshItems(int trx_id = -1);
 
 private:
-    wxListItemAttr m_attr1; // style1
-    wxListItemAttr m_attr2; // style2
     mmAssetsPanel* cp_;
     long selectedIndex_;
     int  m_selected_col;
@@ -51,7 +48,6 @@ private:
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
 
     void OnMouseRightClick(wxMouseEvent& event);
     void OnMouseLeftClick(wxMouseEvent& event);

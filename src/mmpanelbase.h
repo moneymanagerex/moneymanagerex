@@ -20,14 +20,42 @@
 #define _MM_EX_PANELBASE_H_
 
 #include "mmcoredb.h"
+#include "util.h"
+#include <wx/listctrl.h>
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
+class wxListItemAttr;
 
 struct mmHolderBase
 {
     int id_;
     wxString valueStr_;
     double value_;
+};
+
+class mmListCtrl: public wxListCtrl
+{
+public:
+    mmListCtrl(wxWindow *parent,
+                wxWindowID winid = wxID_ANY,
+                const wxPoint& pos = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize,
+                long style = wxLC_REPORT): wxListCtrl(parent, winid, pos, size, style)
+                , attr1_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont))
+                , attr2_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont))
+                {}
+    virtual ~mmListCtrl()
+    {
+        if (attr1_) delete attr1_;
+        if (attr2_) delete attr2_;
+    }
+public:
+    wxListItemAttr *attr1_, *attr2_; // style1
+public:
+    virtual wxListItemAttr* OnGetItemAttr(long row) const
+    {
+        return row % 2 ? attr2_ : attr1_;
+    }
 };
 
 class mmPanelBase : public wxPanel

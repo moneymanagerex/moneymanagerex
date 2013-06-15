@@ -23,12 +23,11 @@
 #include "guiid.h"
 #include <wx/tglbtn.h>
 
-class wxListCtrl;
 class wxListEvent;
 class mmStocksPanel;
 
 /* Custom ListCtrl class that implements virtual LC style */
-class StocksListCtrl: public wxListCtrl
+class StocksListCtrl: public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(StocksListCtrl)
     DECLARE_EVENT_TABLE()
@@ -41,7 +40,6 @@ public:
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
 
     void OnItemRightClick(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
@@ -63,8 +61,6 @@ public:
     long get_selectedIndex() {return selectedIndex_;}
 
 private:
-    wxListItemAttr attr1_; // style1
-    wxListItemAttr attr2_; // style2
     mmStocksPanel* cp_;
     long selectedIndex_;
     int  m_selected_col;

@@ -23,7 +23,7 @@
 #include "util.h"
 
 /*******************************************************/
-BEGIN_EVENT_TABLE(StocksListCtrl, wxListCtrl)
+BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(ID_PANEL_STOCKS_LISTCTRL,   StocksListCtrl::OnListItemActivated)
     EVT_LIST_ITEM_RIGHT_CLICK(ID_PANEL_STOCKS_LISTCTRL, StocksListCtrl::OnItemRightClick)
     EVT_LIST_ITEM_SELECTED(ID_PANEL_STOCKS_LISTCTRL,    StocksListCtrl::OnListItemSelected)
@@ -41,9 +41,7 @@ END_EVENT_TABLE()
 
 StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent,
 const wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-: wxListCtrl(parent, id, pos, size, style)
-, attr1_(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont)
-, attr2_(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont)
+: mmListCtrl(parent, id, pos, size, style)
 , cp_(cp)
 , selectedIndex_(-1)
 {}
@@ -96,12 +94,6 @@ int StocksListCtrl::OnGetItemImage(long item) const
     /* Returns the icon to be shown for each entry */
     if (cp_->trans_[item]->gainLoss_ > 0) return 0;
     return 1;
-}
-
-wxListItemAttr* StocksListCtrl::OnGetItemAttr(long item) const
-{
-    /* Returns the alternating background pattern */
-    return item % 2 ? (wxListItemAttr *)&attr2_ : (wxListItemAttr *)&attr1_;
 }
 
 void StocksListCtrl::OnListKeyDown(wxListEvent& event)

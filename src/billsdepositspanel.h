@@ -23,12 +23,11 @@
 #include "mmpanelbase.h"
 #include "util.h"
 
-class wxListCtrl;
 class wxListEvent;
 class mmBillsDepositsPanel;
 
 /* Custom ListCtrl class that implements virtual LC style */
-class billsDepositsListCtrl: public wxListCtrl
+class billsDepositsListCtrl: public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(billsDepositsListCtrl)
     DECLARE_EVENT_TABLE()
@@ -37,9 +36,7 @@ public:
     billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent,
         const wxWindowID id, const wxPoint& pos,
         const wxSize& size, long style)
-        : wxListCtrl(parent, id, pos, size, style),
-        attr1_(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont),
-        attr2_(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont),
+        : mmListCtrl(parent, id, pos, size, style),
         cp_(cp),
         selectedIndex_(-1)
     {}
@@ -54,7 +51,6 @@ private:
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
 
     void OnItemRightClick(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
@@ -67,8 +63,6 @@ private:
 
     void refreshVisualList(int selected_index = -1);
 
-    wxListItemAttr attr1_; // style1
-    wxListItemAttr attr2_; // style2
     mmBillsDepositsPanel* cp_;
     long selectedIndex_;
 };
