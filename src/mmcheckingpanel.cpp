@@ -382,6 +382,27 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
     }
     event.Skip();
 }
+
+//----------------------------------------------------------------------------
+
+void mmCheckingPanel::initVirtualListControl(int trans_id)
+{
+    //Initialization
+    core_->bTransactionList_.LoadAccountTransactions(m_AccountID);
+
+    filteredBalance_ = 0.0;
+    // clear everything
+    m_trans = core_->bTransactionList_.accountTransactions_;
+    m_listCtrlAccount->DeleteAllItems();
+
+    // decide whether top or down icon needs to be shown
+    m_listCtrlAccount->setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
+    sortTable();
+    m_listCtrlAccount->SetItemCount(m_trans.size());
+
+    setAccountSummary();
+}
+
 //----------------------------------------------------------------------------
 
 void mmCheckingPanel::CreateControls()
@@ -546,8 +567,38 @@ void mmCheckingPanel::CreateControls()
     //Show tips when no any transaction selected
     showTips();
 }
-//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
+void mmCheckingPanel::setAccountSummary()
+{
+    std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(m_AccountID);
+    //std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
+    //wxASSERT(pCurrency);
+    //pCurrency->loadCurrencySettings();
+
+    header_text_->SetLabel(wxString::Format(_("Account View : %s"), pAccount->name_));
+    double checking_bal = core_->bTransactionList_.getBalance(m_AccountID);
+    double reconciledBal = core_->bTransactionList_.getReconciledBalance(m_AccountID);
+    double acctInitBalance = core_->accountList_.GetAccountSharedPtr(m_AccountID)->initialBalance_;
+
+    bool show_displayed_balance_ = (transFilterActive_ || (currentView_ != VIEW_TRANS_ALL_STR));
+    wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);
+    header->SetLabel(CurrencyFormatter::float2Money(checking_bal + acctInitBalance));
+    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2);
+    header->SetLabel(CurrencyFormatter::float2Money(reconciledBal + acctInitBalance));
+    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3);
+    header->SetLabel(CurrencyFormatter::float2Money(checking_bal - reconciledBal));
+    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4);
+    header->SetLabel(show_displayed_balance_
+        ? _("Displayed Bal: ")
+        : "                                 ");
+    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5);
+    header->SetLabel(show_displayed_balance_
+        ? CurrencyFormatter::float2Money(filteredBalance_)
+        : "                                 ");
+}
+
+//----------------------------------------------------------------------------
 void mmCheckingPanel::enableEditDeleteButtons(bool en)
 {
     if (m_listCtrlAccount->GetSelectedItemCount()>1)
@@ -708,182 +759,6 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 void mmCheckingPanel::showTips()
 {
     info_panel_->SetLabel(Tips(TIPS_BANKS));
-}
-//----------------------------------------------------------------------------
-void mmCheckingPanel::setAccountSummary()
-{
-    double checking_bal = core_->bTransactionList_.getBalance(m_AccountID);
-    double reconciledBal = core_->bTransactionList_.getReconciledBalance(m_AccountID);
-    double acctInitBalance = core_->accountList_.GetAccountSharedPtr(m_AccountID)->initialBalance_;
-
-    bool show_displayed_balance_ = (transFilterActive_ || (currentView_ != VIEW_TRANS_ALL_STR));
-    wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);
-    header->SetLabel(CurrencyFormatter::float2Money(checking_bal + acctInitBalance));
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2);
-    header->SetLabel(CurrencyFormatter::float2Money(reconciledBal + acctInitBalance));
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3);
-    header->SetLabel(CurrencyFormatter::float2Money(checking_bal - reconciledBal));
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4);
-    header->SetLabel(show_displayed_balance_
-        ? _("Displayed Bal: ")
-        : "                                 ");
-    header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5);
-    header->SetLabel(show_displayed_balance_
-        ? CurrencyFormatter::float2Money(filteredBalance_)
-        : "                                 ");
-}
-//----------------------------------------------------------------------------
-
-void mmCheckingPanel::initVirtualListControl(int trans_id)
-{
-    // clear everything
-    m_trans.clear();
-    m_listCtrlAccount->DeleteAllItems();
-
-    std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(m_AccountID);
-    std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
-    wxASSERT(pCurrency);
-    pCurrency->loadCurrencySettings();
-
-    header_text_->SetLabel(wxString::Format(_("Account View : %s"), pAccount->name_));
-
-    filteredBalance_ = 0.0;
-
-    //TODO: Stages 1-4 go away to proper place (TTransactionList)
-    /**********************************************************************************
-     Stage 1
-     For the account being viewed, we need to get:
-     1. All entries for the account to determine account balances. [ account_transPtr ]
-     2. All entries for the account to be displayed.               [ m_trans    ]
-    **********************************************************************************/
-	int numTransactions = 0;
-    std::vector<mmBankTransaction*> account_transPtr;
-    for (const auto& pBankTransaction: core_->bTransactionList_.transactions_)
-    {
-        if (pBankTransaction->accountID_ != m_AccountID
-            && (pBankTransaction->toAccountID_ != m_AccountID
-            || pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR))
-            continue;
-
-        pBankTransaction->updateAllData(core_, m_AccountID, pCurrency);
-
-        // Store all account transactions to determine the balances.
-        account_transPtr.push_back(pBankTransaction.get());
-
-        bool toAdd = true;
-
-        if (transFilterActive_)
-        {
-            toAdd  = transFilterDlg_->somethingSelected();  // remove transaction from list and add if wanted.
-            if (transFilterDlg_->getAccountCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getAccountID() == pBankTransaction->toAccountID_);
-            if (transFilterDlg_->getDateRangeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getFromDateCtrl() <= pBankTransaction->date_ && transFilterDlg_->getToDateControl() >= pBankTransaction->date_);
-            if (transFilterDlg_->getPayeeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == pBankTransaction->payeeStr_);
-            if (transFilterDlg_->getCategoryCheckBox())
-                toAdd = toAdd && (pBankTransaction->containsCategory(transFilterDlg_->getCategoryID(),
-                    transFilterDlg_->getSubCategoryID(), transFilterDlg_->getSubCategoryID() < 0));
-            if (transFilterDlg_->getStatusCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getStatus() == pBankTransaction->status_);
-            if (transFilterDlg_->getTypeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getType().Contains(pBankTransaction->transType_));
-            if (transFilterDlg_->getAmountRangeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getAmountMin() <= pBankTransaction->amt_ && transFilterDlg_->getAmountMax() >= pBankTransaction->amt_);
-            if (transFilterDlg_->getNumberCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getNumber().Trim().Lower() == pBankTransaction->transNum_.Lower());
-            if (transFilterDlg_->getNotesCheckBox())
-                toAdd = toAdd && (pBankTransaction->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()));
-
-        }
-
-        if (toAdd)
-        {
-            ++numTransactions;
-            m_trans.push_back(pBankTransaction.get());
-
-            double transBal = 0.0;
-            transBal = getBalance( pBankTransaction.get(), transBal);
-            filteredBalance_ += transBal;
-        }
-    }
-
-    /**********************************************************************************
-     Stage 2
-     Sort all account transactions by date to, determine balances.
-    **********************************************************************************/
-    /*std::sort(account_transPtr.begin(), account_transPtr.end()
-        , [&] (const std::shared_ptr<mmBankTransaction>& i, const std::shared_ptr<mmBankTransaction>& j)
-        { return (i->date_ < j->date_); });*/
-
-    /**********************************************************************************
-     Stage 3
-     Add the account balances to all the transactions in this account.
-    **********************************************************************************/
-    double initBalance = pAccount->initialBalance_;
-    std::vector<mmBankTransaction*> visible_transPtr = account_transPtr;
-
-    // Depending on the view - will determine the treatment of balances.
-    if ( currentView_ == VIEW_TRANS_RECONCILED_STR     ||
-         currentView_ == VIEW_TRANS_NOT_RECONCILED_STR ||
-         currentView_ == VIEW_TRANS_UNRECONCILED_STR   )
-    {
-        visible_transPtr = m_trans;
-    }
-
-    for (const auto& i : visible_transPtr)
-    {
-        initBalance = getBalance( i, initBalance);
-        setBalance( i, initBalance);
-    }
-
-    /**********************************************************************************
-     Stage 4
-     Sort the list of visible transactions dependant on user preferences.
-    **********************************************************************************/
-
-    // decide whether top or down icon needs to be shown
-    m_listCtrlAccount->setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
-
-    sortTable();
-
-    m_listCtrlAccount->SetItemCount(numTransactions);
-
-    /**********************************************************************************
-     Stage 5
-     Find selected item and set focus to it.
-    **********************************************************************************/
-    if (m_listCtrlAccount->m_selectedIndex > -1)
-    {
-        long i = 0;
-        for (const auto & pTrans : visible_transPtr)
-        {
-            if (trans_id == pTrans->transactionID() && trans_id > 0) {
-                m_listCtrlAccount->m_selectedIndex = i;
-                break;
-            }
-            ++i;
-        }
-    }
-
-    if (m_trans.size() > 0 && m_listCtrlAccount->m_selectedIndex < 0)
-    {
-        if (g_asc)
-            m_listCtrlAccount->EnsureVisible(static_cast<long>(m_trans.size()) - 1);
-        else
-            m_listCtrlAccount->EnsureVisible(0);
-    }
-    else if (m_trans.size() > 0)
-    {
-        m_listCtrlAccount->EnsureVisible(m_listCtrlAccount->m_selectedIndex);
-    }
-    else
-    {
-        enableEditDeleteButtons(false);
-        showTips();
-    }
-
-    setAccountSummary();
 }
 //----------------------------------------------------------------------------
 
@@ -1457,11 +1332,10 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 
     bool useOriginalDate = m_cp->core_->iniSettings_->GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
-    std::shared_ptr<mmBankTransaction> pCopiedTrans =
+    mmBankTransaction* pCopiedTrans =
         m_cp->core_->bTransactionList_.copyTransaction(m_selectedForCopy, m_cp->m_AccountID, useOriginalDate);
 
     std::shared_ptr<mmCurrency> pCurrencyPtr = m_cp->core_->accountList_.getCurrencySharedPtr(m_cp->m_AccountID);
-    //pCopiedTrans->updateAllData(m_cp->core_, m_cp->m_AccountID, pCurrencyPtr, true);
     int transID = pCopiedTrans->transactionID();
     topItemIndex_ = m_selectedIndex;
     refreshVisualList(transID);
@@ -1653,7 +1527,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     int toAccountID = DestinationAccountID();
     if (toAccountID != -1)
     {
-        std::shared_ptr<mmBankTransaction> pTransaction;
+        mmBankTransaction* pTransaction;
         pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(
             m_cp->m_AccountID, m_cp->m_trans[m_selectedIndex]->transactionID()
         );

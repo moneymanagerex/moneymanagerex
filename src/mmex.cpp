@@ -829,7 +829,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 */
 //#define USING_NEW_DB_CLASSES   // Activation switch
 #ifdef USING_NEW_DB_CLASSES
-    
+
     /*  Use local list for testing.  Convert to global list in final version.
         For now, we only want to add new transactions.
     */
@@ -870,7 +870,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                         continueExecution = true;
                     }
                 }
-                
+
                 if (pBillEntry->autoExecuteManual_)
                 {
                     /*  TODO: Set up the transaction dialog to accept a TTransactionEntry
@@ -1007,8 +1007,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14))
             {
                 continueExecution = true;
-                std::shared_ptr<mmBankTransaction> pTransaction;
-                std::shared_ptr<mmBankTransaction> pTemp(new mmBankTransaction(m_core.get()->db_));
+                mmBankTransaction* pTransaction;
+                mmBankTransaction* pTemp(new mmBankTransaction(m_core.get()));
                 pTransaction = pTemp;
 
                 std::shared_ptr<mmCurrency> pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(th.accountID_);
@@ -1030,7 +1030,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 split->loadFromBDDB(m_core.get(),th.id_);
                 *pTransaction->splitEntries_.get() = *split.get();
 
-                pTransaction->updateAllData(m_core.get(), th.accountID_, pCurrencyPtr);
+                //pTransaction->updateAllData(m_core.get(), th.accountID_, pCurrencyPtr);
                 m_core.get()->bTransactionList_.addTransaction(pTransaction);
             }
             mmDBWrapper::completeBDInSeries(m_db.get(), th.id_);
@@ -1551,7 +1551,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     wxTreeItemId incexpOverTimeLastYear = navTreeCtrl_->AppendItem(incexpOverTime, _("Last Year"), 4, 4);
     navTreeCtrl_->SetItemData(incexpOverTimeLastYear
-        , new mmTreeItemData(wxTRANSLATE("Income vs Expenses - Last Year") 
+        , new mmTreeItemData(wxTRANSLATE("Income vs Expenses - Last Year")
         , new mmReportIncomeExpensesLastYear(m_core.get())));
 
     wxTreeItemId incexpOverTimeCurrentYear = navTreeCtrl_->AppendItem(incexpOverTime, _("Current Year"), 4, 4);

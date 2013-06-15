@@ -888,10 +888,10 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     if (status_obj) status = status_obj->GetData().Left(1);
     status.Replace("N", "");
 
-    std::shared_ptr<mmBankTransaction> pTransaction;
+    mmBankTransaction* pTransaction;
     if (!edit_)
     {
-        std::shared_ptr<mmBankTransaction> pTemp(new mmBankTransaction(core_->db_));
+        mmBankTransaction* pTemp(new mmBankTransaction(core_));
         pTransaction = pTemp;
     }
     else
@@ -916,7 +916,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     pTransaction->toAmt_ = toTransAmount_;
 
     *pTransaction->splitEntries_.get() = *split_.get();
-    pTransaction->updateAllData(core_, newAccountID_, pCurrencyPtr, true);
+    //pTransaction->updateAllData(core_, newAccountID_, pCurrencyPtr, true);
 
     if (!edit_)
     {

@@ -748,7 +748,7 @@ int mmQIFImportDialog::mmImportQIF()
             bTrxComplited = true;
             if (!bValid) continue;
 
-            std::shared_ptr<mmBankTransaction> pTransaction(new mmBankTransaction(core_->db_));
+            std::shared_ptr<mmBankTransaction> pTransaction(new mmBankTransaction(core_));
             pTransaction->date_ = dtdt;
             pTransaction->accountID_ = from_account_id;
             pTransaction->toAccountID_ = to_account_id;
@@ -765,34 +765,33 @@ int mmQIFImportDialog::mmImportQIF()
 
             std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(from_account_id);
             wxASSERT(pCurrencyPtr);
-            pTransaction->updateAllData(core_, from_account_id, pCurrencyPtr, true);
+            //pTransaction->updateAllData(core_, from_account_id, pCurrencyPtr, true);
 
             //For any transfer transaction always mirrored transaction present
             //Just take alternate amount and skip it
             if (type == TRANS_TYPE_TRANSFER_STR)
             {
-                std::vector<std::shared_ptr<mmBankTransaction> >& refTrans = vQIF_trxs;
-                for (unsigned int index = 0; index < vQIF_trxs.size(); index++)
+                for (const auto& refTrans : vQIF_trxs)
                 {
-                    if (refTrans[index]->transType_ != TRANS_TYPE_TRANSFER_STR) continue;
-                    if (refTrans[index]->status_ == "D") continue;
-                    if (refTrans[index]->date_!= dtdt) continue;
-                    if (((refTrans[index]->amt_ < 0) && (val < 0)) || ((refTrans[index]->amt_ > 0) && (val >0))) continue;
-                    if (refTrans[index]->accountID_!= from_account_id) continue;
-                    if (refTrans[index]->transNum_ != transNum) continue;
-                    if (refTrans[index]->notes_ != notes) continue;
+                    if (refTrans->transType_ != TRANS_TYPE_TRANSFER_STR) continue;
+                    if (refTrans->status_ == "D") continue;
+                    if (refTrans->date_!= dtdt) continue;
+                    if (((refTrans->amt_ < 0) && (val < 0)) || ((refTrans->amt_ > 0) && (val >0))) continue;
+                    if (refTrans->accountID_!= from_account_id) continue;
+                    if (refTrans->transNum_ != transNum) continue;
+                    if (refTrans->notes_ != notes) continue;
 
                     if (val > 0.0)
-                        refTrans[index]->toAmt_ = val;
+                        refTrans->toAmt_ = val;
                     else
-                        refTrans[index]->amt_ = val;
-                    refTrans[index]->status_ = "D";
+                        refTrans->amt_ = val;
+                    refTrans->status_ = "D";
 
-                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans[index]->amt_
-                        , refTrans[index]->toAmt_
-                        , (fabs(refTrans[index]->amt_)/fabs(refTrans[index]->toAmt_)<1)
-                            ? fabs(refTrans[index]->toAmt_)/fabs(refTrans[index]->amt_)
-                            : fabs(refTrans[index]->amt_)/fabs(refTrans[index]->toAmt_));
+                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->amt_
+                        , refTrans->toAmt_
+                        , (fabs(refTrans->amt_)/fabs(refTrans->toAmt_)<1)
+                            ? fabs(refTrans->toAmt_)/fabs(refTrans->amt_)
+                            : fabs(refTrans->amt_)/fabs(refTrans->toAmt_));
                     logWindow->AppendText(sMsg);
 
                     bValid = false;
@@ -816,23 +815,21 @@ int mmQIFImportDialog::mmImportQIF()
     {
         core_->db_.get()->Begin();
 
-        std::vector<std::shared_ptr<mmBankTransaction> >& refTrans = vQIF_trxs;
-
         //TODO: Update transfer transactions toAmount
 
-        for (unsigned int index = 0; index < vQIF_trxs.size(); index++)
+        for (const auto& refTrans : vQIF_trxs)
         {
-            //fromAccountID = refTrans[index]->accountID_;
+            //fromAccountID = refTrans->accountID_;
             std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
             wxASSERT(pCurrencyPtr);
-            refTrans[index]->amt_ = fabs(refTrans[index]->amt_);
-            refTrans[index]->toAmt_ = fabs(refTrans[index]->toAmt_);
-            refTrans[index]->updateAllData(core_, fromAccountID, pCurrencyPtr);
-            if (!core_->bTransactionList_.checkForExistingTransaction(refTrans[index]))
-                refTrans[index]->status_ = "F";
+            refTrans->amt_ = fabs(refTrans->amt_);
+            refTrans->toAmt_ = fabs(refTrans->toAmt_);
+            //refTrans->updateAllData(core_, fromAccountID, pCurrencyPtr);
+            if (!core_->bTransactionList_.checkForExistingTransaction(refTrans.get()))
+                refTrans->status_ = "F";
             else
-                refTrans[index]->status_ = "D";
-            core_->bTransactionList_.addTransaction(refTrans[index]);
+                refTrans->status_ = "D";
+            core_->bTransactionList_.addTransaction(refTrans.get());
         }
 
         core_->db_.get()->Commit();

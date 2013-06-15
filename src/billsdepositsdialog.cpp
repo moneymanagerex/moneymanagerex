@@ -1064,8 +1064,8 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         // repeats now hold extra info. Need to get repeats from dialog selection
         if ( (itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (numRepeats > 0) )
         {
-            std::shared_ptr<mmBankTransaction> pTransaction;
-            std::shared_ptr<mmBankTransaction> pTemp(new mmBankTransaction(core_->db_));
+            mmBankTransaction* pTransaction;
+            mmBankTransaction* pTemp(new mmBankTransaction(core_));
             pTransaction = pTemp;
 
             std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
@@ -1084,7 +1084,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             pTransaction->toAmt_ = toTransAmount_;
 
             *pTransaction->splitEntries_.get() = *split_.get();
-            pTransaction->updateAllData(core_, fromAccountID, pCurrencyPtr);
+            //pTransaction->updateAllData(core_, fromAccountID, pCurrencyPtr);
             core_->bTransactionList_.addTransaction(pTransaction);
         }
         mmDBWrapper::completeBDInSeries(core_->db_.get(), bdID_);

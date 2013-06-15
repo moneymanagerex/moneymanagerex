@@ -410,9 +410,8 @@ void mmQIFExportDialog::mmExportQIF()
 
             buffer << writeAccHeader(fromAccountID, qif_csv);
 
-            for (size_t i = 0; i < core_->bTransactionList_.transactions_.size(); ++i)
+            for (const auto& pBankTransaction : core_->bTransactionList_.transactions_)
             {
-                std::shared_ptr<mmBankTransaction> pBankTransaction = core_->bTransactionList_.transactions_[i];
                 if ((pBankTransaction->accountID_ != fromAccountID) && (pBankTransaction->toAccountID_ != fromAccountID))
                    continue;
 

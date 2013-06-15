@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -37,7 +37,7 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_I
     {
         throw wxSQLite3Exception(WXSQLITE_ERROR, "Null pointer to database");
     }
-    
+
     // Create a global listing for info settings.
     dbInfoSettings_.reset(new MMEX_IniSettings(db, true));
     currencyList_.SetInfoTable(dbInfoSettings_);
@@ -47,13 +47,13 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_I
     {
         dbInfoSettings_->SetStringSetting("MMEXVERSION", mmex::getProgramVersion());
         dbInfoSettings_->SetStringSetting("DATAVERSION", mmex::DATAVERSION);
-		dbInfoSettings_->SetStringSetting("CREATEDATE", wxDateTime::Now().FormatISODate());
+        dbInfoSettings_->SetStringSetting("CREATEDATE", wxDateTime::Now().FormatISODate());
         dbInfoSettings_->SetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
         dbInfoSettings_->Save();
     }
     mmOptions::instance().loadOptions(dbInfoSettings_.get());
 
-    /* Create the appropriate tables first if required */ 
+    /* Create the appropriate tables first if required */
     mmDBWrapper::initDB(db_.get());
 
     /* Load the DB into memory */
@@ -61,6 +61,6 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_I
     categoryList_.LoadCategories();             // populate categoryList_
     payeeList_.LoadPayees();                    // populate payeeList_
     accountList_.LoadAccounts(currencyList_);   // populate accountList_
-    bTransactionList_.LoadTransactions(this);   // populate bTransactionList_
+    bTransactionList_.LoadTransactions();   // populate bTransactionList_
 }
 //----------------------------------------------------------------------------

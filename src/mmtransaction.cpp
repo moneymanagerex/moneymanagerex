@@ -27,7 +27,7 @@ void mmSplitTransactionEntries::addSplit(std::shared_ptr<mmSplitTransactionEntry
 }
 
 double mmSplitTransactionEntries::getTotalSplits() const
-{ 
+{
     double total = 0.0;
     for (const auto& tran: this->entries_)
         total += tran->splitAmount_;
@@ -110,9 +110,9 @@ void mmSplitTransactionEntries::loadFromBDDB(mmCoreDB* core, int bdID)
     st.Finalize();
 }
 //-----------------------------------------------------------------------------//
-mmBankTransaction::mmBankTransaction(std::shared_ptr<wxSQLite3Database> db) :
+mmBankTransaction::mmBankTransaction(mmCoreDB* core) :
     mmTransaction(-1),
-    db_(db),
+    core_(core),
     isInited_(false),
     updateRequired_(false)
 {
@@ -121,7 +121,7 @@ mmBankTransaction::mmBankTransaction(std::shared_ptr<wxSQLite3Database> db) :
 
 mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
 : mmTransaction(q1.GetInt("TRANSID")),
-                db_(core->db_),
+                core_(core),
                 isInited_(false),
                 updateRequired_(false)
 {
@@ -143,8 +143,6 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
 
     splitEntries_ = std::shared_ptr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
     getSplitTransactions(splitEntries_.get());
-
-    updateAllData(core, accountID_, pCurrencyPtr);
 }
 
 bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
@@ -154,16 +152,15 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
     return this->transactionID_ < tran.transactionID_;
 }
 
-void mmBankTransaction::updateAllData(mmCoreDB* core
-    , int accountID, std::shared_ptr<mmCurrency> currencyPtr
-    , bool forceUpdate )
+void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 {
+    if (isInited_) return;
+
     deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
     withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
-    if ((isInited_) && (transType_ != TRANS_TYPE_TRANSFER_STR) && !forceUpdate) return;
 
     /* Load the Account Currency Settings for Formatting Strings */
-    currencyPtr->loadCurrencySettings();
+    //**//currencyPtr->loadCurrencySettings();
 
     dateStr_ = mmGetDateForDisplay(date_);
     transAmtString_ = CurrencyFormatter::float2String(amt_);
@@ -178,14 +175,14 @@ void mmBankTransaction::updateAllData(mmCoreDB* core
         // needed to correct possible crash if database becomes corrupt.
         if (!payee_)
         {
-            if (core->displayDatabaseError_)
+            if (core_->displayDatabaseError_)
             {
                 wxString errMsg = _("Payee not found in database for Account: ");
-                errMsg << core->accountList_.GetAccountName(accountID_)
+                errMsg << core_->accountList_.GetAccountName(accountID_)
                     << "\n\n"
                     << _("Subsequent errors not displayed.");
                 wxMessageBox(errMsg,_("MMEX DATABASE ERROR"), wxOK|wxICON_ERROR);
-                core->displayDatabaseError_ = false;
+                core_->displayDatabaseError_ = false;
             }
             payeeID_  = -1;
             payeeStr_ = "Payee Error";
@@ -205,20 +202,26 @@ void mmBankTransaction::updateAllData(mmCoreDB* core
     if (transType_ == TRANS_TYPE_DEPOSIT_STR)
     {
         depositStr_ = transAmtString_;
+        balance += amt_;
+        balance_ = balance;
     }
     else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
     {
         withdrawalStr_ = transToAmtString_;
+        balance -= amt_;
+        balance_ = balance;
     }
     else if (transType_ == TRANS_TYPE_TRANSFER_STR)
     {
-        wxString fromAccount = core->accountList_.GetAccountName(accountID_);
-        wxString toAccount = core->accountList_.GetAccountName(toAccountID_);
+        wxString fromAccount = core_->accountList_.GetAccountName(accountID_);
+        wxString toAccount = core_->accountList_.GetAccountName(toAccountID_);
 
         if (accountID_ == accountID)
         {
             withdrawalStr_ = transAmtString_;
             withdrawal_amt_ = amt_;
+            balance -= amt_;
+            balance_ = balance;
             deposit_amt_ = -amt_;
             payeeStr_      = toAccount;
         }
@@ -228,19 +231,21 @@ void mmBankTransaction::updateAllData(mmCoreDB* core
             payeeStr_   = fromAccount;
             deposit_amt_ = toAmt_;
             withdrawal_amt_ = -toAmt_;
+            balance += amt_;
+            balance_ = balance;
         }
     }
 
-    fromAccountStr_ = core->accountList_.GetAccountName(accountID_);
+    fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
 
     std::shared_ptr<mmCategory> pCategory = category_;
     if (!pCategory && !splitEntries_->numEntries())
     {
         // If category is missing, we mark is as unknown
-        int categID = core->categoryList_.GetCategoryId("Unknown");
-        if (categID == -1) categID = core->categoryList_.AddCategory("Unknown");
+        int categID = core_->categoryList_.GetCategoryId("Unknown");
+        if (categID == -1) categID = core_->categoryList_.AddCategory("Unknown");
 
-        category_ = core->categoryList_.GetCategorySharedPtr(categID, -1);
+        category_ = core_->categoryList_.GetCategorySharedPtr(categID, -1);
         pCategory = category_;
         wxASSERT(pCategory);
         updateRequired_ = true;
@@ -255,7 +260,7 @@ void mmBankTransaction::updateAllData(mmCoreDB* core
             subCatStr_ = pCategory->categName_;
             categID_ = parent->categID_;
             subcategID_ = pCategory->categID_;
-            fullCatStr_ = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
+            fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
         }
         else
         {
@@ -272,7 +277,7 @@ void mmBankTransaction::updateAllData(mmCoreDB* core
         subcategID_ = -1;
         catStr_= "";
         subCatStr_ = "";
-        fullCatStr_= core->categoryList_.GetFullCategoryString(
+        fullCatStr_= core_->categoryList_.GetFullCategoryString(
             splitEntries_->entries_[0]->categID_, splitEntries_->entries_[0]->subCategID_);
     }
     else if (splitEntries_->numEntries() > 1)
@@ -283,8 +288,9 @@ void mmBankTransaction::updateAllData(mmCoreDB* core
         catStr_= "";
         subCatStr_ = "";
     }
+    balanceStr_ = CurrencyFormatter::float2String(balance_);
 
-   isInited_ = true;
+    isInited_ = true;
 }
 
 double mmBankTransaction::value(int accountID) const
@@ -312,7 +318,7 @@ void mmBankTransaction::getSplitTransactions(mmSplitTransactionEntries* splits) 
 {
     splits->entries_.clear();
 
-    wxSQLite3Statement st = db_->PrepareStatement(SELECT_ROW_FROM_SPLITTRANSACTIONS_V1);
+    wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_ROW_FROM_SPLITTRANSACTIONS_V1);
     st.Bind(1, transactionID());
 
     wxSQLite3ResultSet q1 = st.ExecuteQuery();
@@ -391,7 +397,7 @@ mmBankTransactionList::mmBankTransactionList(mmCoreDB* core)
    transactions_.reserve(5000);
 }
 
-int mmBankTransactionList::addTransaction(std::shared_ptr<mmBankTransaction> pBankTransaction)
+int mmBankTransactionList::addTransaction(mmBankTransaction* pBankTransaction)
 {
     if (checkForExistingTransaction(pBankTransaction))
     {
@@ -434,7 +440,7 @@ int mmBankTransactionList::addTransaction(std::shared_ptr<mmBankTransaction> pBa
     return pBankTransaction->transactionID();
 }
 
-bool mmBankTransactionList::checkForExistingTransaction(std::shared_ptr<mmBankTransaction> pBankTransaction)
+bool mmBankTransactionList::checkForExistingTransaction(mmBankTransaction* pBankTransaction)
 {
     bool found = false;
 
@@ -464,7 +470,7 @@ bool mmBankTransactionList::checkForExistingTransaction(std::shared_ptr<mmBankTr
         {
             mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
 
-            std::shared_ptr<mmBankTransaction> pTempTransaction = getBankTransactionPtr(transactionID);
+            mmBankTransaction* pTempTransaction = getBankTransactionPtr(transactionID);
             mmSplitTransactionEntries* temp_splits = pTempTransaction->splitEntries_.get();
 
             if (splits->entries_.size() != temp_splits->entries_.size())
@@ -487,14 +493,14 @@ bool mmBankTransactionList::checkForExistingTransaction(std::shared_ptr<mmBankTr
     return found;
 }
 
-std::shared_ptr<mmBankTransaction> mmBankTransactionList::copyTransaction(
+mmBankTransaction* mmBankTransactionList::copyTransaction(
    const long transactionID, const long accountID, const bool useOriginalDate)
 {
-    std::shared_ptr<mmBankTransaction> pBankTransaction = getBankTransactionPtr(transactionID);
+    mmBankTransaction* pBankTransaction = getBankTransactionPtr(transactionID);
     if (!pBankTransaction)
-       return std::shared_ptr<mmBankTransaction>();
+       return NULL;
 
-    std::shared_ptr<mmBankTransaction> pCopyTransaction(new mmBankTransaction(core_->db_));
+    mmBankTransaction* pCopyTransaction(new mmBankTransaction(core_));
 
     if (pBankTransaction->transType_!=TRANS_TYPE_TRANSFER_STR)
         pCopyTransaction->accountID_ = accountID;
@@ -558,58 +564,69 @@ std::shared_ptr<mmBankTransaction> mmBankTransactionList::copyTransaction(
     return pCopyTransaction;
 }
 
-std::shared_ptr<mmBankTransaction> mmBankTransactionList::getBankTransactionPtr(int accountID, int transactionID) const
+mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int accountID, int transactionID) const
 {
-    for (const_iterator i = transactions_.begin(); i!= transactions_.end(); ++i)
+    for (auto const& pBankTransaction : transactions_)
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
-        if (pBankTransaction)
+        if (((pBankTransaction->accountID_ == accountID) ||
+           (pBankTransaction->toAccountID_ == accountID))
+           && (pBankTransaction->transactionID() == transactionID))
         {
-            if (((pBankTransaction->accountID_ == accountID) ||
-               (pBankTransaction->toAccountID_ == accountID))
-               && (pBankTransaction->transactionID() == transactionID))
-            {
-                return pBankTransaction;
-            }
+            return pBankTransaction;
         }
     }
     // didn't find the transaction
     wxASSERT(false);
-    return std::shared_ptr<mmBankTransaction> ();
+    return NULL;
 }
 
-std::shared_ptr<mmBankTransaction> mmBankTransactionList::getBankTransactionPtr(int transactionID) const
+mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int transactionID) const
 {
-    for (const_iterator i = transactions_.begin(); i!= transactions_.end(); ++i)
+    for (auto const& pBankTransaction : transactions_)
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
-        if (pBankTransaction)
+
+        if (pBankTransaction->transactionID() == transactionID)
         {
-            if (pBankTransaction->transactionID() == transactionID)
-            {
-                return pBankTransaction;
-            }
+            return pBankTransaction;
         }
     }
     // didn't find the transaction
     wxASSERT(false);
-    return std::shared_ptr<mmBankTransaction> ();
+    return NULL;
 }
 
-void mmBankTransactionList::LoadTransactions(mmCoreDB* core)
+void mmBankTransactionList::LoadTransactions()
 {
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CHECKINGACCOUNT_V1);
 
     while (q1.NextRow())
     {
-        std::shared_ptr<mmBankTransaction> pAccountTransaction(new mmBankTransaction(core, q1));
-        transactions_.push_back(pAccountTransaction);
+        mmBankTransaction* pTransaction(new mmBankTransaction(core_, q1));
+        transactions_.push_back(pTransaction);
     }
 
     q1.Finalize();
 }
 
-void mmBankTransactionList::UpdateTransaction(std::shared_ptr<mmBankTransaction> pBankTransaction)
+void mmBankTransactionList::LoadAccountTransactions(int accountID)
+{
+    accountTransactions_.clear();
+    std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
+    double balance = pAccount->initialBalance_;
+    for (const auto& pBankTransaction: transactions_)
+    {
+        if (pBankTransaction->accountID_ != accountID
+            && (pBankTransaction->toAccountID_ != accountID
+            || pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR))
+            continue;
+        //TODO: Calculate balance here
+        pBankTransaction->updateTransactionData(accountID, balance);
+
+        accountTransactions_.push_back(pBankTransaction);
+    }
+}
+
+void mmBankTransactionList::UpdateTransaction(mmBankTransaction* pBankTransaction)
 {
     if (pBankTransaction->transType_ == TRANS_TYPE_TRANSFER_STR)
         pBankTransaction->payeeID_ = -1;
@@ -644,9 +661,8 @@ void mmBankTransactionList::UpdateTransaction(std::shared_ptr<mmBankTransaction>
 void mmBankTransactionList::UpdateAllTransactions()
 {
     // We need to update all transactions incase of errors when loading
-    for (const_iterator i = transactions_.begin(); i != transactions_.end(); ++i)
+    for (auto const& pBankTransaction : transactions_)
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
         if (pBankTransaction && pBankTransaction->updateRequired_)
         {
            UpdateTransaction(pBankTransaction);
@@ -659,9 +675,8 @@ void mmBankTransactionList::UpdateAllTransactionsForCategory(int categID,
                                                              int subCategID)
 {
     // We need to update all transactions incase of errors when loading
-    for (const_iterator i = transactions_.begin(); i != transactions_.end(); ++i)
+    for (auto const& pBankTransaction : transactions_)
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
         if (pBankTransaction && (pBankTransaction->categID_ == categID)
             && (pBankTransaction->subcategID_ == subCategID))
         {
@@ -690,9 +705,8 @@ void mmBankTransactionList::UpdateAllTransactionsForCategory(int categID,
 int mmBankTransactionList::UpdateAllTransactionsForPayee(int payeeID)
 {
     // We need to update all transactions incase of errors when loading
-    for (const_iterator i = transactions_.begin(); i != transactions_.end(); ++i)
+    for (auto const& pBankTransaction : transactions_)
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
         if (pBankTransaction && (pBankTransaction->payeeID_ == payeeID))
         {
             pBankTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID);
@@ -889,10 +903,8 @@ wxDateTime mmBankTransactionList::getLastDate(int accountID) const
     wxDateTime dt(wxDateTime::Now().Subtract(wxDateSpan::Years(20)));
     bool same_initial_date = true;
 
-    for (const_iterator i = transactions_.begin(); i != transactions_.end(); ++i)
+    for (auto const& pBankTransaction : transactions_)
     {
-        const std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
-
         if (pBankTransaction)
         {
             if (accountID != -1)
@@ -925,27 +937,20 @@ int mmBankTransactionList::getLastUsedCategoryID(int accountID
 {
     int categ_id = -1;
     subcategID = -1;
-    int index = transactions_.size() - 1;
-    bool searching = true;
 
-    while (searching && index >= 0)
+    for (const auto& pTransaction : transactions_)
     {
-        const std::shared_ptr<mmBankTransaction> pTransaction = transactions_[index];
-        if (pTransaction)
+        if ((pTransaction->accountID_ == accountID || pTransaction->toAccountID_ == accountID)
+            && pTransaction->transType_ == sType
+            && pTransaction->payeeID_ == payeeID)
         {
-            if ((pTransaction->accountID_ == accountID || pTransaction->toAccountID_ == accountID)
-                && pTransaction->transType_ == sType
-                && pTransaction->payeeID_ == payeeID)
+            categ_id = pTransaction->categID_;
+            if (categ_id > -1)
             {
-                categ_id = pTransaction->categID_;
-                if (categ_id > -1)
-                {
-                    subcategID = pTransaction->subcategID_;
-                    searching = false;
-                }
+                subcategID = pTransaction->subcategID_;
+                break;
             }
         }
-        index --;
     }
     return categ_id;
 }
@@ -953,23 +958,17 @@ int mmBankTransactionList::getLastUsedCategoryID(int accountID
 int mmBankTransactionList::getLastUsedPayeeID(int accountID, const wxString& sType, int& categID, int& subcategID) const
 {
     int payee_id = -1;
-    int index = transactions_.size() - 1;
-    bool searching = true;
-    while (searching && index >= 0)
+
+    for (const auto& pBankTransaction : transactions_)
     {
-        const std::shared_ptr<mmBankTransaction> pBankTransaction = transactions_[index];
-        if (pBankTransaction)
+        if (pBankTransaction->accountID_ == accountID
+            && pBankTransaction->transType_ == sType)
         {
-            if (pBankTransaction->accountID_ == accountID
-                && pBankTransaction->transType_ == sType)
-            {
-                payee_id   = pBankTransaction->payeeID_;
-                categID    = pBankTransaction->categID_;
-                subcategID = pBankTransaction->subcategID_;
-                searching = false;
-            }
+            payee_id   = pBankTransaction->payeeID_;
+            categID    = pBankTransaction->categID_;
+            subcategID = pBankTransaction->subcategID_;
+            break;
         }
-        index --;
     }
 
     return payee_id;
@@ -1155,10 +1154,10 @@ int mmBankTransactionList::countFollowupTransactions() const
 /** removes the transaction from memory */
 bool mmBankTransactionList::removeTransaction(int accountID, int transactionID)
 {
-    std::vector< std::shared_ptr<mmBankTransaction> >::iterator i;
+    std::vector<mmBankTransaction* >::iterator i;
     for (i = transactions_.begin(); i!= transactions_.end(); ++i)
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
+        mmBankTransaction* pBankTransaction = *i;
         if (pBankTransaction)
         {
             if ((pBankTransaction->accountID_ == accountID) || (pBankTransaction->toAccountID_ == accountID))
@@ -1189,19 +1188,12 @@ bool mmBankTransactionList::deleteTransaction(int accountID, int transactionID)
 
 void mmBankTransactionList::deleteTransactions(int accountID)
 {
-    std::vector< std::shared_ptr<mmBankTransaction> >::iterator i;
-    for (i = transactions_.begin(); i!= transactions_.end(); )
+    for (const auto& pBankTransaction : transactions_ )
     {
-        std::shared_ptr<mmBankTransaction> pBankTransaction = *i;
-        if (pBankTransaction)
+        if ((pBankTransaction->accountID_ == accountID) ||
+            (pBankTransaction->toAccountID_ == accountID))
         {
-            if ((pBankTransaction->accountID_ == accountID) ||
-                (pBankTransaction->toAccountID_ == accountID))
-            {
-                i = transactions_.erase(i);
-            }
-            else
-                ++i;
+            transactions_.clear();
         }
     }
 }
@@ -1311,42 +1303,35 @@ void mmBankTransactionList::ChangeDateFormat()
 
 bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat) const
 {
-    int index = transactions_.size() - 1;
     double sum = 0;
     bool bTrxUsed = false;
 
-    std::shared_ptr<mmBankTransaction> pBankTransaction;
-    while (index >= 0)
+    for (const auto& pBankTransaction : transactions_)
     {
-        pBankTransaction = transactions_[index];
-        if (pBankTransaction)
+        if ((pBankTransaction->categID_ == iCatID)
+            && (bIgnor_subcat ? true : pBankTransaction->subcategID_== iSubCatID))
         {
-            if ((pBankTransaction->categID_ == iCatID)
-                && (bIgnor_subcat ? true : pBankTransaction->subcategID_== iSubCatID))
+            bTrxUsed = true;
+            if (pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR)
+                sum += pBankTransaction->amt_;
+            else
+                sum -= pBankTransaction->amt_;
+        }
+
+        mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
+
+        for (int i = 0; i < (int)splits->entries_.size(); ++i)
+        {
+            if (splits->entries_[i]->categID_==iCatID && splits->entries_[i]->subCategID_==iSubCatID)
             {
                 bTrxUsed = true;
-                if (pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR)
-                    sum += pBankTransaction->amt_;
+                if ((pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR && splits->entries_[i]->splitAmount_ > 0)
+                    || (pBankTransaction->transType_ == TRANS_TYPE_WITHDRAWAL_STR && splits->entries_[i]->splitAmount_ < 0))
+                    sum += fabs(splits->entries_[i]->splitAmount_);
                 else
-                    sum -= pBankTransaction->amt_;
-            }
-
-            mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
-
-            for (int i = 0; i < (int)splits->entries_.size(); ++i)
-            {
-                if (splits->entries_[i]->categID_==iCatID && splits->entries_[i]->subCategID_==iSubCatID)
-                {
-                    bTrxUsed = true;
-                    if ((pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR && splits->entries_[i]->splitAmount_ > 0)
-                        || (pBankTransaction->transType_ == TRANS_TYPE_WITHDRAWAL_STR && splits->entries_[i]->splitAmount_ < 0))
-                        sum += fabs(splits->entries_[i]->splitAmount_);
-                    else
-                        sum -= fabs(splits->entries_[i]->splitAmount_);
-                }
+                    sum -= fabs(splits->entries_[i]->splitAmount_);
             }
         }
-        index --;
     }
     bIncome = sum > 0;
     return bTrxUsed;
@@ -1354,17 +1339,13 @@ bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bInc
 
 bool mmBankTransactionList::IsPayeeUsed(int iPayeeID) const
 {
-    int index = transactions_.size() - 1;
     bool searching = false;
-    std::shared_ptr<mmBankTransaction> pBankTransaction;
-    while (!searching && index >= 0)
+    for (const auto& pBankTransaction : transactions_)
     {
-        pBankTransaction = transactions_[index];
-        if (pBankTransaction && (pBankTransaction->payeeID_ == iPayeeID))
+        if (pBankTransaction->payeeID_ == iPayeeID)
         {
-            searching = true;
+            return true;
         }
-        index --;
     }
     return searching;
 }

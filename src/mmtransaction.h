@@ -76,20 +76,17 @@ class mmBankTransaction : public mmTransaction
 {
 public:
     mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1);
-    mmBankTransaction(std::shared_ptr<wxSQLite3Database> db);
+    mmBankTransaction(mmCoreDB* core);
     virtual ~mmBankTransaction() {}
     bool operator < (const mmBankTransaction& tran) const;
     bool containsCategory(int categID, int subcategID, bool ignoreSubCateg = false) const;
     double getAmountForSplit(int categID, int subcategID) const;
 
     double value(int accountID) const;
-    void updateAllData(mmCoreDB* core,
-        int accountID,
-        std::shared_ptr<mmCurrency> currencyPtr,
-        bool forceUpdate=false);
+    void updateTransactionData(int accountID, double& balance);
 
     void getSplitTransactions(mmSplitTransactionEntries* splits) const;
-    std::shared_ptr<wxSQLite3Database> db_;
+    mmCoreDB* core_;
 
     /* Core Data */
     wxDateTime date_;
@@ -147,18 +144,19 @@ public:
     mmBankTransactionList(mmCoreDB* core);
     ~mmBankTransactionList() {}
 
-    std::shared_ptr<mmBankTransaction> getBankTransactionPtr(int accountID, int transactionID) const;
-    std::shared_ptr<mmBankTransaction> getBankTransactionPtr(int transactionID) const;
-    int addTransaction(std::shared_ptr<mmBankTransaction> pTransaction);
-    bool checkForExistingTransaction(std::shared_ptr<mmBankTransaction> pTransaction);
-    std::shared_ptr<mmBankTransaction> copyTransaction(/*mmCoreDB* pCore,*/
+    mmBankTransaction* getBankTransactionPtr(int accountID, int transactionID) const;
+    mmBankTransaction* getBankTransactionPtr(int transactionID) const;
+    int addTransaction(mmBankTransaction* pTransaction);
+    bool checkForExistingTransaction(mmBankTransaction* pTransaction);
+    mmBankTransaction* copyTransaction(/*mmCoreDB* pCore,*/
        const long transactionID, const long accountID, const bool useOriginalDate);
 
     /// Loads database primary Transactions into memory.
-    void LoadTransactions(mmCoreDB* core);
+    void LoadTransactions();
+    void LoadAccountTransactions(int accountID);
 
     /* Update Transactions */
-    void UpdateTransaction(std::shared_ptr<mmBankTransaction> pTransaction);
+    void UpdateTransaction(mmBankTransaction* pTransaction);
     void UpdateAllTransactions();
     void UpdateAllTransactionsForCategory(int categID, int subCategID);
     int UpdateAllTransactionsForPayee(int payeeID);
@@ -201,8 +199,9 @@ public:
     bool IsPayeeUsed(int iPayeeID) const;
 
     /* Data */
-    typedef std::vector< std::shared_ptr<mmBankTransaction> >::const_iterator const_iterator;
-    std::vector< std::shared_ptr<mmBankTransaction> > transactions_;
+    //typedef std::vector< std::shared_ptr<mmBankTransaction> >::const_iterator const_iterator;
+    std::vector<mmBankTransaction*> transactions_;
+    std::vector<mmBankTransaction*> accountTransactions_;
 
 private:
     mmCoreDB* core_;

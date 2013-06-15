@@ -698,7 +698,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                wxString status = "F";
                int toAccountID = -1;
 
-               std::shared_ptr<mmBankTransaction> pTransaction(new mmBankTransaction(core_->db_));
+               mmBankTransaction* pTransaction(new mmBankTransaction(core_));
                pTransaction->accountID_ = fromAccountID_;
                pTransaction->toAccountID_ = toAccountID;
                pTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
@@ -710,7 +710,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                pTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID_, subCategID_);
                pTransaction->date_ = dtdt_;
                pTransaction->toAmt_ = 0.0;
-               pTransaction->updateAllData(core_, fromAccountID_, pCurrencyPtr);
+               //pTransaction->updateAllData(core_, fromAccountID_, pCurrencyPtr);
 
                int transID = core_->bTransactionList_.addTransaction(pTransaction);
                CSV_transID.push_back(transID);
@@ -974,11 +974,8 @@ void mmUnivCSVDialog::update_preview()
             int row = 0;
             wxString delimit = this->delimit_;
 
-            for(std::vector< std::shared_ptr<mmBankTransaction> >::const_iterator it = core_->bTransactionList_.transactions_.begin();
-                it != core_->bTransactionList_.transactions_.end();
-                ++ it)
+            for(const auto& pBankTransaction : core_->bTransactionList_.transactions_)
             {
-                const mmBankTransaction* pBankTransaction = it->get();
                 if (pBankTransaction && (pBankTransaction->accountID_ == fromAccountID
                     || pBankTransaction->toAccountID_ == fromAccountID))
                 {
