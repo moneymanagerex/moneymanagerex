@@ -181,7 +181,7 @@ void CustomReportIndex::SetNewCurrentFileValues()
         currentReportFileType_ = "";
 }
 
-wxString CustomReportIndex::GetUserTitleSelection(wxString description)
+wxString CustomReportIndex::GetUserTitleSelection(const wxString& description)
 {
     wxArrayString reportTitles;
     wxArrayString reportFileNames;
@@ -219,7 +219,7 @@ wxString CustomReportIndex::GetUserTitleSelection(wxString description)
     return wxString() << "Custom_Report_" << selectionIndex;
 }
 
-bool CustomReportIndex::GetSelectedTitleSelection(wxString titleIndex)
+bool CustomReportIndex::GetSelectedTitleSelection(const wxString& titleIndex)
 {
     long index;
     wxStringTokenizer tk(titleIndex, "_"); // get the 3rd token 'Custom_Report_xx'
@@ -245,7 +245,7 @@ bool CustomReportIndex::GetSelectedTitleSelection(wxString titleIndex)
     return true;
 }
 
-void CustomReportIndex::AddReportTitle(wxString reportTitle, bool updateIndex, wxString ReportFileName, bool isSub)
+void CustomReportIndex::AddReportTitle(const wxString& reportTitle, bool updateIndex, const wxString& ReportFileName, bool isSub)
 {
     if (!reportTitle.IsEmpty())
     {

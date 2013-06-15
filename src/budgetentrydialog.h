@@ -37,7 +37,7 @@ public:
     mmBudgetEntryDialog();
     mmBudgetEntryDialog(mmCoreDB* core, 
         int budgetYearID, int categID, int subcategID, 
-        wxString categoryEstimate, wxString CategoryActual,
+        const wxString& categoryEstimate, const wxString& CategoryActual,
         wxWindow* parent, wxWindowID id = SYMBOL_BUDGETENTRYDIALOG_IDNAME, 
         const wxString& caption = SYMBOL_BUDGETENTRYDIALOG_TITLE, 
         const wxPoint& pos = SYMBOL_BUDGETENTRYDIALOG_POSITION, 

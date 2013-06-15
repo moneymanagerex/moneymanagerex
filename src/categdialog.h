@@ -65,7 +65,7 @@ public:
         const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
         long style = SYMBOL_CATEGDIALOG_STYLE );
 
-    void setTreeSelection(wxString catName, wxString subCatName);
+    void setTreeSelection(const wxString& catName, const wxString& subCatName);
     int getCategId() {return categID_;}
     int getSubCategId() {return subcategID_;}
     bool getExpandStatus() {return cbExpand_->IsChecked();}
@@ -90,7 +90,7 @@ private:
     wxTreeItemId selectedItemId_;
     wxTextCtrl* textCtrl_;
     wxTreeItemId root_;
-    wxTreeItemId getTreeItemFor(wxTreeItemId itemID, wxString itemText);
+    wxTreeItemId getTreeItemFor(wxTreeItemId itemID, const wxString& itemText);
     wxButton* addButton_;
     wxButton* editButton_;
     wxButton* selectButton_;

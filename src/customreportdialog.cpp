@@ -45,7 +45,7 @@ BEGIN_EVENT_TABLE( mmCustomSQLDialog, wxDialog )
     EVT_TIMER(wxID_ANY, mmCustomSQLDialog::ShowCursorCoordinates)
 END_EVENT_TABLE()
 
-mmCustomSQLDialog::mmCustomSQLDialog(CustomReportIndex* reportIndex, wxString customSqlReportSelectedItem, wxWindow* parent,
+mmCustomSQLDialog::mmCustomSQLDialog(CustomReportIndex* reportIndex, const wxString& customSqlReportSelectedItem, wxWindow* parent,
                                      wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
 : reportIndex_(reportIndex)
 , tcSourceTxtCtrl_()

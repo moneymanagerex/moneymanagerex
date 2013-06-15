@@ -50,7 +50,7 @@ const char SELECT_INFO_RECORD[] = "select * from INFOTABLE_V1";
  ****************************************************************************/
 MMEX_IniRecord::MMEX_IniRecord(std::shared_ptr<wxSQLite3Database> ini_db
     , bool main_db
-    , wxString name)
+    , const wxString& name)
 : iniDb_(ini_db)
 , main_db_(main_db)
 , settingId_(-1)

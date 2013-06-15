@@ -29,9 +29,6 @@
 class RecentDatabaseFiles
 {
 public:
-    // This constructor is for a more generic use of this class
-    //RecentDatabaseFiles(std::shared_ptr<MMEX_IniSettings> pIniSettings, int listSize, wxString dbIndexName);
-    
     // This constructor is for recent files list
     RecentDatabaseFiles(std::shared_ptr<MMEX_IniSettings> pIniSettings, wxMenu *menuRecentFiles);
     ~RecentDatabaseFiles();

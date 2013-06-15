@@ -442,7 +442,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     treeCtrl_->SetItemText(selectedItemId_, text);
 }
 
-wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, wxString itemText)
+wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& itemText)
 {
     wxTreeItemIdValue treeDummyValue;
 
@@ -458,7 +458,7 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, wxString itemTex
     return catID;
 }
 
-void mmCategDialog::setTreeSelection(wxString catName, wxString subCatName)
+void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& subCatName)
 {
     if ( !catName.IsEmpty() )
     {

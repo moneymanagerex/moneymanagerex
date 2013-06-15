@@ -86,7 +86,7 @@ bool mmOptionsDialog::Create(
     return TRUE;
 }
 
-wxArrayString mmOptionsDialog::viewAccountStrings(bool translated, wxString input_string, int& row_id_)
+wxArrayString mmOptionsDialog::viewAccountStrings(bool translated, const wxString& input_string, int& row_id_)
 {
     wxArrayString itemChoiceViewAccountStrings;
 

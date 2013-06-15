@@ -38,7 +38,7 @@ public:
     /// Create a new record setting.
     MMEX_IniRecord(std::shared_ptr<wxSQLite3Database> ini_db
         , bool main_db
-        , wxString name);
+        , const wxString& name);
 
     /// Create an existing record setting.
     MMEX_IniRecord(std::shared_ptr<wxSQLite3Database> ini_db

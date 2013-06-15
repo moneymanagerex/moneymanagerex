@@ -950,7 +950,7 @@ int mmBankTransactionList::getLastUsedCategoryID(int accountID
     return categ_id;
 }
 
-int mmBankTransactionList::getLastUsedPayeeID(int accountID, wxString sType, int& categID, int& subcategID) const
+int mmBankTransactionList::getLastUsedPayeeID(int accountID, const wxString& sType, int& categID, int& subcategID) const
 {
     int payee_id = -1;
     int index = transactions_.size() - 1;

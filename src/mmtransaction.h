@@ -195,7 +195,7 @@ public:
     double getReconciledBalance(int accountID, bool ignoreFuture = false) const;
     int countFollowupTransactions() const;
     int getLastUsedCategoryID(int accountID, int payeeID, const wxString sType, int& subcategID) const;
-    int getLastUsedPayeeID(int accountID, wxString sType, int& categID, int& subcategID) const;
+    int getLastUsedPayeeID(int accountID, const wxString& sType, int& categID, int& subcategID) const;
     wxArrayString getTransactionNumber(int accountID, const wxDateTime transaction_date) const;
     bool IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat = true) const;
     bool IsPayeeUsed(int iPayeeID) const;

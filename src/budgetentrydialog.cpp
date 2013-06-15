@@ -42,7 +42,7 @@ mmBudgetEntryDialog::mmBudgetEntryDialog( )
 
 mmBudgetEntryDialog::mmBudgetEntryDialog( mmCoreDB* core,
                                          int budgetYearID, int categID, int subcategID,
-                                         wxString categoryEstimate, wxString CategoryActual,
+                                         const wxString& categoryEstimate, const wxString& CategoryActual,
                                          wxWindow* parent, 
                                          wxWindowID id, const wxString& caption, 
                                          const wxPoint& pos, const wxSize& size, long style )

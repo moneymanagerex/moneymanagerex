@@ -39,7 +39,7 @@ public:
     mmCustomSQLDialog( ) {}
     virtual ~mmCustomSQLDialog();
 
-    mmCustomSQLDialog(CustomReportIndex* reportIndex, wxString customSqlReportSelectedItem, wxWindow* parent,
+    mmCustomSQLDialog(CustomReportIndex* reportIndex, const wxString& customSqlReportSelectedItem, wxWindow* parent,
         wxWindowID id           = wxID_ANY,
         const wxString& caption = SYMBOL_CUSTOMSQLDIALOG_TITLE,
         const wxPoint& pos      = SYMBOL_CUSTOMSQLDIALOG_POSITION,
