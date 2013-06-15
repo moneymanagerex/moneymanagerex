@@ -22,6 +22,7 @@
 #include "mmCurrencyFormatter.h"
 #include "defs.h"
 #include "paths.h"
+#include "validators.h"
 
 #include <wx/combobox.h>
 #include <wx/valnum.h>
@@ -210,15 +211,13 @@ void mmCurrencyDialog::CreateControls()
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Scale")), flags);
     scaleTx_ = new wxTextCtrl( this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize
-        , wxALIGN_RIGHT|wxTE_PROCESS_ENTER , wxIntegerValidator<unsigned int>() );
+        , wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator4() );
     itemFlexGridSizer3->Add(scaleTx_, flagsExpand);
 
-    wxFloatingPointValidator<double> validator(4, &convRate_ , wxNUM_VAL_NO_TRAILING_ZEROES );
-    validator.SetRange(0, 10000);
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Conversion to Base Rate")), flags);
     baseConvRate_ = new wxTextCtrl( this, ID_DIALOG_CURRENCY_TEXT_BASECONVRATE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , validator );
+        , mmDoubleValidator4() );
     itemFlexGridSizer3->Add(baseConvRate_, flagsExpand);
     baseConvRate_ ->SetToolTip(_("Other currency conversion rate. Set Base Currency to 1."));
 

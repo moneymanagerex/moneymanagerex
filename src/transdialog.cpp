@@ -146,9 +146,9 @@ void mmTransDialog::dataToControls()
         toTransAmount_ = pBankTransaction_->toAmt_;
         advancedToTransAmountSet_ = (transAmount_ != toTransAmount_);
 
-		dispAmount = CurrencyFormatter::float2String(transAmount_);
+        dispAmount = CurrencyFormatter::float2String(transAmount_);
         textAmount_->SetValue(dispAmount);
-		dispAmount = CurrencyFormatter::float2String(toTransAmount_);
+        dispAmount = CurrencyFormatter::float2String(toTransAmount_);
         toTextAmount_->SetValue(dispAmount);
     }
     else
@@ -390,13 +390,13 @@ void mmTransDialog::CreateControls()
 
     textAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
-        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, calcValidator());
+        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
     toTextAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
-        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, calcValidator());
+        wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
@@ -678,7 +678,7 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
         toTransAmount_ = transAmount_;
     }
 
-	amountStr = CurrencyFormatter::float2String(toTransAmount_);
+    amountStr = CurrencyFormatter::float2String(toTransAmount_);
     toTextAmount_->SetValue(amountStr);
 
     SetTransferControls();
@@ -979,7 +979,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
             }
             split_->removeSplitByIndex(0);
         }
-		wxString dispAmount = CurrencyFormatter::float2String(transAmount_);
+        wxString dispAmount = CurrencyFormatter::float2String(transAmount_);
         textAmount_->SetValue(dispAmount);
     }
     SetSplitState();
@@ -1111,7 +1111,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
         double amount = split_->getTotalSplits();
         if (transaction_type_->GetSelection() == DEF_TRANSFER && amount < 0)
             amount = - amount;
-		wxString dispAmount = CurrencyFormatter::float2String(amount);
+        wxString dispAmount = CurrencyFormatter::float2String(amount);
         textAmount_->SetValue(dispAmount);
     }
 }

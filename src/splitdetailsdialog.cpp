@@ -15,6 +15,7 @@
 #include "util.h"
 #include "mmCurrencyFormatter.h"
 #include "constants.h"
+#include "validators.h"
 
 #include <wx/valnum.h>
 
@@ -123,7 +124,7 @@ void SplitDetailDialog::CreateControls()
 
     textAmount_ = new wxTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
         , wxDefaultPosition, wxSize(110,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , wxFloatingPointValidator<double>());
+        , mmDoubleValidator2());
     controlSizer->Add(textAmount_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     wxStaticText* staticTextCategory = new wxStaticText( itemPanel7, wxID_STATIC, _("Category"));

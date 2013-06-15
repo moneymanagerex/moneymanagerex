@@ -135,8 +135,9 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW|wxALL, 5);
 
+    //TODO:provide proper style and fix validator (does not working)
     currencyListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxSize(-1, 200), -1, calcValidator());
+        , wxID_ANY, wxDefaultPosition, wxSize(-1, 200), -1, mmDoubleValidator4());
 
     currencyListBox_ ->AppendToggleColumn( ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30 );
     currencyListBox_ ->AppendTextColumn( ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60);

@@ -20,6 +20,7 @@
 #include "mmCurrencyFormatter.h"
 #include "categdialog.h"
 #include "paths.h"
+#include "validators.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
@@ -266,10 +267,12 @@ void mmFilterTransactionsDialog::CreateControls()
                                           wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(amountRangeCheckBox_, flags);
 
-    amountMinEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, "",
-        wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER , wxFloatingPointValidator<double>() );
-    amountMaxEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, "",
-        wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER , wxFloatingPointValidator<double>() );
+    amountMinEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, ""
+        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
+        , mmDoubleValidator2() );
+    amountMaxEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, ""
+        , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
+        , mmDoubleValidator2() );
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, flagsExpand);
