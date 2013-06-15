@@ -1398,14 +1398,12 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     mmBankTransaction *tr = ok ? m_cp->m_trans[idx] : 0;
     bool in_the_future = tr && tr->date_.GetDateOnly() > wxDateTime::Now().GetDateOnly();
 
-    TransactionListCtrl &self = *const_cast<TransactionListCtrl*>(this);
-
     if (in_the_future) // apply alternating background pattern
     {
-        return item % 2 ? &self.m_attr3 : &self.m_attr4;
+        return item % 2 ? (wxListItemAttr*)&m_attr3 : (wxListItemAttr*)&m_attr4;
     }
 
-    return item % 2 ? &self.m_attr1 : &self.m_attr2;
+    return item % 2 ? (wxListItemAttr*)&m_attr1 : (wxListItemAttr*)&m_attr2;
 
 }
 //----------------------------------------------------------------------------
