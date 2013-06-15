@@ -659,40 +659,10 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
                 if (categID_ == -1)
                 {
-                   std::shared_ptr<mmPayee> pPayee =  core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+                   mmPayee* pPayee =  core_->payeeList_.GetPayeeSharedPtr(payeeID_);
 
                    categID_ = pPayee->categoryId_;
                    subCategID_ = pPayee->subcategoryId_;
-
-                   // TODO: Test functionality
-                   // Category pointer removed from payee. Not sure what this code is trying to achieved here.
-
-                   //std::shared_ptr<mmCategory> pCategory = pPayee->category_;
-                   //if (!pCategory)
-                   //{
-                   //    subCategID_ = -1;
-                   //    wxString categ = "Unknown";
-
-                   //    categID_ = core_->categoryList_.GetCategoryId(categ);
-                   //    if (categID_ == -1)
-                   //    {
-                   //        categID_ =  core_->categoryList_.AddCategory(categ);
-                   //    }
-                   //}
-                   //else
-                   //{
-                   //    if (pCategory->parent_)
-                   //    {
-                   //        categID_ = pCategory->parent_->categID_;
-                   //        subCategID_ = pCategory->categID_;
-                   //    }
-                   //    else
-                   //    {
-                   //        categID_ = pCategory->categID_;
-                   //        subCategID_ = -1;
-                   //    }
-                   //}
-
                 }
 
                wxString status = "F";

@@ -85,17 +85,16 @@ wxString mmPayeeList::GetPayeeName(int id) const
     return wxEmptyString;
 }
 
-std::shared_ptr<mmPayee> mmPayeeList::GetPayeeSharedPtr(int payeeID)
+mmPayee* mmPayeeList::GetPayeeSharedPtr(int payeeID)
 {
-    int numPayees = (int)entries_.size();
-    for (int idx = 0; idx < numPayees; idx++)
+    for (const auto& entry : entries_)
     {
-        if (entries_[idx]->id_ == payeeID)
+        if (entry->id_ == payeeID)
         {
-           return entries_[idx];
+           return entry;
         }
     }
-    return std::shared_ptr<mmPayee>();
+    return NULL;
 }
 
 wxArrayString mmPayeeList::FilterPayees(const wxString& patt) const
@@ -117,7 +116,7 @@ void mmPayeeList::LoadPayees()
     entries_.clear();
     while (q1.NextRow())
     {
-        std::shared_ptr<mmPayee> pPayee(new mmPayee(q1));
+        mmPayee* pPayee(new mmPayee(q1));
         entries_.push_back(pPayee);
     }
 
@@ -161,7 +160,7 @@ int mmPayeeList::AddPayee(const wxString &payeeName)
 
 int mmPayeeList::UpdatePayee(int payeeID, const wxString& payeeName)
 {
-    std::shared_ptr<mmPayee> pPayee = GetPayeeSharedPtr(payeeID);
+    mmPayee* pPayee = GetPayeeSharedPtr(payeeID);
     if (!payeeName.IsEmpty()) pPayee->name_ = payeeName;
     std::vector<wxString> data;
     data.push_back(pPayee->name_);

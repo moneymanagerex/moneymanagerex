@@ -91,8 +91,8 @@ public:
     /* Core Data */
     wxDateTime date_;
 
-    std::shared_ptr<mmCategory> category_;
-    std::shared_ptr<mmPayee> payee_;
+    mmCategory* category_;
+    mmPayee* payee_;
 
     wxString transNum_;
     wxString status_;

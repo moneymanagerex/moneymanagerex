@@ -190,7 +190,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         }
         else
         {
-            std::shared_ptr<mmPayee> pPayee = payee_;
+            mmPayee* pPayee = payee_;
             wxASSERT(pPayee);
             payeeStr_ = pPayee->name_;
             payeeID_ = pPayee->id_;
@@ -238,7 +238,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 
     fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
 
-    std::shared_ptr<mmCategory> pCategory = category_;
+    mmCategory* pCategory = category_;
     if (!pCategory && !splitEntries_->numEntries())
     {
         // If category is missing, we mark is as unknown
@@ -253,7 +253,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 
     if (pCategory)
     {
-        std::shared_ptr<mmCategory> parent = pCategory->parent_;
+        mmCategory* parent = pCategory->parent_;
         if (parent)
         {
             catStr_ = parent->categName_;
@@ -399,18 +399,21 @@ mmBankTransactionList::mmBankTransactionList(mmCoreDB* core)
 
 int mmBankTransactionList::addTransaction(mmBankTransaction* pBankTransaction)
 {
+    mmBankTransaction &r = *pBankTransaction;
     if (checkForExistingTransaction(pBankTransaction))
     {
-       pBankTransaction->status_ = "D";
+       r.status_ = "D";
     }
 
-    if(core_->payeeList_.PayeeExists(pBankTransaction->payeeID_) == false)
+    if (!core_->payeeList_.PayeeExists(r.payeeID_)
+        && r.transType_ != TRANS_TYPE_TRANSFER_STR)
     {
-       pBankTransaction->payeeID_ = -1;
+        wxASSERT(false);
+        if (!core_->payeeList_.PayeeExists(_("Unknown")))
+            r.payeeID_ = core_->payeeList_.AddPayee(_("Unknown"));
     }
-
+    wxLogDebug(wxString::Format("Payee: %s, Category: %s", r.payeeStr_, r.fullCatStr_));
     wxSQLite3Statement st = core_->db_.get()->PrepareStatement(INSERT_INTO_CHECKINGACCOUNT_V1);
-    mmBankTransaction &r = *pBankTransaction;
 
     int i = 0;
     st.Bind(++i, r.accountID_);
@@ -681,9 +684,9 @@ void mmBankTransactionList::UpdateAllTransactionsForCategory(int categID,
             && (pBankTransaction->subcategID_ == subCategID))
         {
             pBankTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID, subCategID);
-            std::shared_ptr<mmCategory> pCategory = pBankTransaction->category_;
+            mmCategory* pCategory = pBankTransaction->category_;
 
-            std::shared_ptr<mmCategory> parent = pCategory->parent_;
+            mmCategory* parent = pCategory->parent_;
             if (parent)
             {
                 pBankTransaction->catStr_ = parent->categName_;
@@ -712,7 +715,7 @@ int mmBankTransactionList::UpdateAllTransactionsForPayee(int payeeID)
             pBankTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID);
             if (pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR)
             {
-                std::shared_ptr<mmPayee> pPayee = pBankTransaction->payee_;
+                mmPayee* pPayee = pBankTransaction->payee_;
                 wxASSERT(pPayee);
                 pBankTransaction->payeeStr_ = pPayee->name_;
                 pBankTransaction->payeeID_ = pPayee->id_;

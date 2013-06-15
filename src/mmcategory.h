@@ -38,8 +38,8 @@ public:
     /* Public Data */
     int categID_;
     wxString categName_;
-    std::shared_ptr<mmCategory> parent_;
-    std::vector<std::shared_ptr<mmCategory> > children_;
+    mmCategory* parent_;
+    std::vector<mmCategory* > children_;
 };
 
 class mmCategoryList
@@ -61,7 +61,7 @@ public:
     bool CategoryExists(const wxString& categoryName) const;
     bool GetCategoryLikeString(wxString& str, int& categID, int& subcategID);
 
-    std::shared_ptr<mmCategory> GetCategorySharedPtr(int category, int subcategory) const;
+    mmCategory* GetCategorySharedPtr(int category, int subcategory) const;
     int GetSubCategoryID(int parentID, const wxString& subCategoryName) const;
 
     void LoadCategories();
@@ -73,8 +73,8 @@ public:
     bool UpdateCategory(int categID, int subCategID, const wxString& text);
 
     /* Public Data */
-    std::vector< std::shared_ptr<mmCategory> > entries_;
-    typedef std::vector< std::shared_ptr<mmCategory> >::const_iterator const_iterator;
+    std::vector< mmCategory* > entries_;
+    //typedef std::vector< mmCategory* >::const_iterator const_iterator;
 
 private:
     mmCoreDB* core_;

@@ -621,7 +621,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
             if (split_->numEntries())
                 return;
 
-            std::shared_ptr<mmPayee> pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+            mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
             bPayee_->SetLabel(pPayee->name_);
             payeeUnknown_ = false;
 
@@ -1213,7 +1213,7 @@ void mmBDDialog::SetNewDate(wxDatePickerCtrl* dpc, bool forward)
     int day = -1;
     if (forward) day = 1;
 
-	wxDateTime date = dpc->GetValue().Add(wxDateSpan::Days(day));
+    wxDateTime date = dpc->GetValue().Add(wxDateSpan::Days(day));
 
     dpc_->SetValue( date );
     dpcbd_->SetValue( date );

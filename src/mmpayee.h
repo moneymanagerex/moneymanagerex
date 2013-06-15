@@ -52,14 +52,10 @@ public:
     bool PayeeExists(int payeeid) const;
     int GetPayeeId(const wxString& payeeName) const;
     wxString GetPayeeName(int id) const;
-    std::shared_ptr<mmPayee> GetPayeeSharedPtr(int payeeID);
+    mmPayee* GetPayeeSharedPtr(int payeeID);
     wxArrayString FilterPayees(const wxString& patt) const;
 
-    std::vector< std::shared_ptr<mmPayee> > entries_;
-    int Num() const
-    {
-        return entries_.size();
-    }
+    std::vector< mmPayee* > entries_;
 
     /// Loads database Payees into memory
     void LoadPayees();

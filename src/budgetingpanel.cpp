@@ -363,12 +363,8 @@ void mmBudgetingPanel::initVirtualListControl()
             trans_.push_back(th);
         }
 
-        for (std::vector<std::shared_ptr<mmCategory> >::const_iterator cit =  category->children_.begin();
-                cit != category->children_.end();
-                ++ cit)
+        for (const auto& sub_category : category->children_)
         {
-            const std::shared_ptr<mmCategory> sub_category = *cit;
-
             mmBudgetEntryHolder thsub;
             budgetDetails.initBudgetEntryFields(thsub, budgetYearID_);
             thsub.categID_ = th.categID_;

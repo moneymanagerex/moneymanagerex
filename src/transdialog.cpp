@@ -575,7 +575,7 @@ void mmTransDialog::OnPayee(wxCommandEvent& /*event*/)
             return;
         }
 
-        std::shared_ptr<mmPayee> pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+        mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
         cbPayee_->SetValue(pPayee->name_);
         payeeUnknown_ = false;
 
@@ -845,7 +845,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             wxMessageDialog msgDlg( this
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
                 , _("Confirm to add new payee")
-                , wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
+                , wxYES_NO | wxYES_DEFAULT | wxICON_EXCLAMATION);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 payeeID_ = core_->payeeList_.AddPayee(payee_name);
@@ -854,7 +854,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
                 return;
         }
     }
-
+    wxLogDebug(wxString::Format("Payee added. ID:%i : Name: %s", payeeID_, core_->payeeList_.GetPayeeName(payeeID_)));
     int toAccountID = -1;
 
     if (bTransfer)
@@ -872,7 +872,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     else
     {
         // save the category used for this payee to allow automatic category fill at user request.
-        std::shared_ptr<mmPayee> pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+        mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
         pPayee->categoryId_ = categID_;
         pPayee->subcategoryId_ = subcategID_;
         core_->payeeList_.UpdatePayee(payeeID_, "");
@@ -906,17 +906,21 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     pTransaction->accountID_ = newAccountID_;
     pTransaction->toAccountID_ = toAccountID;
     pTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+    pTransaction->payeeID_ = payeeID_;
     pTransaction->transType_ = sTransaction_type_;
     pTransaction->amt_ = transAmount_;
     pTransaction->status_ = status;
     pTransaction->transNum_ = transNum;
     pTransaction->notes_ = notes;
     pTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID_, subcategID_);
+    pTransaction->categID_ = categID_;
+    pTransaction->subcategID_ = subcategID_;
     pTransaction->date_ = dpc_->GetValue();
     pTransaction->toAmt_ = toTransAmount_;
 
     *pTransaction->splitEntries_.get() = *split_.get();
-    //pTransaction->updateAllData(core_, newAccountID_, pCurrencyPtr, true);
+    //double balance = 0;
+    //pTransaction->updateTransactionData(newAccountID_, balance);
 
     if (!edit_)
     {
