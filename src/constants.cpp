@@ -33,9 +33,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 const wxString MMEX_REVISION_ID = "$Rev$";
 //---------------------------------------------------------------------------
 const int mmex::MIN_DATAVERSION = 2;
-const wxChar * const mmex::DATAVERSION = wxT("2");
-const wxChar *const mmex::DEFDATEFORMAT = wxT("%m/%d/%y");
-const wxChar *const mmex::DEFDELIMTER = wxT(",");
+const wxString mmex::DATAVERSION = "2";
+const wxString mmex::DEFDATEFORMAT = "%m/%d/%y";
+const wxString mmex::DEFDELIMTER = ",";
 
 // Using google: To specify the exchange, use exch:code
 // Using yahoo: To specify the exchange, use code.exch

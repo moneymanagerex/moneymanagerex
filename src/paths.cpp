@@ -29,21 +29,21 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 namespace
 {
 
-inline const wxChar* getSettingsFileName()
+inline const wxString getSettingsFileName()
 {
-    return wxT("mmexini.db3");
+    return "mmexini.db3";
 }
 //----------------------------------------------------------------------------
 
-inline const wxChar* getCustomReportIndexFilename()
+inline const wxString getCustomReportIndexFilename()
 {
-    return wxT("CustomReportIndex.txt");
+    return "CustomReportIndex.txt";
 }
 //----------------------------------------------------------------------------
 
-inline const wxChar* getDirectory()
+inline const wxString getDirectory()
 {
-    return wxT("");
+    return "";
 }
 //----------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ wxFileName mmex::GetLogDir(bool create)
     {
         fname = GetUserDir(create);
         //FIXME: file not found ERROR
-        //fname.AppendDir(wxT("logs"));
+        //fname.AppendDir("logs");
     }
 
     return fname;
@@ -120,21 +120,20 @@ bool mmex::isPortableMode()
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::getPathDoc(EDocFile f)
+wxString mmex::getPathDoc(const EDocFile& f)
 {
-    static const wxChar* files[DOC_FILES_MAX] = {
-      wxT("README.TXT"),
-      wxT("contrib.txt"),
-      wxT("license.txt"),
-      wxT("version.txt"),
-      wxT("help/index.html"),
-      wxT("help/custom_reports.html"),
-      wxT("help/investment.html"),
-      wxT("help/budget.html"),
+    static const wxString files[DOC_FILES_MAX] = {
+      "README.TXT",
+      "contrib.txt",
+      "license.txt",
+      "version.txt",
+      "help/index.html",
+      "help/custom_reports.html",
+      "help/investment.html",
+      "help/budget.html",
     };
 
     wxASSERT(f >= 0 && f < DOC_FILES_MAX);
-    wxASSERT(files[f]);
 
     wxString path = GetDocDir().GetPath();
     path += wxFileName::GetPathSeparator();
@@ -146,14 +145,13 @@ wxString mmex::getPathDoc(EDocFile f)
 
 wxString mmex::getPathResource(EResFile f)
 {
-    static const wxChar* files[RES_FILES_MAX] = {
-      wxT("mmex.ico"),
-      wxT("kaching.wav"),
-      wxT("currency_seed.csv")
+    static const wxString files[RES_FILES_MAX] = {
+      "mmex.ico",
+      "kaching.wav",
+      "currency_seed.csv"
     };
 
     wxASSERT(f >= 0 && f < RES_FILES_MAX);
-    wxASSERT(files[f]);
 
     wxFileName fname = GetResourceDir();
     fname.SetFullName(files[f]);
@@ -164,12 +162,11 @@ wxString mmex::getPathResource(EResFile f)
 
 wxString mmex::getPathShared(ESharedFile f)
 {
-    static const wxChar* files[SHARED_FILES_MAX] = {
-      wxT("po")
+    static const wxString files[SHARED_FILES_MAX] = {
+      "po"
     };
 
     wxASSERT(f >= 0 && f < SHARED_FILES_MAX);
-    wxASSERT(files[f]);
 
     wxFileName fname = GetSharedDir();
     fname.SetFullName(files[f]);
@@ -187,7 +184,6 @@ wxString mmex::getPathUser(EUserFile f)
     };
 
     wxASSERT(f >= 0 && f < USER_FILES_MAX);
-    wxASSERT(files[f]);
 
     wxFileName fname = GetUserDir(true);
     fname.SetFullName(files[f]);

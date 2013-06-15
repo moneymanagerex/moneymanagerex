@@ -39,10 +39,10 @@ class wxString;
 namespace mmex
 {
 extern const int MIN_DATAVERSION;
-extern const wxChar * const DATAVERSION;
+extern const wxString DATAVERSION;
 
-extern const wxChar *const DEFDATEFORMAT;
-extern const wxChar *const DEFDELIMTER;
+extern const wxString DEFDATEFORMAT;
+extern const wxString DEFDELIMTER;
 extern const wxString DEFSTOCKURL;
 
 /*
