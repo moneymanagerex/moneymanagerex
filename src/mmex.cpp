@@ -1007,31 +1007,28 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14))
             {
                 continueExecution = true;
-                mmBankTransaction* pTransaction;
-                mmBankTransaction* pTemp(new mmBankTransaction(m_core.get()));
-                pTransaction = pTemp;
+                mmBankTransaction tran(m_core.get());
 
                 std::shared_ptr<mmCurrency> pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(th.accountID_);
                 wxASSERT(pCurrencyPtr);
 
-                pTransaction->accountID_ = th.accountID_;
-                pTransaction->toAccountID_ = th.toAccountID_;
-                pTransaction->payee_ = m_core.get()->payeeList_.GetPayeeSharedPtr(th.payeeID_);
-                pTransaction->transType_ = th.transType_;
-                pTransaction->amt_ = th.amt_;
-                pTransaction->status_ = q1.GetString("STATUS");
-                pTransaction->transNum_ = q1.GetString("TRANSACTIONNUMBER");
-                pTransaction->notes_ = th.notes_;
-                pTransaction->category_ = m_core.get()->categoryList_.GetCategorySharedPtr(th.categID_, th.subcategID_);
-                pTransaction->date_ = th.nextOccurDate_;
-                pTransaction->toAmt_ = th.toAmt_;
+                tran.accountID_ = th.accountID_;
+                tran.toAccountID_ = th.toAccountID_;
+                tran.payee_ = m_core.get()->payeeList_.GetPayeeSharedPtr(th.payeeID_);
+                tran.transType_ = th.transType_;
+                tran.amt_ = th.amt_;
+                tran.status_ = q1.GetString("STATUS");
+                tran.transNum_ = q1.GetString("TRANSACTIONNUMBER");
+                tran.notes_ = th.notes_;
+                tran.category_ = m_core.get()->categoryList_.GetCategorySharedPtr(th.categID_, th.subcategID_);
+                tran.date_ = th.nextOccurDate_;
+                tran.toAmt_ = th.toAmt_;
 
                 std::shared_ptr<mmSplitTransactionEntries> split(new mmSplitTransactionEntries());
                 split->loadFromBDDB(m_core.get(),th.id_);
-                *pTransaction->splitEntries_.get() = *split.get();
+                *tran.splitEntries_.get() = *split.get();
 
-                //pTransaction->updateAllData(m_core.get(), th.accountID_, pCurrencyPtr);
-                m_core.get()->bTransactionList_.addTransaction(pTransaction);
+                m_core.get()->bTransactionList_.addTransaction(&tran);
             }
             mmDBWrapper::completeBDInSeries(m_db.get(), th.id_);
 
