@@ -67,7 +67,7 @@ private:
     wxStaticText* stxtMainFilter_;
     wxStaticText* statTextTransFilter_;
     wxStaticBitmap* bitmapTransFilter_;
-	wxStaticBitmap* bitmapMainFilter_;
+    wxStaticBitmap* bitmapMainFilter_;
     mmFilterTransactionsDialog* transFilterDlg_;
 
     wxString currentView_;
@@ -84,6 +84,8 @@ private:
     void initViewTransactionsHeader();
     void setAccountSummary();
     void sortTable();
+    void filterTable();
+    void markSelectedTransaction(int trans_id);
     void CreateControls();
 
     bool Create( 
@@ -94,7 +96,7 @@ private:
         long style = wxTAB_TRAVERSAL | wxNO_BORDER,
         const wxString& name = wxPanelNameStr
     );
-	void enableEditDeleteButtons(bool en);
+    void enableEditDeleteButtons(bool en);
 
     void OnNewTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);

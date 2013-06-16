@@ -251,7 +251,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         updateRequired_ = true;
     }
 
-    if (pCategory)
+    if (!pCategory)
     {
         mmCategory* parent = pCategory->parent_;
         if (parent)
@@ -658,6 +658,18 @@ void mmBankTransactionList::UpdateTransaction(mmBankTransaction* pBankTransactio
 
     r.splitEntries_->updateToDB(core_->db_, r.transactionID(), true);
     st.Finalize();
+
+    for (auto& i : transactions_)
+    {
+        if (pBankTransaction->transactionID() == i->transactionID())
+        {
+            i = pBankTransaction;
+            i->payeeStr_ = pBankTransaction->payeeStr_;
+            i->updateRequired_ = true;
+            break;
+        }
+    }
+
     mmOptions::instance().databaseUpdated_ = true;
 }
 

@@ -341,6 +341,61 @@ void mmCheckingPanel::sortTable()
 
     if (!g_asc) std::reverse(this->m_trans.begin(), this->m_trans.end());
 }
+
+void mmCheckingPanel::filterTable()
+{
+    std::vector<mmBankTransaction*> filtered_trans;
+    mmBankTransaction* pTempTransaction;
+    bool toAdd = transFilterDlg_->somethingSelected();
+
+    if (transFilterActive_)
+    {
+        for (const auto& pBankTransaction: m_trans)
+        {
+            pTempTransaction = pBankTransaction;
+
+            if (transFilterDlg_->getAccountCheckBox())
+                toAdd = toAdd && (transFilterDlg_->getAccountID() == pBankTransaction->toAccountID_);
+
+            if (transFilterDlg_->getDateRangeCheckBox())
+                toAdd = toAdd && (transFilterDlg_->getFromDateCtrl() <= pBankTransaction->date_ 
+                    && transFilterDlg_->getToDateControl() >= pBankTransaction->date_);
+
+            if (transFilterDlg_->getPayeeCheckBox())
+                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == pBankTransaction->payeeStr_);
+
+            if (transFilterDlg_->getCategoryCheckBox())
+                toAdd = toAdd && (pBankTransaction->containsCategory(transFilterDlg_->getCategoryID(),
+                transFilterDlg_->getSubCategoryID(), transFilterDlg_->getSubCategoryID() < 0));
+
+            if (transFilterDlg_->getStatusCheckBox())
+                toAdd = toAdd && (transFilterDlg_->getStatus() == pBankTransaction->status_);
+
+            if (transFilterDlg_->getTypeCheckBox())
+                toAdd = toAdd && (transFilterDlg_->getType().Contains(pBankTransaction->transType_));
+
+            if (transFilterDlg_->getAmountRangeCheckBox())
+                toAdd = toAdd && (transFilterDlg_->getAmountMin() <= pBankTransaction->amt_ && transFilterDlg_->getAmountMax() >= pBankTransaction->amt_);
+
+            if (transFilterDlg_->getNumberCheckBox())
+                toAdd = toAdd && (transFilterDlg_->getNumber().Trim().Lower() == pBankTransaction->transNum_.Lower());
+
+            if (transFilterDlg_->getNotesCheckBox())
+                toAdd = toAdd && (pBankTransaction->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()));
+            if (toAdd)
+            {
+                filtered_trans.push_back(pTempTransaction);
+                toAdd = false;
+            }
+        }
+        m_trans = filtered_trans;
+    }
+}
+
+void mmCheckingPanel::markSelectedTransaction(int trans_id)
+{
+    trans_id;
+}
 //----------------------------------------------------------------------------
 
 void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
@@ -398,7 +453,9 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
     // decide whether top or down icon needs to be shown
     m_listCtrlAccount->setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
     sortTable();
+    filterTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
+    markSelectedTransaction(trans_id);
 
     setAccountSummary();
 }
