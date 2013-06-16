@@ -110,7 +110,7 @@ private:
     void OnFilterResetToViewAll(wxMouseEvent& event);
 
     void DeleteViewedTransactions();
-    void DeleteFlaggedTransactions(const wxString status);
+    void DeleteFlaggedTransactions(const wxString& status);
     void SetTransactionFilterState(bool active);
 
     /* updates the checking panel data */

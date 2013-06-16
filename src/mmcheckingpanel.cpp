@@ -345,14 +345,13 @@ void mmCheckingPanel::sortTable()
 void mmCheckingPanel::filterTable()
 {
     std::vector<mmBankTransaction*> filtered_trans;
-    mmBankTransaction* pTempTransaction;
     bool toAdd = transFilterDlg_->somethingSelected();
 
     if (transFilterActive_)
     {
         for (const auto& pBankTransaction: m_trans)
         {
-            pTempTransaction = pBankTransaction;
+            mmBankTransaction* pTempTransaction = pBankTransaction;
 
             if (transFilterDlg_->getAccountCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getAccountID() == pBankTransaction->toAccountID_);
@@ -388,7 +387,7 @@ void mmCheckingPanel::filterTable()
                 toAdd = false;
             }
         }
-        m_trans = filtered_trans;
+        this->m_trans = filtered_trans;
     }
 }
 
@@ -961,7 +960,7 @@ void mmCheckingPanel::DeleteViewedTransactions()
     core_->db_.get()->Commit();
 }
 
-void mmCheckingPanel::DeleteFlaggedTransactions(const wxString status)
+void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
 {
     for (size_t i = 0; i < m_trans.size(); ++i)
     {
@@ -1084,7 +1083,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    wxMenu* subGlobalOpMenuDelete = new wxMenu;
+    wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE, _("&Delete Transaction"));
     if (hide_menu_item) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE, false);
     subGlobalOpMenuDelete->AppendSeparator();
@@ -1106,7 +1105,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKDUPLICATE, false);
     menu.AppendSeparator();
 
-    wxMenu* subGlobalOpMenu = new wxMenu;
+    wxMenu* subGlobalOpMenu = new wxMenu();
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKRECONCILED_ALL, _("as Reconciled"));
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKUNRECONCILED_ALL, _("as Unreconciled"));
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKVOID_ALL, _("as Void"));
