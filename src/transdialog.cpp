@@ -343,7 +343,7 @@ void mmTransDialog::CreateControls()
     long date_style = wxDP_DROPDOWN|wxDP_SHOWCENTURY;
 
     dpc_ = new wxDatePickerCtrl( this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Now(),
-                                 wxDefaultPosition, wxSize(110, -1), date_style);
+        wxDefaultPosition, wxSize(110, -1), date_style);
 
     //Text field for day of the week
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
@@ -805,7 +805,8 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             textAmount_->SetFocus();
             return;
         }
-        if (categID_ < 1)
+
+        if (categID_ < 1 || !core_->categoryList_.CategoryExists(categoryName_))
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return;
@@ -854,7 +855,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
                 return;
         }
     }
-    wxLogDebug(wxString::Format("Payee added. ID:%i : Name: %s", payeeID_, core_->payeeList_.GetPayeeName(payeeID_)));
+
     int toAccountID = -1;
 
     if (bTransfer)
@@ -905,22 +906,19 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
 
     pTransaction->accountID_ = newAccountID_;
     pTransaction->toAccountID_ = toAccountID;
-    pTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
     pTransaction->payeeID_ = payeeID_;
+    pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
     pTransaction->transType_ = sTransaction_type_;
     pTransaction->amt_ = transAmount_;
     pTransaction->status_ = status;
     pTransaction->transNum_ = transNum;
     pTransaction->notes_ = notes;
-    pTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID_, subcategID_);
     pTransaction->categID_ = categID_;
     pTransaction->subcategID_ = subcategID_;
     pTransaction->date_ = dpc_->GetValue();
     pTransaction->toAmt_ = toTransAmount_;
 
     *pTransaction->splitEntries_.get() = *split_.get();
-    //double balance = 0;
-    //pTransaction->updateTransactionData(newAccountID_, balance);
 
     if (!edit_)
     {

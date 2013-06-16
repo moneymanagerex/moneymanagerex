@@ -1073,13 +1073,16 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 
             pTransaction->accountID_ = fromAccountID;
             pTransaction->toAccountID_ = toAccountID;
-            pTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+            pTransaction->payeeID_ = payeeID_;
+            pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
             pTransaction->transType_ = transaction_type;
             pTransaction->amt_ = amount;
             pTransaction->status_ = status;
             pTransaction->transNum_ = transNum;
             pTransaction->notes_ = notes;
-            pTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID_, subcategID_);
+            pTransaction->categID_ = categID_;
+            pTransaction->subcategID_ = subcategID_;
+            pTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
             pTransaction->date_ = dpc_->GetValue();
             pTransaction->toAmt_ = toTransAmount_;
 

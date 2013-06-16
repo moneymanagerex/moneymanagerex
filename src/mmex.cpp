@@ -1014,13 +1014,16 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
                 tran.accountID_ = th.accountID_;
                 tran.toAccountID_ = th.toAccountID_;
-                tran.payee_ = m_core.get()->payeeList_.GetPayeeSharedPtr(th.payeeID_);
+                tran.payeeID_ = th.payeeID_;
+                tran.payeeStr_ = m_core.get()->payeeList_.GetPayeeName(th.payeeID_);
                 tran.transType_ = th.transType_;
                 tran.amt_ = th.amt_;
                 tran.status_ = q1.GetString("STATUS");
                 tran.transNum_ = q1.GetString("TRANSACTIONNUMBER");
                 tran.notes_ = th.notes_;
-                tran.category_ = m_core.get()->categoryList_.GetCategorySharedPtr(th.categID_, th.subcategID_);
+                tran.categID_ = th.categID_;
+                tran.subcategID_ = th.subcategID_;
+                tran.fullCatStr_ = m_core->categoryList_.GetFullCategoryString(th.categID_, th.subcategID_);
                 tran.date_ = th.nextOccurDate_;
                 tran.toAmt_ = th.toAmt_;
 

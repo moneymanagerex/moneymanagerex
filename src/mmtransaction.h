@@ -91,9 +91,6 @@ public:
     /* Core Data */
     wxDateTime date_;
 
-    mmCategory* category_;
-    mmPayee* payee_;
-
     wxString transNum_;
     wxString status_;
     wxString notes_;

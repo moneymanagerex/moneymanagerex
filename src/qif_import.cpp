@@ -752,7 +752,8 @@ int mmQIFImportDialog::mmImportQIF()
             pTransaction->date_ = dtdt;
             pTransaction->accountID_ = from_account_id;
             pTransaction->toAccountID_ = to_account_id;
-            pTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID);
+            pTransaction->payeeID_ = payeeID;
+            pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID);
             pTransaction->transType_ = type;
             pTransaction->amt_ = val;
             pTransaction->status_ = status;
@@ -760,12 +761,13 @@ int mmQIFImportDialog::mmImportQIF()
             pTransaction->notes_ = notes;
             pTransaction->toAmt_ = val;
             if (mmSplit->numEntries()) categID = -1;
-            pTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID, subCategID);
+            pTransaction->categID_ = categID;
+            pTransaction->subcategID_ = subCategID;
+            pTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
             *pTransaction->splitEntries_ = *mmSplit;
 
             std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(from_account_id);
             wxASSERT(pCurrencyPtr);
-            //pTransaction->updateAllData(core_, from_account_id, pCurrencyPtr, true);
 
             //For any transfer transaction always mirrored transaction present
             //Just take alternate amount and skip it

@@ -232,12 +232,12 @@ mmCheckingPanel::mmCheckingPanel(
     mmCoreDB* core, mmGUIFrame* mainFrame, int accountID,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name
-)
-: mmPanelBase(core)
-, mainFrame_(mainFrame)
-, filteredBalance_(0.0)
-, m_listCtrlAccount()
-, m_AccountID(accountID)
+    )
+    : mmPanelBase(core)
+    , mainFrame_(mainFrame)
+    , filteredBalance_(0.0)
+    , m_listCtrlAccount()
+    , m_AccountID(accountID)
 {
     wxASSERT(core_);
     Create(parent, winid, pos, size, style, name);
@@ -347,18 +347,20 @@ void mmCheckingPanel::filterTable()
     std::vector<mmBankTransaction*> filtered_trans;
     bool toAdd = transFilterDlg_->somethingSelected();
 
-    if (transFilterActive_)
+    if (transFilterActive_ && toAdd)
     {
         for (const auto& pBankTransaction: m_trans)
         {
             mmBankTransaction* pTempTransaction = pBankTransaction;
+            toAdd = true;
+
 
             if (transFilterDlg_->getAccountCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getAccountID() == pBankTransaction->toAccountID_);
 
             if (transFilterDlg_->getDateRangeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getFromDateCtrl() <= pBankTransaction->date_ 
-                    && transFilterDlg_->getToDateControl() >= pBankTransaction->date_);
+                toAdd = toAdd && (transFilterDlg_->getFromDateCtrl().GetDateOnly() <= pBankTransaction->date_.GetDateOnly() 
+                    && transFilterDlg_->getToDateControl().GetDateOnly() >= pBankTransaction->date_.GetDateOnly());
 
             if (transFilterDlg_->getPayeeCheckBox())
                 toAdd = toAdd && (transFilterDlg_->userPayeeStr() == pBankTransaction->payeeStr_);
@@ -382,10 +384,7 @@ void mmCheckingPanel::filterTable()
             if (transFilterDlg_->getNotesCheckBox())
                 toAdd = toAdd && (pBankTransaction->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()));
             if (toAdd)
-            {
                 filtered_trans.push_back(pTempTransaction);
-                toAdd = false;
-            }
         }
         this->m_trans = filtered_trans;
     }

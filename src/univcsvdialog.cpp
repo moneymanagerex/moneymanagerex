@@ -671,16 +671,15 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                mmBankTransaction* pTransaction(new mmBankTransaction(core_));
                pTransaction->accountID_ = fromAccountID_;
                pTransaction->toAccountID_ = toAccountID;
-               pTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+               pTransaction->payeeID_ = payeeID_;
+               pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
                pTransaction->transType_ = type_;
                pTransaction->amt_ = val_;
                pTransaction->status_ = status;
                pTransaction->transNum_ = transNum_;
                pTransaction->notes_ = notes_;
-               pTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID_, subCategID_);
                pTransaction->date_ = dtdt_;
                pTransaction->toAmt_ = 0.0;
-               //pTransaction->updateAllData(core_, fromAccountID_, pCurrencyPtr);
 
                int transID = core_->bTransactionList_.addTransaction(pTransaction);
                CSV_transID.push_back(transID);

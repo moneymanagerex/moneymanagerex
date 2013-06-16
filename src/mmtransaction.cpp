@@ -53,8 +53,7 @@ void mmSplitTransactionEntries::removeSplitByIndex(int splitIndex)
 }
 
 void mmSplitTransactionEntries::updateToDB(std::shared_ptr<wxSQLite3Database>& db,
-                                           int transID,
-                                           bool edit)
+    int transID, bool edit)
 {
     if (edit)
     {
@@ -132,11 +131,14 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
     transType_   = q1.GetString("TRANSCODE");
     accountID_   = q1.GetInt("ACCOUNTID");
     toAccountID_ = q1.GetInt("TOACCOUNTID");
-    payee_       = core->payeeList_.GetPayeeSharedPtr(q1.GetInt("PAYEEID"));
+    payeeID_     = q1.GetInt("PAYEEID");
+    payeeStr_    = core->payeeList_.GetPayeeName(payeeID_);
     amt_         = q1.GetDouble("TRANSAMOUNT");
     toAmt_       = q1.GetDouble("TOTRANSAMOUNT");
     followupID_  = q1.GetInt("FOLLOWUPID");
-    category_    = core->categoryList_.GetCategorySharedPtr(q1.GetInt("CATEGID"), q1.GetInt("SUBCATEGID"));
+    categID_     = q1.GetInt("CATEGID");
+    subcategID_  = q1.GetInt("SUBCATEGID");
+    fullCatStr_  = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
     std::shared_ptr<mmCurrency> pCurrencyPtr = core->accountList_.getCurrencySharedPtr(accountID_);
     wxASSERT(pCurrencyPtr);
@@ -154,7 +156,7 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
 void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 {
-    if (isInited_) return;
+    //if (isInited_) return;
 
     deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
     withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
@@ -170,32 +172,6 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     if (toAmt_ < 0) toAmt_ = amt_;
     transToAmtString_ = CurrencyFormatter::float2String(toAmt_);
 
-    if (transType_ != TRANS_TYPE_TRANSFER_STR)
-    {
-        // needed to correct possible crash if database becomes corrupt.
-        if (!payee_)
-        {
-            if (core_->displayDatabaseError_)
-            {
-                wxString errMsg = _("Payee not found in database for Account: ");
-                errMsg << core_->accountList_.GetAccountName(accountID_)
-                    << "\n\n"
-                    << _("Subsequent errors not displayed.");
-                wxMessageBox(errMsg,_("MMEX DATABASE ERROR"), wxOK|wxICON_ERROR);
-                core_->displayDatabaseError_ = false;
-            }
-            payeeID_  = -1;
-            payeeStr_ = "Payee Error";
-            status_ = "V";
-        }
-        else
-        {
-            mmPayee* pPayee = payee_;
-            wxASSERT(pPayee);
-            payeeStr_ = pPayee->name_;
-            payeeID_ = pPayee->id_;
-        }
-    }
 
     depositStr_ = "";
     withdrawalStr_ = "";
@@ -238,40 +214,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 
     fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
 
-    mmCategory* pCategory = category_;
-    if (!pCategory && !splitEntries_->numEntries())
-    {
-        // If category is missing, we mark is as unknown
-        int categID = core_->categoryList_.GetCategoryId("Unknown");
-        if (categID == -1) categID = core_->categoryList_.AddCategory("Unknown");
-
-        category_ = core_->categoryList_.GetCategorySharedPtr(categID, -1);
-        pCategory = category_;
-        wxASSERT(pCategory);
-        updateRequired_ = true;
-    }
-
-    if (!pCategory)
-    {
-        mmCategory* parent = pCategory->parent_;
-        if (parent)
-        {
-            catStr_ = parent->categName_;
-            subCatStr_ = pCategory->categName_;
-            categID_ = parent->categID_;
-            subcategID_ = pCategory->categID_;
-            fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
-        }
-        else
-        {
-            catStr_ = pCategory->categName_;
-            subCatStr_ = "";
-            categID_ = pCategory->categID_;
-            subcategID_ = -1;
-            fullCatStr_ = catStr_;
-        }
-    }
-    else if (splitEntries_->numEntries() == 1)
+    if (splitEntries_->numEntries() == 1)
     {
         categID_ = -1;
         subcategID_ = -1;
@@ -288,6 +231,11 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         catStr_= "";
         subCatStr_ = "";
     }
+    else 
+    {
+        fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
+    }
+
     balanceStr_ = CurrencyFormatter::float2String(balance_);
 
     isInited_ = true;
@@ -519,10 +467,8 @@ mmBankTransaction* mmBankTransactionList::copyTransaction(
     pCopyTransaction->toAmt_       = pBankTransaction->toAmt_;
     pCopyTransaction->transType_   = pBankTransaction->transType_;
     pCopyTransaction->status_      = pBankTransaction->status_;
-    pCopyTransaction->payee_       = pBankTransaction->payee_;
     pCopyTransaction->payeeStr_    = pBankTransaction->payeeStr_;
     pCopyTransaction->payeeID_     = pBankTransaction->payeeID_;
-    pCopyTransaction->category_    = pBankTransaction->category_;
     pCopyTransaction->categID_     = pBankTransaction->categID_;
     pCopyTransaction->subcategID_  = pBankTransaction->subcategID_;
     pCopyTransaction->followupID_  = pBankTransaction->followupID_;
@@ -695,24 +641,9 @@ void mmBankTransactionList::UpdateAllTransactionsForCategory(int categID,
         if (pBankTransaction && (pBankTransaction->categID_ == categID)
             && (pBankTransaction->subcategID_ == subCategID))
         {
-            pBankTransaction->category_ = core_->categoryList_.GetCategorySharedPtr(categID, subCategID);
-            mmCategory* pCategory = pBankTransaction->category_;
-
-            mmCategory* parent = pCategory->parent_;
-            if (parent)
-            {
-                pBankTransaction->catStr_ = parent->categName_;
-                pBankTransaction->subCatStr_ = pCategory->categName_;
-                pBankTransaction->categID_ = parent->categID_;
-                pBankTransaction->subcategID_ = pCategory->categID_;
-            }
-            else
-            {
-                pBankTransaction->catStr_ = pCategory->categName_;
-                pBankTransaction->subCatStr_ = "";
-                pBankTransaction->categID_ = pCategory->categID_;
-                pBankTransaction->subcategID_ = -1;
-            }
+            pBankTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
+            //pBankTransaction->categID_ = categID;
+            //pBankTransaction->subcategID_ = subCategID;
         }
     }
 }
@@ -724,13 +655,10 @@ int mmBankTransactionList::UpdateAllTransactionsForPayee(int payeeID)
     {
         if (pBankTransaction && (pBankTransaction->payeeID_ == payeeID))
         {
-            pBankTransaction->payee_ = core_->payeeList_.GetPayeeSharedPtr(payeeID);
             if (pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR)
             {
-                mmPayee* pPayee = pBankTransaction->payee_;
-                wxASSERT(pPayee);
-                pBankTransaction->payeeStr_ = pPayee->name_;
-                pBankTransaction->payeeID_ = pPayee->id_;
+                pBankTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID);
+                //pBankTransaction->payeeID_ = payeeID;
             }
         }
     }
@@ -1252,7 +1180,6 @@ int mmBankTransactionList::RelocatePayee(mmCoreDB* core, int destPayeeID, int so
         {
             if (pBankTransaction->payeeID_ == sourcePayeeID)
             {
-                pBankTransaction->payee_ = core->payeeList_.GetPayeeSharedPtr(destPayeeID);
                 pBankTransaction->payeeStr_ = core->payeeList_.GetPayeeName(destPayeeID);
                 pBankTransaction->payeeID_ = destPayeeID;
                 changedPayees_++;
@@ -1279,9 +1206,8 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
             if ((pBankTransaction->categID_ == sourceCatID)
                 && pBankTransaction->subcategID_== sourceSubCatID)
             {
-                pBankTransaction->category_ = core->categoryList_.GetCategorySharedPtr(destCatID, destSubCatID);
-                pBankTransaction->catStr_ = core->categoryList_.GetCategoryName(destCatID);
-                pBankTransaction->subCatStr_ = core->categoryList_.GetSubCategoryName(destCatID, destSubCatID);
+                //pBankTransaction->catStr_ = core->categoryList_.GetCategoryName(destCatID);
+                //pBankTransaction->subCatStr_ = core->categoryList_.GetSubCategoryName(destCatID, destSubCatID);
                 pBankTransaction->categID_ = destCatID;
                 pBankTransaction->subcategID_ = destSubCatID;
                 pBankTransaction->fullCatStr_ = core->categoryList_.GetFullCategoryString(destCatID, destSubCatID);

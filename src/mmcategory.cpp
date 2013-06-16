@@ -45,7 +45,7 @@ void mmCategoryList::LoadCategories()
                 wxString subCategName = q2.GetString("SUBCATEGNAME");
 
                 mmCategory* pSubCat(new mmCategory(subCategID, subCategName));
-                pSubCat->parent_ = pCat;
+                //pSubCat->parent_ = pCat;
                 pCat->children_.push_back(pSubCat);
             }
         }
