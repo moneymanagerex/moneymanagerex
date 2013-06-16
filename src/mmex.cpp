@@ -2782,7 +2782,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
                      _("Choose database file to create"),
                      wxEmptyString,
                      wxEmptyString,
-                     "MMB Files(*.mmb|*.mmb)",
+                     "MMB Files(*.mmb)|*.mmb",
                      wxFD_SAVE | wxFD_OVERWRITE_PROMPT
                     );
 
@@ -2803,7 +2803,7 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
     autoRepeatTransactionsTimer_.Stop();
     wxString fileName = wxFileSelector(_("Choose database file to open"),
                                        wxEmptyString, wxEmptyString, wxEmptyString,
-                                       "MMB Files(*.mmb|*.mmb|Encrypted MMB files (*.emb)|*.emb)",
+                                       "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb)",
                                        wxFD_FILE_MUST_EXIST,
                                        this
                                       );
@@ -2820,7 +2820,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
     wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open"),
                                           wxEmptyString, wxEmptyString, wxEmptyString,
-                                          "Encrypted MMB files (*.emb|*.emb)",
+                                          "Encrypted MMB files (*.emb)|*.emb",
                                           wxFD_FILE_MUST_EXIST,
                                           this
                                          );
@@ -2836,7 +2836,7 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
                      _("Choose database file to Save As"),
                      wxEmptyString,
                      wxEmptyString,
-                     "MMB Files(*.mmb|*.mmb)",
+                     "MMB Files(*.mmb)|*.mmb",
                      wxFD_SAVE | wxFD_OVERWRITE_PROMPT
                     );
 
@@ -3883,7 +3883,7 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::SetDatabaseFile(wxString dbFileName, bool newDatabase)
+void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 {
     autoRepeatTransactionsTimer_.Stop();
     wxProgressDialog *progress = NULL;
@@ -3924,7 +3924,7 @@ void mmGUIFrame::SetDatabaseFile(wxString dbFileName, bool newDatabase)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::BackupDatabase(wxString filename, bool updateRequired)
+void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
 {
     wxFileName fn(filename);
     if (!fn.IsOk()) return;

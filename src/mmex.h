@@ -390,9 +390,9 @@ private:
     void OnClearRecentFiles(wxCommandEvent& /*event*/);
 
     /** Sets the database to the new database selected by the user */
-    void SetDatabaseFile(wxString dbFileName, bool newDatabase = false);
+    void SetDatabaseFile(const wxString& dbFileName, bool newDatabase = false);
     /// Make a dated copy of the database. Keep only the last 4 copies.
-    void BackupDatabase(wxString filename, bool updateRequired = false);
+    void BackupDatabase(const wxString& filename, bool updateRequired = false);
 
     // any class wishing to process wxWindows events must use this macro
     DECLARE_EVENT_TABLE()
