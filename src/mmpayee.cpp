@@ -23,7 +23,7 @@
 #include <algorithm>
 
 // Constructor used when loading a payee from the database
-mmPayee::mmPayee(wxSQLite3ResultSet q1)
+mmPayee::mmPayee(wxSQLite3ResultSet& q1)
 {
     id_        = q1.GetInt("PAYEEID");
     name_      = q1.GetString("PAYEENAME");

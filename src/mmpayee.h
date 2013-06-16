@@ -31,7 +31,7 @@ public:
     int subcategoryId_;
 
     /// Constructor used when loading a payee from the database
-    mmPayee(wxSQLite3ResultSet q1);
+    mmPayee(wxSQLite3ResultSet& q1);
     /// Constructor for adding a new payee to the database
     mmPayee(int id, const wxString& name);
     bool operator < (const mmPayee& entry) const;
