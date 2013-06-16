@@ -177,7 +177,7 @@ wxString mmex::getPathShared(ESharedFile f)
 
 wxString mmex::getPathUser(EUserFile f)
 {
-    static const wxChar* files[USER_FILES_MAX] = {
+    static const wxString files[USER_FILES_MAX] = {
       getSettingsFileName(),
       getCustomReportIndexFilename(),
       getDirectory()
