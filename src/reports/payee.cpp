@@ -26,7 +26,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
     // Add the graph
     mmGraphPie gg;
-    if (core_->payeeList_.Num())
+    if (!core_->payeeList_.entries_.empty())
     {
         hb.addImage(gg.getOutputFileName());
     }
