@@ -48,6 +48,10 @@ typedef struct {
 #define STRBUF_DEFAULT_INCREMENT -2
 #endif
 
+#ifdef _MSC_VER
+  #define inline __forceinline /* use __forceinline (VC++ specific) */
+#endif
+
 /* Initialise */
 extern strbuf_t *strbuf_new(int len);
 extern void strbuf_init(strbuf_t *s, int len);
