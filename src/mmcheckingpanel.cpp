@@ -462,13 +462,18 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
 
 void mmCheckingPanel::CreateControls()
 {
+    int border = 1;
+    wxSizerFlags flags, flagsExpand;
+    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border);
+    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxEXPAND).Border(wxALL, border).Proportion(1);
+
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
 
     /* ---------------------- */
     wxPanel* headerPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
         wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
-    itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 2);
+    itemBoxSizer9->Add(headerPanel, flags);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
@@ -479,7 +484,7 @@ void mmCheckingPanel::CreateControls()
     header_text_ = new wxStaticText( headerPanel, wxID_STATIC, "");
     int font_size = this->GetFont().GetPointSize() + 2;
     header_text_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
-    itemBoxSizerVHeader2->Add(header_text_);
+    itemBoxSizerVHeader2->Add(header_text_, flags);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
     wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5,1,1);
@@ -489,24 +494,26 @@ void mmCheckingPanel::CreateControls()
     wxBitmap itemStaticBitmap(rightarrow_xpm);
     bitmapMainFilter_ = new wxStaticBitmap( headerPanel, wxID_ANY,
         itemStaticBitmap);
-    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_);
-    bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), NULL, this);
-    bitmapMainFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), NULL, this);
+    itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, flags);
+    bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+        , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), NULL, this);
+    bitmapMainFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
+        , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), NULL, this);
 
-    stxtMainFilter_ = new wxStaticText( headerPanel, wxID_ANY, "");
-    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, 0, wxCENTER);
+    stxtMainFilter_ = new wxStaticText( headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(200, -1));
+    itemFlexGridSizerHHeader2->Add(stxtMainFilter_, flags);
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
     bitmapTransFilter_ = new wxStaticBitmap( headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
         itemStaticBitmap);
-    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, 0, wxCENTER|wxLEFT, 150);
+    itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, flags);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
 
     statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY,
         _("Transaction Filter"));
-    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, 0, wxCENTER);
+    itemFlexGridSizerHHeader2->Add(statTextTransFilter_, flags);
     SetTransactionFilterState(false);
 
     wxStaticText* itemStaticText12 = new wxStaticText( headerPanel,
@@ -570,55 +577,57 @@ void mmCheckingPanel::CreateControls()
     // --
     m_listCtrlAccount->setSortColumn(g_sortcol);
     m_listCtrlAccount->setSortOrder(g_asc);
-    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->getSortColumn(), m_listCtrlAccount->getSortOrder() ? ICON_ASC : ICON_DESC); // asc\desc sort mark (arrow)
+    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->getSortColumn()
+        , m_listCtrlAccount->getSortOrder() ? ICON_ASC : ICON_DESC); // asc\desc sort mark (arrow)
 
-    wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, ID_PANEL1, wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
+    wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, ID_PANEL1
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAccount, itemPanel12);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
 
-    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW|wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindow10, flagsExpand);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     itemPanel12->SetSizer(itemBoxSizer4);
 
-    wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 5);
+    wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
+    itemBoxSizer4->Add(itemButtonsSizer, flags);
 
     btnNew_ = new wxButton(itemPanel12, wxID_NEW, _("&New"));
     btnNew_->SetToolTip(_("New Transaction"));
-    itemBoxSizer5->Add(btnNew_, 0, wxRIGHT, 5);
+    itemButtonsSizer->Add(btnNew_, 0, wxRIGHT, 5);
 
     btnEdit_ = new wxButton(itemPanel12, wxID_EDIT, _("&Edit"));
     btnEdit_->SetToolTip(_("Edit selected transaction"));
-    itemBoxSizer5->Add(btnEdit_, 0, wxRIGHT, 5);
+    itemButtonsSizer->Add(btnEdit_, 0, wxRIGHT, 5);
     btnEdit_->Enable(false);
 
     btnDelete_ = new wxButton(itemPanel12, wxID_DELETE, _("&Delete"));
     btnDelete_->SetToolTip(_("Delete selected transaction"));
-    itemBoxSizer5->Add(btnDelete_, 0, wxRIGHT, 5);
+    itemButtonsSizer->Add(btnDelete_, 0, wxRIGHT, 5);
     btnDelete_->Enable(false);
 
     btnDuplicate_ = new wxButton(itemPanel12, wxID_DUPLICATE, _("D&uplicate"));
     btnDuplicate_->SetToolTip(_("Duplicate selected transaction"));
-    itemBoxSizer5->Add(btnDuplicate_, 0, wxRIGHT, 5);
+    itemButtonsSizer->Add(btnDuplicate_, 0, wxRIGHT, 5);
     btnDuplicate_->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition, wxSize(100,-1)
         , wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB, wxDefaultValidator, _("Search"));
-    itemBoxSizer5->Add(searchCtrl, 0, wxTOP, 1);
+    itemButtonsSizer->Add(searchCtrl, 0, wxTOP, 1);
     searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
 
     //Infobar-mini
     info_panel_mini_ = new wxStaticText( itemPanel12, wxID_STATIC, "");
-    itemBoxSizer5->Add(info_panel_mini_, 1, wxGROW|wxTOP|wxLEFT, 5);
+    itemButtonsSizer->Add(info_panel_mini_, 1, wxGROW|wxTOP|wxLEFT, 5);
 
     //Infobar
     info_panel_ = new wxStaticText( itemPanel12,
         wxID_STATIC, "", wxDefaultPosition, wxSize(200,-1), wxTE_MULTILINE|wxTE_WORDWRAP);
-    itemBoxSizer4->Add(info_panel_, 1, wxGROW|wxALL, 5);
+    itemBoxSizer4->Add(info_panel_, flagsExpand);
     //Show tips when no any transaction selected
     showTips();
 }
