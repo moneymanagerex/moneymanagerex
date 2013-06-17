@@ -54,6 +54,8 @@ SQLITE_OBJECTS =  \
 	sqlite_sqlite3secure.o
 LUA_CFLAGS =     $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
+	lua_dtoa.o \
+	lua_g_fmt.o \
 	lua_lapi.o \
 	lua_lauxlib.o \
 	lua_lbaselib.o \
@@ -84,10 +86,12 @@ LUA_OBJECTS =  \
 	lua_ltablib.o \
 	lua_ltm.o \
 	lua_lua.o \
+	lua_lua_cjson.o \
 	lua_luac.o \
 	lua_lundump.o \
 	lua_lvm.o \
-	lua_lzio.o
+	lua_lzio.o \
+	lua_strbuf.o
 MMEX_CXXFLAGS = -I$(srcdir)/lib/sqlite -I$(srcdir)/lib/wxsqlite \
 	-I$(srcdir)/lib/lua/src -I$(srcdir)/lib -DNOPCH $(WX_CXXFLAGS) $(PIC_FLAG) \
 	$(CPPFLAGS) $(CXXFLAGS)
@@ -303,6 +307,12 @@ wxsqlite_wxsqlite3.o: $(srcdir)/lib/wxsqlite/wxsqlite3.cpp
 sqlite_sqlite3secure.o: $(srcdir)/lib/sqlite/sqlite3secure.c
 	$(CCC) -c -o $@ $(SQLITE_CFLAGS) $(srcdir)/lib/sqlite/sqlite3secure.c
 
+lua_dtoa.o: $(srcdir)/lib/lua/src/dtoa.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/dtoa.c
+
+lua_g_fmt.o: $(srcdir)/lib/lua/src/g_fmt.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/g_fmt.c
+
 lua_lapi.o: $(srcdir)/lib/lua/src/lapi.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lapi.c
 
@@ -393,6 +403,9 @@ lua_ltm.o: $(srcdir)/lib/lua/src/ltm.c
 lua_lua.o: $(srcdir)/lib/lua/src/lua.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lua.c
 
+lua_lua_cjson.o: $(srcdir)/lib/lua/src/lua_cjson.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lua_cjson.c
+
 lua_luac.o: $(srcdir)/lib/lua/src/luac.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/luac.c
 
@@ -404,6 +417,9 @@ lua_lvm.o: $(srcdir)/lib/lua/src/lvm.c
 
 lua_lzio.o: $(srcdir)/lib/lua/src/lzio.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/lzio.c
+
+lua_strbuf.o: $(srcdir)/lib/lua/src/strbuf.c
+	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/lib/lua/src/strbuf.c
 
 mmex_aboutdialog.o: $(srcdir)/src/aboutdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/aboutdialog.cpp

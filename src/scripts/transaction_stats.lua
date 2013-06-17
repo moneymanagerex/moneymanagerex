@@ -24,7 +24,10 @@ end
 --Main function
 -----------------------------------------------------------
 local function main(m_stat)
-    mmHTMLReportHeader(_("Transaction Statistics"))
+    local json_text = '{ "title": "Transaction Statistics" }'
+    local value = cjson.decode(json_text)
+
+    mmHTMLReportHeader(value.title)
     mmHTMLhr()
     total = get_stats(m_stat)
     mmHTMLhr()
