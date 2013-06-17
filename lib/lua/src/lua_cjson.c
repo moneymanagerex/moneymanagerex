@@ -40,8 +40,9 @@
 #include <string.h>
 #include <math.h>
 #include <limits.h>
-#include <lua.h>
-#include <lauxlib.h>
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
 
 #include "strbuf.h"
 #include "fpconv.h"
@@ -1399,7 +1400,7 @@ static int lua_cjson_safe_new(lua_State *l)
     return 1;
 }
 
-int luaopen_cjson(lua_State *l)
+LUAMOD_API int luaopen_cjson(lua_State *l)
 {
     lua_cjson_new(l);
 
@@ -1413,7 +1414,7 @@ int luaopen_cjson(lua_State *l)
     return 1;
 }
 
-int luaopen_cjson_safe(lua_State *l)
+LUAMOD_API int luaopen_cjson_safe(lua_State *l)
 {
     lua_cjson_safe_new(l);
 

@@ -31,7 +31,7 @@ PLATS= aix ansi bsd freebsd generic linux macosx mingw posix solaris
 LUA_A=	liblua.a
 CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o \
 	lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o \
-	ltm.o lundump.o lvm.o lzio.o
+	ltm.o lundump.o lvm.o lzio.o dtoa.o g_fmt.o strbuf.o
 LIB_O=	lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o \
 	lmathlib.o loslib.o lstrlib.o ltablib.o loadlib.o linit.o
 BASE_O= $(CORE_O) $(LIB_O) $(MYOBJS)
@@ -185,3 +185,6 @@ lvm.o: lvm.c lua.h luaconf.h ldebug.h lstate.h lobject.h llimits.h ltm.h \
 lzio.o: lzio.c lua.h luaconf.h llimits.h lmem.h lstate.h lobject.h ltm.h \
  lzio.h
 
+dtoa.o: dtoa.c dtoa_config.h
+g_fmt.o: g_fmt.c
+strbuf.o: strbuf.c strbuf.h
