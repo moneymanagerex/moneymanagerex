@@ -36,11 +36,12 @@
  *       difficult to know object/array sizes ahead of time.
  */
 
-#ifdef _WIN32
-#include <float.h>  
+#ifdef _WIN32 //_MSC_VER ??
+#include <float.h>
 #define isnan(x) ((x) != (x))  
 #define isinf(x) (!_finite(x) && !_isnan(x))  
 #define strncasecmp  _strnicmp 
+#define snprintf _snprintf
 #endif //_WIN32
 
 #define _USE_MATH_DEFINES // for C++
