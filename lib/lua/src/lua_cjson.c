@@ -36,9 +36,18 @@
  *       difficult to know object/array sizes ahead of time.
  */
 
+#ifdef _WIN32
+#include <float.h>  
+#define isnan(x) ((x) != (x))  
+#define isinf(x) (!_finite(x) && !_isnan(x))  
+#define strncasecmp  _strnicmp 
+#endif //_WIN32
+
+#define _USE_MATH_DEFINES // for C++
+#include "math.h"
+
 #include <assert.h>
 #include <string.h>
-#include <math.h>
 #include <limits.h>
 #include "lua.h"
 #include "lauxlib.h"
