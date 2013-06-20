@@ -279,7 +279,6 @@ bool mmCheckingPanel::Create(
 
     return true;
 }
-//----------------------------------------------------------------------------
 
 void mmCheckingPanel::sortTable()
 {
@@ -392,7 +391,31 @@ void mmCheckingPanel::filterTable()
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
-    trans_id;
+    if (m_listCtrlAccount->m_selectedIndex > -1)
+    {
+        long i = 0;
+        for (const auto & pTrans : m_trans)
+        {
+            if (trans_id == pTrans->transactionID() && trans_id > 0) {
+                m_listCtrlAccount->m_selectedIndex = i;
+                break;
+            }
+        ++i;
+        }
+    }
+
+    if (m_trans.size() > 0 && m_listCtrlAccount->m_selectedIndex < 0)
+    {
+        if (g_asc)
+            m_listCtrlAccount->EnsureVisible(static_cast<long>(m_trans.size()) - 1);
+        else
+            m_listCtrlAccount->EnsureVisible(0);
+    }
+    else
+    {
+        enableEditDeleteButtons(false);
+        showTips();
+    }
 }
 //----------------------------------------------------------------------------
 
