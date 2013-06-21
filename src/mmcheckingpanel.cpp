@@ -129,6 +129,7 @@ public:
     void OnViewSplitTransaction(wxCommandEvent& event);
     long m_selectedIndex;
     long m_selectedForCopy;
+    long m_selectedID;
     void refreshVisualList(int trans_id = -1);
 
 private:
@@ -527,8 +528,10 @@ void mmCheckingPanel::CreateControls()
     bitmapTransFilter_ = new wxStaticBitmap( headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
         itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, flags);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
+    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
+        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
+    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
 
     statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY,
         _("Transaction Filter"));
@@ -802,15 +805,14 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
             mmSplitTransactionEntries* splits = m_trans[selIndex]->splitEntries_.get();
             m_trans[selIndex]->getSplitTransactions(splits);
 
-            for (int i = 0; i < (int)splits->entries_.size(); ++i)
+            for (const auto &i : splits->entries_)
             {
-                amount = splits->entries_[i]->splitAmount_;
+                amount = i->splitAmount_;
                 if (m_trans[selIndex]->transType_ != TRANS_TYPE_DEPOSIT_STR)
                     amount = -amount;
                 amountStr = CurrencyFormatter::float2Money(amount);
                 infoStr << core_->categoryList_.GetFullCategoryString(
-                    splits->entries_[i]->categID_, splits->entries_[i]->subCategID_
-                    )
+                    i->categID_, i->subCategID_)
                     << " = "
                     << amountStr
                     << "\n";
@@ -978,24 +980,24 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 void mmCheckingPanel::DeleteViewedTransactions()
 {
     core_->db_.get()->Begin();
-    for (size_t i = 0; i < m_trans.size(); ++i)
+    for (const auto& i : m_trans)
     {
-        if (m_listCtrlAccount->m_selectedForCopy == (long)m_trans[i]->transactionID())
+        if (m_listCtrlAccount->m_selectedForCopy == (long)i->transactionID())
             m_listCtrlAccount->m_selectedForCopy = -1;
-        core_->bTransactionList_.deleteTransaction(m_AccountID, m_trans[i]->transactionID());
+        core_->bTransactionList_.deleteTransaction(m_AccountID, i->transactionID());
     }
     core_->db_.get()->Commit();
 }
 
 void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
 {
-    for (size_t i = 0; i < m_trans.size(); ++i)
+    for (const auto& i : m_trans)
     {
-        if (m_trans[i]->status_ == status)
+        if (i->status_ == status)
         {
-            if (m_listCtrlAccount->m_selectedForCopy == (long)m_trans[i]->transactionID())
+            if (m_listCtrlAccount->m_selectedForCopy == (long)i->transactionID())
                 m_listCtrlAccount->m_selectedForCopy = -1;
-            core_->bTransactionList_.deleteTransaction(m_AccountID, m_trans[i]->transactionID());
+            core_->bTransactionList_.deleteTransaction(m_AccountID, i->transactionID());
         }
     }
 }
@@ -1044,8 +1046,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     if (m_cp->m_listCtrlAccount->GetSelectedItemCount()>1)
         m_cp->btnEdit_->Enable(false);
 
-    //TODO: transaction id should be stored to provide proper line selection
-    //m_cp->m_listCtrlAccount->SetSelectedTransactionId(m_cp->m_listCtrlAccount->GetItem...);
+    m_cp->m_listCtrlAccount->m_selectedID = m_cp->m_trans[m_selectedIndex]->transactionID();
 }
 //----------------------------------------------------------------------------
 
@@ -1213,11 +1214,11 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     {
         m_cp->core_->db_.get()->Begin();
 
-        for (size_t  i = 0; i < m_cp->m_trans.size(); ++i)
+        for (const auto& i : m_cp->m_trans)
         {
-            int transID = m_cp->m_trans[i]->transactionID();
+            int transID = i->transactionID();
             if (mmDBWrapper::updateTransactionWithStatus(*m_cp->getDb(), transID, status))
-                m_cp->m_trans[i]->status_ = status;
+                i->status_ = status;
         }
 
         m_cp->core_->db_.get()->Commit();
@@ -1243,13 +1244,11 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     g_sortcol = m_sortCol;
 
     setColumnImage(m_sortCol, m_asc ? ICON_ASC : ICON_DESC);
-
-    m_cp->initVirtualListControl();
-
+    m_cp->core_->iniSettings_->SetIntSetting("CHECK_ASC", g_asc);
     m_cp->core_->iniSettings_->SetIntSetting("CHECK_SORT_COL", g_sortcol);
 
-    // asc\desc sorting flag
-    m_cp->core_->iniSettings_->SetIntSetting("CHECK_ASC", g_asc);
+    m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID);
+
 }
 //----------------------------------------------------------------------------
 
@@ -1567,7 +1566,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
     //debuger
-    wxLogDebug(wxString("id:")<<trans_id<<"|top:"<<topItemIndex_<<"|selected:"<<m_selectedIndex);
+    //wxLogDebug(wxString::Format("trx id:%ld | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
 
     if (m_cp->m_trans.size() > 0) {
         RefreshItems(0, m_cp->m_trans.size() - 1);
