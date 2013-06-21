@@ -575,7 +575,7 @@ TEST(addPayee)
     // --
 
     int payeeID = pCore->payeeList_.AddPayee(g_PayeeName);
-    std::shared_ptr<mmPayee> pPayee = pCore->payeeList_.GetPayeeSharedPtr(payeeID);
+    mmPayee* pPayee = pCore->payeeList_.GetPayeeSharedPtr(payeeID);
     pPayee->categoryId_ = cat_id;
     pPayee->subcategoryId_ = sc_id;
     int errCode = pCore->payeeList_.UpdatePayee(pPayee->id_, pPayee->name_);
@@ -619,7 +619,7 @@ TEST(getPayee)
     int payee_id = pCore->payeeList_.GetPayeeId(g_PayeeName);
     CHECK(payee_id != -1);
 
-    std::shared_ptr<mmPayee> pPayee = pCore->payeeList_.GetPayeeSharedPtr(payee_id);
+    mmPayee* pPayee = pCore->payeeList_.GetPayeeSharedPtr(payee_id);
     CHECK(pPayee->name_ == g_PayeeName);
     CHECK(pPayee->categoryId_ != 0);
     CHECK(pPayee->subcategoryId_ != 0);
@@ -639,7 +639,7 @@ TEST(updatePayee)
     int payee_id = pCore->payeeList_.GetPayeeId(g_PayeeName);
     CHECK(payee_id != -1);
 
-    std::shared_ptr<mmPayee> pPayee = pCore->payeeList_.GetPayeeSharedPtr(payee_id);
+    mmPayee* pPayee = pCore->payeeList_.GetPayeeSharedPtr(payee_id);
     int cat    = pPayee->categoryId_;
     int subcat = pPayee->subcategoryId_;
 

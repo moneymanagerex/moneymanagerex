@@ -415,7 +415,7 @@ int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
     //mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
     double originalVal = 0.0;
 
-    std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountID_);
+    mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountID_);
     wxASSERT(pCurrencyPtr);
     CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 

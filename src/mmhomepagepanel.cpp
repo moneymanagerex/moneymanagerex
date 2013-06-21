@@ -207,7 +207,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, const wxString& type
     {
         if (account->acctType_ != type || account->status_ == mmAccount::MMEX_Closed) continue;
 
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 
@@ -295,7 +295,7 @@ wxString mmHomePagePanel::displayStocks(double& tBalance /*, double& tIncome, do
         double baseconvrate = q1.GetDouble("BASECONVRATE");
         double stockGain = q1.GetDouble("GAIN");
 
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(stockaccountId);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(stockaccountId);
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 
@@ -429,7 +429,7 @@ wxString mmHomePagePanel::displayCurrencies()
             double convRate = q1.GetDouble("BASECONVRATE");
             wxString convRateStr;
 
-            std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountId);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountId);
             wxASSERT(pCurrencyPtr);
 
             wxString tBalanceStr;
@@ -672,7 +672,7 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
                     colorStr = "#FF6600";
 
                 // Load the currency for this BD
-                std::shared_ptr<mmCurrency> pCurrency = core_->accountList_.getCurrencySharedPtr(trans_[bdidx].accountID_);
+                mmCurrency* pCurrency = core_->accountList_.getCurrencySharedPtr(trans_[bdidx].accountID_);
                 wxASSERT(pCurrency);
                 if (pCurrency)
                     pCurrency->loadCurrencySettings();

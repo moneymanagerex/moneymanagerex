@@ -456,7 +456,7 @@ int mmQIFImportDialog::mmImportQIF()
                 {
                     //TODO: Repeated code
                     mmAccount* ptrBase = new mmAccount();
-                    std::shared_ptr<mmAccount> pAccount(ptrBase);
+                    mmAccount* pAccount(ptrBase);
 
                     pAccount->favoriteAcct_ = true;
                     pAccount->status_ = mmAccount::MMEX_Open;
@@ -592,7 +592,7 @@ int mmQIFImportDialog::mmImportQIF()
             if (type == TRANS_TYPE_WITHDRAWAL_STR)
                 dSplitAmount = -dSplitAmount;
             //Add split entry
-            std::shared_ptr<mmSplitTransactionEntry> pSplitEntry(new mmSplitTransactionEntry);
+            mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
             pSplitEntry->splitAmount_  = dSplitAmount;
             pSplitEntry->categID_      = categID;
             pSplitEntry->subCategID_   = subCategID;
@@ -644,7 +644,7 @@ int mmQIFImportDialog::mmImportQIF()
                 if (accounts_name.Index(sToAccountName) == wxNOT_FOUND)
                 {
                     mmAccount* ptrBase = new mmAccount();
-                    std::shared_ptr<mmAccount> pAccount(ptrBase);
+                    mmAccount* pAccount(ptrBase);
 
                     pAccount->favoriteAcct_ = true;
                     pAccount->status_ = mmAccount::MMEX_Open;
@@ -766,7 +766,7 @@ int mmQIFImportDialog::mmImportQIF()
             pTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
             *pTransaction->splitEntries_ = *mmSplit;
 
-            std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(from_account_id);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(from_account_id);
             wxASSERT(pCurrencyPtr);
 
             //For any transfer transaction always mirrored transaction present
@@ -822,7 +822,7 @@ int mmQIFImportDialog::mmImportQIF()
         for (const auto& refTrans : vQIF_trxs)
         {
             //fromAccountID = refTrans->accountID_;
-            std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
             wxASSERT(pCurrencyPtr);
             refTrans->amt_ = fabs(refTrans->amt_);
             refTrans->toAmt_ = fabs(refTrans->toAmt_);

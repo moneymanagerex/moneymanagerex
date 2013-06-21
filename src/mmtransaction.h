@@ -62,14 +62,14 @@ public:
     double getTotalSplits() const;
     double getUpdatedTotalSplits() const;
 
-    void addSplit(std::shared_ptr<mmSplitTransactionEntry> split);
+    void addSplit(mmSplitTransactionEntry* split);
     void removeSplit(int splitID);
     void removeSplitByIndex(int splitIndex);
 
     void updateToDB(std::shared_ptr<wxSQLite3Database>& db, int transID, bool edit);
     void loadFromBDDB(mmCoreDB* core, int bdID);
 
-    std::vector<std::shared_ptr<mmSplitTransactionEntry> > entries_;
+    std::vector<mmSplitTransactionEntry* > entries_;
 };
 
 class mmBankTransaction : public mmTransaction
@@ -102,7 +102,7 @@ public:
     int accountID_;
     int toAccountID_;
 
-    std::shared_ptr<mmSplitTransactionEntries> splitEntries_;
+    mmSplitTransactionEntries* splitEntries_;
 
     /* Derived Data */
     wxString dateStr_;

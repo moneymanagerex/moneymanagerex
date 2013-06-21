@@ -318,9 +318,9 @@ wxString mmQIFExportDialog::writeAccHeader(int accountID, bool qif)
     wxString buffer = "";
     if (qif)
     {
-        std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
+        mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
         wxASSERT(pAccount);
-        std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
+        mmCurrency* pCurrency = pAccount->currency_;
         wxASSERT(pCurrency);
 
         const wxString sAccName = core_->accountList_.GetAccountName(accountID);
@@ -488,7 +488,7 @@ void mmQIFExportDialog::mmExportQIF()
                 //if categ id is empty that mean this is split transaction
                 if (pBankTransaction->categID_ == -1)
                 {
-                    mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
+                    mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
                     pBankTransaction->getSplitTransactions(splits);
 
                     for (int i = 0; i < (int)splits->entries_.size(); ++i)

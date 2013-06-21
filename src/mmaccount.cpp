@@ -56,7 +56,7 @@ double mmAccountList::getAccountBaseCurrencyConvRate(int accountID) const
 {
     if (accountID > 0)
     {
-        std::shared_ptr<mmCurrency> pCurrency = getCurrencySharedPtr(accountID);
+        mmCurrency* pCurrency = getCurrencySharedPtr(accountID);
 
         wxASSERT(pCurrency);
 
@@ -67,13 +67,12 @@ double mmAccountList::getAccountBaseCurrencyConvRate(int accountID) const
     return 1.0;
 }
 
-std::shared_ptr<mmAccount> mmAccountList::GetAccountSharedPtr(int accountID) const
+mmAccount* mmAccountList::GetAccountSharedPtr(int accountID) const
 {
     account_v::value_type res;
 
-    for (account_v::const_iterator i = accounts_.begin(); i != accounts_.end(); ++i)
+    for (const auto& r : accounts_)
     {
-        account_v::const_reference r = *i;
         if (r->id_ == accountID)
         {
             res = r;
@@ -86,9 +85,9 @@ std::shared_ptr<mmAccount> mmAccountList::GetAccountSharedPtr(int accountID) con
 
 bool mmAccountList::AccountExists(const wxString& accountName) const
 {
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        if ((*it)->name_ == accountName) return true;
+        if (it->name_ == accountName) return true;
     }
 
     return false;
@@ -96,9 +95,9 @@ bool mmAccountList::AccountExists(const wxString& accountName) const
 
 bool mmAccountList::has_term_account() const
 {
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        if ((*it)->acctType_ == ACCOUNT_TYPE_TERM) return true;
+        if (it->acctType_ == ACCOUNT_TYPE_TERM) return true;
     }
 
     return false;
@@ -106,9 +105,9 @@ bool mmAccountList::has_term_account() const
 
 bool mmAccountList::has_stock_account() const
 {
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        if ((*it)->acctType_ == ACCOUNT_TYPE_STOCK) return true;
+        if (it->acctType_ == ACCOUNT_TYPE_STOCK) return true;
     }
 
     return false;
@@ -117,9 +116,9 @@ bool mmAccountList::has_stock_account() const
 int mmAccountList::getNumBankAccounts() const
 {
     int num = 0;
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        if ((*it)->acctType_ != ACCOUNT_TYPE_STOCK) ++ num;
+        if (it->acctType_ != ACCOUNT_TYPE_STOCK) ++ num;
     }
 
     return num;
@@ -127,9 +126,9 @@ int mmAccountList::getNumBankAccounts() const
 
 int mmAccountList::GetAccountId(const wxString& accountName) const
 {
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        if ((*it)->name_ == accountName) return (*it)->id_;
+        if (it->name_ == accountName) return it->id_;
     }
 
    return -1;
@@ -137,9 +136,9 @@ int mmAccountList::GetAccountId(const wxString& accountName) const
 
 wxString mmAccountList::GetAccountName(int accountID) const
 {
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        if ((*it)->id_ == accountID) return (*it)->name_;
+        if (it->id_ == accountID) return it->name_;
     }
 
     return wxEmptyString;
@@ -148,9 +147,9 @@ wxString mmAccountList::GetAccountName(int accountID) const
 wxArrayInt mmAccountList::getAccountsID(const wxArrayString accounts_type, int except_id) const
 {
     wxArrayInt accounts_id;
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& it : accounts_)
     {
-        const mmAccount* account = it->get();
+        const mmAccount* account = it;
         for (size_t i = 0; i < accounts_type.Count(); ++i)
         {
             if ((account->acctType_ == accounts_type[i])
@@ -167,9 +166,8 @@ wxArrayInt mmAccountList::getAccountsID(const wxArrayString accounts_type, int e
 wxArrayString mmAccountList::getAccountsName(int except_id) const
 {
     wxArrayString as;
-    for (const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& account : accounts_)
     {
-        const mmAccount* account = it->get();
         if ((account->acctType_ == ACCOUNT_TYPE_TERM || account->acctType_ == ACCOUNT_TYPE_BANK)
             && account->status_ != mmAccount::MMEX_Closed && account->id_ != except_id)
         {
@@ -182,9 +180,9 @@ wxArrayString mmAccountList::getAccountsName(int except_id) const
 
 wxString mmAccountList::getAccountType(int accountID) const
 {
-    for (account_v::const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& account : accounts_)
     {
-        if ((*it)->id_ == accountID) return (*it)->acctType_;
+        if (account->id_ == accountID) return account->acctType_;
     }
 
     wxASSERT(false);
@@ -193,9 +191,9 @@ wxString mmAccountList::getAccountType(int accountID) const
 
 bool mmAccountList::getAccountFavorite(int accountID) const
 {
-    for (account_v::const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& account : accounts_)
     {
-        if ((*it)->id_ == accountID) return (*it)->favoriteAcct_;
+        if (account->id_ == accountID) return account->favoriteAcct_;
     }
 
     wxASSERT(false);
@@ -204,9 +202,9 @@ bool mmAccountList::getAccountFavorite(int accountID) const
 
 mmAccount::Status mmAccountList::getAccountStatus(int accountID) const
 {
-    for (account_v::const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& account : accounts_)
     {
-        if ((*it)->id_ == accountID) return (*it)->status_;
+        if (account->id_ == accountID) return account->status_;
     }
 
     wxASSERT(false);
@@ -215,9 +213,9 @@ mmAccount::Status mmAccountList::getAccountStatus(int accountID) const
 
 bool mmAccountList::currencyInUse(int currencyID) const
 {
-    for (account_v::const_iterator it = accounts_.begin(); it != accounts_.end(); ++ it)
+    for (const auto& account : accounts_)
     {
-        if ((*it)->currencyID_ == currencyID) return true;
+        if (account->currencyID_ == currencyID) return true;
     }
 
     return false;
@@ -225,8 +223,7 @@ bool mmAccountList::currencyInUse(int currencyID) const
 
 wxString mmAccountList::getAccountCurrencyDecimalChar(int accountID) const
 {
-    std::shared_ptr<mmCurrency> pCurrency = getCurrencySharedPtr(accountID); 
-    wxASSERT(pCurrency);
+    mmCurrency* pCurrency = getCurrencySharedPtr(accountID); 
 
     if (pCurrency)
         return pCurrency->decChar_;
@@ -236,7 +233,7 @@ wxString mmAccountList::getAccountCurrencyDecimalChar(int accountID) const
 
 wxString mmAccountList::getAccountCurrencyGroupChar(int accountID) const
 {
-    std::shared_ptr<mmCurrency> pCurrency = getCurrencySharedPtr(accountID);
+    mmCurrency* pCurrency = getCurrencySharedPtr(accountID);
     wxASSERT(pCurrency);
 
     if (pCurrency)
@@ -247,7 +244,7 @@ wxString mmAccountList::getAccountCurrencyGroupChar(int accountID) const
 
 wxString mmAccountList::GetAccountCurrencyName(int accountID) const
 {
-    std::shared_ptr<mmCurrency> pCurrency = getCurrencySharedPtr(accountID);
+    mmCurrency* pCurrency = getCurrencySharedPtr(accountID);
     wxASSERT(pCurrency);
 
     if (pCurrency)
@@ -256,24 +253,23 @@ wxString mmAccountList::GetAccountCurrencyName(int accountID) const
     return "";
 }
 
-std::shared_ptr<mmCurrency> mmAccountList::getCurrencySharedPtr(int accountID) const
+mmCurrency* mmAccountList::getCurrencySharedPtr(int accountID) const
 {
-    int len = (int)accounts_.size();
-    for (int idx = 0; idx < len; idx++)
+    for (const auto& idx : accounts_)
     {
-        if (accounts_[idx]->id_ == accountID)
-            return accounts_[idx]->currency_;
+        if (idx->id_ == accountID)
+            return idx->currency_;
     }
     wxASSERT(false);
-    return std::shared_ptr<mmCurrency>();
+    return NULL;
 }
 
-int mmAccountList::UpdateAccount(std::shared_ptr<mmAccount> pAccount)
+int mmAccountList::UpdateAccount(mmAccount* pAccount)
 {
     wxString statusStr = pAccount->status_ == mmAccount::MMEX_Closed ? "Closed" : "Open";
     wxString favStr = pAccount->favoriteAcct_ ? "TRUE" : "FALSE";
 
-    std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
+    mmCurrency* pCurrency = pAccount->currency_;
     wxASSERT(pCurrency);
     int currencyID = pCurrency->currencyID_;
 
@@ -304,7 +300,7 @@ int mmAccountList::UpdateAccount(std::shared_ptr<mmAccount> pAccount)
     return iError;
 }
 
-int mmAccountList::AddAccount(std::shared_ptr<mmAccount> pAccount)
+int mmAccountList::AddAccount(mmAccount* pAccount)
 {
     wxString statusStr = "Open";
     if (pAccount->status_ == mmAccount::MMEX_Closed)
@@ -314,7 +310,7 @@ int mmAccountList::AddAccount(std::shared_ptr<mmAccount> pAccount)
     if (!pAccount->favoriteAcct_)
         favStr = "FALSE";
 
-    std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
+    mmCurrency* pCurrency = pAccount->currency_;
     wxASSERT(pCurrency);
     int currencyID = pCurrency->currencyID_;
 
@@ -393,10 +389,10 @@ bool mmAccountList::RemoveAccount(int accountID)
 
     mmOptions::instance().databaseUpdated_ = true;
 
-    std::vector<std::shared_ptr<mmAccount> >::iterator iter;
+    std::vector<mmAccount* >::iterator iter;
     for (iter = accounts_.begin(); iter != accounts_.end(); )
     {
-        std::shared_ptr<mmAccount> pAccount = (*iter);
+        mmAccount* pAccount = (*iter);
         if (pAccount->id_ == accountID)
         {
             iter = accounts_.erase(iter);
@@ -415,9 +411,9 @@ void mmAccountList::LoadAccounts(const mmCurrencyList& currencyList)
 
     while (q1.NextRow())
     {
-        std::shared_ptr<mmAccount> pAccount(new mmAccount(q1));
+        mmAccount* pAccount(new mmAccount(q1));
 
-        std::shared_ptr<mmCurrency> pCurrency =
+        mmCurrency* pCurrency =
             currencyList.getCurrencySharedPtr(q1.GetInt("CURRENCYID"));
         pAccount->currency_ = pCurrency;
 

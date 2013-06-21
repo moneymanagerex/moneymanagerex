@@ -530,7 +530,7 @@ int TLuaInterface::cpp2Lua_CurrencyFormat(lua_State* lua)
     wxString currency_symbol = GetLuaString(lua).MakeUpper();
     g_static_currency_list->LoadCurrencySetting(currency_symbol);
 
-    std::shared_ptr<mmCurrency> pCurrency = g_static_currency_list->getCurrencySharedPtr(currency_symbol, true);
+    mmCurrency* pCurrency = g_static_currency_list->getCurrencySharedPtr(currency_symbol, true);
     if (pCurrency)
     {
         number = number * pCurrency->baseConv_;

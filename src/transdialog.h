@@ -134,7 +134,7 @@ private:
     double toTransAmount_;
     double transAmount_;
     bool advancedToTransAmountSet_;
-    std::shared_ptr<mmSplitTransactionEntries> split_;
+    mmSplitTransactionEntries* split_;
 
     // store the original currency rate for transaction editing
     double  edit_currency_rate;

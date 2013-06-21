@@ -92,10 +92,11 @@ wxString mmReportTransactions::getHTMLText()
         if ( refAccountID_ > -1 && transaction.transType_ == TRANS_TYPE_TRANSFER_STR &&
              (refAccountID_ == transaction.accountID_ || refAccountID_ == transaction.toAccountID_) )
         {
-            const std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(refAccountID_);
-            const std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
+            const mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(refAccountID_);
+            const mmCurrency* pCurrency = pAccount->currency_;
             wxASSERT(pCurrency);
-            pCurrency->loadCurrencySettings();
+            //FIXME:
+            //pCurrency->loadCurrencySettings();
         }
 
         bool negativeTransAmount = false;   // this can be either a transfer or withdrawl

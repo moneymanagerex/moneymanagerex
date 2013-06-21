@@ -21,7 +21,7 @@
 #include "mmOption.h"
 #include "mmcoredb.h"
 
-void mmSplitTransactionEntries::addSplit(std::shared_ptr<mmSplitTransactionEntry> split)
+void mmSplitTransactionEntries::addSplit(mmSplitTransactionEntry* split)
 {
     entries_.push_back(split);
 }
@@ -93,7 +93,7 @@ void mmSplitTransactionEntries::loadFromBDDB(mmCoreDB* core, int bdID)
    wxSQLite3ResultSet q1 = st.ExecuteQuery();
    while (q1.NextRow())
    {
-      std::shared_ptr<mmSplitTransactionEntry> pSplitEntry(new mmSplitTransactionEntry());
+      mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry());
       pSplitEntry->splitEntryID_ = q1.GetInt("SPLITTRANSID");
       pSplitEntry->splitAmount_  = q1.GetDouble("SPLITTRANSAMOUNT");
 
@@ -115,7 +115,7 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core) :
     isInited_(false),
     updateRequired_(false)
 {
-    splitEntries_ = std::shared_ptr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
+    splitEntries_ = new mmSplitTransactionEntries();
 }
 
 mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
@@ -140,11 +140,10 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
     subcategID_  = q1.GetInt("SUBCATEGID");
     fullCatStr_  = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
-    std::shared_ptr<mmCurrency> pCurrencyPtr = core->accountList_.getCurrencySharedPtr(accountID_);
-    wxASSERT(pCurrencyPtr);
+    mmCurrency* pCurrencyPtr = core->accountList_.getCurrencySharedPtr(accountID_);
 
-    splitEntries_ = std::shared_ptr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
-    getSplitTransactions(splitEntries_.get());
+    splitEntries_ = new mmSplitTransactionEntries();
+    getSplitTransactions(splitEntries_);
 }
 
 bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
@@ -273,7 +272,7 @@ void mmBankTransaction::getSplitTransactions(mmSplitTransactionEntries* splits) 
 
     while (q1.NextRow())
     {
-        std::shared_ptr<mmSplitTransactionEntry> pSplitEntry(new mmSplitTransactionEntry);
+        mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
 
         pSplitEntry->splitEntryID_ = q1.GetInt("SPLITTRANSID");
         pSplitEntry->splitAmount_  = q1.GetDouble("SPLITTRANSAMOUNT");
@@ -419,10 +418,10 @@ bool mmBankTransactionList::checkForExistingTransaction(mmBankTransaction* pBank
         int transactionID = q1.GetInt("TRANSID");
         if (pBankTransaction->categID_ == -1)
         {
-            mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
+            mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
 
             mmBankTransaction* pTempTransaction = getBankTransactionPtr(transactionID);
-            mmSplitTransactionEntries* temp_splits = pTempTransaction->splitEntries_.get();
+            mmSplitTransactionEntries* temp_splits = pTempTransaction->splitEntries_;
 
             if (splits->entries_.size() != temp_splits->entries_.size())
                 continue;
@@ -477,9 +476,9 @@ mmBankTransaction* mmBankTransactionList::copyTransaction(
     pCopyTransaction->notes_       = pBankTransaction->notes_;
 
     // we need to create a new pointer for Split transactions.
-    std::shared_ptr<mmSplitTransactionEntries> splitTransEntries(new mmSplitTransactionEntries());
-    pBankTransaction->getSplitTransactions(splitTransEntries.get());
-    pCopyTransaction->splitEntries_.get()->entries_ = splitTransEntries->entries_;
+    mmSplitTransactionEntries* splitTransEntries(new mmSplitTransactionEntries());
+    pBankTransaction->getSplitTransactions(splitTransEntries);
+    pCopyTransaction->splitEntries_->entries_ = splitTransEntries->entries_;
 
     if (checkForExistingTransaction(pCopyTransaction)) pCopyTransaction->status_ = "D";
 
@@ -560,7 +559,7 @@ void mmBankTransactionList::LoadTransactions()
 void mmBankTransactionList::LoadAccountTransactions(int accountID)
 {
     accountTransactions_.clear();
-    std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
+    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
     double balance = pAccount->initialBalance_;
     for (const auto& pBankTransaction: transactions_)
     {
@@ -684,7 +683,7 @@ void mmBankTransactionList::getExpensesIncomeStats
     double convRate = 1;
     for (const auto& account: core_->accountList_.accounts_)
     {
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
         double rate = pCurrencyPtr->baseConv_;
@@ -748,7 +747,7 @@ void mmBankTransactionList::getCategoryStats
     double convRate = 1;
     for (const auto& account: core_->accountList_.accounts_)
     {
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
         double rate = pCurrencyPtr->baseConv_;
@@ -1215,7 +1214,7 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
             }
             else if (pBankTransaction && (pBankTransaction->categID_ == -1))
             {
-                mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
+                mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
                 pBankTransaction->getSplitTransactions(splits);
 
                 for (int i = 0; i < (int)splits->entries_.size(); ++i)
@@ -1259,7 +1258,7 @@ bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bInc
                 sum -= pBankTransaction->amt_;
         }
 
-        mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_.get();
+        mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
 
         for (int i = 0; i < (int)splits->entries_.size(); ++i)
         {

@@ -115,7 +115,7 @@ void TSplitEntriesList::LoadSplitEntries()
         wxSQLite3ResultSet q1 = ListDatabase()->ExecuteQuery(sql_statement);
         while (q1.NextRow())
         {
-            std::shared_ptr<TSplitEntry> pEntry(new TSplitEntry(q1));
+            TSplitEntry* pEntry(new TSplitEntry(q1));
             global_entries_.push_back(pEntry);
         }
         q1.Finalize();
@@ -150,7 +150,7 @@ void TSplitTransactionList::LoadEntries()
     {
         if (entries_List_.global_entries_[index]->id_trans_ == id_transaction_)
         {
-            std::shared_ptr<TSplitEntry> pEntry = entries_List_.global_entries_[index];
+            TSplitEntry* pEntry = entries_List_.global_entries_[index];
             entries_.push_back(pEntry);
             total_ += pEntry->amount_;
         }
@@ -167,7 +167,7 @@ TSplitTransactionList::TSplitTransactionList(TSplitEntriesList& entries_List)
 
 void TSplitTransactionList::AddLocalEntry(int cat_id, int subcat_id, double amount)
 {
-    std::shared_ptr<TSplitEntry> pEntry(new TSplitEntry());
+    TSplitEntry* pEntry(new TSplitEntry());
     pEntry->id_category_ = cat_id;
     pEntry->id_subcategory_ = subcat_id;
     pEntry->amount_ = amount;
@@ -193,7 +193,7 @@ double TSplitTransactionList::TotalAmount()
     return total_;
 }
 
-void TSplitTransactionList::AddEntry(std::shared_ptr<TSplitEntry> pEntry)
+void TSplitTransactionList::AddEntry(TSplitEntry* pEntry)
 {
     total_ += pEntry->amount_;
     entries_.push_back(pEntry);                 // Add to local list
@@ -203,7 +203,7 @@ void TSplitTransactionList::AddEntry(std::shared_ptr<TSplitEntry> pEntry)
 
 int TSplitTransactionList::AddEntry(int cat_id, int subcat_id, double amount)
 {
-    std::shared_ptr<TSplitEntry> pEntry(new TSplitEntry());
+    TSplitEntry* pEntry(new TSplitEntry());
 
     pEntry->id_trans_ = id_transaction_;
     pEntry->id_category_ = cat_id;
@@ -252,7 +252,7 @@ TSplitEntry* TSplitTransactionList::GetEntryPtr(int id_split_trans)
     {
         if (entries_[i]->id_ == id_split_trans)
         {
-            entry_ptr = entries_[i].get();
+            entry_ptr = entries_[i];
             break;
         }
     }
@@ -262,7 +262,7 @@ TSplitEntry* TSplitTransactionList::GetEntryPtr(int id_split_trans)
 
 TSplitEntry* TSplitTransactionList::GetIndexedEntryPtr(int index)
 {
-    return entries_[index].get();
+    return entries_[index];
 }
 
 void TSplitTransactionList::ReEvaluateTotal()

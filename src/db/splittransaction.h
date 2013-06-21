@@ -63,7 +63,7 @@ private:
     friend class TSplitTransactionList;
 
     wxString db_table_;
-    std::vector< std::shared_ptr<TSplitEntry> > global_entries_;
+    std::vector< TSplitEntry* > global_entries_;
 
     void LoadSplitEntries();
 
@@ -80,12 +80,12 @@ private:
     int id_transaction_;
     TSplitEntriesList& entries_List_;
     double total_;
-    std::vector< std::shared_ptr<TSplitEntry> > entries_;
+    std::vector< TSplitEntry* > entries_;
 
     /// Load the transaction split entries from the global list.
     void LoadEntries();
     
-    void AddEntry(std::shared_ptr<TSplitEntry> split_entry);
+    void AddEntry(TSplitEntry* split_entry);
     void ReEvaluateTotal();
     void RemoveGlobalEntry(int entry_id);
 

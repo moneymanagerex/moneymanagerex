@@ -499,8 +499,7 @@ bool mmAddAccountPage2::TransferDataFromWindow()
     }
 
     mmAccount* ptrBase = new mmAccount();
-
-    std::shared_ptr<mmAccount> pAccount(ptrBase);
+    mmAccount* pAccount(ptrBase);
 
     pAccount->favoriteAcct_ = true;
     pAccount->status_ = mmAccount::MMEX_Open;
@@ -1009,7 +1008,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 continueExecution = true;
                 mmBankTransaction tran(m_core.get());
 
-                std::shared_ptr<mmCurrency> pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(th.accountID_);
+                mmCurrency* pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(th.accountID_);
                 wxASSERT(pCurrencyPtr);
 
                 tran.accountID_ = th.accountID_;
@@ -1027,9 +1026,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran.date_ = th.nextOccurDate_;
                 tran.toAmt_ = th.toAmt_;
 
-                std::shared_ptr<mmSplitTransactionEntries> split(new mmSplitTransactionEntries());
+                mmSplitTransactionEntries* split(new mmSplitTransactionEntries());
                 split->loadFromBDDB(m_core.get(),th.id_);
-                *tran.splitEntries_.get() = *split.get();
+                *tran.splitEntries_ = *split;
 
                 m_core.get()->bTransactionList_.addTransaction(&tran);
             }
@@ -1834,7 +1833,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         }
         else
         {
-           std::shared_ptr<mmAccount> pAccount = m_core->accountList_.GetAccountSharedPtr(data);
+           mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
            if (pAccount)
            {
                 wxString acctType = pAccount->acctType_;
@@ -1943,7 +1942,7 @@ void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
    if (selectedItemData_)
    {
       int data = selectedItemData_->getData();
-      std::shared_ptr<mmAccount> pAccount = m_core->accountList_.GetAccountSharedPtr(data);
+      mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
       if (pAccount)
       {
          wxString website = pAccount->website_;
@@ -1959,7 +1958,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
     if (selectedItemData_)
     {
         int data = selectedItemData_->getData();
-        std::shared_ptr<mmAccount> pAccount = m_core->accountList_.GetAccountSharedPtr(data);
+        mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
         if (pAccount)
         {
            wxString acctType = pAccount->acctType_;
@@ -1982,7 +1981,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
     if (selectedItemData_)
     {
         int data = selectedItemData_->getData();
-        std::shared_ptr<mmAccount> pAccount = m_core->accountList_.GetAccountSharedPtr(data);
+        mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
         if (pAccount)
         {
             wxMessageDialog msgDlg(this,
@@ -2028,7 +2027,7 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
         int data = iData->getData();
         if (!iData->isBudgetingNode())
         {
-            std::shared_ptr<mmAccount> pAccount = m_core->accountList_.GetAccountSharedPtr(data);
+            mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
             if (pAccount)
             {
                 wxString acctType = pAccount->acctType_;
@@ -3187,8 +3186,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                 {
                     tran->reportCategAmount_ = tran->getAmountForSplit(categID, subcategID);
 
-                    std::shared_ptr<mmCurrency> pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(tran->accountID_);
-                    wxASSERT(pCurrencyPtr);
+                    mmCurrency* pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(tran->accountID_);
                     tran->reportCategAmountStr_ = CurrencyFormatter::float2String(tran->reportCategAmount_);
                 }
                 else

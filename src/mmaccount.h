@@ -52,22 +52,22 @@ public:
     bool favoriteAcct_;
     double initialBalance_;
     int currencyID_;
-    std::shared_ptr<mmCurrency> currency_;
+    mmCurrency* currency_;
 };
 
 class mmAccountList
 {
 private:
-    typedef std::vector< std::shared_ptr<mmAccount> > account_v;
+    typedef std::vector< mmAccount* > account_v;
     mmCoreDB* core_;
 
 public:
     mmAccountList(mmCoreDB* core);
 
     /* Account Functions */
-    std::shared_ptr<mmAccount> GetAccountSharedPtr(int accountID) const;
+    mmAccount* GetAccountSharedPtr(int accountID) const;
 
-    int AddAccount(std::shared_ptr<mmAccount> pAccount);
+    int AddAccount(mmAccount* pAccount);
     /// returns the ACCOUNT_TYPE_xxxx String
     wxString getAccountType(int accountID) const;
     bool getAccountFavorite(int accountID) const;
@@ -80,11 +80,11 @@ public:
     int getNumBankAccounts() const;
     int GetAccountId(const wxString& accountName) const;
     bool RemoveAccount(int accountID);
-    int UpdateAccount(std::shared_ptr<mmAccount> pAccount);
+    int UpdateAccount(mmAccount* pAccount);
     bool AccountExists(const wxString& accountName) const;
     bool has_term_account() const;
     bool has_stock_account() const;
-    std::shared_ptr<mmCurrency> getCurrencySharedPtr(int accountID) const;
+    mmCurrency* getCurrencySharedPtr(int accountID) const;
     double getAccountBaseCurrencyConvRate(int accountID) const;
     wxString GetAccountName(int accountID) const;
     wxArrayInt getAccountsID(const wxArrayString account_type, int except_id = -1) const;
@@ -94,7 +94,7 @@ public:
     wxString GetAccountCurrencyName(int accountID) const;
     bool currencyInUse(int currencyID) const;
     account_v accounts_;
-    typedef std::vector<std::shared_ptr<mmAccount> >::const_iterator const_iterator;
+    typedef std::vector<mmAccount* >::const_iterator const_iterator;
 
     /// Loads database Accounts list into memory
     void LoadAccounts(const mmCurrencyList& currencyList);

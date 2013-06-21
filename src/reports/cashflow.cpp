@@ -148,7 +148,7 @@ wxString mmReportCashFlow::getHTMLText_i()
 
         core_->bTransactionList_.getDailyBalance(core_, account->id_, daily_balance);
 
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
         double rate = pCurrencyPtr->baseConv_;

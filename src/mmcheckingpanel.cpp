@@ -657,10 +657,7 @@ void mmCheckingPanel::CreateControls()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::setAccountSummary()
 {
-    std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(m_AccountID);
-    //std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
-    //wxASSERT(pCurrency);
-    //pCurrency->loadCurrencySettings();
+    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(m_AccountID);
 
     header_text_->SetLabel(wxString::Format(_("Account View : %s"), pAccount->name_));
     double checking_bal = core_->bTransactionList_.getBalance(m_AccountID);
@@ -744,7 +741,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     double amount = m_trans[selIndex]->amt_;
     wxString amountStr;
 
-    std::shared_ptr<mmCurrency> pCurrency = core_->accountList_.getCurrencySharedPtr(accountId);
+    mmCurrency* pCurrency = core_->accountList_.getCurrencySharedPtr(accountId);
     int currencyid = pCurrency->currencyID_;
     //TODO: FIXME: If base currency does not set bug may happens
     if (basecurrencyid == -1) basecurrencyid = currencyid;
@@ -756,7 +753,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     if (transcodeStr == TRANS_TYPE_TRANSFER_STR)
     {
         double toconvrate = core_->accountList_.getAccountBaseCurrencyConvRate(toaccountId);
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(toaccountId);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(toaccountId);
         wxASSERT(pCurrencyPtr);
         wxString tocurpfxStr = pCurrencyPtr->pfxSymbol_;
         wxString tocursfxStr = pCurrencyPtr->sfxSymbol_;
@@ -802,7 +799,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     {
         //if (split_)
         {
-            mmSplitTransactionEntries* splits = m_trans[selIndex]->splitEntries_.get();
+            mmSplitTransactionEntries* splits = m_trans[selIndex]->splitEntries_;
             m_trans[selIndex]->getSplitTransactions(splits);
 
             for (const auto &i : splits->entries_)
@@ -823,7 +820,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
         {
             //load settings for base currency
             wxString currencyName = core_->currencyList_.getCurrencyName(basecurrencyid);
-            std::shared_ptr<mmCurrency> pCurrencyBase = core_->currencyList_.getCurrencySharedPtr(currencyName);
+            mmCurrency* pCurrencyBase = core_->currencyList_.getCurrencySharedPtr(currencyName);
             wxASSERT(pCurrencyBase);
             wxString basecuramountStr;
             mmDBWrapper::loadCurrencySettings(core_->db_.get(), pCurrencyBase->currencyID_);
@@ -1417,7 +1414,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     mmBankTransaction* pCopiedTrans =
         m_cp->core_->bTransactionList_.copyTransaction(m_selectedForCopy, m_cp->m_AccountID, useOriginalDate);
 
-    std::shared_ptr<mmCurrency> pCurrencyPtr = m_cp->core_->accountList_.getCurrencySharedPtr(m_cp->m_AccountID);
+    mmCurrency* pCurrencyPtr = m_cp->core_->accountList_.getCurrencySharedPtr(m_cp->m_AccountID);
     int transID = pCopiedTrans->transactionID();
     topItemIndex_ = m_selectedIndex;
     refreshVisualList(transID);
@@ -1747,7 +1744,7 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 
     SplitTransactionDialog splitTransDialog(
         core_,
-        core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_.get(),
+        core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_,
         transType,
         this
     );

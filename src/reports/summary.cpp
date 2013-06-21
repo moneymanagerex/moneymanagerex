@@ -52,7 +52,7 @@ wxString mmReportSummary::getHTMLText()
         {
             double bal = account->initialBalance_ + core_->bTransactionList_.getBalance(account->id_, mmIniOptions::instance().ignoreFutureTransactions_);
 
-            std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
             wxASSERT(pCurrencyPtr);
             CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
             double rate = pCurrencyPtr->baseConv_;
@@ -84,7 +84,7 @@ wxString mmReportSummary::getHTMLText()
         {
             double bal = account->initialBalance_ + core_->bTransactionList_.getBalance(account->id_, mmIniOptions::instance().ignoreFutureTransactions_);
 
-            std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
             wxASSERT(pCurrencyPtr);
             CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
             double rate = pCurrencyPtr->baseConv_;

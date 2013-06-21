@@ -553,7 +553,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
     if (fromAccountID_ > 0)
     {
 
-        std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID_);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID_);
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 

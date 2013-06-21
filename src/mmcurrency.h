@@ -59,13 +59,13 @@ public:
     void LoadCurrencies();
 
     /* Currency Functions */
-    int AddCurrency(std::shared_ptr<mmCurrency> pCurrency);
+    int AddCurrency(mmCurrency* pCurrency);
     bool DeleteCurrency(int currencyID);
-    void UpdateCurrency(std::shared_ptr<mmCurrency> pCurrency);
+    void UpdateCurrency(mmCurrency* pCurrency);
     int getCurrencyID(const wxString& currencyName, bool symbol = false) const;
     wxString getCurrencyName(int currencyID, bool symbol = false) const;
-    std::shared_ptr<mmCurrency> getCurrencySharedPtr(int currencyID) const;
-    std::shared_ptr<mmCurrency> getCurrencySharedPtr(const wxString& currencyName, bool symbol = false) const;
+    mmCurrency* getCurrencySharedPtr(int currencyID) const;
+    mmCurrency* getCurrencySharedPtr(const wxString& currencyName, bool symbol = false) const;
 
     void LoadBaseCurrencySettings() const;
     void LoadCurrencySetting(const wxString& currencySymbol);
@@ -73,15 +73,15 @@ public:
     void SetBaseCurrencySettings(int currencyID);
 	bool OnlineUpdateCurRate(wxString& sError);
 
-    std::vector< std::shared_ptr<mmCurrency> > currencies_;
+    std::vector< mmCurrency* > currencies_;
 
-    typedef std::vector< std::shared_ptr<mmCurrency> >::const_iterator const_iterator;
+    typedef std::vector< mmCurrency* >::const_iterator const_iterator;
    
 private:
     std::shared_ptr<wxSQLite3Database> db_;
     std::shared_ptr<MMEX_IniSettings> info_table_;
 
-    void SetCurrencySetting(std::shared_ptr<mmCurrency> pCurrency) const;
+    void SetCurrencySetting(mmCurrency* pCurrency) const;
 };
 
 #endif

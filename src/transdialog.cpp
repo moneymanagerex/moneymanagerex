@@ -92,7 +92,7 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 
     SetIcon(mmex::getProgramIcon());
 
-    std::shared_ptr<mmSplitTransactionEntries> split(new mmSplitTransactionEntries());
+    mmSplitTransactionEntries* split(new mmSplitTransactionEntries());
     split_ = split;
 
     dataToControls();
@@ -175,8 +175,8 @@ void mmTransDialog::dataToControls()
     updateControlsForTransType();
     if (edit_)
     {
-        *split_.get() = *core_->bTransactionList_.getBankTransactionPtr(
-            pBankTransaction_->transactionID())->splitEntries_.get();
+        *split_ = *core_->bTransactionList_.getBankTransactionPtr(
+            pBankTransaction_->transactionID())->splitEntries_;
     }
     else
     {
@@ -901,7 +901,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             , pBankTransaction_->transactionID());
     }
 
-    std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(newAccountID_);
+    mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(newAccountID_);
     wxASSERT(pCurrencyPtr);
 
     pTransaction->accountID_ = newAccountID_;
@@ -918,7 +918,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     pTransaction->date_ = dpc_->GetValue();
     pTransaction->toAmt_ = toTransAmount_;
 
-    *pTransaction->splitEntries_.get() = *split_.get();
+    *pTransaction->splitEntries_ = *split_;
 
     if (!edit_)
     {
@@ -1093,7 +1093,7 @@ void mmTransDialog::onTextEntered(wxCommandEvent& event)
 void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = sTransaction_type_ == TRANS_TYPE_DEPOSIT_STR;
-    std::shared_ptr<mmSplitTransactionEntry> pSplitEntry(new mmSplitTransactionEntry);
+    mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
     if (categID_ > -1)
     {
         wxString sAmount = textAmount_->GetValue();
@@ -1107,7 +1107,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     categID_ = -1;
     subcategID_ = -1;
 
-    SplitTransactionDialog dlg(core_, split_.get(), transaction_type_->GetSelection(), this);
+    SplitTransactionDialog dlg(core_, split_, transaction_type_->GetSelection(), this);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = split_->getTotalSplits();
@@ -1149,8 +1149,8 @@ void mmTransDialog::SetDialogToDuplicateTransaction()
     this->SetTitle(_("Duplicate Transaction"));
 
     // we need to create a new pointer for Split transactions.
-    std::shared_ptr<mmSplitTransactionEntries> splitTransEntries(new mmSplitTransactionEntries());
+    mmSplitTransactionEntries* splitTransEntries(new mmSplitTransactionEntries());
     core_->bTransactionList_.getBankTransactionPtr(accountID_
-        , pBankTransaction_->transactionID())->getSplitTransactions(splitTransEntries.get());
-    split_.get()->entries_ = splitTransEntries->entries_;
+        , pBankTransaction_->transactionID())->getSplitTransactions(splitTransEntries);
+    split_->entries_ = splitTransEntries->entries_;
 }

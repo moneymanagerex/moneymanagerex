@@ -182,7 +182,7 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 
         lcSplit_->SetItem(numToInsert, 1, CurrencyFormatter::float2String(*sdd.m_amount_));
 
-        std::shared_ptr<mmSplitTransactionEntry> pSplitEntry(new mmSplitTransactionEntry);
+        mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
         pSplitEntry->splitAmount_  = *sdd.m_amount_;
         pSplitEntry->categID_      = categID;
         pSplitEntry->subCategID_   = subcategID;

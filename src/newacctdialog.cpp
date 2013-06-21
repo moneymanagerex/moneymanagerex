@@ -82,7 +82,7 @@ bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
 void mmNewAcctDialog::fillControlsWithData()
 {
     this->SetTitle(_("Edit Account"));
-    std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(accountID_);
+    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID_);
     wxASSERT(pAccount);
 
     textAccountName_->SetValue(pAccount->name_);
@@ -123,7 +123,7 @@ void mmNewAcctDialog::fillControlsWithData()
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
     double initBal = pAccount->initialBalance_;
 
-    std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
+    mmCurrency* pCurrency = pAccount->currency_;
     wxASSERT(pCurrency);
 
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
@@ -353,10 +353,10 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
     int acctType = itemAcctType->GetSelection();
 
-    std::shared_ptr<mmAccount> pAccount;
+    mmAccount* pAccount;
     if (!edit_)
     {
-       std::shared_ptr<mmAccount> tAccount(new mmAccount());
+       mmAccount* tAccount(new mmAccount());
        pAccount = tAccount;
     }
     else

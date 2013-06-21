@@ -1068,8 +1068,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             mmBankTransaction* pTemp(new mmBankTransaction(core_));
             pTransaction = pTemp;
 
-            std::shared_ptr<mmCurrency> pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
-            wxASSERT(pCurrencyPtr);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
 
             pTransaction->accountID_ = fromAccountID;
             pTransaction->toAccountID_ = toAccountID;
@@ -1086,7 +1085,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             pTransaction->date_ = dpc_->GetValue();
             pTransaction->toAmt_ = toTransAmount_;
 
-            *pTransaction->splitEntries_.get() = *split_.get();
+            *pTransaction->splitEntries_ = *split_;
             //pTransaction->updateAllData(core_, fromAccountID, pCurrencyPtr);
             core_->bTransactionList_.addTransaction(pTransaction);
         }

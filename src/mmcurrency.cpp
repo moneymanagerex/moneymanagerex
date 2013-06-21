@@ -111,7 +111,7 @@ void mmCurrencyList::LoadCurrencySetting(const wxString& currencySymbol)
     SetCurrencySetting(getCurrencySharedPtr(currencySymbol, true));
 }
 
-void mmCurrencyList::SetCurrencySetting(std::shared_ptr<mmCurrency> pCurrency) const
+void mmCurrencyList::SetCurrencySetting(mmCurrency* pCurrency) const
 {
     if (pCurrency)
     {
@@ -140,7 +140,7 @@ void mmCurrencyList::SetBaseCurrencySettings(int currencyID)
     info_table_->SetIntSetting("BASECURRENCYID", currencyID);
 }
 
-int mmCurrencyList::AddCurrency(std::shared_ptr<mmCurrency> pCurrency)
+int mmCurrencyList::AddCurrency(mmCurrency* pCurrency)
 {
     const mmCurrency &r = *pCurrency;
     std::vector<wxString> data;
@@ -166,7 +166,7 @@ int mmCurrencyList::AddCurrency(std::shared_ptr<mmCurrency> pCurrency)
     return currencyID;
 }
 
-void mmCurrencyList::UpdateCurrency(std::shared_ptr<mmCurrency> pCurrency)
+void mmCurrencyList::UpdateCurrency(mmCurrency* pCurrency)
 {
     wxASSERT(pCurrency->currencyID_ > 0);
 
@@ -199,7 +199,7 @@ bool mmCurrencyList::DeleteCurrency(int currencyID)
     bool result = false;
     if (mmDBWrapper::deleteCurrency(db_.get(), currencyID))
     {
-        std::vector <std::shared_ptr<mmCurrency> >::iterator Iter;
+        std::vector <mmCurrency* >::iterator Iter;
         for ( Iter = currencies_.begin( ) ; Iter != currencies_.end( ) ; Iter++ )
         {
             if ((*Iter)->currencyID_ == currencyID)
@@ -216,14 +216,9 @@ bool mmCurrencyList::DeleteCurrency(int currencyID)
 int mmCurrencyList::getCurrencyID(const wxString& currencyName, bool symbol) const
 {
     int currencyID = -1;
-    std::shared_ptr<mmCurrency> pCurrency = getCurrencySharedPtr(currencyName, symbol);
-
-    if (pCurrency)
-    {
-        currencyID = pCurrency->currencyID_;
-    }
-
-   return currencyID;
+    mmCurrency* pCurrency = getCurrencySharedPtr(currencyName, symbol);
+    currencyID = pCurrency->currencyID_;
+    return currencyID;
 }
 
 wxString mmCurrencyList::getCurrencyName(int currencyID, bool symbol) const
@@ -239,7 +234,7 @@ wxString mmCurrencyList::getCurrencyName(int currencyID, bool symbol) const
     return wxEmptyString;
 }
 
-std::shared_ptr<mmCurrency> mmCurrencyList::getCurrencySharedPtr(int currencyID) const
+mmCurrency* mmCurrencyList::getCurrencySharedPtr(int currencyID) const
 {
     for (const auto &currency: currencies_)
     {
@@ -248,10 +243,10 @@ std::shared_ptr<mmCurrency> mmCurrencyList::getCurrencySharedPtr(int currencyID)
     }
 
     wxASSERT(false);
-    return std::shared_ptr<mmCurrency>();
+    return NULL;
 }
 
-std::shared_ptr<mmCurrency> mmCurrencyList::getCurrencySharedPtr(const wxString& currencyName, bool symbol) const
+mmCurrency* mmCurrencyList::getCurrencySharedPtr(const wxString& currencyName, bool symbol) const
 {
     for (const auto &currency: currencies_)
     {
@@ -267,7 +262,7 @@ std::shared_ptr<mmCurrency> mmCurrencyList::getCurrencySharedPtr(const wxString&
         }
     }
 
-    return std::shared_ptr<mmCurrency>();
+    return NULL;
 }
 
 void mmCurrencyList::LoadCurrencies()
@@ -276,7 +271,7 @@ void mmCurrencyList::LoadCurrencies()
 
     while (q1.NextRow())
     {
-        std::shared_ptr<mmCurrency> pCurrency(new mmCurrency(q1));
+        mmCurrency* pCurrency(new mmCurrency(q1));
         currencies_.push_back(pCurrency);
     }
 
