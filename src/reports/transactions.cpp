@@ -86,11 +86,11 @@ wxString mmReportTransactions::getHTMLText()
     bool transferTransactionFound = false;
     double total = 0;
 
-    for (const auto& transcation: trans_)
+    for (const auto& transaction: trans_)
     {
         // For transfer transactions, we need to fix the data reference point first.
-        if ( refAccountID_ > -1 && transcation.transType_ == TRANS_TYPE_TRANSFER_STR &&
-             (refAccountID_ == transcation.accountID_ || refAccountID_ == transcation.toAccountID_) )
+        if ( refAccountID_ > -1 && transaction.transType_ == TRANS_TYPE_TRANSFER_STR &&
+             (refAccountID_ == transaction.accountID_ || refAccountID_ == transaction.toAccountID_) )
         {
             const std::shared_ptr<mmAccount> pAccount = core_->accountList_.GetAccountSharedPtr(refAccountID_);
             const std::shared_ptr<mmCurrency> pCurrency = pAccount->currency_;
@@ -102,62 +102,62 @@ wxString mmReportTransactions::getHTMLText()
 
         // Display the data for the selected row
         hb.startTableRow();
-        hb.addTableCell(transcation.date_);
-        hb.addTableCellLink(wxString::Format("TRXID:%d"
-            , transcation.transactionID()), transcation.fromAccountStr_, false);
-        hb.addTableCell(transcation.payeeStr_, false, true);
-        hb.addTableCell(transcation.status_);
-        hb.addTableCell(transcation.fullCatStr_, false, true);
+        hb.addTableCell(transaction.date_);
+        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.transactionID())
+            , core_->accountList_.GetAccountName(transaction.accountID_));
+        hb.addTableCell(transaction.payeeStr_, false, true);
+        hb.addTableCell(transaction.status_);
+        hb.addTableCell(transaction.fullCatStr_, false, true);
 
-        if (transcation.transType_ == TRANS_TYPE_DEPOSIT_STR)
+        if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR)
             hb.addTableCell(_("Deposit"));
-        else if (transcation.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
+        else if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
         {
             hb.addTableCell(_("Withdrawal"));
             negativeTransAmount = true;
         }
-        else if (transcation.transType_ == TRANS_TYPE_TRANSFER_STR)
+        else if (transaction.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
             hb.addTableCell(_("Transfer"));
             if (refAccountID_ >= 0 )
             {
                 unknownnReferenceAccount = false;
-                if (transcation.accountID_ == refAccountID_)
+                if (transaction.accountID_ == refAccountID_)
                     negativeTransAmount   = true;  // transfer is a withdrawl from account
             }
-            else if (transcation.fromAccountStr_ == transcation.payeeStr_)
+            else if (transaction.fromAccountStr_ == transaction.payeeStr_)
                 negativeTransAmount = true;
         }
 
         // Get the exchange rate for the selected account
-        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transcation.accountID_);
-        double transAmount = transcation.amt_ * dbRate;
-        if (transcation.reportCategAmountStr_ != "")
+        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction.accountID_);
+        double transAmount = transaction.amt_ * dbRate;
+        if (transaction.reportCategAmountStr_ != "")
         {
-            transAmount = transcation.reportCategAmount_ * dbRate;
-            if (transcation.transType_ == TRANS_TYPE_WITHDRAWAL_STR && transAmount < 0)
+            transAmount = transaction.reportCategAmount_ * dbRate;
+            if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR && transAmount < 0)
                 negativeTransAmount = false;
-            else if (transcation.transType_ == TRANS_TYPE_DEPOSIT_STR && transAmount < 0)
+            else if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR && transAmount < 0)
                 negativeTransAmount = true;
         }
 
         wxString amtColour = negativeTransAmount ? "RED" : "BLACK";
 
-        if (transcation.reportCategAmountStr_ == "")
-            hb.addTableCell(transcation.transAmtString_, true, false,false, amtColour);
+        if (transaction.reportCategAmountStr_ == "")
+            hb.addTableCell(transaction.transAmtString_, true, false,false, amtColour);
         else
-            hb.addTableCell(transcation.reportCategAmountStr_, true, false,false, amtColour);
-        hb.addTableCell(transcation.transNum_);
-        hb.addTableCell(transcation.notes_, false, true);
+            hb.addTableCell(transaction.reportCategAmountStr_, true, false,false, amtColour);
+        hb.addTableCell(transaction.transNum_);
+        hb.addTableCell(transaction.notes_, false, true);
         hb.endTableRow();
 
-        if (transcation.status_ != "V")
+        if (transaction.status_ != "V")
         {
-            if (transcation.transType_ == TRANS_TYPE_DEPOSIT_STR)
+            if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR)
                 total += transAmount;
-            else if (transcation.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
+            else if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
                 total -= transAmount;
-            else if (transcation.transType_ == TRANS_TYPE_TRANSFER_STR)
+            else if (transaction.transType_ == TRANS_TYPE_TRANSFER_STR)
             {
                 transferTransactionFound = true;
                 if (negativeTransAmount)
