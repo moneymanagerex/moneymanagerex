@@ -391,17 +391,14 @@ void mmCheckingPanel::filterTable()
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
-    if (m_listCtrlAccount->m_selectedIndex > -1)
+    long i = 0;
+    for (const auto & pTrans : m_trans)
     {
-        long i = 0;
-        for (const auto & pTrans : m_trans)
-        {
-            if (trans_id == pTrans->transactionID() && trans_id > 0) {
-                m_listCtrlAccount->m_selectedIndex = i;
-                break;
-            }
-        ++i;
+        if (trans_id == pTrans->transactionID() && trans_id > 0) {
+            m_listCtrlAccount->m_selectedIndex = i;
+            break;
         }
+        ++i;
     }
 
     if (m_trans.size() > 0 && m_listCtrlAccount->m_selectedIndex < 0)
@@ -461,7 +458,7 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
 
 //----------------------------------------------------------------------------
 
-void mmCheckingPanel::initVirtualListControl(int trans_id)
+void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
     //Initialization
     core_->bTransactionList_.LoadAccountTransactions(m_AccountID);
@@ -476,7 +473,6 @@ void mmCheckingPanel::initVirtualListControl(int trans_id)
     sortTable();
     filterTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
-    markSelectedTransaction(trans_id);
 
     setAccountSummary();
 }
@@ -1558,7 +1554,9 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::refreshVisualList(int trans_id)
 {
-    m_cp->initVirtualListControl(trans_id);
+    m_cp->initVirtualListControl();
+    m_cp->markSelectedTransaction(trans_id);
+
 
     if (topItemIndex_ >= (long)m_cp->m_trans.size())
         topItemIndex_ = g_asc ? (long)m_cp->m_trans.size() - 1 : 0;
@@ -1569,7 +1567,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
     //debuger
-    //wxLogDebug(wxString("id:")<<trans_id<<"|top:"<<topItemIndex_<<"|selected:"<<m_selectedIndex);
+    wxLogDebug(wxString("id:")<<trans_id<<"|top:"<<topItemIndex_<<"|selected:"<<m_selectedIndex);
 
     if (m_cp->m_trans.size() > 0) {
         RefreshItems(0, m_cp->m_trans.size() - 1);
