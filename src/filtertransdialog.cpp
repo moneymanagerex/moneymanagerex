@@ -92,9 +92,9 @@ void mmFilterTransactionsDialog::dataToControls()
     toDateControl_ ->SetValue(mmGetStorageStringAsDate(value));
 
     status = get_next_value(tkz, value);
-    payeeCheckBox_ ->SetValue(status);
     cbPayee_ ->Enable(status);
-    cbPayee_ ->SetStringSelection(value);
+    cbPayee_ ->SetValue(value);
+    payeeCheckBox_->SetValue(status);
 
     status = get_next_value(tkz, value);
     categoryCheckBox_ ->SetValue(status);
@@ -139,6 +139,7 @@ void mmFilterTransactionsDialog::dataToControls()
     notesCheckBox_ ->SetValue(status);
     notesEdit_ ->Enable(status);
     notesEdit_ ->SetValue(value);
+
 }
 void mmFilterTransactionsDialog::CreateControls()
 {
@@ -202,10 +203,10 @@ void mmFilterTransactionsDialog::CreateControls()
                                     wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(payeeCheckBox_, flags);
 
-    cbPayee_ = new wxComboBox(itemPanel, ID_DIALOG_TRANS_PAYEECOMBO, "",
+    cbPayee_ = new wxComboBox(itemPanel, wxID_ANY, "",
         wxDefaultPosition, wxDefaultSize,
         core_->payeeList_.FilterPayees("") /*, wxTE_PROCESS_ENTER*/);
-    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
+    cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
 
     cbPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
@@ -305,7 +306,7 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), NULL, this);
 
-    int view_no = core_->iniSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
+    int view_no = core_->dbInfoSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
     m_radio_box_->SetSelection(view_no);
     m_radio_box_->Show(true);
 
@@ -413,15 +414,6 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
 
 void mmFilterTransactionsDialog::OnButtoncancelClick( wxCommandEvent& /*event*/ )
 {
-    wxWindow *w = FindFocus();
-    if (w && w->GetId() == ID_DIALOG_TRANS_PAYEECOMBO && !(cbPayee_->GetValue()).IsEmpty())
-    {
-        cbPayee_->SetValue("");
-        prev_value_ = "*";
-        wxCommandEvent evt(wxEVT_COMMAND_TEXT_UPDATED, ID_DIALOG_TRANS_PAYEECOMBO);
-        OnPayeeUpdated(evt);
-        return;
-    }
     EndModal(wxID_CANCEL);
 }
 
@@ -586,7 +578,9 @@ void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
 {
     int i = m_radio_box_->GetSelection();
     settings_string_ = GetCurrentSettings();
-    core_->iniSettings_->SetStringSetting(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
+    core_->dbInfoSettings_->SetStringSetting(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
+    core_->dbInfoSettings_->SetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", i);
+    wxLogDebug(wxString::Format("Settings Saled to registry %i\n %s", i, settings_string_));
 }
 
 void mmFilterTransactionsDialog::OnButtonClearClick( wxCommandEvent& /*event*/ )
@@ -605,11 +599,11 @@ void mmFilterTransactionsDialog::OnSettingsSelected( wxCommandEvent& event )
 wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
 {
     if (id < 0) {
-        id = core_->iniSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
+        id = core_->dbInfoSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
     } else {
         core_->iniSettings_->SetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", id);
     }
-    settings_string_ = core_->iniSettings_->GetStringSetting(
+    settings_string_ = core_->dbInfoSettings_->GetStringSetting(
                               wxString::Format("TRANSACTIONS_FILTER_%d", id),
                               "0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;");
     return settings_string_;
@@ -671,19 +665,8 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 
 void mmFilterTransactionsDialog::clearSettings()
 {
-    accountCheckBox_->SetValue(false);
-    dateRangeCheckBox_->SetValue(false);
-    payeeCheckBox_->SetValue(false);
-    categoryCheckBox_->SetValue(false);
-    statusCheckBox_->SetValue(false);
-    typeCheckBox_->SetValue(false);
-    cbTypeWithdrawal_->SetValue(false);
-    cbTypeDeposit_->SetValue(false);
-    cbTypeTransfer_->SetValue(false);
-    amountRangeCheckBox_->SetValue(false);
-    notesCheckBox_->SetValue(false);
-    transNumberCheckBox_->SetValue(false);
-
+    settings_string_ = "0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;";
+    dataToControls();
 }
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
