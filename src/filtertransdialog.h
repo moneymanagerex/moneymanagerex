@@ -93,6 +93,7 @@ public:
 
     void setAccountToolTip(const wxString& tip) const;
     void setPresettings(const wxString& view);
+    void clearSettings();
 
 private:
     /// Creation
@@ -115,6 +116,7 @@ private:
     void OnButtonokClick( wxCommandEvent& event );
     void OnButtoncancelClick( wxCommandEvent& event );
     void OnButtonSaveClick( wxCommandEvent& event );
+    void OnButtonClearClick( wxCommandEvent& event );
     void OnSettingsSelected( wxCommandEvent& event );
     void OnPayeeUpdated(wxCommandEvent& event);
     bool get_next_value(wxStringTokenizer& tkz, wxString& value);

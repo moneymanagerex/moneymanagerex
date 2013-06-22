@@ -31,6 +31,7 @@ BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
     EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
     EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
+    EVT_BUTTON  (wxID_CLEAR,   mmFilterTransactionsDialog::OnButtonClearClick )
 
 END_EVENT_TABLE()
 
@@ -327,6 +328,8 @@ void mmFilterTransactionsDialog::CreateControls()
     wxButton* itemButtonCancel = new wxButton( buttonPanel, wxID_CANCEL);
     itemButtonCancel->SetFocus();
 
+    wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR);
+
     wxBitmapButton* save_button = new wxBitmapButton( buttonPanel,
         wxID_SAVE, wxBitmap(save_xpm), wxDefaultPosition,
         wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
@@ -336,6 +339,7 @@ void mmFilterTransactionsDialog::CreateControls()
     buttonPanelSizer->Add(save_button, flags.Border(wxALL, 5));
     buttonPanelSizer->Add(itemButtonOK, flags);
     buttonPanelSizer->Add(itemButtonCancel, flags);
+    buttonPanelSizer->Add(itemButtonClear, flags);
 }
 
 /*!
@@ -587,6 +591,13 @@ void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
     core_->iniSettings_->SetStringSetting(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
 }
 
+void mmFilterTransactionsDialog::OnButtonClearClick( wxCommandEvent& /*event*/ )
+{
+    clearSettings();
+    wxCommandEvent evt(/*wxEVT_CHECKBOX*/ wxID_ANY, wxID_ANY);
+    OnCheckboxClick(evt);
+}
+
 void mmFilterTransactionsDialog::OnSettingsSelected( wxCommandEvent& event )
 {
     GetStoredSettings(event.GetSelection());
@@ -660,10 +671,27 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
     accountDropDown_->SetToolTip(tip);
 }
 
+void mmFilterTransactionsDialog::clearSettings()
+{
+	accountCheckBox_->SetValue(false);
+	dateRangeCheckBox_->SetValue(false);
+	payeeCheckBox_->SetValue(false);
+	typeCheckBox_->SetValue(false);
+	cbTypeWithdrawal_->SetValue(false);
+	cbTypeDeposit_->SetValue(false);
+	cbTypeTransfer_->SetValue(false);
+	amountRangeCheckBox_->SetValue(false);
+	notesCheckBox_->SetValue(false);
+	transNumberCheckBox_->SetValue(false);
+	
+}
+
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
     //TODO: not finished
     wxLogDebug(view);
+    m_radio_box_->SetSelection(0);
+    clearSettings();
     if (view == VIEW_TRANS_ALL_STR)
     {
 		dateRangeCheckBox_->SetValue(false);

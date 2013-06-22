@@ -349,7 +349,7 @@ void mmCheckingPanel::filterTable()
     std::vector<mmBankTransaction*> filtered_trans;
     bool toAdd = transFilterDlg_->somethingSelected();
 
-    if (transFilterActive_ && toAdd)
+    if (/*transFilterActive_ &&*/ toAdd)
     {
         for (const auto& pBankTransaction: m_trans)
         {
@@ -963,13 +963,13 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     stxtMainFilter_->SetLabel(wxGetTranslation(currentView_));
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
-    m_listCtrlAccount->DeleteAllItems();
 
     m_listCtrlAccount->m_selectedIndex = -1;
-    m_listCtrlAccount->refreshVisualList();
 
     core_->dbInfoSettings_->SetStringSetting(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
-    initFilterSettings();    
+    initFilterSettings();
+    m_listCtrlAccount->refreshVisualList(m_listCtrlAccount->m_selectedID);
+     
 }
 
 void mmCheckingPanel::DeleteViewedTransactions()
