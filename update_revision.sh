@@ -4,9 +4,9 @@
 # This file is part of the Code::Blocks IDE and licensed under the GNU General Public License, version 3
 # http://www.gnu.org/licenses/gpl-3.0.html
 #
-# $Revision: 8962 $
-# $Id: update_revision.sh 8962 2013-04-07 10:37:27Z biplab $
-# $HeadURL: svn://svn.code.sf.net/p/codeblocks/code/trunk/update_revision.sh $
+# $Revision$
+# $Id$
+# $HeadURL$
 #
 
 
