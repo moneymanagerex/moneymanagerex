@@ -1339,7 +1339,7 @@ wxString mmDBWrapper::getLastDbPath(MMEX_IniSettings* iniSettings, const wxStrin
     only if the file is write protected by the operating system.  In either
     case the database must already exist, otherwise an error is returned.
 */
-std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const wxString &key)
+std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const wxString &password)
 {
     std::shared_ptr<wxSQLite3Database> db = static_db_ptr();
 
@@ -1347,7 +1347,7 @@ std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, con
     wxString errStr=wxEmptyString;
     try
     {
-        db->Open(dbpath, key);
+        db->Open(dbpath, password);
     }
     catch (const wxSQLite3Exception& e)
     {
