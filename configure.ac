@@ -3,7 +3,8 @@
 ##########################################################################
 
 AC_PREREQ(2.53)
-AC_INIT([MoneyManagerEx], [0.9.9.2], [madhan@sourceforge.net])
+m4_include([revision.m4])
+AC_INIT([MoneyManagerEx], SVN_REVISION, [madhan@sourceforge.net])
 
 ##########################################################################
 
