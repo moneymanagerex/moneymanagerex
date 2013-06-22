@@ -5493,7 +5493,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
         fi
 
 
-                                    WX_ADDITIONAL_LIBS="base, core, html, xml, net, aui, adv, qa,core,base"
+                                    WX_ADDITIONAL_LIBS="html, net, aui, adv, qa,core,base"
 
 
     if test x${WX_CONFIG_NAME+set} != xset ; then
