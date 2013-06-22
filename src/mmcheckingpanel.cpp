@@ -272,11 +272,10 @@ bool mmCheckingPanel::Create(
     //TODO: Load currency settings for current account
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
-    transFilterActive_ = false;
+    transFilterActive_ = true;
     transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
 
     initViewTransactionsHeader();
-    initFilterSettings();
     initVirtualListControl();
     windowsFreezeThaw(this);
 
@@ -465,6 +464,7 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
     //Initialization
     core_->bTransactionList_.LoadAccountTransactions(m_AccountID);
+    initFilterSettings();
 
     filteredBalance_ = 0.0;
     // clear everything
