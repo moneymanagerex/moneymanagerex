@@ -28,6 +28,12 @@ public:
     mmCurrentMonth();
 };
 
+class mmToday: public mmDateRange
+{
+public:
+    mmToday();
+};
+
 class mmCurrentMonthToDate: public mmDateRange
 {
 public:
@@ -44,6 +50,12 @@ class mmLast30Days: public mmDateRange
 {
 public:
     mmLast30Days();
+};
+
+class mmLast90Days: public mmDateRange
+{
+public:
+    mmLast90Days();
 };
 
 class mmLast12Months: public mmDateRange

@@ -45,6 +45,14 @@ mmCurrentMonth::mmCurrentMonth()
     this->title_ = _("Current Month");
 }
 
+mmToday::mmToday()
+: mmDateRange()
+{
+    this->start_date_ = today_;
+    this->end_date_ = today_;
+    this->title_ = _("Today");
+}
+
 mmCurrentMonthToDate::mmCurrentMonthToDate()
 : mmDateRange()
 {
@@ -64,11 +72,21 @@ mmLastMonth::mmLastMonth()
 mmLast30Days::mmLast30Days()
 : mmDateRange()
 {
-    this->start_date_ = wxDateTime(end_date_)
+    this->start_date_ = wxDateTime(start_date_)
         .Subtract(wxDateSpan::Months(1))
         .Add(wxDateSpan::Days(1));
     // no change to end_date_
     this->title_ = _("Last 30 Days");
+}
+
+mmLast90Days::mmLast90Days()
+: mmDateRange()
+{
+    this->start_date_ = wxDateTime(start_date_)
+        .Subtract(wxDateSpan::Months(3))
+        .Add(wxDateSpan::Days(1));
+    // no change to end_date_
+    this->title_ = _("Last 90 Days");
 }
 
 mmLast12Months::mmLast12Months()

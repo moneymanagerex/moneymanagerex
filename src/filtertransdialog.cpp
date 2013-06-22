@@ -207,9 +207,7 @@ void mmFilterTransactionsDialog::CreateControls()
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
 
-#if wxCHECK_VERSION(2,9,0)
-        cbPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
-#endif
+    cbPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
 
     itemPanelSizer->Add(cbPayee_, flagsExpand);
     //--End of Row --------------------------------------------------------
@@ -234,9 +232,8 @@ void mmFilterTransactionsDialog::CreateControls()
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
 
-    for(size_t i = 0; i < sizeof(TRANSACTION_STATUS)/sizeof(wxString); ++i)
-        choiceStatus_->Append(wxGetTranslation(TRANSACTION_STATUS[i]),
-        new wxStringClientData(TRANSACTION_STATUS[i]));
+    for(const auto i : TRANSACTION_STATUSES)
+        choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     itemPanelSizer->Add(choiceStatus_, flagsExpand);
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
@@ -673,45 +670,103 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 
 void mmFilterTransactionsDialog::clearSettings()
 {
-	accountCheckBox_->SetValue(false);
-	dateRangeCheckBox_->SetValue(false);
-	payeeCheckBox_->SetValue(false);
-	typeCheckBox_->SetValue(false);
-	cbTypeWithdrawal_->SetValue(false);
-	cbTypeDeposit_->SetValue(false);
-	cbTypeTransfer_->SetValue(false);
-	amountRangeCheckBox_->SetValue(false);
-	notesCheckBox_->SetValue(false);
-	transNumberCheckBox_->SetValue(false);
-	
+    accountCheckBox_->SetValue(false);
+    dateRangeCheckBox_->SetValue(false);
+    payeeCheckBox_->SetValue(false);
+    categoryCheckBox_->SetValue(false);
+    statusCheckBox_->SetValue(false);
+    typeCheckBox_->SetValue(false);
+    cbTypeWithdrawal_->SetValue(false);
+    cbTypeDeposit_->SetValue(false);
+    cbTypeTransfer_->SetValue(false);
+    amountRangeCheckBox_->SetValue(false);
+    notesCheckBox_->SetValue(false);
+    transNumberCheckBox_->SetValue(false);
+
 }
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
-    //TODO: not finished
     wxLogDebug(view);
     m_radio_box_->SetSelection(0);
     clearSettings();
+    date_range_ = new mmCurrentMonth;
+    dateRangeCheckBox_->SetValue(true);
+
     if (view == VIEW_TRANS_ALL_STR)
-    {
-		dateRangeCheckBox_->SetValue(false);
-        date_range_ = new mmAllTime();
-	}
+        dateRangeCheckBox_->SetValue(false);
+    else if (view == VIEW_TRANS_TODAY_STR)
+        date_range_ = new mmToday;
     else if (view == VIEW_TRANS_CURRENT_MONTH_STR)
-    {
-		dateRangeCheckBox_->SetValue(true);
-		date_range_ = new mmCurrentMonth;
-		fromDateCtrl_->SetValue(date_range_->start_date());
-		toDateControl_->SetValue(date_range_->end_date());
-	}
+        date_range_ = new mmCurrentMonth;
     else if (view == VIEW_TRANS_LAST_30_DAYS_STR)
+        date_range_ = new mmLast30Days;
+    else if (view == VIEW_TRANS_LAST_90_DAYS_STR)
+        date_range_ = new mmLast90Days;
+    else if (view == VIEW_TRANS_LAST_MONTH_STR)
+        date_range_ = new mmLastMonth;
+    else if (view == VIEW_TRANS_LAST_3MONTHS_STR)
+        date_range_ = new mmLastMonth;//ToDO:
+    else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
+        date_range_ = new mmCurrentYear;
+    else if (view == VIEW_TRANS_LAST_365_DAYS)//ToDO:
+        date_range_ = new mmLast12Months;
+    else if (view == VIEW_TRANS_RECONCILED_STR)
+        setReconciled();
+    else if (view == "View UnReconciled")
+        setUnReconciled();
+    else if (view == "View Not-Reconciled")
+        setAllExceptReconciled();
+    else if (view == VIEW_TRANS_VOID)
+        setVoid();
+    else if (view == VIEW_TRANS_FLAGGED)
+        setFlagged();
+    else if (view == VIEW_TRANS_DUPLICATES)
+        setDuplicate();
+
+    if (dateRangeCheckBox_->IsChecked())
     {
-		dateRangeCheckBox_->SetValue(true);
-		date_range_ = new mmLast30Days;
-		fromDateCtrl_->SetValue(date_range_->start_date());
-		toDateControl_->SetValue(date_range_->end_date());
-	}
-        
+        fromDateCtrl_->SetValue(date_range_->start_date());
+        toDateControl_->SetValue(date_range_->end_date());
+    }
+
+}
+
+void mmFilterTransactionsDialog::setReconciled()
+{
+    statusCheckBox_->SetValue(true);
+    choiceStatus_->SetStringSelection(wxGetTranslation("Reconciled"));
+    choiceStatus_->Enable();
+}
+void mmFilterTransactionsDialog::setUnReconciled()
+{
+    statusCheckBox_->SetValue(true);
+    choiceStatus_->SetStringSelection(wxGetTranslation("Un-Reconciled"));
+    choiceStatus_->Enable();
+}
+void mmFilterTransactionsDialog::setAllExceptReconciled()
+{
+    statusCheckBox_->SetValue(true);
+    choiceStatus_->SetStringSelection(wxGetTranslation("All Except Reconciled"));
+    choiceStatus_->Enable();
+}
+void mmFilterTransactionsDialog::setVoid()
+{
+    statusCheckBox_->SetValue(true);
+    choiceStatus_->SetStringSelection(wxGetTranslation("Void"));
+    choiceStatus_->Enable();
+}
+void mmFilterTransactionsDialog::setFlagged()
+{
+    statusCheckBox_->SetValue(true);
+    choiceStatus_->SetStringSelection(wxGetTranslation("Follow up"));
+    choiceStatus_->Enable();
+}
+void mmFilterTransactionsDialog::setDuplicate()
+{
+    statusCheckBox_->SetValue(true);
+    choiceStatus_->SetStringSelection(wxGetTranslation("Duplicate"));
+    choiceStatus_->Enable();
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -725,16 +780,13 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 
     prev_value_ = value;
     cbPayee_->Clear();
-    wxArrayString data;
+    cbPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
 
-    data = core_->payeeList_.FilterPayees("");
-    for (size_t i = 0; i < data.Count(); ++i)
+    for (const auto& i : core_->payeeList_.FilterPayees(""))
     {
-        if (data[i].Lower().Matches(wxString(value).Append("*")))
-            cbPayee_ ->Append(data[i]);
+        if (i.Lower().Matches(wxString(value).Append("*")))
+            cbPayee_ ->Append(i);
     }
-
-    cbPayee_->AutoComplete(data);
 
     if (cbPayee_->GetCount() == 1)
         cbPayee_->SetSelection(0);

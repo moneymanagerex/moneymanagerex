@@ -129,6 +129,17 @@ static const wxString TRANSACTION_STATUS[] =
     wxTRANSLATE("Duplicate")
 };
 
+static const wxString TRANSACTION_STATUSES[] =
+{
+    wxTRANSLATE("None"),
+    wxTRANSLATE("Reconciled"),
+    wxTRANSLATE("Void"),
+    wxTRANSLATE("Follow up"),
+    wxTRANSLATE("Duplicate"),
+    wxTRANSLATE("Un-Reconciled"),
+    wxTRANSLATE("All Except Reconciled")
+};
+
 static const wxString TRANSACTION_TYPE[] =
 {
     wxTRANSLATE("Withdrawal"),
