@@ -36,7 +36,7 @@ wxFileName mmex::GetDocDir()
     if (!fname.IsOk()) 
     {
         fname = GetSharedDir();
-        fname.AppendDir(wxT("doc"));
+        fname.AppendDir("doc");
     }
 
     return fname;
@@ -52,6 +52,6 @@ wxFileName mmex::GetResourceDir()
 
 wxString mmex::GetAppName()
 {
-    return wxString(wxT("MoneyManagerEx"));
+    return "MoneyManagerEx";
 }
 //----------------------------------------------------------------------------

@@ -78,7 +78,7 @@ wxFileName mmex::GetDocDir()
         if (dirs.Last().Lower() == GetAppName())
             fname.RemoveLastDir(); // mmex folder
 
-        fname.AppendDir(wxT("doc"));
+        fname.AppendDir("doc");
         fname.AppendDir(GetAppName());
     }
 
@@ -96,7 +96,7 @@ wxFileName mmex::GetResourceDir()
     if (!fname.IsOk()) 
     {
         fname = GetSharedDir();
-        fname.AppendDir(wxT("res"));
+        fname.AppendDir("res");
     }
 
     return fname;
@@ -105,6 +105,6 @@ wxFileName mmex::GetResourceDir()
 
 wxString mmex::GetAppName()
 {
-    return wxString(wxT("mmex"));
+    return "mmex";
 }
 //----------------------------------------------------------------------------
