@@ -99,12 +99,12 @@ mmPayee* mmPayeeList::GetPayeeSharedPtr(int payeeID)
 
 wxArrayString mmPayeeList::FilterPayees(const wxString& patt) const
 {
-    wxArrayString payee_list;
+    wxSortedArrayString payee_list;
 
-    for (size_t idx = 0; idx < (int)entries_.size(); idx++)
+    for (const auto i : entries_)
     {
-        if (entries_[idx]->name_.Lower().Matches(patt.Lower().Append("*")))
-            payee_list.Add(entries_[idx]->name_);
+        if (i->name_.Lower().Matches(patt.Lower().Append("*")))
+            payee_list.Add(i->name_);
     }
     return payee_list;
 }

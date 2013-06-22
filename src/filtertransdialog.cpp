@@ -61,6 +61,7 @@ bool mmFilterTransactionsDialog::Create( wxWindow* parent, wxWindowID id,
 
     CreateControls();
     GetStoredSettings(-1);
+
     dataToControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -93,7 +94,7 @@ void mmFilterTransactionsDialog::dataToControls()
     status = get_next_value(tkz, value);
     payeeCheckBox_ ->SetValue(status);
     cbPayee_ ->Enable(status);
-    cbPayee_ ->SetValue(value);
+    cbPayee_ ->SetStringSelection(value);
 
     status = get_next_value(tkz, value);
     categoryCheckBox_ ->SetValue(status);
@@ -687,7 +688,7 @@ void mmFilterTransactionsDialog::clearSettings()
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
-    wxLogDebug(view);
+
     m_radio_box_->SetSelection(0);
     clearSettings();
     date_range_ = new mmCurrentMonth;
@@ -728,6 +729,8 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
     {
         fromDateCtrl_->SetValue(date_range_->start_date());
         toDateControl_->SetValue(date_range_->end_date());
+        fromDateCtrl_->Enable();
+        toDateControl_->Enable();
     }
 
 }
