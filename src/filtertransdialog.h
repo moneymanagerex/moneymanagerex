@@ -8,6 +8,7 @@
 #endif
 
 #include "mmcoredb.h"
+#include "reports/mmDateRange.h"
 
 #define ID_MYDIALOG9 10095
 #define SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
@@ -20,6 +21,8 @@
 #ifndef wxFIXED_MINSIZE
 #define wxFIXED_MINSIZE 0
 #endif
+
+class mmDateRange;
 
 class mmFilterTransactionsDialog: public wxDialog
 {
@@ -88,7 +91,8 @@ public:
     /// Returns true with valid dates, when the dialog date range is selected.
     bool getDateRange(wxDateTime& startDate, wxDateTime& endDate) const;
 
-    void setAccountToolTip(wxString tip) const;
+    void setAccountToolTip(const wxString& tip) const;
+    void setPresettings(const wxString& view);
 
 private:
     /// Creation
@@ -145,8 +149,10 @@ private:
     wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
+    //TODO: remove std::shared_ptr
     std::vector< std::shared_ptr<mmBankTransaction> >* trans_;
     mmCoreDB* core_;
+    mmDateRange* date_range_;
 
     int categID_;
     int subcategID_;

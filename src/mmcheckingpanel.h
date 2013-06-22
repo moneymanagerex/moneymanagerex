@@ -82,6 +82,7 @@ private:
 
     std::shared_ptr<wxSQLite3Database> getDb() const;
     void initViewTransactionsHeader();
+    void initFilterSettings();
     void setAccountSummary();
     void sortTable();
     void filterTable();

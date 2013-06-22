@@ -655,9 +655,35 @@ wxString mmFilterTransactionsDialog::GetCurrentSettings()
     return settings_string_;
 }
 
-void mmFilterTransactionsDialog::setAccountToolTip(wxString tip) const
+void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 {
     accountDropDown_->SetToolTip(tip);
+}
+
+void mmFilterTransactionsDialog::setPresettings(const wxString& view)
+{
+    //TODO: not finished
+    wxLogDebug(view);
+    if (view == VIEW_TRANS_ALL_STR)
+    {
+		dateRangeCheckBox_->SetValue(false);
+        date_range_ = new mmAllTime();
+	}
+    else if (view == VIEW_TRANS_CURRENT_MONTH_STR)
+    {
+		dateRangeCheckBox_->SetValue(true);
+		date_range_ = new mmCurrentMonth;
+		fromDateCtrl_->SetValue(date_range_->start_date());
+		toDateControl_->SetValue(date_range_->end_date());
+	}
+    else if (view == VIEW_TRANS_LAST_30_DAYS_STR)
+    {
+		dateRangeCheckBox_->SetValue(true);
+		date_range_ = new mmLast30Days;
+		fromDateCtrl_->SetValue(date_range_->start_date());
+		toDateControl_->SetValue(date_range_->end_date());
+	}
+        
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -680,9 +706,7 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
             cbPayee_ ->Append(data[i]);
     }
 
-#if wxCHECK_VERSION(2,9,0)
-        cbPayee_->AutoComplete(data);
-#endif
+    cbPayee_->AutoComplete(data);
 
     if (cbPayee_->GetCount() == 1)
         cbPayee_->SetSelection(0);

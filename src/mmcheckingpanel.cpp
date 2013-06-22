@@ -269,12 +269,14 @@ bool mmCheckingPanel::Create(
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
+    //TODO: Load currency settings for current account
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
 
     initViewTransactionsHeader();
+    initFilterSettings();
     initVirtualListControl();
     windowsFreezeThaw(this);
 
@@ -898,6 +900,10 @@ void mmCheckingPanel::initViewTransactionsHeader()
     stxtMainFilter_->SetLabel(wxGetTranslation(currentView_));
 }
 //----------------------------------------------------------------------------
+void mmCheckingPanel::initFilterSettings()
+{
+    transFilterDlg_->setPresettings(currentView_);
+}
 void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
     if (currentView_ == VIEW_TRANS_ALL_STR)
@@ -918,15 +924,6 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
     int evt =  event.GetId();
-
-    if (evt != MENU_VIEW_ALLTRANSACTIONS  && transFilterActive_)
-    {
-        wxString messageStr;
-        messageStr << _("Transaction Filter will interfere with this filtering.") << "\n\n";
-        messageStr << _("Please deactivate Transaction Filter");
-        wxMessageBox(messageStr, _("Transaction Filter"), wxOK|wxICON_WARNING);
-        return;
-    }
 
     if (evt ==  MENU_VIEW_ALLTRANSACTIONS)
     {
@@ -972,6 +969,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     m_listCtrlAccount->refreshVisualList();
 
     core_->dbInfoSettings_->SetStringSetting(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
+    initFilterSettings();    
 }
 
 void mmCheckingPanel::DeleteViewedTransactions()
