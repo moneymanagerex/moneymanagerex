@@ -19,7 +19,7 @@
 #include "recentfiles.h"
 #include "guiid.h"
 
-RecentDatabaseFiles::RecentDatabaseFiles(std::shared_ptr<MMEX_IniSettings> pIniSettings, wxMenu *menuRecentFiles)
+RecentDatabaseFiles::RecentDatabaseFiles(MMEX_IniSettings* pIniSettings, wxMenu *menuRecentFiles)
 : pIniSettings_(pIniSettings)
 , menuRecentFiles_(menuRecentFiles)
 , recentListSize_(6)

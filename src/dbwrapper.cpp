@@ -1307,7 +1307,7 @@ int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, std::vector<wxStri
 }
 //----------------------------------------------------------------------------
 
-wxString mmDBWrapper::getLastDbPath(std::shared_ptr<MMEX_IniSettings> iniSettings, const wxString &defaultVal)
+wxString mmDBWrapper::getLastDbPath(MMEX_IniSettings* iniSettings, const wxString &defaultVal)
 {
     wxString path = iniSettings->GetStringSetting("LASTFILENAME", defaultVal);
 

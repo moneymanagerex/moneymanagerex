@@ -33,13 +33,13 @@ class mmAppStartDialog: public wxDialog
 
 public:
     mmAppStartDialog();
-    mmAppStartDialog(std::shared_ptr<MMEX_IniSettings> pIniSettings, wxWindow* parent);
+    mmAppStartDialog(MMEX_IniSettings* pIniSettings, wxWindow* parent);
    ~mmAppStartDialog();
 
     void SetCloseButtonToExit();
 
 private:
-    std::shared_ptr<MMEX_IniSettings> pIniSettings_;
+    MMEX_IniSettings* pIniSettings_;
     wxCheckBox* itemCheckBox;
     wxButton* itemButtonClose_;
     wxButton* itemButtonExit_;

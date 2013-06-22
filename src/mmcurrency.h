@@ -55,7 +55,7 @@ public:
     mmCurrencyList(std::shared_ptr<wxSQLite3Database> db);
 
     /// Must be called after currency list object is created.
-    void SetInfoTable(std::shared_ptr<MMEX_IniSettings> info_table);
+    void SetInfoTable(MMEX_IniSettings* info_table);
     void LoadCurrencies();
 
     /* Currency Functions */
@@ -79,7 +79,7 @@ public:
    
 private:
     std::shared_ptr<wxSQLite3Database> db_;
-    std::shared_ptr<MMEX_IniSettings> info_table_;
+    MMEX_IniSettings* info_table_;
 
     void SetCurrencySetting(mmCurrency* pCurrency) const;
 };

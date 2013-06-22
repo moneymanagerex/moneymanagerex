@@ -596,7 +596,7 @@ void loadCurrencySettings(wxSQLite3Database* db, int currencyID);
 bool deleteCurrency(wxSQLite3Database* db, int currencyID);
 int mmSQLiteExecuteUpdate(wxSQLite3Database* db, std::vector<wxString> data, const wxString& sql, long &lLastRowId);
 
-wxString getLastDbPath(std::shared_ptr<MMEX_IniSettings> iniSettings, const wxString &defaultVal = wxGetEmptyString());
+wxString getLastDbPath(MMEX_IniSettings* iniSettings, const wxString &defaultVal = wxGetEmptyString());
 
 /* Stocks API */
 void deleteStockInvestment(wxSQLite3Database* db, int stockID);

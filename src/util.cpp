@@ -91,7 +91,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
     locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
     so I should use locale.IsLoaded(lang) also.
 */
-wxString mmSelectLanguage(wxWindow *parent, std::shared_ptr<MMEX_IniSettings> pIniSettings, bool forced_show_dlg, bool save_setting)
+wxString mmSelectLanguage(wxWindow *parent, MMEX_IniSettings* pIniSettings, bool forced_show_dlg, bool save_setting)
 {
     wxString lang;
 
@@ -279,7 +279,7 @@ wxString mmGetStringFromColour(wxColour color)
 
 }
 
-void mmLoadColorsFromDatabase(std::shared_ptr<MMEX_IniSettings> pIniSettings)
+void mmLoadColorsFromDatabase(MMEX_IniSettings* pIniSettings)
 {
     mmColors::listAlternativeColor0 = mmGetColourFromString(pIniSettings->GetStringSetting("LISTALT0", "225,237,251"));
     mmColors::listAlternativeColor1 = mmGetColourFromString(pIniSettings->GetStringSetting("LISTALT1", "255,255,255"));

@@ -168,7 +168,7 @@ bool OnInitImpl(mmGUIApp &app)
 
     std::shared_ptr<wxSQLite3Database> pIniSettingsDb(new wxSQLite3Database);
     pIniSettingsDb.get()->Open(mmex::getPathUser(mmex::SETTINGS));
-    std::shared_ptr<MMEX_IniSettings> pIniSettings(new MMEX_IniSettings(pIniSettingsDb));
+    MMEX_IniSettings* pIniSettings = new MMEX_IniSettings(pIniSettingsDb);
 
     /* Load Colors from Database */
     mmLoadColorsFromDatabase(pIniSettings);
@@ -608,7 +608,7 @@ END_EVENT_TABLE()
 mmGUIFrame::mmGUIFrame(const wxString& title,
                        const wxPoint& pos,
                        const wxSize& size,
-                       std::shared_ptr<MMEX_IniSettings> pIniSettings)
+                       MMEX_IniSettings* pIniSettings)
 : wxFrame(0, -1, title, pos, size)
 , m_inisettings(pIniSettings)
 , gotoAccountID_(-1)
@@ -2697,7 +2697,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            m_core->currencyList_.LoadBaseCurrencySettings();
 
            /* Load User Name and Other Settings */
-           mmOptions::instance().loadOptions(m_core->dbInfoSettings_.get());
+           mmOptions::instance().loadOptions(m_core->dbInfoSettings_);
 
            /* Jump to new account creation screen */
            wxCommandEvent evt;

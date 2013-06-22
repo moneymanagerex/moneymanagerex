@@ -23,7 +23,7 @@
 #include "mmOption.h"
 
 //----------------------------------------------------------------------------
-mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_IniSettings> iniSettings)
+mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniSettings)
 : db_(db)
 , iniSettings_(iniSettings)
 , payeeList_(this)
@@ -39,7 +39,7 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_I
     }
 
     // Create a global listing for info settings.
-    dbInfoSettings_.reset(new MMEX_IniSettings(db, true));
+    dbInfoSettings_ = new MMEX_IniSettings(db, true);
     currencyList_.SetInfoTable(dbInfoSettings_);
 
     // Initialize the database if creating a new one.
@@ -51,7 +51,7 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_I
         dbInfoSettings_->SetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
         dbInfoSettings_->Save();
     }
-    mmOptions::instance().loadOptions(dbInfoSettings_.get());
+    mmOptions::instance().loadOptions(dbInfoSettings_);
 
     /* Create the appropriate tables first if required */
     mmDBWrapper::initDB(db_.get());

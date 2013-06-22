@@ -159,7 +159,7 @@ public:
     mmGUIFrame(const wxString& title,
                const wxPoint& pos,
                const wxSize& size,
-               std::shared_ptr<MMEX_IniSettings> pIniSettings);
+               MMEX_IniSettings* pIniSettings);
 
     ~mmGUIFrame();
 
@@ -222,7 +222,7 @@ private:
 
     /* handles to SQLite Database */
     std::shared_ptr<wxSQLite3Database> m_db;
-    std::shared_ptr<MMEX_IniSettings>  m_inisettings;
+    MMEX_IniSettings*  m_inisettings;
 
     /* Currently open file name */
     wxString fileName_;

@@ -51,7 +51,7 @@ class mmIniOptions
 public:
     mmIniOptions();
     static mmIniOptions& instance();
-    void loadOptions(std::shared_ptr<MMEX_IniSettings> pIniSettings);
+    void loadOptions(MMEX_IniSettings* pIniSettings);
     int account_image_id(mmCoreDB* core, int account_id);
 
     bool enableAssets_;

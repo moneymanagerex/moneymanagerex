@@ -30,7 +30,7 @@ class RecentDatabaseFiles
 {
 public:
     // This constructor is for recent files list
-    RecentDatabaseFiles(std::shared_ptr<MMEX_IniSettings> pIniSettings, wxMenu *menuRecentFiles);
+    RecentDatabaseFiles(MMEX_IniSettings* pIniSettings, wxMenu *menuRecentFiles);
     ~RecentDatabaseFiles();
   
     void loadRecentList();
@@ -44,7 +44,7 @@ public:
     bool validLastListedFile(wxString& lastListedFileName);
 
 private:
-    std::shared_ptr<MMEX_IniSettings> pIniSettings_;
+    MMEX_IniSettings* pIniSettings_;
     wxMenu *menuRecentFiles_;
     wxArrayString recentFileList_;
 

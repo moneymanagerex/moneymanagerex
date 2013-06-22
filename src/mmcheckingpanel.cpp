@@ -585,7 +585,7 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->setSortColumn(g_sortcol);
     m_listCtrlAccount->SetFocus();
 
-    createColumns(core_->iniSettings_.get(), *m_listCtrlAccount);
+    createColumns(core_->iniSettings_, *m_listCtrlAccount);
 
     // load the global variables
     long val = COL_DEF_SORT;

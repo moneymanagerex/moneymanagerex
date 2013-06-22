@@ -86,7 +86,7 @@ mmCurrencyList::mmCurrencyList(std::shared_ptr<wxSQLite3Database> db)
 , info_table_()
 {}
 
-void mmCurrencyList::SetInfoTable(std::shared_ptr<MMEX_IniSettings> info_table)
+void mmCurrencyList::SetInfoTable(MMEX_IniSettings* info_table)
 {
     info_table_ = info_table;
 }

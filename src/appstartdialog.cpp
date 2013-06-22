@@ -45,7 +45,7 @@ mmAppStartDialog::mmAppStartDialog()
 {}
 
 
-mmAppStartDialog::mmAppStartDialog(std::shared_ptr<MMEX_IniSettings> pIniSettings, wxWindow* parent)
+mmAppStartDialog::mmAppStartDialog(MMEX_IniSettings* pIniSettings, wxWindow* parent)
 : pIniSettings_(pIniSettings)
 , itemCheckBox()
 {

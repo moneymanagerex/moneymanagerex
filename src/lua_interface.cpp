@@ -28,8 +28,7 @@ mmHTMLBuilder* TLuaInterface::html_builder_ = 0;
 TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 {
     this->html_builder_ = hb;
-    std::shared_ptr<MMEX_IniSettings> info_table;
-    info_table.reset(new MMEX_IniSettings(static_db_ptr(), true));
+    MMEX_IniSettings* info_table = new MMEX_IniSettings(static_db_ptr(), true);
 
     g_static_currency_list = new mmCurrencyList(static_db_ptr());
     g_static_currency_list->SetInfoTable(info_table);

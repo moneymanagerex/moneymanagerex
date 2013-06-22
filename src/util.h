@@ -85,7 +85,7 @@ private:
 void mmShowErrorMessageInvalid( wxWindow *parent, const wxString &message );
 void mmShowErrorMessage( wxWindow *parent, const wxString &message, const wxString &messageheader );
 
-wxString mmSelectLanguage(wxWindow *parent, std::shared_ptr<MMEX_IniSettings> pIniSettings, bool forced_show_dlg, bool save_setting = true);
+wxString mmSelectLanguage(wxWindow *parent, MMEX_IniSettings* pIniSettings, bool forced_show_dlg, bool save_setting = true);
 
 wxDateTime mmGetStorageStringAsDate( const wxString& str );
 wxString mmGetDateForDisplay( const wxDateTime &dt );
@@ -98,7 +98,7 @@ wxString adjustedExportAmount(const wxString& amtSeparator, const wxString& strV
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
-void mmLoadColorsFromDatabase(std::shared_ptr<MMEX_IniSettings> pIniSettings);
+void mmLoadColorsFromDatabase(MMEX_IniSettings* pIniSettings);
 wxColour mmGetColourFromString( const wxString& str );
 wxString mmGetStringFromColour( wxColour color );
 

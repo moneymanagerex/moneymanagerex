@@ -90,7 +90,7 @@ mmIniOptions& mmIniOptions::instance()
     return Singleton<mmIniOptions>::instance();
 }
 
-void mmIniOptions::loadOptions(std::shared_ptr<MMEX_IniSettings> pIniSettings)
+void mmIniOptions::loadOptions(MMEX_IniSettings* pIniSettings)
 {
     expandStocksHome_ = pIniSettings->GetBoolSetting("ENABLESTOCKS", true);
     enableAssets_     = pIniSettings->GetBoolSetting("ENABLEASSETS", true);

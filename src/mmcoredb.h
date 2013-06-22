@@ -40,14 +40,14 @@ class wxSQLite3Database;
 class mmCoreDB
 {
 public:
-    mmCoreDB(std::shared_ptr<wxSQLite3Database> db, std::shared_ptr<MMEX_IniSettings> iniSettings);
+    mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniSettings);
 
     // Global access point to the database.
     std::shared_ptr<wxSQLite3Database> db_;
     // Global access point to inidb settings
-    std::shared_ptr<MMEX_IniSettings> iniSettings_;
+    MMEX_IniSettings* iniSettings_;
     // Global access point to database information settings
-    std::shared_ptr<MMEX_IniSettings> dbInfoSettings_;
+    MMEX_IniSettings* dbInfoSettings_;
 
     /* These variables form a global data access point. */
     mmCurrencyList currencyList_;
