@@ -425,7 +425,7 @@ int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
     double total = mmDBWrapper::getStockInvestmentBalance(core_->db_.get(), accountID_, originalVal);
-    
+
     wxString balance = CurrencyFormatter::float2String(total+initVal);
     wxString original = CurrencyFormatter::float2String(originalVal);
     wxString diffStr = CurrencyFormatter::float2String(total > originalVal ? total - originalVal : originalVal - total);
@@ -631,7 +631,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         //// ------------------
         if (updated && dPrice > 0)
         {
-            if(StockSymbolWithSuffix.substr(StockSymbolWithSuffix.Find(".")) == ".L")
+            if(StockSymbolWithSuffix.EndsWith(".L"))
                 dPrice = dPrice / 100;
             stocks_data[StockSymbolWithSuffix].first = dPrice;
             stocks_data[StockSymbolWithSuffix].second = sName;
