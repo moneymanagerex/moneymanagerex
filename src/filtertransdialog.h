@@ -118,17 +118,12 @@ private:
     void OnButtonSaveClick( wxCommandEvent& event );
     void OnButtonClearClick( wxCommandEvent& event );
     void OnSettingsSelected( wxCommandEvent& event );
+    void datePresetMenu( wxMouseEvent& event );
+    void datePresetMenuSelected( wxCommandEvent& event );
     void OnPayeeUpdated(wxCommandEvent& event);
     bool get_next_value(wxStringTokenizer& tkz, wxString& value);
 
     void OnCategs(wxCommandEvent& event);
-    
-    void setReconciled();
-    void setUnReconciled();
-    void setAllExceptReconciled();
-    void setVoid();
-    void setFlagged();
-    void setDuplicate();
 
     /// Should we show tooltips?
     static bool ShowToolTips();
@@ -169,7 +164,6 @@ private:
 	int payeeID_;
     int refAccountID_;
     wxString refAccountStr_;
-
 };
 
 #endif

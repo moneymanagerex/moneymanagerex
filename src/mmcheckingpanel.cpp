@@ -272,10 +272,11 @@ bool mmCheckingPanel::Create(
     //TODO: Load currency settings for current account
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
-    transFilterActive_ = true;
+    transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
-
     initViewTransactionsHeader();
+    initFilterSettings();
+
     initVirtualListControl();
     windowsFreezeThaw(this);
 
@@ -348,13 +349,11 @@ void mmCheckingPanel::filterTable()
     std::vector<mmBankTransaction*> filtered_trans;
     bool toAdd = transFilterDlg_->somethingSelected();
 
-    if (/*transFilterActive_ &&*/ toAdd)
+    if (transFilterActive_ && toAdd)
     {
         for (const auto& pBankTransaction: m_trans)
         {
-            mmBankTransaction* pTempTransaction = pBankTransaction;
             toAdd = true;
-
 
             if (transFilterDlg_->getAccountCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getAccountID() == pBankTransaction->toAccountID_);
@@ -385,10 +384,21 @@ void mmCheckingPanel::filterTable()
             if (transFilterDlg_->getNotesCheckBox())
                 toAdd = toAdd && (pBankTransaction->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()));
             if (toAdd)
-                filtered_trans.push_back(pTempTransaction);
+                filtered_trans.push_back(pBankTransaction);
         }
-        this->m_trans = filtered_trans;
     }
+    else
+    {
+        for (const auto& pBankTransaction: m_trans)
+        {
+            if (quickFilterBeginDate_ <= pBankTransaction->date_.GetDateOnly() 
+                    && quickFilterEndDate_ >= pBankTransaction->date_.GetDateOnly())
+            {
+                filtered_trans.push_back(pBankTransaction); 
+            }
+        }
+    }
+    this->m_trans = filtered_trans;
 }
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
@@ -433,23 +443,11 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
         default:
         {
             wxMenu menu;
-            menu.Append(MENU_VIEW_ALLTRANSACTIONS, wxGetTranslation(VIEW_TRANS_ALL_STR));
-            menu.Append(MENU_VIEW_RECONCILED, wxGetTranslation(VIEW_TRANS_RECONCILED_STR));
-            menu.Append(MENU_VIEW_UNRECONCILED, wxGetTranslation(wxTRANSLATE("View Un-Reconciled")));
-            menu.Append(MENU_VIEW_NOTRECONCILED, wxGetTranslation(wxTRANSLATE("View All Except Reconciled")));
-            menu.Append(MENU_VIEW_VOID, wxGetTranslation(VIEW_TRANS_VOID));
-            menu.Append(MENU_VIEW_FLAGGED, wxGetTranslation(VIEW_TRANS_FLAGGED));
-            menu.Append(MENU_VIEW_DUPLICATE, wxGetTranslation(VIEW_TRANS_DUPLICATES));
-            menu.AppendSeparator();
-            menu.Append(MENU_VIEW_TODAY, wxGetTranslation(VIEW_TRANS_TODAY_STR));
-            menu.Append(MENU_VIEW_CURRENTMONTH, wxGetTranslation(VIEW_TRANS_CURRENT_MONTH_STR));
-            menu.Append(MENU_VIEW_LAST30, wxGetTranslation(VIEW_TRANS_LAST_30_DAYS_STR));
-            menu.Append(MENU_VIEW_LAST90, wxGetTranslation(VIEW_TRANS_LAST_90_DAYS_STR));
-            menu.Append(MENU_VIEW_LASTMONTH, wxGetTranslation(VIEW_TRANS_LAST_MONTH_STR));
-            menu.Append(MENU_VIEW_LAST3MONTHS, wxGetTranslation(VIEW_TRANS_LAST_3MONTHS_STR));
-            menu.Append(MENU_VIEW_CURRENTYEAR, wxGetTranslation(VIEW_TRANS_CURRENT_YEAR_STR));
-            menu.Append(MENU_VIEW_LAST365, wxGetTranslation(VIEW_TRANS_LAST_365_DAYS));
-
+            int id = MENU_VIEW_ALLTRANSACTIONS;
+            for (const auto& i : DATE_PRESETTINGS)
+            {
+                menu.Append(id++, wxGetTranslation(i));
+            }
             PopupMenu(&menu, event.GetPosition());
 
             break;
@@ -464,7 +462,6 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
     //Initialization
     core_->bTransactionList_.LoadAccountTransactions(m_AccountID);
-    initFilterSettings();
 
     filteredBalance_ = 0.0;
     // clear everything
@@ -902,7 +899,29 @@ void mmCheckingPanel::initViewTransactionsHeader()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
-    transFilterDlg_->setPresettings(currentView_);
+    date_range_ = new mmAllTime;
+
+    if (currentView_ == VIEW_TRANS_ALL_STR)
+        date_range_ = new mmAllTime;
+    else if (currentView_ == VIEW_TRANS_TODAY_STR)
+        date_range_ = new mmToday;
+    else if (currentView_ == VIEW_TRANS_CURRENT_MONTH_STR)
+        date_range_ = new mmCurrentMonth;
+    else if (currentView_ == VIEW_TRANS_LAST_30_DAYS_STR)
+        date_range_ = new mmLast30Days;
+    else if (currentView_ == VIEW_TRANS_LAST_90_DAYS_STR)
+        date_range_ = new mmLast90Days;
+    else if (currentView_ == VIEW_TRANS_LAST_MONTH_STR)
+        date_range_ = new mmLastMonth;
+    else if (currentView_ == VIEW_TRANS_LAST_3MONTHS_STR)
+        date_range_ = new mmLastMonth;//ToDO:
+    else if (currentView_ == VIEW_TRANS_CURRENT_YEAR_STR)
+        date_range_ = new mmCurrentYear;
+    else if (currentView_ == VIEW_TRANS_LAST_365_DAYS)//ToDO:
+        date_range_ = new mmLast12Months;
+
+    quickFilterBeginDate_ = date_range_->start_date();
+    quickFilterEndDate_ = date_range_->end_date();
 }
 void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
@@ -915,6 +934,7 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
     stxtMainFilter_->SetLabel(_("View All transactions"));
     currentView_ = VIEW_TRANS_ALL_STR;
     SetTransactionFilterState(true);
+    initFilterSettings();
 
     m_listCtrlAccount->m_selectedIndex = -1;
     m_listCtrlAccount->refreshVisualList();
@@ -930,18 +950,6 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
         currentView_ = VIEW_TRANS_ALL_STR;
         transFilterActive_ = false;
     }
-    else if (evt == MENU_VIEW_RECONCILED)
-        currentView_ = VIEW_TRANS_RECONCILED_STR;
-    else if (evt == MENU_VIEW_NOTRECONCILED)
-        currentView_ = VIEW_TRANS_NOT_RECONCILED_STR;
-    else if (evt == MENU_VIEW_UNRECONCILED)
-        currentView_ = VIEW_TRANS_UNRECONCILED_STR;
-    else if (evt == MENU_VIEW_FLAGGED)
-        currentView_ = VIEW_TRANS_FLAGGED;
-    else if (evt == MENU_VIEW_DUPLICATE)
-        currentView_ = VIEW_TRANS_DUPLICATES;
-    else if (evt == MENU_VIEW_VOID)
-        currentView_ = VIEW_TRANS_VOID;
     else if (evt == MENU_VIEW_TODAY)
         currentView_ = VIEW_TRANS_TODAY_STR;
     else if (evt == MENU_VIEW_CURRENTMONTH)

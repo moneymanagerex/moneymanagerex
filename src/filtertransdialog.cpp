@@ -31,7 +31,8 @@ BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
     EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
     EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
     EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
-    EVT_BUTTON  (wxID_CLEAR,   mmFilterTransactionsDialog::OnButtonClearClick )
+    EVT_BUTTON  (wxID_CLEAR,  mmFilterTransactionsDialog::OnButtonClearClick )
+    EVT_MENU    (wxID_ANY,    mmFilterTransactionsDialog::datePresetMenuSelected )
 
 END_EVENT_TABLE()
 
@@ -170,7 +171,6 @@ void mmFilterTransactionsDialog::CreateControls()
 
     itemPanel->SetSizer(itemBoxSizer4);
     itemBoxSizer4->Add(itemPanelSizer, flagsExpand);
-
     //--Start of Row --------------------------------------------------------
     accountCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Account"),
                                       wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
@@ -191,6 +191,8 @@ void mmFilterTransactionsDialog::CreateControls()
                                          wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     toDateControl_ = new wxDatePickerCtrl( itemPanel, wxID_ANY, wxDefaultDateTime,
                                           wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
+    dateRangeCheckBox_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
+        , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), NULL, this);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
     dateSizer->Add(fromDateCtrl_, flagsExpand);
@@ -668,12 +670,25 @@ void mmFilterTransactionsDialog::clearSettings()
     settings_string_ = "0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;";
     dataToControls();
 }
+void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
+{
+    int id =  event.GetId();
+    setPresettings(DATE_PRESETTINGS[id]);
+}
+
+void mmFilterTransactionsDialog::datePresetMenu( wxMouseEvent& event )
+{
+    wxMenu menu;
+    int id = 0;
+    for (const auto& i : DATE_PRESETTINGS)
+    {
+        menu.Append(id++, wxGetTranslation(i));
+    }
+    PopupMenu(&menu, event.GetPosition());
+}
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
-
-    m_radio_box_->SetSelection(0);
-    clearSettings();
     date_range_ = new mmCurrentMonth;
     dateRangeCheckBox_->SetValue(true);
 
@@ -695,18 +710,6 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
         date_range_ = new mmCurrentYear;
     else if (view == VIEW_TRANS_LAST_365_DAYS)//ToDO:
         date_range_ = new mmLast12Months;
-    else if (view == VIEW_TRANS_RECONCILED_STR)
-        setReconciled();
-    else if (view == "View UnReconciled")
-        setUnReconciled();
-    else if (view == "View Not-Reconciled")
-        setAllExceptReconciled();
-    else if (view == VIEW_TRANS_VOID)
-        setVoid();
-    else if (view == VIEW_TRANS_FLAGGED)
-        setFlagged();
-    else if (view == VIEW_TRANS_DUPLICATES)
-        setDuplicate();
 
     if (dateRangeCheckBox_->IsChecked())
     {
@@ -715,44 +718,6 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
         fromDateCtrl_->Enable();
         toDateControl_->Enable();
     }
-
-}
-
-void mmFilterTransactionsDialog::setReconciled()
-{
-    statusCheckBox_->SetValue(true);
-    choiceStatus_->SetStringSelection(wxGetTranslation("Reconciled"));
-    choiceStatus_->Enable();
-}
-void mmFilterTransactionsDialog::setUnReconciled()
-{
-    statusCheckBox_->SetValue(true);
-    choiceStatus_->SetStringSelection(wxGetTranslation("Un-Reconciled"));
-    choiceStatus_->Enable();
-}
-void mmFilterTransactionsDialog::setAllExceptReconciled()
-{
-    statusCheckBox_->SetValue(true);
-    choiceStatus_->SetStringSelection(wxGetTranslation("All Except Reconciled"));
-    choiceStatus_->Enable();
-}
-void mmFilterTransactionsDialog::setVoid()
-{
-    statusCheckBox_->SetValue(true);
-    choiceStatus_->SetStringSelection(wxGetTranslation("Void"));
-    choiceStatus_->Enable();
-}
-void mmFilterTransactionsDialog::setFlagged()
-{
-    statusCheckBox_->SetValue(true);
-    choiceStatus_->SetStringSelection(wxGetTranslation("Follow up"));
-    choiceStatus_->Enable();
-}
-void mmFilterTransactionsDialog::setDuplicate()
-{
-    statusCheckBox_->SetValue(true);
-    choiceStatus_->SetStringSelection(wxGetTranslation("Duplicate"));
-    choiceStatus_->Enable();
 }
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)

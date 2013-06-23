@@ -162,7 +162,8 @@ mmAllTime::mmAllTime()
 : mmDateRange()
 {
     this->title_ = _("Over Time");
-    this->start_date_.Subtract(today_);
+    this->start_date_.Subtract(wxDateSpan::Years(today_.GetYear()))
+        .SetDay(1).SetMonth(wxDateTime::Jan);
 }
 
 const bool mmAllTime::is_with_date() const
