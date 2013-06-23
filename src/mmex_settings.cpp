@@ -155,7 +155,8 @@ MMEX_IniSettings::MMEX_IniSettings(std::shared_ptr<wxSQLite3Database> ini_db, bo
 
 MMEX_IniSettings::~MMEX_IniSettings()
 {
-    Save();
+    //FIXME: never reached on Linux
+    //Save();
 }
 
 void MMEX_IniSettings::Load()
@@ -238,7 +239,8 @@ void MMEX_IniSettings::SetBoolSetting(const wxString& name, bool value)
         pExistingRecord = pNewRecord.get();
     }
     if (value) pExistingRecord->SetValue("TRUE");
-    else       pExistingRecord->SetValue("FALSE"); 
+    else       pExistingRecord->SetValue("FALSE");
+    Save();
 }
 
 void MMEX_IniSettings::SetIntSetting(const wxString& name, int value)
@@ -251,6 +253,7 @@ void MMEX_IniSettings::SetIntSetting(const wxString& name, int value)
         pExistingRecord = pNewRecord.get();
     }
     pExistingRecord->SetValue(wxString() << value);
+    Save();
 }
 
 void MMEX_IniSettings::SetStringSetting(const wxString& name, const wxString& value)
@@ -263,6 +266,7 @@ void MMEX_IniSettings::SetStringSetting(const wxString& name, const wxString& va
         pExistingRecord = pNewRecord.get();
     }
     pExistingRecord->SetValue(value);
+    Save();
 }
 
 bool MMEX_IniSettings::Exists(const wxString& name)
