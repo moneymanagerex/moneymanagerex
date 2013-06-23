@@ -12,7 +12,7 @@
 
     <input>
         mmex.bkl
-        ../../src/tests/*.bkl
+        mmex_tests.bkl
         ../../po/*.bkl
         ../../setup/win/*.bkl
     </input>
@@ -54,6 +54,9 @@
         -o../msw/mmex.sln
     </add-flags>
 
+    <add-flags files="mmex_tests.bkl" formats="autoconf">
+        -o../../src/tests/Makefile.in
+    </add-flags>
     <add-flags files="mmex_tests.bkl" formats="mingw">
         -o../msw/tests/makefile.gcc
     </add-flags>

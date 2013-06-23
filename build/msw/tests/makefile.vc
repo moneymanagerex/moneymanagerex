@@ -30,6 +30,8 @@ SQLITE_OBJECTS =  \
 LUA_CFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
 	/Fdlua.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
+	lua_dtoa.obj \
+	lua_g_fmt.obj \
 	lua_lapi.obj \
 	lua_lauxlib.obj \
 	lua_lbaselib.obj \
@@ -60,10 +62,12 @@ LUA_OBJECTS =  \
 	lua_ltablib.obj \
 	lua_ltm.obj \
 	lua_lua.obj \
+	lua_lua_cjson.obj \
 	lua_luac.obj \
 	lua_lundump.obj \
 	lua_lvm.obj \
-	lua_lzio.obj
+	lua_lzio.obj \
+	lua_strbuf.obj
 UNITTESTPP_CXXFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /FdUnitTestPP.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/EHsc /GR $(CPPFLAGS) $(CXXFLAGS)
@@ -90,9 +94,9 @@ MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 $(____WX_SHARED) \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
 	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex_tests.pdb \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /I..\..\..\lib\sqlite \
-	/I..\..\..\lib\wxsqlite /I..\..\..\lib\lua\src /DNOPCH /D_CONSOLE \
-	/I..\..\..\src /I..\..\..\lib\UnitTest++ /EHsc /GR $(__mmex_tests_CL_FLAGS) \
-	$(CPPFLAGS) $(CXXFLAGS)
+	/I..\..\..\lib\wxsqlite /I..\..\..\lib\lua\src /I..\..\..\lib /DNOPCH \
+	/D_CONSOLE /I..\..\..\src /I..\..\..\lib\UnitTest++ /EHsc /GR \
+	$(__mmex_tests_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.obj \
 	mmex_tests_appstartdialog.obj \
@@ -451,6 +455,12 @@ wxsqlite_wxsqlite3.obj: ..\..\..\lib\wxsqlite\wxsqlite3.cpp
 sqlite_sqlite3secure.obj: ..\..\..\lib\sqlite\sqlite3secure.c
 	$(CC) /c /nologo /TC /Fo$@ $(SQLITE_CFLAGS) ..\..\..\lib\sqlite\sqlite3secure.c
 
+lua_dtoa.obj: ..\..\..\lib\lua\src\dtoa.c
+	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\dtoa.c
+
+lua_g_fmt.obj: ..\..\..\lib\lua\src\g_fmt.c
+	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\g_fmt.c
+
 lua_lapi.obj: ..\..\..\lib\lua\src\lapi.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\lapi.c
 
@@ -541,6 +551,9 @@ lua_ltm.obj: ..\..\..\lib\lua\src\ltm.c
 lua_lua.obj: ..\..\..\lib\lua\src\lua.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\lua.c
 
+lua_lua_cjson.obj: ..\..\..\lib\lua\src\lua_cjson.c
+	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\lua_cjson.c
+
 lua_luac.obj: ..\..\..\lib\lua\src\luac.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\luac.c
 
@@ -552,6 +565,9 @@ lua_lvm.obj: ..\..\..\lib\lua\src\lvm.c
 
 lua_lzio.obj: ..\..\..\lib\lua\src\lzio.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\lzio.c
+
+lua_strbuf.obj: ..\..\..\lib\lua\src\strbuf.c
+	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\strbuf.c
 
 UnitTestPP_AssertException.obj: ..\..\..\lib\UnitTest++\AssertException.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\AssertException.cpp
@@ -884,5 +900,5 @@ mmex_tests_util_test.obj: ..\..\..\src\tests\util_test.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\util_test.cpp
 
 mmex_tests_mmex_tests.res: ..\..\..\src\tests\mmex_tests.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_61_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_70_p_1) $(__DEBUG_DEFINE_p_5) /i ..\..\..\lib\sqlite /i ..\..\..\lib\wxsqlite /i ..\..\..\lib\lua\src /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\UnitTest++ ..\..\..\src\tests\mmex_tests.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_61_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_70_p_1) $(__DEBUG_DEFINE_p_5) /i ..\..\..\lib\sqlite /i ..\..\..\lib\wxsqlite /i ..\..\..\lib\lua\src /i ..\..\..\lib /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\UnitTest++ ..\..\..\src\tests\mmex_tests.rc
 

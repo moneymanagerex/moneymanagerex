@@ -30,6 +30,8 @@ SQLITE_OBJECTS =  \
 LUA_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
+	lua_dtoa.o \
+	lua_g_fmt.o \
 	lua_lapi.o \
 	lua_lauxlib.o \
 	lua_lbaselib.o \
@@ -60,10 +62,12 @@ LUA_OBJECTS =  \
 	lua_ltablib.o \
 	lua_ltm.o \
 	lua_lua.o \
+	lua_lua_cjson.o \
 	lua_luac.o \
 	lua_lundump.o \
 	lua_lvm.o \
-	lua_lzio.o
+	lua_lzio.o \
+	lua_strbuf.o
 UNITTESTPP_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) $(CPPFLAGS) $(CXXFLAGS)
 UNITTESTPP_OBJECTS =  \
@@ -89,7 +93,8 @@ MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\..\lib\sqlite -I..\..\..\lib\wxsqlite -I..\..\..\lib\lua\src \
-	-DNOPCH -I..\..\..\src -I..\..\..\lib\UnitTest++ $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\..\lib -DNOPCH -I..\..\..\src -I..\..\..\lib\UnitTest++ $(CPPFLAGS) \
+	$(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_appstartdialog.o \
@@ -359,6 +364,12 @@ wxsqlite_wxsqlite3.o: ../../../lib/wxsqlite/wxsqlite3.cpp
 sqlite_sqlite3secure.o: ../../../lib/sqlite/sqlite3secure.c
 	$(CC) -c -o $@ $(SQLITE_CFLAGS) $(CPPDEPS) $<
 
+lua_dtoa.o: ../../../lib/lua/src/dtoa.c
+	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
+
+lua_g_fmt.o: ../../../lib/lua/src/g_fmt.c
+	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
+
 lua_lapi.o: ../../../lib/lua/src/lapi.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
@@ -449,6 +460,9 @@ lua_ltm.o: ../../../lib/lua/src/ltm.c
 lua_lua.o: ../../../lib/lua/src/lua.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
+lua_lua_cjson.o: ../../../lib/lua/src/lua_cjson.c
+	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
+
 lua_luac.o: ../../../lib/lua/src/luac.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
@@ -459,6 +473,9 @@ lua_lvm.o: ../../../lib/lua/src/lvm.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
 lua_lzio.o: ../../../lib/lua/src/lzio.c
+	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
+
+lua_strbuf.o: ../../../lib/lua/src/strbuf.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
 UnitTestPP_AssertException.o: ../../../lib/UnitTest++/AssertException.cpp
@@ -792,7 +809,7 @@ mmex_tests_util_test.o: ../../../src/tests/util_test.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_35_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_5) --include-dir ../../../lib/sqlite --include-dir ../../../lib/wxsqlite --include-dir ../../../lib/lua/src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/UnitTest++
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_35_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_5) --include-dir ../../../lib/sqlite --include-dir ../../../lib/wxsqlite --include-dir ../../../lib/lua/src --include-dir ../../../lib --define NOPCH --include-dir ../../../src --include-dir ../../../lib/UnitTest++
 
 .PHONY: all install uninstall clean check
 
