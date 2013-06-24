@@ -274,7 +274,6 @@ bool mmCheckingPanel::Create(
        when the checking panel is destroyed. */
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
-    core_->accountList_.getCurrencySharedPtr(m_AccountID)->loadCurrencySettings();
     initViewTransactionsHeader();
     initFilterSettings();
 
@@ -461,6 +460,7 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
 
 void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
+    setAccountSummary();
     //Initialization
     core_->bTransactionList_.LoadAccountTransactions(m_AccountID);
 
@@ -474,8 +474,6 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     sortTable();
     filterTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
-
-    setAccountSummary();
 }
 
 //----------------------------------------------------------------------------
@@ -658,6 +656,7 @@ void mmCheckingPanel::CreateControls()
 void mmCheckingPanel::setAccountSummary()
 {
     mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(m_AccountID);
+    core_->accountList_.getCurrencySharedPtr(m_AccountID)->loadCurrencySettings();
 
     header_text_->SetLabel(wxString::Format(_("Account View : %s"), pAccount->name_));
     double checking_bal = core_->bTransactionList_.getBalance(m_AccountID);
@@ -1177,7 +1176,6 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     refreshVisualList(transID);
     //TODO: blinkings may be avoided
     //m_cp->m_listCtrlAccount->RefreshItems(m_selectedIndex, m_selectedIndex);
-    //m_cp->setAccountSummary();
 }
 //----------------------------------------------------------------------------
 
@@ -1229,8 +1227,6 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     }
 
     refreshVisualList();
-
-    m_cp->setAccountSummary();
 }
 //----------------------------------------------------------------------------
 
