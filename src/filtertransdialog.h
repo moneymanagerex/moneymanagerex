@@ -153,8 +153,7 @@ private:
     wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
-    //TODO: remove std::shared_ptr
-    std::vector< std::shared_ptr<mmBankTransaction> >* trans_;
+    std::vector< mmBankTransaction* >* trans_;
     mmCoreDB* core_;
     mmDateRange* date_range_;
 
