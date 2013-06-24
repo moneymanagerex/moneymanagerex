@@ -1,1 +1,0 @@
-UnitTest++ open-source unit testing framework v.1.4.
