@@ -1122,7 +1122,8 @@ wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const w
         {
             if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
                 continue; // skip
-            if ((pBankTransaction->transNum_).IsEmpty())
+            wxRegEx pattern("([0-9.]+)");
+            if (!pattern.Matches(pBankTransaction->transNum_))
                 continue;
 
             trx_number = 1;
