@@ -22,8 +22,6 @@
 #include "../defs.h"
 #include "../util.h"
 
-#include "cajun/json/elements.h"
-
 /************************************************************************************
  Class TEntryBase
  This is the base class for all entries of the database.
