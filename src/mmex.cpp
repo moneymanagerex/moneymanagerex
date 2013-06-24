@@ -3185,8 +3185,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                 if (tran->splitEntries_->numEntries() > 0)
                 {
                     tran->reportCategAmount_ = tran->getAmountForSplit(categID, subcategID);
-
-                    mmCurrency* pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(tran->accountID_);
+                    m_core.get()->accountList_.getCurrencySharedPtr(tran->accountID_)->loadCurrencySettings();
                     tran->reportCategAmountStr_ = CurrencyFormatter::float2String(tran->reportCategAmount_);
                 }
                 else

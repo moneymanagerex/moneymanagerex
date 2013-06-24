@@ -69,17 +69,15 @@ double mmAccountList::getAccountBaseCurrencyConvRate(int accountID) const
 
 mmAccount* mmAccountList::GetAccountSharedPtr(int accountID) const
 {
-    account_v::value_type res;
-
     for (const auto& r : accounts_)
     {
         if (r->id_ == accountID)
         {
-            res = r;
-            break;
+            return r;
         }
     }
-
+    wxASSERT(false);
+    account_v::value_type res = 0;
     return res;
 }
 

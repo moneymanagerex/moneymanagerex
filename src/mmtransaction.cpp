@@ -140,7 +140,7 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
     subcategID_  = q1.GetInt("SUBCATEGID");
     fullCatStr_  = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
-    mmCurrency* pCurrencyPtr = core->accountList_.getCurrencySharedPtr(accountID_);
+    core->accountList_.getCurrencySharedPtr(accountID_)->loadCurrencySettings();
 
     splitEntries_ = new mmSplitTransactionEntries();
     getSplitTransactions(splitEntries_);

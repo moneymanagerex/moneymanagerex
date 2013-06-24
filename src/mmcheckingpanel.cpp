@@ -274,6 +274,7 @@ bool mmCheckingPanel::Create(
        when the checking panel is destroyed. */
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
+    core_->accountList_.getCurrencySharedPtr(m_AccountID)->loadCurrencySettings();
     initViewTransactionsHeader();
     initFilterSettings();
 
@@ -1420,7 +1421,6 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     mmBankTransaction* pCopiedTrans =
         m_cp->core_->bTransactionList_.copyTransaction(m_selectedForCopy, m_cp->m_AccountID, useOriginalDate);
 
-    mmCurrency* pCurrencyPtr = m_cp->core_->accountList_.getCurrencySharedPtr(m_cp->m_AccountID);
     int transID = pCopiedTrans->transactionID();
     topItemIndex_ = m_selectedIndex;
     refreshVisualList(transID);
