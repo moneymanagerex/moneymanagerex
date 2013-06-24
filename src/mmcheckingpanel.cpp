@@ -1261,7 +1261,7 @@ void TransactionListCtrl::setColumnImage(EColumn col, int image)
 
 wxString mmCheckingPanel::getItem(long item, long column) const
 {
-    wxString s;
+    wxString s = "";
 
     bool ok = !m_trans.empty() &&
               ( item >= 0 ) &&
@@ -1272,14 +1272,14 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     {
         const mmBankTransaction &t = *m_trans[item];
 
-        if (column == COL_DATE_OR_TRANSACTION_ID) s = t.dateStr_;
+        if (column == COL_DATE_OR_TRANSACTION_ID) s = mmGetDateForDisplay(t.date_);
         else if (column == COL_TRANSACTION_NUMBER) s = t.transNum_;
         else if (column == COL_PAYEE_STR) s = t.payeeStr_;
         else if (column == COL_STATUS) s = t.status_;
         else if (column == COL_CATEGORY) s = t.fullCatStr_;
-        else if (column == COL_WITHDRAWAL) s = t.withdrawalStr_;
-        else if (column == COL_DEPOSIT) s = t.depositStr_;
-        else if (column == COL_BALANCE) s = t.balanceStr_;
+        else if (column == COL_WITHDRAWAL) s = CurrencyFormatter::float2String(t.withdrawal_amt_);
+        else if (column == COL_DEPOSIT) s = CurrencyFormatter::float2String(t.deposit_amt_);
+        else if (column == COL_BALANCE) s = CurrencyFormatter::float2String(t.balance_);
         else if (column == COL_NOTES) s = t.notes_;
         else
             wxASSERT(false);

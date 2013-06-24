@@ -155,87 +155,59 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
 void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 {
-    //if (isInited_) return;
-
     deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
     withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
 
-    /* Load the Account Currency Settings for Formatting Strings */
-    //**//currencyPtr->loadCurrencySettings();
-
-    dateStr_ = mmGetDateForDisplay(date_);
-    transAmtString_ = CurrencyFormatter::float2String(amt_);
+    //TODO: Speedup me
+    //if (isInited_) return;
 
     wxASSERT(toAmt_ >= 0);
     wxASSERT(amt_ >= 0);
     if (toAmt_ < 0) toAmt_ = amt_;
-    transToAmtString_ = CurrencyFormatter::float2String(toAmt_);
 
-
-    depositStr_ = "";
-    withdrawalStr_ = "";
     if (transType_ == TRANS_TYPE_DEPOSIT_STR)
-    {
-        depositStr_ = transAmtString_;
         balance += amt_;
-        balance_ = balance;
-    }
     else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
-    {
-        withdrawalStr_ = transToAmtString_;
         balance -= amt_;
-        balance_ = balance;
-    }
     else if (transType_ == TRANS_TYPE_TRANSFER_STR)
     {
-        wxString fromAccount = core_->accountList_.GetAccountName(accountID_);
+        fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
         wxString toAccount = core_->accountList_.GetAccountName(toAccountID_);
 
         if (accountID_ == accountID)
         {
-            withdrawalStr_ = transAmtString_;
             withdrawal_amt_ = amt_;
             balance -= amt_;
-            balance_ = balance;
             deposit_amt_ = -amt_;
-            payeeStr_      = toAccount;
+            payeeStr_ = toAccount;
         }
         else if (toAccountID_ == accountID)
         {
-            depositStr_ = transToAmtString_;
-            payeeStr_   = fromAccount;
             deposit_amt_ = toAmt_;
-            withdrawal_amt_ = -toAmt_;
             balance += amt_;
-            balance_ = balance;
+            withdrawal_amt_ = -toAmt_;
+            payeeStr_ = fromAccountStr_;
         }
+        balance_ = balance;
     }
-
-    fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
 
     if (splitEntries_->numEntries() == 1)
     {
         categID_ = -1;
         subcategID_ = -1;
-        catStr_= "";
-        subCatStr_ = "";
         fullCatStr_= core_->categoryList_.GetFullCategoryString(
             splitEntries_->entries_[0]->categID_, splitEntries_->entries_[0]->subCategID_);
     }
     else if (splitEntries_->numEntries() > 1)
     {
-        fullCatStr_ = _("Split Category");
+        fullCatStr_ = _("...");
         categID_ = -1;
         subcategID_ = -1;
-        catStr_= "";
-        subCatStr_ = "";
     }
     else 
     {
         fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
     }
-
-    balanceStr_ = CurrencyFormatter::float2String(balance_);
 
     isInited_ = true;
 }
@@ -567,7 +539,7 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID)
             && (pBankTransaction->toAccountID_ != accountID
             || pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR))
             continue;
-        //TODO: Calculate balance here
+
         pBankTransaction->updateTransactionData(accountID, balance);
 
         accountTransactions_.push_back(pBankTransaction);
