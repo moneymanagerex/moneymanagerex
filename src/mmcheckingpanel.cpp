@@ -346,59 +346,56 @@ void mmCheckingPanel::sortTable()
 
 void mmCheckingPanel::filterTable()
 {
-    std::vector<mmBankTransaction*> filtered_trans;
-    bool toAdd = transFilterDlg_->somethingSelected();
-
-    if (transFilterActive_ && toAdd)
+    if (transFilterActive_ &&transFilterDlg_->somethingSelected())
     {
-        for (const auto& pBankTransaction: m_trans)
+        std::vector<mmBankTransaction*>::iterator iter;
+        for (iter = m_trans.begin(); iter != m_trans.end(); )
         {
-            toAdd = true;
-
-            if (transFilterDlg_->getAccountCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getAccountID() == pBankTransaction->toAccountID_);
-
-            if (transFilterDlg_->getDateRangeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getFromDateCtrl().GetDateOnly() <= pBankTransaction->date_.GetDateOnly() 
-                    && transFilterDlg_->getToDateControl().GetDateOnly() >= pBankTransaction->date_.GetDateOnly());
-
-            if (transFilterDlg_->getPayeeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == pBankTransaction->payeeStr_);
-
-            if (transFilterDlg_->getCategoryCheckBox())
-                toAdd = toAdd && (pBankTransaction->containsCategory(transFilterDlg_->getCategoryID(),
-                transFilterDlg_->getSubCategoryID(), transFilterDlg_->getSubCategoryID() < 0));
-
-            if (transFilterDlg_->getStatusCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getStatus() == pBankTransaction->status_);
-
-            if (transFilterDlg_->getTypeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getType().Contains(pBankTransaction->transType_));
-
-            if (transFilterDlg_->getAmountRangeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getAmountMin() <= pBankTransaction->amt_ && transFilterDlg_->getAmountMax() >= pBankTransaction->amt_);
-
-            if (transFilterDlg_->getNumberCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getNumber().Trim().Lower() == pBankTransaction->transNum_.Lower());
-
-            if (transFilterDlg_->getNotesCheckBox())
-                toAdd = toAdd && (pBankTransaction->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()));
-            if (toAdd)
-                filtered_trans.push_back(pBankTransaction);
+            if (transFilterDlg_->getAccountCheckBox()
+                    && transFilterDlg_->getAccountID() != (*iter)->toAccountID_)
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getDateRangeCheckBox()
+                    && (transFilterDlg_->getFromDateCtrl().GetDateOnly() > (*iter)->date_.GetDateOnly() 
+                    && transFilterDlg_->getToDateControl().GetDateOnly() < (*iter)->date_.GetDateOnly()))
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getPayeeCheckBox()
+                    && transFilterDlg_->userPayeeStr() != (*iter)->payeeStr_)
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getCategoryCheckBox()
+                    && !(*iter)->containsCategory(transFilterDlg_->getCategoryID()
+                    ,transFilterDlg_->getSubCategoryID(), transFilterDlg_->getSubCategoryID() < 0))
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getStatusCheckBox()
+                    && transFilterDlg_->getStatus() != (*iter)->status_)
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getTypeCheckBox()
+                    && !transFilterDlg_->getType().Contains((*iter)->transType_))
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getAmountRangeCheckBox()
+                    && !(transFilterDlg_->getAmountMin() <= (*iter)->amt_ && transFilterDlg_->getAmountMax() >= (*iter)->amt_))
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getNumberCheckBox()
+                    && transFilterDlg_->getNumber().Trim().Lower() != (*iter)->transNum_.Lower())
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getNotesCheckBox()
+                    && !(*iter)->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()))
+                iter = m_trans.erase(iter);
+            else
+                ++iter;
         }
     }
     else
     {
-        for (const auto& pBankTransaction: m_trans)
+        std::vector<mmBankTransaction*>::iterator iter;
+        for (iter = m_trans.begin(); iter != m_trans.end(); )
         {
-            if (quickFilterBeginDate_ <= pBankTransaction->date_.GetDateOnly() 
-                    && quickFilterEndDate_ >= pBankTransaction->date_.GetDateOnly())
-            {
-                filtered_trans.push_back(pBankTransaction); 
-            }
+            if (quickFilterBeginDate_ <= (*iter)->date_.GetDateOnly() 
+                    && quickFilterEndDate_ >= (*iter)->date_.GetDateOnly())
+                ++iter;
+            else
+                iter = m_trans.erase(iter);
         }
     }
-    this->m_trans = filtered_trans;
 }
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
