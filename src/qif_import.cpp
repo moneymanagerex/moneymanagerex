@@ -345,7 +345,7 @@ int mmQIFImportDialog::mmImportQIF()
     bool bTrxComplited = true;
 
     std::vector< std::shared_ptr<mmBankTransaction> > vQIF_trxs;
-    std::shared_ptr< mmSplitTransactionEntries > mmSplit(new mmSplitTransactionEntries());
+    mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
 
     while(!input.Eof() && !canceledbyuser)
     {
