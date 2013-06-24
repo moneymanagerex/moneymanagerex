@@ -53,6 +53,7 @@ private:
 
 public:
     bool operator <(const TAssetEntry& asset) const ;
+    int to_json(json::Object& o) const;
 public:
     enum ASSET_RATE {
         RATE_NONE,

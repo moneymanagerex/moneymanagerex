@@ -21,6 +21,8 @@
 #include <sstream>
 #include "assets.h"
 #include "../mmCurrencyFormatter.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
 
 /************************************************************************************
  TAssetEntry Methods
@@ -142,6 +144,12 @@ bool TAssetEntry::operator < (const TAssetEntry& asset) const
 {
     if (this->date_ < asset.date_) return true; else if (this->date_ > asset.date_) return false;
     return this->GetId() < asset.GetId();
+}
+
+int TAssetEntry::to_json(json::Object& o) const
+{
+    o["id"] = json::Number(this->id_);
+    return 0;
 }
 
 double TAssetEntry::GetValue()
