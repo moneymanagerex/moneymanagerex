@@ -137,7 +137,7 @@ void mmTransDialog::dataToControls()
         payeeID_ = pBankTransaction_->payeeID_;
         if (payeeID_ > -1) // !bTransfer
             payeeUnknown_ = false;
-        payee_name_ = pBankTransaction_->payeeStr_;
+        payee_name_ = core_->payeeList_.GetPayeeName(pBankTransaction_->payeeID_);
 
         textNotes_->SetValue(pBankTransaction_->notes_);
         textNumber_->SetValue(pBankTransaction_->transNum_);
