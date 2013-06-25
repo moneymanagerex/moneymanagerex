@@ -398,39 +398,6 @@ int site_content(const wxString& sSite, wxString& sOutput)
     return err_code;
 }
 
-int mmIniOptions::account_image_id(mmCoreDB* core, int account_id)
-{
-    double selectedImage = 9;
-    wxString image_num_str = core->dbInfoSettings_->GetStringSetting(
-        wxString::Format("ACC_IMAGE_ID_%d", account_id), "");
-    if ( CurrencyFormatter::formatCurrencyToDouble(image_num_str, selectedImage))
-    {
-        if (selectedImage > 0)
-            return selectedImage;
-    }
-
-    selectedImage = 9;
-    int t = 0, s = 0;
-    const wxString acctType = core->accountList_.getAccountType(account_id);
-    int acctStatus = core->accountList_.getAccountStatus(account_id);
-    bool favorite = core->accountList_.getAccountFavorite(account_id);
-
-    if (acctStatus == mmAccount::MMEX_Closed)
-        s = 2;
-    else if (favorite)
-        s = 1;
-
-    if (acctType == "Term")
-        t = 3;
-    else if (acctType == "Investment")
-        t = 6;
-
-    selectedImage += t + s;
-
-    return selectedImage;
-}
-
-
 wxImageList* navtree_images_list_()
 {
     wxImageList* imageList_ = new wxImageList(16, 16);
