@@ -176,14 +176,14 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
             withdrawal_amt_ = amt_;
             balance -= amt_;
             deposit_amt_ = -amt_;
-            payeeStr_ = toAccount;
+            payeeStr_ << "> " << toAccount;
         }
         else if (toAccountID_ == accountID)
         {
             deposit_amt_ = toAmt_;
             balance += amt_;
             withdrawal_amt_ = -toAmt_;
-            payeeStr_ = fromAccountStr_;
+            payeeStr_ << "< " << fromAccountStr_;
         }
     }
     balance_ = balance;

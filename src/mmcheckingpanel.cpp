@@ -1257,15 +1257,16 @@ wxString mmCheckingPanel::getItem(long item, long column) const
         if (column == COL_DATE_OR_TRANSACTION_ID) s = mmGetDateForDisplay(t.date_);
         else if (column == COL_TRANSACTION_NUMBER) s = t.transNum_;
         else if (column == COL_PAYEE_STR)
-			s = (t.payeeStr_.IsEmpty()) ? core_->payeeList_.GetPayeeName(t.payeeID_) : t.payeeStr_;
+            s = (t.payeeStr_.IsEmpty())
+                ? core_->payeeList_.GetPayeeName(t.payeeID_).Prepend("   ") : t.payeeStr_;
         else if (column == COL_STATUS) s = t.status_;
         else if (column == COL_CATEGORY) s = t.fullCatStr_;
         else if (column == COL_WITHDRAWAL)
             s = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
         else if (column == COL_DEPOSIT)
-			s = (t.deposit_amt_ >= 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
+            s = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
         else if (column == COL_BALANCE)
-			s = CurrencyFormatter::float2String(t.balance_);
+            s = CurrencyFormatter::float2String(t.balance_);
         else if (column == COL_NOTES) s = t.notes_;
         else
             wxASSERT(false);
@@ -1277,22 +1278,7 @@ wxString mmCheckingPanel::getItem(long item, long column) const
 
 wxString TransactionListCtrl::OnGetItemText(long item, long column) const
 {
-    wxString item_text = m_cp->getItem(item, column);
-    if(column == COL_PAYEE_STR)
-    {
-        size_t index = item;
-        bool ok = m_cp && index < m_cp->m_trans.size();
-        mmBankTransaction *tr = ok ? m_cp->m_trans[index] : 0;
-        if (tr->transType_ == TRANS_TYPE_TRANSFER_STR)
-        {
-            if ( tr->accountID_ == m_cp->m_AccountID )
-                item_text.Prepend("> ");
-            else
-                item_text.Prepend("< ");
-        }
-        else item_text.Prepend("   ");
-    }
-    return item_text;
+    return m_cp->getItem(item, column);
 }
 //----------------------------------------------------------------------------
 
