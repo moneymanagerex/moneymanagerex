@@ -110,6 +110,7 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.status_);
         hb.addTableCell(transaction.fullCatStr_, false, true);
 
+        //TODO: make me simple
         if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR)
             hb.addTableCell(_("Deposit"));
         else if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
@@ -133,21 +134,8 @@ wxString mmReportTransactions::getHTMLText()
         // Get the exchange rate for the selected account
         double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction.accountID_);
         double transAmount = transaction.amt_ * dbRate;
-        if (transaction.reportCategAmountStr_ != "")
-        {
-            transAmount = transaction.reportCategAmount_ * dbRate;
-            if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR && transAmount < 0)
-                negativeTransAmount = false;
-            else if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR && transAmount < 0)
-                negativeTransAmount = true;
-        }
 
-        wxString amtColour = negativeTransAmount ? "RED" : "BLACK";
-
-        if (transaction.reportCategAmountStr_ == "")
-            hb.addTableCell(transaction.transAmtString_, true, false,false, amtColour);
-        else
-            hb.addTableCell(transaction.reportCategAmountStr_, true, false,false, amtColour);
+        hb.addMoneyCell(transAmount);
         hb.addTableCell(transaction.transNum_);
         hb.addTableCell(transaction.notes_, false, true);
         hb.endTableRow();

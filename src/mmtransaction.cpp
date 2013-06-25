@@ -111,34 +111,30 @@ void mmSplitTransactionEntries::loadFromBDDB(mmCoreDB* core, int bdID)
 //-----------------------------------------------------------------------------//
 mmBankTransaction::mmBankTransaction(mmCoreDB* core) :
     mmTransaction(-1),
-    core_(core),
-    isInited_(false),
-    updateRequired_(false)
+    core_(core)
 {
     splitEntries_ = new mmSplitTransactionEntries();
 }
 
 mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
 : mmTransaction(q1.GetInt("TRANSID")),
-                core_(core),
-                isInited_(false),
-                updateRequired_(false)
+                core_(core)
 {
     date_        = q1.GetDate("TRANSDATE");
     transNum_    = q1.GetString("TRANSACTIONNUMBER");
     status_      = q1.GetString("STATUS");
     notes_       = q1.GetString("NOTES");
-    transType_   = q1.GetString("TRANSCODE");
     accountID_   = q1.GetInt("ACCOUNTID");
     toAccountID_ = q1.GetInt("TOACCOUNTID");
     payeeID_     = q1.GetInt("PAYEEID");
-    payeeStr_    = core->payeeList_.GetPayeeName(payeeID_);
+    //payeeStr_    = core->payeeList_.GetPayeeName(payeeID_);
+    transType_   = q1.GetString("TRANSCODE");
     amt_         = q1.GetDouble("TRANSAMOUNT");
     toAmt_       = q1.GetDouble("TOTRANSAMOUNT");
     followupID_  = q1.GetInt("FOLLOWUPID");
     categID_     = q1.GetInt("CATEGID");
     subcategID_  = q1.GetInt("SUBCATEGID");
-    fullCatStr_  = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
+    //fullCatStr_  = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
     core->accountList_.getCurrencySharedPtr(accountID_)->loadCurrencySettings();
 
@@ -208,8 +204,6 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     {
         fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
     }
-
-    isInited_ = true;
 }
 
 double mmBankTransaction::value(int accountID) const
@@ -484,22 +478,6 @@ mmBankTransaction* mmBankTransactionList::copyTransaction(
     return pCopyTransaction;
 }
 
-mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int accountID, int transactionID) const
-{
-    for (auto const& pBankTransaction : transactions_)
-    {
-        if (((pBankTransaction->accountID_ == accountID) ||
-           (pBankTransaction->toAccountID_ == accountID))
-           && (pBankTransaction->transactionID() == transactionID))
-        {
-            return pBankTransaction;
-        }
-    }
-    // didn't find the transaction
-    wxASSERT(false);
-    return NULL;
-}
-
 mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int transactionID) const
 {
     for (auto const& pBankTransaction : transactions_)
@@ -582,59 +560,11 @@ void mmBankTransactionList::UpdateTransaction(mmBankTransaction* pBankTransactio
         {
             i = pBankTransaction;
             i->payeeStr_ = pBankTransaction->payeeStr_;
-            i->updateRequired_ = true;
             break;
         }
     }
 
     mmOptions::instance().databaseUpdated_ = true;
-}
-
-void mmBankTransactionList::UpdateAllTransactions()
-{
-    // We need to update all transactions incase of errors when loading
-    for (auto const& pBankTransaction : transactions_)
-    {
-        if (pBankTransaction && pBankTransaction->updateRequired_)
-        {
-           UpdateTransaction(pBankTransaction);
-           pBankTransaction->updateRequired_ = false;
-        }
-    }
-}
-
-void mmBankTransactionList::UpdateAllTransactionsForCategory(int categID,
-                                                             int subCategID)
-{
-    // We need to update all transactions incase of errors when loading
-    for (auto const& pBankTransaction : transactions_)
-    {
-        if (pBankTransaction && (pBankTransaction->categID_ == categID)
-            && (pBankTransaction->subcategID_ == subCategID))
-        {
-            pBankTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
-            //pBankTransaction->categID_ = categID;
-            //pBankTransaction->subcategID_ = subCategID;
-        }
-    }
-}
-
-int mmBankTransactionList::UpdateAllTransactionsForPayee(int payeeID)
-{
-    // We need to update all transactions incase of errors when loading
-    for (auto const& pBankTransaction : transactions_)
-    {
-        if (pBankTransaction && (pBankTransaction->payeeID_ == payeeID))
-        {
-            if (pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR)
-            {
-                pBankTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID);
-                //pBankTransaction->payeeID_ = payeeID;
-            }
-        }
-    }
-
-    return 0;
 }
 
 void mmBankTransactionList::getExpensesIncomeStats
@@ -819,22 +749,19 @@ wxDateTime mmBankTransactionList::getLastDate(int accountID) const
 
     for (auto const& pBankTransaction : transactions_)
     {
-        if (pBankTransaction)
+        if (accountID != -1)
         {
-            if (accountID != -1)
-            {
-                if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
-                    continue; // skip
+            if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
+                continue; // skip
 
-                if (pBankTransaction->date_.IsLaterThan(wxDateTime::Now()))
-                    continue; //skip future dated transactions
-            }
+            if (pBankTransaction->date_.IsLaterThan(wxDateTime::Now()))
+                continue; //skip future dated transactions
+        }
 
-            if (!dt.IsLaterThan(pBankTransaction->date_))
-            {
-                dt = pBankTransaction->date_;
-                same_initial_date = false;
-            }
+        if (!dt.IsLaterThan(pBankTransaction->date_))
+        {
+            dt = pBankTransaction->date_;
+            same_initial_date = false;
         }
     }
 
@@ -1005,30 +932,6 @@ double mmBankTransactionList::getBalance(int accountID, bool ignoreFuture) const
     return balance;
 }
 
-bool mmBankTransactionList::getDailyBalance(const mmCoreDB* core, int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture) const
-{
-    wxDateTime now = wxDateTime::Now();
-    double convRate = core->accountList_.getAccountBaseCurrencyConvRate(accountID);
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
-            continue; // skip
-
-        if (pBankTransaction->status_ == "V")
-            continue; // skip
-
-        if (ignoreFuture)
-        {
-            if (pBankTransaction->date_.IsLaterThan(now))
-                continue; //skip future dated transactions
-        }
-
-        daily_balance[pBankTransaction->date_] += pBankTransaction->value(accountID) * convRate;
-    }
-
-    return true;
-}
-
 double mmBankTransactionList::getReconciledBalance(int accountID, bool ignoreFuture) const
 {
     double balance = 0.0;
@@ -1099,6 +1002,27 @@ bool mmBankTransactionList::deleteTransaction(int accountID, int transactionID)
     }
     return false;
 }
+
+bool mmBankTransactionList::getDailyBalance(const mmCoreDB* core, int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture) const
+{
+    wxDateTime now = wxDateTime::Now();
+    double convRate = core->accountList_.getAccountBaseCurrencyConvRate(accountID);
+    for (const auto & pBankTransaction: transactions_)
+    {
+        if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
+        continue; // skip
+        if (pBankTransaction->status_ == "V")
+            continue; // skip
+        if (ignoreFuture)
+        {
+            if (pBankTransaction->date_.IsLaterThan(now))
+                continue; //skip future dated transactions
+        }
+        daily_balance[pBankTransaction->date_] += pBankTransaction->value(accountID) * convRate;
+    }
+    return true;
+}
+
 
 void mmBankTransactionList::deleteTransactions(int accountID)
 {
@@ -1204,14 +1128,6 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
         }
     }
     return err;
-}
-
-void mmBankTransactionList::ChangeDateFormat()
-{
-    for (const auto & pBankTransaction: transactions_)
-    {
-        pBankTransaction->dateStr_ = (pBankTransaction->date_).Format(mmOptions::instance().dateFormat_);
-    }
 }
 
 bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat) const

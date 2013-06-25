@@ -821,10 +821,11 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                             buffer << inQuotes(amount, delimit);
                             break;
                         case UNIV_CSV_CATEGORY:
-                            buffer << inQuotes(pBankTransaction->catStr_, delimit);
+                            buffer << inQuotes(core_->categoryList_.GetCategoryName(pBankTransaction->categID_), delimit);
                             break;
                         case UNIV_CSV_SUBCATEGORY:
-                            buffer << inQuotes(pBankTransaction->subCatStr_, delimit);
+                            buffer << inQuotes(core_->categoryList_
+                                .GetSubCategoryName(pBankTransaction->categID_, pBankTransaction->subcategID_), delimit);
                             break;
                         case UNIV_CSV_TRANSNUM:
                             buffer << inQuotes(pBankTransaction->transNum_, delimit);
@@ -999,8 +1000,8 @@ void mmUnivCSVDialog::update_preview()
                         wxString text;
                         switch (*sit)
                         {
-                            case UNIV_CSV_DATE:
-                                text << inQuotes(pBankTransaction->dateStr_, delimit);
+                            case UNIV_CSV_DATE: //TODO: Proper date format
+                                text << inQuotes(mmGetDateForDisplay(pBankTransaction->date_), delimit);
                                 break;
                             case UNIV_CSV_PAYEE:
                                 text << inQuotes(payee, delimit);
@@ -1009,10 +1010,11 @@ void mmUnivCSVDialog::update_preview()
                                 text << inQuotes(amount, delimit);
                                 break;
                             case UNIV_CSV_CATEGORY:
-                                text << inQuotes(pBankTransaction->catStr_, delimit);
+                                text << inQuotes(core_->categoryList_.GetCategoryName(pBankTransaction->categID_), delimit);
                                 break;
                             case UNIV_CSV_SUBCATEGORY:
-                                text << inQuotes(pBankTransaction->subCatStr_, delimit);
+                                text << inQuotes(core_->categoryList_
+                                    .GetSubCategoryName(pBankTransaction->categID_, pBankTransaction->subcategID_), delimit);
                                 break;
                             case UNIV_CSV_TRANSNUM:
                                 text << inQuotes(pBankTransaction->transNum_, delimit);

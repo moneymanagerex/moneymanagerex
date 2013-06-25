@@ -765,7 +765,6 @@ void mmOptionsDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
         dateFormat_ = data->GetData();
         mmOptions::instance().dateFormat_ = dateFormat_;
         sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
-        core_->bTransactionList_.ChangeDateFormat();
     }
     else
         return;

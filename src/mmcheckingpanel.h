@@ -128,9 +128,6 @@ private:
     wxString getItem(long item, long column) const;
 
     wxString getMiniInfoStr(int selIndex) const;
-
-    double getBalance(mmBankTransaction* transPtr, double currentBalance) const;
-    void setBalance(mmBankTransaction* transPtr, double currentBalance);
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_CHECKINGPANEL_H_

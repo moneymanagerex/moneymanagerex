@@ -90,49 +90,35 @@ public:
 
     /* Core Data */
     wxDateTime date_;
-
     wxString transNum_;
-    wxString status_;
-    wxString notes_;
     wxString transType_;
-
+    wxString status_;
+    int payeeID_;
+    wxString payeeStr_;
+    int categID_;
+    int subcategID_;
+    wxString fullCatStr_;
     double amt_;
     double toAmt_;
 
     int accountID_;
+    wxString fromAccountStr_;
     int toAccountID_;
+    int followupID_;
+    wxString notes_;
 
     mmSplitTransactionEntries* splitEntries_;
 
     /* Derived Data */
-    wxString dateStr_;
-    wxString catStr_;
-    wxString subCatStr_;
-    wxString payeeStr_;
-    wxString transAmtString_;
-    wxString transToAmtString_;
-    wxString fromAccountStr_;
-    wxString fullCatStr_;
-    wxString withdrawalStr_;
     double withdrawal_amt_;
-    wxString depositStr_;
     double deposit_amt_;
-
     double balance_;
-    wxString balanceStr_;
-    int payeeID_;
-    int categID_;
-    int subcategID_;
 
-    bool updateRequired_;
-    int followupID_;
+    //bool updateRequired_;
 
     // used for transaction reports
     double reportCategAmount_;
     wxString reportCategAmountStr_;
-
-private:
-    bool isInited_;
 };
 
 class mmBankTransactionList
@@ -141,7 +127,6 @@ public:
     mmBankTransactionList(mmCoreDB* core);
     ~mmBankTransactionList() {}
 
-    mmBankTransaction* getBankTransactionPtr(int accountID, int transactionID) const;
     mmBankTransaction* getBankTransactionPtr(int transactionID) const;
     int addTransaction(mmBankTransaction* pTransaction);
     bool checkForExistingTransaction(mmBankTransaction* pTransaction);
@@ -154,9 +139,6 @@ public:
 
     /* Update Transactions */
     void UpdateTransaction(mmBankTransaction* pTransaction);
-    void UpdateAllTransactions();
-    void UpdateAllTransactionsForCategory(int categID, int subCategID);
-    int UpdateAllTransactionsForPayee(int payeeID);
 
     bool removeTransaction(int accountID, int transactionID);
     bool deleteTransaction(int accountID, int transactionID);
@@ -165,7 +147,6 @@ public:
     int RelocateCategory(mmCoreDB* core,
         int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
         int& changedCats, int& changedSubCats);
-    void ChangeDateFormat();
 
     /* Query Functions */
     void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;
@@ -186,7 +167,6 @@ public:
     wxDateTime getLastDate(int accountID) const;
 
     double getBalance(int accountID, bool ignoreFuture = false) const;
-    bool getDailyBalance(const mmCoreDB* core, int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture = false) const;
     double getReconciledBalance(int accountID, bool ignoreFuture = false) const;
     int countFollowupTransactions() const;
     int getLastUsedCategoryID(int accountID, int payeeID, const wxString sType, int& subcategID) const;
@@ -194,6 +174,8 @@ public:
     wxArrayString getTransactionNumber(int accountID, const wxDateTime transaction_date) const;
     bool IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat = true) const;
     bool IsPayeeUsed(int iPayeeID) const;
+    bool getDailyBalance(const mmCoreDB* core, int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture = false) const;
+
 
     /* Data */
     //typedef std::vector< std::shared_ptr<mmBankTransaction> >::const_iterator const_iterator;

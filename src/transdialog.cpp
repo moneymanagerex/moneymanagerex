@@ -897,8 +897,8 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        pTransaction = core_->bTransactionList_.getBankTransactionPtr(accountID_
-            , pBankTransaction_->transactionID());
+        pTransaction = core_->bTransactionList_.getBankTransactionPtr(
+            pBankTransaction_->transactionID());
     }
 
     mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(newAccountID_);
@@ -1150,7 +1150,6 @@ void mmTransDialog::SetDialogToDuplicateTransaction()
 
     // we need to create a new pointer for Split transactions.
     mmSplitTransactionEntries* splitTransEntries(new mmSplitTransactionEntries());
-    core_->bTransactionList_.getBankTransactionPtr(accountID_
-        , pBankTransaction_->transactionID())->getSplitTransactions(splitTransEntries);
+    core_->bTransactionList_.getBankTransactionPtr(pBankTransaction_->transactionID())->getSplitTransactions(splitTransEntries);
     split_->entries_ = splitTransEntries->entries_;
 }

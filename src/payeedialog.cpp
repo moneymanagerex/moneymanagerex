@@ -308,21 +308,20 @@ void mmPayeeDialog::OnDoubleClicked(wxCommandEvent& event)
 
 void mmPayeeDialog::OnEdit(wxCommandEvent& event)
 {
-    wxString oldname = listBox_->GetStringSelection();
+    wxString old_name = listBox_->GetStringSelection();
 
     wxString mesg;
-    mesg.Printf(_("Enter a new name for %s"),oldname);
-    wxString newName = wxGetTextFromUser(mesg, _("Edit Payee Name"), oldname);
-    if (newName != wxGetEmptyString())
+    mesg.Printf(_("Enter a new name for %s"), old_name);
+    wxString new_name = wxGetTextFromUser(mesg, _("Edit Payee Name"), old_name);
+    if (new_name != wxGetEmptyString())
     {
-        core_->payeeList_.UpdatePayee(m_payee_id_, newName);
-        core_->bTransactionList_.UpdateAllTransactionsForPayee(m_payee_id_);
+        core_->payeeList_.UpdatePayee(m_payee_id_, new_name);
         editButton_->Disable();
         fillControls();
 
         // Now we need to make sure that the edited name is selected after the dialog is closed
         textCtrl_->Clear();
-        listBox_->SetStringSelection(newName);
+        listBox_->SetStringSelection(new_name);
         OnSelChanged(event);
     }
 }

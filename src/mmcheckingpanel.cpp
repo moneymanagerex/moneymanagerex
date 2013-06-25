@@ -840,21 +840,6 @@ void mmCheckingPanel::showTips()
 }
 //----------------------------------------------------------------------------
 
-double mmCheckingPanel::getBalance(mmBankTransaction* transPtr, double currentBalance) const
-{
-    if (transPtr->status_ != "V")
-        currentBalance += transPtr->value(m_AccountID);
-
-    return currentBalance;
-}
-//----------------------------------------------------------------------------
-
-void mmCheckingPanel::setBalance(mmBankTransaction* transPtr, double currentBalance )
-{
-    transPtr->balance_ = currentBalance;
-    transPtr->balanceStr_ = CurrencyFormatter::float2String(currentBalance);
-}
-
 void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 {
     m_listCtrlAccount->OnDeleteTransaction(event);
@@ -1276,10 +1261,14 @@ wxString mmCheckingPanel::getItem(long item, long column) const
         else if (column == COL_TRANSACTION_NUMBER) s = t.transNum_;
         else if (column == COL_PAYEE_STR) s = t.payeeStr_;
         else if (column == COL_STATUS) s = t.status_;
-        else if (column == COL_CATEGORY) s = t.fullCatStr_;
-        else if (column == COL_WITHDRAWAL) s = CurrencyFormatter::float2String(t.withdrawal_amt_);
-        else if (column == COL_DEPOSIT) s = CurrencyFormatter::float2String(t.deposit_amt_);
-        else if (column == COL_BALANCE) s = CurrencyFormatter::float2String(t.balance_);
+        else if (column == COL_CATEGORY)
+            s = core_->categoryList_.GetFullCategoryString(t.categID_, t.subcategID_);
+        else if (column == COL_WITHDRAWAL)
+            s = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
+        else if (column == COL_DEPOSIT)
+			s = (t.deposit_amt_ >= 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
+        else if (column == COL_BALANCE)
+			s = CurrencyFormatter::float2String(t.balance_);
         else if (column == COL_NOTES) s = t.notes_;
         else
             wxASSERT(false);
@@ -1609,7 +1598,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     {
         mmBankTransaction* pTransaction;
         pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(
-            m_cp->m_AccountID, m_cp->m_trans[m_selectedIndex]->transactionID()
+            m_cp->m_trans[m_selectedIndex]->transactionID()
         );
 
         // Looking at transaction from A end. Transaction is a deposit, withdrawal or transfer.
