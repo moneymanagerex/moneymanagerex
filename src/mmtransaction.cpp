@@ -171,19 +171,20 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
         wxString toAccount = core_->accountList_.GetAccountName(toAccountID_);
 
-        if (accountID_ == accountID)
+        if (accountID_ != toAccountID_)
         {
-            withdrawal_amt_ = amt_;
-            balance -= amt_;
-            deposit_amt_ = -amt_;
-            payeeStr_ << "> " << toAccount;
-        }
-        else if (toAccountID_ == accountID)
-        {
-            deposit_amt_ = toAmt_;
-            balance += amt_;
-            withdrawal_amt_ = -toAmt_;
-            payeeStr_ << "< " << fromAccountStr_;
+            if (accountID_ == accountID)
+            {
+                 balance -= -amt_;
+                 withdrawal_amt_ = amt_;
+                 deposit_amt_ = -amt_;
+                 payeeStr_ << "> " << toAccount;
+            }
+            else if (toAccountID_ == accountID)
+                 balance += toAmt_;
+                 deposit_amt_ = toAmt_;
+                 withdrawal_amt_ = -toAmt_;
+                 payeeStr_ << "< " << fromAccountStr_;
         }
     }
     balance_ = balance;
@@ -515,7 +516,8 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID, double& accou
     account_balance = pAccount->initialBalance_;
     reconciled_balance = pAccount->initialBalance_;
     double balance = pAccount->initialBalance_;
-    bool calculate_future = true; //TODO: get parameter
+    //TODO: get parameter mmIniOptions::instance().ignoreFutureTransactions_;
+    bool calculate_future = true; 
     accountTransactions_.clear();
 
     for (const auto& pBankTransaction: transactions_)
@@ -530,7 +532,7 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID, double& accou
         calculate_future = calculate_future || (pBankTransaction->date_ <= today);
         double amount = pBankTransaction->value(accountID);
         if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
-        if (calculate_future) account_balance += amount;
+        if (pBankTransaction->status_ != "V" && calculate_future) account_balance += amount;
     }
 }
 

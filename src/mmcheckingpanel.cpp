@@ -454,16 +454,15 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
 
 void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
-    setAccountSummary();
     //Initialization
     account_balance_ = 0.0, reconciled_balance_ = 0.0;
     core_->bTransactionList_.LoadAccountTransactions(m_AccountID, account_balance_, reconciled_balance_);
-    wxLogDebug(wxString()<< account_balance_ <<" " << reconciled_balance_);
     filteredBalance_ = 0.0;
     // clear everything
     m_trans = core_->bTransactionList_.accountTransactions_;
     m_listCtrlAccount->DeleteAllItems();
 
+    setAccountSummary();
     // decide whether top or down icon needs to be shown
     m_listCtrlAccount->setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
     sortTable();
@@ -654,17 +653,14 @@ void mmCheckingPanel::setAccountSummary()
     core_->accountList_.getCurrencySharedPtr(m_AccountID)->loadCurrencySettings();
 
     header_text_->SetLabel(wxString::Format(_("Account View : %s"), pAccount->name_));
-    double checking_bal = core_->bTransactionList_.getBalance(m_AccountID);
-    double reconciledBal = core_->bTransactionList_.getReconciledBalance(m_AccountID);
-    double acctInitBalance = core_->accountList_.GetAccountSharedPtr(m_AccountID)->initialBalance_;
 
     bool show_displayed_balance_ = (transFilterActive_ || (currentView_ != VIEW_TRANS_ALL_STR));
     wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);
-    header->SetLabel(CurrencyFormatter::float2Money(checking_bal + acctInitBalance));
+    header->SetLabel(CurrencyFormatter::float2Money(account_balance_));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2);
-    header->SetLabel(CurrencyFormatter::float2Money(reconciledBal + acctInitBalance));
+    header->SetLabel(CurrencyFormatter::float2Money(reconciled_balance_));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3);
-    header->SetLabel(CurrencyFormatter::float2Money(checking_bal - reconciledBal));
+    header->SetLabel(CurrencyFormatter::float2Money(account_balance_ - reconciled_balance_));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4);
     header->SetLabel(show_displayed_balance_
         ? _("Displayed Bal: ")
