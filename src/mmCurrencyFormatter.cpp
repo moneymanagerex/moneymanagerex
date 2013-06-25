@@ -84,17 +84,16 @@ wxString CurrencyFormatter::float2String(double val)
     wxString d2s = wxNumberFormatter::ToString(val, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
     //TODO: Remove it with new wx release
     d2s.Replace("-,", "-");
+    if (d2s =="-0.00") d2s = "0.00";
     return d2s;
 }
 
 wxString CurrencyFormatter::float2Money(double val)
 {
     const CurrencyFormatter &fmt = CurrencyFormatter::instance();
-    wxString d2s = wxNumberFormatter::ToString(val, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
+    wxString d2s = float2String(val);
     d2s.Prepend(fmt.getPrefix());
     d2s.Append(fmt.getSuffix());
-    //TODO: Remove it with new wx release
-    d2s.Replace("-,", "-");
     return d2s;
 }
 

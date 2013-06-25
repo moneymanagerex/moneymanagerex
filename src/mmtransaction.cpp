@@ -155,17 +155,14 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
     withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
 
-    //TODO: Speedup me
-    //if (isInited_) return;
-
     wxASSERT(toAmt_ >= 0);
     wxASSERT(amt_ >= 0);
     if (toAmt_ < 0) toAmt_ = amt_;
 
     if (transType_ == TRANS_TYPE_DEPOSIT_STR)
-        balance += amt_;
+        balance += (status_ == "V") ? 0.0 : amt_;
     else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
-        balance -= amt_;
+        balance -= (status_ == "V") ? 0.0 : amt_;
     else if (transType_ == TRANS_TYPE_TRANSFER_STR)
     {
         fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
@@ -175,16 +172,18 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         {
             if (accountID_ == accountID)
             {
-                 balance -= -amt_;
+                 balance -= (status_ == "V") ? 0.0 : amt_;
                  withdrawal_amt_ = amt_;
                  deposit_amt_ = -amt_;
                  payeeStr_ << "> " << toAccount;
             }
             else if (toAccountID_ == accountID)
-                 balance += toAmt_;
+            {
+                 balance += (status_ == "V") ? 0.0 : toAmt_;
                  deposit_amt_ = toAmt_;
                  withdrawal_amt_ = -toAmt_;
                  payeeStr_ << "< " << fromAccountStr_;
+            }
         }
     }
     balance_ = balance;
