@@ -79,6 +79,8 @@ private:
     mmGUIFrame* mainFrame_;
     bool transFilterActive_;
     double filteredBalance_;
+    double account_balance_; 
+    double reconciled_balance_;
 
     TransactionListCtrl *m_listCtrlAccount;
     int m_AccountID;

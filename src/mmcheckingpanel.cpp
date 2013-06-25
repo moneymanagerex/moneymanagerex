@@ -456,8 +456,9 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
     setAccountSummary();
     //Initialization
-    core_->bTransactionList_.LoadAccountTransactions(m_AccountID);
-
+    account_balance_ = 0.0, reconciled_balance_ = 0.0;
+    core_->bTransactionList_.LoadAccountTransactions(m_AccountID, account_balance_, reconciled_balance_);
+    wxLogDebug(wxString()<< account_balance_ <<" " << reconciled_balance_);
     filteredBalance_ = 0.0;
     // clear everything
     m_trans = core_->bTransactionList_.accountTransactions_;

@@ -135,7 +135,7 @@ public:
 
     /// Loads database primary Transactions into memory.
     void LoadTransactions();
-    void LoadAccountTransactions(int accountID);
+    void LoadAccountTransactions(int accountID, double& account_balance, double& reconciled_balance);
 
     /* Update Transactions */
     void UpdateTransaction(mmBankTransaction* pTransaction);

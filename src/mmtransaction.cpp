@@ -228,6 +228,7 @@ double mmBankTransaction::value(int accountID) const
 
     return balance;
 }
+
 void mmBankTransaction::getSplitTransactions(mmSplitTransactionEntries* splits) const
 {
     splits->entries_.clear();
@@ -507,11 +508,16 @@ void mmBankTransactionList::LoadTransactions()
     q1.Finalize();
 }
 
-void mmBankTransactionList::LoadAccountTransactions(int accountID)
+void mmBankTransactionList::LoadAccountTransactions(int accountID, double& account_balance, double& reconciled_balance)
 {
-    accountTransactions_.clear();
+    wxDateTime today = wxDateTime::Now().GetDateOnly();
     mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
+    account_balance = pAccount->initialBalance_;
+    reconciled_balance = pAccount->initialBalance_;
     double balance = pAccount->initialBalance_;
+    bool calculate_future = true; //TODO: get parameter
+    accountTransactions_.clear();
+
     for (const auto& pBankTransaction: transactions_)
     {
         if (pBankTransaction->accountID_ != accountID
@@ -520,8 +526,11 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID)
             continue;
 
         pBankTransaction->updateTransactionData(accountID, balance);
-
         accountTransactions_.push_back(pBankTransaction);
+        calculate_future = calculate_future || (pBankTransaction->date_ <= today);
+        double amount = pBankTransaction->value(accountID);
+        if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
+        if (calculate_future) account_balance += amount;
     }
 }
 
