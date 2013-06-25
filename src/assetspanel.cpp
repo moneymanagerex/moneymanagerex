@@ -272,7 +272,7 @@ bool mmAssetsPanel::Create(wxWindow *parent, wxWindowID winid, const wxPoint &po
 
     if (!wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -283,7 +283,7 @@ bool mmAssetsPanel::Create(wxWindow *parent, wxWindowID winid, const wxPoint &po
     if (!asset_list_.entrylist_.empty())
         m_listCtrlAssets->EnsureVisible(static_cast<long>(asset_list_.entrylist_.size()) - 1);
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
 
     return true;
 }

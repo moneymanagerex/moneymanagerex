@@ -261,7 +261,7 @@ bool mmStocksPanel::Create(wxWindow *parent,
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     strLastUpdate_ = core_->dbInfoSettings_->GetStringSetting("STOCKS_LAST_REFRESH_DATETIME", "");
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -271,7 +271,7 @@ bool mmStocksPanel::Create(wxWindow *parent,
     if (trans_.size() > 1)
         listCtrlAccount_->EnsureVisible(((int)trans_.size()) - 1);
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
     return TRUE;
 }
 

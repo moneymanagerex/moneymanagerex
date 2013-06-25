@@ -264,7 +264,7 @@ bool mmCheckingPanel::Create(
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     if (! wxPanel::Create(parent, winid, pos, size, style, name)) return false;
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -275,7 +275,7 @@ bool mmCheckingPanel::Create(
     initFilterSettings();
 
     m_listCtrlAccount->refreshVisualList();
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
 
     return true;
 }
@@ -1724,7 +1724,7 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 void mmCheckingPanel::DisplayAccountDetails(int accountID)
 {
     m_AccountID = accountID;
-    windowsFreezeThaw(this);   // prevent screen updates while controls being repopulated
+    this->windowsFreezeThaw();   // prevent screen updates while controls being repopulated
 
     initViewTransactionsHeader();
 
@@ -1732,7 +1732,7 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     m_listCtrlAccount->refreshVisualList();
     showTips();
 
-    windowsFreezeThaw(this);     // Enable screen refresh with new data.
+    this->windowsFreezeThaw();     // Enable screen refresh with new data.
 }
 
 void mmCheckingPanel::SetTransactionFilterState(bool active)

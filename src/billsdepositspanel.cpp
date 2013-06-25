@@ -69,7 +69,7 @@ bool mmBillsDepositsPanel::Create( wxWindow *parent,
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -82,7 +82,7 @@ bool mmBillsDepositsPanel::Create( wxWindow *parent,
 
     initVirtualListControl();
     
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
 
     return TRUE;
 }

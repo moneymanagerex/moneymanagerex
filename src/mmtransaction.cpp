@@ -483,7 +483,7 @@ mmBankTransaction* mmBankTransactionList::copyTransaction(
 
 mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int transactionID) const
 {
-    for (auto const& pBankTransaction : transactions_)
+    for (const auto& pBankTransaction : transactions_)
     {
 
         if (pBankTransaction->transactionID() == transactionID)

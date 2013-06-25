@@ -57,14 +57,14 @@ bool mmBudgetingPanel::Create( wxWindow *parent,
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
     initVirtualListControl();
 
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
     return TRUE;
 }
 
@@ -444,12 +444,12 @@ void mmBudgetingPanel::initVirtualListControl()
 
 void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
 {
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
     budgetYearID_ = budgetYearID;
     initVirtualListControl();
     UpdateBudgetHeading();
     listCtrlBudget_->RefreshItem(0);
-    windowsFreezeThaw(this);
+    this->windowsFreezeThaw();
 }
 
 /*******************************************************/

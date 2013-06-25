@@ -67,6 +67,18 @@ public:
     {}
 
     mmCoreDB* core_;
+public:
+    void windowsFreezeThaw()
+    {
+        #ifdef __WXGTK__
+        return;
+        #endif
+
+        if (this->IsFrozen()) 
+            this->Thaw();
+        else 
+            this->Freeze();
+    }
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_PANELBASE_H_

@@ -130,9 +130,6 @@ wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
 wxImageList* navtree_images_list_();
 
-/// Located here as a function to allow removal in GTK
-void windowsFreezeThaw(wxWindow* pWindow);
-
 std::shared_ptr<wxSQLite3Database> static_db_ptr();
 
 #endif // _MM_EX_UTIL_H_

@@ -366,18 +366,6 @@ std::map<wxString,wxString> date_formats_map()
 
 //*--------------------------------------------------------------------------*//
 
-// FIXME: Freeze - Thaw is ok for wx2.8.x but not for wx2.9.x
-// Located here as a function to allow removal in WXGTK
-void windowsFreezeThaw(wxWindow* pWindow)
-{
-#ifdef __WXGTK__
-    return;
-#endif
-
-    if (pWindow->IsFrozen()) pWindow->Thaw();
-    else pWindow->Freeze();
-}
-
 int site_content(const wxString& sSite, wxString& sOutput)
  {
     wxURL url(sSite);
