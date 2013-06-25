@@ -1064,9 +1064,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         // repeats now hold extra info. Need to get repeats from dialog selection
         if ( (itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (numRepeats > 0) )
         {
-            mmBankTransaction* pTransaction;
-            mmBankTransaction* pTemp(new mmBankTransaction(core_));
-            pTransaction = pTemp;
+            mmBankTransaction* pTransaction = new mmBankTransaction(core_);
 
             pTransaction->accountID_ = fromAccountID;
             pTransaction->toAccountID_ = toAccountID;
