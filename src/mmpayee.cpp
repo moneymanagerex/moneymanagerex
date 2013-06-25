@@ -77,13 +77,14 @@ int mmPayeeList::GetPayeeId(const wxString& payeeName) const
 
 wxString mmPayeeList::GetPayeeName(int id) const
 {
+    //TODO: seems it reasons to create GetPayeeName4transaction
+    //if transfer transaction payee id is -1 and to or from account name should be provided
+    //see void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     for (const auto& payee: entries_)
     {
         if (payee->id_ == id) return payee->name_;
-        wxLogDebug(wxString()<<id<<"|"<<payee->id_<<"|"<<payee->name_);
     }
-    wxASSERT(false);
-    return "???";
+    return "";
 }
 
 mmPayee* mmPayeeList::GetPayeeSharedPtr(int payeeID)

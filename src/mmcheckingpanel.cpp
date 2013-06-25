@@ -1257,10 +1257,7 @@ wxString mmCheckingPanel::getItem(long item, long column) const
         if (column == COL_DATE_OR_TRANSACTION_ID) s = mmGetDateForDisplay(t.date_);
         else if (column == COL_TRANSACTION_NUMBER) s = t.transNum_;
         else if (column == COL_PAYEE_STR)
-        {
-			(t.payeeStr_.IsEmpty()) ? core_->payeeList_.GetPayeeName(t.payeeID_) : s = t.payeeStr_;
-			wxLogDebug(wxString()<<t.payeeID_<<"|"<<t.payeeStr_<<"|"<<core_->payeeList_.GetPayeeName(t.payeeID_));
-		}
+			s = (t.payeeStr_.IsEmpty()) ? core_->payeeList_.GetPayeeName(t.payeeID_) : t.payeeStr_;
         else if (column == COL_STATUS) s = t.status_;
         else if (column == COL_CATEGORY) s = t.fullCatStr_;
         else if (column == COL_WITHDRAWAL)
