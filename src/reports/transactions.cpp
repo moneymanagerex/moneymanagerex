@@ -86,7 +86,7 @@ wxString mmReportTransactions::getHTMLText()
     bool transferTransactionFound = false;
     double total = 0;
 
-    for (const auto& transaction: trans_)
+    for (auto& transaction: trans_)
     {
         // For transfer transactions, we need to fix the data reference point first.
         if ( refAccountID_ > -1 && transaction.transType_ == TRANS_TYPE_TRANSFER_STR &&
@@ -99,62 +99,29 @@ wxString mmReportTransactions::getHTMLText()
             //pCurrency->loadCurrencySettings();
         }
 
-        bool negativeTransAmount = false;   // this can be either a transfer or withdrawl
+        transaction.updateTransactionData(refAccountID_, total);
 
         // Display the data for the selected row
         hb.startTableRow();
         hb.addTableCell(transaction.date_);
         hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.transactionID())
             , core_->accountList_.GetAccountName(transaction.accountID_));
-        hb.addTableCell(transaction.payeeStr_, false, true);
+        hb.addTableCell((transaction.payeeStr_.IsEmpty() ? core_->payeeList_.GetPayeeName(transaction.payeeID_).Prepend("   ") : transaction.payeeStr_)
+            , false, true);
         hb.addTableCell(transaction.status_);
         hb.addTableCell(transaction.fullCatStr_, false, true);
 
-        //TODO: make me simple
-        if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR)
-            hb.addTableCell(_("Deposit"));
-        else if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
-        {
-            hb.addTableCell(_("Withdrawal"));
-            negativeTransAmount = true;
-        }
-        else if (transaction.transType_ == TRANS_TYPE_TRANSFER_STR)
-        {
-            hb.addTableCell(_("Transfer"));
-            if (refAccountID_ >= 0 )
-            {
-                unknownnReferenceAccount = false;
-                if (transaction.accountID_ == refAccountID_)
-                    negativeTransAmount   = true;  // transfer is a withdrawl from account
-            }
-            else if (transaction.fromAccountStr_ == transaction.payeeStr_)
-                negativeTransAmount = true;
-        }
+        hb.addTableCell(wxGetTranslation(transaction.transType_));
 
         // Get the exchange rate for the selected account
         double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction.accountID_);
-        double transAmount = transaction.amt_ * dbRate;
+        double transAmount = transaction.value(refAccountID_) * dbRate;
 
         hb.addMoneyCell(transAmount);
         hb.addTableCell(transaction.transNum_);
         hb.addTableCell(transaction.notes_, false, true);
         hb.endTableRow();
 
-        if (transaction.status_ != "V")
-        {
-            if (transaction.transType_ == TRANS_TYPE_DEPOSIT_STR)
-                total += transAmount;
-            else if (transaction.transType_ == TRANS_TYPE_WITHDRAWAL_STR)
-                total -= transAmount;
-            else if (transaction.transType_ == TRANS_TYPE_TRANSFER_STR)
-            {
-                transferTransactionFound = true;
-                if (negativeTransAmount)
-                    total -= transAmount;
-                else
-                    total += transAmount;
-            }
-        }
     }
 
     // work out the total balance for all the data at base rate
