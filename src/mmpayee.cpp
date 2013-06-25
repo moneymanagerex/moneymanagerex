@@ -80,9 +80,10 @@ wxString mmPayeeList::GetPayeeName(int id) const
     for (const auto& payee: entries_)
     {
         if (payee->id_ == id) return payee->name_;
+        wxLogDebug(wxString()<<id<<"|"<<payee->id_<<"|"<<payee->name_);
     }
-
-    return wxEmptyString;
+    wxASSERT(false);
+    return "???";
 }
 
 mmPayee* mmPayeeList::GetPayeeSharedPtr(int payeeID)
@@ -94,6 +95,7 @@ mmPayee* mmPayeeList::GetPayeeSharedPtr(int payeeID)
            return entry;
         }
     }
+    wxASSERT(false);
     return NULL;
 }
 

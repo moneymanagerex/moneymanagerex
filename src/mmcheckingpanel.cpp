@@ -269,15 +269,12 @@ bool mmCheckingPanel::Create(
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    //TODO: Load currency settings for current account
-    /* Set up the transaction filter.  The transFilter dialog will be destroyed
-       when the checking panel is destroyed. */
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
     initViewTransactionsHeader();
     initFilterSettings();
 
-    initVirtualListControl();
+    m_listCtrlAccount->refreshVisualList();
     windowsFreezeThaw(this);
 
     return true;
@@ -1259,10 +1256,13 @@ wxString mmCheckingPanel::getItem(long item, long column) const
 
         if (column == COL_DATE_OR_TRANSACTION_ID) s = mmGetDateForDisplay(t.date_);
         else if (column == COL_TRANSACTION_NUMBER) s = t.transNum_;
-        else if (column == COL_PAYEE_STR) s = t.payeeStr_;
+        else if (column == COL_PAYEE_STR)
+        {
+			(t.payeeStr_.IsEmpty()) ? core_->payeeList_.GetPayeeName(t.payeeID_) : s = t.payeeStr_;
+			wxLogDebug(wxString()<<t.payeeID_<<"|"<<t.payeeStr_<<"|"<<core_->payeeList_.GetPayeeName(t.payeeID_));
+		}
         else if (column == COL_STATUS) s = t.status_;
-        else if (column == COL_CATEGORY)
-            s = core_->categoryList_.GetFullCategoryString(t.categID_, t.subcategID_);
+        else if (column == COL_CATEGORY) s = t.fullCatStr_;
         else if (column == COL_WITHDRAWAL)
             s = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
         else if (column == COL_DEPOSIT)

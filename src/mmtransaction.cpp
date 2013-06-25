@@ -151,6 +151,7 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
 void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 {
+    payeeStr_ = "";
     deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
     withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
 
