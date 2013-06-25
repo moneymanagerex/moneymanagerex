@@ -3967,7 +3967,11 @@ void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
 void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 {
     wxString file_name = recentFiles_->getRecentFile(event.GetId() - wxID_FILE1 +1);
-    SetDatabaseFile(file_name);
+    wxFileName file(file_name);
+    if (file.FileExists())
+        SetDatabaseFile(file_name);
+    else //TODO: Clear wrong record
+        wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK|wxICON_ERROR);
 }
 //----------------------------------------------------------------------------
 
