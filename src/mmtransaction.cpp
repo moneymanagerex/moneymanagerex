@@ -184,8 +184,8 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
             withdrawal_amt_ = -toAmt_;
             payeeStr_ = fromAccountStr_;
         }
-        balance_ = balance;
     }
+    balance_ = balance;
 
     if (splitEntries_->numEntries() == 1)
     {
