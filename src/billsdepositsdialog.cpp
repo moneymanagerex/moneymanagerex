@@ -1068,8 +1068,6 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             mmBankTransaction* pTemp(new mmBankTransaction(core_));
             pTransaction = pTemp;
 
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
-
             pTransaction->accountID_ = fromAccountID;
             pTransaction->toAccountID_ = toAccountID;
             pTransaction->payeeID_ = payeeID_;
@@ -1086,7 +1084,6 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             pTransaction->toAmt_ = toTransAmount_;
 
             *pTransaction->splitEntries_ = *split_;
-            //pTransaction->updateAllData(core_, fromAccountID, pCurrencyPtr);
             core_->bTransactionList_.addTransaction(pTransaction);
         }
         mmDBWrapper::completeBDInSeries(core_->db_.get(), bdID_);
