@@ -186,44 +186,9 @@ void mmMainCurrencyDialog::CreateControls()
 
 void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
 {
-    wxArrayString currency_names;
-    wxArrayString currency_symbols;
-    for(size_t i = 0; i < sizeof(CURRENCIES)/sizeof(wxString); ++i)
-    {
-       currency_symbols.Add(CURRENCIES[i]);
-       currency_names.Add(CURRENCIES[++i]);
-    }
-    wxString currText = wxGetSingleChoice (_("Name of Currency to Add")
-        , _("Add Currency"), currency_names);
-    if (!currText.IsEmpty())
-    {
-        wxString currency_symbol = currency_symbols[currency_names.Index(currText)];
-        int currID = core_->currencyList_.getCurrencyID(currText);
-        if (currID == -1)
-        {
-            mmCurrency* pCurrency(new mmCurrency());
-            pCurrency->currencyName_ = currText;
-            pCurrency->currencySymbol_ = currency_symbol;
-            currencyID_ = core_->currencyList_.AddCurrency(pCurrency);
-
-            if (currencyID_ > 0)
-            {
-                mmCurrencyDialog* dlg = new mmCurrencyDialog(core_, currencyID_, this);
-                dlg->ShowModal();
-            }
-            else
-            {
-                mmShowErrorMessage(this, _("Error"), _("Error"));
-            }
-        }
-        else
-        {
-            wxMessageBox(_("Attempt to Add a currency which already exists!")
-                , _("Currency Dialog"), wxOK|wxICON_ERROR);
-        }
-    }
+    mmCurrencyDialog* dlg = new mmCurrencyDialog(core_, -1, this);
+    dlg->ShowModal();
     fillControls();
-
 }
 
 void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)

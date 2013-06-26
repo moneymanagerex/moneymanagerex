@@ -314,7 +314,7 @@ std::map<wxString, wxString> TCurrencyEntry::CURRENCIES_MAP()
     curr["YER"] = "Yemen Rial";
     curr["ZMK"] = "Zambia Kwacha";
     curr["ZWD"] = "Zimbabwe Dollar";
-	return curr;
+    return curr;
 };
 
 /************************************************************************************
