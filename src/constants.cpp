@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include "paths.h"
+#include "lua.hpp"
 
 /*************************************************************************
  Revision of last commit: $Revision$
@@ -101,7 +102,7 @@ wxString mmex::getProgramDescription()
                 << "======================================\n"
                 << wxVERSION_STRING << "\n"
                 << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
-                << "wxSQLite 3.0.3"<< "\n"
-                << "Lua 5.2.2";
+                << wxSQLITE3_VERSION_STRING << "\n"
+                << LUA_VERSION;
     return description;
 }
