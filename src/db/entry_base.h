@@ -22,7 +22,7 @@
 #include "../defs.h"
 #include "../util.h"
 
-#include "cajun/json/elements.h"
+#include "../cajun/json/elements.h"
 
 /************************************************************************************
  Class TEntryBase
