@@ -280,14 +280,14 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = currencyListBox_->ItemToRow(item);
-    currencyID_ = (int)currencyListBox_->GetItemData(item);
-    wxString currency_name = core_->currencyList_.getCurrencyName(currencyID_);
-    mmCurrency* pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyID_);
-    curr_rate_ = pCurrency->baseConv_;
-
-    wxLogDebug(wxString::Format("selected item:%i currency:%s", selectedIndex_, currency_name));
-
-    itemButtonEdit_->Enable();
+    if (selectedIndex_ >= 0)
+    {
+        currencyID_ = (int)currencyListBox_->GetItemData(item);
+        wxString currency_name = core_->currencyList_.getCurrencyName(currencyID_);
+        mmCurrency* pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyID_);
+        curr_rate_ = pCurrency->baseConv_;
+        itemButtonEdit_->Enable();
+    }
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
         itemButtonDelete_->Enable(!core_->accountList_.currencyInUse(currencyID_));
 }
