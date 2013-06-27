@@ -30,12 +30,12 @@ class mmCurrency
 {
 public: 
    mmCurrency();
-   mmCurrency(wxString currencySymbol
-                       , wxString currencyName
-                       , wxString pfxSymbol
-                       , wxString sfxSymbol
-                       , wxString unit
-                       , wxString cent
+   mmCurrency(const wxString& currencySymbol
+                       , const wxString& currencyName
+                       , const wxString& pfxSymbol
+                       , const wxString& sfxSymbol
+                       , const wxString& unit
+                       , const wxString& cent
                        , double scaleDl
                        , double baseConv
                        );

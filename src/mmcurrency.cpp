@@ -67,12 +67,12 @@ mmCurrency::mmCurrency()
 , currencySymbol_("USD")
 {}
 
-mmCurrency::mmCurrency(wxString currencySymbol
-                       , wxString currencyName
-                       , wxString pfxSymbol
-                       , wxString sfxSymbol
-                       , wxString unit
-                       , wxString cent
+mmCurrency::mmCurrency(const wxString& currencySymbol
+                       , const wxString& currencyName
+                       , const wxString& pfxSymbol
+                       , const wxString& sfxSymbol
+                       , const wxString& unit
+                       , const wxString& cent
                        , double scaleDl
                        , double baseConv
                        )
