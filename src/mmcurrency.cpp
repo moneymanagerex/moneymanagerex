@@ -67,6 +67,32 @@ mmCurrency::mmCurrency()
 , currencySymbol_("USD")
 {}
 
+mmCurrency::mmCurrency(wxString currencySymbol
+                       , wxString currencyName
+                       , wxString pfxSymbol
+                       , wxString sfxSymbol
+                       , wxString unit
+                       , wxString cent
+                       , double scaleDl
+                       , double baseConv
+                       )
+                       : 
+currencySymbol_(currencySymbol)
+    , currencyName_(currencyName)
+    , pfxSymbol_(pfxSymbol)
+    , sfxSymbol_(sfxSymbol)
+    , unit_(unit)
+    , cent_(cent)
+    , scaleDl_(scaleDl)
+    , baseConv_(baseConv)
+{
+    currencyID_ = -1;
+    dec_ = '.';
+    grp_ = ',';
+    decChar_ = '\0';
+    grpChar_ ='\0';
+}
+
 void mmCurrency::loadCurrencySettings()
 {
     CurrencyFormatter::instance().loadSettings(
@@ -357,4 +383,22 @@ bool mmCurrencyList::OnlineUpdateCurRate(wxString& sError)
     db_->Commit();
     sError = msg;
     return true;
+}
+
+std::map<wxString, mmCurrency> mmCurrency::currency_map_() 
+{
+    std::map<wxString, mmCurrency> currency_map;
+    currency_map["GBP"] = mmCurrency("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1);
+    currency_map["RUB"] = mmCurrency("RUB", "Russian Ruble", "", "р", "руб.", "коп.", 100, 1);
+    currency_map["INR"] = mmCurrency("INR", "Indian Rupee", L"₹", "", "rupee", "", 100, 1);
+
+    /*
+    Russian Ruble         ;; р.;,;;р.;к.;100;1;RUB
+    Indian Rupee          ;;₹;,;;rupee;;100;1;INR
+    New Taiwan Dollar     ;NT$;;,;.;dollar;;100;1;TWD
+    Ukraine Hryvna        ;;₴;;,;Грн.;к.;100;1;UAH
+    Swiss Franc           ;;Fr.;.;,;franc;centimes;100;1;CHF
+    East Caribbean Dollars;EC$;;.;,;dollar;cents;100;1;XCD
+    */
+    return currency_map;
 }

@@ -29,7 +29,6 @@
 #include "defs.h"
 #include "mmcoredb.h"
 #include "dbwrapper.h"
-#include "db/currency.h"
 
 enum {
     ID_DIALOG_CURRENCY = wxID_HIGHEST + 1,
@@ -90,7 +89,7 @@ private:
     void fillControls();
 
     mmCoreDB* core_;
-    TCurrencyEntry* ce_;
+    mmCurrency* mm_curr_;
 
     wxSortedArrayString currency_symbols_;
     wxSortedArrayString currency_names_;

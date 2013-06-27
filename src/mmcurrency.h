@@ -19,6 +19,7 @@
 
 #include <vector>
 #include <memory>
+#include <map>
 #include <wx/string.h>
 
 class wxSQLite3Database;
@@ -29,6 +30,15 @@ class mmCurrency
 {
 public: 
    mmCurrency();
+   mmCurrency(wxString currencySymbol
+                       , wxString currencyName
+                       , wxString pfxSymbol
+                       , wxString sfxSymbol
+                       , wxString unit
+                       , wxString cent
+                       , double scaleDl
+                       , double baseConv
+                       );
    mmCurrency(wxSQLite3ResultSet& q1);
 
    void loadCurrencySettings();
@@ -47,6 +57,8 @@ public:
    wxChar decChar_;
    wxChar grpChar_;
    wxString currencySymbol_;
+
+   std::map<wxString, mmCurrency> currency_map_(); 
 };
 
 class mmCurrencyList
