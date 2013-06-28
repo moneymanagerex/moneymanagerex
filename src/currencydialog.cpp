@@ -94,9 +94,11 @@ void mmCurrencyDialog::fillControls()
     {
         currency_symbols_.Add(i.first);
         currency_names_.Add(i.second.currencyName_);
-        currencyNameCombo_->Append(i.second.currencyName_);
         currencySymbolCombo_->Append(i.first);
     }
+    
+    for (const auto &i : currency_names_)
+        currencyNameCombo_->Append(i);
     currencyNameCombo_->AutoComplete(currency_names_);
     currencySymbolCombo_->AutoComplete(currency_symbols_);
 
@@ -104,12 +106,17 @@ void mmCurrencyDialog::fillControls()
     {
         wxString name = core_->currencyList_.getCurrencyName(currencyID_);
         currencyNameCombo_->Append(name, (void*)(INT_PTR)currencyID_);
-        currencyNameCombo_->SetStringSelection(name);
+        currencyNameCombo_->SetValue(name);
     }
     else
     {
-       currencyNameCombo_->SetSelection(0);
+       currencyNameCombo_->SetValue("");
     }
+
+    currencyNameCombo_->Connect(ID_DIALOG_CURRENCY_CHOICE, wxEVT_COMMAND_COMBOBOX_SELECTED,
+        wxCommandEventHandler(mmCurrencyDialog::OnCurrencyNameSelected), NULL, this);
+    currencyNameCombo_->Connect(ID_DIALOG_CURRENCY_CHOICE, wxEVT_COMMAND_TEXT_UPDATED,
+        wxCommandEventHandler(mmCurrencyDialog::OnCurrencyNameSelected), NULL, this);
 
     updateControls();
 }
@@ -123,7 +130,12 @@ void mmCurrencyDialog::updateControls()
     dispAmount2 = wxString() << dispAmount << " " << _("Converted to:") << " ";
 
     wxString currencyName = currencyNameCombo_->GetStringSelection();
-    mmCurrency* pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyName);
+    mmCurrency* pCurrency;
+    if (currencyID_ > -1)
+        pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyID_);
+    else
+        pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyName);
+
     if (pCurrency)
     {
         pfxTx_->SetValue(pCurrency->pfxSymbol_);
@@ -176,18 +188,13 @@ void mmCurrencyDialog::CreateControls()
     //--------------------------
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Name")), flags);
 
-    currencyNameCombo_ = new wxComboBox( this, ID_DIALOG_CURRENCY_CHOICE);
+    currencyNameCombo_ = new wxComboBox( this, ID_DIALOG_CURRENCY_CHOICE
+        , "", wxDefaultPosition, wxSize(220, -1));
     itemFlexGridSizer3->Add(currencyNameCombo_, flags);
-
-    currencyNameCombo_->Connect(ID_DIALOG_CURRENCY_CHOICE, wxEVT_COMMAND_COMBOBOX_SELECTED,
-        wxCommandEventHandler(mmCurrencyDialog::OnCurrencyNameSelected), NULL, this);
-
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Symbol")), flags);
 
     currencySymbolCombo_ = new wxComboBox( this, wxID_ANY);
     itemFlexGridSizer3->Add(currencySymbolCombo_, flagsExpand);
-
-    currencyNameCombo_->AutoComplete(currency_symbols_);
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Unit Name")), flags);
     unitTx_ = new wxTextCtrl( this, ID_DIALOG_CURRENCY_TEXT_UNIT, "");
@@ -288,6 +295,8 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 
 void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 {
+    if (currencyID_ > -1) return;
+
     for (const auto& i : mm_curr_->currency_map_())
     {
         if (i.second.currencyName_ == currencyNameCombo_->GetValue())
