@@ -92,9 +92,6 @@ private:
 private:
     mmCoreDB* core_;
 
-    wxSortedArrayString currency_symbols_;
-    wxSortedArrayString currency_names_;
-
     int currencyID_;
     double convRate_;
 

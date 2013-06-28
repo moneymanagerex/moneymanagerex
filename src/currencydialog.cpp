@@ -90,17 +90,19 @@ void mmCurrencyDialog::fillControls()
     if (!core_)
        return;
 
+    wxSortedArrayString currency_names;
+    wxSortedArrayString currency_symbols;
     for(const auto& i : this->currency_map())
     {
-        currency_symbols_.Add(i.first);
-        currency_names_.Add(i.second.currencyName_);
+        currency_symbols.Add(i.first);
+        currency_names.Add(i.second.currencyName_);
         currencySymbolCombo_->Append(i.first);
     }
     
-    for (const auto &i : currency_names_)
+    for (const auto &i : currency_names)
         currencyNameCombo_->Append(i);
-    currencyNameCombo_->AutoComplete(currency_names_);
-    currencySymbolCombo_->AutoComplete(currency_symbols_);
+    currencyNameCombo_->AutoComplete(currency_names);
+    currencySymbolCombo_->AutoComplete(currency_symbols);
 
     if (currencyID_ != -1)
     {
