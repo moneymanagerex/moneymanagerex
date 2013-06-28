@@ -327,7 +327,6 @@ int mmBankTransactionList::addTransaction(mmBankTransaction* pBankTransaction)
         if (!core_->payeeList_.PayeeExists(_("Unknown")))
             r.payeeID_ = core_->payeeList_.AddPayee(_("Unknown"));
     }
-    wxLogDebug(wxString::Format("Payee: %s, Category: %s", r.payeeStr_, r.fullCatStr_));
     wxSQLite3Statement st = core_->db_.get()->PrepareStatement(INSERT_INTO_CHECKINGACCOUNT_V1);
 
     int i = 0;

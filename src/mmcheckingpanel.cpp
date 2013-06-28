@@ -1543,9 +1543,10 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     {
         SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        if (topItemIndex_ < 0) topItemIndex_ = m_selectedIndex;
+        if (topItemIndex_ < 0 || (topItemIndex_ - m_selectedIndex) > GetCountPerPage()) 
+            topItemIndex_ = m_selectedIndex;
+        EnsureVisible(topItemIndex_);
     }
-    if (m_cp->m_trans.size() > 0) EnsureVisible(topItemIndex_);
 
     m_cp->updateExtraTransactionData(m_selectedIndex);
 }
