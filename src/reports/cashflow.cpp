@@ -164,7 +164,7 @@ wxString mmReportCashFlow::getHTMLText_i()
 /*  TODO: Activate code using TTransactionBillList
     when other sections are completed and tested.
 */
-#define USING_NEW_DB_CLASSES  // Activation switch
+#define USING_NEW_DB_CLASSES_  // Activation switch
 #ifdef USING_NEW_DB_CLASSES
     // load a fresh list of repeating transactions.
     TTransactionBillList repeat_trans_list(core_->db_.get());
