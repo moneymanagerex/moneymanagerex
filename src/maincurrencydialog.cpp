@@ -274,25 +274,25 @@ void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& event)
 
 void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 {
-    int col = event.GetColumn();
-    wxDataViewItem item = event.GetItem();
-    int row = currencyListBox_->ItemToRow(item);
+    int row = currencyListBox_->ItemToRow(event.GetItem());
     wxVariant var;
-    currencyListBox_->GetValue(var, row, col);
-    wxString val = var.GetString();
+    currencyListBox_->GetValue(var, row, event.GetColumn());
+    wxString value = var.GetString();
 
-    wxLogDebug(wxString::Format("col:%i row:%i value:%s", col, row, val));
-
-    double convRate;
-    if (val.ToDouble(&convRate))
+    wxString calculated_mount = "";
+    double conv_rate = curr_rate_;
+    if (mmCalculator(value, calculated_mount))
     {
+        if (value != calculated_mount)
+            currencyListBox_->SetValue(wxVariant(calculated_mount), row, BASE_RATE);
+        calculated_mount.ToDouble(&conv_rate);
         mmCurrency* pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyID_);
-        pCurrency->baseConv_ = convRate;
+        pCurrency->baseConv_ = conv_rate;
         core_->currencyList_.UpdateCurrency(pCurrency);
     }
     else
     {
-        wxString value = CurrencyFormatter::float2String(curr_rate_);
+        value = CurrencyFormatter::float2String(conv_rate);
         currencyListBox_->SetValue(wxVariant(value), row, BASE_RATE);
     }
 
