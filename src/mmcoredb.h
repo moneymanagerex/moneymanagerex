@@ -41,6 +41,7 @@ class mmCoreDB
 {
 public:
     mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniSettings);
+    ~mmCoreDB();
 
     // Global access point to the database.
     std::shared_ptr<wxSQLite3Database> db_;

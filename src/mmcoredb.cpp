@@ -63,4 +63,9 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniS
     accountList_.LoadAccounts(currencyList_);   // populate accountList_
     bTransactionList_.LoadTransactions();   // populate bTransactionList_
 }
+
+mmCoreDB::~mmCoreDB()
+{
+    if (dbInfoSettings_) delete dbInfoSettings_;
+}
 //----------------------------------------------------------------------------
