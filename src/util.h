@@ -40,8 +40,14 @@ public:
         : index_(index), name_(name)
     {}
 
-    int getIndex() const { return index_; }
-    wxString getName() const { return name_; }
+    int getIndex() const
+    {
+        return index_;
+    }
+    wxString getName() const
+    {
+        return name_;
+    }
 
 private:
     int index_;
@@ -68,11 +74,26 @@ public:
         if (report_) delete report_;
     }
 
-    int getData() const { return id_; }
-    wxString getString() const { return stringData_; }
-    mmPrintableBase* get_report() const { return report_; }
-    bool isStringData() const { return isString_; }
-    bool isBudgetingNode() const { return isBudgetingNode_; }
+    int getData() const
+    {
+        return id_;
+    }
+    wxString getString() const
+    {
+        return stringData_;
+    }
+    mmPrintableBase* get_report() const
+    {
+        return report_;
+    }
+    bool isStringData() const
+    {
+        return isString_;
+    }
+    bool isBudgetingNode() const
+    {
+        return isBudgetingNode_;
+    }
 
 private:
     int id_;

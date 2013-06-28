@@ -32,19 +32,37 @@ public:
     void loadSettings(const mmCurrency &cur);
 
     void loadSettings(const wxString &pfx, const wxString &sfx,
-                wxChar dec, wxChar grp,
-                const wxString &unit, const wxString &cent,
-                int scale
-                );
+                      wxChar dec, wxChar grp,
+                      const wxString &unit, const wxString &cent,
+                      int scale
+                     );
 
-    wxString getPrefix() const { return m_pfx_symbol; }
-    wxString getSuffix() const { return m_sfx_symbol; }
+    wxString getPrefix() const
+    {
+        return m_pfx_symbol;
+    }
+    wxString getSuffix() const
+    {
+        return m_sfx_symbol;
+    }
 
-    wxChar getDecimalPoint() const { return m_decimal_point; }
-    wxChar getGroupSeparator() const { return m_group_separator; }
+    wxChar getDecimalPoint() const
+    {
+        return m_decimal_point;
+    }
+    wxChar getGroupSeparator() const
+    {
+        return m_group_separator;
+    }
 
-    int getScale() const { return m_scale; }
-    int getDec() const { return log10(m_scale); }
+    int getScale() const
+    {
+        return m_scale;
+    }
+    int getDec() const
+    {
+        return log10(m_scale);
+    }
 
 private:
     wxString m_pfx_symbol;   // Leading currency symbol

@@ -1,5 +1,5 @@
 /*
-    Author: Lisheng Guan (guanlisheng@gmail.com) 
+    Author: Lisheng Guan (guanlisheng@gmail.com)
 */
 #ifndef _MM_EX_REPEAT_H_
 #define _MM_EX_REPEAT_H_

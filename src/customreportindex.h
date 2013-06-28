@@ -1,5 +1,5 @@
 /*************************************************************************
- Copyright (C) 2011 Stefano Giorgio      
+ Copyright (C) 2011 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,25 +22,25 @@
 
 //===============================================================
 // Class: CustomReportIndex
-//        Handles the text index file for custom reports  
+//        Handles the text index file for custom reports
 //===============================================================
 class CustomReportIndex
 {
 public:
     CustomReportIndex();
-    
+
     virtual ~CustomReportIndex();
-    
+
     /** Returns true if file is initialised and open */
     bool HasActiveReports();
 
-    /**  Sets the index file pointer at beginning of file */ 
+    /**  Sets the index file pointer at beginning of file */
     void ResetReportsIndex();
 
     /** Sets and Returns the report title. Reads one line of the index file.
         Sets: validTitle_ currentReportTitle_ currentReportFileName_ reportIsSubReport_ */
     wxString NextReportTitle();
-    
+
     /** Sets and Returns the filename for the given index.  */
     wxString ReportFileName(int index);
 
@@ -80,12 +80,15 @@ public:
     void DeleteCurrentReportTitle(bool including_file);
 
     /** Returns the title header string for User Dialog */
-    wxString UserDialogHeading(); 
+    wxString UserDialogHeading();
 
-    /** Returns the file contents of the report file (.sql or .lua) */ 
+    /** Returns the file contents of the report file (.sql or .lua) */
     bool GetReportFileData(wxString& reportText);
-    
-    int GetCustomReportId() {return currentReportFileIndex_;}
+
+    int GetCustomReportId()
+    {
+        return currentReportFileIndex_;
+    }
 
 private:
     bool activeReports_;
@@ -93,7 +96,7 @@ private:
     bool reportIsSubReport_;
     int  currentReportFileIndex_;
 
-    wxTextFile* indexFile_; 
+    wxTextFile* indexFile_;
     wxString currentReportTitle_;
     wxString currentReportFileName_;
     wxString currentReportFileExt_;

@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (C) 2012 Stefano Giorgio      
+ Copyright (C) 2012 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ****************************************************************************/
- 
+
 #pragma once
 #include "entry_base.h"
 
@@ -61,7 +61,7 @@ public:
     int GetIntSetting(const wxString& name, int default_value);
     wxString GetStringSetting(const wxString& name, const wxString& default_value);
 
-    /// Save to existing value 
+    /// Save to existing value
     void SetBoolSetting(const wxString& name, bool value);
     void SetIntSetting(const wxString& name, int value);
     void SetStringSetting(const wxString& name, const wxString& value);

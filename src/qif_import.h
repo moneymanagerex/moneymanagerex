@@ -26,11 +26,14 @@ public:
         long style = SYMBOL_QIFIMPORT_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_QIFIMPORT_IDNAME,
-        const wxString& caption = SYMBOL_QIFIMPORT_TITLE,
-        const wxPoint& pos = SYMBOL_QIFIMPORT_POSITION,
-        const wxSize& size = SYMBOL_QIFIMPORT_SIZE,
-        long style = SYMBOL_QIFIMPORT_STYLE );
-    int get_last_imported_acc() {return last_imported_acc_id_;}
+                 const wxString& caption = SYMBOL_QIFIMPORT_TITLE,
+                 const wxPoint& pos = SYMBOL_QIFIMPORT_POSITION,
+                 const wxSize& size = SYMBOL_QIFIMPORT_SIZE,
+                 long style = SYMBOL_QIFIMPORT_STYLE );
+    int get_last_imported_acc()
+    {
+        return last_imported_acc_id_;
+    }
 
 private:
     int mmImportQIF();

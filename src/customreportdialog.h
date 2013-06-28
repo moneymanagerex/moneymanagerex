@@ -40,11 +40,11 @@ public:
     virtual ~mmCustomSQLDialog();
 
     mmCustomSQLDialog(CustomReportIndex* reportIndex, const wxString& customSqlReportSelectedItem, wxWindow* parent,
-        wxWindowID id           = wxID_ANY,
-        const wxString& caption = SYMBOL_CUSTOMSQLDIALOG_TITLE,
-        const wxPoint& pos      = SYMBOL_CUSTOMSQLDIALOG_POSITION,
-        const wxSize& size      = SYMBOL_CUSTOMSQLDIALOG_SIZE,
-        long style              = SYMBOL_CUSTOMSQLDIALOG_STYLE );
+                      wxWindowID id           = wxID_ANY,
+                      const wxString& caption = SYMBOL_CUSTOMSQLDIALOG_TITLE,
+                      const wxPoint& pos      = SYMBOL_CUSTOMSQLDIALOG_POSITION,
+                      const wxSize& size      = SYMBOL_CUSTOMSQLDIALOG_SIZE,
+                      long style              = SYMBOL_CUSTOMSQLDIALOG_STYLE );
 
     wxString sScript();
     wxString sReportTitle();
@@ -75,11 +75,11 @@ private:
     static const int INTERVAL = 250;
 
     bool Create( wxWindow* parent,
-        wxWindowID id = wxID_ANY,
-        const wxString& caption = SYMBOL_CUSTOMSQLDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_CUSTOMSQLDIALOG_POSITION,
-        const wxSize& size = SYMBOL_CUSTOMSQLDIALOG_SIZE,
-        long style = SYMBOL_CUSTOMSQLDIALOG_STYLE );
+                 wxWindowID id = wxID_ANY,
+                 const wxString& caption = SYMBOL_CUSTOMSQLDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_CUSTOMSQLDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_CUSTOMSQLDIALOG_SIZE,
+                 long style = SYMBOL_CUSTOMSQLDIALOG_STYLE );
 
     /// Creates the controls and sizers
     void CreateControls();

@@ -26,17 +26,17 @@
 //----------------------------------------------------------------------------
 static const char SELECT_ALL_FROM_ASSETS_V1[] =
     "select a.ASSETNAME as ASSETNAME, "
-       "a.STARTDATE as STARTDATE, "
-       "a.ASSETTYPE as ASSETTYPE, "
-       "a.value + (a.value/100*VALUECHANGERATE) "
-       "* (case VALUECHANGE when 'Appreciates' then 1 when 'Depreciates' then -1 else 0 end ) "
-       "* (julianday('now', 'localtime') - julianday(a.STARTDATE, 'localtime')) / 365 as TODAY_VALUE, "
-       "a.NOTES as NOTES, "
-       "a.STARTDATE as STARTDATE, "
-       "a.VALUECHANGE as VALUECHANGE, "
-       "a.ASSETID as ASSETID, "
-       "a.VALUECHANGERATE as VALUECHANGERATE, "
-       "a.value as VALUE "
+    "a.STARTDATE as STARTDATE, "
+    "a.ASSETTYPE as ASSETTYPE, "
+    "a.value + (a.value/100*VALUECHANGERATE) "
+    "* (case VALUECHANGE when 'Appreciates' then 1 when 'Depreciates' then -1 else 0 end ) "
+    "* (julianday('now', 'localtime') - julianday(a.STARTDATE, 'localtime')) / 365 as TODAY_VALUE, "
+    "a.NOTES as NOTES, "
+    "a.STARTDATE as STARTDATE, "
+    "a.VALUECHANGE as VALUECHANGE, "
+    "a.ASSETID as ASSETID, "
+    "a.VALUECHANGERATE as VALUECHANGERATE, "
+    "a.value as VALUE "
     "from ASSETS_V1 a ";
 
 static const char SELECT_ALL_FROM_ACCOUNTLIST_V1[] =
@@ -72,19 +72,19 @@ static const char SELECT_ALL_FROM_BILLSDEPOSITS_V1[] =
 
 static const char SELECT_ROW_FROM_BUDGETSPLITTRANSACTIONS_V1[] =
     "select SPLITTRANSID, "
-           "SPLITTRANSAMOUNT, "
-           "CATEGID, "
-           "SUBCATEGID "
+    "SPLITTRANSAMOUNT, "
+    "CATEGID, "
+    "SUBCATEGID "
     "from BUDGETSPLITTRANSACTIONS_V1 "
     "where TRANSID = ?";
 
 static const char SELECT_ROW_FROM_BUDGETTABLE_V1[] =
     "SELECT PERIOD, "
-           "AMOUNT "
+    "AMOUNT "
     "FROM BUDGETTABLE_V1 "
     "WHERE BUDGETYEARID = ? AND "
-          "CATEGID = ? AND "
-          "SUBCATEGID = ?";
+    "CATEGID = ? AND "
+    "SUBCATEGID = ?";
 
 static const char SELECT_ALL_FROM_BUDGETYEAR_V1[] =
     "SELECT BUDGETYEARID, BUDGETYEARNAME "
@@ -104,29 +104,29 @@ static const char IS_TRX_IN_CHECKINGACCOUNT_V1[] =
     "select TRANSID "
     "from CHECKINGACCOUNT_V1 "
     "where ACCOUNTID = ? and "
-          "TOACCOUNTID = ? and "
-          "PAYEEID = ? and "
-          "TRANSCODE = ? and "
-          "TRANSAMOUNT = ? and "
-          "TRANSACTIONNUMBER = ? and "
-          "NOTES = ? and "
-          "CATEGID = ? and "
-          "SUBCATEGID = ? and "
-          "TRANSDATE = ? and "
-          "TOTRANSAMOUNT = ? and "
-          "TRANSID > 0"; // is not null
+    "TOACCOUNTID = ? and "
+    "PAYEEID = ? and "
+    "TRANSCODE = ? and "
+    "TRANSAMOUNT = ? and "
+    "TRANSACTIONNUMBER = ? and "
+    "NOTES = ? and "
+    "CATEGID = ? and "
+    "SUBCATEGID = ? and "
+    "TRANSDATE = ? and "
+    "TOTRANSAMOUNT = ? and "
+    "TRANSID > 0"; // is not null
 
 static const char SELECT_ROW_FROM_CURRENCYFORMATS_V1[] =
     "SELECT CURRENCYNAME, "
-           "PFX_SYMBOL, "
-           "SFX_SYMBOL, "
-           "DECIMAL_POINT, "
-           "GROUP_SEPARATOR, "
-           "UNIT_NAME, "
-           "CENT_NAME, "
-           "SCALE, "
-           "BASECONVRATE, "
-           "CURRENCY_SYMBOL "
+    "PFX_SYMBOL, "
+    "SFX_SYMBOL, "
+    "DECIMAL_POINT, "
+    "GROUP_SEPARATOR, "
+    "UNIT_NAME, "
+    "CENT_NAME, "
+    "SCALE, "
+    "BASECONVRATE, "
+    "CURRENCY_SYMBOL "
     "FROM CURRENCYFORMATS_V1 "
     "WHERE CURRENCYID = ?";
 
@@ -148,9 +148,9 @@ static const char INSERT_INTO_CURRENCYFORMATS_V1[] =
 static const char UPDATE_CURRENCYFORMATS_V1[] =
     "update CURRENCYFORMATS_V1 "
     "set PFX_SYMBOL=?, SFX_SYMBOL=?, DECIMAL_POINT=?,"
-        "GROUP_SEPARATOR=?, UNIT_NAME=?, CENT_NAME=?, "
-        "SCALE=?, BASECONVRATE=?, CURRENCY_SYMBOL=?, "
-        "CURRENCYNAME=? "
+    "GROUP_SEPARATOR=?, UNIT_NAME=?, CENT_NAME=?, "
+    "SCALE=?, BASECONVRATE=?, CURRENCY_SYMBOL=?, "
+    "CURRENCYNAME=? "
     "where CURRENCYID = ?";
 
 static const char SELECT_INFOVALUE_FROM_INFOTABLE_V1[] =
@@ -169,9 +169,9 @@ static const char SELECT_ROW_FROM_SETTING_V1[] =
 
 static const char SELECT_ROW_FROM_SPLITTRANSACTIONS_V1[] =
     "select SPLITTRANSID, "
-           "SPLITTRANSAMOUNT, "
-           "CATEGID, "
-           "SUBCATEGID "
+    "SPLITTRANSAMOUNT, "
+    "CATEGID, "
+    "SUBCATEGID "
     "from SPLITTRANSACTIONS_V1 "
     "where TRANSID = ?";
 
@@ -186,7 +186,7 @@ static const char SELECT_SUBCATEGID_FROM_SUBCATEGORY_V1[] =
     "SELECT SUBCATEGID "
     "FROM SUBCATEGORY_V1 "
     "WHERE SUBCATEGNAME = ? AND "
-          "CATEGID = ?";
+    "CATEGID = ?";
 
 static const char SELECT_SUBCATEGS_FROM_SUBCATEGORY_V1[] =
     "SELECT SUBCATEGID, SUBCATEGNAME "
@@ -201,7 +201,7 @@ static const char SELECT_ALL_CATEGORIES[] =
 
 static const char SELECT_ALL_SUBCATEGORIES[] =
     "SELECT S.SUBCATEGID, S.SUBCATEGNAME, "
-           "S.CATEGID "
+    "S.CATEGID "
     "FROM SUBCATEGORY_V1 S "
     "ORDER BY S.SUBCATEGNAME";
 
@@ -276,22 +276,22 @@ static const char SELECT_ROW_HELDAT_FROM_STOCK_V1[] =
 
 static const char SELECT_ROW_FROM_STOCK_V1[] =
     "SELECT HELDAT, STOCKNAME, SYMBOL, NOTES, "
-        "PURCHASEDATE, NUMSHARES, VALUE, "
-        "PURCHASEPRICE, CURRENTPRICE, COMMISSION "
+    "PURCHASEDATE, NUMSHARES, VALUE, "
+    "PURCHASEPRICE, CURRENTPRICE, COMMISSION "
     "FROM STOCK_V1 "
     "WHERE STOCKID = ?";
 
 //UPDATE
 static const char UPDATE_ACCOUNTLIST_V1[] =
     "UPDATE ACCOUNTLIST_V1 "
-        "SET ACCOUNTNAME=?, ACCOUNTTYPE=?, ACCOUNTNUM=?"
-        ",STATUS=?, NOTES=?, HELDAT=?, WEBSITE=?, CONTACTINFO=?,  ACCESSINFO=?"
-        ",INITIALBAL=?, FAVORITEACCT=?, CURRENCYID=? "
+    "SET ACCOUNTNAME=?, ACCOUNTTYPE=?, ACCOUNTNUM=?"
+    ",STATUS=?, NOTES=?, HELDAT=?, WEBSITE=?, CONTACTINFO=?,  ACCESSINFO=?"
+    ",INITIALBAL=?, FAVORITEACCT=?, CURRENCYID=? "
     "where ACCOUNTID = ?";
 
 static const char UPDATE_BUDGETYEAR_V1[] =
     "UPDATE BUDGETYEAR_V1 "
-        "SET BUDGETYEARNAME = ? "
+    "SET BUDGETYEARNAME = ? "
     "WHERE BUDGETYEARID = ?";
 
 static const char UPDATE_CATEGORY_V1[] =
@@ -307,10 +307,10 @@ static const char SET_PAYEEID_CHECKINGACCOUNT_V1[] =
 
 static const char UPDATE_CHECKINGACCOUNT_V1[] =
     "UPDATE CHECKINGACCOUNT_V1 "
-        "SET ACCOUNTID=?, TOACCOUNTID=?, PAYEEID=?, TRANSCODE=? "
-        ", TRANSAMOUNT=?, STATUS=?, TRANSACTIONNUMBER=?, NOTES=? "
-        ", CATEGID=?, SUBCATEGID=?, TRANSDATE=?, FOLLOWUPID=? "
-        ", TOTRANSAMOUNT=? "
+    "SET ACCOUNTID=?, TOACCOUNTID=?, PAYEEID=?, TRANSCODE=? "
+    ", TRANSAMOUNT=?, STATUS=?, TRANSACTIONNUMBER=?, NOTES=? "
+    ", CATEGID=?, SUBCATEGID=?, TRANSDATE=?, FOLLOWUPID=? "
+    ", TOTRANSAMOUNT=? "
     "WHERE TRANSID = ?";
 
 static const char UPDATE_INFOTABLE_V1[] =
@@ -331,8 +331,8 @@ static const char UPDATE_STOCK_V1[] =
 static const char UPDATE_ROW_STOCK_V1[]  =
     "UPDATE STOCK_V1 "
     "SET HELDAT=?, PURCHASEDATE=?, STOCKNAME=?, SYMBOL=?, "
-        "NUMSHARES=?, PURCHASEPRICE=?, NOTES=?, CURRENTPRICE=?, "
-        "VALUE=?, COMMISSION=? "
+    "NUMSHARES=?, PURCHASEPRICE=?, NOTES=?, CURRENTPRICE=?, "
+    "VALUE=?, COMMISSION=? "
     "WHERE STOCKID = ?";
 
 static const char UPDATE_SUBCATEGORY_V1[] =
@@ -341,11 +341,11 @@ static const char UPDATE_SUBCATEGORY_V1[] =
     "WHERE SUBCATEGID = ?";
 
 //INSERT
-static const char INSERT_INTO_ACCOUNTLIST_V1[] =       
+static const char INSERT_INTO_ACCOUNTLIST_V1[] =
     "INSERT INTO ACCOUNTLIST_V1 ( "
-      "ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, "
-      "STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, "
-      "INITIALBAL, FAVORITEACCT, CURRENCYID "
+    "ACCOUNTNAME, ACCOUNTTYPE, ACCOUNTNUM, "
+    "STATUS, NOTES, HELDAT, WEBSITE, CONTACTINFO, ACCESSINFO, "
+    "INITIALBAL, FAVORITEACCT, CURRENCYID "
     " ) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
 static const char INSERT_INTO_BUDGETTABLE_V1[] =
@@ -367,9 +367,9 @@ static const char INSERT_INTO_CATEGORY_V1[] =
 
 static const char INSERT_INTO_CHECKINGACCOUNT_V1[] =
     "INSERT INTO CHECKINGACCOUNT_V1 ( "
-     "ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, "
-     "TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, "
-     "CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT "
+    "ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, "
+    "TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, "
+    "CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT "
     ") values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 
 static const char INSERT_INTO_INFOTABLE_V1[] =
@@ -384,9 +384,9 @@ static const char INSERT_INTO_SPLITTRANSACTIONS_V1[] =
 
 static const char INSERT_ROW_INTO_STOCK_V1[]  =
     "INSERT INTO STOCK_V1 ( "
-      "HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, "
-      "NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, "
-      "VALUE, COMMISSION "
+    "HELDAT, PURCHASEDATE, STOCKNAME, SYMBOL, "
+    "NUMSHARES, PURCHASEPRICE, NOTES, CURRENTPRICE, "
+    "VALUE, COMMISSION "
     " ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 static const char INSERT_ROW_INTO_SUBCATEGORY_V1[] =

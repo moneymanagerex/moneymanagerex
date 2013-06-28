@@ -1,10 +1,12 @@
 // Validators -----------------------------------------------------
-class mmCalcValidator : public wxTextValidator {
+class mmCalcValidator : public wxTextValidator
+{
 public:
     mmCalcValidator() : wxTextValidator(wxFILTER_INCLUDE_CHAR_LIST)
     {
         wxArrayString list;
-        for (const auto& c : "1234567890.,(/+-*)") {
+        for (const auto& c : "1234567890.,(/+-*)")
+        {
             list.Add(c);
         }
         SetIncludes(list);

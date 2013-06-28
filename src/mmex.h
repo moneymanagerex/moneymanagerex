@@ -57,13 +57,17 @@ class mmGUIApp : public wxApp
 public:
     mmGUIApp();
 
-    wxLocale& getLocale() { return m_locale; }
+    wxLocale& getLocale()
+    {
+        return m_locale;
+    }
 
 private:
 
-    struct SQLiteInit {
+    struct SQLiteInit
+    {
         SQLiteInit();
-       ~SQLiteInit();
+        ~SQLiteInit();
     };
 
     SQLiteInit m_sqlite_init;

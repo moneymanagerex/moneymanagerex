@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -19,13 +19,15 @@
 #pragma once
 #include "entry_base.h"
 
-const wxString ASSET_RATE_DEF[] = {
+const wxString ASSET_RATE_DEF[] =
+{
     wxTRANSLATE("None"),
     wxTRANSLATE("Appreciates"),
     wxTRANSLATE("Depreciates")
 };
 
-const wxString ASSET_TYPE_DEF[] = {
+const wxString ASSET_TYPE_DEF[] =
+{
     wxTRANSLATE("Property"),
     wxTRANSLATE("Automobile"),
     wxTRANSLATE("Household Object"),
@@ -42,7 +44,7 @@ class TAssetEntry : public TEntryBase
 {
 private:
     friend class TAssetList;    // Allows TAssetList access to private members
-    
+
     int Add(wxSQLite3Database* db);
     void Delete(wxSQLite3Database* db);
     void SetDatabaseValues(wxSQLite3Statement& st, int& db_index);
@@ -55,12 +57,14 @@ public:
     bool operator <(const TAssetEntry& asset) const ;
     int to_json(json::Object& o) const;
 public:
-    enum ASSET_RATE {
+    enum ASSET_RATE
+    {
         RATE_NONE,
         RATE_APPRECIATE,
         RATE_DEPRECIATE
     };
-    enum ASSET_TYPE {
+    enum ASSET_TYPE
+    {
         TYPE_PROPERTY,
         TYPE_AUTO,
         TYPE_HOUSE,
@@ -89,7 +93,10 @@ public:
     double GetValue();
     wxString GetValueCurrencyEditFormat(bool initial_value = false);
     wxString DisplayDate();
-    void destroy() { delete this; }
+    void destroy()
+    {
+        delete this;
+    }
 };
 
 /************************************************************************************

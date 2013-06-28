@@ -62,14 +62,20 @@ public:
     /// Constructors
     mmUnivCSVDialog();
     mmUnivCSVDialog(mmCoreDB* core, wxWindow* parent, bool is_importer = true,
-        wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
-        const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
-        long style = SYMBOL_UNIVCSVDIALOG_STYLE);
+                    wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
+                    const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
+                    const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
+                    const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
+                    long style = SYMBOL_UNIVCSVDIALOG_STYLE);
 
-    bool InportCompletedSuccessfully()  { return importSuccessful_; }
-    int ImportedAccountID()             { return fromAccountID_;    }
+    bool InportCompletedSuccessfully()
+    {
+        return importSuccessful_;
+    }
+    int ImportedAccountID()
+    {
+        return fromAccountID_;
+    }
 
 private:
     enum EUnivCvs
@@ -127,11 +133,11 @@ private:
 
     /// Creation
     bool Create(wxWindow* parent,
-        wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
-        const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
-        long style = SYMBOL_UNIVCSVDIALOG_STYLE);
+                wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
+                const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
+                const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
+                const wxSize& size = SYMBOL_UNIVCSVDIALOG_SIZE,
+                long style = SYMBOL_UNIVCSVDIALOG_STYLE);
 
     /// Creates the controls and sizers
     void CreateControls();

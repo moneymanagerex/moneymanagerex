@@ -35,15 +35,15 @@ class budgetingListCtrl: public wxListCtrl
 
 public:
     budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent,
-        const wxWindowID id, const wxPoint& pos,
-        const wxSize& size, long style)
+                      const wxWindowID id, const wxPoint& pos,
+                      const wxSize& size, long style)
         : wxListCtrl(parent, id, pos, size, style),
-        attr1_(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont),
-        attr2_(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont),
-        attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont),
+          attr1_(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont),
+          attr2_(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont),
+          attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont),
 
-        cp_(cp),
-        selectedIndex_(-1)
+          cp_(cp),
+          selectedIndex_(-1)
     {}
 
 public:
@@ -90,12 +90,12 @@ class mmBudgetingPanel : public mmPanelBase
 
 public:
     mmBudgetingPanel( mmCoreDB* core,
-            mmGUIFrame* mainFrame, int budgetYearID, wxWindow *parent,
-            wxWindowID winid = wxID_ANY,
-            const wxPoint& pos = wxDefaultPosition,
-            const wxSize& size = wxDefaultSize,
-            long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-            const wxString& name = wxPanelNameStr );
+                      mmGUIFrame* mainFrame, int budgetYearID, wxWindow *parent,
+                      wxWindowID winid = wxID_ANY,
+                      const wxPoint& pos = wxDefaultPosition,
+                      const wxSize& size = wxDefaultSize,
+                      long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+                      const wxString& name = wxPanelNameStr );
     ~mmBudgetingPanel();
 
     /* updates the checking panel data */
@@ -106,11 +106,20 @@ public:
     wxString getItem(long item, long column);
 
     void DisplayBudgetingDetails(int budgetYearID);
-    int GetBudgetYearID() {return budgetYearID_;}
-    wxString GetCurrentView() {return currentView_;}
+    int GetBudgetYearID()
+    {
+        return budgetYearID_;
+    }
+    wxString GetCurrentView()
+    {
+        return currentView_;
+    }
     int GetItemImage(long item) const;
     void OnListItemActivated(int selectedIndex);
-    int GetTransID(long item) {return trans_[item].id_;}
+    int GetTransID(long item)
+    {
+        return trans_[item].id_;
+    }
 
 private:
 
@@ -129,10 +138,10 @@ private:
     wxStaticText* expences_diff_;
 
     bool Create( wxWindow *parent, wxWindowID winid,
-                const wxPoint& pos = wxDefaultPosition,
-                const wxSize& size = wxDefaultSize,
-                long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                const wxString& name = wxPanelNameStr);
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxDefaultSize,
+                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+                 const wxString& name = wxPanelNameStr);
 
     void CreateControls();
     bool DisplayEntryAllowed(mmBudgetEntryHolder& budgetEntry);

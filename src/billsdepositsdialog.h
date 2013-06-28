@@ -6,12 +6,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -33,30 +33,33 @@
 class wxDatePickerCtrl;
 
 class mmBDDialog : public wxDialog
-{    
+{
     DECLARE_DYNAMIC_CLASS( mmBDDialog )
     DECLARE_EVENT_TABLE()
 
 public:
     mmBDDialog();
     mmBDDialog( mmCoreDB* core,
-        int bdD, bool edit, bool enterOccur, wxWindow* parent, 
-        wxWindowID id = SYMBOL_BDDIALOG_IDNAME, 
-        const wxString& caption = SYMBOL_BDDIALOG_TITLE, 
-        const wxPoint& pos = SYMBOL_BDDIALOG_POSITION, 
-        const wxSize& size = SYMBOL_BDDIALOG_SIZE, 
-        long style = SYMBOL_BDDIALOG_STYLE );
-    int GetTransID() {return transID_;}
+                int bdD, bool edit, bool enterOccur, wxWindow* parent,
+                wxWindowID id = SYMBOL_BDDIALOG_IDNAME,
+                const wxString& caption = SYMBOL_BDDIALOG_TITLE,
+                const wxPoint& pos = SYMBOL_BDDIALOG_POSITION,
+                const wxSize& size = SYMBOL_BDDIALOG_SIZE,
+                long style = SYMBOL_BDDIALOG_STYLE );
+    int GetTransID()
+    {
+        return transID_;
+    }
 
 private:
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_BDDIALOG_IDNAME, 
-        const wxString& caption = SYMBOL_BDDIALOG_TITLE, 
-        const wxPoint& pos = SYMBOL_BDDIALOG_POSITION, 
-        const wxSize& size = SYMBOL_BDDIALOG_SIZE, 
-        long style = SYMBOL_BDDIALOG_STYLE );
+    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_BDDIALOG_IDNAME,
+                 const wxString& caption = SYMBOL_BDDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_BDDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_BDDIALOG_SIZE,
+                 long style = SYMBOL_BDDIALOG_STYLE );
 
     void CreateControls();
-    
+
     // utility functions
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -64,7 +67,7 @@ private:
     void OnPayee(wxCommandEvent& event);
     void OnTo(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
-    
+
     void OnDateChanged(wxDateEvent& event);
     void dataToControls();
     void updateControlsForTransType();
@@ -77,7 +80,7 @@ private:
     int transID_;
 
     mmCoreDB* core_;
-    
+
     wxTextCtrl *textNumber_;
     wxTextCtrl *textAmount_;
     wxTextCtrl *toTextAmount_;
@@ -97,7 +100,7 @@ private:
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
     wxButton* itemAccountName_;
-    
+
     bool edit_;
     bool enterOccur_;
 

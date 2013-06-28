@@ -76,7 +76,10 @@ public:
     void init();
 
     /** Clears the current HTML document */
-    virtual void clear() { html_.clear(); }
+    virtual void clear()
+    {
+        html_.clear();
+    }
 
     /** Create an HTML header and returns as a wxString */
     void addHeader(int level, const wxString& header);
@@ -88,7 +91,7 @@ public:
 
     /** Start a table element */
     void startTable(const wxString& width = "0"
-        , const wxString& valign = "left", const wxString& border = "0");
+                                            , const wxString& valign = "left", const wxString& border = "0");
 
     /** Add a special row that is a separator, cols is the number of columns the row has to spread along */
     void addRowSeparator(int cols);
@@ -120,56 +123,120 @@ public:
     /** Add a Cell value */
     void addTableCell(const wxDateTime& date);
     void addTableCell(const wxString& value
-        , const bool& numeric = false
-        , const bool& italic = false
-        , const bool& bold = false
-        , const wxString& fontColor = "");
+                      , const bool& numeric = false
+                              , const bool& italic = false
+                                      , const bool& bold = false
+                                              , const wxString& fontColor = "");
 
     /** Add a Cell value */
     void addTableCellLink(const wxString& href, const wxString& value
-        , const bool& numeric = false
-        , const bool& italic = false
-        , const bool& bold = false
-        , const wxString& fontColor = "");
+                          , const bool& numeric = false
+                                  , const bool& italic = false
+                                          , const bool& bold = false
+                                                  , const wxString& fontColor = "");
 
-    virtual void end() { html_+= tags::END; };
-    virtual void endTable() { html_+= tags::TABLE_END; };
-    virtual void addTableCellRightBI(const wxString& value) {html_+= wxString::Format(tags::TABLE_CELL_RIGHT_BI, value); }
-    virtual void startTableRow() { html_ += wxString::Format(tags::TABLE_ROW, (color_.bgswitch ? color_.color0 : color_.color1)); }
-    virtual void startTableRow(const wxString& custom_color) { html_ += wxString::Format(tags::TABLE_ROW, custom_color); }
-    virtual void endTableRow() { html_+= tags::TABLE_ROW_END;
-        color_.bgswitch = !color_.bgswitch; }
+    virtual void end()
+    {
+        html_+= tags::END;
+    };
+    virtual void endTable()
+    {
+        html_+= tags::TABLE_END;
+    };
+    virtual void addTableCellRightBI(const wxString& value)
+    {
+        html_+= wxString::Format(tags::TABLE_CELL_RIGHT_BI, value);
+    }
+    virtual void startTableRow()
+    {
+        html_ += wxString::Format(tags::TABLE_ROW, (color_.bgswitch ? color_.color0 : color_.color1));
+    }
+    virtual void startTableRow(const wxString& custom_color)
+    {
+        html_ += wxString::Format(tags::TABLE_ROW, custom_color);
+    }
+    virtual void endTableRow()
+    {
+        html_+= tags::TABLE_ROW_END;
+        color_.bgswitch = !color_.bgswitch;
+    }
 
     /** Create an HTML paragrapth */
-    virtual void addParaText(const wxString& text) { html_+= wxString::Format(tags::PARAGRAPH, font_size_, text); }
-    virtual void addText(const wxString& text) { html_+= text; }
+    virtual void addParaText(const wxString& text)
+    {
+        html_+= wxString::Format(tags::PARAGRAPH, font_size_, text);
+    }
+    virtual void addText(const wxString& text)
+    {
+        html_+= text;
+    }
 
     /** Create an HTML line break */
-    virtual void addLineBreak() { html_+= tags::BR; }
+    virtual void addLineBreak()
+    {
+        html_+= tags::BR;
+    }
 
     /** Create an HTML HorizontalLine */
-    virtual void addHorizontalLine(int size = 0) { html_+= wxString::Format(tags::HOR_LINE, size); }
+    virtual void addHorizontalLine(int size = 0)
+    {
+        html_+= wxString::Format(tags::HOR_LINE, size);
+    }
 
     /** Starts a table cell (use only if want to nest other elements inside */
-    virtual void startTableCell(const wxString& width = "0") { html_+= wxString::Format(tags::TABLE_CELL, width); }
-    virtual void endTableCell() { html_+= tags::TABLE_CELL_END; }
+    virtual void startTableCell(const wxString& width = "0")
+    {
+        html_+= wxString::Format(tags::TABLE_CELL, width);
+    }
+    virtual void endTableCell()
+    {
+        html_+= tags::TABLE_CELL_END;
+    }
 
-    virtual void bold_italic(const wxString value) { html_+= wxString::Format(tags::BI, value); }
-    virtual void bold(const wxString value) { html_+= wxString::Format(tags::BOLD, value); }
-    virtual void italic(const wxString value) { html_+= wxString::Format(tags::ITALIC, value); }
-    virtual void font_settings(int size, const wxString& color = "") { html_+= wxString::Format(tags::FONT, size, color); }
-    virtual void font_end() { html_+= tags::FONT_END; }
-    virtual int font_size() { return font_size_;}
-    virtual const wxString getHTMLText() const { return html_; }
+    virtual void bold_italic(const wxString value)
+    {
+        html_+= wxString::Format(tags::BI, value);
+    }
+    virtual void bold(const wxString value)
+    {
+        html_+= wxString::Format(tags::BOLD, value);
+    }
+    virtual void italic(const wxString value)
+    {
+        html_+= wxString::Format(tags::ITALIC, value);
+    }
+    virtual void font_settings(int size, const wxString& color = "")
+    {
+        html_+= wxString::Format(tags::FONT, size, color);
+    }
+    virtual void font_end()
+    {
+        html_+= tags::FONT_END;
+    }
+    virtual int font_size()
+    {
+        return font_size_;
+    }
+    virtual const wxString getHTMLText() const
+    {
+        return html_;
+    }
     /** Centers the content from this point on */
-    virtual void startCenter() { html_+= tags::CENTER; }
-    virtual void endCenter() { html_+= tags::CENTER_END; }
+    virtual void startCenter()
+    {
+        html_+= tags::CENTER;
+    }
+    virtual void endCenter()
+    {
+        html_+= tags::CENTER_END;
+    }
 
 private:
     wxString html_;
 
     int font_size_;
-    struct color_ {
+    struct color_
+    {
         wxString color0;
         wxString color1;
         wxString bgcolor;
@@ -180,7 +247,8 @@ private:
         wxString alink;
         bool bgswitch;
     } color_;
-    struct today_ {
+    struct today_
+    {
         wxDateTime date;
         wxString date_str;
         wxString todays_date;

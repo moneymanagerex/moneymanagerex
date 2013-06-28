@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -19,12 +19,14 @@
 #pragma once
 #include "entry_base.h"
 
-const wxString ACCOUNT_STATE_DEF[] = {
+const wxString ACCOUNT_STATE_DEF[] =
+{
     "Open",
     "Closed"
 };
 
-const wxString ACCOUNT_TYPE_DEF[] = {
+const wxString ACCOUNT_TYPE_DEF[] =
+{
     "Checking",
     "Term",
     "Investment"
@@ -39,7 +41,7 @@ class TAccountEntry : public TEntryBase
 {
 private:
     friend class TAccountList;    // Allows the class, access to private members.
-    
+
     int Add(wxSQLite3Database* db);
     void Delete(wxSQLite3Database* db);
     void SetDatabaseValues(wxSQLite3Statement& st, int& db_index);
@@ -47,7 +49,7 @@ private:
 public:
     enum ACCOUNT_STATE {STATE_OPEN, STATE_CLOSED};
     enum ACCOUNT_TYPE {TYPE_BANK, TYPE_TERM, TYPE_STOCK};
-    
+
     wxString acc_name_;
     wxString acc_type_;
     wxString acc_number_;
@@ -88,7 +90,7 @@ public:
     std::vector<TAccountEntry*> entrylist_;
 
     TAccountList(wxSQLite3Database* db
-    , TCurrencyList& currency_list, bool load_entries = true);
+                 , TCurrencyList& currency_list, bool load_entries = true);
     ~TAccountList();
 
     /// Allows specialised list loading provided by SQL statement

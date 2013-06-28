@@ -39,18 +39,18 @@ class relocateCategoryDialog : public wxDialog
 public:
     relocateCategoryDialog();
     relocateCategoryDialog( mmCoreDB* core,
-        wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1,
-        wxWindowID id = SYMBOL_RELOCATECATEGORYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_RELOCATECATEGORYDIALOG_SIZE,
-        long style = SYMBOL_RELOCATECATEGORYDIALOG_STYLE );
+                            wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1,
+                            wxWindowID id = SYMBOL_RELOCATECATEGORYDIALOG_IDNAME,
+                            const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
+                            const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
+                            const wxSize& size = SYMBOL_RELOCATECATEGORYDIALOG_SIZE,
+                            long style = SYMBOL_RELOCATECATEGORYDIALOG_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_RELOCATECATEGORYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_RELOCATECATEGORYDIALOG_SIZE,
-        long style = SYMBOL_RELOCATECATEGORYDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_RELOCATECATEGORYDIALOG_SIZE,
+                 long style = SYMBOL_RELOCATECATEGORYDIALOG_STYLE );
 
     void CreateControls();
 

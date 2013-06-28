@@ -1,5 +1,5 @@
 /*************************************************************************
- Copyright (C) 2011,2012 Stefano Giorgio      
+ Copyright (C) 2011,2012 Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -32,7 +32,7 @@ public:
     // This constructor is for recent files list
     RecentDatabaseFiles(MMEX_IniSettings* pIniSettings, wxMenu *menuRecentFiles);
     ~RecentDatabaseFiles();
-  
+
     void loadRecentList();
     void saveRecentList();
     void setMenuFileItems();

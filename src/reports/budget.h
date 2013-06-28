@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -29,14 +29,14 @@ class wxDateTime;
  Class: mmReportBudget : This class is a base class for Budget Reports.
         This class should not be used to create objects.
  *************************************************************************/
-class mmReportBudget : public mmPrintableBase 
+class mmReportBudget : public mmPrintableBase
 {
 public:
     mmReportBudget(mmGUIFrame* mainFrame, mmCoreDB* core = NULL);
 
     /// Initialise index and secondary fields for a budget entry
     void initBudgetEntryFields(mmBudgetEntryHolder& budEntry, int id = -1);
-  
+
     /// Set budget estimate for a day based on the required period
     void setBudgetMonthlyEstimate(mmBudgetEntryHolder& budEntry);
 
@@ -45,7 +45,7 @@ public:
 
     /// Set budget estimate for the appropriate period
     void setBudgetEstimate(mmBudgetEntryHolder& budEntry, bool monthBudget);
-    
+
     /// Returns correct values for day and month, adjusted to financial year if required.
     void AdjustYearValues(int& day, int& month, wxDateTime& year);
 
@@ -64,7 +64,7 @@ public:
 
     /// Advance the given date by one year.
     void SetDateToEndOfYear(int day, int month, wxDateTime& date, bool isEndDate = true);
-    
+
     /// sets the start and end dates for a budget month
     void SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate);
 

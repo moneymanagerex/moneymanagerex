@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -64,31 +64,31 @@ class wxListCtrl;
  */
 
 class SplitTransactionDialog: public wxDialog
-{    
+{
     DECLARE_DYNAMIC_CLASS( SplitTransactionDialog )
     DECLARE_EVENT_TABLE()
 
 public:
     /// Constructors
     SplitTransactionDialog( );
-    SplitTransactionDialog( 
+    SplitTransactionDialog(
         mmCoreDB* core,
-        mmSplitTransactionEntries* split, 
+        mmSplitTransactionEntries* split,
         int transType,
         wxWindow* parent,
-        wxWindowID id = SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME, 
-        const wxString& caption = SYMBOL_SPLITTRANSACTIONDIALOG_TITLE, 
-        const wxPoint& pos = SYMBOL_SPLITTRANSACTIONDIALOG_POSITION, 
-        const wxSize& size = SYMBOL_SPLITTRANSACTIONDIALOG_SIZE, 
+        wxWindowID id = SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME,
+        const wxString& caption = SYMBOL_SPLITTRANSACTIONDIALOG_TITLE,
+        const wxPoint& pos = SYMBOL_SPLITTRANSACTIONDIALOG_POSITION,
+        const wxSize& size = SYMBOL_SPLITTRANSACTIONDIALOG_SIZE,
         long style = SYMBOL_SPLITTRANSACTIONDIALOG_STYLE );
 
     /// Creation
-    bool Create( 
-        wxWindow* parent, 
-        wxWindowID id = SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME, 
-        const wxString& caption = SYMBOL_SPLITTRANSACTIONDIALOG_TITLE, 
-        const wxPoint& pos = SYMBOL_SPLITTRANSACTIONDIALOG_POSITION, 
-        const wxSize& size = SYMBOL_SPLITTRANSACTIONDIALOG_SIZE, 
+    bool Create(
+        wxWindow* parent,
+        wxWindowID id = SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME,
+        const wxString& caption = SYMBOL_SPLITTRANSACTIONDIALOG_TITLE,
+        const wxPoint& pos = SYMBOL_SPLITTRANSACTIONDIALOG_POSITION,
+        const wxSize& size = SYMBOL_SPLITTRANSACTIONDIALOG_SIZE,
         long style = SYMBOL_SPLITTRANSACTIONDIALOG_STYLE );
 
     /// Creates the controls and sizers
@@ -105,7 +105,7 @@ public:
     /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_EDIT
     void OnButtonEditClick( wxCommandEvent& event );
 
-	void UpdateSplitTotal();
+    void UpdateSplitTotal();
 
     /// Retrieves bitmap resources
     wxBitmap GetBitmapResource( const wxString& name );
@@ -117,9 +117,9 @@ public:
     static bool ShowToolTips();
 
     wxListCtrl* lcSplit_;
-	wxStaticText* transAmount_;
+    wxStaticText* transAmount_;
 
-    void SetDisplaySplitCategories(); 
+    void SetDisplaySplitCategories();
 
 private:
     mmCoreDB* core_;

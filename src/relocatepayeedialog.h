@@ -39,21 +39,21 @@ class relocatePayeeDialog : public wxDialog
 public:
     relocatePayeeDialog();
     relocatePayeeDialog( mmCoreDB* core,
-        wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
-        const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
-        long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
+                         wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
+                         const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
+                         const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
+                         const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
+                         long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
 
     wxString updatedPayeesCount();
 
 private:
     mmCoreDB* core_;
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
-        const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
-        long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
+                 long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
 
     void CreateControls();
     void OnOk(wxCommandEvent& event);

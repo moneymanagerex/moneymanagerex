@@ -24,7 +24,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmDateRange.h"
 //----------------------------------------------------------------------------
 
-class mmReportCategoryOverTimePerformance : public mmPrintableBase 
+class mmReportCategoryOverTimePerformance : public mmPrintableBase
 {
 public:
     mmReportCategoryOverTimePerformance(mmCoreDB *core, mmDateRange* date_range = new mmLast12Months());

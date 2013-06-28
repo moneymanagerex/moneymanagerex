@@ -39,11 +39,11 @@ class mmOptionsDialog: public wxDialog
 public:
     mmOptionsDialog( );
     mmOptionsDialog(mmCoreDB* core,
-        wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
-        const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
-        long style = SYMBOL_MMOPTIONSDIALOG_STYLE );
+                    wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
+                    const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
+                    const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
+                    const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
+                    long style = SYMBOL_MMOPTIONSDIALOG_STYLE );
     ~mmOptionsDialog( );
 
     /// Saves the updated System Options to the appropriate databases.
@@ -52,8 +52,14 @@ public:
     /// Returns the value of the dialog setting;
     bool GetUpdateCurrencyRateSetting();
 
-    bool RequiresRestart()  { return restartRequired_; }
-    bool AppliedChanges()   { return changesApplied_;  }
+    bool RequiresRestart()
+    {
+        return restartRequired_;
+    }
+    bool AppliedChanges()
+    {
+        return changesApplied_;
+    }
 
 private:
     /// System database access variables
@@ -109,10 +115,10 @@ private:
 
     /// Dialog Creation - Used by constructor
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
-        const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
-        long style = SYMBOL_MMOPTIONSDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
+                 long style = SYMBOL_MMOPTIONSDIALOG_STYLE );
 
     void CreateControls();
 

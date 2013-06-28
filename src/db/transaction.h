@@ -20,7 +20,8 @@
 #include "entry_base.h"
 
 const wxString TRANS_STATE_DEF[] = {"N", "R", "V", "F", "D"};
-const wxString TRANS_STATE_TRANSLATION[] = {
+const wxString TRANS_STATE_TRANSLATION[] =
+{
     "None",
     "Reconciled",
     "Void",
@@ -28,7 +29,8 @@ const wxString TRANS_STATE_TRANSLATION[] = {
     "Duplicate"
 };
 
-const wxString TRANS_TYPE_DEF[] = {
+const wxString TRANS_TYPE_DEF[] =
+{
     "Withdrawal",
     "Deposit",
     "Transfer"
@@ -52,7 +54,8 @@ protected:
     void GetDatabaseValues(wxSQLite3ResultSet& q1);
 
 public:
-    enum TRANS_STATE {
+    enum TRANS_STATE
+    {
         STATE_NONE,
         STATE_RECONCILED,
         STATE_VOID,
@@ -60,7 +63,8 @@ public:
         STATE_DUPLICATE
     };
 
-    enum TRANS_TYPE {
+    enum TRANS_TYPE
+    {
         TYPE_WITHDRAWAL,
         TYPE_DEPOSIT,
         TYPE_TRANSFER

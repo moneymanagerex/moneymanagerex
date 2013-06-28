@@ -31,10 +31,10 @@ public:
         long style = SYMBOL_QIFDIALOG_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_QIFDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_QIFDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_QIFDIALOG_POSITION,
-        const wxSize& size = SYMBOL_QIFDIALOG_SIZE,
-        long style = SYMBOL_QIFDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_QIFDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_QIFDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_QIFDIALOG_SIZE,
+                 long style = SYMBOL_QIFDIALOG_STYLE );
 
 private:
     void OnQuit(wxCloseEvent& event);

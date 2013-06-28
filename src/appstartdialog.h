@@ -34,7 +34,7 @@ class mmAppStartDialog: public wxDialog
 public:
     mmAppStartDialog();
     mmAppStartDialog(MMEX_IniSettings* pIniSettings, wxWindow* parent);
-   ~mmAppStartDialog();
+    ~mmAppStartDialog();
 
     void SetCloseButtonToExit();
 

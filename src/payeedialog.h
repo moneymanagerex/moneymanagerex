@@ -31,7 +31,10 @@ class mmPayeeDialog : public wxDialog
 public:
     mmPayeeDialog(wxWindow* parent, mmCoreDB* core, bool showSelectButton = true);
 
-    int getPayeeId() const { return m_payee_id_; }
+    int getPayeeId() const
+    {
+        return m_payee_id_;
+    }
 
 private:
     int m_payee_id_;

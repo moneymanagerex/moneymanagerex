@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -22,11 +22,11 @@
 #include "../reportbase.h"
 #include "mmDateRange.h"
 
-class mmReportCategoryExpenses : public mmPrintableBase 
+class mmReportCategoryExpenses : public mmPrintableBase
 {
 public:
     mmReportCategoryExpenses(mmCoreDB* core
-        , mmDateRange* date_range, const wxString& title, int type);
+                             , mmDateRange* date_range, const wxString& title, int type);
 
     wxString getHTMLText();
 
@@ -44,7 +44,7 @@ class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesGoes(mmCoreDB* core
-    , mmDateRange* date_range = new mmAllTime()
+                                 , mmDateRange* date_range = new mmAllTime()
     , const wxString& title = _("Where the Money Goes"));
 };
 
@@ -94,21 +94,21 @@ class mmReportCategoryExpensesGoesLastFinancialYear: public mmReportCategoryExpe
 {
 public:
     mmReportCategoryExpensesGoesLastFinancialYear(mmCoreDB* core
-    , const int day, const int month);
+            , const int day, const int month);
 };
 
 class mmReportCategoryExpensesGoesCurrentFinancialYear: public mmReportCategoryExpensesGoes
 {
 public:
     mmReportCategoryExpensesGoesCurrentFinancialYear(mmCoreDB* core
-    , const int day, const int month);
+            , const int day, const int month);
 };
 
 class mmReportCategoryExpensesComes: public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesComes(mmCoreDB* core
-    , mmDateRange* date_range = new mmAllTime()
+                                  , mmDateRange* date_range = new mmAllTime()
     , const wxString& title = _("Where the Money Comes From"));
 };
 
@@ -170,7 +170,7 @@ class mmReportCategoryExpensesCategories: public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesCategories(mmCoreDB* core
-    , mmDateRange* date_range = new mmAllTime()
+                                       , mmDateRange* date_range = new mmAllTime()
     , const wxString& title = _("Categories"));
 };
 

@@ -36,17 +36,17 @@ class fileviewer: public wxDialog
 public:
     fileviewer( );
     fileviewer( const wxString& fileName, wxWindow* parent,
-        wxWindowID id = SYMBOL_FILEVIEWER_IDNAME,
-        const wxString& caption = SYMBOL_FILEVIEWER_TITLE,
-        const wxPoint& pos = SYMBOL_FILEVIEWER_POSITION,
-        const wxSize& size = SYMBOL_FILEVIEWER_SIZE,
-        long style = SYMBOL_FILEVIEWER_STYLE );
+                wxWindowID id = SYMBOL_FILEVIEWER_IDNAME,
+                const wxString& caption = SYMBOL_FILEVIEWER_TITLE,
+                const wxPoint& pos = SYMBOL_FILEVIEWER_POSITION,
+                const wxSize& size = SYMBOL_FILEVIEWER_SIZE,
+                long style = SYMBOL_FILEVIEWER_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_FILEVIEWER_IDNAME,
-        const wxString& caption = SYMBOL_FILEVIEWER_TITLE,
-        const wxPoint& pos = SYMBOL_FILEVIEWER_POSITION,
-        const wxSize& size = SYMBOL_FILEVIEWER_SIZE,
-        long style = SYMBOL_FILEVIEWER_STYLE );
+                 const wxString& caption = SYMBOL_FILEVIEWER_TITLE,
+                 const wxPoint& pos = SYMBOL_FILEVIEWER_POSITION,
+                 const wxSize& size = SYMBOL_FILEVIEWER_SIZE,
+                 long style = SYMBOL_FILEVIEWER_STYLE );
 
     void CreateControls();
     wxTextCtrl *textCtrl_;

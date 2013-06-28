@@ -29,17 +29,23 @@ class mmCoreDB;
 class mmTransaction
 {
 public:
-   mmTransaction() {}
-   mmTransaction(int transactionID) : transactionID_(transactionID) {}
-   virtual ~mmTransaction() {}
+    mmTransaction() {}
+    mmTransaction(int transactionID) : transactionID_(transactionID) {}
+    virtual ~mmTransaction() {}
 
-   const virtual int transactionID() const { return transactionID_; }
-   void transactionID(int transactionID) { transactionID_ = transactionID; }
+    const virtual int transactionID() const
+    {
+        return transactionID_;
+    }
+    void transactionID(int transactionID)
+    {
+        transactionID_ = transactionID;
+    }
 
-   virtual double value(int accountCtx) const = 0;
+    virtual double value(int accountCtx) const = 0;
 
 protected:
-   int transactionID_;
+    int transactionID_;
 };
 
 class mmSplitTransactionEntry
@@ -58,7 +64,10 @@ class mmSplitTransactionEntries
 public:
     mmSplitTransactionEntries() {}
 
-    size_t numEntries() const { return entries_.size(); }
+    size_t numEntries() const
+    {
+        return entries_.size();
+    }
     double getTotalSplits() const;
     double getUpdatedTotalSplits() const;
 
@@ -131,7 +140,7 @@ public:
     int addTransaction(mmBankTransaction* pTransaction);
     bool checkForExistingTransaction(mmBankTransaction* pTransaction);
     mmBankTransaction* copyTransaction(/*mmCoreDB* pCore,*/
-       const long transactionID, const long accountID, const bool useOriginalDate);
+        const long transactionID, const long accountID, const bool useOriginalDate);
 
     /// Loads database primary Transactions into memory.
     void LoadTransactions();
@@ -145,21 +154,21 @@ public:
     void deleteTransactions(int accountID);
     int RelocatePayee(mmCoreDB* core, int destPayeeID, int sourcePayeeID, int& changedPayees_);
     int RelocateCategory(mmCoreDB* core,
-        int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
-        int& changedCats, int& changedSubCats);
+                         int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
+                         int& changedCats, int& changedSubCats);
 
     /* Query Functions */
     void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;
 
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-        , mmDateRange* date_range
-        , int accountID
-        , bool group_by_account = false
-        , bool group_by_month = false) const;
+                                , mmDateRange* date_range
+                                , int accountID
+                                , bool group_by_account = false
+                                        , bool group_by_month = false) const;
 
     void getCategoryStats(std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-        , mmDateRange* date_range, bool ignoreFuture
-        , bool group_by_month = true, bool with_date = true) const;
+                          , mmDateRange* date_range, bool ignoreFuture
+                          , bool group_by_month = true, bool with_date = true) const;
 
     // The setting asDeposit is only valid if evaluateTransfer is true
     double getAmountForCategory(int categID, int subcategID, bool ignoreDate, const wxDateTime &dtBegin, const wxDateTime &dtEnd, bool evaluateTransfer = false, bool asDeposit = false, bool ignoreFuture = false) const;

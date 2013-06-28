@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -49,7 +49,7 @@ public:
     int id_subcategory_;
     double amount_;
 
-    /// Used to load an entry from the database. 
+    /// Used to load an entry from the database.
     TSplitEntry(wxSQLite3ResultSet& q1);
     void Update(wxSQLite3Database* db, wxString db_table);
 };
@@ -84,7 +84,7 @@ private:
 
     /// Load the transaction split entries from the global list.
     void LoadEntries();
-    
+
     void AddEntry(TSplitEntry* split_entry);
     void ReEvaluateTotal();
     void RemoveGlobalEntry(int entry_id);
@@ -108,7 +108,7 @@ public:
     int AddEntry(int cat_id, int subcat_id, double amount);
     void UpdateEntry(TSplitEntry* split_entry);
     void DeleteEntry(TSplitEntry* split_entry);
-    
+
     int GetListSize();
     TSplitEntry* GetEntryPtr(int id_split_trans);
     TSplitEntry* GetIndexedEntryPtr(int index);

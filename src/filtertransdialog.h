@@ -44,37 +44,88 @@ public:
     );
 
     bool somethingSelected();
-    bool getAccountCheckBox() {return accountCheckBox_->GetValue();}
-    int getAccountID() {return refAccountID_;}
+    bool getAccountCheckBox()
+    {
+        return accountCheckBox_->GetValue();
+    }
+    int getAccountID()
+    {
+        return refAccountID_;
+    }
     wxString getAccountName();
 
-    bool getDateRangeCheckBox() {return dateRangeCheckBox_->GetValue();}
-    wxDateTime getFromDateCtrl() {return fromDateCtrl_->GetValue();}
-    wxDateTime getToDateControl() {return toDateControl_->GetValue();}
+    bool getDateRangeCheckBox()
+    {
+        return dateRangeCheckBox_->GetValue();
+    }
+    wxDateTime getFromDateCtrl()
+    {
+        return fromDateCtrl_->GetValue();
+    }
+    wxDateTime getToDateControl()
+    {
+        return toDateControl_->GetValue();
+    }
 
-    bool getAmountRangeCheckBox() {return amountRangeCheckBox_->GetValue();}
+    bool getAmountRangeCheckBox()
+    {
+        return amountRangeCheckBox_->GetValue();
+    }
     double getAmountMax();
     double getAmountMin();
 
-    bool getPayeeCheckBox() {return payeeCheckBox_->GetValue();}
+    bool getPayeeCheckBox()
+    {
+        return payeeCheckBox_->GetValue();
+    }
     int getPayeeID() const;
 
-    bool getStatusCheckBox() {return statusCheckBox_->GetValue();}
+    bool getStatusCheckBox()
+    {
+        return statusCheckBox_->GetValue();
+    }
     wxString getStatus() const;
 
-    bool getTypeCheckBox() {return typeCheckBox_->GetValue();}
+    bool getTypeCheckBox()
+    {
+        return typeCheckBox_->GetValue();
+    }
     wxString getType() const;
 
-    bool getNumberCheckBox() {return transNumberCheckBox_->GetValue();}
-    wxString getNumber() {return transNumberEdit_->GetValue();}
+    bool getNumberCheckBox()
+    {
+        return transNumberCheckBox_->GetValue();
+    }
+    wxString getNumber()
+    {
+        return transNumberEdit_->GetValue();
+    }
 
-    bool getNotesCheckBox() {return notesCheckBox_->GetValue();}
-    wxString getNotes() {return notesEdit_->GetValue();}
+    bool getNotesCheckBox()
+    {
+        return notesCheckBox_->GetValue();
+    }
+    wxString getNotes()
+    {
+        return notesEdit_->GetValue();
+    }
 
-    bool getCategoryCheckBox() {return categoryCheckBox_->GetValue();}
-    int getCategoryID() {return categID_;}
-    int getSubCategoryID() {return subcategID_;}
-    bool getExpandStatus() {return bExpandStaus_;}
+    bool getCategoryCheckBox()
+    {
+        return categoryCheckBox_->GetValue();
+    }
+    int getCategoryID()
+    {
+        return categID_;
+    }
+    int getSubCategoryID()
+    {
+        return subcategID_;
+    }
+    bool getExpandStatus()
+    {
+        return bExpandStaus_;
+    }
 
     /// Returns the payee string, when Payee is selected.
     wxString userPayeeStr() const;
@@ -98,11 +149,11 @@ public:
 private:
     /// Creation
     bool Create( wxWindow* parent,
-       wxWindowID id = SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME,
-       const wxString& caption = SYMBOL_MMFILTERTRANSACTIONSDIALOG_TITLE,
-       const wxPoint& pos = wxDefaultPosition,
-       const wxSize& size = wxSize(400, 300),
-       long style = SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE );
+                 wxWindowID id = SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME,
+                 const wxString& caption = SYMBOL_MMFILTERTRANSACTIONSDIALOG_TITLE,
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxSize(400, 300),
+                 long style = SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE );
 
     /// Creates the controls and sizers
     void CreateControls();
@@ -160,10 +211,10 @@ private:
     int categID_;
     int subcategID_;
     bool bExpandStaus_;
-	int payeeID_;
+    int payeeID_;
     int refAccountID_;
     wxString refAccountStr_;
 };
 
 #endif
-    // _FILTERTRANSDIALOG_H_
+// _FILTERTRANSDIALOG_H_

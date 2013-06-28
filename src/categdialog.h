@@ -35,9 +35,15 @@ class mmTreeItemCateg : public wxTreeItemData
 public:
     mmTreeItemCateg(int categID, int subcategID)
         : categID_(categID),
-          subcategID_(subcategID){ }
-    int getCategID() { return categID_; }
-    int getSubCategID() { return subcategID_; }
+          subcategID_(subcategID) { }
+    int getCategID()
+    {
+        return categID_;
+    }
+    int getSubCategID()
+    {
+        return subcategID_;
+    }
 
 private:
     int categID_;
@@ -52,23 +58,32 @@ class mmCategDialog : public wxDialog
 public:
     mmCategDialog();
     mmCategDialog(mmCoreDB* core, wxWindow* parent,
-        bool bEnableSelect = true, bool bEnableRelocate = true,
-        wxWindowID id = SYMBOL_CATEGDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_CATEGDIALOG_POSITION,
-        const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
-        long style = SYMBOL_CATEGDIALOG_STYLE );
+                  bool bEnableSelect = true, bool bEnableRelocate = true,
+                  wxWindowID id = SYMBOL_CATEGDIALOG_IDNAME,
+                  const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
+                  const wxPoint& pos = SYMBOL_CATEGDIALOG_POSITION,
+                  const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
+                  long style = SYMBOL_CATEGDIALOG_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_CATEGDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_CATEGDIALOG_POSITION,
-        const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
-        long style = SYMBOL_CATEGDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_CATEGDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
+                 long style = SYMBOL_CATEGDIALOG_STYLE );
 
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
-    int getCategId() {return categID_;}
-    int getSubCategId() {return subcategID_;}
-    bool getExpandStatus() {return cbExpand_->IsChecked();}
+    int getCategId()
+    {
+        return categID_;
+    }
+    int getSubCategId()
+    {
+        return subcategID_;
+    }
+    bool getExpandStatus()
+    {
+        return cbExpand_->IsChecked();
+    }
 
 private:
     void CreateControls();

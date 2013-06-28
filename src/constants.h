@@ -99,7 +99,8 @@ const wxString TIPS_BILLS  = "billsdeposits";
 const wxString TIPS_STOCK  = "investment";
 const wxString TIPS_ASSETS = "assets";
 
-const wxString BILLSDEPOSITS_REPEATS[] = {
+const wxString BILLSDEPOSITS_REPEATS[] =
+{
     wxTRANSLATE("None"),
     wxTRANSLATE("Weekly"),
     wxTRANSLATE("Bi-Weekly"),
@@ -117,19 +118,20 @@ const wxString BILLSDEPOSITS_REPEATS[] = {
     wxTRANSLATE("Every %s Months"),
     wxTRANSLATE("Monthly (last day)"),
     wxTRANSLATE("Monthly (last business day)")
-    
+
 };
 
-static const wxString DATE_PRESETTINGS[] = {
-	VIEW_TRANS_ALL_STR,
-	VIEW_TRANS_TODAY_STR,       	
-	VIEW_TRANS_CURRENT_MONTH_STR,
-	VIEW_TRANS_LAST_30_DAYS_STR,
-	VIEW_TRANS_LAST_90_DAYS_STR,
-	VIEW_TRANS_LAST_MONTH_STR ,
-	VIEW_TRANS_LAST_3MONTHS_STR,
-	VIEW_TRANS_LAST_365_DAYS,
-	VIEW_TRANS_CURRENT_YEAR_STR
+static const wxString DATE_PRESETTINGS[] =
+{
+    VIEW_TRANS_ALL_STR,
+    VIEW_TRANS_TODAY_STR,
+    VIEW_TRANS_CURRENT_MONTH_STR,
+    VIEW_TRANS_LAST_30_DAYS_STR,
+    VIEW_TRANS_LAST_90_DAYS_STR,
+    VIEW_TRANS_LAST_MONTH_STR ,
+    VIEW_TRANS_LAST_3MONTHS_STR,
+    VIEW_TRANS_LAST_365_DAYS,
+    VIEW_TRANS_CURRENT_YEAR_STR
 };
 
 static const wxString TRANSACTION_STATUS[] =
@@ -159,7 +161,8 @@ static const wxString TRANSACTION_TYPE[] =
     wxTRANSLATE("Transfer")
 };
 
-static const wxString TIPS[] = {
+static const wxString TIPS[] =
+{
     wxTRANSLATE("Recommendation: Always backup your .mmb database file regularly."),
     wxTRANSLATE("Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."),
     wxTRANSLATE("Recommendation: Use copy (Ctrl+С) and paste (Ctrl+V) for frequently used transactions."),
@@ -208,7 +211,8 @@ static const wxString gDaysInWeek[7] =
     , wxTRANSLATE("Saturday")
 };
 
-static const wxString CURRENCIES[] = {
+static const wxString CURRENCIES[] =
+{
     "AFN",  "Afghanistan Afghani",
     "ALL",  "Albania Lek",
     "DZD",  "Algeria Dinar",

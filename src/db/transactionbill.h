@@ -5,12 +5,12 @@
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -20,7 +20,8 @@
 #include "entry_base.h"
 #include "transaction.h"
 
-const wxString REPEAT_TYPE_TRANSLATE[] = {
+const wxString REPEAT_TYPE_TRANSLATE[] =
+{
     wxTRANSLATE("None"),
     wxTRANSLATE("Weekly"),
     wxTRANSLATE("Bi-Weekly"),
@@ -51,7 +52,7 @@ private:
     // wxString nextOccurDate_;
     // date of next transaction occurance
     wxDateTime trans_repeat_date_;
-    
+
     int Add(wxSQLite3Database* db);
     // remove the entry from the database.
     void Delete(wxSQLite3Database* db);
@@ -59,7 +60,8 @@ private:
     int MultiplexedRepeatType();
 
 public:
-    enum REPEAT_TYPE {
+    enum REPEAT_TYPE
+    {
         TYPE_INACTIVE = -1,
         TYPE_NONE,
         TYPE_WEEKLY,
@@ -88,7 +90,7 @@ public:
 
     // Constructor for creating a new transaction entry
     TTransactionBillEntry();
-    
+
     // Copy constructor using a pointer
     TTransactionBillEntry(TTransactionBillEntry* pEntry);
 
@@ -106,7 +108,7 @@ public:
     void SetNextOccurDate(const wxDateTime date);
     // return the next occurance date
     wxDateTime NextOccurDate();
-    
+
     // Display next occurance date according to required user format
     wxString DisplayNextOccurDate();
     // Returns true when using any type of repeating transaction.

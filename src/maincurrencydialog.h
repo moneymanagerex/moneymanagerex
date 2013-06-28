@@ -57,12 +57,12 @@ public:
     mmMainCurrencyDialog( ) {}
 
     mmMainCurrencyDialog( mmCoreDB* core, wxWindow* parent,
-        bool bEnableSelect = true,
-        wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_MAINCURRENCYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
-        long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
+                          bool bEnableSelect = true,
+                          wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
+                          const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
+                          const wxPoint& pos = SYMBOL_MAINCURRENCYDIALOG_POSITION,
+                          const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
+                          long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
 
     static bool Execute(mmCoreDB* core, wxWindow* parent, int& currencyID);
 
@@ -80,15 +80,18 @@ private:
     std::map<int, wxString> ColName_;
     bool bEnableSelect_;
     double curr_rate_;
-    virtual bool ShowToolTips() { return TRUE; }
+    virtual bool ShowToolTips()
+    {
+        return TRUE;
+    }
 
     /// Creation
     bool Create( wxWindow* parent,
-        wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_MAINCURRENCYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
-        long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
+                 wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
+                 const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_MAINCURRENCYDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
+                 long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
     /// Creates the controls and sizers
     void CreateControls();
     void OnBtnAdd(wxCommandEvent& event);

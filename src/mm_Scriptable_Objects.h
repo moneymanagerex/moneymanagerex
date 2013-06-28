@@ -1,16 +1,16 @@
 /*******************************************************
- Copyright (C) 2012 Lisheng Guan 
+ Copyright (C) 2012 Lisheng Guan
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
  (at your option) any later version.
- 
+
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
- 
+
  You should have received a copy of the GNU General Public License
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
@@ -22,10 +22,17 @@
 template <typename T>
 class mm_Lua_Object
 {
-    typedef struct { T *pT; } User_Data;
+    typedef struct
+    {
+        T *pT;
+    } User_Data;
 public:
     typedef int (T::*mfp)(lua_State *L);
-    typedef struct { const char *name; mfp mfunc; } Registration_Record;
+    typedef struct
+    {
+        const char *name;
+        mfp mfunc;
+    } Registration_Record;
 
     static void register_self(lua_State *L)
     {
@@ -69,7 +76,11 @@ public:
     // push onto the Lua stack a userdata containing a pointer to T object
     static int push(lua_State *L, T *obj, bool gc=false)
     {
-        if (!obj) { lua_pushnil(L); return 0; }
+        if (!obj)
+        {
+            lua_pushnil(L);
+            return 0;
+        }
         luaL_getmetatable(L, T::className);  // lookup metatable in Lua registry
         if (lua_isnil(L, -1)) luaL_error(L, "%s missing metatable", T::className);
         int mt = lua_gettop(L);

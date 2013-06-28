@@ -34,11 +34,11 @@ class billsDepositsListCtrl: public mmListCtrl
 
 public:
     billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent,
-        const wxWindowID id, const wxPoint& pos,
-        const wxSize& size, long style)
+                          const wxWindowID id, const wxPoint& pos,
+                          const wxSize& size, long style)
         : mmListCtrl(parent, id, pos, size, style),
-        cp_(cp),
-        selectedIndex_(-1)
+          cp_(cp),
+          selectedIndex_(-1)
     {}
 
     void OnNewBDSeries(wxCommandEvent& event);
@@ -121,10 +121,10 @@ public:
     ~mmBillsDepositsPanel();
 
     bool Create( wxWindow *parent, wxWindowID winid,
-                const wxPoint& pos = wxDefaultPosition,
-                const wxSize& size = wxDefaultSize,
-                long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                const wxString& name = wxPanelNameStr);
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxDefaultSize,
+                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+                 const wxString& name = wxPanelNameStr);
     /* Helper Functions/data */
     std::vector<mmBDTransactionHolder> trans_;
     void updateBottomPanelData(int selIndex);
@@ -132,7 +132,10 @@ public:
     int initVirtualListControl(int id = -1);
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
-    int GetListCtrlWidth(int id) {return listCtrlAccount_->GetColumnWidth(id);}
+    int GetListCtrlWidth(int id)
+    {
+        return listCtrlAccount_->GetColumnWidth(id);
+    }
 
 private:
     void CreateControls();

@@ -7,16 +7,16 @@
 class wxArrayString;
 class TTransactionBillEntry;
 
-class mmReportCashFlow : public mmPrintableBase 
+class mmReportCashFlow : public mmPrintableBase
 {
 public:
     mmReportCashFlow(mmCoreDB* core, mmGUIFrame* frame, int cashflowreporttype);
 
     virtual wxString getHTMLText();
-    
+
 protected:
     wxString getHTMLText_i();
-    void activateTermAccounts(); 
+    void activateTermAccounts();
     void activateBankAccounts();
     void getSpecificAccounts();
 
@@ -31,9 +31,9 @@ protected:
     std::vector<forecastVec> bdForecastVec;
 
     void SetRepeatForecast(forecastVec& fvec
-        , TTransactionBillEntry* repeat_entry, double& amount);
+                           , TTransactionBillEntry* repeat_entry, double& amount);
     void SetYearsRepeatForecast(forecastVec& fvec
-        , TTransactionBillEntry* repeat_entry, double& amount, const wxDateTime& future_year);
+                                , TTransactionBillEntry* repeat_entry, double& amount, const wxDateTime& future_year);
 
     mmGUIFrame* frame_;
     const wxArrayString* accountArray_;

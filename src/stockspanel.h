@@ -34,7 +34,7 @@ class StocksListCtrl: public mmListCtrl
 
 public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, const wxWindowID id,
-        const wxPoint& pos, const wxSize& size, long style);
+                   const wxPoint& pos, const wxSize& size, long style);
 
 public:
     /* required overrides for virtual style list control */
@@ -58,7 +58,10 @@ public:
     void OnEditStocks(wxCommandEvent& event);
     wxStaticText* stock_details_short_;
     void InitVariables();
-    long get_selectedIndex() {return selectedIndex_;}
+    long get_selectedIndex()
+    {
+        return selectedIndex_;
+    }
 
 private:
     mmStocksPanel* cp_;
@@ -124,10 +127,10 @@ public:
     ~mmStocksPanel();
 
     bool Create( wxWindow *parent, wxWindowID winid,
-                const wxPoint& pos = wxDefaultPosition,
-                const wxSize& size = wxDefaultSize,
-                long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                const wxString& name = wxPanelNameStr);
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxDefaultSize,
+                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+                 const wxString& name = wxPanelNameStr);
 
     void CreateControls();
 

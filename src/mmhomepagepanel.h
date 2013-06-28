@@ -34,19 +34,19 @@ class mmHtmlWindow: public wxHtmlWindow
 
 public:
     mmHtmlWindow(wxWindow *parent,  mmGUIFrame* frame, mmCoreDB* core,
-        const wxWindowID id, const wxPoint& pos,
-        const wxSize& size, long style)
+                 const wxWindowID id, const wxPoint& pos,
+                 const wxSize& size, long style)
         : wxHtmlWindow(parent, id, pos, size, style),
           frame_(frame), core_(core)
     {}
 
 public:
     /* required overrides for virtual style list control */
-   virtual void OnLinkClicked(const wxHtmlLinkInfo& link);
+    virtual void OnLinkClicked(const wxHtmlLinkInfo& link);
 
 private:
-     mmGUIFrame* frame_;
-     mmCoreDB* core_;
+    mmGUIFrame* frame_;
+    mmCoreDB* core_;
 };
 
 class mmHomePagePanel : public mmPanelBase
@@ -55,20 +55,20 @@ class mmHomePagePanel : public mmPanelBase
 
 public:
     mmHomePagePanel( mmGUIFrame* frame,
-        mmCoreDB* core_,
-        const wxString& topCategories,
-        wxWindow *parent,
-        wxWindowID winid = wxID_ANY,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr );
+                     mmCoreDB* core_,
+                     const wxString& topCategories,
+                     wxWindow *parent,
+                     wxWindowID winid = wxID_ANY,
+                     const wxPoint& pos = wxDefaultPosition,
+                     const wxSize& size = wxDefaultSize,
+                     long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+                     const wxString& name = wxPanelNameStr );
 
     bool Create( wxWindow *parent, wxWindowID winid,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr);
+                 const wxPoint& pos = wxDefaultPosition,
+                 const wxSize& size = wxDefaultSize,
+                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+                 const wxString& name = wxPanelNameStr);
 
     ~mmHomePagePanel();
 

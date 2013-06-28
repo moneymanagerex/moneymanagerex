@@ -31,8 +31,8 @@ class mmCategory
 {
 public:
     mmCategory(int id, const wxString& name)
-    : categID_(id)
-    , categName_(name)
+        : categID_(id)
+        , categName_(name)
     {}
 
     /* Public Data */
@@ -46,7 +46,7 @@ class mmCategoryList
 {
 public:
     mmCategoryList(mmCoreDB* core)
-    : core_(core)
+        : core_(core)
     {}
 
     /* Category Functions */

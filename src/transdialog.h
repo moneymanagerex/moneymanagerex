@@ -42,25 +42,34 @@ public:
     virtual ~mmTransDialog();
 
     mmTransDialog( mmCoreDB* core,
-        int accountID, mmBankTransaction* pBankTransaction,
-        bool edit,
-        wxWindow* parent,
-        wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION,
-        const wxSize& size = SYMBOL_TRANSDIALOG_SIZE,
-        long style = SYMBOL_TRANSDIALOG_STYLE );
+                   int accountID, mmBankTransaction* pBankTransaction,
+                   bool edit,
+                   wxWindow* parent,
+                   wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME,
+                   const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
+                   const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION,
+                   const wxSize& size = SYMBOL_TRANSDIALOG_SIZE,
+                   long style = SYMBOL_TRANSDIALOG_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION,
-        const wxSize& size = SYMBOL_TRANSDIALOG_SIZE,
-        long style = SYMBOL_TRANSDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_TRANSDIALOG_SIZE,
+                 long style = SYMBOL_TRANSDIALOG_STYLE );
 
     void SetDialogToDuplicateTransaction();
-    int getTransID() {return transID_;}
-    int getAccountID() {return newAccountID_;}
-    int getToAccountID() {return toID_;}
+    int getTransID()
+    {
+        return transID_;
+    }
+    int getAccountID()
+    {
+        return newAccountID_;
+    }
+    int getToAccountID()
+    {
+        return toID_;
+    }
 
 private:
 

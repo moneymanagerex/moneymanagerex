@@ -30,7 +30,8 @@
 #include "mmcoredb.h"
 #include "dbwrapper.h"
 
-enum {
+enum
+{
     ID_DIALOG_CURRENCY = wxID_HIGHEST + 1,
     ID_DIALOG_CURRENCY_BUTTON_ADD,
     ID_DIALOG_CURRENCY_BUTTON_SELECT,
@@ -48,7 +49,7 @@ enum {
     ID_DIALOG_CURRENCY_TEXT_SYMBOL,
 };
 
-class TCurrencyEntry; 
+class TCurrencyEntry;
 
 class mmCurrencyDialog : public wxDialog
 {
@@ -59,25 +60,25 @@ public:
     mmCurrencyDialog();
     ~mmCurrencyDialog();
     mmCurrencyDialog(mmCoreDB* core,
-        int currencyID,
-        wxWindow* parent,
-        wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
-        long style = SYMBOL_CURRENCYDIALOG_STYLE );
+                     int currencyID,
+                     wxWindow* parent,
+                     wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
+                     const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
+                     const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
+                     const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
+                     long style = SYMBOL_CURRENCYDIALOG_STYLE );
     mmCurrencyDialog(mmCoreDB* core, wxWindow* parent,
-        wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
-        long style = SYMBOL_CURRENCYDIALOG_STYLE );
+                     wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
+                     const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
+                     const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
+                     const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
+                     long style = SYMBOL_CURRENCYDIALOG_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
-        const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
-        long style = SYMBOL_CURRENCYDIALOG_STYLE );
+                 const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
+                 const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
+                 const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
+                 long style = SYMBOL_CURRENCYDIALOG_STYLE );
 
 private:
     void CreateControls();
@@ -87,7 +88,7 @@ private:
     void OnCurrencyNameSelected(wxCommandEvent& event);
     void updateControls();
     void fillControls();
-    std::map<wxString, mmCurrency> currency_map() const; 
+    std::map<wxString, mmCurrency> currency_map() const;
 
 private:
     mmCoreDB* core_;

@@ -32,17 +32,19 @@ class TLuaInterface
 public:
     struct Scriptable_HTMLBuilder
     {
-       mmHTMLBuilder* hb_; 
-       Scriptable_HTMLBuilder(lua_State *L): hb_(0)
-       {L;}
-       ~Scriptable_HTMLBuilder()
-       {};
+        mmHTMLBuilder* hb_;
+        Scriptable_HTMLBuilder(lua_State *L): hb_(0)
+        {
+            L;
+        }
+        ~Scriptable_HTMLBuilder()
+        {};
     };
 
 public:
     TLuaInterface(mmHTMLBuilder* hb);
     ~TLuaInterface();
-    
+
     bool RunLuaCode(const wxString& lua_code);
     bool RunLuaFile(const wxString& lua_filename);
 

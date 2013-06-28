@@ -25,7 +25,7 @@ class mmCustomReport : public mmPrintableBase
 {
 public:
     mmCustomReport(wxWindow* parent, mmCoreDB* core
-        , const wxString& reportTitle, const wxString& sScript, const wxString& sScriptType);
+                   , const wxString& reportTitle, const wxString& sScript, const wxString& sScriptType);
 
     wxString getHTMLText();
 
