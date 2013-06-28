@@ -87,9 +87,10 @@ private:
     void OnCurrencyNameSelected(wxCommandEvent& event);
     void updateControls();
     void fillControls();
+    std::map<wxString, mmCurrency> currency_map() const; 
 
+private:
     mmCoreDB* core_;
-    mmCurrency* mm_curr_;
 
     wxSortedArrayString currency_symbols_;
     wxSortedArrayString currency_names_;
@@ -110,6 +111,7 @@ private:
     wxTextCtrl* centTx_;
     wxTextCtrl* scaleTx_;
     wxTextCtrl* baseConv_;
+
 };
 
 #endif
