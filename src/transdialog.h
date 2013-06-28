@@ -145,7 +145,6 @@ private:
     wxString notesTip_;
     wxColour notesColour_;
 
-    wxArrayString freqnotes_;
     int oject_in_focus_;
 
     wxString resetPayeeString(/*bool normal = true*/);
