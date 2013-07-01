@@ -56,7 +56,6 @@ void mmHTMLBuilder::init()
     //Show user name if provided
     if (mmOptions::instance().userNameString_ != "")
     {
-        int cols = 1;
         startTable("100%");
         startTableRow();
         if (mmIniOptions::instance().enableCustomLogo_)
@@ -64,7 +63,6 @@ void mmHTMLBuilder::init()
             startTableCell();
             addImage(mmIniOptions::instance().logoName_);
             endTableCell();
-            cols++;
         }
         startTableCell();
         addHeader(2, mmOptions::instance().userNameString_);
