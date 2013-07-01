@@ -235,7 +235,6 @@ clean:
 	rm -f $(LIBPREFIX)lua$(LIBEXT)
 	rm -f $(LIBPREFIX)UnitTestPP$(LIBEXT)
 	rm -f mmex_tests$(EXEEXT)
-	rm -f ./share/mmex/res/currency_seed.csv
 
 distclean: clean
 	rm -f config.cache config.log config.status bk-deps bk-make-pch shared-ld-sh Makefile
@@ -266,8 +265,6 @@ mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPR
 	$(__mmex_tests___mac_setfilecmd)
 
 check: all
-	-mkdir -p ./share/mmex/res
-	cp $(srcdir)/../../resources/currency_seed.csv ./share/mmex/res
 	./mmex_tests
 
 wxsqlite_wxsqlite3.o: $(srcdir)/../../lib/wxsqlite/wxsqlite3.cpp

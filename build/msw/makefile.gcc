@@ -318,8 +318,6 @@ install: install_mmex
 	-mkdir $(PREFIX)\mmex
 	( cd ..\..\doc && copy /Y  *.txt $(PREFIX)\mmex )
 	-mkdir $(PREFIX)\mmex\res
-	( cd ..\..\resources && copy /Y  currency_seed.csv $(PREFIX)\mmex\res )
-	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  mmex.ico $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  kaching.wav $(PREFIX)\mmex\res )
@@ -332,7 +330,6 @@ install: install_mmex
 
 uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\*.txt -del *.txt
-	-if exist $(PREFIX)\mmex\res\currency_seed.csv -del currency_seed.csv
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html

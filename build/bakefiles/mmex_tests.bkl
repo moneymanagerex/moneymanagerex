@@ -80,20 +80,13 @@
             <if cond="FORMAT=='autoconf'">$(BUILDDIR)/share/mmex/res</if>
         </set>
 
-        <command>
-            -$(MKDIR) $(nativePaths(RES_DIR))
-            $(COPY) $(nativePaths(SRCDIR + '/resources/currency_seed.csv')) $(nativePaths(RES_DIR))
-        </command>
-
         <command cond="FORMAT!='autoconf'">
             $(nativePaths(BUILDDIR + '/mmex_tests' + EXEEXT))
         </command>
 
         <command cond="FORMAT=='autoconf'">
             ./mmex_tests
-	</command>
-
-        <clean-files>$(RES_DIR)/currency_seed.csv</clean-files>
+	    </command>
 
     </action>
 

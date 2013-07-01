@@ -400,7 +400,6 @@ clean:
 	-if exist mmex_tests.exe del mmex_tests.exe
 	-if exist mmex_tests.ilk del mmex_tests.ilk
 	-if exist mmex_tests.pdb del mmex_tests.pdb
-	-if exist ./res/currency_seed.csv del ./res/currency_seed.csv
 
 test_for_selected_wxbuild: 
 	@if not exist $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX)\wx\setup.h \
@@ -445,8 +444,6 @@ mmex_tests.exe: $(MMEX_TESTS_OBJECTS) wxsqlite.lib sqlite.lib lua.lib UnitTestPP
 	mt.exe -manifest ".\mmex_tests.exe.manifest" -outputresource:".\mmex_tests.exe";1
 
 check: all
-	-mkdir .\res
-	copy /Y ..\..\..\resources\currency_seed.csv .\res
 	.\mmex_tests.exe
 
 wxsqlite_wxsqlite3.obj: ..\..\..\lib\wxsqlite\wxsqlite3.cpp
