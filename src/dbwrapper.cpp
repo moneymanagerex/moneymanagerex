@@ -196,8 +196,8 @@ bool mmDBWrapper::initCurrencyV1Table(wxSQLite3Database* db)
 {
     bool result = true;
 
-    mmCurrency* mm_curr;
-    for (const auto& i : mm_curr->currency_map())
+    mmCurrency mm_curr;
+    for (const auto& i : mm_curr.currency_map())
     {
         if (wxString("USD EUR GBP RUB INR TWD UAH CHF XCD").Contains(i.second.currencySymbol_))
         {
@@ -1256,7 +1256,7 @@ bool mmDBWrapper::IsSelect(wxSQLite3Database* db, const wxString& sScript, int &
     return true;
 }
 
-int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, std::vector<wxString> data, const wxString& sql, long &lLastRowId)
+int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& data, const wxString& sql, long &lLastRowId)
 {
     int iError = 0;
     try

@@ -592,9 +592,8 @@ void completeBDInSeries(wxSQLite3Database* db, int bdID);
 
 /* Operations on the CURRENCY */
 void loadCurrencySettings(wxSQLite3Database* db, int currencyID);
-//double getCurrencyBaseConvRate(wxSQLite3Database* db, int accountID);
 bool deleteCurrency(wxSQLite3Database* db, int currencyID);
-int mmSQLiteExecuteUpdate(wxSQLite3Database* db, std::vector<wxString> data, const wxString& sql, long &lLastRowId);
+int mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& data, const wxString& sql, long &lLastRowId);
 
 wxString getLastDbPath(MMEX_IniSettings* iniSettings, const wxString &defaultVal = "");
 
