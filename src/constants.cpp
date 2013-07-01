@@ -105,3 +105,4 @@ wxString mmex::getProgramDescription()
                 << LUA_VERSION;
     return description;
 }
+
