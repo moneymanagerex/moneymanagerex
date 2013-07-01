@@ -1,10 +1,10 @@
 
 #include "qif_import.h"
-#include "constants.h"
-#include "util.h"
-#include "mmCurrencyFormatter.h"
-#include "fileviewerdialog.h"
-#include "paths.h"
+#include "../constants.h"
+#include "../util.h"
+#include "../mmCurrencyFormatter.h"
+#include "../fileviewerdialog.h"
+#include "../paths.h"
 
 enum qifAccountInfoType
 {

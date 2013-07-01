@@ -156,8 +156,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_optionsdialog.o \
 	mmex_tests_paths.o \
 	mmex_tests_payeedialog.o \
-	mmex_tests_qif_export.o \
-	mmex_tests_qif_import.o \
 	mmex_tests_recentfiles.o \
 	mmex_tests_relocatecategorydialog.o \
 	mmex_tests_relocatepayeedialog.o \
@@ -166,7 +164,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_stockdialog.o \
 	mmex_tests_stockspanel.o \
 	mmex_tests_transdialog.o \
-	mmex_tests_univcsvdialog.o \
 	mmex_tests_util.o \
 	mmex_tests_budget.o \
 	mmex_tests_budgetcategorysummary.o \
@@ -198,6 +195,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transaction.o \
 	mmex_tests_transactionbill.o \
 	mmex_tests_platfdep.o \
+	mmex_tests_qif_export.o \
+	mmex_tests_qif_import.o \
+	mmex_tests_univcsvdialog.o \
 	mmex_tests_dbwrapper_test.o \
 	mmex_tests_mmex_lua_test.o \
 	mmex_tests_mmex_tests.o \
@@ -576,12 +576,6 @@ mmex_tests_paths.o: $(srcdir)/../../src/paths.cpp
 mmex_tests_payeedialog.o: $(srcdir)/../../src/payeedialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/payeedialog.cpp
 
-mmex_tests_qif_export.o: $(srcdir)/../../src/qif_export.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/qif_export.cpp
-
-mmex_tests_qif_import.o: $(srcdir)/../../src/qif_import.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/qif_import.cpp
-
 mmex_tests_recentfiles.o: $(srcdir)/../../src/recentfiles.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/recentfiles.cpp
 
@@ -605,9 +599,6 @@ mmex_tests_stockspanel.o: $(srcdir)/../../src/stockspanel.cpp
 
 mmex_tests_transdialog.o: $(srcdir)/../../src/transdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/transdialog.cpp
-
-mmex_tests_univcsvdialog.o: $(srcdir)/../../src/univcsvdialog.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/univcsvdialog.cpp
 
 mmex_tests_util.o: $(srcdir)/../../src/util.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/util.cpp
@@ -701,6 +692,15 @@ mmex_tests_transactionbill.o: $(srcdir)/../../src/db/transactionbill.cpp
 
 mmex_tests_platfdep.o: $(srcdir)/../../src/unix/platfdep.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/unix/platfdep.cpp
+
+mmex_tests_qif_export.o: $(srcdir)/../../src/import_export/qif_export.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/qif_export.cpp
+
+mmex_tests_qif_import.o: $(srcdir)/../../src/import_export/qif_import.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/qif_import.cpp
+
+mmex_tests_univcsvdialog.o: $(srcdir)/../../src/import_export/univcsvdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/univcsvdialog.cpp
 
 mmex_tests_dbwrapper_test.o: $(srcdir)/../../src/tests/dbwrapper_test.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/dbwrapper_test.cpp

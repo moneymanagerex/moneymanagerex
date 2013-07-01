@@ -143,8 +143,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_optionsdialog.obj \
 	mmex_tests_paths.obj \
 	mmex_tests_payeedialog.obj \
-	mmex_tests_qif_export.obj \
-	mmex_tests_qif_import.obj \
 	mmex_tests_recentfiles.obj \
 	mmex_tests_relocatecategorydialog.obj \
 	mmex_tests_relocatepayeedialog.obj \
@@ -153,7 +151,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_stockdialog.obj \
 	mmex_tests_stockspanel.obj \
 	mmex_tests_transdialog.obj \
-	mmex_tests_univcsvdialog.obj \
 	mmex_tests_util.obj \
 	mmex_tests_budget.obj \
 	mmex_tests_budgetcategorysummary.obj \
@@ -185,6 +182,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transaction.obj \
 	mmex_tests_transactionbill.obj \
 	mmex_tests_platfdep.obj \
+	mmex_tests_qif_export.obj \
+	mmex_tests_qif_import.obj \
+	mmex_tests_univcsvdialog.obj \
 	mmex_tests_dbwrapper_test.obj \
 	mmex_tests_mmex_lua_test.obj \
 	mmex_tests_mmex_tests.obj \
@@ -752,12 +752,6 @@ mmex_tests_paths.obj: ..\..\..\src\paths.cpp
 mmex_tests_payeedialog.obj: ..\..\..\src\payeedialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\payeedialog.cpp
 
-mmex_tests_qif_export.obj: ..\..\..\src\qif_export.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\qif_export.cpp
-
-mmex_tests_qif_import.obj: ..\..\..\src\qif_import.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\qif_import.cpp
-
 mmex_tests_recentfiles.obj: ..\..\..\src\recentfiles.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\recentfiles.cpp
 
@@ -781,9 +775,6 @@ mmex_tests_stockspanel.obj: ..\..\..\src\stockspanel.cpp
 
 mmex_tests_transdialog.obj: ..\..\..\src\transdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\transdialog.cpp
-
-mmex_tests_univcsvdialog.obj: ..\..\..\src\univcsvdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\univcsvdialog.cpp
 
 mmex_tests_util.obj: ..\..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\util.cpp
@@ -877,6 +868,15 @@ mmex_tests_transactionbill.obj: ..\..\..\src\db\transactionbill.cpp
 
 mmex_tests_platfdep.obj: ..\..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\win\platfdep.cpp
+
+mmex_tests_qif_export.obj: ..\..\..\src\import_export\qif_export.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\qif_export.cpp
+
+mmex_tests_qif_import.obj: ..\..\..\src\import_export\qif_import.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\qif_import.cpp
+
+mmex_tests_univcsvdialog.obj: ..\..\..\src\import_export\univcsvdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\univcsvdialog.cpp
 
 mmex_tests_dbwrapper_test.obj: ..\..\..\src\tests\dbwrapper_test.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\dbwrapper_test.cpp

@@ -1,9 +1,9 @@
 /*******************************************************
  ********************************************************/
-#include "constants.h"
+#include "../constants.h"
 #include "qif_export.h"
-#include "util.h"
-#include "paths.h"
+#include "../util.h"
+#include "../paths.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmQIFExportDialog, wxDialog )
 

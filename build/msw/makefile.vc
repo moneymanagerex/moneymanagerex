@@ -143,8 +143,6 @@ MMEX_OBJECTS =  \
 	mmex_optionsdialog.obj \
 	mmex_paths.obj \
 	mmex_payeedialog.obj \
-	mmex_qif_export.obj \
-	mmex_qif_import.obj \
 	mmex_recentfiles.obj \
 	mmex_relocatecategorydialog.obj \
 	mmex_relocatepayeedialog.obj \
@@ -153,7 +151,6 @@ MMEX_OBJECTS =  \
 	mmex_stockdialog.obj \
 	mmex_stockspanel.obj \
 	mmex_transdialog.obj \
-	mmex_univcsvdialog.obj \
 	mmex_util.obj \
 	mmex_budget.obj \
 	mmex_budgetcategorysummary.obj \
@@ -184,7 +181,10 @@ MMEX_OBJECTS =  \
 	mmex_subcategory.obj \
 	mmex_transaction.obj \
 	mmex_transactionbill.obj \
-	mmex_platfdep.obj
+	mmex_platfdep.obj \
+	mmex_qif_export.obj \
+	mmex_qif_import.obj \
+	mmex_univcsvdialog.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
 
@@ -781,12 +781,6 @@ mmex_paths.obj: ..\..\src\paths.cpp
 mmex_payeedialog.obj: ..\..\src\payeedialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\payeedialog.cpp
 
-mmex_qif_export.obj: ..\..\src\qif_export.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\qif_export.cpp
-
-mmex_qif_import.obj: ..\..\src\qif_import.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\qif_import.cpp
-
 mmex_recentfiles.obj: ..\..\src\recentfiles.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\recentfiles.cpp
 
@@ -810,9 +804,6 @@ mmex_stockspanel.obj: ..\..\src\stockspanel.cpp
 
 mmex_transdialog.obj: ..\..\src\transdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\transdialog.cpp
-
-mmex_univcsvdialog.obj: ..\..\src\univcsvdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\univcsvdialog.cpp
 
 mmex_util.obj: ..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\util.cpp
@@ -906,6 +897,15 @@ mmex_transactionbill.obj: ..\..\src\db\transactionbill.cpp
 
 mmex_platfdep.obj: ..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\win\platfdep.cpp
+
+mmex_qif_export.obj: ..\..\src\import_export\qif_export.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\qif_export.cpp
+
+mmex_qif_import.obj: ..\..\src\import_export\qif_import.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\qif_import.cpp
+
+mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\univcsvdialog.cpp
 
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
 	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\sqlite /i ..\..\lib\wxsqlite /i ..\..\lib\lua\src /i ..\..\lib /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc

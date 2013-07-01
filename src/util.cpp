@@ -20,7 +20,7 @@
 
 #include "util.h"
 #include "mmex.h"
-#include "univcsvdialog.h"
+#include "import_export/univcsvdialog.h"
 #include "paths.h"
 #include "constants.h"
 #include "singleton.h"

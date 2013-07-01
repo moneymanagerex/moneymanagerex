@@ -4,7 +4,7 @@
 #define SYMBOL_QIFIMPORT_SIZE wxSize(500, 300)
 #define SYMBOL_QIFIMPORT_POSITION wxDefaultPosition
 
-#include "mmcoredb.h"
+#include "../mmcoredb.h"
 
 class wxDatePickerCtrl;
 

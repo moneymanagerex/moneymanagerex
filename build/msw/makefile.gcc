@@ -142,8 +142,6 @@ MMEX_OBJECTS =  \
 	mmex_optionsdialog.o \
 	mmex_paths.o \
 	mmex_payeedialog.o \
-	mmex_qif_export.o \
-	mmex_qif_import.o \
 	mmex_recentfiles.o \
 	mmex_relocatecategorydialog.o \
 	mmex_relocatepayeedialog.o \
@@ -152,7 +150,6 @@ MMEX_OBJECTS =  \
 	mmex_stockdialog.o \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
-	mmex_univcsvdialog.o \
 	mmex_util.o \
 	mmex_budget.o \
 	mmex_budgetcategorysummary.o \
@@ -184,6 +181,9 @@ MMEX_OBJECTS =  \
 	mmex_transaction.o \
 	mmex_transactionbill.o \
 	mmex_platfdep.o \
+	mmex_qif_export.o \
+	mmex_qif_import.o \
+	mmex_univcsvdialog.o \
 	mmex_resources_mmex_rc.o
 
 ### Conditionally set variables: ###
@@ -648,12 +648,6 @@ mmex_paths.o: ../../src/paths.cpp
 mmex_payeedialog.o: ../../src/payeedialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_qif_export.o: ../../src/qif_export.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_qif_import.o: ../../src/qif_import.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_recentfiles.o: ../../src/recentfiles.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -676,9 +670,6 @@ mmex_stockspanel.o: ../../src/stockspanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_transdialog.o: ../../src/transdialog.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_univcsvdialog.o: ../../src/univcsvdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_util.o: ../../src/util.cpp
@@ -772,6 +763,15 @@ mmex_transactionbill.o: ../../src/db/transactionbill.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_platfdep.o: ../../src/win/platfdep.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_qif_export.o: ../../src/import_export/qif_export.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_qif_import.o: ../../src/import_export/qif_import.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_univcsvdialog.o: ../../src/import_export/univcsvdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc
