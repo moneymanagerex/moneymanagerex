@@ -92,7 +92,7 @@ void mmCurrencyDialog::fillControls()
 
     wxSortedArrayString currency_names;
     wxSortedArrayString currency_symbols;
-    for(const auto& i : mm_curr_->currency_map())
+    for(const auto& i : mm_curr_.currency_map())
     {
         currency_symbols.Add(i.first);
         currency_names.Add(i.second.currencyName_);
@@ -299,7 +299,7 @@ void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 {
     if (currencyID_ > -1) return;
 
-    for (const auto& i : mm_curr_->currency_map())
+    for (const auto& i : mm_curr_.currency_map())
     {
         if (i.second.currencyName_ == currencyNameCombo_->GetValue())
         {
