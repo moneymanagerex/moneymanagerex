@@ -20,6 +20,7 @@
 #include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include "mmcoredb.h"
+#include <algorithm>
 
 void mmSplitTransactionEntries::addSplit(mmSplitTransactionEntry* split)
 {
@@ -652,18 +653,49 @@ void mmBankTransactionList::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
     , mmDateRange* date_range, bool ignoreFuture) const
 {
-    //TODO: now it fake function.
-    categoryStats.clear();
-    int i = 0;
-    for (const auto& category: core_->categoryList_.entries_)
-    {
-        if (i> 7) break;
-        i++;
+    //Get base currency rates for all accounts
+    std::map<int, double> acc_conv_rates;
+    core_->accountList_.getAccountRates(acc_conv_rates);
+    //Temporary map
+    std::map<wxString, double> stat;
 
-        std::pair<wxString, double> pair;
-        pair.first = core_->categoryList_.GetFullCategoryString(category->categID_, -1);
-        pair.second = (double)i;
-        categoryStats.push_back(pair);
+    for (const auto &trx : transactions_)
+    {
+        if (trx->status_ == "V") continue; // skip
+        if (trx->transType_ == TRANS_TYPE_TRANSFER_STR) continue; // skip
+        if (trx->date_ < date_range->start_date()) continue;
+        if (trx->date_.GetDateOnly() > date_range->end_date()) continue;
+
+        const wxString categ_name = core_->categoryList_.GetFullCategoryString(trx->categID_, trx->subcategID_);
+        stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
+    }
+
+    categoryStats.clear();
+    for (const auto& i : stat)
+    {
+        if (i.second < 0)
+        {
+            std::pair <wxString, double> stat_pair;
+            stat_pair.first = i.first;
+            stat_pair.second = i.second;
+            categoryStats.push_back(stat_pair);
+        }
+    }
+
+    std::stable_sort(categoryStats.begin(), categoryStats.end()
+        , [] (const std::pair<wxString, double> x, const std::pair<wxString, double> y)
+        { return x.second < y.second; }
+    );
+
+    int counter = 0;
+    std::vector<std::pair<wxString, double> >::iterator iter;
+    for (iter = categoryStats.begin(); iter != categoryStats.end(); )
+    {
+        counter++;
+        if (counter > 7)
+            iter = categoryStats.erase(iter);
+        else
+            ++iter;
     }
 }
 
@@ -675,15 +707,7 @@ void mmBankTransactionList::getCategoryStats(
     //Initialization
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
-    double convRate = 1;
-    for (const auto& account: core_->accountList_.accounts_)
-    {
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-        double rate = pCurrencyPtr->baseConv_;
-        acc_conv_rates[account->id_] = rate;
-    }
+    core_->accountList_.getAccountRates(acc_conv_rates);
     //Set std::map with zerros
     double value = 0;
     for (const auto& category: core_->categoryList_.entries_)
@@ -723,7 +747,7 @@ void mmBankTransactionList::getCategoryStats(
         }
 
         // We got this far, get the currency conversion rate for this account
-        convRate = acc_conv_rates[pBankTransaction->accountID_];
+        double convRate = acc_conv_rates[pBankTransaction->accountID_];
 
         wxDateTime d = pBankTransaction->date_;
         int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;

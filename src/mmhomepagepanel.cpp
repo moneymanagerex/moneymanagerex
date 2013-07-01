@@ -654,11 +654,12 @@ wxString mmHomePagePanel::displayTopTransactions()
     hb.addTableCell(_("Summary"), true, false, true);
     hb.endTableRow();
 
-    //Get statistic
+    //Get statistic for las 30 days
+    mmDateRange* date_range = new mmLast30Days;
     std::vector<std::pair<wxString, double> > topCategoryStats;
     core_->bTransactionList_.getTopCategoryStats(
         topCategoryStats
-        , date_range_
+        , date_range
         , mmIniOptions::instance().ignoreFutureTransactions_
     );
 

@@ -98,6 +98,7 @@ public:
 
     /// Loads database Accounts list into memory
     void LoadAccounts(const mmCurrencyList& currencyList);
+    void getAccountRates(std::map<int, double> &acc_conv_rates);
 };
 
 #endif

@@ -420,4 +420,16 @@ void mmAccountList::LoadAccounts(const mmCurrencyList& currencyList)
 
     q1.Finalize();
 }
+
+void mmAccountList::getAccountRates(std::map<int, double> &acc_conv_rates)
+{
+    double convRate = 1;
+    for (const auto& account: core_->accountList_.accounts_)
+    {
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+        wxASSERT(pCurrencyPtr);
+        double rate = pCurrencyPtr->baseConv_;
+        acc_conv_rates[account->id_] = rate;
+    }
+}
 //----------------------------------------------------------------------------
