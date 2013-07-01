@@ -276,3 +276,26 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     this->addLineBreak();
     this->addLineBreak();
 }
+
+wxString mmHTMLBuilder::getHTMLinTableWraper(bool indent)
+{
+    wxString html = this->getHTMLText();
+    html_.clear();
+    if (indent)
+    {
+        startTable("100%", "", "0");
+        startTableRow();
+        addTableCell("");
+        endTableRow();
+        endTable();
+    }
+    startTable("100%", "", "1");
+    startTableRow();
+    startTableCell();
+    addText(html);
+    endTableCell();
+    endTableRow();
+    endTable();
+
+    return this->getHTMLText();
+}

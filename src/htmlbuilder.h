@@ -69,7 +69,6 @@ public:
     mmHTMLBuilder();
     ~mmHTMLBuilder() {}
 
-public:
     void DisplayDateHeading(const wxDateTime& startYear, const wxDateTime& endYear, bool withDateRange = true);
 
     /** Starts a new HMTL report */
@@ -217,10 +216,6 @@ public:
     {
         return font_size_;
     }
-    virtual const wxString getHTMLText() const
-    {
-        return html_;
-    }
     /** Centers the content from this point on */
     virtual void startCenter()
     {
@@ -230,6 +225,11 @@ public:
     {
         html_+= tags::CENTER_END;
     }
+    virtual const wxString getHTMLText() const
+    {
+        return html_;
+    }
+    wxString getHTMLinTableWraper(bool indent = false);
 
 private:
     wxString html_;
