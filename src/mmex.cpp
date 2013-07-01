@@ -893,9 +893,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     }
 
 #else
-    bool autoExecuteManual = false; // Used when decoding: REPEATS
-    bool autoExecuteSilent = false;
-    bool requireExecution  = false;
     bool continueExecution = false;
 
     m_core->currencyList_.LoadBaseCurrencySettings();
@@ -903,6 +900,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     wxSQLite3ResultSet q1 = m_db.get()->ExecuteQuery(SELECT_ALL_FROM_BILLSDEPOSITS_V1);
     while (q1.NextRow())
     {
+        bool autoExecuteManual = false; // Used when decoding: REPEATS
+        bool autoExecuteSilent = false;
+        bool requireExecution  = false;
+
         mmBDTransactionHolder th;
         th.id_             = q1.GetInt("BDID");
         th.nextOccurDate_  = q1.GetDate("NEXTOCCURRENCEDATE");
@@ -926,8 +927,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         int repeats        = q1.GetInt("REPEATS");
         int numRepeats     = q1.GetInt("NUMOCCURRENCES");
 
-        autoExecuteManual = false;
-        autoExecuteSilent = false;
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
         {
             autoExecuteManual = true;
@@ -3259,7 +3258,6 @@ bool mmGUIFrame::IsUpdateAvailable(const wxString& page)
     currentV = currentV.SubString(0, currentV.Find("DEV")-1).Trim();
 
     wxStringTokenizer tkz1(currentV, '.', wxTOKEN_RET_EMPTY_ALL);
-    numTokens = (int)tkz1.CountTokens();
 
     wxString majC = tkz1.GetNextToken();
     wxString minC = tkz1.GetNextToken();
@@ -3321,7 +3319,6 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     page = page.SubString(page.find(wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3)), 53);
     page.Replace("-", ":");
     wxStringTokenizer mySysToken(page, ":");
-    page = mySysToken.GetNextToken();                       // the system
     page = mySysToken.GetNextToken().Trim(false).Trim();    // the version
 
     // set up display information.

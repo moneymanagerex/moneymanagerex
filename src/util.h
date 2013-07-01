@@ -64,7 +64,8 @@ public:
         , report_(0)
     {}
     mmTreeItemData(const wxString& string, mmPrintableBase* report = 0)
-        : isString_(true)
+        : id_(0)
+        , isString_(true)
         , isBudgetingNode_(false)
         , stringData_(string)
         , report_(report)

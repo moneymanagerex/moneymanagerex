@@ -784,7 +784,7 @@ wxDateTime mmBankTransactionList::getLastDate(int accountID) const
 }
 
 int mmBankTransactionList::getLastUsedCategoryID(int accountID
-    , int payeeID, const wxString sType, int& subcategID) const
+    , int payeeID, const wxString& sType, int& subcategID) const
 {
     int categ_id = -1;
     subcategID = -1;
@@ -1046,7 +1046,7 @@ void mmBankTransactionList::deleteTransactions(int accountID)
     }
 }
 
-wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const wxDateTime transaction_date) const
+wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const wxDateTime& transaction_date) const
 {
     double trx_number, today_number = 1, max_number = 1;
     wxArrayString number_strings;

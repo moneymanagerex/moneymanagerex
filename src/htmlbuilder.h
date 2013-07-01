@@ -193,15 +193,15 @@ public:
         html_+= tags::TABLE_CELL_END;
     }
 
-    virtual void bold_italic(const wxString value)
+    virtual void bold_italic(const wxString& value)
     {
         html_+= wxString::Format(tags::BI, value);
     }
-    virtual void bold(const wxString value)
+    virtual void bold(const wxString& value)
     {
         html_+= wxString::Format(tags::BOLD, value);
     }
-    virtual void italic(const wxString value)
+    virtual void italic(const wxString& value)
     {
         html_+= wxString::Format(tags::ITALIC, value);
     }
