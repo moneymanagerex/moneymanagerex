@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "summary.h"
+#include "../mmex.h"
 #include "../constants.h"
 #include "../htmlbuilder.h"
 #include "../db/assets.h"

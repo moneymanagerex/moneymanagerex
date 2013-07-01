@@ -20,7 +20,8 @@
 #define _MM_EX_REPORTSUMMARY_H_
 
 #include "../reportbase.h"
-#include "../mmex.h"
+
+class mmGUIFrame;
 
 class mmReportSummary : public mmPrintableBase
 {

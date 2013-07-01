@@ -63,7 +63,6 @@ public:
     }
 
 private:
-
     wxLocale m_locale; // locale we'll be using
 
     bool OnInit();
@@ -90,10 +89,10 @@ private:
 };
 //----------------------------------------------------------------------------
 
-class mmNewDatabaseWizardPage1 : public wxWizardPageSimple
+class mmNewDatabaseWizardPage : public wxWizardPageSimple
 {
 public:
-    mmNewDatabaseWizardPage1(mmNewDatabaseWizard* parent);
+    mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent);
 
     void OnCurrency(wxCommandEvent& /*event*/);
     virtual bool TransferDataFromWindow();
@@ -269,7 +268,7 @@ private:
 
     void cleanup();
     wxSizer* cleanupHomePanel(bool new_sizer = true);
-    bool openFile(const wxString& fileName, bool openingNew, const wxString &password = wxGetEmptyString());
+    bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     void createToolBar();

@@ -2,8 +2,8 @@
 #define _MM_EX_REPORTCASHFLOW_H_
 
 #include "../reportbase.h"
-#include "../mmex.h"
 
+class mmGUIFrame;
 class wxArrayString;
 class TTransactionBillEntry;
 

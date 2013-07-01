@@ -245,7 +245,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame, mmCoreDB* core)
                << _("The database can later be encrypted if required, by\nusing the option: 'Save database as' and changing the\nfile type before saving.");
     new wxStaticText(page1, wxID_ANY,displayMsg);
 
-    mmNewDatabaseWizardPage1* page2 = new mmNewDatabaseWizardPage1(this);
+    mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
 
     // set the page order using a convenience function - could also use
     // SetNext/Prev directly as below
@@ -276,12 +276,12 @@ void mmNewDatabaseWizard::RunIt(bool modal)
 }
 //----------------------------------------------------------------------------
 
-BEGIN_EVENT_TABLE(mmNewDatabaseWizardPage1, wxWizardPageSimple)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmNewDatabaseWizardPage1::OnCurrency)
+BEGIN_EVENT_TABLE(mmNewDatabaseWizardPage, wxWizardPageSimple)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmNewDatabaseWizardPage::OnCurrency)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmNewDatabaseWizardPage1::mmNewDatabaseWizardPage1(mmNewDatabaseWizard* parent) :
+mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
     wxWizardPageSimple(parent),
     parent_(parent),
     currencyID_(-1)
@@ -329,7 +329,7 @@ mmNewDatabaseWizardPage1::mmNewDatabaseWizardPage1(mmNewDatabaseWizard* parent) 
 }
 //----------------------------------------------------------------------------
 
-bool mmNewDatabaseWizardPage1::TransferDataFromWindow()
+bool mmNewDatabaseWizardPage::TransferDataFromWindow()
 {
     if ( currencyID_ == -1)
     {
@@ -344,7 +344,7 @@ bool mmNewDatabaseWizardPage1::TransferDataFromWindow()
 }
 //----------------------------------------------------------------------------
 
-void mmNewDatabaseWizardPage1::OnCurrency(wxCommandEvent& /*event*/)
+void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 {
     currencyID_ = parent_->m_core->currencyList_.GetBaseCurrencySettings();
 

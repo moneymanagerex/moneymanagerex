@@ -1,5 +1,6 @@
 
 #include "cashflow.h"
+#include "../mmex.h"
 #include "../constants.h"
 #include "../htmlbuilder.h"
 #include "mmRepeat.h"
