@@ -166,9 +166,14 @@ public:
                                 , bool group_by_account = false
                                         , bool group_by_month = false) const;
 
-    void getCategoryStats(std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-                          , mmDateRange* date_range, bool ignoreFuture
-                          , bool group_by_month = true, bool with_date = true) const;
+    void getTopCategoryStats(
+        std::vector<std::pair<wxString, double> > &categoryStats
+        , mmDateRange* date_range, bool ignoreFuture) const;
+
+    void getCategoryStats(
+        std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+        , mmDateRange* date_range, bool ignoreFuture
+        , bool group_by_month = true, bool with_date = true) const;
 
     // The setting asDeposit is only valid if evaluateTransfer is true
     double getAmountForCategory(int categID, int subcategID, bool ignoreDate, const wxDateTime &dtBegin, const wxDateTime &dtEnd, bool evaluateTransfer = false, bool asDeposit = false, bool ignoreFuture = false) const;

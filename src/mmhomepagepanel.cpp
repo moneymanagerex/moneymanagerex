@@ -611,7 +611,7 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
         th.amt_            = q1.GetDouble("TRANSAMOUNT");
         th.toAmt_          = q1.GetDouble("TOTRANSAMOUNT");
 
-		th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
+        th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
         //for Withdrawal amount should be negative
         if (th.transType_== TRANS_TYPE_WITHDRAWAL_STR)
         {
@@ -619,7 +619,7 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
             th.amt_ = -th.amt_;
         }
 
-		th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
+        th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
         th.payeeStr_ = core_->payeeList_.GetPayeeName(th.payeeID_);
 
@@ -697,70 +697,37 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
 wxString mmHomePagePanel::displayTopTransactions()
 {
     mmHTMLBuilder hb;
-    CurrencyFormatter::instance().loadDefaultSettings();
     core_->currencyList_.LoadBaseCurrencySettings();
-
-    static const char sql3[] =
-        "select NUMBER, "
-        "CATEG|| (Case SUBCATEG when '' then '' else ':'||  SUBCATEG end ) as SUBCATEGORY "
-        ", AMOUNT "
-        "from ( "
-        "select coalesce(CAT.CATEGNAME, SCAT.CATEGNAME) as CATEG, "
-        "CANS.ACCOUNTID as ACCOUNTID, "
-        "coalesce(SUBCAT.SUBCATEGNAME, SSCAT.SUBCATEGNAME,'') as SUBCATEG, "
-        "count(*) as NUMBER, "
-        "total((ROUND((case CANS.TRANSCODE when 'Withdrawal' then -1 else 1 end) "
-        "* (case CANS.CATEGID when -1 then ST.SPLITTRANSAMOUNT else CANS.TRANSAMOUNT end),2) "
-        "* CF.BASECONVRATE "
-        ")) as AMOUNT "
-        "from  CHECKINGACCOUNT_V1 CANS "
-        "left join CATEGORY_V1 CAT on CAT.CATEGID = CANS.CATEGID "
-        "left join SUBCATEGORY_V1 SUBCAT on SUBCAT.SUBCATEGID = CANS.SUBCATEGID and SUBCAT.CATEGID = CANS.CATEGID "
-        "left join ACCOUNTLIST_V1 ACC on ACC.ACCOUNTID = CANS.ACCOUNTID "
-        "left join SPLITTRANSACTIONS_V1 ST on CANS.TRANSID = ST.TRANSID "
-        "left join CATEGORY_V1 SCAT on SCAT.CATEGID = ST.CATEGID and CANS.TRANSID=ST.TRANSID "
-        "left join SUBCATEGORY_V1 SSCAT on SSCAT.SUBCATEGID = ST.SUBCATEGID and SSCAT.CATEGID = ST.CATEGID and CANS.TRANSID=ST.TRANSID "
-        "left join CURRENCYFORMATS_V1 CF on CF.CURRENCYID = ACC.CURRENCYID "
-        "where CANS.TRANSCODE <> 'Transfer' "
-        "and CANS.TRANSDATE > date('now','localtime', '-1 month') and CANS.TRANSDATE <= date('now','localtime') "
-        "and CANS.STATUS <> 'V' "
-        "group by CATEG, SUBCATEG "
-        "order by ABS (AMOUNT) DESC, CATEG, SUBCATEG "
-        ") where AMOUNT < 0 "
-        "limit 7 ";
-
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql3);
-
-    std::vector<CategInfo> categList;
-
-    wxString headerMsg = wxString() << _("Top Withdrawals: ") << _("Last 30 Days");
 
     hb.startTable("100%", "", "1");
     hb.startTableRow();
     hb.startTableCell();
+
+    wxString headerMsg = wxString::Format(_("Top Withdrawals: %s"), _("Last 30 Days"));
+
     hb.startTable("100%");
-    hb.addTableHeaderRow(headerMsg, 3);
+    hb.addTableHeaderRow(headerMsg, 2);
     hb.startTableRow();
     hb.addTableCell(_("Category"), false, false, true);
-    hb.addTableCell(_("Quantity"), true, false, true);
+    //hb.addTableCell(_("QTY"), true, false, true);
     hb.addTableCell(_("Summary"), true, false, true);
     hb.endTableRow();
 
-    while(q1.NextRow())
-    {
-        double category_total = q1.GetDouble("AMOUNT");
-        wxString category_total_str = wxEmptyString;
-        core_->currencyList_.LoadBaseCurrencySettings();
-		category_total_str = CurrencyFormatter::float2Money(category_total);
+    //Get statistic
+    std::vector<std::pair<wxString, double> > topCategoryStats;
+    core_->bTransactionList_.getTopCategoryStats(
+        topCategoryStats
+        , date_range_
+        , mmIniOptions::instance().ignoreFutureTransactions_
+    );
 
+    for (const auto& i : topCategoryStats)
+    {
         hb.startTableRow();
-        hb.addTableCell(q1.GetString("SUBCATEGORY"), false, true);
-        hb.addTableCell(q1.GetString("NUMBER"), true, true);
-        hb.addTableCell(category_total_str, true);
+        hb.addTableCell(i.first, false, true);
+        hb.addMoneyCell(i.second);
         hb.endTableRow();
     }
-    q1.Finalize();
-    hb.endTable();
 
     hb.endTableCell();
     hb.endTableRow();
@@ -862,7 +829,7 @@ wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     //  Display the grand total from all sections
     wxString tBalanceStr;
     core_->currencyList_.LoadBaseCurrencySettings();
-	tBalanceStr = CurrencyFormatter::float2Money(tBalance);
+    tBalanceStr = CurrencyFormatter::float2Money(tBalance);
 
     hb.startTable("100%", "", "1");
     hb.startTableRow();

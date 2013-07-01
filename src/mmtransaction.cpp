@@ -201,7 +201,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         categID_ = -1;
         subcategID_ = -1;
     }
-    else 
+    else
     {
         fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
     }
@@ -515,7 +515,7 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID, double& accou
     reconciled_balance = pAccount->initialBalance_;
     double balance = pAccount->initialBalance_;
     //TODO: get parameter mmIniOptions::instance().ignoreFutureTransactions_;
-    bool calculate_future = true; 
+    bool calculate_future = true;
     accountTransactions_.clear();
 
     for (const auto& pBankTransaction: transactions_)
@@ -648,8 +648,27 @@ void mmBankTransactionList::getExpensesIncomeStats
     }
 }
 
-void mmBankTransactionList::getCategoryStats
-    (std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+void mmBankTransactionList::getTopCategoryStats(
+    std::vector<std::pair<wxString, double> > &categoryStats
+    , mmDateRange* date_range, bool ignoreFuture) const
+{
+    //TODO: now it fake function.
+    categoryStats.clear();
+    int i = 0;
+    for (const auto& category: core_->categoryList_.entries_)
+    {
+        if (i> 7) break;
+        i++;
+
+        std::pair<wxString, double> pair;
+        pair.first = core_->categoryList_.GetFullCategoryString(category->categID_, -1);
+        pair.second = (double)i;
+        categoryStats.push_back(pair);
+    }
+}
+
+void mmBankTransactionList::getCategoryStats(
+    std::map<int, std::map<int, std::map<int, double> > > &categoryStats
     , mmDateRange* date_range, bool ignoreFuture
     , bool group_by_month, bool with_date) const
 {
