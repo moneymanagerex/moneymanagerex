@@ -92,6 +92,7 @@ private:
 
 private:
     mmCoreDB* core_;
+    mmCurrency* mm_curr_;
 
     int currencyID_;
     double convRate_;

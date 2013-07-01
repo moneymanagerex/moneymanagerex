@@ -57,6 +57,7 @@ public:
     wxChar decChar_;
     wxChar grpChar_;
     wxString currencySymbol_;
+    std::map<wxString, mmCurrency> currency_map();
 };
 
 class mmCurrencyList
