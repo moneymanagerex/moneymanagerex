@@ -38,7 +38,6 @@ public:
     /* Public Data */
     int categID_;
     wxString categName_;
-    mmCategory* parent_;
     std::vector<mmCategory* > children_;
 };
 
