@@ -269,8 +269,8 @@ bool mmBankTransaction::containsCategory(int categID, int subcategID, bool ignor
     {
         for (const auto & pSplitEntry: splitEntries_->entries_)
         {
-            if ((pSplitEntry->categID_ == categID) &&
-                ((ignoreSubCateg) || pSplitEntry->subCategID_ == subcategID))
+            if (pSplitEntry->categID_ == categID &&
+                (ignoreSubCateg || pSplitEntry->subCategID_ == subcategID))
             {
                 found = true;
                 break;
