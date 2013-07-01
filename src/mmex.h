@@ -64,14 +64,6 @@ public:
 
 private:
 
-    struct SQLiteInit
-    {
-        SQLiteInit();
-        ~SQLiteInit();
-    };
-
-    SQLiteInit m_sqlite_init;
-
     wxLocale m_locale; // locale we'll be using
 
     bool OnInit();

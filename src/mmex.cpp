@@ -116,18 +116,6 @@ mmGUIApp::mmGUIApp()
 }
 //----------------------------------------------------------------------------
 
-mmGUIApp::SQLiteInit::SQLiteInit()
-{
-    wxSQLite3Database::InitializeSQLite();
-}
-//----------------------------------------------------------------------------
-
-mmGUIApp::SQLiteInit::~SQLiteInit()
-{
-    wxSQLite3Database::ShutdownSQLite();
-}
-//----------------------------------------------------------------------------
-
 /*
     This method allows catching the exceptions thrown by any event handler.
 */
