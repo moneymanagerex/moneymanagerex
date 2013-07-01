@@ -367,10 +367,10 @@ bool mmCurrencyList::OnlineUpdateCurRate(wxString& sError)
         {
             if (currency_data.find(currency_symbol) != currency_data.end())
             {
+                currency->baseConv_ = currency_data[currency_symbol].first;
                 if (base_symbol == currency_symbol) currency->baseConv_ = 1;
                 msg << wxString::Format(_("%s\t: %0.4f -> %0.4f\n"),
-                    currency_symbol, currency->baseConv_, currency_data[currency_symbol].first);
-                currency->baseConv_ = currency_data[currency_symbol].first;
+                    currency_symbol, currency->baseConv_, currency->baseConv_);
                 UpdateCurrency(currency);
             }
             else

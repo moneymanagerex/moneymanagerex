@@ -22,6 +22,7 @@
 #include "mmOption.h"
 #include "paths.h"
 #include "constants.h"
+#include "mmcurrency.h"
 //----------------------------------------------------------------------------
 #include <sqlite3.h>
 //----------------------------------------------------------------------------
@@ -194,55 +195,29 @@ int mmDBWrapper::createTable(wxSQLite3Database* db, const wxString &sTableName, 
 bool mmDBWrapper::initCurrencyV1Table(wxSQLite3Database* db)
 {
     bool result = true;
-    /* Load Default Currencies */
-    wxSortedArrayString currencies;
-    currencies.Add("US Dollar ;$;;.;,;dollar;cents;100;1;USD");
-    // currencies.Add("EURO;€;;.;,;euro;cent;100;1;EUR");
-    // Euro symbol € incorrectly displayed in windows. Correct when using \u20ac equivalent.
-    // MS-VC++ 2010: Ignore warning C4428: universal-character-name encountered in source
-    #pragma warning( push )
-    #pragma warning( disable : 4428 )
-    currencies.Add("EURO;\u20ac;;.;,;euro;cent;100;1;EUR");
-    #pragma warning( pop )
-    wxString fileName = mmex::getPathResource(mmex::CURRENCY_DB_SEED);
 
-    if (!fileName.empty())
+    mmCurrency* mm_curr;
+    for (const auto& i : mm_curr->currency_map())
     {
-        wxTextFile tFile(fileName);
-        if (tFile.Open())
+        if (wxString("USD EUR GBP RUB INR TWD UAH CHF XCD").Contains(i.second.currencySymbol_))
         {
-            wxString str;
-                for (str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
-                {
-                    currencies.Add(str);
-                }
+            std::vector<wxString> data;
+            data.push_back(i.second.currencyName_);
+            data.push_back(i.second.pfxSymbol_);
+            data.push_back(i.second.sfxSymbol_);
+            data.push_back(i.second.dec_);
+            data.push_back(i.second.grp_);
+            data.push_back(i.second.unit_);
+            data.push_back(i.second.cent_);
+            data.push_back(wxString() << i.second.scaleDl_);
+            data.push_back(wxString() << i.second.baseConv_);
+            data.push_back(i.second.currencySymbol_);
+    
+            long lLastRowId;
+            wxString sql = wxString::FromUTF8(INSERT_INTO_CURRENCYFORMATS_V1);
+            int err = mmSQLiteExecuteUpdate(db, data, sql, lLastRowId);
+            result = (err == 0);
         }
-        else
-        {
-            wxMessageBox(_("Unable to open file."), _("Currency Manager"), wxOK|wxICON_WARNING);
-        }
-    }
-
-    for (size_t i = 0; i < currencies.Count(); ++i)
-    {
-        wxStringTokenizer tk(currencies[i], ";");
-
-        std::vector<wxString> data;
-        data.push_back(tk.GetNextToken().Trim());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-        data.push_back(tk.GetNextToken());
-
-        long lLastRowId;
-        wxString sql = wxString::FromUTF8(INSERT_INTO_CURRENCYFORMATS_V1);
-        int err = mmSQLiteExecuteUpdate(db, data, sql, lLastRowId);
-        result = (err == 0);
     }
     return result;
 }
