@@ -5,10 +5,12 @@
 #include "../util.h"
 #include "../mmgraphpie.h"
 
+#include <algorithm>
+
 mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
-: mmPrintableBase(core)
-, title_(title)
-, date_range_(date_range)
+    : mmPrintableBase(core)
+    , title_(title)
+    , date_range_(date_range)
 {}
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
@@ -18,58 +20,89 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
 
 wxString mmReportPayeeExpenses::getHTMLText()
 {
+    core_->currencyList_.LoadBaseCurrencySettings();
     mmHTMLBuilder hb;
     hb.init();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     hb.startCenter();
+    hb.startTable("50%");
 
     // Add the graph
     mmGraphPie gg;
-    if (!core_->payeeList_.entries_.empty())
-    {
-        hb.addImage(gg.getOutputFileName());
-    }
-
-    hb.startTable("50%");
-    hb.startTableRow();
-    hb.addTableHeaderCell(_("Payee"));
-    hb.addTableHeaderCell(_("Amount"), true);
-    hb.endTableRow();
-
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     double total = 0.0, positiveTotal = 0.0, negativeTotal = 0.0;
     std::vector<ValuePair> valueList;
     bool ignore_date = !date_range_->is_with_date();
 
-    for (const auto& payee: core_->payeeList_.entries_)
+    for (int i=1; i>-2; i-=2)
     {
-        double amt = core_->bTransactionList_.getAmountForPayee(payee->id_
-            , ignore_date, date_range_->start_date()
-            , date_range_->end_date(), mmIniOptions::instance().ignoreFutureTransactions_);
-
-        if (amt != 0.0)
+        valueList.clear();
+        for (const auto& payee: core_->payeeList_.entries_)
         {
-            total += amt;
-            if (amt>0.0)
-                positiveTotal += amt;
-            else
-                negativeTotal += amt;
-            ValuePair vp;
-            vp.label = payee->name_;
-            vp.amount = amt;
-            valueList.push_back(vp);
+            double amt = core_->bTransactionList_.getAmountForPayee(payee->id_
+                , ignore_date, date_range_->start_date()
+                , date_range_->end_date(), mmIniOptions::instance().ignoreFutureTransactions_);
 
+            if (amt<0 && i==-1)
+            {
+                ValuePair vp;
+                vp.label = payee->name_;
+                vp.amount = amt;
+                valueList.push_back(vp);
+                negativeTotal += amt;
+            }
+            else if(amt>0 && i==1)
+            {
+                ValuePair vp;
+                vp.label = payee->name_;
+                vp.amount = amt;
+                valueList.push_back(vp);
+                positiveTotal += amt;
+            }
+            else
+                continue;
+
+            total += amt;
+        }
+        std::sort(valueList.begin(), valueList.end(),
+            [](const ValuePair& x, const ValuePair& y)
+                {
+                    if (x.amount < 0 && y.amount < 0)
+                        return x.amount < y.amount ;
+                    else
+                        return x.amount > y.amount;
+                }
+        );
+
+        if (i==-1)
+        {
+            gg.init(valueList);
+            gg.Generate(title_);
             hb.startTableRow();
-            hb.addTableCell(payee->name_, false, true);
-            hb.addMoneyCell(amt);
+            hb.startTableCell();
+            hb.addImage(gg.getOutputFileName());
+            hb.endTableCell();
             hb.endTableRow();
         }
+
+        hb.startTableRow();
+        hb.addTableHeaderCell(_("Payee"));
+        hb.addTableHeaderCell(_("Amount"), true);
+        hb.endTableRow();
+
+        for (const auto& payee : valueList)
+        {
+            hb.startTableRow();
+            hb.addTableCell(payee.label, false, true);
+            hb.addMoneyCell(payee.amount);
+            hb.endTableRow();
+        }
+
+        hb.addRowSeparator(2);
+        hb.startTableRow();
     }
 
-    hb.addRowSeparator(2);
-    hb.startTableRow();
     hb.addTableCell(_("Income:"), false, true, true);
     hb.addMoneyCell(positiveTotal);
     hb.endTableRow();
@@ -85,11 +118,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
     hb.endTable();
     hb.endCenter();
-
     hb.end();
-
-    gg.init(valueList);
-    gg.Generate(title_);
 
     return hb.getHTMLText();
 }
