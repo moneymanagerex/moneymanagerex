@@ -1,7 +1,6 @@
 //----------------------------------------------------------------------------
 #include "mmgraphtopcategories.h"
 #include "chart.h"
-#include "../mmex.h"
 //----------------------------------------------------------------------------
 
 mmGraphTopCategories::mmGraphTopCategories() : 

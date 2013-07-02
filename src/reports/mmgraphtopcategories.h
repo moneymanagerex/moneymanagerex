@@ -25,7 +25,13 @@
 #include <vector>
 //----------------------------------------------------------------------------
 class BarChart;
-struct CategInfo;
+struct CategInfo
+{
+    wxString categ;
+    wxString amountStr;
+    double   amount;
+};
+
 //----------------------------------------------------------------------------
 
 class mmGraphTopCategories : public mmGraphGenerator

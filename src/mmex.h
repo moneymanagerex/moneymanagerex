@@ -44,14 +44,6 @@ class CustomReportIndex;
 class RecentDatabaseFiles;
 //----------------------------------------------------------------------------
 
-struct CategInfo
-{
-    wxString categ;
-    wxString amountStr;
-    double   amount;
-};
-//----------------------------------------------------------------------------
-
 class mmGUIApp : public wxApp
 {
 public:
