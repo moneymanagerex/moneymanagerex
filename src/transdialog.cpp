@@ -679,24 +679,27 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnCategoryKey(wxKeyEvent& event)
 {
+    bool skip = false;
     if ( !event.HasModifiers() )
     {
         //TODO: Get national (non Latin) keys
-        categStrykes_ << event.GetUnicodeKey();
-        wxString test = wxString()<<event.GetUnicodeKey();
+        wxString key = wxString() << event.GetUnicodeKey();
+        categStrykes_ << key;
+        if (key <= " ") skip = true;
 
         if (!timer_->IsRunning ())
             timer_->Start(INTERVAL, true);
         core_->categoryList_.GetCategoryLikeString(categStrykes_, categID_, subcategID_);
 
-        wxLogDebug(categStrykes_ + " | " + core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-        wxLogDebug(test);
+        //wxLogDebug(key + " | " + categStrykes_ + " | " + core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
         bCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
+        categoryName_ = core_->categoryList_.GetCategoryName(categID_);
+        subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
     }
     else
-    {
-        event.Skip();
-    }
+        skip = true;
+
+    if (skip) event.Skip();
 }
 
 void mmTransDialog::ResetKeyStrikes(wxTimerEvent& /*event*/)
