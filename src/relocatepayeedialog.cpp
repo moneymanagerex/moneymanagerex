@@ -82,12 +82,14 @@ void relocatePayeeDialog::CreateControls()
         core_->payeeList_.FilterPayees("") /*, wxTE_PROCESS_ENTER*/);
     cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
+    cbSourcePayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, "",
         wxDefaultPosition, btnSize,
         core_->payeeList_.FilterPayees("") /*, wxTE_PROCESS_ENTER*/);
     cbDestPayee_->Connect(wxID_NEW, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
+    cbDestPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
 
     wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
@@ -153,38 +155,16 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
 void relocatePayeeDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
     wxWindow *w = FindFocus();
+    bool source_payee = (w && w->GetId() == wxID_NEW);
 
     wxComboBox *cbPayeeInFocus = cbSourcePayee_;
-    if (w && w->GetId() == wxID_NEW)
-	    cbPayeeInFocus = cbDestPayee_;
+    if (source_payee)
+        cbPayeeInFocus = cbDestPayee_;
 
     wxString value = cbPayeeInFocus->GetValue().Lower();
-
-    if (value == prev_value_) return;
-    //Line above to fix infinite loop for wx-2.9 GTK
-    //Line below seems does not working in wx-2.9 GTK
-    cbPayeeInFocus -> SetEvtHandlerEnabled(false);
-    prev_value_ = value;
-    cbPayeeInFocus -> Clear();
-    wxArrayString data;
-
-    data = core_->payeeList_.FilterPayees("");
-    for (size_t i = 0; i < data.Count(); ++i)
-    {
-        if (data[i].Lower().Matches(wxString(value).Append("*")))
-            cbPayeeInFocus ->Append(data[i]);
-    }
-
-#if wxCHECK_VERSION(2,9,0)
-        cbSourcePayee_->AutoComplete(data);
-#endif
-
-    if (cbPayeeInFocus->GetCount() == 1)
-        cbPayeeInFocus->SetSelection(0);
+    if (source_payee)
+        sourcePayeeID_ = core_->payeeList_.GetPayeeId(value);
     else
-        cbPayeeInFocus->SetValue(value);
-    cbPayeeInFocus->SetInsertionPointEnd();
-
-    cbPayeeInFocus -> SetEvtHandlerEnabled(true);
+        destPayeeID_ = core_->payeeList_.GetPayeeId(value);
     event.Skip();
 }

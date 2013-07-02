@@ -722,29 +722,7 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
-    wxString value = cbPayee_->GetValue().Lower();
-
-    if (value == prev_value_.Lower()) return;
-    //Line above to fix infinite loop for wx-2.9 GTK
-    //Line below seems does not working in wx-2.9 GTK
-    cbPayee_->SetEvtHandlerEnabled(false);
-
-    prev_value_ = value;
-    cbPayee_->Clear();
-    cbPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
-
-    for (const auto& i : core_->payeeList_.FilterPayees(""))
-    {
-        if (i.Lower().Matches(wxString(value).Append("*")))
-            cbPayee_ ->Append(i);
-    }
-
-    if (cbPayee_->GetCount() == 1)
-        cbPayee_->SetSelection(0);
-    else
-        cbPayee_->SetValue(value);
-
-    cbPayee_->SetInsertionPointEnd();
-    cbPayee_->SetEvtHandlerEnabled(true);
+    const wxString value = cbPayee_->GetValue().Lower();
+    payeeID_ = core_->payeeList_.GetPayeeId(value);
     event.Skip();
 }
