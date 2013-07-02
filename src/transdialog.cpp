@@ -234,7 +234,12 @@ void mmTransDialog::updateControlsForTransType()
 
 void mmTransDialog::SetTransferControls(bool transfer)
 {
-    cbPayee_ -> SetEvtHandlerEnabled(false);
+    textAmount_->UnsetToolTip();
+    toTextAmount_->UnsetToolTip();
+    cbPayee_->UnsetToolTip();
+    cbAccount_->UnsetToolTip();
+
+    cbPayee_->SetEvtHandlerEnabled(false);
     bPayee_->Enable(!transfer);
 
     cAdvanced_->SetValue(advancedToTransAmountSet_);
@@ -244,16 +249,15 @@ void mmTransDialog::SetTransferControls(bool transfer)
     cbPayee_->Clear();
     payee_name_.Clear();
     payeeID_ = -1;
-    wxArrayString data;
+    wxSortedArrayString data;
     int type_num = transaction_type_->GetSelection();
 
     newAccountID_ = accountID_;
     cbAccount_->Clear();
     data = core_->accountList_.getAccountsName();
-    for (size_t i = 0; i < data.Count(); ++i)
-    {
-        cbAccount_ ->Append(data[i]);
-    }
+    for (const auto &entry : data)
+        cbAccount_ ->Append(entry);
+
     cbAccount_->SetStringSelection(core_->accountList_.GetAccountName(accountID_));
     cbAccount_->AutoComplete(data);
 
@@ -269,33 +273,24 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         toTextAmount_->Enable(cAdvanced_->GetValue());
 
-        if (toID_ > 0) dataStr = (core_->accountList_.GetAccountName(toID_));
+        if (toID_ > 0) dataStr = core_->accountList_.GetAccountName(toID_);
         data = core_->accountList_.getAccountsName();
         payee_label_->SetLabel(_("To"));
-        cbPayee_->UnsetToolTip();
         cbPayee_->SetToolTip(_("Specify which account the transfer is going to"));
-        cbAccount_->UnsetToolTip();
         cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
         account_label_->SetLabel(_("From"));
     }
     else
     {
         textAmount_->SetToolTip(amountNormalTip_);
-        toTextAmount_->UnsetToolTip();
 
         if (type_num == DEF_WITHDRAWAL)
-        {
-            cbPayee_->UnsetToolTip();
             cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
-            payee_label_->SetLabel(_("Payee"));
-        }
         else
-        {
-            cbPayee_->UnsetToolTip();
             cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
-            payee_label_->SetLabel(_("From"));
-        }
-        cbAccount_->UnsetToolTip();
+
+        payee_label_->SetLabel((type_num == DEF_WITHDRAWAL) ? _("Payee") : _("From"));
+
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
 
@@ -309,10 +304,8 @@ void mmTransDialog::SetTransferControls(bool transfer)
         dataStr = payee_name_;
     }
 
-    for (size_t i = 0; i < data.Count(); ++i)
-    {
-        cbPayee_ ->Append(data[i]);
-    }
+    for (const auto & entry : data)
+        cbPayee_ ->Append(entry);
     cbPayee_->AutoComplete(data);
 
     if (!cbPayee_ -> SetStringSelection(dataStr))
@@ -611,7 +604,7 @@ void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
     wxDateTime transaction_date = dpc_->GetValue();
     wxArrayString number_strings = core_->bTransactionList_.getTransactionNumber(accountID_, transaction_date);
     int i = number_strings.GetCount();
-    int s =0;
+    int s = 0;
     if (number_strings.Index(current_number) != wxNOT_FOUND)
          s = number_strings.Index(current_number);
     i = (s+1)%i;
@@ -659,7 +652,7 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
             textAmount_->SetValue(amountStr);
         }
 
-         CurrencyFormatter::formatCurrencyToDouble(amountStr, transAmount_);
+        CurrencyFormatter::formatCurrencyToDouble(amountStr, transAmount_);
 
         if (toID_ > 0) {
             double rateFrom = core_->accountList_.getAccountBaseCurrencyConvRate(accountID_);
