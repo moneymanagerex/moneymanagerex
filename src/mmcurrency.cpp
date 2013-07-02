@@ -463,7 +463,7 @@ std::map<wxString, mmCurrency> mmCurrency::currency_map()
     cm["HNL"] = mmCurrency("HNL", "Honduran lempira"      , L"L", L"", L"", L"", 100, 1);
     cm["HKD"] = mmCurrency("HKD", "Hong Kong dollar"      , L"HK$", L"", L"", L"", 100, 1);
     cm["HUF"] = mmCurrency("HUF", "Hungarian forint"      , L"Ft", L"", L"", L"", 1, 1);
-    cm["ISK"] = mmCurrency("ISK", "Icelandic króna"       , L"kr", L"", L"", L"", 1, 1);
+    cm["ISK"] = mmCurrency("ISK", L"Icelandic króna"       , L"kr", L"", L"", L"", 1, 1);
     cm["INR"] = mmCurrency("INR", "Indian rupee"          , L"", L"", L"", L"", 100, 1);
     cm["IDR"] = mmCurrency("IDR", "Indonesian rupiah"     , L"Rp", L"", L"", L"", 1, 1);
     cm["XDR"] = mmCurrency("XDR", "Special Drawing Rights", L"SDR", L"", L"", L"", 100, 1);
@@ -507,7 +507,7 @@ std::map<wxString, mmCurrency> mmCurrency::currency_map()
     cm["ANG"] = mmCurrency("ANG", "Netherlands Antillean gulden", L"NAƒ", L"", L"", L"", 100, 1);
     cm["XPF"] = mmCurrency("XPF", "CFP franc"             , L"F", L"", L"", L"", 100, 1);
     cm["NZD"] = mmCurrency("NZD", "New Zealand dollar"    , L"NZ$", L"", L"", L"", 100, 1);
-    cm["NIO"] = mmCurrency("NIO", "Nicaraguan córdoba"    , L"C$", L"", L"", L"", 100, 1);
+    cm["NIO"] = mmCurrency("NIO", L"Nicaraguan córdoba"    , L"C$", L"", L"", L"", 100, 1);
     cm["XOF"] = mmCurrency("XOF", "West African CFA franc", L"CFA", L"", L"", L"", 100, 1);
     cm["NGN"] = mmCurrency("NGN", "Nigerian naira"        , L"₦", L"", L"", L"", 100, 1);
     cm["NOK"] = mmCurrency("NOK", "Norwegian krone"       , L"kr", L"", L"", L"", 100, 1);
@@ -522,7 +522,7 @@ std::map<wxString, mmCurrency> mmCurrency::currency_map()
     cm["QAR"] = mmCurrency("QAR", "Qatari riyal"          , L"QR", L"", L"", L"", 100, 1);
     cm["RON"] = mmCurrency("RON", "Romanian leu"          , L"L", L"", L"", L"", 100, 1);
     cm["RWF"] = mmCurrency("RWF", "Rwandan franc"         , L"RF", L"", L"", L"", 1, 1);
-    cm["STD"] = mmCurrency("STD", "São Tomé and Príncipe dobra", L"Db", L"", L"", L"", 100, 1);
+    cm["STD"] = mmCurrency("STD", L"São Tomé and Príncipe dobra", L"Db", L"", L"", L"", 100, 1);
     cm["SAR"] = mmCurrency("SAR", "Saudi riyal"           , L"SR", L"", L"", L"", 100, 1);
     cm["XOF"] = mmCurrency("XOF", "West African CFA franc", L"CFA", L"", L"", L"", 100, 1);
     cm["RSD"] = mmCurrency("RSD", "Serbian dinar"         , L"din.", L"", L"", L"", 1, 1);

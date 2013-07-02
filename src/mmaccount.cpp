@@ -423,7 +423,6 @@ void mmAccountList::LoadAccounts(const mmCurrencyList& currencyList)
 
 void mmAccountList::getAccountRates(std::map<int, double> &acc_conv_rates)
 {
-    double convRate = 1;
     for (const auto& account: core_->accountList_.accounts_)
     {
         mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);

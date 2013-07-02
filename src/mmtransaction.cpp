@@ -660,7 +660,7 @@ void mmBankTransactionList::getExpensesIncomeStats
 
 void mmBankTransactionList::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
-    , mmDateRange* date_range, bool ignoreFuture) const
+    , mmDateRange* date_range) const
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;

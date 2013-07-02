@@ -169,7 +169,7 @@ public:
 
     void getTopCategoryStats(
         std::vector<std::pair<wxString, double> > &categoryStats
-        , mmDateRange* date_range, bool ignoreFuture) const;
+        , mmDateRange* date_range) const;
 
     void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats

@@ -660,7 +660,6 @@ wxString mmHomePagePanel::displayTopTransactions()
     core_->bTransactionList_.getTopCategoryStats(
         topCategoryStats
         , date_range
-        , mmIniOptions::instance().ignoreFutureTransactions_
     );
 
     for (const auto& i : topCategoryStats)
