@@ -6,9 +6,9 @@
 #include "../mmgraphincexpensesmonth.h"
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range)
-: mmPrintableBase(core)
-, date_range_(date_range)
-, title_(_("Income vs Expenses: %s"))
+    : mmPrintableBase(core)
+    , date_range_(date_range)
+    , title_(_("Income vs Expenses: %s"))
 {
 }
 
@@ -42,17 +42,16 @@ wxString mmReportIncomeExpenses::getHTMLText()
 
     hb.startTable("75%");
     hb.addTableHeaderRow("", 2);
+
     hb.startTableRow();
     hb.startTableCell();
-
     mmGraphIncExpensesMonth gg;
     gg.init(income, expenses);
     gg.Generate(_("Income vs Expenses"));
     hb.addImage(gg.getOutputFileName());
-
     hb.endTableCell();
-    hb.startTableCell();
 
+    hb.startTableCell();
     hb.startTable("95%");
     hb.startTableRow();
     hb.addTableHeaderCell(_("Type"));
@@ -60,14 +59,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endTableRow();
 
     hb.startTableRow();
-    hb.addTableCell(_("Income:"), false, true);
-    hb.addMoneyCell(income);
-    hb.endTableRow();
-
-    hb.startTableRow();
-    hb.addTableCell(_("Expenses:"), false, true);
-    hb.addMoneyCell(expenses);
-    hb.endTableRow();
+    hb.addTableRow(_("Income:"), income);
+    hb.addTableRow(_("Expenses:"), expenses);
 
     hb.addRowSeparator(2);
     hb.addTotalRow(_("Difference:"), 2, income - expenses);
@@ -85,11 +78,11 @@ wxString mmReportIncomeExpenses::getHTMLText()
 }
 
 mmReportIncomeExpensesMontly::mmReportIncomeExpensesMontly(mmCoreDB* core, int day, int month, mmDateRange* date_range)
-: mmPrintableBase(core)
-, day_(day)
-, month_(month)
-, date_range_(date_range)
-, title_(_("Income vs Expenses: %s"))
+    : mmPrintableBase(core)
+    , day_(day)
+    , month_(month)
+    , date_range_(date_range)
+    , title_(_("Income vs Expenses: %s"))
 {
 }
 

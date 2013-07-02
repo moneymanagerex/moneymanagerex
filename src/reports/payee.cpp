@@ -92,29 +92,16 @@ wxString mmReportPayeeExpenses::getHTMLText()
         hb.endTableRow();
 
         for (const auto& payee : valueList)
-        {
-            hb.startTableRow();
-            hb.addTableCell(payee.label, false, true);
-            hb.addMoneyCell(payee.amount);
-            hb.endTableRow();
-        }
+            hb.addTableRow(payee.label, payee.amount);
 
         hb.addRowSeparator(2);
-        hb.startTableRow();
     }
 
-    hb.addTableCell(_("Income:"), false, true, true);
-    hb.addMoneyCell(positiveTotal);
-    hb.endTableRow();
-    hb.startTableRow();
-    hb.addTableCell(_("Expenses:"), false, true, true);
-    hb.addMoneyCell(negativeTotal);
-    hb.endTableRow();
+    hb.addTableRowBold(_("Income:"), positiveTotal);
+    hb.addTableRowBold(_("Expenses:"), negativeTotal);
     hb.addRowSeparator(2);
-    hb.startTableRow();
-    hb.addTableCell(_("Payees Total:"), false, true, true);
-    hb.addMoneyCell(total);
-    hb.endTableRow();
+    hb.addTotalRow(_("Payees Total:"), 1, total);
+    //hb.addTableRowBold(_("Payees Total:"), total);
 
     hb.endTable();
     hb.endCenter();

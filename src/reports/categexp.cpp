@@ -113,10 +113,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 vp.amount = amt;
                 valueList.push_back(vp);
 
-                hb.startTableRow();
-                hb.addTableCell(sFullCategName, false, true);
-                hb.addMoneyCell(amt, false);
-                hb.endTableRow();
+                hb.addTableRow(sFullCategName, amt);
             }
         }
 

@@ -231,6 +231,9 @@ public:
     }
     wxString getHTMLinTableWraper(bool indent = false);
 
+    void addTableRow(const wxString& label, double data);
+    void addTableRowBold(const wxString& label, double data);
+
 private:
     wxString html_;
 

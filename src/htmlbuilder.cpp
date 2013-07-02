@@ -263,7 +263,7 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     wxString todaysDate = "";
     if (withDateRange)
     {
-        todaysDate << today_.todays_date << "<br><br>"
+        todaysDate << today_.todays_date << tags::BR << tags::BR
         << wxString::Format(_("From %s till %s")
             , mmGetNiceDateSimpleString(startYear).Prepend("<b>").Append("</b> ")
             , mmGetNiceDateSimpleString(endYear).Prepend("<b>").Append("</b> "));
@@ -298,4 +298,19 @@ wxString mmHTMLBuilder::getHTMLinTableWraper(bool indent)
     endTable();
 
     return this->getHTMLText();
+}
+
+void mmHTMLBuilder::addTableRow(const wxString& label, double data)
+{
+    this->startTableRow();
+    this->addTableCell(label, false, true);
+    this->addMoneyCell(data);
+    this->endTableRow();
+}
+void mmHTMLBuilder::addTableRowBold(const wxString& label, double data)
+{
+    this->startTableRow();
+    this->addTableCell(label, false, true, true);
+    this->addMoneyCell(data);
+    this->endTableRow();
 }
