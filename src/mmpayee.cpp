@@ -104,10 +104,10 @@ wxArrayString mmPayeeList::FilterPayees(const wxString& patt) const
 {
     wxSortedArrayString payee_list;
 
-    for (const auto i : entries_)
+    for (const auto &entry : entries_)
     {
-        if (i->name_.Lower().Matches(patt.Lower().Append("*")))
-            payee_list.Add(i->name_);
+        if (entry->name_.Lower().Matches(patt.Lower().Append("*")))
+            payee_list.Add(entry->name_);
     }
     return payee_list;
 }
