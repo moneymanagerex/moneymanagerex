@@ -18,7 +18,7 @@
 #ifndef _MM_EX_REPORTBUDGETING_H_
 #define _MM_EX_REPORTBUDGETING_H_
 
-#include "../reportbase.h"
+#include "reportbase.h"
 
 class mmGUIFrame;
 struct mmBudgetEntryHolder;

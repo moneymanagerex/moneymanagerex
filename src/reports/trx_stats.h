@@ -19,7 +19,7 @@
 #ifndef _MM_EX_REPORTTRANSSTATS_H_
 #define _MM_EX_REPORTTRANSSTATS_H_
 
-#include "../reportbase.h"
+#include "reportbase.h"
 
 class mmReportTransactionStats : public mmPrintableBase
 {

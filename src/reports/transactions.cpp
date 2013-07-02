@@ -19,7 +19,7 @@
 
 #include "transactions.h"
 #include "../constants.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../util.h"
 #include <algorithm>
 

@@ -19,7 +19,7 @@
 #ifndef _MM_EX_REPORTCATEGEXP_H_
 #define _MM_EX_REPORTCATEGEXP_H_
 
-#include "../reportbase.h"
+#include "reportbase.h"
 #include "mmDateRange.h"
 
 class mmReportCategoryExpenses : public mmPrintableBase

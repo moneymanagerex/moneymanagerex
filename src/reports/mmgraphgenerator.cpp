@@ -18,8 +18,8 @@
  ********************************************************/
 
 #include "mmgraphgenerator.h"
-#include "util.h"
-#include "singleton.h"
+#include "../util.h"
+#include "../singleton.h"
 //----------------------------------------------------------------------------
 
 class Eraser

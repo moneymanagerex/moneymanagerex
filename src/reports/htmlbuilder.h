@@ -19,7 +19,7 @@
 #ifndef _MM_EX_HTMLBUILDER_H_
 #define _MM_EX_HTMLBUILDER_H_
 
-#include "defs.h"
+#include "../defs.h"
 #include <vector>
 
 namespace tags

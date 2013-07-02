@@ -109,7 +109,6 @@ MMEX_OBJECTS =  \
 	mmex_budgetyeardialog.obj \
 	mmex_budgetyearentrydialog.obj \
 	mmex_categdialog.obj \
-	mmex_chart.obj \
 	mmex_constants.obj \
 	mmex_currencydialog.obj \
 	mmex_customreportdialog.obj \
@@ -118,7 +117,6 @@ MMEX_OBJECTS =  \
 	mmex_dbwrapper.obj \
 	mmex_fileviewerdialog.obj \
 	mmex_filtertransdialog.obj \
-	mmex_htmlbuilder.obj \
 	mmex_lua_interface.obj \
 	mmex_maincurrencydialog.obj \
 	mmex_mmCurrencyFormatter.obj \
@@ -130,12 +128,7 @@ MMEX_OBJECTS =  \
 	mmex_mmcurrency.obj \
 	mmex_mmex.obj \
 	mmex_mmex_settings.obj \
-	mmex_mmgraphgenerator.obj \
-	mmex_mmgraphincexpensesmonth.obj \
-	mmex_mmgraphpie.obj \
-	mmex_mmgraphtopcategories.obj \
 	mmex_mmhelppanel.obj \
-	mmex_mmhomepagepanel.obj \
 	mmex_mmpayee.obj \
 	mmex_mmreportspanel.obj \
 	mmex_mmtransaction.obj \
@@ -158,9 +151,16 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.obj \
 	mmex_categexp.obj \
 	mmex_categovertimeperf.obj \
+	mmex_chart.obj \
+	mmex_htmlbuilder.obj \
 	mmex_incexpenses.obj \
 	mmex_mmDateRange.obj \
 	mmex_mmRepeat.obj \
+	mmex_mmgraphgenerator.obj \
+	mmex_mmgraphincexpensesmonth.obj \
+	mmex_mmgraphpie.obj \
+	mmex_mmgraphtopcategories.obj \
+	mmex_mmhomepagepanel.obj \
 	mmex_payee.obj \
 	mmex_summary.obj \
 	mmex_summaryassets.obj \
@@ -679,9 +679,6 @@ mmex_budgetyearentrydialog.obj: ..\..\src\budgetyearentrydialog.cpp
 mmex_categdialog.obj: ..\..\src\categdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\categdialog.cpp
 
-mmex_chart.obj: ..\..\src\chart.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\chart.cpp
-
 mmex_constants.obj: ..\..\src\constants.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\constants.cpp
 
@@ -705,9 +702,6 @@ mmex_fileviewerdialog.obj: ..\..\src\fileviewerdialog.cpp
 
 mmex_filtertransdialog.obj: ..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\filtertransdialog.cpp
-
-mmex_htmlbuilder.obj: ..\..\src\htmlbuilder.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\htmlbuilder.cpp
 
 mmex_lua_interface.obj: ..\..\src\lua_interface.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\lua_interface.cpp
@@ -742,23 +736,8 @@ mmex_mmex.obj: ..\..\src\mmex.cpp
 mmex_mmex_settings.obj: ..\..\src\mmex_settings.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmex_settings.cpp
 
-mmex_mmgraphgenerator.obj: ..\..\src\mmgraphgenerator.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmgraphgenerator.cpp
-
-mmex_mmgraphincexpensesmonth.obj: ..\..\src\mmgraphincexpensesmonth.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmgraphincexpensesmonth.cpp
-
-mmex_mmgraphpie.obj: ..\..\src\mmgraphpie.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmgraphpie.cpp
-
-mmex_mmgraphtopcategories.obj: ..\..\src\mmgraphtopcategories.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmgraphtopcategories.cpp
-
 mmex_mmhelppanel.obj: ..\..\src\mmhelppanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmhelppanel.cpp
-
-mmex_mmhomepagepanel.obj: ..\..\src\mmhomepagepanel.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmhomepagepanel.cpp
 
 mmex_mmpayee.obj: ..\..\src\mmpayee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmpayee.cpp
@@ -826,6 +805,12 @@ mmex_categexp.obj: ..\..\src\reports\categexp.cpp
 mmex_categovertimeperf.obj: ..\..\src\reports\categovertimeperf.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\categovertimeperf.cpp
 
+mmex_chart.obj: ..\..\src\reports\chart.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\chart.cpp
+
+mmex_htmlbuilder.obj: ..\..\src\reports\htmlbuilder.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\htmlbuilder.cpp
+
 mmex_incexpenses.obj: ..\..\src\reports\incexpenses.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\incexpenses.cpp
 
@@ -834,6 +819,21 @@ mmex_mmDateRange.obj: ..\..\src\reports\mmDateRange.cpp
 
 mmex_mmRepeat.obj: ..\..\src\reports\mmRepeat.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmRepeat.cpp
+
+mmex_mmgraphgenerator.obj: ..\..\src\reports\mmgraphgenerator.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphgenerator.cpp
+
+mmex_mmgraphincexpensesmonth.obj: ..\..\src\reports\mmgraphincexpensesmonth.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphincexpensesmonth.cpp
+
+mmex_mmgraphpie.obj: ..\..\src\reports\mmgraphpie.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphpie.cpp
+
+mmex_mmgraphtopcategories.obj: ..\..\src\reports\mmgraphtopcategories.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphtopcategories.cpp
+
+mmex_mmhomepagepanel.obj: ..\..\src\reports\mmhomepagepanel.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmhomepagepanel.cpp
 
 mmex_payee.obj: ..\..\src\reports\payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\payee.cpp

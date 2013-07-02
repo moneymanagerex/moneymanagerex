@@ -22,7 +22,6 @@
 #include "util.h"
 #include "mmOption.h"
 #include <wx/colordlg.h>
-#include "mmgraphgenerator.h"
 #include "constants.h"
 
 enum

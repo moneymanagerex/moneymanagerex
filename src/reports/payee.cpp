@@ -1,9 +1,9 @@
 #include "payee.h"
 #include "budget.h"
 
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../util.h"
-#include "../mmgraphpie.h"
+#include "mmgraphpie.h"
 
 #include <algorithm>
 

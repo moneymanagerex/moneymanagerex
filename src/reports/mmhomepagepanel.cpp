@@ -17,13 +17,13 @@
  ********************************************************/
 
 #include "mmhomepagepanel.h"
-#include "mmex.h"
+#include "../mmex.h"
 
 #include "htmlbuilder.h"
-#include "billsdepositspanel.h"
+#include "../billsdepositspanel.h"
 #include "mmgraphincexpensesmonth.h"
-#include "mmCurrencyFormatter.h"
-#include "db/assets.h"
+#include "../mmCurrencyFormatter.h"
+#include "../db/assets.h"
 #include <algorithm>
 
 

@@ -17,7 +17,7 @@
  ********************************************************/
 
 #include "summaryassets.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../db/assets.h"
 
 mmReportSummaryAssets::mmReportSummaryAssets(mmCoreDB* core)

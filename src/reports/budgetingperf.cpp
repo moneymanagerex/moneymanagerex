@@ -1,6 +1,6 @@
 #include "budgetingperf.h"
 #include "../budgetingpanel.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../mmex.h"
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance(mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID)

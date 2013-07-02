@@ -18,7 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //----------------------------------------------------------------------------
 #include "categovertimeperf.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../util.h"
 
 enum TYPE {INCOME = 0, EXPENCES, TOTAL, MAX};

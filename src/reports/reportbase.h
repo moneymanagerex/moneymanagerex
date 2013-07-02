@@ -20,8 +20,8 @@
 #ifndef _MM_EX_REPORTBASE_H_
 #define _MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
-#include "mmcoredb.h"
-#include "mmOption.h"
+#include "../mmcoredb.h"
+#include "../mmOption.h"
 class wxString;
 //----------------------------------------------------------------------------
 

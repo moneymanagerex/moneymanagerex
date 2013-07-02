@@ -19,7 +19,7 @@
 #ifndef _MM_EX_REPORTPAYEE_H_
 #define _MM_EX_REPORTPAYEE_H_
 
-#include "../reportbase.h"
+#include "reportbase.h"
 #include "mmDateRange.h"
 
 class mmReportPayeeExpenses : public mmPrintableBase

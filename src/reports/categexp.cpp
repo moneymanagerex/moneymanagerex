@@ -19,10 +19,10 @@
 #include "categexp.h"
 #include "budget.h"
 
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../util.h"
 #include "../mmOption.h"
-#include "../mmgraphpie.h"
+#include "mmgraphpie.h"
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 ( mmCoreDB* core, mmDateRange* date_range, const wxString& title, int type)

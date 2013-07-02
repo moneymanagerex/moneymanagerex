@@ -108,7 +108,6 @@ MMEX_OBJECTS =  \
 	mmex_budgetyeardialog.o \
 	mmex_budgetyearentrydialog.o \
 	mmex_categdialog.o \
-	mmex_chart.o \
 	mmex_constants.o \
 	mmex_currencydialog.o \
 	mmex_customreportdialog.o \
@@ -117,7 +116,6 @@ MMEX_OBJECTS =  \
 	mmex_dbwrapper.o \
 	mmex_fileviewerdialog.o \
 	mmex_filtertransdialog.o \
-	mmex_htmlbuilder.o \
 	mmex_lua_interface.o \
 	mmex_maincurrencydialog.o \
 	mmex_mmCurrencyFormatter.o \
@@ -129,12 +127,7 @@ MMEX_OBJECTS =  \
 	mmex_mmcurrency.o \
 	mmex_mmex.o \
 	mmex_mmex_settings.o \
-	mmex_mmgraphgenerator.o \
-	mmex_mmgraphincexpensesmonth.o \
-	mmex_mmgraphpie.o \
-	mmex_mmgraphtopcategories.o \
 	mmex_mmhelppanel.o \
-	mmex_mmhomepagepanel.o \
 	mmex_mmpayee.o \
 	mmex_mmreportspanel.o \
 	mmex_mmtransaction.o \
@@ -157,9 +150,16 @@ MMEX_OBJECTS =  \
 	mmex_cashflow.o \
 	mmex_categexp.o \
 	mmex_categovertimeperf.o \
+	mmex_chart.o \
+	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
 	mmex_mmRepeat.o \
+	mmex_mmgraphgenerator.o \
+	mmex_mmgraphincexpensesmonth.o \
+	mmex_mmgraphpie.o \
+	mmex_mmgraphtopcategories.o \
+	mmex_mmhomepagepanel.o \
 	mmex_payee.o \
 	mmex_summary.o \
 	mmex_summaryassets.o \
@@ -546,9 +546,6 @@ mmex_budgetyearentrydialog.o: ../../src/budgetyearentrydialog.cpp
 mmex_categdialog.o: ../../src/categdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_chart.o: ../../src/chart.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_constants.o: ../../src/constants.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -571,9 +568,6 @@ mmex_fileviewerdialog.o: ../../src/fileviewerdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_filtertransdialog.o: ../../src/filtertransdialog.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_htmlbuilder.o: ../../src/htmlbuilder.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_lua_interface.o: ../../src/lua_interface.cpp
@@ -609,22 +603,7 @@ mmex_mmex.o: ../../src/mmex.cpp
 mmex_mmex_settings.o: ../../src/mmex_settings.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_mmgraphgenerator.o: ../../src/mmgraphgenerator.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmgraphincexpensesmonth.o: ../../src/mmgraphincexpensesmonth.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmgraphpie.o: ../../src/mmgraphpie.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmgraphtopcategories.o: ../../src/mmgraphtopcategories.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_mmhelppanel.o: ../../src/mmhelppanel.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmhomepagepanel.o: ../../src/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmpayee.o: ../../src/mmpayee.cpp
@@ -693,6 +672,12 @@ mmex_categexp.o: ../../src/reports/categexp.cpp
 mmex_categovertimeperf.o: ../../src/reports/categovertimeperf.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_chart.o: ../../src/reports/chart.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_htmlbuilder.o: ../../src/reports/htmlbuilder.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_incexpenses.o: ../../src/reports/incexpenses.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -700,6 +685,21 @@ mmex_mmDateRange.o: ../../src/reports/mmDateRange.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmRepeat.o: ../../src/reports/mmRepeat.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmgraphgenerator.o: ../../src/reports/mmgraphgenerator.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmgraphincexpensesmonth.o: ../../src/reports/mmgraphincexpensesmonth.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmgraphpie.o: ../../src/reports/mmgraphpie.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmgraphtopcategories.o: ../../src/reports/mmgraphtopcategories.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmhomepagepanel.o: ../../src/reports/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_payee.o: ../../src/reports/payee.cpp

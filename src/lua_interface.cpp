@@ -20,7 +20,6 @@
 #include "util.h"
 #include "mmCurrencyFormatter.h"
 #include "mmOption.h"
-#include "htmlbuilder.h"
 #include <wx/stdpaths.h>
 
 // Constructor: Initialises Lua when an instant is created.

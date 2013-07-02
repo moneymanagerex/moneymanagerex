@@ -21,7 +21,7 @@
 **************************************************************************/
 #include "budgetcategorysummary.h"
 #include "../budgetingpanel.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../mmex.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID)

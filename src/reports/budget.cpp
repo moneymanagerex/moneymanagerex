@@ -19,7 +19,7 @@
 
 #include "../mmex.h"
 #include "../budgetingpanel.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 
 mmReportBudget::mmReportBudget(mmGUIFrame* mainFrame, mmCoreDB* core)
 : mmPrintableBase(core)

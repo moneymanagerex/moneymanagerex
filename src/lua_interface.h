@@ -22,7 +22,7 @@
 #include "defs.h"
 #include <iostream>
 #include "mmcoredb.h"
-#include "htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 #include "lua.hpp"
 
 static mmCurrencyList* g_static_currency_list;

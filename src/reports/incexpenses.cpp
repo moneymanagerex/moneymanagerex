@@ -1,9 +1,9 @@
 #include "incexpenses.h"
 #include "budget.h"
 
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 #include "../util.h"
-#include "../mmgraphincexpensesmonth.h"
+#include "mmgraphincexpensesmonth.h"
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range)
     : mmPrintableBase(core)

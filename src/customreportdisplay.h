@@ -18,8 +18,8 @@
 #ifndef _MM_EX_CUSTOMREPORTDISPLAY_H_
 #define _MM_EX_CUSTOMREPORTDISPLAY_H_
 
-#include "reportbase.h"
-#include "htmlbuilder.h"
+#include "reports/reportbase.h"
+#include "reports/htmlbuilder.h"
 
 class mmCustomReport : public mmPrintableBase
 {

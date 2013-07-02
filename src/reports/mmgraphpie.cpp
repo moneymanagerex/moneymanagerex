@@ -1,6 +1,6 @@
 #include "mmgraphpie.h"
 #include "chart.h"
-#include "util.h"
+#include "../util.h"
 #include <algorithm>
 
 mmGraphPie::mmGraphPie() : 

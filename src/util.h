@@ -21,7 +21,7 @@
 
 #include "defs.h"
 #include "mmcurrency.h"
-#include "reportbase.h"
+#include "reports/reportbase.h"
 #include <wx/valnum.h>
 
 class mmCoreDB;

@@ -17,7 +17,7 @@
  ********************************************************/
 
 #pragma once
-#include "../reportbase.h"
+#include "reportbase.h"
 
 class mmReportSummaryAssets : public mmPrintableBase
 {

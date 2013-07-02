@@ -19,8 +19,7 @@
 #include "mmreportspanel.h"
 #include "mmcheckingpanel.h"
 #include "util.h"
-#include "htmlbuilder.h"
-#include "reportbase.h"
+#include "reports/htmlbuilder.h"
 #include "mmex.h"
 #include "lua_interface.h"
 

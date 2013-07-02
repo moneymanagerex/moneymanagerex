@@ -19,11 +19,11 @@
 //#define USING_NEW_CLASSES
 
 #include "summarystocks.h"
-#include "../htmlbuilder.h"
+#include "htmlbuilder.h"
 
 // TODO: Remove Switch Definitions when New Class activation completed.
 #ifdef USING_NEW_CLASSES
-#include "../db/account.h"    
+#include "../db/account.h"
 #include "../db/stocks.h"
 
 #else
