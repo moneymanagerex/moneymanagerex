@@ -115,7 +115,7 @@ void TAssetEntry::Update(wxSQLite3Database* db)
     }
 }
 
-double TAssetEntry::PeriodValueAtRate(const wxDateTime startDate, double value, double rate)
+double TAssetEntry::PeriodValueAtRate(const wxDateTime& startDate, double value, double rate)
 {
     int diff_days = abs(startDate.Subtract(wxDateTime::Now()).GetDays());
 

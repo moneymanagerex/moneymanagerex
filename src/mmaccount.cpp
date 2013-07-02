@@ -142,7 +142,7 @@ wxString mmAccountList::GetAccountName(int accountID) const
     return wxEmptyString;
 }
 
-wxArrayInt mmAccountList::getAccountsID(const wxArrayString accounts_type, int except_id) const
+wxArrayInt mmAccountList::getAccountsID(const wxArrayString& accounts_type, int except_id) const
 {
     wxArrayInt accounts_id;
     for (const auto& it : accounts_)

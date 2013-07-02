@@ -54,7 +54,7 @@ public:
 public:
     virtual wxListItemAttr* OnGetItemAttr(long row) const
     {
-        return row % 2 ? attr2_ : attr1_;
+        return (row % 2) ? attr2_ : attr1_;
     }
 };
 

@@ -105,7 +105,7 @@ public:
 
     void AdjustNextOccuranceDate();
     bool RequiresExecution(int& remaining_days);
-    void SetNextOccurDate(const wxDateTime date);
+    void SetNextOccurDate(const wxDateTime& date);
     // return the next occurance date
     wxDateTime NextOccurDate();
 

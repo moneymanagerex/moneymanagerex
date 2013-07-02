@@ -49,7 +49,7 @@ private:
     void Delete(wxSQLite3Database* db);
     void SetDatabaseValues(wxSQLite3Statement& st, int& db_index);
 
-    double PeriodValueAtRate(const wxDateTime startDate, double value, double rate);
+    double PeriodValueAtRate(const wxDateTime& startDate, double value, double rate);
     double GetAppreciatedValue(const wxDateTime& startDate, double value, double rate);
     double GetDepreciatedValue(const wxDateTime& startDate, double value, double rate);
 

@@ -336,7 +336,7 @@ bool TTransactionBillEntry::UsingRepeatProcessing()
     return result;
 }
 
-void TTransactionBillEntry::SetNextOccurDate(wxDateTime date)
+void TTransactionBillEntry::SetNextOccurDate(const wxDateTime& date)
 {
     trans_repeat_date_ = date;
     //nextOccurDate_ = trans_repeat_date_.FormatISOCombined(' ');
