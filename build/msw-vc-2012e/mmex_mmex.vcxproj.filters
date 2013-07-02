@@ -25,6 +25,12 @@
     <Filter Include="Source Files\db">
       <UniqueIdentifier>{53d1a7a8-ed3c-4701-848e-41fcb1497fc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\import_export">
+      <UniqueIdentifier>{00b82cf1-8f6b-4936-9c55-c7ffde166332}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\import_export">
+      <UniqueIdentifier>{3acf044f-e482-4acc-a64b-2b66a8b59bd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\aboutdialog.cpp">
@@ -60,9 +66,6 @@
     <ClCompile Include="..\..\src\categdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\chart.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,9 +88,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\filtertransdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\htmlbuilder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\maincurrencydialog.cpp">
@@ -114,22 +114,7 @@
     <ClCompile Include="..\..\src\mmex_settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmgraphgenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\mmgraphincexpensesmonth.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\mmgraphpie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\mmgraphtopcategories.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\mmhelppanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\mmhomepagepanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mmpayee.cpp">
@@ -180,16 +165,7 @@
     <ClCompile Include="..\..\src\transdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\univcsvdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\qif_export.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\qif_import.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\lua_interface.cpp">
@@ -288,6 +264,33 @@
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp">
+      <Filter>Source Files\import_export</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\import_export\qif_export.cpp">
+      <Filter>Source Files\import_export</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\import_export\qif_import.cpp">
+      <Filter>Source Files\import_export</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\chart.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\htmlbuilder.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmgraphincexpensesmonth.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmgraphpie.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\mmhomepagepanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -321,9 +324,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\categdialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\chart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\constants.h">
@@ -383,22 +383,7 @@
     <ClInclude Include="..\..\src\mmex_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmgraphgenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\mmgraphincexpensesmonth.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\mmgraphpie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\mmgraphtopcategories.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\mmhelppanel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\mmhomepagepanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\mmpanelbase.h">
@@ -455,16 +440,7 @@
     <ClInclude Include="..\..\src\stockspanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\univcsvdialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\qif_export.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\qif_import.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\lua_interface.h">
@@ -566,10 +542,51 @@
     <ClInclude Include="..\..\src\reports\mmRepeat.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\import_export\univcsvdialog.h">
+      <Filter>Header Files\import_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\import_export\qif_export.h">
+      <Filter>Header Files\import_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\import_export\qif_import.h">
+      <Filter>Header Files\import_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmgraphincexpensesmonth.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmgraphpie.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmgraphtopcategories.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\mmhomepagepanel.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\reportbase.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\chart.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\htmlbuilder.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\import_export\ofximport.h.new">
+      <Filter>Header Files\import_export</Filter>
+    </None>
+    <None Include="..\..\src\import_export\ofximport.cpp.new">
+      <Filter>Source Files\import_export</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -242,7 +242,6 @@
     <ClCompile Include="..\..\src\budgetyeardialog.cpp" />
     <ClCompile Include="..\..\src\budgetyearentrydialog.cpp" />
     <ClCompile Include="..\..\src\categdialog.cpp" />
-    <ClCompile Include="..\..\src\chart.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
     <ClCompile Include="..\..\src\customreportdialog.cpp" />
@@ -265,7 +264,9 @@
     <ClCompile Include="..\..\src\db\transactionbill.cpp" />
     <ClCompile Include="..\..\src\fileviewerdialog.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
-    <ClCompile Include="..\..\src\htmlbuilder.cpp" />
+    <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
+    <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
+    <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\lua_interface.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
     <ClCompile Include="..\..\src\mmaccount.cpp" />
@@ -276,12 +277,7 @@
     <ClCompile Include="..\..\src\mmCurrencyFormatter.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
     <ClCompile Include="..\..\src\mmex_settings.cpp" />
-    <ClCompile Include="..\..\src\mmgraphgenerator.cpp" />
-    <ClCompile Include="..\..\src\mmgraphincexpensesmonth.cpp" />
-    <ClCompile Include="..\..\src\mmgraphpie.cpp" />
-    <ClCompile Include="..\..\src\mmgraphtopcategories.cpp" />
     <ClCompile Include="..\..\src\mmhelppanel.cpp" />
-    <ClCompile Include="..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\src\mmpayee.cpp" />
     <ClCompile Include="..\..\src\mmreportspanel.cpp" />
@@ -290,16 +286,20 @@
     <ClCompile Include="..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\src\paths.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
-    <ClCompile Include="..\..\src\qif_export.cpp" />
-    <ClCompile Include="..\..\src\qif_import.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\src\reports\budgetcategorysummary.cpp" />
     <ClCompile Include="..\..\src\reports\budgetingperf.cpp" />
     <ClCompile Include="..\..\src\reports\cashflow.cpp" />
     <ClCompile Include="..\..\src\reports\categexp.cpp" />
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
+    <ClCompile Include="..\..\src\reports\chart.cpp" />
+    <ClCompile Include="..\..\src\reports\htmlbuilder.cpp" />
     <ClCompile Include="..\..\src\reports\incexpenses.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
+    <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
+    <ClCompile Include="..\..\src\reports\mmgraphincexpensesmonth.cpp" />
+    <ClCompile Include="..\..\src\reports\mmgraphpie.cpp" />
+    <ClCompile Include="..\..\src\reports\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\reports\mmRepeat.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\reports\summary.cpp" />
@@ -316,7 +316,6 @@
     <ClCompile Include="..\..\src\stockdialog.cpp" />
     <ClCompile Include="..\..\src\stockspanel.cpp" />
     <ClCompile Include="..\..\src\transdialog.cpp" />
-    <ClCompile Include="..\..\src\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -331,7 +330,6 @@
     <ClInclude Include="..\..\src\budgetyeardialog.h" />
     <ClInclude Include="..\..\src\budgetyearentrydialog.h" />
     <ClInclude Include="..\..\src\categdialog.h" />
-    <ClInclude Include="..\..\src\chart.h" />
     <ClInclude Include="..\..\src\constants.h" />
     <ClInclude Include="..\..\src\currencydialog.h" />
     <ClInclude Include="..\..\src\customreportdialog.h" />
@@ -357,6 +355,9 @@
     <ClInclude Include="..\..\src\filtertransdialog.h" />
     <ClInclude Include="..\..\src\guiid.h" />
     <ClInclude Include="..\..\src\htmlbuilder.h" />
+    <ClInclude Include="..\..\src\import_export\qif_export.h" />
+    <ClInclude Include="..\..\src\import_export\qif_import.h" />
+    <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\src\lua_interface.h" />
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
     <ClInclude Include="..\..\src\mmaccount.h" />
@@ -367,12 +368,7 @@
     <ClInclude Include="..\..\src\mmCurrencyFormatter.h" />
     <ClInclude Include="..\..\src\mmex.h" />
     <ClInclude Include="..\..\src\mmex_settings.h" />
-    <ClInclude Include="..\..\src\mmgraphgenerator.h" />
-    <ClInclude Include="..\..\src\mmgraphincexpensesmonth.h" />
-    <ClInclude Include="..\..\src\mmgraphpie.h" />
-    <ClInclude Include="..\..\src\mmgraphtopcategories.h" />
     <ClInclude Include="..\..\src\mmhelppanel.h" />
-    <ClInclude Include="..\..\src\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\mmOption.h" />
     <ClInclude Include="..\..\src\mmpanelbase.h" />
     <ClInclude Include="..\..\src\mmpayee.h" />
@@ -383,8 +379,6 @@
     <ClInclude Include="..\..\src\paths.h" />
     <ClInclude Include="..\..\src\payeedialog.h" />
     <ClInclude Include="..\..\src\platfdep.h" />
-    <ClInclude Include="..\..\src\qif_export.h" />
-    <ClInclude Include="..\..\src\qif_import.h" />
     <ClInclude Include="..\..\src\recentfiles.h" />
     <ClInclude Include="..\..\src\relocatecategorydialog.h" />
     <ClInclude Include="..\..\src\relocatepayeedialog.h" />
@@ -395,10 +389,18 @@
     <ClInclude Include="..\..\src\reports\cashflow.h" />
     <ClInclude Include="..\..\src\reports\categexp.h" />
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
+    <ClInclude Include="..\..\src\reports\chart.h" />
+    <ClInclude Include="..\..\src\reports\htmlbuilder.h" />
     <ClInclude Include="..\..\src\reports\incexpenses.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
+    <ClInclude Include="..\..\src\reports\mmgraphgenerator.h" />
+    <ClInclude Include="..\..\src\reports\mmgraphincexpensesmonth.h" />
+    <ClInclude Include="..\..\src\reports\mmgraphpie.h" />
+    <ClInclude Include="..\..\src\reports\mmgraphtopcategories.h" />
+    <ClInclude Include="..\..\src\reports\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\reports\mmRepeat.h" />
     <ClInclude Include="..\..\src\reports\payee.h" />
+    <ClInclude Include="..\..\src\reports\reportbase.h" />
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summaryassets.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
@@ -410,7 +412,6 @@
     <ClInclude Include="..\..\src\stockdialog.h" />
     <ClInclude Include="..\..\src\stockspanel.h" />
     <ClInclude Include="..\..\src\transdialog.h" />
-    <ClInclude Include="..\..\src\univcsvdialog.h" />
     <ClInclude Include="..\..\src\util.h" />
   </ItemGroup>
   <ItemGroup>
@@ -429,6 +430,10 @@
       <Project>{c45512b5-aef8-5c27-bb1e-e97b298fff91}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\import_export\ofximport.cpp.new" />
+    <None Include="..\..\src\import_export\ofximport.h.new" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
