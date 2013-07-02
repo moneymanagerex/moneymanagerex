@@ -1009,10 +1009,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     bitmapTransFilter_->SetBitmap(pic);
     SetTransactionFilterState(true);
 
-    initVirtualListControl();
-    if (m_trans.size() > 0)
-        m_listCtrlAccount->RefreshItems(0, static_cast<long>(m_trans.size()) - 1);
-
+    m_listCtrlAccount->refreshVisualList();
 }
 
 //----------------------------------------------------------------------------
