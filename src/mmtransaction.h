@@ -104,6 +104,7 @@ public:
     wxString status_;
     int payeeID_;
     wxString payeeStr_;
+    wxString arrow_;
     int categID_;
     int subcategID_;
     wxString fullCatStr_;

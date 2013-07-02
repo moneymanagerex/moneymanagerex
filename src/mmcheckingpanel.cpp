@@ -1240,7 +1240,7 @@ void TransactionListCtrl::setColumnImage(EColumn col, int image)
 
 wxString mmCheckingPanel::getItem(long item, long column) const
 {
-    wxString s = "";
+    wxString cell_value = "";
 
     bool ok = !m_trans.empty() &&
               ( item >= 0 ) &&
@@ -1251,25 +1251,23 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     {
         const mmBankTransaction &t = *m_trans[item];
 
-        if (column == COL_DATE_OR_TRANSACTION_ID) s = mmGetDateForDisplay(t.date_);
-        else if (column == COL_TRANSACTION_NUMBER) s = t.transNum_;
-        else if (column == COL_PAYEE_STR)
-            s = (t.payeeStr_.IsEmpty())
-                ? core_->payeeList_.GetPayeeName(t.payeeID_).Prepend("   ") : t.payeeStr_;
-        else if (column == COL_STATUS) s = t.status_;
-        else if (column == COL_CATEGORY) s = t.fullCatStr_;
+        if (column == COL_DATE_OR_TRANSACTION_ID) cell_value = mmGetDateForDisplay(t.date_);
+        else if (column == COL_TRANSACTION_NUMBER) cell_value = t.transNum_;
+        else if (column == COL_PAYEE_STR) cell_value = t.arrow_ + t.payeeStr_;
+        else if (column == COL_STATUS) cell_value = t.status_;
+        else if (column == COL_CATEGORY) cell_value = t.fullCatStr_;
         else if (column == COL_WITHDRAWAL)
-            s = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
+            cell_value = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
         else if (column == COL_DEPOSIT)
-            s = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
+            cell_value = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
         else if (column == COL_BALANCE)
-            s = CurrencyFormatter::float2String(t.balance_);
-        else if (column == COL_NOTES) s = t.notes_;
+            cell_value = CurrencyFormatter::float2String(t.balance_);
+        else if (column == COL_NOTES) cell_value = t.notes_;
         else
             wxASSERT(false);
     }
 
-    return s;
+    return cell_value;
 }
 //----------------------------------------------------------------------------
 

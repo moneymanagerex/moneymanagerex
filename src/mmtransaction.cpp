@@ -128,14 +128,12 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
     accountID_   = q1.GetInt("ACCOUNTID");
     toAccountID_ = q1.GetInt("TOACCOUNTID");
     payeeID_     = q1.GetInt("PAYEEID");
-    //payeeStr_    = core->payeeList_.GetPayeeName(payeeID_);
     transType_   = q1.GetString("TRANSCODE");
     amt_         = q1.GetDouble("TRANSAMOUNT");
     toAmt_       = q1.GetDouble("TOTRANSAMOUNT");
     followupID_  = q1.GetInt("FOLLOWUPID");
     categID_     = q1.GetInt("CATEGID");
     subcategID_  = q1.GetInt("SUBCATEGID");
-    //fullCatStr_  = core->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
     core->accountList_.getCurrencySharedPtr(accountID_)->loadCurrencySettings();
 
@@ -161,9 +159,17 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     if (toAmt_ < 0) toAmt_ = amt_;
 
     if (transType_ == TRANS_TYPE_DEPOSIT_STR)
+    {
         balance += (status_ == "V") ? 0.0 : amt_;
+        payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
+        arrow_ = "   ";
+    }
     else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
+    {
         balance -= (status_ == "V") ? 0.0 : amt_;
+        payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
+        arrow_ = "   ";
+    }
     else if (transType_ == TRANS_TYPE_TRANSFER_STR)
     {
         fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
@@ -176,17 +182,20 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
                  balance -= (status_ == "V") ? 0.0 : amt_;
                  withdrawal_amt_ = amt_;
                  deposit_amt_ = -amt_;
-                 payeeStr_ << "> " << toAccount;
+                 payeeStr_ = toAccount;
+                 arrow_ = "> ";
             }
             else if (toAccountID_ == accountID)
             {
                  balance += (status_ == "V") ? 0.0 : toAmt_;
                  deposit_amt_ = toAmt_;
                  withdrawal_amt_ = -toAmt_;
-                 payeeStr_ << "< " << fromAccountStr_;
+                 payeeStr_ = fromAccountStr_;
+                 arrow_ = "< ";
             }
         }
     }
+
     balance_ = balance;
 
     if (splitEntries_->numEntries() == 1)
