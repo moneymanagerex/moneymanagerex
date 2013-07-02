@@ -56,7 +56,6 @@ class mmHomePagePanel : public mmPanelBase
 public:
     mmHomePagePanel( mmGUIFrame* frame,
                      mmCoreDB* core_,
-                     const wxString& topCategories,
                      wxWindow *parent,
                      wxWindowID winid = wxID_ANY,
                      const wxPoint& pos = wxDefaultPosition,
@@ -81,10 +80,8 @@ private:
     void CreateControls();
     void createFrames();
     wxString prepareTemplate(const wxString& left, const wxString& right);
-    wxString topCategories_;
     wxString html_text_;
     wxString vAccts_;
-
 
     wxString displaySummaryHeader(const wxString& summaryTitle );
     wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
@@ -102,4 +99,3 @@ private:
 };
 
 #endif
-

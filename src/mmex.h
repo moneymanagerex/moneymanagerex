@@ -255,7 +255,6 @@ private:
     wxString m_perspective;
 
     /* Homepage panel logic */
-    wxString m_topCategories;
     bool activeTermAccounts_;
 
     void cleanup();

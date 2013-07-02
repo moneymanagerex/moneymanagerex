@@ -33,20 +33,18 @@ END_EVENT_TABLE()
 BEGIN_EVENT_TABLE(mmHtmlWindow, wxHtmlWindow)
 END_EVENT_TABLE()
 
-
 mmHomePagePanel::mmHomePagePanel(mmGUIFrame* frame,
             mmCoreDB* core,
-            const wxString& topCategories,
             wxWindow *parent,
             wxWindowID winid,
             const wxPoint& pos,
             const wxSize& size,
             long style,
             const wxString& name )
-: mmPanelBase(core)
-, frame_(frame)
-, topCategories_(topCategories)
+    : mmPanelBase(core)
+    , frame_(frame)
 {
+    //FIXME: this runs twice
     Create(parent, winid, pos, size, style, name);
     frame_->setHomePageActive();
     frame_->menuPrintingEnable(true);

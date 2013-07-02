@@ -2195,7 +2195,6 @@ void mmGUIFrame::createHomePage()
     }
     panelCurrent_ = new mmHomePagePanel(this,
         m_core.get(),
-        m_topCategories,
         homePanel_,
         wxID_STATIC,
         wxDefaultPosition,
@@ -2720,7 +2719,6 @@ void mmGUIFrame::openDataBase(const wxString& fileName)
         title << " [" << _("portable mode") << ']';
 
     SetTitle(title);
-    m_topCategories.Clear();
 
     if (m_db)
     {
