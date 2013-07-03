@@ -170,6 +170,7 @@
         <include>$(SRCDIR)/lib/wxsqlite</include>
         <include>$(SRCDIR)/lib/lua/src</include>
         <include>$(SRCDIR)/lib</include>
+        <include>$(SRCDIR)/src</include>
 
         <!-- disable precompiled headers for wxWidgets -->
         <define>NOPCH</define>
