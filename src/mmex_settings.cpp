@@ -187,17 +187,14 @@ void MMEX_IniSettings::Save()
 MMEX_IniRecord* MMEX_IniSettings::GetRecord(const wxString& name)
 {
     MMEX_IniRecord* pRecord = 0;
-    size_t list_size = ini_records_.size();
-    size_t element = 0;
 
-    while (element < list_size)
+    for (auto& record : ini_records_)
     {
-        if (ini_records_[element]->Name() == name)
+        if (record->Name() == name)
         {
-            pRecord = ini_records_[element].get();
+            pRecord = record.get();
             break;
         }
-        ++ element;
     }
     return pRecord;
 }
