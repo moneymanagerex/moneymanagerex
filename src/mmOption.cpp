@@ -49,7 +49,7 @@ void mmOptions::loadOptions(MMEX_IniSettings* info_table)
 //----------------------------------------------------------------------------
 void mmOptions::saveOptions(MMEX_IniSettings* info_table)
 {
-    info_table->SetStringSetting("DATEFORMAT", dateFormat_);
+    info_table->SetSetting("DATEFORMAT", dateFormat_);
 }
 
 // --------------------------------------------------------------------------

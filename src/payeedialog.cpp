@@ -343,7 +343,7 @@ void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& /*event*/)
 
 void mmPayeeDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
 {
-    core_->dbInfoSettings_->SetBoolSetting("SHOW_HIDDEN_PAYEES", cbShowAll_->IsChecked());
+    core_->dbInfoSettings_->SetSetting("SHOW_HIDDEN_PAYEES", cbShowAll_->IsChecked());
     fillControls();
 }
 
@@ -362,6 +362,6 @@ void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmPayeeDialog::saveFilterSettings(wxCommandEvent& event)
 {
-    core_->dbInfoSettings_->SetStringSetting("HIDDEN_PAYEES_STRING", hideTextCtrl_->GetValue());
+    core_->dbInfoSettings_->SetSetting("HIDDEN_PAYEES_STRING", hideTextCtrl_->GetValue());
     event.Skip();
 }

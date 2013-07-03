@@ -134,7 +134,7 @@ wxString mmSelectLanguage(wxWindow *parent, MMEX_IniSettings* pIniSettings, bool
         bool ok = locale.AddCatalog(lang) && locale.IsLoaded(lang);
         if (!ok)  lang.clear(); // bad .mo file
         mmOptions::instance().language_ = lang;
-        pIniSettings->SetStringSetting(LANGUAGE_PARAMETER, lang);
+        pIniSettings->SetSetting(LANGUAGE_PARAMETER, lang);
     }
 
     return lang;

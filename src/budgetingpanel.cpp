@@ -77,7 +77,7 @@ mmBudgetingPanel::~mmBudgetingPanel()
 void mmBudgetingPanel::save_column_width(int width)
 {
     int col_x = listCtrlBudget_->GetColumnWidth(width);
-    core_->iniSettings_->SetIntSetting(wxString::Format("BUDGET_COL%d_WIDTH", width), col_x);
+    core_->iniSettings_->SetSetting(wxString::Format("BUDGET_COL%d_WIDTH", width), col_x);
 }
 
 void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -96,7 +96,7 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
     else
         wxASSERT(false);
 
-    core_->dbInfoSettings_->SetStringSetting("BUDGET_FILTER", currentView_);
+    core_->dbInfoSettings_->SetSetting("BUDGET_FILTER", currentView_);
 
     listCtrlBudget_->DeleteAllItems();
     initVirtualListControl();

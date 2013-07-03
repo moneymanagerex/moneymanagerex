@@ -843,7 +843,7 @@ void mmOptionsDialog::SaveViewAccountOptions()
     int selection = choiceVisible_->GetSelection();
     int row_id_ = 0;
     wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id_);
-    core_->iniSettings_->SetStringSetting("VIEWACCOUNTS", viewAcct[selection]);
+    core_->iniSettings_->SetSetting("VIEWACCOUNTS", viewAcct[selection]);
 }
 
 void mmOptionsDialog::SaveViewTransactionOptions()
@@ -854,7 +854,7 @@ void mmOptionsDialog::SaveViewTransactionOptions()
     {
         visible = visible_obj->GetData();
     }
-    core_->iniSettings_->SetStringSetting("VIEWTRANSACTIONS", visible);
+    core_->iniSettings_->SetSetting("VIEWTRANSACTIONS", visible);
 }
 
 void mmOptionsDialog::SaveFinancialYearStart()
@@ -863,12 +863,12 @@ void mmOptionsDialog::SaveFinancialYearStart()
     wxSpinCtrl* fysDay = (wxSpinCtrl*)FindWindow(ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY);
     wxString fysDayVal = wxString::Format("%d",fysDay->GetValue());
     mmOptions::instance().financialYearStartDayString_ = fysDayVal;
-    core_->dbInfoSettings_->SetStringSetting("FINANCIAL_YEAR_START_DAY", fysDayVal);
+    core_->dbInfoSettings_->SetSetting("FINANCIAL_YEAR_START_DAY", fysDayVal);
 
     //Save Financial Year Start Month
     wxString fysMonthVal = wxString() << monthSelection_->GetSelection() + 1;
     mmOptions::instance().financialYearStartMonthString_ = fysMonthVal;
-    core_->dbInfoSettings_->SetStringSetting("FINANCIAL_YEAR_START_MONTH", fysMonthVal);
+    core_->dbInfoSettings_->SetSetting("FINANCIAL_YEAR_START_MONTH", fysMonthVal);
 }
 
 void mmOptionsDialog::SaveStocksUrl()
@@ -877,7 +877,7 @@ void mmOptionsDialog::SaveStocksUrl()
     wxString stockURL = url->GetValue();
     if (!stockURL.IsEmpty())
     {
-        core_->dbInfoSettings_->SetStringSetting("STOCKURL", stockURL);
+        core_->dbInfoSettings_->SetSetting("STOCKURL", stockURL);
     }
     else
     {
@@ -907,14 +907,14 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
 {
     wxTextCtrl* stun = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
     mmOptions::instance().userNameString_ = stun->GetValue();
-    core_->dbInfoSettings_->SetStringSetting("USERNAME", mmOptions::instance().userNameString_);
+    core_->dbInfoSettings_->SetSetting("USERNAME", mmOptions::instance().userNameString_);
 
     wxButton *languageButton = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
-    core_->iniSettings_->SetStringSetting(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
+    core_->iniSettings_->SetSetting(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
     mmSelectLanguage(this, core_->iniSettings_, false);
 
     core_->currencyList_.SetBaseCurrencySettings(currencyId_);
-    core_->dbInfoSettings_->SetStringSetting("DATEFORMAT", dateFormat_);
+    core_->dbInfoSettings_->SetSetting("DATEFORMAT", dateFormat_);
     SaveFinancialYearStart();
 }
 
@@ -925,42 +925,42 @@ void mmOptionsDialog::SaveViewPanelSettings()
 
     int size = choiceFontSize_->GetCurrentSelection() + 1;
     mmIniOptions::instance().html_font_size_ = size;
-    core_->iniSettings_->SetIntSetting("HTMLFONTSIZE", size);
+    core_->iniSettings_->SetSetting("HTMLFONTSIZE", size);
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_TREE);
     mmIniOptions::instance().expandBankTree_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetBoolSetting("EXPAND_BANK_TREE", itemCheckBox->GetValue() );
+    core_->iniSettings_->SetSetting("EXPAND_BANK_TREE", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_TREE);
     mmIniOptions::instance().expandTermTree_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetBoolSetting("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
+    core_->iniSettings_->SetSetting("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_HOME);
     mmIniOptions::instance().expandBankHome_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetBoolSetting("EXPAND_BANK_HOME", itemCheckBox->GetValue() );
+    core_->iniSettings_->SetSetting("EXPAND_BANK_HOME", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_HOME);
     mmIniOptions::instance().expandTermHome_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetBoolSetting("EXPAND_TERM_HOME", itemCheckBox->GetValue() );
+    core_->iniSettings_->SetSetting("EXPAND_TERM_HOME", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME);
     mmIniOptions::instance().expandStocksHome_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetBoolSetting("ENABLESTOCKS", itemCheckBox->GetValue() );
+    core_->iniSettings_->SetSetting("ENABLESTOCKS", itemCheckBox->GetValue() );
 
     mmIniOptions::instance().budgetFinancialYears_ = cbBudgetFinancialYears_->GetValue();
-    core_->iniSettings_->SetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
+    core_->iniSettings_->SetSetting(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
 
     mmIniOptions::instance().budgetIncludeTransfers_ = cbBudgetIncludeTransfers_->GetValue();
-    core_->iniSettings_->SetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, mmIniOptions::instance().budgetIncludeTransfers_);
+    core_->iniSettings_->SetSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, mmIniOptions::instance().budgetIncludeTransfers_);
 
     mmIniOptions::instance().budgetSetupWithoutSummaries_ = cbBudgetSetupWithoutSummary_->GetValue();
-    core_->iniSettings_->SetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
+    core_->iniSettings_->SetSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
 
     mmIniOptions::instance().budgetSummaryWithoutCategories_ = cbBudgetSummaryWithoutCateg_->GetValue();
-    core_->iniSettings_->SetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, mmIniOptions::instance().budgetSummaryWithoutCategories_);
+    core_->iniSettings_->SetSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, mmIniOptions::instance().budgetSummaryWithoutCategories_);
 
     mmIniOptions::instance().ignoreFutureTransactions_ = cbIgnoreFutureTransactions_->GetValue();
-    core_->iniSettings_->SetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
+    core_->iniSettings_->SetSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
 }
 
 void mmOptionsDialog::SaveColourPanelSettings()
@@ -973,13 +973,13 @@ void mmOptionsDialog::SaveColourPanelSettings()
     mmColors::listDetailsPanelColor = listDetailsButton_->GetBackgroundColour();
     mmColors::listFutureDateColor = futureTransButton_->GetBackgroundColour();
 
-    core_->iniSettings_->SetStringSetting("LISTALT0", mmGetStringFromColour(mmColors::listAlternativeColor0));
-    core_->iniSettings_->SetStringSetting("LISTALT1", mmGetStringFromColour(mmColors::listAlternativeColor1));
-    core_->iniSettings_->SetStringSetting("LISTBACK", mmGetStringFromColour(mmColors::listBackColor));
-    core_->iniSettings_->SetStringSetting("NAVTREE",  mmGetStringFromColour(mmColors::navTreeBkColor));
-    core_->iniSettings_->SetStringSetting("LISTBORDER", mmGetStringFromColour(mmColors::listBorderColor));
-    core_->iniSettings_->SetStringSetting("LISTDETAILSPANEL", mmGetStringFromColour(mmColors::listDetailsPanelColor));
-    core_->iniSettings_->SetStringSetting("LISTFUTUREDATES", mmGetStringFromColour(mmColors::listFutureDateColor));
+    core_->iniSettings_->SetSetting("LISTALT0", mmGetStringFromColour(mmColors::listAlternativeColor0));
+    core_->iniSettings_->SetSetting("LISTALT1", mmGetStringFromColour(mmColors::listAlternativeColor1));
+    core_->iniSettings_->SetSetting("LISTBACK", mmGetStringFromColour(mmColors::listBackColor));
+    core_->iniSettings_->SetSetting("NAVTREE",  mmGetStringFromColour(mmColors::navTreeBkColor));
+    core_->iniSettings_->SetSetting("LISTBORDER", mmGetStringFromColour(mmColors::listBorderColor));
+    core_->iniSettings_->SetSetting("LISTDETAILSPANEL", mmGetStringFromColour(mmColors::listDetailsPanelColor));
+    core_->iniSettings_->SetSetting("LISTFUTUREDATES", mmGetStringFromColour(mmColors::listFutureDateColor));
 
     mmColors::userDefColor1 = UDFCB1_->GetBackgroundColour();
     mmColors::userDefColor2 = UDFCB2_->GetBackgroundColour();
@@ -989,13 +989,13 @@ void mmOptionsDialog::SaveColourPanelSettings()
     mmColors::userDefColor6 = UDFCB6_->GetBackgroundColour();
     mmColors::userDefColor7 = UDFCB7_->GetBackgroundColour();
 
-    core_->iniSettings_->SetStringSetting("USER_COLOR1", mmGetStringFromColour(mmColors::userDefColor1));
-    core_->iniSettings_->SetStringSetting("USER_COLOR2", mmGetStringFromColour(mmColors::userDefColor2));
-    core_->iniSettings_->SetStringSetting("USER_COLOR3", mmGetStringFromColour(mmColors::userDefColor3));
-    core_->iniSettings_->SetStringSetting("USER_COLOR4",  mmGetStringFromColour(mmColors::userDefColor4));
-    core_->iniSettings_->SetStringSetting("USER_COLOR5", mmGetStringFromColour(mmColors::userDefColor5));
-    core_->iniSettings_->SetStringSetting("USER_COLOR6", mmGetStringFromColour(mmColors::userDefColor6));
-    core_->iniSettings_->SetStringSetting("USER_COLOR7", mmGetStringFromColour(mmColors::userDefColor7));
+    core_->iniSettings_->SetSetting("USER_COLOR1", mmGetStringFromColour(mmColors::userDefColor1));
+    core_->iniSettings_->SetSetting("USER_COLOR2", mmGetStringFromColour(mmColors::userDefColor2));
+    core_->iniSettings_->SetSetting("USER_COLOR3", mmGetStringFromColour(mmColors::userDefColor3));
+    core_->iniSettings_->SetSetting("USER_COLOR4",  mmGetStringFromColour(mmColors::userDefColor4));
+    core_->iniSettings_->SetSetting("USER_COLOR5", mmGetStringFromColour(mmColors::userDefColor5));
+    core_->iniSettings_->SetSetting("USER_COLOR6", mmGetStringFromColour(mmColors::userDefColor6));
+    core_->iniSettings_->SetSetting("USER_COLOR7", mmGetStringFromColour(mmColors::userDefColor7));
 
 }
 
@@ -1003,40 +1003,40 @@ void mmOptionsDialog::SaveOthersPanelSettings()
 {
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
     mmIniOptions::instance().transPayeeSelectionNone_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetIntSetting("TRANSACTION_PAYEE_NONE", itemChoice->GetSelection());
+    core_->iniSettings_->SetSetting("TRANSACTION_PAYEE_NONE", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY);
     mmIniOptions::instance().transCategorySelectionNone_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetIntSetting("TRANSACTION_CATEGORY_NONE", itemChoice->GetSelection());
+    core_->iniSettings_->SetSetting("TRANSACTION_CATEGORY_NONE", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
     mmIniOptions::instance().transStatusReconciled_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetIntSetting("TRANSACTION_STATUS_RECONCILED", itemChoice->GetSelection());
+    core_->iniSettings_->SetSetting("TRANSACTION_STATUS_RECONCILED", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE);
     mmIniOptions::instance().transDateDefault_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetIntSetting("TRANSACTION_DATE_DEFAULT", itemChoice->GetSelection());
+    core_->iniSettings_->SetSetting("TRANSACTION_DATE_DEFAULT", itemChoice->GetSelection());
 
     SaveStocksUrl();
 
-    core_->iniSettings_->SetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
-    core_->iniSettings_->SetBoolSetting(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
-    core_->iniSettings_->SetBoolSetting(INIDB_UPDATE_CURRENCY_RATE, cbEnableCurrencyUpd_->GetValue());
+    core_->iniSettings_->SetSetting(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
+    core_->iniSettings_->SetSetting(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
+    core_->iniSettings_->SetSetting(INIDB_UPDATE_CURRENCY_RATE, cbEnableCurrencyUpd_->GetValue());
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
-    core_->iniSettings_->SetBoolSetting("BACKUPDB", itemCheckBox->GetValue() );
+    core_->iniSettings_->SetSetting("BACKUPDB", itemCheckBox->GetValue() );
 
     wxCheckBox* itemCheckBoxUpdate = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE);
-    core_->iniSettings_->SetBoolSetting("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue() );
+    core_->iniSettings_->SetSetting("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue() );
 
-    core_->iniSettings_->SetIntSetting("MAX_BACKUP_FILES", scMax_files_->GetValue());
+    core_->iniSettings_->SetSetting("MAX_BACKUP_FILES", scMax_files_->GetValue());
 }
 
 void mmOptionsDialog::SaveImportExportPanelSettings()
 {
     wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
     wxString delim = st->GetValue();
-    if (!delim.IsEmpty()) core_->dbInfoSettings_->SetStringSetting("DELIMITER", delim);
+    if (!delim.IsEmpty()) core_->dbInfoSettings_->SetSetting("DELIMITER", delim);
 }
 
 bool mmOptionsDialog::GetUpdateCurrencyRateSetting()

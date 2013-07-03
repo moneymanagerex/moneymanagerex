@@ -950,7 +950,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     m_listCtrlAccount->m_selectedIndex = -1;
 
-    core_->dbInfoSettings_->SetStringSetting(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
+    core_->dbInfoSettings_->SetSetting(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
     initFilterSettings();
     m_listCtrlAccount->refreshVisualList(m_listCtrlAccount->m_selectedID);
      
@@ -1040,7 +1040,7 @@ void TransactionListCtrl::OnItemResize(wxListEvent& event)
     int i = event.GetColumn();
     wxString parameter_name = wxString::Format("CHECK_COL%d_WIDTH", i);
     int current_width = m_cp->m_listCtrlAccount->GetColumnWidth(i);
-    m_cp->core_->iniSettings_->SetIntSetting(parameter_name, current_width);
+    m_cp->core_->iniSettings_->SetSetting(parameter_name, current_width);
 }
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
@@ -1217,8 +1217,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     g_sortcol = m_sortCol;
 
     setColumnImage(m_sortCol, m_asc ? ICON_ASC : ICON_DESC);
-    m_cp->core_->iniSettings_->SetIntSetting("CHECK_ASC", g_asc);
-    m_cp->core_->iniSettings_->SetIntSetting("CHECK_SORT_COL", g_sortcol);
+    m_cp->core_->iniSettings_->SetSetting("CHECK_ASC", g_asc);
+    m_cp->core_->iniSettings_->SetSetting("CHECK_SORT_COL", g_sortcol);
 
     m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID);
 

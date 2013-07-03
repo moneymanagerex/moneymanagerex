@@ -580,8 +580,8 @@ void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
 {
     int i = m_radio_box_->GetSelection();
     settings_string_ = GetCurrentSettings();
-    core_->dbInfoSettings_->SetStringSetting(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
-    core_->dbInfoSettings_->SetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", i);
+    core_->dbInfoSettings_->SetSetting(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
+    core_->dbInfoSettings_->SetSetting("TRANSACTIONS_FILTER_VIEW_NO", i);
     wxLogDebug(wxString::Format("Settings Saled to registry %i\n %s", i, settings_string_));
 }
 
@@ -603,7 +603,7 @@ wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
     if (id < 0) {
         id = core_->dbInfoSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
     } else {
-        core_->iniSettings_->SetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", id);
+        core_->iniSettings_->SetSetting("TRANSACTIONS_FILTER_VIEW_NO", id);
     }
     settings_string_ = core_->dbInfoSettings_->GetStringSetting(
                               wxString::Format("TRANSACTIONS_FILTER_%d", id),

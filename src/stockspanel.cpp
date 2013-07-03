@@ -284,7 +284,7 @@ void mmStocksPanel::save_column_width(int width)
 {
     int i = width;
     int col_x = listCtrlAccount_->GetColumnWidth(i);
-    core_->iniSettings_->SetIntSetting(wxString::Format("STOCKS_COL%d_WIDTH", i),col_x);
+    core_->iniSettings_->SetSetting(wxString::Format("STOCKS_COL%d_WIDTH", i),col_x);
 }
 
 void mmStocksPanel::CreateControls()
@@ -695,7 +695,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime(),
                              LastRefreshDT_.FormatDate());
-    core_->dbInfoSettings_->SetStringSetting("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
+    core_->dbInfoSettings_->SetSetting("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
 }

@@ -53,7 +53,7 @@ void RecentDatabaseFiles::saveRecentList()
     for (int index = 1; index < recentListSize_; ++ index)
     {
         wxString dbIndex = wxString() << dbIndexName_ << index;
-        pIniSettings_->SetStringSetting(dbIndex, recentFileList_[index] );
+        pIniSettings_->SetSetting(dbIndex, recentFileList_[index] );
     }
 }
 

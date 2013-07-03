@@ -332,7 +332,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     }
     sIndex.RemoveLast(1);
 
-    core_->dbInfoSettings_->SetStringSetting("HIDDEN_CATEGS_ID", sSettings);
+    core_->dbInfoSettings_->SetSetting("HIDDEN_CATEGS_ID", sSettings);
     core_->dbInfoSettings_->Save();
 }
 
@@ -506,7 +506,7 @@ void mmCategDialog::OnExpandChbClick(wxCommandEvent& /*event*/)
         treeCtrl_->SelectItem(selectedItemId_);
     }
     treeCtrl_->EnsureVisible(selectedItemId_);
-    core_->iniSettings_->SetBoolSetting("EXPAND_CATEGS_TREE", cbExpand_->IsChecked());
+    core_->iniSettings_->SetSetting("EXPAND_CATEGS_TREE", cbExpand_->IsChecked());
     core_->iniSettings_->Save();
 }
 
@@ -520,7 +520,7 @@ void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
     {
         treeCtrl_->SelectItem(selectedItemId_);
     }
-    core_->iniSettings_->SetBoolSetting("SHOW_HIDDEN_CATEGS", cbShowAll_->IsChecked());
+    core_->iniSettings_->SetSetting("SHOW_HIDDEN_CATEGS", cbShowAll_->IsChecked());
     core_->iniSettings_->Save();
     fillControls();
 }
@@ -553,7 +553,7 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     }
     sSettings.RemoveLast(1);
 
-    core_->dbInfoSettings_->SetStringSetting("HIDDEN_CATEGS_ID", sSettings);
+    core_->dbInfoSettings_->SetSetting("HIDDEN_CATEGS_ID", sSettings);
     core_->dbInfoSettings_->Save();
 
     if (!cbShowAll_->IsChecked() || id == 2) fillControls();

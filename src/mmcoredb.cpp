@@ -45,11 +45,11 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniS
     // Initialize the database if creating a new one.
     if (!dbInfoSettings_->Exists("MMEXVERSION"))
     {
-        dbInfoSettings_->SetStringSetting("MMEXVERSION", mmex::getProgramVersion());
-        dbInfoSettings_->SetStringSetting("DATAVERSION", mmex::DATAVERSION);
-        dbInfoSettings_->SetStringSetting("CREATEDATE", wxDateTime::Now().FormatISODate());
-        dbInfoSettings_->SetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
-        dbInfoSettings_->SetStringSetting("BASECURRENCYID", "1");
+        dbInfoSettings_->SetSetting("MMEXVERSION", mmex::getProgramVersion());
+        dbInfoSettings_->SetSetting("DATAVERSION", mmex::DATAVERSION);
+        dbInfoSettings_->SetSetting("CREATEDATE", wxDateTime::Now().FormatISODate());
+        dbInfoSettings_->SetSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
+        dbInfoSettings_->SetSetting("BASECURRENCYID", 1);
         dbInfoSettings_->Save();
     }
     mmOptions::instance().loadOptions(dbInfoSettings_);

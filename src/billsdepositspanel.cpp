@@ -392,7 +392,7 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
     int i = event.GetColumn();
     wxString parameter_name = wxString::Format("BD_COL%d_WIDTH", i);
     int current_width = cp_->GetListCtrlWidth(i);
-    cp_->core_->iniSettings_->SetIntSetting(parameter_name, current_width);
+    cp_->core_->iniSettings_->SetSetting(parameter_name, current_width);
 }
 
 void billsDepositsListCtrl::OnItemRightClick(wxListEvent& event)

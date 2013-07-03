@@ -49,7 +49,7 @@ void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
     int width = cp_->GetListCtrlWidth(i);
-    cp_->core_->iniSettings_->SetIntSetting(wxString::Format("ASSETS_COL%d_WIDTH", i), width);
+    cp_->core_->iniSettings_->SetSetting(wxString::Format("ASSETS_COL%d_WIDTH", i), width);
 }
 
 void mmAssetsListCtrl::InitVariables()

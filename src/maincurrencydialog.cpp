@@ -320,7 +320,7 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
 
     if (baseCurrencyID == currencyID_) return;
 
-    core_->dbInfoSettings_->SetIntSetting("BASECURRENCYID", currencyID_);
+    core_->dbInfoSettings_->SetSetting("BASECURRENCYID", currencyID_);
     core_->dbInfoSettings_->Save();
 
     fillControls();

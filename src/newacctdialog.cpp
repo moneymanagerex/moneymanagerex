@@ -454,7 +454,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
     int selectedImage = event.GetId();
 
-    core_->dbInfoSettings_->SetStringSetting(wxString::Format("ACC_IMAGE_ID_%d", accountID_), wxString()<<selectedImage);
+    core_->dbInfoSettings_->SetSetting(wxString::Format("ACC_IMAGE_ID_%d", accountID_), wxString()<<selectedImage);
     if (selectedImage == 0)
         selectedImage = mmIniOptions::instance().account_image_id(core_, accountID_);
 

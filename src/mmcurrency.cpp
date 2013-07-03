@@ -163,7 +163,7 @@ int mmCurrencyList::GetBaseCurrencySettings() const
 void mmCurrencyList::SetBaseCurrencySettings(int currencyID)
 {
     wxASSERT(info_table_);
-    info_table_->SetIntSetting("BASECURRENCYID", currencyID);
+    info_table_->SetSetting("BASECURRENCYID", currencyID);
 }
 
 int mmCurrencyList::AddCurrency(mmCurrency* pCurrency)

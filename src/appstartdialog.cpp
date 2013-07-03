@@ -75,7 +75,7 @@ mmAppStartDialog::~mmAppStartDialog()
     try
     {
         bool showBeginApp = itemCheckBox->GetValue();
-        pIniSettings_->SetBoolSetting("SHOWBEGINAPP", showBeginApp);
+        pIniSettings_->SetSetting("SHOWBEGINAPP", showBeginApp);
     }
     catch (...)
     {

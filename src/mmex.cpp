@@ -338,7 +338,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         return false;
     }
     userName = itemUserName_->GetValue().Trim();
-    parent_->m_core->dbInfoSettings_->SetStringSetting("USERNAME", userName);
+    parent_->m_core->dbInfoSettings_->SetSetting("USERNAME", userName);
 
     return true;
 }
@@ -665,7 +665,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     // Save default perspective
     m_perspective = m_mgr.SavePerspective();
-    m_inisettings->SetStringSetting("AUIPERSPECTIVE", m_perspective);
+    m_inisettings->SetSetting("AUIPERSPECTIVE", m_perspective);
 
     // "commit" all changes made to wxAuiManager
     m_mgr.Update();
@@ -1046,25 +1046,25 @@ void mmGUIFrame::saveSettings()
     if (! fileName_.IsEmpty())
     {
         wxFileName fname(fileName_);
-        m_inisettings->SetStringSetting("LASTFILENAME", fname.GetFullPath());
+        m_inisettings->SetSetting("LASTFILENAME", fname.GetFullPath());
     }
 
     /* Aui Settings */
-    m_inisettings->SetStringSetting("AUIPERSPECTIVE", m_mgr.SavePerspective());
+    m_inisettings->SetSetting("AUIPERSPECTIVE", m_mgr.SavePerspective());
 
     // prevent values being saved while window is in an iconised state.
     if (this->IsIconized()) this->Restore();
 
     int value_x = 0, value_y = 0;
     this->GetPosition(&value_x, &value_y);
-    m_inisettings->SetIntSetting("ORIGINX", value_x);
-    m_inisettings->SetIntSetting("ORIGINY", value_y);
+    m_inisettings->SetSetting("ORIGINX", value_x);
+    m_inisettings->SetSetting("ORIGINY", value_y);
 
     int value_w = 0, value_h = 0;
     this->GetSize(&value_w, &value_h);
-    m_inisettings->SetIntSetting("SIZEW", value_w);
-    m_inisettings->SetIntSetting("SIZEH", value_h);
-    m_inisettings->SetIntSetting("ISMAXIMIZED", this->IsMaximized());
+    m_inisettings->SetSetting("SIZEW", value_w);
+    m_inisettings->SetSetting("SIZEH", value_h);
+    m_inisettings->SetSetting("ISMAXIMIZED", this->IsMaximized());
 }
 //----------------------------------------------------------------------------
 
@@ -2115,12 +2115,12 @@ void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
     wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
 
     //Set view ALL
-    m_inisettings->SetStringSetting("VIEWACCOUNTS", "ALL");
+    m_inisettings->SetSetting("VIEWACCOUNTS", "ALL");
     //Refresh Navigation Panel
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
-    m_inisettings->SetStringSetting("VIEWACCOUNTS", vAccts);
+    m_inisettings->SetSetting("VIEWACCOUNTS", vAccts);
 }
 //----------------------------------------------------------------------------
 
@@ -2130,13 +2130,13 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
     wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
 
     //Set view ALL
-    m_inisettings->SetStringSetting("VIEWACCOUNTS", "Favorites");
+    m_inisettings->SetSetting("VIEWACCOUNTS", "Favorites");
 
     //Refresh Navigation Panel
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
-    m_inisettings->SetStringSetting("VIEWACCOUNTS", vAccts);
+    m_inisettings->SetSetting("VIEWACCOUNTS", vAccts);
 }
 //----------------------------------------------------------------------------
 
@@ -2146,13 +2146,13 @@ void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
     wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
 
     //Set view ALL
-    m_inisettings->SetStringSetting("VIEWACCOUNTS", "Open");
+    m_inisettings->SetSetting("VIEWACCOUNTS", "Open");
 
     //Refresh Navigation Panel
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
-    m_inisettings->SetStringSetting("VIEWACCOUNTS", vAccts);
+    m_inisettings->SetSetting("VIEWACCOUNTS", vAccts);
 }
 //----------------------------------------------------------------------------
 
@@ -3431,12 +3431,12 @@ void mmGUIFrame::OnPrintPageSetup(wxCommandEvent& WXUNUSED(event))
         int pageOrientation = printerData->GetOrientation();
         wxPaperSize paperID = printerData->GetPaperId();
 
-        m_inisettings->SetIntSetting("PRINTER_LEFT_MARGIN", topLeft.x);
-        m_inisettings->SetIntSetting("PRINTER_RIGHT_MARGIN", bottomRight.x);
-        m_inisettings->SetIntSetting("PRINTER_TOP_MARGIN", topLeft.y);
-        m_inisettings->SetIntSetting("PRINTER_BOTTOM_MARGIN", bottomRight.y);
-        m_inisettings->SetIntSetting("PRINTER_PAGE_ORIENTATION", pageOrientation);
-        m_inisettings->SetIntSetting("PRINTER_PAGE_ID", paperID);
+        m_inisettings->SetSetting("PRINTER_LEFT_MARGIN", topLeft.x);
+        m_inisettings->SetSetting("PRINTER_RIGHT_MARGIN", bottomRight.x);
+        m_inisettings->SetSetting("PRINTER_TOP_MARGIN", topLeft.y);
+        m_inisettings->SetSetting("PRINTER_BOTTOM_MARGIN", bottomRight.y);
+        m_inisettings->SetSetting("PRINTER_PAGE_ORIENTATION", pageOrientation);
+        m_inisettings->SetSetting("PRINTER_PAGE_ID", paperID);
     }
 }
 //----------------------------------------------------------------------------
@@ -3705,7 +3705,7 @@ void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
 {
     m_mgr.GetPane("toolbar").Show(event.IsChecked());
     m_mgr.Update();
-    m_inisettings->SetBoolSetting("SHOWTOOLBAR", event.IsChecked());
+    m_inisettings->SetSetting("SHOWTOOLBAR", event.IsChecked());
 }
 //----------------------------------------------------------------------------
 

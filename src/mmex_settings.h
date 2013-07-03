@@ -46,6 +46,7 @@ public:
                    , wxSQLite3ResultSet& q1);
 
     /// Set the value of the record
+    void SetValue(int value);
     void SetValue(const wxString& value);
     void Save();
     wxString Name();
@@ -76,9 +77,9 @@ public:
     wxString GetStringSetting(const wxString& name, const wxString& default_value);
 
     /// Save to existing value
-    void SetBoolSetting(const wxString& name, bool value);
-    void SetIntSetting(const wxString& name, int value);
-    void SetStringSetting(const wxString& name, const wxString& value);
+    void SetSetting(const wxString& name, bool value);
+    void SetSetting(const wxString& name, int value);
+    void SetSetting(const wxString& name, const wxString& value);
 
     bool Exists(const wxString& name);
     void Load();

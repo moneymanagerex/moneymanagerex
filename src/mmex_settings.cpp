@@ -92,6 +92,11 @@ void MMEX_IniRecord::SetValue(const wxString& value)
     settingValue_ = value;
 }
 
+void MMEX_IniRecord::SetValue(int value)
+{
+    settingValue_ << value;
+}
+
 void MMEX_IniRecord::Save()
 {
     try
@@ -229,7 +234,7 @@ wxString MMEX_IniSettings::GetStringSetting(const wxString& name, const wxString
     return default_value;
 }
 
-void MMEX_IniSettings::SetBoolSetting(const wxString& name, bool value)
+void MMEX_IniSettings::SetSetting(const wxString& name, bool value)
 {
     MMEX_IniRecord* pExistingRecord = GetRecord(name);
     if (!pExistingRecord)
@@ -243,7 +248,7 @@ void MMEX_IniSettings::SetBoolSetting(const wxString& name, bool value)
     Save();
 }
 
-void MMEX_IniSettings::SetIntSetting(const wxString& name, int value)
+void MMEX_IniSettings::SetSetting(const wxString& name, int value)
 {
     MMEX_IniRecord* pExistingRecord = GetRecord(name);
     if (!pExistingRecord)
@@ -252,11 +257,11 @@ void MMEX_IniSettings::SetIntSetting(const wxString& name, int value)
         ini_records_.push_back(pNewRecord);
         pExistingRecord = pNewRecord.get();
     }
-    pExistingRecord->SetValue(wxString() << value);
+    pExistingRecord->SetValue(value);
     Save();
 }
 
-void MMEX_IniSettings::SetStringSetting(const wxString& name, const wxString& value)
+void MMEX_IniSettings::SetSetting(const wxString& name, const wxString& value)
 {
     MMEX_IniRecord* pExistingRecord = GetRecord(name);
     if (!pExistingRecord)
