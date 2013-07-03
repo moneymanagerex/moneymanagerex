@@ -150,6 +150,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categexp.o \
 	mmex_tests_categovertimeperf.o \
 	mmex_tests_chart.o \
+	mmex_tests_html_widget_top_categories.o \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
 	mmex_tests_mmDateRange.o \
@@ -686,6 +687,9 @@ mmex_tests_categovertimeperf.o: ../../../src/reports/categovertimeperf.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_chart.o: ../../../src/reports/chart.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_html_widget_top_categories.o: ../../../src/reports/html_widget_top_categories.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_htmlbuilder.o: ../../../src/reports/htmlbuilder.cpp

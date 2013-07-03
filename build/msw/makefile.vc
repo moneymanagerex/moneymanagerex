@@ -152,6 +152,7 @@ MMEX_OBJECTS =  \
 	mmex_categexp.obj \
 	mmex_categovertimeperf.obj \
 	mmex_chart.obj \
+	mmex_html_widget_top_categories.obj \
 	mmex_htmlbuilder.obj \
 	mmex_incexpenses.obj \
 	mmex_mmDateRange.obj \
@@ -807,6 +808,9 @@ mmex_categovertimeperf.obj: ..\..\src\reports\categovertimeperf.cpp
 
 mmex_chart.obj: ..\..\src\reports\chart.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\chart.cpp
+
+mmex_html_widget_top_categories.obj: ..\..\src\reports\html_widget_top_categories.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\html_widget_top_categories.cpp
 
 mmex_htmlbuilder.obj: ..\..\src\reports\htmlbuilder.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\htmlbuilder.cpp
