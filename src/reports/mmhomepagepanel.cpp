@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "mmhomepagepanel.h"
+#include "html_widget_top_categories.h"
 #include "../mmex.h"
 
 #include "htmlbuilder.h"
@@ -111,7 +112,9 @@ void mmHomePagePanel::createFrames()
     leftFrame << displayGrandTotals(tBalance);
     curr = displayCurrencies();
     leftFrame << displayCurrencies();
-    leftFrame << displayTopTransactions();
+
+    htmlWidgetTop7Categories top_trx(core_);
+    leftFrame += top_trx.getHTMLText();
 
     //Also displays the Income vs Expenses graph.
     rightFrame << displayIncomeVsExpenses();
@@ -635,48 +638,6 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
         hb.endTable();
     }
     return hb.getHTMLinTableWraper(true);
-}
-
-wxString mmHomePagePanel::displayTopTransactions()
-{
-    mmHTMLBuilder hb;
-    core_->currencyList_.LoadBaseCurrencySettings();
-
-    wxString headerMsg = wxString::Format(_("Top Withdrawals: %s"), _("Last 30 Days"));
-
-    hb.startTable("100%");
-    hb.addTableHeaderRow(headerMsg, 2);
-    hb.startTableRow();
-    hb.addTableCell(_("Category"), false, false, true);
-    //hb.addTableCell(_("QTY"), true, false, true);
-    hb.addTableCell(_("Summary"), true, false, true);
-    hb.endTableRow();
-
-    //Get statistic for las 30 days
-    mmDateRange* date_range = new mmLast30Days;
-    std::vector<std::pair<wxString, double> > topCategoryStats;
-    core_->bTransactionList_.getTopCategoryStats(
-        topCategoryStats
-        , date_range
-    );
-
-    for (const auto& i : topCategoryStats)
-    {
-        hb.startTableRow();
-        hb.addTableCell(i.first, false, true);
-        hb.addMoneyCell(i.second);
-        hb.endTableRow();
-    }
-
-    return hb.getHTMLinTableWraper(true);
-/*
-    // Commented because there is not enough vertical space to show main page
-    // without vertical scrollbar on 19-20" monitors.
-
-    // Top 10 Graph.
-    mmGraphTopCategories gtp;
-    hb.addImage(gtp.getOutputFileName());
-*/
 }
 
 wxString mmHomePagePanel::getCalendarWidget()

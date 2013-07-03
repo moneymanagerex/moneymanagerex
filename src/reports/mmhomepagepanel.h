@@ -92,7 +92,6 @@ private:
     wxString displayCurrencies();
     wxString displayIncomeVsExpenses();
     wxString displayBillsAndDeposits();
-    wxString displayTopTransactions();
     wxString getStatWidget();
     wxString getCalendarWidget();
     wxString displayGrandTotals(double& tBalance);
