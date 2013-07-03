@@ -95,8 +95,8 @@ MMEX_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
 	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex.pdb \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /I..\..\lib\sqlite \
-	/I..\..\lib\wxsqlite /I..\..\lib\lua\src /I..\..\lib /DNOPCH /D_WINDOWS /EHsc \
-	/GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
+	/I..\..\lib\wxsqlite /I..\..\lib\lua\src /I..\..\lib /I..\..\src /DNOPCH \
+	/D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.obj \
 	mmex_appstartdialog.obj \
@@ -908,5 +908,5 @@ mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\univcsvdialog.cpp
 
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\sqlite /i ..\..\lib\wxsqlite /i ..\..\lib\lua\src /i ..\..\lib /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\sqlite /i ..\..\lib\wxsqlite /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
 

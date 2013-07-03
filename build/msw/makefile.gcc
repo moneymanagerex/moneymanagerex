@@ -95,7 +95,7 @@ MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\sqlite -I..\..\lib\wxsqlite -I..\..\lib\lua\src -I..\..\lib \
-	-DNOPCH $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\src -DNOPCH $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.o \
 	mmex_appstartdialog.o \
@@ -775,7 +775,7 @@ mmex_univcsvdialog.o: ../../src/import_export/univcsvdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/sqlite --include-dir ../../lib/wxsqlite --include-dir ../../lib/lua/src --include-dir ../../lib --define NOPCH
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/sqlite --include-dir ../../lib/wxsqlite --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../src --define NOPCH
 
 .PHONY: all install uninstall clean install_mmex uninstall_mmex po setup check
 
