@@ -74,11 +74,14 @@ public:
 
     bool GetBoolSetting(const wxString& name, bool default_value);
     int GetIntSetting(const wxString& name, int default_value);
+    wxColour GetColourSetting(const wxString& name, const wxColour& color = wxColour(255, 255,255));
     wxString GetStringSetting(const wxString& name, const wxString& default_value);
 
     /// Save to existing value
     void SetSetting(const wxString& name, bool value);
     void SetSetting(const wxString& name, int value);
+    void SetSetting(const wxString& name, const wxDateTime& date);
+    void SetSetting(const wxString& name, const wxColour& color);
     void SetSetting(const wxString& name, const wxString& value);
 
     bool Exists(const wxString& name);

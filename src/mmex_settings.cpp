@@ -217,6 +217,29 @@ int MMEX_IniSettings::GetIntSetting(const wxString& name, int default_value)
     return default_value;
 }
 
+wxColour MMEX_IniSettings::GetColourSetting(const wxString& name, const wxColour& color)
+{
+    MMEX_IniRecord* pRecord = GetRecord(name);
+    if (pRecord) 
+    {
+        wxString str = pRecord->Value();
+        wxRegEx pattern("([0-9]{1,3}),([0-9]{1,3}),([0-9]{1,3})");
+        if (pattern.Matches(str))
+        {
+            wxString red = pattern.GetMatch(str, 1);
+            wxString green = pattern.GetMatch(str, 2);
+            wxString blue = pattern.GetMatch(str, 3);
+
+            return wxColour(wxAtoi(red), wxAtoi(green), wxAtoi(blue));
+        }
+        else
+        {
+            return wxColor(str);
+        }
+    }
+    return color;
+}
+
 wxString MMEX_IniSettings::GetStringSetting(const wxString& name, const wxString& default_value)
 {
     MMEX_IniRecord* pRecord = GetRecord(name);
@@ -233,6 +256,16 @@ void MMEX_IniSettings::SetSetting(const wxString& name, int value)
 {
     wxString value_s = wxString::Format("%d", value);
     this->SetSetting(name, wxString::Format("%d", value));
+}
+
+void MMEX_IniSettings::SetSetting(const wxString& name, const wxDateTime& date)
+{
+    this->SetSetting(name, date.FormatISODate());
+}
+
+void MMEX_IniSettings::SetSetting(const wxString& name, const wxColour& color)
+{
+    this->SetSetting(name, wxString::Format("%d,%d,%d", color.Red(), color.Green(), color.Blue()));
 }
 
 void MMEX_IniSettings::SetSetting(const wxString& name, const wxString& value)

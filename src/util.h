@@ -121,8 +121,6 @@ wxString adjustedExportAmount(const wxString& amtSeparator, const wxString& strV
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
 void mmLoadColorsFromDatabase(MMEX_IniSettings* pIniSettings);
-wxColour mmGetColourFromString( const wxString& str );
-wxString mmGetStringFromColour( wxColour color );
 
 class mmColors
 {

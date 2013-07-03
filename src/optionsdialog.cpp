@@ -974,13 +974,13 @@ void mmOptionsDialog::SaveColourPanelSettings()
     mmColors::listDetailsPanelColor = listDetailsButton_->GetBackgroundColour();
     mmColors::listFutureDateColor = futureTransButton_->GetBackgroundColour();
 
-    core_->iniSettings_->SetSetting("LISTALT0", mmGetStringFromColour(mmColors::listAlternativeColor0));
-    core_->iniSettings_->SetSetting("LISTALT1", mmGetStringFromColour(mmColors::listAlternativeColor1));
-    core_->iniSettings_->SetSetting("LISTBACK", mmGetStringFromColour(mmColors::listBackColor));
-    core_->iniSettings_->SetSetting("NAVTREE",  mmGetStringFromColour(mmColors::navTreeBkColor));
-    core_->iniSettings_->SetSetting("LISTBORDER", mmGetStringFromColour(mmColors::listBorderColor));
-    core_->iniSettings_->SetSetting("LISTDETAILSPANEL", mmGetStringFromColour(mmColors::listDetailsPanelColor));
-    core_->iniSettings_->SetSetting("LISTFUTUREDATES", mmGetStringFromColour(mmColors::listFutureDateColor));
+    core_->iniSettings_->SetSetting("LISTALT0", mmColors::listAlternativeColor0);
+    core_->iniSettings_->SetSetting("LISTALT1", mmColors::listAlternativeColor1);
+    core_->iniSettings_->SetSetting("LISTBACK", mmColors::listBackColor);
+    core_->iniSettings_->SetSetting("NAVTREE",  mmColors::navTreeBkColor);
+    core_->iniSettings_->SetSetting("LISTBORDER", mmColors::listBorderColor);
+    core_->iniSettings_->SetSetting("LISTDETAILSPANEL", mmColors::listDetailsPanelColor);
+    core_->iniSettings_->SetSetting("LISTFUTUREDATES", mmColors::listFutureDateColor);
 
     mmColors::userDefColor1 = UDFCB1_->GetBackgroundColour();
     mmColors::userDefColor2 = UDFCB2_->GetBackgroundColour();
@@ -990,13 +990,13 @@ void mmOptionsDialog::SaveColourPanelSettings()
     mmColors::userDefColor6 = UDFCB6_->GetBackgroundColour();
     mmColors::userDefColor7 = UDFCB7_->GetBackgroundColour();
 
-    core_->iniSettings_->SetSetting("USER_COLOR1", mmGetStringFromColour(mmColors::userDefColor1));
-    core_->iniSettings_->SetSetting("USER_COLOR2", mmGetStringFromColour(mmColors::userDefColor2));
-    core_->iniSettings_->SetSetting("USER_COLOR3", mmGetStringFromColour(mmColors::userDefColor3));
-    core_->iniSettings_->SetSetting("USER_COLOR4",  mmGetStringFromColour(mmColors::userDefColor4));
-    core_->iniSettings_->SetSetting("USER_COLOR5", mmGetStringFromColour(mmColors::userDefColor5));
-    core_->iniSettings_->SetSetting("USER_COLOR6", mmGetStringFromColour(mmColors::userDefColor6));
-    core_->iniSettings_->SetSetting("USER_COLOR7", mmGetStringFromColour(mmColors::userDefColor7));
+    core_->iniSettings_->SetSetting("USER_COLOR1", mmColors::userDefColor1);
+    core_->iniSettings_->SetSetting("USER_COLOR2", mmColors::userDefColor2);
+    core_->iniSettings_->SetSetting("USER_COLOR3", mmColors::userDefColor3);
+    core_->iniSettings_->SetSetting("USER_COLOR4", mmColors::userDefColor4);
+    core_->iniSettings_->SetSetting("USER_COLOR5", mmColors::userDefColor5);
+    core_->iniSettings_->SetSetting("USER_COLOR6", mmColors::userDefColor6);
+    core_->iniSettings_->SetSetting("USER_COLOR7", mmColors::userDefColor7);
 
 }
 
