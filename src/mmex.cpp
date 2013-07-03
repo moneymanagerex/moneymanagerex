@@ -2210,6 +2210,7 @@ void mmGUIFrame::createHomePage()
 
 void mmGUIFrame::createReportsPage(mmPrintableBase* rs)
 {
+    if (!rs) return;
     wxSizer *sizer = cleanupHomePanel();
 
     panelCurrent_ = new mmReportsPanel(this, m_core.get(), rs, homePanel_, wxID_STATIC,
