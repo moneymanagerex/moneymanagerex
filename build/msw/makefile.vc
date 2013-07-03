@@ -176,7 +176,6 @@ MMEX_OBJECTS =  \
 	mmex_currency.obj \
 	mmex_entry_base.obj \
 	mmex_payee_table.obj \
-	mmex_settings.obj \
 	mmex_splittransaction.obj \
 	mmex_stocks.obj \
 	mmex_subcategory.obj \
@@ -880,9 +879,6 @@ mmex_entry_base.obj: ..\..\src\db\entry_base.cpp
 
 mmex_payee_table.obj: ..\..\src\db\payee_table.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\payee_table.cpp
-
-mmex_settings.obj: ..\..\src\db\settings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\settings.cpp
 
 mmex_splittransaction.obj: ..\..\src\db\splittransaction.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\splittransaction.cpp

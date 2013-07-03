@@ -176,7 +176,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_currency.obj \
 	mmex_tests_entry_base.obj \
 	mmex_tests_payee_table.obj \
-	mmex_tests_settings.obj \
 	mmex_tests_splittransaction.obj \
 	mmex_tests_stocks.obj \
 	mmex_tests_subcategory.obj \
@@ -851,9 +850,6 @@ mmex_tests_entry_base.obj: ..\..\..\src\db\entry_base.cpp
 
 mmex_tests_payee_table.obj: ..\..\..\src\db\payee_table.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\payee_table.cpp
-
-mmex_tests_settings.obj: ..\..\..\src\db\settings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\settings.cpp
 
 mmex_tests_splittransaction.obj: ..\..\..\src\db\splittransaction.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\splittransaction.cpp
