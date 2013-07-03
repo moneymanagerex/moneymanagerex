@@ -48,7 +48,7 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniS
     {
         dbInfoSettings_->SetSetting("MMEXVERSION", mmex::getProgramVersion());
         dbInfoSettings_->SetSetting("DATAVERSION", mmex::DATAVERSION);
-        dbInfoSettings_->SetSetting("CREATEDATE", wxDateTime::Now().FormatISODate());
+        dbInfoSettings_->SetSetting("CREATEDATE", wxDateTime::Now());
         dbInfoSettings_->SetSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
         dbInfoSettings_->SetSetting("BASECURRENCYID", 1);
         dbInfoSettings_->Save();
