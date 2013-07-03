@@ -21,7 +21,8 @@
 #define _MM_EX_DBWRAPPER_H_
 //----------------------------------------------------------------------------
 #include "mmcurrency.h"
-#include "mmex_settings.h"
+#include <wx/arrstr.h>
+class MMEX_IniSettings;
 
 //----------------------------------------------------------------------------
 static const char SELECT_ALL_FROM_ASSETS_V1[] =

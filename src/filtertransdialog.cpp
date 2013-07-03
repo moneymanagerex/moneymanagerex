@@ -22,6 +22,7 @@
 #include "paths.h"
 #include "validators.h"
 #include <wx/valnum.h>
+#include "mmex_settings.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 

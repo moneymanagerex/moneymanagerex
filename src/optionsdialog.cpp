@@ -23,6 +23,7 @@
 #include "mmOption.h"
 #include <wx/colordlg.h>
 #include "constants.h"
+#include "mmex_settings.h"
 
 enum
 {

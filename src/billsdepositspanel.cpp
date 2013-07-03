@@ -21,6 +21,7 @@
 #include "constants.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
+#include "mmex_settings.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)

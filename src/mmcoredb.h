@@ -25,6 +25,7 @@
 #include "mmaccount.h"
 #include "mmcurrency.h"
 #include "mmtransaction.h"
+#include "mmex_settings.h"
 
 //----------------------------------------------------------------------------
 #include "memory"

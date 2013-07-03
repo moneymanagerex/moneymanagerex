@@ -23,6 +23,7 @@
 #include "constants.h"
 #include "util.h"
 #include "mmOption.h"
+#include "mmex_settings.h"
 
 /*******************************************************/
 

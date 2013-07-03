@@ -17,8 +17,9 @@
  *************************************************************************/
 #ifndef _MM_EX_RECENTFILES_H_
 #define _MM_EX_RECENTFILES_H_
-
-#include "mmex_settings.h"
+#include <wx/arrstr.h>
+#include "defs.h"
+class MMEX_IniSettings;
 
 /******************************************************************************
  Class: RecentDatabaseFiles

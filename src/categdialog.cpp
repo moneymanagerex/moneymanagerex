@@ -22,6 +22,7 @@
 #include "mmOption.h"
 #include "defs.h"
 #include "paths.h"
+#include "mmex_settings.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 

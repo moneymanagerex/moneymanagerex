@@ -21,6 +21,7 @@
 #include "util.h"
 #include "mmOption.h"
 #include "paths.h"
+#include "mmex_settings.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
 

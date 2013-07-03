@@ -23,6 +23,7 @@
 #include "constants.h"
 #include "mmCurrencyFormatter.h"
 #include "validators.h"
+#include "mmex_settings.h"
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
 #include <algorithm>

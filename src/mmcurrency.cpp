@@ -19,6 +19,7 @@
 #include "dbwrapper.h"
 #include "mmCurrencyFormatter.h"
 #include <map>
+#include "mmex_settings.h"
 
 mmCurrency::mmCurrency(wxSQLite3ResultSet& q1)
 {

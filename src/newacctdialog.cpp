@@ -24,6 +24,7 @@
 #include "mmOption.h"
 #include "paths.h"
 #include <wx/valnum.h>
+#include "mmex_settings.h"
 
 enum { ACCT_TYPE_CHECKING, ACCT_TYPE_INVESTMENT, ACCT_TYPE_TERM };
 enum { ACCT_STATUS_OPEN, ACCT_STATUS_CLOSED };

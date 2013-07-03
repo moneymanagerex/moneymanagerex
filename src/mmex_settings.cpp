@@ -179,15 +179,8 @@ void MMEX_IniSettings::Load()
 
 void MMEX_IniSettings::Save()
 {
-    size_t list_size = ini_records_.size();
-    size_t element = 0;
-
     ini_db_->Begin();
-    while (element < list_size)
-    {
-        ini_records_[element]->Save();
-        ++ element;
-    }
+    for(auto& record: ini_records_) record->Save();
     ini_db_->Commit();
 }
 
@@ -236,29 +229,13 @@ wxString MMEX_IniSettings::GetStringSetting(const wxString& name, const wxString
 
 void MMEX_IniSettings::SetSetting(const wxString& name, bool value)
 {
-    MMEX_IniRecord* pExistingRecord = GetRecord(name);
-    if (!pExistingRecord)
-    {
-        std::shared_ptr<MMEX_IniRecord> pNewRecord(new MMEX_IniRecord(ini_db_, main_db_, name));
-        ini_records_.push_back(pNewRecord);
-        pExistingRecord = pNewRecord.get();
-    }
-    if (value) pExistingRecord->SetValue("TRUE");
-    else       pExistingRecord->SetValue("FALSE");
-    Save();
+    this->SetSetting(name, value ? "TRUE" : "FALSE");
 }
 
 void MMEX_IniSettings::SetSetting(const wxString& name, int value)
 {
-    MMEX_IniRecord* pExistingRecord = GetRecord(name);
-    if (!pExistingRecord)
-    {
-        std::shared_ptr<MMEX_IniRecord> pNewRecord(new MMEX_IniRecord(ini_db_, main_db_, name));
-        ini_records_.push_back(pNewRecord);
-        pExistingRecord = pNewRecord.get();
-    }
-    pExistingRecord->SetValue(value);
-    Save();
+    wxString value_s = wxString::Format("%d", value);
+    this->SetSetting(name, wxString::Format("%d", value));
 }
 
 void MMEX_IniSettings::SetSetting(const wxString& name, const wxString& value)

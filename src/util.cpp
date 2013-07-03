@@ -25,6 +25,7 @@
 #include "constants.h"
 #include "singleton.h"
 #include "mmCurrencyFormatter.h"
+#include "mmex_settings.h"
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)

@@ -22,7 +22,6 @@
 
 #include "guiid.h"
 #include "mmcoredb.h"
-#include "mmex_settings.h"
 #include <wx/spinctrl.h>
 
 #define SYMBOL_MMOPTIONSDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX

@@ -18,6 +18,7 @@
 
 #include "recentfiles.h"
 #include "guiid.h"
+#include "mmex_settings.h"
 
 RecentDatabaseFiles::RecentDatabaseFiles(MMEX_IniSettings* pIniSettings, wxMenu *menuRecentFiles)
 : pIniSettings_(pIniSettings)

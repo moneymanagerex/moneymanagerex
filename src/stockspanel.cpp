@@ -21,6 +21,7 @@
 #include "constants.h"
 #include "mmCurrencyFormatter.h"
 #include "util.h"
+#include "mmex_settings.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)

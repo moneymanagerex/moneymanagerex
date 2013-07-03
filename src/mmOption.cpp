@@ -22,6 +22,7 @@
 #include "constants.h"
 #include "singleton.h"
 #include "mmCurrencyFormatter.h"
+#include "mmex_settings.h"
 
 //----------------------------------------------------------------------------
 mmOptions::mmOptions()

@@ -18,6 +18,7 @@
 #include "guiid.h"
 #include "assetdialog.h"
 #include "constants.h"
+#include "mmex_settings.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)

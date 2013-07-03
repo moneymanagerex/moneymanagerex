@@ -23,6 +23,7 @@
 #include "mmCurrencyFormatter.h"
 #include "mmex.h"
 #include "reports/budget.h"
+#include "mmex_settings.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
