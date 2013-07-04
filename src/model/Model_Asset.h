@@ -20,7 +20,6 @@
 
 #include "Model.h"
 #include "db/DB_Table_Assets_V1.h"
-class wxSQLite3Database;
 
 class Model_Asset : public Model
 {
