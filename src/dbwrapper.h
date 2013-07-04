@@ -488,7 +488,7 @@ static const wxString TABLE_NAMES[] =
     "BUDGETTABLE_V1",
     "CURRENCYFORMATS_V1",
 };
-static const wxArrayString CREATE_TABLE_SQL();
+const wxArrayString CREATE_TABLE_SQL();
 
 static const char CREATE_VIEW_ALLDATA[] =
     "create  view alldata as "
