@@ -255,7 +255,7 @@ wxString MMEX_IniSettings::GetStringSetting(const wxString& name, const wxString
 
 void MMEX_IniSettings::SetSetting(const wxString& name, bool value)
 {
-    this->SetSetting(name, value ? "TRUE" : "FALSE");
+    this->SetSetting(name, wxString(value ? "TRUE" : "FALSE"));
 }
 
 void MMEX_IniSettings::SetSetting(const wxString& name, int value)
