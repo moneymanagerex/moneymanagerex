@@ -256,7 +256,6 @@
     <ClCompile Include="..\..\src\db\currency.cpp" />
     <ClCompile Include="..\..\src\db\entry_base.cpp" />
     <ClCompile Include="..\..\src\db\payee_table.cpp" />
-    <ClCompile Include="..\..\src\db\settings.cpp" />
     <ClCompile Include="..\..\src\db\splittransaction.cpp" />
     <ClCompile Include="..\..\src\db\stocks.cpp" />
     <ClCompile Include="..\..\src\db\subcategory.cpp" />
@@ -294,6 +293,7 @@
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
     <ClCompile Include="..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp" />
+    <ClCompile Include="..\..\src\reports\html_widget_top_categories.cpp" />
     <ClCompile Include="..\..\src\reports\incexpenses.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
@@ -344,7 +344,6 @@
     <ClInclude Include="..\..\src\db\currency.h" />
     <ClInclude Include="..\..\src\db\entry_base.h" />
     <ClInclude Include="..\..\src\db\payee_table.h" />
-    <ClInclude Include="..\..\src\db\settings.h" />
     <ClInclude Include="..\..\src\db\splittransaction.h" />
     <ClInclude Include="..\..\src\db\stocks.h" />
     <ClInclude Include="..\..\src\db\subcategory.h" />
@@ -391,6 +390,7 @@
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
     <ClInclude Include="..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\src\reports\htmlbuilder.h" />
+    <ClInclude Include="..\..\src\reports\html_widget_top_categories.h" />
     <ClInclude Include="..\..\src\reports\incexpenses.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\reports\mmgraphgenerator.h" />

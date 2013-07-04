@@ -240,9 +240,6 @@
     <ClCompile Include="..\..\src\db\payee_table.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\db\settings.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\db\splittransaction.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
@@ -290,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="..\..\src\reports\mmhomepagepanel.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\html_widget_top_categories.cpp">
+      <Filter>Source Files\reports</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -521,9 +521,6 @@
     <ClInclude Include="..\..\src\db\payee_table.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\db\settings.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\db\splittransaction.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
@@ -573,6 +570,9 @@
       <Filter>Header Files\reports</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\htmlbuilder.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\html_widget_top_categories.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
   </ItemGroup>
