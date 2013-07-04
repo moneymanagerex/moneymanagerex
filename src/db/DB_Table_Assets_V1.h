@@ -19,6 +19,7 @@
 #define DB_TABLE_ASSETS_V1_H
 
 #include "DB_Table.h"
+#include <functional>
 
 struct DB_Table_ASSETS_V1 : public DB_Table
 {
