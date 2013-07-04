@@ -45,6 +45,7 @@ public:
                    , bool main_db
                    , wxSQLite3ResultSet& q1);
 
+    bool operator <(const MMEX_IniRecord& record) const;
     /// Set the value of the record
     void SetValue(int value);
     void SetValue(const wxString& value);
