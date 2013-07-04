@@ -65,7 +65,6 @@
 #include "import_export/univcsvdialog.h"
 #include "db/transactionbill.h"
 #include "mmex_settings.h"
-#include "model/model_asset.h"
 
 //----------------------------------------------------------------------------
 #include <wx/debugrpt.h>
