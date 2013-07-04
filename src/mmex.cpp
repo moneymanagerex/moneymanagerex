@@ -65,6 +65,7 @@
 #include "import_export/univcsvdialog.h"
 #include "db/transactionbill.h"
 #include "mmex_settings.h"
+#include "model/Model_Asset.h"
 
 //----------------------------------------------------------------------------
 #include <wx/debugrpt.h>
@@ -2659,6 +2660,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         password_ = password;
         m_core.reset(new mmCoreDB(m_db, m_inisettings));
+        Model_Asset::instance().db_ = m_db.get();
     }
     else if (openingNew) // New Database
     {
@@ -2669,6 +2671,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            m_db = mmDBWrapper::Open(fileName);
            password_ = password;
            m_core.reset(new mmCoreDB(m_db, m_inisettings));
+           Model_Asset::instance().db_ = m_db.get();
        }
        else
        {
@@ -2677,6 +2680,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
            openDataBase(fileName);
            m_core.reset(new mmCoreDB(m_db, m_inisettings));
+           Model_Asset::instance().db_ = m_db.get();
 
            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this, m_core.get());
            wizard->CenterOnParent();

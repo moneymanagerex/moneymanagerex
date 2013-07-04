@@ -45,7 +45,6 @@ wxString mmReportSummaryAssets::getHTMLText()
     core_->currencyList_.LoadBaseCurrencySettings();
 
     double balance = 0.0;
-    Model_Asset::instance().db_ = core_->db_.get();
     for (const auto& pEntry: Model_Asset::instance().all())
     {
         hb.startTableRow();
