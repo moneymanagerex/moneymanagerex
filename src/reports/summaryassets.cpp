@@ -18,7 +18,7 @@
 
 #include "summaryassets.h"
 #include "htmlbuilder.h"
-#include "../db/assets.h"
+#include "model/Model_Asset.h"
 
 mmReportSummaryAssets::mmReportSummaryAssets(mmCoreDB* core)
 : mmPrintableBase(core)
@@ -44,21 +44,24 @@ wxString mmReportSummaryAssets::getHTMLText()
 
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    TAssetList asset_list_(core_->db_.get());
-	for (const auto & pEntry: asset_list_.entrylist_)
-	{
+    double balance = 0.0;
+    Model_Asset::instance().db_ = core_->db_.get();
+    for (const auto& pEntry: Model_Asset::instance().all())
+    {
         hb.startTableRow();
-        hb.addTableCell(pEntry->DisplayDate(), false, true);
-        hb.addTableCell(pEntry->name_, false, true);
-        hb.addTableCell(wxGetTranslation(pEntry->rate_type_));
-		hb.addMoneyCell(pEntry->value_);
-        hb.addTableCell(pEntry->notes_);
+        hb.addTableCell(pEntry.STARTDATE, false, true);
+        hb.addTableCell(pEntry.ASSETNAME, false, true);
+        hb.addTableCell(wxGetTranslation(pEntry.ASSETTYPE));
+        hb.addMoneyCell(pEntry.VALUE);
+        hb.addTableCell(pEntry.NOTES);
         hb.endTableRow();
+
+        balance += pEntry.VALUE;
     }
     
     /* Assets */
     hb.addRowSeparator(5);
-    hb.addTotalRow(_("Total Assets: "), 4, asset_list_.GetAssetBalanceCurrencyFormat());
+    hb.addTotalRow(_("Total Assets: "), 4, balance);
     hb.addTableCell("");
     hb.endTableRow();
     hb.endTable();

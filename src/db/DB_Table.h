@@ -21,11 +21,9 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <wx/wxsqlite3.h>
 
 class wxString;
-class wxSQLite3Statement;
-class wxSQLite3Database;
-class wxSQLite3ResultSet;
 
 struct DB_Table
 {

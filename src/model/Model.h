@@ -32,9 +32,11 @@ class wxSQLite3ResultSet;
 class Model
 {
 public:
-    Model():table_(0) {};
-    Model(DB_Table* table):table_(table) {};
+    Model(DB_Table* table):table_(table), db_(0) {};
     virtual ~Model() { if (table_) delete table_; };
+
+public:
+    wxSQLite3Database* db_;
 
 protected:
     DB_Table* table_;
