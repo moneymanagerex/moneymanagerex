@@ -1066,7 +1066,7 @@ void mmGUIFrame::saveSettings()
     this->GetSize(&value_w, &value_h);
     m_inisettings->SetSetting("SIZEW", value_w);
     m_inisettings->SetSetting("SIZEH", value_h);
-//    m_inisettings->SetSetting("ISMAXIMIZED", this->IsMaximized());
+    m_inisettings->SetSetting("ISMAXIMIZED", (bool)this->IsMaximized());
 }
 //----------------------------------------------------------------------------
 
