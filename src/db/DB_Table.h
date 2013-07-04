@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-03 22:55:49.491495.
+ *          AUTO GENERATED at 2013-07-04 21:01:23.210678.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -21,6 +21,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <functional>
 #include <wx/wxsqlite3.h>
 
 class wxString;

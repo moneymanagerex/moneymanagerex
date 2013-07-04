@@ -535,6 +535,7 @@ def generate_base_class(header):
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <functional>
 #include <wx/wxsqlite3.h>
 
 class wxString;
