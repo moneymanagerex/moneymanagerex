@@ -391,6 +391,8 @@
     <ClInclude Include="..\..\src\mmtransaction.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
+    <ClInclude Include="..\..\src\model\Model_Infotable.h" />
+    <ClInclude Include="..\..\src\model\Model_Setting.h" />
     <ClInclude Include="..\..\src\newacctdialog.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\src\paths.h" />

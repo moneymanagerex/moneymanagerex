@@ -632,6 +632,12 @@
     <ClInclude Include="..\..\src\db\DB_Table_Infotable_V1.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Infotable.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Setting.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc">
