@@ -82,7 +82,7 @@
     <ClCompile>
       <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib;..\..\lib\sqlite;..\..\lib\wxsqlite;..\..\lib\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src;..\..\lib\freechart\src;$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib;..\..\lib\sqlite;..\..\lib\wxsqlite;..\..\lib\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -155,7 +155,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Unicode Debug Multilib WX_PYTHON_0|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\sqlite;..\..\lib\wxsqlite;..\..\lib;..\..\lib\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\src;..\..\lib\freechart\src;$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\sqlite;..\..\lib\wxsqlite;..\..\lib;..\..\lib\lua\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;NOPCH;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -342,6 +342,22 @@
     <ClInclude Include="..\..\src\db\budget_year.h" />
     <ClInclude Include="..\..\src\db\category.h" />
     <ClInclude Include="..\..\src\db\currency.h" />
+    <ClInclude Include="..\..\src\db\DB_Table.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Billsdeposits_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Budgetsplittransactions_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Budgettable_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Budgetyear_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Category_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Checkingaccount_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Currencyformats_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Infotable_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Payee_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Setting_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\entry_base.h" />
     <ClInclude Include="..\..\src\db\payee_table.h" />
     <ClInclude Include="..\..\src\db\splittransaction.h" />
@@ -373,6 +389,8 @@
     <ClInclude Include="..\..\src\mmpayee.h" />
     <ClInclude Include="..\..\src\mmreportspanel.h" />
     <ClInclude Include="..\..\src\mmtransaction.h" />
+    <ClInclude Include="..\..\src\model\Model.h" />
+    <ClInclude Include="..\..\src\model\Model_Asset.h" />
     <ClInclude Include="..\..\src\newacctdialog.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\src\paths.h" />
