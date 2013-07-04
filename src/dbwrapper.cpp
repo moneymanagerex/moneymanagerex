@@ -1393,7 +1393,7 @@ std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, con
 
 //----------------------------------------------------------------------------
 
-static const wxArrayString CREATE_TABLE_SQL()
+const wxArrayString CREATE_TABLE_SQL()
 {
     wxArrayString q;
     q.Add(wxString::FromUTF8(CREATE_TABLE_ASSETS_V1));
