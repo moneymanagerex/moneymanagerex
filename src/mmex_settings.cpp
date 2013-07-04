@@ -77,6 +77,12 @@ MMEX_IniRecord::MMEX_IniRecord(std::shared_ptr<wxSQLite3Database> ini_db
     }
 }
 
+
+bool MMEX_IniRecord::operator <(const MMEX_IniRecord& record) const
+{
+    return this->settingName_ < record.settingName_;
+}
+
 wxString MMEX_IniRecord::Name()
 {
     return settingName_;
