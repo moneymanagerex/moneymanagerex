@@ -55,7 +55,6 @@ public:
         {
             if (record.INFONAME == key)
             {
-                info = &record;
                 info = this->get(record.INFOID, this->db_);
                 break;
             }

@@ -65,7 +65,6 @@ public:
         {
             if (record.SETTINGNAME == key)
             {
-                setting = &record;
                 setting = this->get(record.SETTINGID, this->db_);
                 break;
             }
