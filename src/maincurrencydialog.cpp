@@ -25,6 +25,7 @@
 #include "paths.h"
 #include "validators.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
@@ -208,7 +209,7 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
     if (selectedIndex_ < 0) return;
 
 //    int baseCurrencyID = core_->currencyList_.getBaseCurrencySettings();
-    int baseCurrencyID = core_->dbInfoSettings_->GetIntSetting("BASECURRENCYID", 1);
+    int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", 1);
     bool usedAsBase = currencyID_ == baseCurrencyID;
 
     if (core_->accountList_.currencyInUse(currencyID_) || usedAsBase)
@@ -317,12 +318,11 @@ void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
 {
-    int baseCurrencyID = core_->dbInfoSettings_->GetIntSetting("BASECURRENCYID", -1);
+    int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
 
     if (baseCurrencyID == currencyID_) return;
 
-    core_->dbInfoSettings_->SetSetting("BASECURRENCYID", currencyID_);
-    core_->dbInfoSettings_->Save();
+    Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
 
     fillControls();
     event.Skip();

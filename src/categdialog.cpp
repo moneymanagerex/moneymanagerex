@@ -23,6 +23,7 @@
 #include "defs.h"
 #include "paths.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 
@@ -62,7 +63,7 @@ mmCategDialog::mmCategDialog(mmCoreDB* core,
 
     //Get Hidden Categories id from stored string
     hidden_categs_.clear();
-    wxString sSettings = core_->dbInfoSettings_->GetStringSetting("HIDDEN_CATEGS_ID", "");
+    wxString sSettings = Model_Infotable::instance().GetStringInfo("HIDDEN_CATEGS_ID", "");
     wxStringTokenizer token(sSettings, ";");
     while (token.HasMoreTokens())
     {
@@ -333,8 +334,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     }
     sIndex.RemoveLast(1);
 
-    core_->dbInfoSettings_->SetSetting("HIDDEN_CATEGS_ID", sSettings);
-    core_->dbInfoSettings_->Save();
+    Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
 }
 
 void mmCategDialog::OnBSelect(wxCommandEvent& /*event*/)
@@ -554,8 +554,7 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     }
     sSettings.RemoveLast(1);
 
-    core_->dbInfoSettings_->SetSetting("HIDDEN_CATEGS_ID", sSettings);
-    core_->dbInfoSettings_->Save();
+    Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
 
     if (!cbShowAll_->IsChecked() || id == 2) fillControls();
     event.Skip();

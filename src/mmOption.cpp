@@ -23,6 +23,7 @@
 #include "singleton.h"
 #include "mmCurrencyFormatter.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 //----------------------------------------------------------------------------
 mmOptions::mmOptions()
@@ -38,13 +39,13 @@ mmOptions& mmOptions::instance()
 }
 
 //----------------------------------------------------------------------------
-void mmOptions::loadOptions(MMEX_IniSettings* info_table)
+void mmOptions::loadOptions()
 {
-    dateFormat_     = info_table->GetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
-    userNameString_ = info_table->GetStringSetting("USERNAME", "");
+    dateFormat_ = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
+    userNameString_ = Model_Infotable::instance().GetStringInfo("USERNAME", "");
 
-    financialYearStartDayString_   = info_table->GetStringSetting("FINANCIAL_YEAR_START_DAY", "1");
-    financialYearStartMonthString_ = info_table->GetStringSetting("FINANCIAL_YEAR_START_MONTH", "7");
+    financialYearStartDayString_   = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_DAY", "1");
+    financialYearStartMonthString_ = Model_Infotable::instance().GetStringInfo("FINANCIAL_YEAR_START_MONTH", "7");
 }
 
 //----------------------------------------------------------------------------
@@ -125,8 +126,7 @@ void mmIniOptions::loadOptions(MMEX_IniSettings* pIniSettings)
 int mmIniOptions::account_image_id(mmCoreDB* core, int account_id)
 {
     double selectedImage = 9;
-    wxString image_num_str = core->dbInfoSettings_->GetStringSetting(
-        wxString::Format("ACC_IMAGE_ID_%d", account_id), "");
+    wxString image_num_str = Model_Infotable::instance().GetStringInfo(wxString::Format("ACC_IMAGE_ID_%d", account_id), "");
     if ( CurrencyFormatter::formatCurrencyToDouble(image_num_str, selectedImage))
     {
         if (selectedImage > 0)

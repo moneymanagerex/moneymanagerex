@@ -223,31 +223,6 @@ bool mmDBWrapper::initCurrencyV1Table(wxSQLite3Database* db)
     return result;
 }
 
-bool mmDBWrapper::checkDBVersion(wxSQLite3Database* db)
-{
-    bool result = false;
-    try
-    {
-        if (db->TableExists("INFOTABLE_V1"))
-        {
-            wxSQLite3Statement st = db->PrepareStatement(SELECT_INFOVALUE_FROM_INFOTABLE_V1);
-            st.Bind(1, "DATAVERSION");
-            wxSQLite3ResultSet q1 = st.ExecuteQuery();
-            if (q1.NextRow())
-            {
-                int dataVersion = q1.GetInt("INFOVALUE");
-                result = dataVersion >= mmex::MIN_DATAVERSION;
-            }
-            st.Finalize();
-        }
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Database::checkDBVersion: %s", e.GetMessage());
-    }
-    return result;
-}
-
 /*
     wxSQLite3Database::ViewExists was removed.
 */

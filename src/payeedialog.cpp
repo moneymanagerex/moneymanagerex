@@ -22,6 +22,7 @@
 #include "mmOption.h"
 #include "paths.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
 
@@ -69,7 +70,7 @@ void mmPayeeDialog::do_create(wxWindow* parent)
 
     SetIcon(mmex::getProgramIcon());
 
-    wxString sResult = core_->dbInfoSettings_->GetStringSetting("HIDDEN_PAYEES_STRING", "");
+    wxString sResult = Model_Infotable::instance().GetStringInfo("HIDDEN_PAYEES_STRING", "");
     hideTextCtrl_->ChangeValue(sResult);
 
     fillControls();
@@ -202,7 +203,7 @@ void mmPayeeDialog::OnListKeyDown(wxKeyEvent &event)
 
 void mmPayeeDialog::fillControls()
 {
-    bool bResult = core_->dbInfoSettings_->GetBoolSetting("SHOW_HIDDEN_PAYEES", true);
+    bool bResult = Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_PAYEES", true);
     cbShowAll_->SetValue(bResult);
 
     wxArrayString filtd = core_->payeeList_.FilterPayees(textCtrl_->GetValue());
@@ -344,7 +345,7 @@ void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& /*event*/)
 
 void mmPayeeDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
 {
-    core_->dbInfoSettings_->SetSetting("SHOW_HIDDEN_PAYEES", cbShowAll_->IsChecked());
+    Model_Infotable::instance().Set("SHOW_HIDDEN_PAYEES", cbShowAll_->IsChecked());
     fillControls();
 }
 
@@ -363,6 +364,6 @@ void mmPayeeDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmPayeeDialog::saveFilterSettings(wxCommandEvent& event)
 {
-    core_->dbInfoSettings_->SetSetting("HIDDEN_PAYEES_STRING", hideTextCtrl_->GetValue());
+    Model_Infotable::instance().Set("HIDDEN_PAYEES_STRING", hideTextCtrl_->GetValue());
     event.Skip();
 }

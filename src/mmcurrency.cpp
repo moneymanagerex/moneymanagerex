@@ -20,6 +20,7 @@
 #include "mmCurrencyFormatter.h"
 #include <map>
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 mmCurrency::mmCurrency(wxSQLite3ResultSet& q1)
 {
@@ -110,18 +111,15 @@ void mmCurrency::loadCurrencySettings()
 //-----------------------------------------------------------------------------//
 mmCurrencyList::mmCurrencyList(std::shared_ptr<wxSQLite3Database> db)
     : db_(db)
-    , info_table_()
 {}
 
 void mmCurrencyList::SetInfoTable(MMEX_IniSettings* info_table)
 {
-    info_table_ = info_table;
 }
 
 void mmCurrencyList::LoadBaseCurrencySettings() const
 {
-    wxASSERT(info_table_);
-    int currencyID = info_table_->GetIntSetting("BASECURRENCYID", -1);
+    int currencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
 
     if (currencyID != -1)
     {
@@ -154,8 +152,7 @@ void mmCurrencyList::SetCurrencySetting(mmCurrency* pCurrency) const
 
 int mmCurrencyList::GetBaseCurrencySettings() const
 {
-    wxASSERT(info_table_);
-    int iBaseCurrencyID = info_table_->GetIntSetting("BASECURRENCYID", -1);
+    int iBaseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
     wxASSERT(iBaseCurrencyID > 0);
     return iBaseCurrencyID;
 
@@ -163,8 +160,7 @@ int mmCurrencyList::GetBaseCurrencySettings() const
 
 void mmCurrencyList::SetBaseCurrencySettings(int currencyID)
 {
-    wxASSERT(info_table_);
-    info_table_->SetSetting("BASECURRENCYID", currencyID);
+    Model_Infotable::instance().Set("BASECURRENCYID", currencyID);
 }
 
 int mmCurrencyList::AddCurrency(mmCurrency* pCurrency)

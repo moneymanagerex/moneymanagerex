@@ -22,6 +22,7 @@
 #include "mmCurrencyFormatter.h"
 #include "util.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
@@ -261,7 +262,7 @@ bool mmStocksPanel::Create(wxWindow *parent,
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
-    strLastUpdate_ = core_->dbInfoSettings_->GetStringSetting("STOCKS_LAST_REFRESH_DATETIME", "");
+    strLastUpdate_ = Model_Infotable::instance().GetStringInfo("STOCKS_LAST_REFRESH_DATETIME", "");
     this->windowsFreezeThaw();
     CreateControls();
     GetSizer()->Fit(this);
@@ -696,7 +697,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
     strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime(),
                              LastRefreshDT_.FormatDate());
-    core_->dbInfoSettings_->SetSetting("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
+    Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
 }

@@ -25,6 +25,7 @@
 #include "paths.h"
 #include <wx/valnum.h>
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 enum { ACCT_TYPE_CHECKING, ACCT_TYPE_INVESTMENT, ACCT_TYPE_TERM };
 enum { ACCT_STATUS_OPEN, ACCT_STATUS_CLOSED };
@@ -455,7 +456,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
     int selectedImage = event.GetId();
 
-    core_->dbInfoSettings_->SetSetting(wxString::Format("ACC_IMAGE_ID_%d", accountID_), wxString()<<selectedImage);
+    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%d", accountID_), wxString()<<selectedImage);
     if (selectedImage == 0)
         selectedImage = mmIniOptions::instance().account_image_id(core_, accountID_);
 

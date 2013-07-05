@@ -24,6 +24,7 @@
 #include "validators.h"
 #include <wx/valnum.h>
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )
 
@@ -228,7 +229,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
     if (!stockSymbol.IsEmpty())
     {
         // Use Google for stock quotes
-        wxString stockURL = core_->dbInfoSettings_->GetStringSetting("STOCKURL", mmex::DEFSTOCKURL);
+        wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
         //wxString paddedURL = "\"" + stockURL + "\"";
         //wxString httpString = wxString::Format(paddedURL, stockSymbol);
         //wxExecute(_T("explorer ") + httpString, wxEXEC_ASYNC, NULL );
@@ -239,7 +240,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
             int hasSuffix = stockSymbol.Find(".");
             if ( hasSuffix == wxNOT_FOUND)
             {
-                wxString stockSuffix = core_->dbInfoSettings_->GetStringSetting("HTTP_YAHOO_SUFFIX", "");
+                wxString stockSuffix = Model_Infotable::instance().GetStringInfo("HTTP_YAHOO_SUFFIX", "");
                 if (! stockSuffix.IsEmpty() )
                     stockSymbol << stockSuffix;
             }

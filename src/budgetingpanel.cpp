@@ -24,6 +24,7 @@
 #include "mmex.h"
 #include "reports/budget.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -97,7 +98,7 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
     else
         wxASSERT(false);
 
-    core_->dbInfoSettings_->SetSetting("BUDGET_FILTER", currentView_);
+    Model_Infotable::instance().Set("BUDGET_FILTER", currentView_);
 
     listCtrlBudget_->DeleteAllItems();
     initVirtualListControl();
@@ -287,7 +288,7 @@ void mmBudgetingPanel::initVirtualListControl()
         evaluateTransfer = true;
     }
 
-    currentView_ = core_->dbInfoSettings_->GetStringSetting("BUDGET_FILTER", "View All Budget Categories");
+    currentView_ = Model_Infotable::instance().GetStringInfo("BUDGET_FILTER", "View All Budget Categories");
     wxString budgetYearStr = mmDBWrapper::getBudgetYearForID(core_->db_.get(), budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);

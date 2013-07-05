@@ -90,7 +90,6 @@ public:
 
 private:
     std::shared_ptr<wxSQLite3Database> db_;
-    MMEX_IniSettings* info_table_;
 
     void SetCurrencySetting(mmCurrency* pCurrency) const;
 };

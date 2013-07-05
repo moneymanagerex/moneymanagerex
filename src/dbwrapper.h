@@ -555,9 +555,6 @@ int createTable(wxSQLite3Database* db, const wxString &sTableName, const wxStrin
 int createAllDataView(wxSQLite3Database* db);
 bool initCurrencyV1Table(wxSQLite3Database* db);
 
-/* Upgrading to new DBs */
-bool checkDBVersion(wxSQLite3Database* db);
-
 void addBudgetYear(wxSQLite3Database* db, const wxString &year);
 bool copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYear);
 int getBudgetYearID(wxSQLite3Database* db, const wxString &year_name);

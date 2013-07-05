@@ -24,6 +24,7 @@
 #include "mmCurrencyFormatter.h"
 #include "validators.h"
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
 #include <algorithm>
@@ -868,7 +869,7 @@ void mmCheckingPanel::OnMoveTransaction(wxCommandEvent& event)
 void mmCheckingPanel::initViewTransactionsHeader()
 {
     wxString vTrans = core_->iniSettings_->GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
-    currentView_   = core_->dbInfoSettings_->GetStringSetting(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), vTrans);
+    currentView_   = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), vTrans);
 
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
     stxtMainFilter_->SetLabel(wxGetTranslation(currentView_));
@@ -951,7 +952,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     m_listCtrlAccount->m_selectedIndex = -1;
 
-    core_->dbInfoSettings_->SetSetting(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
+    Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
     initFilterSettings();
     m_listCtrlAccount->refreshVisualList(m_listCtrlAccount->m_selectedID);
      

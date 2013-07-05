@@ -39,21 +39,7 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniS
         throw wxSQLite3Exception(WXSQLITE_ERROR, "Null pointer to database");
     }
 
-    // Create a global listing for info settings.
-    dbInfoSettings_ = new MMEX_IniSettings(db, true);
-    currencyList_.SetInfoTable(dbInfoSettings_);
-
-    // Initialize the database if creating a new one.
-    if (!dbInfoSettings_->Exists("MMEXVERSION"))
-    {
-        dbInfoSettings_->SetSetting("MMEXVERSION", mmex::getProgramVersion());
-        dbInfoSettings_->SetSetting("DATAVERSION", mmex::DATAVERSION);
-        dbInfoSettings_->SetSetting("CREATEDATE", wxDateTime::Now());
-        dbInfoSettings_->SetSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
-        dbInfoSettings_->SetSetting("BASECURRENCYID", 1);
-        dbInfoSettings_->Save();
-    }
-    mmOptions::instance().loadOptions(dbInfoSettings_);
+    mmOptions::instance().loadOptions();
 
     /* Create the appropriate tables first if required */
     mmDBWrapper::initDB(db_.get());
@@ -68,6 +54,5 @@ mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniS
 
 mmCoreDB::~mmCoreDB()
 {
-    if (dbInfoSettings_) delete dbInfoSettings_;
 }
 //----------------------------------------------------------------------------

@@ -21,13 +21,16 @@
 #include "Model.h"
 #include "db/DB_Table_Infotable_V1.h"
 #include "defs.h"
+#include "constants.h"
 
 class Model_Infotable : public Model, public DB_Table_INFOTABLE_V1
 {
     using DB_Table_INFOTABLE_V1::all;
 public:
     Model_Infotable(): Model(), DB_Table_INFOTABLE_V1() {};
-    ~Model_Infotable() {};
+    ~Model_Infotable() 
+    {
+    };
 
 public:
     static Model_Infotable& instance()
@@ -38,6 +41,7 @@ public:
 private:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
+        this->ensure(this->db_);
         return this->all(this->db_, col, asc);
     }
 
@@ -48,6 +52,10 @@ public:
         this->Set(key, wxString::Format("%d", value));
     }
 
+    void Set(const wxString& key, const wxDateTime& date)
+    {
+        this->Set(key, date.FormatISODate());
+    }
     void Set(const wxString& key, const wxString& value)
     {
         Data* info = 0;
@@ -74,6 +82,14 @@ public:
     }
 public:
     // Getter
+    bool GetBoolInfo(const wxString& key, bool default_value)
+    {
+        wxString value = this->GetStringInfo(key, "");
+        if (value == "TRUE") return true;
+        if (value == "FALSE") return false;
+
+        return default_value; 
+    }
     bool GetIntInfo(const wxString& key, int default_value)
     {
         wxString value = this->GetStringInfo(key, "");
@@ -90,6 +106,22 @@ public:
         }
 
         return default_value;
+    }
+    bool Exists(const wxString& key)
+    {
+        for (const auto& record: this->all())
+        {
+            if (record.INFONAME == key) 
+                return true;
+        }
+        return false;
+    }
+
+    bool checkDBVersion()
+    {
+        if (!this->Exists("DATAVERSION")) return false;
+
+        return this->GetIntInfo("DATAVERSION", 0) < mmex::MIN_DATAVERSION;
     }
 };
 

@@ -161,6 +161,7 @@ bool OnInitImpl(mmGUIApp &app)
     std::shared_ptr<wxSQLite3Database> pIniSettingsDb(new wxSQLite3Database);
     pIniSettingsDb.get()->Open(mmex::getPathUser(mmex::SETTINGS));
     MMEX_IniSettings* pIniSettings = new MMEX_IniSettings(pIniSettingsDb);
+    Model_Setting::instance().db_ = pIniSettingsDb.get();
 
     /* Load Colors from Database */
     mmLoadColorsFromDatabase(pIniSettings);
@@ -342,7 +343,12 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         return false;
     }
     userName = itemUserName_->GetValue().Trim();
-    parent_->m_core->dbInfoSettings_->SetSetting("USERNAME", userName);
+    Model_Infotable::instance().Set("USERNAME", userName);
+    Model_Infotable::instance().Set("MMEXVERSION", mmex::getProgramVersion());
+    Model_Infotable::instance().Set("DATAVERSION", mmex::DATAVERSION);
+    Model_Infotable::instance().Set("CREATEDATE", wxDateTime::Now());
+    Model_Infotable::instance().Set("DATEFORMAT", mmex::DEFDATEFORMAT);
+    Model_Infotable::instance().Set("BASECURRENCYID", 1);
 
     return true;
 }
@@ -1307,8 +1313,8 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         , new mmTreeItemData("Where the Money Goes - Current Year"
         , new mmReportCategoryExpensesGoesCurrentYear(m_core.get())));
 
-    int day = m_core->dbInfoSettings_->GetIntSetting("FINANCIAL_YEAR_START_DAY", 1);
-    int month = m_core->dbInfoSettings_->GetIntSetting("FINANCIAL_YEAR_START_MONTH", 7);
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     if (financialYearIsDifferent())
     {
         wxTreeItemId categsOverTimeLastFinancialYear = navTreeCtrl_->AppendItem(categsOverTime
@@ -2645,9 +2651,10 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db = mmDBWrapper::Open(fileName, password);
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
-
+        Model_Asset::instance().db_ = m_db.get();
+        Model_Infotable::instance().db_ = m_db.get();
         // we need to check the db whether it is the right version
-        if (!mmDBWrapper::checkDBVersion(m_db.get()))
+        if (!Model_Infotable::instance().checkDBVersion())
         {
             wxString note = mmex::getProgramName() + _(" - No File opened ");
             this->SetTitle(note);
@@ -2661,7 +2668,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         password_ = password;
         m_core.reset(new mmCoreDB(m_db, m_inisettings));
-        Model_Asset::instance().db_ = m_db.get();
     }
     else if (openingNew) // New Database
     {
@@ -2673,6 +2679,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            password_ = password;
            m_core.reset(new mmCoreDB(m_db, m_inisettings));
            Model_Asset::instance().db_ = m_db.get();
+           Model_Infotable::instance().db_ = m_db.get();
        }
        else
        {
@@ -2682,6 +2689,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            openDataBase(fileName);
            m_core.reset(new mmCoreDB(m_db, m_inisettings));
            Model_Asset::instance().db_ = m_db.get();
+           Model_Infotable::instance().db_ = m_db.get();
 
            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this, m_core.get());
            wizard->CenterOnParent();
@@ -2690,7 +2698,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            m_core->currencyList_.LoadBaseCurrencySettings();
 
            /* Load User Name and Other Settings */
-           mmOptions::instance().loadOptions(m_core->dbInfoSettings_);
+           mmOptions::instance().loadOptions();
 
            /* Jump to new account creation screen */
            wxCommandEvent evt;

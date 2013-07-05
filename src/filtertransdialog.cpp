@@ -23,6 +23,7 @@
 #include "validators.h"
 #include <wx/valnum.h>
 #include "mmex_settings.h"
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
@@ -309,7 +310,7 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), NULL, this);
 
-    int view_no = core_->dbInfoSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
+    int view_no = Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
     m_radio_box_->SetSelection(view_no);
     m_radio_box_->Show(true);
 
@@ -581,8 +582,8 @@ void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
 {
     int i = m_radio_box_->GetSelection();
     settings_string_ = GetCurrentSettings();
-    core_->dbInfoSettings_->SetSetting(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
-    core_->dbInfoSettings_->SetSetting("TRANSACTIONS_FILTER_VIEW_NO", i);
+    Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
+    Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
     wxLogDebug(wxString::Format("Settings Saled to registry %i\n %s", i, settings_string_));
 }
 
@@ -602,11 +603,11 @@ void mmFilterTransactionsDialog::OnSettingsSelected( wxCommandEvent& event )
 wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
 {
     if (id < 0) {
-        id = core_->dbInfoSettings_->GetIntSetting("TRANSACTIONS_FILTER_VIEW_NO", 0);
+        id = Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
     } else {
         core_->iniSettings_->SetSetting("TRANSACTIONS_FILTER_VIEW_NO", id);
     }
-    settings_string_ = core_->dbInfoSettings_->GetStringSetting(
+    settings_string_ = Model_Infotable::instance().GetStringInfo(
                               wxString::Format("TRANSACTIONS_FILTER_%d", id),
                               "0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;");
     return settings_string_;
