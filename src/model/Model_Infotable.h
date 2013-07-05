@@ -50,17 +50,45 @@ public:
 
     void Set(const wxString& key, const wxString& value)
     {
+        Data* info = 0;
+        for (auto& record: this->all())
+        {
+            if (record.INFONAME == key)
+            {
+                info = &record;
+                info = this->get(record.INFOID, this->db_);
+                break;
+            }
+        }
+        if (info)
+        {
+            info->INFONAME = value;
+            info->save(this->db_);
+        }
+        else
+        {
+            info = this->create();
+            info->INFONAME = key;
+            info->INFOVALUE = value;
+            info->save(this->db_);
+        }
     }
 public:
     // Getter
-    bool GetIntInfotable(const wxString& key, int default_value);
+    bool GetIntInfo(const wxString& key, int default_value)
     {
+        wxString value = this->GetStringInfo(key, "");
+        if (!value.IsEmpty() && value.IsNumber()) return wxAtoi(value);
+
         return default_value;
     }
-    wxString GetStringInfotable(const wxString& key, const wxString& default_value)
+    wxString GetStringInfo(const wxString& key, const wxString& default_value)
     {
         for (const auto& record: this->all())
-            if (record.INFONAME == key) return record.INFOVALUE;
+        {
+            if (record.INFONAME == key) 
+                return record.INFOVALUE;
+        }
 
         return default_value;
     }

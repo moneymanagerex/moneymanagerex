@@ -66,6 +66,8 @@
 #include "db/transactionbill.h"
 #include "mmex_settings.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 
 //----------------------------------------------------------------------------
 #include <wx/debugrpt.h>
