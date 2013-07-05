@@ -21,7 +21,6 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include "db/DB_Table.h"
 #include "singleton.h"
 
 class wxString;
@@ -32,13 +31,10 @@ class wxSQLite3ResultSet;
 class Model
 {
 public:
-    Model(DB_Table* table):table_(table), db_(0) {};
-    virtual ~Model() { if (table_) delete table_; };
+    Model():db_(0) {};
+    virtual ~Model() {};
 
 public:
     wxSQLite3Database* db_;
-
-protected:
-    DB_Table* table_;
 };
 #endif // 

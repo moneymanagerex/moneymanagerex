@@ -22,14 +22,11 @@
 #include "db/DB_Table_Setting_V1.h"
 #include "defs.h"
 
-class Model_Setting : public Model
+class Model_Setting : public Model, public DB_Table_SETTING_V1
 {
+    using DB_Table_SETTING_V1::all;
 public:
-    typedef DB_Table_SETTING_V1::COLUMN COLUMN;
-    typedef DB_Table_SETTING_V1::Data Data;
-    typedef DB_Table_SETTING_V1::Data_Set Data_Set;
-public:
-    Model_Setting(): Model(new DB_Table_SETTING_V1()) {};
+    Model_Setting(): Model(), DB_Table_SETTING_V1() {};
     ~Model_Setting() {};
 
 public:
@@ -41,7 +38,7 @@ public:
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
-        return dynamic_cast<DB_Table_SETTING_V1*>(this->table_)->all(this->db_, col, asc);
+        this->all(this->db_, col, asc);
     }
 
 public:

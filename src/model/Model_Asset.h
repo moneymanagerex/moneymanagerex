@@ -21,14 +21,11 @@
 #include "Model.h"
 #include "db/DB_Table_Assets_V1.h"
 
-class Model_Asset : public Model
+class Model_Asset : public Model, public DB_Table_ASSETS_V1
 {
+    using DB_Table_ASSETS_V1::all;
 public:
-    typedef DB_Table_ASSETS_V1::COLUMN COLUMN;
-    typedef DB_Table_ASSETS_V1::Data Data;
-    typedef DB_Table_ASSETS_V1::Data_Set Data_Set;
-public:
-    Model_Asset(): Model(new DB_Table_ASSETS_V1()) {};
+    Model_Asset(): Model(), DB_Table_ASSETS_V1() {};
     ~Model_Asset() {};
 
 public:
@@ -40,7 +37,7 @@ public:
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
-        return dynamic_cast<DB_Table_ASSETS_V1*>(this->table_)->all(this->db_, col, asc);
+        return all(db_, col, asc);
     }
 };
 
