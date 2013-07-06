@@ -89,13 +89,23 @@ mmLast90Days::mmLast90Days()
     this->title_ = _("Last 90 Days");
 }
 
+mmLast3Months::mmLast3Months()
+: mmDateRange()
+{
+    this->start_date_ = wxDateTime(end_date_).SetDay(1)
+        .Add(wxDateSpan::Months(1))
+        .Subtract(wxDateSpan::Months(3));
+    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
+    this->title_ = _("Last 3 Months");
+}
+
 mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
     this->start_date_ = wxDateTime(end_date_).SetDay(1)
         .Add(wxDateSpan::Months(1))
         .Subtract(wxDateSpan::Years(1));
-    // no change to end_date_
+    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
     this->title_ = _("Last 12 Months");
 }
 
@@ -162,8 +172,8 @@ mmAllTime::mmAllTime()
 : mmDateRange()
 {
     this->title_ = _("Over Time");
-    this->start_date_.Subtract(wxDateSpan::Years(today_.GetYear()))
-        .SetDay(1).SetMonth(wxDateTime::Jan);
+    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan).SetYear(1);
+    this->end_date_.SetYear(9999);
 }
 
 const bool mmAllTime::is_with_date() const

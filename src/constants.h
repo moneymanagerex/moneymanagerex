@@ -71,7 +71,7 @@ const wxString VIEW_TRANS_LAST_30_DAYS_STR   = wxTRANSLATE("View Last 30 days");
 const wxString VIEW_TRANS_LAST_90_DAYS_STR   = wxTRANSLATE("View Last 90 days");
 const wxString VIEW_TRANS_LAST_MONTH_STR     = wxTRANSLATE("View Last Month");
 const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months");
-const wxString VIEW_TRANS_LAST_365_DAYS      = wxTRANSLATE("View Last 365 days");
+const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
 const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
 const wxString NAVTREECTRL_REPORTS = "Reports";
@@ -130,7 +130,7 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_LAST_90_DAYS_STR,
     VIEW_TRANS_LAST_MONTH_STR ,
     VIEW_TRANS_LAST_3MONTHS_STR,
-    VIEW_TRANS_LAST_365_DAYS,
+    VIEW_TRANS_LAST_12MONTHS_STR,
     VIEW_TRANS_CURRENT_YEAR_STR
 };
 

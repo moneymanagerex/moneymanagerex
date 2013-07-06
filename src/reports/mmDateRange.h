@@ -58,6 +58,12 @@ public:
     mmLast90Days();
 };
 
+class mmLast3Months: public mmDateRange
+{
+public:
+    mmLast3Months();
+};
+
 class mmLast12Months: public mmDateRange
 {
 public:

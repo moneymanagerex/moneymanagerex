@@ -388,6 +388,7 @@ void mmCheckingPanel::filterTable()
         std::vector<mmBankTransaction*>::iterator iter;
         for (iter = m_trans.begin(); iter != m_trans.end(); )
         {
+            //TODO: What about future dates?
             if (quickFilterBeginDate_ <= (*iter)->date_.GetDateOnly() 
                     && quickFilterEndDate_ >= (*iter)->date_.GetDateOnly())
                 ++iter;
@@ -892,10 +893,10 @@ void mmCheckingPanel::initFilterSettings()
     else if (currentView_ == VIEW_TRANS_LAST_MONTH_STR)
         date_range_ = new mmLastMonth;
     else if (currentView_ == VIEW_TRANS_LAST_3MONTHS_STR)
-        date_range_ = new mmLastMonth;//ToDO:
+        date_range_ = new mmLast3Months;
     else if (currentView_ == VIEW_TRANS_CURRENT_YEAR_STR)
         date_range_ = new mmCurrentYear;
-    else if (currentView_ == VIEW_TRANS_LAST_365_DAYS)//ToDO:
+    else if (currentView_ == VIEW_TRANS_LAST_12MONTHS_STR)
         date_range_ = new mmLast12Months;
 
     quickFilterBeginDate_ = date_range_->start_date();
@@ -942,8 +943,8 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
         currentView_ = VIEW_TRANS_LAST_MONTH_STR;
     else if (evt == MENU_VIEW_CURRENTYEAR)
         currentView_ = VIEW_TRANS_CURRENT_YEAR_STR;
-    else if (evt == MENU_VIEW_LAST365)
-        currentView_ = VIEW_TRANS_LAST_365_DAYS;
+    else if (evt == MENU_VIEW_LAST12MONTHS)
+        currentView_ = VIEW_TRANS_LAST_12MONTHS_STR;
     else
         wxASSERT(false);
 

@@ -707,10 +707,10 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
     else if (view == VIEW_TRANS_LAST_MONTH_STR)
         date_range_ = new mmLastMonth;
     else if (view == VIEW_TRANS_LAST_3MONTHS_STR)
-        date_range_ = new mmLastMonth;//ToDO:
+        date_range_ = new mmLast3Months;
     else if (view == VIEW_TRANS_CURRENT_YEAR_STR)
         date_range_ = new mmCurrentYear;
-    else if (view == VIEW_TRANS_LAST_365_DAYS)//ToDO:
+    else if (view == VIEW_TRANS_LAST_12MONTHS_STR)
         date_range_ = new mmLast12Months;
 
     if (dateRangeCheckBox_->IsChecked())
