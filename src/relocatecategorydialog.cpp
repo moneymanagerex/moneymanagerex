@@ -122,18 +122,18 @@ void relocateCategoryDialog::CreateControls()
 
 void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 {
-    mmCategDialog* sourceCat = new mmCategDialog(core_ , this, true, false);
+    mmCategDialog sourceCat(core_ , this, true, false);
 
-    sourceCat->setTreeSelection(core_->categoryList_.GetCategoryName(sourceCatID_)
+    sourceCat.setTreeSelection(core_->categoryList_.GetCategoryName(sourceCatID_)
     , core_->categoryList_.GetSubCategoryName(sourceCatID_, sourceSubCatID_));
 
-    if (sourceCat->ShowModal() == wxID_OK)
+    if (sourceCat.ShowModal() == wxID_OK)
     {
-        sourceCatID_    = sourceCat->getCategId();
-        sourceSubCatID_ = sourceCat->getSubCategId();
+        sourceCatID_    = sourceCat.getCategId();
+        sourceSubCatID_ = sourceCat.getSubCategId();
         sourceBtn_->SetLabel(core_->categoryList_.GetFullCategoryString(sourceCatID_, sourceSubCatID_));
     }
-    sourceCat->Destroy();
+    sourceCat.Destroy();
 }
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
