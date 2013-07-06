@@ -50,7 +50,10 @@ public:
 
     void Set(const wxString& key, bool value)
     {
-        this->Set(key, (value) ? "TRUE" : "FALSE"); 
+        if (value)
+            this->Set(key, "TRUE");
+        else
+            this->Set(key, "FALSE");
     }
 
     void Set(const wxString& key, const wxColour& value)
@@ -93,7 +96,7 @@ public:
         return default_value; 
     }
 
-    bool GetIntSetting(const wxString& key, int default_value)
+    int GetIntSetting(const wxString& key, int default_value)
     {
         wxString value = this->GetStringSetting(key, "");
         if (!value.IsEmpty() && value.IsNumber()) return wxAtoi(value);

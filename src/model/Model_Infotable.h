@@ -90,7 +90,7 @@ public:
 
         return default_value; 
     }
-    bool GetIntInfo(const wxString& key, int default_value)
+    int GetIntInfo(const wxString& key, int default_value)
     {
         wxString value = this->GetStringInfo(key, "");
         if (!value.IsEmpty() && value.IsNumber()) return wxAtoi(value);
