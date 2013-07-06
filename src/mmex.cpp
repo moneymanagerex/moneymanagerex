@@ -1980,10 +1980,10 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
         mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
         if (pAccount)
         {
-            wxMessageDialog msgDlg(this,
-                _("Do you really want to delete the account?"),
-                _("Confirm Account Deletion"),
-                wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
+            wxMessageDialog msgDlg(this
+                , _("Do you really want to delete the account?")
+                , _("Confirm Account Deletion")
+                , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 m_core->bTransactionList_.deleteTransactions(pAccount->id_);

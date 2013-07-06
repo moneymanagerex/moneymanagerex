@@ -837,12 +837,16 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             mmShowErrorMessageInvalid(this, _("Payee"));
             return;
         }
+        else if (core_->payeeList_.FilterPayees("").IsEmpty())
+        {
+            payeeID_ = core_->payeeList_.AddPayee(payee_name);
+        }
         else
         {
             wxMessageDialog msgDlg( this
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
                 , _("Confirm to add new payee")
-                , wxYES_NO | wxYES_DEFAULT | wxICON_EXCLAMATION);
+                , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 payeeID_ = core_->payeeList_.AddPayee(payee_name);

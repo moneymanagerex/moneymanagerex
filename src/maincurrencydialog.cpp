@@ -219,8 +219,9 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (wxMessageBox(_("Do you really want to delete the selected Currency?"),
-                         _("Currency Dialog"),wxICON_QUESTION|wxYES|wxNO) == wxYES)
+        if (wxMessageBox(_("Do you really want to delete the selected Currency?")
+                         , _("Currency Dialog")
+                         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
         {
             core_->currencyList_.DeleteCurrency(currencyID_);
             fillControls();

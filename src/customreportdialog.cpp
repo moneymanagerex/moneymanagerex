@@ -561,7 +561,8 @@ bool mmCustomSQLDialog::DeleteCustomSqlReport()
         msg << "\n";
 
         bool delete_file = false;
-        if ( wxMessageBox(msg, reportIndex_->UserDialogHeading(), wxYES_NO|wxNO_DEFAULT|wxICON_QUESTION) == wxYES)
+        if ( wxMessageBox(msg, reportIndex_->UserDialogHeading()
+            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
         {
             delete_file = true;
         }
