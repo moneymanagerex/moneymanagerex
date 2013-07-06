@@ -23,6 +23,7 @@
 #include <wx/app.h>
 #include <wx/aui/aui.h>
 #include <wx/wizard.h>
+#include "wx/debugrpt.h"
 
 //----------------------------------------------------------------------------
 #include <memory>
@@ -49,11 +50,9 @@ class mmGUIApp : public wxApp
 public:
     mmGUIApp();
 
-    wxLocale& getLocale()
-    {
-        return m_locale;
-    }
-
+    wxLocale& getLocale();
+private:
+    void reportFatalException(wxDebugReport::Context);
 private:
     wxLocale m_locale; // locale we'll be using
 

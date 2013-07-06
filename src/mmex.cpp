@@ -70,16 +70,28 @@
 #include "model/Model_Setting.h"
 
 //----------------------------------------------------------------------------
-#include <wx/debugrpt.h>
-//----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
 //----------------------------------------------------------------------------
+IMPLEMENT_APP(mmGUIApp)
+//----------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------
+
+mmGUIApp::mmGUIApp()
+{
+    wxHandleFatalExceptions(); // tell the library to call OnFatalException()
+}
+
+wxLocale& mmGUIApp::getLocale()
+{
+    return this->m_locale;
+}
+//----------------------------------------------------------------------------
 /*
     See also: wxStackWalker, wxDebugReportUpload.
 */
-void reportFatalException(wxDebugReport::Context ctx)
+void mmGUIApp::reportFatalException(wxDebugReport::Context ctx)
 {
     wxDebugReportCompress rep;
 
@@ -97,29 +109,6 @@ void reportFatalException(wxDebugReport::Context ctx)
         rep.Reset();
     }
 }
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-IMPLEMENT_APP(mmGUIApp)
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-
-/*
-    wxHandleFatalExceptions implemented for some compilers\platforms only.
-    MinGW could't find this function, wxWidgets 2.8.10.
-
-    P.S. Try for next versions of wxWidgets.
-*/
-
-mmGUIApp::mmGUIApp()
-{
-#ifndef __MINGW32__
-    wxHandleFatalExceptions(); // tell the library to call OnFatalException()
-#endif
-}
-//----------------------------------------------------------------------------
-
 /*
     This method allows catching the exceptions thrown by any event handler.
 */
