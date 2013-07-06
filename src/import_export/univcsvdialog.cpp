@@ -585,7 +585,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
             std::vector<int> CSV_transID;
 
-            wxProgressDialog* progressDlg = new wxProgressDialog(_("Universal CSV Import"),
+            wxProgressDialog progressDlg(_("Universal CSV Import"),
                 _("Transactions imported from CSV: "), 100,
                 NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
             db_->Begin();
@@ -595,7 +595,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             {
                 wxString progressMsg;
                 progressMsg << _("Transactions imported from CSV\nto account ") << acctName << ": " << countImported;
-                if (!progressDlg->Update(static_cast<int>((static_cast<double>(countImported)/100.0
+                if (!progressDlg.Update(static_cast<int>((static_cast<double>(countImported)/100.0
                     - countNumTotal/100) *99), progressMsg))
                 {
                     canceledbyuser = true;
@@ -689,7 +689,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                *log_field_ << _("Line : ") << wxString::Format("%ld", countNumTotal) << _(" imported OK.") << "\n";
             }
 
-            progressDlg->Destroy();
+            progressDlg.Destroy();
 
             //FIXME: %ld
             wxString msg = wxString::Format(_("Total Lines : %d"), countNumTotal);
