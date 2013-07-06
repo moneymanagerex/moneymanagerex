@@ -59,7 +59,7 @@ public:
     void OnSelectDest(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
 
-    wxString updatedCategoriesCount();
+    wxString updatedCategoriesCount() const;
 
 private:
     mmCoreDB* core_;

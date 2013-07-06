@@ -138,22 +138,21 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
 {
-    mmCategDialog* destCat = new mmCategDialog(core_ , this, true, false);
+    mmCategDialog destCat(core_ , this, true, false);
 
-    destCat->setTreeSelection(core_->categoryList_.GetCategoryName(destCatID_)
+    destCat.setTreeSelection(core_->categoryList_.GetCategoryName(destCatID_)
     , core_->categoryList_.GetSubCategoryName(destCatID_, destSubCatID_));
 
-    if (destCat->ShowModal() == wxID_OK)
+    if (destCat.ShowModal() == wxID_OK)
     {
-        destCatID_    = destCat->getCategId();
-        destSubCatID_ = destCat->getSubCategId();
+        destCatID_    = destCat.getCategId();
+        destSubCatID_ = destCat.getSubCategId();
 
         destBtn_->SetLabel(core_->categoryList_.GetFullCategoryString(destCatID_, destSubCatID_));
     }
-    destCat->Destroy();
 }
 
-wxString relocateCategoryDialog::updatedCategoriesCount()
+wxString relocateCategoryDialog::updatedCategoriesCount() const
 {
     wxString countStr;
     countStr << (changedCats_ + changedSubCats_);
