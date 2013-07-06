@@ -17,14 +17,14 @@
  ********************************************************/
 
 #include "mmhomepagepanel.h"
-#include "html_widget_top_categories.h"
-#include "../mmex.h"
+#include "reports/html_widget_top_categories.h"
+#include "mmex.h"
 
-#include "htmlbuilder.h"
-#include "../billsdepositspanel.h"
-#include "mmgraphincexpensesmonth.h"
-#include "../mmCurrencyFormatter.h"
-#include "../db/assets.h"
+#include "reports/htmlbuilder.h"
+#include "billsdepositspanel.h"
+#include "reports/mmgraphincexpensesmonth.h"
+#include "mmCurrencyFormatter.h"
+#include "db/assets.h"
 #include <algorithm>
 
 

@@ -128,6 +128,7 @@ MMEX_OBJECTS =  \
 	mmex_mmex.o \
 	mmex_mmex_settings.o \
 	mmex_mmhelppanel.o \
+	mmex_mmhomepagepanel.o \
 	mmex_mmpayee.o \
 	mmex_mmreportspanel.o \
 	mmex_mmtransaction.o \
@@ -160,7 +161,6 @@ MMEX_OBJECTS =  \
 	mmex_mmgraphincexpensesmonth.o \
 	mmex_mmgraphpie.o \
 	mmex_mmgraphtopcategories.o \
-	mmex_mmhomepagepanel.o \
 	mmex_payee.o \
 	mmex_summary.o \
 	mmex_summaryassets.o \
@@ -606,6 +606,9 @@ mmex_mmex_settings.o: ../../src/mmex_settings.cpp
 mmex_mmhelppanel.o: ../../src/mmhelppanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_mmhomepagepanel.o: ../../src/mmhomepagepanel.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_mmpayee.o: ../../src/mmpayee.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -700,9 +703,6 @@ mmex_mmgraphpie.o: ../../src/reports/mmgraphpie.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmgraphtopcategories.o: ../../src/reports/mmgraphtopcategories.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmhomepagepanel.o: ../../src/reports/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_payee.o: ../../src/reports/payee.cpp

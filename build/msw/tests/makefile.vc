@@ -129,6 +129,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmex.obj \
 	mmex_tests_mmex_settings.obj \
 	mmex_tests_mmhelppanel.obj \
+	mmex_tests_mmhomepagepanel.obj \
 	mmex_tests_mmpayee.obj \
 	mmex_tests_mmreportspanel.obj \
 	mmex_tests_mmtransaction.obj \
@@ -161,7 +162,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmgraphincexpensesmonth.obj \
 	mmex_tests_mmgraphpie.obj \
 	mmex_tests_mmgraphtopcategories.obj \
-	mmex_tests_mmhomepagepanel.obj \
 	mmex_tests_payee.obj \
 	mmex_tests_summary.obj \
 	mmex_tests_summaryassets.obj \
@@ -710,6 +710,9 @@ mmex_tests_mmex_settings.obj: ..\..\..\src\mmex_settings.cpp
 mmex_tests_mmhelppanel.obj: ..\..\..\src\mmhelppanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmhelppanel.cpp
 
+mmex_tests_mmhomepagepanel.obj: ..\..\..\src\mmhomepagepanel.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmhomepagepanel.cpp
+
 mmex_tests_mmpayee.obj: ..\..\..\src\mmpayee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmpayee.cpp
 
@@ -805,9 +808,6 @@ mmex_tests_mmgraphpie.obj: ..\..\..\src\reports\mmgraphpie.cpp
 
 mmex_tests_mmgraphtopcategories.obj: ..\..\..\src\reports\mmgraphtopcategories.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\mmgraphtopcategories.cpp
-
-mmex_tests_mmhomepagepanel.obj: ..\..\..\src\reports\mmhomepagepanel.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\mmhomepagepanel.cpp
 
 mmex_tests_payee.obj: ..\..\..\src\reports\payee.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\payee.cpp

@@ -142,6 +142,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmex.o \
 	mmex_tests_mmex_settings.o \
 	mmex_tests_mmhelppanel.o \
+	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmpayee.o \
 	mmex_tests_mmreportspanel.o \
 	mmex_tests_mmtransaction.o \
@@ -174,7 +175,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmgraphincexpensesmonth.o \
 	mmex_tests_mmgraphpie.o \
 	mmex_tests_mmgraphtopcategories.o \
-	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_payee.o \
 	mmex_tests_summary.o \
 	mmex_tests_summaryassets.o \
@@ -534,6 +534,9 @@ mmex_tests_mmex_settings.o: $(srcdir)/../../src/mmex_settings.cpp
 mmex_tests_mmhelppanel.o: $(srcdir)/../../src/mmhelppanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmhelppanel.cpp
 
+mmex_tests_mmhomepagepanel.o: $(srcdir)/../../src/mmhomepagepanel.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmhomepagepanel.cpp
+
 mmex_tests_mmpayee.o: $(srcdir)/../../src/mmpayee.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmpayee.cpp
 
@@ -629,9 +632,6 @@ mmex_tests_mmgraphpie.o: $(srcdir)/../../src/reports/mmgraphpie.cpp
 
 mmex_tests_mmgraphtopcategories.o: $(srcdir)/../../src/reports/mmgraphtopcategories.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/mmgraphtopcategories.cpp
-
-mmex_tests_mmhomepagepanel.o: $(srcdir)/../../src/reports/mmhomepagepanel.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/mmhomepagepanel.cpp
 
 mmex_tests_payee.o: $(srcdir)/../../src/reports/payee.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/payee.cpp

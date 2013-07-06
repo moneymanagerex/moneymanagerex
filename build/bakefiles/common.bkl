@@ -187,7 +187,7 @@
             <if cond="1">/mac</if>
         </set>
 
-        <headers>$(fileList( [ 'src/*.h', 'src/reports/*.h', 'src/db/*.h', 'src/import_export/*.h' ] ))</headers>
+        <headers>$(fileList( [ 'src/*.h', 'src/reports/*.h', 'src/db/*.h', 'src/import_export/*.h', 'src/model/*.h' ] ))</headers>
         <sources>$(fileList( [ 'src/*.cpp', 'src/reports/*.cpp', 'src/db/*.cpp', 'src/' + PLATF_DIR + '/*.cpp', 'src/import_export/*.cpp' ] ))</sources>
 
 
