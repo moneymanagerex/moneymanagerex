@@ -288,11 +288,11 @@
     <ClCompile Include="..\..\src\reports\mmgraphpie.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\reports\mmhomepagepanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\reports\html_widget_top_categories.cpp">
       <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mmhomepagepanel.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -563,9 +563,6 @@
     <ClInclude Include="..\..\src\reports\mmgraphtopcategories.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\reports\mmhomepagepanel.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\reports\reportbase.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
@@ -637,6 +634,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_Setting.h">
       <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmhomepagepanel.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
