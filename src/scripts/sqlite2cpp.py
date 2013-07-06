@@ -587,7 +587,7 @@ if __name__ == '__main__':
  *          DO NOT EDIT!
  */
 //=============================================================================
-'''% (sys.argv[0], str(datetime.datetime.now()))
+'''% (os.path.basename(__file__), str(datetime.datetime.now()))
 
     generate_base_class(header)
     conn, cur, sql_file = None, None, None
