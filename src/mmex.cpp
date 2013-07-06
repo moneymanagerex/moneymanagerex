@@ -135,12 +135,12 @@ void mmGUIApp::OnFatalException()
 }
 //----------------------------------------------------------------------------
 
-bool OnInitImpl(mmGUIApp &app)
+bool OnInitImpl(mmGUIApp* app)
 {
-    app.SetAppName(mmex::GetAppName());
+    app->SetAppName(mmex::GetAppName());
 
     /* Setting Locale causes unexpected problems, so default to English Locale */
-    app.getLocale().Init(wxLANGUAGE_ENGLISH);
+    app->getLocale().Init(wxLANGUAGE_ENGLISH);
 
     /* Initialize Image Handlers */
     wxImage::AddHandler(new wxICOHandler());
@@ -159,7 +159,7 @@ bool OnInitImpl(mmGUIApp &app)
     mmIniOptions::instance().loadOptions(pIniSettings);
 
     /* Was App Maximized? */
-    bool isMaxStr = pIniSettings->GetBoolSetting("ISMAXIMIZED", false);
+    bool isMax = pIniSettings->GetBoolSetting("ISMAXIMIZED", false);
 
     /* Load Dimensions of Window */
     int valx = pIniSettings->GetIntSetting("ORIGINX",50);
@@ -171,12 +171,8 @@ bool OnInitImpl(mmGUIApp &app)
 
     mmGUIFrame *frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh), pIniSettings);
     bool ok = frame->Show();
-    wxASSERT(ok);
 
-    if (isMaxStr)
-    {
-        frame->Maximize(true);
-    }
+    if (isMax) frame->Maximize(true);
 
     // success: wxApp::OnRun() will be called which will enter the main message
     // loop and the application will run. If we returned FALSE here, the
@@ -191,7 +187,7 @@ bool mmGUIApp::OnInit()
 
     try
     {
-        ok = wxApp::OnInit() && OnInitImpl(*this);
+        ok = wxApp::OnInit() && OnInitImpl(this);
     }
     catch (const wxSQLite3Exception &e)
     {
