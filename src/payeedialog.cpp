@@ -330,13 +330,13 @@ void mmPayeeDialog::OnEdit(wxCommandEvent& event)
 
 void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& /*event*/)
 {
-    relocatePayeeDialog* dlg = new relocatePayeeDialog(core_, this);
-    if (dlg->ShowModal() == wxID_OK)
+    relocatePayeeDialog dlg(core_, this);
+    if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
         msgStr << _("Payee Relocation Completed.") << "\n\n"
-            << wxString::Format(_("Records have been updated in the database: %s"),
-                dlg->updatedPayeesCount())
+            << wxString::Format(_("Records have been updated in the database: %s")
+                , dlg.updatedPayeesCount())
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;

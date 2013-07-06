@@ -479,13 +479,13 @@ void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& su
 
 void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
 {
-    relocateCategoryDialog* dlg = new relocateCategoryDialog(core_, this, categID_, subcategID_);
-    if (dlg->ShowModal() == wxID_OK)
+    relocateCategoryDialog dlg(core_, this, categID_, subcategID_);
+    if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
         msgStr << _("Category Relocation Completed.") << "\n\n"
                << wxString::Format( _("Records have been updated in the database: %s"),
-                    dlg->updatedCategoriesCount())
+                    dlg.updatedCategoriesCount())
                << "\n\n"
                << _("MMEX must be shutdown and restarted for all the changes to be seen.");
         wxMessageBox(msgStr,_("Category Relocation Result"));

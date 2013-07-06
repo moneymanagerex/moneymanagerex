@@ -188,8 +188,8 @@ void mmMainCurrencyDialog::CreateControls()
 
 void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
 {
-    mmCurrencyDialog* dlg = new mmCurrencyDialog(core_, -1, this);
-    dlg->ShowModal();
+    mmCurrencyDialog dlg(core_, -1, this);
+    dlg.ShowModal();
     fillControls();
 }
 
@@ -233,13 +233,13 @@ bool mmMainCurrencyDialog::Execute(mmCoreDB* core, wxWindow* parent, int& curren
 {
     bool result = false;
 
-    mmMainCurrencyDialog* dlg = new mmMainCurrencyDialog(core, parent);
-    if (dlg->ShowModal() == wxID_OK)
+    mmMainCurrencyDialog dlg(core, parent);
+    if (dlg.ShowModal() == wxID_OK)
     {
-        currencyID = dlg->currencyID_;
+        currencyID = dlg.currencyID_;
         result = true;
     }
-    dlg->Destroy();
+    dlg.Destroy();
 
     return result;
 }
