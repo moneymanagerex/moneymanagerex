@@ -301,11 +301,11 @@ void mmOptionsDialog::CreateControls()
     view_strings.Add(VIEW_TRANS_CURRENT_YEAR_STR);
     view_strings.Add(VIEW_TRANS_LAST_12MONTHS_STR);
 
-    choiceTransVisible_ = new wxChoice(viewsPanel, wxID_STATIC,
-        wxDefaultPosition, wxDefaultSize);
-    for(size_t i = 0; i < view_strings.GetCount(); ++i)
-        choiceTransVisible_->Append(wxGetTranslation(view_strings[i]),
-        new wxStringClientData(view_strings[i]));
+    choiceTransVisible_ = new wxChoice(viewsPanel
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize);
+    for(const auto &entry : view_strings)
+        choiceTransVisible_->Append(wxGetTranslation(entry),
+        new wxStringClientData(entry));
 
     view_sizer1->Add(choiceTransVisible_,flags);
 
@@ -315,7 +315,7 @@ void mmOptionsDialog::CreateControls()
 
     view_sizer1->Add(new wxStaticText(viewsPanel, wxID_STATIC, _("Report Font Size")), flags);
 
-    wxString itemChoiceFontSize[] = {
+    const wxString itemChoiceFontSize[] = {
         wxTRANSLATE("XSmall"),
         wxTRANSLATE("Small"),
         wxTRANSLATE("Normal"),
@@ -324,10 +324,10 @@ void mmOptionsDialog::CreateControls()
         wxTRANSLATE("XXLarge"),
         wxTRANSLATE("Huge")};
 
-    choiceFontSize_ = new wxChoice(viewsPanel, wxID_STATIC);
+    choiceFontSize_ = new wxChoice(viewsPanel, wxID_ANY);
 
-    for(size_t i = 0; i < sizeof(itemChoiceFontSize)/sizeof(wxString); ++i)
-        choiceFontSize_->Append(wxGetTranslation(itemChoiceFontSize[i]));
+    for(const auto &entry : itemChoiceFontSize)
+        choiceFontSize_->Append(wxGetTranslation(entry));
 
     int vFontSize = -1 + core_->iniSettings_->GetIntSetting("HTMLFONTSIZE", 3);
     choiceFontSize_->SetSelection(vFontSize);
