@@ -69,7 +69,7 @@ public:
         }
         if (info)
         {
-            info->INFONAME = value;
+            info->INFOVALUE= value;
             info->save(this->db_);
         }
         else
