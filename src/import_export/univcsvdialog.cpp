@@ -22,6 +22,7 @@
 #include "../platfdep.h"
 #include "../mmCurrencyFormatter.h"
 #include <algorithm>
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog)
 
@@ -250,7 +251,7 @@ void mmUnivCSVDialog::CreateControls()
     int num = sizeof(choices) / sizeof(wxString);
     m_radio_box_ = new wxRadioBox(this, wxID_RADIO_BOX, "", wxDefaultPosition, wxDefaultSize, num, choices, 4, wxRA_SPECIFY_COLS);
 
-    delimit_ = core_->dbInfoSettings_->GetStringSetting("DELIMITER", mmex::DEFDELIMTER);
+    delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
     textDelimiter4 = new wxTextCtrl( this, ID_UD_DELIMIT, delimit_, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
     textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
@@ -934,7 +935,7 @@ void mmUnivCSVDialog::update_preview()
     }
     else // exporter preview
     {
-        wxString date_format = core_->dbInfoSettings_->GetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
+        wxString date_format = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
         wxString acctName = m_choice_account_->GetStringSelection();
         int fromAccountID = core_->accountList_.GetAccountId(acctName);
 

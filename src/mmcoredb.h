@@ -48,8 +48,6 @@ public:
     std::shared_ptr<wxSQLite3Database> db_;
     // Global access point to inidb settings
     MMEX_IniSettings* iniSettings_;
-    // Global access point to database information settings
-    MMEX_IniSettings* dbInfoSettings_;
 
     /* These variables form a global data access point. */
     mmCurrencyList currencyList_;

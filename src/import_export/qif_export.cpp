@@ -4,6 +4,7 @@
 #include "qif_export.h"
 #include "../util.h"
 #include "../paths.h"
+#include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmQIFExportDialog, wxDialog )
 
@@ -381,7 +382,7 @@ void mmQIFExportDialog::mmExportQIF()
     const bool write_to_file = toFileCheckBox_->GetValue();
     wxString sErrorMsg;
     wxString buffer;
-    delimit_ = core_->dbInfoSettings_->GetStringSetting("DELIMITER", mmex::DEFDELIMTER);
+    delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
     long numRecords = 0;
 
     //Export categories
