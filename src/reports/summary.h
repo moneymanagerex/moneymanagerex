@@ -21,16 +21,11 @@
 
 #include "reportbase.h"
 
-class mmGUIFrame;
-
 class mmReportSummary : public mmPrintableBase
 {
 public:
-    mmReportSummary(mmCoreDB* core, mmGUIFrame* frame);
+    mmReportSummary(mmCoreDB* core);
     wxString getHTMLText();
-
-private:
-    mmGUIFrame* frame_;
 };
 
 #endif //_MM_EX_REPORTSUMMARY_H_

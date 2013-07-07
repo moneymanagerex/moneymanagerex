@@ -1238,7 +1238,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Summary of Accounts"), 4, 4);
     navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Summary of Accounts"
-        , new mmReportSummary(m_core.get(), this)));
+        , new mmReportSummary(m_core.get())));
 
     wxTreeItemId reportsStocks = navTreeCtrl_->AppendItem(reportsSummary, _("Stocks"), 4, 4);
     navTreeCtrl_->SetItemData(reportsStocks, new mmTreeItemData("Summary of Stocks"

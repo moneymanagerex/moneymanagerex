@@ -23,9 +23,8 @@
 #include "../db/assets.h"
 #include "../mmCurrencyFormatter.h"
 
-mmReportSummary::mmReportSummary(mmCoreDB* core, mmGUIFrame* frame)
+mmReportSummary::mmReportSummary(mmCoreDB* core)
 : mmPrintableBase(core)
-, frame_(frame)
 {}
 
 wxString mmReportSummary::getHTMLText()
@@ -102,7 +101,7 @@ wxString mmReportSummary::getHTMLText()
     // all sums below will be in base currency!
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    if ( frame_->hasActiveTermAccounts() )
+    if (wxGetApp().m_frame->hasActiveTermAccounts() )
     {
         hb.startTableRow();
         hb.addTotalRow(_("Term Accounts Total:"), 2, tTBalance);
