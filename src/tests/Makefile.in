@@ -184,7 +184,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_account.o \
 	mmex_tests_assets.o \
 	mmex_tests_budget_table.o \
-	mmex_tests_budget_year.o \
 	mmex_tests_category.o \
 	mmex_tests_currency.o \
 	mmex_tests_entry_base.o \
@@ -659,9 +658,6 @@ mmex_tests_assets.o: $(srcdir)/../../src/db/assets.cpp
 
 mmex_tests_budget_table.o: $(srcdir)/../../src/db/budget_table.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/budget_table.cpp
-
-mmex_tests_budget_year.o: $(srcdir)/../../src/db/budget_year.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/budget_year.cpp
 
 mmex_tests_category.o: $(srcdir)/../../src/db/category.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/category.cpp
