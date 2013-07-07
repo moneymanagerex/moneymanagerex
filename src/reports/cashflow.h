@@ -3,14 +3,13 @@
 
 #include "reportbase.h"
 
-class mmGUIFrame;
 class wxArrayString;
 class TTransactionBillEntry;
 
 class mmReportCashFlow : public mmPrintableBase
 {
 public:
-    mmReportCashFlow(mmCoreDB* core, mmGUIFrame* frame, int cashflowreporttype);
+    mmReportCashFlow(mmCoreDB* core, int cashflowreporttype);
 
     virtual wxString getHTMLText();
 
@@ -35,7 +34,6 @@ protected:
     void SetYearsRepeatForecast(forecastVec& fvec
                                 , TTransactionBillEntry* repeat_entry, double& amount, const wxDateTime& future_year);
 
-    mmGUIFrame* frame_;
     const wxArrayString* accountArray_;
     bool activeTermAccounts_;
     bool activeBankAccounts_;
@@ -45,32 +43,32 @@ protected:
 class mmReportCashFlowAllAccounts : public mmReportCashFlow
 {
 public:
-    mmReportCashFlowAllAccounts(mmCoreDB* core, mmGUIFrame* frame);
+    mmReportCashFlowAllAccounts(mmCoreDB* core);
 };
 
 class mmReportCashFlowBankAccounts : public mmReportCashFlow
 {
 public:
-    mmReportCashFlowBankAccounts(mmCoreDB* core, mmGUIFrame* frame);
+    mmReportCashFlowBankAccounts(mmCoreDB* core);
 };
 
 class mmReportCashFlowTermAccounts: public mmReportCashFlow
 {
 public:
-    mmReportCashFlowTermAccounts(mmCoreDB* core, mmGUIFrame* frame);
+    mmReportCashFlowTermAccounts(mmCoreDB* core);
 };
 
 class mmReportCashFlowSpecificAccounts: public mmReportCashFlow
 {
 public:
-    mmReportCashFlowSpecificAccounts(mmCoreDB* core, mmGUIFrame* frame);
+    mmReportCashFlowSpecificAccounts(mmCoreDB* core);
     virtual wxString getHTMLText();
 };
 
 class mmReportDailyCashFlowSpecificAccounts: public mmReportCashFlowSpecificAccounts
 {
 public:
-    mmReportDailyCashFlowSpecificAccounts(mmCoreDB* core, mmGUIFrame* frame);
+    mmReportDailyCashFlowSpecificAccounts(mmCoreDB* core);
 };
 
 #endif // _MM_EX_REPORTCASHFLOW_H_

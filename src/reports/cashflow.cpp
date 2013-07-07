@@ -7,9 +7,8 @@
 #include "../mmCurrencyFormatter.h"
 #include "../db/transactionbill.h"
 
-mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, mmGUIFrame* frame, int cashflowreporttype)
+mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
 : mmPrintableBase(core)
-, frame_(frame)
 , accountArray_(0)
 , activeTermAccounts_(false)
 , activeBankAccounts_(false)
@@ -33,7 +32,7 @@ void mmReportCashFlow::getSpecificAccounts()
 
     for (const auto& account: core_->accountList_.accounts_) accountArray.Add(account->name_);
 
-    wxMultiChoiceDialog mcd(this->frame_, _("Choose Accounts"), _("Cash Flow"), accountArray);
+    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), _("Cash Flow"), accountArray);
     if (mcd.ShowModal() == wxID_OK)
     {
         wxArrayInt arraySel = mcd.GetSelections();
@@ -427,7 +426,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         bool addSeparator = false;
         bool addSeparatorAfter = false;
 
-        if (frame_->budgetFinancialYears())
+        if (wxGetApp().m_frame->budgetFinancialYears())
         {
             if (initialMonths && (dtEnd.GetMonth() == getUserDefinedFinancialYear().GetMonth()))
             {
@@ -479,32 +478,28 @@ wxString mmReportCashFlow::getHTMLText_i()
 }
 
 //-----------------------------------------------------------------------------
-mmReportCashFlowAllAccounts::mmReportCashFlowAllAccounts
-( mmCoreDB* core, mmGUIFrame* frame)
-: mmReportCashFlow(core, frame, 0)
+mmReportCashFlowAllAccounts::mmReportCashFlowAllAccounts(mmCoreDB* core)
+: mmReportCashFlow(core, 0)
 {
     this->activateBankAccounts();
     this->activateTermAccounts();
 }
 
-mmReportCashFlowBankAccounts::mmReportCashFlowBankAccounts
-( mmCoreDB* core, mmGUIFrame* frame)
-: mmReportCashFlow(core, frame, 0)
+mmReportCashFlowBankAccounts::mmReportCashFlowBankAccounts(mmCoreDB* core)
+: mmReportCashFlow(core, 0)
 {
     this->activateBankAccounts();
 }
 
-mmReportCashFlowTermAccounts::mmReportCashFlowTermAccounts
-( mmCoreDB* core, mmGUIFrame* frame)
-: mmReportCashFlow(core, frame, 0)
+mmReportCashFlowTermAccounts::mmReportCashFlowTermAccounts(mmCoreDB* core)
+: mmReportCashFlow(core, 0)
 {
     this->activateTermAccounts();
 }
 
 //-----------------------------------------------------------------------------
-mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts
-( mmCoreDB* core, mmGUIFrame* frame)
-: mmReportCashFlow(core, frame, 0)
+mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts(mmCoreDB* core)
+: mmReportCashFlow(core, 0)
 {
     this->cashflowreporttype_ = 0;
 }
@@ -516,9 +511,8 @@ wxString mmReportCashFlowSpecificAccounts::getHTMLText()
 }
 
 //-----------------------------------------------------------------------------
-mmReportDailyCashFlowSpecificAccounts::mmReportDailyCashFlowSpecificAccounts
-( mmCoreDB* core, mmGUIFrame* frame)
-: mmReportCashFlowSpecificAccounts(core, frame)
+mmReportDailyCashFlowSpecificAccounts::mmReportDailyCashFlowSpecificAccounts(mmCoreDB* core)
+: mmReportCashFlowSpecificAccounts(core)
 {
     this->cashflowreporttype_ = 1;
 }

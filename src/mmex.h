@@ -45,12 +45,15 @@ class CustomReportIndex;
 class RecentDatabaseFiles;
 //----------------------------------------------------------------------------
 
+class mmGUIFrame;
 class mmGUIApp : public wxApp
 {
 public:
     mmGUIApp();
 
     wxLocale& getLocale();
+public:
+    mmGUIFrame* m_frame;
 private:
     void reportFatalException(wxDebugReport::Context);
 private:
