@@ -347,7 +347,6 @@ struct DB_Table_%s : public DB_Table
     }
 ''' % (len(self._fields), self._primay_key, self._table)
         s +='''
-
     bool remove(int id, wxSQLite3Database* db)
     {
         try

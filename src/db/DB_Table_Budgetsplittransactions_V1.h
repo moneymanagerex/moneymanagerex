@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-06 16:12:11.521780.
+ *          AUTO GENERATED at 2013-07-07 20:33:17.252813.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -253,7 +253,6 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
         if (entity->id() < 0) entity->id((db->GetLastRowId()).ToLong());
         return true;
     }
-
 
     bool remove(int id, wxSQLite3Database* db)
     {
