@@ -68,6 +68,7 @@
 #include "model/Model_Asset.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Budgetyear.h"
 
 //----------------------------------------------------------------------------
 
@@ -1566,11 +1567,11 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         wxTreeItemId budgetPerformance;
         wxTreeItemId budgetSetupPerformance;
 
-        wxSQLite3ResultSet q1 = m_db->ExecuteQuery(SELECT_ALL_FROM_BUDGETYEAR_V1);
-
-        for (size_t i = 0; q1.NextRow(); ++i)
+        size_t i = 0;
+        for (const auto& e: Model_Budgetyear::instance().all())
         {
-            if (!i) { // first loop only
+            if (!i) 
+            { // first loop only
                 budgetPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Performance"), 4, 4);
                 navTreeCtrl_->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
 
@@ -1578,8 +1579,8 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
                 navTreeCtrl_->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"));
             }
 
-            int id = q1.GetInt("BUDGETYEARID");
-            const wxString name = q1.GetString("BUDGETYEARNAME");
+            int id = e.BUDGETYEARID;
+            const wxString& name = e.BUDGETYEARNAME;
 
             wxTreeItemId bYear = navTreeCtrl_->AppendItem(budgeting, name, 3, 3);
             navTreeCtrl_->SetItemData(bYear, new mmTreeItemData(id, true));
@@ -1592,9 +1593,9 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
             }
             wxTreeItemId bYearSetupData = navTreeCtrl_->AppendItem(budgetSetupPerformance, name, 4, 4);
             navTreeCtrl_->SetItemData(bYearSetupData, new mmTreeItemData(id, true));
+            ++ i;
         }
 
-        q1.Finalize();
 
         //TODO: Set up as a permanent user option
         if (expandedBudgetingNavTree_)
@@ -2636,6 +2637,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
         Model_Asset::instance().db_ = m_db.get();
+        Model_Budgetyear::instance().db_ = m_db.get();
         Model_Infotable::instance().db_ = m_db.get();
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())

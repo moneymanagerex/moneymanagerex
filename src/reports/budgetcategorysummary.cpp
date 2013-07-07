@@ -23,6 +23,7 @@
 #include "../budgetingpanel.h"
 #include "htmlbuilder.h"
 #include "../mmex.h"
+#include "model/Model_Budgetyear.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, int budgetYearID)
 : mmReportBudget(core)
@@ -68,7 +69,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     int endMonth = wxDateTime::Dec;
 
     long startYear;
-    wxString startYearStr = mmDBWrapper::getBudgetYearForID(core_->db_.get(), budgetYearID_);
+    wxString startYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     startYearStr.ToLong(&startYear);
 
     wxString headingStr = AdjustYearValues(startDay, startMonth, startYear, startYearStr);

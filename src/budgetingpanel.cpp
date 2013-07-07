@@ -25,6 +25,7 @@
 #include "reports/budget.h"
 #include "mmex_settings.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Budgetyear.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -128,7 +129,7 @@ void mmBudgetingPanel::OnMouseLeftDown( wxMouseEvent& event )
 
 void mmBudgetingPanel::UpdateBudgetHeading()
 {
-    wxString yearStr = mmDBWrapper::getBudgetYearForID(core_->db_.get(), budgetYearID_);
+    wxString yearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     if ((yearStr.length() < 5))
     {
         if (wxGetApp().m_frame->budgetFinancialYears() )
@@ -288,7 +289,7 @@ void mmBudgetingPanel::initVirtualListControl()
     }
 
     currentView_ = Model_Infotable::instance().GetStringInfo("BUDGET_FILTER", "View All Budget Categories");
-    wxString budgetYearStr = mmDBWrapper::getBudgetYearForID(core_->db_.get(), budgetYearID_);
+    wxString budgetYearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     long year = 0;
     budgetYearStr.ToLong(&year);
     wxDateTime dtBegin(1, wxDateTime::Jan, year);

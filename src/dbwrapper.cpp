@@ -24,6 +24,7 @@
 #include "constants.h"
 #include "mmcurrency.h"
 #include "mmex_settings.h"
+#include "model/Model_Budgetyear.h"
 //----------------------------------------------------------------------------
 #include <sqlite3.h>
 //----------------------------------------------------------------------------
@@ -705,65 +706,6 @@ void mmDBWrapper::addBudgetYear(wxSQLite3Database* db, const wxString &year)
     }
 }
 
-int mmDBWrapper::getBudgetYearID(wxSQLite3Database* db, const wxString &year_name)
-{
-    int budgetYearID = -1;
-
-    wxSQLite3Statement st = db->PrepareStatement(SELECT_ALL_FROM_BUDGETYEAR_V1);
-    wxSQLite3ResultSet q1 = st.ExecuteQuery();
-    while (q1.NextRow())
-    {
-        if (q1.GetString("BUDGETYEARNAME") == year_name)
-        {
-            budgetYearID = q1.GetInt("BUDGETYEARID");
-            break;
-        }
-    }
-    st.Finalize();
-
-    return budgetYearID;
-}
-
-wxString mmDBWrapper::getBudgetYearForID(wxSQLite3Database* db, int &year_id)
-{
-     wxString year_name = "";
-
-     wxSQLite3Statement st = db->PrepareStatement(SELECT_ALL_FROM_BUDGETYEAR_V1);
-     wxSQLite3ResultSet q1 = st.ExecuteQuery();
-     while (q1.NextRow())
-     {
-         if (q1.GetInt("BUDGETYEARID") == year_id)
-         {
-             year_name = q1.GetString("BUDGETYEARNAME");
-             break;
-         }
-     }
-     st.Finalize();
-
-     return year_name;
-}
-
-void mmDBWrapper::updateYearForID(wxSQLite3Database* db, const wxString& yearName, int yearid)
-{
-    try
-    {
-        wxSQLite3Statement st = db->PrepareStatement(UPDATE_BUDGETYEAR_V1);
-
-        st.Bind(1, yearName);
-        st.Bind(2, yearid);
-
-        st.ExecuteUpdate();
-        st.Finalize();
-        mmOptions::instance().databaseUpdated_ = true;
-
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Function::updateYearForID: %s", e.GetMessage());
-        wxLogError("Update Year For ID. " + wxString::Format(_("Error: %s"), e.GetMessage()));
-    }
-}
-
 bool mmDBWrapper::copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYear)
 {
     static const char INSERT_INTO_BUDGETTABLE_V1[] =
@@ -806,7 +748,7 @@ bool mmDBWrapper::copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYea
 
 bool mmDBWrapper::deleteBudgetYear(wxSQLite3Database* db, const wxString& yearName)
  {
-    int budgetYearID = getBudgetYearID(db, yearName);
+    int budgetYearID = Model_Budgetyear::instance().Get(yearName); // FIXME
     if (budgetYearID == -1)
         return false;
 

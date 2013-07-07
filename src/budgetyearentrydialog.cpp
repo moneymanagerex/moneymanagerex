@@ -23,6 +23,7 @@
 #include "paths.h"
 #include <wx/spinctrl.h>
 #include <wx/statline.h>
+#include "model/Model_Budgetyear.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmBudgetYearEntryDialog, wxDialog )
 
@@ -110,14 +111,12 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemGridSizer2->Add(itemChoice_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
     itemChoice_->SetToolTip(_("Specify year to base budget on."));
 
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_BUDGETYEAR_V1);
     int index = 1;
-    while (q1.NextRow())
+    for (const auto& e : Model_Budgetyear::instance().all())
     {
-        wxString budgetYearString = q1.GetString("BUDGETYEARNAME");
+        const wxString& budgetYearString = e.BUDGETYEARNAME;
         itemChoice_->Insert(budgetYearString, index++);
     }
-    q1.Finalize();
     
     wxStaticLine* line = new wxStaticLine ( this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
     itemBoxSizer2->Add(line, 0, wxGROW|wxALL, 5);
@@ -147,7 +146,7 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
         currYearText << "-" << currMonthText;
     }
 
-    if (mmDBWrapper::getBudgetYearID(core_->db_.get(), currYearText) != -1)
+    if (Model_Budgetyear::instance().Get(currYearText) != -1)
     {   
         wxMessageBox(_("Budget Year already exists"), SYMBOL_BUDGETYEARENTRYDIALOG_TITLE, wxICON_WARNING);
         return;
@@ -157,8 +156,8 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
         mmDBWrapper::addBudgetYear(core_->db_.get(), currYearText);
         if (baseYear != "None")
         {
-            int baseYearID = mmDBWrapper::getBudgetYearID(core_->db_.get(), baseYear);
-            int newYearID  = mmDBWrapper::getBudgetYearID(core_->db_.get(), currYearText);
+            int baseYearID = Model_Budgetyear::instance().Get(baseYear);
+            int newYearID  = Model_Budgetyear::instance().Get(currYearText);
 
             mmDBWrapper::copyBudgetYear(core_->db_.get(), newYearID, baseYearID);
         }

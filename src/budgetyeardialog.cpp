@@ -20,6 +20,7 @@
 #include "budgetyearentrydialog.h"
 #include "util.h"
 #include "paths.h"
+#include "model/Model_Budgetyear.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmBudgetYearDialog, wxDialog )
 
@@ -67,18 +68,13 @@ bool mmBudgetYearDialog::Create( wxWindow* parent, wxWindowID id,
 
 void mmBudgetYearDialog::fillControls()
 {
-    if (!core_->db_.get())
-       return;
-
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_BUDGETYEAR_V1);
     int index = 0;
-    while (q1.NextRow())
+    for (const auto& e: Model_Budgetyear::instance().all())
     {
-        wxString payeeString = q1.GetString("BUDGETYEARNAME");
-        int budgetYearID = q1.GetInt("BUDGETYEARID");
+        const wxString& payeeString = e.BUDGETYEARNAME;
+        int budgetYearID = e.BUDGETYEARID;
         listBox_->Insert(payeeString, index++, new mmListBoxItem(budgetYearID, payeeString));
     }
-    q1.Finalize();
 }
 
 void mmBudgetYearDialog::CreateControls()

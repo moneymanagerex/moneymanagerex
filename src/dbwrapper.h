@@ -87,11 +87,6 @@ static const char SELECT_ROW_FROM_BUDGETTABLE_V1[] =
     "CATEGID = ? AND "
     "SUBCATEGID = ?";
 
-static const char SELECT_ALL_FROM_BUDGETYEAR_V1[] =
-    "SELECT BUDGETYEARID, BUDGETYEARNAME "
-    "FROM BUDGETYEAR_V1 "
-    "ORDER BY BUDGETYEARNAME";
-
 static const char SELECT_ALL_FROM_CATEGORY_V1[] =
     "SELECT CATEGID, CATEGNAME "
     "FROM CATEGORY_V1 "
@@ -557,9 +552,6 @@ bool initCurrencyV1Table(wxSQLite3Database* db);
 
 void addBudgetYear(wxSQLite3Database* db, const wxString &year);
 bool copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYear);
-int getBudgetYearID(wxSQLite3Database* db, const wxString &year_name);
-wxString getBudgetYearForID(wxSQLite3Database* db, int &year_id);
-void updateYearForID(wxSQLite3Database* db, const wxString& yearName, int yearid);
 bool deleteBudgetYear(wxSQLite3Database* db, const wxString& yearName);
 
 /* Budgeting BUDGETTABLE_V1 API */
