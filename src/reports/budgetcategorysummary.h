@@ -27,7 +27,7 @@
 class mmReportBudgetCategorySummary : public mmReportBudget
 {
 public:
-    mmReportBudgetCategorySummary(mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID);
+    mmReportBudgetCategorySummary(mmCoreDB* core, int budgetYearID);
 
     wxString getHTMLText();
 

@@ -24,7 +24,7 @@
 class mmReportBudgetingPerformance : public mmReportBudget
 {
 public:
-    mmReportBudgetingPerformance(mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID);
+    mmReportBudgetingPerformance(mmCoreDB* core, int budgetYearID);
 
     wxString getHTMLText();
 

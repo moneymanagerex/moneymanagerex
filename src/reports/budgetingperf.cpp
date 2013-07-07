@@ -3,8 +3,8 @@
 #include "htmlbuilder.h"
 #include "../mmex.h"
 
-mmReportBudgetingPerformance::mmReportBudgetingPerformance(mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID)
-: mmReportBudget(mainFrame, core)
+mmReportBudgetingPerformance::mmReportBudgetingPerformance(mmCoreDB* core, int budgetYearID)
+: mmReportBudget(core)
 , budgetYearID_(budgetYearID)
 {}
 
@@ -26,7 +26,7 @@ void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, mmBu
 void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth, long startYear)
 {
     bool evaluateTransfer = false;
-    if (mainFrame_->budgetTransferTotal())
+    if (wxGetApp().m_frame->budgetTransferTotal())
     {
         evaluateTransfer = true;
     }
@@ -82,7 +82,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     AdjustDateForEndFinancialYear(yearEnd);
 
     bool evaluateTransfer = false;
-    if (mainFrame_->budgetTransferTotal())
+    if (wxGetApp().m_frame->budgetTransferTotal())
     {
         evaluateTransfer = true;
     }

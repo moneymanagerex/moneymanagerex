@@ -20,7 +20,6 @@
 
 #include "reportbase.h"
 
-class mmGUIFrame;
 struct mmBudgetEntryHolder;
 class mmHTMLBuilder;
 class wxDateTime;
@@ -32,7 +31,7 @@ class wxDateTime;
 class mmReportBudget : public mmPrintableBase
 {
 public:
-    mmReportBudget(mmGUIFrame* mainFrame, mmCoreDB* core = NULL);
+    mmReportBudget(mmCoreDB* core = NULL);
 
     /// Initialise index and secondary fields for a budget entry
     void initBudgetEntryFields(mmBudgetEntryHolder& budEntry, int id = -1);
@@ -69,9 +68,6 @@ public:
     void SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate);
 
     wxString getHTMLText();
-
-protected:
-    mmGUIFrame* mainFrame_;
 };
 
 #endif // _MM_EX_REPORTBUDGETING_H_

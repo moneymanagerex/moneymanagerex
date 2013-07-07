@@ -24,8 +24,8 @@
 #include "htmlbuilder.h"
 #include "../mmex.h"
 
-mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID)
-: mmReportBudget(mainFrame, core)
+mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, int budgetYearID)
+: mmReportBudget(core)
 , budgetYearID_(budgetYearID)
 {}
 
@@ -83,14 +83,14 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     }
 
     bool evaluateTransfer = false;
-    if (mainFrame_->budgetTransferTotal())
+    if (wxGetApp().m_frame->budgetTransferTotal())
     {
         evaluateTransfer = true;
     }
     mmHTMLBuilder hb;
     hb.init();
     wxString headerStartupMsg;
-    if (mainFrame_->budgetCategoryTotal())
+    if (wxGetApp().m_frame->budgetCategoryTotal())
         headerStartupMsg = _("Budget Categories for ");
     else
         headerStartupMsg = _("Budget Category Summary for ");
@@ -149,7 +149,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             actIncome += th.actual_;
         }
 
-        if (mainFrame_->budgetCategoryTotal())
+        if (wxGetApp().m_frame->budgetCategoryTotal())
         {
             th.subCatStr_ = wxEmptyString;
             displayReportLine(hb, th);
@@ -204,7 +204,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 actIncome += thsub.actual_;
             }
 
-            if (mainFrame_->budgetCategoryTotal())
+            if (wxGetApp().m_frame->budgetCategoryTotal())
             {
                 displayReportLine(hb, thsub);
             }
@@ -222,7 +222,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         /***************************************************************************
             Display a TOTALS entry for the category.
         ****************************************************************************/
-        if (mainFrame_->budgetCategoryTotal()) {
+        if (wxGetApp().m_frame->budgetCategoryTotal()) {
             hb.addRowSeparator(6);
         }
         // Category, Sub Category, Period, Amount, Estimated, Actual

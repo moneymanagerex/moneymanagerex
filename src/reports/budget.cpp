@@ -21,9 +21,8 @@
 #include "../budgetingpanel.h"
 #include "htmlbuilder.h"
 
-mmReportBudget::mmReportBudget(mmGUIFrame* mainFrame, mmCoreDB* core)
+mmReportBudget::mmReportBudget(mmCoreDB* core)
 : mmPrintableBase(core)
-, mainFrame_(mainFrame)
 {}
 
 /**************************************************************************************
@@ -160,7 +159,7 @@ void mmReportBudget::GetFinancialYearValues(int& day, int& month)
 wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, wxString yearStr)
 {
     if ((yearStr.length() < 5)) {
-        if ( mainFrame_->budgetFinancialYears() ) {
+        if (wxGetApp().m_frame->budgetFinancialYears() ) {
             GetFinancialYearValues(day, month);
             yearStr = wxString() << _("Financial Year: ") << yearStr << " - " << (year + 1);
         } else
@@ -174,7 +173,7 @@ wxString mmReportBudget::AdjustYearValues(int& day, int& month, long year, wxStr
 
 void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& year)
 {
-    if ( mainFrame_->budgetFinancialYears() ) {
+    if (wxGetApp().m_frame->budgetFinancialYears() ) {
         GetFinancialYearValues(day, month);
         SetDateToEndOfYear(day, month, year, false);
     }
@@ -182,7 +181,7 @@ void mmReportBudget::AdjustYearValues(int& day, int& month, wxDateTime& year)
 
 void mmReportBudget::AdjustDateForEndFinancialYear(wxDateTime& date)
 {
-    if ( mainFrame_->budgetFinancialYears() )
+    if (wxGetApp().m_frame->budgetFinancialYears() )
     {
         int day, month;
         GetFinancialYearValues(day, month);
