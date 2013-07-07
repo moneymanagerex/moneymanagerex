@@ -66,6 +66,7 @@
 #include "db/transactionbill.h"
 #include "mmex_settings.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Stock.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Budgetyear.h"
@@ -2637,6 +2638,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
         Model_Asset::instance(m_db.get());
+        Model_Stock::instance(m_db.get());
         Model_Budgetyear::instance().db_ = m_db.get();
         Model_Infotable::instance().db_ = m_db.get();
         // we need to check the db whether it is the right version

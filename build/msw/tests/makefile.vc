@@ -171,7 +171,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_account.obj \
 	mmex_tests_assets.obj \
 	mmex_tests_budget_table.obj \
-	mmex_tests_budget_year.obj \
 	mmex_tests_category.obj \
 	mmex_tests_currency.obj \
 	mmex_tests_entry_base.obj \
@@ -835,9 +834,6 @@ mmex_tests_assets.obj: ..\..\..\src\db\assets.cpp
 
 mmex_tests_budget_table.obj: ..\..\..\src\db\budget_table.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\budget_table.cpp
-
-mmex_tests_budget_year.obj: ..\..\..\src\db\budget_year.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\budget_year.cpp
 
 mmex_tests_category.obj: ..\..\..\src\db\category.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\category.cpp
