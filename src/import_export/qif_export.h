@@ -67,6 +67,7 @@ private:
     wxButton* button_search_;
     wxTextCtrl* m_text_ctrl_;
     wxTextCtrl* log_field_;
+    //wxLog *logger_;
     wxRadioBox* m_radio_box_;
     wxString delimit_;
     wxArrayString accounts_name_;

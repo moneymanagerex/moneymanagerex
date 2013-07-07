@@ -52,11 +52,15 @@ void mmQIFExportDialog::fillControls()
     accounts_type.Add(ACCOUNT_TYPE_TERM);
     accounts_id_ = core_->accountList_.getAccountsID(accounts_type);
 
-    for (size_t i = 0; i < accounts_id_.Count(); ++i)
+    for (const auto &entry : accounts_id_)
     {
-        accounts_name_.Add(core_->accountList_.GetAccountName(accounts_id_[i]));
-        items_index_.Add(i);
+        accounts_name_.Add(core_->accountList_.GetAccountName(entry));
+        items_index_.Add(entry);
     }
+    
+    // redirect logs to text control
+    //logger_ = wxLog::SetActiveTarget(new wxLogTextCtrl(log_field_));
+    //wxLogMessage( "This is the log window" );
 }
 
 void mmQIFExportDialog::CreateControls()
@@ -207,9 +211,9 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     {
         bSelectedAccounts_->SetLabel("...");
     }
-    for (size_t i = 0; i < items_index_.GetCount(); ++i)
+    for (const auto &entry : items_index_)
     {
-        *log_field_ << (core_->accountList_.GetAccountName(accounts_id_[items_index_[i]]));
+        *log_field_ << (core_->accountList_.GetAccountName(accounts_id_[entry]));
         *log_field_ << "\n";
     }
 }
@@ -220,12 +224,13 @@ void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     const bool qif_csv = m_radio_box_->GetSelection() == 0;
 
     const wxString choose_ext = qif_csv ? _("QIF Files") : _("CSV Files");
-    fileName = wxFileSelector(qif_csv
-        ? _("Choose QIF data file to Export")
-        : _("Choose CSV data file to Export"),
-        wxEmptyString, fileName, wxEmptyString,
-        choose_ext + (qif_csv ? " (*.qif)|*.qif;*.QIF" : " (*.csv)|*.csv;*.CSV")
-            , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    fileName = wxFileSelector(
+        (qif_csv
+            ? _("Choose QIF data file to Export")
+            : _("Choose CSV data file to Export"))
+        , wxEmptyString, fileName, wxEmptyString
+        , choose_ext + (qif_csv ? " (*.qif)|*.qif;*.QIF" : " (*.csv)|*.csv;*.CSV")
+        , wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
 
     if (!fileName.IsEmpty())
         correctEmptyFileExt(qif_csv ? "qif":"csv" , fileName);
@@ -399,21 +404,20 @@ void mmQIFExportDialog::mmExportQIF()
     if (exp_transactions)
     {
         wxArrayInt selected_accounts_id;
-        for (size_t a = 0; a < items_index_.Count() ; ++a)
+        for (const auto &entry : items_index_)
         {
-            selected_accounts_id.Add(accounts_id_[items_index_[a]]);
+            selected_accounts_id.Add(accounts_id_[entry]);
         }
 
-        for (size_t a = 0; a < selected_accounts_id.Count(); ++a)
+        for (const auto &entry : selected_accounts_id)
         {
-            int fromAccountID = selected_accounts_id[a];
-            wxString acctName = core_->accountList_.GetAccountName(fromAccountID);
+            wxString acctName = core_->accountList_.GetAccountName(entry);
 
-            buffer << writeAccHeader(fromAccountID, qif_csv);
+            buffer << writeAccHeader(entry, qif_csv);
 
             for (const auto& pBankTransaction : core_->bTransactionList_.transactions_)
             {
-                if ((pBankTransaction->accountID_ != fromAccountID) && (pBankTransaction->toAccountID_ != fromAccountID))
+                if ((pBankTransaction->accountID_ != entry) && (pBankTransaction->toAccountID_ != entry))
                    continue;
 
                 if (dateFromCheckBox_->GetValue() && pBankTransaction->date_ < fromDateCtrl_->GetValue() )
@@ -453,12 +457,12 @@ void mmQIFExportDialog::mmExportQIF()
                     toamount = /*adjustedExportAmount(amtSeparator,*/ wxString()<<tovalue/*)*/;
                     wxString amount_temp = amount;
 
-                    if (tAccountID == fromAccountID) {
+                    if (tAccountID == entry) {
                         categ = wxString::Format("[%s]", fromAccount);
                         amount = toamount;
                         toamount = amount_temp;
                         toamount.Prepend("-");
-                    } else if (fAccountID == fromAccountID) {
+                    } else if (fAccountID == entry) {
                         categ = wxString::Format("[%s]", toAccount);
                         amount.Prepend("-");
                     }
@@ -555,5 +559,8 @@ void mmQIFExportDialog::mmExportQIF()
     const wxString msg = wxString::Format(sErrorMsg, numRecords);
     wxMessageDialog msgDlg(parent_, wxGetTranslation(msg)
         , _("Export to QIF"), wxOK|wxICON_INFORMATION);
+    
+    //FIXME: Can't close this dialog
     msgDlg.ShowModal();
+    
 }
