@@ -15,24 +15,24 @@
  */
 //=============================================================================
 
-#ifndef MODEL_ASSET_H
-#define MODEL_ASSET_H
+#ifndef MODEL_CURRENCY_H
+#define MODEL_CURRENCY_H
 
 #include "Model.h"
-#include "db/DB_Table_Assets_V1.h"
-#include "Model_Currency.h" // detect base currency
+#include "db/DB_Table_Currencyformats_V1.h"
+#include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
 
-class Model_Asset : public Model, public DB_Table_ASSETS_V1
+class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
 {
-    using DB_Table_ASSETS_V1::all;
+    using DB_Table_CURRENCYFORMATS_V1::all;
 public:
-    Model_Asset(): Model(), DB_Table_ASSETS_V1() {};
-    ~Model_Asset() {};
+    Model_Currency(): Model(), DB_Table_CURRENCYFORMATS_V1() {};
+    ~Model_Currency() {};
 
 public:
-    static Model_Asset& instance()
+    static Model_Currency& instance()
     {
-        return Singleton<Model_Asset>::instance();
+        return Singleton<Model_Currency>::instance();
     }
 
 public:
