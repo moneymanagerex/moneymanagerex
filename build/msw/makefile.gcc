@@ -175,7 +175,6 @@ MMEX_OBJECTS =  \
 	mmex_entry_base.o \
 	mmex_payee_table.o \
 	mmex_splittransaction.o \
-	mmex_stocks.o \
 	mmex_subcategory.o \
 	mmex_transaction.o \
 	mmex_transactionbill.o \
@@ -744,9 +743,6 @@ mmex_payee_table.o: ../../src/db/payee_table.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_splittransaction.o: ../../src/db/splittransaction.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_stocks.o: ../../src/db/stocks.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_subcategory.o: ../../src/db/subcategory.cpp

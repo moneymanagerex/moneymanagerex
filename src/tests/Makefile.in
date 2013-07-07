@@ -189,7 +189,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_entry_base.o \
 	mmex_tests_payee_table.o \
 	mmex_tests_splittransaction.o \
-	mmex_tests_stocks.o \
 	mmex_tests_subcategory.o \
 	mmex_tests_transaction.o \
 	mmex_tests_transactionbill.o \
@@ -673,9 +672,6 @@ mmex_tests_payee_table.o: $(srcdir)/../../src/db/payee_table.cpp
 
 mmex_tests_splittransaction.o: $(srcdir)/../../src/db/splittransaction.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/splittransaction.cpp
-
-mmex_tests_stocks.o: $(srcdir)/../../src/db/stocks.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/stocks.cpp
 
 mmex_tests_subcategory.o: $(srcdir)/../../src/db/subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/subcategory.cpp
