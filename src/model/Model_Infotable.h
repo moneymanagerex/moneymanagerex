@@ -121,7 +121,7 @@ public:
     {
         if (!this->Exists("DATAVERSION")) return false;
 
-        return this->GetIntInfo("DATAVERSION", 0) < mmex::MIN_DATAVERSION;
+        return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
     }
 };
 
