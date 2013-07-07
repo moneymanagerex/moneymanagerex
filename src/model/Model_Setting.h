@@ -74,7 +74,7 @@ public:
         }
         if (setting)
         {
-            setting->SETTINGNAME = value;
+            setting->SETTINGVALUE = value;
             setting->save(this->db_);
         }
         else
