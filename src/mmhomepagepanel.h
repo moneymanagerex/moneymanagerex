@@ -41,8 +41,7 @@ public:
     {}
 
 public:
-    /* required overrides for virtual style list control */
-    virtual void OnLinkClicked(const wxHtmlLinkInfo& link);
+    void OnLinkClicked(const wxHtmlLinkInfo& link);
 
 private:
     mmCoreDB* core_;
