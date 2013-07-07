@@ -285,11 +285,6 @@ static const char UPDATE_ACCOUNTLIST_V1[] =
     ",INITIALBAL=?, FAVORITEACCT=?, CURRENCYID=? "
     "where ACCOUNTID = ?";
 
-static const char UPDATE_BUDGETYEAR_V1[] =
-    "UPDATE BUDGETYEAR_V1 "
-    "SET BUDGETYEARNAME = ? "
-    "WHERE BUDGETYEARID = ?";
-
 static const char UPDATE_CATEGORY_V1[] =
     "UPDATE CATEGORY_V1 "
     "SET CATEGNAME = ? "
@@ -354,9 +349,6 @@ static const char INSERT_INTO_BUDGETTABLE_V1[] =
     ") values ( "
     "?, ?, ?, ?, ? "
     ")";
-
-static const char INSERT_INTO_BUDGETYEARNAME_V1[] =
-    "INSERT INTO BUDGETYEAR_V1 (BUDGETYEARNAME) VALUES (?)";
 
 static const char INSERT_INTO_CATEGORY_V1[] =
     "INSERT INTO CATEGORY_V1 (CATEGNAME) VALUES(?)";
