@@ -153,7 +153,7 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmDBWrapper::addBudgetYear(core_->db_.get(), currYearText);
+        Model_Budgetyear::instance().Add(currYearText);
         if (baseYear != "None")
         {
             int baseYearID = Model_Budgetyear::instance().Get(baseYear);

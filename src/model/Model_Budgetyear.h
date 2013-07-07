@@ -60,6 +60,19 @@ public:
             info->save(this->db_);
         }
     }
+
+    int Add(const wxString& value)
+    {
+        int year_id = this->Get(value);
+        if (year_id < 0)
+        {
+            Data* e = this->create();
+            e->BUDGETYEARNAME = value;
+            e->save(this->db_);
+            year_id = e->id();
+        }
+        return year_id;
+    }
 public:
     // Getter
     wxString Get(int year_id)

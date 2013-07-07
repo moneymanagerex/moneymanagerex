@@ -688,24 +688,6 @@ bool mmDBWrapper::updateTransactionWithStatus(wxSQLite3Database &db, int transID
     return true;
 }
 
-void mmDBWrapper::addBudgetYear(wxSQLite3Database* db, const wxString &year)
-{
-    try
-    {
-        wxSQLite3Statement st = db->PrepareStatement(INSERT_INTO_BUDGETYEARNAME_V1);
-        st.Bind(1, year);
-        st.ExecuteUpdate();
-        st.Finalize();
-        mmOptions::instance().databaseUpdated_ = true;
-
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Function::addBudgetYear: %s", e.GetMessage());
-        wxLogError("Add Budget Year. " + wxString::Format(_("Error: %s"), e.GetMessage()));
-    }
-}
-
 bool mmDBWrapper::copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYear)
 {
     static const char INSERT_INTO_BUDGETTABLE_V1[] =
