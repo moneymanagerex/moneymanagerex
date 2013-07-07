@@ -2166,7 +2166,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     {
         wxSizer *sizer = cleanupHomePanel();
 
-        budgetingPage_ = new mmBudgetingPanel(m_core.get(), this, budgetYearID,
+        budgetingPage_ = new mmBudgetingPanel(m_core.get(), budgetYearID,
             homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = budgetingPage_;
         activeBudgetingPage_ = true;
@@ -2187,8 +2187,7 @@ void mmGUIFrame::createHomePage()
         //panelCurrent_->SetSizer(NULL);
         panelCurrent_  = 0;
     }
-    panelCurrent_ = new mmHomePagePanel(this,
-        m_core.get(),
+    panelCurrent_ = new mmHomePagePanel(m_core.get(),
         homePanel_,
         wxID_STATIC,
         wxDefaultPosition,
@@ -2207,7 +2206,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs)
     if (!rs) return;
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmReportsPanel(this, m_core.get(), rs, homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmReportsPanel(m_core.get(), rs, homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
@@ -2221,7 +2220,7 @@ void mmGUIFrame::createHelpPage()
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmHelpPanel(this, m_db.get(), homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmHelpPanel(m_db.get(), homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
@@ -3573,7 +3572,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     {
         wxSizer *sizer = cleanupHomePanel();
 
-        checkingAccountPage_ = new mmCheckingPanel(m_core.get(), this,
+        checkingAccountPage_ = new mmCheckingPanel(m_core.get(),
                                    accountID, homePanel_, wxID_STATIC,
                                    wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = checkingAccountPage_;

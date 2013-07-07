@@ -232,12 +232,11 @@ END_EVENT_TABLE();
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(
-    mmCoreDB* core, mmGUIFrame* mainFrame, int accountID,
+    mmCoreDB* core, int accountID,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name
     )
     : mmPanelBase(core)
-    , mainFrame_(mainFrame)
     , filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
@@ -253,7 +252,7 @@ mmCheckingPanel::mmCheckingPanel(
 */
 mmCheckingPanel::~mmCheckingPanel()
 {
-    mainFrame_->SetCheckingAccountPageInactive();
+    wxGetApp().m_frame->SetCheckingAccountPageInactive();
 }
 //----------------------------------------------------------------------------
 

@@ -27,14 +27,12 @@ BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
 END_EVENT_TABLE()
 
-mmReportsPanel::mmReportsPanel( mmGUIFrame* frame,
-        mmCoreDB* core,
+mmReportsPanel::mmReportsPanel(mmCoreDB* core,
         mmPrintableBase* rb, wxWindow *parent,
         wxWindowID winid, const wxPoint& pos,
         const wxSize& size, long style,
         const wxString& name )
 : mmPanelBase(core)
-, frame_(frame)
 , rb_(rb)
 {
     Create(parent, winid, pos, size, style, name);
@@ -97,35 +95,36 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
     bool isAcct = sInfo.StartsWith("ACCT:", &sData);
     bool isStock = sInfo.StartsWith("STOCK:", &sData);
     bool bIsLuaScript = sInfo.StartsWith("LUA:", &sData);
+    mmGUIFrame* frame = wxGetApp().m_frame;
     if (sInfo == "billsdeposits")
     {
-        frame_->setNavTreeSection(_("Repeating Transactions"));
+        frame->setNavTreeSection(_("Repeating Transactions"));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (sInfo == "Assets")
     {
-        frame_->setNavTreeSection(_("Assets"));
+        frame->setNavTreeSection(_("Assets"));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (isAcct)
     {
         long id = -1;
         sData.ToLong(&id);
-        frame_->setGotoAccountID(id);
-        frame_->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        frame->setGotoAccountID(id);
+        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (isStock)
     {
         long id = -1;
         sData.ToLong(&id);
-        frame_->setGotoAccountID(id);
-        frame_->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        frame->setGotoAccountID(id);
+        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (bIsTrxId)
     {
@@ -134,10 +133,10 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         if (transID > 0)
         {
             int account_id = core_->bTransactionList_.getBankTransactionPtr(transID)->accountID_;
-            frame_->setGotoAccountID(account_id, transID);
-            frame_->setAccountNavTreeSection(core_->accountList_.GetAccountName(account_id));
+            frame->setGotoAccountID(account_id, transID);
+            frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(account_id));
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-            frame_->GetEventHandler()->AddPendingEvent(evt);
+            frame->GetEventHandler()->AddPendingEvent(evt);
         }
     }
     else if (bIsLuaScript)

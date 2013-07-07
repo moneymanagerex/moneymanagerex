@@ -23,7 +23,6 @@
 #include "mmpanelbase.h"
 #include "reports/mmDateRange.h"
 //----------------------------------------------------------------------------
-class mmGUIFrame;
 class mmBankTransaction;
 class TransactionListCtrl;
 class mmFilterTransactionsDialog;
@@ -36,7 +35,6 @@ public:
 
     mmCheckingPanel(
         mmCoreDB* core,
-        mmGUIFrame* mainFrame,
         int accountID,
         wxWindow *parent,
         wxWindowID winid = wxID_ANY,
@@ -76,7 +74,6 @@ private:
     wxString currentView_;
     wxDateTime quickFilterBeginDate_;
     wxDateTime quickFilterEndDate_;
-    mmGUIFrame* mainFrame_;
     bool transFilterActive_;
     double filteredBalance_;
     double account_balance_;

@@ -25,7 +25,6 @@
 class wxListCtrl;
 class wxListEvent;
 class mmBudgetingPanel;
-class mmGUIFrame;
 
 /* Custom ListCtrl class that implements virtual LC style */
 class budgetingListCtrl: public wxListCtrl
@@ -90,7 +89,7 @@ class mmBudgetingPanel : public mmPanelBase
 
 public:
     mmBudgetingPanel( mmCoreDB* core,
-                      mmGUIFrame* mainFrame, int budgetYearID, wxWindow *parent,
+                      int budgetYearID, wxWindow *parent,
                       wxWindowID winid = wxID_ANY,
                       const wxPoint& pos = wxDefaultPosition,
                       const wxSize& size = wxDefaultSize,
@@ -127,7 +126,6 @@ private:
     budgetingListCtrl* listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
-    mmGUIFrame* mainFrame_;
     wxImageList* m_imageList;
     wxStaticText* budgetReportHeading_;
     wxStaticText* income_estimated_;

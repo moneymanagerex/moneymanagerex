@@ -33,11 +33,11 @@ class mmHtmlWindow: public wxHtmlWindow
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHtmlWindow(wxWindow *parent,  mmGUIFrame* frame, mmCoreDB* core,
+    mmHtmlWindow(wxWindow *parent, mmCoreDB* core,
                  const wxWindowID id, const wxPoint& pos,
                  const wxSize& size, long style)
-        : wxHtmlWindow(parent, id, pos, size, style),
-          frame_(frame), core_(core)
+        : wxHtmlWindow(parent, id, pos, size, style)
+        , core_(core)
     {}
 
 public:
@@ -45,7 +45,6 @@ public:
     virtual void OnLinkClicked(const wxHtmlLinkInfo& link);
 
 private:
-    mmGUIFrame* frame_;
     mmCoreDB* core_;
 };
 
@@ -54,8 +53,7 @@ class mmHomePagePanel : public mmPanelBase
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHomePagePanel( mmGUIFrame* frame,
-                     mmCoreDB* core_,
+    mmHomePagePanel(mmCoreDB* core_,
                      wxWindow *parent,
                      wxWindowID winid = wxID_ANY,
                      const wxPoint& pos = wxDefaultPosition,

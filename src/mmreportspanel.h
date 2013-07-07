@@ -23,15 +23,13 @@
 #include "reports/reportbase.h"
 
 class wxHtmlWindow;
-class mmGUIFrame;
 
 class mmReportsPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
 
 public:
-    mmReportsPanel( mmGUIFrame* frame,
-                    mmCoreDB* core,
+    mmReportsPanel(mmCoreDB* core,
                     mmPrintableBase* rb,
                     wxWindow *parent,
                     wxWindowID winid = wxID_ANY,
@@ -53,7 +51,6 @@ public:
 
 private:
     wxHtmlWindow* htmlWindow_;
-    mmGUIFrame* frame_;
     mmPrintableBase* rb_;
     void OnLinkClicked(wxHtmlLinkEvent& event);
 };

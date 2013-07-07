@@ -27,11 +27,10 @@ BEGIN_EVENT_TABLE(mmHelpPanel, wxPanel)
     EVT_BUTTON(wxID_FORWARD, mmHelpPanel::OnHelpPageForward)
 END_EVENT_TABLE()
 
-mmHelpPanel::mmHelpPanel(mmGUIFrame* frame, wxSQLite3Database* db,
+mmHelpPanel::mmHelpPanel(wxSQLite3Database* db,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 : db_(db)
-, frame_(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -89,7 +88,7 @@ void mmHelpPanel::CreateControls()
 
     Default help files will be used when the language help file are not found.
     **************************************************************************/
-    int helpFileIndex = frame_->getHelpFileIndex();
+    int helpFileIndex = wxGetApp().m_frame->getHelpFileIndex();
  
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex));
     if (mmOptions::instance().language_ != "english") helpIndexFile.AppendDir(mmOptions::instance().language_);

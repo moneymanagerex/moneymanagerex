@@ -34,16 +34,15 @@ END_EVENT_TABLE()
 BEGIN_EVENT_TABLE(mmHtmlWindow, wxHtmlWindow)
 END_EVENT_TABLE()
 
-mmHomePagePanel::mmHomePagePanel(mmGUIFrame* frame,
-            mmCoreDB* core,
+mmHomePagePanel::mmHomePagePanel(mmCoreDB* core,
             wxWindow *parent,
             wxWindowID winid,
             const wxPoint& pos,
             const wxSize& size,
             long style,
             const wxString& name )
-    : mmPanelBase(core)
-    , frame_(frame)
+        : mmPanelBase(core)
+        , frame_(wxGetApp().m_frame)
 {
     //FIXME: this runs twice
     Create(parent, winid, pos, size, style, name);
@@ -723,7 +722,7 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    htmlWindow_ = new mmHtmlWindow( this, frame_, core_,
+    htmlWindow_ = new mmHtmlWindow(this, core_,
         ID_PANEL_HOMEPAGE_HTMLWINDOW,
         wxDefaultPosition, wxDefaultSize,
         wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
@@ -732,39 +731,40 @@ void mmHomePagePanel::CreateControls()
 
 void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
 {
+    mmGUIFrame* frame = wxGetApp().m_frame;
     wxString href = link.GetHref();
     wxString number;
     bool isAcct = href.StartsWith("ACCT:", &number);
     bool isStock = href.StartsWith("STOCK:", &number);
     if (href == "billsdeposits")
     {
-        frame_->setNavTreeSection(_("Repeating Transactions"));
+        frame->setNavTreeSection(_("Repeating Transactions"));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (href == "Assets")
     {
-        frame_->setNavTreeSection(_("Assets"));
+        frame->setNavTreeSection(_("Assets"));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (isAcct)
     {
         long id = -1;
         number.ToLong(&id);
-        frame_->setGotoAccountID(id);
-        frame_->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        frame->setGotoAccountID(id);
+        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (isStock)
     {
         long id = -1;
         number.ToLong(&id);
-        frame_->setGotoAccountID(id);
-        frame_->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        frame->setGotoAccountID(id);
+        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-        frame_->GetEventHandler()->AddPendingEvent(evt);
+        frame->GetEventHandler()->AddPendingEvent(evt);
     }
 }
 

@@ -39,7 +39,7 @@ BEGIN_EVENT_TABLE(budgetingListCtrl, wxListCtrl)
 END_EVENT_TABLE()
 /*******************************************************/
 mmBudgetingPanel::mmBudgetingPanel(
-    mmCoreDB* core, mmGUIFrame* mainFrame, int budgetYearID,
+    mmCoreDB* core, int budgetYearID,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size,
     long style,const wxString& name)
@@ -47,7 +47,6 @@ mmBudgetingPanel::mmBudgetingPanel(
 , m_imageList()
 , listCtrlBudget_()
 , budgetYearID_(budgetYearID)
-, mainFrame_(mainFrame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -73,7 +72,7 @@ bool mmBudgetingPanel::Create( wxWindow *parent,
 mmBudgetingPanel::~mmBudgetingPanel()
 {
     if (m_imageList) delete m_imageList;
-    mainFrame_->SetBudgetingPageInactive();
+    wxGetApp().m_frame->SetBudgetingPageInactive();
 }
 
 void mmBudgetingPanel::save_column_width(int width)
@@ -132,7 +131,7 @@ void mmBudgetingPanel::UpdateBudgetHeading()
     wxString yearStr = mmDBWrapper::getBudgetYearForID(core_->db_.get(), budgetYearID_);
     if ((yearStr.length() < 5))
     {
-        if ( mainFrame_->budgetFinancialYears() )
+        if (wxGetApp().m_frame->budgetFinancialYears() )
         {
             long year;
             yearStr.ToLong(&year);
@@ -283,7 +282,7 @@ void mmBudgetingPanel::initVirtualListControl()
     mmReportBudget budgetDetails;
 
     bool evaluateTransfer = false;
-    if (mainFrame_->budgetTransferTotal())
+    if (wxGetApp().m_frame->budgetTransferTotal())
     {
         evaluateTransfer = true;
     }
@@ -413,7 +412,7 @@ void mmBudgetingPanel::initVirtualListControl()
             }
         }
 
-        if (mainFrame_->budgetSetupWithSummary() && DisplayEntryAllowed(catTotals))
+        if (wxGetApp().m_frame->budgetSetupWithSummary() && DisplayEntryAllowed(catTotals))
         {
             trans_.push_back(catTotals);
             int transCatTotalIndex = (int)trans_.size()-1;

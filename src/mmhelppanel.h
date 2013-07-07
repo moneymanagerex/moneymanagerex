@@ -23,14 +23,13 @@
 #include "mmpanelbase.h"
 
 class wxHtmlWindow;
-class mmGUIFrame;
 
 class mmHelpPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHelpPanel( mmGUIFrame* frame, wxSQLite3Database* db,
+    mmHelpPanel(wxSQLite3Database* db,
                  wxWindow *parent,
                  wxWindowID winid = wxID_ANY,
                  const wxPoint& pos = wxDefaultPosition,
@@ -40,7 +39,6 @@ public:
 
 private:
     wxHtmlWindow* htmlWindow_;
-    mmGUIFrame* frame_;
     wxSQLite3Database* db_;
 
     bool Create( wxWindow *parent, wxWindowID winid,
