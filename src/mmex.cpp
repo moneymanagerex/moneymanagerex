@@ -2636,7 +2636,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db = mmDBWrapper::Open(fileName, password);
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
-        Model_Asset::instance().db_ = m_db.get();
+        Model_Asset::instance(m_db.get());
         Model_Budgetyear::instance().db_ = m_db.get();
         Model_Infotable::instance().db_ = m_db.get();
         // we need to check the db whether it is the right version

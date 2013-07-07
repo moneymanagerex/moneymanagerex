@@ -34,7 +34,12 @@ public:
     {
         return Singleton<Model_Asset>::instance();
     }
-
+    static Model_Asset& instance(wxSQLite3Database* db)
+    {
+        Model_Asset& ins = Singleton<Model_Asset>::instance();
+        ins.db_ = db;
+        return ins;
+    }
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
