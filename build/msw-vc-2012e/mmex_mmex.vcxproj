@@ -251,13 +251,11 @@
     <ClCompile Include="..\..\src\db\account.cpp" />
     <ClCompile Include="..\..\src\db\assets.cpp" />
     <ClCompile Include="..\..\src\db\budget_table.cpp" />
-    <ClCompile Include="..\..\src\db\budget_year.cpp" />
     <ClCompile Include="..\..\src\db\category.cpp" />
     <ClCompile Include="..\..\src\db\currency.cpp" />
     <ClCompile Include="..\..\src\db\entry_base.cpp" />
     <ClCompile Include="..\..\src\db\payee_table.cpp" />
     <ClCompile Include="..\..\src\db\splittransaction.cpp" />
-    <ClCompile Include="..\..\src\db\stocks.cpp" />
     <ClCompile Include="..\..\src\db\subcategory.cpp" />
     <ClCompile Include="..\..\src\db\transaction.cpp" />
     <ClCompile Include="..\..\src\db\transactionbill.cpp" />
@@ -275,7 +273,6 @@
     <ClCompile Include="..\..\src\mmcurrency.cpp" />
     <ClCompile Include="..\..\src\mmCurrencyFormatter.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
-    <ClCompile Include="..\..\src\mmex_settings.cpp" />
     <ClCompile Include="..\..\src\mmhelppanel.cpp" />
     <ClCompile Include="..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
@@ -339,7 +336,6 @@
     <ClInclude Include="..\..\src\db\account.h" />
     <ClInclude Include="..\..\src\db\assets.h" />
     <ClInclude Include="..\..\src\db\budget_table.h" />
-    <ClInclude Include="..\..\src\db\budget_year.h" />
     <ClInclude Include="..\..\src\db\category.h" />
     <ClInclude Include="..\..\src\db\currency.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
@@ -361,7 +357,6 @@
     <ClInclude Include="..\..\src\db\entry_base.h" />
     <ClInclude Include="..\..\src\db\payee_table.h" />
     <ClInclude Include="..\..\src\db\splittransaction.h" />
-    <ClInclude Include="..\..\src\db\stocks.h" />
     <ClInclude Include="..\..\src\db\subcategory.h" />
     <ClInclude Include="..\..\src\db\transaction.h" />
     <ClInclude Include="..\..\src\db\transactionbill.h" />
@@ -382,7 +377,6 @@
     <ClInclude Include="..\..\src\mmcurrency.h" />
     <ClInclude Include="..\..\src\mmCurrencyFormatter.h" />
     <ClInclude Include="..\..\src\mmex.h" />
-    <ClInclude Include="..\..\src\mmex_settings.h" />
     <ClInclude Include="..\..\src\mmhelppanel.h" />
     <ClInclude Include="..\..\src\mmhomepagepanel.h" />
     <ClInclude Include="..\..\src\mmOption.h" />

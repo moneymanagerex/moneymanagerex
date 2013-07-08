@@ -114,9 +114,6 @@
     <ClCompile Include="..\..\src\mmex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmex_settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\mmhelppanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -231,9 +228,6 @@
     <ClCompile Include="..\..\src\db\budget_table.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\db\budget_year.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\db\category.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
@@ -244,9 +238,6 @@
       <Filter>Source Files\db</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\db\splittransaction.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\db\stocks.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\db\subcategory.cpp">
@@ -383,9 +374,6 @@
     <ClInclude Include="..\..\src\mmex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmex_settings.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\mmhelppanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -512,9 +500,6 @@
     <ClInclude Include="..\..\src\db\budget_table.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\db\budget_year.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\db\category.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
@@ -525,9 +510,6 @@
       <Filter>Header Files\db</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\db\splittransaction.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\db\stocks.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\db\subcategory.h">
