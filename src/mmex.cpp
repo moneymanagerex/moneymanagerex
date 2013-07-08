@@ -79,7 +79,7 @@ IMPLEMENT_APP(mmGUIApp)
 
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp()
+mmGUIApp::mmGUIApp(): m_frame(0)
 {
     wxHandleFatalExceptions(); // tell the library to call OnFatalException()
 }
