@@ -140,7 +140,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmcoredb.o \
 	mmex_tests_mmcurrency.o \
 	mmex_tests_mmex.o \
-	mmex_tests_mmex_settings.o \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmpayee.o \
@@ -525,9 +524,6 @@ mmex_tests_mmcurrency.o: $(srcdir)/../../src/mmcurrency.cpp
 
 mmex_tests_mmex.o: $(srcdir)/../../src/mmex.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmex.cpp
-
-mmex_tests_mmex_settings.o: $(srcdir)/../../src/mmex_settings.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmex_settings.cpp
 
 mmex_tests_mmhelppanel.o: $(srcdir)/../../src/mmhelppanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmhelppanel.cpp

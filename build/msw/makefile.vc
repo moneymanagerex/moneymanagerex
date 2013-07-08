@@ -127,7 +127,6 @@ MMEX_OBJECTS =  \
 	mmex_mmcoredb.obj \
 	mmex_mmcurrency.obj \
 	mmex_mmex.obj \
-	mmex_mmex_settings.obj \
 	mmex_mmhelppanel.obj \
 	mmex_mmhomepagepanel.obj \
 	mmex_mmpayee.obj \
@@ -730,9 +729,6 @@ mmex_mmcurrency.obj: ..\..\src\mmcurrency.cpp
 
 mmex_mmex.obj: ..\..\src\mmex.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmex.cpp
-
-mmex_mmex_settings.obj: ..\..\src\mmex_settings.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmex_settings.cpp
 
 mmex_mmhelppanel.obj: ..\..\src\mmhelppanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmhelppanel.cpp
