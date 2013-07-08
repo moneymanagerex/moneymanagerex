@@ -40,6 +40,9 @@ public:
     {
         return all(db_, col, asc);
     }
+public:
+    // Getter
+
 };
 
 #endif // 

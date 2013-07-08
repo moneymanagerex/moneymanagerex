@@ -25,6 +25,7 @@
 #include "paths.h"
 #include "validators.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Currency.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
@@ -96,16 +97,15 @@ void mmMainCurrencyDialog::fillControls()
     currencyListBox_->DeleteAllItems();
     int baseCurrencyID = core_->currencyList_.GetBaseCurrencySettings();
 
-    wxVector<wxVariant> data;
-    for (const auto& currency: core_->currencyList_.currencies_)
+    for (const auto& currency: Model_Currency::instance().all())
     {
-        int currencyID = currency->currencyID_;
+        int currencyID = currency.CURRENCYID;
 
-        data.clear();
-        data.push_back( wxVariant(baseCurrencyID == currencyID) );
-        data.push_back( wxVariant(currency->currencySymbol_) );
-        data.push_back( wxVariant(currency->currencyName_) );
-        data.push_back( wxVariant(wxString()<<currency->baseConv_) );
+        wxVector<wxVariant> data;
+        data.push_back(wxVariant(baseCurrencyID == currencyID));
+        data.push_back(wxVariant(currency.CURRENCY_SYMBOL));
+        data.push_back(wxVariant(currency.CURRENCYNAME));
+        data.push_back(wxVariant(wxString()<<currency.BASECONVRATE));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
     }
 }
