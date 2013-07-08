@@ -3397,12 +3397,8 @@ void mmGUIFrame::restorePrinterValues()
     pinterData->SetMarginBottomRight(bottomRight);
 
     wxPrintData* printerData = printer_->GetPrintData();
-    // fix warning for wxWidgets 2.9.3
-#if wxCHECK_VERSION(2,9,0)
     printerData->SetOrientation((wxPrintOrientation)pageOrientation);
-#else // use code for wxWidgets 2.8.x
-    printerData->SetOrientation(pageOrientation);
-#endif
+
     printerData->SetPaperId( (wxPaperSize)paperID );
 }
 
