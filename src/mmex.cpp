@@ -1593,7 +1593,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
             ++ i;
         }
 
-
         //TODO: Set up as a permanent user option
         if (expandedBudgetingNavTree_)
             navTreeCtrl_->Expand(budgeting);
@@ -1722,7 +1721,7 @@ void mmGUIFrame::CreateCustomReport(int index)
 }
 //----------------------------------------------------------------------------
 
-bool mmGUIFrame::IsCustomReportSelected( int& customSqlReportID, mmTreeItemData* iData )
+bool mmGUIFrame::IsCustomReportSelected( int& customSqlReportID, const mmTreeItemData* iData )
 {
     customSqlReportID = 0;
     bool result = false;
@@ -1890,7 +1889,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         int customReportID;      // Define before all the if...else statements
         //========================================================================
 
-        wxDateTime dtBegin, dtEnd;
         wxString sData = iData->getString();
         wxString title = wxGetTranslation(sData);
 
@@ -2178,13 +2176,6 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 void mmGUIFrame::createHomePage()
 {
     wxSizer *sizer = cleanupHomePanel();
-
-    if (panelCurrent_)
-    {
-        //panelCurrent_->DestroyChildren();
-        //panelCurrent_->SetSizer(NULL);
-        panelCurrent_  = 0;
-    }
     panelCurrent_ = new mmHomePagePanel(m_core.get(),
         homePanel_,
         wxID_STATIC,

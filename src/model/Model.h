@@ -22,6 +22,7 @@
 #include <map>
 #include <algorithm>
 #include "singleton.h"
+#include <memory>
 
 class wxString;
 class wxSQLite3Statement;
