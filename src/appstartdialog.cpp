@@ -23,7 +23,7 @@
 #include "constants.h"
 #include "util.h"
 #include "mmOption.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 
 /*******************************************************/
 
@@ -41,14 +41,12 @@ END_EVENT_TABLE()
 
 
 mmAppStartDialog::mmAppStartDialog()
-: pIniSettings_()
-, itemCheckBox()
+: itemCheckBox()
 {}
 
 
-mmAppStartDialog::mmAppStartDialog(MMEX_IniSettings* pIniSettings, wxWindow* parent)
-: pIniSettings_(pIniSettings)
-, itemCheckBox()
+mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
+: itemCheckBox()
 {
     wxString caption = mmex::getProgramName() + _(" Start Page");
     Create(parent, ID_DIALOG_APPSTART, caption, wxDefaultPosition, wxSize(400, 300), wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX);
@@ -76,7 +74,7 @@ mmAppStartDialog::~mmAppStartDialog()
     try
     {
         bool showBeginApp = itemCheckBox->GetValue();
-        pIniSettings_->SetSetting("SHOWBEGINAPP", showBeginApp);
+        Model_Setting::instance().Set("SHOWBEGINAPP", showBeginApp);
     }
     catch (...)
     {
@@ -133,7 +131,7 @@ void mmAppStartDialog::CreateControls()
 
     itemCheckBox = new wxCheckBox( this, wxID_STATIC, showAppStartString, wxDefaultPosition,
         wxDefaultSize, wxCHK_2STATE );
-    bool showBeginApp = pIniSettings_->GetBoolSetting("SHOWBEGINAPP", true);
+    bool showBeginApp = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
     if (showBeginApp) itemCheckBox->SetValue(true);
     else              itemCheckBox->SetValue(false);
     itemBoxSizer10->Add(itemCheckBox, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
@@ -150,9 +148,9 @@ void mmAppStartDialog::CreateControls()
     itemBoxSizer2->Add(itemButtonClose_, 0, wxALIGN_RIGHT|wxALL, 10);
     itemBoxSizer2->Add(itemButtonExit_, 0, wxALIGN_RIGHT|wxALL, 10);
 
-    if (pIniSettings_)
+    if (true) // FIXME
     {
-        wxString val = mmDBWrapper::getLastDbPath(pIniSettings_);
+        wxString val = Model_Setting::instance().getLastDbPath();
         wxFileName lastfile(val);
         if (!lastfile.FileExists())
         {

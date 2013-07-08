@@ -19,7 +19,6 @@
 #include "dbwrapper.h"
 #include "mmCurrencyFormatter.h"
 #include <map>
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
 
 mmCurrency::mmCurrency(wxSQLite3ResultSet& q1)

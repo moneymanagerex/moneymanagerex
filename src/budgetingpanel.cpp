@@ -23,7 +23,7 @@
 #include "mmCurrencyFormatter.h"
 #include "mmex.h"
 #include "reports/budget.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Budgetyear.h"
 
@@ -79,7 +79,7 @@ mmBudgetingPanel::~mmBudgetingPanel()
 void mmBudgetingPanel::save_column_width(int width)
 {
     int col_x = listCtrlBudget_->GetColumnWidth(width);
-    core_->iniSettings_->SetSetting(wxString::Format("BUDGET_COL%d_WIDTH", width), col_x);
+    Model_Setting::instance().Set(wxString::Format("BUDGET_COL%d_WIDTH", width), col_x);
 }
 
 void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -249,7 +249,7 @@ void mmBudgetingPanel::CreateControls()
     /* Get data from inidb */
     for (int i = 0; i < listCtrlBudget_->GetColumnCount(); ++i)
     {
-        int col = core_->iniSettings_->GetIntSetting(wxString::Format("BUDGET_COL%d_WIDTH", i), 80);
+        int col = Model_Setting::instance().GetIntSetting(wxString::Format("BUDGET_COL%d_WIDTH", i), 80);
         listCtrlBudget_->SetColumnWidth(i, col);
     }
     itemBoxSizer2->Add(listCtrlBudget_, 1, wxGROW | wxALL, 1);

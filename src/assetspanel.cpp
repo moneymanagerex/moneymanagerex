@@ -18,7 +18,7 @@
 #include "guiid.h"
 #include "assetdialog.h"
 #include "constants.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
@@ -50,7 +50,7 @@ void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
     int width = cp_->GetListCtrlWidth(i);
-    cp_->core_->iniSettings_->SetSetting(wxString::Format("ASSETS_COL%d_WIDTH", i), width);
+    Model_Setting::instance().Set(wxString::Format("ASSETS_COL%d_WIDTH", i), width);
 }
 
 void mmAssetsListCtrl::InitVariables()
@@ -367,11 +367,11 @@ void mmAssetsPanel::CreateControls()
     m_listCtrlAssets->InsertColumn(COL_NOTES, itemCol);
 
     /* See if we can get data from inidb */
-    int col0 = core_->iniSettings_->GetIntSetting("ASSETS_COL0_WIDTH", 150);
-    int col1 = core_->iniSettings_->GetIntSetting("ASSETS_COL1_WIDTH", -2);
-    int col2 = core_->iniSettings_->GetIntSetting("ASSETS_COL2_WIDTH", -2);
-    int col3 = core_->iniSettings_->GetIntSetting("ASSETS_COL3_WIDTH", -2);
-    int col4 = core_->iniSettings_->GetIntSetting("ASSETS_COL4_WIDTH", 450);
+    int col0 = Model_Setting::instance().GetIntSetting("ASSETS_COL0_WIDTH", 150);
+    int col1 = Model_Setting::instance().GetIntSetting("ASSETS_COL1_WIDTH", -2);
+    int col2 = Model_Setting::instance().GetIntSetting("ASSETS_COL2_WIDTH", -2);
+    int col3 = Model_Setting::instance().GetIntSetting("ASSETS_COL3_WIDTH", -2);
+    int col4 = Model_Setting::instance().GetIntSetting("ASSETS_COL4_WIDTH", 450);
 
     m_listCtrlAssets->SetColumnWidth(COL_NAME, col0);
     m_listCtrlAssets->SetColumnWidth(COL_DATE, col1);

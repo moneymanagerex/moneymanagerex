@@ -64,7 +64,6 @@
 #include "import_export/qif_import.h"
 #include "import_export/univcsvdialog.h"
 #include "db/transactionbill.h"
-#include "mmex_settings.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Infotable.h"
@@ -149,29 +148,28 @@ bool OnInitImpl(mmGUIApp* app)
     wxImage::AddHandler(new wxJPEGHandler());
     wxImage::AddHandler(new wxPNGHandler());
 
-    std::shared_ptr<wxSQLite3Database> pIniSettingsDb(new wxSQLite3Database);
-    pIniSettingsDb.get()->Open(mmex::getPathUser(mmex::SETTINGS));
-    MMEX_IniSettings* pIniSettings = new MMEX_IniSettings(pIniSettingsDb);
-    Model_Setting::instance().db_ = pIniSettingsDb.get();
+    wxSQLite3Database* pIniSettingsDb = new wxSQLite3Database;
+    pIniSettingsDb->Open(mmex::getPathUser(mmex::SETTINGS));
+    Model_Setting::instance().db_ = pIniSettingsDb;
 
     /* Load Colors from Database */
-    mmLoadColorsFromDatabase(pIniSettings);
+    mmLoadColorsFromDatabase();
 
     /* Load MMEX Custom Settings */
-    mmIniOptions::instance().loadOptions(pIniSettings);
+    mmIniOptions::instance().loadOptions();
 
     /* Was App Maximized? */
-    bool isMax = pIniSettings->GetBoolSetting("ISMAXIMIZED", false);
+    bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
 
     /* Load Dimensions of Window */
-    int valx = pIniSettings->GetIntSetting("ORIGINX",50);
-    int valy = pIniSettings->GetIntSetting("ORIGINY",50);
-    int valw = pIniSettings->GetIntSetting("SIZEW",800);
-    int valh = pIniSettings->GetIntSetting("SIZEH",600);
+    int valx = Model_Setting::instance().GetIntSetting(wxT("ORIGINX"), 50);
+    int valy = Model_Setting::instance().GetIntSetting("ORIGINY",50);
+    int valw = Model_Setting::instance().GetIntSetting("SIZEW",800);
+    int valh = Model_Setting::instance().GetIntSetting("SIZEH",600);
 
-    mmSelectLanguage(0, pIniSettings, false);
+    mmSelectLanguage(0, false);
 
-    app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh), pIniSettings);
+    app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
     bool ok = app->m_frame->Show();
 
     if (isMax) app->m_frame->Maximize(true);
@@ -592,10 +590,8 @@ END_EVENT_TABLE()
 
 mmGUIFrame::mmGUIFrame(const wxString& title,
                        const wxPoint& pos,
-                       const wxSize& size,
-                       MMEX_IniSettings* pIniSettings)
+                       const wxSize& size)
 : wxFrame(0, -1, title, pos, size)
-, m_inisettings(pIniSettings)
 , gotoAccountID_(-1)
 , gotoTransID_(-1)
 , homePageAccountSelect_(false)
@@ -635,26 +631,26 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
     custRepIndex_ = new CustomReportIndex();
 
     // decide if we need to show app start dialog
-    bool from_scratch = m_inisettings->GetBoolSetting("SHOWBEGINAPP", true);
+    bool from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
 
-    wxFileName dbpath = mmDBWrapper::getLastDbPath(m_inisettings);
-    if (from_scratch && !dbpath.IsOk()) mmSelectLanguage(this, m_inisettings, true);
+    wxFileName dbpath = Model_Setting::instance().getLastDbPath();
+    if (from_scratch && !dbpath.IsOk()) mmSelectLanguage(this, true);
 
     /* Create the Controls for the frame */
     createMenu();
     createToolBar();
     createControls();
-    recentFiles_ = new RecentDatabaseFiles(m_inisettings, menuRecentFiles_);
+    recentFiles_ = new RecentDatabaseFiles(menuRecentFiles_);
 
     // Load perspective
-    wxString auiPerspective = m_inisettings->GetStringSetting("AUIPERSPECTIVE", m_perspective);
+    wxString auiPerspective = Model_Setting::instance().GetStringSetting("AUIPERSPECTIVE", m_perspective);
     m_mgr.LoadPerspective(auiPerspective);
 
     // add the toolbars to the manager
     m_mgr.AddPane(toolBar_, wxAuiPaneInfo().
         Name("toolbar").Caption(_("Toolbar")).ToolbarPane().Top()
         .LeftDockable(false).RightDockable(false).MinSize(1000,-1)
-        .Show(m_inisettings->GetBoolSetting("SHOWTOOLBAR", true)));
+        .Show(Model_Setting::instance().GetBoolSetting("SHOWTOOLBAR", true)));
 
     // change look and feel of wxAuiManager
     m_mgr.GetArtProvider()->SetMetric(16, 0);
@@ -662,13 +658,13 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     // Save default perspective
     m_perspective = m_mgr.SavePerspective();
-    m_inisettings->SetSetting("AUIPERSPECTIVE", m_perspective);
+    Model_Setting::instance().Set("AUIPERSPECTIVE", m_perspective);
 
     // "commit" all changes made to wxAuiManager
     m_mgr.Update();
 
     // enable or disable online update currency rate
-    if (m_inisettings->GetBoolSetting(INIDB_UPDATE_CURRENCY_RATE, false))
+    if (Model_Setting::instance().GetBoolSetting(INIDB_UPDATE_CURRENCY_RATE, false))
     {
         if (menuItemOnlineUpdateCurRate_)
             menuItemOnlineUpdateCurRate_->Enable(true);
@@ -719,7 +715,7 @@ void mmGUIFrame::cleanup()
     if (m_db)    m_db->Close();
 
     /// Update the database according to user requirements
-    if (mmOptions::instance().databaseUpdated_ && m_inisettings->GetBoolSetting("BACKUPDB_UPDATE", false))
+    if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
     {
         BackupDatabase(fileName_, true);
     }
@@ -1043,25 +1039,25 @@ void mmGUIFrame::saveSettings()
     if (! fileName_.IsEmpty())
     {
         wxFileName fname(fileName_);
-        m_inisettings->SetSetting("LASTFILENAME", fname.GetFullPath());
+        Model_Setting::instance().Set("LASTFILENAME", fname.GetFullPath());
     }
 
     /* Aui Settings */
-    m_inisettings->SetSetting("AUIPERSPECTIVE", m_mgr.SavePerspective());
+    Model_Setting::instance().Set("AUIPERSPECTIVE", m_mgr.SavePerspective());
 
     // prevent values being saved while window is in an iconised state.
     if (this->IsIconized()) this->Restore();
 
     int value_x = 0, value_y = 0;
     this->GetPosition(&value_x, &value_y);
-    m_inisettings->SetSetting("ORIGINX", value_x);
-    m_inisettings->SetSetting("ORIGINY", value_y);
+    Model_Setting::instance().Set("ORIGINX", value_x);
+    Model_Setting::instance().Set("ORIGINY", value_y);
 
     int value_w = 0, value_h = 0;
     this->GetSize(&value_w, &value_h);
-    m_inisettings->SetSetting("SIZEW", value_w);
-    m_inisettings->SetSetting("SIZEH", value_h);
-    m_inisettings->SetSetting("ISMAXIMIZED", (bool)this->IsMaximized());
+    Model_Setting::instance().Set("SIZEW", value_w);
+    Model_Setting::instance().Set("SIZEH", value_h);
+//    Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
 }
 //----------------------------------------------------------------------------
 
@@ -1643,7 +1639,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     /* Load Nav Tree Control */
 
-    wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
 
     for (const auto& account: m_core->accountList_.accounts_)
     {
@@ -2108,47 +2104,47 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
 void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
 
     //Set view ALL
-    m_inisettings->SetSetting("VIEWACCOUNTS", "ALL");
+    Model_Setting::instance().Set("VIEWACCOUNTS", "ALL");
     //Refresh Navigation Panel
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
-    m_inisettings->SetSetting("VIEWACCOUNTS", vAccts);
+    Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
 
     //Set view ALL
-    m_inisettings->SetSetting("VIEWACCOUNTS", "Favorites");
+    Model_Setting::instance().Set("VIEWACCOUNTS", "Favorites");
 
     //Refresh Navigation Panel
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
-    m_inisettings->SetSetting("VIEWACCOUNTS", vAccts);
+    Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = m_inisettings->GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
 
     //Set view ALL
-    m_inisettings->SetSetting("VIEWACCOUNTS", "Open");
+    Model_Setting::instance().Set("VIEWACCOUNTS", "Open");
 
     //Refresh Navigation Panel
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
-    m_inisettings->SetSetting("VIEWACCOUNTS", vAccts);
+    Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
 }
 //----------------------------------------------------------------------------
 
@@ -2603,7 +2599,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         /// Update the database according to user requirements
         if (mmOptions::instance().databaseUpdated_ &&
-            m_inisettings->GetBoolSetting("BACKUPDB_UPDATE", false))
+            Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
         {
             BackupDatabase(fileName_, true);
             mmOptions::instance().databaseUpdated_ = false;
@@ -2629,7 +2625,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         && passwordCheckPassed)
     {
         /* Do a backup before opening */
-        if (m_inisettings->GetBoolSetting("BACKUPDB", false))
+        if (Model_Setting::instance().GetBoolSetting("BACKUPDB", false))
         {
             BackupDatabase(fileName);
         }
@@ -2655,7 +2651,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         password_ = password;
-        m_core.reset(new mmCoreDB(m_db, m_inisettings));
+        m_core.reset(new mmCoreDB(m_db));
     }
     else if (openingNew) // New Database
     {
@@ -2665,7 +2661,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            wxCopyFile(mmIniOptions::instance().customTemplateDB_, fileName, true);
            m_db = mmDBWrapper::Open(fileName);
            password_ = password;
-           m_core.reset(new mmCoreDB(m_db, m_inisettings));
+           m_core.reset(new mmCoreDB(m_db));
            Model_Asset::instance().db_ = m_db.get();
            Model_Infotable::instance().db_ = m_db.get();
        }
@@ -2675,7 +2671,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            password_ = password;
 
            openDataBase(fileName);
-           m_core.reset(new mmCoreDB(m_db, m_inisettings));
+           m_core.reset(new mmCoreDB(m_db));
            Model_Asset::instance().db_ = m_db.get();
            Model_Infotable::instance().db_ = m_db.get();
 
@@ -3395,12 +3391,12 @@ void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::restorePrinterValues()
 {
     // Startup Default Settings
-    int leftMargin      = m_inisettings->GetIntSetting("PRINTER_LEFT_MARGIN", 20);
-    int rightMargin     = m_inisettings->GetIntSetting("PRINTER_RIGHT_MARGIN", 20);
-    int topMargin       = m_inisettings->GetIntSetting("PRINTER_TOP_MARGIN", 20);
-    int bottomMargin    = m_inisettings->GetIntSetting("PRINTER_BOTTOM_MARGIN", 20);
-    int pageOrientation = m_inisettings->GetIntSetting("PRINTER_PAGE_ORIENTATION", wxPORTRAIT);
-    int paperID         = m_inisettings->GetIntSetting("PRINTER_PAGE_ID", wxPAPER_A4);
+    int leftMargin      = Model_Setting::instance().GetIntSetting("PRINTER_LEFT_MARGIN", 20);
+    int rightMargin     = Model_Setting::instance().GetIntSetting("PRINTER_RIGHT_MARGIN", 20);
+    int topMargin       = Model_Setting::instance().GetIntSetting("PRINTER_TOP_MARGIN", 20);
+    int bottomMargin    = Model_Setting::instance().GetIntSetting("PRINTER_BOTTOM_MARGIN", 20);
+    int pageOrientation = Model_Setting::instance().GetIntSetting("PRINTER_PAGE_ORIENTATION", wxPORTRAIT);
+    int paperID         = Model_Setting::instance().GetIntSetting("PRINTER_PAGE_ID", wxPAPER_A4);
 
     wxPoint topLeft(leftMargin, topMargin);
     wxPoint bottomRight(rightMargin, bottomMargin);
@@ -3433,12 +3429,12 @@ void mmGUIFrame::OnPrintPageSetup(wxCommandEvent& WXUNUSED(event))
         int pageOrientation = printerData->GetOrientation();
         wxPaperSize paperID = printerData->GetPaperId();
 
-        m_inisettings->SetSetting("PRINTER_LEFT_MARGIN", topLeft.x);
-        m_inisettings->SetSetting("PRINTER_RIGHT_MARGIN", bottomRight.x);
-        m_inisettings->SetSetting("PRINTER_TOP_MARGIN", topLeft.y);
-        m_inisettings->SetSetting("PRINTER_BOTTOM_MARGIN", bottomRight.y);
-        m_inisettings->SetSetting("PRINTER_PAGE_ORIENTATION", pageOrientation);
-        m_inisettings->SetSetting("PRINTER_PAGE_ID", paperID);
+        Model_Setting::instance().Set("PRINTER_LEFT_MARGIN", topLeft.x);
+        Model_Setting::instance().Set("PRINTER_RIGHT_MARGIN", bottomRight.x);
+        Model_Setting::instance().Set("PRINTER_TOP_MARGIN", topLeft.y);
+        Model_Setting::instance().Set("PRINTER_BOTTOM_MARGIN", bottomRight.y);
+        Model_Setting::instance().Set("PRINTER_PAGE_ORIENTATION", pageOrientation);
+        Model_Setting::instance().Set("PRINTER_PAGE_ID", paperID);
     }
 }
 //----------------------------------------------------------------------------
@@ -3477,7 +3473,7 @@ void mmGUIFrame::OnPrintPagePreview(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::showBeginAppDialog(bool fromScratch)
 {
-    mmAppStartDialog dlg(m_inisettings, this);
+    mmAppStartDialog dlg(this);
     if (fromScratch) dlg.SetCloseButtonToExit();
 
     int end_mod = dlg.ShowModal();
@@ -3487,7 +3483,7 @@ void mmGUIFrame::showBeginAppDialog(bool fromScratch)
     }
     else if (end_mod == wxID_FILE1)
     {
-        wxFileName fname(mmDBWrapper::getLastDbPath(m_inisettings));
+        wxFileName fname(Model_Setting::instance().getLastDbPath());
         if (fname.IsOk()) SetDatabaseFile(fname.GetFullPath());
     }
     else if (end_mod == wxID_OPEN)
@@ -3707,7 +3703,7 @@ void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
 {
     m_mgr.GetPane("toolbar").Show(event.IsChecked());
     m_mgr.Update();
-    m_inisettings->SetSetting("SHOWTOOLBAR", event.IsChecked());
+    Model_Setting::instance().Set("SHOWTOOLBAR", event.IsChecked());
 }
 //----------------------------------------------------------------------------
 
@@ -3939,7 +3935,7 @@ void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
         backupFile = wxFindNextFile();
     }
 
-    int max =  m_inisettings->GetIntSetting("MAX_BACKUP_FILES", 4);
+    int max =  Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
     if (backupFileArray.Count() > (size_t)max)
     {
         backupFileArray.Sort(true);

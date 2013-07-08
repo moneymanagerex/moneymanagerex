@@ -21,7 +21,7 @@
 #include "constants.h"
 #include "mmCurrencyFormatter.h"
 #include "util.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 
 /*******************************************************/
@@ -287,7 +287,7 @@ void mmStocksPanel::save_column_width(int width)
 {
     int i = width;
     int col_x = listCtrlAccount_->GetColumnWidth(i);
-    core_->iniSettings_->SetSetting(wxString::Format("STOCKS_COL%d_WIDTH", i),col_x);
+    Model_Setting::instance().Set(wxString::Format("STOCKS_COL%d_WIDTH", i),col_x);
 }
 
 void mmStocksPanel::CreateControls()
@@ -353,7 +353,7 @@ void mmStocksPanel::CreateControls()
         itemCol.SetText(wxString() << columns[i]);
         listCtrlAccount_->InsertColumn(i, columns[i], (i<2 || i>5 ? wxLIST_FORMAT_LEFT : wxLIST_FORMAT_RIGHT));
 
-        int col_x = core_->iniSettings_->GetIntSetting(wxString::Format("STOCKS_COL%d_WIDTH", i), -2);
+        int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("STOCKS_COL%d_WIDTH", i), -2);
         listCtrlAccount_->SetColumnWidth(i, col_x);
     }
 

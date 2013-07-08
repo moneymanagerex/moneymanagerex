@@ -22,7 +22,7 @@
 #include "paths.h"
 #include "validators.h"
 #include <wx/valnum.h>
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
@@ -605,7 +605,7 @@ wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
     if (id < 0) {
         id = Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
     } else {
-        core_->iniSettings_->SetSetting("TRANSACTIONS_FILTER_VIEW_NO", id);
+        Model_Setting::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
     }
     settings_string_ = Model_Infotable::instance().GetStringInfo(
                               wxString::Format("TRANSACTIONS_FILTER_%d", id),

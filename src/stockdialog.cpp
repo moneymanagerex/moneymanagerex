@@ -23,7 +23,6 @@
 #include "util.h"
 #include "validators.h"
 #include <wx/valnum.h>
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )

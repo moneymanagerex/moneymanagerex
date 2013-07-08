@@ -18,15 +18,14 @@
 
 #include "recentfiles.h"
 #include "guiid.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 
-RecentDatabaseFiles::RecentDatabaseFiles(MMEX_IniSettings* pIniSettings, wxMenu *menuRecentFiles)
-: pIniSettings_(pIniSettings)
-, menuRecentFiles_(menuRecentFiles)
+RecentDatabaseFiles::RecentDatabaseFiles(wxMenu *menuRecentFiles)
+: menuRecentFiles_(menuRecentFiles)
 , recentListSize_(6)
 {
     dbIndexName_ = "RECENT_DB_";
-    recentFileList_.Add(pIniSettings->GetStringSetting("LASTFILENAME", wxEmptyString));
+    recentFileList_.Add(Model_Setting::instance().getLastDbPath());
     for (int index = 1; index < recentListSize_; ++ index)
     {
         recentFileList_.Add(wxEmptyString);
@@ -45,7 +44,7 @@ void RecentDatabaseFiles::loadRecentList()
     for (int index = 1; index < recentListSize_; ++ index)
     {
         wxString dbIndex = wxString() << dbIndexName_ << index;
-        recentFileList_[index] = pIniSettings_->GetStringSetting(dbIndex, "");
+        recentFileList_[index] = Model_Setting::instance().GetStringSetting(dbIndex, "");
     }
 }
 
@@ -54,7 +53,7 @@ void RecentDatabaseFiles::saveRecentList()
     for (int index = 1; index < recentListSize_; ++ index)
     {
         wxString dbIndex = wxString() << dbIndexName_ << index;
-        pIniSettings_->SetSetting(dbIndex, recentFileList_[index] );
+        Model_Setting::instance().Set(dbIndex, recentFileList_[index] );
     }
 }
 

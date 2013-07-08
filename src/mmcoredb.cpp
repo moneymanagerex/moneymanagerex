@@ -21,12 +21,10 @@
 #include "guiid.h"
 #include "util.h"
 #include "mmOption.h"
-#include "mmex_settings.h"
 
 //----------------------------------------------------------------------------
-mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db, MMEX_IniSettings* iniSettings)
+mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db)
 : db_(db)
-, iniSettings_(iniSettings)
 , payeeList_(this)
 , categoryList_(this)
 , accountList_(this)

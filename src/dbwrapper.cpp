@@ -23,7 +23,6 @@
 #include "paths.h"
 #include "constants.h"
 #include "mmcurrency.h"
-#include "mmex_settings.h"
 #include "model/Model_Budgetyear.h"
 //----------------------------------------------------------------------------
 #include <sqlite3.h>
@@ -1179,32 +1178,6 @@ int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<
     }
 
     return iError;
-}
-//----------------------------------------------------------------------------
-
-wxString mmDBWrapper::getLastDbPath(MMEX_IniSettings* iniSettings, const wxString &defaultVal)
-{
-    wxString path = iniSettings->GetStringSetting("LASTFILENAME", defaultVal);
-
-    if (!mmex::isPortableMode())
-    {
-        return path;
-    }
-
-    wxString vol = wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetVolume();
-
-    if (!vol.IsEmpty())
-    {
-
-        wxFileName fname(path);
-        fname.SetVolume(vol); // database should be on portable device
-
-        if (fname.FileExists()) {
-            path = fname.GetFullPath();
-        }
-    }
-
-    return path;
 }
 //----------------------------------------------------------------------------
 

@@ -24,7 +24,6 @@
 #include "mmOption.h"
 #include "paths.h"
 #include <wx/valnum.h>
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
 
 enum { ACCT_TYPE_CHECKING, ACCT_TYPE_INVESTMENT, ACCT_TYPE_TERM };

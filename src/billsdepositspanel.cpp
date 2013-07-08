@@ -21,7 +21,7 @@
 #include "constants.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
@@ -160,14 +160,14 @@ void mmBillsDepositsPanel::CreateControls()
     listCtrlAccount_->InsertColumn(7, _("Notes"));
 
     /* See if we can get data from inidb */
-    int col0 = core_->iniSettings_->GetIntSetting("BD_COL0_WIDTH", 150);
-    int col1 = core_->iniSettings_->GetIntSetting("BD_COL1_WIDTH", -2);
-    int col2 = core_->iniSettings_->GetIntSetting("BD_COL2_WIDTH", -2);
-    int col3 = core_->iniSettings_->GetIntSetting("BD_COL3_WIDTH", -2);
-    int col4 = core_->iniSettings_->GetIntSetting("BD_COL4_WIDTH", -2);
-    int col5 = core_->iniSettings_->GetIntSetting("BD_COL5_WIDTH", -2);
-    int col6 = core_->iniSettings_->GetIntSetting("BD_COL6_WIDTH", -2);
-    int col7 = core_->iniSettings_->GetIntSetting("BD_COL7_WIDTH", -2);
+    int col0 = Model_Setting::instance().GetIntSetting("BD_COL0_WIDTH", 150);
+    int col1 = Model_Setting::instance().GetIntSetting("BD_COL1_WIDTH", -2);
+    int col2 = Model_Setting::instance().GetIntSetting("BD_COL2_WIDTH", -2);
+    int col3 = Model_Setting::instance().GetIntSetting("BD_COL3_WIDTH", -2);
+    int col4 = Model_Setting::instance().GetIntSetting("BD_COL4_WIDTH", -2);
+    int col5 = Model_Setting::instance().GetIntSetting("BD_COL5_WIDTH", -2);
+    int col6 = Model_Setting::instance().GetIntSetting("BD_COL6_WIDTH", -2);
+    int col7 = Model_Setting::instance().GetIntSetting("BD_COL7_WIDTH", -2);
 
     listCtrlAccount_->SetColumnWidth(0, col0);
     listCtrlAccount_->SetColumnWidth(1, col1);
@@ -393,7 +393,7 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
     int i = event.GetColumn();
     wxString parameter_name = wxString::Format("BD_COL%d_WIDTH", i);
     int current_width = cp_->GetListCtrlWidth(i);
-    cp_->core_->iniSettings_->SetSetting(parameter_name, current_width);
+    Model_Setting::instance().Set(parameter_name, current_width);
 }
 
 void billsDepositsListCtrl::OnItemRightClick(wxListEvent& event)

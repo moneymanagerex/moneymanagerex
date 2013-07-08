@@ -35,7 +35,6 @@
 class wxSQLite3Database;
 //----------------------------------------------------------------------------
 class mmCoreDB;
-class MMEX_IniSettings;
 class mmPrintableBase;
 class mmPanelBase;
 class mmTreeItemData;
@@ -147,8 +146,7 @@ class mmGUIFrame : public wxFrame
 public:
     mmGUIFrame(const wxString& title,
                const wxPoint& pos,
-               const wxSize& size,
-               MMEX_IniSettings* pIniSettings);
+               const wxSize& size);
 
     ~mmGUIFrame();
 
@@ -211,7 +209,6 @@ private:
 
     /* handles to SQLite Database */
     std::shared_ptr<wxSQLite3Database> m_db;
-    MMEX_IniSettings*  m_inisettings;
 
     /* Currently open file name */
     wxString fileName_;

@@ -24,7 +24,6 @@
 #include "defs.h"
 #include "paths.h"
 #include "validators.h"
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )

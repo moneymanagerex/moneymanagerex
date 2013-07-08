@@ -23,7 +23,6 @@
 #include <memory>
 
 class mmCoreDB;
-class MMEX_IniSettings;
 /*
    mmOptions caches the options for MMEX
    so that we don't hit the DB that often
@@ -51,7 +50,7 @@ class mmIniOptions
 public:
     mmIniOptions();
     static mmIniOptions& instance();
-    void loadOptions(MMEX_IniSettings* pIniSettings);
+    void loadOptions();
     int account_image_id(mmCoreDB* core, int account_id);
 
     bool enableAssets_;

@@ -19,7 +19,6 @@
 #define _MM_EX_RECENTFILES_H_
 #include <wx/arrstr.h>
 #include "defs.h"
-class MMEX_IniSettings;
 
 /******************************************************************************
  Class: RecentDatabaseFiles
@@ -31,7 +30,7 @@ class RecentDatabaseFiles
 {
 public:
     // This constructor is for recent files list
-    RecentDatabaseFiles(MMEX_IniSettings* pIniSettings, wxMenu *menuRecentFiles);
+    RecentDatabaseFiles(wxMenu *menuRecentFiles);
     ~RecentDatabaseFiles();
 
     void loadRecentList();
@@ -45,7 +44,6 @@ public:
     bool validLastListedFile(wxString& lastListedFileName);
 
 private:
-    MMEX_IniSettings* pIniSettings_;
     wxMenu *menuRecentFiles_;
     wxArrayString recentFileList_;
 

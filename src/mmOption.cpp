@@ -22,8 +22,8 @@
 #include "constants.h"
 #include "singleton.h"
 #include "mmCurrencyFormatter.h"
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 
 //----------------------------------------------------------------------------
 mmOptions::mmOptions()
@@ -93,34 +93,34 @@ mmIniOptions& mmIniOptions::instance()
     return Singleton<mmIniOptions>::instance();
 }
 
-void mmIniOptions::loadOptions(MMEX_IniSettings* pIniSettings)
+void mmIniOptions::loadOptions()
 {
-    expandStocksHome_ = pIniSettings->GetBoolSetting("ENABLESTOCKS", true);
-    enableAssets_     = pIniSettings->GetBoolSetting("ENABLEASSETS", true);
-    enableBudget_     = pIniSettings->GetBoolSetting("ENABLEBUDGET", true);
-    enableGraphs_     = pIniSettings->GetBoolSetting("ENABLEGRAPHS", true);
+    expandStocksHome_ = Model_Setting::instance().GetBoolSetting("ENABLESTOCKS", true);
+    enableAssets_     = Model_Setting::instance().GetBoolSetting("ENABLEASSETS", true);
+    enableBudget_     = Model_Setting::instance().GetBoolSetting("ENABLEBUDGET", true);
+    enableGraphs_     = Model_Setting::instance().GetBoolSetting("ENABLEGRAPHS", true);
 
-    html_font_size_   = pIniSettings->GetIntSetting("HTMLFONTSIZE", 3);
+    html_font_size_   = Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
 
-    expandBankHome_   = pIniSettings->GetBoolSetting("EXPAND_BANK_HOME", true);
-    expandTermHome_   = pIniSettings->GetBoolSetting("EXPAND_TERM_HOME", false);
-    expandBankTree_   = pIniSettings->GetBoolSetting("EXPAND_BANK_TREE", true);
-    expandTermTree_   = pIniSettings->GetBoolSetting("EXPAND_TERM_TREE", false);
+    expandBankHome_   = Model_Setting::instance().GetBoolSetting("EXPAND_BANK_HOME", true);
+    expandTermHome_   = Model_Setting::instance().GetBoolSetting("EXPAND_TERM_HOME", false);
+    expandBankTree_   = Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", true);
+    expandTermTree_   = Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false);
 
-    budgetFinancialYears_           = pIniSettings->GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
-    budgetIncludeTransfers_         = pIniSettings->GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
-    budgetSetupWithoutSummaries_    = pIniSettings->GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
-    budgetSummaryWithoutCategories_ = pIniSettings->GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
-    ignoreFutureTransactions_       = pIniSettings->GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
+    budgetFinancialYears_           = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_FINANCIAL_YEARS, false);
+    budgetIncludeTransfers_         = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, false);
+    budgetSetupWithoutSummaries_    = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false);
+    budgetSummaryWithoutCategories_ = Model_Setting::instance().GetBoolSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true);
+    ignoreFutureTransactions_       = Model_Setting::instance().GetBoolSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, false);
 
     // Read the preference as a string and convert to int
-    transPayeeSelectionNone_ = pIniSettings->GetIntSetting("TRANSACTION_PAYEE_NONE", 0);
+    transPayeeSelectionNone_ = Model_Setting::instance().GetIntSetting("TRANSACTION_PAYEE_NONE", 0);
 
     // For the category selection, default behavior should remain that the last category used for the payee is selected.
     //  This is item 1 (0-indexed) in the list.
-    transCategorySelectionNone_ = pIniSettings->GetIntSetting("TRANSACTION_CATEGORY_NONE", 1);
-    transStatusReconciled_      = pIniSettings->GetIntSetting("TRANSACTION_STATUS_RECONCILED", 0);
-    transDateDefault_           = pIniSettings->GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
+    transCategorySelectionNone_ = Model_Setting::instance().GetIntSetting("TRANSACTION_CATEGORY_NONE", 1);
+    transStatusReconciled_      = Model_Setting::instance().GetIntSetting("TRANSACTION_STATUS_RECONCILED", 0);
+    transDateDefault_           = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
 }
 
 int mmIniOptions::account_image_id(mmCoreDB* core, int account_id)

@@ -26,6 +26,7 @@
 #include "mmCurrencyFormatter.h"
 #include "db/assets.h"
 #include <algorithm>
+#include "model/Model_Setting.h"
 
 
 BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
@@ -89,7 +90,7 @@ void mmHomePagePanel::createFrames()
         date_range_ = new mmCurrentMonthToDate;
     else
         date_range_ = new mmCurrentMonth;
-    vAccts_ = core_->iniSettings_->GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 
 
     double tBalance = 0.0, termBalance = 0.0;

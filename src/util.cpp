@@ -25,7 +25,7 @@
 #include "constants.h"
 #include "singleton.h"
 #include "mmCurrencyFormatter.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -92,7 +92,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
     locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
     so I should use locale.IsLoaded(lang) also.
 */
-wxString mmSelectLanguage(wxWindow *parent, MMEX_IniSettings* pIniSettings, bool forced_show_dlg, bool save_setting)
+wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting)
 {
     wxString lang;
 
@@ -120,7 +120,7 @@ wxString mmSelectLanguage(wxWindow *parent, MMEX_IniSettings* pIniSettings, bool
 
     if (!forced_show_dlg)
     {
-        lang = pIniSettings->GetStringSetting(LANGUAGE_PARAMETER, "english");
+        lang = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
         if (!lang.empty() && locale.AddCatalog(lang) && locale.IsLoaded(lang))
         {
             mmOptions::instance().language_ = lang;
@@ -135,7 +135,7 @@ wxString mmSelectLanguage(wxWindow *parent, MMEX_IniSettings* pIniSettings, bool
         bool ok = locale.AddCatalog(lang) && locale.IsLoaded(lang);
         if (!ok)  lang.clear(); // bad .mo file
         mmOptions::instance().language_ = lang;
-        pIniSettings->SetSetting(LANGUAGE_PARAMETER, lang);
+        Model_Setting::instance().Set(LANGUAGE_PARAMETER, lang);
     }
 
     return lang;
@@ -253,22 +253,22 @@ wxDateTime mmGetStorageStringAsDate(const wxString& str)
     return dt;
 }
 
-void mmLoadColorsFromDatabase(MMEX_IniSettings* pIniSettings)
+void mmLoadColorsFromDatabase()
 {
-    mmColors::listAlternativeColor0 = pIniSettings->GetColourSetting("LISTALT0", wxColour(225,237,251));
-    mmColors::listAlternativeColor1 = pIniSettings->GetColourSetting("LISTALT1", wxColour(255,255,255));
-    mmColors::listBackColor         = pIniSettings->GetColourSetting("LISTBACK", wxColour(255,255,255));
-    mmColors::navTreeBkColor        = pIniSettings->GetColourSetting("NAVTREE", wxColour(255,255,255));
-    mmColors::listBorderColor       = pIniSettings->GetColourSetting("LISTBORDER", wxColour(0,0,0));
-    mmColors::listDetailsPanelColor = pIniSettings->GetColourSetting("LISTDETAILSPANEL", wxColour(244,247,251));
-    mmColors::listFutureDateColor   = pIniSettings->GetColourSetting("LISTFUTUREDATES", wxColour(116,134,168));
-    mmColors::userDefColor1   = pIniSettings->GetColourSetting("USER_COLOR1", wxColour(255,0,0));
-    mmColors::userDefColor2   = pIniSettings->GetColourSetting("USER_COLOR2", wxColour(255,165,0));
-    mmColors::userDefColor3   = pIniSettings->GetColourSetting("USER_COLOR3", wxColour(255,255,0));
-    mmColors::userDefColor4   = pIniSettings->GetColourSetting("USER_COLOR4", wxColour(0,255,0));
-    mmColors::userDefColor5   = pIniSettings->GetColourSetting("USER_COLOR5", wxColour(0,255,255));
-    mmColors::userDefColor6   = pIniSettings->GetColourSetting("USER_COLOR6", wxColour(0,0,255));
-    mmColors::userDefColor7   = pIniSettings->GetColourSetting("USER_COLOR7", wxColour(0,0,128));
+    mmColors::listAlternativeColor0 = Model_Setting::instance().GetColourSetting("LISTALT0", wxColour(225,237,251));
+    mmColors::listAlternativeColor1 = Model_Setting::instance().GetColourSetting("LISTALT1", wxColour(255,255,255));
+    mmColors::listBackColor         = Model_Setting::instance().GetColourSetting("LISTBACK", wxColour(255,255,255));
+    mmColors::navTreeBkColor        = Model_Setting::instance().GetColourSetting("NAVTREE", wxColour(255,255,255));
+    mmColors::listBorderColor       = Model_Setting::instance().GetColourSetting("LISTBORDER", wxColour(0,0,0));
+    mmColors::listDetailsPanelColor = Model_Setting::instance().GetColourSetting("LISTDETAILSPANEL", wxColour(244,247,251));
+    mmColors::listFutureDateColor   = Model_Setting::instance().GetColourSetting("LISTFUTUREDATES", wxColour(116,134,168));
+    mmColors::userDefColor1   = Model_Setting::instance().GetColourSetting("USER_COLOR1", wxColour(255,0,0));
+    mmColors::userDefColor2   = Model_Setting::instance().GetColourSetting("USER_COLOR2", wxColour(255,165,0));
+    mmColors::userDefColor3   = Model_Setting::instance().GetColourSetting("USER_COLOR3", wxColour(255,255,0));
+    mmColors::userDefColor4   = Model_Setting::instance().GetColourSetting("USER_COLOR4", wxColour(0,255,0));
+    mmColors::userDefColor5   = Model_Setting::instance().GetColourSetting("USER_COLOR5", wxColour(0,255,255));
+    mmColors::userDefColor6   = Model_Setting::instance().GetColourSetting("USER_COLOR6", wxColour(0,0,255));
+    mmColors::userDefColor7   = Model_Setting::instance().GetColourSetting("USER_COLOR7", wxColour(0,0,128));
 }
 
 

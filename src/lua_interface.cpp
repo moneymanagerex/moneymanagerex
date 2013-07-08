@@ -21,7 +21,6 @@
 #include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include <wx/stdpaths.h>
-#include "mmex_settings.h"
 
 // Constructor: Initialises Lua when an instant is created.
 mmHTMLBuilder* TLuaInterface::html_builder_ = 0;

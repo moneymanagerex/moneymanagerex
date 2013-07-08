@@ -21,6 +21,7 @@
 #include "Model.h"
 #include "db/DB_Table_Setting_V1.h"
 #include "defs.h"
+#include "paths.h"
 
 class Model_Setting : public Model, public DB_Table_SETTING_V1
 {
@@ -38,7 +39,7 @@ public:
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
-        this->all(this->db_, col, asc);
+        return this->all(this->db_, col, asc);
     }
 
 public:
@@ -135,6 +136,27 @@ public:
                 return record.SETTINGVALUE;
         }
         return default_value;
+    }
+    wxString getLastDbPath()
+    {
+        wxString path = this->GetStringSetting("LASTFILENAME", "");
+
+        if (!mmex::isPortableMode()) return path;
+
+        wxString vol = wxFileName(wxStandardPaths::Get().GetExecutablePath()).GetVolume();
+
+        if (!vol.IsEmpty())
+        {
+
+            wxFileName fname(path);
+            fname.SetVolume(vol); // database should be on portable device
+
+            if (fname.FileExists()) {
+                path = fname.GetFullPath();
+            }
+        }
+
+        return path;
     }
 };
 

@@ -23,8 +23,8 @@
 #include "constants.h"
 #include "mmCurrencyFormatter.h"
 #include "validators.h"
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
 #include <algorithm>
@@ -73,10 +73,8 @@ EColumn toEColumn(long col)
 /*
     Adds columns to list controls and setup their initial widths.
 */
-void createColumns(MMEX_IniSettings *pIniSettings, wxListCtrl &lst)
+void createColumns(wxListCtrl &lst)
 {
-    wxASSERT(pIniSettings);
-
     const wxString def_data[3*COL_MAX] =
     {
         wxString(wxTRANSLATE("Date")).Prepend("      "), "80", "L",
@@ -97,7 +95,7 @@ void createColumns(MMEX_IniSettings *pIniSettings, wxListCtrl &lst)
         const wxString def_format = def_data[3*i+2];
 
         wxString name = wxString::Format("CHECK_COL%d_WIDTH", i);
-        wxString val = pIniSettings->GetStringSetting(name, def_width);
+        wxString val = Model_Setting::instance().GetStringSetting(name, def_width);
         long width = -1;
         int format = wxLIST_FORMAT_RIGHT;
         if (def_format == "L") format = wxLIST_FORMAT_LEFT;
@@ -579,15 +577,15 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->setSortColumn(g_sortcol);
     m_listCtrlAccount->SetFocus();
 
-    createColumns(core_->iniSettings_, *m_listCtrlAccount);
+    createColumns(*m_listCtrlAccount);
 
     // load the global variables
     long val = COL_DEF_SORT;
-    wxString strVal = core_->iniSettings_->GetStringSetting("CHECK_SORT_COL", wxString() << val);
+    wxString strVal = Model_Setting::instance().GetStringSetting("CHECK_SORT_COL", wxString() << val);
     if (strVal.ToLong(&val)) g_sortcol = toEColumn(val);
     // --
     val = 1; // asc sorting default
-    strVal = core_->iniSettings_->GetStringSetting("CHECK_ASC", wxString() << val);
+    strVal = Model_Setting::instance().GetStringSetting("CHECK_ASC", wxString() << val);
     if (strVal.ToLong(&val)) g_asc = val != 0;
 
     // --
@@ -868,7 +866,7 @@ void mmCheckingPanel::OnMoveTransaction(wxCommandEvent& event)
 
 void mmCheckingPanel::initViewTransactionsHeader()
 {
-    wxString vTrans = core_->iniSettings_->GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
+    wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
     currentView_   = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), vTrans);
 
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
@@ -1042,7 +1040,7 @@ void TransactionListCtrl::OnItemResize(wxListEvent& event)
     int i = event.GetColumn();
     wxString parameter_name = wxString::Format("CHECK_COL%d_WIDTH", i);
     int current_width = m_cp->m_listCtrlAccount->GetColumnWidth(i);
-    m_cp->core_->iniSettings_->SetSetting(parameter_name, current_width);
+    Model_Setting::instance().Set(parameter_name, current_width);
 }
 
 void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
@@ -1223,8 +1221,8 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     g_sortcol = m_sortCol;
 
     setColumnImage(m_sortCol, m_asc ? ICON_ASC : ICON_DESC);
-    m_cp->core_->iniSettings_->SetSetting("CHECK_ASC", g_asc);
-    m_cp->core_->iniSettings_->SetSetting("CHECK_SORT_COL", g_sortcol);
+    Model_Setting::instance().Set("CHECK_ASC", g_asc);
+    Model_Setting::instance().Set("CHECK_SORT_COL", g_sortcol);
 
     m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID);
 
@@ -1379,7 +1377,7 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selectedForCopy < 0) return;
 
-    bool useOriginalDate = m_cp->core_->iniSettings_->GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
+    bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
     mmBankTransaction* pCopiedTrans =
         m_cp->core_->bTransactionList_.copyTransaction(m_selectedForCopy, m_cp->m_AccountID, useOriginalDate);

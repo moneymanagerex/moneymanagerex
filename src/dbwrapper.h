@@ -22,7 +22,6 @@
 //----------------------------------------------------------------------------
 #include "mmcurrency.h"
 #include <wx/arrstr.h>
-class MMEX_IniSettings;
 
 //----------------------------------------------------------------------------
 static const char SELECT_ALL_FROM_ASSETS_V1[] =
@@ -557,8 +556,6 @@ void completeBDInSeries(wxSQLite3Database* db, int bdID);
 void loadCurrencySettings(wxSQLite3Database* db, int currencyID);
 bool deleteCurrency(wxSQLite3Database* db, int currencyID);
 int mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& data, const wxString& sql, long &lLastRowId);
-
-wxString getLastDbPath(MMEX_IniSettings* iniSettings, const wxString &defaultVal = "");
 
 /* Stocks API */
 void deleteStockInvestment(wxSQLite3Database* db, int stockID);

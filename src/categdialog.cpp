@@ -22,7 +22,7 @@
 #include "mmOption.h"
 #include "defs.h"
 #include "paths.h"
-#include "mmex_settings.h"
+#include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
@@ -102,7 +102,7 @@ void mmCategDialog::fillControls()
     treeCtrl_->SetItemBold(root_, true);
     treeCtrl_->SetFocus ();
     NormalColor_ = treeCtrl_->GetItemTextColour(root_);
-    bool bResult = core_->iniSettings_->GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
+    bool bResult = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
     cbShowAll_->SetValue(bResult);
 
     for (const auto& category: core_->categoryList_.entries_)
@@ -132,7 +132,7 @@ void mmCategDialog::fillControls()
         }
     }
     treeCtrl_->Expand(root_);
-    bResult = core_->iniSettings_->GetBoolSetting("EXPAND_CATEGS_TREE", false);
+    bResult = Model_Setting::instance().GetBoolSetting("EXPAND_CATEGS_TREE", false);
     if (bResult) treeCtrl_->ExpandAll();
     cbExpand_->SetValue(bResult);
 
@@ -507,8 +507,7 @@ void mmCategDialog::OnExpandChbClick(wxCommandEvent& /*event*/)
         treeCtrl_->SelectItem(selectedItemId_);
     }
     treeCtrl_->EnsureVisible(selectedItemId_);
-    core_->iniSettings_->SetSetting("EXPAND_CATEGS_TREE", cbExpand_->IsChecked());
-    core_->iniSettings_->Save();
+    Model_Setting::instance().Set("EXPAND_CATEGS_TREE", cbExpand_->IsChecked());
 }
 
 void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
@@ -521,8 +520,7 @@ void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
     {
         treeCtrl_->SelectItem(selectedItemId_);
     }
-    core_->iniSettings_->SetSetting("SHOW_HIDDEN_CATEGS", cbShowAll_->IsChecked());
-    core_->iniSettings_->Save();
+    Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", cbShowAll_->IsChecked());
     fillControls();
 }
 

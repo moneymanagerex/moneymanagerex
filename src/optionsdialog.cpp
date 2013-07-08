@@ -23,8 +23,8 @@
 #include "mmOption.h"
 #include <wx/colordlg.h>
 #include "constants.h"
-#include "mmex_settings.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 
 enum
 {
@@ -173,7 +173,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* languageStaticBoxSizer = new wxStaticBoxSizer(languageStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(languageStaticBoxSizer, flagsExpand);
 
-    currentLanguage_ = core_->iniSettings_->GetStringSetting(LANGUAGE_PARAMETER, "english");
+    currentLanguage_ = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
     wxButton* languageButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
         currentLanguage_.Left(1).Upper() + currentLanguage_.SubString(1,currentLanguage_.Len()),
         wxDefaultPosition, wxSize(150, -1), 0);
@@ -280,7 +280,7 @@ void mmOptionsDialog::CreateControls()
         wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
     view_sizer1->Add(choiceVisible_, flags);
 
-    wxString vAccts = core_->iniSettings_->GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     row_id_ = 0;
     wxArrayString itemChoiceViewAccountStrings = viewAccountStrings(false, vAccts, row_id_);
     choiceVisible_->SetSelection(row_id_);
@@ -309,7 +309,7 @@ void mmOptionsDialog::CreateControls()
 
     view_sizer1->Add(choiceTransVisible_,flags);
 
-    wxString vTrans = core_->iniSettings_->GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
+    wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
     choiceTransVisible_->SetStringSelection(wxGetTranslation(vTrans));
     choiceTransVisible_->SetToolTip(_("Specify which transactions are visible by default"));
 
@@ -329,7 +329,7 @@ void mmOptionsDialog::CreateControls()
     for(const auto &entry : itemChoiceFontSize)
         choiceFontSize_->Append(wxGetTranslation(entry));
 
-    int vFontSize = -1 + core_->iniSettings_->GetIntSetting("HTMLFONTSIZE", 3);
+    int vFontSize = -1 + Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
     choiceFontSize_->SetSelection(vFontSize);
 
     choiceFontSize_->SetToolTip(_("Specify which font size is used on the report tables"));
@@ -627,7 +627,7 @@ void mmOptionsDialog::CreateControls()
     backupUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\ncreates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
     backupStaticBoxSizer->Add(backupUpdateCheckBox, flags);
 
-    int max =  core_->iniSettings_->GetIntSetting("MAX_BACKUP_FILES", 4);
+    int max =  Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
     scMax_files_ = new wxSpinCtrl(othersPanel, wxID_ANY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
     scMax_files_->SetToolTip(_("Specify max number of backup files"));
@@ -730,7 +730,7 @@ void mmOptionsDialog::CreateControls()
 
 void mmOptionsDialog::OnLanguageChanged(wxCommandEvent& /*event*/)
 {
-    wxString lang = mmSelectLanguage(this, core_->iniSettings_, true, false);
+    wxString lang = mmSelectLanguage(this, true, false);
     if (lang.empty()) return;
 
     // Advisable to restart GUI when user acknowledges the change.
@@ -808,7 +808,7 @@ void mmOptionsDialog::OnRestoreDefaultColors(wxCommandEvent& /*event*/)
 
 bool mmOptionsDialog::GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState)
 {
-    bool result = core_->iniSettings_->GetBoolSetting(dbField, defaultState);
+    bool result = Model_Setting::instance().GetBoolSetting(dbField, defaultState);
 
     return result;
 }
@@ -845,7 +845,7 @@ void mmOptionsDialog::SaveViewAccountOptions()
     int selection = choiceVisible_->GetSelection();
     int row_id_ = 0;
     wxArrayString viewAcct = viewAccountStrings(false, wxEmptyString, row_id_);
-    core_->iniSettings_->SetSetting("VIEWACCOUNTS", viewAcct[selection]);
+    Model_Setting::instance().Set("VIEWACCOUNTS", viewAcct[selection]);
 }
 
 void mmOptionsDialog::SaveViewTransactionOptions()
@@ -856,7 +856,7 @@ void mmOptionsDialog::SaveViewTransactionOptions()
     {
         visible = visible_obj->GetData();
     }
-    core_->iniSettings_->SetSetting("VIEWTRANSACTIONS", visible);
+    Model_Setting::instance().Set("VIEWTRANSACTIONS", visible);
 }
 
 void mmOptionsDialog::SaveFinancialYearStart()
@@ -912,8 +912,8 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
     Model_Infotable::instance().Set("USERNAME", mmOptions::instance().userNameString_);
 
     wxButton *languageButton = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
-    core_->iniSettings_->SetSetting(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
-    mmSelectLanguage(this, core_->iniSettings_, false);
+    Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
+    mmSelectLanguage(this, false);
 
     core_->currencyList_.SetBaseCurrencySettings(currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
@@ -927,42 +927,42 @@ void mmOptionsDialog::SaveViewPanelSettings()
 
     int size = choiceFontSize_->GetCurrentSelection() + 1;
     mmIniOptions::instance().html_font_size_ = size;
-    core_->iniSettings_->SetSetting("HTMLFONTSIZE", size);
+    Model_Setting::instance().Set("HTMLFONTSIZE", size);
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_TREE);
     mmIniOptions::instance().expandBankTree_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetSetting("EXPAND_BANK_TREE", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("EXPAND_BANK_TREE", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_TREE);
     mmIniOptions::instance().expandTermTree_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetSetting("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_HOME);
     mmIniOptions::instance().expandBankHome_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetSetting("EXPAND_BANK_HOME", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("EXPAND_BANK_HOME", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_HOME);
     mmIniOptions::instance().expandTermHome_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetSetting("EXPAND_TERM_HOME", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("EXPAND_TERM_HOME", itemCheckBox->GetValue() );
 
     itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME);
     mmIniOptions::instance().expandStocksHome_ = itemCheckBox->GetValue();
-    core_->iniSettings_->SetSetting("ENABLESTOCKS", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("ENABLESTOCKS", itemCheckBox->GetValue() );
 
     mmIniOptions::instance().budgetFinancialYears_ = cbBudgetFinancialYears_->GetValue();
-    core_->iniSettings_->SetSetting(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
+    Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
 
     mmIniOptions::instance().budgetIncludeTransfers_ = cbBudgetIncludeTransfers_->GetValue();
-    core_->iniSettings_->SetSetting(INIDB_BUDGET_INCLUDE_TRANSFERS, mmIniOptions::instance().budgetIncludeTransfers_);
+    Model_Setting::instance().Set(INIDB_BUDGET_INCLUDE_TRANSFERS, mmIniOptions::instance().budgetIncludeTransfers_);
 
     mmIniOptions::instance().budgetSetupWithoutSummaries_ = cbBudgetSetupWithoutSummary_->GetValue();
-    core_->iniSettings_->SetSetting(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
+    Model_Setting::instance().Set(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
 
     mmIniOptions::instance().budgetSummaryWithoutCategories_ = cbBudgetSummaryWithoutCateg_->GetValue();
-    core_->iniSettings_->SetSetting(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, mmIniOptions::instance().budgetSummaryWithoutCategories_);
+    Model_Setting::instance().Set(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, mmIniOptions::instance().budgetSummaryWithoutCategories_);
 
     mmIniOptions::instance().ignoreFutureTransactions_ = cbIgnoreFutureTransactions_->GetValue();
-    core_->iniSettings_->SetSetting(INIDB_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
+    Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
 }
 
 void mmOptionsDialog::SaveColourPanelSettings()
@@ -975,13 +975,13 @@ void mmOptionsDialog::SaveColourPanelSettings()
     mmColors::listDetailsPanelColor = listDetailsButton_->GetBackgroundColour();
     mmColors::listFutureDateColor = futureTransButton_->GetBackgroundColour();
 
-    core_->iniSettings_->SetSetting("LISTALT0", mmColors::listAlternativeColor0);
-    core_->iniSettings_->SetSetting("LISTALT1", mmColors::listAlternativeColor1);
-    core_->iniSettings_->SetSetting("LISTBACK", mmColors::listBackColor);
-    core_->iniSettings_->SetSetting("NAVTREE",  mmColors::navTreeBkColor);
-    core_->iniSettings_->SetSetting("LISTBORDER", mmColors::listBorderColor);
-    core_->iniSettings_->SetSetting("LISTDETAILSPANEL", mmColors::listDetailsPanelColor);
-    core_->iniSettings_->SetSetting("LISTFUTUREDATES", mmColors::listFutureDateColor);
+    Model_Setting::instance().Set("LISTALT0", mmColors::listAlternativeColor0);
+    Model_Setting::instance().Set("LISTALT1", mmColors::listAlternativeColor1);
+    Model_Setting::instance().Set("LISTBACK", mmColors::listBackColor);
+    Model_Setting::instance().Set("NAVTREE",  mmColors::navTreeBkColor);
+    Model_Setting::instance().Set("LISTBORDER", mmColors::listBorderColor);
+    Model_Setting::instance().Set("LISTDETAILSPANEL", mmColors::listDetailsPanelColor);
+    Model_Setting::instance().Set("LISTFUTUREDATES", mmColors::listFutureDateColor);
 
     mmColors::userDefColor1 = UDFCB1_->GetBackgroundColour();
     mmColors::userDefColor2 = UDFCB2_->GetBackgroundColour();
@@ -991,13 +991,13 @@ void mmOptionsDialog::SaveColourPanelSettings()
     mmColors::userDefColor6 = UDFCB6_->GetBackgroundColour();
     mmColors::userDefColor7 = UDFCB7_->GetBackgroundColour();
 
-    core_->iniSettings_->SetSetting("USER_COLOR1", mmColors::userDefColor1);
-    core_->iniSettings_->SetSetting("USER_COLOR2", mmColors::userDefColor2);
-    core_->iniSettings_->SetSetting("USER_COLOR3", mmColors::userDefColor3);
-    core_->iniSettings_->SetSetting("USER_COLOR4", mmColors::userDefColor4);
-    core_->iniSettings_->SetSetting("USER_COLOR5", mmColors::userDefColor5);
-    core_->iniSettings_->SetSetting("USER_COLOR6", mmColors::userDefColor6);
-    core_->iniSettings_->SetSetting("USER_COLOR7", mmColors::userDefColor7);
+    Model_Setting::instance().Set("USER_COLOR1", mmColors::userDefColor1);
+    Model_Setting::instance().Set("USER_COLOR2", mmColors::userDefColor2);
+    Model_Setting::instance().Set("USER_COLOR3", mmColors::userDefColor3);
+    Model_Setting::instance().Set("USER_COLOR4", mmColors::userDefColor4);
+    Model_Setting::instance().Set("USER_COLOR5", mmColors::userDefColor5);
+    Model_Setting::instance().Set("USER_COLOR6", mmColors::userDefColor6);
+    Model_Setting::instance().Set("USER_COLOR7", mmColors::userDefColor7);
 
 }
 
@@ -1005,33 +1005,33 @@ void mmOptionsDialog::SaveOthersPanelSettings()
 {
     wxChoice* itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE);
     mmIniOptions::instance().transPayeeSelectionNone_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetSetting("TRANSACTION_PAYEE_NONE", itemChoice->GetSelection());
+    Model_Setting::instance().Set("TRANSACTION_PAYEE_NONE", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY);
     mmIniOptions::instance().transCategorySelectionNone_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetSetting("TRANSACTION_CATEGORY_NONE", itemChoice->GetSelection());
+    Model_Setting::instance().Set("TRANSACTION_CATEGORY_NONE", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS);
     mmIniOptions::instance().transStatusReconciled_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetSetting("TRANSACTION_STATUS_RECONCILED", itemChoice->GetSelection());
+    Model_Setting::instance().Set("TRANSACTION_STATUS_RECONCILED", itemChoice->GetSelection());
 
     itemChoice = (wxChoice*)FindWindow(ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE);
     mmIniOptions::instance().transDateDefault_ = itemChoice->GetSelection();
-    core_->iniSettings_->SetSetting("TRANSACTION_DATE_DEFAULT", itemChoice->GetSelection());
+    Model_Setting::instance().Set("TRANSACTION_DATE_DEFAULT", itemChoice->GetSelection());
 
     SaveStocksUrl();
 
-    core_->iniSettings_->SetSetting(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
-    core_->iniSettings_->SetSetting(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
-    core_->iniSettings_->SetSetting(INIDB_UPDATE_CURRENCY_RATE, cbEnableCurrencyUpd_->GetValue());
+    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
+    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
+    Model_Setting::instance().Set(INIDB_UPDATE_CURRENCY_RATE, cbEnableCurrencyUpd_->GetValue());
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
-    core_->iniSettings_->SetSetting("BACKUPDB", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue() );
 
     wxCheckBox* itemCheckBoxUpdate = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE);
-    core_->iniSettings_->SetSetting("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue() );
+    Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue() );
 
-    core_->iniSettings_->SetSetting("MAX_BACKUP_FILES", scMax_files_->GetValue());
+    Model_Setting::instance().Set("MAX_BACKUP_FILES", scMax_files_->GetValue());
 }
 
 void mmOptionsDialog::SaveImportExportPanelSettings()
