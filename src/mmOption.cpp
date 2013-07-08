@@ -49,9 +49,9 @@ void mmOptions::loadOptions()
 }
 
 //----------------------------------------------------------------------------
-void mmOptions::saveOptions(MMEX_IniSettings* info_table)
+void mmOptions::saveOptions()
 {
-    info_table->SetSetting("DATEFORMAT", dateFormat_);
+    Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
 }
 
 // --------------------------------------------------------------------------

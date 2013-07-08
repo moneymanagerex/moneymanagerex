@@ -28,10 +28,8 @@ mmHTMLBuilder* TLuaInterface::html_builder_ = 0;
 TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 {
     this->html_builder_ = hb;
-    MMEX_IniSettings* info_table = new MMEX_IniSettings(static_db_ptr(), true);
 
     g_static_currency_list = new mmCurrencyList(static_db_ptr());
-    g_static_currency_list->SetInfoTable(info_table);
     g_static_currency_list->LoadCurrencies();
 
     lua_ = luaL_newstate();

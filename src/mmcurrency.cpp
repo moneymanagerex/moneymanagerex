@@ -113,10 +113,6 @@ mmCurrencyList::mmCurrencyList(std::shared_ptr<wxSQLite3Database> db)
     : db_(db)
 {}
 
-void mmCurrencyList::SetInfoTable(MMEX_IniSettings* info_table)
-{
-}
-
 void mmCurrencyList::LoadBaseCurrencySettings() const
 {
     int currencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);

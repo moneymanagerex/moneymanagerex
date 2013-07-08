@@ -35,7 +35,7 @@ public:
     mmOptions();
     static mmOptions& instance();
     void loadOptions();
-    void saveOptions( MMEX_IniSettings* info_table );
+    void saveOptions();
 
     wxString dateFormat_;
     wxString language_;

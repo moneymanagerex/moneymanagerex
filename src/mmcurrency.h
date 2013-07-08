@@ -24,7 +24,6 @@
 
 class wxSQLite3Database;
 class wxSQLite3ResultSet;
-class MMEX_IniSettings;
 
 class mmCurrency
 {
@@ -65,8 +64,6 @@ class mmCurrencyList
 public:
     mmCurrencyList(std::shared_ptr<wxSQLite3Database> db);
 
-    /// Must be called after currency list object is created.
-    void SetInfoTable(MMEX_IniSettings* info_table);
     void LoadCurrencies();
 
     /* Currency Functions */
