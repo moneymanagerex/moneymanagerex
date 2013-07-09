@@ -234,7 +234,6 @@ private:
     wxTreeCtrl* navTreeCtrl_;
     wxMenuBar *menuBar_;
     wxToolBar* toolBar_;
-    wxStatusBar* statusBar_;
 
     mmTreeItemData* selectedItemData_;
     wxMenuItem* menuItemOnlineUpdateCurRate_; // Menu Item for Disabling Item
