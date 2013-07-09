@@ -40,6 +40,10 @@ public:
         ins.db_ = db;
         return ins;
     }
+    static wxString version()
+    {
+        return "$REV$";
+    }
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
