@@ -53,12 +53,14 @@ public:
     wxLocale& getLocale();
 public:
     mmGUIFrame* m_frame;
+    wxSQLite3Database* m_setting_db;
 private:
     void reportFatalException(wxDebugReport::Context);
 private:
     wxLocale m_locale; // locale we'll be using
 
     bool OnInit();
+    int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
     void HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent& event) const;
 };

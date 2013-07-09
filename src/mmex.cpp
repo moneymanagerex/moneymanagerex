@@ -79,7 +79,7 @@ IMPLEMENT_APP(mmGUIApp)
 
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp(): m_frame(0)
+mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0)
 {
     wxHandleFatalExceptions(); // tell the library to call OnFatalException()
 }
@@ -148,9 +148,9 @@ bool OnInitImpl(mmGUIApp* app)
     wxImage::AddHandler(new wxJPEGHandler());
     wxImage::AddHandler(new wxPNGHandler());
 
-    wxSQLite3Database* pIniSettingsDb = new wxSQLite3Database;
-    pIniSettingsDb->Open(mmex::getPathUser(mmex::SETTINGS));
-    Model_Setting::instance().db_ = pIniSettingsDb;
+    app->m_setting_db = new wxSQLite3Database();
+    app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
+    Model_Setting::instance().db_ = app->m_setting_db;
 
     /* Load Colors from Database */
     mmLoadColorsFromDatabase();
@@ -199,6 +199,13 @@ bool mmGUIApp::OnInit()
     }
 
     return ok;
+}
+
+int mmGUIApp::OnExit()
+{
+    if (m_setting_db) delete m_setting_db;
+
+    return 0;
 }
 //----------------------------------------------------------------------------
 
