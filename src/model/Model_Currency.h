@@ -42,6 +42,11 @@ public:
     }
 public:
     // Getter
+    Data* GetBaseCurrency()
+    {
+        int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
+        return this->get(currency_id, this->db_);
+    }
 
 };
 

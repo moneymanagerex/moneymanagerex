@@ -283,10 +283,13 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
     parent_(parent),
     currencyID_(-1)
 {
-    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
     wxString currName = _("Set Currency");
-    if (currencyID_ != -1)
-        currName = parent_->m_core->currencyList_.getCurrencySharedPtr(currencyID_)->currencyName_;
+    const auto base_currency = Model_Currency::instance().GetBaseCurrency();
+    if (base_currency)
+    {
+        currencyID_ = base_currency->CURRENCYID;
+        currName = base_currency->CURRENCYNAME;
+    }
 
     itemButtonCurrency_ = new wxButton( this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY, currName, wxDefaultPosition, wxSize(130,-1), 0 );
 
