@@ -51,13 +51,14 @@ void mmQIFExportDialog::fillControls()
     accounts_type.Add(ACCOUNT_TYPE_BANK);
     accounts_type.Add(ACCOUNT_TYPE_TERM);
     accounts_id_ = core_->accountList_.getAccountsID(accounts_type);
+    bSelectedAccounts_->SetLabel(_("All"));
 
     for (const auto &entry : accounts_id_)
     {
         accounts_name_.Add(core_->accountList_.GetAccountName(entry));
         items_index_.Add(entry);
     }
-    
+
     // redirect logs to text control
     //logger_ = wxLog::SetActiveTarget(new wxLogTextCtrl(log_field_));
     //wxLogMessage( "This is the log window" );
@@ -201,9 +202,20 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     items_index_.clear();
     wxMultiChoiceDialog s_acc(this, _("Choose Account to Export from:")
         , _("QIF Export"), accounts_name_);
+
+    wxArrayInt selected_items;
     if (s_acc.ShowModal() == wxID_OK)
-        items_index_ = s_acc.GetSelections();
-    if (items_index_.GetCount() == 1)
+    {
+        selected_items = s_acc.GetSelections();
+        for (const auto &entry : selected_items)
+            items_index_.Add( core_->accountList_.GetAccountId(accounts_name_[entry]));
+    }
+
+    if (items_index_.GetCount() == 0)
+    {
+        fillControls();
+    }
+    else if (items_index_.GetCount() == 1)
     {
         bSelectedAccounts_->SetLabel(core_->accountList_.GetAccountName(accounts_id_[items_index_[0]]));
     }
@@ -211,9 +223,10 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     {
         bSelectedAccounts_->SetLabel("...");
     }
+
     for (const auto &entry : items_index_)
     {
-        *log_field_ << (core_->accountList_.GetAccountName(accounts_id_[entry]));
+        *log_field_ << (core_->accountList_.GetAccountName(entry));
         *log_field_ << "\n";
     }
 }
@@ -403,108 +416,78 @@ void mmQIFExportDialog::mmExportQIF()
 
     if (exp_transactions)
     {
-        wxArrayInt selected_accounts_id;
+
         for (const auto &entry : items_index_)
         {
-            selected_accounts_id.Add(accounts_id_[entry]);
-        }
-
-        for (const auto &entry : selected_accounts_id)
-        {
-            wxString acctName = core_->accountList_.GetAccountName(entry);
-
+            const wxString acctName = core_->accountList_.GetAccountName(entry);
             buffer << writeAccHeader(entry, qif_csv);
 
-            for (const auto& pBankTransaction : core_->bTransactionList_.transactions_)
+            double account_balance = 0.0, reconciled_balance = 0.0;
+            core_->bTransactionList_.LoadAccountTransactions(entry, account_balance, reconciled_balance);
+
+            for (const auto& transaction : core_->bTransactionList_.accountTransactions_)
             {
-                if ((pBankTransaction->accountID_ != entry) && (pBankTransaction->toAccountID_ != entry))
-                   continue;
-
-                if (dateFromCheckBox_->GetValue() && pBankTransaction->date_ < fromDateCtrl_->GetValue() )
+                //Filtering
+                if (dateFromCheckBox_->IsChecked() && transaction->date_ < fromDateCtrl_->GetValue() )
                     continue;
-                if (dateToCheckBox_->GetValue() && pBankTransaction->date_ > toDateCtrl_->GetValue() )
+                if (dateToCheckBox_->IsChecked() && transaction->date_ > toDateCtrl_->GetValue() )
                     continue;
 
-                wxDateTime dtdt = pBankTransaction->date_;
-                wxString dateString = mmGetDateForDisplay(dtdt);
-
-                wxString payee = core_->payeeList_.GetPayeeName(pBankTransaction->payeeID_);
-                wxString type = pBankTransaction->transType_;
-
-                int trans_id = pBankTransaction->transactionID();
-                int fAccountID = pBankTransaction->accountID_;
-                const wxString fromAccount = core_->accountList_.GetAccountName(fAccountID);
-                int tAccountID = pBankTransaction->toAccountID_;
-
-                wxString transNum = pBankTransaction->transNum_;
-                wxString categ = "";
-                if (pBankTransaction->categID_ != -1)
-                    categ = pBankTransaction->fullCatStr_;
-                wxString notes = (pBankTransaction->notes_);
+                int trans_id = transaction->transactionID();
+                wxString categ = transaction->fullCatStr_;
+                wxString payee = transaction->payeeStr_;
+                wxString transNum = transaction->transNum_;
+                wxString notes = (transaction->notes_);
                 notes.Replace("''", "'");
                 notes.Replace("\n", " ");
 
-                double value = pBankTransaction->amt_;
-                wxString amount = /*adjustedExportAmount(amtSeparator,*/ wxString()<<value/*)*/;
-                wxString toamount;
-
                 if (transferTrxId.Index(trans_id) == wxNOT_FOUND)
                     numRecords++;
-                if (type == "Transfer")
+                if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
                 {
-                    const wxString toAccount = core_->accountList_.GetAccountName(tAccountID);
-                    double tovalue = pBankTransaction->toAmt_;
-                    toamount = /*adjustedExportAmount(amtSeparator,*/ wxString()<<tovalue/*)*/;
-                    wxString amount_temp = amount;
+                    categ = wxString::Format("[%s]", transaction->payeeStr_);
+                    payee = "";
 
-                    if (tAccountID == entry) {
-                        categ = wxString::Format("[%s]", fromAccount);
-                        amount = toamount;
-                        toamount = amount_temp;
-                        toamount.Prepend("-");
-                    } else if (fAccountID == entry) {
-                        categ = wxString::Format("[%s]", toAccount);
-                        amount.Prepend("-");
-                    }
-                    if (selected_accounts_id.Index(tAccountID) == wxNOT_FOUND)
+                    if (items_index_.Index(transaction->toAccountID_) == wxNOT_FOUND)
                         transferTrxId.Add(trans_id);
+
                     //Transaction number used to make transaction unique
                     // to proper merge transfer records
                     if (transNum.IsEmpty() && notes.IsEmpty())
-                        transNum = wxString::Format("#%ld", trans_id);
+                        transNum = wxString::Format("#%i", trans_id);
                 }
-                else if (type == "Withdrawal")
-                    amount.Prepend("-");
 
                 if (qif_csv)
                 {
-                    buffer << "D" << dateString << "\n";
-                    buffer << "T" << amount << "\n";
+                    wxString transaction_buffer = "";
+                    transaction_buffer << "D" << mmGetDateForDisplay(transaction->date_) << "\n";
+                    transaction_buffer << "T" << transaction->value(entry) << "\n";
                     if (!payee.IsEmpty())
-                        buffer << "P" << payee << "\n";
+                        transaction_buffer << "P" << payee << "\n";
                     if (!transNum.IsEmpty())
-                        buffer << "N" << transNum << "\n";
+                        transaction_buffer << "N" << transNum << "\n";
                     if (!categ.IsEmpty())
-                        buffer << "L" << categ << "\n";
+                        transaction_buffer << "L" << categ << "\n";
                     if (!notes.IsEmpty())
-                        buffer << "M" << notes << "\n";
+                        transaction_buffer << "M" << notes << "\n";
+                    buffer << transaction_buffer;
                 }
 
                 //if categ id is empty that mean this is split transaction
-                if (pBankTransaction->categID_ == -1)
+                if (transaction->categID_ == -1)
                 {
-                    mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
-                    pBankTransaction->getSplitTransactions(splits);
+                    mmSplitTransactionEntries* splits = transaction->splitEntries_;
+                    transaction->getSplitTransactions(splits);
 
-                    for (int i = 0; i < (int)splits->entries_.size(); ++i)
+                    for (const auto &split_entry : splits->entries_)
                     {
-                        value = splits->entries_[i]->splitAmount_;
-                        if (type == "Withdrawal")
+                        double value = split_entry->splitAmount_;
+                        if (transaction->transType_ == "Withdrawal")
                             value = -value;
-                        wxString split_amount = wxString()<<value;
+                        const wxString split_amount = wxString()<<value;
 
-                        wxString split_categ = core_->categoryList_.GetFullCategoryString(
-                            splits->entries_[i]->categID_, splits->entries_[i]->subCategID_);
+                        const wxString split_categ = core_->categoryList_.GetFullCategoryString(
+                            split_entry->categID_, split_entry->subCategID_);
                         if (qif_csv)
                         {
                             buffer << "S" << split_categ << "\n"
@@ -514,10 +497,10 @@ void mmQIFExportDialog::mmExportQIF()
                         {
                             buffer << trans_id << delimit_
                                 << inQuotes(acctName, delimit_) << delimit_
-                                << inQuotes(dateString, delimit_) << delimit_
+                                << inQuotes(mmGetDateForDisplay(transaction->date_), delimit_) << delimit_
                                 << inQuotes(payee, delimit_) << delimit_
-                                << pBankTransaction->status_ << delimit_
-                                << type << delimit_
+                                << transaction->status_ << delimit_
+                                << transaction->transType_ << delimit_
                                 << inQuotes(split_categ, delimit_) << delimit_
                                 << inQuotes(split_amount, delimit_) << delimit_
                                 << "" << delimit_
@@ -531,13 +514,13 @@ void mmQIFExportDialog::mmExportQIF()
                     if (!qif_csv)
                         buffer << trans_id << delimit_
                         << inQuotes(acctName, delimit_) << delimit_
-                        << inQuotes(dateString, delimit_) << delimit_
+                        << inQuotes(mmGetDateForDisplay(transaction->date_), delimit_) << delimit_
                         << inQuotes(payee, delimit_) << delimit_
-                        << pBankTransaction->status_ << delimit_
-                        << type << delimit_
+                        << transaction->status_ << delimit_
+                        << transaction->transType_ << delimit_
                         << inQuotes(categ, delimit_) << delimit_
-                        << inQuotes(amount, delimit_) << delimit_
-                        << inQuotes(toamount, delimit_) << delimit_
+                        << inQuotes(wxString()<<transaction->value(entry), delimit_) << delimit_
+                        << inQuotes(wxString()<<transaction->toAmt_, delimit_) << delimit_
                         << inQuotes(notes, delimit_)
                         << "\n";
                 }
@@ -559,8 +542,8 @@ void mmQIFExportDialog::mmExportQIF()
     const wxString msg = wxString::Format(sErrorMsg, numRecords);
     wxMessageDialog msgDlg(parent_, wxGetTranslation(msg)
         , _("Export to QIF"), wxOK|wxICON_INFORMATION);
-    
+
     //FIXME: Can't close this dialog
     msgDlg.ShowModal();
-    
+
 }
