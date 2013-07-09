@@ -23,7 +23,8 @@
 #include <wx/app.h>
 #include <wx/aui/aui.h>
 #include <wx/wizard.h>
-#include "wx/debugrpt.h"
+#include <wx/debugrpt.h>
+#include <wx/toolbar.h>
 
 //----------------------------------------------------------------------------
 #include <memory>
@@ -262,7 +263,7 @@ private:
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
-    void createToolBar();
+    wxToolBar* CreateToolBar(long style=wxTB_HORIZONTAL, wxWindowID id=wxID_ANY, const wxString &name=wxToolBarNameStr);
     void createHomePage();
     void createReportsPage(mmPrintableBase* rb);
     void createHelpPage();

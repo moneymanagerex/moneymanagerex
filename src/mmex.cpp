@@ -647,7 +647,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     /* Create the Controls for the frame */
     createMenu();
-    createToolBar();
+    CreateToolBar();
     createControls();
     CreateStatusBar();
     recentFiles_ = new RecentDatabaseFiles(menuRecentFiles_);
@@ -2465,7 +2465,7 @@ void mmGUIFrame::createMenu()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createToolBar()
+wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &name)
 {
     toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
     wxBitmap toolBarBitmaps[12];
@@ -2503,6 +2503,7 @@ void mmGUIFrame::createToolBar()
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
+    return toolBar_;
 }
 //----------------------------------------------------------------------------
 
