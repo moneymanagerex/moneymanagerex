@@ -107,6 +107,10 @@ public:
 
         return default_value;
     }
+    int GetBaseCurrencyId()
+    {
+        return this->GetIntInfo("BASECURRENCYID", -1);
+    }
     bool Exists(const wxString& key)
     {
         for (const auto& record: this->all())

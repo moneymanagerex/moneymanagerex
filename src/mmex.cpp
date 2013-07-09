@@ -283,7 +283,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
     parent_(parent),
     currencyID_(-1)
 {
-    currencyID_ = parent_->m_core->currencyList_.GetBaseCurrencySettings();
+    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
     wxString currName = _("Set Currency");
     if (currencyID_ != -1)
         currName = parent_->m_core->currencyList_.getCurrencySharedPtr(currencyID_)->currencyName_;
@@ -348,7 +348,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
 
 void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 {
-    currencyID_ = parent_->m_core->currencyList_.GetBaseCurrencySettings();
+    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
 
     if (mmMainCurrencyDialog::Execute(parent_->m_core, this, currencyID_) && currencyID_ != -1)
     {
@@ -478,7 +478,7 @@ bool mmAddAccountPage2::TransferDataFromWindow()
     else if (acctType == 2)
         acctTypeStr = ACCOUNT_TYPE_TERM;
 
-    int currencyID = parent_->m_core->currencyList_.GetBaseCurrencySettings();
+    int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
     if (currencyID == -1)
     {
         wxString errorMsg;

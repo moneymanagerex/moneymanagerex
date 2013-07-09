@@ -77,7 +77,7 @@ bool mmOptionsDialog::Create(
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
-    currencyId_ = core_->currencyList_.GetBaseCurrencySettings();
+    currencyId_ = Model_Infotable::instance().GetBaseCurrencyId();
     dateFormat_ = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
 
     CreateControls();
@@ -744,7 +744,7 @@ void mmOptionsDialog::OnLanguageChanged(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
 {
-    int currencyID = core_->currencyList_.GetBaseCurrencySettings();
+    int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
     if (mmMainCurrencyDialog::Execute(core_, this, currencyID) && currencyID != -1)
     {

@@ -194,7 +194,7 @@ void mmNewAcctDialog::CreateControls()
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), flags);
 
-    currencyID_ = core_->currencyList_.GetBaseCurrencySettings();
+    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
     wxString currName = _("Select Currency");
     if (currencyID_ != -1)
     {

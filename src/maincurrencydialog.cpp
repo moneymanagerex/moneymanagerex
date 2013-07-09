@@ -62,7 +62,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[CURR_NAME]   = _("Name");
     ColName_[BASE_RATE]   = _("Base Rate");
 
-    currencyID_ = core_->currencyList_.GetBaseCurrencySettings();
+    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
 
     Create(parent, id, caption, pos, size, style);
 }
@@ -95,7 +95,7 @@ void mmMainCurrencyDialog::fillControls()
     if (!core_) return;
 
     currencyListBox_->DeleteAllItems();
-    int baseCurrencyID = core_->currencyList_.GetBaseCurrencySettings();
+    int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
     for (const auto& currency: Model_Currency::instance().all())
     {
