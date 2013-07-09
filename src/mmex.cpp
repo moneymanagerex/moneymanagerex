@@ -814,88 +814,6 @@ void mmGUIFrame::setHomePageActive(bool active)
 //----------------------------------------------------------------------------
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
-/*  TODO: Activate new AutoRepeatTransactions code
-    when other sections are completed and tested.
-*/
-//#define USING_NEW_DB_CLASSES   // Activation switch
-#ifdef USING_NEW_DB_CLASSES
-
-    /*  Use local list for testing.  Convert to global list in final version.
-        For now, we only want to add new transactions.
-    */
-    TTransactionList transactions(m_db, false);
-    TTransactionBillList bills(m_db);
-
-    bool continueExecution = true;  // allow the process to start
-    while (continueExecution)
-    {
-        continueExecution = false;
-        int index = 0;
-        while (index < bills.CurrentListSize())
-        {
-            TTransactionBillEntry* pBillEntry = bills.entrylist_[index].get();
-
-            int remaining_days;
-            if (pBillEntry->RequiresExecution(remaining_days))
-            {
-                /*  TODO: Obtain split transactions for the repeat transaction
-                    and apply to main list.
-                */
-                bool using_repeats = false;
-                if (pBillEntry->UsingRepeatProcessing())
-                {
-                    using_repeats = true;
-                }
-
-                if (pBillEntry->autoExecuteSilent_)
-                {
-                    TTransactionEntry* pTransactionEntry = pBillEntry->GetTransaction();
-                    pTransactionEntry->trans_date_ = pBillEntry->NextOccurDate();
-                    pBillEntry->AdjustNextOccuranceDate();
-                    transactions.AddEntry(pTransactionEntry);
-                    //ProcessSplitTransactionForTransaction(int trans_id)
-                    pBillEntry->Update(bills.ListDatabase());
-                    if (pBillEntry->num_repeats_ != 0)
-                    {
-                        continueExecution = true;
-                    }
-                }
-
-                if (pBillEntry->autoExecuteManual_)
-                {
-                    /*  TODO: Set up the transaction dialog to accept a TTransactionEntry
-                        and return wx_OK to allow a save from a a possible updated transaction.
-                    */
-                    int style = wxOK|wxCANCEL|wxICON_EXCLAMATION;
-                    if (wxMessageBox(_("Tempoary message."), _("Repeat Transaction Auto Execution Check"), style) == wxOK)
-                    {
-                        TTransactionEntry* pTransactionEntry = pBillEntry->GetTransaction();
-                        pTransactionEntry->trans_date_ = pBillEntry->NextOccurDate();
-                        pBillEntry->AdjustNextOccuranceDate();
-                        transactions.AddEntry(pTransactionEntry);
-                        //ProcessSplitTransactionForTransaction(trans_id)
-                        pBillEntry->Update(bills.ListDatabase());
-                        if (pBillEntry->num_repeats_ != 0)
-                        {
-                            continueExecution = true;
-                        }
-                    }
-                }
-
-                if (using_repeats && pBillEntry->num_repeats_ == 0)
-                {
-                    bills.DeleteEntry(pBillEntry->GetId());
-                }
-            }
-            ++index;
-        }
-    }
-    if (activeHomePage_)
-    {
-        createHomePage(); // Update home page details only if it is being displayed
-    }
-
-#else
     bool continueExecution = false;
 
     m_core->currencyList_.LoadBaseCurrencySettings();
@@ -1037,7 +955,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
     {
         autoRepeatTransactionsTimer_.Start(5, wxTIMER_ONE_SHOT);
     }
-#endif
 }
 //----------------------------------------------------------------------------
 
