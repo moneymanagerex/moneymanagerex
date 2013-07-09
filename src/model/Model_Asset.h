@@ -42,7 +42,7 @@ public:
     }
     static wxString version()
     {
-        return "$REV$";
+        return "$Revision$";
     }
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
