@@ -33,10 +33,10 @@ public:
 
 public:
     mmPrintableBase(mmCoreDB* core): core_(core) {}
+    virtual wxString version() { return "$Rev$"; }
 
 protected:
     const mmCoreDB* core_;
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_REPORTBASE_H_
-//----------------------------------------------------------------------------

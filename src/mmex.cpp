@@ -627,7 +627,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 {
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
-    CreateStatusBar();
     SetIcon(mmex::getProgramIcon());
     SetMinSize(wxSize(480,275));
 
@@ -650,6 +649,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
     createMenu();
     createToolBar();
     createControls();
+    CreateStatusBar();
     recentFiles_ = new RecentDatabaseFiles(menuRecentFiles_);
 
     // Load perspective
