@@ -984,7 +984,7 @@ void mmGUIFrame::saveSettings()
     this->GetSize(&value_w, &value_h);
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
-//    Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
+    Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
 }
 //----------------------------------------------------------------------------
 

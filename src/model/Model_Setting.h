@@ -51,10 +51,7 @@ public:
 
     void Set(const wxString& key, bool value)
     {
-        if (value)
-            this->Set(key, "TRUE");
-        else
-            this->Set(key, "FALSE");
+        this->Set(key, wxString::Format("%s", value ? "TRUE" : "FALSE"));
     }
 
     void Set(const wxString& key, const wxColour& value)
