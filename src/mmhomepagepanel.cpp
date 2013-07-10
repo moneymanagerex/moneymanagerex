@@ -24,9 +24,9 @@
 #include "billsdepositspanel.h"
 #include "reports/mmgraphincexpensesmonth.h"
 #include "mmCurrencyFormatter.h"
-#include "db/assets.h"
 #include <algorithm>
 #include "model/Model_Setting.h"
+#include "model/Model_Asset.h"
 
 
 BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
@@ -322,7 +322,6 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
     mmHTMLBuilder hb;
     core_->currencyList_.LoadBaseCurrencySettings();
-    TAssetList asset_list(core_->db_.get());
 
     if (mmIniOptions::instance().enableAssets_)
     {
@@ -330,12 +329,12 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
         hb.startTableRow();
         hb.addTableCellLink("Assets", _("Assets"), false, true);
         hb.addTableCell("", true);
-        hb.addTableCell(asset_list.GetAssetBalanceCurrencyFormat(), true, true, true);
+        hb.addMoneyCell(Model_Asset::instance().balance());
         hb.endTableRow();
         hb.endTable();
 
+        tBalance += Model_Asset::instance().balance();
     }
-    tBalance += asset_list.GetAssetBalance();
     return hb.getHTMLinTableWraper();
 }
 

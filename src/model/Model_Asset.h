@@ -49,6 +49,15 @@ public:
     {
         return all(db_, col, asc);
     }
+    double balance()
+    {
+        double balance = 0.0;
+        for (const auto& asset: this->all())
+        {
+            balance += asset.VALUE;
+        }
+        return balance;
+    }
 };
 
 #endif // 
