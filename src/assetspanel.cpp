@@ -536,13 +536,12 @@ void mmAssetsPanel::enableEditDeleteButtons(bool enable)
 
 void mmAssetsPanel::OnMouseLeftDown ( wxMouseEvent& event )
 {
-    int i = 1;
     wxMenu menu;
-    menu.Append(new wxMenuItem(&menu, ++i, wxGetTranslation(wxTRANSLATE("All"))));
+    menu.Append(wxID_ANY, wxGetTranslation(wxTRANSLATE("All")));
 
     for (const auto& type: Model_Asset::instance().types_)
     {
-        menu.Append(new wxMenuItem(&menu, ++i, wxGetTranslation(type)));
+        menu.Append(wxID_ANY, wxGetTranslation(type));
     }
     PopupMenu(&menu);
 
