@@ -26,8 +26,30 @@ class Model_Asset : public Model, public DB_Table_ASSETS_V1
 {
     using DB_Table_ASSETS_V1::all;
 public:
-    Model_Asset(): Model(), DB_Table_ASSETS_V1() {};
+    enum RATE { RATE_NONE = 0, RATE_APPRECIATE, RATE_DEPRECIATE };
+    enum TYPE { TYPE_PROPERTY = 0, TYPE_AUTO, TYPE_HOUSE, TYPE_ART, TYPE_JEWELLERY, TYPE_CASH, TYPE_OTHER };
+
+public:
+    Model_Asset(): Model(), DB_Table_ASSETS_V1() 
+    {
+        //  keep the sequence with RATE
+        this->rates_.Add(wxTRANSLATE("None"));
+        this->rates_.Add(wxTRANSLATE("Appreciates"));
+        this->rates_.Add(wxTRANSLATE("Depreciates"));
+
+        // keep the sequence with TYPE
+        this->types_.Add(wxTRANSLATE("Property"));
+        this->types_.Add(wxTRANSLATE("Automobile"));
+        this->types_.Add(wxTRANSLATE("Household Object"));
+        this->types_.Add(wxTRANSLATE("Art"));
+        this->types_.Add(wxTRANSLATE("Jewellery"));
+        this->types_.Add(wxTRANSLATE("Cash"));
+        this->types_.Add(wxTRANSLATE("Other"));
+    };
     ~Model_Asset() {};
+
+public:
+    wxArrayString rates_, types_;
 
 public:
     static Model_Asset& instance()
