@@ -19,6 +19,7 @@
 #include "assetdialog.h"
 #include "constants.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Asset.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
@@ -535,17 +536,15 @@ void mmAssetsPanel::enableEditDeleteButtons(bool enable)
 
 void mmAssetsPanel::OnMouseLeftDown ( wxMouseEvent& event )
 {
-    wxMenu* menu = new wxMenu;
-    menu->Append(new wxMenuItem(menu, 0, wxGetTranslation(wxTRANSLATE("All"))));
+    int i = 1;
+    wxMenu menu;
+    menu.Append(new wxMenuItem(&menu, ++i, wxGetTranslation(wxTRANSLATE("All"))));
 
-    size_t size = sizeof(ASSET_TYPE_DEF)/sizeof(wxString);
-    for(size_t i = 0; i < size; ++i)
+    for (const auto& type: Model_Asset::instance().types_)
     {
-        wxMenuItem* menuItem = new wxMenuItem(menu, i+1, wxGetTranslation(ASSET_TYPE_DEF[i]));
-        menu->Append(menuItem);
+        menu.Append(new wxMenuItem(&menu, ++i, wxGetTranslation(type)));
     }
-    PopupMenu(menu);
-    delete menu;
+    PopupMenu(&menu);
 
     event.Skip();
 }
