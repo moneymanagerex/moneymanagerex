@@ -38,6 +38,7 @@ public:
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
+        this->ensure(this->db_);
         return all(db_, col, asc);
     }
 public:
