@@ -223,11 +223,14 @@ private:
 
     /* Cannot process home page recursively */
     bool refreshRequested_;
+    /* trigger to avaid double initialization for HomePage on startup*/
+    bool initHomePage_;
+    /* Update home page details only if it is being displayed */
+    bool activeHomePage_;
 
     /* Repeat Transactions automatic processing delay */
     wxTimer autoRepeatTransactionsTimer_;
     void OnAutoRepeatTransactionsTimer(wxTimerEvent& event);
-    bool activeHomePage_;
 
     /* controls */
     mmPanelBase* panelCurrent_;

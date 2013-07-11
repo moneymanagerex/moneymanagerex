@@ -609,9 +609,10 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 , activeCheckingAccountPage_(false)
 , budgetingPage_(0)
 , activeBudgetingPage_(false)
-, refreshRequested_()
 , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
+, initHomePage_(false)
 , activeHomePage_(false)
+, refreshRequested_()
 , panelCurrent_()
 , homePanel_()
 , navTreeCtrl_()
@@ -896,16 +897,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 mmBDDialog repeatTransactionsDlg(m_core.get()
                     , th.id_ ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
-                {
-                    if (activeHomePage_)
-                    {
-                        createHomePage(); // Update home page details only if it is being displayed
-                    }
-                }
+                    if (activeHomePage_) createHomePage();
                 else // stop repeat executions from occuring
-                {
                     continueExecution = false;
-                }
             }
         }
 
@@ -2102,18 +2096,23 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-    wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmHomePagePanel(m_core.get(),
+    /* On init for Windows system that function start twice.
+       First time it should be skiped                       */
+    if (!activeHomePage_ && initHomePage_)
+    {
+        wxSizer *sizer = cleanupHomePanel();
+        panelCurrent_ = new mmHomePagePanel(m_core.get(),
         homePanel_,
         wxID_STATIC,
         wxDefaultPosition,
         wxDefaultSize,
         wxNO_BORDER|wxTAB_TRAVERSAL);
 
-    sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
-
+        sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
+    }
     homePanel_->Layout();
     refreshRequested_ = false;
+    initHomePage_ = true;
 }
 //----------------------------------------------------------------------------
 

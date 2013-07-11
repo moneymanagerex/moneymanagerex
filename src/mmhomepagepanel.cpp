@@ -45,7 +45,6 @@ mmHomePagePanel::mmHomePagePanel(mmCoreDB* core,
         : mmPanelBase(core)
         , frame_(wxGetApp().m_frame)
 {
-    //FIXME: this runs twice
     Create(parent, winid, pos, size, style, name);
     frame_->setHomePageActive();
     frame_->menuPrintingEnable(true);
