@@ -2102,11 +2102,11 @@ void mmGUIFrame::createHomePage()
     {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(m_core.get(),
-        homePanel_,
-        wxID_STATIC,
-        wxDefaultPosition,
-        wxDefaultSize,
-        wxNO_BORDER|wxTAB_TRAVERSAL);
+            homePanel_,
+            wxID_STATIC,
+            wxDefaultPosition,
+            wxDefaultSize,
+            wxNO_BORDER|wxTAB_TRAVERSAL);
 
         sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
     }
