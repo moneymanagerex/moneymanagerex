@@ -84,7 +84,6 @@ wxString mmex::getProgramWebSite()
 {
     return "http://codelathe.com/mmex";
 }
-
 wxString mmex::getProgramForum()
 {
     return "http://www.codelathe.com/forum";
@@ -92,6 +91,14 @@ wxString mmex::getProgramForum()
 wxString mmex::getProgramFacebookSite()
 {
     return "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
+}
+wxString mmex::getProgramDanateSite()
+{
+    return "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Money+Manager+Ex&cmd=_donations&business=moneymanagerex%40gmail.com";
+}
+wxString mmex::getProgramTwitterSite()
+{
+    return "https://twitter.com/MoneyManagerEx";
 }
 
 wxString mmex::getProgramDescription()

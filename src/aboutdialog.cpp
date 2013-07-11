@@ -88,6 +88,12 @@ void mmAboutDialog::InitControls()
     hb.addTableCellLink( mmex::getProgramForum()
         , _("Visit MMEX Forum"));
     hb.addLineBreak();
+    hb.addTableCellLink( mmex::getProgramTwitterSite()
+        , _("Visit MMEX Twitter"));
+    hb.addLineBreak();
+    hb.addTableCellLink( mmex::getProgramDanateSite()
+        , _("Donate"));
+    hb.addLineBreak();
 
     hb.end();
     html = hb.getHTMLText();
