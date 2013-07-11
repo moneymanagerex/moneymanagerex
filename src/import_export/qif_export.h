@@ -73,6 +73,4 @@ private:
     wxArrayString accounts_name_;
 
     void mmExportQIF(wxWindow* parent_, mmCoreDB* core);
-    wxString writeAccHeader(int accountID, bool qif);
-    wxString exportCategories(bool qif);
 };

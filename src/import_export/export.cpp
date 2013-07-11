@@ -7,13 +7,28 @@
 #include "../util.h"
 #include "model/Model_Infotable.h"
 
+mmExportTransaction::mmExportTransaction(mmCoreDB* core)
+    : mmExportBase(core)
+    , pBankTransaction_(0)
+    , accountID_(-1)
+{}
+
 mmExportTransaction::mmExportTransaction(mmCoreDB* core, mmBankTransaction* pBankTransaction)
     : mmExportBase(core)
     , pBankTransaction_(pBankTransaction)
+    , accountID_(pBankTransaction->accountID_)
 {}
 
+mmExportTransaction::mmExportTransaction(mmCoreDB* core, int accountID)
+    : mmExportBase(core)
+    , pBankTransaction_(0)
+    , accountID_(accountID)
+{
+    if (!core) wxASSERT(false);
+}
+
 mmExportTransaction::~mmExportTransaction()
-{};
+{}
 
 wxString mmExportTransaction::getTransactionQIF()
 {
@@ -129,3 +144,87 @@ wxString mmExportTransaction::getTransactionCSV()
     return buffer;
 
 }
+
+wxString mmExportTransaction::getAccountHeaderQIF()
+{
+    wxString buffer = "";
+    const wxString sAccName = core_->accountList_.GetAccountName(accountID_);
+    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID_);
+    wxASSERT(pAccount);
+    mmCurrency* pCurrency = pAccount->currency_;
+    wxASSERT(pCurrency);
+    double dInitBalance = pAccount->initialBalance_;
+    const wxString sInitBalance = wxString::Format("%f", dInitBalance);
+    const wxString sCurrencyCode = "[" + pCurrency->currencySymbol_ + "]";
+
+    buffer = wxString("!Account") << "\n"
+        << "N" << sAccName <<  "\n"
+        << "TBank" << "\n"
+        << "D" << sCurrencyCode << "\n"
+        << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
+        << "^" <<  "\n"
+        << "!Type:Cash" << "\n";
+
+    return buffer;
+}
+
+wxString mmExportTransaction::getCategoriesQIF()
+{
+    wxString buffer_qif = "";
+
+    buffer_qif << "!Type:Cat" << "\n";
+    for (const auto& category: core_->categoryList_.entries_)
+    {
+        const wxString categ_name = category->categName_;
+        bool bIncome = false;
+        core_->bTransactionList_.IsCategoryUsed(category->categID_
+                , -1, bIncome, false);
+        buffer_qif << "N" << categ_name <<  "\n"
+            << (bIncome ? "I" : "E") << "\n"
+            << "^" << "\n";
+
+        for (const auto& sub_category: category->children_)
+        {
+            bIncome = false;
+            bool bSubcateg = sub_category->categID_ != -1;
+            core_->bTransactionList_.IsCategoryUsed(category->categID_
+                , sub_category->categID_, bIncome, false);
+            wxString full_categ_name = wxString()
+                << categ_name << (bSubcateg ? wxString()<<":" : wxString()<<"")
+                << sub_category->categName_;
+            buffer_qif << "N" << full_categ_name << "\n"
+                << (bIncome ? "I" : "E") << "\n"
+                << "^" << "\n";
+        }
+    }
+    return buffer_qif;
+
+}
+
+wxString mmExportTransaction::getCategoriesCSV()
+{
+    wxString buffer_csv ="";
+    wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+
+    for (const auto& category: core_->categoryList_.entries_)
+    {
+        const wxString categ_name = category->categName_;
+        bool bIncome = false;
+        core_->bTransactionList_.IsCategoryUsed(category->categID_
+                , -1, bIncome, false);
+        buffer_csv << categ_name << delimit << "\n";
+
+        for (const auto& sub_category: category->children_)
+        {
+            bIncome = false;
+            core_->bTransactionList_.IsCategoryUsed(category->categID_
+                , sub_category->categID_, bIncome, false);
+            wxString full_categ_name = wxString()
+                << categ_name << delimit
+                << sub_category->categName_;
+            buffer_csv << full_categ_name << "\n";
+        }
+    }
+    return buffer_csv;
+}
+

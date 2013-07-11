@@ -333,66 +333,6 @@ void mmQIFExportDialog::OnFileNameEntered(wxCommandEvent& event)
     this->GetEventHandler()->AddPendingEvent(evt);
 }
 
-wxString mmQIFExportDialog::writeAccHeader(int accountID, bool qif)
-{
-    wxString buffer = "";
-    if (qif)
-    {
-        mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
-        wxASSERT(pAccount);
-        mmCurrency* pCurrency = pAccount->currency_;
-        wxASSERT(pCurrency);
-
-        const wxString sAccName = core_->accountList_.GetAccountName(accountID);
-        double dInitBalance = pAccount->initialBalance_;
-        const wxString sInitBalance = wxString::Format("%f", dInitBalance);
-        const wxString sCurrencyCode = "[" + pCurrency->currencySymbol_ + "]";
-
-        buffer = wxString("!Account") << "\n"
-            << "N" << sAccName <<  "\n"
-            << "TBank" << "\n"
-            << "D" << sCurrencyCode << "\n"
-            << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
-            << "^" <<  "\n"
-            << "!Type:Cash" << "\n";
-    }
-    return buffer;
-}
-
-wxString mmQIFExportDialog::exportCategories(bool qif)
-{
-    wxString buffer_qif, buffer_csv;
-
-    buffer_qif << "!Type:Cat" << "\n";
-    for (const auto& category: core_->categoryList_.entries_)
-    {
-        const wxString categ_name = category->categName_;
-        bool bIncome = false;
-        core_->bTransactionList_.IsCategoryUsed(category->categID_
-                , -1, bIncome, false);
-        buffer_qif << "N" << categ_name <<  "\n"
-            << (bIncome ? "I" : "E") << "\n"
-            << "^" << "\n";
-        buffer_csv << categ_name <<  delimit_ << "\n";
-
-        for (const auto& sub_category: category->children_)
-        {
-            bIncome = false;
-            bool bSubcateg = sub_category->categID_ != -1;
-            core_->bTransactionList_.IsCategoryUsed(category->categID_
-                , sub_category->categID_, bIncome, false);
-            wxString full_categ_name = wxString()
-                << categ_name << (qif ? (bSubcateg ? wxString()<<":" : wxString()<<"") : delimit_)
-                << sub_category->categName_;
-            buffer_qif << "N" << full_categ_name << "\n"
-                << (bIncome ? "I" : "E") << "\n"
-                << "^" << "\n";
-            buffer_csv << full_categ_name << "\n";
-        }
-    }
-    return qif ? buffer_qif : buffer_csv;
-}
-
 void mmQIFExportDialog::mmExportQIF()
 {
     const bool qif_csv = m_radio_box_->GetSelection() == 0;
@@ -406,7 +346,11 @@ void mmQIFExportDialog::mmExportQIF()
     //Export categories
     if (exp_categ)
     {
-        buffer << exportCategories(qif_csv);
+        mmExportTransaction categories(core_);
+        if (qif_csv)
+            buffer << categories.getCategoriesQIF();
+         else
+            buffer << categories.getCategoriesCSV();
         sErrorMsg << _("Categories exported") << "\n";
     }
 
@@ -418,8 +362,9 @@ void mmQIFExportDialog::mmExportQIF()
     {
         for (const auto &entry : items_index_)
         {
-            const wxString acctName = core_->accountList_.GetAccountName(entry);
-            buffer << writeAccHeader(entry, qif_csv);
+            mmExportTransaction header(core_, entry);
+            if (qif_csv)
+                buffer << header.getAccountHeaderQIF();
 
             double account_balance = 0.0, reconciled_balance = 0.0;
             core_->bTransactionList_.LoadAccountTransactions(entry, account_balance, reconciled_balance);
