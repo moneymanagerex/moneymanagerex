@@ -4,6 +4,7 @@
 #include "qif_export.h"
 #include "../util.h"
 #include "../paths.h"
+#include "export.h"
 #include "model/Model_Infotable.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmQIFExportDialog, wxDialog )
@@ -400,7 +401,6 @@ void mmQIFExportDialog::mmExportQIF()
     const bool write_to_file = toFileCheckBox_->GetValue();
     wxString sErrorMsg;
     wxString buffer;
-    delimit_ = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
     long numRecords = 0;
 
     //Export categories
@@ -416,7 +416,6 @@ void mmQIFExportDialog::mmExportQIF()
 
     if (exp_transactions)
     {
-
         for (const auto &entry : items_index_)
         {
             const wxString acctName = core_->accountList_.GetAccountName(entry);
@@ -433,98 +432,20 @@ void mmQIFExportDialog::mmExportQIF()
                 if (dateToCheckBox_->IsChecked() && transaction->date_ > toDateCtrl_->GetValue() )
                     continue;
 
-                int trans_id = transaction->transactionID();
-                wxString categ = transaction->fullCatStr_;
-                wxString payee = transaction->payeeStr_;
-                wxString transNum = transaction->transNum_;
-                wxString notes = (transaction->notes_);
-                notes.Replace("''", "'");
-                notes.Replace("\n", " ");
-
-                if (transferTrxId.Index(trans_id) == wxNOT_FOUND)
+                if (transferTrxId.Index(transaction->transactionID()) == wxNOT_FOUND)
                     numRecords++;
+
                 if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
                 {
-                    categ = wxString::Format("[%s]", transaction->payeeStr_);
-                    payee = "";
-
                     if (items_index_.Index(transaction->toAccountID_) == wxNOT_FOUND)
-                        transferTrxId.Add(trans_id);
-
-                    //Transaction number used to make transaction unique
-                    // to proper merge transfer records
-                    if (transNum.IsEmpty() && notes.IsEmpty())
-                        transNum = wxString::Format("#%i", trans_id);
+                        transferTrxId.Add(transaction->transactionID());
                 }
 
+                mmExportTransaction data(core_, transaction);
                 if (qif_csv)
-                {
-                    wxString transaction_buffer = "";
-                    transaction_buffer << "D" << mmGetDateForDisplay(transaction->date_) << "\n";
-                    transaction_buffer << "T" << transaction->value(entry) << "\n";
-                    if (!payee.IsEmpty())
-                        transaction_buffer << "P" << payee << "\n";
-                    if (!transNum.IsEmpty())
-                        transaction_buffer << "N" << transNum << "\n";
-                    if (!categ.IsEmpty())
-                        transaction_buffer << "L" << categ << "\n";
-                    if (!notes.IsEmpty())
-                        transaction_buffer << "M" << notes << "\n";
-                    buffer << transaction_buffer;
-                }
-
-                //if categ id is empty that mean this is split transaction
-                if (transaction->categID_ == -1)
-                {
-                    mmSplitTransactionEntries* splits = transaction->splitEntries_;
-                    transaction->getSplitTransactions(splits);
-
-                    for (const auto &split_entry : splits->entries_)
-                    {
-                        double value = split_entry->splitAmount_;
-                        if (transaction->transType_ == "Withdrawal")
-                            value = -value;
-                        const wxString split_amount = wxString()<<value;
-
-                        const wxString split_categ = core_->categoryList_.GetFullCategoryString(
-                            split_entry->categID_, split_entry->subCategID_);
-                        if (qif_csv)
-                        {
-                            buffer << "S" << split_categ << "\n"
-                                << "$" << split_amount << "\n";
-                        }
-                        else
-                        {
-                            buffer << trans_id << delimit_
-                                << inQuotes(acctName, delimit_) << delimit_
-                                << inQuotes(mmGetDateForDisplay(transaction->date_), delimit_) << delimit_
-                                << inQuotes(payee, delimit_) << delimit_
-                                << transaction->status_ << delimit_
-                                << transaction->transType_ << delimit_
-                                << inQuotes(split_categ, delimit_) << delimit_
-                                << inQuotes(split_amount, delimit_) << delimit_
-                                << "" << delimit_
-                                << inQuotes(notes, delimit_)
-                                << "\n";
-                        }
-                    }
-                }
+                    buffer << data.getTransactionQIF();
                 else
-                {
-                    if (!qif_csv)
-                        buffer << trans_id << delimit_
-                        << inQuotes(acctName, delimit_) << delimit_
-                        << inQuotes(mmGetDateForDisplay(transaction->date_), delimit_) << delimit_
-                        << inQuotes(payee, delimit_) << delimit_
-                        << transaction->status_ << delimit_
-                        << transaction->transType_ << delimit_
-                        << inQuotes(categ, delimit_) << delimit_
-                        << inQuotes(wxString()<<transaction->value(entry), delimit_) << delimit_
-                        << inQuotes(wxString()<<transaction->toAmt_, delimit_) << delimit_
-                        << inQuotes(notes, delimit_)
-                        << "\n";
-                }
-                buffer << "^" << "\n";
+                    buffer << data.getTransactionCSV();
             }
         }
     }

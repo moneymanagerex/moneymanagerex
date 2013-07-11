@@ -5,9 +5,21 @@
 #ifndef _MM_EX_EXPORT_H_
 #define _MM_EX_EXPORT_H_
 
-#include "../reports/reportbase.h"
+#include "../mmcoredb.h"
+#include "../mmOption.h"
 
-class mmExportTransaction : public mmPrintableBase
+class mmExportBase
+{
+
+public:
+    mmExportBase(mmCoreDB* core): core_(core) {}
+    virtual wxString version() { return "$Rev: 4335 $"; }
+
+protected:
+    const mmCoreDB* core_;
+};
+
+class mmExportTransaction : public mmExportBase
 {
 
 public:
@@ -16,6 +28,7 @@ public:
         , mmBankTransaction* pBankTransaction);
 
     wxString getTransactionQIF();
+    wxString getTransactionCSV();
 
 protected:
     wxString data_;
@@ -27,6 +40,14 @@ class mmExportTransactionQIF: public mmExportTransaction
 {
 public:
     mmExportTransactionQIF(mmCoreDB* core, mmBankTransaction* pBankTransaction) 
+        : mmExportTransaction(core, pBankTransaction)
+    {}
+};
+
+class mmExportTransactionCSV: public mmExportTransaction
+{
+public:
+    mmExportTransactionCSV(mmCoreDB* core, mmBankTransaction* pBankTransaction) 
         : mmExportTransaction(core, pBankTransaction)
     {}
 };
