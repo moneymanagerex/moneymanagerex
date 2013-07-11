@@ -2096,9 +2096,11 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-    /* On init for Windows system that function start twice.
-       First time it should be skiped                       */
+# if defined (__WXWIN__)
+    /* On init for Windows system that function start twice. *
+     * First time it should be skiped                        */           
     if (!activeHomePage_ && initHomePage_)
+#endif
     {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(m_core.get(),
