@@ -1,7 +1,7 @@
 
 #include "trx_stats.h"
 #include "htmlbuilder.h"
-#include "../util.h"
+#include "util.h"
 
 mmReportTransactionStats::mmReportTransactionStats(mmCoreDB* core, int year)
 : mmPrintableBase(core)

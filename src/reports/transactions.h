@@ -20,7 +20,7 @@
 #define _MM_EX_REPORTTRANSACT_H_
 
 #include "reportbase.h"
-#include "../filtertransdialog.h"
+#include "filtertransdialog.h"
 
 class mmBankTransaction;
 

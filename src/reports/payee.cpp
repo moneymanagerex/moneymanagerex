@@ -2,7 +2,7 @@
 #include "budget.h"
 
 #include "htmlbuilder.h"
-#include "../util.h"
+#include "util.h"
 #include "mmgraphpie.h"
 
 #include <algorithm>

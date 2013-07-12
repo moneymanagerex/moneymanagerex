@@ -19,8 +19,8 @@
 #ifndef _MM_EX_UNIVCSVDIALOG_H_
 #define _MM_EX_UNIVCSVDIALOG_H_
 
-#include "../guiid.h"
-#include "../mmcoredb.h"
+#include "guiid.h"
+#include "mmcoredb.h"
 
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX

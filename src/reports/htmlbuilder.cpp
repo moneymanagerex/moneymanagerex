@@ -17,10 +17,10 @@
  ********************************************************/
 
 #include "htmlbuilder.h"
-#include "../util.h"
-#include "../mmCurrencyFormatter.h"
-#include "../mmOption.h"
-#include "../constants.h"
+#include "util.h"
+#include "mmCurrencyFormatter.h"
+#include "mmOption.h"
+#include "constants.h"
 
 mmHTMLBuilder::mmHTMLBuilder()
 {

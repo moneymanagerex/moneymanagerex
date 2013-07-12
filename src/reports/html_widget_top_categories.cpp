@@ -1,7 +1,7 @@
 #include "html_widget_top_categories.h"
 
 #include "htmlbuilder.h"
-#include "../util.h"
+#include "util.h"
 
 #include <algorithm>
 

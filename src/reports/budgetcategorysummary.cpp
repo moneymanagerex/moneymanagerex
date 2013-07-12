@@ -20,9 +20,9 @@
  Renamed after extensive modifications to original file reportbudgetsetup.cpp
 **************************************************************************/
 #include "budgetcategorysummary.h"
-#include "../budgetingpanel.h"
+#include "budgetingpanel.h"
 #include "htmlbuilder.h"
-#include "../mmex.h"
+#include "mmex.h"
 #include "model/Model_Budgetyear.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, int budgetYearID)

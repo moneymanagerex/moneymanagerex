@@ -19,8 +19,8 @@
 #pragma once
 #include "memory"
 #include <vector>
-#include "../defs.h"
-#include "../util.h"
+#include "defs.h"
+#include "util.h"
 
 #include "cajun/json/elements.h"
 

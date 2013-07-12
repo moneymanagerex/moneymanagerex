@@ -17,8 +17,8 @@
  *************************************************************************/
 #include "budget.h"
 
-#include "../mmex.h"
-#include "../budgetingpanel.h"
+#include "mmex.h"
+#include "budgetingpanel.h"
 #include "htmlbuilder.h"
 
 mmReportBudget::mmReportBudget(mmCoreDB* core)

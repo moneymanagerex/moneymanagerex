@@ -17,8 +17,8 @@
  ********************************************************/
 
 #include "currency.h"
-#include "../constants.h"
-#include "../mmCurrencyFormatter.h"
+#include "constants.h"
+#include "mmCurrencyFormatter.h"
 
 /************************************************************************************
  TCurrencyEntry Methods

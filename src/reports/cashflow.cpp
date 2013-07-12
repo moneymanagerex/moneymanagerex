@@ -1,11 +1,11 @@
 
 #include "cashflow.h"
-#include "../mmex.h"
-#include "../constants.h"
+#include "mmex.h"
+#include "constants.h"
 #include "htmlbuilder.h"
 #include "mmRepeat.h"
-#include "../mmCurrencyFormatter.h"
-#include "../db/transactionbill.h"
+#include "mmCurrencyFormatter.h"
+#include "db/transactionbill.h"
 
 mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
 : mmPrintableBase(core)

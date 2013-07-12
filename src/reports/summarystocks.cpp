@@ -23,13 +23,13 @@
 
 // TODO: Remove Switch Definitions when New Class activation completed.
 #ifdef USING_NEW_CLASSES
-#include "../db/account.h"
-#include "../db/stocks.h"
+#include "db/account.h"
+#include "db/stocks.h"
 
 #else
-#include "../constants.h"
-#include "../stockspanel.h"
-#include "../util.h"
+#include "constants.h"
+#include "stockspanel.h"
+#include "util.h"
 #endif
 
 

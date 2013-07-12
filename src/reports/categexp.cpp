@@ -20,8 +20,8 @@
 #include "budget.h"
 
 #include "htmlbuilder.h"
-#include "../util.h"
-#include "../mmOption.h"
+#include "util.h"
+#include "mmOption.h"
 #include "mmgraphpie.h"
 
 mmReportCategoryExpenses::mmReportCategoryExpenses

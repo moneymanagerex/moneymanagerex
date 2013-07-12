@@ -3,8 +3,8 @@
  ********************************************************/
 
 #include "export.h"
-#include "../constants.h"
-#include "../util.h"
+#include "constants.h"
+#include "util.h"
 #include "model/Model_Infotable.h"
 
 mmExportTransaction::mmExportTransaction(mmCoreDB* core)

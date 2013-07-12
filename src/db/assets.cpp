@@ -20,7 +20,7 @@
 #include <functional>   // std::mem_fn
 #include <sstream>
 #include "assets.h"
-#include "../mmCurrencyFormatter.h"
+#include "mmCurrencyFormatter.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
 
