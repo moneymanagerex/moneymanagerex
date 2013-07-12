@@ -58,7 +58,7 @@ void mmQIFExportDialog::fillControls()
     for (const auto &entry : accounts_id_)
     {
         accounts_name_.Add(core_->accountList_.GetAccountName(entry));
-        items_index_.Add(entry);
+        selected_accounts_id_.Add(entry);
     }
 
     // redirect logs to text control
@@ -201,7 +201,7 @@ void mmQIFExportDialog::OnButtonClear(wxCommandEvent& /*event*/)
 
 void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
 {
-    items_index_.clear();
+    selected_accounts_id_.clear();
     bSelectedAccounts_->UnsetToolTip();
     wxMultiChoiceDialog s_acc(this, _("Choose Account to Export from:")
         , _("QIF Export"), accounts_name_);
@@ -216,23 +216,23 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
             int index = entry;
             const wxString accounts_name = accounts_name_[index];
             int account_id =  core_->accountList_.GetAccountId(accounts_name);
-            items_index_.Add(account_id);
+            selected_accounts_id_.Add(account_id);
             baloon += accounts_name + "\n";
         }
     }
     *log_field_ << baloon;
 
-    if (items_index_.GetCount() == 0)
+    if (selected_accounts_id_.GetCount() == 0)
     {
         fillControls();
     }
-    else if (items_index_.GetCount() == 1)
+    else if (selected_accounts_id_.GetCount() == 1)
     {
         int account_id = accounts_id_[selected_items[0]];
         const wxString account_name = core_->accountList_.GetAccountName(account_id);
         bSelectedAccounts_->SetLabel(account_name);
     }
-    else if (items_index_.GetCount() > 1)
+    else if (selected_accounts_id_.GetCount() > 1)
     {
         bSelectedAccounts_->SetLabel("...");
         bSelectedAccounts_->SetToolTip(baloon);
@@ -267,7 +267,7 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
     {
         sErrorMsg =_("No Account available for export");
     }
-    else if (items_index_.Count() < 1 && accountsCheckBox_->GetValue())
+    else if (selected_accounts_id_.Count() < 1 && accountsCheckBox_->GetValue())
     {
         sErrorMsg =_("No Accounts selected for export");
     }
@@ -345,11 +345,11 @@ void mmQIFExportDialog::mmExportQIF()
 {
     const bool qif_csv = m_radio_box_->GetSelection() == 0;
     const bool exp_categ = cCategs_->GetValue();
-    const bool exp_transactions = (accountsCheckBox_->GetValue() && items_index_.GetCount()>0);
+    const bool exp_transactions = (accountsCheckBox_->GetValue() && selected_accounts_id_.GetCount()>0);
     const bool write_to_file = toFileCheckBox_->GetValue();
     wxString sErrorMsg;
     wxString buffer;
-    long numRecords = 0;
+    int numRecords = 0;
 
     //Export categories
     if (exp_categ)
@@ -362,13 +362,12 @@ void mmQIFExportDialog::mmExportQIF()
         sErrorMsg << _("Categories exported") << "\n";
     }
 
-    //Export transactions
-    numRecords = 0;
-    wxArrayInt transferTrxId;
-
     if (exp_transactions)
     {
-        for (const auto &entry : items_index_)
+        /* Array with transfer transactions */
+        std::map <int, wxString> transferTransactions;
+
+        for (const auto &entry : selected_accounts_id_)
         {
             mmExportTransaction header(core_, entry);
             if (qif_csv)
@@ -385,14 +384,18 @@ void mmQIFExportDialog::mmExportQIF()
                 if (dateToCheckBox_->IsChecked() && transaction->date_ > toDateCtrl_->GetValue() )
                     continue;
 
-                if (transferTrxId.Index(transaction->transactionID()) == wxNOT_FOUND)
-                    numRecords++;
-
                 if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
                 {
-                    if (items_index_.Index(transaction->toAccountID_) == wxNOT_FOUND)
-                        transferTrxId.Add(transaction->transactionID());
+                    int index = transaction->arrow_ == "> " ? transaction->toAccountID_ : transaction->accountID_;
+                    if (selected_accounts_id_.Index(index) == wxNOT_FOUND)
+                    {
+                        //TODO: get second part of transfer transaction
+                        wxString second_part = "";
+                        transferTransactions[index] += second_part;
+                    }
                 }
+
+                if (transaction->arrow_ != "> ") numRecords++;
 
                 mmExportTransaction data(core_, transaction);
                 if (qif_csv)
@@ -400,6 +403,13 @@ void mmQIFExportDialog::mmExportQIF()
                 else
                     buffer << data.getTransactionCSV();
             }
+        }
+        //Export second part of transfer transactions
+        for (const auto &entry : transferTransactions)
+        {
+            mmExportTransaction header(core_, entry.first);
+            buffer << header.getAccountHeaderQIF();
+            buffer << entry.second;
         }
     }
 

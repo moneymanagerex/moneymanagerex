@@ -53,7 +53,8 @@ private:
     mmCoreDB* core_;
     wxWindow* parent_;
     wxArrayInt accounts_id_;
-    wxArrayInt items_index_;
+    /* Selected accounts id */
+    wxArrayInt selected_accounts_id_;
 
     wxCheckBox* cCategs_;
     wxCheckBox* accountsCheckBox_;
