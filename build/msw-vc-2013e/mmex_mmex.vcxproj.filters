@@ -285,6 +285,9 @@
     <ClCompile Include="..\..\src\mmhomepagepanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\import_export\export.cpp">
+      <Filter>Source Files\import_export</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -619,6 +622,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\mmhomepagepanel.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\import_export\export.h">
+      <Filter>Header Files\import_export</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
