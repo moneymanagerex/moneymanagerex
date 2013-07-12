@@ -38,7 +38,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
     int account_id = transaction->accountID_;
     wxString categ = transaction->fullCatStr_;
     wxString payee = transaction->payeeStr_;
-    wxString toAccountName = core_->accountList_.GetAccountName(transaction->toAccountID_);
+    wxString accountName = core_->accountList_.GetAccountName(transaction->accountID_);
     wxString transNum = transaction->transNum_;
     wxString notes = (transaction->notes_);
     notes.Replace("''", "'");
@@ -46,7 +46,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
 
     if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
     {
-        categ = wxString::Format("[%s]", from ? payee : toAccountName);
+        categ = wxString::Format("[%s]", from ? accountName : payee);
         payee = "";
 
         //Transaction number used to make transaction unique

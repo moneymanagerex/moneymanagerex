@@ -207,7 +207,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     }
     else if (splitEntries_->numEntries() > 1)
     {
-        fullCatStr_ = _("...");
+        fullCatStr_ = "";
         categID_ = -1;
         subcategID_ = -1;
     }

@@ -1256,7 +1256,7 @@ wxString mmCheckingPanel::getItem(long item, long column) const
         else if (column == COL_TRANSACTION_NUMBER) cell_value = t.transNum_;
         else if (column == COL_PAYEE_STR) cell_value = t.arrow_ + t.payeeStr_;
         else if (column == COL_STATUS) cell_value = t.status_;
-        else if (column == COL_CATEGORY) cell_value = t.fullCatStr_;
+        else if (column == COL_CATEGORY) cell_value = t.fullCatStr_.IsEmpty() ? "..." : t.fullCatStr_;
         else if (column == COL_WITHDRAWAL)
             cell_value = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
         else if (column == COL_DEPOSIT)
