@@ -53,6 +53,7 @@ void mmQIFExportDialog::fillControls()
     accounts_type.Add(ACCOUNT_TYPE_TERM);
     accounts_id_ = core_->accountList_.getAccountsID(accounts_type);
     bSelectedAccounts_->SetLabel(_("All"));
+    bSelectedAccounts_->SetToolTip(_("All"));
 
     for (const auto &entry : accounts_id_)
     {
@@ -201,9 +202,11 @@ void mmQIFExportDialog::OnButtonClear(wxCommandEvent& /*event*/)
 void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
 {
     items_index_.clear();
+    bSelectedAccounts_->UnsetToolTip();
     wxMultiChoiceDialog s_acc(this, _("Choose Account to Export from:")
         , _("QIF Export"), accounts_name_);
 
+    wxString baloon = "";
     wxArrayInt selected_items;
     if (s_acc.ShowModal() == wxID_OK)
     {
@@ -214,8 +217,10 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
             const wxString accounts_name = accounts_name_[index];
             int account_id =  core_->accountList_.GetAccountId(accounts_name);
             items_index_.Add(account_id);
+            baloon += accounts_name + "\n";
         }
     }
+    *log_field_ << baloon;
 
     if (items_index_.GetCount() == 0)
     {
@@ -223,18 +228,16 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     }
     else if (items_index_.GetCount() == 1)
     {
-        bSelectedAccounts_->SetLabel(core_->accountList_.GetAccountName(accounts_id_[items_index_[0]]));
+        int account_id = accounts_id_[selected_items[0]];
+        const wxString account_name = core_->accountList_.GetAccountName(account_id);
+        bSelectedAccounts_->SetLabel(account_name);
     }
     else if (items_index_.GetCount() > 1)
     {
         bSelectedAccounts_->SetLabel("...");
+        bSelectedAccounts_->SetToolTip(baloon);
     }
 
-    for (const auto &entry : items_index_)
-    {
-        *log_field_ << (core_->accountList_.GetAccountName(entry));
-        *log_field_ << "\n";
-    }
 }
 
 void mmQIFExportDialog::OnFileSearch(wxCommandEvent& /*event*/)
