@@ -209,7 +209,12 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     {
         selected_items = s_acc.GetSelections();
         for (const auto &entry : selected_items)
-            items_index_.Add( core_->accountList_.GetAccountId(accounts_name_[entry]));
+        {
+            int index = entry;
+            const wxString accounts_name = accounts_name_[index];
+            int account_id =  core_->accountList_.GetAccountId(accounts_name);
+            items_index_.Add(account_id);
+        }
     }
 
     if (items_index_.GetCount() == 0)

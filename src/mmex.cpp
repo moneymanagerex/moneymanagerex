@@ -2096,7 +2096,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-# if defined (__WXWIN__)
+# if defined (__WINDOWS__)
     /* On init for Windows system that function start twice. *
      * First time it should be skiped                        */           
     if (!activeHomePage_ && initHomePage_)
