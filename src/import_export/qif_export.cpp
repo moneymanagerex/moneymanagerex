@@ -384,6 +384,14 @@ void mmQIFExportDialog::mmExportQIF()
                 if (dateToCheckBox_->IsChecked() && transaction->date_ > toDateCtrl_->GetValue() )
                     continue;
 
+                if (transaction->arrow_ != "< ") numRecords++;
+
+                mmExportTransaction data(core_, transaction);
+                if (qif_csv)
+                    buffer << data.getTransactionQIF();
+                else
+                    buffer << data.getTransactionCSV();
+
                 if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
                 {
                     int index = transaction->arrow_ == "> " ? transaction->toAccountID_ : transaction->accountID_;
@@ -391,17 +399,14 @@ void mmQIFExportDialog::mmExportQIF()
                     {
                         //TODO: get second part of transfer transaction
                         wxString second_part = "";
+                        if (qif_csv)
+                            second_part = data.getTransactionQIF(true);
+                        else
+                            second_part = data.getTransactionCSV(true);
                         transferTransactions[index] += second_part;
                     }
                 }
-
-                if (transaction->arrow_ != "> ") numRecords++;
-
-                mmExportTransaction data(core_, transaction);
-                if (qif_csv)
-                    buffer << data.getTransactionQIF();
-                else
-                    buffer << data.getTransactionCSV();
+                //
             }
         }
         //Export second part of transfer transactions

@@ -30,7 +30,7 @@ mmExportTransaction::mmExportTransaction(mmCoreDB* core, int accountID)
 mmExportTransaction::~mmExportTransaction()
 {}
 
-wxString mmExportTransaction::getTransactionQIF()
+wxString mmExportTransaction::getTransactionQIF(bool from)
 {
     mmBankTransaction* &transaction = pBankTransaction_;
     wxString buffer = "";
@@ -38,6 +38,7 @@ wxString mmExportTransaction::getTransactionQIF()
     int account_id = transaction->accountID_;
     wxString categ = transaction->fullCatStr_;
     wxString payee = transaction->payeeStr_;
+    wxString toAccountName = core_->accountList_.GetAccountName(transaction->toAccountID_);
     wxString transNum = transaction->transNum_;
     wxString notes = (transaction->notes_);
     notes.Replace("''", "'");
@@ -45,7 +46,7 @@ wxString mmExportTransaction::getTransactionQIF()
 
     if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
     {
-        categ = wxString::Format("[%s]", transaction->payeeStr_);
+        categ = wxString::Format("[%s]", from ? payee : toAccountName);
         payee = "";
 
         //Transaction number used to make transaction unique
@@ -55,7 +56,7 @@ wxString mmExportTransaction::getTransactionQIF()
     }
 
     buffer << "D" << mmGetDateForDisplay(transaction->date_) << "\n";
-    buffer << "T" << transaction->value(account_id) << "\n";
+    buffer << "T" << transaction->value(!from ? account_id : transaction->toAccountID_)  << "\n";
     if (!payee.IsEmpty())
         buffer << "P" << payee << "\n";
     if (!transNum.IsEmpty())
@@ -88,7 +89,7 @@ wxString mmExportTransaction::getTransactionQIF()
     return buffer;
 }
 
-wxString mmExportTransaction::getTransactionCSV()
+wxString mmExportTransaction::getTransactionCSV(bool from)
 {
     mmBankTransaction* &transaction = pBankTransaction_;
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);

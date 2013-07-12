@@ -27,8 +27,8 @@ public:
 	mmExportTransaction(mmCoreDB* core , int accountID);
     mmExportTransaction(mmCoreDB* core , mmBankTransaction* pBankTransaction);
 
-    wxString getTransactionQIF();
-    wxString getTransactionCSV();
+    wxString getTransactionQIF(bool from = false);
+    wxString getTransactionCSV(bool from = false);
     wxString getAccountHeaderQIF();
     wxString getCategoriesQIF();
     wxString getCategoriesCSV();
