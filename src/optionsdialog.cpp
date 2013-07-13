@@ -892,6 +892,8 @@ void mmOptionsDialog::SaveStocksUrl()
 void mmOptionsDialog::SaveNewSystemSettings()
 {
     // initialize database saves -------------------------------------------------------------
+    
+    Model_Setting::instance().db_->Begin();
     core_->db_.get()->Begin();
 
     // Save all the details for all the panels
@@ -903,6 +905,7 @@ void mmOptionsDialog::SaveNewSystemSettings()
 
     // finalise database saves ---------------------------------------------------------------
     core_->db_.get()->Commit();
+    Model_Setting::instance().db_->Commit();
 }
 
 void mmOptionsDialog::SaveGeneralPanelSettings()

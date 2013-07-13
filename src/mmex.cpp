@@ -957,12 +957,13 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 */
 void mmGUIFrame::saveSettings()
 {
+    Model_Setting::instance().db_->Begin();
+    m_core->db_.get()->Begin();
     if (! fileName_.IsEmpty())
     {
         wxFileName fname(fileName_);
         Model_Setting::instance().Set("LASTFILENAME", fname.GetFullPath());
     }
-
     /* Aui Settings */
     Model_Setting::instance().Set("AUIPERSPECTIVE", m_mgr.SavePerspective());
 
@@ -979,6 +980,8 @@ void mmGUIFrame::saveSettings()
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
     Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
+    Model_Setting::instance().db_->Commit();
+    m_core->db_.get()->Commit();
 }
 //----------------------------------------------------------------------------
 
