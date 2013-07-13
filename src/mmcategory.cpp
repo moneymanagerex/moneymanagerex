@@ -169,7 +169,7 @@ wxString mmCategoryList::GetFullCategoryString(int categID, int subCategID) cons
         return category;
     }
     else
-        return _("Select Category");
+        return "";
 }
 
 void mmCategoryList::parseCategoryString(wxString categ, wxString& cat, int& categID, wxString& subcat, int& subCategID)

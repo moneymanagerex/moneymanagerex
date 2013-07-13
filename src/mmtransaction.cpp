@@ -675,8 +675,23 @@ void mmBankTransactionList::getTopCategoryStats(
         if (trx->date_ < date_range->start_date()) continue;
         if (trx->date_.GetDateOnly() > date_range->end_date()) continue;
 
-        const wxString categ_name = core_->categoryList_.GetFullCategoryString(trx->categID_, trx->subcategID_);
-        stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
+        if (trx->categID_ > -1)
+        {
+            const wxString categ_name = core_->categoryList_.GetFullCategoryString(trx->categID_, trx->subcategID_);
+            stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
+        }
+        else
+        {
+            mmSplitTransactionEntries* splits = trx->splitEntries_;
+            trx->getSplitTransactions(splits);
+            for (const auto& entry : splits->entries_)
+            {
+                const wxString categ_name = core_->categoryList_.GetFullCategoryString(entry->categID_, entry->subCategID_);
+                stat[categ_name] += entry->splitAmount_
+                    * (acc_conv_rates[trx->accountID_]) 
+                    * (trx->value(-1)< 0 ? -1 : 1);
+            }
+        }
     }
 
     categoryStats.clear();

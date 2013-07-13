@@ -42,7 +42,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     for (const auto& i : topCategoryStats)
     {
         hb.startTableRow();
-        hb.addTableCell(i.first, false, true);
+        hb.addTableCell((i.first.IsEmpty() ? "..." : i.first), false, true);
         hb.addMoneyCell(i.second);
         hb.endTableRow();
     }
