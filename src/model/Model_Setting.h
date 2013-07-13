@@ -63,14 +63,8 @@ public:
     void Set(const wxString& key, const wxString& value)
     {
         Data* setting = 0;
-        for (auto& record: this->all())
-        {
-            if (record.SETTINGNAME == key)
-            {
-                setting = this->get(record.SETTINGID, this->db_);
-                break;
-            }
-        }
+        Data_Set items = this->find(this->db_, COL_SETTINGNAME, key);
+        if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
         if (setting)
         {
             setting->SETTINGVALUE = value;
