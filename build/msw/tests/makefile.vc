@@ -179,6 +179,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transaction.obj \
 	mmex_tests_transactionbill.obj \
 	mmex_tests_platfdep.obj \
+	mmex_tests_export.obj \
 	mmex_tests_qif_export.obj \
 	mmex_tests_qif_import.obj \
 	mmex_tests_univcsvdialog.obj \
@@ -856,6 +857,9 @@ mmex_tests_transactionbill.obj: ..\..\..\src\db\transactionbill.cpp
 
 mmex_tests_platfdep.obj: ..\..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\win\platfdep.cpp
+
+mmex_tests_export.obj: ..\..\..\src\import_export\export.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\export.cpp
 
 mmex_tests_qif_export.obj: ..\..\..\src\import_export\qif_export.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\qif_export.cpp

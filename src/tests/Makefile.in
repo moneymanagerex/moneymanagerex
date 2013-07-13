@@ -192,6 +192,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_transaction.o \
 	mmex_tests_transactionbill.o \
 	mmex_tests_platfdep.o \
+	mmex_tests_export.o \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
@@ -680,6 +681,9 @@ mmex_tests_transactionbill.o: $(srcdir)/../../src/db/transactionbill.cpp
 
 mmex_tests_platfdep.o: $(srcdir)/../../src/unix/platfdep.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/unix/platfdep.cpp
+
+mmex_tests_export.o: $(srcdir)/../../src/import_export/export.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/export.cpp
 
 mmex_tests_qif_export.o: $(srcdir)/../../src/import_export/qif_export.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/qif_export.cpp

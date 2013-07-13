@@ -2582,19 +2582,26 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
            wxCopyFile(mmIniOptions::instance().customTemplateDB_, fileName, true);
            m_db = mmDBWrapper::Open(fileName);
            password_ = password;
+            Model_Asset::instance(m_db.get());
+            Model_Stock::instance(m_db.get());
+            Model_Currency::instance().db_ = m_db.get();
+            Model_Budgetyear::instance().db_ = m_db.get();
+            Model_Infotable::instance().db_ = m_db.get();
+
            m_core.reset(new mmCoreDB(m_db));
-           Model_Asset::instance().db_ = m_db.get();
-           Model_Infotable::instance().db_ = m_db.get();
        }
        else
        {
            m_db = mmDBWrapper::Open(fileName, password);
            password_ = password;
+            Model_Asset::instance(m_db.get());
+            Model_Stock::instance(m_db.get());
+            Model_Currency::instance().db_ = m_db.get();
+            Model_Budgetyear::instance().db_ = m_db.get();
+            Model_Infotable::instance().db_ = m_db.get();
 
            openDataBase(fileName);
            m_core.reset(new mmCoreDB(m_db));
-           Model_Asset::instance().db_ = m_db.get();
-           Model_Infotable::instance().db_ = m_db.get();
 
            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this, m_core.get());
            wizard->CenterOnParent();

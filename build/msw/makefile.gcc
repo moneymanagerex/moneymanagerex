@@ -178,6 +178,7 @@ MMEX_OBJECTS =  \
 	mmex_transaction.o \
 	mmex_transactionbill.o \
 	mmex_platfdep.o \
+	mmex_export.o \
 	mmex_qif_export.o \
 	mmex_qif_import.o \
 	mmex_univcsvdialog.o \
@@ -751,6 +752,9 @@ mmex_transactionbill.o: ../../src/db/transactionbill.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_platfdep.o: ../../src/win/platfdep.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_export.o: ../../src/import_export/export.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_qif_export.o: ../../src/import_export/qif_export.cpp
