@@ -413,7 +413,8 @@ void mmQIFExportDialog::mmExportQIF()
         for (const auto &entry : transferTransactions)
         {
             mmExportTransaction header(core_, entry.first);
-            buffer << header.getAccountHeaderQIF();
+            if (qif_csv)
+                buffer << header.getAccountHeaderQIF();
             buffer << entry.second;
         }
     }

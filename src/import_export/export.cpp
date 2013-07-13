@@ -36,9 +36,9 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
     wxString buffer = "";
     int trans_id = transaction->transactionID();
     int account_id = transaction->accountID_;
+    wxString accountName = core_->accountList_.GetAccountName(account_id);
     wxString categ = transaction->fullCatStr_;
     wxString payee = transaction->payeeStr_;
-    wxString accountName = core_->accountList_.GetAccountName(transaction->accountID_);
     wxString transNum = transaction->transNum_;
     wxString notes = (transaction->notes_);
     notes.Replace("''", "'");
@@ -94,7 +94,8 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
     mmBankTransaction* &transaction = pBankTransaction_;
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
     wxString buffer = "";
-    wxString acctName = core_->accountList_.GetAccountName(transaction->accountID_);
+    int account_id = transaction->accountID_;
+    wxString accountName = core_->accountList_.GetAccountName(account_id);
     int trans_id = transaction->transactionID();
     wxString categ = transaction->fullCatStr_;
     wxString payee = transaction->payeeStr_;
@@ -105,7 +106,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
 
     if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
     {
-        categ = wxString::Format("[%s]", transaction->payeeStr_);
+        categ = wxString::Format("[%s]", from ? accountName : payee);
         payee = "";
         //Transaction number used to make transaction unique
         // to proper merge transfer records
@@ -129,7 +130,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
                 split_entry->categID_, split_entry->subCategID_);
 
             buffer << trans_id << delimit
-                << inQuotes(acctName, delimit) << delimit
+                << inQuotes(accountName, delimit) << delimit
                 << inQuotes(mmGetDateForDisplay(transaction->date_), delimit) << delimit
                 << inQuotes(payee, delimit) << delimit
                 << transaction->status_ << delimit
@@ -141,6 +142,20 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
                 << "\n";
         }
 
+    }
+    else
+    {
+        buffer << trans_id << delimit
+            << inQuotes(accountName, delimit) << delimit
+            << inQuotes(mmGetDateForDisplay(transaction->date_), delimit) << delimit
+            << inQuotes(payee, delimit) << delimit
+            << transaction->status_ << delimit
+            << transaction->transType_ << delimit
+            << inQuotes(categ, delimit) << delimit
+            << transaction->value(!from ? account_id : transaction->toAccountID_) << delimit
+            << "" << delimit
+            << inQuotes(notes, delimit)
+            << "\n";        
     }
     return buffer;
 
