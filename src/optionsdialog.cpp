@@ -893,8 +893,7 @@ void mmOptionsDialog::SaveNewSystemSettings()
 {
     // initialize database saves -------------------------------------------------------------
     
-    Model_Setting::instance().db_->Begin();
-    core_->db_.get()->Begin();
+    Model_Setting::instance().Begin();
 
     // Save all the details for all the panels
     SaveGeneralPanelSettings();
@@ -904,8 +903,7 @@ void mmOptionsDialog::SaveNewSystemSettings()
     SaveImportExportPanelSettings();
 
     // finalise database saves ---------------------------------------------------------------
-    core_->db_.get()->Commit();
-    Model_Setting::instance().db_->Commit();
+    Model_Setting::instance().Commit();
 }
 
 void mmOptionsDialog::SaveGeneralPanelSettings()

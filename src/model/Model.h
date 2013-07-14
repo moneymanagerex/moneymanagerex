@@ -36,6 +36,15 @@ public:
     virtual ~Model() {};
 
 public:
+    void Begin()
+    {
+        this->db_->Begin();
+    }
+    void Commit()
+    {
+        this->db_->Commit();
+    }
+public:
     wxSQLite3Database* db_;
 };
 #endif // 
