@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite C/C++ API Reference - List of Constants.</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt; - Mrad Chems Eddine" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="index.html">About</a></li>
+  <li id="nav-8"><a href="features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">unQLite C/C++ API Reference - List of Constants</font><small><small><b>.</b></small></small></h1>
+
+<div>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">This
+is a list of compile-time directives and numeric constants used by UnQLite and represented by #defines in the <span style="font-weight: bold; font-family: Courier New;">unqlite.h</span> header file. These
+constants are things such as numeric return parameters from various
+interfaces.</font></font><br>
+</p>
+<h1><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Result
+codes</b></font></font></h1>
+
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Most of the UnQLite <a href="c_api_func.html">public interfaces</a> return an integer result code from the set shown here
+in order to indicates success or failure. New error codes may be
+added in future versions of UnQLite.</font></font></p>
+<p style="font-weight: normal;"><br>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p style="margin-bottom: 0cm;"><font color="#008000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">/*
+Standard UnQLite return values */</span></span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_OK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       </font><font color="#008000">/* Successful result */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#008000"><font face="Courier New, monospace"><font size="2">/* Beginning of error codes */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_NOMEM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </font><font color="#008000">/* Out of memory */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_ABORT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </font><font color="#008000">/* Another thread have
+released this instance */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_IOERR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </font><font color="#008000">/* IO error */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_CORRUPT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </font><font color="#008000">/* Corrupt
+pointer */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_LOCKED&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </font><font color="#008000">/* Forbidden Operation
+*/</font><font color="#000000"> </font></font></font>
+</p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_BUSY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	 </font><font color="#008000">/* The database file is
+locked */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_DONE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	 </font><font color="#008000">/* Operation done */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_PERM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     </font><font color="#008000">/* Permission error */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_NOTIMPLEMENTED&nbsp;&nbsp; </font><font color="#008000">/* Method not implemented by the underlying Key/Value storage engine */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_NOTFOUND&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </font><font color="#008000">/* No such record */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_NOOP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      </font><font color="#008000">/* No such method */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_INVALID&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </font><font color="#008000">/* Invalid parameter */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_EOF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        </font><font color="#008000">/* End Of Input */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_UNKNOWN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </font><font color="#008000">/* Unknown
+configuration option */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_LIMIT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/* Database limit
+reached */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_EXISTS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   </font><font color="#008000">/* Records exists */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_EMPTY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    </font><font color="#008000">/* Empty record */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_COMPILE_ERR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/* Compilation error
+*/</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_VM_ERR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      </font><font color="#008000">/* Virtual machine
+error */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_FULL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        </font><font color="#008000">/* Full database (unlikely) */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_CANTOPEN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/* Unable to open
+the database file */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_READ_ONLY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/* Read only Key/Value storage engine */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">#define</font><font color="#000000">
+UNQLITE_LOCKERR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     </font><font color="#008000">/* Locking protocol
+error */</font></font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2"><b><br>
+</b></font></font></p>
+<p><font face="Courier New, monospace"><font size="2"><b>UNQLITE_OK</b></font></font><font face="Verdana, sans-serif"><font size="2">
+indicates successful result. Any other return value indicates failure
+and the caller should handle the error.  </font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">For
+a human-readable error message, the client can extract the database
+error log via </span></span></span></font></font></font><font color="#000000"><font face="Courier New"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;"><a href="c_api/unqlite_config.html">unqlite_config()</a> </span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">with a configuration verb set to </span></span></span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;"><b>UNQLITE_CONFIG_ERR_LOG</b></span></span></font></font></font><font color="#000000"><font face="Consolas, sans-serif"><font style="font-size: 9pt;" size="2"><span lang="en-US"><span style="font-style: normal;">.</span></span></font></font></font></p>
+<p><br>
+<font color="#000000"><font face="Consolas, sans-serif"><font style="font-size: 9pt;" size="2"><span lang="en-US"><span style="font-style: normal;"></span></span></font></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">The </span></font></font><font style="font-family: Courier New;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>UNQLITE_COMPILE_ERR</b></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+and </span></font></font><font style="font-family: Courier New;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>UNQLITE_VM_ERR</b></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+error codes are only returned by a call to one of the compile
+interfaces such as <a style="font-family: Courier New;" href="c_api/unqlite_compile.html">unqlite_compile()</a></span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+or <a style="font-family: Courier New;" href="c_api/unqlite_compile_file.html">unqlite_compile_file()</a>.</span></font></font></font></p>
+<p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+<p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"> </span></font></font><font style="font-family: Courier New;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>UNQLITE_COMPILE_ERR</b></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+is returned if a compile-time error i</span>s
+encountered during compilation of <span style="font-weight: normal;">the target <a href="jx9.html">Jx9</a>
+script. In which case, the caller must fix its erroneous Jx9 code and
+call the compile interface again. Note that the compile time error log can
+be extracted via <a style="font-family: Courier New;" href="c_api/unqlite_config.html">unqlite_config()</a>
+with a configuration verb set to </span></font></font><font style="font-family: Courier New; font-weight: bold;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">UNQLITE_CONFIG_JX9_ERR_LOG</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">.</span></font></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+
+
+<p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font><font style="font-family: Courier New;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>UNQLITE_VM_ERR</b></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+is returned if there is a problem related to the initialization of
+the UnQLite virtual machine (<a href="c_api_object.html#unqlite_vm">unqlite_vm</a>)
+after successful compilation of the target <a href="jx9.html">Jx9</a> script. This problem is generally due to a
+memory failure, but remember running out of memory is a very unlikely scenario on modern
+hardware even on modern embedded systems.</span></font></font></font></p>
+<p><br>
+<font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font></p>
+<p style="font-style: normal; font-weight: normal;" lang="en-US"><font style="font-family: Courier New;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><b>UNQLITE_READ_ONLY</b></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> is returned </span>if
+the underlying Key/Value storage engine only support read-only operations
+or the database was <a href="c_api/unqlite_open.html">opened</a> with read-only privileges.</font></font></font></p>
+
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+
+
+
+<p>
+</p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font style="font-family: Courier New;" color="#000000"><b>UNQLITE_BUSY</b></font><font color="#000000"><span style="font-weight: normal;"> is returned if </span></font></font></font><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><span lang="en-US"><span style="font-style: normal;">another thread or process have a reserved or exclusive lock on the
+database. In which case, the caller should wait until the lock holder
+relinquish it.</span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"> Many public
+interfaces return this error code such as: <a href="c_api/unqlite_kv_store.html"><font face="Courier New, monospace">unqlite_kv_store()</font></a>,
+<a href="c_api/unqlite_kv_append.html"><font face="Courier New, monospace">unqlite_kv_append()</font></a>,
+<a href="c_api/unqlite_kv_delete.html"><font face="Courier New, monospace">unqlite_kv_delete()</font></a>,
+<a href="c_api/unqlite_vm_exec.html"><font face="Courier New, monospace">unqlite_vm_exec()</font></a> and so
+forth.</font></font></font></p>
+
+<p><br>
+</p>
+<p><font style="font-weight: bold;" face="Courier New, monospace"><font size="2"><font color="#000000">UNQLITE_NOTIMPLEMENTED</font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> is returned if </span><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">the </span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;">underlying
+KV storage engine does not implement the target method. For example,
+the <span style="font-family: Courier New;">xAppend()</span> method for </span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><a href="c_api/unqlite_kv_append.html"><font face="Courier New, monospace">unqlite_kv_append()</font></a></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;">, <span style="font-family: Courier New;">xStore()</span> for </span></span></font></font></font><font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><a href="c_api/unqlite_kv_store.html"><font face="Courier New, monospace">unqlite_kv_store()</font></a></font></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;">, <span style="font-family: Courier New;">xDelete()</span>
+for </span></span></font></font></font><font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><a href="c_api/unqlite_kv_delete.html"><font face="Courier New, monospace">unqlite_kv_delete()</font></a> </font></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;">and so forth.</span></span></font></font></font></p>
+
+
+<br>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font style="font-family: Courier New;" color="#000000"><b>UNQLITE_NOMEM</b></font><font color="#000000"><span style="font-weight: normal;">
+is returned when UnQLite is running out of memory. Again, this is
+a unlikely scenario on modern hardware.</span></font></font></font></p>
+
+<br>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font style="font-family: Courier New;" color="#000000"><b>UNQLITE_ABORT</b></font><font color="#000000"><span style="font-weight: normal;">
+can be returned from the body of an installed <a href="c_api/unqlite_create_function.html">foreign
+function</a> to stop program execution and thus to mimic the Jx9 <a href="jx9_lang.html"><span style="font-style: italic;">die</span> construct</a>. This error code can also be returned from one of the
+<a href="c_api_func.html">public interfaces</a> if and only if the
+library was compiled with <span style="font-weight: bold;">threading support</span> and the given <a style="font-family: Courier New;" href="c_api_object.html#unqlite">unqlite</a>
+or <a style="font-family: Courier New;" href="c_api_object.html#unqlite_vm">unqlite_vm</a> pointer have been
+released by another thread. </span></font></font></font>
+</p>
+
+
+
+
+<h1><small><small style="font-family: Verdana;"><a name="compile_time"></a>Compile-Time options for
+The UnQLite Library</small><br>
+</small></h1>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">For
+most purposes, UnQLite can be built just fine using the default
+compilation options. However, if required, the compile-time options
+documented below can be used to omit UnQLite features (resulting in a
+smaller compiled library size) or to change the default values of
+some parameters. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Every
+effort has been made to ensure that the various combinations of
+compilation options work harmoniously and produce a working library. </font></font>
+</p>
+
+<h1><small><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><small><b>UNQLITE_ENABLE_THREADS</b></small></font></font></font></small></h1>
+
+<p style="margin-left: 1.25cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">This
+option controls whether or not code is included in UnQLite to enable it
+to operate safely in a multithreaded environment. The default is </span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>not</b></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">. All mutexing code is omitted and it is </span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>unsafe</b></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+to use UnQLite in a multithreaded program. When compiled with the </span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><span style="font-family: Courier New;">UNQLITE_ENABLE_THREADS</span>
+</b></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">directive
+enabled, UnQLite can be used in a </span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">multithreaded
+program and it is safe to share the same </span></font></font></font><a style="font-family: Courier New;" href="c_api_object.html#unqlite_vm"><font style="font-size: 10pt;" size="2">virtual
+machine</font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+and </span></font></font></font><a style="font-family: Courier New;" href="c_api_object.html#unqlite"><font style="font-size: 10pt;" size="2">database handle</font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+between two or more threads.</span></font></font></font></p>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">The
+value of </span></font></font><font style="font-family: Courier New;" color="#000000"><font style="font-size: 10pt;" size="2"><b>UNQLITE_ENABLE_THREADS</b></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+can be determined at run-time using the </span></font></font><a style="font-family: Courier New;" href="c_api/unqlite_lib.html"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">unqlite_lib_is_threadsafe()</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+interface.</span></font></font></p>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">When UnQLite has been compiled with threading support</span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"> then the threading mode can be altered at run-time using the </span></font></font><a style="font-family: Courier New;" href="c_api/unqlite_lib.html"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">unqlite_lib_config()</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+interface together with one of these verbs:</span></font></font></p>
+
+<ul style="margin-left: 40px;">
+<p style="margin-bottom: 0cm;"><a href="c_api/unqlite_lib.html#single_thrd"><font face="Verdana, sans-serif"><font style="font-size: 9pt;" size="2"><span style="font-weight: normal;">UNQLITE_LIB_CONFIG_THREAD_LEVEL_SINGLE</span></font></font></a></p><p style="margin-bottom: 0cm;"><a href="c_api/unqlite_lib.html#multi_thrd"><font face="Verdana, sans-serif"><font style="font-size: 9pt;" size="2"><span style="font-weight: normal;">UNQLITE_LIB_CONFIG_THREAD_LEVEL_MULTI</span></font></font></a></p>
+</ul>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Platforms </span></font></font><font color="#000000"><font face="Verdana, sans-serif"><b>others</b></font></font><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+than Windows and UNIX systems must install their own mutex subsystem
+via </span></font></font></font></font><a style="font-family: Courier New;" href="c_api/unqlite_lib.html"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">unqlite_lib_config()</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+with a configuration verb set to </span></font></font><font style="font-family: Courier New; font-weight: bold;" face="Verdana, sans-serif">UNQLITE_LIB_CONFIG_USER_MUTEX</font><font face="Verdana, sans-serif">.
+Otherwise the library is not threadsafe.</font></font></font></p>
+
+<p style="margin-left: 1.25cm;"> <font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Note
+that you must link UnQLite with the POSIX threads library under UNIX
+systems (i.e: <b>-lpthread</b>).</font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font></p>
+
+<font style="font-weight: bold;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Options
+To Omit/Enable Features</font></font>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The
+following options can be used to reduce the size of the compiled
+library by omitting optional features. This is probably only useful
+in embedded systems where space is especially tight, as even with all
+features included the UnQLite library is relatively small. Don't forget
+to tell your compiler to optimize for binary size! (the -Os option if
+using GCC). Telling your compiler to optimize for size usually has a
+much larger impact on library footprint than employing any of these
+compile-time options.</font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000"><font style="font-size: 10pt;" size="2"><b>JX9_DISABLE_BUILTIN_FUNC</b></font></font></p>
+
+<p style="margin-left: 2.5cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="jx9.html">Jx9</a> is shipped with more than 312 <a href="jx9_builtin.html">built-in functions</a> suitable for most purposes like string and INI processing, ZIP extracting, Base64
+encoding/decoding, JSON encoding/decoding and so forth.</font></font></font></p>
+<p style="margin-left: 2.5cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> If this directive is enabled, then all <a href="jx9_builtin.html">built-in
+Jx9 functions</a> are omitted from the build. Note that special functions such
+as <span style="font-family: Courier New;">db_create()</span>, <span style="font-family: Courier New;">db_store()</span>, <span style="font-family: Courier New;">db_fetch()</span>, etc. are not omitted
+from
+the build and are not affected by this directive.</font></font></font></p>
+<p style="margin-left: 2.5cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000"><font style="font-size: 10pt;" size="2"><b>JX9_ENABLE_MATH_FUNC</b></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">If
+this directive is enabled, built-in math functions such as
+</span><span style="font-weight: normal;"><span style="font-family: Courier New;">sqrt()</span>, <span style="font-family: Courier New;">abs()</span>,
+<span style="font-family: Courier New;">log()</span>, <span style="font-family: Courier New;">ceil()</span></span><span style="font-weight: normal;">, etc. are
+included in the </span><span style="font-weight: normal;">build. </span>Note
+that you may need to link UnQLite with the math library in same Linux/BSD
+flavor (i.e: <b>-lm</b>).</font></font></font></p>
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000"><font style="font-size: 10pt;" size="2"><b>JX9_DISABLE_DISK_IO</b></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm; font-weight: normal;">
+<font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif">If
+this directive is enabled, built-in VFS functions such as
+<span style="font-family: Courier New;">chdir()</span>, <span style="font-family: Courier New;">mkdir()</span>, <span style="font-family: Courier New;">chroot()</span>, <span style="font-family: Courier New;">unlink()</span>, <span style="font-family: Courier New;">sleep()</span>, etc. are omitted from the
+build.</font></font></font></font></p>
+<p style="margin-left: 2.5cm; margin-bottom: 0cm; font-weight: normal;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><br>
+</font></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000"><font style="font-size: 10pt;" size="2"><b>UNQLITE_ENABLE_JX9_HASH_IO</b></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">If
+this directive is enabled, built-in hash functions such as
+</span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><span style="font-family: Courier New;">md5()</span>, <span style="font-family: Courier New;">sha1()</span>,
+<span style="font-family: Courier New;">md5_file()</span>, <span style="font-family: Courier New;">crc32()</span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">, etc.
+are included in the build.</span></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><br>
+</p>
+<br>
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

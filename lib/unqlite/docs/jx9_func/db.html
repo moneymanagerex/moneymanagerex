@@ -1,0 +1,3451 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite - Jx9 Built-in Functions</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="../symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt; - Mrad Chems Eddine" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="../images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="../index.html">About</a></li>
+  <li id="nav-8"><a href="../features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="../intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="../c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="../downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="../licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="../faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="../support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">Jx9 Built-in Function - Database Storage &amp; Retrieval Functions.</font></h1>
+<hr style="width: 100%; height: 2px;">
+<div>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_exists"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_exists</span>(string $collection_name);</font></font></p>
+
+<p style="margin-bottom: 0cm; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font style="font-weight: bold; font-family: Courier New;" face="Verdana, sans-serif"><font size="2">collection_exists</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>db_exists()
+</b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">return
+True if the given collection exists in the underlying database. If
+the collection does not exists, you can create a new one via
+<a href="#db_create"><span style="font-family: Courier New;">db_create()</span></a>.</span></font></font></p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+<font face="Verdana, sans-serif"><font size="2"></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE if the collection exists. FALSE otherwise. </span></font></font></div>
+<p>
+</p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font></p>
+<br>
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 517px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;">$zCol
+= <span style="color: red;">'users'</span>; <span style="color: green;">/* Target collection name */</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Check if the
+collection 'users' exists */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+<span style="font-weight: bold;">db_exists</span>($zCol) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;    <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <span style="color: red;">"Collection users already created\n"</span>;</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">}<span style="color: blue;">else</span>{</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font face="Courier New, monospace"><font size="2">$rc =
+<a href="#db_create">db_create</a>($zCol);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error <a href="#db_errlog">db_errlog()</a></font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font face="Courier New, monospace"><font size="2"><span style="color: blue;">return</span>;</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <span style="color: red;">"Collection users successfully created\n"</span>;</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//Store some JSON
+now <a href="#db_store">db_store()</a> ...</font></font></p>
+
+<br>
+
+
+</div>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_create"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_create</span>(string $collection_name);</font></font></p>
+
+
+<p style="margin-bottom: 0cm; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font style="font-weight: bold; font-family: Courier New;" face="Verdana, sans-serif"><font size="2">collection_create</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_create()</span> </b>tries to create the
+given collection in the underlying database.</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the collection to be created.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE
+if the collection </span></font></font><font face="Verdana, sans-serif"><font size="2">was successfully
+created and stored</font></font>
+<font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> in the
+underlying database. FALSE otherwise. </span></font></font></div>
+
+<p>
+</p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font></p>
+
+<br>
+
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 517px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;">$zCol
+= <span style="color: red;">'users'</span>; <span style="color: green;">/* Target collection name */</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Check if the
+collection 'users' exists */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+<a href="#db_exists">db_exists</a>($zCol) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;    <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <span style="color: red;">"Collection users already created\n"</span>;</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">}<span style="color: blue;">else</span>{</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font face="Courier New, monospace"><font size="2">$rc =
+<span style="font-weight: bold;">db_create</span>($zCol);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error <a href="db.html#db_errlog">db_errlog()</a></font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font face="Courier New, monospace"><font size="2"><span style="color: blue;">return</span>;</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <span style="color: red;">"Collection users successfully created\n"</span>;</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//Store some JSON
+now <a href="db.html#db_store">db_store()</a> ...</font></font></p>
+
+<br>
+
+
+</div>
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_last_record_id"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int64 <span style="font-weight: bold;">db_last_record_id</span>(string $collection_name);</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_last_record_id()</span> </b>return </font></font><font face="Verdana, sans-serif"><font size="2">the unique ID (64-bit
+integer) of the last inserted record in the collection. You can extract the
+unique ID of a stored JSON object via the special <font face="Courier New, monospace">__id</font>
+field which is appended automatically to each object after successful
+return from <a href="#db_store"><font face="Courier New, monospace">db_store()</font></a>.</font></font></p>
+
+<p style="margin-left: 40px;">
+</p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Record ID (64-bit integer) is returned on success. FALSE otherwise. </span></font></font></div>
+
+
+<p>
+</p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+<hr style="width: 100%; height: 2px;"><br>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_current_record_id"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int64 <span style="font-weight: bold;">db_current_record_id</span>(string $collection_name);</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_current_record_id()</span> </b>return </font></font><font face="Verdana, sans-serif"><font size="2">the unique ID (64-bit
+integer) of the record pointed by the internal cursor. You can also extract the
+unique ID of a stored JSON object via the special <font face="Courier New, monospace">__id</font>
+field which is appended automatically to each object after successful
+return from <a href="#db_store"><font face="Courier New, monospace">db_store()</font></a>.</font></font></p>
+
+<p style="margin-left: 40px;">
+</p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Record ID (64-bit integer) is returned on success. FALSE otherwise. </span></font></font></div>
+
+
+
+<p>
+</p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+<hr style="width: 100%; height: 2px;"><br>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_reset_record_cursor"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_reset_record_cursor</span>(string $collection_name);</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_reset_record_cursor()</span> </b>reset </font></font><font face="Verdana, sans-serif"><font size="2">the internal record cursor so that a call to <a href="#db_fetch"><span style="font-family: Courier New;">db_fetch()</span></a> can re-start from the beginning.</font></font>
+</p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE on success. FALSE otherwise. </span></font></font></div>
+
+
+
+
+<p>
+</p>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_total_records"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int64 <span style="font-weight: bold;">db_total_records</span>(string $collection_name);</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_total_records()</span> </b>return <font face="Verdana, sans-serif">the
+total number of inserted records in the given collection.</font></font></font></div>
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Total number of records (64-bit integer) on success. FALSE otherwise. </span></font></font></div>
+
+
+
+
+
+<p>
+</p>
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_creation_date"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">string <span style="font-weight: bold;">db_creation_date</span>(string $collection_name);</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_creation_date()</span> </b>return <font face="Verdana, sans-serif">the creation date of the given collection.</font></font></font></div>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">String holding the creation date of the collection on success. FALSE otherwise. </span></font></font></div>
+
+
+
+
+
+
+<p>
+</p>
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_begin"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_begin</span>(void);</font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_begin()</span></b></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2">manually start
+a write-transaction on the specified database handle. If a
+write-transaction has already been opened, this function is a no-op.<br>
+</font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><i>Tip:</i>
+For maximum concurrency, it is preferable to let UnQLite start the
+transaction for you automatically. <br>
+</font></font></font></div>
+<br>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE on success. FALSE otherwise. </span></font></font></div>
+
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_commit"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_commit</span>(void);</font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_commit() </span></b></font></font><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">Commit
+all changes to the database and release the exclusive lock. In other words, make
+sure that all changes reaches the disk surface.<br>
+</span></span></span></font></font></font><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><i><span style="font-weight: normal;">Tip</span></i></span></font></font><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">:
+For maximum concurrency, it is recommended that you commit your
+transaction manually as soon as you have no more insertions.</span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2">&nbsp;
+</font></font></font></div>
+
+<br>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE on success. FALSE otherwise. </span></font></font></div>
+
+
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_rollback"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_rollback</span>(void);</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">If a write transaction is open, then all changes made within the 
+transaction are reverted and the current write-transaction </span></span></span></font></font></font><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">is closed</span></span></span></font></font></font><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;"> (Dropping all exclusive locks on the target database, deletion of the journal file, etc.).
+Otherwise this routine is a no-op.</span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2">
+</font></font></font></div>
+
+
+<br>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE on success. FALSE otherwise. </span></font></font></div>
+
+
+
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_drop_collection"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_drop_collection</span>(string $collection_name);</font></font></p>
+
+
+<p style="margin-bottom: 0cm; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font style="font-weight: bold; font-family: Courier New;" face="Verdana, sans-serif"><font size="2">collection_delete</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_drop_collection()</span> </b>remove a collection
+with all its records from the underlying database. </font></font></div>
+<p>
+</p>
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE when the given collection was succesfully removed from the database. FALSE otherwise.<br>
+ </span></font></font></div>
+
+<p>
+</p>
+
+
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_drop_record"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_drop_record</span>(string $collection_name, int64 $record_id);</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_drop_record()</span> </b>remove a </font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">stored record from the collection via its unique ID. </span></font></font><font face="Verdana, sans-serif"><font size="2">
+</font></font><font face="Verdana, sans-serif"><font size="2">You can
+extract the unique ID of a stored JSON object via the special </font></font><font face="Courier New, monospace"><font size="2">__id</font></font><font face="Verdana, sans-serif"><font size="2">
+field which is appended automatically to each object after successful
+return from </font></font><a href="db.html#db_store"><font face="Courier New, monospace"><font size="2">db_store()</font></font></a><font face="Verdana, sans-serif"><font size="2">.</font></font>
+</div>
+
+<p>
+</p>
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr><tr>
+      <td style="vertical-align: top;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$record_id</b></font></font></td>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Unique ID of the record to be deleted.</span></font></font></font></p>
+
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE
+is returned on success. FALSE otherwise. </span></font></font></div>
+
+
+<p>
+</p>
+
+
+
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_set_schema"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_set_schema</span>(string $collection_name, string $json_object_schema);</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_set_schema()</span> </b>set a database schema for the given collection</font></font><font face="Verdana, sans-serif"><font size="2">. A collection schema must a valid JSON object, otherwise this function return FALSE.</font></font>
+</div>
+
+
+<p>
+</p>
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr><tr>
+      <td style="vertical-align: top;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$json_object_schema</b></font></font></td>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Collection schema which must be a JSON object (<span style="font-style: italic;">See exmaple below</span>).</span></font></font></font></p>
+
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">TRUE
+is returned on success. FALSE otherwise (i.e. Not a JSON object). </span></font></font></div>
+
+
+
+<p>
+</p>
+<br>
+<font style="color: rgb(10, 50, 140);" face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font><br>
+<br>
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 517px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;">$zCol
+= <span style="color: red;">'users'</span>; <span style="color: green;">/* Target collection name */</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Check if the
+collection 'users' exists */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+<a href="db.html#db_exists">db_exists</a>($zCol) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;    <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <span style="color: red;">"Collection users already created\n"</span>;</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">}<span style="color: blue;">else</span>{</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font face="Courier New, monospace"><font size="2">$rc =
+<a href="#db_create">db_create</a>($zCol);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error <a href="db.html#db_errlog">db_errlog()</a></font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font face="Courier New, monospace"><font size="2"><span style="color: blue;">return</span>;</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <span style="color: red;">"Collection users successfully created\n"</span>;</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//Set a schema for our collection</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">$zSchema =&nbsp; {</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp;&nbsp; name : <span style="color: red;">'string'</span>,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp;&nbsp; age&nbsp; : <span style="color: red;">'integer'</span>,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp;&nbsp; addr : <span style="color: red;">'string'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">};</font></font></p>
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: bold;">db_set_schema</span>(<span style="color: red;">'users'</span>,$zSchema);<br>
+</font></font></p>
+
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//Store some JSON
+now <a href="db.html#db_store">db_store()</a> ...</font></font></p>
+
+<br>
+
+
+</div>
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_get_schema"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">object <span style="font-weight: bold;">db_get_schema</span>(string $collection_name);</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_get_schema() </span></b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">return
+the schema (JSON object) associated with the given collection. If no
+schema were associated within this collection, then NULL is returned
+instead.</span></font></font>
+</div>
+
+
+
+<p>
+</p>
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Collection
+schema (JSON object) is returned on success. NULL otherwise.</span></font></font></p>
+
+</div>
+
+
+
+
+<p>
+</p>
+
+<br>
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_version"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">string <span style="font-weight: bold;">db_version</span>(void);</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_version() </span></b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">return </span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">the current version of the UnQLite database engine.</span></font></font>
+</div>
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+<br>
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">UnQLite database engine version.<br>
+</span></font></font></p>
+
+
+</div>
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_sig"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">string <span style="font-weight: bold;">db_sig</span>(void);</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_sig() </span></b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">return </span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">the unique signature of the UnQLite database engine.</span></font></font>
+</div>
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<br>
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">UnQLite database engine unique signature.<br>
+</span></font></font></p>
+
+
+</div>
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_copyright"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">string <span style="font-weight: bold;">db_copyright</span>(void);</font></font></p>
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><br>
+<span style="color: rgb(10, 50, 140);">Alias</span><br>
+</b></font></font>
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;">db_credits</span></font></font></div>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_copyright() </span></b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">return </span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">the UnQLite copyright <a href="../licensing.html">notice</a>.</span></font></font>
+</div>
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+<br>
+
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">UnQLite copyright notice.<br>
+</span></font></font></p>
+
+
+</div>
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="db_errlog"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">string <span style="font-weight: bold;">db_errlog</span>(void);</font></font></p>
+<br>
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"></span></b></font></font>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;">db_errlog() </span></b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">return
+the database error log. </span></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">The
+database error log is stored in an internal buffer. When something
+goes wrong during a  <a href="#db_store"><span style="font-family: Courier New;">db_store()</span></a>, <a href="#db_create"><span style="font-family: Courier New;">db_create()</span></a>, <a href="#db_fetch"><span style="font-family: Courier New;">db_fetch()</span></a>, etc.,  a
+human-readable error message is generated to help clients diagnostic
+the problem.</span></span></span></font></font></font>
+<font face="Verdana, sans-serif"><font size="2"><b><span style="font-family: Courier New;"> </span></b></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"></span></font></font>
+</div>
+
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+<br>
+
+
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Database error log or the empty string. <br>
+</span></font></font></p>
+
+
+</div>
+
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="db_fetch_by_id"></a>Syntax</span></b></font></font>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">db_fetch_by_id</span>(string $collection_name,int64 $record_id);</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+
+</font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;">db_get_by_id</span></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140); margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;"><br>
+</span></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Fetch
+a record via its unique ID from the given collection. Note that </span></font></font><font face="Verdana, sans-serif"><font size="2">you
+can extract the unique ID of a stored JSON object via the special
+</font></font><font face="Courier New, monospace"><font size="2">__id</font></font><font face="Verdana, sans-serif"><font size="2">
+field which is appended automatically to each object after successful
+return from </font></font><a href="#db_store"><font face="Courier New, monospace"><font size="2">db_store()</font></font></a><font face="Verdana, sans-serif"><font size="2">.</font></font>
+</p>
+
+
+</div>
+
+
+
+<p>
+</p>
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr><tr>
+      <td style="vertical-align: top;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$record_id</b></font></font></td>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Unique record ID</span></font></font></font></p>
+
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Record value is returned on success. NULL otherwise. </span></font></font></div>
+
+
+
+
+<p>
+</p>
+
+<br>
+
+<font style="color: rgb(10, 50, 140);" face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font><br>
+
+<br>
+
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 621px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;"><span style="color: red;"></span><span style="color: green;"><br>
+</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Create
+the collection 'users'&nbsp; */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+!<a href="db.html#db_exists">db_exists</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">$rc =
+<a href="db.html#db_create">db_create</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font></p>
+
+
+<p>&nbsp; &nbsp;&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">print <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp;&nbsp; return</span>;</font></font></p>
+
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p><p style="color: green;"><font face="Courier New, monospace"><font size="2">//Our simple JSON object to be stored shortly.</font></font></p>
+
+<font face="Courier New, monospace"><font size="2">$doc = {<br>
+&nbsp;&nbsp; name : <span style="color: red;">'james'</span>,<br>
+&nbsp;&nbsp; age&nbsp; : 28,<br>
+&nbsp;&nbsp; mail : <span style="color: red;">'dude@example.com'</span>,<br>
+&nbsp;};<br>
+<span style="color: green;">//Perform the store operation in the collection users</span><br>
+$rc = <a href="#db_store">db_store</a>(<span style="color: red;">'users'</span>,$doc);<br>
+<span style="color: blue;">if</span>( !$rc ){<br>
+</font></font><font style="color: green;" face="Courier New, monospace"><font size="2">&nbsp; //Handle
+error</font></font>
+
+
+<p>&nbsp; &nbsp; <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp; return</span>;</font></font></p>
+
+}<br>
+<font style="color: green;" face="Courier New, monospace"><font size="2">/* Extract our record using its unique ID </font></font><font face="Courier New, monospace"><font size="2"><span style="color: green;">which is appended automatically by the engine.</span><br style="color: green;">
+<span style="color: green;">*/</span><br>
+<span style="color: blue;">print</span> <span style="font-weight: bold;">db_fetch_by_id</span>(<span style="color: red;">'users'</span>,$doc.__id);<br>
+<br>
+</font></font><font style="color: green;" face="Courier New, monospace"><font size="2">//Remove our object via its unique ID </font></font><br>
+<font face="Courier New, monospace"><font size="2"><a href="#db_drop_record">db_drop_record</a>(<span style="color: red;">'users'</span>,$doc.__id);<br>
+<br>
+</font></font>
+
+
+</div>
+
+<br>
+<hr style="width: 100%; height: 2px;">
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="db_fetch"></a>Syntax</span></b></font></font>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">db_fetch</span>(string $collection_name);</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;">db_get</span></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140); margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;"><br>
+</span></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2">Fetch the current
+record from the target collection and automatically advance the
+cursor to the next record in the collection.</font></font></p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Note that you can
+manually reset the internal record cursor using
+<a style="font-family: Courier New;" href="#db_reset_record_cursor">db_reset_record_cursor()</a>.</font></font></p>
+
+
+<p>
+</p>
+
+
+
+</div>
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Record value is returned on success. NULL otherwise (i.e. No more records to retrieve). </span></font></font></div>
+
+
+
+
+
+<p>
+</p>
+
+
+<br>
+
+
+<font style="color: rgb(10, 50, 140);" face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font><br>
+
+
+<br>
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 668px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;"><span style="color: red;"></span><span style="color: green;"><br>
+</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Create
+the collection 'users'&nbsp; */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+!<a href="db.html#db_exists">db_exists</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">$rc =
+<a href="db.html#db_create">db_create</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font></p>
+
+
+<p>&nbsp; &nbsp;&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">print <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp;&nbsp; return</span>;</font></font></p>
+
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p><p style="color: green;"><font face="Courier New, monospace"><font size="2">//Store some JSON objects in our collection<br>
+</font></font></p><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,{ name : <span style="color: red;">'james'</span>,&nbsp;&nbsp; age : 27, mail : <span style="color: red;">'dude@example.com'</span>&nbsp; } );<br>
+</font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,{ name : <span style="color: red;">'robert'</span>,&nbsp; age : 35, mail : <span style="color: red;">'rob@example.com'</span>&nbsp;&nbsp; } );<br>
+</font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,{ name : <span style="color: red;">'monji'</span>,&nbsp;&nbsp; age : 47, mail : <span style="color: red;">'monji@example.com'</span> } );<br>
+</font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,{ name : <span style="color: red;">'barzini'</span>, age : 52, mail : <span style="color: red;">'barz@mobster.com'</span>&nbsp; } );</font></font><br>
+<br>
+<font style="color: green;" face="Courier New, monospace"><font size="2">//Fetch our records one after one from the collection</font></font><br>
+<font face="Courier New, monospace"><font size="2"><br>
+<span style="color: green;">//<a href="#db_reset_record_cursor">db_reset_record_cursor()</a>;</span><br>
+<br>
+<span style="color: blue;">while</span>( ($rec = <span style="font-weight: bold;">db_fetch</span>(<span style="color: red;">'users'</span>)) != NULL ){<br>
+&nbsp;  <span style="color: blue;">print</span> $rec;<br>
+}<br>
+</font></font>
+
+
+</div>
+
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="db_fetch_all"></a>Syntax</span></b></font></font>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">array <span style="font-weight: bold;">db_fetch_all</span>(string $collection_name,callback $filter_callback);</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+
+</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;">db_get_all</span></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140); margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;"><br>
+</span></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+
+<p>
+</p>
+<p>
+</p>
+<p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">Retrieve
+all records from a given collection and apply the filter callback if
+available.</span></span></span></font></font></font></p>
+
+
+
+
+<p>
+</p>
+
+
+
+</div>
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr><tr>
+      <td style="vertical-align: top; font-weight: bold;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$filter_callback</font></font></td>
+      <td style="vertical-align: top;">
+      <p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><i><span style="font-weight: normal;">Optional</span></i></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">:
+Filter callback to apply to the retrieved records. The callback must
+accept one argument which is the current retrieved record passed
+verbatim by the engine to the callback.</span></span></span></font></font></font></p>
+
+      <p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">The
+callback must return a boolean result. TRUE when the record
+correspond to the callback criteria. FALSE otherwise (</span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><i><span style="font-weight: normal;">See
+example below</span></i></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">).</span></span></span></font></font></font></p>
+
+      </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">JSON
+array holding the filtered records if any. NULL is returned on
+failure.</span></span></span></font></font></font></p>
+
+</div>
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+<br>
+
+
+
+<font style="color: rgb(10, 50, 140);" face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font><br>
+
+
+
+<br>
+
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 668px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;"><span style="color: red;"></span><span style="color: green;"><br>
+</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Create
+the collection 'users'&nbsp; */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+!<a href="db.html#db_exists">db_exists</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">$rc =
+<a href="db.html#db_create">db_create</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font></p>
+
+
+<p>&nbsp; &nbsp;&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">print <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp;&nbsp; return</span>;</font></font></p>
+
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//The following is the records to be stored shortly in our collection</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">$zRec = [</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">{</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'james'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; age&nbsp; : 27,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'dude@example.com'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">},</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">{</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'robert'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; age&nbsp; : 35,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'rob@example.com'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">},</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">{</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'monji'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font>
+</p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; age&nbsp; : 47,</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'monji@example.com'</span></font></font></p>
+
+},<br>
+{<br>
+&nbsp;<font face="Courier New, monospace"><font size="2"> name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'barzini'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font>
+<p><font face="Courier New, monospace"><font size="2">&nbsp; age&nbsp; : 52,</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'barz@mobster.com'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">];<br>
+</font></font></p>
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//Store our records<br>
+</font></font></p><font face="Courier New, monospace"><font size="2">$rc = </font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,$zRec<span style="color: red;"></span>);<br>
+<span style="color: blue;">if</span>( !$rc ){<br>
+&nbsp;</font></font><font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font>
+
+
+<p>&nbsp; &nbsp; <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp; return</span>;</font></font></p>
+<font face="Courier New, monospace"><font size="2">}</font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store"></a></font></font><font face="Courier New, monospace"><font size="2"><br>
+<span style="color: green;">//Create our filter callback</span><br>
+$zCallback = <span style="color: blue;">function</span>($rec){<br>
+&nbsp;&nbsp;&nbsp; <span style="color: green;">//Allow only users &gt;= 30 years old.</span><br>
+&nbsp;&nbsp;&nbsp; <span style="color: blue;">if</span>( $rec.age &lt; 30 ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: green;">// Discard this record</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: blue;">return</span> FALSE;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; <span style="color: green;">//Record correspond to our criteria</span><br>
+&nbsp;&nbsp;&nbsp; <span style="color: blue;">return</span> TRUE;<br>
+&nbsp;}; </font></font><font face="Courier New, monospace"><font size="2"><span style="color: green;">//Don't forget the semi-colon here</span></font></font><br>
+<br>
+<font face="Courier New, monospace"><font size="2"><span style="color: green;">//Retrieve collection records and apply our filter callback</span><br>
+$data = <span style="font-weight: bold;">db_fetch_all</span>(<span style="color: red;">'users'</span>,$zCallback); <br>
+<br>
+<span style="color: blue;">print</span> $data; <span style="color: green;">//JSON array holding the filtered records</span><br>
+<span style="color: green;"></span><br>
+</font></font>
+
+
+</div>
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="db_store"></a>Syntax</span></b></font></font>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">db_store</span>(string $collection_name,$record,...);</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+
+</font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;">db_put</span></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140); margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;"><br>
+</span></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">Store
+one or more JSON values (i.e. Objects, Arrays, Strings, etc.) in the
+given collection. The stored value is called </span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><i><span style="font-weight: normal;">collection
+record.</span></i></span></font></font></font></p>
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"><a href="db.html#db_create"><span style="font-family: Courier New;"></span></a><br>
+</span></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<table id="table_code" style="text-align: left; margin-left: 40px; width: 883px;" border="1" cellpadding="2" cellspacing="2">
+
+
+
+
+
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 158px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><b>$collection_name</b></font></font></td>
+      <td style="vertical-align: top; width: 667px;"><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Name of the target collection.<br>
+</span></font></font></td>
+    </tr><tr>
+      <td style="vertical-align: top; font-weight: bold;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$record</font></font></td>
+      <td style="vertical-align: top;"><p>
+</p>
+      <p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-weight: normal;">One
+or more JSON values to be stored in the target collection</span><span style="font-style: normal;"><span style="font-weight: normal;"> (</span></span></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><i><span style="font-weight: normal;">See
+example below</span></i></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">).</span></span></span></font></font></font></p>
+
+
+      </td>
+    </tr>
+
+
+  </tbody>
+</table>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><br>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">TRUE
+is returned on successful insertion. FALSE otherwise. </span></span></span></font></font></font>
+</p>
+
+
+
+</div>
+
+
+
+
+
+
+
+<p>
+</p>
+
+
+
+
+<br>
+
+
+
+
+<font style="color: rgb(10, 50, 140);" face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font><br>
+
+
+
+
+<br>
+
+
+<div style="text-align: left; font-family: Courier New; margin-left: 40px; width: 668px;" id="code">
+<p><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;"><span style="color: red;"></span><span style="color: green;"><br>
+</span></span></font></font></p>
+
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">/* Create
+the collection 'users'&nbsp; */</font></font></p>
+
+<p> <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>(
+!<a href="db.html#db_exists">db_exists</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">) ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;  <font style="color: green;" face="Courier New, monospace"><font size="2">/* Try to
+create it */</font></font></p>
+
+<p>&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">$rc =
+<a href="db.html#db_create">db_create</a>(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">);</font></font></p>
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span> ( !$rc ){</font></font></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;      <font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font></p>
+
+
+<p>&nbsp; &nbsp;&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">print <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp;&nbsp; return</span>;</font></font></p>
+
+
+<p>&nbsp;&nbsp;   <font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+
+
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//The following is the records to be stored shortly in our collection</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">$zRec = [</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">{</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'james'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; age&nbsp; : 27,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'dude@example.com'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">},</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">{</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'robert'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; age&nbsp; : 35,</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'rob@example.com'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">},</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">{</font></font></p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'monji'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font>
+</p>
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; age&nbsp; : 47,</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'monji@example.com'</span></font></font></p>
+
+},<br>
+{<br>
+&nbsp;<font face="Courier New, monospace"><font size="2"> name : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'barzini'</span></font></font><font face="Courier New, monospace"><font size="2">,</font></font>
+<p><font face="Courier New, monospace"><font size="2">&nbsp; age&nbsp; : 52,</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">&nbsp; mail : </font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'barz@mobster.com'</span></font></font></p>
+<p><font face="Courier New, monospace"><font size="2">}</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2">];<br>
+</font></font></p>
+<p style="color: green;"><font face="Courier New, monospace"><font size="2">//Store our records<br>
+</font></font></p><font face="Courier New, monospace"><font size="2">$rc = </font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,$zRec<span style="color: red;"></span>);<br>
+<span style="color: blue;">if</span>( !$rc ){<br>
+&nbsp;</font></font><font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font>
+
+
+<p>&nbsp; &nbsp; <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp; return</span>;</font></font></p>
+<font face="Courier New, monospace"><font size="2">}</font></font><font face="Courier New, monospace"><font size="2"><br>
+<span style="color: green;">//One more record</span><br></font></font><font face="Courier New, monospace"><font size="2">$rc = </font></font><font face="Courier New, monospace"><font size="2"><a href="db.html#db_store">db_store</a>(<span style="color: red;">'users'</span>,</font></font><font face="Courier New, monospace"><font size="2">{ name : <span style="color: red;">'alex'</span>, age : 19, mail : <span style="color: red;">'alex@example.com'</span>&nbsp; }</font></font><font face="Courier New, monospace"><font size="2">);</font></font><br>
+<font face="Courier New, monospace"><font size="2"><span style="color: blue;">if</span>( !$rc ){<br>
+&nbsp;</font></font><font style="color: green;" face="Courier New, monospace"><font size="2">//Handle
+error</font></font>
+
+
+<p>&nbsp; &nbsp; <font face="Courier New, monospace"><font size="2"><span style="color: blue;">print</span> <a href="db.html#db_errlog">db_errlog()</a>;<br>
+</font></font></p>
+
+
+<p><font face="Courier New, monospace"><font size="2"><span style="color: blue;">&nbsp; return</span>;</font></font></p>
+
+<font face="Courier New, monospace"><font size="2">}</font></font><font face="Courier New, monospace"><font size="2"><br>
+print <span style="color: red;">"Total number of stored records: "</span>,db_total_records(</font></font><font face="Courier New, monospace"><font size="2"><span style="color: red;">'users'</span></font></font><font face="Courier New, monospace"><font size="2">);<br></font></font><br>
+<font face="Courier New, monospace"><font size="2"><br>
+<span style="color: green;">//Fetch data using <a href="#db_fetch_all">db_fetch_all()</a>, <a href="#db_fetch_by_id">db_fetch_by_id()</a> and <a href="#db_fetch">db_fetch()</a>.</span><br>
+<span style="color: green;"></span><br>
+</font></font>
+
+
+</div>
+
+
+
+<br>
+<p>
+</p>
+
+
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="../images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

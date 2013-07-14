@@ -1,0 +1,6214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite - Jx9 Built-in Functions</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="../symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt; - Mrad Chems Eddine" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="../images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="../index.html">About</a></li>
+  <li id="nav-8"><a href="../features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="../intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="../c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="../downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="../licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="../faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="../support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">Jx9 Built-in Function - JSON Array &amp; Object Processing.</font></h1>
+<hr style="width: 100%; height: 2px;">
+<div>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="sizeof"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int
+<span style="font-weight: bold;">count</span>($obj);</font></font></p>
+
+<p style="margin-bottom: 0cm; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font style="font-weight: bold; font-family: Courier New;" face="Verdana, sans-serif"><font size="2">sizeof</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Counts
+all elements in an array, or total number of fields in an object.</font></font></p>
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">Returns the number of
+elements in </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><i>$obj</i></font></font></tt><font face="Verdana, sans-serif"><font size="2">.</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font><font face="Verdana, sans-serif"><font size="2">0 is
+returned on failure (i.e: scalar value).</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+count([10,11,12]); //3</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'chems', age : 27 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+count($obj); //2</font></font></p>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_key_exists"></a><span style="color: rgb(10, 50, 140);">Syntax</span><br>
+<br>
+</b></font></font>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">array_key_exists</span>($key,$obj);</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: bold;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="font-weight: normal; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_key_exists()
+</b></font><font face="Verdana, sans-serif"><font size="2">returns </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>TRUE</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+if the given </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><i>key</i></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+is a member of the target object.</font></font></font></font></p>
+<p style="font-weight: normal; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$key: Value to check <span style="font-style: italic;">(Any expression)</span>  .<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj: A JSON object.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>TRUE</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+on success (Key exists). </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>FALSE</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+otherwise. </font></font></font></font></div>
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Example</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+array_key_exists('name',$obj) ? 'Yes' : 'No' ; //Yes</font></font></p>
+
+<hr style="width: 100%; height: 2px;">
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_pop"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-style: italic;">value</span> <span style="font-weight: bold;">array_pop</span>($array);</font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_pop()</b></font><font face="Verdana, sans-serif"><font size="2">
+pops and returns the last value of the </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">,
+shortening the </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+by one element. If </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+is empty (or is not an array), </font></font><tt class="western"><font size="2"><b>NULL</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+will be returned. </font></font></font></font></div>
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$array: A JSON array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">Returns
+the last value of </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">.
+If </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+is empty (or is not an array), </font></font><tt class="western"><font size="2"><b>NULL</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+will be returned. </font></font></font></font></div>
+<p style="font-weight: normal;">
+</p>
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_push"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int <span style="font-weight: bold;">array_push</span>($array,$val,...);</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_push() </b></font></font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">treats
+</font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+as a stack, and pushes the passed variables onto the end of </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">.
+The length of </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+increases by the number of variables pushed. Has the same effect as: </font></font></font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2">$array[]
+= <span style="font-style: italic;">some_value</span>;</font></font></font>
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+</div>
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$array: A JSON array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$val: Pushed value (<span style="font-style: italic;">Any expression</span>).<br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<div style="margin-left: 40px;"><span style="font-family: Verdana;">&nbsp;</span><font style="font-family: Verdana;" face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2">Returns
+the </font></font></font><font style="font-family: Verdana;" face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2">new
+number of elements in the array</font></font></font><span style="font-family: Verdana;">.</span><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2"> </font></font></font></font></div>
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_shift"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: bold;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-style: italic; font-weight: normal;">value</span> array_shift($array);</font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_shift()</b></font><font face="Verdana, sans-serif"><font size="2"> s</font></font></font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">hifts
+the first value of the </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+off and returns it, shortening the </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+by one element and moving everything down. All numerical array keys
+will be modified to start counting from zero while literal keys won't
+be touched.</font></font></font></font>
+
+</div>
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$array: A JSON array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">Returns
+the </font></font></font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">the
+shifted value, or </font></font><tt class="western"><font size="2"><b>NULL</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+if </font></font><tt class="western"><font size="2"><i>array</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+is empty or is not an array</font></font></font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">. </font></font></font></font></div>
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_product"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int64/float <span style="font-weight: bold;">array_product</span>($array);</font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_product()</b></font><font face="Verdana, sans-serif"><font size="2"> </font></font></font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">returns
+the product of values in an array.</font></font></font></font>
+
+</div>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$array: A JSON array.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">Returns
+the </font></font></font></font><font face="Verdana, sans-serif"><font size="2">product
+as an integer or float</font></font>.</div>
+
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_sum"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">int64/float <span style="font-weight: bold;">array_sum</span>($array);</font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_sum()</b></font> </font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">returns
+the sum of values in an array.</font></font></font></font>
+
+</div>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$array: A JSON array.</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">Returns
+the sum</font></font></font></font><font face="Verdana, sans-serif"><font size="2">
+as an integer or float</font></font>.</div>
+
+<hr style="width: 100%; height: 2px;">
+<br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_values"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">array <span style="font-weight: bold;">array_values</span>($obj);</font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_values()</b></font> </font></font><font face="Verdana, sans-serif"><font size="2">return
+all the values from the </font></font><tt class="western"><font size="2"><i>input</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+array or object and indexes numerically the array.</font></font>
+
+
+</div>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">An i</font></font></font></font><font face="Verdana, sans-serif"><font size="2">ndexed
+array of values</font></font>.</div>
+<br>
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$arr
+= array_values($obj);</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+$arr; //JSON array: ['dean',27]</font></font></p>
+
+<br>
+<hr style="width: 100%; height: 2px;">
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_same"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">array_same</span>($obj1, $obj2);</font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font size="2"><b>array_values()</b></font> </font></font><font face="Verdana, sans-serif"><font size="2">return </font></font><font face="Verdana, sans-serif"><font size="2">TRUE if the given objects or arrays are the same instance. This is useful under <a href="../jx9_lang.html">Jx9</a> since JSON arrays and objects are passed by reference.<br>
+</font></font>
+
+
+</div>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj1: A JSON object or array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj2: A JSON object or a JSON array.</font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">True if the objects point to the same instance. False otherwise</font></font></font></font>.</div>
+
+<br>
+<hr style="width: 100%; height: 2px;"><br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_merge"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">object <span style="font-weight: bold;">array_merge</span>($obj1,$obj2,...);</font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Merges
+the elements of one or more arrays or object together so that the
+values of one are appended to the end of the previous one. It returns
+the resulting array or object.</font></font></p>
+
+
+
+
+</div>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj1: A JSON object or a JSON array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj2: A JSON object or a JSON array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">... Variable list of arrays or objects to merge.<br>
+</font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<div style="margin-left: 40px;">&nbsp;<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font size="2">Return the resulting array or object</font></font></font></font>.</div>
+
+<br>
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj1
+= { name: 'dean', age : 27 };</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj2
+= { address: '16 bla bla', phone : 55634257 };</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$res
+= array_merge($obj1,$obj2);</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+$res; // JSON object { </font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">name: 'dean', age : 27 , </font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">address: '16 bla bla', phone : 55634257 }<br>
+</font></font></p>
+<hr style="width: 100%; height: 2px;">
+<br>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><a name="array_diff"></a><span style="color: rgb(10, 50, 140);">Syntax</span></b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">array <span style="font-weight: bold;">array_diff</span>($obj1,$obj2,...);</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Compares
+<tt class="western"><i>obj1</i></tt> against <tt class="western"><i>obj2</i></tt>
+and returns the difference.</font></font></p>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj1: A JSON object or a JSON array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj2: A JSON object or a JSON array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">... Variable list of arrays or objects to compare against.<br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+<div style="margin-left: 40px;">
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Returns
+an array containing all the entries from </span></font></font><tt class="western"><font size="2"><i><span style="font-weight: normal;">obj1</span></i></font></tt><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">
+that are not present in any of the other objects. </span></font></font>
+</p>
+
+</div>
+
+
+<br>
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj1
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj2
+= { name : 'alex', age : 27, phone : 55634257 };</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$res
+= array_diff($obj1,$obj2);</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+$res; // JSON array [ </font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">'dean' , 97872916 ]</font></font></p>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="array_intersect"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">array <span style="font-weight: bold;">array_intersect</span>($obj1,$obj2,...);</font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b>array_intersect()</b>
+returns an array containing all the values of <tt class="western"><i>obj1</i></tt>
+that are present in all the arguments. Note that keys are preserved. </font></font>
+</p>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj1: A JSON object or a JSON array.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj2: A JSON object or a JSON array.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">... Variable list of arrays or objects to compare.<br>
+</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Returns
+an array containing all of the values in <tt class="western"><i>obj1</i></tt>
+whose values exist in all of the parameters.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+<br>
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj1
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj2
+= { name : 'alex', age : 27, phone : 55634257 };</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$res
+= array_intersect($obj1,$obj2);</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print
+$res; // JSON array [ </font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">27 ]</font></font></p>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="array_copy"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">object <span style="font-weight: bold;">array_copy</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Make a blind copy of the target object or array. </font></font>
+</p>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array to copy.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Copy of the target object or array on success. <span style="font-weight: bold;">NULL</span> otherwise.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;">
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"></span></b></font></font><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="array_erase"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">array_erase</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">Remove all elements from a given object or array. </font></font>
+</p>
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array to copy.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">TRUE on success. FALSE otherwise.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="key"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">key</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b>key()</b>
+returns the index element of the current object or array position.</font></font></p>
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">The
+<b>key()</b> function simply returns the key of the object or array
+element that's currently being pointed to by the internal pointer. It
+does not move the pointer in any way. If the internal pointer points
+beyond the end of the elements list or the array is empty, <b>key()</b>
+returns <tt class="western"><b>NULL</b></tt>. </font></font>
+</p>
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+<br>
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">while( $value = key($obj) ){</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print "$value\n";</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; //Point to the next entry</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; next($obj);<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Should output:<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//name</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//age</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//phone<br>
+</font></font></p>
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="current"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">current</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Alias</b></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140); margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+<div style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><span style="font-weight: bold;">pos<br>
+</span></font></font></div>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">Return
+the current element in an array or object. </span>Every object and
+array has an internal pointer to its "current" element,
+which is initialized to the first element inserted into the array. </font></font>
+</p>
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">The <b>current()</b>
+function simply returns the value of the array element that's
+currently being pointed to by the internal pointer. It does not move
+the pointer in any way. If the internal pointer points beyond the end
+of the elements list or the array is empty, <b>current()</b> returns
+<tt class="western"><b>FALSE</b></tt>. </font></font>
+</p>
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">while( $value = current($obj) ){</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print "$value\n";</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; //Point to the next entry</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; next($obj);<br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Should output:<br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//dean</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//27</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//97872916</font></font></p>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="each"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">object <span style="font-weight: bold;">each</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Return the current
+key and value pair from an object and advance the object cursor. After
+<b>each()</b> has executed, the object cursor will be left on the next
+element of the object, or past the last element if it hits the end of
+the object. You have to use reset() if you want to traverse the object
+again using each. </font></font>
+</p>
+
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns the current
+key and value pair from the object </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><i>obj</i></font></font></tt><font face="Verdana, sans-serif"><font size="2">.
+This pair is returned in a four-element object, with the keys </font></font><font face="Verdana, sans-serif"><font size="2"><i>0</i></font></font><font face="Verdana, sans-serif"><font size="2">,
+</font></font><font face="Verdana, sans-serif"><font size="2"><i>1</i></font></font><font face="Verdana, sans-serif"><font size="2">,
+</font></font><font face="Verdana, sans-serif"><font size="2"><i>key</i></font></font><font face="Verdana, sans-serif"><font size="2">,
+and </font></font><font face="Verdana, sans-serif"><font size="2"><i>value</i></font></font><font face="Verdana, sans-serif"><font size="2">.
+Elements </font></font><font face="Verdana, sans-serif"><font size="2"><i>0</i></font></font><font face="Verdana, sans-serif"><font size="2">
+and </font></font><font face="Verdana, sans-serif"><font size="2"><i>key</i></font></font><font face="Verdana, sans-serif"><font size="2">
+contain the key name of the object element, and </font></font><font face="Verdana, sans-serif"><font size="2"><i>1</i></font></font><font face="Verdana, sans-serif"><font size="2">
+and </font></font><font face="Verdana, sans-serif"><font size="2"><i>value</i></font></font><font face="Verdana, sans-serif"><font size="2">
+contain the data. If the internal pointer for the object points past
+the end of the object contents, </font></font><font face="Verdana, sans-serif"><font size="2"><b>each()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+returns </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>FALSE</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">.<br>
+ </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">while( $pair = each($obj) ){</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print $pair;</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print JX9_EOL;<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Should output:</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal; font-family: Courier New;">//{"1":"dean","value":"dean","2":"name","key":"name"}<br>
+
+
+//{"1":27,"value":27,"2":"age","key":"age"}<br>
+
+
+//{"1":97872916,"value":97872916,"2":"phone","key":"phone"}</p>
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="next"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">next</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p><font face="Verdana, sans-serif"><font size="2"><b>next() </b></font></font><font face="Verdana, sans-serif"><font size="2">behaves
+like current(), with one difference. It advances the internal object
+pointer one place forward before returning the element value.
+That means it returns the next object value and advances the internal
+object pointer by one. </font></font>
+</p>
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns the object
+value in the next place that's pointed to by the internal object
+pointer, or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+if there are no more elements. </font></font>
+</p>
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">while( $value = next($obj) ){</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print "$value\n";</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Should output:</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//27</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//97872916</font></font></p>
+<hr style="width: 100%; height: 2px;">
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="end"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">end</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2"><b>end()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+advances </font></font><tt class="western"><font size="2"><i>object</i></font></tt><font face="Verdana, sans-serif"><font size="2">'s
+internal pointer to the last element, and returns its value.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns the value of
+the last element or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+for an empty object.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print end($obj); //97872916<br>
+</font></font></p>
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="prev"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">prev</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2"><b>prev()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+behaves just like <a href="#next">next()</a>,
+except it rewinds the internal object pointer one place instead of
+advancing it. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns the object
+value in the previous place that's pointed to by the internal object
+pointer, or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+if there are no more elements. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">end($obj); //Point to the next entry<br>
+</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">while( $value = prev($obj) ){</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print "$value\n";</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Should output:</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//27</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//dean</font></font></p>
+
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="reset"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">value <span style="font-weight: bold;">reset</span>($obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2"><b>reset()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+rewinds </font></font><tt class="western"><font size="2"><i>object</i></font></tt><font face="Verdana, sans-serif"><font size="2">'s
+internal pointer to the first element and returns the value of the
+first object element. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns the value of
+the first object element, or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+if the object is empty.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print reset($obj); //dean<br>
+</font></font></p>
+<br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="array_map"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">object <span style="font-weight: bold;">array_map</span>($callback,$obj);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Applies the callback
+to the elements of the given object or array. </font></font><font face="Verdana, sans-serif"><font size="2"><b>array_map()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+returns an object containing all the elements of </font></font><font face="Verdana, sans-serif"><font size="2"><i>obj1</i></font></font><font face="Verdana, sans-serif"><font size="2">
+after applying the </font></font><tt class="western"><font size="2"><i>callback</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+function to each one. The number of parameters that the </font></font><tt class="western"><font size="2"><i>callback</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+function accepts should match the number of arrays passed to the
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>array_map()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+</font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Verdana, sans-serif"><font size="2">$callback: Callback function to
+run for each element in each array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns an array or
+object containing all the elements of obj after applying the </font></font><tt class="western"><font size="2"><i>callback</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+function to each one. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"></font></font></p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$arr
+= [ 12, 20, 60, rand() &amp; 1023 ];</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//A callback which return the given number multiplied by two<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$func = function($num){</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return $num * 2;</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}; //Don't forget the semi-colon<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Apply our callback</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print array_map($func,$arr); //[ 24, 40, 120, 440]<br>
+</font></font></p>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="array_walk"></a>Syntax</span></b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+
+
+
+
+
+
+</p>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">array_walk</span>($obj,</font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$callback,$userdata</font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Applies the
+user-defined function </font></font><tt class="western"><font face="Verdana, sans-serif"><font size="2"><i>($callback)</i></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+to each element of the given object or array. </font></font><font face="Verdana, sans-serif"><font size="2"><b>array_walk()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+is not affected by the internal object pointer. </font></font><font face="Verdana, sans-serif"><font size="2"><b>array_walk()</b></font></font><font face="Verdana, sans-serif"><font size="2">
+will walk through the entire object or array regardless of pointer
+position. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"><b></b></font></font><font face="Verdana, sans-serif"><font size="2">
+</font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b></b><br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$obj: A JSON object or a JSON array.</font></font></p>
+<p><font face="Verdana, sans-serif"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $callback: Callback function to
+run for each element in each array. Typically, </font></font><tt class="western"><font size="2"><i>callback</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+takes on two parameters. The object field value being the first, and
+the key/index second plus the optional userdata parameter.</font></font></p>
+<p><font face="Verdana, sans-serif"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $useredata: Optional user data passed as the third parameter to the callback.<br>
+ </font></font>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns </font></font><tt class="western"><font size="2"><b>TRUE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on success or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on failure.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$obj
+= { name: 'dean', age : 27, phone : 97872916 };</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//A callback which append a random string to the field value and output the result<br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$func = function($value,$key){</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $value .= rand_str(3); //Random string of length 3</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print "$value\n";<br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}; //Don't forget the semi-colon<br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Invoke our callback</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">array_walk($obj,</font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$func</font></font><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">);<br>
+</font></font></p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="sort"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">sort</span>($arr,[int $sort_type = SORT_REGULAR]);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">This function sorts
+an array. Elements will be arranged from lowest to highest when this
+function has completed. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2"><b></b></font></font><font face="Verdana, sans-serif"><font size="2">
+</font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$arr: The input array.</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$sort_type: Sorting type:</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+<p style="margin-left: 80px;"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>SORT_REGULAR</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+- compare items normally (don't change types, default) </font></font>
+</p>
+
+<p style="margin-left: 80px;"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>SORT_NUMERIC</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+- compare items numerically </font></font>
+</p>
+
+<div style="margin-left: 80px;"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>SORT_STRING</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+- compare items as strings </font></font></div>
+<p>
+</p>
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns </font></font><tt class="western"><font size="2"><b>TRUE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on success or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on failure.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$arr
+= [ 120, 70, 10-2, rand() &amp; 1023 ];</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">sort($arr);</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print $arr; //[8, 70, 120, 136]<br>
+</font></font></p>
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp;&nbsp;  <br>
+</font></font>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="rsort"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">rsort</span>($arr,[int $sort_type = SORT_REGULAR]);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Sort an array in reverse order. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2">
+</font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$arr: The input array.</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$sort_type: Sorting type:</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<p style="margin-left: 80px;"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>SORT_REGULAR</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+- compare items normally (don't change types, default) </font></font>
+</p>
+
+
+<p style="margin-left: 80px;"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>SORT_NUMERIC</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+- compare items numerically </font></font>
+</p>
+
+
+<div style="margin-left: 80px;"><tt class="western"><font face="Verdana, sans-serif"><font size="2"><b>SORT_STRING</b></font></font></tt><font face="Verdana, sans-serif"><font size="2">
+- compare items as strings </font></font></div>
+
+<p>
+</p>
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns </font></font><tt class="western"><font size="2"><b>TRUE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on success or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on failure.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$arr
+= [ 70, 190, 5 * 3, rand() &amp; 1023 ];</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">rsort($arr);</font></font></p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print $arr; //[877, 70, 190, 15]</font></font><br>
+<hr style="width: 100%; height: 2px;">
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="usort"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">usort</span>($arr,$callback);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Sort an array using an user supplied function as the comparison callback. </font></font>
+</p>
+
+<p><font face="Verdana, sans-serif"><font size="2">
+</font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2">$arr: The input array.</font></font></p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $callback: Comparison function. The comparison
+function must return an integer less than, equal to, or greater than
+zero if the first argument is considered to be respectively less
+than, equal to, or greater than the second. </font></font>
+</p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+<p>
+</p>
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns </font></font><tt class="western"><font size="2"><b>TRUE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on success or </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on failure.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$arr
+= [ 70, 190, 5 * 3, rand() &amp; 1023 ];</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">//Comparison function<br>
+</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$cmp = function($left,$right){</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp;&nbsp; return $left &gt; $right ? 1 : -1;</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}; //Don't forget the semi-colon<br>
+</font></font></p>
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">usort($arr,$cmp);</font></font></p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">print $arr; //[15 70, 101, 190]</font></font><br>
+<hr style="width: 100%; height: 2px;"><font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);"><a name="in_array"></a>Syntax</span></b></font></font>
+
+
+
+
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">bool <span style="font-weight: bold;">in_array</span>($needle,$obj,[bool strict = FALSE]);</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Description</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Searches </font></font><tt class="western"><font size="2"><i>haystack</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+for </font></font><tt class="western"><font size="2"><i>needle</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+using loose comparison unless </font></font><tt class="western"><font size="2"><i>strict</i></font></tt><font face="Verdana, sans-serif"><font size="2">
+is set.</font></font></p>
+
+<p>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2">
+</font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font><font face="Verdana, sans-serif"><font size="2"><b>
+</b></font></font>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Parameters</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $needle: The searched value.</font></font></p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; $arr: A JSON objet or a JSON array.<br>
+&nbsp;</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+
+<p>
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; color: rgb(10, 50, 140);"><font face="Verdana, sans-serif"><font size="2"><b>Return
+Values</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font size="2"><b><br>
+</b></font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="margin-left: 40px;">
+<p>
+</p>
+<p style="font-weight: normal;">
+</p>
+<p style="font-weight: normal;">
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p>
+</p>
+<p><font face="Verdana, sans-serif"><font size="2">Returns </font></font><tt class="western"><font size="2"><b>TRUE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+on success (Value found). </font></font><tt class="western"><font size="2"><b>FALSE</b></font></tt><font face="Verdana, sans-serif"><font size="2">
+otherwise.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"> </font></font>
+</p>
+
+
+<p style="font-weight: normal;">
+</p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;"> </span></font></font>
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+<font face="Verdana, sans-serif"><font size="2"><b><span style="color: rgb(10, 50, 140);">Example</span><br>
+</b></font></font>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Courier New, monospace"><font style="font-size: 11pt;" size="2"><br>
+</font></font></p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">$arr
+= [ 'Win', 'OS X', 'FreeBSD', 'Linux' ];</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">if( in_array('FreeBSD',$arr) ){</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">&nbsp; print 'Got FreeBSD';</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-weight: normal;"><font face="Courier New, monospace"><font style="font-size: 11pt;" size="2">}<br>
+</font></font></p>
+
+
+<br>
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="../images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

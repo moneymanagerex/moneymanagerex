@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite C/C++ API Reference - Transaction Manager</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems - Mrad Chems Eddine &lt;chm@symisc.net&gt;" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="../images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="../index.html">About</a></li>
+  <li id="nav-8"><a href="../features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="../intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="../c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="../downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="../licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="../faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="../support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">UnQLite</font><small><small><b> C/C++ API Reference - Transaction Manager</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+
+<div><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Syntax</b></font></font><br>
+<br>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;">
+</p>
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-family: Courier New;"><span style="color: blue;">int</span> <span style="font-weight: bold;">unqlite_begin</span>(</span><span style="font-family: Courier New;"><span style="color: blue;">unqlite</span> *pDb</span><span style="font-family: Courier New;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-family: Courier New;">);</span><br>
+</font></font></font></div>
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></span></font></font></font></p>
+<p style="margin-bottom: 0cm; margin-left: 40px;">
+</p>
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal; margin-left: 40px;" lang="en-US"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">Manually begin
+a write-transaction on the specified database handle.</font></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></span></font></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Description</b></font></font></p>
+<span style="font-weight: bold;"><br>
+</span>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font><a href="unqlite_compile.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"> </span></font></font></font></font>
+</p>
+<p style="margin-bottom: 0cm; margin-left: 40px;">
+</p>
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal; margin-left: 40px;" lang="en-US">
+<font color="#000000"><font face="Verdana, sans-serif"><font size="2">Begin
+a write-transaction on the specified database handle. If a
+write-transaction has already been opened, this function is a no-op.</font></font></font></p>
+
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal; margin-left: 40px;" lang="en-US">
+<font color="#000000"><font face="Verdana, sans-serif"><font size="2"><i>Tip:</i>
+For maximum concurrency, it is preferable to let UnQLite start the
+transaction for you automatically. An automatic transaction is
+started each time upper-layers or client code request a store, delete
+or an append operation.</font></font></font></p>
+
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal;" lang="en-US">
+</p>
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal;" lang="en-US"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"> </font></font></font>
+</p>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></font></font></font></p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Parameters</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<table style="width: 100%;" id="table_code" border="1" bordercolor="#000000" cellpadding="2" cellspacing="0"><tbody><tr valign="top"><td width="28%"><span style="font-weight: bold;"></span>
+      <div style="margin-left: 40px;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>pDb</b></font></font></font></div>
+</td>
+      <td width="72%">
+      <p> <font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">A pointer to a unQLite <a href="unqlite_open.html">Database Handle</a>.</font></font></p>
+      </td>
+    </tr>
+    
+    
+
+
+    
+  </tbody>
+</table>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Return
+value</b></font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+<b></b></font></font></p>
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b style="font-family: Courier New;">UNQLITE_OK</b>
+is returned on success. Any other return value indicates failure such as:</font></font></div>
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><span lang="en-US"><span style="font-style: normal;"><b></b></span></span></font></font></font></p><p style="font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><span lang="en-US"><span style="font-style: normal;"></span></span></font></font></font></p><p style="font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><span lang="en-US"><span style="font-style: normal;"><br>
+</span></span></font></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-family: Courier New;" color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><b>UNQLITE_READ_ONLY</b></span></span></font></font><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;">:
+Read-only database.</span></span></font></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><br>
+</span></span></font></font></font></p>
+<p style="font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><font style="font-family: Courier New;" color="#000000"><span lang="en-US"><span style="font-style: normal;"><b>UNQLITE_BUSY</b></span></span></font><font color="#000000"><span lang="en-US"><span style="font-style: normal;">:
+Another thread or process have an exclusive lock on the
+database. In this case, the caller should wait until the lock holder
+relinquish it.</span></span></font></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><b></b></span></span></font></font></font></p><p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><br>
+</p>
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-family: Courier New;" color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><b>UNQLITE_IOERR</b></span></span></font></font><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;">:
+OS specific error. </span></span></font></font></font><font style="font-family: Courier New;" face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"></span></span></font></font></font><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"></span></font></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><br>
+<font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"></span></span></font></font></font></p>
+
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-family: Courier New;" color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><b>UNQLITE_NOMEM</b></span></span></font></font><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;">:
+Out of memory (Unlikely scenario).</span></span></font></font></font></p>
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><br>
+<font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"></span></span></font></font></font></p>
+<p style="font-weight: normal; margin-left: 40px;"><font face="Verdana, sans-serif"><font size="2"><font style="font-family: Courier New;" color="#000000"><span lang="en-US"><span style="font-style: normal;"><b>UNQLITE_ABORT</b></span></span></font><font color="#000000"><span lang="en-US"><span style="font-style: normal;">: Another thread have released the database handle.</span></span></font></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm; font-weight: normal; margin-left: 40px;"><br>
+</p>
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font face="Verdana, sans-serif"><font color="#000000"><font size="2"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">For
+a human-readable error message, you can extract the database error
+log via <a style="font-family: Courier New;" href="unqlite_config.html">unqlite_config()</a> with a configuration verb set to
+</span></span></span></font></font><font style="font-weight: bold;" color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">UNQLITE_CONFIG_ERR_LOG</span></span></font></font></font><font color="#000000"><font face="Consolas, sans-serif"><font style="font-size: 9pt;" size="2"><span lang="en-US"><span style="font-style: normal;">.</span></span></font></font></font></font></p>
+
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b></b></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>
+</b></font></font>
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p><p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><br>
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: bold;"></span></font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font></font>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>See also<br>
+</b></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="http://unqlite.org/db/unqlite_func_intro.c"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;"><a href="unqlite_commit.html">unqlite_commit</a></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">, <a href="unqlite_rollback.html">unqlite_rollback</a>, <a href="unqlite_open.html">unqlite_open</a>, <a href="unqlite_close.html">unqlite_close</a>, <a href="unqlite_config.html">unqlite_config</a>.</span></font></font></font></div>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+
+
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="../images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

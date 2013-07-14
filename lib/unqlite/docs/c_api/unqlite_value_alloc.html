@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite C/C++ API Reference - On Demand Object Allocation</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt;" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="../images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="../index.html">About</a></li>
+  <li id="nav-8"><a href="../features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="../intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="../c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="../downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="../licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="../faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="../support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">UnQLite</font><small><small><b> C/C++ API Reference - On Demand Object Allocation</b></small></small><font><font><b><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>.</b></font></font></b></font></font></h1>
+
+<div><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Syntax</b></font></font><br>
+<br>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">unqlite_value</font><font color="#000000">
+* <span style="font-weight: bold;">unqlite_vm_new_scalar</span>(</font><font color="#0000ff">unqlite_vm</font><font color="#000000">
+*pVm);</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">unqlite_value</font>
+* <span style="font-weight: bold;">unqlite_vm_new_array</span>(<font color="#0000ff">unqlite_vm</font> *pVm);</font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">int</font><font color="#000000"> <span style="font-weight: bold;">unqlite_vm_release_value</span>(</font><font color="#0000ff">unqlite_vm</font><font color="#000000">
+*pVm,</font><font color="#0000ff">unqlite_value</font><font color="#000000">
+*pValue);</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#000000"><br>
+</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">unqlite_value</font><font color="#000000">
+* <span style="font-weight: bold;">unqlite_context_new_scalar</span>(</font><font color="#0000ff">unqlite_context</font><font color="#000000">
+*pCtx);</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">unqlite_value</font>
+* <span style="font-weight: bold;">unqlite_context_new_array</span>(<font color="#0000ff">unqlite_context</font>
+*pCtx);</font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">void</font><font color="#000000"> <span style="font-weight: bold;">unqlite_context_release_value</span>(</font><font color="#0000ff">unqlite_context</font><font color="#000000">
+*pCtx,</font><font color="#0000ff">unqlite_value</font><font color="#000000">
+*pValue);</font></font></p>
+
+
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Allocate UnQLite Object Values on Demand.<br>
+</font></font></p>
+
+
+
+<p style="margin-left: 0.2cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><br>
+</font></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Description</b></font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><br>
+</span></font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">These
+routine allocate </span></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value"><span style="font-weight: normal;">unqlite_value</span></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+on demand, they are used mostly by </span></font><a href="unqlite_create_function.html"><font face="Verdana, sans-serif"><span style="font-weight: normal;">foreign functions</span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;"> or <a href="unqlite_vm_config.html#vm_config_create_var">foreign variables</a> which work with JSON arrays and JSON objects.</span></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font style="font-family: Courier New;" face="Verdana, sans-serif"><b>unqlite_vm_new_scalar()</b></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+allocate a new scalar </span></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value"><span style="font-weight: normal;">unqlite_value</span></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+which is set to the null type by default. Use the following
+interfaces to populate the </span></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">object</span></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+with the desired value: <br>
+</span></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"><br>
+</span></font></font></font>
+</p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_int()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_int64()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_bool()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_null()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_double()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_string()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_string_format()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_resource()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><font face="Verdana, sans-serif"><b><br>
+</b></font></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font style="font-family: Courier New;" color="#000000"><b>unqlite_vm_new_array()</b></font><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+allocate a new </span></font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value">unqlite_value</a><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;"> of type array. The JSON array can be populated later
+using one of these interfaces </span></font></font><a style="font-family: Courier New;" href="unqlite_array_add_elem.html">unqlite_array_add_elem()</a><font face="Verdana, sans-serif"> or </font><a style="font-family: Courier New;" href="unqlite_array_add_elem.html">unqlite_array_add_strkey_elem()</a><font color="#000000"><font face="Verdana, sans-serif">. This interface is unified for JSON arrays as well JSON objects.<br>
+</font></font></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font></p><p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font style="font-family: Courier New;" face="Verdana, sans-serif"><b>unqlite_vm_release_value()</b></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+destroy a </span></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value"><span style="font-weight: normal;">unqlite_value</span></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+obtained by a prior call to </span></font><font color="#000000"><font face="Verdana, sans-serif">unqlite_vm_new_scalar()</font></font><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+or </span></font></font><font color="#000000"><font face="Verdana, sans-serif">unqlite_vm_new_array()</font></font><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">.&nbsp;</span></font></font><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-weight: normal;"><br>
+</span></font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><span style="font-weight: bold; font-family: Courier New;"> unqlite_vm_new_scalar()</span> and <span style="font-weight: bold; font-family: Courier New;">unqlite_vm_new_array()</span> takes as their first argument a pointer to a </span></font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_vm"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">unqlite_vm</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+instance. They are used mostly for the creation of foreign variables which are
+registered later via </span></font></font><a style="font-family: Courier New;" href="unqlite_vm_config.html"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">unqlite_vm_config()</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+with a configuration verb set to </span></font></font><a href="../../../jx9/website/c_api_func.html#jx9_vm_config"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font><a style="font-family: Courier New;" href="unqlite_vm_config.html#vm_config_create_var"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">UNQLITE_VM_CONFIG_CREATE_VAR</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">.</span></font></font></p>
+
+
+<p style="margin-left: 1.25cm;"><br>
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><span style="font-weight: bold; font-family: Courier New;"> unqlite_context_new_scalar()</span> and <span style="font-weight: bold; font-family: Courier New;">unqlite_context_new_array()</span> </span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">takes as their first argument a pointer to a </span></font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_context"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">unqlite_context</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">
+which mean that they are designed to be invoked only from a </span></font></font><a href="unqlite_create_function.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">foreign
+function</span></font></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">. </span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Note that calling <span style="font-weight: bold; font-family: Courier New;">unqlite_context_release_value()</span> is not necessary since the garbage collector
+subsystem will automatically destroy any allocated </span></font></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value"><font style="font-size: 10pt;" size="2">unqlite_value</font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+as soon the </span></font></font><font face="Verdana, sans-serif">foreign
+function</font><font color="#000000"><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+have finished its execution.</span></font></font></font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><span style="font-style: italic;">Tip</span>: if you want to return the allocated </span></font></font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value"><font style="font-size: 10pt;" size="2">unqlite_value</font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"> inside your foreign function, use </span></font></font></font><a style="font-family: Courier New;" href="unqlite_result_fill.html"><font style="font-size: 10pt;" size="2">unqlite_result_value()</font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;">.</span></font></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><br>
+</span></font></font></p>
+<p style="margin-left: 1.25cm;">
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Parameters</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+
+<table style="width: 100%;" id="table_code" border="1" bordercolor="#000000" cellpadding="2" cellspacing="0">
+
+  <colgroup><col width="73*"> <col width="183*"> </colgroup><tbody>
+    <tr valign="top">
+      <td width="28%">
+      <p style="margin-left: 1.25cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>pVm/pCtx</b></font></font></font></p>
+      </td>
+      <td width="72%">
+      
+      
+      <p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">A pointer to a <a href="../c_api_object.html#unqlite_vm">unQLite VM</a>/</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Foreign Function Call Context<a href="../c_api_object.html#unqlite_vm"></a>.</font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+      </font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"></font></font></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Return
+value</b></font></font></p>
+<p style="font-family: Courier New;"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></p>
+
+<p style="margin-left: 1.25cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">unqlite_context_new_scalar(), unqlite_context_new_array(), unqlite_vm_new_scalar()
+and unqlite_vm_new_array()</span><font face="Verdana, sans-serif"> </font><font face="Verdana, sans-serif">return
+a pointer to a freshly allocated </font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_value">unqlite_value</a><font face="Verdana, sans-serif">
+on success. Otherwise NULL is returned on failure (i.e: Out of
+memory).</font></font></font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Example</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="http://unqlite.org/db/unqlite_hostapp_info.c"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Compile this C file</span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+for a smart introduction to these </span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">interfaces</span></font></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">.</span></font></font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>See also<br>
+</b></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="http://unqlite.org/db/unqlite_func_intro.c"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;"><a href="unqlite_compile.html">unqlite_compile</a>, <a href="unqlite_vm_exec.html">unqlite_vm_exec</a></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">, <a href="unqlite_vm_config.html">unqlite_vm_config</a>.<br>
+</span></font></font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+
+
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="../images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

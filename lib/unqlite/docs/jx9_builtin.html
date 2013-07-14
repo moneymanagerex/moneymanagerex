@@ -1,0 +1,1137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite - Jx9 built-in functions &amp; constants</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt; - Mrad Chems Eddine" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="index.html">About</a></li>
+  <li id="nav-8"><a href="features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">List of Jx9 built-in functions &amp; constants.</font></h1>
+<div>
+<div style="text-align: right;">
+</div>
+<p style="text-align: right;" lang="en-US"><font face="Verdana, sans-serif"><font size="2"><img style="width: 170px; height: 70px;" alt="Symisc Jx9 Logo" title="Symisc Jx9" src="images/symisc-jx9.png"><br>
+</font></font></p>
+<p lang="en-US"><font face="Verdana, sans-serif"><font size="2">The
+following page enumerates all the built-in Jx9 functions and constants.
+As of this release, there is a total of <b>312 functions</b> and
+over <b>142 constants</b>.</font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US">A
+full API reference guide will be available shortly. Meanwhile, if you
+need a full description of a particular Jx9 function such as expected
+number of arguments, purpose, return value, side effect and so forth
+you can post one or more questions in the <a href="http://unqlite.org/forum">UnQLite
+forum</a> or the <a href="http://symisc.net/mailman/listinfo/unqlite-users_symisc.net">UnQLite
+users mailing list</a>.</span></font></font></p>
+<p style="margin-bottom: 0cm;"><br>
+</p>
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="2"><span lang="en-US">C/C++
+functions can be added easily using the <a href="func_intro.html">foreign
+function mechanism</a>. To get the full list of defined functions
+from your Jx9 script, simply call <span style="font-family: Courier New;">get_defined_functions()</span> which
+return a JSON array holding all installed functions.</span></font></font></p>
+<h1 style="font-family: Verdana;"><font><font><font><font style="font-size: 10pt;" size="2">Database Storage &amp; Retrieval
+Functions.</font></font></font></font></h1>
+<table id="table_code" style="text-align: left; margin-left: auto; margin-right: auto; font-family: Verdana; width: 1080px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="jx9_func/db.html#db_exists">db_exists</a><br>
+      </td>
+      <td style="vertical-align: top; width: 132px;"><a href="jx9_func/db.html#db_create">db_create</a><br>
+      </td>
+      <td style="vertical-align: top; width: 144px;"><a href="jx9_func/db.html#db_fetch">db_fetch</a><br>
+      </td>
+      <td style="vertical-align: top; width: 168px;"><a href="jx9_func/db.html#db_fetch_by_id">db_fetch_by_id</a><br>
+      </td>
+      <td style="vertical-align: top; width: 147px;"><a href="jx9_func/db.html#db_fetch_all">db_fetch_all</a><br>
+      </td>
+      <td style="vertical-align: top; width: 177px;"><a href="jx9_func/db.html#db_last_record_id">db_last_record_id</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="jx9_func/db.html#db_current_record_id">db_current_record_id</a><br>
+      </td>
+      <td style="vertical-align: top; width: 132px;"><a href="jx9_func/db.html#db_reset_record_cursor">db_reset_record_cursor</a><br>
+      </td>
+      <td style="vertical-align: top; width: 144px;"><a href="jx9_func/db.html#db_store">db_store</a><br>
+      </td>
+      <td style="vertical-align: top; width: 168px;"><a href="jx9_func/db.html#db_drop_collection">db_drop_collection</a><br>
+      </td>
+      <td style="vertical-align: top; width: 147px;"><a href="jx9_func/db.html#db_drop_record">db_drop_record</a><br>
+      </td>
+      <td style="vertical-align: top; width: 177px;"><a href="jx9_func/db.html#db_set_schema">db_set_schema</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="jx9_func/db.html#db_get_schema">db_get_schema</a><br>
+      </td>
+      <td style="vertical-align: top; width: 132px;"><a href="jx9_func/db.html#db_total_records">db_total_records</a>
+      </td>
+      <td style="vertical-align: top; width: 144px;"><a href="jx9_func/db.html#db_creation_date">db_creation_date</a>
+</td>
+      <td style="vertical-align: top; width: 168px;"><a href="jx9_func/db.html#db_begin">db_begin</a>
+      </td>
+      <td style="vertical-align: top; width: 147px;"><a href="jx9_func/db.html#db_commit">db_commit</a>
+      </td>
+      <td style="vertical-align: top; width: 177px;"><a href="jx9_func/db.html#db_rollback">db_rollback</a>
+      </td>
+    </tr><tr>
+      <td style="vertical-align: top;"><a href="jx9_func/db.html#db_version">db_version</a></td>
+      <td style="vertical-align: top;"><a href="jx9_func/db.html#db_copyright">db_copyright</a></td>
+      <td style="vertical-align: top;"><a href="jx9_func/db.html#db_sig">db_sig</a></td>
+      <td style="vertical-align: top;"><a href="jx9_func/db.html#db_errlog">db_errlog</a></td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+<br>
+<h1 style="font-family: Verdana;"><font><font style="font-size: 10pt;" size="2">JSON Arrays &amp; Objects Processing functions.<br>
+</font></font></h1>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="jx9_func/array.html#sizeof">sizeof</a><br>
+      </td>
+      <td style="vertical-align: top; width: 132px;"><a href="jx9_func/array.html#sizeof">count</a><br>
+      </td>
+      <td style="vertical-align: top; width: 144px;"><a href="jx9_func/array.html#array_key_exists">array_key_exists</a><br>
+      </td>
+      <td style="vertical-align: top; width: 168px;"><a href="jx9_func/array.html#array_pop">array_pop</a><br>
+      </td>
+      <td style="vertical-align: top; width: 147px;"><a href="jx9_func/array.html#array_push">array_push</a><br>
+      </td>
+      <td style="vertical-align: top; width: 146px;"><a href="jx9_func/array.html#array_shift">array_shift</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="jx9_func/array.html#array_product">array_product</a><br>
+      </td>
+      <td style="vertical-align: top; width: 132px;"><a href="jx9_func/array.html#array_sum">array_sum</a><br>
+      </td>
+      <td style="vertical-align: top; width: 144px;"><a href="jx9_func/array.html#array_values">array_values</a><br>
+      </td>
+      <td style="vertical-align: top; width: 168px;"><a href="jx9_func/array.html#array_same">array_same</a><br>
+      </td>
+      <td style="vertical-align: top; width: 147px;"><a href="jx9_func/array.html#array_merge">array_merge</a><br>
+      </td>
+      <td style="vertical-align: top; width: 146px;"><a href="jx9_func/array.html#array_diff">array_diff</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;"><a href="jx9_func/array.html#array_intersect">array_intersect</a><br>
+      </td>
+      <td style="vertical-align: top; width: 132px;"><a href="jx9_func/array.html#array_copy">array_copy</a><br>
+      </td>
+      <td style="vertical-align: top; width: 144px;"><a href="jx9_func/array.html#key">key</a></td>
+      <td style="vertical-align: top; width: 168px;"><a href="jx9_func/array.html#array_erase">array_erase</a><br>
+      </td>
+      <td style="vertical-align: top; width: 147px;"><a href="jx9_func/array.html#array_map">array_map</a><br>
+      </td>
+      <td style="vertical-align: top; width: 146px;"><a href="jx9_func/array.html#array_walk">array_walk</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#sort">sort</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#rsort">rsort</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#usort">usort</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#current">current</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#each">each</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#current">pos</a><br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#next">next</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#prev">prev</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#end">end</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#reset">reset</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#extract">extract</a><br>
+      </td>
+      <td style="vertical-align: top;"><a href="jx9_func/array.html#in_array">in_array</a></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h1 style="font-family: Verdana;"><font><font><font><font><font><font><font><font style="font-size: 10pt;" size="2">Variable Handling functions.</font></font></font></font></font></font></font></font></h1>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">is_bool<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">is_float<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">is_real<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">is_double<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">is_int<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">is_integer<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">is_long<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">is_string<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">is_null<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">is_numeric<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">is_scalar<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">is_array<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">is_object<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">is_resource<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">douleval</td>
+      <td style="vertical-align: top; width: 168px;">floatval<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">intval<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">strval<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">empty<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h1 style="font-family: Verdana;"><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font style="font-size: 10pt;" size="2">Special Virtual Machine functions.</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></h1>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">json_encode<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">json_decode<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">func_num_args<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">func_get_arg<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">func_get_args<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">function_exists<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">is_callable<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">get_defined_functions<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">defined<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">get_defined_constants<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">print<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">die<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">exit<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">gettype<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">get_resource_type</td>
+      <td style="vertical-align: top; width: 168px;">jx9_version<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">jx9_credits<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">jx9_info<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">jx9_copyright<br>
+      </td>
+      <td style="vertical-align: top;">getopt<br>
+      </td>
+      <td style="vertical-align: top;">utf8_encode<br>
+      </td>
+      <td style="vertical-align: top;">utf8_decode<br>
+      </td>
+      <td style="vertical-align: top;">include<br>
+      </td>
+      <td style="vertical-align: top;">import<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font><font><font style="font-size: 10pt;" size="2">Math functions.</font></font></font></font></h1>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">abs<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">sqrt<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">exp<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">floor<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">cos<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">sin<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">acos<br>
+      </td>
+      <td style="vertical-align: top;">asin<br>
+      </td>
+      <td style="vertical-align: top;">cosh<br>
+      </td>
+      <td style="vertical-align: top;">sinh<br>
+      </td>
+      <td style="vertical-align: top;">ceil<br>
+      </td>
+      <td style="vertical-align: top;">tan<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">tanh<br>
+      </td>
+      <td style="vertical-align: top;">atan<br>
+      </td>
+      <td style="vertical-align: top;">atan2<br>
+      </td>
+      <td style="vertical-align: top;">log<br>
+      </td>
+      <td style="vertical-align: top;">log10<br>
+      </td>
+      <td style="vertical-align: top;">pow<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">pi<br>
+      </td>
+      <td style="vertical-align: top;">fmod<br>
+      </td>
+      <td style="vertical-align: top;">hypot<br>
+      </td>
+      <td style="vertical-align: top;">round<br>
+      </td>
+      <td style="vertical-align: top;">dechex<br>
+      </td>
+      <td style="vertical-align: top;">decoct<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">decbin<br>
+      </td>
+      <td style="vertical-align: top;">hexdec<br>
+      </td>
+      <td style="vertical-align: top;">bindec<br>
+      </td>
+      <td style="vertical-align: top;">octdec<br>
+      </td>
+      <td style="vertical-align: top;">base_convert<br>
+      </td>
+      <td style="vertical-align: top;">min<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">max<br>
+      </td>
+      <td style="vertical-align: top;">rand<br>
+      </td>
+      <td style="vertical-align: top;">rand_str<br>
+      </td>
+      <td style="vertical-align: top;">getrandmax<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font><font><font><font><font><font><font style="font-size: 10pt;" size="2">String Processing functions.</font></font></font></font></font></font></font></font></h1>
+<br style="font-family: Verdana;">
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">substr<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">substr_compare<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">substr_count<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">chunk_split<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">htmlspecialchars<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">htmlspecialchars_decode<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">get_html_translation_table<br>
+      </td>
+      <td style="vertical-align: top;">htmlentities<br>
+      </td>
+      <td style="vertical-align: top;">html_entity_decode<br>
+      </td>
+      <td style="vertical-align: top;">strlen<br>
+      </td>
+      <td style="vertical-align: top;">strcmp<br>
+      </td>
+      <td style="vertical-align: top;">strcoll<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">strncmp<br>
+      </td>
+      <td style="vertical-align: top;">strcasecmp<br>
+      </td>
+      <td style="vertical-align: top;">strncasecmp<br>
+      </td>
+      <td style="vertical-align: top;">implode<br>
+      </td>
+      <td style="vertical-align: top;">join<br>
+      </td>
+      <td style="vertical-align: top;">implode_recursive<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">join_recursive<br>
+      </td>
+      <td style="vertical-align: top;">explode<br>
+      </td>
+      <td style="vertical-align: top;">trim<br>
+      </td>
+      <td style="vertical-align: top;">rtrim<br>
+      </td>
+      <td style="vertical-align: top;">chop<br>
+      </td>
+      <td style="vertical-align: top;">ltrim<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">strtolower<br>
+      </td>
+      <td style="vertical-align: top;">mb_strtolower<br>
+      </td>
+      <td style="vertical-align: top;">strtoupper<br>
+      </td>
+      <td style="vertical-align: top;">mb_strtoupper<br>
+      </td>
+      <td style="vertical-align: top;">ord<br>
+      </td>
+      <td style="vertical-align: top;">chr<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">bin2hex<br>
+      </td>
+      <td style="vertical-align: top;">strstr<br>
+      </td>
+      <td style="vertical-align: top;">stristr<br>
+      </td>
+      <td style="vertical-align: top;">strchr<br>
+      </td>
+      <td style="vertical-align: top;">strpos<br>
+      </td>
+      <td style="vertical-align: top;">stripos<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">strrpos<br>
+      </td>
+      <td style="vertical-align: top;">strripos<br>
+      </td>
+      <td style="vertical-align: top;">strrchr<br>
+      </td>
+      <td style="vertical-align: top;">strrev<br>
+      </td>
+      <td style="vertical-align: top;"> str_repeat<br>
+      </td>
+      <td style="vertical-align: top;">nl2br<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">sprintf<br>
+      </td>
+      <td style="vertical-align: top;">printf<br>
+      </td>
+      <td style="vertical-align: top;">vprintf<br>
+      </td>
+      <td style="vertical-align: top;">vsprintf<br>
+      </td>
+      <td style="vertical-align: top;">size_format<br>
+      </td>
+      <td style="vertical-align: top;">str_getcsv<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">strip_tags<br>
+      </td>
+      <td style="vertical-align: top;">str_split<br>
+      </td>
+      <td style="vertical-align: top;">strspn<br>
+      </td>
+      <td style="vertical-align: top;">strcspn<br>
+      </td>
+      <td style="vertical-align: top;">strpbrk<br>
+      </td>
+      <td style="vertical-align: top;">soundex<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">wordwrap<br>
+      </td>
+      <td style="vertical-align: top;">strtok<br>
+      </td>
+      <td style="vertical-align: top;">str_pad<br>
+      </td>
+      <td style="vertical-align: top;">str_replace<br>
+      </td>
+      <td style="vertical-align: top;">str_ireplace<br>
+      </td>
+      <td style="vertical-align: top;">strtr<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">parse_ini_string<br>
+      </td>
+      <td style="vertical-align: top;">ctype_alnum<br>
+      </td>
+      <td style="vertical-align: top;">ctype_alpha<br>
+      </td>
+      <td style="vertical-align: top;">ctype_cntrl<br>
+      </td>
+      <td style="vertical-align: top;">ctype_digit<br>
+      </td>
+      <td style="vertical-align: top;">ctype_xdigit<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ctype_graph<br>
+      </td>
+      <td style="vertical-align: top;">ctype_print<br>
+      </td>
+      <td style="vertical-align: top;">ctype_punct<br>
+      </td>
+      <td style="vertical-align: top;">ctype_space<br>
+      </td>
+      <td style="vertical-align: top;">ctype_lower<br>
+      </td>
+      <td style="vertical-align: top;">ctype_upper </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font style="font-size: 10pt;" size="2">Date/Time functions.</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></h1>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">time<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">microtime<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">getdate<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">gettimeofday<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">date<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">strftime<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">idate<br>
+      </td>
+      <td style="vertical-align: top;">gmdate<br>
+      </td>
+      <td style="vertical-align: top;">localtime<br>
+      </td>
+      <td style="vertical-align: top;">mktime<br>
+      </td>
+      <td style="vertical-align: top;">gmmktime<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font style="font-size: 10pt;" size="2">URI Handling Functions.</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></h1>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">convert_uuencode<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">convert_uudecode<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">urlencode<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">urldecode<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">rawurlencode<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">rawurldecode<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">idate<br>
+      </td>
+      <td style="vertical-align: top;">parse_url </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font><font><font style="font-size: 10pt;" size="2">Hashing Functions</font></font></font></font></h1>
+
+<table id="table_code" style="text-align: left; margin-left: auto; margin-right: auto; font-family: Verdana; width: 1078px;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">md5 <span style="font-style: italic;">(disabled)</span><br>
+      </td>
+      <td style="vertical-align: top; width: 172px;">sha1 <span style="font-style: italic;">(disabled)</span> </td>
+      <td style="vertical-align: top; width: 151px;">crc32 <span style="font-style: italic;">(disabled)</span> </td>
+      <td style="vertical-align: top; width: 142px;">base64_encode </td>
+      <td style="vertical-align: top; width: 147px;">base64_decode </td>
+      <td style="vertical-align: top; width: 195px;">md5_file <span style="font-style: italic;">(disabled)</span> </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">sha1_file <span style="font-style: italic;">(disabled)</span><span style="font-style: italic;"></span> </td>
+      <td style="vertical-align: top; width: 172px;"><br>
+      <span style="font-style: italic;"></span> </td>
+      <td style="vertical-align: top; width: 151px;"><br>
+      </td>
+      <td style="vertical-align: top; width: 142px;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top; width: 195px;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font><font style="font-size: 10pt;" size="2">System (OS) Functions.</font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></font></h1>
+<small><span style="font-family: Verdana;">These functions are wrapper
+around the underlying <a href="c_api_object.html#unqlite_vfs">Virtual
+File System VFS</a>.</span></small><br>
+<br>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">chdir<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">chroot<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">getcwd<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">rmdir<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">is_dir</td>
+      <td style="vertical-align: top; width: 146px;">mkdir<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rename<br>
+      </td>
+      <td style="vertical-align: top;">realpath<br>
+      </td>
+      <td style="vertical-align: top;">sleep<br>
+      </td>
+      <td style="vertical-align: top;">usleep<br>
+      </td>
+      <td style="vertical-align: top;">unlink<br>
+      </td>
+      <td style="vertical-align: top;">delete<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">chmod<br>
+      </td>
+      <td style="vertical-align: top;">chown<br>
+      </td>
+      <td style="vertical-align: top;">chgrp<br>
+      </td>
+      <td style="vertical-align: top;">disk_free_space<br>
+      </td>
+      <td style="vertical-align: top;">disk_total_space<br>
+      </td>
+      <td style="vertical-align: top;">file_exists<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">filesize<br>
+      </td>
+      <td style="vertical-align: top;">fileatime<br>
+      </td>
+      <td style="vertical-align: top;">filemtime<br>
+      </td>
+      <td style="vertical-align: top;">filectime<br>
+      </td>
+      <td style="vertical-align: top;">is_file<br>
+      </td>
+      <td style="vertical-align: top;">is_link<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">is_readable<br>
+      </td>
+      <td style="vertical-align: top;">is_writable<br>
+      </td>
+      <td style="vertical-align: top;">is_executable<br>
+      </td>
+      <td style="vertical-align: top;">filetype<br>
+      </td>
+      <td style="vertical-align: top;">stat<br>
+      </td>
+      <td style="vertical-align: top;">lstat<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">getenv<br>
+      </td>
+      <td style="vertical-align: top;">setenv<br>
+      </td>
+      <td style="vertical-align: top;">putenv<br>
+      </td>
+      <td style="vertical-align: top;">touch<br>
+      </td>
+      <td style="vertical-align: top;">link<br>
+      </td>
+      <td style="vertical-align: top;">symlink<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">umask<br>
+      </td>
+      <td style="vertical-align: top;">sys_get_temp_dir<br>
+      </td>
+      <td style="vertical-align: top;">get_current_user<br>
+      </td>
+      <td style="vertical-align: top;">getpid<br>
+      </td>
+      <td style="vertical-align: top;">getuid<br>
+      </td>
+      <td style="vertical-align: top;">getgid<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">uname<br>
+      </td>
+      <td style="vertical-align: top;">dirname<br>
+      </td>
+      <td style="vertical-align: top;">basename<br>
+      </td>
+      <td style="vertical-align: top;">pathinfo<br>
+      </td>
+      <td style="vertical-align: top;">strglob<br>
+      </td>
+      <td style="vertical-align: top;">fnmatch<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">tmpfile<br>
+      </td>
+      <td style="vertical-align: top;">scandir<br>
+      </td>
+      <td style="vertical-align: top;">glob<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br style="font-family: Verdana;">
+<span style="font-weight: bold;"></span>
+<h1><small style="font-family: Verdana;"><small>IO Stream Functions</small></small><br>
+</h1>
+<span style="font-weight: bold;"></span><small><span style="font-family: Verdana;">These functions are wrapper
+around the underlying <span style="font-style: italic;">IO Stream
+Device</span>.</span></small><br>
+<br>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto; font-family: Verdana;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">ftruncate<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">fseek<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">ftell<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">rewind<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">fflush<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">feof</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">fgetc<br>
+      </td>
+      <td style="vertical-align: top;">fgets<br>
+      </td>
+      <td style="vertical-align: top;">fread<br>
+      </td>
+      <td style="vertical-align: top;">fgetcsv<br>
+      </td>
+      <td style="vertical-align: top;">fgetss<br>
+      </td>
+      <td style="vertical-align: top;">readdir<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">rewinddir<br>
+      </td>
+      <td style="vertical-align: top;">closedir<br>
+      </td>
+      <td style="vertical-align: top;">opendir<br>
+      </td>
+      <td style="vertical-align: top;">readfile<br>
+      </td>
+      <td style="vertical-align: top;">file_get_contents<br>
+      </td>
+      <td style="vertical-align: top;">file_put_contents<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">file<br>
+      </td>
+      <td style="vertical-align: top;">copy<br>
+      </td>
+      <td style="vertical-align: top;">fstat<br>
+      </td>
+      <td style="vertical-align: top;">fwrite<br>
+      </td>
+      <td style="vertical-align: top;">fputs<br>
+      </td>
+      <td style="vertical-align: top;">flock<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">fclose<br>
+      </td>
+      <td style="vertical-align: top;">fopen<br>
+      </td>
+      <td style="vertical-align: top;">fpassthru<br>
+      </td>
+      <td style="vertical-align: top;">fputcsv<br>
+      </td>
+      <td style="vertical-align: top;">fprintf<br>
+      </td>
+      <td style="vertical-align: top;">parse_ini_file<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">vfprintf<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<h1 style="font-family: Verdana;"><font><font><font><font style="font-size: 10pt;" size="2">ZIP Processing</font></font></font></font></h1>
+
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px;">zip_open<br>
+      </td>
+      <td style="vertical-align: top; width: 132px;">zip_close<br>
+      </td>
+      <td style="vertical-align: top; width: 144px;">zip_read<br>
+      </td>
+      <td style="vertical-align: top; width: 168px;">zip_entry_open<br>
+      </td>
+      <td style="vertical-align: top; width: 147px;">zip_entry_close<br>
+      </td>
+      <td style="vertical-align: top; width: 146px;">zip_entry_name<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">zip_entry_filesize<br>
+      </td>
+      <td style="vertical-align: top;">zip_entry_compressedsize<br>
+      </td>
+      <td style="vertical-align: top;">zip_entry_read<br>
+      </td>
+      <td style="vertical-align: top;">zip_entry_reset_cursor<br>
+      </td>
+      <td style="vertical-align: top;">zip_entry_compressionmethod<br>
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h1 style="font-family: Verdana;"><font><font style="font-size: 10pt;" size="2"><a name="const"></a>Table of builtin constants.<br>
+</font></font></h1>
+<p style="margin-bottom: 0cm;" lang="en-US"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Host
+application constants can be added easily using the <a href="const_intro.html">foreign
+constant mechanism</a>. To get the full list of defined constants
+from your Jx9 script, simply call <span style="font-family: Courier New;">get_defined_constants()</span> which
+return a JSON array holding all installed constants.</font></font></p>
+<p style="margin-bottom: 0cm;" lang="en-US"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+<table id="table_code" style="text-align: left; width: 950px; margin-left: auto; margin-right: auto;" border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 161px; font-family: Verdana;"><small>JX9_VERSION<br>
+      </small></td>
+      <td style="vertical-align: top; width: 132px; font-family: Verdana;"><small>JX9_ENGINE<br>
+      </small></td>
+      <td style="vertical-align: top; width: 144px; font-family: Verdana;"><small>__JX9__<br>
+      </small></td>
+      <td style="vertical-align: top; width: 168px; font-family: Verdana;"><small>JX9_OS<br>
+      </small></td>
+      <td style="vertical-align: top; width: 147px; font-family: Verdana;"><small>__OS__<br>
+      </small></td>
+      <td style="vertical-align: top; width: 146px; font-family: Verdana;"><small>JX9_INT_MAX<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_EOL<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>MAXINT<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_INT_SIZE<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>PATH_SEPARATOR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>DIRECTORY_SEPARATOR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>DIR_SEP<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>__TIME__<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>__DATE__<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>__FILE__<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>__DIR__<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>COUNT_NORMAL<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>COUNT_RECURSIVE<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SORT_ASC<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SORT_DESC<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SORT_REGULAR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SORT_NUMERIC<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SORT_STRING<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_SCHEME<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_HOST<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_PORT<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_USER<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_PASS<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_PATH<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_QUERY<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_URL_FRAGMENT<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_QUERY_RFC1738<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>JX9_QUERY_RFC3986<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SEEK_SET<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SEEK_CUR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SEEK_END<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>LOCK_EX<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>LOCK_SH<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>LOCK_NB<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>LOCK_UN<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>STDIN<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>stdin<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>STDOUT<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>stdout<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>STDERR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>stderr<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SCANDIR_SORT_ASC<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SCANDIR_SORT_DESC<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>SCANDIR_SORT_NONE<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_MARK<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_NOSORT<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_NOCHECK<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_NOESCAPE<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_BRACE<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_ONLYDIR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>GLOB_ERR<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>FILE_USE_INCL_PATH<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>FILE_IGN_NL<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>FILE_SKIP_EL<br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small>FILE_APPEND<br>
+      </small></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: Verdana;"><small><span style="font-style: italic;">and many more...</span><br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small><br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small><br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small><br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small><br>
+      </small></td>
+      <td style="vertical-align: top; font-family: Verdana;"><small><br>
+      </small></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

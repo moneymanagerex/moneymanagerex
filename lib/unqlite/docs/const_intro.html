@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite - Introduction to the UnQLite Constant Expansion Mechanism</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt; - Mrad Chems Eddine" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="index.html">About</a></li>
+  <li id="nav-8"><a href="features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">Introduction to the unQLite </font><small><small><b>Constant Expansion Mechanism.</b></small></small></h1>
+
+<div>
+<p style="font-weight: normal;" align="left"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The
+following quick guide is what you do to start experimenting with the
+Jx9 (Via UnQLite) constant expansion mechanism without having to do a lot of
+tedious reading.</font></font></p>
+<p style="font-weight: normal;" align="left"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<p style="font-weight: normal;" align="left">
+</p>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">A
+constant is an identifier (name) for a simple value. As the name
+suggests, that value cannot change during the execution of the
+script. </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">A
+valid constant name starts with a letter or underscore, followed by
+any number of letters, numbers, or underscores. Constants name are
+case-sensitive. The
+constant expansion mechanism under UnQLite (Via <a href="jx9.html">Jx9</a>) is extremely powerful yet
+simple and work as follows:</font></font></p>
+
+<br>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">Each
+registered constant have a C procedure associated with it. This
+procedure is known as the constant expansion callback which is responsible of
+expanding the invoked constant to the desired value. For example the C
+procedure associated with the </span><span style="font-style: normal;"><b>“__PI__”</b></span><span style="font-style: normal;">
+constant expands to </span><span style="font-style: normal;"><b>3.14</b></span><span style="font-style: normal;">
+(the value of PI), the </span><span style="font-style: normal;"><b>“__OS__”
+</b></span><span style="font-style: normal;">constant expands to the
+name of the host Operating Systems (Windows, Linux, etc.) and so on.</span></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><br>
+</span></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;">Constants
+and their associated callbacks are registered via a single interface: <a style="font-family: Courier New;" href="c_api/unqlite_create_constant.html">unqlite_create_constant()</a>. All of the <a href="jx9_builtin.html#const">built-in constants</a> (over 142) such as <span style="font-weight: bold;">__JX9__</span>, <span style="font-weight: bold;">__DATE__</span>, <span style="font-weight: bold;">PATH_SEPARATOR</span> and so forth are registered using exactly this interface.<br>
+</span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;"><br>
+</span></font></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">We
+will start our tutorial by creating a simple constant named&nbsp;</span><span style="font-style: normal;"><b> __PI__</b></span><span style="font-style: normal;">. That is, when</span> the <b>__PI__ </b>identifier is seen in
+the <a href="c_api/unqlite_vm_exec.html">executed</a> Jx9 script, its associated procedure (see below for the implementation) gets called
+by the underlying Jx9 virtual machine. This procedure is responsible of expanding the <b>PI</b>&nbsp; identifier to it's value (3.14 in our case).</font></font></font></p>
+
+
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The constant expansion callback signature is as follows:</font></font></font></p>
+
+<p style="margin-bottom: 0cm;" align="center"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><font color="#0000ff"><br>
+</font></b></font></font></font></p>
+
+<p style="margin-bottom: 0cm; font-family: Courier New;" align="center"><font color="#000000"><font style="font-size: 10pt;" size="2"><b><font color="#0000ff">void</font><font color="#000000">
+(*xExpand)(</font><font color="#0000ff">unqlite_value</font><font color="#000000">
+*,</font><font color="#0000ff">void</font><font color="#000000"> *)</font></b></font></font></p>
+
+<p style="margin-bottom: 0cm;" align="center"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><font color="#000000"><br>
+</font></b></font></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif">That
+is, a procedure that takes two arguments.</font><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;">
+The first argument is a pointer to a <a style="font-family: Courier New;" href="c_api_object.html#unqlite_value">unqlite_value</a>
+that the procedure must fill with the desired value for example 3.14
+(value of PI) is stored in this pointer. Use the following interfaces
+to populate the object
+with the desired value:</span></span></font></font></font></font></p>
+<br>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_int()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_int64()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_bool()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_null()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_double()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_string()</font></a></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_string_format()</font></a></p>
+
+<p style="margin-left: 1.25cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><a href="c_api/unqlite_value_fill.html"><span style="font-style: normal;"><span style="font-weight: normal;">unqlite_value_resource()</span></span></a></font></p>
+
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal;">
+<font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><br>
+</font></font></font></font></p>
+
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif">The
+second and last argument is a copy of the fourth argument to the <a style="font-family: Courier New;" href="c_api/unqlite_create_constant.html">unqlite_create_constant()</a>
+function which is forwarded verbatim by engine.</font></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">Continuing
+with our </span><span style="font-style: normal;"><b>__PI__
+</b></span><span style="font-style: normal;">constant, here is the C
+procedure associated with it:</span></font></font></p>
+
+<p style="margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><br>
+</span></font></p>
+
+<div style="text-align: left; width: 699px; font-family: Courier New;" id="code">
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm; font-weight: normal;" lang="en-US">
+<font face="Courier New, monospace"><font size="2"><font color="#0000ff"><span style="font-style: normal;">void</span></font><font color="#000000">
+</font><font color="#000000"><span style="font-style: normal;"><b>PI_Constant</b></span></font><font color="#000000"><span style="font-style: normal;">(</span></font></font></font></p>
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm;" lang="en-US"><font color="#000000">&nbsp;
+&nbsp;&nbsp; </font><font style="color: blue;" face="Courier New, monospace"><font size="2">unqlite_value</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">
+</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;">*pValue,
+</span></font></font></font><font color="#008000"><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;">/*
+Store expanded value here */</span></font></font></font></p>
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm;" lang="en-US">&nbsp;
+&nbsp;&nbsp;&nbsp; <font face="Courier New, monospace"><font color="#0000ff"><font size="2"><span style="font-weight: normal;">void</span></font></font><font color="#000000"><font size="2"><span style="font-weight: normal;">
+*pUserData&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></font><font color="#008000"><font size="2"><span style="font-weight: normal;">/*
+User private data (unused in our case) */</span></font></font></font></p>
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm;" lang="en-US">&nbsp;
+<font face="Courier New, monospace"><font color="#000000"><font size="2"><span style="font-weight: normal;">){</span></font></font></font></p>
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm;" lang="en-US">&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font color="#008000"><font size="2"><span style="font-weight: normal;">/*
+Expand the value of PI */</span></font></font></font></p>
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm;" lang="en-US"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#000000"><font face="Courier New, monospace"><font size="2"><b>unqlite_value_double</b></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span style="font-weight: normal;">(pValue,3.1415926535898);</span></font></font></font></p>
+
+<p style="margin-left: 0.4cm; margin-bottom: 0cm; font-weight: normal;" lang="en-US">
+<font color="#000000"><font face="Courier New, monospace"><font size="2">}</font></font></font></p>
+
+</div>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;"><br>
+</span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;">As
+you can see, the PI_Constant() is a simple C procedure that expand
+the value of PI using the <a style="font-family: Courier New;" href="c_api/unqlite_value_fill.html">unqlite_value_double()</a>
+interface.</span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;"><br>
+</span></font></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">Another more
+complex constant is the </span><span style="font-style: normal;"><b>__TIME__</b></span><span style="font-style: normal;">
+constant which expands the current local time, here is </span><span style="font-style: normal;">the
+C procedure associated with it:</span></font></font></p>
+
+<br>
+
+<div style="width: 695px; font-family: Courier New;" id="code">
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff"><span style="font-style: normal;">#include</span></font><font color="#000000">
+</font><font color="#a31515"><span style="font-style: normal;">&lt;time.h&gt;</span></font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#0000ff"><font face="Courier New, monospace"><font size="2">void</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">
+</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><b>TIME_Constant</b></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">(</font></font></font><font style="color: blue;" face="Courier New, monospace"><font size="2"><b>unqlite</b></font></font><font style="color: blue;" face="Courier New, monospace"><font size="2"><b>_value</b></font></font><font color="#000000"><font face="Courier New, monospace">
+</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">*pValue,</font></font></font><font color="#0000ff"><font face="Courier New, monospace"><font size="2">void</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">
+*pUserData)</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+</font><font face="Courier New, monospace"><font color="#0000ff"><font size="2">struct</font></font><font color="#000000"><font size="2">
+tm *pLocal;</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">time_t tt;</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+</font><font face="Courier New, monospace"><font color="#008000"><font size="2">/*
+Get the current local time */</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">time(&amp;tt);</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">pLocal =
+localtime(&amp;tt);</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+</font><font face="Courier New, monospace"><font color="#008000"><font size="2">/*
+Expand the current time */</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;
+</font><font face="Courier New, monospace"><font color="#000000"><font size="2">unqlite</font></font><font size="2">_value_string_format</font><font color="#000000"><font size="2">(pValue,</font></font></font></p>
+
+<p style="margin-left: 2.7cm; margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#a31515"><b>"%02d:%02d:%02d"</b></font><font color="#000000">,</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">pLocal-&gt;tm_hour,</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">pLocal-&gt;tm_min,</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">pLocal-&gt;tm_sec</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font style="font-size: 9pt;" size="2">);</font></font></font></p>
+
+<p style="margin-left: 0.2cm; margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font style="font-size: 9pt;" size="2">}</font></font></font></p>
+
+</div>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><br>
+</span></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">We obtain the current local time using the libc localtime()
+routine, then we expand a printf() like formatted string holding the
+current time using the </span></font></font><a style="font-family: Courier New;" href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_string_format()</font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">
+interface.</span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><br>
+</span></font></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">A
+final example with the </span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__OS__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">
+constant which expands the name of the host Operating System.</span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><br>
+</span></font></font></font></p>
+
+<div style="width: 697px;" id="code">
+<p><font color="#0000ff"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">void</span></span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US">
+</span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;"><b>OS_Constant</b></span></span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">(<span style="color: blue;">unqlite</span></span></span></font></font></font><font style="color: blue;" face="Courier New, monospace"><font size="2"><span lang="en-US"><b>_value</b></span></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US">
+</span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">*pValue,</span></span></font></font></font><font color="#0000ff"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">void</span></span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US">
+</span></font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2"><span lang="en-US"><span style="font-style: normal;">*pUserData)</span></span></font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#0000ff">&nbsp; <font face="Courier New, monospace"><font size="2">#ifdef</font><font color="#000000">
+__WINNT__</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">unqlite</font></font></font><font face="Courier New, monospace"><font size="2">_value_string</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">(pValue,</font></font></font><font color="#a31515"><font face="Courier New, monospace"><font size="2">"Windows"</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">,-1
+</font></font></font><font color="#008000"><font face="Courier New, monospace"><font size="2">/*Compute
+input length automatically */</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#0000ff">&nbsp; <font face="Courier New, monospace"><font size="2">#else</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;
+</font><font face="Courier New, monospace"><font size="2"><font color="#008000">/*
+Assume UNIX */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;
+<font face="Courier New, monospace"><font size="2">unqlite</font></font></font><font face="Courier New, monospace"><font size="2">_value_string</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">(pValue,</font></font></font><font color="#a31515"><font face="Courier New, monospace"><font size="2">"UNIX"</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">,-1
+</font></font></font><font color="#008000"><font face="Courier New, monospace"><font size="2">/*Compute
+input length automatically */</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#0000ff">&nbsp; <font face="Courier New, monospace"><font size="2">#endif</font><font color="#000000">
+</font><font color="#008000">/* __WINNT__ */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><span style="font-style: normal;">}</span></font></font></font></p>
+
+</div>
+
+<h2 class="western">
+</h2>
+
+<p><font face="Verdana, sans-serif"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">We
+use&nbsp;</span></font></font></font><a href="../../jx9/website/c_api_func.html#Populating%20Dynamically%20Typed%20Value%20Object%7Coutline"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 9pt;" size="2"><span style="font-style: normal;"></span></font></font></font></a><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"></span></font></font></font></font><a style="font-family: Courier New;" href="c_api/unqlite_value_fill.html"><font style="font-size: 9pt;" size="2">unqlite_value_string()</font></a><font face="Verdana, sans-serif"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"> to expand the name of the host OS. Of
+course a more serious implementation would call uname() rather than
+using #ifdef macros.
+This is what the real built-in </span></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>JX9_OS</b></span></font></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">
+constant does.</span></font></font></font></font></p>
+
+<h1><small style="font-family: Verdana;"><small>Test The Constant Expansion Mechanism</small></small><br>
+</h1>
+
+<p><font face="Verdana, sans-serif"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">Now we
+have implemented our constants expansion procedures, it's time to test
+the expansion mechanism. For that we will create a simple
+<a href="jx9.html">Jx9</a> script that invokes each of the defined constants
+(</span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__PI__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">, </span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__TIME__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">
+and </span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__OS__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">)
+and displays their expanded values. Here is, the script:</span></font></font></font></p>
+
+<p><br>
+<font face="Verdana, sans-serif"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"></span></font></font></font></p>
+
+<div style="width: 699px;" id="code"><span style="font-style: normal;"></span><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#0000ff"> </font></font></font></font>
+<p><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff"><span lang="en-US"><span style="font-style: normal;">print</span></span></font><span lang="en-US"><span style="font-style: normal;">
+</span></span><font color="#ff0000"><span lang="en-US"><span style="font-style: normal;">'__PI__
+value: '</span></span></font><span lang="en-US"><span style="font-style: normal;">
+..</span></span><font color="#008000"><span lang="en-US"><span style="font-style: normal;">
+/* '</span></span></font><font color="#008000"><span lang="en-US"><span style="font-style: normal;"><b>..</b></span></span></font><font color="#008000"><span lang="en-US"><span style="font-style: normal;">'
+is the concatenation operator&nbsp; */</span></span></font><span lang="en-US"><span style="font-style: normal;">
+</span></span><span lang="en-US"><span style="font-style: normal;"><b>__PI__
+</b></span></span><span lang="en-US"><span style="font-style: normal;">..
+JX9_EOL;</span></span><font color="#0000ff"><span lang="en-US"><span style="font-style: normal;"><br>print</span></span></font><span lang="en-US"><span style="font-style: normal;">
+</span></span><font color="#ff0000"><span lang="en-US"><span style="font-style: normal;">'__TIME__
+value: ' </span></span></font><span lang="en-US"><span style="font-style: normal;">..
+</span></span><span lang="en-US"><span style="font-style: normal;"><b>__TIME__</b></span></span><span lang="en-US"><span style="font-style: normal;">
+.. JX9_EOL;</span></span><font color="#0000ff"><span lang="en-US"><span style="font-style: normal;"><br>print</span></span></font><span lang="en-US"><span style="font-style: normal;">
+</span></span><font color="#ff0000"><span lang="en-US"><span style="font-style: normal;">'__OS__
+value: '</span></span></font><span lang="en-US"><span style="font-style: normal;">
+.. </span></span><span lang="en-US"><span style="font-style: normal;"><b>__OS__</b></span></span><span lang="en-US"><span style="font-style: normal;">
+.. JX9_EOL; </span></span></font></font></font>
+</p>
+
+
+<font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"></span></font></font></font></div>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">When
+running, you should see something like that:</font></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">__PI__
+value: 3.1415926535898</font></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">__TIME__
+value: 15:02:27</font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">__OS__
+value: UNIX</font></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></font></p>
+
+<p><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">Now, the
+main program. Note that you can get a working version of this
+program </span></font></font></font><a href="http://unqlite.org/db/unqlite_const_intro.c"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">here</font></font></a></p>
+<p><a href="http://unqlite.org/db/unqlite_const_intro.c"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></a></p>
+
+<div style="text-align: left; margin-left: 68px; width: 550px;" id="code"><small style="font-family: Courier New;">
+<span style="color: blue;"></span></small><small style="font-family: Courier New;"><span style="color: blue;"><br>
+</span></small>
+<ol>
+  <li><small style="font-family: Courier New;"><span style="color: blue;">int</span> rc;</small></li>
+  <li><small style="font-family: Courier New;">
+<span style="color: blue;">unqlite</span> *pDb;</small></li>
+  <li><small style="font-family: Courier New;"><span style="color: blue;">
+unqlite_vm</span> *pVm;</small></li>
+  <li><small style="font-family: Courier New;"><br>
+    </small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">// Open our database;</span></small></li>
+  <li><small><span style="font-family: Courier New;">rc = <a href="c_api/unqlite_open.html">unqlite_open</a>(&amp;pDb,<span style="color: red;">"test.db"</span>,UNQLITE_OPEN_CREATE);</span></small></li>
+  <li><small><span style="font-family: Courier New;">
+<span style="color: blue;">if</span>( rc != UNQLITE_OK ){ <span style="color: blue;">return</span>; }</span></small></li>
+  <li><br>
+    <small style="font-family: Courier New;"><span style="color: green;"></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">// Compile our Jx9 program</span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;">rc = <a href="c_api/unqlite_compile.html"><span style="font-weight: bold;">unqlite_compile</span></a>(pDb,<span style="font-weight: bold;">JX9_PROG</span>,<span style="color: blue;">sizeof</span>(<span style="font-weight: bold;">JX9_PROG</span>)-1,&amp;pVm);</span></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><span style="color: blue;">if</span>( rc != UNQLITE_OK ){</span></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;">
+&nbsp;&nbsp; <span style="color: green;">/* Extract error log here */</span></span></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">
+&nbsp;&nbsp; </span><span style="color: blue;">const char</span> *zBuf;</small></li>
+  <li><small style="font-family: Courier New;">
+&nbsp;&nbsp; <span style="color: blue;">int</span> iLen;</small></li>
+  <li><small style="font-family: Courier New;">
+&nbsp;&nbsp; <a href="c_api/unqlite_config.html">unqlite_config</a>(pDb,<span style="font-weight: bold;">UNQLITE_CONFIG_JX9_ERR_LOG</span>,<span style="font-weight: bold;">&amp;zBuf</span>,<span style="font-weight: bold;">&amp;iLen</span>);</small></li>
+  <li><small style="font-family: Courier New;">
+&nbsp;&nbsp; <span style="color: blue;">if</span>( iLen &gt; 0 ){</small></li>
+  <li><small style="font-family: Courier New;">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puts(zBuf);</small></li>
+  <li><small style="font-family: Courier New;">
+&nbsp;&nbsp; }<span style="color: green;"></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">
+&nbsp;&nbsp; </span></small><small><span style="font-family: Courier New;"><span style="color: blue;">return</span>;</span></small></li>
+  <li><small><span style="font-family: Courier New;">
+&nbsp;}</span></small></li>
+  <li><br>
+
+
+    <p style="font-family: Courier New;"><font color="#008000"><font style="font-size: 9pt;" size="2"><span lang="en-US"><span style="font-style: normal;"></span></span></font></font></p>
+  </li>
+  <li>
+    <p style="font-family: Courier New;"><font color="#008000"><font style="font-size: 9pt;" size="2"><span lang="en-US"><span style="font-style: normal;">/*
+Now register our constants and their associated C procedure */</span></span></font></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">&nbsp;rc
+	= </font></font></font><a href="c_api/unqlite_create_constant.html"><font face="Courier New, monospace"><font size="2"><b>unqlite_create_constant</b></font></font></a><font color="#000000"><font face="Courier New, monospace"><font size="2">(pVm,</font></font></font><font color="#a31515"><font face="Courier New, monospace"><font size="2">"__PI__"</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">,PI_Constant,0);</font></font><br></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">
+&nbsp; </font><font color="#0000ff"><font face="Courier New, monospace"><font size="2">if</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">(
+	rc != </font></font></font><font face="Courier New, monospace"><font size="2">UNQLITE_OK</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">
+	){</font></font><br>
+</font><small><span style="font-family: Courier New;"><span style="color: blue;"></span></span></small></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><small><span style="font-family: Courier New;"><span style="color: blue;">&nbsp;&nbsp;&nbsp; return</span>;</span></small><br>
+
+    </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">}</font></font> <br></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">
+&nbsp; <font face="Courier New, monospace"><font size="2">rc
+	= </font></font></font><a href="c_api/unqlite_create_constant.html"><font face="Courier New, monospace"><font size="2"><b>unqlite_create_constant</b></font></font></a><font color="#000000"><font face="Courier New, monospace"><font size="2">(pVm,</font></font></font><font color="#a31515"><font face="Courier New, monospace"><font size="2">"__TIME__"</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">,TIME_Constant,0);</font></font><br></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">
+&nbsp; </font><font color="#0000ff"><font face="Courier New, monospace"><font size="2">if</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">(
+	rc != </font></font></font><font face="Courier New, monospace"><font size="2">UNQLITE_OK</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">
+	){</font></font></font>
+    </p>
+
+
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp;&nbsp; </font><small><span style="font-family: Courier New;"><span style="color: blue;">return</span>;</span></small><br>
+
+    </p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">&nbsp; <font face="Courier New, monospace"><font size="2">}</font></font><br></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">
+&nbsp; <font face="Courier New, monospace"><font size="2">rc
+	= </font></font></font><a href="c_api/unqlite_create_constant.html"><font face="Courier New, monospace"><font size="2"><b>unqlite_create_constant</b></font></font></a><font color="#000000"><font face="Courier New, monospace"><font size="2">(pVm,</font></font></font><font color="#a31515"><font face="Courier New, monospace"><font size="2">"__OS__"</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">,OS_Constant,0);</font></font><br></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">
+&nbsp; </font><font color="#0000ff"><font face="Courier New, monospace"><font size="2">if</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">(
+	rc != </font></font></font><font face="Courier New, monospace"><font size="2">UNQLITE_OK</font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">
+	){</font></font><br>
+<span style="font-family: Courier New;"></span></font></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000"><span style="font-family: Courier New;">&nbsp; </span></font><small><span style="font-family: Courier New;"><span style="color: blue;">return</span>;</span></small></p>
+  </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp; <font face="Courier New, monospace"><font size="2">}</font></font></font></p>
+  </li>
+  <li><br>
+    <small style="font-family: Courier New;"><span style="color: green;"></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">
+//Configure our VM...</span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><br>
+    </span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">// Execute our Jx9 program</span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;">rc = <a href="c_api/unqlite_vm_exec.html">unqlite_vm_exec</a>(pVm);</span></span></small></li>
+  <li><small><span style="font-family: Courier New;"><span style="color: blue;">if</span>( rc != UNQLITE_OK ){ <span style="color: blue;">return</span>; }</span></small></li>
+  <li><small><span style="font-family: Courier New;"><br>
+    </span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;">
+// Release our VM </span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><a href="c_api/unqlite_vm_release.html">unqlite_vm_release</a>(pVm);</span></span></small></li>
+  <li><br>
+    <small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><span style="color: green;"></span></span></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><span style="color: green;">//Auto-commit the transaction and close our handle</span></span></span></small></li>
+  <li><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><a href="c_api/unqlite_close.html">unqlite_close</a>(pDb);<span style="color: green;"></span></span></span></small></li>
+</ol>
+
+
+
+
+<small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;">
+</span></span></small><br>
+</div>
+
+<br>
+<p style="font-family: Verdana;"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">We open our target database</span></font></font><font style="font-size: 10pt;" size="2"> </font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">using a call to </span></font></font><a style="font-family: Courier New;" href="c_api/unqlite_open.html"><font style="font-size: 10pt;" size="2">unqlite_open()</font></a><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">
+on line 6. This is often the first UnQLite API call that an application
+makes and is a prerequisite in order to compile Jx9 code using one of
+the compile interfaces.</span></font></font></p>
+
+<p style="font-family: Verdana;"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><br>
+</span></font></font></p>
+
+
+
+<p style="font-family: Verdana;"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">We
+compile our <a href="jx9.html">Jx9</a> test program on line 10 using the </span></font></font><a style="font-family: Courier New;" href="c_api/unqlite_compile.html"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">unqlite_compile()</span></span></font></a><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>
+</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">interface.</span></span></font></font></p>
+
+
+<p style="font-family: Verdana;"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></font></font></p>
+
+<p style="font-family: Verdana;"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">We
+register our defined constants (</span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__PI__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">, </span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__TIME__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">
+and </span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>__OS__</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">)
+and their associated C procedures (</span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>PI_Constant()</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">, </span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>TIME_Constant()</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">
+and </span></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><b>OS_Constant()</b></span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"><span style="font-weight: normal;">)
+respectively on line 23, 27 and 31 using the </span></span></font></font><font style="font-size: 10pt;" size="2"><a style="font-family: Courier New;" href="c_api/unqlite_create_constant.html">unqlite_create_constant()</a>
+interface.</font></p>
+
+
+
+<p style="font-family: Verdana;"><font style="font-size: 10pt;" size="2"><br>
+</font></p>
+
+<p style="font-family: Verdana;"><font style="font-size: 10pt;" size="2"></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">And
+finally we execute our Jx9 program on line 39 using a call to <a style="font-family: Courier New;" href="c_api/unqlite_vm_exec.html">unqlite_vm_exec()</a></font></font><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.
+Your VM output should look like this:</font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">__PI__
+value: 3.1415926535898</font></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">__TIME__
+value: 15:02:27</font></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm;"><font color="#000000">
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">__OS__
+value: UNIX</font></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">We close our database handle on line 46 using the <font color="#000000"><span style="font-weight: normal;"></span></font><a style="font-family: Courier New;" href="c_api/unqlite_close.html">unqlite_close()</a> interface.</font></font></p>
+
+<h1 class="western"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">What
+to do next</font></font></h1>
+
+<p><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;">As
+you can see, the constant expansion mechanism under UnQLite is extremely
+powerful yet simple and it involves only a single call to </span></font><a style="font-family: Courier New;" href="c_api/unqlite_create_constant.html">unqlite_create_constant()</a><font color="#000000"><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;">.</span></span></font></font></font></p>
+
+<p><font style="font-size: 10pt;" size="2"><font color="#000000"><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;">The
+developer who understands this mechanism will have a good foundation on
+using the in-process extending UnQLite interfaces. Now it's time to
+learn the more complex </span></span></font></font><a href="c_api/unqlite_create_function.html"><font face="Verdana, sans-serif">foreign
+functions</font></a><font color="#000000"><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;"> mechanism.</span></span></font></font></font></p>
+
+<h1 class="western"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Other
+useful links</font></font></h1>
+
+<p style="font-weight: normal;" align="left"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Check
+out the <a href="api_intro.html">Introduction
+To The UnQLite C/C++ Interface</a> for an introductory overview and
+roadmap to the dozens of UnQLite interface functions.</font></font></p>
+
+
+
+
+<p style="font-weight: normal;" align="left"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">A
+separate document, <a href="c_api.html">The UnQLite C/C++ Interface</a>, provides detailed specifications for all of
+the various C/C++ APIs for UnQLite. Once the reader understands the basic
+principles of operation for UnQLite, <a href="c_api.html">that
+document</a> should be used as a reference guide.</font></font></p>
+
+
+
+
+
+<p style="font-weight: normal;" align="left"><font face="Verdana, sans-serif"><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">Any
+questions, </span></font></font><font color="#000000"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">visit the <a href="support.html">Support Page</a> for additional
+information.</span></font></font></font></p>
+
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

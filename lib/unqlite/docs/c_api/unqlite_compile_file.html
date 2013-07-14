@@ -1,0 +1,314 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite C/C++ API Reference - Jx9 Script Compile</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems - Mrad Chems Eddine &lt;chm@symisc.net&gt;" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="../images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="../index.html">About</a></li>
+  <li id="nav-8"><a href="../features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="../intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="../c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="../downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="../licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="../faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="../support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">UnQLite</font><small><small><b> C/C++ API Reference - </b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Jx9 Script Compile.</font></font></font></font></h1>
+
+
+
+<div><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Syntax</b></font></font><br>
+<br>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font style="font-size: 10pt;" size="2"><font color="#0000ff">int</font><font color="#000000"> <span style="font-weight: bold;">unqlite_compile</span>_file(</font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000">&nbsp;&nbsp;&nbsp; </font><font style="font-size: 10pt;" size="2"><font color="#0000ff">unqlite</font><font color="#000000">
+*pDb,</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000">&nbsp;&nbsp;&nbsp; </font><font style="font-size: 10pt;" size="2"><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zFile,</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000">&nbsp;&nbsp;&nbsp; </font><font style="font-size: 10pt;" size="2"><font color="#0000ff">unqlite_vm</font><font color="#000000">
+**ppOutVm</font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm; font-family: Courier New;"><font color="#000000"><font style="font-size: 10pt;" size="2">);</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><br>
+</font></font></font></p>
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Compile a <a href="../jx9.html">Jx9</a> script file to a bytecode program.</font></font></p>
+
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"></font></font></p>
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Description</b></font></font></p>
+<br>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">To
+execute Jx9 code, it must first be compiled into a bytecode program
+using one of the compile interfaces. </font></font>
+</p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">This
+routine takes </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">as input a <a href="../jx9.html">Jx9</a> file to compile and produce a bytecode program
+represented by an opaque pointer to the </font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_vm"><font style="font-size: 10pt;" size="2">unqlite_vm</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+structure.</font></font></font></font></p>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">This routine does not actually evaluate the Jx9 code. It merely prepares it for later execution.</font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif">On
+successful compilation, the compiled program is stored in the </font><font face="Verdana, sans-serif"><b>ppOutVm
+</b></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">pointer
+(Third parameter) and the program is ready for execution using </span></font><a style="font-family: Courier New;" href="unqlite_vm_exec.html"><span style="font-weight: normal;">unqlite_vm_exec()</span></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">.
+</span></font><font face="Verdana, sans-serif">When something goes
+wrong while compiling the Jx9 script due to a compile-time error, the
+caller must discard the </font><font face="Verdana, sans-serif"><b>ppOutVm
+</b></font><font face="Verdana, sans-serif">pointer and fix its
+erroneous Jx9 code. </font></font></font><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The compile-time error log can be extracted (See example below) using the </font></font><a style="font-family: Courier New;" href="unqlite_config.html"><font style="font-size: 10pt;" size="2">unqlite_config()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+interface with a configuration verb set to </font></font></font></font><font style="font-family: Courier New;"><font><font style="font-size: 11pt;" size="2"><a href="unqlite_config.html"><font style="font-size: 10pt;" size="2">UNQLITE_CONFIG_JX9_ERR_LOG</font></a></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></font></font>
+
+</p>
+<p style="margin-left: 2.5cm; margin-bottom: 0cm; font-weight: normal;">
+</p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></font></font></font></p>
+
+
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Parameters</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<table style="width: 100%;" id="table_code" border="1" bordercolor="#000000" cellpadding="2" cellspacing="0"><tbody><tr valign="top"><td width="28%">
+      <div style="margin-left: 40px;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>pDb</b></font></font></font></div>
+
+      </td>
+      <td width="72%">
+      <p> <font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">A pointer to a unQLite <a href="unqlite_open.html">database handle</a>.</font></font></p>
+      </td>
+    </tr><tr>
+      <td style="vertical-align: top;">
+      <div style="margin-left: 40px;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>zJx9</b></font></font></font></div>
+      </td>
+      <td style="vertical-align: top;">
+      <p style="font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">R</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">elative or full path to the Jx9 file to compile.</font></font></p>
+      <p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"><span style="font-style: italic;">Note</span>: This routine depends on the
+xMmap() method of the underlying </span></font><a href="unqlite_util_mmaped_file.html"><font face="Verdana, sans-serif"><span style="font-weight: normal;">VFS</span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">.
+In
+other words, it tries to get a read-only memory view of the whole file.
+Windows and UNIX users don't have to worry about these details since
+UnQLite come with a built-in VFS that handle all the stuff. But others
+platforms must register their own </span></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">VFS (Virtual File System)</span></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">. Otherwise this routine fail and </span></font><font face="Verdana, sans-serif"><b>UNQLITE_IOERR</b></font><font face="Verdana, sans-serif"><span style="font-weight: normal;"> is returned.</span></font></font></font></p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <div style="margin-left: 40px;"><font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>ppOutVm</b></font></font></font></div>
+      </td>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><i><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">OUT: </font></font></i><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">On successful compilation, *ppOutVm is left
+pointing to the compiled <a href="../jx9.html">Jx9</a> program represented by</span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"> an opaque pointer to the </span></font></font><a style="font-family: Courier New;" href="../c_api_object.html#unqlite_vm"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">unqlite_vm</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"> structure. It's safe now to call one of
+the VM </span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">management
+interfaces such as </span></font></font><a style="font-family: Courier New;" href="unqlite_vm_config.html"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">unqlite_vm_config()</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;"> and the compiled program can be executed
+using </span></font></font><a style="font-family: Courier New;" href="unqlite_vm_exec.html"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">unqlite_vm_exec()</span></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-style: normal;">. Otherwise *ppOutVM is left
+pointing to NULL.</span></font></font></font></font></p>
+      </td>
+    </tr>
+
+    
+  </tbody>
+</table>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Return
+value</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b style="font-family: Courier New;">UNQLITE_OK</b>
+is returned on successful compilation of the target Jx9 script. Any other return value indicates failure such
+as:</font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><span style="font-family: Courier New;">UNQLITE_COMPILE_ERR</span>
+</b><span style="font-weight: normal;">is returned when compile-time errors occur. That is, the caller must fix its erroneous <a href="../jx9.html">Jx9</a>
+code and call the compile interface again.</span></font></font></p>
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Note
+that the compile-time error log can be extracted (See example below) using the </font></font><a href="unqlite_config.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_config()</font></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+interface with a configuration verb set to:</font></font></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm; font-weight: normal;">
+<font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><a href="unqlite_config.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">UNQLITE_CONFIG_JX9_ERR_LOG<br>
+</font></font></a></font></font></p>
+
+<p style="margin-left: 2.5cm; margin-bottom: 0cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><a href="../../../jx9/website/c_api_func.html#jx9_config"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></a></font></font></p>
+
+
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><span style="font-family: Courier New;">UNQLITE_VM_ERR</span>
+</b><span style="font-weight: normal;">is returned when something goes
+wrong during initialization of the virtual machine (i.e. Out of
+memory). But remember, this is a very </span><span style="font-weight: normal;">unlikely
+scenario on modern hardware even on modern embedded system.</span></font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: normal;"><br>
+</span></font></font></p>
+<p style="margin-left: 1.25cm; margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b style="font-family: Courier New;">UNQLITE_IOERR</b><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+is returned when IO errors occurs (i.e. permission error, nonexistant file, etc.) or the </span></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">underlying
+VFS</span></font><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+</span></font><b><font face="Verdana, sans-serif">does not implement</font></b><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+the xMmap() method which is </span></font><b><font face="Verdana, sans-serif">not</font></b><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+the case when the built-in VFS is used.</span></font></font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+ </font></font>
+</p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>Example</b></font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="http://unqlite.org/db/unqlite_doc_intro.c"><font face="Verdana, sans-serif"><span style="font-weight: normal;">Compile this C file</span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;">
+for a smart introduction to this interface.</span></font></font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><span style="color: blue;"></span><br>
+</p>
+<div style="text-align: left; margin-left: 68px; width: 550px;" id="code"><small style="font-family: Courier New;">
+<span style="color: blue;"></span></small><small style="font-family: Courier New;"><span style="color: blue;">#include <span style="color: red;">&lt;unqlite.h&gt;<br>
+<br>
+</span></span></small><small style="font-family: Courier New;"><span style="color: blue;">
+int</span> rc;<br>
+<span style="color: blue;">unqlite</span> *pDb;<br><span style="color: blue;">
+unqlite_vm</span> *pVm;<br>
+<br>
+</small><small style="font-family: Courier New;"><span style="color: green;">// Open our database;</span></small><br style="font-family: Courier New;">
+<small><span style="font-family: Courier New;">rc = <a href="unqlite_open.html">unqlite_open</a>(&amp;pDb,<span style="color: red;">"test.db"</span>,UNQLITE_OPEN_CREATE);<br>
+<span style="color: blue;">if</span>( rc != UNQLITE_OK ){ <span style="color: blue;">return</span>; }<br>
+</span></small><small style="font-family: Courier New;"><span style="color: green;"><br>
+// Compile our Jx9 program<br>
+<span style="color: black;">rc = <span style="font-weight: bold;">unqlite_compile_file</span>(pDb,</span></span></small><small><span style="font-family: Courier New;"><span style="color: red;">"/path/to/jx9_prog.txt"</span></span></small><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><span style="font-weight: bold;"></span><span style="color: blue;"></span><span style="font-weight: bold;"></span>,&amp;pVm);<br>
+<span style="color: blue;">if</span>( rc != UNQLITE_OK ){<br>
+&nbsp;&nbsp; <span style="color: green;">/* Extract error log here */</span></span></span></small><small style="font-family: Courier New;"><span style="color: green;"><br>
+&nbsp;&nbsp; </span><span style="color: blue;">const char</span> *zBuf;<br>
+&nbsp;&nbsp; <span style="color: blue;">int</span> iLen;<br>
+&nbsp;&nbsp; <a href="unqlite_config.html">unqlite_config</a>(pDb,<span style="font-weight: bold;">UNQLITE_CONFIG_JX9_ERR_LOG</span>,<span style="font-weight: bold;">&amp;zBuf</span>,<span style="font-weight: bold;">&amp;iLen</span>);<br>
+&nbsp;&nbsp; <span style="color: blue;">if</span>( iLen &gt; 0 ){<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; puts(zBuf);<br>
+&nbsp;&nbsp; }<span style="color: green;"><br>
+&nbsp;&nbsp; </span></small><small><span style="font-family: Courier New;"><span style="color: blue;">return</span>;<br>
+&nbsp;}</span></small><br>
+<small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;">
+<span style="color: blue;"></span> <span style="color: blue;"></span><br>
+</span></span></small><small style="font-family: Courier New;"><span style="color: green;">
+//Configure our VM</span></small> <small style="font-family: Courier New;"><span style="color: green;">...</span></small><br>
+<small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><br>
+</span></span></small><small style="font-family: Courier New;"><span style="color: green;">
+// Execute our Jx9 program<br>
+</span></small><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;">rc = <a href="unqlite_vm_exec.html">unqlite_vm_exec</a>(pVm);<br>
+</span></span></small><small><span style="font-family: Courier New;"><span style="color: blue;">if</span>( rc != UNQLITE_OK ){ <span style="color: blue;">return</span>; }<br>
+<br>
+</span></small><small style="font-family: Courier New;"><span style="color: green;">
+// Release our VM <br>
+</span></small><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><a href="unqlite_vm_release.html">unqlite_vm_release</a>(pVm);</span></span></small><br>
+<small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><br>
+</span></span></small><small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><span style="color: green;">//Auto-commit the transaction and close our handle</span></span></span></small><br>
+<small style="font-family: Courier New;"><span style="color: green;"><span style="color: black;"><a href="unqlite_close.html">unqlite_close</a>(pDb);<span style="color: green;"></span><br style="font-family: Verdana;">
+</span></span></small><br>
+</div>
+<p style="margin-left: 1.25cm; font-weight: normal;"><br>
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-weight: bold;"></span></font></font></p>
+
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+<p style="margin-left: 1.25cm; font-weight: normal;">
+</p>
+
+<font color="#000000"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font></font>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b>See also<br>
+</b></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><b><br>
+</b></font></font></p>
+
+
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="http://unqlite.org/db/unqlite_func_intro.c"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></a><font face="Verdana, sans-serif"><span style="font-weight: normal;"><a href="unqlite_vm_exec.html">unqlite_vm_exec</a></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"></span></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;">, <a href="unqlite_vm_config.html">unqlite_vm_config</a>, <a href="unqlite_compile.html">unqlite_compile</a>.<br>
+</span></font></font></font></p>
+<p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-weight: normal;"><br>
+</span></font></font></font></p>
+
+
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="../images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,921 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en"><head>
+
+
+
+
+
+
+
+
+  
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type"><title>UnQLite C/C++ API Reference - List of Objects</title><!-- Copyright (C) 2013 Mrad Chems Eddine, Symisc Systems,http://www.symisc.net contact@symisc.net -->
+  
+
+  
+
+  
+  <link rel="stylesheet" href="symisc.css" type="text/css">
+
+  
+  <meta content="Symisc Systems &lt;chm@symisc.net&gt; - Mrad Chems Eddine" name="author">
+
+  
+  <meta content="http://unqlite.org/" name="description"></head><body>
+<div style="width: 1092px;" id="main_div"><a href="http://unqlite.org/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc UnQLite" title="Symisc UnQLite" src="images/symisc-unqlite.png"></a><br>
+<div style="text-align: left; width: 1080px;" align="right">
+<table style="text-align: left; width: 1075px; height: 41px;" border="0" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 709px; height: 45px;"><small style="color: black; font-family: Verdana;"><small><br>
+An Embeddable NoSQL Database Engine<br>
+      </small></small></td>
+      <td style="vertical-align: top; width: 162px; height: 45px;"><br>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-via="unqlite_db" data-size="large">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+      <td style="vertical-align: top; width: 176px; height: 45px;"><br>
+      <a href="https://twitter.com/unqlite_db" class="twitter-follow-button" data-show-count="false" data-size="large">Follow
+@unqlite_db</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<hr style="width: 100%; height: 2px;">
+<ul id="nav">
+  <li id="nav-1"><a href="index.html">About</a></li>
+  <li id="nav-8"><a href="features.html">Distinctive Features<br>
+    </a></li>
+  <li id="nav-2"><a href="intro.html">Getting Started<br>
+    </a></li>
+  <li id="nav-3"><a href="c_api.html">Documentation<br>
+    </a></li>
+  <li id="nav-4"><a href="downloads.html">Downloads<br>
+    </a></li>
+  <li id="nav-5"><a href="licensing.html">License<br>
+    </a></li>
+  <li id="nav-6"><a href="faq.html">FAQ<br>
+    </a></li>
+  <li id="nav-7"><a href="support.html">Online Support<br>
+    </a></li>
+</ul>
+<h1 style="font-family: Verdana;"><font style="font-size: 10pt;" size="2">unQLite</font><small><small><b> C/C++ API Reference - List of Objects.</b></small></small></h1>
+<div>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">This
+is a list of all abstract objects and datatypes used by the UnQLite
+library. There are eleven exported objects in total, but the two most important are:</font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> An database handle: </font></font><a style="font-family: Courier New;" href="#unqlite"><font style="font-size: 10pt;" size="2">unqlite</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> and a virtual
+machine object: </font></font><a style="font-family: Courier New;" href="#unqlite_vm"><font style="font-size: 10pt;" size="2">unqlite_vm</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<table style="width: 755px; height: 98px; text-align: left; margin-left: auto; margin-right: auto;" id="table_code" border="1" bordercolor="#000000" cellpadding="2" cellspacing="0">
+
+  <colgroup><col width="128*"> <col width="128*"> </colgroup><tbody>
+    <tr valign="top">
+      <td width="50%">
+      <p><a href="#unqlite"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite</font></font></a></p>
+      </td>
+      <td width="50%">
+      <p><a href="#unqlite_vm"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_vm</font></font></a></p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td width="50%">
+      <p><font face="Verdana, sans-serif"><a href="#unqlite_value"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_value</font></font></a></font></p>
+      </td>
+      <td width="50%">
+      <p><font face="Verdana, sans-serif"><font size="3"><a href="#unqlite_context"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_context</font></font></a></font></font></p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td width="50%">
+      <p style="font-weight: normal;"><font face="Verdana, sans-serif"><font size="3"><a href="#unqlite_int64"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_int64</font></font></a></font></font></p>
+      </td>
+      <td width="50%">
+      
+      <p><font face="Verdana, sans-serif"><font size="3"><a href="#unqlite_io_methods"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_io_methods</font></font></a></font></font></p>
+
+      </td>
+    </tr>
+    <tr valign="top">
+      <td width="50%">
+      <p style="font-weight: normal;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><a href="#unqlite_vfs"><font face="Verdana, sans-serif">unqlite_vfs</font></a></font></font></p>
+      </td>
+      <td width="50%">
+      
+      <p><font face="Verdana, sans-serif"><font size="3"><a href="#unqlite_kv_methods"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_kv_methods</font></font></a></font></font></p>
+<p>
+      </p></td></tr><tr>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font size="3"><a href="#unqlite_kv_engine"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_kv_engine</font></font></a></font></font></p>
+
+      </td>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font size="3"><a href="#SyMemMethods"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">SyMemMethods</font></font></a></font></font></p>
+
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">
+      <p><font face="Verdana, sans-serif"><font size="3"><a href="#SyMutexMethods"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">SyMutexMethods</font></font></a></font></font></p>
+
+      </td>
+      <td style="vertical-align: top;"><br>
+      </td>
+    </tr>
+</tbody>
+</table>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite"></a>Database Engine Handle</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-family: Courier New;"><span style="color: blue;">typedef struct</span> <span style="font-weight: bold;">unqlite unqlite;<br>
+</span></span></font></font></font></div>
+
+<p><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><font face="Verdana, sans-serif"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></span></font></font></font></font></p>
+<p><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><font face="Verdana, sans-serif"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">Each
+open UnQLite database is represented by a pointer to an instance of
+the opaque structure named <span style="font-family: Courier New; font-weight: bold;">unqlite</span>. It is useful to think
+of an <span style="font-weight: bold; font-family: Courier New;">unqlite</span> pointer as an object. The <a style="font-family: Courier New;" href="c_api/unqlite_open.html">unqlite_open()</a> is its constructor, and <a style="font-family: Courier New;" href="c_api/unqlite_close.html">unqlite_close()</a>
+is its destructor. Most
+of exported interface such as </span></span></span></font></font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><a href="c_api/unqlite_kv_store.html"><font face="Courier New, monospace">unqlite_kv_store()</font></a>,
+<a href="c_api/unqlite_kv_append.html"><font face="Courier New, monospace">unqlite_kv_append()</font></a>,
+<a href="c_api/unqlite_kv_delete.html"><font face="Courier New, monospace">unqlite_kv_delete()</font></a>, <a style="font-family: Courier New;" href="c_api/unqlite_config.html">unqlite_config()</a>, <a style="font-family: Courier New;" href="c_api/unqlite_kv_cursor.html">unqlite_kv_cursor_init()</a>, <a style="font-family: Courier New;" href="c_api/unqlite_compile.html">unqlite_compile()</a>, etc. </font></font></font><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><font face="Verdana, sans-serif"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">expect a pointer to an instance of this
+structure as their first arguments.</span></span></span></font></font></font></font></p>
+<p><font face="Verdana, sans-serif"><font size="2"><font color="#000000"><font face="Verdana, sans-serif"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;"><br>
+</span></span></span></font></font></font></font></p>
+
+
+<p>
+</p>
+
+
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_vm"></a>Virtual Machine Object</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-family: Courier New;"><span style="color: blue;">typedef struct</span> <span style="font-weight: bold;">unqlite_vm unqlite_vm;<br>
+</span></span></font></font></font></div>
+
+<br>
+<p>
+<font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">An
+instance of this structure represents a compiled <a href="jx9.html">Jx9</a> program. this
+structure hold the Jx9 bytecode program resulting from </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">successful </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">compilation of the target <a href="jx9.html">Jx9</a> script
+using one of the </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">compile interfaces such as</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> </font></font><a style="font-family: Courier New;" href="c_api/unqlite_compile.html"><font style="font-size: 10pt;" size="2">unqlite_compile()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+or </font></font><a style="font-family: Courier New;" href="c_api/unqlite_compile_file.html"><font style="font-size: 10pt;" size="2">unqlite_compile_file()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></p>
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The
+life of a UnQLite virtual machine goes something like this:</font></font></p>
+
+<ol>
+<li>
+    <p><font face="Verdana, sans-serif"><font size="2">Obtain a new
+database handle via <a href="c_api/unqlite_open.html"><span style="font-family: Courier New;">unqlite_open()</span></a>. <font color="#000000"><span style="font-style: normal;">This
+routine is often the first API call that an application makes and is
+a prerequisite in order to work with the database library.</span></font>
+ </font></font>
+    </p>
+
+
+
+    </li>
+  <li>
+    <p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Compile your Jx9 script using one of
+the compile iterfaces such as&nbsp;</font></font><a href="../../jx9/website/c_api_func.html#jx9_compile"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"></font></font></a><a style="font-family: Courier New;" href="c_api/unqlite_compile.html"><font style="font-size: 10pt;" size="2">unqlite_compile()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+or </font></font><a style="font-family: Courier New;" href="c_api/unqlite_compile_file.html"><font style="font-size: 10pt;" size="2">unqlite_compile_file()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.
+On successful compilation, the engine will automatically create an
+instance of this structure (</font></font><font style="font-family: Courier New;" face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">unqlite_vm</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">)
+and a pointer to this </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">structure is made available to the
+caller.</font></font></p>
+
+  </li>
+<li>
+    <p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">When
+something goes wrong during compilation of the target Jx9 script due to a
+compile-time error, the caller must discard this pointer and fix its
+erroneous Jx9 code. Compile-time error logs can be extracted via a
+call to </font></font><a style="font-family: Courier New;" href="c_api/unqlite_config.html"><font style="font-size: 10pt;" size="2">unqlite_config()</font></a> </font><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">with a configuration verb set to </font></font></font></font><font style="font-family: Courier New; font-weight: bold;"><font><font style="font-size: 11pt;" size="2"><font style="font-size: 10pt;" size="2">UNQLITE_CONFIG_JX9_ERR_LOG</font></font></font></font><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></font></p>
+  </li><li>
+    <p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="3"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Optionally, </font></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">configure the virtual machine using&nbsp; </font></font><a style="font-family: Courier New;" href="c_api/unqlite_vm_config.html"><font style="font-size: 10pt;" size="2">unqlite_vm_config()</font></a><font style="font-family: Courier New; font-weight: bold;"><font><font style="font-size: 11pt;" size="2"><font style="font-size: 10pt;" size="2"></font></font></font></font><font face="Verdana, sans-serif"><font style="font-size: 11pt;" size="2"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></font></font>
+
+
+</p>
+    <p style="margin-left: 2.5cm; margin-bottom: 0cm; font-weight: normal;">
+    </p>
+
+    <p style="margin-left: 1.25cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font face="Verdana, sans-serif"><span style="font-style: normal;"><span style="font-weight: normal;"></span></span></font></font></font></p>
+</li><li>
+    <p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font size="3"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Optionally, register one or more
+foreign functions or constants using the </font></font><a style="font-family: Courier New;" href="c_api/unqlite_create_function.html"><font style="font-size: 10pt;" size="2">unqlite_create_function()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> or </font></font><a style="font-family: Courier New;" href="c_api/unqlite_create_constant.html"><font style="font-size: 10pt;" size="2">unqlite_create_constant()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+interfaces.</font></font></font></font></p>
+  </li><li>
+    <p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Execute
+the compiled Jx9 program by calling </font></font><a style="font-family: Courier New;" href="c_api/unqlite_vm_exec.html"><font style="font-size: 10pt;" size="2">unqlite_vm_exec()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></font></p></li><li>
+    <p style="margin-bottom: 0cm;" lang="en-US"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Optionally,
+extract the contents of one or more variables declared inside your Jx9 script
+using <a style="font-family: Courier New;" href="c_api/unqlite_vm_extract_variable.html">unqlite_vm_extract_variable()</a>. </font></font>
+    </p>
+
+  </li><li>
+    <p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Optionally, </font></font><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Reset
+the virtual machine using </font></font><a style="font-family: Courier New;" href="c_api/unqlite_vm_reset.html"><font style="font-size: 10pt;" size="2">unqlite_vm_reset()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">, then go back to step 6. Do this zero or more times. </font></font></font>
+    </p>
+  </li><li>
+    <p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Destroy the virtual machine using </font></font><a style="font-family: Courier New;" href="c_api/unqlite_vm_release.html"><font style="font-size: 10pt;" size="2">unqlite_vm_release()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></font></p>
+  </li>
+</ol>
+
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_value"></a>Dynamically Typed Value Object</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-family: Courier New;"><span style="color: blue;">typedef struct</span> <span style="font-weight: bold;">jx9_value unqlite_value;<br>
+</span></span></font></font></font></div>
+
+
+<br>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">UnQLite (Via <a href="jx9.html">Jx9</a>) uses the <span style="font-family: Courier New;">unqlite_value</span> object to represent all values that can be stored
+in a Jx9 variable. Since <a href="jx9_lang.html">Jx9</a> uses dynamic typing for the values it
+stores. Values stored </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">unqlite_value</span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> objects can be integers, floating
+point values, strings, JSON arrays, JSON objects and so forth.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">Internally,
+the Jx9 virtual machine manipulates nearly all <a href="jx9.html">Jx9</a> values as </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">jx9_value </span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">structures. Each </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">unqlite_value</span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;"></span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> may cache multiple
+representations (string, integer, etc.) of the same value.</font></font></p>
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The
+</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">unqlite_value </span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">object is heavily used in the interaction between the Jx9
+virtual machine and the host application especially in the
+implementation of </font></font><a href="c_api/unqlite_create_function.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">application-defined
+foreign functions </font></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">and/or
+<a href="c_api/unqlite_create_constant.html">constant expansion
+callbacks</a>.<br>
+</font></font></p>
+
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">There
+are a dozens of interfaces that allow the host application to extract and
+manipulates </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">unqlite_value</span></font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> cleanly, these includes:</font></font></p>
+
+<p style="font-family: Courier New;"><font style="font-size: 10pt;" size="2"></font><font style="font-size: 10pt;" size="2"></font><a href="c_api/unqlite_value_cast.html"><font style="font-size: 10pt;" size="2">unqlite_value_to_string()</font></a><font style="font-size: 10pt;" size="2">,</font><a href="c_api/unqlite_result_fill.html"> <font style="font-size: 10pt;" size="2">unqlite_result_value()</font></a><font style="font-size: 10pt;" size="2">, </font><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_int64()</font></a><font style="font-size: 10pt;" size="2">, </font><a href="c_api/unqlite_value_type.html"><font style="font-size: 10pt;" size="2">unqlite_value_is_null()</font></a><font style="font-size: 10pt;" size="2">, </font><a href="c_api/unqlite_value_fill.html"><font style="font-size: 10pt;" size="2">unqlite_value_string_format()</font></a><font style="font-size: 10pt;" size="2">
+<span style="font-family: Verdana;">and many more. Refer to the </span></font><a style="font-family: Verdana;" href="c_api_func.html"><font style="font-size: 10pt;" size="2">C/C++
+Interfaces</font></a><font style="font-size: 10pt; font-family: Verdana;" size="2">
+documentation for additional information.</font></p>
+<p style="font-family: Courier New;"><font style="font-size: 10pt; font-family: Verdana;" size="2"><br>
+</font></p>
+
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_context"></a>Foreign Function Context Object</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+
+
+<div style="margin-left: 40px;"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><font color="#000000"><span style="font-family: Courier New;"><span style="color: blue;">typedef struct</span> <span style="font-weight: bold;">jx9_context unqlite_context;<br>
+</span></span></font></font></font></div>
+
+
+
+
+<br>
+
+<p>
+</p>
+
+
+<p><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">The
+context in which a foreign function executes is stored in a <span style="font-family: Courier New;">unqlite_context</span> object. A pointer to a </font></font></font><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><span style="font-family: Courier New;">unqlite_context</span></font></font></font><font face="Verdana, sans-serif"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> object is always first
+parameter to </font></font><a href="c_api/unqlite_create_function.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">application-defined
+foreign functions</font></font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.
+The application-defined foreign function implementation will pass
+this pointer through into calls to dozens of interfaces, these
+includes </font></font><a style="font-family: Courier New;" href="c_api/unqlite_result_fill.html"><font style="font-size: 10pt;" size="2">unqlite_result_string()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">, </font></font><a style="font-family: Courier New;" href="c_api/unqlite_result_fill.html"><font style="font-size: 10pt;" size="2">unqlite_result_value()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">,</font></font><a style="font-family: Courier New;" href="c_api/unqlite_context_output.html"><font style="font-size: 10pt;" size="2"> unqlite_context_output()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">, </font></font><a style="font-family: Courier New;" href="c_api/unqlite_context_throw_error.html"><font style="font-size: 10pt;" size="2">unqlite_context_throw_error()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">
+and many more. Refer to the </font></font><a href="c_api_func.html"><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">C/C++
+Interfaces</font></font></a><font style="font-size: 10pt;" size="2"><font style="font-size: 10pt;" size="2">
+documentation for additional information. </font><span style="font-style: normal;"><span style="font-weight: normal;">You
+can refer to the <a href="func_intro.html">following
+guide</a> for an introductory course to </span></span>the foreign function mechanism.</font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_int64"></a>64-Bit Integer Type</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<p style="margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 10pt;" size="2"><font color="#0000ff"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">#if</span></span></span></font><font color="#000000"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">
+</span></span></span></font><font color="#0000ff"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">defined</span></span></span></font><font color="#000000"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">(_MSC_VER)
+|| </span></span></span></font><font color="#0000ff"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">defined</span></span></span></font><font color="#000000"><span lang="en-US"><span style="font-style: normal;"><span style="font-weight: normal;">(__BORLANDC__)</span></span></span></font></font></font></p>
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 10pt;" size="2"><b><font color="#0000ff">typedef</font><font color="#000000">
+</font><font color="#0000ff">signed</font><font color="#000000">
+</font><font color="#0000ff">__int64</font><font color="#000000">
+unqlite_int64;</font></b></font></font></p>
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font color="#0000ff"><font face="Courier New, monospace"><font style="font-size: 10pt;" size="2">#else</font></font></font></p>
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 10pt;" size="2"><b><font color="#0000ff">typedef</font><font color="#000000">
+</font><font color="#0000ff">signed</font><font color="#000000"> </font><font color="#0000ff">long</font><font color="#000000">
+</font><font color="#0000ff">long</font><font color="#000000"> </font><font color="#0000ff">int
+</font><font color="#000000">unqlite_int64;</font></b></font></font></p>
+
+<p style="margin-bottom: 0cm; margin-left: 40px;"><font face="Courier New, monospace"><font style="font-size: 10pt;" size="2"><font color="#0000ff">#endif</font><font color="#000000">
+</font><font color="#008000">/* _MSC_VER */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Verdana, sans-serif"><font color="#008000"><font style="font-size: 9pt;" size="2"><br>
+</font></font></font></p>
+
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">UnQLite uses </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">64-bit
+integer </font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">for integers arithmetic and data size regardless of the target platform. Because there is no cross-platform way to specify
+64-bit integer types, UnQLite includes typedefs for 64-bit signed
+integers. The<span style="font-weight: bold;"> <span style="font-family: Courier New;">unqlite_int64</span></span> type can store integer values between
+-9223372036854775808 and +9223372036854775807 inclusive. Some of the
+interface that manipulates 64-bit integers are </font></font><a style="font-family: Courier New;" href="c_api/unqlite_kv_store.html"><font style="font-size: 10pt;" size="2">unqlite_kv_store()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">,</font></font><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> </font></font><a style="font-family: Courier New;" href="c_api/unqlite_kv_append.html"><font style="font-size: 10pt;" size="2">unqlite_kv_append()</font></a><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">, etc.</font></font></p>
+<p><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"><br>
+</font></font></p>
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_vfs"></a>OS Interfaces Object</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<div style="margin-left: 40px;">
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typedef struct</font><font color="#000000">
+unqlite_vfs </font></font></font><font face="Courier New, monospace"><font size="2"><font color="#000000">unqlite_vfs;</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font><font color="#000000">
+unqlite_vfs {</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zName;&nbsp;       </font><font color="#008000">/* Name of this virtual
+file system [i.e: Windows, UNIX, etc.] */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+iVersion;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            </font><font color="#008000">/* Structure
+version number (currently 1) */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+szOsFile;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            </font><font color="#008000">/* Size of
+subclassed unqlite_file */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+mxPathname;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/* Maximum file
+pathname length */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xOpen)(unqlite_vfs*, </font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zName, unqlite_file*,</font><font color="#0000ff">unsigned</font><font color="#000000">
+</font><font color="#0000ff">int</font><font color="#000000"> flags);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xDelete)(unqlite_vfs*, </font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zName, </font><font color="#0000ff">int</font><font color="#000000">
+syncDir);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xAccess)(unqlite_vfs*, </font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zName, </font><font color="#0000ff">int</font><font color="#000000">
+flags, </font><font color="#0000ff">int</font><font color="#000000">
+*pResOut);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xFullPathname)(unqlite_vfs*, </font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zName,</font><font color="#0000ff">int</font><font color="#000000">
+buf_len,</font><font color="#0000ff">char</font><font color="#000000">
+*zBuf);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xTmpDir)(unqlite_vfs*,</font><font color="#0000ff">char</font><font color="#000000">
+*zBuf,</font><font color="#0000ff">int</font><font color="#000000">
+buf_len);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xSleep)(unqlite_vfs*, </font><font color="#0000ff">int</font><font color="#000000">
+microseconds);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xCurrentTime)(unqlite_vfs*,<span style="color: blue;">Sytm</span> *pOut);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xGetLastError)(unqlite_vfs*, </font><font color="#0000ff">int</font><font color="#000000">,
+</font><font color="#0000ff">char</font><font color="#000000"> *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+
+</div>
+<br>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">An
+instance of the <span style="font-family: Courier New;">unqlite_vfs</span> object defines the interface between the
+UnQLite core and the underlying operating system.  The "vfs"
+in the name of the object stands for "Virtual File System".</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">Only
+a single vfs can be registered within the UnQLite core. Vfs
+registration is done using <a style="font-family: Courier New;" href="c_api/unqlite_lib.html">unqlite_lib_config()</a> with
+a configuration verb set to <a href="c_api/unqlite_lib.html#vfs_reg"><span style="font-weight: bold; font-family: Courier New;">UNQLITE_LIB_CONFIG_VFS</span></a>.</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"> Note that Windows
+and UNIX (Linux, FreeBSD, Solaris, Mac OS X, etc.) users does not
+have to worry about registering and installing a vfs since UnQLite
+come with a built-in vfs for these platforms that implements most the
+methods defined above. Clients running on exotic systems (i.e. Other
+than Windows and UNIX systems) must register their own vfs in order
+to be able to use the UnQLite library.</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">The
+value of the iVersion field is initially 1 but may be larger in
+future versions of UnQLite. </font></font></font>
+</p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">The
+szOsFile field is the size of the subclassed <span style="font-family: Courier New;"><a href="#unqlite_io_methods">unqlite_file</a> </span>structure
+used by this VFS. mxPathname is the maximum length of a pathname in
+this VFS. At least szOsFile bytes of memory are allocated by UnQLite
+to hold the <a href="#unqlite_io_methods"><span style="font-family: Courier New;">unqlite_file</span></a> structure passed as the third argument to
+xOpen. The xOpen method does not have to allocate the structure; it
+should just fill it in. Note that the xOpen method must set the
+<span style="font-family: Courier New;">unqlite_file.pMethods</span> to either a valid <a href="#unqlite_io_methods"><span style="font-family: Courier New;">unqlite_io_methods</span></a> object
+or to NULL.</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></font></p>
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_io_methods"></a>File Methods Object</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<div style="margin-left: 40px;">
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typedef struct </font></font></font></font><font face="Courier New, monospace"><font size="2"><font color="#000000">unqlite_io_methods </font></font></font><font face="Courier New, monospace"><font size="2"><font color="#000000">unqlite_io_methods;</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typedef</font>
+<font color="#0000ff">struct</font> unqlite_file unqlite_file;</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font><font color="#000000">
+unqlite_file {</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">const</font><font color="#000000">
+unqlite_io_methods *pMethods;  </font><font color="#008000">/*
+Methods for an open file. MUST BE FIRST */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+<p style="margin-bottom: 0cm;">
+</p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font>
+unqlite_io_methods {</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+iVersion;                 </font><font color="#008000">/* Structure
+version number (currently 1) */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xClose)(unqlite_file*);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xRead)(unqlite_file*, </font><font color="#0000ff">void</font><font color="#000000">*,
+unqlite_int64 iAmt, unqlite_int64 iOfst);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xWrite)(unqlite_file*, </font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">void</font><font color="#000000">*,
+unqlite_int64 iAmt, unqlite_int64 iOfst);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xTruncate)(unqlite_file*, unqlite_int64 size);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xSync)(unqlite_file*, </font><font color="#0000ff">int</font><font color="#000000">
+flags);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xFileSize)(unqlite_file*, unqlite_int64 *pSize);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xLock)(unqlite_file*, </font><font color="#0000ff">int</font><font color="#000000">);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xUnlock)(unqlite_file*, </font><font color="#0000ff">int</font><font color="#000000">);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xCheckReservedLock)(unqlite_file*, </font><font color="#0000ff">int</font><font color="#000000">
+*pResOut);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xSectorSize)(unqlite_file*);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+
+
+</div>
+<br>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">An <span style="font-family: Courier New;">unqlite_file</span> object represents an open file in the <a style="font-family: Courier New;" href="#unqlite_vfs">unqlite_vfs</a> OS
+interface layer. Individual OS interface implementations will want
+to subclass this object by appending additional fields for their own
+use. The <span style="font-family: Courier New;">pMethods</span> entry is a pointer to an <span style="font-weight: bold; font-family: Courier New;">unqlite_io_methods</span>
+object that defines methods for performing I/O operations on the open
+file.</font></font></font></p>
+
+<br>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">Every
+file opened by the <a style="font-family: Courier New;" href="#unqlite_vfs">unqlite_vfs</a> xOpen method populates an
+<span style="font-family: Courier New;">unqlite_file</span> object (or, more commonly, a subclass of the
+<span style="font-family: Courier New;">unqlite_file</span> object) with a pointer to an instance of this
+object.<br>This object defines the methods used to perform various
+operations against the open file represented by the <span style="font-family: Courier New;">unqlite_file</span>
+object.<br>If the xOpen method sets the <span style="font-family: Courier New;">unqlite_file.pMethods</span> element
+to a non-NULL pointer, then the unqlite_io_methods.xClose method may
+be invoked even if the xOpen reported that it failed.  The only way
+to prevent a call to xClose following a failed xOpen is for the xOpen
+to set the unqlite_file.pMethods element to NULL.<br> <br>The flags
+argument to xSync may be one of <span style="font-family: Courier New;">UNQLITE_SYNC_NORMAL </span>or
+<span style="font-family: Courier New;">UNQLITE_SYNC_FULL</span> The first choice is the normal fsync(). The second
+choice is a Mac OS X style fullsync. The <span style="font-family: Courier New;">UNQLITE_SYNC_DATAONLY</span> flag
+may be ORed in to indicate that only the data of the file and not its
+inode needs to be synced.<br><br> The integer values to xLock() and
+xUnlock() are one of:<br style="font-family: Courier New;"><span style="font-family: Courier New;"></span></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span style="font-family: Courier New;"><br>
+</span></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><span style="font-family: Courier New;">  UNQLITE_LOCK_NONE</span><br style="font-family: Courier New;"><span style="font-family: Courier New;"> 
+UNQLITE_LOCK_SHARED</span><br style="font-family: Courier New;"><span style="font-family: Courier New;">  UNQLITE_LOCK_RESERVED</span><br style="font-family: Courier New;"><span style="font-family: Courier New;"> 
+UNQLITE_LOCK_PENDING</span><br style="font-family: Courier New;"><span style="font-family: Courier New;">  UNQLITE_LOCK_EXCLUSIVE</span><br>  <br>xLock()
+increases the lock. xUnlock() decreases the lock.<br></font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">The
+xCheckReservedLock() method checks whether any database connection,
+either in this process or in some other process, is holding a
+RESERVED, PENDING, or EXCLUSIVE lock on the file. It returns true if
+such a lock exists and false otherwise.<br> <br>The xSectorSize()
+method returns the sector size of the device that underlies  the
+file. The sector size is the minimum write that can be performed
+without disturbing other bytes in the file.</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2"><br>
+</font></font></font></p>
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_kv_engine"></a>Pluggable Key/Value Storage Engine</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<div style="margin-left: 40px;">
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font>
+unqlite_kv_engine</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">const</font><font color="#000000">
+unqlite_kv_io *pIo; </font><font color="#008000">/* IO methods: MUST
+be first */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;   </font><font face="Courier New, monospace"><font size="2"><font color="#008000">/*
+Subclasses will typically add additional fields */</font></font></font></p>
+
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+
+</div>
+<br>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">A
+Key-Value storage engine is defined by an instance of the
+</font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">unqlite_kv_engine </font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2">object. UnQLite works with run-time interchangeable storage
+engines (i.e. Hash, B+Tree, R+Tree, LSM, etc.).</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">The
+storage engine works with key/value pairs where both the key and the
+value are byte arrays of arbitrary length and with no restrictions on
+content.<br>UnQLite come with two built-in KV storage engine: A
+Virtual Linear Hash (VLH) storage engine is used for persistent
+on-disk databases with O(1) lookup time and an in-memory hash-table
+or Red-black tree storage engine is used for in-memory databases.</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">Future
+versions of UnQLite might add other built-in storage engines (i.e.
+LSM). </font></font></font>
+</p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">Registration
+of a Key/Value storage engine at run-time is done via <a href="c_api/unqlite_lib.html"><span style="font-family: Courier New;">unqlite_lib_config()</span></a> with a
+configuration verb set to </font></font></font><a href="c_api/unqlite_lib.html#kv_reg"><font face="Courier New, monospace"><font size="2"><b>UNQLITE_LIB_CONFIG_STORAGE_ENGINE</b></font></font></a><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">.
+</span></font></font>
+</p>
+
+<br>
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="unqlite_kv_methods"></a>Key/Value Storage Engine</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2"> Virtual Method Table.</font></font></h1>
+<div style="margin-left: 40px;">
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typedef</font>
+<font color="#0000ff">struct</font> unqlite_kv_cursor
+unqlite_kv_cursor;</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font><font color="#000000">
+unqlite_kv_cursor</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;&nbsp; 
+<font face="Courier New, monospace"><font size="2">unqlite_kv_engine
+*pStore; </font><small><font color="#008000">/* Must be first */</font></small></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#008000">/*
+Subclasses will typically add additional fields */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typed struct</font>
+unqlite_kv_methods </font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">unqlite_kv_methods;</font></font></font></p>
+<p style="margin-bottom: 0cm;">
+</p>
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font>
+unqlite_kv_methods</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">char</font><font color="#000000">
+*zName; </font><font color="#008000">/* Storage engine name [i.e.
+Hash, B+tree, LSM, R-tree, Mem, etc.]*/</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+szKv;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;          </font><font color="#008000">/* unqlite_kv_engine
+subclass size */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+szCursor;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      </font><font color="#008000">/* unqlite_kv_cursor
+subclass size */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+iVersion;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      </font><font color="#008000">/* Structure version,
+currently 1 */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#008000">/*
+Storage engine methods */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xInit)(unqlite_kv_engine *,</font><font color="#0000ff">int</font><font color="#000000">
+iPageSize);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">void</font><font color="#000000">
+(*xRelease)(unqlite_kv_engine *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xConfig)(unqlite_kv_engine *,</font><font color="#0000ff">int</font><font color="#000000">
+op,va_list ap);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xOpen)(unqlite_kv_engine *,pgno);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xReplace)(</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp;&nbsp; unqlite_kv_engine *,</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;&nbsp;&nbsp;	
+ </font><font color="#0000ff">const</font><font color="#000000"> </font><font color="#0000ff">void</font><font color="#000000">
+*pKey,</font><font color="#0000ff">int</font><font color="#000000">
+nKeyLen,</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;&nbsp;&nbsp;	
+ </font><font color="#0000ff">const</font><font color="#000000"> </font><font color="#0000ff">void</font><font color="#000000">
+*pData,unqlite_int64 nDataLen</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">&nbsp;	
+ ); </font></font></font>
+</p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;    </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xAppend)(</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">&nbsp;&nbsp;&nbsp; unqlite_kv_engine *,</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;&nbsp;&nbsp;	
+ </font><font color="#0000ff">const</font><font color="#000000"> </font><font color="#0000ff">void</font><font color="#000000">
+*pKey,</font><font color="#0000ff">int</font><font color="#000000">
+nKeyLen,</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;&nbsp;&nbsp;	
+ </font><font color="#0000ff">const</font><font color="#000000"> </font><font color="#0000ff">void</font><font color="#000000">
+*pData,unqlite_int64 nDataLen</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">&nbsp;	
+ );</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">void</font><font color="#000000">
+(*xCursorInit)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xSeek)(unqlite_kv_cursor *,</font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">void</font><font color="#000000">
+*pKey,</font><font color="#0000ff">int</font><font color="#000000">
+nByte,</font><font color="#0000ff">int</font><font color="#000000">
+iPos); </font><font color="#008000">/* Mandatory */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xFirst)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xLast)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xValid)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xNext)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xPrev)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xDelete)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xKeyLength)(unqlite_kv_cursor *,</font><font color="#0000ff">int</font><font color="#000000">
+*);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xKey)(unqlite_kv_cursor *,</font><font color="#0000ff">int</font><font color="#000000">
+(*xConsumer)(</font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">void</font><font color="#000000">
+*,</font><font color="#0000ff">unsigned</font><font color="#000000">
+</font><font color="#0000ff">int</font><font color="#000000">,</font><font color="#0000ff">void</font><font color="#000000">
+*),</font><font color="#0000ff">void</font><font color="#000000">
+*pUserData);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xDataLength)(unqlite_kv_cursor *,unqlite_int64 *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">int</font><font color="#000000">
+(*xData)(unqlite_kv_cursor *,</font><font color="#0000ff">int</font><font color="#000000">
+(*xConsumer)(</font><font color="#0000ff">const</font><font color="#000000">
+</font><font color="#0000ff">void</font><font color="#000000">
+*,</font><font color="#0000ff">unsigned</font><font color="#000000">
+</font><font color="#0000ff">int</font><font color="#000000">,</font><font color="#0000ff">void</font><font color="#000000">
+*),</font><font color="#0000ff">void</font><font color="#000000">
+*pUserData);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">void</font><font color="#000000">
+(*xReset)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000">&nbsp;  </font><font face="Courier New, monospace"><font size="2"><font color="#0000ff">void</font><font color="#000000">
+(*xCursorRelease)(unqlite_kv_cursor *);</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+
+
+</div>
+<br>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Verdana, sans-serif"><font size="2">An
+instance of a subclass of the  </font></font></font><font color="#000000"><font face="Courier New, monospace"><font size="2">unqlite_kv_cursor </font></font></font><font color="#000000"><font face="Verdana, sans-serif"><font size="2">object defines a cursor used to scan
+through a key-value storage engine.</font></font></font></p>
+
+
+<p style="margin-bottom: 0cm; font-family: Verdana;"><font color="#000000"><font size="2">Key/Value
+storage engine methods is defined by an instance of the </font></font><font color="#000000"><font size="2"><span style="font-weight: bold; font-family: Courier New;">unqlite_kv_methods</span> </font></font><font color="#000000"><font size="2">object.</font></font></p>
+
+<font color="#000000"><font face="Verdana, sans-serif"><font size="2">Registration
+of a Key/Value storage engine at run-time is done via <a href="c_api/unqlite_lib.html"><span style="font-family: Courier New;">unqlite_lib_config()</span></a> with a
+configuration verb set to </font></font></font><a href="c_api/unqlite_lib.html#kv_reg"><font face="Courier New, monospace"><font size="2"><b>UNQLITE_LIB_CONFIG_STORAGE_ENGINE</b></font></font></a><font face="Verdana, sans-serif"><font size="2"><span style="font-weight: normal;">.<br>
+<br>
+</span></font></font>
+
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="SyMemMethods"></a>Memory Allocation Routines</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<div style="margin-left: 40px;">
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal;" lang="en-US">
+<font color="#008000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typedef </font></font></font></font><font color="#008000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font> </font></font></font><font color="#008000"><font face="Courier New, monospace"><font size="2"><font color="#000000">SyMemMethods </font></font></font></font><font color="#008000"><font face="Courier New, monospace"><font size="2"><font color="#000000">SyMemMethods;</font></font></font></font></p>
+<p style="margin-bottom: 0cm; font-style: normal; font-weight: normal;" lang="en-US"><font color="#008000"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font><font color="#000000">
+SyMemMethods </font></font></font></font>
+</p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+* (*xAlloc)(</font><font color="#0000ff">unsigned</font><font color="#000000">
+</font><font color="#0000ff">int</font><font color="#000000">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;      
+   </font><font color="#008000">/* [Required:] Allocate a memory
+chunk */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+* (*xRealloc)(</font><font color="#0000ff">void</font><font color="#000000">
+*, </font><font color="#0000ff">unsigned</font><font color="#000000">
+</font><font color="#0000ff">int</font><font color="#000000">); &nbsp; </font><font color="#008000">/*
+[Required:] Re-allocate a memory chunk */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+  (*xFree)(</font><font color="#0000ff">void</font><font color="#000000">*);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#008000">/* [Required:]
+Release a memory chunk */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">unsigned</font><font color="#000000">
+</font><font color="#0000ff">int</font><font color="#000000"> 
+(*xChunkSize)(</font><font color="#0000ff">void</font><font color="#000000">
+*);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/* [Optional:] Return chunk size
+*/</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">int</font><font color="#000000">
+   (*xInit)(</font><font color="#0000ff">void</font><font color="#000000">*);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</font><font color="#008000">/* [Optional:]
+Initialization callback */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+  (*xRelease)(</font><font color="#0000ff">void</font><font color="#000000">
+*);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;              </font><font color="#008000">/* [Optional:] Release
+callback */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+*pUserData; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000">/*
+[Optional:] First argument to xInit() and xRelease() */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+
+</div>
+
+<br>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><font size="2">An
+instance of this object defines the interface between UnQLite and
+low-level memory allocation routines. </font>This object is used
+in only one place in the UnQLite interface. A pointer to an instance
+of this object is the argument to </font></font><a href="c_api/unqlite_lib.html"><font face="Courier New, monospace"><font size="2">unqlite_lib_config()</font></font></a><font face="Verdana, sans-serif"><font size="2">
+when the configuration option is </font></font><a href="c_api/unqlite_lib.html#user_mem"><font face="Courier New, monospace"><font size="2"><b>UNQLITE_LIB_CONFIG_USER_MALLOC</b></font></font></a><font face="Verdana, sans-serif"><font size="2">. By creating an instance of this object and passing it to
+</font></font><font face="Courier New, monospace"><font size="2">unqlite_lib_config(</font></font><font face="Courier New, monospace"><font size="2"><b>UNQLITE_LIB_CONFIG_USER_MALLOC,pMemMethods</b></font></font><font face="Courier New, monospace"><font size="2">);</font></font><font face="Verdana, sans-serif"><font size="2">
+during configuration, an application can specify an alternative
+memory allocation subsystem for UnQLite to use for all of its dynamic
+memory needs.</font></font></p>
+
+<p><font face="Verdana, sans-serif"><font size="2">Note that UnQLite is
+shipped with a built-in memory allocator which is perfectly adequate
+for the overwhelming majority of applications and that this object is
+only useful to a tiny minority of applications with specialized
+memory allocation requirements.</font></font></p>
+
+<br>
+<hr style="width: 100%; height: 2px;">
+<h1 style="font-family: Verdana;"><small><small><b><a name="SyMutexMethods"></a>Mutex Methods</b></small></small><font face="Verdana, sans-serif"><font style="font-size: 10pt;" size="2">.</font></font></h1>
+
+<div style="margin-left: 40px;">
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">typedef struct</font><font color="#000000">
+SyMutexMethods </font></font></font><font face="Courier New, monospace"><font size="2"><font color="#000000">SyMutexMethods;</font></font></font></p>
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#0000ff">struct</font><font color="#000000">
+SyMutexMethods </font></font></font>
+</p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">{</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">int</font><font color="#000000">
+(*xGlobalInit)(</font><font color="#0000ff">void</font><font color="#000000">);&nbsp;&nbsp;&nbsp;&nbsp;		</font><font color="#008000">/*
+[Optional:] Global mutex initialization */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+ (*xGlobalRelease)(</font><font color="#0000ff">void</font><font color="#000000">);	</font><font color="#008000">/*
+[Optional:] Global Release callback () */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	SyMutex
+* (*xNew)(</font><font color="#0000ff">int</font><font color="#000000">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+       </font><font color="#008000">/* [Required:] Request a new
+mutex */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+ (*xRelease)(SyMutex *);&nbsp;	</font><font color="#008000">/* [Optional:]
+Release a mutex  */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+ (*xEnter)(SyMutex *);&nbsp;&nbsp;&nbsp;	    </font><font color="#008000">/*
+[Required:] Enter mutex */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">int</font><font color="#000000">
+(*xTryEnter)(SyMutex *);&nbsp;    </font><font color="#008000">/*
+[Optional:] Try to enter a mutex */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font face="Courier New, monospace"><font size="2"><font color="#000000">&nbsp;	</font><font color="#0000ff">void</font><font color="#000000">
+ (*xLeave)(SyMutex *);&nbsp;&nbsp;&nbsp;	    </font><font color="#008000">/*
+[Required:] Leave a locked mutex */</font></font></font></p>
+
+<p style="margin-bottom: 0cm;"><font color="#000000"><font face="Courier New, monospace"><font size="2">};</font></font></font></p>
+
+</div>
+<br>
+
+
+<p><font face="Verdana, sans-serif"><font size="2"><font size="2">An
+instance of this structure defines the low-level routines used to
+allocate and use mutexes. </font>Usually, the default
+mutex implementations provided by UnQLite are sufficient, however the
+user has the option of substituting a custom implementation for
+specialized deployments or systems for which UnQLite does not provide
+a suitable implementation. In this case, the user creates and
+populates an instance of this structure to pass to
+</font></font><a href="c_api/unqlite_lib.html"><font face="Courier New, monospace"><font size="2">unqlite_lib_config()</font></font></a><font face="Verdana, sans-serif"><font size="2">
+along with the </font></font><a href="c_api/unqlite_lib.html#user_mutex"><font face="Courier New, monospace"><font size="2"><b>UNQLITE_LIB_CONFIG_USER_MUTEX</b></font></font></a><font face="Verdana, sans-serif"><font size="2">
+option.</font></font></p>
+
+<br>
+
+</div>
+<hr style="width: 100%; height: 2px;">
+<div style="text-align: right; margin-top: 0px; height: 91px;"><small><small><a href="http://www.symisc.net/"><img style="border: 0px solid ; width: 170px; height: 70px;" alt="Symisc Systems" src="images/symisc.png"></a></small></small>
+<div style="text-align: left; margin-top: 0px; height: 14px;"><small><small style="font-family: Verdana;">Copyright © <a href="http://www.symisc.net/">Symisc Systems</a></small></small><br>
+</div>
+</div>
+</div>
+
+</body></html>
