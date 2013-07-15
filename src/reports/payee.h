@@ -34,6 +34,8 @@ protected:
     mmDateRange* date_range_;
 
     wxString title_;
+    enum TYPE {INCOME = 0, EXPENCES, MAX};
+    //static const wxString type_names[] = {_("Incomes"), _("Expences")};
 };
 
 class mmReportPayeeExpensesCurrentMonth: public mmReportPayeeExpenses

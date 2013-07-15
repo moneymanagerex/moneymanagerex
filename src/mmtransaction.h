@@ -178,7 +178,8 @@ public:
 
     // The setting asDeposit is only valid if evaluateTransfer is true
     double getAmountForCategory(int categID, int subcategID, bool ignoreDate, const wxDateTime &dtBegin, const wxDateTime &dtEnd, bool evaluateTransfer = false, bool asDeposit = false, bool ignoreFuture = false) const;
-    double getAmountForPayee(int payeeID, bool ignoreDate, const wxDateTime &dtbegin, const wxDateTime &dtEnd, bool ignoreFuture = false) const;
+    void getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
+        , mmDateRange* date_range, bool ignoreFuture) const;
     wxDateTime getLastDate(int accountID) const;
 
     double getBalance(int accountID, bool ignoreFuture = false) const;

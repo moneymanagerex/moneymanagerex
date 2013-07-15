@@ -1362,7 +1362,9 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     ///////////////////////////////////////////////////////////
 
     wxTreeItemId payeesOverTime = navTreeCtrl_->AppendItem(reports, _("Payees"), 4, 4);
-    navTreeCtrl_->SetItemData(payeesOverTime, new mmTreeItemData("Payee Report", new mmReportPayeeExpenses(m_core.get())));
+    navTreeCtrl_->SetItemData(payeesOverTime
+        , new mmTreeItemData("Payee Report"
+        , new mmReportPayeeExpenses(m_core.get())));
 
     wxTreeItemId payeesOverTimeCalMonth = navTreeCtrl_->AppendItem(payeesOverTime
         , _("Last Calendar Month"), 4, 4);
