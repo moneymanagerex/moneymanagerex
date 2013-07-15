@@ -93,6 +93,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             hb.addMoneyCell(value);
             overall += value;
             totals[value<0][i.first] += value;
+            totals[value>=0][i.first] += 0;
             totals[TOTAL][i.first] += value;
         }
         hb.addMoneyCell(overall);
@@ -110,6 +111,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
                 hb.addMoneyCell(value);
                 overall += value;
                 totals[value<0][i.first] += value;
+                totals[value>=0][i.first] += 0;
                 totals[TOTAL][i.first] += value;
             }
             hb.addMoneyCell(overall);

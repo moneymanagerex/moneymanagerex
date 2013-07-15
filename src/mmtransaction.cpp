@@ -736,20 +736,16 @@ void mmBankTransactionList::getCategoryStats(
     double value = 0;
     for (const auto& category: core_->categoryList_.entries_)
     {
-        for (int i = -1; i<1; i++)
+        int columns = group_by_month ? 12 : 1;
+        wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
+        for (int m = 0; m < columns; m++)
         {
+            wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
+            int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+            categoryStats[category->categID_][-1][idx] = value;
             for (const auto & sub_category: category->children_)
             {
-                int subcategID = (i == 0) ? sub_category->categID_ : -1;
-                wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
-                int i = group_by_month ? 12 : 1;
-                for (int m = 0; m < i; m++)
-                {
-                    wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
-                    int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
-                    categoryStats[category->categID_][subcategID][idx] = value;
-                }
-                if (i == -1) break;
+                categoryStats[category->categID_][sub_category->categID_][idx] = value;
             }
         }
     }
@@ -776,15 +772,21 @@ void mmBankTransactionList::getCategoryStats(
         wxDateTime d = pBankTransaction->date_;
         int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
         int categID = pBankTransaction->categID_;
-        int subcategID = pBankTransaction->subcategID_;
 
-        if (pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR)
-            categoryStats[categID][subcategID][idx] += pBankTransaction->amt_ * convRate;
-        else if (pBankTransaction->transType_ == TRANS_TYPE_WITHDRAWAL_STR)
-            categoryStats[categID][subcategID][idx] -= pBankTransaction->amt_ * convRate;
-        else if (pBankTransaction->transType_ == TRANS_TYPE_TRANSFER_STR)
+        if (categID > -1)
         {
-            categoryStats[categID][subcategID][idx] = 0;
+            if (pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR)
+                categoryStats[categID][pBankTransaction->subcategID_][idx] += pBankTransaction->value(-1) * convRate;
+        }
+        else
+        {
+            mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
+            pBankTransaction->getSplitTransactions(splits);
+            for (const auto& entry : splits->entries_)
+            {
+                categoryStats[entry->categID_][entry->subCategID_][idx] += entry->splitAmount_ 
+                    * convRate * (pBankTransaction->value(-1)< 0 ? -1 : 1);
+            }
         }
     }
 }

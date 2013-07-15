@@ -92,20 +92,20 @@ mmLast90Days::mmLast90Days()
 mmLast3Months::mmLast3Months()
 : mmDateRange()
 {
+    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
     this->start_date_ = wxDateTime(end_date_).SetDay(1)
         .Add(wxDateSpan::Months(1))
         .Subtract(wxDateSpan::Months(3));
-    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
     this->title_ = _("Last 3 Months");
 }
 
 mmLast12Months::mmLast12Months()
 : mmDateRange()
 {
+    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
     this->start_date_ = wxDateTime(end_date_).SetDay(1)
         .Add(wxDateSpan::Months(1))
         .Subtract(wxDateSpan::Years(1));
-    this->end_date_ = wxDateTime(this->start_date_).GetLastMonthDay();
     this->title_ = _("Last 12 Months");
 }
 
