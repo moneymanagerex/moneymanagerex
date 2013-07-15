@@ -29,15 +29,15 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.startTable("50%");
     hb.startTableRow();
     hb.addTableHeaderCell(_("Payee"));
-    hb.addTableHeaderCell(_("Deposit"), true);
-    hb.addTableHeaderCell(_("Withdrawal"), true);
+    hb.addTableHeaderCell(_("Incomes"), true);
+    hb.addTableHeaderCell(_("Expences"), true);
     hb.addTableHeaderCell(_("Difference"), true);
     hb.endTableRow();
 
     // Add the graph
     mmGraphPie gg;
 
-    double total = 0.0, positiveTotal = 0.0, negativeTotal = 0.0;
+    double positiveTotal = 0.0, negativeTotal = 0.0;
     std::vector<ValuePair> valueList;
 
     std::map<int, std::pair<double, double> > payeeStats;
