@@ -2104,7 +2104,7 @@ void mmGUIFrame::createHomePage()
 # if defined (__WINDOWS__)
     /* On init for Windows system that function start twice. *
      * First time it should be skiped                        */           
-    if (!activeHomePage_ && initHomePage_)
+    if (initHomePage_)
 #endif
     {
         wxSizer *sizer = cleanupHomePanel();
