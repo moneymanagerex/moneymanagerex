@@ -120,7 +120,7 @@ WARNING: all files in this directory generated from bakefile's scripts (..\bakef
 
 3.You can create mingw.bat file to run gcc with next content (assume MinGW installed in "C:\bin\MinGW")
 
-  set MINGWDIR=C:\bin\MinGW
+  set MINGWDIR=C:\MinGW
   set PATH=%MINGWDIR%\bin;C:\Program Files\Inno Setup 5
   mingw32-make -f makefile.gcc %* 2>mingw.log
 
