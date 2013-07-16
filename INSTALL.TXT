@@ -25,8 +25,8 @@ Prepackaged Libraries
        GENERIC INSTRUCTIONS
 
     1. Download & install the latest wxWidgets for wxGTK:
-       tar xfv wxGTK-2.8.11.tar.gz
-       cd wxGTK-2.8.11
+       tar xfv wxGTK-2.9.4.tar.gz
+       cd wxGTK-2.9.4
        ./configure --disable-shared --enable-unicode
        sudo make install
 
