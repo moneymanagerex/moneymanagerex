@@ -648,7 +648,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     /* Create the Controls for the frame */
     createMenu();
-    CreateToolBar();
+    CreateToolBar(wxTB_FLAT | wxTB_NODIVIDER, wxID_ANY, "ToolBar");
     createControls();
     CreateStatusBar();
     recentFiles_ = new RecentDatabaseFiles(menuRecentFiles_);
@@ -2473,7 +2473,7 @@ void mmGUIFrame::createMenu()
 
 wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &name)
 {
-    toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTB_FLAT | wxTB_NODIVIDER);
+    toolBar_ = new wxToolBar(this, id, wxDefaultPosition, wxDefaultSize, style, name);
     wxBitmap toolBarBitmaps[12];
     toolBarBitmaps[0] = wxBitmap(new_xpm);
     toolBarBitmaps[1] = wxBitmap(open_xpm);
