@@ -319,10 +319,11 @@ void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
 {
     int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
-
-    Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
-
-    fillControls();
+    if (baseCurrencyID != currencyID_)
+    {
+        Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
+        fillControls();
+    }
     event.Skip();
 }
 
