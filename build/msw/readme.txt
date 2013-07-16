@@ -1,7 +1,7 @@
 		*** Build instructions for MS Windows platform ***
 
 
-You can build MMEx on Windows using Visual C++ 2003 or later, or MinGW with GCC.
+You can build MMEx on Windows using Visual C++ 2012 or later, or MinGW with GCC.
 Firstly you can run mmex/bootstrap.bat which will refresh makefiles and projects.
 Bakefile must be installed to do that. But you can skip this step if you just want
 to build sources.
@@ -17,7 +17,7 @@ WARNING: all files in this directory generated from bakefile's scripts (..\bakef
 	*** Prerequisites ***
 
 
-1. Install wxWidgets 2.8.10 and above in a directory like C:\wxWidgets-2.8.10
+1. Install wxWidgets 2.9.4 and above in a directory like C:\wxWidgets-2.9.4
    and then create an environment variable WXWIN to point to that directory.
 
 2. Follow the instructions given by WxWidgets install on how to build it.
@@ -59,17 +59,17 @@ WARNING: all files in this directory generated from bakefile's scripts (..\bakef
   This is the most preferable way to build MMEX using VC++.
 
 
-  	*** Compiling using Microsoft Visual C++ 2010 Express IDE ***
+  	*** Compiling using Microsoft Visual C++ 2012 Express IDE ***
 
     Use the pre built files in the mmex/build/msw-vc-2010e directory.
     To use this directory, continue...
     
-1. Ensure Prerequisites are complete with a build of wxWidgets 2.8.11 or greater
+1. Ensure Prerequisites are complete with a build of wxWidgets 2.9.4 or greater
    using "Unicode Release" and/or "Unicode Debug" depending on preferences below.
    
-2  Copy the mmex/build/msw directory to mmex/build/msw-vc-2010e
+2  Copy the mmex/build/msw directory to mmex/build/msw-vc-2012e
 
-3  Open the project file mmex/build/msw-vc-2010e/mmex.sln.
+3  Open the project file mmex/build/msw-vc-2012e/mmex.sln.
    MS VC++ 2010e will convert the project files to the new compiler version.
    
 4  In the Solution Explorer set the mmex project as the Startup Project
