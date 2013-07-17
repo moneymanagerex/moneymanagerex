@@ -281,21 +281,24 @@ wxString mmHTMLBuilder::getHTMLinTableWraper(bool indent)
 {
     wxString html = this->getHTMLText();
     html_.clear();
-    if (indent)
+    if (!html.IsEmpty())
     {
-        startTable("100%", "", "0");
+        if (indent)
+        {
+            startTable("100%", "", "0");
+            startTableRow();
+            addTableCell("");
+            endTableRow();
+            endTable();
+        }
+        startTable("100%", "", "1");
         startTableRow();
-        addTableCell("");
+        startTableCell();
+        addText(html);
+        endTableCell();
         endTableRow();
         endTable();
     }
-    startTable("100%", "", "1");
-    startTableRow();
-    startTableCell();
-    addText(html);
-    endTableCell();
-    endTableRow();
-    endTable();
 
     return this->getHTMLText();
 }
