@@ -411,6 +411,7 @@ void mmStocksPanel::CreateControls()
 
 int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
 {
+    updateHeader();
     /* Clear all the records */
     trans_.clear();
     listCtrlAccount_->DeleteAllItems();
@@ -419,42 +420,6 @@ int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(asc ? 3 : 2);
     listCtrlAccount_->SetColumn(col, item);
-
-    wxString str = core_->accountList_.GetAccountName(accountID_);
-    header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), str));
-
-    //mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
-    double originalVal = 0.0;
-
-    mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountID_);
-    wxASSERT(pCurrencyPtr);
-    CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-
-    //Get Init Value of the account
-    double initVal = core_->accountList_.GetAccountSharedPtr(accountID_)->initialBalance_;
-    // + Transfered from other accounts - Transfered to other accounts
-
-    //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
-    double total = mmDBWrapper::getStockInvestmentBalance(core_->db_.get(), accountID_, originalVal);
-
-    wxString balance = CurrencyFormatter::float2String(total+initVal);
-    wxString original = CurrencyFormatter::float2String(originalVal);
-    wxString diffStr = CurrencyFormatter::float2String(total > originalVal ? total - originalVal : originalVal - total);
-
-    wxString lbl;
-    lbl << _("Total: ") << balance << "     " << _("Invested: ") << original;
-
-    //Percent
-    if (originalVal != 0.0) {
-        if (total > originalVal)
-            lbl << "     " << _("Gain: ");
-        else
-            lbl << "     " << _("Loss: ");
-        double diffPercents = (total > originalVal ? total/originalVal*100.0-100.0 : -(total/originalVal*100.0-100.0));
-        lbl << diffStr << "  ( " << CurrencyFormatter::float2String(diffPercents) << " %)";
-    }
-
-    header_total_->SetLabel(lbl);
 
     const  wxString sql =  wxString::FromUTF8(SELECT_ROW_HELDAT_FROM_STOCK_V1)
         + " order by " + (wxString()<<col+1)
@@ -518,6 +483,44 @@ int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
     return selected_item;
 }
 
+void mmStocksPanel::updateHeader()
+{
+    wxString str = core_->accountList_.GetAccountName(accountID_);
+    header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), str));
+
+    //mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
+    double originalVal = 0.0;
+
+    mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountID_);
+    wxASSERT(pCurrencyPtr);
+    CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+
+    //Get Init Value of the account
+    double initVal = core_->accountList_.GetAccountSharedPtr(accountID_)->initialBalance_;
+    // + Transfered from other accounts - Transfered to other accounts
+
+    //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
+    double total = mmDBWrapper::getStockInvestmentBalance(core_->db_.get(), accountID_, originalVal);
+
+    wxString balance = CurrencyFormatter::float2String(total+initVal);
+    wxString original = CurrencyFormatter::float2String(originalVal);
+    wxString diffStr = CurrencyFormatter::float2String(total > originalVal ? total - originalVal : originalVal - total);
+
+    wxString lbl;
+    lbl << _("Total: ") << balance << "     " << _("Invested: ") << original;
+
+    //Percent
+    if (originalVal != 0.0) {
+        if (total > originalVal)
+            lbl << "     " << _("Gain: ");
+        else
+            lbl << "     " << _("Loss: ");
+        double diffPercents = (total > originalVal ? total/originalVal*100.0-100.0 : -(total/originalVal*100.0-100.0));
+        lbl << diffStr << "  ( " << CurrencyFormatter::float2String(diffPercents) << " %)";
+    }
+
+    header_total_->SetLabel(lbl);
+}
 void mmStocksPanel::OnDeleteStocks(wxCommandEvent& event)
 {
     listCtrlAccount_->OnDeleteStocks(event);

@@ -143,6 +143,7 @@ public:
     int accountID_;
     StocksListCtrl* listCtrlAccount_;
 private:
+    void updateHeader();
     void call_dialog(int selectedIndex);
     void updateExtraStocksData(int selIndex);
     void sortTable();
