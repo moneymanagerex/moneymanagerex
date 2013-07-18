@@ -1,6 +1,6 @@
-================================================
+======================================================================
                       Money Manager Ex License
-================================================
+======================================================================
 WARNING:  This software is under development.
 If upgrading from a previous version, backup your old data file first! 
 
@@ -9,21 +9,23 @@ CodeLathe, LLC
 Tonido allows you to run your personal web applications from your
 desktop. Learn more at http://www.tonido.com]
 
-================================================
+======================================================================
 If you find bugs/issues, please use the support forum to let us know.
 The support forum links are located in the MMEX Help menu.
-================================================
+======================================================================
 
-================================================
+======================================================================
                       GNU GENERAL PUBLIC LICENSE
-================================================
-Copyright (C) 2005-2009 Madhan Kanagavel
-Copyright (C) 2009-2010 VaDiM,
-                        Nikolay,
-                        Wesley Ellis
+======================================================================
+Copyright (C) 2012-2013 Nikolay,
+                        Lisheng [guanlisheng]
 Copyright (C) 2010-2012 Stefano [stef145g],
                         Nikolay,
                         Lisheng [guanlisheng]
+Copyright (C) 2009-2010 VaDiM,
+                        Nikolay,
+                        Wesley Ellis
+Copyright (C) 2005-2009 Madhan Kanagavel
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -40,4 +42,4 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA  02110-1301, USA
-================================================
+======================================================================
