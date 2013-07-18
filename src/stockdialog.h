@@ -37,20 +37,20 @@ class mmStockDialog : public wxDialog
 
 public:
     mmStockDialog();
-    mmStockDialog(mmCoreDB* core,
-                  mmStockTransactionHolder* stock_holder,
-                  bool edit, int accountID, wxWindow* parent,
-                  wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME,
-                  const wxString& caption = SYMBOL_STOCKDIALOG_TITLE,
-                  const wxPoint& pos = SYMBOL_STOCKDIALOG_POSITION,
-                  const wxSize& size = SYMBOL_STOCKDIALOG_SIZE,
-                  long style = SYMBOL_STOCKDIALOG_STYLE );
+    mmStockDialog(mmCoreDB* core
+                  , mmStockTransactionHolder* stock_holder
+                  , bool edit, int accountID, wxWindow* parent
+                  , wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME
+                  , const wxString& caption = SYMBOL_STOCKDIALOG_TITLE
+                  , const wxPoint& pos = SYMBOL_STOCKDIALOG_POSITION
+                  , const wxSize& size = SYMBOL_STOCKDIALOG_SIZE
+                  , long style = SYMBOL_STOCKDIALOG_STYLE );
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_STOCKDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_STOCKDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_STOCKDIALOG_SIZE,
-                 long style = SYMBOL_STOCKDIALOG_STYLE );
+    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME
+                 , const wxString& caption = SYMBOL_STOCKDIALOG_TITLE
+                 , const wxPoint& pos = SYMBOL_STOCKDIALOG_POSITION
+                 , const wxSize& size = SYMBOL_STOCKDIALOG_SIZE
+                 , long style = SYMBOL_STOCKDIALOG_STYLE );
 
     void CreateControls();
 

@@ -242,7 +242,7 @@ static const char SELECT_ROW_HELDAT_FROM_STOCK_V1[] =
     "S.COMMISSION as COMMISSION, "
     "julianday('now', 'localtime')-julianday (S.PURCHASEDATE, 'localtime') as DAYSOWN, "
     "t.TOTAL_NUMSHARES, T.PURCHASEDTIME, "
-    "ifnull (strftime(INFOVALUE, S.PURCHASEDATE),strftime(replace (i.infovalue, '%y', SubStr (strftime('%Y', S.PURCHASEDATE),3,2)),S.PURCHASEDATE)) as PURCHDATE "
+    "S.PURCHASEDATE as PURCHDATE "
     "from STOCK_V1 S "
     "left join infotable_v1 i on i.INFONAME='DATEFORMAT' "
     "left join ( "

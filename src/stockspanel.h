@@ -36,7 +36,15 @@ public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, const wxWindowID id,
                    const wxPoint& pos, const wxSize& size, long style);
 
-public:
+    void InitVariables();
+    void doRefreshItems(int trx_id = -1);
+    void OnNewStocks(wxCommandEvent& event);
+    void OnDeleteStocks(wxCommandEvent& event);
+    void OnMoveStocks(wxCommandEvent& event);
+    void OnEditStocks(wxCommandEvent& event);
+    long get_selectedIndex() { return selectedIndex_; }
+
+private:
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
@@ -50,21 +58,9 @@ public:
     void OnListItemSelected(wxListEvent& event);
     void OnListItemDeselected(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
-    void doRefreshItems(int trx_id = -1);
 
-    void OnNewStocks(wxCommandEvent& event);
-    void OnDeleteStocks(wxCommandEvent& event);
-    void OnMoveStocks(wxCommandEvent& event);
-    void OnEditStocks(wxCommandEvent& event);
     wxStaticText* stock_details_short_;
-    void InitVariables();
-    long get_selectedIndex()
-    {
-        return selectedIndex_;
-    }
-
-private:
-    mmStocksPanel* cp_;
+    mmStocksPanel* stock_panel_;
     long selectedIndex_;
     int  m_selected_col;
     bool m_asc;
@@ -74,7 +70,7 @@ private:
 struct mmStockTransactionHolder: public mmHolderBase
 {
     wxString heldAt_;
-    wxString stockPDate_;
+    wxDateTime stockPDate_;
     wxString shareName_;
     wxString stockSymbol_;
     wxString sPercentagePerYear_;
@@ -100,18 +96,6 @@ struct mmStockTransactionHolder: public mmHolderBase
 class mmStocksPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
-public:
-    enum EColumn
-    {
-        COL_DATE,
-        COL_NAME,
-        COL_NUMBER,
-        COL_VALUE,
-        COL_GAIN_LOSS,
-        COL_CURRENT,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
 
 public:
     mmStocksPanel(
@@ -147,22 +131,22 @@ public:
     void OnEditStocks(wxCommandEvent& event);
     void OnRefreshQuotes(wxCommandEvent& event);
     void enableEditDeleteButtons(bool en);
-    void updateExtraStocksData(int selIndex);
     void save_column_width(int width);
-    void call_dialog(int selectedIndex);
+    void OnListItemActivated(int selectedIndex);
+    void OnListItemSelected(int selectedIndex);
+    int getColumnsNumber() {return ColName_.size();}
     //void OnViewPopupSelected(wxCommandEvent& event);
 
     /* Helper Functions/data */
     std::vector<mmStockTransactionHolder*> trans_;
-    void sortTable();
 
-public:
-    StocksListCtrl* listCtrlAccount_;
-    wxImageList* m_imageList;
     int accountID_;
-    /************************************************************/
-    // Greg Newton
+    StocksListCtrl* listCtrlAccount_;
 private:
+    void call_dialog(int selectedIndex);
+    void updateExtraStocksData(int selIndex);
+    void sortTable();
+    wxImageList* m_imageList;
 
     wxStaticText* stock_details_short_;
     wxStaticText* stock_details_;
@@ -178,8 +162,19 @@ private:
     bool StocksRefreshStatus_;
     wxDateTime LastRefreshDT_;
 
-private:
     wxString tips_;
+    enum EColumn
+    {
+        COL_DATE = 0,
+        COL_NAME,
+        COL_NUMBER,
+        COL_VALUE,
+        COL_GAIN_LOSS,
+        COL_CURRENT,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
+    std::map<int, wxString> ColName_;
 };
 
 #endif

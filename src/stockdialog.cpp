@@ -37,17 +37,17 @@ mmStockDialog::mmStockDialog( )
 {
 }
 
-mmStockDialog::mmStockDialog(mmCoreDB* core, mmStockTransactionHolder* stock_holder, bool edit,
-                             int accountID, wxWindow* parent, wxWindowID id,
-                             const wxString& caption, const wxPoint& pos,
-                             const wxSize& size, long style )
+mmStockDialog::mmStockDialog(mmCoreDB* core, mmStockTransactionHolder* stock_holder
+    , bool edit, int accountID
+    , wxWindow* parent, wxWindowID id
+    ,const wxString& caption, const wxPoint& pos
+    ,const wxSize& size, long style )
+    : core_(core)
+    , stock_holder_(stock_holder)
+    , edit_(edit)
+    , accountID_(accountID)
 {
-    core_ = core;
-    stock_holder_ = stock_holder;
-    edit_ = edit;
-    accountID_ = accountID;
     Create(parent, id, caption, pos, size, style);
-    //core_->currencyList_.LoadBaseCurrencySettings();
     mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
 }
 
@@ -77,10 +77,7 @@ void mmStockDialog::dataToControls()
     stockName_->SetValue(stock_holder_->shareName_);
     stockSymbol_->SetValue(stock_holder_->stockSymbol_);
     notes_->SetValue(stock_holder_->shareNotes_);
-
-    wxString dateString = stock_holder_-> stockPDate_;
-    wxDateTime dtdt = mmGetStorageStringAsDate(dateString);
-    dpc_->SetValue(dtdt);
+    dpc_->SetValue(stock_holder_-> stockPDate_);
 
     double numShares = stock_holder_->numShares_;
     wxString numSharesString;
