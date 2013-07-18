@@ -2717,11 +2717,11 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
 {
     autoRepeatTransactionsTimer_.Stop();
-    wxString fileName = wxFileSelector(_("Choose database file to open"),
-                                       wxEmptyString, wxEmptyString, wxEmptyString,
-                                       "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb)",
-                                       wxFD_FILE_MUST_EXIST,
-                                       this
+    wxString fileName = wxFileSelector( _("Choose database file to open")
+                                       , wxEmptyString, wxEmptyString, wxEmptyString
+                                       , "MMB Files(*.mmb)|*.mmb|Encrypted MMB files (*.emb)|*.emb"
+                                       , wxFD_FILE_MUST_EXIST|wxFD_OPEN
+                                       , this
                                       );
 
     if (!fileName.empty())
@@ -2734,11 +2734,11 @@ void mmGUIFrame::OnOpen(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
 {
-    wxString encFileName = wxFileSelector(_("Choose Encrypted database file to open"),
-                                          wxEmptyString, wxEmptyString, wxEmptyString,
-                                          "Encrypted MMB files (*.emb)|*.emb",
-                                          wxFD_FILE_MUST_EXIST,
-                                          this
+    wxString encFileName = wxFileSelector( _("Choose Encrypted database file to open")
+                                          , wxEmptyString, wxEmptyString, wxEmptyString
+                                          , "Encrypted MMB files (*.emb)|*.emb"
+                                          , wxFD_FILE_MUST_EXIST
+                                          , this
                                          );
 
     if (encFileName.empty())
@@ -2748,12 +2748,12 @@ void mmGUIFrame::OnConvertEncryptedDB(wxCommandEvent& /*event*/)
     if (password.empty())
         return;
 
-    wxFileDialog dlg(this,
-                     _("Choose database file to Save As"),
-                     wxEmptyString,
-                     wxEmptyString,
-                     "MMB Files(*.mmb)|*.mmb",
-                     wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+    wxFileDialog dlg( this
+                     , _("Choose database file to Save As")
+                     , wxEmptyString
+                     , wxEmptyString
+                     , "MMB Files(*.mmb)|*.mmb"
+                     , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
                     );
 
     if(dlg.ShowModal() != wxID_OK)
