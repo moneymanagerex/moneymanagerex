@@ -35,6 +35,7 @@ class StocksListCtrl: public mmListCtrl
 public:
     StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, const wxWindowID id,
                    const wxPoint& pos, const wxSize& size, long style);
+    ~StocksListCtrl();
 
     void InitVariables();
     void doRefreshItems(int trx_id = -1);
@@ -43,6 +44,9 @@ public:
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
     long get_selectedIndex() { return selectedIndex_; }
+    int getColumnsNumber() {return ColName_.size();}
+    wxString getItem(long item, long column);
+    wxString getStockInfo(int selectedIndex) const;
 
 private:
     /* required overrides for virtual style list control */
@@ -64,6 +68,20 @@ private:
     long selectedIndex_;
     int  m_selected_col;
     bool m_asc;
+    enum EColumn
+    {
+        COL_DATE = 0,
+        COL_NAME,
+        COL_NUMBER,
+        COL_VALUE,
+        COL_GAIN_LOSS,
+        COL_CURRENT,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
+    std::map<int, wxString> ColName_;
+    wxImageList* m_imageList;
+    /* Getter for Virtual List Control */
 };
 
 /* Holds a single transaction */
@@ -121,20 +139,17 @@ public:
     /* updates thstockide checking panel data */
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
 
-    /* Getter for Virtual List Control */
-    wxString getItem(long item, long column);
-
     /* Event handlers for Buttons */
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
     void OnRefreshQuotes(wxCommandEvent& event);
+    //Unhide the Edit and Delete buttons if any record selected
     void enableEditDeleteButtons(bool en);
     void save_column_width(int width);
     void OnListItemActivated(int selectedIndex);
     void OnListItemSelected(int selectedIndex);
-    int getColumnsNumber() {return ColName_.size();}
     //void OnViewPopupSelected(wxCommandEvent& event);
 
     /* Helper Functions/data */
@@ -142,15 +157,15 @@ public:
 
     int accountID_;
     StocksListCtrl* listCtrlAccount_;
+    void updateExtraStocksData(int selIndex);
+    wxStaticText* stock_details_short_;
+
 private:
+    wxStaticText* stock_details_;
     void updateHeader();
     void call_dialog(int selectedIndex);
-    void updateExtraStocksData(int selIndex);
     void sortTable();
-    wxImageList* m_imageList;
 
-    wxStaticText* stock_details_short_;
-    wxStaticText* stock_details_;
     wxStaticText* header_text_;
     wxStaticText* header_total_;
     wxBitmapButton* refresh_button_;
@@ -164,18 +179,6 @@ private:
     wxDateTime LastRefreshDT_;
 
     wxString tips_;
-    enum EColumn
-    {
-        COL_DATE = 0,
-        COL_NAME,
-        COL_NUMBER,
-        COL_VALUE,
-        COL_GAIN_LOSS,
-        COL_CURRENT,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
-    std::map<int, wxString> ColName_;
 };
 
 #endif
