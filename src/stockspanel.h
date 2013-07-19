@@ -64,7 +64,6 @@ public:
                    const wxPoint& pos, const wxSize& size, long style);
     ~StocksListCtrl();
 
-    void InitVariables();
     void doRefreshItems(int trx_id = -1);
     void OnNewStocks(wxCommandEvent& event);
     void OnDeleteStocks(wxCommandEvent& event);
@@ -72,7 +71,6 @@ public:
     void OnEditStocks(wxCommandEvent& event);
     long get_selectedIndex() { return selectedIndex_; }
     int getColumnsNumber() { return ColName_.size(); }
-    wxString getItem(long item, long column);
     wxString getStockInfo(int selectedIndex) const;
     /* Helper Functions/data */
     std::vector<mmStockTransactionHolder*> trans_;
@@ -80,6 +78,7 @@ public:
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
 
 private:
+    void save_column_width(int width);
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
@@ -94,7 +93,6 @@ private:
     void OnListItemDeselected(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
 
-    wxStaticText* stock_details_short_;
     mmStocksPanel* stock_panel_;
     long selectedIndex_;
     int  m_selected_col;
@@ -148,7 +146,6 @@ public:
     void OnRefreshQuotes(wxCommandEvent& event);
     //Unhide the Edit and Delete buttons if any record selected
     void enableEditDeleteButtons(bool en);
-    void save_column_width(int width);
     void OnListItemActivated(int selectedIndex);
     void OnListItemSelected(int selectedIndex);
     //void OnViewPopupSelected(wxCommandEvent& event);

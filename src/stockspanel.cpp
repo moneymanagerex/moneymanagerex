@@ -81,18 +81,19 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent
         int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("STOCKS_COL%d_WIDTH", column.first), -2);
         SetColumnWidth(column.first, col_x);
     }
-}
 
-void StocksListCtrl::InitVariables()
-{
     m_selected_col = 0;
     m_asc = true;
+    initVirtualListControl();
+    if ( trans_.size() > 1)
+        EnsureVisible(((int)trans_.size()) - 1);
+
 }
 
 void StocksListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    stock_panel_->save_column_width(i);
+    save_column_width(i);
 }
 
 void StocksListCtrl::OnItemRightClick(wxListEvent& event)
@@ -319,11 +320,6 @@ bool mmStocksPanel::Create(wxWindow *parent,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    listCtrlAccount_->InitVariables();
-    listCtrlAccount_->initVirtualListControl();
-    if ( listCtrlAccount_->trans_.size() > 1)
-        listCtrlAccount_->EnsureVisible(((int)listCtrlAccount_->trans_.size()) - 1);
-
     this->windowsFreezeThaw();
     return TRUE;
 }
@@ -332,10 +328,10 @@ mmStocksPanel::~mmStocksPanel()
 {
 }
 
-void mmStocksPanel::save_column_width(int width)
+void StocksListCtrl::save_column_width(int width)
 {
     int i = width;
-    int col_x = listCtrlAccount_->GetColumnWidth(i);
+    int col_x = GetColumnWidth(i);
     Model_Setting::instance().Set(wxString::Format("STOCKS_COL%d_WIDTH", i),col_x);
 }
 
