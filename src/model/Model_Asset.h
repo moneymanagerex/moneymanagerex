@@ -81,6 +81,10 @@ public:
         }
         return balance;
     }
+
+public:
+    wxDate STARTDATE(const Data* asset) { return this->to_date(asset->STARTDATE); }
+    wxDate STARTDATE(const Data& asset) { return this->to_date(asset.STARTDATE); }
 };
 
 #endif // 

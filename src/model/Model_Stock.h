@@ -46,6 +46,10 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+
+public:
+    wxDate PURCHASEDATE(const Data* stock) { return this->to_date(stock->PURCHASEDATE); }
+    wxDate PURCHASEDATE(const Data& stock) { return this->to_date(stock.PURCHASEDATE); }
 };
 
 #endif // 

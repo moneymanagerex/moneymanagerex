@@ -21,6 +21,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <wx/datetime.h>
 #include "singleton.h"
 #include <memory>
 
@@ -28,6 +29,8 @@ class wxString;
 class wxSQLite3Statement;
 class wxSQLite3Database;
 class wxSQLite3ResultSet;
+
+typedef wxDateTime wxDate;
 
 class Model
 {
@@ -43,6 +46,13 @@ public:
     void Commit()
     {
         this->db_->Commit();
+    }
+public:
+    wxDate to_date(const wxString& str_date)
+    {
+        wxDate date = wxDateTime::Today();
+        date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
+        return date;
     }
 public:
     wxSQLite3Database* db_;
