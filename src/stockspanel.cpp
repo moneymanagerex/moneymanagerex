@@ -23,6 +23,7 @@
 #include "util.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Stock.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
@@ -108,13 +109,13 @@ void StocksListCtrl::OnItemRightClick(wxListEvent& event)
 
 wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
-    if (column == COL_DATE)         return mmGetDateForDisplay(stock_panel_->trans_[item]->stockPDate_);
-    if (column == COL_NAME)         return stock_panel_->trans_[item]->shareName_;
-    if (column == COL_NUMBER)       return stock_panel_->trans_[item]->numSharesStr_;
-    if (column == COL_GAIN_LOSS)    return stock_panel_->trans_[item]->gainLossStr_;
-    if (column == COL_VALUE)        return stock_panel_->trans_[item]->valueStr_;
-    if (column == COL_CURRENT)      return stock_panel_->trans_[item]->cPriceStr_;
-    if (column == COL_NOTES)        return stock_panel_->trans_[item]->shareNotes_;
+    if (column == COL_DATE)         return mmGetDateForDisplay(trans_[item]->stockPDate_);
+    if (column == COL_NAME)         return trans_[item]->shareName_;
+    if (column == COL_NUMBER)       return trans_[item]->numSharesStr_;
+    if (column == COL_GAIN_LOSS)    return trans_[item]->gainLossStr_;
+    if (column == COL_VALUE)        return trans_[item]->valueStr_;
+    if (column == COL_CURRENT)      return trans_[item]->cPriceStr_;
+    if (column == COL_NOTES)        return trans_[item]->shareNotes_;
 
     return "";
 }
@@ -139,7 +140,7 @@ void StocksListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
 int StocksListCtrl::OnGetItemImage(long item) const
 {
     /* Returns the icon to be shown for each entry */
-    if (stock_panel_->trans_[item]->gainLoss_ > 0) return 0;
+    if (trans_[item]->gainLoss_ > 0) return 0;
     return 1;
 }
 
@@ -178,7 +179,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        mmDBWrapper::deleteStockInvestment(stock_panel_->core_->db_.get(), stock_panel_->trans_[selectedIndex_]->id_);
+        mmDBWrapper::deleteStockInvestment(stock_panel_->core_->db_.get(), trans_[selectedIndex_]->id_);
         DeleteItem(selectedIndex_);
         doRefreshItems(-1);
     }
@@ -214,7 +215,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if ( toAccountID != -1 )
     {
         stock_panel_->core_->db_.get()->Begin();
-        if (mmDBWrapper::moveStockInvestment(stock_panel_->core_->db_.get(), stock_panel_->trans_[selectedIndex_]->id_, toAccountID))
+        if (mmDBWrapper::moveStockInvestment(stock_panel_->core_->db_.get(), trans_[selectedIndex_]->id_, toAccountID))
             DeleteItem(selectedIndex_);
         stock_panel_->core_->db_.get()->Commit();
     }
@@ -255,15 +256,15 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     m_selected_col = event.GetColumn();
 
     int trx_id = -1;
-    if (selectedIndex_>=0) trx_id = stock_panel_->trans_[selectedIndex_]->id_;
+    if (selectedIndex_>=0) trx_id = trans_[selectedIndex_]->id_;
     doRefreshItems(trx_id);
     stock_panel_->OnListItemSelected(-1);
 }
 
 void StocksListCtrl::doRefreshItems(int trx_id)
 {
-    int selectedIndex = stock_panel_->initVirtualListControl(trx_id, m_selected_col, m_asc);
-    long cnt = static_cast<long>(stock_panel_->trans_.size());
+    int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
+    long cnt = static_cast<long>(trans_.size());
 
     if (selectedIndex >= cnt || selectedIndex < 0)
         selectedIndex = m_asc ? cnt - 1 : 0;
@@ -319,9 +320,9 @@ bool mmStocksPanel::Create(wxWindow *parent,
     GetSizer()->SetSizeHints(this);
 
     listCtrlAccount_->InitVariables();
-    initVirtualListControl();
-    if (trans_.size() > 1)
-        listCtrlAccount_->EnsureVisible(((int)trans_.size()) - 1);
+    listCtrlAccount_->initVirtualListControl();
+    if ( listCtrlAccount_->trans_.size() > 1)
+        listCtrlAccount_->EnsureVisible(((int)listCtrlAccount_->trans_.size()) - 1);
 
     this->windowsFreezeThaw();
     return TRUE;
@@ -423,24 +424,31 @@ void mmStocksPanel::CreateControls()
     updateExtraStocksData(-1);
 }
 
-int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
+int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 {
-    updateHeader();
+    //Just for testing new classes
+    for (const auto& stock: Model_Stock::instance().all())
+    {
+        if (stock.HELDAT == stock_panel_->accountID_)
+            wxLogDebug("id:%s %s", wxString()<<stock.STOCKID ,stock.STOCKNAME);
+     }
+
+    stock_panel_->updateHeader();
     /* Clear all the records */
     trans_.clear();
-    listCtrlAccount_->DeleteAllItems();
+    DeleteAllItems();
 
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(asc ? 3 : 2);
-    listCtrlAccount_->SetColumn(col, item);
+    SetColumn(col, item);
 
     const  wxString sql =  wxString::FromUTF8(SELECT_ROW_HELDAT_FROM_STOCK_V1)
         + " order by " + (wxString()<<col+1)
         + (!asc ? " desc" : " ");
 
-    wxSQLite3Statement st = core_->db_.get()->PrepareStatement(sql);
-    st.Bind(1, accountID_);
+    wxSQLite3Statement st = stock_panel_->core_->db_.get()->PrepareStatement(sql);
+    st.Bind(1, stock_panel_->accountID_);
     wxSQLite3ResultSet q1 = st.ExecuteQuery();
 
     int cnt = 0, selected_item = -1;
@@ -453,7 +461,7 @@ int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
         th.stockPDate_        = q1.GetDate("PURCHDATE");
         int accountID         = q1.GetInt("HELDAT");
         th.stockSymbol_       = q1.GetString ("SYMBOL");
-        th.heldAt_            = core_->accountList_.GetAccountName(accountID);
+        th.heldAt_            = stock_panel_->core_->accountList_.GetAccountName(accountID);
         th.shareName_         = q1.GetString("STOCKNAME");
         th.shareNotes_        = q1.GetString("NOTES");
         th.numSharesStr_      = "";
@@ -493,7 +501,7 @@ int mmStocksPanel::initVirtualListControl(int id, int col, bool asc)
     }
 
     st.Finalize();
-    listCtrlAccount_->SetItemCount(cnt);
+    SetItemCount(cnt);
     return selected_item;
 }
 
@@ -578,7 +586,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 /*** Trigger a quote download ***/
 bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 {
-    if(trans_.size() < 1)
+    if(listCtrlAccount_->trans_.size() < 1)
     {
         sError = _("Nothing to update");
         return false;
@@ -589,7 +597,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     wxString site = "";
     wxSortedArrayString symbols_array;
 
-    for (const auto &stock : trans_)
+    for (const auto &stock : listCtrlAccount_->trans_)
     {
         const wxString symbol = stock->stockSymbol_.Upper();
         if (!symbol.IsEmpty())
@@ -664,7 +672,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     typedef std::vector<mmStockTransactionHolder> vec_t;
     vec_t stockVec;
 
-    for (const auto &stock : trans_)
+    for (const auto &stock : listCtrlAccount_->trans_)
     {
         mmStockTransactionHolder sh;
 
@@ -706,7 +714,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     // Now refresh the display
     int selected_id = -1;
     if (listCtrlAccount_->get_selectedIndex() > -1)
-        selected_id = trans_[listCtrlAccount_->get_selectedIndex()]->id_;
+        selected_id = listCtrlAccount_->trans_[listCtrlAccount_->get_selectedIndex()]->id_;
     listCtrlAccount_->doRefreshItems(selected_id);
 
     // We are done!
@@ -737,23 +745,23 @@ void mmStocksPanel::updateExtraStocksData(int selectedIndex)
 
 wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 {
-        wxString sNumShares = stock_panel_->trans_[selectedIndex]->numSharesStr_;
-        wxString sTotalNumShares = stock_panel_->trans_[selectedIndex]->totalnumSharesStr_;
-        wxString sGainLoss = stock_panel_->trans_[selectedIndex]->gainLossStr_;
+        wxString sNumShares = trans_[selectedIndex]->numSharesStr_;
+        wxString sTotalNumShares = trans_[selectedIndex]->totalnumSharesStr_;
+        wxString sGainLoss = trans_[selectedIndex]->gainLossStr_;
 
-        double stockPurchasePrice = stock_panel_->trans_[selectedIndex]->purchasePrice_;
-        double stockCurrentPrice = stock_panel_->trans_[selectedIndex]->currentPrice_;
+        double stockPurchasePrice = trans_[selectedIndex]->purchasePrice_;
+        double stockCurrentPrice = trans_[selectedIndex]->currentPrice_;
         double stockDifference = stockCurrentPrice - stockPurchasePrice;
 
-        double stockavgPurchasePrice = stock_panel_->trans_[selectedIndex]->avgpurchasePrice_;
+        double stockavgPurchasePrice = trans_[selectedIndex]->avgpurchasePrice_;
         double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
-        double stockDaysOwn = stock_panel_->trans_[selectedIndex]->stockDays_;
+        double stockDaysOwn = trans_[selectedIndex]->stockDays_;
         //Commision don't calculates here
         double stockPercentage = (stockCurrentPrice/stockPurchasePrice-1.0)*100.0;
         double stockPercentagePerYear = stockPercentage * 365.0 / stockDaysOwn;
         double stocktotalPercentage = (stockCurrentPrice/stockavgPurchasePrice-1.0)*100.0;
         //  double stocknumShares = trans_[selectedIndex]->numShares_;
-        double stocktotalnumShares = stock_panel_->trans_[selectedIndex]->totalnumShares_;
+        double stocktotalnumShares = trans_[selectedIndex]->totalnumShares_;
         double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
         wxString sPurchasePrice = CurrencyFormatter::float2String(stockPurchasePrice);
@@ -767,9 +775,9 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
         wxString sTotalGainLoss = CurrencyFormatter::float2String(stocktotalgainloss);
 
         wxString miniInfo = "";
-        if (stock_panel_->trans_[selectedIndex]->stockSymbol_ != "")
-        miniInfo << "\t" << _("Symbol: ") << stock_panel_->trans_[selectedIndex]->stockSymbol_ << "\t\t";
-        miniInfo << _ ("Total:") << " (" << stock_panel_->trans_[selectedIndex]->totalnumSharesStr_ << ") ";
+        if (trans_[selectedIndex]->stockSymbol_ != "")
+        miniInfo << "\t" << _("Symbol: ") << trans_[selectedIndex]->stockSymbol_ << "\t\t";
+        miniInfo << _ ("Total:") << " (" << trans_[selectedIndex]->totalnumSharesStr_ << ") ";
         //If some share has been bot for a short period we don't need that info because the forecast may be too optimistic
         //if (stockDaysOwn > 182.5)
         //miniInfo << "\t\t" << _("Percent/Year: ") << trans_[selectedIndex]->sPercentagePerYear_;
@@ -783,7 +791,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
         //<< " | "<< sPercentagePerYear << "% "  << _("Yearly")
         << " )" << "\n";
         //Summary for account for selected symbol
-        if (stock_panel_->trans_[selectedIndex]->purchasedTime_ > 1)
+        if (trans_[selectedIndex]->purchasedTime_ > 1)
         {
             additionInfo << "|" << sCurrentPrice << " - " << sAvgPurchasePrice << "|" << " = " << sTotalDifference
             << " * " << sTotalNumShares << " = " << sTotalGainLoss << " ( " << sTotalPercentage << "%"
@@ -805,7 +813,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
-    mmStockDialog dlg(core_, trans_[selectedIndex], true, accountID_, this);
+    mmStockDialog dlg(core_, listCtrlAccount_->trans_[selectedIndex], true, accountID_, this);
     if (dlg.ShowModal() == wxID_OK)
     {
         listCtrlAccount_->doRefreshItems(dlg.transID_);
