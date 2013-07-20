@@ -161,11 +161,19 @@ bool OnInitImpl(mmGUIApp* app)
     /* Was App Maximized? */
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
 
-    /* Load Dimensions of Window */
-    int valx = Model_Setting::instance().GetIntSetting(wxT("ORIGINX"), 50);
-    int valy = Model_Setting::instance().GetIntSetting("ORIGINY",50);
-    int valw = Model_Setting::instance().GetIntSetting("SIZEW",800);
-    int valh = Model_Setting::instance().GetIntSetting("SIZEH",600);
+    //Get System screen size
+    int sys_screen_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
+    int sys_screen_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
+
+    /* Load Dimensions of Window */    
+    int valx = Model_Setting::instance().GetIntSetting("ORIGINX", 50);
+    int valy = Model_Setting::instance().GetIntSetting("ORIGINY", 50);
+    int valw = Model_Setting::instance().GetIntSetting("SIZEW", sys_screen_x/4*3);
+    int valh = Model_Setting::instance().GetIntSetting("SIZEH", sys_screen_y/4*3);
+    
+    //BUGFIX: #214 MMEX Window is "off screen" 
+    if (valx >= sys_screen_x ) valx = sys_screen_x - valw;
+    if (valy >= sys_screen_y ) valy = sys_screen_y - valh;
 
     mmSelectLanguage(0, false);
 
