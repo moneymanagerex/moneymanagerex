@@ -1446,6 +1446,8 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 {
     //check if a transaction is selected
     if (GetSelectedItemCount() < 1) return;
+    
+    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     //ask if they really want to delete
     wxMessageDialog msgDlg(this
@@ -1479,6 +1481,8 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
+    
+    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID,
        m_cp->m_trans[m_selectedIndex], true, this);
@@ -1492,6 +1496,8 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 {
     mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID, NULL, false, this);
 
+    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+
     if ( dlg.ShowModal() == wxID_OK )
     {
         int transID = dlg.getTransID();
@@ -1503,6 +1509,8 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
+
+    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     wxDateTime transTime = m_cp->m_trans[m_selectedIndex]->date_;
     mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID,
@@ -1531,9 +1539,6 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
-    //debuger
-    //wxLogDebug(wxString::Format("trx id:%ld | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
-
     if (m_cp->m_trans.size() > 0) {
         RefreshItems(0, m_cp->m_trans.size() - 1);
     }
@@ -1548,6 +1553,8 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
             topItemIndex_ = m_selectedIndex;
         EnsureVisible(topItemIndex_);
     }
+    //debuger
+    //wxLogDebug(wxString::Format("+trx id:%ld | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex));
 
     m_cp->updateExtraTransactionData(m_selectedIndex);
 }
