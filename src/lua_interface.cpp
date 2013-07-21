@@ -574,9 +574,9 @@ void TLuaInterface::SetDirSetting(lua_State* lua, wxString dir_setting)
  *****************************************************************************/
 int TLuaInterface::cpp2lua_GetDocDir(lua_State* lua)
 {
-    static wxStandardPaths stdpath = wxStandardPaths();
+    wxStandardPathsBase &p = wxStandardPaths::Get();
 
-    SetDirSetting(lua, stdpath.GetDocumentsDir());
+    SetDirSetting(lua, p.GetDocumentsDir());
     return 1;
 }
 
@@ -585,8 +585,8 @@ int TLuaInterface::cpp2lua_GetDocDir(lua_State* lua)
  *****************************************************************************/
 int TLuaInterface::cpp2lua_GetExeDir(lua_State* lua)
 {
-    static wxStandardPaths stdpath = wxStandardPaths();
-    wxFileName fn(stdpath.GetExecutablePath());
+    wxStandardPathsBase &p = wxStandardPaths::Get();
+    wxFileName fn(p.GetExecutablePath());
 
     SetDirSetting(lua, fn.GetPath());
     return 1;
@@ -597,8 +597,8 @@ int TLuaInterface::cpp2lua_GetExeDir(lua_State* lua)
  *****************************************************************************/
 int TLuaInterface::cpp2lua_GetLuaDir(lua_State* lua)
 {
-    static wxStandardPaths stdpath = wxStandardPaths();
-    wxFileName fn(stdpath.GetExecutablePath());
+    wxStandardPathsBase &p = wxStandardPaths::Get();
+    wxFileName fn(p.GetExecutablePath());
 
     const wxArrayString &dirs = fn.GetDirs();
     if (dirs.Last().Upper() == "BIN") // bin\mmex.exe
