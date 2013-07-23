@@ -261,6 +261,7 @@
     <ClCompile Include="..\..\src\db\transactionbill.cpp" />
     <ClCompile Include="..\..\src\fileviewerdialog.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
+    <ClCompile Include="..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
@@ -365,6 +366,7 @@
     <ClInclude Include="..\..\src\filtertransdialog.h" />
     <ClInclude Include="..\..\src\guiid.h" />
     <ClInclude Include="..\..\src\htmlbuilder.h" />
+    <ClInclude Include="..\..\src\import_export\export.h" />
     <ClInclude Include="..\..\src\import_export\qif_export.h" />
     <ClInclude Include="..\..\src\import_export\qif_import.h" />
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
