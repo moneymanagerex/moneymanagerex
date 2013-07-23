@@ -1,7 +1,8 @@
 /*******************************************************
   Copyright (C) 2012 Nikolay
  ********************************************************/
-
+#ifndef QIF_EXPORT_H
+#define QIF_EXPORT_H
 
 #define SYMBOL_QIFDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
 #define SYMBOL_QIFDIALOG_TITLE _("QIF Export")
@@ -75,3 +76,4 @@ private:
 
     void mmExportQIF(wxWindow* parent_, mmCoreDB* core);
 };
+#endif // 

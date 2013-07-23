@@ -1,3 +1,7 @@
+
+#ifndef QIF_IMPORT_H
+#define QIF_IMPORT_H
+
 #define SYMBOL_QIFIMPORT_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
 #define SYMBOL_QIFIMPORT_TITLE _("QIF Import")
 #define SYMBOL_QIFIMPORT_IDNAME wxID_HIGHEST+1
@@ -78,4 +82,4 @@ private:
     wxBitmapButton* bbAccounts_;
     int last_imported_acc_id_;
 };
-
+#endif // 
