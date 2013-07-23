@@ -675,10 +675,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
     m_mgr.GetArtProvider()->SetMetric(16, 0);
     m_mgr.GetArtProvider()->SetMetric(3, 1);
 
-    // Save default perspective
-    m_perspective = m_mgr.SavePerspective();
-    Model_Setting::instance().Set("AUIPERSPECTIVE", m_perspective);
-
     // "commit" all changes made to wxAuiManager
     m_mgr.Update();
 
@@ -1572,7 +1568,10 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     /* Load Nav Tree Control */
 
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
+    if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+        vAccts = VIEW_ACCOUNTS_ALL_STR;
 
     for (const auto& account: m_core->accountList_.accounts_)
     {
@@ -2036,27 +2035,25 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
 void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 
-    //Set view ALL
-    Model_Setting::instance().Set("VIEWACCOUNTS", "ALL");
-    //Refresh Navigation Panel
+    //Set view ALL & Refresh Navigation Panel
+    Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
+    vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 
-    //Set view ALL
-    Model_Setting::instance().Set("VIEWACCOUNTS", "Favorites");
-
-    //Refresh Navigation Panel
+    //Set view Favorites & Refresh Navigation Panel
+    Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_FAVORITES_STR);
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
@@ -2067,12 +2064,10 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 {
     //Get current settings for view accounts
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", "ALL");
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 
-    //Set view ALL
-    Model_Setting::instance().Set("VIEWACCOUNTS", "Open");
-
-    //Refresh Navigation Panel
+    //Set view Open & Refresh Navigation Panel
+    Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_OPEN_STR);
     mmGUIFrame::updateNavTreeControl();
 
     //Restore settings
