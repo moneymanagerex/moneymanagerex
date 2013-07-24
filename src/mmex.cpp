@@ -2544,7 +2544,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             passwordCheckPassed = false;
     }
 
-    wxString dialogErrorMessageHeading = _("Opening MMEX Database - Error");
+    const wxString dialogErrorMessageHeading = _("Opening MMEX Database - Error");
 
     // Existing Database
     if (!openingNew
@@ -2571,8 +2571,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         {
             wxString note = mmex::getProgramName() + _(" - No File opened ");
             this->SetTitle(note);
-            wxMessageBox(_("Sorry. The Database version is too old or Database password is incorrect"),
-                        dialogErrorMessageHeading, wxOK|wxICON_EXCLAMATION);
+            wxMessageBox(_("Sorry. The Database version is too old or Database password is incorrect")
+                        , dialogErrorMessageHeading
+                        , wxOK|wxICON_EXCLAMATION);
 
             m_db->Close();
             m_db.reset();
@@ -3797,14 +3798,6 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 {
     autoRepeatTransactionsTimer_.Stop();
-    wxProgressDialog *progress = NULL;
-    if (! newDatabase)
-    {
-        progress = new wxProgressDialog(
-            _("Setting new Database file"),
-            _("Please wait while the new database is being loaded."), 100, this);
-        progress->Update(33);
-    }
 
     // Ensure database is in a steady state first
     if (m_db && !activeHomePage_)
@@ -3813,24 +3806,15 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         createHomePage();
     }
 
-    if (progress) progress->Update(65);
     if (openFile(dbFileName, newDatabase))
     {
-        if (progress) progress->Update(80);
         recentFiles_->updateRecentList(dbFileName);
     }
     else
     {
         createHomePage();
-        if (progress) progress->Update(90);
         updateNavTreeControl();
         showBeginAppDialog(true);
-    }
-
-    if (progress)
-    {
-        progress->Update(100);
-        progress->Destroy();
     }
 }
 //----------------------------------------------------------------------------
