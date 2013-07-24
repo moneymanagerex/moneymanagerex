@@ -26,7 +26,7 @@
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
 #define my_output_path "..\..\build\msw-vc-2012e\vc-static-u"
-#define my_output_filename StringChange(StringChange("mmex_0.9.9.2_svn3040_win32_setup", "$", ""), ": ", "")
+#define my_output_filename StringChange(StringChange("mmex_0.9.9.2_$Rev$_win32_setup", "$", ""), ": ", "")
 
 ;===============================================================================
 
