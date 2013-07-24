@@ -1,7 +1,7 @@
 REM --------------------------------------------------------------------------
 REM Author : Stefano Giorgio - Copyright (C) 2012 
 REM Purpose: To allow the easy collection of support files required for
-REM          - testing in the msw-vc-2010e environment.
+REM          - testing in the msw-vc-2012e environment.
 REM          - providing a release version for others.
 REM 
 REM Revision of last commit: $Revision$
@@ -106,13 +106,6 @@ cls
 REM Work out where to go next.
 if %location%==vc-static-u          goto update_ud
 if %location%==vc-static-ud         goto update_ud_tests
-if %location%==tests\vc-static-ud   goto update_28u
-if %location%==vc-static-28u        goto update_28ud
-if %location%==vc-static-28ud       goto update_28ud_tests
-if %location%==tests\vc-static-28ud goto update_29u
-if %location%==vc-static-29u        goto update_29ud
-if %location%==vc-static-29ud       goto update_29ud_tests
-if %location%==tests\vc-static-29ud goto update_release
 goto ScriptEnd
 REM -------------------------------------------------------------------------- 
 
@@ -131,42 +124,6 @@ goto UpdateFiles
 REM Unicode Debug Tests
 :update_ud_tests
 set location=tests\vc-static-ud
-set current_location=%location%
-goto UpdateFiles
-
-REM wx28 Unicode Release
-:update_28u
-set location=vc-static-28u
-set current_location=%location%
-goto UpdateFiles
-
-REM wx28 Unicode Debug
-:update_28ud
-set location=vc-static-28ud
-set current_location=%location%
-goto UpdateFiles
-
-REM wx28 Unicode Debug Tests
-:update_28ud_tests
-set location=tests\vc-static-28ud
-set current_location=%location%
-goto UpdateFiles
-
-REM wx29 Unicode Release
-:update_29u
-set location=vc-static-29u
-set current_location=%location%
-goto UpdateFiles
-
-REM wx29 Unicode Debug
-:update_29ud
-set location=vc-static-29ud
-set current_location=%location%
-goto UpdateFiles
-
-REM wx29 Unicode Debug Tests
-:update_29ud_tests
-set location=tests\vc-static-29ud
 set current_location=%location%
 goto UpdateFiles
 
