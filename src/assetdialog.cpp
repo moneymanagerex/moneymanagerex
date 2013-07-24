@@ -26,8 +26,8 @@ namespace
 
 enum
 {
-  IDC_COMBO_TYPE = wxID_HIGHEST + 1,
-  IDC_NOTES,
+    IDC_COMBO_TYPE = wxID_HIGHEST + 1,
+    IDC_NOTES,
 };
 
 } // namespace
@@ -46,9 +46,9 @@ mmAssetDialog::mmAssetDialog()
 {}
 
 mmAssetDialog::mmAssetDialog(wxWindow* parent, mmAssetsPanel* assetsPanel, int asset_id, bool edit)
-: assetsPanel_(assetsPanel)
-, assetID_(asset_id)
-, m_edit(edit)
+    : assetsPanel_(assetsPanel)
+    , assetID_(asset_id)
+    , m_edit(edit)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
@@ -85,10 +85,8 @@ void mmAssetDialog::dataToControls()
 
     m_assetName->SetValue(asset->ASSETNAME);
     m_notes->SetValue(asset->NOTES);
-
     m_dpc->SetValue(Model_Asset::STARTDATE(asset));
-
-//    m_value->SetValue(asset->VALUE);
+    m_value->SetValue(CurrencyFormatter::float2String(asset->VALUE));
 
     wxString valueChangeRate;
     valueChangeRate.Printf("%.3f", asset->VALUECHANGERATE);
@@ -97,7 +95,7 @@ void mmAssetDialog::dataToControls()
     wxString valueChangeTypeStr = asset->VALUECHANGE;
     m_valueChange->SetStringSelection(wxGetTranslation(valueChangeTypeStr));
     enableDisableRate(valueChangeTypeStr != ASSET_RATE_DEF[TAssetEntry::RATE_NONE]);
-    m_assetType->SetStringSelection(wxGetTranslation(asset->VALUECHANGE));
+    m_assetType->SetStringSelection(wxGetTranslation(asset->ASSETTYPE));
 }
 
 void mmAssetDialog::CreateControls()
