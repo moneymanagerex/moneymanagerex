@@ -18,7 +18,7 @@
 #define MyAppURL "http://www.codelathe.com/mmex"
 
 ; Set this value to a nul string for release version
-#define MyAppDevelopVersion StringChange(StringChange("$Rev$", "$", ""), ": ", "")
+#define MyAppDevelopVersion StringChange(StringChange(StringChange("$Rev$", "$", ""), ": ", ""), " ", "")
 
 
 ;===============================================================================
@@ -26,7 +26,7 @@
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
 #define my_output_path "..\..\build\msw-vc-2012e\vc-static-u"
-#define my_output_filename StringChange(StringChange("mmex_0.9.9.2_$Rev$_win32_setup", "$", ""), ": ", "")
+#define my_output_filename StringChange(StringChange(StringChange("mmex_0.9.9.2_$Rev$_win32_setup", "$", ""), ": ", ""), " ", "") 
 
 ;===============================================================================
 
