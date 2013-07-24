@@ -154,7 +154,6 @@ Source: {#my_svn_path}\doc\version.txt; DestDir: {app}; Flags: ignoreversion; Co
 Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: ignoreversion; Components: local;
 
 ; MMEX Resource files
-Source: {#my_svn_path}\resources\currency_seed.csv; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
 

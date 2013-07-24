@@ -246,7 +246,6 @@ Source: "..\..\doc\version.txt"; DestDir: "{app}"; Components: program; Flags: i
 Source: "..\..\resources\kaching.wav";       DestDir: {#res_dir}; Components: program; Flags: ignoreversion
 Source: "..\..\resources\mmex.ico";          DestDir: {#res_dir}; Components: program; Flags: ignoreversion
 Source: "..\..\resources\splash.png";        DestDir: {#res_dir}; Components: program; Flags: ignoreversion
-Source: "..\..\resources\currency_seed.csv"; DestDir: {#res_dir}; Components: program; Flags: ignoreversion
 
 #define bin_dir "{app}\bin"
 ; .exe already compressed by UPX

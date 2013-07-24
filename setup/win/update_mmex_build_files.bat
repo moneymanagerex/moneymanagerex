@@ -92,7 +92,6 @@ copy "..\..\po\*.mo" "%mmex_build_dir%\po"
 @echo Copying Resources files for: %current_location%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\res mkdir %mmex_build_dir%\res
-copy "..\..\resources\currency_seed.csv" "%mmex_build_dir%\res"
 copy "..\..\resources\kaching.wav"       "%mmex_build_dir%\res"
 copy "..\..\resources\mmex.ico"          "%mmex_build_dir%\res"
 @echo ------------------------------------------------------------------------
