@@ -18,7 +18,7 @@
 #define MyAppURL "http://www.codelathe.com/mmex"
 
 ; Set this value to a nul string for release version
-#define MyAppDevelopVersion "_SVN-3040"
+#define MyAppDevelopVersion "$Rev$"
 
 
 ;===============================================================================
