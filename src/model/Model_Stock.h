@@ -48,8 +48,8 @@ public:
     }
 
 public:
-    wxDate PURCHASEDATE(const Data* stock) { return this->to_date(stock->PURCHASEDATE); }
-    wxDate PURCHASEDATE(const Data& stock) { return this->to_date(stock.PURCHASEDATE); }
+    static wxDate PURCHASEDATE(const Data* stock) { return Model::to_date(stock->PURCHASEDATE); }
+    static wxDate PURCHASEDATE(const Data& stock) { return Model::to_date(stock.PURCHASEDATE); }
 };
 
 #endif // 

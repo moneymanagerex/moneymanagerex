@@ -27,17 +27,15 @@ class mmAssetDialog : public wxDialog
 
 public:
     mmAssetDialog();
-    mmAssetDialog(wxWindow *parent, mmCoreDB* core, mmAssetsPanel* assetsPanel,
-                  TAssetEntry* pAssetEntry, bool edit);
+    mmAssetDialog(wxWindow *parent, mmAssetsPanel* assetsPanel,
+                  int asset_id, bool edit);
     int GetAssetID()
     {
         return assetID_;
     }
 
 private:
-    mmCoreDB* core_;
     mmAssetsPanel* assetsPanel_;
-    TAssetEntry* pAssetEntry_;
     bool m_edit;
     bool assetRichText;
 

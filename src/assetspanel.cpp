@@ -130,7 +130,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 {
-    mmAssetDialog dlg(this, cp_->core_, cp_, NULL, false);
+    mmAssetDialog dlg(this, cp_, 0, false);
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.GetAssetID());
@@ -217,7 +217,7 @@ void mmAssetsListCtrl::OnListItemActivated(wxListEvent& event)
 
 bool mmAssetsListCtrl::EditAsset(TAssetEntry* pEntry)
 {
-    mmAssetDialog dlg(this, cp_->core_, cp_, pEntry, true);
+    mmAssetDialog dlg(this, cp_, pEntry->GetId(), true);
     bool edit = true;
     if (dlg.ShowModal() == wxID_OK)
     {

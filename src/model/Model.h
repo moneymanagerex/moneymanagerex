@@ -48,7 +48,7 @@ public:
         this->db_->Commit();
     }
 public:
-    wxDate to_date(const wxString& str_date)
+    static wxDate to_date(const wxString& str_date)
     {
         wxDate date = wxDateTime::Today();
         date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
