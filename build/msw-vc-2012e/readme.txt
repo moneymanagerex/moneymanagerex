@@ -79,15 +79,12 @@ New configurations to allow multiple wxWidgets builds.
 Variable  | wxWidgets Build  |  Configurations
 ----------|------------------|--------------------------------------------
 WXWIN     | wxWidgets 2.x.xx |  set for generic Windows configurations.
-WXWIN_29  | wxWidgets 2.9.xx |  wx29 Debug Unicode Multilib WX_PYTHON_0
-          |                  |  wx29 Release Unicode Multilib WX_PYTHON_0
 
 Environment variables need to access the different builds on Windows.
 
 Variable  | Value                    | Comment
 ----------|--------------------------|-------------------------------
 WXWIN     | C:\CPP\wxWidgets-2.9.xx  | Location of wxWidgets 2.9.xx
-WXWIN_29  | C:\CPP\wxWidgets-2.9.4   | Location of wxWidgets 2.9.x
 
 
 Setting up Environment variables using Windows 7
