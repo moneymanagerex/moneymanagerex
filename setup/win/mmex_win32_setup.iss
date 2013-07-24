@@ -91,7 +91,6 @@ Name: custom;  Description: "Custom Installation"; Flags: IsCustom;
 
 [Components]
 Name: program; Description: "Program Files"; Types: full minimal custom; Flags: fixed; 
-Name: local; Description: "Make portable: Include mmexini.db3 file in MMEX directory"; Flags: checkablealone;
 
 ; Add language component here then add language file in files section
 Name: help; Description: "Help files"; Types: full minimal; 
@@ -149,9 +148,6 @@ Source: {#my_output_root}{#my_output_path}\bin\msvcr100.dll; DestDir: {app}\bin;
 Source: {#my_svn_path}\doc\contrib.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
 Source: {#my_svn_path}\doc\license.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
 Source: {#my_svn_path}\doc\version.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
-
-; Include in directory if user requires a local setup
-Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: ignoreversion; Components: local;
 
 ; MMEX Resource files
 Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
@@ -224,7 +220,6 @@ Filename: {app}\bin\{#MyAppExeName}; Description: {cm:LaunchProgram,{#MyAppName}
 ; For the Development Version,
 ; Do not delete setup files in the Systems User Application Directory
 [UninstallDelete]
-Type: files; Name: "{userappdata}\{#MyAppName}\mmexini.db3"
 Type: files; Name: "{userappdata}\{#MyAppName}\Stocks\*.*"
 Type: dirifempty; Name: "{userappdata}\{#MyAppName}\Stocks"
 Type: dirifempty; Name: "{userappdata}\{#MyAppName}"
