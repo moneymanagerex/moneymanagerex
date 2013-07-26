@@ -277,8 +277,9 @@ void mmTransDialog::SetTransferControls(bool transfer)
         data = core_->accountList_.getAccountsName();
         payee_label_->SetLabel(_("To"));
         cbPayee_->SetToolTip(_("Specify which account the transfer is going to"));
-        cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
         account_label_->SetLabel(_("From"));
+        cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
+        cbAccount_->Enable(true);
     }
     else
     {
@@ -293,6 +294,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
+        cbAccount_->Enable(core_->accountList_.accounts_.size() > 1);
 
         data = core_->payeeList_.FilterPayees("");
         toTextAmount_->Enable(false);
@@ -380,7 +382,6 @@ void mmTransDialog::CreateControls()
     typeSizer->Add(cAdvanced_, flags);
 
     // Amount Fields --------------------------------------------
-
     textAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
         wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
@@ -457,8 +458,8 @@ void mmTransDialog::CreateControls()
     textNumber_ = new wxTextCtrl(this,
         ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition,
         cbPayee_->GetSize(), wxTE_PROCESS_ENTER);
-    textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+    textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
     bAuto_ = new wxButton(this,
         ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition, bPayee_->GetSize());
@@ -993,9 +994,9 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
     if ( w )
-        oject_in_focus_ = w->GetId();
+        object_in_focus_ = w->GetId();
 
-    if (!edit_ && textNotes_->GetValue() == notesTip_ && oject_in_focus_ == ID_DIALOG_TRANS_TEXTNOTES)
+    if (!edit_ && textNotes_->GetValue() == notesTip_ && object_in_focus_ == ID_DIALOG_TRANS_TEXTNOTES)
     {
         textNotes_->SetValue("");
         textNotes_->SetForegroundColour(notesColour_);
@@ -1005,11 +1006,10 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
 
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
+    if (object_in_focus_ == bCategory_->GetId()) return;
+    if (object_in_focus_ == textNotes_->GetId()) return;
 
-    if (oject_in_focus_ == textNotes_->GetId())
-        return;
-
-    if (oject_in_focus_ == cbPayee_->GetId())
+    if (object_in_focus_ == cbPayee_->GetId())
     {
         if (!cbPayee_->GetValue().IsEmpty()) {
             cbPayee_->SetValue("");
@@ -1021,7 +1021,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
         }
     }
 
-    if (oject_in_focus_ == textAmount_->GetId())
+    if (object_in_focus_ == textAmount_->GetId())
     {
         if (!textAmount_->IsEmpty()) {
             textAmount_->SetValue("");
@@ -1033,7 +1033,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
         }
     }
 
-    if ((int)oject_in_focus_ == (int)toTextAmount_->GetId())
+    if ((int)object_in_focus_ == (int)toTextAmount_->GetId())
     {
         if (!toTextAmount_->IsEmpty()) {
             toTextAmount_->SetValue("");
@@ -1045,44 +1045,45 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
         }
     }
 
-    if ((int)oject_in_focus_ == (int)textNumber_->GetId())
+    if ((int)object_in_focus_ == (int)textNumber_->GetId())
     {
-        if (!textNumber_->IsEmpty()) {
+        if (!textNumber_->IsEmpty())
+        {
             textNumber_->SetValue("");
             return;
         }
-        else {
+        else
+        {
             itemButtonCancel_->SetFocus();
             return;
         }
     }
-
 
     EndModal(wxID_CANCEL);
 }
 
 void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
 {
-        EndModal(wxID_CANCEL);
+    EndModal(wxID_CANCEL);
 }
 
 void mmTransDialog::onTextEntered(wxCommandEvent& event)
 {
     wxString sAmount = "";
 
-    if (oject_in_focus_ == textAmount_->GetId())
+    if (object_in_focus_ == textAmount_->GetId())
     {
         if (mmCalculator(textAmount_->GetValue(), sAmount))
             textAmount_->SetValue(sAmount);
         textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
     }
-    else if (oject_in_focus_ == toTextAmount_->GetId())
+    else if (object_in_focus_ == toTextAmount_->GetId())
     {
         if (mmCalculator(toTextAmount_->GetValue(), sAmount))
             toTextAmount_->SetValue(sAmount);
         toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
     }
-    else if (oject_in_focus_ == textNumber_->GetId())
+    else if (object_in_focus_ == textNumber_->GetId())
     {
         textNotes_->SetFocus();
     }

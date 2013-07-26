@@ -154,7 +154,7 @@ private:
     wxString notesTip_;
     wxColour notesColour_;
 
-    int oject_in_focus_;
+    int object_in_focus_;
 
     wxString resetPayeeString(/*bool normal = true*/);
     wxString resetCategoryString();
