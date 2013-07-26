@@ -415,13 +415,23 @@ void mmAddAccountWizard::RunIt(bool modal)
 
 bool mmAddAccountPage1::TransferDataFromWindow()
 {
-    if ( textAccountName_->GetValue().empty())
+    bool result = true;
+    const wxString account_name = textAccountName_->GetValue().Trim();
+    if ( account_name.IsEmpty())
     {
-        wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_WARNING, this);
-        return false;
+        wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_ERROR, this);
+        result = false;
     }
-    parent_->accountName_ = textAccountName_->GetValue().Trim();
-    return true;
+    else
+    {
+        if (parent_->m_core->accountList_.AccountExists(account_name))
+        {
+            wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
+            result = false;
+        }
+    }
+    parent_->accountName_ = account_name;
+    return result;
 }
 //----------------------------------------------------------------------------
 
@@ -511,6 +521,8 @@ bool mmAddAccountPage2::TransferDataFromWindow()
     // prevent same account being added multiple times in case of using 'Back' and 'Next' in wizard.
     if ( ! parent_->m_core->accountList_.AccountExists(pAccount->name_))
         parent_->acctID_ = parent_->m_core->accountList_.AddAccount(pAccount);
+    else
+        return false;
 
     return true;
 }
@@ -1897,7 +1909,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             wxMessageDialog msgDlg(this
                 , _("Do you really want to delete the account?")
                 , _("Confirm Account Deletion")
-                , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+                , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 m_core->bTransactionList_.deleteTransactions(pAccount->id_);

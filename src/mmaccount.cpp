@@ -85,7 +85,7 @@ bool mmAccountList::AccountExists(const wxString& accountName) const
 {
     for (const auto& it : accounts_)
     {
-        if (it->name_ == accountName) return true;
+        if (!accountName.CmpNoCase(it->name_)) return true;
     }
 
     return false;

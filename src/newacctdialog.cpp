@@ -337,12 +337,13 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         mmShowErrorMessageInvalid(this, _("Account Name "));
         return;
     }
-
-    int checkAcctID = core_->accountList_.GetAccountId(acctName);
-    if ((checkAcctID != -1) && (checkAcctID != accountID_))
+    else
     {
-        mmShowErrorMessage(this, _("Account Name already exists"), _("Error"));
-        return;
+        if (core_->accountList_.AccountExists(acctName))
+        {
+            wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
+            return;
+        }
     }
 
     if (currencyID_ == -1)
