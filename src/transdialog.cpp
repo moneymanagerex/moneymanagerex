@@ -771,7 +771,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
         }
     }
 
-    if (payeeID_ == -1 && !bTransfer)
+    if (!bTransfer)
     {
         wxString payee_name = cbPayee_->GetValue();
         if (payee_name.IsEmpty())
@@ -779,16 +779,18 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             mmShowErrorMessageInvalid(this, _("Payee"));
             return;
         }
-        else if (core_->payeeList_.FilterPayees("").IsEmpty())
-        {
-            payeeID_ = core_->payeeList_.AddPayee(payee_name);
-        }
+
+        if (payeeID_ > -1)
+            payee_name = core_->payeeList_.GetPayeeName(payeeID_);
         else
+            payeeID_ = core_->payeeList_.GetPayeeId(payee_name);
+
+        if (payeeID_ < 0)
         {
             wxMessageDialog msgDlg( this
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
                 , _("Confirm to add new payee")
-                , wxYES_NO | wxYES_DEFAULT | wxICON_QUESTION);
+                , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 payeeID_ = core_->payeeList_.AddPayee(payee_name);
