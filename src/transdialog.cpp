@@ -24,7 +24,6 @@
 #include "mmOption.h"
 #include "paths.h"
 #include "categdialog.h"
-#include "payeedialog.h"
 #include "splittransactionsdialog.h"
 #include "validators.h"
 
@@ -58,7 +57,6 @@ mmTransDialog::mmTransDialog(
     pBankTransaction_(pBankTransaction),
     accountID_(accountID),
     referenceAccountID_(accountID),
-    payeeUnknown_(true),
     categUpdated_(false),
     edit_(edit),
     advancedToTransAmountSet_(false),
@@ -135,8 +133,6 @@ void mmTransDialog::dataToControls()
         toID_ = pBankTransaction_->toAccountID_;
 
         payeeID_ = pBankTransaction_->payeeID_;
-        if (payeeID_ > -1) // !bTransfer
-            payeeUnknown_ = false;
         payee_name_ = core_->payeeList_.GetPayeeName(pBankTransaction_->payeeID_);
 
         textNotes_->SetValue(pBankTransaction_->notes_);
@@ -214,7 +210,6 @@ void mmTransDialog::updateControlsForTransType()
             payeeID_ = core_->bTransactionList_.getLastUsedPayeeID(accountID_
                 , sTransaction_type_, categID_, subcategID_);
             payee_name_ = core_->payeeList_.GetPayeeName(payeeID_);
-            payeeUnknown_ = false;
         }
 
         wxString categString = resetCategoryString();
@@ -236,11 +231,9 @@ void mmTransDialog::SetTransferControls(bool transfer)
 {
     textAmount_->UnsetToolTip();
     toTextAmount_->UnsetToolTip();
-    cbPayee_->UnsetToolTip();
     cbAccount_->UnsetToolTip();
 
     cbPayee_->SetEvtHandlerEnabled(false);
-    bPayee_->Enable(!transfer);
 
     cAdvanced_->SetValue(advancedToTransAmountSet_);
     cAdvanced_->Enable(transfer);
@@ -403,7 +396,7 @@ void mmTransDialog::CreateControls()
 
     // Account ---------------------------------------------
     cbAccount_ = new wxComboBox(this, wxID_ANY, "",
-        wxDefaultPosition, wxSize(190, -1));
+        wxDefaultPosition, wxSize(230, -1));
     cbAccount_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmTransDialog::OnAccountUpdated), NULL, this);
 
@@ -412,29 +405,21 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cbAccount_, flags);
 
     // Payee ---------------------------------------------
-    wxBoxSizer* payeeSizer = new wxBoxSizer(wxHORIZONTAL);
     payee_label_ = new wxStaticText(this, wxID_STATIC, _("Payee"));
 
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, "",
-        wxDefaultPosition, wxSize(190, -1)/*,
-        core_->payeeList_.FilterPayees("")*/ /*, wxTE_PROCESS_ENTER*/);
+        wxDefaultPosition, wxSize(230, -1));
 
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmTransDialog::OnPayeeUpdated), NULL, this);
 
     cbPayee_ -> SetEvtHandlerEnabled(!edit_);
 
-    bPayee_ = new wxBitmapButton( this, ID_DIALOG_TRANS_BUTTONPAYEE, wxBitmap(user_edit_xpm));
-    bPayee_->Connect(ID_DIALOG_TRANS_BUTTONPAYEE, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmTransDialog::OnPayee), NULL, this);
-
     flex_sizer->Add(payee_label_, flags);
-    flex_sizer->Add(payeeSizer);
-    payeeSizer->Add(cbPayee_, flags);
-    payeeSizer->Add(bPayee_, flags);
+    flex_sizer->Add(cbPayee_, flags);
 
     // Split Category -------------------------------------------
     cSplit_ = new wxCheckBox(this, ID_DIALOG_TRANS_SPLITCHECKBOX,
@@ -445,8 +430,8 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cSplit_, flags);
 
     // Category -------------------------------------------------
-    bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, "",
-        wxDefaultPosition, wxSize(230, -1));
+    bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, ""
+        , wxDefaultPosition, wxSize(230, -1));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Category")), flags);
     flex_sizer->Add(bCategory_, flags);
@@ -455,21 +440,22 @@ void mmTransDialog::CreateControls()
         , wxCharEventHandler(mmTransDialog::OnCategoryKey), NULL, this);
 
     // Number  ---------------------------------------------
-    textNumber_ = new wxTextCtrl(this,
-        ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition,
-        cbPayee_->GetSize(), wxTE_PROCESS_ENTER);
+    textNumber_ = new wxTextCtrl(this
+        , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
+        , wxDefaultSize, wxTE_PROCESS_ENTER);
     textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
-    bAuto_ = new wxButton(this,
-        ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition, bPayee_->GetSize());
+    bAuto_ = new wxButton(this
+        , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
+        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
     bAuto_ -> Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), flags);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(number_sizer);
-    number_sizer->Add(textNumber_, flags);
+    flex_sizer->Add(number_sizer, flagsExpand.Border(wxALL, 0));
+    number_sizer->Add(textNumber_, flagsExpand.Border(wxALL, border));
     number_sizer->Add(bAuto_, flags);
 
     // Notes  ---------------------------------------------
@@ -504,7 +490,6 @@ void mmTransDialog::CreateControls()
         transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
         cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
         textAmount_->SetToolTip(amountNormalTip_);
-        bPayee_->SetToolTip(_("Specify where the transaction is going to"));
         cSplit_->SetToolTip(_("Use split Categories"));
         bCategory_->SetToolTip(_("Specify the category for this transaction"));
         textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
@@ -553,50 +538,6 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
     }
 
     event.Skip();
-}
-
-void mmTransDialog::OnPayee(wxCommandEvent& /*event*/)
-{
-    mmPayeeDialog dlg(parent_, core_);
-
-    if ( dlg.ShowModal() == wxID_OK )
-    {
-        payeeID_ = dlg.getPayeeId();
-        if (payeeID_ == -1)
-        {
-            cbPayee_->SetValue(resetPayeeString());
-            payeeUnknown_ = true;
-            return;
-        }
-
-        mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
-        cbPayee_->SetValue(pPayee->name_);
-        payeeUnknown_ = false;
-
-        // If this is a Split Transaction, ignore displaying last category for payee
-        if (split_->numEntries())
-            return;
-
-        // Only for new transactions: if user want to autofill last category used for payee.
-        if ( mmIniOptions::instance().transCategorySelectionNone_ == 1 && ( !edit_ && !categUpdated_ ) )
-        {
-            // if payee has memory of last category used then display last category for payee
-            if (pPayee->categoryId_ != -1)
-            {
-                categID_ = pPayee->categoryId_;
-                subcategID_ = pPayee->subcategoryId_;
-                categoryName_ = core_->categoryList_.GetCategoryName(categID_);
-                subCategoryName_ = core_->categoryList_.GetSubCategoryName(
-                        categID_, subcategID_);
-                bCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-            }
-        }
-    }
-    else
-    {
-        if (core_->payeeList_.GetPayeeId(cbPayee_->GetValue())<0)
-            cbPayee_->SetValue(resetPayeeString());
-    }
 }
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
@@ -864,7 +805,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
         if (toID_ < 1 || toID_ == newAccountID_)
         {
             mmShowErrorMessageInvalid(this, _("To Account"));
-            bPayee_->SetFocus();
+            cbPayee_->SetFocus();
             return;
         }
 

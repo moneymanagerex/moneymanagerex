@@ -88,7 +88,6 @@ private:
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
     void OnCategoryKey(wxKeyEvent& event);
-    void OnPayee(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnAccountUpdated(wxCommandEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
@@ -111,13 +110,11 @@ private:
     wxTextCtrl *textNotes_;
     wxTextCtrl* textCategory_;
     wxButton* bCategory_;
-    wxBitmapButton* bPayee_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     wxButton* bAuto_;
-    bool payeeUnknown_;
     bool categUpdated_;
     bool bBestChoice_;
     wxButton* itemButtonCancel_;
