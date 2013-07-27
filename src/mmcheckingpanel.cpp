@@ -393,7 +393,10 @@ void mmCheckingPanel::filterTable()
                     && !(*iter)->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()))
                 iter = m_trans.erase(iter);
             else
+            {
+                filteredBalance_ += (*iter)->value(-1);
                 ++iter;
+            }
         }
     }
     else
@@ -478,12 +481,12 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     m_trans = core_->bTransactionList_.accountTransactions_;
     m_listCtrlAccount->DeleteAllItems();
 
-    setAccountSummary();
     // decide whether top or down icon needs to be shown
     m_listCtrlAccount->setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
     sortTable();
     filterTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
+    setAccountSummary();
 }
 
 //----------------------------------------------------------------------------

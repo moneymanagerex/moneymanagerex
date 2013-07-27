@@ -194,7 +194,7 @@ public:
 
 
     /* Data */
-    //typedef std::vector< std::shared_ptr<mmBankTransaction> >::const_iterator const_iterator;
+
     std::vector<mmBankTransaction*> transactions_;
     std::vector<mmBankTransaction*> accountTransactions_;
 
