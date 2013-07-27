@@ -286,7 +286,11 @@ void mmCheckingPanel::sortTable()
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->date_ < y->date_; });
+            {
+                if (x->date_ != y->date_) return x->date_ < y->date_;
+                else return x->transactionID() < y->transactionID();
+            }
+        );
     }
     else if (g_sortcol == COL_TRANSACTION_NUMBER)
     {
@@ -298,19 +302,31 @@ void mmCheckingPanel::sortTable()
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->payeeStr_ < y->payeeStr_; });
+            {
+                if (x->payeeStr_ != y->payeeStr_) return x->payeeStr_ < y->payeeStr_;
+                else return x->date_ < y->date_;
+            }
+        );
     }
     else if (g_sortcol == COL_STATUS)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->status_ < y->status_; });
+            {
+                if (x->status_ != y->status_) return x->status_ < y->status_;
+                else return x->date_ < y->date_;
+            }
+        );
     }
     else if (g_sortcol == COL_CATEGORY)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->fullCatStr_ < y->fullCatStr_; });
+            {
+                if (x->fullCatStr_ != y->fullCatStr_) return x->fullCatStr_ < y->fullCatStr_;
+                else return x->date_ < y->date_;
+            }
+        );
     }
     else if (g_sortcol == COL_WITHDRAWAL)
     {
