@@ -108,6 +108,7 @@ BEGIN_EVENT_TABLE( mmQIFImportDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
+    EVT_BUTTON(wxID_OPEN, mmQIFImportDialog::OnTest)
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
 END_EVENT_TABLE()
 
@@ -130,6 +131,14 @@ bool mmQIFImportDialog::Create( wxWindow* parent, wxWindowID id, const wxString&
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
+    ColName_[COL_DATE]     = _("Date");
+    ColName_[COL_NUMBER]   = _("Number");
+    ColName_[COL_PAYEE]    = _("Payee");
+    ColName_[COL_STATUS]   = _("Status");
+    ColName_[COL_CATEGORY] = _("Category");
+    ColName_[COL_VALUE]    = _("Value");
+    ColName_[COL_NOTES]    = _("Notes");
+
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -150,7 +159,7 @@ void mmQIFImportDialog::CreateControls()
 
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(main_sizer);
-    wxBoxSizer* box_sizer1 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* left_sizer = new wxBoxSizer(wxVERTICAL);
 
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 3, 0, 0);
     //flex_sizer->AddGrowableCol(1);
@@ -169,7 +178,7 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer->Add(button_search_, flags);
     flex_sizer->Add(bbFile_, flags);
     main_sizer->Add(file_name_ctrl_, 0, wxALL|wxGROW, 5);
-    box_sizer1->Add(flex_sizer, flagsExpand);
+    left_sizer->Add(flex_sizer, flagsExpand);
 
     // Date Format Settings
     dateFormat_ = mmOptions::instance().dateFormat_;
@@ -217,7 +226,44 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer->Add(toDateCtrl_, flags);
     flex_sizer->AddSpacer(1);
 
-    main_sizer->Add(box_sizer1, flagsExpand);
+    btnTest_ = new wxButton( this, wxID_OPEN, _("&Test"));
+    flex_sizer->AddSpacer(1);
+    flex_sizer->Add(btnTest_);
+
+
+    //Log viewer
+    wxBoxSizer* log_sizer = new wxBoxSizer(wxVERTICAL);
+
+    log_field_ = new wxTextCtrl( this, wxID_STATIC, "", wxDefaultPosition, wxSize(300, -1), wxTE_MULTILINE|wxHSCROLL );
+    log_sizer->Add(log_field_, 1, wxGROW|wxALL, 5);
+
+    wxButton* itemClearButton = new wxButton(this, wxID_CLEAR, _("Clear"));
+    log_sizer->Add(itemClearButton, 0, wxALIGN_CENTER|wxALL, 5);
+    itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmQIFImportDialog::OnButtonClear), NULL, this);
+
+    //Data viewer
+    wxPanel* data_panel = new wxPanel(this, wxID_ANY);
+    wxBoxSizer* data_sizer = new wxBoxSizer(wxHORIZONTAL);
+    data_panel->SetSizer(data_sizer);
+
+    dataListBox_ = new wxDataViewListCtrl(data_panel
+        , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
+    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 100);
+    dataListBox_->AppendTextColumn( ColName_[COL_NUMBER], wxDATAVIEW_CELL_INERT, 80);
+    dataListBox_->AppendTextColumn( ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120);
+    dataListBox_->AppendTextColumn( ColName_[COL_STATUS], wxDATAVIEW_CELL_INERT, 60);
+    dataListBox_->AppendTextColumn( ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 120);
+    dataListBox_->AppendTextColumn( ColName_[COL_VALUE], wxDATAVIEW_CELL_INERT, 100);
+    dataListBox_->AppendTextColumn( ColName_[COL_NOTES], wxDATAVIEW_CELL_INERT, 300);
+    data_sizer->Add(dataListBox_, flagsExpand);
+
+    //Compose all sizers togethe
+    wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
+    main_sizer->Add(top_sizer, flagsExpand);
+    top_sizer->Add(left_sizer, flags);
+    top_sizer->Add(log_sizer, flagsExpand);
+    main_sizer->Add(data_panel, flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -307,7 +353,7 @@ bool mmQIFImportDialog::warning_message()
 int mmQIFImportDialog::mmImportQIF()
 {
     wxString acctName = core_->accountList_.GetAccountName(last_imported_acc_id_);
-    int fromAccountID = core_->accountList_.GetAccountId(acctName);
+    fromAccountID_ = core_->accountList_.GetAccountId(acctName);
     wxString sMsg;
 
     //Check date restrictions
@@ -323,9 +369,7 @@ int mmQIFImportDialog::mmImportQIF()
 
     wxString sDefCurrencyName = core_->currencyList_.getCurrencyName(core_->currencyList_.GetBaseCurrencySettings());
 
-    fileviewer file_dlg("", parent_);
-    file_dlg.Show();
-    wxTextCtrl*& logWindow = file_dlg.textCtrl_;
+    wxTextCtrl*& logWindow = log_field_;
     bool canceledbyuser = false;
 
     wxFileInputStream input(sFileName_);
@@ -344,7 +388,6 @@ int mmQIFImportDialog::mmImportQIF()
     double val = 0.0, dSplitAmount = 0.0;
     bool bTrxComplited = true;
 
-    std::vector< std::shared_ptr<mmBankTransaction> > vQIF_trxs;
     mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
 
     while(!input.Eof() && !canceledbyuser)
@@ -474,7 +517,7 @@ int mmQIFImportDialog::mmImportQIF()
                     logWindow->AppendText(wxString()<< sMsg << "\n");
                 }
 
-                fromAccountID = core_->accountList_.GetAccountId(acctName);
+                fromAccountID_ = core_->accountList_.GetAccountId(acctName);
 
                 sMsg = wxString::Format(_("Line: %ld"), numLines) << " : "
                     << wxString::Format(_("Account name: %s"), acctName);
@@ -509,7 +552,7 @@ int mmQIFImportDialog::mmImportQIF()
         }
 
         to_account_id = -1;
-        from_account_id = fromAccountID;
+        from_account_id = fromAccountID_;
         bool bValid = true;
 
         if (lineType(readLine) == Date) // 'D'
@@ -664,7 +707,7 @@ int mmQIFImportDialog::mmImportQIF()
                 if (val > 0.0)
                 {
                     from_account_id = to_account_id;
-                    to_account_id = fromAccountID;
+                    to_account_id = fromAccountID_;
                 }
                 payeeID = -1;
                 if (to_account_id == -1 || from_account_id == -1)
@@ -722,7 +765,7 @@ int mmQIFImportDialog::mmImportQIF()
             sMsg = wxString::Format(
                 "Line:%ld Trx:%ld %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
                 , trxNumLine
-                , vQIF_trxs.size() + 1
+                , vQIF_trxs_.size() + 1
                 , sValid
                 , convDate
                 , core_->accountList_.GetAccountName(from_account_id)
@@ -773,7 +816,7 @@ int mmQIFImportDialog::mmImportQIF()
             //Just take alternate amount and skip it
             if (type == TRANS_TYPE_TRANSFER_STR)
             {
-                for (const auto& refTrans : vQIF_trxs)
+                for (const auto& refTrans : vQIF_trxs_)
                 {
                     if (refTrans->transType_ != TRANS_TYPE_TRANSFER_STR) continue;
                     if (refTrans->status_ == "D") continue;
@@ -803,50 +846,29 @@ int mmQIFImportDialog::mmImportQIF()
 
             if (bValid)
             {
-                vQIF_trxs.push_back(pTransaction);
+                vQIF_trxs_.push_back(pTransaction);
             }
         }
     }
 
-    sMsg = wxString::Format(_("Transactions imported from QIF: %ld"), vQIF_trxs.size());
+    sMsg = wxString::Format(_("Transactions imported from QIF: %ld"), vQIF_trxs_.size());
     logWindow->AppendText(sMsg << "\n");
 
-    canceledbyuser = file_dlg.ShowModal() == wxID_CANCEL;
-    // Since all database transactions are only in memory,
-    if (!canceledbyuser)
+    int num = 0;
+    for (const auto& transaction : vQIF_trxs_)
     {
-        core_->db_.get()->Begin();
-
-        //TODO: Update transfer transactions toAmount
-
-        for (const auto& refTrans : vQIF_trxs)
-        {
-            //fromAccountID = refTrans->accountID_;
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID);
-            wxASSERT(pCurrencyPtr);
-            refTrans->amt_ = fabs(refTrans->amt_);
-            refTrans->toAmt_ = fabs(refTrans->toAmt_);
-            //refTrans->updateAllData(core_, fromAccountID, pCurrencyPtr);
-            if (!core_->bTransactionList_.checkForExistingTransaction(refTrans.get()))
-                refTrans->status_ = "F";
-            else
-                refTrans->status_ = "D";
-            core_->bTransactionList_.addTransaction(refTrans.get());
-        }
-
-        core_->db_.get()->Commit();
-        sMsg = _("Import finished successfully");
-    }
-    else
-    {
-        sMsg = _("Imported transactions discarded by user!");
+        wxVector<wxVariant> data;
+        data.push_back(wxVariant(transaction.get()->date_));
+        data.push_back(wxVariant(transaction.get()->transNum_));
+        data.push_back(wxVariant(transaction.get()->payeeStr_));
+        data.push_back(wxVariant(transaction.get()->status_));
+        data.push_back(wxVariant(core_->categoryList_.GetFullCategoryString(transaction.get()->categID_, transaction.get()->subcategID_)));
+        data.push_back(wxVariant(transaction.get()->value(-1)));
+        data.push_back(wxVariant(transaction.get()->notes_));
+        dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
 
-    wxMessageDialog(parent_, sMsg, _("QIF Import"), wxOK|wxICON_WARNING).ShowModal();
-    //clear the vector to avoid memory leak - done at same level created.
-    vQIF_trxs.clear();
-
-    return fromAccountID;
+    return fromAccountID_;
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
@@ -983,10 +1005,48 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
     toDateCtrl_->Enable(dateToCheckBox_->GetValue());
 }
 
-void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
+void mmQIFImportDialog::OnTest(wxCommandEvent& /*event*/)
 {
     last_imported_acc_id_ = mmImportQIF();
-    btnOK_->Enable(false);
+}
+
+void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
+{
+    wxString sMsg;
+    wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?"),
+                                        _("Confirm Import"),
+                                        wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+    if (msgDlg.ShowModal() == wxID_YES)
+    {
+        core_->db_.get()->Begin();
+
+        //TODO: Update transfer transactions toAmount
+
+        for (const auto& refTrans : vQIF_trxs_)
+        {
+            //fromAccountID_ = refTrans->accountID_;
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID_);
+            wxASSERT(pCurrencyPtr);
+            refTrans->amt_ = fabs(refTrans->amt_);
+            refTrans->toAmt_ = fabs(refTrans->toAmt_);
+            //refTrans->updateAllData(core_, fromAccountID_, pCurrencyPtr);
+            if (!core_->bTransactionList_.checkForExistingTransaction(refTrans.get()))
+                refTrans->status_ = "F";
+            else
+                refTrans->status_ = "D";
+            core_->bTransactionList_.addTransaction(refTrans.get());
+        }
+
+        core_->db_.get()->Commit();
+        sMsg = _("Import finished successfully");
+    }
+    else
+    {
+        sMsg = _("Imported transactions discarded by user!");
+    }
+    wxMessageDialog(parent_, sMsg, _("QIF Import"), wxOK|wxICON_WARNING).ShowModal();
+    //clear the vector to avoid memory leak - done at same level created.
+
 }
 
 void mmQIFImportDialog::OnCancel(wxCommandEvent& /*event*/)
@@ -999,3 +1059,7 @@ void mmQIFImportDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
+void mmQIFImportDialog::OnButtonClear(wxCommandEvent& /*event*/)
+{
+    log_field_->Clear();
+}
