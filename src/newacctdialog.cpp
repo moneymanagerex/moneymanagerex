@@ -339,7 +339,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (core_->accountList_.AccountExists(acctName))
+        if (core_->accountList_.AccountExists(acctName) && !edit_)
         {
             wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
             return;
