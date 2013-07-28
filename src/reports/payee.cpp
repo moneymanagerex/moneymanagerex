@@ -1,9 +1,9 @@
 #include "payee.h"
-#include "budget.h"
 
 #include "htmlbuilder.h"
 #include "util.h"
 #include "mmgraphpie.h"
+#include "model/Model_Currency.h"
 
 #include <algorithm>
 
@@ -21,11 +21,47 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
 wxString mmReportPayeeExpenses::getHTMLText()
 {
     core_->currencyList_.LoadBaseCurrencySettings();
+    //Model_Infotable::instance().GetBaseCurrencyId();
+
+    double positiveTotal = 0.0, negativeTotal = 0.0;
+    std::vector<ValuePair> valueList;
+    valueList.clear();
+    struct data_holder {wxString payee_name; double incomes; double expences;} line;
+    std::vector<data_holder> data;
+
+    std::map<int, std::pair<double, double> > payeeStats;
+    core_->bTransactionList_.getPayeeStats(payeeStats, date_range_
+        , mmIniOptions::instance().ignoreFutureTransactions_ );
+
+    for (const auto& entry : payeeStats)
+    {
+        positiveTotal += entry.second.first;
+        negativeTotal += entry.second.second;
+
+        line.payee_name = core_->payeeList_.GetPayeeName(entry.first);
+        line.incomes = entry.second.first;
+        line.expences = entry.second.second;
+        data.push_back(line);
+    }
+
+    std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder x, const data_holder y)
+            {
+                if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
+                else return x.payee_name < y.payee_name;
+            }
+    );
+
     mmHTMLBuilder hb;
     hb.init();
     hb.addHeader(2, title_);
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     hb.startCenter();
+
+    // Add the graph
+    mmGraphPie gg;
+    hb.addImage(gg.getOutputFileName());
+
     hb.startTable("50%");
     hb.startTableRow();
     hb.addTableHeaderCell(_("Payee"));
@@ -34,36 +70,22 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.addTableHeaderCell(_("Difference"), true);
     hb.endTableRow();
 
-    // Add the graph
-    mmGraphPie gg;
-
-    double positiveTotal = 0.0, negativeTotal = 0.0;
-    std::vector<ValuePair> valueList;
-
-    std::map<int, std::pair<double, double> > payeeStats;
-    core_->bTransactionList_.getPayeeStats(payeeStats, date_range_
-        , mmIniOptions::instance().ignoreFutureTransactions_ );
-
-        valueList.clear();
-    for (const auto& entry : payeeStats)
+    for (const auto& entry : data)
     {
-        if (entry.second.first < 0)
+        hb.startTableRow();
+        hb.addTableCell(entry.payee_name);
+        hb.addMoneyCell(entry.incomes);
+        hb.addMoneyCell(entry.expences);
+        hb.addMoneyCell(entry.incomes + entry.expences);
+        hb.endTableRow();
+
+        if (entry.incomes + entry.expences < 0)
         {
             ValuePair vp;
-            vp.label = core_->payeeList_.GetPayeeName(entry.first);
-            vp.amount = entry.second.first;
+            vp.label = entry.payee_name;
+            vp.amount = entry.incomes + entry.expences;
             valueList.push_back(vp);
         }
-
-        positiveTotal += entry.second.first;
-        negativeTotal += entry.second.second;
-
-        hb.startTableRow();
-        hb.addTableCell(core_->payeeList_.GetPayeeName(entry.first));
-        hb.addMoneyCell(entry.second.first);
-        hb.addMoneyCell(entry.second.second);
-        hb.addMoneyCell(entry.second.first + entry.second.second);
-        hb.endTableRow();
     }
 
     hb.addRowSeparator(4);
@@ -76,6 +98,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
     hb.endTable();
     hb.endCenter();
     hb.end();
+
+    gg.init(valueList);
+    gg.Generate(title_);
 
     return hb.getHTMLText();
 }
