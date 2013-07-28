@@ -62,7 +62,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
 
-    hb.startTable("50%");
+    hb.startTable("75%");
     hb.startTableRow();
     hb.addTableHeaderCell(_("Payee"));
     hb.addTableHeaderCell(_("Incomes"), true);
