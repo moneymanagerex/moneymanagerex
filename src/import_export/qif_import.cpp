@@ -108,19 +108,18 @@ BEGIN_EVENT_TABLE( mmQIFImportDialog, wxDialog )
     EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
-    EVT_BUTTON(wxID_OPEN, mmQIFImportDialog::OnTest)
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
 END_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(
-    mmCoreDB* core,
-    wxWindow* parent, wxWindowID id,
-    const wxString& caption, const wxPoint& pos,
-    const wxSize& size, long style
+    mmCoreDB* core
+    , wxWindow* parent, wxWindowID id
+    , const wxString& caption, const wxPoint& pos
+    , const wxSize& size, long style
 ) :
-    core_(core),
-    parent_(parent),
-    last_imported_acc_id_(-1)
+    core_(core)
+    , parent_(parent)
+    , last_imported_acc_id_(-1)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -226,11 +225,6 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer->Add(toDateCtrl_, flags);
     flex_sizer->AddSpacer(1);
 
-    btnTest_ = new wxButton( this, wxID_OPEN, _("&Test"));
-    flex_sizer->AddSpacer(1);
-    flex_sizer->Add(btnTest_);
-
-
     //Log viewer
     wxBoxSizer* log_sizer = new wxBoxSizer(wxVERTICAL);
 
@@ -249,7 +243,7 @@ void mmQIFImportDialog::CreateControls()
 
     dataListBox_ = new wxDataViewListCtrl(data_panel
         , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
-    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 100);
+    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 140);
     dataListBox_->AppendTextColumn( ColName_[COL_NUMBER], wxDATAVIEW_CELL_INERT, 80);
     dataListBox_->AppendTextColumn( ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120);
     dataListBox_->AppendTextColumn( ColName_[COL_STATUS], wxDATAVIEW_CELL_INERT, 60);
@@ -293,9 +287,9 @@ void mmQIFImportDialog::fillControls()
     accounts_type.Add(ACCOUNT_TYPE_TERM);
     accounts_id_ = core_->accountList_.getAccountsID(accounts_type);
 
-    for (size_t i = 0; i < accounts_id_.Count(); ++i)
+    for (const auto& entry : accounts_id_)
     {
-        accounts_name_.Add(core_->accountList_.GetAccountName(accounts_id_[i]));
+        accounts_name_.Add(core_->accountList_.GetAccountName(entry));
     }
     bbFile_ ->SetBitmapLabel(wxBitmap(empty_xpm));
     bbFile_ ->Enable(false);
@@ -350,7 +344,7 @@ bool mmQIFImportDialog::warning_message()
     return true;
 }
 
-int mmQIFImportDialog::mmImportQIF()
+int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 {
     wxString acctName = core_->accountList_.GetAccountName(last_imported_acc_id_);
     fromAccountID_ = core_->accountList_.GetAccountId(acctName);
@@ -370,10 +364,6 @@ int mmQIFImportDialog::mmImportQIF()
     wxString sDefCurrencyName = core_->currencyList_.getCurrencyName(core_->currencyList_.GetBaseCurrencySettings());
 
     wxTextCtrl*& logWindow = log_field_;
-    bool canceledbyuser = false;
-
-    wxFileInputStream input(sFileName_);
-    wxTextInputStream text(input);
 
     wxString readLine;
     int numLines = 0;
@@ -390,7 +380,7 @@ int mmQIFImportDialog::mmImportQIF()
 
     mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
 
-    while(!input.Eof() && !canceledbyuser)
+    for (readLine = tFile.GetFirstLine(); !tFile.Eof(); readLine = tFile.GetNextLine())
     {
         //Init variables for each transaction
         if (bTrxComplited)
@@ -418,7 +408,6 @@ int mmQIFImportDialog::mmImportQIF()
             sMsg = "-------------------------------------------------------------------------------------------------------------------------\n";
             logWindow->AppendText(sMsg);
         }
-        readLine = getFileLine(text, numLines);
 
         if (readLine.Length() == 0)
             continue;
@@ -449,10 +438,10 @@ int mmQIFImportDialog::mmImportQIF()
             if ( accountType == "Type:Cat" )
             {
                 bool reading = true;
-                while(!input.Eof() && reading )
+                while(!tFile.Eof() && reading )
                 {
-                    readLine = getFileLine(text, numLines);
-                    if (lineType(readLine) == AcctType  || input.Eof())
+                    readLine = tFile.GetNextLine();
+                    if (lineType(readLine) == AcctType  || tFile.Eof())
                     {
                         reading = false;
                         accountType = getLineData(readLine);
@@ -466,7 +455,7 @@ int mmQIFImportDialog::mmImportQIF()
                 wxString sBalance = "";
                 // account information
                 // Need to read till we get to end of account information
-                while( (readLine = getFileLine(text, numLines) ) != "^")
+                while( (readLine = tFile.GetNextLine() ) != "^")
                 {
                     numLines++;
 
@@ -529,7 +518,8 @@ int mmQIFImportDialog::mmImportQIF()
             // ignore these type of lines
             if ( accountType == "Option:AutoSwitch" )
             {
-                while((readLine = getFileLine(text, numLines)) != "^" || input.Eof())
+                readLine = tFile.GetNextLine();
+                while(readLine != "^" || tFile.Eof())
                 {
                     // ignore all lines
                 }
@@ -884,13 +874,27 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     if (!sFileName_.IsEmpty())
         correctEmptyFileExt( "qif", sFileName_);
     file_name_ctrl_->SetValue(sFileName_);
-    checkQIFFile(sFileName_);
+
+    wxTextFile tFile(sFileName_);
+    if (!tFile.Open())
+    {
+        wxMessageBox(_("Unable to open file."), _("QIF Import"), wxOK|wxICON_ERROR);
+        return;
+    }
+    wxString str;
+    for (str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
+    {
+        *log_field_ << wxString::Format(_("Line %i"), tFile.GetCurrentLine()+1)
+            << "\t"
+            << str << "\n";
+    }
+
+    if (checkQIFFile(tFile))
+        mmImportQIF(tFile);
 }
 
-bool mmQIFImportDialog::checkQIFFile(wxString fileName)
+bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
 {
-    if (fileName.IsEmpty()) return false;
-
     bbFile_->Enable(false);
     bbFile_->SetBitmapLabel(wxBitmap(empty_xpm));
     bbFormat_->Enable(false);
@@ -899,55 +903,46 @@ bool mmQIFImportDialog::checkQIFFile(wxString fileName)
     bbAccounts_->SetBitmapLabel(wxBitmap(empty_xpm));
     btnOK_->Enable(false);
 
-    wxFileInputStream input(sFileName_);
-    wxTextInputStream text(input);
-
-    wxString readLine;
-
-    wxString sAccountName;
     bool dateFormatIsOK = true;
-    int numLines = 0;
-
-    while(!input.Eof())
+    wxString sAccountName, str;
+    for (str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
     {
-        readLine = getFileLine(text, numLines);
-
-        if (readLine.Length() == 0)
+        if (str.Length() == 0)
             continue;
 
-        if (!isLineOK(readLine))
+        if (!isLineOK(str))
         {
             wxString sError = wxString()
-                << wxString::Format(_("Line %i"), numLines)
+                << wxString::Format(_("Line %i"), tFile.GetCurrentLine()+1)
                 << "\n"
-                << readLine;
+                << str;
             mmShowErrorMessageInvalid(this, sError);
             return false;
         }
 
-        if ( lineType(readLine) == AcctType && getLineData(readLine) == "Account")
+        if ( lineType(str) == AcctType && getLineData(str) == "Account")
         {
             bool reading = true;
-            while(!input.Eof() && reading )
+            while(!tFile.Eof() && reading )
             {
-                readLine = getFileLine(text, numLines);
-                if (accountInfoType(readLine) == Name)
+                str = tFile.GetNextLine();
+                if (accountInfoType(str) == Name)
                 {
-                    sAccountName = getLineData(readLine);
+                    sAccountName = getLineData(str);
                     if (accounts_name_.Index(sAccountName) == wxNOT_FOUND)
                     {
                         newAccounts_->Append(sAccountName);
                     }
                 }
-                reading = (accountInfoType(readLine) != EOT);
+                reading = (accountInfoType(str) != EOT);
             }
             continue;
         }
 
-        if (lineType(readLine) == Date)
+        if (lineType(str) == Date)
         {
             wxDateTime dtdt;
-            wxString sDate = getLineData(readLine);
+            wxString sDate = getLineData(str);
 
             if (!mmParseDisplayStringToDate(dtdt, sDate, dateFormat_))
                 dateFormatIsOK = false;
@@ -996,18 +991,16 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 {
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) dateFormat_ = data->GetData();
-    checkQIFFile(sFileName_);
+    wxTextFile tFile(sFileName_);
+    if (!tFile.IsOpened())
+        if (tFile.Open())
+            checkQIFFile(tFile);
 }
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 {
     fromDateCtrl_->Enable(dateFromCheckBox_->GetValue());
     toDateCtrl_->Enable(dateToCheckBox_->GetValue());
-}
-
-void mmQIFImportDialog::OnTest(wxCommandEvent& /*event*/)
-{
-    last_imported_acc_id_ = mmImportQIF();
 }
 
 void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
@@ -1030,15 +1023,16 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             refTrans->amt_ = fabs(refTrans->amt_);
             refTrans->toAmt_ = fabs(refTrans->toAmt_);
             //refTrans->updateAllData(core_, fromAccountID_, pCurrencyPtr);
-            if (!core_->bTransactionList_.checkForExistingTransaction(refTrans.get()))
-                refTrans->status_ = "F";
-            else
-                refTrans->status_ = "D";
+
             core_->bTransactionList_.addTransaction(refTrans.get());
+            last_imported_acc_id_ = refTrans->accountID_;
         }
 
         core_->db_.get()->Commit();
+        //FIXME: Some bug here and all transactions after import reloaded
+        core_->bTransactionList_.LoadTransactions();
         sMsg = _("Import finished successfully");
+        btnOK_->Enable(false);
     }
     else
     {

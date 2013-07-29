@@ -41,20 +41,19 @@ public:
     }
 
 private:
-    int mmImportQIF();
+    int mmImportQIF(wxTextFile& tFile);
 
     void CreateControls();
     void fillControls();
 
     void OnFileSearch(wxCommandEvent& event);
-    bool checkQIFFile(wxString fileName);
+    bool checkQIFFile(wxTextFile& tFile);
     void OnCheckboxClick(wxCommandEvent& /*event*/);
     void OnDateMaskChange(wxCommandEvent& event);
     void OnButtonClear(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& /*event*/);
-    void OnTest(wxCommandEvent& /*event*/);
 
     std::vector< std::shared_ptr<mmBankTransaction> > vQIF_trxs_;
     mmCoreDB* core_;
@@ -83,7 +82,6 @@ private:
     wxComboBox* choiceDateFormat_;
     wxChoice* newAccounts_;
     wxButton* btnOK_;
-    wxButton* btnTest_;
 
     wxBitmapButton* bbFile_;
     wxBitmapButton* bbFormat_;

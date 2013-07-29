@@ -507,7 +507,7 @@ mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int transactionI
 void mmBankTransactionList::LoadTransactions()
 {
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CHECKINGACCOUNT_V1);
-
+    transactions_.clear();
     while (q1.NextRow())
     {
         mmBankTransaction* pTransaction(new mmBankTransaction(core_, q1));
@@ -530,17 +530,17 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID, double& accou
 
     for (const auto& pBankTransaction: transactions_)
     {
-        if (pBankTransaction->accountID_ != accountID
-            && (pBankTransaction->toAccountID_ != accountID
-            || pBankTransaction->transType_ != TRANS_TYPE_TRANSFER_STR))
-            continue;
-
-        pBankTransaction->updateTransactionData(accountID, balance);
-        accountTransactions_.push_back(pBankTransaction);
-        calculate_future = calculate_future || (pBankTransaction->date_ <= today);
-        double amount = pBankTransaction->value(accountID);
-        if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
-        if (pBankTransaction->status_ != "V" && calculate_future) account_balance += amount;
+        if (pBankTransaction->accountID_ == accountID
+            || (pBankTransaction->transType_ == TRANS_TYPE_TRANSFER_STR
+                && pBankTransaction->toAccountID_ == accountID))
+        {
+            pBankTransaction->updateTransactionData(accountID, balance);
+            accountTransactions_.push_back(pBankTransaction);
+            calculate_future = calculate_future || (pBankTransaction->date_ <= today);
+            double amount = pBankTransaction->value(accountID);
+            if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
+            if (pBankTransaction->status_ != "V" && calculate_future) account_balance += amount;
+        }
     }
 }
 
@@ -583,7 +583,6 @@ void mmBankTransactionList::UpdateTransaction(mmBankTransaction* pBankTransactio
             break;
         }
     }
-
     mmOptions::instance().databaseUpdated_ = true;
 }
 
