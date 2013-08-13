@@ -166,7 +166,7 @@ wxString mmReportTransactions::getHTMLText()
     if ( transDialog_->getTypeCheckBox() )
         filterDetails << addFilterDetailes(_("Type:"), transDialog_->userTypeStr());
     //Amount Range
-    if ( transDialog_->getAmountRangeCheckBox())
+    if ( transDialog_->getAmountRangeCheckBoxMin() || transDialog_->getAmountRangeCheckBoxMax())
         filterDetails << addFilterDetailes(_("Amount Range:"), transDialog_->userAmountRangeStr());
     //Number
     if ( transDialog_->getNumberCheckBox())
