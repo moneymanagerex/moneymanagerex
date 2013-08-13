@@ -3041,16 +3041,10 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     {
         for (const auto& tran: m_core.get()->bTransactionList_.transactions_)
         {
-            if (dlg->getAmountRangeCheckBox())
-            {
-                double minamt = dlg->getAmountMin();
-                double maxamt = dlg->getAmountMax();
-
-                if (tran->amt_ < minamt)
+            if (dlg->getAmountRangeCheckBoxMin() && tran->amt_ < dlg->getAmountMin())
                     continue; // skip
-                if (tran->amt_ > maxamt)
+            if (dlg->getAmountRangeCheckBoxMax() && tran->amt_ > dlg->getAmountMax())
                     continue; // skip
-            }
 
             if (dlg->getAccountCheckBox())
             {

@@ -342,8 +342,10 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                 toAdd = toAdd && (transFilterDlg_->getStatus() == th.sStatus_);
             if (transFilterDlg_->getTypeCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getType().Contains(th.transType_));
-            if (transFilterDlg_->getAmountRangeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getAmountMin() <= th.amt_ && transFilterDlg_->getAmountMax() >= th.amt_);
+            if (transFilterDlg_->getAmountRangeCheckBoxMin())
+                toAdd = toAdd && (transFilterDlg_->getAmountMin() <= th.amt_);
+            if (transFilterDlg_->getAmountRangeCheckBoxMax())
+                toAdd = toAdd && (transFilterDlg_->getAmountMax() >= th.amt_);
             if (transFilterDlg_->getNumberCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getNumber().Trim().Lower() == th.sNumber_.Lower());
             if (transFilterDlg_->getNotesCheckBox())

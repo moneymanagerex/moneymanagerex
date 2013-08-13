@@ -367,8 +367,8 @@ void mmCheckingPanel::filterTable()
                     && transFilterDlg_->getAccountID() != (*iter)->toAccountID_)
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getDateRangeCheckBox()
-                    && (transFilterDlg_->getFromDateCtrl().GetDateOnly() > (*iter)->date_.GetDateOnly() 
-                    && transFilterDlg_->getToDateControl().GetDateOnly() < (*iter)->date_.GetDateOnly()))
+                    && ((transFilterDlg_->getFromDateCtrl().GetDateOnly() > (*iter)->date_.GetDateOnly() 
+                        || transFilterDlg_->getToDateControl().GetDateOnly() < (*iter)->date_.GetDateOnly())))
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getPayeeCheckBox()
                     && transFilterDlg_->userPayeeStr() != (*iter)->payeeStr_)
@@ -383,8 +383,11 @@ void mmCheckingPanel::filterTable()
             else if (transFilterDlg_->getTypeCheckBox()
                     && !transFilterDlg_->getType().Contains((*iter)->transType_))
                 iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getAmountRangeCheckBox()
-                    && !(transFilterDlg_->getAmountMin() <= (*iter)->amt_ && transFilterDlg_->getAmountMax() >= (*iter)->amt_))
+            else if (transFilterDlg_->getAmountRangeCheckBoxMin()
+                    && transFilterDlg_->getAmountMin() > (*iter)->amt_)
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getAmountRangeCheckBoxMax()
+                    && transFilterDlg_->getAmountMax() < (*iter)->amt_)
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getNumberCheckBox()
                     && transFilterDlg_->getNumber().Trim().Lower() != (*iter)->transNum_.Lower())

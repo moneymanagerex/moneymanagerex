@@ -67,9 +67,13 @@ public:
         return toDateControl_->GetValue();
     }
 
-    bool getAmountRangeCheckBox()
+    bool getAmountRangeCheckBoxMin()
     {
-        return amountRangeCheckBox_->GetValue();
+        return amountRangeCheckBox_->GetValue() && !amountMinEdit_->GetValue().IsEmpty();
+    }
+    bool getAmountRangeCheckBoxMax()
+    {
+        return amountRangeCheckBox_->GetValue() && !amountMaxEdit_->GetValue().IsEmpty();
     }
     double getAmountMax();
     double getAmountMin();

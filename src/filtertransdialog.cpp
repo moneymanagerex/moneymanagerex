@@ -446,7 +446,8 @@ bool mmFilterTransactionsDialog::somethingSelected()
     || getCategoryCheckBox()
     || getStatusCheckBox()
     || getTypeCheckBox()
-    || getAmountRangeCheckBox()
+    || getAmountRangeCheckBoxMin()
+    || getAmountRangeCheckBoxMax()
     || getNumberCheckBox()
     || getNotesCheckBox();
 }
