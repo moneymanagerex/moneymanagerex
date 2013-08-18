@@ -534,13 +534,27 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID, double& accou
             || (pBankTransaction->transType_ == TRANS_TYPE_TRANSFER_STR
                 && pBankTransaction->toAccountID_ == accountID))
         {
-            pBankTransaction->updateTransactionData(accountID, balance);
             accountTransactions_.push_back(pBankTransaction);
-            calculate_future = calculate_future || (pBankTransaction->date_ <= today);
-            double amount = pBankTransaction->value(accountID);
-            if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
-            if (pBankTransaction->status_ != "V" && calculate_future) account_balance += amount;
         }
+    }
+
+    //Default sorting
+    std::stable_sort(this->accountTransactions_.begin(), this->accountTransactions_.end()
+        , [] (const mmBankTransaction* x, const mmBankTransaction* y)
+        {
+            if (x->date_ != y->date_) return x->date_ < y->date_;
+            else return x->transactionID() < y->transactionID();
+        }
+    );
+
+    //Balance calculations
+    for (const auto& pBankTransaction: accountTransactions_)
+    {
+        pBankTransaction->updateTransactionData(accountID, balance);
+        calculate_future = calculate_future || (pBankTransaction->date_ <= today);
+        double amount = pBankTransaction->value(accountID);
+        if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
+        if (pBankTransaction->status_ != "V" && calculate_future) account_balance += amount;
     }
 }
 
