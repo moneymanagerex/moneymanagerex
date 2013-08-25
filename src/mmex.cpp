@@ -69,6 +69,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Budgetyear.h"
+#include "model/Model_Account.h"
 
 //----------------------------------------------------------------------------
 
@@ -2575,6 +2576,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         if (!m_db) return false;
         Model_Asset::instance(m_db.get());
         Model_Stock::instance(m_db.get());
+        Model_Account::instance(m_db.get());
         Model_Currency::instance().db_ = m_db.get();
         Model_Budgetyear::instance().db_ = m_db.get();
         Model_Infotable::instance().db_ = m_db.get();
