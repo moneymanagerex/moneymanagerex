@@ -180,7 +180,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_summarystocks.o \
 	mmex_tests_transactions.o \
 	mmex_tests_trx_stats.o \
-	mmex_tests_account.o \
 	mmex_tests_assets.o \
 	mmex_tests_budget_table.o \
 	mmex_tests_category.o \
@@ -645,9 +644,6 @@ mmex_tests_transactions.o: $(srcdir)/../../src/reports/transactions.cpp
 
 mmex_tests_trx_stats.o: $(srcdir)/../../src/reports/trx_stats.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/trx_stats.cpp
-
-mmex_tests_account.o: $(srcdir)/../../src/db/account.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/account.cpp
 
 mmex_tests_assets.o: $(srcdir)/../../src/db/assets.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/assets.cpp

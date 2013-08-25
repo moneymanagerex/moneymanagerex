@@ -167,7 +167,6 @@ MMEX_OBJECTS =  \
 	mmex_summarystocks.obj \
 	mmex_transactions.obj \
 	mmex_trx_stats.obj \
-	mmex_account.obj \
 	mmex_assets.obj \
 	mmex_budget_table.obj \
 	mmex_category.obj \
@@ -850,9 +849,6 @@ mmex_transactions.obj: ..\..\src\reports\transactions.cpp
 
 mmex_trx_stats.obj: ..\..\src\reports\trx_stats.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\trx_stats.cpp
-
-mmex_account.obj: ..\..\src\db\account.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\account.cpp
 
 mmex_assets.obj: ..\..\src\db\assets.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\assets.cpp
