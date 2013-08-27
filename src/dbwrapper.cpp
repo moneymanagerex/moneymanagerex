@@ -197,8 +197,7 @@ bool mmDBWrapper::initCurrencyV1Table(wxSQLite3Database* db)
 {
     bool result = true;
 
-    mmCurrency mm_curr;
-    for (const auto& i : mm_curr.currency_map())
+    for (const auto& i : mmCurrency::currency_map())
     {
         if (wxString("USD EUR GBP RUB INR TWD UAH CHF XCD").Contains(i.second.currencySymbol_))
         {

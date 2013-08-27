@@ -86,11 +86,9 @@ private:
     void OnCurrencyNameSelected(wxCommandEvent& event);
     void updateControls();
     void fillControls();
-    std::map<wxString, mmCurrency> currency_map() const;
 
 private:
     mmCoreDB* core_;
-    mmCurrency mm_curr_;
 
     int currencyID_;
     double convRate_;
