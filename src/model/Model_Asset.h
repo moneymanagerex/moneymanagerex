@@ -95,6 +95,36 @@ public:
 public:
     static wxDate STARTDATE(const Data* asset) { return Model::to_date(asset->STARTDATE); }
     static wxDate STARTDATE(const Data& asset) { return Model::to_date(asset.STARTDATE); }
+
+    static TYPE type(const Data* asset) 
+    {
+        if (asset->ASSETTYPE.CmpNoCase("Property") == 0)
+            return TYPE_PROPERTY;
+        else if (asset->ASSETTYPE.CmpNoCase("Automobile") == 0)
+            return TYPE_AUTO;
+
+        return TYPE(-1);
+    }
+    static TYPE type(const Data& asset)
+    {
+        return type(&asset);
+    }
+
+    static RATE rate(const Data* asset)
+    {
+        if (asset->VALUECHANGE.CmpNoCase("None") == 0)
+            return RATE_NONE;
+        else if (asset->VALUECHANGE.CmpNoCase("Appreciates") == 0)
+            return RATE_APPRECIATE;
+        else if (asset->VALUECHANGE.CmpNoCase("Depreciates") == 0)
+            return RATE_DEPRECIATE;
+
+        return RATE(-1);
+    }
+    static RATE rate(const Data& asset)
+    {
+        return rate(&asset);
+    }
 };
 
 #endif // 
