@@ -26,13 +26,13 @@ class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
 {
     using DB_Table_ACCOUNTLIST_V1::all;
 public:
-    enum STATE { OPEN = 0, CLOSED };
+    enum STATUS { OPEN = 0, CLOSED };
     enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
 public:
     Model_Account(): Model(), DB_Table_ACCOUNTLIST_V1() 
     {
-        this->states_.Add(wxTRANSLATE("Open"));
-        this->states_.Add(wxTRANSLATE("Closed"));
+        this->statuss_.Add(wxTRANSLATE("Open"));
+        this->statuss_.Add(wxTRANSLATE("Closed"));
 
         this->types_.Add(wxTRANSLATE("Checking"));
         this->types_.Add(wxTRANSLATE("Term"));
@@ -41,7 +41,7 @@ public:
     ~Model_Account() {};
 
 public:
-    wxArrayString states_, types_;
+    wxArrayString statuss_, types_;
 
 public:
     static Model_Account& instance()
@@ -59,6 +59,18 @@ public:
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
+    }
+
+public:
+    static STATUS status(const Data* account)
+    {
+        if (account->STATUS.CmpNoCase("Open") == 0)
+            return OPEN;
+        return CLOSED;
+    }
+    static STATUS status(const Data& account)
+    {
+        return status(&account);
     }
 };
 
