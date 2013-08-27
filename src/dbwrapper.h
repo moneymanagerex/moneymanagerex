@@ -521,7 +521,6 @@ bool IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows);
 void initDB(wxSQLite3Database* db);
 int createTable(wxSQLite3Database* db, const wxString &sTableName, const wxString &sql);
 int createAllDataView(wxSQLite3Database* db);
-bool initCurrencyV1Table(wxSQLite3Database* db);
 
 bool copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYear);
 bool deleteBudgetYear(wxSQLite3Database* db, const wxString& yearName);

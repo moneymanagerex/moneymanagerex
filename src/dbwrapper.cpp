@@ -181,7 +181,6 @@ int mmDBWrapper::createTable(wxSQLite3Database* db, const wxString &sTableName, 
             db->ExecuteUpdate(sql);
             valid = db->TableExists(sTableName);
             wxASSERT(valid);
-            if (sTableName == "CURRENCYFORMATS_V1") initCurrencyV1Table(db);
             if (sTableName == "SUBCATEGORY_V1") createDefaultCategories(db);
         }
     }
@@ -191,35 +190,6 @@ int mmDBWrapper::createTable(wxSQLite3Database* db, const wxString &sTableName, 
         iError = e.GetErrorCode();
     }
     return iError;
-}
-
-bool mmDBWrapper::initCurrencyV1Table(wxSQLite3Database* db)
-{
-    bool result = true;
-
-    for (const auto& i : mmCurrency::currency_map())
-    {
-        if (wxString("USD EUR GBP RUB INR TWD UAH CHF XCD").Contains(i.second.currencySymbol_))
-        {
-            std::vector<wxString> data;
-            data.push_back(i.second.currencyName_);
-            data.push_back(i.second.pfxSymbol_);
-            data.push_back(i.second.sfxSymbol_);
-            data.push_back(i.second.dec_);
-            data.push_back(i.second.grp_);
-            data.push_back(i.second.unit_);
-            data.push_back(i.second.cent_);
-            data.push_back(wxString() << i.second.scaleDl_);
-            data.push_back(wxString() << i.second.baseConv_);
-            data.push_back(i.second.currencySymbol_);
-    
-            long lLastRowId;
-            wxString sql = wxString::FromUTF8(INSERT_INTO_CURRENCYFORMATS_V1);
-            int err = mmSQLiteExecuteUpdate(db, data, sql, lLastRowId);
-            result = (err == 0);
-        }
-    }
-    return result;
 }
 
 /*

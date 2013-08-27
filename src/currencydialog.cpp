@@ -92,11 +92,11 @@ void mmCurrencyDialog::fillControls()
 
     wxSortedArrayString currency_names;
     wxSortedArrayString currency_symbols;
-    for(const auto& i : mmCurrency::currency_map())
+    for(const auto& currency : mmCurrency::currency_map())
     {
-        currency_symbols.Add(i.first);
-        currency_names.Add(i.second.currencyName_);
-        currencySymbolCombo_->Append(i.first);
+        currency_symbols.Add(currency.currencySymbol_);
+        currency_names.Add(currency.currencyName_);
+        currencySymbolCombo_->Append(currency.currencySymbol_);
     }
     
     for (const auto &i : currency_names)
@@ -301,19 +301,19 @@ void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 
     for (const auto& i : mmCurrency::currency_map())
     {
-        if (i.second.currencyName_ == currencyNameCombo_->GetValue())
+        if (i.currencyName_ == currencyNameCombo_->GetValue())
         {
-            currencySymbolCombo_->SetValue(i.first);
-            pfxTx_->SetValue(i.second.pfxSymbol_);
-            sfxTx_->SetValue(i.second.sfxSymbol_);
-            decTx_->SetValue(i.second.dec_);
-            grpTx_->SetValue(i.second.grp_);
-            unitTx_->SetValue(i.second.unit_);
-            centTx_->SetValue(i.second.cent_);
-            scaleTx_->SetValue(wxString() << i.second.scaleDl_);
-            convRate_ = i.second.baseConv_;
+            currencySymbolCombo_->SetValue(i.currencySymbol_);
+            pfxTx_->SetValue(i.pfxSymbol_);
+            sfxTx_->SetValue(i.sfxSymbol_);
+            decTx_->SetValue(i.dec_);
+            grpTx_->SetValue(i.grp_);
+            unitTx_->SetValue(i.unit_);
+            centTx_->SetValue(i.cent_);
+            scaleTx_->SetValue(wxString() << i.scaleDl_);
+            convRate_ = i.baseConv_;
             baseConvRate_->SetValue(wxString() << convRate_);
-            currencySymbolCombo_->SetValue(i.second.currencySymbol_);
+            currencySymbolCombo_->SetValue(i.currencySymbol_);
             break;
         }
     }

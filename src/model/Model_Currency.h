@@ -38,7 +38,26 @@ public:
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
-        this->ensure(this->db_);
+        if (!this->exists(this->db_))
+        {
+            this->ensure(this->db_);
+            for (const auto& i : mmCurrency::currency_map())
+            {
+                Data *currency = this->create();
+                currency->CURRENCYNAME = i.currencyName_;
+                currency->PFX_SYMBOL   = i.pfxSymbol_;
+                currency->SFX_SYMBOL   = i.sfxSymbol_;
+                currency->DECIMAL_POINT = i.dec_;
+                currency->GROUP_SEPARATOR = i.grp_;
+                currency->UNIT_NAME = i.unit_;
+                currency->CENT_NAME = i.cent_;
+                currency->SCALE = i.scaleDl_;
+                currency->BASECONVRATE = i.baseConv_;
+                currency->CURRENCY_SYMBOL = i.currencySymbol_;
+
+                currency->save(this->db_);
+            }
+        }
         return all(db_, col, asc);
     }
 public:
