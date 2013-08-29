@@ -2599,22 +2599,22 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     }
     else if (openingNew) // New Database
     {
-       if (mmIniOptions::instance().enableCustomTemplateDB_
+        if (mmIniOptions::instance().enableCustomTemplateDB_
            && wxFileName::FileExists(mmIniOptions::instance().customTemplateDB_))
-       {
-           wxCopyFile(mmIniOptions::instance().customTemplateDB_, fileName, true);
-           m_db = mmDBWrapper::Open(fileName);
-           password_ = password;
+        {
+            wxCopyFile(mmIniOptions::instance().customTemplateDB_, fileName, true);
+            m_db = mmDBWrapper::Open(fileName);
+            password_ = password;
             Model_Asset::instance(m_db.get());
             Model_Stock::instance(m_db.get());
             Model_Currency::instance().db_ = m_db.get();
             Model_Budgetyear::instance().db_ = m_db.get();
             Model_Infotable::instance().db_ = m_db.get();
 
-           m_core.reset(new mmCoreDB(m_db));
-       }
-       else
-       {
+            m_core.reset(new mmCoreDB(m_db));
+        }
+        else
+        {
             m_db = mmDBWrapper::Open(fileName, password);
             password_ = password;
             Model_Asset::instance(m_db.get());
@@ -2624,23 +2624,23 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             Model_Budgetyear::instance().db_ = m_db.get();
             Model_Infotable::instance().db_ = m_db.get();
 
-           openDataBase(fileName);
-           m_core.reset(new mmCoreDB(m_db));
+            openDataBase(fileName);
+            m_core.reset(new mmCoreDB(m_db));
 
-           mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this, m_core.get());
-           wizard->CenterOnParent();
-           wizard->RunIt(true);
+            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this, m_core.get());
+            wizard->CenterOnParent();
+            wizard->RunIt(true);
 
-           m_core->currencyList_.LoadBaseCurrencySettings();
+            m_core->currencyList_.LoadBaseCurrencySettings();
 
-           /* Load User Name and Other Settings */
-           mmOptions::instance().loadOptions();
+            /* Load User Name and Other Settings */
+            mmOptions::instance().loadOptions();
 
-           /* Jump to new account creation screen */
-           wxCommandEvent evt;
-           OnNewAccount(evt);
-           return true;
-       }
+            /* Jump to new account creation screen */
+            wxCommandEvent evt;
+            OnNewAccount(evt);
+            return true;
+        }
     }
     else // open of existing database failed
     {
