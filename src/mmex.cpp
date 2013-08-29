@@ -2615,11 +2615,12 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
        }
        else
        {
-           m_db = mmDBWrapper::Open(fileName, password);
-           password_ = password;
+            m_db = mmDBWrapper::Open(fileName, password);
+            password_ = password;
             Model_Asset::instance(m_db.get());
             Model_Stock::instance(m_db.get());
             Model_Currency::instance().db_ = m_db.get();
+            Model_Currency::instance().all();
             Model_Budgetyear::instance().db_ = m_db.get();
             Model_Infotable::instance().db_ = m_db.get();
 
