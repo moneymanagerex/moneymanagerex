@@ -3074,7 +3074,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
             if (dlg->getStatusCheckBox())
             {
-                if (dlg->getStatus() != tran->status_) continue; //skip
+                if (!dlg->compareStatus(tran->status_)) continue; //skip
             }
 
             if (dlg->getTypeCheckBox())

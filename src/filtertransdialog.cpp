@@ -512,6 +512,24 @@ wxString mmFilterTransactionsDialog::getStatus() const
     return status;
 }
 
+bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
+{
+    wxString filterStatus = getStatus();
+    if (itemStatus == filterStatus)
+    {
+        return true;
+    }
+    else if ("U" == filterStatus) // Un-Reconciled
+    {
+        return "" == itemStatus || "F" == itemStatus;
+    }
+    else if ("A" == filterStatus) // All Except Reconciled
+    {
+        return "R" != itemStatus;
+    }
+    return false;
+}
+
 wxString mmFilterTransactionsDialog::getType() const
 {
     wxString withdraval = "";

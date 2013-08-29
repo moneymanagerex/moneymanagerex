@@ -1,4 +1,4 @@
-/*******************************************************
+﻿/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
 
  This program is free software; you can redistribute it and/or modify
@@ -339,7 +339,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                 toAdd = toAdd && (transFilterDlg_->getCategoryID() == th.categID_
                     && (transFilterDlg_->getSubCategoryID() == th.subcategID_ || transFilterDlg_->getSubCategoryID()<0));
             if (transFilterDlg_->getStatusCheckBox())
-                toAdd = toAdd && (transFilterDlg_->getStatus() == th.sStatus_);
+                toAdd = toAdd && transFilterDlg_->compareStatus(th.sStatus_);
             if (transFilterDlg_->getTypeCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getType().Contains(th.transType_));
             if (transFilterDlg_->getAmountRangeCheckBoxMin())
@@ -610,7 +610,7 @@ void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
     if (e == wxEVT_LEFT_DOWN)
     {
 
-        if (transFilterDlg_->ShowModal() == wxID_OK)
+        if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
         {
             transFilterActive_ = true;
             wxBitmap activeBitmapFilterIcon(tipicon_xpm);

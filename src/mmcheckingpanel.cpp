@@ -378,7 +378,7 @@ void mmCheckingPanel::filterTable()
                     ,transFilterDlg_->getSubCategoryID(), transFilterDlg_->getSubCategoryID() < 0))
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getStatusCheckBox()
-                    && transFilterDlg_->getStatus() != (*iter)->status_)
+                    && !transFilterDlg_->compareStatus((*iter)->status_))
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getTypeCheckBox()
                     && !transFilterDlg_->getType().Contains((*iter)->transType_))
@@ -1012,7 +1012,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 
     if (e == wxEVT_LEFT_DOWN) {
         transFilterDlg_->setAccountToolTip("Select account used in transfer transactions");
-        if (transFilterDlg_->ShowModal() == wxID_OK)
+        if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
         {
             transFilterActive_ = true;
             wxBitmap activeBitmapFilterIcon(tipicon_xpm);

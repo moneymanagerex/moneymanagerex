@@ -89,6 +89,8 @@ public:
         return statusCheckBox_->GetValue();
     }
     wxString getStatus() const;
+    /// Returns true if Status string matches.
+    bool compareStatus(const wxString& itemStatus) const;
 
     bool getTypeCheckBox()
     {
