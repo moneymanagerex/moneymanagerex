@@ -1180,23 +1180,20 @@ wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const w
 
 int mmBankTransactionList::RelocatePayee(mmCoreDB* core, int destPayeeID, int sourcePayeeID, int& changedPayees_)
 {
-
-    if (mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID) == 0)
+    int err = mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID, changedPayees_);
+    if (err == 0)
     {
-
-        changedPayees_=0;
         for (const auto & pBankTransaction: transactions_)
         {
             if (pBankTransaction->payeeID_ == sourcePayeeID)
             {
                 pBankTransaction->payeeStr_ = core->payeeList_.GetPayeeName(destPayeeID);
                 pBankTransaction->payeeID_ = destPayeeID;
-                changedPayees_++;
             }
         }
 
     }
-    return 0;
+    return err;
 }
 
 int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
@@ -1204,23 +1201,18 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
     int& changedCats, int& changedSubCats)
 {
     int err = mmDBWrapper::relocateCategory(core_->db_.get(),
-        destCatID, destSubCatID, sourceCatID, sourceSubCatID);
+        destCatID, destSubCatID, sourceCatID, sourceSubCatID,
+        changedCats, changedSubCats);
     if ( err == 0 )
     {
-
-        changedCats=0;
-        changedSubCats=0;
         for (const auto & pBankTransaction: transactions_)
         {
             if ((pBankTransaction->categID_ == sourceCatID)
                 && pBankTransaction->subcategID_== sourceSubCatID)
             {
-                //pBankTransaction->catStr_ = core->categoryList_.GetCategoryName(destCatID);
-                //pBankTransaction->subCatStr_ = core->categoryList_.GetSubCategoryName(destCatID, destSubCatID);
                 pBankTransaction->categID_ = destCatID;
                 pBankTransaction->subcategID_ = destSubCatID;
                 pBankTransaction->fullCatStr_ = core->categoryList_.GetFullCategoryString(destCatID, destSubCatID);
-                changedCats++;
             }
             else if (pBankTransaction && (pBankTransaction->categID_ == -1))
             {
@@ -1233,7 +1225,6 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
                     {
                         splits->entries_[i]->categID_ = destCatID;
                         splits->entries_[i]->subCategID_ = destSubCatID;
-                        changedSubCats++;
                     }
                 }
 
@@ -1279,9 +1270,33 @@ bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bInc
     return bTrxUsed;
 }
 
+bool mmBankTransactionList::IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIgnor_subcat) const
+{
+    bool found = false;
+
+    wxSQLite3Statement st = core_->db_->PrepareStatement( (bIgnor_subcat ? SELECT_CATEGID_FROM_BILLSDEPOSITS_V1 : SELECT_SUBCATEGID_FROM_BILLSDEPOSITS_V1) );
+    st.Bind(1, iCatID);
+    if (!bIgnor_subcat)
+        st.Bind(2, iSubCatID);
+
+    try
+    {
+        wxSQLite3ResultSet q1 = st.ExecuteQuery();
+        found = q1.NextRow();
+        st.Finalize();
+    }
+    catch(const wxSQLite3Exception& e)
+    {
+        wxLogDebug("select BILLSDEPOSITS_V1 union BUDGETSPLITTRANSACTIONS_V1 : %s", e.GetMessage());
+        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
+    }
+
+    return found;
+}
+
 bool mmBankTransactionList::IsPayeeUsed(int iPayeeID) const
 {
-    bool searching = false;
+    bool found = false;
     for (const auto& pBankTransaction : transactions_)
     {
         if (pBankTransaction->payeeID_ == iPayeeID)
@@ -1289,5 +1304,21 @@ bool mmBankTransactionList::IsPayeeUsed(int iPayeeID) const
             return true;
         }
     }
-    return searching;
+
+    wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_PAYEEID_FROM_BILLSDEPOSITS_V1);
+    st.Bind(1, iPayeeID);
+
+    try
+    {
+        wxSQLite3ResultSet q1 = st.ExecuteQuery();
+        found = q1.NextRow();
+        st.Finalize();
+    }
+    catch(const wxSQLite3Exception& e)
+    {
+        wxLogDebug("select BILLSDEPOSITS_V1 : %s", e.GetMessage());
+        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
+    }
+
+    return found;
 }

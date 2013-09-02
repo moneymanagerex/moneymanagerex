@@ -346,6 +346,8 @@ bool mmDBWrapper::deleteCategoryWithConstraints(wxSQLite3Database* db, int categ
                "union all "
                "select CATEGID from SPLITTRANSACTIONS_V1 "
                "union all "
+               "select CATEGID from BILLSDEPOSITS_V1 "
+               "union all "
                "select CATEGID from BUDGETSPLITTRANSACTIONS_V1 "
              ") "
         "where CATEGID = ? "
@@ -406,6 +408,8 @@ bool mmDBWrapper::deleteSubCategoryWithConstraints(wxSQLite3Database* db, int ca
         "from ( select CATEGID, SUBCATEGID from CHECKINGACCOUNT_V1 "
                "union all "
                "select CATEGID, SUBCATEGID from SPLITTRANSACTIONS_V1 "
+               "union all "
+               "select CATEGID, SUBCATEGID from BILLSDEPOSITS_V1 "
                "union all "
                "select CATEGID, SUBCATEGID from BUDGETSPLITTRANSACTIONS_V1 "
              ") "
@@ -574,18 +578,26 @@ bool mmDBWrapper::deleteTransaction(wxSQLite3Database* db, int transID)
     }
 }
 
-int mmDBWrapper::relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourcePayeeID)
+int mmDBWrapper::relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourcePayeeID, int &changed)
 {
-    int changedPayees_, err = SQLITE_OK;
-    //static const char SET_PAYEEID_CHECKINGACCOUNT_V1[] = "UPDATE CHECKINGACCOUNT_V1 SET PAYEEID = ? WHERE PAYEEID = ? ";
+    int err = SQLITE_OK;
+    changed = 0;
+
     wxSQLite3Statement st = db->PrepareStatement(SET_PAYEEID_CHECKINGACCOUNT_V1);
     st.Bind(1, destPayeeID);
     st.Bind(2, sourcePayeeID);
+
+    wxSQLite3Statement stBD = db->PrepareStatement(SET_PAYEEID_BILLSDEPOSITS_V1);
+    stBD.Bind(1, destPayeeID);
+    stBD.Bind(2, sourcePayeeID);
+
     try
     {
-        changedPayees_ = st.ExecuteUpdate();
+        changed = st.ExecuteUpdate();
+        changed += stBD.ExecuteUpdate();
+
         st.Finalize();
-        //db_.get()->Commit();
+        stBD.Finalize();
     }
     catch(const wxSQLite3Exception& e)
     {
@@ -597,31 +609,48 @@ int mmDBWrapper::relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourc
 }
 
 int mmDBWrapper::relocateCategory(wxSQLite3Database* db,
-    int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID)
+    int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
+    int &changedCat, int &changedSubCat)
 {
     int err = SQLITE_OK;
-    static const char sqlCat[] = "update checkingaccount_v1 set categid= ?, subcategid= ? "
-                                 "where categid= ? and subcategid= ?";
-    wxSQLite3Statement stCat = db->PrepareStatement(sqlCat);
+    changedCat = 0;
+    changedSubCat = 0;
+
+    wxSQLite3Statement stCat = db->PrepareStatement(SET_CATEGID_CHECKINGACCOUNT_V1);
     stCat.Bind(1, destCatID);
     stCat.Bind(2, destSubCatID);
     stCat.Bind(3, sourceCatID);
     stCat.Bind(4, sourceSubCatID);
 
-    static const char sqlSubCat[] = "update splittransactions_v1 set categid= ?, subcategid= ? "
-                                    "where categid= ? and subcategid= ?";
-    wxSQLite3Statement stSubCat = db->PrepareStatement(sqlSubCat);
+    wxSQLite3Statement stSubCat = db->PrepareStatement(SET_CATEGID_SPLITTRANSACTIONS_V1);
     stSubCat.Bind(1, destCatID);
     stSubCat.Bind(2, destSubCatID);
     stSubCat.Bind(3, sourceCatID);
     stSubCat.Bind(4, sourceSubCatID);
+
+    wxSQLite3Statement stBDCat = db->PrepareStatement(SET_CATEGID_BILLSDEPOSITS_V1);
+    stBDCat.Bind(1, destCatID);
+    stBDCat.Bind(2, destSubCatID);
+    stBDCat.Bind(3, sourceCatID);
+    stBDCat.Bind(4, sourceSubCatID);
+
+    wxSQLite3Statement stBDSubCat = db->PrepareStatement(SET_CATEGID_BUDGETSPLITTRANSACTIONS_V1);
+    stBDSubCat.Bind(1, destCatID);
+    stBDSubCat.Bind(2, destSubCatID);
+    stBDSubCat.Bind(3, sourceCatID);
+    stBDSubCat.Bind(4, sourceSubCatID);
+
     try
     {
-        stCat.ExecuteUpdate();
-        stSubCat.ExecuteUpdate();
+        changedCat = stCat.ExecuteUpdate();
+        changedSubCat = stSubCat.ExecuteUpdate();
+        changedCat += stBDCat.ExecuteUpdate();
+        changedSubCat += stBDSubCat.ExecuteUpdate();
+
         stCat.Finalize();
         stSubCat.Finalize();
-        //db_.get()->Commit();
+        stBDCat.Finalize();
+        stBDSubCat.Finalize();
     }
     catch(const wxSQLite3Exception& e)
     {

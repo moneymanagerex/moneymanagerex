@@ -196,6 +196,30 @@ static const char SELECT_ALL_SUBCATEGORIES[] =
     "FROM SUBCATEGORY_V1 S "
     "ORDER BY S.SUBCATEGNAME";
 
+static const char SELECT_CATEGID_FROM_BILLSDEPOSITS_V1[] =
+    "SELECT 1 "
+    "FROM ( SELECT CATEGID FROM BILLSDEPOSITS_V1 "
+        "UNION ALL "
+        "SELECT CATEGID FROM BUDGETSPLITTRANSACTIONS_V1 "
+        ") "
+    "WHERE CATEGID = ? "
+    "LIMIT 1"; // return only one row
+
+static const char SELECT_SUBCATEGID_FROM_BILLSDEPOSITS_V1[] =
+    "SELECT 1 "
+    "FROM ( SELECT CATEGID, SUBCATEGID FROM BILLSDEPOSITS_V1 "
+        "UNION ALL "
+        "SELECT CATEGID, SUBCATEGID FROM BUDGETSPLITTRANSACTIONS_V1 "
+        ") "
+    "WHERE CATEGID = ? AND SUBCATEGID = ? "
+    "LIMIT 1"; // return only one row
+
+static const char SELECT_PAYEEID_FROM_BILLSDEPOSITS_V1[] =
+    "SELECT 1 "
+    "FROM BILLSDEPOSITS_V1 "
+    "WHERE PAYEEID = ? "
+    "LIMIT 1"; // return only one row
+
 //DELETE
 static const char DELETE_BUDGETENTRYIDS_FROM_BUDGETTABLE_V1[] =
     "DELETE FROM BUDGETTABLE_V1 "
@@ -282,6 +306,25 @@ static const char SET_STATUS_CHECKINGACCOUNT_V1[] =
 
 static const char SET_PAYEEID_CHECKINGACCOUNT_V1[] =
     "UPDATE CHECKINGACCOUNT_V1 SET PAYEEID = ? WHERE PAYEEID = ? ";
+
+static const char SET_PAYEEID_BILLSDEPOSITS_V1[] =
+    "UPDATE BILLSDEPOSITS_V1 SET PAYEEID = ? WHERE PAYEEID = ? ";
+
+static const char SET_CATEGID_CHECKINGACCOUNT_V1[] =
+    "UPDATE CHECKINGACCOUNT_V1 SET CATEGID = ?, SUBCATEGID = ? "
+    "WHERE CATEGID = ? AND SUBCATEGID = ?";
+
+static const char SET_CATEGID_SPLITTRANSACTIONS_V1[] =
+    "UPDATE SPLITTRANSACTIONS_V1 SET CATEGID = ?, SUBCATEGID = ? "
+    "WHERE CATEGID = ? AND SUBCATEGID = ?";
+
+static const char SET_CATEGID_BILLSDEPOSITS_V1[] =
+    "UPDATE BILLSDEPOSITS_V1 SET CATEGID = ?, SUBCATEGID = ? "
+    "WHERE CATEGID = ? AND SUBCATEGID = ?";
+
+static const char SET_CATEGID_BUDGETSPLITTRANSACTIONS_V1[] =
+    "UPDATE BUDGETSPLITTRANSACTIONS_V1 SET CATEGID = ?, SUBCATEGID = ? "
+    "WHERE CATEGID = ? AND SUBCATEGID = ?";
 
 static const char UPDATE_CHECKINGACCOUNT_V1[] =
     "UPDATE CHECKINGACCOUNT_V1 "
@@ -544,8 +587,8 @@ bool addSubCategory(wxSQLite3Database* db, int categID, const wxString &newName)
 /* Transactions API */
 bool updateTransactionWithStatus(wxSQLite3Database &db, int transID, const wxString& status);
 bool deleteTransaction(wxSQLite3Database* db, int transID);
-int relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourcePayeeID);
-int relocateCategory(wxSQLite3Database* db, int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID);
+int relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourcePayeeID, int &changed);
+int relocateCategory(wxSQLite3Database* db, int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID, int &changedCat, int &changedSubCat);
 
 /* Bills & Deposits API */
 void deleteBDSeries(wxSQLite3Database* db, int bdID);

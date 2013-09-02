@@ -327,7 +327,7 @@ void mmPayeeDialog::OnEdit(wxCommandEvent& event)
     }
 }
 
-void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& /*event*/)
+void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& event)
 {
     relocatePayeeDialog dlg(core_, this);
     if (dlg.ShowModal() == wxID_OK)
@@ -339,6 +339,7 @@ void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& /*event*/)
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;
+        OnSelChanged(event);
     }
 }
 
