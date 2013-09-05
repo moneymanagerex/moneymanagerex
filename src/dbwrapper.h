@@ -153,6 +153,11 @@ static const char SELECT_ALL_FROM_PAYEE_V1[] =
     "FROM PAYEE_V1 "
     "ORDER BY PAYEENAME";
 
+static const char SELECT_CATEG_FROM_PAYEE_V1[] =
+    "SELECT CATEGID, SUBCATEGID "
+    "FROM PAYEE_V1 "
+    "WHERE PAYEEID = ?";
+
 static const char SELECT_ROW_FROM_SETTING_V1[] =
     "SELECT SETTINGVALUE "
     "FROM SETTING_V1 "
@@ -589,6 +594,7 @@ bool updateTransactionWithStatus(wxSQLite3Database &db, int transID, const wxStr
 bool deleteTransaction(wxSQLite3Database* db, int transID);
 int relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourcePayeeID, int &changed);
 int relocateCategory(wxSQLite3Database* db, int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID, int &changedCat, int &changedSubCat);
+int getPayeeCategory(wxSQLite3Database* db, int payeeID, int& categID, int& subcategID);
 
 /* Bills & Deposits API */
 void deleteBDSeries(wxSQLite3Database* db, int bdID);

@@ -531,6 +531,26 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
     if (!transfer_transaction)
     {
         payeeID_ = core_->payeeList_.GetPayeeId(payee_name_);
+
+        // Only for new transactions: if user want to autofill last category used for payee.
+        // If this is a Split Transaction, ignore displaying last category for payee
+        if (payeeID_ != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !edit_ && !categUpdated_ && split_->numEntries() == 0)
+        {
+            int tempCategID = -1;
+            int tempSubCategID = -1;
+            if (mmDBWrapper::getPayeeCategory(core_->db_.get(), payeeID_, tempCategID, tempSubCategID) == 0)
+            {
+                // if payee has memory of last category used then display last category for payee
+                if (tempCategID != -1)
+                {
+                    categID_ = tempCategID;
+                    subcategID_ = tempSubCategID;
+                    bCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
+                    categoryName_ = core_->categoryList_.GetCategoryName(categID_);
+                    subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
+                }
+            }
+        }
     }
     else
     {
