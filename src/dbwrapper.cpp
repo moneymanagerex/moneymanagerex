@@ -661,33 +661,6 @@ int mmDBWrapper::relocateCategory(wxSQLite3Database* db,
     return err;
 }
 
-int mmDBWrapper::getPayeeCategory(wxSQLite3Database* db, int payeeID, int& categID, int& subcategID)
-{
-    int err = SQLITE_OK;
-
-    wxSQLite3Statement st = db->PrepareStatement(SELECT_CATEG_FROM_PAYEE_V1);
-    st.Bind(1, payeeID);
-
-    try
-    {
-        wxSQLite3ResultSet q1 = st.ExecuteQuery();
-        if (q1.NextRow())
-        {
-            categID = q1.GetInt(wxT("CATEGID"));
-            subcategID = q1.GetInt(wxT("SUBCATEGID"));
-        }
-        st.Finalize();
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        err = e.GetExtendedErrorCode();
-        wxLogDebug("update checkingaccount_v1 : %s", e.GetMessage());
-        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
-    }
-
-    return err;
-}
-
 //--------------------------------------------------------------------
 
 bool mmDBWrapper::updateTransactionWithStatus(wxSQLite3Database &db, int transID, const wxString& status)
