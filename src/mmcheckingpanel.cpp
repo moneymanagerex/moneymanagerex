@@ -1287,7 +1287,11 @@ wxString mmCheckingPanel::getItem(long item, long column) const
             cell_value = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
         else if (column == COL_BALANCE)
             cell_value = CurrencyFormatter::float2String(t.balance_);
-        else if (column == COL_NOTES) cell_value = t.notes_;
+        else if (column == COL_NOTES)
+        {
+            cell_value = t.notes_;
+            cell_value.Replace("\n", " ");
+        }
         else
             wxASSERT(false);
     }
