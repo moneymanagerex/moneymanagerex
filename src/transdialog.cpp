@@ -796,10 +796,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             return;
         }
 
-        if (payeeID_ > -1)
-            payee_name = core_->payeeList_.GetPayeeName(payeeID_);
-        else
-            payeeID_ = core_->payeeList_.GetPayeeId(payee_name);
+        payeeID_ = core_->payeeList_.GetPayeeId(payee_name);
 
         if (payeeID_ < 0)
         {
