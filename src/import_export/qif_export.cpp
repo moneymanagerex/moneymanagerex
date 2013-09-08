@@ -425,6 +425,7 @@ void mmQIFExportDialog::mmExportQIF()
         wxFileOutputStream output(fileName);
         wxTextOutputStream text(output);
         text << buffer;
+        output.Close();
     }
 
     *log_field_ << buffer;
