@@ -86,7 +86,7 @@ wxString mmex::getProgramWebSite()
 }
 wxString mmex::getProgramForum()
 {
-    return "http://www.codelathe.com/forum";
+    return "http://codelathe.com/forum";
 }
 wxString mmex::getProgramFacebookSite()
 {
