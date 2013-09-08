@@ -600,6 +600,22 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
     cp_->updateBottomPanelData(selected_index);
 }
 
+void billsDepositsListCtrl::RefreshList()
+{
+    if (cp_->trans_.size() == 0) return;
+    int id = -1;
+    if (selectedIndex_ != -1)
+    {
+        id = cp_->trans_[selectedIndex_].id_;
+    }
+    refreshVisualList(cp_->initVirtualListControl(id));
+}
+
+void mmBillsDepositsPanel::RefreshList()
+{
+    listCtrlAccount_->RefreshList();
+}
+
 void mmBillsDepositsPanel::OnFilterTransactions(wxMouseEvent& event)
 {
 

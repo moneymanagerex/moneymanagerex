@@ -1234,6 +1234,29 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
     return err;
 }
 
+void mmBankTransactionList::UpdatePayee(int payeeID, wxString &payeeStr)
+{
+    for (const auto & pBankTransaction: transactions_)
+    {
+        if (pBankTransaction->payeeID_ == payeeID)
+        {
+            pBankTransaction->payeeStr_ = payeeStr;
+        }
+    }
+}
+
+void mmBankTransactionList::UpdateCategory(int catID, int subCatID, wxString &fullCatStr)
+{
+    for (const auto & pBankTransaction: transactions_)
+    {
+        if ((pBankTransaction->categID_ == catID)
+            && pBankTransaction->subcategID_== subCatID)
+        {
+            pBankTransaction->fullCatStr_ = fullCatStr;
+        }
+    }
+}
+
 bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat) const
 {
     double sum = 0;

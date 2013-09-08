@@ -157,6 +157,8 @@ public:
     int RelocateCategory(mmCoreDB* core,
                          int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
                          int& changedCats, int& changedSubCats);
+    void UpdatePayee(int payeeID, wxString &payeeStr);
+    void UpdateCategory(int catID, int subCatID, wxString &fullCatStr);
 
     /* Query Functions */
     void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;

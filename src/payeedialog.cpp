@@ -43,7 +43,8 @@ END_EVENT_TABLE()
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent, mmCoreDB *core, bool showSelectButton) :
     m_payee_id_(-1),
     core_(core),
-    showSelectButton_(showSelectButton)
+    showSelectButton_(showSelectButton),
+    refreshRequested_(false)
 {
     do_create(parent);
 }
@@ -317,6 +318,8 @@ void mmPayeeDialog::OnEdit(wxCommandEvent& event)
     if (new_name != wxGetEmptyString())
     {
         core_->payeeList_.UpdatePayee(m_payee_id_, new_name);
+        core_->bTransactionList_.UpdatePayee(m_payee_id_, new_name);
+        refreshRequested_ = true;
         editButton_->Disable();
         fillControls();
 
@@ -339,6 +342,7 @@ void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& event)
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;
+        refreshRequested_ = true;
         OnSelChanged(event);
     }
 }

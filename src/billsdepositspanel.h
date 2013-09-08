@@ -46,6 +46,7 @@ public:
     void OnDeleteBDSeries(wxCommandEvent& event);
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
+    void RefreshList();
 
 private:
     /* required overrides for virtual style list control */
@@ -136,6 +137,8 @@ public:
     {
         return listCtrlAccount_->GetColumnWidth(id);
     }
+
+    void RefreshList();
 
 private:
     void CreateControls();

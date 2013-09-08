@@ -53,6 +53,8 @@ public:
 
     void SetSelectedTransaction(int transID);
 
+    void RefreshList();
+
 private:
     DECLARE_EVENT_TABLE()
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...

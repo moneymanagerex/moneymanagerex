@@ -46,6 +46,7 @@ mmCategDialog::mmCategDialog( )
     categID_ = -1;
     subcategID_ = -1;
     selectedItemId_ = 0;
+    refreshRequested_ = false;
 }
 
 mmCategDialog::mmCategDialog(mmCoreDB* core,
@@ -60,6 +61,7 @@ mmCategDialog::mmCategDialog(mmCoreDB* core,
     selectedItemId_ = 0;
     bEnableSelect_ = bEnableSelect;
     bEnableRelocate_ = bEnableRelocate;
+    refreshRequested_ = false;
 
     //Get Hidden Categories id from stored string
     hidden_categs_.clear();
@@ -439,6 +441,9 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
         wxMessageBox(errMsg, _("Organise Categories"),wxOK|wxICON_ERROR);
         return;
     }
+    wxString fullCatStr = core_->categoryList_.GetFullCategoryString(categID, subcategID);
+    core_->bTransactionList_.UpdateCategory(categID, subcategID, fullCatStr);
+    refreshRequested_ = true;
 
     treeCtrl_->SetItemText(selectedItemId_, text);
 }
@@ -492,6 +497,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
                << _("MMEX must be shutdown and restarted for all the changes to be seen.");
         wxMessageBox(msgStr,_("Category Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;
+        refreshRequested_ = true;
     }
 }
 

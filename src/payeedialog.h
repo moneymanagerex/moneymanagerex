@@ -35,6 +35,10 @@ public:
     {
         return m_payee_id_;
     }
+    bool getRefreshRequested()
+    {
+        return refreshRequested_;
+    }
 
 private:
     int m_payee_id_;
@@ -49,8 +53,9 @@ private:
     wxTextCtrl* textCtrl_;
     wxTextCtrl* hideTextCtrl_;
     wxCheckBox* cbShowAll_;
+    bool refreshRequested_;
 
-    mmPayeeDialog() : m_payee_id_(-1) {}
+    mmPayeeDialog() : m_payee_id_(-1), refreshRequested_(false) {}
 
     void do_create(wxWindow* parent);
     void CreateControls();

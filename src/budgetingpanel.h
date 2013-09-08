@@ -120,6 +120,8 @@ public:
         return trans_[item].id_;
     }
 
+    void RefreshList();
+
 private:
 
     std::vector<mmBudgetEntryHolder> trans_;

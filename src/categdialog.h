@@ -84,6 +84,10 @@ public:
     {
         return cbExpand_->IsChecked();
     }
+    bool getRefreshRequested()
+    {
+        return refreshRequested_;
+    }
 
 private:
     void CreateControls();
@@ -128,6 +132,7 @@ private:
     int subcategID_;
     wxColour NormalColor_;
     wxArrayString hidden_categs_;
+    bool refreshRequested_;
 };
 
 #endif

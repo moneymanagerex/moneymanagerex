@@ -270,6 +270,7 @@ private:
     void createHomePage();
     void createReportsPage(mmPrintableBase* rb);
     void createHelpPage();
+    void refreshPanelData(bool catUpdate = true);
 
     mmCheckingPanel* checkingAccountPage_;
     bool activeCheckingAccountPage_;

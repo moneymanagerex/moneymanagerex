@@ -100,10 +100,17 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     Model_Infotable::instance().Set("BUDGET_FILTER", currentView_);
 
+    RefreshList();
+}
+
+void mmBudgetingPanel::RefreshList()
+{
     listCtrlBudget_->DeleteAllItems();
     initVirtualListControl();
-    if (trans_.size()>0)
+    if (trans_.size() > 0)
+    {
         listCtrlBudget_->RefreshItems(0, (static_cast<long>(trans_.size()-1)));
+    }
 }
 
 void mmBudgetingPanel::OnMouseLeftDown( wxMouseEvent& event )

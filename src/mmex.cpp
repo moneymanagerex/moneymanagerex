@@ -2990,15 +2990,49 @@ void mmGUIFrame::OnAccountList(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::refreshPanelData(bool catUpdate)
+{
+    if (activeHomePage_)
+    {
+        createHomePage();
+    }
+    else if (activeCheckingAccountPage_)
+    {
+        checkingAccountPage_->RefreshList();
+    }
+    else
+    {
+        mmBillsDepositsPanel* billsdeposits_panel = dynamic_cast<mmBillsDepositsPanel*>(panelCurrent_);
+        if (billsdeposits_panel)
+        {
+            billsdeposits_panel->RefreshList();
+        }
+        else if (catUpdate && activeBudgetingPage_)
+        {
+            budgetingPage_->RefreshList();
+        }
+    }
+}
+
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 {
-    mmCategDialog(m_core.get(), this, false).ShowModal();
+    mmCategDialog dlg(m_core.get(), this, false);
+    dlg.ShowModal();
+    if (dlg.getRefreshRequested())
+    {
+        refreshPanelData();
+    }
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 {
-    mmPayeeDialog(this, m_core.get(), false).ShowModal();
+    mmPayeeDialog dlg(this, m_core.get(), false);
+    dlg.ShowModal();
+    if (dlg.getRefreshRequested())
+    {
+        refreshPanelData(false);
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -3740,6 +3774,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
                << _("MMEX must be shutdown and restarted for all the changes to be seen.");
         wxMessageBox(msgStr,_("Category Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;
+        refreshPanelData();
     }
     homePanel_->Layout();
 }
@@ -3757,6 +3792,7 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;
+        refreshPanelData(false);
     }
     homePanel_->Layout();
 }

@@ -1770,6 +1770,11 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     this->windowsFreezeThaw();     // Enable screen refresh with new data.
 }
 
+void mmCheckingPanel::RefreshList()
+{
+    m_listCtrlAccount->refreshVisualList();
+}
+
 void mmCheckingPanel::SetTransactionFilterState(bool active)
 {
     bitmapTransFilter_->Enable(active || transFilterActive_);
