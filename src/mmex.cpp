@@ -3220,7 +3220,7 @@ bool mmGUIFrame::IsUpdateAvailable(const wxString& page)
     int numTokens = (int)tkz.CountTokens();
     if (numTokens != 4)
     {
-        wxString url = "http://www.codelathe.com/mmex";
+        wxString url = mmex::getProgramWebSite();
         wxLaunchDefaultBrowser(url);
         return false;
     }
@@ -3277,7 +3277,7 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
         << "\n";
 
     // Access current version details page
-    wxString site = "http://www.codelathe.com/mmex/version.html";
+    wxString site = mmex::getProgramWebSite() + "/version.html";
 
     wxString page;
     int err_code = site_content(site, page);
@@ -3311,7 +3311,7 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
         style = wxICON_INFORMATION|style;
     }
 
-    wxString urlString = "http://www.codelathe.com/mmex";
+    wxString urlString = mmex::getProgramWebSite();
     versionDetails << "\n\n" << _("Proceed to website: ") << urlString;
     if (wxMessageBox(versionDetails, _("MMEX System Information Check"), style) == wxOK)
         wxLaunchDefaultBrowser(urlString);
