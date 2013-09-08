@@ -1657,7 +1657,7 @@ void mmGUIFrame::CreateCustomReport(int index)
                 , sScript
                 , custRepIndex_->CurrentReportFileType());
             createReportsPage(csr);
-            delete csr; // CEHCK
+            //delete csr; // BUG: #215 custom report crashes mmex on export to HTML
         }
     }
     processPendingEvents();         // clear out pending events
@@ -3483,8 +3483,8 @@ void mmGUIFrame::OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
 {
-    mmReportsPanel* rp = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-    if (rp)
+    mmReportsPanel* report_panel = dynamic_cast<mmReportsPanel*>(panelCurrent_);
+    if (report_panel)
     {
         wxString fileName = wxFileSelector("Choose HTML file to Export",
             wxEmptyString, wxEmptyString, wxEmptyString, "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
@@ -3493,7 +3493,8 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
             correctEmptyFileExt("html",fileName);
             wxFileOutputStream output( fileName );
             wxTextOutputStream text( output );
-            text << rp->getReportText();
+            text << report_panel->getReportText();
+            output.Close();
         }
     }
 }
