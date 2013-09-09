@@ -120,6 +120,10 @@
             <define>$(DEBUG_DEFINE)</define>
         </if>
 
+        <if cond="FORMAT=='msvc'">
+          <cppflags>/D_CRT_SECURE_NO_WARNINGS</cppflags>
+        </if>
+
     </template>
 
 
