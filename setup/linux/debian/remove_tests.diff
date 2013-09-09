@@ -1,0 +1,81 @@
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 3417)
++++ configure.ac	(working copy)
+@@ -49,7 +49,7 @@
+ # Process standard bakefile
+ AC_BAKEFILE([m4_include(m4/autoconf_inc.m4)])
+ 
+-AC_CONFIG_FILES([Makefile  src/tests/Makefile  ${srcdir}/po/Makefile  ${srcdir}/setup/win/Makefile])
++AC_CONFIG_FILES([Makefile  ${srcdir}/po/Makefile  ${srcdir}/setup/win/Makefile])
+ 
+ AC_OUTPUT
+ 
+Index: build/bakefiles/Bakefiles.bkgen
+===================================================================
+--- build/bakefiles/Bakefiles.bkgen	(revision 3417)
++++ build/bakefiles/Bakefiles.bkgen	(working copy)
+@@ -12,7 +12,6 @@
+ 
+     <input>
+         mmex.bkl
+-        ../../src/tests/*.bkl
+         ../../po/*.bkl
+         ../../setup/win/*.bkl
+     </input>
+@@ -54,17 +53,7 @@
+         -o../msw/mmex.sln
+     </add-flags>
+ 
+-    <add-flags files="../../src/tests/*.bkl" formats="mingw">
+-        -o../msw/tests/makefile.gcc
+-    </add-flags>
+-    <add-flags files="../../src/tests/*.bkl" formats="msvc">
+-        -o../msw/tests/makefile.vc
+-    </add-flags>
+-    <add-flags files="../../src/tests/*.bkl" formats="msvs2003prj">
+-        -o../msw/tests/mmex_tests.sln
+-    </add-flags>
+ 
+-
+     <!-- Format specific settings -->
+ 
+     <add-flags formats="autoconf">
+@@ -81,15 +70,9 @@
+     <add-flags files="mmex.bkl" formats="mingw">
+         -DOPTIONS_FILE=config.gcc
+     </add-flags>
+-    <add-flags files="../../src/tests/*.bkl" formats="mingw">
+-        -DOPTIONS_FILE=../config.gcc  -DWRITE_OPTIONS_FILE=0
+-    </add-flags>
+ 
+     <add-flags files="mmex.bkl" formats="msvc">
+         -DOPTIONS_FILE=config.vc
+     </add-flags>
+-    <add-flags files="../../src/tests/*.bkl" formats="msvc">
+-        -DOPTIONS_FILE=../config.vc  -DWRITE_OPTIONS_FILE=0
+-    </add-flags>
+ 
+ </bakefile-gen>
+Index: build/bakefiles/mmex.bkl
+===================================================================
+--- build/bakefiles/mmex.bkl	(revision 3417)
++++ build/bakefiles/mmex.bkl	(working copy)
+@@ -266,17 +266,4 @@
+     </subproject>
+ 
+ 
+-    <!-- unit tests target (not dependency of 'all'): -->
+-
+-    <subproject id="check">
+-
+-        <target>check</target>
+-        <installable>no</installable>
+-
+-        <dir cond="FORMAT=='autoconf'">$(BUILDDIR)/src/tests</dir>
+-        <dir cond="FORMAT!='autoconf'">tests</dir>
+-
+-    </subproject>
+-
+-
+ </makefile>
