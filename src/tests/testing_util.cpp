@@ -86,13 +86,6 @@ std::shared_ptr<wxSQLite3Database> get_pInidb()
     return pInidb;
 }
 
-// Single point access for the test database, stored in memory.
-std::shared_ptr<MMEX_IniSettings> pSettingsList()
-{
-    static std::shared_ptr<MMEX_IniSettings> pIniList(new MMEX_IniSettings(get_pInidb()));
-
-    return pIniList;
-}
 /*****************************************************************************************/
 
 /*****************************************************************************************
@@ -132,7 +125,7 @@ std::shared_ptr<wxSQLite3Database> get_pDb()
 // Create a single access point for the main database, stored in memory.
 std::shared_ptr<mmCoreDB> pDb_core()
 {
-    static std::shared_ptr<mmCoreDB> pCore(new mmCoreDB(get_pDb(), pSettingsList()));
+    static std::shared_ptr<mmCoreDB> pCore(new mmCoreDB(get_pDb()));
 
     return pCore;
 }

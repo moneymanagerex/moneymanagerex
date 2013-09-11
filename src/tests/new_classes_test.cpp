@@ -28,18 +28,14 @@
 #include "constants.h"
 
 //----------------------------------------------------------------------------
-#include "db/settings.h"
 #include "db/currency.h"
-#include "db/account.h"
 #include "db/payee_table.h"
 #include "db/category.h"
 #include "db/subcategory.h"
 #include "db/transaction.h"
 #include "db/splittransaction.h"
 #include "db/transactionbill.h"
-#include "db/stocks.h"
 #include "db/assets.h"
-#include "db/budget_year.h"
 #include "db/budget_table.h"
 
 
@@ -65,33 +61,25 @@
 class TDatabase
 {
 public:
-    TSettingsList           info_settings_;
     TCurrencyList           currency_list_;
-    TAccountList            account_list_;
     TPayeeList              payee_list_;
     TCategoryList           category_list_;
     TSubCategoryList        subcategory_list_;
     TTransactionList        transaction_list_;
     TSplitEntriesList       split_entries_list_;
     TTransactionBillList    transaction_bill_list_;
-    TStockList              stock_list_;
     TAssetList              asset_list_;
-    TBudgetYearList         budget_year_list_;
     TBudgetList             budget_entry_list_;
 
     TDatabase(wxSQLite3Database* db)
-    : info_settings_(db, true)
-    , currency_list_(db)
-    , account_list_(db, currency_list_)
+    : currency_list_(db)
     , payee_list_(db)
     , category_list_(db)
     , subcategory_list_(db)
     , transaction_list_(db)
     , split_entries_list_(db)
     , transaction_bill_list_(db)
-    , stock_list_(db)
     , asset_list_(db)
-    , budget_year_list_(db)
     , budget_entry_list_(db)
     {}
 };
@@ -121,15 +109,6 @@ TEST(Central_Database_Test)
     std::shared_ptr<TDatabase> pCore = main_db();
     pDB->Commit();
 
-    if (!pCore->info_settings_.Exists("MMEXVERSION"))
-    {
-        pCore->info_settings_.SetStringSetting("MMEXVERSION", mmex::getProgramVersion());
-        pCore->info_settings_.SetStringSetting("DATAVERSION", mmex::DATAVERSION);
-		pCore->info_settings_.SetStringSetting("CREATEDATE", wxDateTime::Now().FormatISODate());
-        pCore->info_settings_.SetStringSetting("DATEFORMAT", mmex::DEFDATEFORMAT);
-        pCore->info_settings_.Save();
-    }
-
     displayTimeTaken("Central_Database_Test", start_time);
     display_STD_IO_separation_line();
 }
@@ -157,25 +136,13 @@ TEST(TCurrencyList_Actions)
     CHECK(id_USD == id_first);  // No duplicates allowed
     delete pCurrencyUSD;        // Delete non stored entry
 
-    TCurrencyEntry* pCurrencyAUD = new TCurrencyEntry();
-    pCurrencyAUD->currencySymbol_ = CURRENCIES[TCurrencyEntry::SYMBOL_AUD];
-    pCurrencyAUD->name_           = CURRENCIES[TCurrencyEntry::NAME_AUD];
-    int id_AUD = currency_list.AddEntry(pCurrencyAUD);
-    CHECK_EQUAL(2, id_AUD);
-
-    pCurrencyAUD = new TCurrencyEntry();
-    pCurrencyAUD->currencySymbol_ = CURRENCIES[TCurrencyEntry::SYMBOL_AMD];
-    pCurrencyAUD->name_           = CURRENCIES[TCurrencyEntry::NAME_AMD];
-    int id_AMD = currency_list.AddEntry(pCurrencyAUD);
-    CHECK_EQUAL(3, id_AMD);
-
-    CHECK_EQUAL(3, (int)currency_list.entrylist_.size());
-    currency_list.DeleteEntry(id_AMD);
-    CHECK_EQUAL(2, (int)currency_list.entrylist_.size());
-
     TCurrencyEntry* pEntry = currency_list.GetEntryPtr(id_first);
     pEntry->baseConv_ = 1.5;
     pEntry->Update(currency_list.ListDatabase());
+
+    CHECK_EQUAL(1, (int)currency_list.entrylist_.size());
+    currency_list.DeleteEntry(id_USD);
+    CHECK_EQUAL(0, (int)currency_list.entrylist_.size());
 
     displayTimeTaken("TCurrencyList_Functions", start_time);
 }
@@ -185,14 +152,6 @@ TEST(TCurrencyList_Load_Results)
     const wxStopWatch start_time;
 
     TCurrencyList currency_list(get_pDb().get());
-
-    int id_AUD = currency_list.GetCurrencyId(CURRENCIES[TCurrencyEntry::SYMBOL_AUD], true);
-    TCurrencyEntry* pEntry_AUD = currency_list.GetEntryPtr(id_AUD); 
-    CHECK_EQUAL(CURRENCIES[TCurrencyEntry::NAME_AUD], pEntry_AUD->name_);
-
-    TCurrencyEntry* pEntry_USD = currency_list.GetEntryPtr(CURRENCIES[TCurrencyEntry::NAME_USD]);
-    CHECK_EQUAL(1.5, pEntry_USD->baseConv_);
-    CHECK_EQUAL(2, (int)currency_list.entrylist_.size());
 
     displayTimeTaken("TCurrencyList_Load_Results", start_time);
 }
@@ -207,24 +166,6 @@ TEST(TAccountList_Test_Add)
     const wxStopWatch start_time;
     TCurrencyList currency_list(get_pDb().get());
 
-    TAccountList account_list(get_pDb().get(), currency_list);
-    TAccountEntry* pAaccountEntry = new TAccountEntry();
-    pAaccountEntry->acc_name_    = "Savings";
-    pAaccountEntry->acc_state_   = ACCOUNT_STATE_DEF[TAccountEntry::STATE_OPEN];
-    pAaccountEntry->acc_type_    = ACCOUNT_TYPE_DEF[TAccountEntry::TYPE_BANK];
-    pAaccountEntry->currency_id_ = currency_list.GetCurrencyId("AUD", true);
-    int id_1 = account_list.AddEntry(pAaccountEntry);
-
-    pAaccountEntry = new TAccountEntry(pAaccountEntry);
-    pAaccountEntry->acc_name_    = "Cheque";
-    pAaccountEntry->acc_state_   = ACCOUNT_STATE_DEF[TAccountEntry::STATE_CLOSED];
-    pAaccountEntry->acc_type_    = ACCOUNT_TYPE_DEF[TAccountEntry::TYPE_TERM];
-    pAaccountEntry->currency_id_ = currency_list.GetCurrencyId("USD", true);
-    int id_2 = account_list.AddEntry(pAaccountEntry);
-
-    CHECK_EQUAL(1, id_1);
-    CHECK_EQUAL(2, id_2);
-
     displayTimeTaken("TAccountList_Test_Add", start_time);
 }
 
@@ -233,25 +174,6 @@ TEST(TAccountList_Test_Update)
     const wxStopWatch start_time;
     TCurrencyList currency_list(get_pDb().get());
 
-    TAccountList account_list(get_pDb().get(), currency_list);
-    TAccountEntry* pAaccountEntry = new TAccountEntry();
-    pAaccountEntry->acc_name_    = "Mastercard";
-    pAaccountEntry->acc_state_   = ACCOUNT_STATE_DEF[TAccountEntry::STATE_OPEN];
-    pAaccountEntry->acc_type_    = ACCOUNT_TYPE_DEF[TAccountEntry::TYPE_BANK];
-    pAaccountEntry->currency_id_ = currency_list.GetCurrencyId("AUD", true);
-    int id_1 = account_list.AddEntry(pAaccountEntry);
-
-    pAaccountEntry = new TAccountEntry(pAaccountEntry);
-    pAaccountEntry->acc_name_    = "Visa";
-    pAaccountEntry->acc_state_   = ACCOUNT_STATE_DEF[TAccountEntry::STATE_CLOSED];
-    int id_2 = account_list.AddEntry(pAaccountEntry);
-
-    CHECK_EQUAL(3, id_1);
-    CHECK_EQUAL(4, id_2);
-
-    pAaccountEntry->acc_state_ = ACCOUNT_STATE_DEF[TAccountEntry::STATE_OPEN];
-    pAaccountEntry->Update(account_list.ListDatabase());
-
     displayTimeTaken("TAccountList_Test_Update", start_time);
 }
 
@@ -259,14 +181,6 @@ TEST(TAccountList_Test_Delete)
 {
     const wxStopWatch start_time;
     TCurrencyList currency_list(get_pDb().get());
-    TAccountList account_list(get_pDb().get(), currency_list);
-
-    TAccountEntry* pAaccountEntry = account_list.GetEntryPtr("Visa");
-    CHECK_EQUAL(4, pAaccountEntry->GetId());
-    CHECK_EQUAL("Open", pAaccountEntry->acc_state_);
-
-    account_list.DeleteEntry(pAaccountEntry->GetId());
-    CHECK_EQUAL(3, account_list.CurrentListSize());
 
     displayTimeTaken("TAccountList_Test_Delete", start_time);
 }
@@ -1184,36 +1098,6 @@ TEST(TStockList_Test_Add)
 {
     const wxStopWatch start_time;
 
-    wxDateTime date = wxDateTime::Now().Subtract(wxDateSpan::Years(2));
-
-    int account_id = 10;
-
-    TStockList stock_list(get_pDb().get());
-    TStockEntry* stock_entry = new TStockEntry();
-    stock_entry->heldat_ = account_id;
-    stock_entry->name_ = "Stock Name - Should be in Account";
-    stock_entry->pur_date_ = date; // date of purchase
-    stock_entry->pur_price_ = 1.2275;
-    stock_entry->num_shares_ = 2000;
-    stock_entry->cur_price_ = 1.575;
-    stock_entry->value_ = 2000;
-    int id_1 = stock_list.AddEntry(stock_entry);
-
-    stock_entry = new TStockEntry(stock_entry);
-    stock_entry->heldat_ = account_id;
-//    stock_entry->name_ = "Stock Name - Should be in Account";
-    stock_entry->pur_date_ = date; // date of purchase
-    stock_entry->pur_price_ = 1.7275;
-    stock_entry->num_shares_ = 1000;
-    stock_entry->cur_price_ = 1.575;
-    stock_entry->value_ = 1000;
-    int id_2 = stock_list.AddEntry(stock_entry);
-
-    CHECK_EQUAL(1, id_1);
-    CHECK_EQUAL(2, id_2);
-
-    double value = stock_list.GetStockBalance();
-    CHECK_EQUAL(3000, value);
 
     displayTimeTaken("TStockList_Test_Add", start_time);
 }
@@ -1222,40 +1106,12 @@ TEST(TStockList_Test_Update)
 {
     const wxStopWatch start_time;
 
-    TStockList stock_list(get_pDb().get());
-    int stock_id = 2;        // 2nd entry from test 1
-    stock_list.GetEntryPtr(stock_id);   // test setting current index
-    TStockEntry* stock_entry = stock_list.GetIndexedEntryPtr(stock_list.GetCurrentIndex());
-    stock_entry->value_ = 3000;
-    stock_entry->Update(stock_list.ListDatabase());
-
-    double value = stock_list.GetStockBalance();
-    CHECK_EQUAL(5000, value);
-
-    wxString check_value = "1.5750";
-    wxString return_value = stock_entry->CurrentPrice();
-    CHECK_EQUAL(check_value, return_value);
-
-    check_value = "1,575.00";
-    return_value = stock_entry->GetValueCurrencyEditFormat();
-    CHECK_EQUAL(check_value, return_value);
-
-    check_value = "1000.0000";
-    return_value = stock_entry->NumberOfShares(false);
-    CHECK_EQUAL(check_value, return_value);
-
     displayTimeTaken("TStockList_Test_Update", start_time);
 }
 
 TEST(TStockList_Test_Delete)
 {
     const wxStopWatch start_time;
-
-    TStockList stock_list(get_pDb().get());
-    stock_list.DeleteEntry(1);          // 1st entry from test 1
-    double value = stock_list.GetStockBalance();
-    CHECK_EQUAL(3000, value);
-    CHECK_EQUAL(1, stock_list.CurrentListSize());
 
     displayTimeTaken("TStockList_Test_Delete", start_time);
 }
@@ -1268,11 +1124,7 @@ TEST(TStockList_Test_Delete)
 TEST(TBudgetYearList_Add)
 {
     const wxDateTime start_time(wxDateTime::UNow());
-    TBudgetYearList budget_year(get_pDb().get());
 
-    int year_id = budget_year.AddEntry("2011");
-
-    CHECK(year_id > 0);
     displayTimeTaken("TBudgetYearList_Add", start_time);
 }
 

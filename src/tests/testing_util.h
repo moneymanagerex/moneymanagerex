@@ -29,7 +29,6 @@
 //----------------------------------------------------------------------------
 #include "dbwrapper.h"
 #include "mmcoredb.h"
-#include "mmex_settings.h"
 #include <iostream>
 //----------------------------------------------------------------------------
 
@@ -68,9 +67,6 @@ private:
 // wxString getIniDbPpath();
 
 std::shared_ptr<wxSQLite3Database> get_pInidb();
-
-// Single point access for the test database, stored in memory.
-std::shared_ptr<MMEX_IniSettings> pSettingsList();
 
 /*****************************************************************************************
  Create a single access point for the database, Remove database on completion.
