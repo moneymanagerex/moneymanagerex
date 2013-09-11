@@ -248,7 +248,6 @@
     <ClCompile Include="..\..\src\customreportdisplay.cpp" />
     <ClCompile Include="..\..\src\customreportindex.cpp" />
     <ClCompile Include="..\..\src\dbwrapper.cpp" />
-    <ClCompile Include="..\..\src\db\account.cpp" />
     <ClCompile Include="..\..\src\db\assets.cpp" />
     <ClCompile Include="..\..\src\db\budget_table.cpp" />
     <ClCompile Include="..\..\src\db\category.cpp" />
@@ -334,7 +333,6 @@
     <ClInclude Include="..\..\src\customreportdisplay.h" />
     <ClInclude Include="..\..\src\customreportindex.h" />
     <ClInclude Include="..\..\src\dbwrapper.h" />
-    <ClInclude Include="..\..\src\db\account.h" />
     <ClInclude Include="..\..\src\db\assets.h" />
     <ClInclude Include="..\..\src\db\budget_table.h" />
     <ClInclude Include="..\..\src\db\category.h" />

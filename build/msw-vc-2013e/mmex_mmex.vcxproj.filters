@@ -222,9 +222,6 @@
     <ClCompile Include="..\..\src\db\transaction.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\db\account.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\db\budget_table.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
@@ -496,9 +493,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\reports\mmDateRange.h">
       <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\db\account.h">
-      <Filter>Header Files\db</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\db\budget_table.h">
       <Filter>Header Files\db</Filter>

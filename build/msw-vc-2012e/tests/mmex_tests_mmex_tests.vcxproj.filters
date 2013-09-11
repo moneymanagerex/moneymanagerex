@@ -114,9 +114,6 @@
     <ClCompile Include="..\..\..\src\mmex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\mmex_settings.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\mmgraphgenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -261,13 +258,7 @@
     <ClCompile Include="..\..\..\src\db\entry_base.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\db\account.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\db\budget_table.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\db\budget_year.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\db\category.cpp">
@@ -279,13 +270,7 @@
     <ClCompile Include="..\..\..\src\db\payee_table.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\db\settings.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\db\splittransaction.cpp">
-      <Filter>Source Files\db</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\db\stocks.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\db\subcategory.cpp">
@@ -399,9 +384,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\mmex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\mmex_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\mmgraphgenerator.h">
@@ -545,13 +527,7 @@
     <ClInclude Include="..\..\..\src\db\entry_base.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\db\account.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\db\budget_table.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\db\budget_year.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\db\category.h">
@@ -563,13 +539,7 @@
     <ClInclude Include="..\..\..\src\db\payee_table.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\db\settings.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\db\splittransaction.h">
-      <Filter>Header Files\db</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\db\stocks.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\db\subcategory.h">

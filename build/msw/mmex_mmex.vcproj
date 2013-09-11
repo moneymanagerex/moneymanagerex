@@ -2045,9 +2045,6 @@
 				RelativePath="..\..\src\aboutdialog.cpp">
 			</File>
 			<File
-				RelativePath="..\..\src\db\account.cpp">
-			</File>
-			<File
 				RelativePath="..\..\src\appstartdialog.cpp">
 			</File>
 			<File
@@ -2070,9 +2067,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\db\budget_table.cpp">
-			</File>
-			<File
-				RelativePath="..\..\src\db\budget_year.cpp">
 			</File>
 			<File
 				RelativePath="..\..\src\reports\budgetcategorysummary.cpp">
@@ -2183,9 +2177,6 @@
 				RelativePath="..\..\src\mmex.cpp">
 			</File>
 			<File
-				RelativePath="..\..\src\mmex_settings.cpp">
-			</File>
-			<File
 				RelativePath="..\..\src\mmgraphgenerator.cpp">
 			</File>
 			<File
@@ -2249,9 +2240,6 @@
 				RelativePath="..\..\src\relocatepayeedialog.cpp">
 			</File>
 			<File
-				RelativePath="..\..\src\db\settings.cpp">
-			</File>
-			<File
 				RelativePath="..\..\src\splitdetailsdialog.cpp">
 			</File>
 			<File
@@ -2262,9 +2250,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\stockdialog.cpp">
-			</File>
-			<File
-				RelativePath="..\..\src\db\stocks.cpp">
 			</File>
 			<File
 				RelativePath="..\..\src\stockspanel.cpp">
@@ -2311,9 +2296,6 @@
 				RelativePath="..\..\src\aboutdialog.h">
 			</File>
 			<File
-				RelativePath="..\..\src\db\account.h">
-			</File>
-			<File
 				RelativePath="..\..\src\appstartdialog.h">
 			</File>
 			<File
@@ -2336,9 +2318,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\db\budget_table.h">
-			</File>
-			<File
-				RelativePath="..\..\src\db\budget_year.h">
 			</File>
 			<File
 				RelativePath="..\..\src\reports\budgetcategorysummary.h">
@@ -2461,9 +2440,6 @@
 				RelativePath="..\..\src\mmex.h">
 			</File>
 			<File
-				RelativePath="..\..\src\mmex_settings.h">
-			</File>
-			<File
 				RelativePath="..\..\src\mmgraphgenerator.h">
 			</File>
 			<File
@@ -2536,9 +2512,6 @@
 				RelativePath="..\..\src\resource.h">
 			</File>
 			<File
-				RelativePath="..\..\src\db\settings.h">
-			</File>
-			<File
 				RelativePath="..\..\src\singleton.h">
 			</File>
 			<File
@@ -2552,9 +2525,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\stockdialog.h">
-			</File>
-			<File
-				RelativePath="..\..\src\db\stocks.h">
 			</File>
 			<File
 				RelativePath="..\..\src\stockspanel.h">
