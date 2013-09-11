@@ -151,8 +151,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 {
     payeeStr_ = "";
-    deposit_amt_ = transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_;
-    withdrawal_amt_ = transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_;
+    deposit_amt_ = (transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_);
+    withdrawal_amt_ = (transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_);
 
     wxASSERT(toAmt_ >= 0);
     wxASSERT(amt_ >= 0);
@@ -160,13 +160,13 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 
     if (transType_ == TRANS_TYPE_DEPOSIT_STR)
     {
-        balance += (status_ == "V") ? 0.0 : amt_;
+        balance += (status_ == "V" || status_ == "X") ? 0.0 : amt_;
         payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
         arrow_ = "   ";
     }
     else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
     {
-        balance -= (status_ == "V") ? 0.0 : amt_;
+        balance -= (status_ == "V" || status_ == "X") ? 0.0 : amt_;
         payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
         arrow_ = "   ";
     }
@@ -179,7 +179,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         {
             if (accountID_ == accountID)
             {
-                 balance -= (status_ == "V") ? 0.0 : amt_;
+                 balance -= (status_ == "V" || status_ == "X") ? 0.0 : amt_;
                  withdrawal_amt_ = amt_;
                  deposit_amt_ = -amt_;
                  payeeStr_ = toAccount;
@@ -187,7 +187,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
             }
             else if (toAccountID_ == accountID)
             {
-                 balance += (status_ == "V") ? 0.0 : toAmt_;
+                 balance += (status_ == "V" || status_ == "X") ? 0.0 : toAmt_;
                  deposit_amt_ = toAmt_;
                  withdrawal_amt_ = -toAmt_;
                  payeeStr_ = fromAccountStr_;

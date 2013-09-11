@@ -46,7 +46,7 @@ enum EColumn
 };
 //----------------------------------------------------------------------------
 
-enum EIcons
+enum EIcons //m_imageList
 {
     ICON_RECONCILED,
     ICON_VOID,
@@ -54,7 +54,8 @@ enum EIcons
     ICON_NONE,
     ICON_DESC,
     ICON_ASC,
-    ICON_DUPLICATE
+    ICON_DUPLICATE,
+    ICON_TRASH
 };
 //----------------------------------------------------------------------------
 EColumn g_sortcol = COL_DEF_SORT; // index of column to sort
@@ -131,6 +132,7 @@ public:
     long m_selectedForCopy;
     long m_selectedID;
     void refreshVisualList(int trans_id = -1);
+    bool showDeletedTransactions_ = false;
 
 private:
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
@@ -158,6 +160,7 @@ private:
     void OnListItemDeselected(wxListEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
+    void OnShowChbClick(wxCommandEvent& /*event*/);
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnChar(wxKeyEvent& event);
@@ -197,19 +200,12 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_LIST_COL_CLICK(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnColClick)
     EVT_LIST_KEY_DOWN(ID_PANEL_CHECKING_LISTCTRL_ACCT,  TransactionListCtrl::OnListKeyDown)
 
-    EVT_MENU(MENU_TREEPOPUP_MARKRECONCILED,   TransactionListCtrl::OnMarkTransaction)
-    EVT_MENU(MENU_TREEPOPUP_MARKUNRECONCILED, TransactionListCtrl::OnMarkTransaction)
-    EVT_MENU(MENU_TREEPOPUP_MARKVOID,         TransactionListCtrl::OnMarkTransaction)
-    EVT_MENU(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP, TransactionListCtrl::OnMarkTransaction)
-    EVT_MENU(MENU_TREEPOPUP_MARKDUPLICATE,          TransactionListCtrl::OnMarkTransaction)
+    EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
+        ,MENU_TREEPOPUP_MARKDELETE,             TransactionListCtrl::OnMarkTransaction)
 
-    EVT_MENU(MENU_TREEPOPUP_MARKRECONCILED_ALL,         TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_MARKUNRECONCILED_ALL,       TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_MARKVOID_ALL,               TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL, TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_MARKDUPLICATE_ALL,          TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_DELETE_VIEWED,          TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_DELETE_FLAGGED,          TransactionListCtrl::OnMarkAllTransactions)
+    EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED_ALL
+        ,MENU_TREEPOPUP_DELETE_FLAGGED,         TransactionListCtrl::OnMarkAllTransactions)
+    EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,          TransactionListCtrl::OnShowChbClick)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,                TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_TREEPOPUP_DELETE,             TransactionListCtrl::OnDeleteTransaction)
@@ -363,11 +359,13 @@ void mmCheckingPanel::filterTable()
         std::vector<mmBankTransaction*>::iterator iter;
         for (iter = m_trans.begin(); iter != m_trans.end(); )
         {
-            if (transFilterDlg_->getAccountCheckBox()
+            if (!m_listCtrlAccount->showDeletedTransactions_ && (*iter)->status_=="X")
+                iter = m_trans.erase(iter);
+            else if (transFilterDlg_->getAccountCheckBox()
                     && transFilterDlg_->getAccountID() != (*iter)->toAccountID_)
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getDateRangeCheckBox()
-                    && ((transFilterDlg_->getFromDateCtrl().GetDateOnly() > (*iter)->date_.GetDateOnly() 
+                    && ((transFilterDlg_->getFromDateCtrl().GetDateOnly() > (*iter)->date_.GetDateOnly()
                         || transFilterDlg_->getToDateControl().GetDateOnly() < (*iter)->date_.GetDateOnly())))
                 iter = m_trans.erase(iter);
             else if (transFilterDlg_->getPayeeCheckBox()
@@ -405,10 +403,13 @@ void mmCheckingPanel::filterTable()
     else
     {
         std::vector<mmBankTransaction*>::iterator iter;
+
         for (iter = m_trans.begin(); iter != m_trans.end(); )
         {
+            if (!m_listCtrlAccount->showDeletedTransactions_ && (*iter)->status_=="X")
+                iter = m_trans.erase(iter);
             //TODO: What about future dates?
-            if (quickFilterBeginDate_ <= (*iter)->date_.GetDateOnly() 
+            else if (quickFilterBeginDate_ <= (*iter)->date_.GetDateOnly()
                     && quickFilterEndDate_ >= (*iter)->date_.GetDateOnly())
                 ++iter;
             else
@@ -589,6 +590,7 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(wxImage(uparrow_xpm).Scale(16, 16));
     m_imageList->Add(wxImage(downarrow_xpm).Scale(16, 16));
     m_imageList->Add(wxImage(duplicate_xpm).Scale(16, 16));
+    m_imageList->Add(wxImage(trash_xpm).Scale(16, 16));
 
     m_listCtrlAccount = new TransactionListCtrl( this, itemSplitterWindow10,
         ID_PANEL_CHECKING_LISTCTRL_ACCT, wxDefaultPosition, wxDefaultSize,
@@ -976,7 +978,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
     Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
     initFilterSettings();
     m_listCtrlAccount->refreshVisualList(m_listCtrlAccount->m_selectedID);
-     
+
 }
 
 void mmCheckingPanel::DeleteViewedTransactions()
@@ -1097,7 +1099,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
     menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
-    if (hide_menu_item || (m_cp->core_->accountList_.getNumBankAccounts() < 2) 
+    if (hide_menu_item || (m_cp->core_->accountList_.getNumBankAccounts() < 2)
         || m_cp->m_trans[m_selectedIndex]->transType_ == TRANS_TYPE_TRANSFER_STR)
         menu.Enable(MENU_TREEPOPUP_MOVE, false);
     menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
@@ -1110,6 +1112,13 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
     menu.AppendSeparator();
+
+    menu.Append(MENU_TREEPOPUP_MARKDELETE, _("Move to Trash"));
+    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKDELETE, false);
+
+    //TODO: how to set value???
+    wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted") : _("Show Deleted");
+    menu.AppendCheckItem(MENU_TREEPOPUP_SHOWTRASH, menu_item_label);
 
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE, _("&Delete Transaction"));
@@ -1156,6 +1165,12 @@ int TransactionListCtrl::OnMarkTransactionDB(const wxString& status)
     return transID;
 }
 //----------------------------------------------------------------------------
+void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
+{
+    showDeletedTransactions_ = !showDeletedTransactions_;
+    wxLogDebug("%i", showDeletedTransactions_);
+    refreshVisualList();
+}
 
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 {
@@ -1166,6 +1181,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKVOID)               status = "V";
     else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = "F";
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
+    else if (evt == MENU_TREEPOPUP_MARKDELETE)             status = "X";
     else wxASSERT(false);
 
     int transID = OnMarkTransactionDB(status);
@@ -1324,6 +1340,8 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
             res = ICON_RECONCILED;
         else if (status == "V")
             res = ICON_VOID;
+        else if (status == "X")
+            res = ICON_TRASH;
         else if (status == "D")
             res = ICON_DUPLICATE;
     }
@@ -1451,15 +1469,10 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if ((wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
+    else if ((wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "X")
     {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDELETE);
         OnMarkTransaction(evt);
-    }
-    else if (wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE))
-    {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE);
-        OnDeleteTransaction(evt);
     }
     else {
         event.Skip();
@@ -1472,7 +1485,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 {
     //check if a transaction is selected
     if (GetSelectedItemCount() < 1) return;
-    
+
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     //ask if they really want to delete
@@ -1507,7 +1520,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
-    
+
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID,
@@ -1575,7 +1588,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     {
         SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
-        if (topItemIndex_ < 0 || (topItemIndex_ - m_selectedIndex) > GetCountPerPage()) 
+        if (topItemIndex_ < 0 || (topItemIndex_ - m_selectedIndex) > GetCountPerPage())
             topItemIndex_ = m_selectedIndex;
         EnsureVisible(topItemIndex_);
     }
@@ -1788,4 +1801,3 @@ void mmCheckingPanel::SetSelectedTransaction(int transID)
     m_listCtrlAccount->refreshVisualList(transID);
     m_listCtrlAccount->SetFocus();
 }
-

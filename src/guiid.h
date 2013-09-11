@@ -97,8 +97,7 @@
 #include "../resources/term_acc_favorite.xpm"
 #include "../resources/termaccount.xpm"
 #include "../resources/tipicon.xpm"
-#include "../resources/trans_from.xpm"
-#include "../resources/trans_into.xpm"
+#include "../resources/trash.xpm"
 #include "../resources/trees.xpm"
 #include "../resources/unreconciled.xpm"
 #include "../resources/uparrow.xpm"
@@ -188,6 +187,8 @@ enum
     MENU_TREEPOPUP_MARKRECONCILED,
     MENU_TREEPOPUP_MARKUNRECONCILED,
     MENU_TREEPOPUP_MARKVOID,
+    MENU_TREEPOPUP_MARKDELETE,
+    MENU_TREEPOPUP_SHOWTRASH,
     MENU_TREEPOPUP_NEW,
     MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP,
     MENU_TREEPOPUP_MARKRECONCILED_ALL,
