@@ -189,7 +189,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_dbwrapper_test.obj \
 	mmex_tests_mmex_lua_test.obj \
 	mmex_tests_mmex_tests.obj \
-	mmex_tests_new_classes_test.obj \
 	mmex_tests_testing_util.obj
 MMEX_TESTS_RESOURCES =  \
 	mmex_tests_mmex_tests.res
@@ -877,9 +876,6 @@ mmex_tests_mmex_lua_test.obj: ..\..\..\src\tests\mmex_lua_test.cpp
 
 mmex_tests_mmex_tests.obj: ..\..\..\src\tests\mmex_tests.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\mmex_tests.cpp
-
-mmex_tests_new_classes_test.obj: ..\..\..\src\tests\new_classes_test.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\new_classes_test.cpp
 
 mmex_tests_testing_util.obj: ..\..\..\src\tests\testing_util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\testing_util.cpp
