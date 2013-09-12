@@ -28,13 +28,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 int main(int /*argc*/, char const* /*argv*/[])
 {
-// Take out main app when testing new classes for now
-#ifndef NEW_CLASSES_TEST_INCLUDED_IN_BUILD
     wxAppInitializerFunction f = wxAppConsole::GetInitializerFunction();
     f(); // creates instance of application
 
     wxApp::GetInstance()->SetAppName(mmex::GetAppName());
-#endif
 
     return UnitTest::RunAllTests();
 }

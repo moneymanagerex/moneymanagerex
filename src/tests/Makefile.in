@@ -198,7 +198,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_dbwrapper_test.o \
 	mmex_tests_mmex_lua_test.o \
 	mmex_tests_mmex_tests.o \
-	mmex_tests_new_classes_test.o \
 	mmex_tests_testing_util.o \
 	$(__mmex_tests___win32rc)
 
@@ -697,9 +696,6 @@ mmex_tests_mmex_lua_test.o: $(srcdir)/../../src/tests/mmex_lua_test.cpp
 
 mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
-
-mmex_tests_new_classes_test.o: $(srcdir)/../../src/tests/new_classes_test.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/new_classes_test.cpp
 
 mmex_tests_testing_util.o: $(srcdir)/../../src/tests/testing_util.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/testing_util.cpp
