@@ -330,8 +330,12 @@ void mmTransDialog::CreateControls()
     // Date --------------------------------------------
     long date_style = wxDP_DROPDOWN|wxDP_SHOWCENTURY;
 
-    dpc_ = new wxDatePickerCtrl( this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Now(),
-        wxDefaultPosition, wxSize(110, -1), date_style);
+    dpc_ = new wxDatePickerCtrl( this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Now()
+        , wxDefaultPosition, wxSize(110, -1), date_style);
+#ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
+    dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
+        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), NULL, this);
+#endif
 
     //Text field for day of the week
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
@@ -950,6 +954,15 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
+// Workaround for bug http://trac.wxwidgets.org/ticket/11630
+void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
+{
+    if (wxGetKeyState(WXK_SHIFT))
+        itemButtonCancel_->SetFocus();
+    else
+        choiceStatus_->SetFocus();
+    event.Skip();
+}
 
 void mmTransDialog::changeFocus(wxChildFocusEvent& event)
 {

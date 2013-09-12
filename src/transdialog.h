@@ -90,6 +90,7 @@ private:
     void OnCategoryKey(wxKeyEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnAccountUpdated(wxCommandEvent& event);
+    void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
