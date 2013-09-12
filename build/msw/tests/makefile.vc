@@ -190,8 +190,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmex_lua_test.obj \
 	mmex_tests_mmex_tests.obj \
 	mmex_tests_new_classes_test.obj \
-	mmex_tests_testing_util.obj \
-	mmex_tests_util_test.obj
+	mmex_tests_testing_util.obj
 MMEX_TESTS_RESOURCES =  \
 	mmex_tests_mmex_tests.res
 
@@ -884,9 +883,6 @@ mmex_tests_new_classes_test.obj: ..\..\..\src\tests\new_classes_test.cpp
 
 mmex_tests_testing_util.obj: ..\..\..\src\tests\testing_util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\testing_util.cpp
-
-mmex_tests_util_test.obj: ..\..\..\src\tests\util_test.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\util_test.cpp
 
 mmex_tests_mmex_tests.res: ..\..\..\src\tests\mmex_tests.rc
 	rc /fo$@  /d WIN32 $(____WX_SHARED_61_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_70_p_1) $(__DEBUG_DEFINE_p_5) /i ..\..\..\lib\sqlite /i ..\..\..\lib\wxsqlite /i ..\..\..\lib\lua\src /i ..\..\..\lib /i ..\..\..\src /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\UnitTest++ ..\..\..\src\tests\mmex_tests.rc

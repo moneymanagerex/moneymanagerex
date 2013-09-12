@@ -185,7 +185,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmex_tests.o \
 	mmex_tests_new_classes_test.o \
 	mmex_tests_testing_util.o \
-	mmex_tests_util_test.o \
 	mmex_tests_mmex_tests_rc.o
 
 ### Conditionally set variables: ###
@@ -788,9 +787,6 @@ mmex_tests_new_classes_test.o: ../../../src/tests/new_classes_test.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_testing_util.o: ../../../src/tests/testing_util.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_util_test.o: ../../../src/tests/util_test.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
