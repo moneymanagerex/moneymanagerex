@@ -132,7 +132,7 @@ public:
     long m_selectedForCopy;
     long m_selectedID;
     void refreshVisualList(int trans_id = -1);
-    bool showDeletedTransactions_ = false;
+    bool showDeletedTransactions_;
 
 private:
     DECLARE_NO_COPY_CLASS(TransactionListCtrl)
@@ -1681,7 +1681,8 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr3(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont),
     m_attr4(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont),
     m_sortCol(COL_DEF_SORT),
-    m_asc(true)
+    m_asc(true),
+    showDeletedTransactions_(false)
 {
     wxASSERT(m_cp);
 
