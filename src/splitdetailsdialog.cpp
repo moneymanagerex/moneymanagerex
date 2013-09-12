@@ -124,13 +124,13 @@ void SplitDetailDialog::CreateControls()
 
     textAmount_ = new wxTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
         , wxDefaultPosition, wxSize(110,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2());
+        , mmCalcValidator());
     controlSizer->Add(textAmount_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     wxStaticText* staticTextCategory = new wxStaticText( itemPanel7, wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
-    bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, m_categString_,
-        wxDefaultPosition, wxSize(200, -1), 0 );
+    bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, m_categString_
+        , wxDefaultPosition, wxSize(200, -1), 0 );
     controlSizer->Add(bCategory_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     /**************************************************************************

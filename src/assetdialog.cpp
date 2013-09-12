@@ -148,11 +148,13 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Value")), flags);
 
-    m_value = new wxTextCtrl( itemPanel5, wxID_STATIC, wxGetEmptyString()
+    m_value = new wxTextCtrl( itemPanel5, wxID_ANY, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2() );
+        , mmCalcValidator() );
     m_value->SetToolTip(_("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, flags);
+    m_value->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmAssetDialog::onTextEntered), NULL, this);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Change in Value")), flags);
 
@@ -293,4 +295,15 @@ void mmAssetDialog::changeFocus(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
     if ( w ) assetRichText = (w->GetId() == IDC_NOTES ? true : false);
+}
+
+void mmAssetDialog::onTextEntered(wxCommandEvent& event)
+{
+    wxString sAmount = "";
+
+    if (mmCalculator(m_value->GetValue(), sAmount))
+        m_value->SetValue(sAmount);
+    m_value->SetInsertionPoint(m_value->GetValue().Len());
+
+    event.Skip();
 }
