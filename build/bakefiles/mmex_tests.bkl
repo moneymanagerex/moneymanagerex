@@ -33,17 +33,17 @@
         <app-type>console</app-type>
         <library>UnitTestPP</library>
 
-	<include>$(SRCDIR)/src</include>
-	<include>$(SRCDIR)/lib/UnitTest++</include>
+    <include>$(SRCDIR)/src</include>
+    <include>$(SRCDIR)/lib/UnitTest++</include>
 
 
-    	<!-- IMPLEMENT_APP(mmGUIApp) in mmex.cpp defines main() on Unixes, see wx\app.h.
+        <!-- IMPLEMENT_APP(mmGUIApp) in mmex.cpp defines main() on Unixes, see wx\app.h.
              But mmex_tests.cpp also defines main(). 
         -->
 
-    	<!-- relative to trunk/mmex -->
+        <!-- relative to trunk/mmex -->
 
-    	<set var="SRC">src/tests</set>
+        <set var="SRC">src/tests</set>
 
         <headers>$(fileList(SRC + '/*.h'))</headers>
         <sources>$(fileList(SRC + '/*.cpp'))</sources>
@@ -61,16 +61,16 @@
     <action id="check" cond="not FORMAT.endswith('prj')">
 
         <depends>all</depends>
-	<is-phony>on</is-phony>
+    <is-phony>on</is-phony>
 
         <!-- "&&" is "&amp;&amp;" in XML -->
 
-    	<set var="COPY">
+        <set var="COPY">
             <if cond="TOOLSET=='win32'">copy /Y</if>
             <if cond="TOOLSET=='unix'">cp</if>
         </set>
 
-    	<set var="MKDIR">
+        <set var="MKDIR">
             <if cond="TOOLSET=='win32'">mkdir</if>
             <if cond="TOOLSET=='unix'">mkdir -p</if>
         </set>
@@ -86,7 +86,7 @@
 
         <command cond="FORMAT=='autoconf'">
             ./mmex_tests
-	    </command>
+        </command>
 
     </action>
 
