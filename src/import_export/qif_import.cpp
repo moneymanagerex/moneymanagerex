@@ -713,8 +713,10 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             {
                 if (val > 0.0)
                     type = TRANS_TYPE_DEPOSIT_STR;
-                else
+                else if (val < 0.0)
                     type = TRANS_TYPE_WITHDRAWAL_STR;
+				else
+					bValid = false;
 
                 to_account_id = -1;
                 if (sPayee.IsEmpty())
