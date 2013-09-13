@@ -848,12 +848,12 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     for (const auto& transaction : vQIF_trxs_)
     {
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(transaction.get()->date_));
+        data.push_back(wxVariant(transaction.get()->date_.FormatISODate()));
         data.push_back(wxVariant(transaction.get()->transNum_));
         data.push_back(wxVariant(transaction.get()->payeeStr_));
         data.push_back(wxVariant(transaction.get()->status_));
         data.push_back(wxVariant(core_->categoryList_.GetFullCategoryString(transaction.get()->categID_, transaction.get()->subcategID_)));
-        data.push_back(wxVariant(transaction.get()->value(-1)));
+		data.push_back(wxVariant(wxString::Format("%.2f",transaction.get()->value(-1))));
         data.push_back(wxVariant(transaction.get()->notes_));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
@@ -873,6 +873,8 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 
     if (!sFileName_.IsEmpty())
         correctEmptyFileExt( "qif", sFileName_);
+	else
+		return; // user pressed cancel
     file_name_ctrl_->SetValue(sFileName_);
 
     wxTextFile tFile(sFileName_);
