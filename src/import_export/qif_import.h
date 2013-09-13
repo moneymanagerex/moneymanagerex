@@ -90,7 +90,8 @@ private:
 
     enum EColumn
     {
-        COL_DATE = 0,
+        COL_ACCOUNT = 0,
+        COL_DATE,
         COL_NUMBER,
         COL_PAYEE,
         COL_STATUS,

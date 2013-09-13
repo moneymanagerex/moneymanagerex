@@ -130,6 +130,7 @@ bool mmQIFImportDialog::Create( wxWindow* parent, wxWindowID id, const wxString&
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
+    ColName_[COL_ACCOUNT]  = _("Account");
     ColName_[COL_DATE]     = _("Date");
     ColName_[COL_NUMBER]   = _("Number");
     ColName_[COL_PAYEE]    = _("Payee");
@@ -243,7 +244,8 @@ void mmQIFImportDialog::CreateControls()
 
     dataListBox_ = new wxDataViewListCtrl(data_panel
         , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
-    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 140);
+    dataListBox_->AppendTextColumn( ColName_[COL_ACCOUNT], wxDATAVIEW_CELL_INERT, 120);
+    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 100);
     dataListBox_->AppendTextColumn( ColName_[COL_NUMBER], wxDATAVIEW_CELL_INERT, 80);
     dataListBox_->AppendTextColumn( ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120);
     dataListBox_->AppendTextColumn( ColName_[COL_STATUS], wxDATAVIEW_CELL_INERT, 60);
@@ -848,12 +850,13 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     for (const auto& transaction : vQIF_trxs_)
     {
         wxVector<wxVariant> data;
+        data.push_back(wxVariant(core_->accountList_.GetAccountName(transaction.get()->accountID_)));
         data.push_back(wxVariant(transaction.get()->date_.FormatISODate()));
         data.push_back(wxVariant(transaction.get()->transNum_));
         data.push_back(wxVariant(transaction.get()->payeeStr_));
         data.push_back(wxVariant(transaction.get()->status_));
         data.push_back(wxVariant(core_->categoryList_.GetFullCategoryString(transaction.get()->categID_, transaction.get()->subcategID_)));
-		data.push_back(wxVariant(wxString::Format("%.2f",transaction.get()->value(-1))));
+        data.push_back(wxVariant(wxString::Format("%.2f",transaction.get()->value(-1))));
         data.push_back(wxVariant(transaction.get()->notes_));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
