@@ -307,7 +307,6 @@
     <ClCompile Include="..\..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\..\src\paths.cpp" />
     <ClCompile Include="..\..\..\src\payeedialog.cpp" />
-    <ClCompile Include="..\..\..\src\tests\new_classes_test.cpp" />
     <ClCompile Include="..\..\..\src\tests\testing_util.cpp" />
     <ClCompile Include="..\..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\..\src\recentfiles.cpp" />
@@ -320,7 +319,6 @@
     <ClCompile Include="..\..\..\src\transdialog.cpp" />
     <ClCompile Include="..\..\..\src\univcsvdialog.cpp" />
     <ClCompile Include="..\..\..\src\util.cpp" />
-    <ClCompile Include="..\..\..\src\tests\util_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h" />

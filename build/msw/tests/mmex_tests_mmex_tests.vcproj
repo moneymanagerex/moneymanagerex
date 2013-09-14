@@ -2213,9 +2213,6 @@
 				RelativePath="..\..\..\src\mmtransaction.cpp">
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\new_classes_test.cpp">
-			</File>
-			<File
 				RelativePath="..\..\..\src\newacctdialog.cpp">
 			</File>
 			<File
@@ -2301,9 +2298,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\util.cpp">
-			</File>
-			<File
-				RelativePath="..\..\..\src\tests\util_test.cpp">
 			</File>
 		</Filter>
 		<Filter

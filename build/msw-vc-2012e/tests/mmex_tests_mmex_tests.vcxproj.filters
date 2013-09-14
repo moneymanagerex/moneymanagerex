@@ -192,9 +192,6 @@
     <ClCompile Include="..\..\..\src\qif_import.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\util_test.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
@@ -208,9 +205,6 @@
       <Filter>Test Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\tests\testing_util.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\new_classes_test.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\reports\budget.cpp">
