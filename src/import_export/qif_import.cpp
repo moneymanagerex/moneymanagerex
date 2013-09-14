@@ -962,6 +962,8 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
     bbFormat_->Enable(dateFormatIsOK);
     if (dateFormatIsOK)
         bbFormat_->SetBitmapLabel(wxBitmap(flag_xpm));
+	else
+		return false;
 
     if (sAccountName.IsEmpty() && last_imported_acc_id_<0)
     {
