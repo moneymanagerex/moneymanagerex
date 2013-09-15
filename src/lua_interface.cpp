@@ -717,7 +717,7 @@ int TLuaInterface::cpp2lua_GetSubCategoryList(lua_State* lua)
 }
 
 /******************************************************************************
- nil = mmHTMLBuilder("function[, value_1][, value_2][, value_3][, value_4]")
+ nil = mmHTMLBuilder("function[, value_1][, value_2][, value_3][, value_4][, value_5][, value_6]")
  *****************************************************************************/
 int TLuaInterface::mmHTMLBuilderUni(lua_State* lua)
 {

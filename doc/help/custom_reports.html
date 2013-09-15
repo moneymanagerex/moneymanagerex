@@ -822,7 +822,7 @@ fine, but to make coding easier, we use Functions. We can think of a
 function as a building block, which can be used many times. We can
 change the output by giving the function different values. Functions
 may or may not return a value.</P>
-<P STYLE="margin-bottom: 0.17in"><B>Note:<BR></B>A function cannot me
+<P STYLE="margin-bottom: 0.17in"><B>Note:<BR></B>A function cannot be
 executed as a starting point for a main program.<BR>This is because a
 Function cannot be resolved.</P>
 <P STYLE="margin-bottom: 0.17in"><B>Defining a function:</B></P>
@@ -1064,7 +1064,35 @@ Functionality Extension</B> <B>provided by MMEX</B></FONT></FONT></P>
 					</TD>
 				</TR>
 			</TABLE>
-			<P><BR>Return codes are 1, 2, 3, as above.</P>
+			<P><BR>Return codes are the following:</P>
+			<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
+				<COL WIDTH=50*>
+				<COL WIDTH=206*>
+				<TR VALIGN=TOP>
+					<TD WIDTH=19% SDVAL="1" SDNUM="3081;">
+						<P>1</P>
+					</TD>
+					<TD WIDTH=81%>
+						<P>OK or YES</P>
+					</TD>
+				</TR>
+				<TR VALIGN=TOP>
+					<TD WIDTH=19% SDVAL="2" SDNUM="3081;">
+						<P>2</P>
+					</TD>
+					<TD WIDTH=81%>
+						<P>NO</P>
+					</TD>
+				</TR>
+				<TR VALIGN=TOP>
+					<TD WIDTH=19% SDVAL="3" SDNUM="3081;">
+						<P>3</P>
+					</TD>
+					<TD WIDTH=81%>
+						<P>CANCEL</P>
+					</TD>
+				</TR>
+			</TABLE>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -1128,16 +1156,15 @@ Functionality Extension</B> <B>provided by MMEX</B></FONT></FONT></P>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD WIDTH=46%>
-			<P>value, row_id = mmGetSingleChoice(&quot;label&quot;, &quot;heading&quot;,
+			<P>value = mmGetSingleChoice(&quot;label&quot;, &quot;heading&quot;,
 			single_array)</P>
 		</TD>
 		<TD WIDTH=54%>
 			<P>Sample Test Script: Return the table selected by the
 			user<BR>------------------------------------------<BR>tables =
-			{&quot;Payee&quot;, &quot;Category&quot;, &quot;SubCategory&quot;}<BR>value,
-			id = mmGetSingleChoice(&quot;Select a Table&quot;, &quot;Lua&quot;,
+			{&quot;Payee&quot;, &quot;Category&quot;, &quot;SubCategory&quot;}<BR>value = mmGetSingleChoice(&quot;Select a Table&quot;, &quot;Lua&quot;,
 			tables)</P>
-			<P><FONT COLOR="#0000ff">return</FONT> value, id</P>
+			<P><FONT COLOR="#0000ff">return</FONT> value</P>
 		</TD>
 	</TR>
 	<TR VALIGN=TOP>
@@ -1193,6 +1220,107 @@ Functionality Extension</B> <B>provided by MMEX</B></FONT></FONT></P>
 			<P><FONT COLOR="#0000ff">return</FONT> var</P>
 		</TD>
 	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>formatted_currency = mmCurrencyFormat(value[, edit])</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Returns a string formatted as currency. The optional parameter edit is a boolean value indicating if the formatted string should be edited to contain the monetary symbol, etc.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>formatted_currency = mmBaseCurrencyFormat(&quot;currency_symbol&quot;, value[, edit])</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Converts the value from the given currency_symbol and returns a string formatted as currency.
+               The optional parameter edit is a boolean value indicating if the formatted string should be edited to contain the monetary symbol, etc.
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>formatted_date = mmDateFormat(&quot;date_string&quot;)</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Returns a string formatted as the user specified date format.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>current_working_dir = mmGetDocDir([without_end_slash])</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Returns a string containing the current working directory.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>exe_dir = mmGetExeDir([without_end_slash])</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Returns a string containing the directory where mmex is located (&lt;mmex_install_location&gt;/bin).</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>lua_dir = mmGetLuaDir([without_end_slash])</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Returns a string containing location of lua (&lt;mmex_install_location&gt;/lua).</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>payee_table = mmGetPayeeList()</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Sample Test Script: Returns the list of payees
+			<BR>----------------------------------------------<BR>
+                mmHTMLBuilder("Init")<BR>
+                for k,v in ipairs( mmGetPayeeList() ) do<BR>
+	                &nbsp;&nbsp;mmHTMLBuilder("AddParaText", v)<BR>
+                end<BR>
+                mmHTMLBuilder("End")<BR>
+            </P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>category_table = mmGetCategoryList()</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Sample Test Script: Returns the list of categories
+			<BR>--------------------------------------------------<BR>
+                mmHTMLBuilder("Init")<BR>
+                for k,v in ipairs( mmGetCategoryList() ) do<BR>
+	                &nbsp;&nbsp;mmHTMLBuilder("AddParaText", v)<BR>
+                end<BR>
+                mmHTMLBuilder("End")<BR>
+            </P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=46%>
+			<P>category_table = mmGetSubCategoryList(&quot;category&quot;)</P>
+		</TD>
+		<TD WIDTH=54%>
+			<P>Sample Test Script: Returns the list of subcategories
+			<BR>-----------------------------------------------------<BR>
+                mmHTMLBuilder("Init")<BR>
+                for k,v in ipairs( mmGetCategoryList() ) do<BR>
+	                &nbsp;&nbsp;subCat = mmGetSubCategoryList(v);<BR>
+	                &nbsp;&nbsp;if(subCat) then<BR>
+		                &nbsp;&nbsp;&nbsp;&nbsp;for sk,sv in ipairs(subCat) do<BR>
+			                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;txt = v.."&nbsp;:&nbsp;"..sv<BR>
+			                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mmHTMLBuilder("AddParaText", txt)<BR>
+		                &nbsp;&nbsp;&nbsp;&nbsp;end<BR>
+	                &nbsp;&nbsp;end<BR>
+                end<BR>
+                mmHTMLBuilder("End")<BR>
+            </P>
+		</TD>
+	</TR>
 </TABLE>
 <P STYLE="margin-bottom: 0.17in"><BR><BR>
 </P>
@@ -1220,14 +1348,14 @@ Builder Commands</B></FONT></P>
 <P STYLE="margin-bottom: 0.17in; font-weight: normal"><FONT SIZE=4>MMEX
 provides formatting commands to allow data to be properly displayed
 in reports.<BR>These commands have been made available to Lua via the
-following command:</FONT></P>
+following commands:</FONT></P>
 <TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
 	<TR VALIGN=TOP>
 		<TD WIDTH=50%>
-			<P>HTML = mmHTMLBuilder(&quot;html command&quot;[, value][,
-			value][, value][, value])</P>
+			<P>mmHTMLBuilder(&quot;html command&quot;[, value][,
+			value][, value][, value][, value][, value])</P>
 			<P>HTMLBuilder html command parameter list</P>
 		</TD>
 		<TD WIDTH=50%>
@@ -1236,46 +1364,135 @@ following command:</FONT></P>
 	</TR>
 	<TR VALIGN=TOP>
 		<TD WIDTH=50%>
-			<P>(&quot;Init&quot;)</P>
-			<P>(&quot;End&quot;)</P>
-			<P>(&quot;StartTable&quot;, width_str, align_str)<BR><BR>(&quot;EndTable&quot;)</P>
-			<P>(&quot;StartTableRow&quot;, [colour])</P>
-			<P>(&ldquo;EndTableRow&rdquo;)<BR><BR>(&quot;StartTableCell&quot;,
+			<P>(&quot;Init&quot;)<BR><BR>
+			(&quot;End&quot;)</P>
+			<P>(&quot;StartTable&quot;, width_str, align_str, border_str)<BR><BR>(&quot;EndTable&quot;)</P>
+			<P>(&quot;StartTableRow&quot;, [colour])<BR><BR>
+			(&ldquo;EndTableRow&rdquo;)</P><P>(&quot;StartTableCell&quot;,
 			[text])<BR><BR>(&quot;EndTableCell&quot;)</P>
 			<P>(&quot;AddTableHeaderCell&quot;, text[,
 			numeric])<BR><BR>(&quot;AddTableHeaderRow&quot;, value,
 			columns)<BR><BR>(&quot;AddTableCell&quot;, text[, numeric [,
-			italics [, bold] ]])<BR><BR>(&quot;AddRowSeparator&quot;,
+			italics [, bold [, text_color]]]])<BR><BR>(&quot;AddTableCellLink&quot;, href, text[, numeric [,
+			italics [, bold [, text_color]]]])<BR><BR>(&quot;AddRowSeparator&quot;,
 			columns);<BR><BR>(&quot;AddTotalRow&quot;, caption, columns, text)</P>
 			<P>(&quot;AddDateNow&quot;)<BR><BR>(&quot;AddParaText&quot;,
 			text)<BR><BR>(&quot;AddLineBreak&quot;)<BR><BR>(&quot;AddHorizontalLine&quot;,
-			size)<BR><BR>(&quot;StartCenter&quot;)<BR><BR>(&quot;EndCenter&quot;)<BR><BR><BR>
+			size)</P><P>(&quot;StartCenter&quot;)<BR><BR>(&quot;EndCenter&quot;)
 			</P>
 		</TD>
 		<TD WIDTH=50%>
 			<P><FONT COLOR="#0000ff">local function</FONT>
-			HTML_AddReportHeader(c1, c2, c3, c4)<BR>&nbsp; &nbsp; html =
-			html..mmHTMLBuilder(&quot;StartTableRow&quot;)<BR>&nbsp; &nbsp;
-			html = html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c1)<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
-			c2)<BR>&nbsp; &nbsp; html =
-			html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c3)<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
-			c4)<BR>&nbsp; &nbsp; html = html..mmHTMLBuilder(&quot;EndTableRow&quot;)<BR><FONT COLOR="#0000ff">end</FONT></P>
+			HTML_AddReportHeader(c1, c2, c3, c4)<BR>&nbsp; &nbsp;
+			mmHTMLBuilder(&quot;StartTableRow&quot;)<BR>&nbsp; &nbsp;
+			mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c1)<BR>&nbsp;
+			&nbsp; mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
+			c2)<BR>&nbsp; &nbsp; 
+			mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c3)<BR>&nbsp;
+			&nbsp; mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
+			c4)<BR>&nbsp; &nbsp; mmHTMLBuilder(&quot;EndTableRow&quot;)<BR><FONT COLOR="#0000ff">end</FONT></P>
 			<P><FONT COLOR="#0000ff">local function</FONT>
-			HTML_StartReport()<BR>&nbsp; &nbsp; html = &quot;&quot;<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;StartTable&quot;)<BR>&nbsp;
+			HTML_StartReport()<BR>&nbsp; &nbsp;
+			mmHTMLBuilder(&quot;StartTable&quot;)<BR>&nbsp;
 			&nbsp; HTML_AddReportHeader(&quot;Index&quot;, &quot;Payee&quot;,
 			&quot;CategoryID&quot;, &quot;SubCategoryID&quot;)<BR><FONT COLOR="#0000ff">end</FONT></P>
 			<P><FONT COLOR="#0000ff">local function</FONT> HTML_ReportEnd()<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;AddRowSeparator&quot;,
-			4)<BR>&nbsp; &nbsp; html = html..mmHTMLBuilder(&quot;EndTable&quot;)<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;AddHorizontalLine&quot;,1)<BR><FONT COLOR="#0000ff">end</FONT></P>
+			&nbsp; mmHTMLBuilder(&quot;AddRowSeparator&quot;,
+			4)<BR>&nbsp; &nbsp; mmHTMLBuilder(&quot;EndTable&quot;)<BR>&nbsp;
+			&nbsp; mmHTMLBuilder(&quot;AddHorizontalLine&quot;,1)<BR><FONT COLOR="#0000ff">end</FONT></P>
 			<P>--------------------------------------------------<BR><FONT COLOR="#7e0021">--
 			Main Function: Start running from
 			here.</FONT><BR>--------------------------------------------------<BR>&nbsp;
 			&nbsp; HTML_StartReport()<BR>-- GetData()<BR>&nbsp; &nbsp;
-			HTML_ReportEnd()<BR><FONT COLOR="#0000ff">return</FONT> html</P>
+			HTML_ReportEnd()<BR></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLReportHeader(&quot;text&quot;)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add a report header.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLStartTable(&quot;width&quot;)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Start a table.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLEndTable()</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>End a table.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLStartTableRow()</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Start a table row.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLEndTableRow()</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>End a table row.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLTableHeaderCell(&quot;text&quot;)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add a table header cell.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLTableCellMonth(month_integer)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add a table cell with a month name.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLTableCellInteger(integer)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add a table cell with an integer value.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLTableCell(&quot;text&quot;)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add a table cell.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLaddText(&quot;text&quot;)</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add text</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=50%>
+			<P>mmHTMLhr()</P>
+		</TD>
+		<TD WIDTH=50%>
+			<P>Add a horizontal line.</P>
 		</TD>
 	</TR>
 </TABLE>
@@ -1293,13 +1510,13 @@ following command:</FONT></P>
 	<TR>
 		<TD COLSPAN=2 WIDTH=100% VALIGN=TOP>
 			<P><FONT COLOR="#0000ff">local function</FONT> HTML_AddRowData()<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;StartTableRow&quot;)<BR>&nbsp;
+			&nbsp; mmHTMLBuilder(&quot;StartTableRow&quot;)<BR>&nbsp;
 			&nbsp; col_index = 1<BR>&nbsp; &nbsp; <FONT COLOR="#0000ff">while</FONT>
 			col_index &lt;= SQLResultSetY <FONT COLOR="#0000ff">do</FONT><BR>&nbsp;
-			&nbsp; &nbsp; &nbsp; html = html..mmHTMLBuilder(&quot;AddTableCell&quot;,
+			&nbsp; &nbsp; &nbsp; mmHTMLBuilder(&quot;AddTableCell&quot;,
 			SQLResultSet[row_index][col_index])<BR>&nbsp; &nbsp; &nbsp; &nbsp;
 			col_index = col_index + 1<BR>&nbsp; &nbsp; <FONT COLOR="#0000ff">end</FONT><BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;EndTableRow&quot;)<BR><FONT COLOR="#0000ff">end</FONT><BR>--<BR><FONT COLOR="#0000ff">local
+			&nbsp; mmHTMLBuilder(&quot;EndTableRow&quot;)<BR><FONT COLOR="#0000ff">end</FONT><BR>--<BR><FONT COLOR="#0000ff">local
 			function</FONT> GetData()<BR>&nbsp; &nbsp; sql_script = &quot;select
 			* from payee_v1&quot;<BR>&nbsp; &nbsp;
 			mmGetSQLResultSet(sql_script)<BR>&nbsp; &nbsp; row_index = 1<BR>&nbsp;
@@ -1308,27 +1525,23 @@ following command:</FONT></P>
 			&nbsp; &nbsp; &nbsp; HTML_AddRowData()<BR>&nbsp; &nbsp; &nbsp; &nbsp;
 			row_index = row_index + 1<BR>&nbsp; &nbsp; <FONT COLOR="#0000ff">end</FONT><BR><FONT COLOR="#0000ff">end</FONT><BR>--<BR><FONT COLOR="#0000ff">local
 			function</FONT> HTML_AddReportHeader(c1, c2, c3, c4)<BR>&nbsp; &nbsp;
-			html = html..mmHTMLBuilder(&quot;StartTableRow&quot;)<BR>&nbsp; &nbsp;
-			html = html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c1)<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
-			c2)<BR>&nbsp; &nbsp; html =
-			html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c3)<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
-			c4)<BR>&nbsp; &nbsp; html =
-			html..mmHTMLBuilder(&quot;EndTableRow&quot;)<BR><FONT COLOR="#0000ff">end</FONT><BR>--<BR><FONT COLOR="#0000ff">local
-			function</FONT> HTML_StartReport()<BR>&nbsp; &nbsp; html = &quot;&quot;<BR>&nbsp;
-			&nbsp; html = html..mmHTMLBuilder(&quot;StartTable&quot;)<BR>&nbsp;
+			mmHTMLBuilder(&quot;StartTableRow&quot;)<BR>&nbsp; &nbsp;
+			mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c1)<BR>&nbsp;
+			&nbsp; mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
+			c2)<BR>&nbsp; &nbsp; mmHTMLBuilder(&quot;AddTableHeaderCell&quot;, c3)<BR>&nbsp;
+			&nbsp; mmHTMLBuilder(&quot;AddTableHeaderCell&quot;,
+			c4)<BR>&nbsp; &nbsp; mmHTMLBuilder(&quot;EndTableRow&quot;)<BR><FONT COLOR="#0000ff">end</FONT><BR>--<BR><FONT COLOR="#0000ff">local
+			function</FONT> HTML_StartReport()<BR>&nbsp;&nbsp;&nbsp; mmHTMLBuilder(&quot;StartTable&quot;)<BR>&nbsp;
 			&nbsp; HTML_AddReportHeader(&quot;Index&quot;, &quot;Payee&quot;,
 			&quot;CategoryID&quot;, &quot;SubCategoryID&quot;)<BR><FONT COLOR="#0000ff">end</FONT><BR>--<BR><FONT COLOR="#0000ff">local
-			function</FONT> HTML_ReportEnd()<BR>&nbsp; &nbsp; html =
-			html..mmHTMLBuilder(&quot;AddRowSeparator&quot;, 4)<BR>&nbsp; &nbsp;
-			html = html..mmHTMLBuilder(&quot;EndTable&quot;)<BR>&nbsp; &nbsp;
-			html = html..mmHTMLBuilder(&quot;AddHorizontalLine&quot;,1)<BR><FONT COLOR="#0000ff">end</FONT><BR>--
+			function</FONT> HTML_ReportEnd()<BR>&nbsp; &nbsp; mmHTMLBuilder(&quot;AddRowSeparator&quot;, 4)<BR>&nbsp; &nbsp;
+			mmHTMLBuilder(&quot;EndTable&quot;)<BR>&nbsp; &nbsp;
+			mmHTMLBuilder(&quot;AddHorizontalLine&quot;,1)<BR><FONT COLOR="#0000ff">end</FONT><BR>--
 			<BR>--------------------------------------------------<BR><FONT COLOR="#7e0021">--
 			Main Function: Start running from here.
 			</FONT><BR>--------------------------------------------------<BR>&nbsp;
 			&nbsp; HTML_StartReport()<BR>&nbsp; &nbsp; GetData()<BR>&nbsp; &nbsp;
-			HTML_ReportEnd()<BR><FONT COLOR="#0000ff">return</FONT> html<BR>--</P>
+			HTML_ReportEnd()<BR>--</P>
 		</TD>
 	</TR>
 </TABLE>
