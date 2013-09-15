@@ -28,8 +28,11 @@ TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 {
     this->html_builder_ = hb;
 
-    g_static_currency_list = new mmCurrencyList(static_db_ptr());
+	std::shared_ptr<wxSQLite3Database> db = static_db_ptr();
+    g_static_currency_list = new mmCurrencyList(db);
     g_static_currency_list->LoadCurrencies();
+	LoadPayees(db);
+	LoadCategories(db);
 
     lua_ = luaL_newstate();
     wxASSERT(lua_);
@@ -44,6 +47,52 @@ TLuaInterface::~TLuaInterface()
 {
     delete g_static_currency_list;
     lua_close(lua_);
+}
+
+void TLuaInterface::LoadPayees(std::shared_ptr<wxSQLite3Database> db)
+{
+    wxSQLite3ResultSet q1 = db.get()->ExecuteQuery(SELECT_ALL_FROM_PAYEE_V1);
+
+    g_static_payee_list.clear();
+    while (q1.NextRow())
+    {
+        mmPayee* pPayee(new mmPayee(q1));
+        g_static_payee_list.push_back(pPayee);
+    }
+
+    q1.Finalize();
+}
+
+void TLuaInterface::LoadCategories(std::shared_ptr<wxSQLite3Database> db)
+{
+    g_static_category_list.clear();
+    wxSQLite3ResultSet q1 = db.get()->ExecuteQuery(SELECT_ALL_CATEGORIES);
+    wxSQLite3ResultSet q2 = db.get()->ExecuteQuery(SELECT_ALL_SUBCATEGORIES);
+
+    mmCategory* pCat;
+    while (q1.NextRow())
+    {
+        int catID = q1.GetInt("CATEGID");
+        pCat = new mmCategory(catID, q1.GetString("CATEGNAME"));
+        g_static_category_list.push_back(pCat);
+
+        while (q2.NextRow())
+        {
+            int scatID = q2.GetInt("CATEGID");
+            if (catID == scatID)
+            {
+                int subCategID = q2.GetInt("SUBCATEGID");
+                wxString subCategName = q2.GetString("SUBCATEGNAME");
+
+                mmCategory* pSubCat(new mmCategory(subCategID, subCategName));
+                //pSubCat->parent_ = pCat;
+                pCat->children_.push_back(pSubCat);
+            }
+        }
+    }
+
+    q2.Finalize();
+    q1.Finalize();
 }
 
 // Passes Lua code in a string, to be run by Lua.
@@ -166,6 +215,9 @@ void TLuaInterface::Open_MMEX_Library()
     lua_register(lua_, "mmGetDocDir",          cpp2lua_GetDocDir);
     lua_register(lua_, "mmGetExeDir",          cpp2lua_GetExeDir);
     lua_register(lua_, "mmGetLuaDir",          cpp2lua_GetLuaDir);
+	lua_register(lua_, "mmGetPayeeList",       cpp2lua_GetPayeeList);
+	lua_register(lua_, "mmGetCategoryList",    cpp2lua_GetCategoryList);
+	lua_register(lua_, "mmGetSubCategoryList",    cpp2lua_GetSubCategoryList);
 
     //html builder functions
     lua_register(lua_, "mmHTMLBuilder",        mmHTMLBuilderUni);
@@ -609,7 +661,63 @@ int TLuaInterface::cpp2lua_GetLuaDir(lua_State* lua)
 }
 
 /******************************************************************************
- html = mmHTMLBuilder("function[, value_1][, value_2][, value_3][, value_4]")
+ payee_table = cpp2lua_GetPayeeList()
+ payee_table = {payee[1][1] ... payee[1][n]}
+ *****************************************************************************/
+int TLuaInterface::cpp2lua_GetPayeeList(lua_State* lua)
+{
+	lua_createtable(lua, g_static_payee_list.size(), 0);
+	int index = 1;
+	for (const auto &i : g_static_payee_list)
+	{
+        lua_pushstring(lua, i->name_.ToUTF8());
+        lua_rawseti(lua, -2, index++);
+	}
+    return 1;
+}
+
+/******************************************************************************
+ category_table = cpp2lua_GetCategoryList()
+ category_table = {category[1][1] ... category[1][n]}
+ *****************************************************************************/
+int TLuaInterface::cpp2lua_GetCategoryList(lua_State* lua)
+{
+	lua_createtable(lua, g_static_category_list.size(), 0);
+	int index = 1;
+	for (const auto &i : g_static_category_list)
+	{
+        lua_pushstring(lua, i->categName_.ToUTF8());
+        lua_rawseti(lua, -2, index++);
+	}
+    return 1;
+}
+
+/******************************************************************************
+ category_table = cpp2lua_GetSubCategoryList(category)
+ category_table = {category[1][1] ... category[1][n]}
+ *****************************************************************************/
+int TLuaInterface::cpp2lua_GetSubCategoryList(lua_State* lua)
+{
+    wxString category_name = GetLuaString(lua);
+    for (const auto& cat : g_static_category_list)
+    {
+        if (! cat->categName_.CmpNoCase(category_name))
+		{
+			lua_createtable(lua, cat->children_.size(), 0);
+			int index = 1;
+			for (const auto &i : cat->children_)
+			{
+				lua_pushstring(lua, i->categName_.ToUTF8());
+				lua_rawseti(lua, -2, index++);
+			}
+			break;
+		}
+    }
+    return 1;
+}
+
+/******************************************************************************
+ nil = mmHTMLBuilder("function[, value_1][, value_2][, value_3][, value_4]")
  *****************************************************************************/
 int TLuaInterface::mmHTMLBuilderUni(lua_State* lua)
 {
