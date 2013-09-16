@@ -253,7 +253,6 @@
     <ClCompile Include="..\..\src\db\category.cpp" />
     <ClCompile Include="..\..\src\db\currency.cpp" />
     <ClCompile Include="..\..\src\db\entry_base.cpp" />
-    <ClCompile Include="..\..\src\db\payee_table.cpp" />
     <ClCompile Include="..\..\src\db\splittransaction.cpp" />
     <ClCompile Include="..\..\src\db\subcategory.cpp" />
     <ClCompile Include="..\..\src\db\transaction.cpp" />
@@ -354,7 +353,6 @@
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\entry_base.h" />
-    <ClInclude Include="..\..\src\db\payee_table.h" />
     <ClInclude Include="..\..\src\db\splittransaction.h" />
     <ClInclude Include="..\..\src\db\subcategory.h" />
     <ClInclude Include="..\..\src\db\transaction.h" />
@@ -385,9 +383,15 @@
     <ClInclude Include="..\..\src\mmreportspanel.h" />
     <ClInclude Include="..\..\src\mmtransaction.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
+    <ClInclude Include="..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
+    <ClInclude Include="..\..\src\model\Model_Budgetyear.h" />
+    <ClInclude Include="..\..\src\model\Model_Checking.h" />
+    <ClInclude Include="..\..\src\model\Model_Currency.h" />
     <ClInclude Include="..\..\src\model\Model_Infotable.h" />
+    <ClInclude Include="..\..\src\model\Model_Payee.h" />
     <ClInclude Include="..\..\src\model\Model_Setting.h" />
+    <ClInclude Include="..\..\src\model\Model_Stock.h" />
     <ClInclude Include="..\..\src\newacctdialog.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\src\paths.h" />
