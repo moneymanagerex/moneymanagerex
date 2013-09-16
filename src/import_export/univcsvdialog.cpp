@@ -23,6 +23,7 @@
 #include "mmCurrencyFormatter.h"
 #include <algorithm>
 #include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
 
 IMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog)
 
@@ -660,10 +661,12 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
                 if (categID_ == -1)
                 {
-                   mmPayee* pPayee =  core_->payeeList_.GetPayeeSharedPtr(payeeID_);
-
-                   categID_ = pPayee->categoryId_;
-                   subCategID_ = pPayee->subcategoryId_;
+                    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+                    if (payee)
+                    {
+                        categID_ = payee->CATEGID;
+                        subCategID_ = payee->SUBCATEGID;
+                    }
                 }
 
                wxString status = "F";

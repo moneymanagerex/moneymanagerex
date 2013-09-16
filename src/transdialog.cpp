@@ -26,6 +26,7 @@
 #include "categdialog.h"
 #include "splittransactionsdialog.h"
 #include "validators.h"
+#include "model/Model_Payee.h"
 
 #include <wx/valnum.h>
 
@@ -544,12 +545,12 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
         if (payeeID_ != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1
             && !edit_ && !categUpdated_ && split_->numEntries() == 0)
         {
-            mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
+            Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
             // if payee has memory of last category used then display last category for payee
-            if (pPayee->categoryId_ != -1)
+            if (payee && payee->CATEGID != -1)
             {
-                categID_ = pPayee->categoryId_;
-                subcategID_ = pPayee->subcategoryId_;
+                categID_ = payee->CATEGID;
+                subcategID_ = payee->SUBCATEGID;
                 bCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
                 wxLogDebug("Category: %s", core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
                 categoryName_ = core_->categoryList_.GetCategoryName(categID_);
@@ -843,6 +844,12 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
         pPayee->categoryId_ = categID_;
         pPayee->subcategoryId_ = subcategID_;
         core_->payeeList_.UpdatePayee(payeeID_, "");
+
+        // use model to save
+        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+        payee->CATEGID = categID_;
+        payee->SUBCATEGID = subcategID_;
+        Model_Payee::instance().save(payee);
     }
 
     wxString transNum = textNumber_->GetValue();
