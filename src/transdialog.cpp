@@ -134,7 +134,8 @@ void mmTransDialog::dataToControls()
         toID_ = pBankTransaction_->toAccountID_;
 
         payeeID_ = pBankTransaction_->payeeID_;
-        payee_name_ = core_->payeeList_.GetPayeeName(pBankTransaction_->payeeID_);
+        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+        if (payee) payee_name_ = payee->PAYEENAME;
 
         textNotes_->SetValue(pBankTransaction_->notes_);
         textNumber_->SetValue(pBankTransaction_->transNum_);
@@ -210,7 +211,9 @@ void mmTransDialog::updateControlsForTransType()
         {
             payeeID_ = core_->bTransactionList_.getLastUsedPayeeID(accountID_
                 , sTransaction_type_, categID_, subcategID_);
-            payee_name_ = core_->payeeList_.GetPayeeName(payeeID_);
+
+            Model_Payee::Data *payee = Model_Payee::instance().get(payeeID_);
+            if (payee) payee_name_ = payee->PAYEENAME;
         }
 
         wxString categString = resetCategoryString();
@@ -537,7 +540,8 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
     bool transfer_transaction = transaction_type_->GetStringSelection() == wxGetTranslation(TRANS_TYPE_TRANSFER_STR);
     if (!transfer_transaction)
     {
-        payeeID_ = core_->payeeList_.GetPayeeId(payee_name_);
+        const Model_Payee::Data *payee = Model_Payee::instance().get(payee_name_);
+        if (payee) payeeID_ = payee->PAYEEID;
         wxLogDebug("Payee: %s id: %i", payee_name_, payeeID_);
 
         // Only for new transactions: if user want to autofill last category used for payee.
