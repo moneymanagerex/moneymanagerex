@@ -22,6 +22,7 @@
 #include "mmOption.h"
 #include "paths.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
 
@@ -105,8 +106,8 @@ void mmPayeeDialog::CreateControls()
     cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
         wxCommandEventHandler(mmPayeeDialog::OnShowHiddenChbClick), NULL, this);
 
-    wxArrayString filtd = core_->payeeList_.FilterPayees("");
-    int vertical_size_ = (filtd.GetCount()>10 ? 320 : 240);
+    Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
+    int vertical_size_ = (filtd.size()>10 ? 320 : 240);
     listBox_ = new wxListBox( this, wxID_ANY,
        wxDefaultPosition, wxSize(100, vertical_size_), wxArrayString(), wxLB_SINGLE);
     itemBoxSizer2->Add(listBox_, 1, wxEXPAND|wxALL, 1);
@@ -206,16 +207,17 @@ void mmPayeeDialog::fillControls()
     bool bResult = Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_PAYEES", true);
     cbShowAll_->SetValue(bResult);
 
-    wxArrayString filtd = core_->payeeList_.FilterPayees(textCtrl_->GetValue());
+    Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
 
     listBox_->Clear();
 
-    for (size_t i = 0; i < filtd.GetCount(); ++i) {
-        bool bHideItem = filtd.Item(i).Matches(hideTextCtrl_->GetValue().Append("*"))
+    for (const auto& payee: filtd)
+    {
+        bool bHideItem = payee.PAYEENAME.Lower().Matches(hideTextCtrl_->GetValue().Append("*")) 
             && !hideTextCtrl_->GetValue().IsEmpty();
         if (cbShowAll_->IsChecked() || !bHideItem)
         {
-            listBox_->Append(filtd.Item(i));
+            listBox_->Append(payee.PAYEENAME);
         }
     }
 }
@@ -234,8 +236,9 @@ void mmPayeeDialog::OnTextCtrlChanged(wxCommandEvent& event)
 
 void mmPayeeDialog::OnSelChanged(wxCommandEvent& /*event*/)
 {
-    wxString payee = listBox_->GetStringSelection();
-    m_payee_id_ = payee.IsEmpty() ? -1 : core_->payeeList_.GetPayeeId(payee);
+    wxString payee_name = listBox_->GetStringSelection();
+    Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
+    m_payee_id_ = payee_name.IsEmpty() || !payee? -1 : payee->id();
     bool ok = m_payee_id_ > -1;
 
     editButton_->Enable(ok);
@@ -251,13 +254,16 @@ void mmPayeeDialog::OnAdd(wxCommandEvent& event)
         return;
     }
 
-    if (core_->payeeList_.PayeeExists(text))
+    Model_Payee::Data* payee = Model_Payee::instance().get(text);
+    if (payee)
     {
         wxMessageBox(_("Payee with same name exists"), _("Organize Payees: Add Payee"), wxOK|wxICON_ERROR);
     }
     else
     {
-        int payeeID = core_->payeeList_.AddPayee(text);
+        payee = Model_Payee::instance().create();
+        payee->PAYEENAME = text;
+        int payeeID = Model_Payee::instance().save(payee);
 		if (payeeID < 0) return;
         wxASSERT(payeeID > 0);
 

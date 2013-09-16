@@ -48,9 +48,26 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+    Data_Set FilterPayees(const wxString& payee_pattern)
+    {
+        Data_Set payees;
+        for (auto &payee: this->all())
+        {
+            if (payee.PAYEENAME.Lower().Matches(payee_pattern.Lower().Append("*")))
+                payees.push_back(payee);
+        }
+        return payees;
+    }
     Data* get(int id)
     {
         return this->get(id, this->db_);
+    }
+    Data* get(const wxString& name)
+    {
+        Data* payee = 0;
+        Data_Set items = this->find(this->db_, COL_PAYEENAME, name);
+        if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);
+        return payee;
     }
     int save(Data* asset)
     {

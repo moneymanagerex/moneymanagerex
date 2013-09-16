@@ -806,9 +806,8 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             return;
         }
 
-        payeeID_ = core_->payeeList_.GetPayeeId(payee_name);
-
-        if (payeeID_ < 0)
+        Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
+        if (!payee)
         {
             wxMessageDialog msgDlg( this
                 , wxString::Format(_("Do you want to add new payee: \n%s?"), payee_name)
@@ -816,7 +815,9 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
                 , wxYES_NO | wxYES_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
-                payeeID_ = core_->payeeList_.AddPayee(payee_name);
+                payee = Model_Payee::instance().create();
+                payee->PAYEENAME = payee_name;
+                payeeID_ = Model_Payee::instance().save(payee);
             }
             else
                 return;
