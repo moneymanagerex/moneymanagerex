@@ -53,7 +53,6 @@ public:
     int GetPayeeId(const wxString& payeeName) const;
     wxString GetPayeeName(int id) const;
     mmPayee* GetPayeeSharedPtr(int payeeID);
-    wxArrayString FilterPayees(const wxString& patt) const;
 
     std::vector< mmPayee* > entries_;
 

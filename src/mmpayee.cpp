@@ -100,18 +100,6 @@ mmPayee* mmPayeeList::GetPayeeSharedPtr(int payeeID)
     return NULL;
 }
 
-wxArrayString mmPayeeList::FilterPayees(const wxString& patt) const
-{
-    wxSortedArrayString payee_list;
-
-    for (const auto &entry : entries_)
-    {
-        if (entry->name_.Lower().Matches(patt.Lower().Append("*")))
-            payee_list.Add(entry->name_);
-    }
-    return payee_list;
-}
-
 void mmPayeeList::LoadPayees()
 {
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_PAYEE_V1);

@@ -290,7 +290,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
         account_label_->SetLabel(_("Account"));
         cbAccount_->Enable(core_->accountList_.accounts_.size() > 1);
 
-        data = core_->payeeList_.FilterPayees("");
+        data = Model_Payee::instance().all_payee_names();
         toTextAmount_->Enable(false);
         toTextAmount_->SetValue("");
         advancedToTransAmountSet_ = false;
@@ -703,12 +703,12 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
     wxString payeeStr = "";
 
     payeeID_ = -1;
-    wxArrayString filtd = core_->payeeList_.FilterPayees("");
-    if (filtd.Count() == 1)
+    Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
+    if (filtd.size() == 1)
     {
         //only one payee present. Choose it
-        payeeStr = filtd[0];
-        payeeID_ = core_->payeeList_.GetPayeeId(payeeStr);
+        payeeStr = filtd[0].PAYEENAME;
+        payeeID_ = filtd[0].PAYEEID;
     }
 
     return payeeStr;

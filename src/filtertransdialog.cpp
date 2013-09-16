@@ -24,6 +24,7 @@
 #include <wx/valnum.h>
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Payee.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
@@ -209,11 +210,11 @@ void mmFilterTransactionsDialog::CreateControls()
 
     cbPayee_ = new wxComboBox(itemPanel, wxID_ANY, "",
         wxDefaultPosition, wxDefaultSize,
-        core_->payeeList_.FilterPayees("") /*, wxTE_PROCESS_ENTER*/);
+        Model_Payee::instance().all_payee_names() /*, wxTE_PROCESS_ENTER*/);
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
 
-    cbPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
+    cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
 
     itemPanelSizer->Add(cbPayee_, flagsExpand);
     //--End of Row --------------------------------------------------------

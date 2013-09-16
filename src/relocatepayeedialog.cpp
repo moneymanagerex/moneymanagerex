@@ -18,6 +18,7 @@
  ********************************************************/
 
 #include "relocatepayeedialog.h"
+#include "model/Model_Payee.h"
 #include "paths.h"
 #include "wx/statline.h"
 
@@ -79,17 +80,17 @@ void relocatePayeeDialog::CreateControls()
 
     cbSourcePayee_ = new wxComboBox(this, wxID_ANY, "",
         wxDefaultPosition, btnSize,
-        core_->payeeList_.FilterPayees("") /*, wxTE_PROCESS_ENTER*/);
+        Model_Payee::instance().all_payee_names()/*, wxTE_PROCESS_ENTER*/);
     cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
-    cbSourcePayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
+    cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, "",
         wxDefaultPosition, btnSize,
-        core_->payeeList_.FilterPayees("") /*, wxTE_PROCESS_ENTER*/);
+        Model_Payee::instance().all_payee_names()/*, wxTE_PROCESS_ENTER*/);
     cbDestPayee_->Connect(wxID_NEW, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
-    cbDestPayee_->AutoComplete(core_->payeeList_.FilterPayees(""));
+    cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
 
     wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);

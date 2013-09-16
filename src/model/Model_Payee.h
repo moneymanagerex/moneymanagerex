@@ -74,6 +74,16 @@ public:
         asset->save(this->db_);
         return asset->id();
     }
+public:
+    wxArrayString all_payee_names()
+    {
+        wxArrayString payees;
+        for (const auto &payee: this->all())
+        {
+            payees.Add(payee.PAYEENAME);
+        }
+        return payees;
+    }
 };
 
 #endif // 

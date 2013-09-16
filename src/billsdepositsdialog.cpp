@@ -770,12 +770,12 @@ void mmBDDialog::resetPayeeString(bool normal)
 {
     wxString payeeStr = _("Select Payee");
     payeeID_ = -1;
-    wxArrayString filtd = core_->payeeList_.FilterPayees("");
+    Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
 
-    if (filtd.Count() == 1)
+    if (filtd.size() == 1)
     {
         //only one payee present. Choose it
-        payeeStr = filtd[0];
+        payeeStr = filtd[0].PAYEENAME;
         payeeID_ = core_->payeeList_.GetPayeeId(payeeStr);
     }
     bPayee_->SetLabel(payeeStr);
