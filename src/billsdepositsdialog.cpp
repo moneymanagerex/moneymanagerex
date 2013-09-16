@@ -27,6 +27,7 @@
 #include "payeedialog.h"
 #include "splittransactionsdialog.h"
 #include "validators.h"
+#include "model/Model_Payee.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )
@@ -621,17 +622,15 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
             if (split_->numEntries())
                 return;
 
-            mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
-            bPayee_->SetLabel(pPayee->name_);
+            Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+            bPayee_->SetLabel(payee->PAYEENAME);
             payeeUnknown_ = false;
 
-            if (pPayee->categoryId_ == -1)
-            {
+            if (payee->CATEGID == -1)
                 return;
-            }
 
-            categID_ = pPayee->categoryId_;
-            subcategID_ = pPayee->subcategoryId_;
+            categID_ = payee->CATEGID;
+            subcategID_ = payee->SUBCATEGID;
             wxString categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
             bCategory_->SetLabel(categString);
         }

@@ -176,7 +176,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_category.obj \
 	mmex_tests_currency.obj \
 	mmex_tests_entry_base.obj \
-	mmex_tests_payee_table.obj \
 	mmex_tests_splittransaction.obj \
 	mmex_tests_subcategory.obj \
 	mmex_tests_transaction.obj \
@@ -186,7 +185,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.obj \
 	mmex_tests_qif_import.obj \
 	mmex_tests_univcsvdialog.obj \
-	mmex_tests_dbwrapper_test.obj \
 	mmex_tests_mmex_lua_test.obj \
 	mmex_tests_mmex_tests.obj \
 	mmex_tests_testing_util.obj
@@ -838,9 +836,6 @@ mmex_tests_currency.obj: ..\..\..\src\db\currency.cpp
 mmex_tests_entry_base.obj: ..\..\..\src\db\entry_base.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\entry_base.cpp
 
-mmex_tests_payee_table.obj: ..\..\..\src\db\payee_table.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\payee_table.cpp
-
 mmex_tests_splittransaction.obj: ..\..\..\src\db\splittransaction.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\splittransaction.cpp
 
@@ -867,9 +862,6 @@ mmex_tests_qif_import.obj: ..\..\..\src\import_export\qif_import.cpp
 
 mmex_tests_univcsvdialog.obj: ..\..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\univcsvdialog.cpp
-
-mmex_tests_dbwrapper_test.obj: ..\..\..\src\tests\dbwrapper_test.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\dbwrapper_test.cpp
 
 mmex_tests_mmex_lua_test.obj: ..\..\..\src\tests\mmex_lua_test.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\mmex_lua_test.cpp

@@ -185,7 +185,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_category.o \
 	mmex_tests_currency.o \
 	mmex_tests_entry_base.o \
-	mmex_tests_payee_table.o \
 	mmex_tests_splittransaction.o \
 	mmex_tests_subcategory.o \
 	mmex_tests_transaction.o \
@@ -195,7 +194,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
-	mmex_tests_dbwrapper_test.o \
 	mmex_tests_mmex_lua_test.o \
 	mmex_tests_mmex_tests.o \
 	mmex_tests_testing_util.o \
@@ -658,9 +656,6 @@ mmex_tests_currency.o: $(srcdir)/../../src/db/currency.cpp
 mmex_tests_entry_base.o: $(srcdir)/../../src/db/entry_base.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/entry_base.cpp
 
-mmex_tests_payee_table.o: $(srcdir)/../../src/db/payee_table.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/payee_table.cpp
-
 mmex_tests_splittransaction.o: $(srcdir)/../../src/db/splittransaction.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/db/splittransaction.cpp
 
@@ -687,9 +682,6 @@ mmex_tests_qif_import.o: $(srcdir)/../../src/import_export/qif_import.cpp
 
 mmex_tests_univcsvdialog.o: $(srcdir)/../../src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/univcsvdialog.cpp
-
-mmex_tests_dbwrapper_test.o: $(srcdir)/../../src/tests/dbwrapper_test.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/dbwrapper_test.cpp
 
 mmex_tests_mmex_lua_test.o: $(srcdir)/../../src/tests/mmex_lua_test.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_lua_test.cpp
