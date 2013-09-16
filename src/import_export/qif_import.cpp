@@ -785,23 +785,23 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             bTrxComplited = true;
             if (!bValid) continue;
 
-            wxSharedPtr<mmBankTransaction> pTransaction(new mmBankTransaction(core_));
-            pTransaction->date_ = dtdt;
-            pTransaction->accountID_ = from_account_id;
-            pTransaction->toAccountID_ = to_account_id;
-            pTransaction->payeeID_ = payeeID;
-            pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID);
-            pTransaction->transType_ = type;
-            pTransaction->amt_ = val;
-            pTransaction->status_ = status;
-            pTransaction->transNum_ = transNum;
-            pTransaction->notes_ = notes;
-            pTransaction->toAmt_ = val;
+            mmBankTransaction transaction(core_);
+            transaction.date_ = dtdt;
+            transaction.accountID_ = from_account_id;
+            transaction.toAccountID_ = to_account_id;
+            transaction.payeeID_ = payeeID;
+            transaction.payeeStr_ = core_->payeeList_.GetPayeeName(payeeID);
+            transaction.transType_ = type;
+            transaction.amt_ = val;
+            transaction.status_ = status;
+            transaction.transNum_ = transNum;
+            transaction.notes_ = notes;
+            transaction.toAmt_ = val;
             if (mmSplit->numEntries()) categID = -1;
-            pTransaction->categID_ = categID;
-            pTransaction->subcategID_ = subCategID;
-            pTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
-            *pTransaction->splitEntries_ = *mmSplit;
+            transaction.categID_ = categID;
+            transaction.subcategID_ = subCategID;
+            transaction.fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
+            *transaction.splitEntries_ = *mmSplit;
 
             mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(from_account_id);
             wxASSERT(pCurrencyPtr);
@@ -810,27 +810,27 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             //Just take alternate amount and skip it
             if (type == TRANS_TYPE_TRANSFER_STR)
             {
-                for (const auto& refTrans : vQIF_trxs_)
+                for (auto& refTrans : vQIF_trxs_)
                 {
-                    if (refTrans->transType_ != TRANS_TYPE_TRANSFER_STR) continue;
-                    if (refTrans->status_ == "D") continue;
-                    if (refTrans->date_!= dtdt) continue;
-                    if (((refTrans->amt_ < 0) && (val < 0)) || ((refTrans->amt_ > 0) && (val >0))) continue;
-                    if (refTrans->accountID_!= from_account_id) continue;
-                    if (refTrans->transNum_ != transNum) continue;
-                    if (refTrans->notes_ != notes) continue;
+                    if (refTrans.transType_ != TRANS_TYPE_TRANSFER_STR) continue;
+                    if (refTrans.status_ == "D") continue;
+                    if (refTrans.date_!= dtdt) continue;
+                    if (((refTrans.amt_ < 0) && (val < 0)) || ((refTrans.amt_ > 0) && (val >0))) continue;
+                    if (refTrans.accountID_!= from_account_id) continue;
+                    if (refTrans.transNum_ != transNum) continue;
+                    if (refTrans.notes_ != notes) continue;
 
                     if (val > 0.0)
-                        refTrans->toAmt_ = val;
+                        refTrans.toAmt_ = val;
                     else
-                        refTrans->amt_ = val;
-                    refTrans->status_ = "D";
+                        refTrans.amt_ = val;
+                    refTrans.status_ = "D";
 
-                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->amt_
-                        , refTrans->toAmt_
-                        , (fabs(refTrans->amt_)/fabs(refTrans->toAmt_)<1)
-                            ? fabs(refTrans->toAmt_)/fabs(refTrans->amt_)
-                            : fabs(refTrans->amt_)/fabs(refTrans->toAmt_));
+                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans.amt_
+                        , refTrans.toAmt_
+                        , (fabs(refTrans.amt_)/fabs(refTrans.toAmt_)<1)
+                            ? fabs(refTrans.toAmt_)/fabs(refTrans.amt_)
+                            : fabs(refTrans.amt_)/fabs(refTrans.toAmt_));
                     logWindow->AppendText(sMsg);
 
                     bValid = false;
@@ -840,7 +840,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 
             if (bValid)
             {
-                vQIF_trxs_.push_back(pTransaction);
+                vQIF_trxs_.push_back(transaction);
             }
         }
     }
@@ -852,14 +852,14 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     for (const auto& transaction : vQIF_trxs_)
     {
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(core_->accountList_.GetAccountName(transaction.get()->accountID_)));
-        data.push_back(wxVariant(transaction.get()->date_.FormatISODate()));
-        data.push_back(wxVariant(transaction.get()->transNum_));
-        data.push_back(wxVariant(transaction.get()->payeeStr_));
-        data.push_back(wxVariant(transaction.get()->status_));
-        data.push_back(wxVariant(core_->categoryList_.GetFullCategoryString(transaction.get()->categID_, transaction.get()->subcategID_)));
-        data.push_back(wxVariant(wxString::Format("%.2f",transaction.get()->value(-1))));
-        data.push_back(wxVariant(transaction.get()->notes_));
+        data.push_back(wxVariant(core_->accountList_.GetAccountName(transaction.accountID_)));
+        data.push_back(wxVariant(transaction.date_.FormatISODate()));
+        data.push_back(wxVariant(transaction.transNum_));
+        data.push_back(wxVariant(transaction.payeeStr_));
+        data.push_back(wxVariant(transaction.status_));
+        data.push_back(wxVariant(core_->categoryList_.GetFullCategoryString(transaction.categID_, transaction.subcategID_)));
+        data.push_back(wxVariant(wxString::Format("%.2f", transaction.value(-1))));
+        data.push_back(wxVariant(transaction.notes_));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
 
@@ -1024,17 +1024,17 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 
         //TODO: Update transfer transactions toAmount
 
-        for (const auto& refTrans : vQIF_trxs_)
+        for (auto& refTrans : vQIF_trxs_)
         {
-            //fromAccountID_ = refTrans->accountID_;
+            //fromAccountID_ = refTrans.accountID_;
             mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID_);
             wxASSERT(pCurrencyPtr);
-            refTrans->amt_ = fabs(refTrans->amt_);
-            refTrans->toAmt_ = fabs(refTrans->toAmt_);
-            //refTrans->updateAllData(core_, fromAccountID_, pCurrencyPtr);
+            refTrans.amt_ = fabs(refTrans.amt_);
+            refTrans.toAmt_ = fabs(refTrans.toAmt_);
+            //refTrans.updateAllData(core_, fromAccountID_, pCurrencyPtr);
 
-            core_->bTransactionList_.addTransaction(refTrans.get());
-            last_imported_acc_id_ = refTrans->accountID_;
+            core_->bTransactionList_.addTransaction(&refTrans);
+            last_imported_acc_id_ = refTrans.accountID_;
         }
 
         core_->db_.get()->Commit();
