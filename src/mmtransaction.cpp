@@ -53,7 +53,7 @@ void mmSplitTransactionEntries::removeSplitByIndex(int splitIndex)
     entries_.erase(entries_.begin() + splitIndex);
 }
 
-void mmSplitTransactionEntries::updateToDB(std::shared_ptr<wxSQLite3Database>& db,
+void mmSplitTransactionEntries::updateToDB(wxSharedPtr<wxSQLite3Database>& db,
     int transID, bool edit)
 {
     if (edit)

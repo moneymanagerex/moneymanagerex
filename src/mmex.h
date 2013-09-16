@@ -27,7 +27,7 @@
 #include <wx/toolbar.h>
 
 //----------------------------------------------------------------------------
-#include <memory>
+#include <wx/sharedptr.h>
 
 #include "guiid.h"
 #include "util.h"
@@ -211,7 +211,7 @@ private:
     wxScopedPtr<mmCoreDB> m_core;
 
     /* handles to SQLite Database */
-    std::shared_ptr<wxSQLite3Database> m_db;
+    wxSharedPtr<wxSQLite3Database> m_db;
 
     /* Currently open file name */
     wxString fileName_;

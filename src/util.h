@@ -149,7 +149,7 @@ wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
 wxImageList* navtree_images_list_();
 
-std::shared_ptr<wxSQLite3Database> static_db_ptr();
+wxSharedPtr<wxSQLite3Database> static_db_ptr();
 
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

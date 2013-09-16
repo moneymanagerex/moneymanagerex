@@ -75,7 +75,7 @@ public:
     void removeSplit(int splitID);
     void removeSplitByIndex(int splitIndex);
 
-    void updateToDB(std::shared_ptr<wxSQLite3Database>& db, int transID, bool edit);
+    void updateToDB(wxSharedPtr<wxSQLite3Database>& db, int transID, bool edit);
     void loadFromBDDB(mmCoreDB* core, int bdID);
 
     std::vector<mmSplitTransactionEntry* > entries_;

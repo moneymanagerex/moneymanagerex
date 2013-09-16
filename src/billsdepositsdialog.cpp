@@ -87,7 +87,7 @@ bool mmBDDialog::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 
     SetIcon(mmex::getProgramIcon());
 
-    std::shared_ptr<mmSplitTransactionEntries> split(new mmSplitTransactionEntries());
+    wxSharedPtr<mmSplitTransactionEntries> split(new mmSplitTransactionEntries());
     split_ = split;
 
     /**********************************************************************************************
@@ -1093,7 +1093,7 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 {
     categID_ = -1;
     subcategID_ = -1;
-    split_ = std::shared_ptr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
+    split_ = wxSharedPtr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
 
     bool state = cSplit_->GetValue();
     if (state)

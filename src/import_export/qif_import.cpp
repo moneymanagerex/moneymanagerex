@@ -785,7 +785,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             bTrxComplited = true;
             if (!bValid) continue;
 
-            std::shared_ptr<mmBankTransaction> pTransaction(new mmBankTransaction(core_));
+            wxSharedPtr<mmBankTransaction> pTransaction(new mmBankTransaction(core_));
             pTransaction->date_ = dtdt;
             pTransaction->accountID_ = from_account_id;
             pTransaction->toAccountID_ = to_account_id;

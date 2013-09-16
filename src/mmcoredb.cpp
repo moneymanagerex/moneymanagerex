@@ -23,7 +23,7 @@
 #include "mmOption.h"
 
 //----------------------------------------------------------------------------
-mmCoreDB::mmCoreDB(std::shared_ptr<wxSQLite3Database> db)
+mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
 : db_(db)
 , payeeList_(this)
 , categoryList_(this)

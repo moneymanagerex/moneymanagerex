@@ -108,7 +108,7 @@ void mmCurrency::loadCurrencySettings()
 }
 
 //-----------------------------------------------------------------------------//
-mmCurrencyList::mmCurrencyList(std::shared_ptr<wxSQLite3Database> db)
+mmCurrencyList::mmCurrencyList(wxSharedPtr<wxSQLite3Database> db)
     : db_(db)
 {}
 

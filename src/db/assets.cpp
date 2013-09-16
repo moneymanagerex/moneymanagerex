@@ -237,7 +237,7 @@ void TAssetList::LoadEntriesUsing(const wxString& sql_statement)
 
 void TAssetList::DestroyEntryList()
 {
-    for_each(entrylist_.begin(), entrylist_.end(), std::mem_fn(&TAssetEntry::destroy));
+    for_each(entrylist_.begin(), entrylist_.end(), std::mem_fun(&TAssetEntry::destroy));
     entrylist_.clear();
 }
 

@@ -555,7 +555,7 @@ static const char CREATE_VIEW_ALLDATA[] =
 namespace mmDBWrapper
 {
 
-std::shared_ptr<wxSQLite3Database> Open(const wxString &dbpath, const wxString &key = "");
+wxSharedPtr<wxSQLite3Database> Open(const wxString &dbpath, const wxString &key = "");
 
 bool ViewExists(wxSQLite3Database* db, const char *viewName);
 bool IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows);

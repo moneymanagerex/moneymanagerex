@@ -412,9 +412,9 @@ wxImageList* navtree_images_list_()
     return imageList_;
 }
 
-std::shared_ptr<wxSQLite3Database> static_db_ptr()
+wxSharedPtr<wxSQLite3Database> static_db_ptr()
 {
-    static std::shared_ptr<wxSQLite3Database> db(new wxSQLite3Database);
+    static wxSharedPtr<wxSQLite3Database> db(new wxSQLite3Database);
 
     return db;
 }

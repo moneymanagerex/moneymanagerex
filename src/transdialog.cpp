@@ -923,7 +923,7 @@ void mmTransDialog::SetSplitState()
 void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 {
     /* Reset Category */
-    //split_ = std::shared_ptr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
+    //split_ = wxSharedPtr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
     if (cSplit_->IsChecked())
     {
         activateSplitTransactionsDlg();

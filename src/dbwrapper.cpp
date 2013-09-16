@@ -1185,9 +1185,9 @@ int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<
     only if the file is write protected by the operating system.  In either
     case the database must already exist, otherwise an error is returned.
 */
-std::shared_ptr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const wxString &password)
+wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const wxString &password)
 {
-    std::shared_ptr<wxSQLite3Database> db = static_db_ptr();
+    wxSharedPtr<wxSQLite3Database> db = static_db_ptr();
 
     int err = SQLITE_OK;
     wxString errStr=wxEmptyString;

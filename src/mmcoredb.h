@@ -27,7 +27,7 @@
 #include "mmtransaction.h"
 
 //----------------------------------------------------------------------------
-#include "memory"
+#include <wx/sharedptr.h>
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
 //----------------------------------------------------------------------------
@@ -40,11 +40,11 @@ class wxSQLite3Database;
 class mmCoreDB
 {
 public:
-    mmCoreDB(std::shared_ptr<wxSQLite3Database> db);
+    mmCoreDB(wxSharedPtr<wxSQLite3Database> db);
     ~mmCoreDB();
 
     // Global access point to the database.
-    std::shared_ptr<wxSQLite3Database> db_;
+    wxSharedPtr<wxSQLite3Database> db_;
 
     /* These variables form a global data access point. */
     mmCurrencyList currencyList_;

@@ -1699,7 +1699,7 @@ TransactionListCtrl::TransactionListCtrl(
 }
 //----------------------------------------------------------------------------
 
-std::shared_ptr<wxSQLite3Database> mmCheckingPanel::getDb() const
+wxSharedPtr<wxSQLite3Database> mmCheckingPanel::getDb() const
 {
     wxASSERT(core_);
     return core_->db_;

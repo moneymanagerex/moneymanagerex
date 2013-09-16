@@ -86,7 +86,7 @@ private:
     wxScopedPtr<wxImageList> m_imageList;
     std::vector<mmBankTransaction*> m_trans;
 
-    std::shared_ptr<wxSQLite3Database> getDb() const;
+    wxSharedPtr<wxSQLite3Database> getDb() const;
     void initViewTransactionsHeader();
     void initFilterSettings();
     void setAccountSummary();

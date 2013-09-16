@@ -19,7 +19,7 @@
 
 #ifndef _MM_EX_MMCATEGORY_H_
 #define _MM_EX_MMCATEGORY_H_
-#include <memory>
+#include <wx/sharedptr.h>
 
 #include "defs.h"
 

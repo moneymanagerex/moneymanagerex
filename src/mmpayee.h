@@ -18,7 +18,7 @@
 #define _MM_EX_MMPAYEE_H_
 
 #include "mmcategory.h"
-#include "memory"
+#include <wx/sharedptr.h>
 
 class mmCoreDB;
 

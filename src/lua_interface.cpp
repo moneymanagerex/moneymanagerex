@@ -28,7 +28,7 @@ TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 {
     this->html_builder_ = hb;
 
-	std::shared_ptr<wxSQLite3Database> db = static_db_ptr();
+	wxSharedPtr<wxSQLite3Database> db = static_db_ptr();
     g_static_currency_list = new mmCurrencyList(db);
     g_static_currency_list->LoadCurrencies();
 	LoadPayees(db);
@@ -49,7 +49,7 @@ TLuaInterface::~TLuaInterface()
     lua_close(lua_);
 }
 
-void TLuaInterface::LoadPayees(std::shared_ptr<wxSQLite3Database> db)
+void TLuaInterface::LoadPayees(wxSharedPtr<wxSQLite3Database> db)
 {
     wxSQLite3ResultSet q1 = db.get()->ExecuteQuery(SELECT_ALL_FROM_PAYEE_V1);
 
@@ -63,7 +63,7 @@ void TLuaInterface::LoadPayees(std::shared_ptr<wxSQLite3Database> db)
     q1.Finalize();
 }
 
-void TLuaInterface::LoadCategories(std::shared_ptr<wxSQLite3Database> db)
+void TLuaInterface::LoadCategories(wxSharedPtr<wxSQLite3Database> db)
 {
     g_static_category_list.clear();
     wxSQLite3ResultSet q1 = db.get()->ExecuteQuery(SELECT_ALL_CATEGORIES);

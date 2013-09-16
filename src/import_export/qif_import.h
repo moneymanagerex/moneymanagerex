@@ -55,7 +55,7 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& /*event*/);
 
-    std::vector< std::shared_ptr<mmBankTransaction> > vQIF_trxs_;
+    std::vector< wxSharedPtr<mmBankTransaction> > vQIF_trxs_;
     mmCoreDB* core_;
     wxWindow* parent_;
     wxString dateFormat_;

@@ -57,8 +57,8 @@ private:
     lua_State* lua_;
     int lua_result_;
     wxString LuaErrorResult();
-	void LoadPayees(std::shared_ptr<wxSQLite3Database> db);
-	void LoadCategories(std::shared_ptr<wxSQLite3Database> db);
+	void LoadPayees(wxSharedPtr<wxSQLite3Database> db);
+	void LoadCategories(wxSharedPtr<wxSQLite3Database> db);
 
     static int SetSqlScriptRowCount(const wxString& sScript, int& iRowsCount, int& iError, wxString& sOutput);
     static int SetSqlRestltSet(const wxString& sScript, wxSQLite3ResultSet& sqlQueryResult, int& iError, wxString& sOutput);

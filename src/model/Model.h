@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <wx/datetime.h>
 #include "singleton.h"
-#include <memory>
+#include <wx/sharedptr.h>
 
 class wxString;
 class wxSQLite3Statement;

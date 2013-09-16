@@ -20,7 +20,7 @@
 #define _MM_EX_OPTION_H_
 
 #include "defs.h"
-#include <memory>
+#include <wx/sharedptr.h>
 
 class mmCoreDB;
 /*

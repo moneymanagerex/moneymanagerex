@@ -18,7 +18,7 @@
 #define _MM_EX_MMCURRENCY_H_
 
 #include <vector>
-#include <memory>
+#include <wx/sharedptr.h>
 #include <map>
 #include <wx/string.h>
 
@@ -62,7 +62,7 @@ public:
 class mmCurrencyList
 {
 public:
-    mmCurrencyList(std::shared_ptr<wxSQLite3Database> db);
+    mmCurrencyList(wxSharedPtr<wxSQLite3Database> db);
 
     void LoadCurrencies();
 
@@ -86,7 +86,7 @@ public:
     typedef std::vector< mmCurrency* >::const_iterator const_iterator;
 
 private:
-    std::shared_ptr<wxSQLite3Database> db_;
+    wxSharedPtr<wxSQLite3Database> db_;
 
     void SetCurrencySetting(mmCurrency* pCurrency) const;
 };
