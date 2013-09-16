@@ -916,7 +916,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 mmBDDialog repeatTransactionsDlg(m_core.get()
                     , th.id_ ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
+				{
                     if (activeHomePage_) createHomePage();
+				}
                 else // stop repeat executions from occuring
                     continueExecution = false;
             }
