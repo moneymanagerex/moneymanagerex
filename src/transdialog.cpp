@@ -839,13 +839,6 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        // save the category used for this payee to allow automatic category fill at user request.
-        mmPayee* pPayee = core_->payeeList_.GetPayeeSharedPtr(payeeID_);
-        pPayee->categoryId_ = categID_;
-        pPayee->subcategoryId_ = subcategID_;
-        core_->payeeList_.UpdatePayee(payeeID_, "");
-
-        // use model to save
         Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
         payee->CATEGID = categID_;
         payee->SUBCATEGID = subcategID_;
