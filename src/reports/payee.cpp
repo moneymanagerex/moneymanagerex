@@ -7,10 +7,11 @@
 
 #include <algorithm>
 
-mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
+mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& title, mmDateRange* date_range, bool by_name)
     : mmPrintableBase(core)
     , title_(title)
     , date_range_(date_range)
+	, byName_(by_name)
 {}
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
@@ -44,13 +45,25 @@ wxString mmReportPayeeExpenses::getHTMLText()
         data.push_back(line);
     }
 
-    std::stable_sort(data.begin(), data.end()
-            , [] (const data_holder x, const data_holder y)
-            {
-                if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
-                else return x.payee_name < y.payee_name;
-            }
-    );
+	if(byName_)
+	{
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder x, const data_holder y)
+				{
+					return x.payee_name < y.payee_name;
+				}
+		);
+	}
+	else
+	{
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder x, const data_holder y)
+				{
+					if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
+					else return x.payee_name < y.payee_name;
+				}
+		);
+	}
 
     mmHTMLBuilder hb;
     hb.init();
