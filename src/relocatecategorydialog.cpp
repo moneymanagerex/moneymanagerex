@@ -170,8 +170,9 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Category Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            if (core_->bTransactionList_.RelocateCategory(core_,
-                destCatID_, destSubCatID_, sourceCatID_, sourceSubCatID_, changedCats_, changedSubCats_) == 0)
+            if (core_->bTransactionList_.RelocateCategory(destCatID_
+                , destSubCatID_, sourceCatID_, sourceSubCatID_
+                , changedCats_, changedSubCats_) == 0)
                 EndModal(wxID_OK);
         }
     }

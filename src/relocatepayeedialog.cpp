@@ -150,7 +150,7 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Payee Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            if (core_->bTransactionList_.RelocatePayee(core_, destPayeeID_, sourcePayeeID_, changedPayees_) == 0)
+            if (core_->bTransactionList_.RelocatePayee(destPayeeID_, sourcePayeeID_, changedPayees_) == 0)
             {
                 EndModal(wxID_OK);
             }

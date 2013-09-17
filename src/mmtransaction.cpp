@@ -1117,10 +1117,10 @@ bool mmBankTransactionList::deleteTransaction(int accountID, int transactionID)
     return false;
 }
 
-bool mmBankTransactionList::getDailyBalance(const mmCoreDB* core, int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture) const
+bool mmBankTransactionList::getDailyBalance(int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture) const
 {
     wxDateTime now = wxDateTime::Now();
-    double convRate = core->accountList_.getAccountBaseCurrencyConvRate(accountID);
+    double convRate = core_->accountList_.getAccountBaseCurrencyConvRate(accountID);
     for (const auto & pBankTransaction: transactions_)
     {
         if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
@@ -1179,7 +1179,7 @@ wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const w
     return number_strings;
 }
 
-int mmBankTransactionList::RelocatePayee(mmCoreDB* core, int destPayeeID, int sourcePayeeID, int& changedPayees_)
+int mmBankTransactionList::RelocatePayee(int destPayeeID, int sourcePayeeID, int& changedPayees_)
 {
     int err = mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID, changedPayees_);
     Model_Payee::Data* payee = Model_Payee::instance().get(destPayeeID);
@@ -1198,9 +1198,12 @@ int mmBankTransactionList::RelocatePayee(mmCoreDB* core, int destPayeeID, int so
     return err;
 }
 
-int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
-    int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
-    int& changedCats, int& changedSubCats)
+int mmBankTransactionList::RelocateCategory(int destCatID
+                                            , int destSubCatID
+                                            , int sourceCatID
+                                            , int sourceSubCatID
+                                            , int& changedCats
+                                            , int& changedSubCats)
 {
     int err = mmDBWrapper::relocateCategory(core_->db_.get(),
         destCatID, destSubCatID, sourceCatID, sourceSubCatID,
@@ -1214,7 +1217,7 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
             {
                 pBankTransaction->categID_ = destCatID;
                 pBankTransaction->subcategID_ = destSubCatID;
-                pBankTransaction->fullCatStr_ = core->categoryList_.GetFullCategoryString(destCatID, destSubCatID);
+                pBankTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(destCatID, destSubCatID);
             }
             else if (pBankTransaction && (pBankTransaction->categID_ == -1))
             {

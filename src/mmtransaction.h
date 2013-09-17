@@ -153,10 +153,13 @@ public:
     bool removeTransaction(int accountID, int transactionID);
     bool deleteTransaction(int accountID, int transactionID);
     void deleteTransactions(int accountID);
-    int RelocatePayee(mmCoreDB* core, int destPayeeID, int sourcePayeeID, int& changedPayees_);
-    int RelocateCategory(mmCoreDB* core,
-                         int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
-                         int& changedCats, int& changedSubCats);
+    int RelocatePayee(int destPayeeID, int sourcePayeeID, int& changedPayees_);
+    int RelocateCategory(int destCatID
+        , int destSubCatID
+        , int sourceCatID
+        , int sourceSubCatID
+        , int& changedCats
+        , int& changedSubCats);
     void UpdateCategory(int catID, int subCatID, wxString &fullCatStr);
 
     /* Query Functions */
@@ -192,7 +195,7 @@ public:
     bool IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat = true) const;
     bool IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIgnor_subcat = true) const;
     bool IsPayeeUsed(int iPayeeID) const;
-    bool getDailyBalance(const mmCoreDB* core, int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture = false) const;
+    bool getDailyBalance(int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture = false) const;
 
 
     /* Data */

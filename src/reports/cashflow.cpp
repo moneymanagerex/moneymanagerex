@@ -146,7 +146,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         }
 
 
-        core_->bTransactionList_.getDailyBalance(core_, account->id_, daily_balance);
+        core_->bTransactionList_.getDailyBalance(account->id_, daily_balance);
 
         mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
         wxASSERT(pCurrencyPtr);
