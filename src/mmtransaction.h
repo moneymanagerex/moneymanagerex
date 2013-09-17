@@ -118,8 +118,9 @@ public:
 
     mmSplitTransactionEntries* splitEntries_;
 
-    /* Derived Data */
+    /* That amount used for sort ordering in mmCheckingPanel::sortTable() function */
     double withdrawal_amt_;
+    /* That amount used for sort ordering in mmCheckingPanel::sortTable() function */
     double deposit_amt_;
     double balance_;
 

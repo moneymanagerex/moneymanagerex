@@ -21,6 +21,7 @@
 #include "mmOption.h"
 #include "mmcoredb.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 #include <algorithm>
 
 void mmSplitTransactionEntries::addSplit(mmSplitTransactionEntry* split)
@@ -152,27 +153,26 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 void mmBankTransaction::updateTransactionData(int accountID, double& balance)
 {
     payeeStr_ = "";
-    deposit_amt_ = (transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_);
-    withdrawal_amt_ = (transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_);
-
     wxASSERT(toAmt_ >= 0);
     wxASSERT(amt_ >= 0);
     if (toAmt_ < 0) toAmt_ = amt_;
 
-    if (transType_ == TRANS_TYPE_DEPOSIT_STR)
+    if (transType_ != TRANS_TYPE_TRANSFER_STR)
     {
-        balance += (status_ == "V" || status_ == "X") ? 0.0 : amt_;
+        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+        if (payee) payeeStr_ = payee->PAYEENAME;
+        deposit_amt_ = (transType_ == TRANS_TYPE_DEPOSIT_STR ? amt_ : -amt_);
+        withdrawal_amt_ = (transType_ == TRANS_TYPE_WITHDRAWAL_STR ? amt_ : -amt_);
+        if (status_ != "V" && status_ != "X")
+        {
+            balance += (transType_ == TRANS_TYPE_DEPOSIT_STR) ? amt_ : -amt_;
+        }
         arrow_ = "   ";
     }
-    else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
+    else
     {
-        balance -= (status_ == "V" || status_ == "X") ? 0.0 : amt_;
-        arrow_ = "   ";
-    }
-    else if (transType_ == TRANS_TYPE_TRANSFER_STR)
-    {
-        fromAccountStr_ = core_->accountList_.GetAccountName(accountID_);
-        wxString toAccount = core_->accountList_.GetAccountName(toAccountID_);
+        Model_Account::Data* account = Model_Account::instance().get(accountID_, core_->db_.get());
+        if (account) fromAccountStr_ = account->ACCOUNTNAME;
 
         if (accountID_ != toAccountID_)
         {
@@ -181,7 +181,8 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
                  balance -= (status_ == "V" || status_ == "X") ? 0.0 : amt_;
                  withdrawal_amt_ = amt_;
                  deposit_amt_ = -amt_;
-                 payeeStr_ = toAccount;
+                 Model_Account::Data* to_account = Model_Account::instance().get(toAccountID_, core_->db_.get());
+                 if (to_account) payeeStr_ = to_account->ACCOUNTNAME;
                  arrow_ = "> ";
             }
             else if (toAccountID_ == accountID)
@@ -201,8 +202,8 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     {
         categID_ = -1;
         subcategID_ = -1;
-        fullCatStr_= core_->categoryList_.GetFullCategoryString(
-            splitEntries_->entries_[0]->categID_, splitEntries_->entries_[0]->subCategID_);
+        fullCatStr_= core_->categoryList_.GetFullCategoryString(splitEntries_->entries_[0]->categID_
+            , splitEntries_->entries_[0]->subCategID_);
     }
     else if (splitEntries_->numEntries() > 1)
     {
@@ -225,7 +226,7 @@ double mmBankTransaction::value(int accountID) const
        balance -= amt_;
     else if (transType_ == TRANS_TYPE_TRANSFER_STR)
     {
-      //Bug fix for broken transactions (as result of wrong import) if account and to account the same
+        //Bug fix for broken transactions (as result of wrong import) if account and to account the same
         if (accountID_ != toAccountID_)
         {
             if (accountID_ == accountID)
