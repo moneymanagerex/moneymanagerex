@@ -24,6 +24,7 @@
 class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
 {
     using DB_Table_CHECKINGACCOUNT_V1::all;
+    using DB_Table_CHECKINGACCOUNT_V1::find;
     using DB_Table_CHECKINGACCOUNT_V1::get;
 public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
@@ -47,6 +48,11 @@ public:
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
+    }
+    template<class V>
+    Data_Set find(COLUMN col, const V& v)
+    {
+        return find(db_, col, v);
     }
     Data* get(int id)
     {

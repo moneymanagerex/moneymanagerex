@@ -298,9 +298,14 @@ void mmTransDialog::SetTransferControls(bool transfer)
         toTextAmount_->SetValue("");
         advancedToTransAmountSet_ = false;
         cAdvanced_->Enable(false);
-        payeeID_ = core_->payeeList_.GetPayeeId(dataStr);
-        payee_name_ = core_->payeeList_.GetPayeeName(payeeID_);
-        dataStr = payee_name_;
+
+        Model_Payee::Data* payee = Model_Payee::instance().get(dataStr);
+        if (payee)
+        {
+            payeeID_ = payee->PAYEEID;
+            payee_name_ = payee->PAYEENAME;
+            dataStr = payee_name_;
+        }
     }
 
     for (const auto & entry : data)
@@ -878,7 +883,9 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     pTransaction->accountID_ = newAccountID_;
     pTransaction->toAccountID_ = toAccountID;
     pTransaction->payeeID_ = payeeID_;
-    pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
+    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+    if (payee)
+        pTransaction->payeeStr_ = payee->PAYEENAME;
     pTransaction->transType_ = sTransaction_type_;
     pTransaction->amt_ = transAmount_;
     pTransaction->status_ = status;

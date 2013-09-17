@@ -676,7 +676,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                pTransaction->accountID_ = fromAccountID_;
                pTransaction->toAccountID_ = toAccountID;
                pTransaction->payeeID_ = payeeID_;
-               pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
+               Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+               if (payee)
+                pTransaction->payeeStr_ = payee->PAYEENAME;
                pTransaction->transType_ = type_;
                pTransaction->amt_ = val_;
                pTransaction->status_ = status;
@@ -772,7 +774,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                 || pBankTransaction->toAccountID_ == fromAccountID))
             {
                 wxString type = pBankTransaction->transType_;
-                wxString payee = core_->payeeList_.GetPayeeName(pBankTransaction->payeeID_);
+                Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction->payeeID_);
                 int fAccountID = pBankTransaction->accountID_;
                 int tAccountID = pBankTransaction->toAccountID_;
                 const wxString amtSeparator = core_->accountList_.getAccountCurrencyDecimalChar(fromAccountID);
@@ -789,11 +791,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                     tovalue = pBankTransaction->toAmt_;
 
                     if (tAccountID == fromAccountID) {
-                        payee = wxString::Format("[%s]", fromAccount);
                         value = tovalue;
                         tovalue = -value_temp;
                     } else if (fAccountID == fromAccountID) {
-                        payee = wxString::Format("[%s]", toAccount);
                         value = -value;
                     }
                     toamount = adjustedExportAmount(amtSeparator,wxString()<<tovalue);
@@ -819,7 +819,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                             buffer << inQuotes(trx_date.Format(date_format_), delimit);
                             break;
                         case UNIV_CSV_PAYEE:
-                            buffer << inQuotes(payee, delimit);
+                            buffer << inQuotes(payee->PAYEENAME, delimit);
                             break;
                         case UNIV_CSV_AMOUNT:
                             buffer << inQuotes(amount, delimit);
@@ -954,7 +954,7 @@ void mmUnivCSVDialog::update_preview()
                     || pBankTransaction->toAccountID_ == fromAccountID))
                 {
                     wxString type = pBankTransaction->transType_;
-                    wxString payee = core_->payeeList_.GetPayeeName(pBankTransaction->payeeID_);
+                    Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction->payeeID_);
                     int fAccountID = pBankTransaction->accountID_;
                     int tAccountID = pBankTransaction->toAccountID_;
                     const wxString amtSeparator = core_->accountList_.getAccountCurrencyDecimalChar(fromAccountID);
@@ -971,11 +971,9 @@ void mmUnivCSVDialog::update_preview()
                         tovalue = pBankTransaction->toAmt_;
 
                         if (tAccountID == fromAccountID) {
-                            payee = wxString::Format("[%s]", fromAccount);
                             value = tovalue;
                             tovalue = -value_temp;
                         } else if (fAccountID == fromAccountID) {
-                            payee = wxString::Format("[%s]", toAccount);
                             value = -value;
                         }
                         toamount = adjustedExportAmount(amtSeparator,wxString()<<tovalue);
@@ -1008,7 +1006,7 @@ void mmUnivCSVDialog::update_preview()
                                 text << inQuotes(mmGetDateForDisplay(pBankTransaction->date_), delimit);
                                 break;
                             case UNIV_CSV_PAYEE:
-                                text << inQuotes(payee, delimit);
+                                text << inQuotes(payee->PAYEENAME, delimit);
                                 break;
                             case UNIV_CSV_AMOUNT:
                                 text << inQuotes(amount, delimit);
@@ -1208,6 +1206,7 @@ void mmUnivCSVDialog::OnCheckOrRadioBox(wxCommandEvent& event)
 void mmUnivCSVDialog::parseToken(int index, wxString& token)
 {
     if (token.Trim().IsEmpty()) return;
+    Model_Payee::Data* payee = 0;
 
     switch (index)
     {
@@ -1217,14 +1216,15 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_PAYEE:
-            if (!core_->payeeList_.PayeeExists(token))
+            payee = Model_Payee::instance().get(token);
+            if (!payee)
             {
-                payeeID_ = core_->payeeList_.AddPayee(token);
+                payee = Model_Payee::instance().create();
+                payee->PAYEENAME = token;
+                Model_Payee::instance().save(payee);
             }
-            else
-            {
-                payeeID_ = core_->payeeList_.GetPayeeId(token);
-            }
+
+            payeeID_ = payee->PAYEEID;
             break;
 
         case UNIV_CSV_AMOUNT:

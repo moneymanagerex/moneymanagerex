@@ -133,8 +133,13 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
     wxString destPayeeName, sourcePayeeName;
     destPayeeName = cbDestPayee_->GetValue();
     sourcePayeeName = cbSourcePayee_->GetValue();
-    destPayeeID_ = core_->payeeList_.GetPayeeId(destPayeeName);
-    sourcePayeeID_ = core_->payeeList_.GetPayeeId(sourcePayeeName);
+
+    Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
+    Model_Payee::Data* source_payee = Model_Payee::instance().get(sourcePayeeName);
+    if (dest_payee)
+        destPayeeID_ = dest_payee->PAYEEID; 
+    if (source_payee)
+        sourcePayeeID_ = source_payee->PAYEEID;
     if ((sourcePayeeID_ > 0) &&  (destPayeeID_ > 0) )
     {
         wxString msgStr = _("Please Confirm:") ;
@@ -163,9 +168,13 @@ void relocatePayeeDialog::OnPayeeUpdated(wxCommandEvent& event)
         cbPayeeInFocus = cbDestPayee_;
 
     wxString value = cbPayeeInFocus->GetValue().Lower();
-    if (source_payee)
-        sourcePayeeID_ = core_->payeeList_.GetPayeeId(value);
-    else
-        destPayeeID_ = core_->payeeList_.GetPayeeId(value);
+    Model_Payee::Data* payee = Model_Payee::instance().get(value);
+    if (payee)
+    {
+        if (source_payee)
+            sourcePayeeID_ = payee->PAYEEID;
+        else
+            destPayeeID_ = payee->PAYEEID;
+    }
     event.Skip();
 }

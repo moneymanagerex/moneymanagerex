@@ -25,7 +25,6 @@
 //----------------------------------------------------------------------------
 mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
 : db_(db)
-, payeeList_(this)
 , categoryList_(this)
 , accountList_(this)
 , currencyList_(db)
@@ -45,7 +44,6 @@ mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
     /* Load the DB into memory */
     currencyList_.LoadCurrencies();             // populate currencyList_
     categoryList_.LoadCategories();             // populate categoryList_
-    payeeList_.LoadPayees();                    // populate payeeList_
     accountList_.LoadAccounts(currencyList_);   // populate accountList_
     bTransactionList_.LoadTransactions();   // populate bTransactionList_
 }

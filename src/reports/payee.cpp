@@ -4,6 +4,7 @@
 #include "util.h"
 #include "mmgraphpie.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Payee.h"
 
 #include <algorithm>
 
@@ -39,7 +40,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
         positiveTotal += entry.second.first;
         negativeTotal += entry.second.second;
 
-        line.payee_name = core_->payeeList_.GetPayeeName(entry.first);
+        Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
+        if (payee)
+            line.payee_name = payee->PAYEENAME;
         line.incomes = entry.second.first;
         line.expences = entry.second.second;
         data.push_back(line);

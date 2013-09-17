@@ -19,7 +19,6 @@
 
 #include "dbwrapper.h"
 #include "mmcategory.h"
-#include "mmpayee.h"
 #include "mmcurrency.h"
 #include "reports/mmDateRange.h"
 #include <map>
@@ -157,7 +156,6 @@ public:
     int RelocateCategory(mmCoreDB* core,
                          int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID,
                          int& changedCats, int& changedSubCats);
-    void UpdatePayee(int payeeID, wxString &payeeStr);
     void UpdateCategory(int catID, int subCatID, wxString &fullCatStr);
 
     /* Query Functions */

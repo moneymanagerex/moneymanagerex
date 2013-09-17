@@ -27,6 +27,7 @@
 #include <algorithm>
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Payee.h"
 
 
 BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
@@ -576,7 +577,9 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
 
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        th.payeeStr_ = core_->payeeList_.GetPayeeName(th.payeeID_);
+        Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+        if (payee)
+            th.payeeStr_ = payee->PAYEENAME; 
 
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {

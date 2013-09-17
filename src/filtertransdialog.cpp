@@ -386,7 +386,9 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
 
     if (payeeCheckBox_->IsChecked())
     {
-        payeeID_ = core_->payeeList_.GetPayeeId(cbPayee_->GetValue());
+        Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
+        if (payee)
+            payeeID_ = payee->PAYEEID;
     }
 
     if (amountRangeCheckBox_->IsChecked())
@@ -484,11 +486,11 @@ wxString mmFilterTransactionsDialog::userDateRangeStr() const
 
 int mmFilterTransactionsDialog::getPayeeID() const
 {
-    wxString payeeStr = cbPayee_->GetValue();
-    int payeeID = core_->payeeList_.GetPayeeId(payeeStr);
-    return payeeID;
-
+    Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
+    if (payee) return payee->PAYEEID;
+    return -1;
 }
+
 wxString mmFilterTransactionsDialog::userPayeeStr() const
 {
     if (payeeCheckBox_->IsChecked())
@@ -744,7 +746,7 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
-    const wxString value = cbPayee_->GetValue().Lower();
-    payeeID_ = core_->payeeList_.GetPayeeId(value);
+    Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue().Lower());
+    if (payee) payeeID_ = payee->PAYEEID;
     event.Skip();
 }

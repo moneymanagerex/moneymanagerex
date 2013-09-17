@@ -223,8 +223,9 @@ void mmBDDialog::dataToControls()
         }
         wxString dispAmount = CurrencyFormatter::float2String(transAmount);
         textAmount_->SetValue(dispAmount);
-
-        wxString payeeString = core_->payeeList_.GetPayeeName(payeeID_);
+        
+        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+        wxString payeeString = payee ? payee->PAYEENAME : "";
         bPayee_->SetLabel(payeeString);
 
         if (transTypeString == TRANS_TYPE_TRANSFER_STR)
@@ -636,8 +637,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
         }
         else
         {
-            wxString payeeName = core_->payeeList_.GetPayeeName(payeeID_);
-            if (payeeName.IsEmpty())
+            Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+            if (!payee)
             {
                 //payeeID_ = -1;
                 categID_ = -1;
@@ -651,7 +652,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
             }
             else
             {
-                bPayee_->SetLabel(payeeName);
+                bPayee_->SetLabel(payee->PAYEENAME);
                 payeeUnknown_ = false;
             }
         }
@@ -776,7 +777,7 @@ void mmBDDialog::resetPayeeString(bool normal)
     {
         //only one payee present. Choose it
         payeeStr = filtd[0].PAYEENAME;
-        payeeID_ = core_->payeeList_.GetPayeeId(payeeStr);
+        payeeID_ = filtd[0].PAYEEID;
     }
     bPayee_->SetLabel(payeeStr);
     if (normal)
@@ -1068,7 +1069,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             pTransaction->accountID_ = fromAccountID;
             pTransaction->toAccountID_ = toAccountID;
             pTransaction->payeeID_ = payeeID_;
-            pTransaction->payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
+            Model_Payee::Data* payee =  Model_Payee::instance().get(payeeID_);
+            if (payee)
+                pTransaction->payeeStr_ = payee->PAYEENAME;
             pTransaction->transType_ = transaction_type;
             pTransaction->amt_ = amount;
             pTransaction->status_ = status;

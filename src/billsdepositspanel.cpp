@@ -22,6 +22,7 @@
 #include "util.h"
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Payee.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
@@ -314,7 +315,9 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        th.payeeStr_ = core_->payeeList_.GetPayeeName(th.payeeID_);
+        Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+        if (payee)
+            th.payeeStr_ = payee->PAYEENAME;
 
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
@@ -334,7 +337,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                 toAdd = toAdd && (transFilterDlg_->getFromDateCtrl() <= th.nextOccurDate_
                     && transFilterDlg_->getToDateControl() >= th.nextOccurDate_);
             if (transFilterDlg_->getPayeeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == core_->payeeList_.GetPayeeName(th.payeeID_));
+                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == payee->PAYEENAME);
             if (transFilterDlg_->getCategoryCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getCategoryID() == th.categID_
                     && (transFilterDlg_->getSubCategoryID() == th.subcategID_ || transFilterDlg_->getSubCategoryID()<0));

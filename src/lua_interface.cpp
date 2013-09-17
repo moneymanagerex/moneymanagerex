@@ -31,7 +31,6 @@ TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 	wxSharedPtr<wxSQLite3Database> db = static_db_ptr();
     g_static_currency_list = new mmCurrencyList(db);
     g_static_currency_list->LoadCurrencies();
-	LoadPayees(db);
 	LoadCategories(db);
 
     lua_ = luaL_newstate();
@@ -47,20 +46,6 @@ TLuaInterface::~TLuaInterface()
 {
     delete g_static_currency_list;
     lua_close(lua_);
-}
-
-void TLuaInterface::LoadPayees(wxSharedPtr<wxSQLite3Database> db)
-{
-    wxSQLite3ResultSet q1 = db.get()->ExecuteQuery(SELECT_ALL_FROM_PAYEE_V1);
-
-    g_static_payee_list.clear();
-    while (q1.NextRow())
-    {
-        mmPayee* pPayee(new mmPayee(q1));
-        g_static_payee_list.push_back(pPayee);
-    }
-
-    q1.Finalize();
 }
 
 void TLuaInterface::LoadCategories(wxSharedPtr<wxSQLite3Database> db)
@@ -215,7 +200,6 @@ void TLuaInterface::Open_MMEX_Library()
     lua_register(lua_, "mmGetDocDir",          cpp2lua_GetDocDir);
     lua_register(lua_, "mmGetExeDir",          cpp2lua_GetExeDir);
     lua_register(lua_, "mmGetLuaDir",          cpp2lua_GetLuaDir);
-	lua_register(lua_, "mmGetPayeeList",       cpp2lua_GetPayeeList);
 	lua_register(lua_, "mmGetCategoryList",    cpp2lua_GetCategoryList);
 	lua_register(lua_, "mmGetSubCategoryList",    cpp2lua_GetSubCategoryList);
 
@@ -657,22 +641,6 @@ int TLuaInterface::cpp2lua_GetLuaDir(lua_State* lua)
         fn.RemoveLastDir();
 
     SetDirSetting(lua, fn.GetPath() + "/lua");
-    return 1;
-}
-
-/******************************************************************************
- payee_table = cpp2lua_GetPayeeList()
- payee_table = {payee[1][1] ... payee[1][n]}
- *****************************************************************************/
-int TLuaInterface::cpp2lua_GetPayeeList(lua_State* lua)
-{
-	lua_createtable(lua, g_static_payee_list.size(), 0);
-	int index = 1;
-	for (const auto &i : g_static_payee_list)
-	{
-        lua_pushstring(lua, i->name_.ToUTF8());
-        lua_rawseti(lua, -2, index++);
-	}
     return 1;
 }
 

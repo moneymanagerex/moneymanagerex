@@ -142,7 +142,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmex.o \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
-	mmex_tests_mmpayee.o \
 	mmex_tests_mmreportspanel.o \
 	mmex_tests_mmtransaction.o \
 	mmex_tests_newacctdialog.o \
@@ -526,9 +525,6 @@ mmex_tests_mmhelppanel.o: $(srcdir)/../../src/mmhelppanel.cpp
 
 mmex_tests_mmhomepagepanel.o: $(srcdir)/../../src/mmhomepagepanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmhomepagepanel.cpp
-
-mmex_tests_mmpayee.o: $(srcdir)/../../src/mmpayee.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmpayee.cpp
 
 mmex_tests_mmreportspanel.o: $(srcdir)/../../src/mmreportspanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmreportspanel.cpp

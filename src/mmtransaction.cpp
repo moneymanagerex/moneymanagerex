@@ -20,6 +20,7 @@
 #include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include "mmcoredb.h"
+#include "model/Model_Payee.h"
 #include <algorithm>
 
 void mmSplitTransactionEntries::addSplit(mmSplitTransactionEntry* split)
@@ -161,13 +162,11 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     if (transType_ == TRANS_TYPE_DEPOSIT_STR)
     {
         balance += (status_ == "V" || status_ == "X") ? 0.0 : amt_;
-        payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
         arrow_ = "   ";
     }
     else if (transType_== TRANS_TYPE_WITHDRAWAL_STR)
     {
         balance -= (status_ == "V" || status_ == "X") ? 0.0 : amt_;
-        payeeStr_ = core_->payeeList_.GetPayeeName(payeeID_);
         arrow_ = "   ";
     }
     else if (transType_ == TRANS_TYPE_TRANSFER_STR)
@@ -330,13 +329,14 @@ int mmBankTransactionList::addTransaction(mmBankTransaction* pBankTransaction)
        r.status_ = "D";
     }
 
-    if (!core_->payeeList_.PayeeExists(r.payeeID_)
-        && r.transType_ != TRANS_TYPE_TRANSFER_STR)
+    Model_Payee::Data* payee = Model_Payee::instance().get(r.payeeID_);
+    if (!payee)
     {
-        wxASSERT(false);
-        if (!core_->payeeList_.PayeeExists(_("Unknown")))
-            r.payeeID_ = core_->payeeList_.AddPayee(_("Unknown"));
+        payee = Model_Payee::instance().create();
+        payee->PAYEENAME = _("Unknown");
+        Model_Payee::instance().save(payee);
     }
+
     wxSQLite3Statement st = core_->db_.get()->PrepareStatement(INSERT_INTO_CHECKINGACCOUNT_V1);
 
     int i = 0;
@@ -1181,13 +1181,14 @@ wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const w
 int mmBankTransactionList::RelocatePayee(mmCoreDB* core, int destPayeeID, int sourcePayeeID, int& changedPayees_)
 {
     int err = mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID, changedPayees_);
+    Model_Payee::Data* payee = Model_Payee::instance().get(destPayeeID);
     if (err == 0)
     {
         for (const auto & pBankTransaction: transactions_)
         {
-            if (pBankTransaction->payeeID_ == sourcePayeeID)
+            if (pBankTransaction->payeeID_ == sourcePayeeID && payee)
             {
-                pBankTransaction->payeeStr_ = core->payeeList_.GetPayeeName(destPayeeID);
+                pBankTransaction->payeeStr_ = payee->PAYEENAME;
                 pBankTransaction->payeeID_ = destPayeeID;
             }
         }
@@ -1232,17 +1233,6 @@ int mmBankTransactionList::RelocateCategory(mmCoreDB* core,
         }
     }
     return err;
-}
-
-void mmBankTransactionList::UpdatePayee(int payeeID, wxString &payeeStr)
-{
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if (pBankTransaction->payeeID_ == payeeID)
-        {
-            pBankTransaction->payeeStr_ = payeeStr;
-        }
-    }
 }
 
 void mmBankTransactionList::UpdateCategory(int catID, int subCatID, wxString &fullCatStr)

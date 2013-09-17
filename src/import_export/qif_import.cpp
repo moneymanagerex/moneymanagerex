@@ -5,6 +5,7 @@
 #include "mmCurrencyFormatter.h"
 #include "fileviewerdialog.h"
 #include "paths.h"
+#include "model/Model_Payee.h"
 
 enum qifAccountInfoType
 {
@@ -380,6 +381,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     double val = 0.0, dSplitAmount = 0.0;
     bool bTrxComplited = true;
 
+    Model_Payee::Data* payee = 0;
+
     mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
 
     for (readLine = tFile.GetFirstLine(); !tFile.Eof(); readLine = tFile.GetNextLine())
@@ -726,14 +729,20 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     sPayee = _("Unknown");
                 }
 
-                if (!core_->payeeList_.PayeeExists(sPayee))
+                payee = Model_Payee::instance().get(sPayee);
+                if (payee)
                 {
-                    payeeID = core_->payeeList_.AddPayee(sPayee);
-                    sMsg = wxString::Format(_("Payee Added: %s"), sPayee);
-                    logWindow->AppendText(wxString()<< sMsg << "\n");
+                    payeeID = payee->PAYEEID;
                 }
                 else
-                    payeeID = core_->payeeList_.GetPayeeId(sPayee);
+                {
+                    payee = Model_Payee::instance().create();
+                    payee->PAYEENAME = sPayee;
+                    Model_Payee::instance().save(payee);
+
+                    payeeID = payee->PAYEEID;
+                    logWindow->AppendText(wxString::Format(_("Payee Added: %s"), sPayee));
+                }
             }
 
             if (mmSplit->entries_.size() > 0)
@@ -765,7 +774,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 , core_->accountList_.GetAccountName(from_account_id)
                 , wxString((type == TRANS_TYPE_TRANSFER_STR ? "<->" : ""))
                 , core_->accountList_.GetAccountName(to_account_id)
-                , core_->payeeList_.GetPayeeName(payeeID)
+                , payee->PAYEENAME
                 , (wxString()<<val)
                 , sFullCateg
                 );
@@ -790,7 +799,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             transaction.accountID_ = from_account_id;
             transaction.toAccountID_ = to_account_id;
             transaction.payeeID_ = payeeID;
-            transaction.payeeStr_ = core_->payeeList_.GetPayeeName(payeeID);
+            transaction.payeeStr_ = payee->PAYEENAME;
             transaction.transType_ = type;
             transaction.amt_ = val;
             transaction.status_ = status;

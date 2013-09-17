@@ -133,7 +133,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmex.obj \
 	mmex_tests_mmhelppanel.obj \
 	mmex_tests_mmhomepagepanel.obj \
-	mmex_tests_mmpayee.obj \
 	mmex_tests_mmreportspanel.obj \
 	mmex_tests_mmtransaction.obj \
 	mmex_tests_newacctdialog.obj \
@@ -706,9 +705,6 @@ mmex_tests_mmhelppanel.obj: ..\..\..\src\mmhelppanel.cpp
 
 mmex_tests_mmhomepagepanel.obj: ..\..\..\src\mmhomepagepanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmhomepagepanel.cpp
-
-mmex_tests_mmpayee.obj: ..\..\..\src\mmpayee.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmpayee.cpp
 
 mmex_tests_mmreportspanel.obj: ..\..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmreportspanel.cpp

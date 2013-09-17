@@ -898,7 +898,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        th.payeeStr_ = m_core.get()->payeeList_.GetPayeeName(th.payeeID_);
+        Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+        if (payee)
+            th.payeeStr_ = payee->PAYEENAME;
 
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
@@ -937,7 +939,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran.accountID_ = th.accountID_;
                 tran.toAccountID_ = th.toAccountID_;
                 tran.payeeID_ = th.payeeID_;
-                tran.payeeStr_ = m_core.get()->payeeList_.GetPayeeName(th.payeeID_);
+                tran.payeeStr_ = payee->PAYEENAME;
                 tran.transType_ = th.transType_;
                 tran.amt_ = th.amt_;
                 tran.status_ = q1.GetString("STATUS");

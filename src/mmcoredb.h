@@ -20,7 +20,6 @@
 #ifndef _MM_EX_COREDB_H_
 #define _MM_EX_COREDB_H_
 //----------------------------------------------------------------------------
-#include "mmpayee.h"
 #include "mmcategory.h"
 #include "mmaccount.h"
 #include "mmcurrency.h"
@@ -49,7 +48,6 @@ public:
     /* These variables form a global data access point. */
     mmCurrencyList currencyList_;
     mmCategoryList categoryList_;
-    mmPayeeList payeeList_;
     mmAccountList accountList_;
     mmBankTransactionList bTransactionList_;
     bool displayDatabaseError_;

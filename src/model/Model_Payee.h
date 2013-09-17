@@ -20,11 +20,13 @@
 
 #include "Model.h"
 #include "db/DB_Table_Payee_V1.h"
+#include "Model_Checking.h" // detect whether the payee is used or not
 
 class Model_Payee : public Model, public DB_Table_PAYEE_V1
 {
     using DB_Table_PAYEE_V1::all;
     using DB_Table_PAYEE_V1::get;
+    using DB_Table_PAYEE_V1::remove;
 public:
     Model_Payee(): Model(), DB_Table_PAYEE_V1() 
     {
@@ -74,6 +76,12 @@ public:
         asset->save(this->db_);
         return asset->id();
     }
+    bool remove(int id)
+    {
+        if (is_used(id)) return false;
+
+        return this->remove(id, db_);
+    }
 public:
     wxArrayString all_payee_names()
     {
@@ -83,6 +91,20 @@ public:
             payees.Add(payee.PAYEENAME);
         }
         return payees;
+    }
+private:
+    bool is_used(int id)
+    {
+        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, id);
+        return !trans.empty();
+    }
+    bool is_used(const Data* record)
+    {
+        return is_used(record->PAYEEID);
+    }
+    bool is_used(const Data& record)
+    {
+        return is_used(&record);
     }
 };
 

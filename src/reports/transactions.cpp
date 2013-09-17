@@ -21,6 +21,7 @@
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
+#include "model/Model_Payee.h"
 #include <algorithm>
 
 
@@ -106,8 +107,9 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.date_);
         hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.transactionID())
             , core_->accountList_.GetAccountName(transaction.accountID_));
-        hb.addTableCell((transaction.payeeStr_.IsEmpty() ? core_->payeeList_.GetPayeeName(transaction.payeeID_).Prepend("   ") : transaction.payeeStr_)
-            , false, true);
+
+        Model_Payee::Data* payee = Model_Payee::instance().get(transaction.payeeID_);
+        hb.addTableCell(( (payee) ? payee->PAYEENAME : ""));
         hb.addTableCell(transaction.status_);
         hb.addTableCell(transaction.fullCatStr_, false, true);
 

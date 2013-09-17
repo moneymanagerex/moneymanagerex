@@ -133,7 +133,6 @@ MMEX_OBJECTS =  \
 	mmex_mmex.obj \
 	mmex_mmhelppanel.obj \
 	mmex_mmhomepagepanel.obj \
-	mmex_mmpayee.obj \
 	mmex_mmreportspanel.obj \
 	mmex_mmtransaction.obj \
 	mmex_newacctdialog.obj \
@@ -738,9 +737,6 @@ mmex_mmhelppanel.obj: ..\..\src\mmhelppanel.cpp
 
 mmex_mmhomepagepanel.obj: ..\..\src\mmhomepagepanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmhomepagepanel.cpp
-
-mmex_mmpayee.obj: ..\..\src\mmpayee.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmpayee.cpp
 
 mmex_mmreportspanel.obj: ..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmreportspanel.cpp
