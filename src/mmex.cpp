@@ -153,7 +153,7 @@ bool OnInitImpl(mmGUIApp* app)
 
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
-    Model_Setting::instance().db_ = app->m_setting_db;
+    Model_Setting::instance(app->m_setting_db);
 
     /* Load Colors from Database */
     mmLoadColorsFromDatabase();
@@ -980,7 +980,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 */
 void mmGUIFrame::saveSettings()
 {
-    Model_Setting::instance().db_->Begin();
+    Model_Setting::instance().Begin();
     m_core->db_.get()->Begin();
     if (! fileName_.IsEmpty())
     {
@@ -1003,7 +1003,7 @@ void mmGUIFrame::saveSettings()
     Model_Setting::instance().Set("SIZEW", value_w);
     Model_Setting::instance().Set("SIZEH", value_h);
     Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
-    Model_Setting::instance().db_->Commit();
+    Model_Setting::instance().Commit();
     m_core->db_.get()->Commit();
 }
 //----------------------------------------------------------------------------
@@ -2646,9 +2646,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         Model_Account::instance(m_db.get());
         Model_Payee::instance(m_db.get());
         Model_Checking::instance(m_db.get());
-        Model_Currency::instance().db_ = m_db.get();
-        Model_Budgetyear::instance().db_ = m_db.get();
-        Model_Infotable::instance().db_ = m_db.get();
+        Model_Currency::instance(m_db.get());
+        Model_Budgetyear::instance(m_db.get());
+        Model_Infotable::instance(m_db.get());
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())
         {
@@ -2676,9 +2676,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             password_ = password;
             Model_Asset::instance(m_db.get());
             Model_Stock::instance(m_db.get());
-            Model_Currency::instance().db_ = m_db.get();
-            Model_Budgetyear::instance().db_ = m_db.get();
-            Model_Infotable::instance().db_ = m_db.get();
+            Model_Currency::instance(m_db.get());
+            Model_Budgetyear::instance(m_db.get());
+            Model_Infotable::instance(m_db.get());
 
             m_core.reset(new mmCoreDB(m_db));
         }
@@ -2688,10 +2688,10 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             password_ = password;
             Model_Asset::instance(m_db.get());
             Model_Stock::instance(m_db.get());
-            Model_Currency::instance().db_ = m_db.get();
+            Model_Currency::instance(m_db.get());
             Model_Currency::instance().all();
-            Model_Budgetyear::instance().db_ = m_db.get();
-            Model_Infotable::instance().db_ = m_db.get();
+            Model_Budgetyear::instance(m_db.get());
+            Model_Infotable::instance(m_db.get());
 
             openDataBase(fileName);
             m_core.reset(new mmCoreDB(m_db));

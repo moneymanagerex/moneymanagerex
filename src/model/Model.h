@@ -54,7 +54,7 @@ public:
         date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
         return date;
     }
-public:
+protected:
     wxSQLite3Database* db_;
 };
 #endif // 

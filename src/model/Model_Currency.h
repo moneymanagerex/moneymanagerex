@@ -34,6 +34,12 @@ public:
     {
         return Singleton<Model_Currency>::instance();
     }
+    static Model_Currency& instance(wxSQLite3Database* db)
+    {
+        Model_Currency& ins = Singleton<Model_Currency>::instance();
+        ins.db_ = db;
+        return ins;
+    }
 
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)

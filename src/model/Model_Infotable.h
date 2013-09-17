@@ -37,6 +37,12 @@ public:
     {
         return Singleton<Model_Infotable>::instance();
     }
+    static Model_Infotable& instance(wxSQLite3Database* db)
+    {
+        Model_Infotable& ins = Singleton<Model_Infotable>::instance();
+        ins.db_ = db;
+        return ins;
+    }
 
 private:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)

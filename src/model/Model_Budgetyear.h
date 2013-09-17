@@ -35,7 +35,12 @@ public:
     {
         return Singleton<Model_Budgetyear>::instance();
     }
-
+    static Model_Budgetyear& instance(wxSQLite3Database* db)
+    {
+        Model_Budgetyear& ins = Singleton<Model_Budgetyear>::instance();
+        ins.db_ = db;
+        return ins;
+    }
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
