@@ -25,6 +25,7 @@
 class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
 {
     using DB_Table_ACCOUNTLIST_V1::all;
+    using DB_Table_ACCOUNTLIST_V1::get;
 public:
     enum STATUS { OPEN = 0, CLOSED };
     enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
@@ -59,6 +60,10 @@ public:
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
+    }
+    Data* get(int id)
+    {
+        return this->get(id, this->db_);
     }
 
 public:

@@ -171,7 +171,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     }
     else
     {
-        Model_Account::Data* account = Model_Account::instance().get(accountID_, core_->db_.get());
+        Model_Account::Data* account = Model_Account::instance().get(accountID_); 
         if (account) fromAccountStr_ = account->ACCOUNTNAME;
 
         if (accountID_ != toAccountID_)
@@ -181,7 +181,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
                  balance -= (status_ == "V" || status_ == "X") ? 0.0 : amt_;
                  withdrawal_amt_ = amt_;
                  deposit_amt_ = -amt_;
-                 Model_Account::Data* to_account = Model_Account::instance().get(toAccountID_, core_->db_.get());
+                 Model_Account::Data* to_account = Model_Account::instance().get(toAccountID_);
                  if (to_account) payeeStr_ = to_account->ACCOUNTNAME;
                  arrow_ = "> ";
             }
