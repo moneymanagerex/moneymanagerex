@@ -24,6 +24,7 @@
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Account.h"
 
 //----------------------------------------------------------------------------
 mmOptions::mmOptions()
@@ -127,7 +128,7 @@ int mmIniOptions::account_image_id(mmCoreDB* core, int account_id)
 {
     double selectedImage = 9;
     wxString image_num_str = Model_Infotable::instance().GetStringInfo(wxString::Format("ACC_IMAGE_ID_%d", account_id), "");
-    if ( CurrencyFormatter::formatCurrencyToDouble(image_num_str, selectedImage))
+    if (CurrencyFormatter::formatCurrencyToDouble(image_num_str, selectedImage))
     {
         if (selectedImage > 0)
             return selectedImage;
@@ -135,6 +136,7 @@ int mmIniOptions::account_image_id(mmCoreDB* core, int account_id)
 
     selectedImage = 9;
     int t = 0, s = 0;
+    Model_Account::Data* account = Model_Account::instance().get(account_id);
     const wxString acctType = core->accountList_.getAccountType(account_id);
     int acctStatus = core->accountList_.getAccountStatus(account_id);
     bool favorite = core->accountList_.getAccountFavorite(account_id);
