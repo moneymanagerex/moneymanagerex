@@ -30,6 +30,7 @@ class mmPrintableBase
 public:
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
+	virtual void setSort(const wxString& /*sort_by*/) {}
 
 public:
     mmPrintableBase(mmCoreDB* core): core_(core) {}

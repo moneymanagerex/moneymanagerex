@@ -95,6 +95,7 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
     bool isAcct = sInfo.StartsWith("ACCT:", &sData);
     bool isStock = sInfo.StartsWith("STOCK:", &sData);
     bool bIsLuaScript = sInfo.StartsWith("LUA:", &sData);
+	bool bIsSort = sInfo.StartsWith("SORT:", &sData);
     mmGUIFrame* frame = wxGetApp().m_frame;
     if (sInfo == "billsdeposits")
     {
@@ -153,6 +154,11 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         else
             wxMessageBox(wxString::Format(_("File %s not found"), sData), "Lua Script", wxOK|wxICON_ERROR);
     }
+	else if (bIsSort)
+	{
+		rb_ -> setSort(sData);
+		htmlWindow_ -> SetPage(getReportText());
+	}
     else
         wxLaunchDefaultBrowser(sInfo);
 }

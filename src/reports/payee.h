@@ -25,81 +25,82 @@
 class mmReportPayeeExpenses : public mmPrintableBase
 {
 public:
-    mmReportPayeeExpenses(mmCoreDB* core, const wxString& title = _("Payee Report"), mmDateRange* date_range = new mmAllTime(), bool by_name = false);
+    mmReportPayeeExpenses(mmCoreDB* core, const wxString& title = _("Payee Report"), mmDateRange* date_range = new mmAllTime());
     ~mmReportPayeeExpenses();
 
     wxString getHTMLText();
+	void setSort(const wxString& sort_by);
 
 protected:
     mmDateRange* date_range_;
 
     wxString title_;
     enum TYPE {INCOME = 0, EXPENCES, MAX};
-	bool byName_;
+	bool sortByName_;
     //static const wxString type_names[] = {_("Incomes"), _("Expences")};
 };
 
 class mmReportPayeeExpensesCurrentMonth: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesCurrentMonth(mmCoreDB* core, bool by_name): mmReportPayeeExpenses(core
-                ,  wxString::Format(_("Payee report - %s"), _("Current Month")), new mmCurrentMonth(), by_name)
+    mmReportPayeeExpensesCurrentMonth(mmCoreDB* core): mmReportPayeeExpenses(core
+                ,  wxString::Format(_("Payee report - %s"), _("Current Month")), new mmCurrentMonth())
     {}
 };
 
 class mmReportPayeeExpensesCurrentMonthToDate: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesCurrentMonthToDate(mmCoreDB* core, bool by_name): mmReportPayeeExpenses(core
-                ,  wxString::Format(_("Payee report - %s"), _("Current Month to Date")), new mmCurrentMonthToDate(), by_name)
+    mmReportPayeeExpensesCurrentMonthToDate(mmCoreDB* core): mmReportPayeeExpenses(core
+                ,  wxString::Format(_("Payee report - %s"), _("Current Month to Date")), new mmCurrentMonthToDate())
     {}
 };
 
 class mmReportPayeeExpensesLastMonth: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesLastMonth(mmCoreDB* core, bool by_name): mmReportPayeeExpenses(core
-                , wxString::Format(_("Payee report - %s"), _("Last Month")), new mmLastMonth(), by_name)
+    mmReportPayeeExpensesLastMonth(mmCoreDB* core): mmReportPayeeExpenses(core
+                , wxString::Format(_("Payee report - %s"), _("Last Month")), new mmLastMonth())
     {}
 };
 
 class mmReportPayeeExpensesLast30Days: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesLast30Days(mmCoreDB* core, bool by_name): mmReportPayeeExpenses(core
-                , wxString::Format(_("Payee report - %s"), _("Last 30 Days")), new mmLast30Days(), by_name)
+    mmReportPayeeExpensesLast30Days(mmCoreDB* core): mmReportPayeeExpenses(core
+                , wxString::Format(_("Payee report - %s"), _("Last 30 Days")), new mmLast30Days())
     {}
 };
 
 class mmReportPayeeExpensesLastYear: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesLastYear(mmCoreDB* core, bool by_name): mmReportPayeeExpenses(core
-                , wxString::Format(_("Payee report - %s"), _("Last Year")), new mmLastYear(), by_name)
+    mmReportPayeeExpensesLastYear(mmCoreDB* core): mmReportPayeeExpenses(core
+                , wxString::Format(_("Payee report - %s"), _("Last Year")), new mmLastYear())
     {}
 };
 
 class mmReportPayeeExpensesCurrentYear: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesCurrentYear(mmCoreDB* core, bool by_name): mmReportPayeeExpenses(core
-                , wxString::Format(_("Payee report - %s"), _("Current Year")), new mmCurrentYear(), by_name)
+    mmReportPayeeExpensesCurrentYear(mmCoreDB* core): mmReportPayeeExpenses(core
+                , wxString::Format(_("Payee report - %s"), _("Current Year")), new mmCurrentYear())
     {}
 };
 
 class mmReportPayeeExpensesLastFinancialYear: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesLastFinancialYear(mmCoreDB* core, int day, int month, bool by_name): mmReportPayeeExpenses(core
-                , wxString::Format(_("Payee report - %s"), _("Last Financial Year")), new mmLastFinancialYear(day, month), by_name)
+    mmReportPayeeExpensesLastFinancialYear(mmCoreDB* core, int day, int month): mmReportPayeeExpenses(core
+                , wxString::Format(_("Payee report - %s"), _("Last Financial Year")), new mmLastFinancialYear(day, month))
     {}
 };
 
 class mmReportPayeeExpensesCurrentFinancialYear: public mmReportPayeeExpenses
 {
 public:
-    mmReportPayeeExpensesCurrentFinancialYear(mmCoreDB* core, int day, int month, bool by_name): mmReportPayeeExpenses(core
-                , wxString::Format(_("Payee report - %s"), _("Current Financial Year")), new mmCurrentFinancialYear(day, month), by_name)
+    mmReportPayeeExpensesCurrentFinancialYear(mmCoreDB* core, int day, int month): mmReportPayeeExpenses(core
+                , wxString::Format(_("Payee report - %s"), _("Current Financial Year")), new mmCurrentFinancialYear(day, month))
     {}
 };
 
