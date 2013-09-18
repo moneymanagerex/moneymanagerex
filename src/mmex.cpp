@@ -461,12 +461,7 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
     wxWizardPageSimple(parent),
     parent_(parent)
 {
-    wxArrayString itemAcctTypeStrings;
-    itemAcctTypeStrings.Add(_("Checking/Savings"));      // ACCOUNT_TYPE_BANK
-    itemAcctTypeStrings.Add(_("Investment"));            // ACCOUNT_TYPE_STOCK
-    itemAcctTypeStrings.Add(_("Term"));                  // ACCOUNT_TYPE_TERM
-
-    itemChoiceType_ = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, itemAcctTypeStrings);
+    itemChoiceType_ = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, Model_Account::instance().types_);
     itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
