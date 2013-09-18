@@ -461,7 +461,9 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
     wxWizardPageSimple(parent),
     parent_(parent)
 {
-    itemChoiceType_ = new wxChoice( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, Model_Account::instance().types_);
+    itemChoiceType_ = new wxChoice(this, wxID_ANY);
+    for (const auto& type: Model_Account::instance().types_)
+        itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
     itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
@@ -490,12 +492,8 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
 
 bool mmAddAccountPage2::TransferDataFromWindow()
 {
-    int acctType = itemChoiceType_->GetSelection();
-    wxString acctTypeStr = ACCOUNT_TYPE_BANK;
-    if (acctType == 1)
-        acctTypeStr = ACCOUNT_TYPE_STOCK;
-    else if (acctType == 2)
-        acctTypeStr = ACCOUNT_TYPE_TERM;
+    const wxStringClientData* type_obj = (wxStringClientData *)itemChoiceType_->GetClientObject(itemChoiceType_->GetSelection());
+    wxString acctTypeStr = (type_obj) ? type_obj->GetData() : ACCOUNT_TYPE_BANK;
 
     int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
     if (currencyID == -1)
