@@ -25,6 +25,7 @@
 class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
 {
     using DB_Table_CURRENCYFORMATS_V1::all;
+    using DB_Table_CURRENCYFORMATS_V1::get;
 public:
     Model_Currency(): Model(), DB_Table_CURRENCYFORMATS_V1() {};
     ~Model_Currency() {};
@@ -65,6 +66,10 @@ public:
             }
         }
         return all(db_, col, asc);
+    }
+    Data* get(int id)
+    {
+        return get(id, this->db_);
     }
 public:
     // Getter

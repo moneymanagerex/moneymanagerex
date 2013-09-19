@@ -26,10 +26,10 @@
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
+#include "model/Model_Currency.h"
 
 enum { ACCT_TYPE_CHECKING = 0, ACCT_TYPE_INVESTMENT, ACCT_TYPE_TERM };
 enum { ACCT_STATUS_OPEN = 0, ACCT_STATUS_CLOSED };
-
 
 IMPLEMENT_DYNAMIC_CLASS( mmNewAcctDialog, wxDialog )
 
@@ -84,53 +84,46 @@ bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
 void mmNewAcctDialog::fillControlsWithData()
 {
     this->SetTitle(_("Edit Account"));
-    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID_);
-    wxASSERT(pAccount);
+    Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    wxASSERT(account);
 
-    textAccountName_->SetValue(pAccount->name_);
+    textAccountName_->SetValue(account->ACCOUNTNAME);
 
     wxTextCtrl* textCtrl;
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER);
-    textCtrl->SetValue(pAccount->accountNum_);
+    textCtrl->SetValue(account->ACCOUNTNAME);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
-    textCtrl->SetValue(pAccount->heldAt_);
+    textCtrl->SetValue(account->HELDAT);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);
-    textCtrl->SetValue(pAccount->website_);
+    textCtrl->SetValue(account->WEBSITE);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT);
-    textCtrl->SetValue(pAccount->contactInfo_);
+    textCtrl->SetValue(account->CONTACTINFO);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_NOTES);
-    textCtrl->SetValue(pAccount->notes_);
+    textCtrl->SetValue(account->NOTES);
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    if (pAccount->acctType_ == ACCOUNT_TYPE_BANK)
-       itemAcctType->SetSelection(ACCT_TYPE_CHECKING);
-    else if (pAccount->acctType_ == ACCOUNT_TYPE_TERM)
-       itemAcctType->SetSelection(ACCT_TYPE_TERM);
-    else
-       itemAcctType->SetSelection(ACCT_TYPE_INVESTMENT);
+    itemAcctType->SetStringSelection(wxGetTranslation(account->ACCOUNTTYPE));
     itemAcctType->Enable(false);
 
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
-    choice->SetSelection(ACCT_STATUS_OPEN);
-    if (pAccount->status_ == mmAccount::MMEX_Closed)
-       choice->SetSelection(ACCT_STATUS_CLOSED);
+    choice->SetStringSelection(wxGetTranslation(account->STATUS));
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
-    itemCheckBox->SetValue(pAccount->favoriteAcct_);
+    itemCheckBox->SetValue(account->FAVORITEACCT == "TRUE");
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
-    double initBal = pAccount->initialBalance_;
+    double initBal = account->INITIALBAL;
 
-    mmCurrency* pCurrency = pAccount->currency_;
-    wxASSERT(pCurrency);
+    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+    wxASSERT(currency);
 
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
-    bn->SetLabel(pCurrency->currencyName_);
-    currencyID_ = pCurrency->currencyID_;
+    bn->SetLabel(currency->CURRENCYNAME);
+    currencyID_ = account->CURRENCYID;
 
     mmDBWrapper::loadCurrencySettings(core_->db_.get(), currencyID_);
     textCtrl->SetValue(CurrencyFormatter::float2String(initBal));
@@ -138,7 +131,7 @@ void mmNewAcctDialog::fillControlsWithData()
     int selectedImage = mmIniOptions::instance().account_image_id(core_, accountID_);
     bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
 
-    accessInfo_ = pAccount->accessInfo_;
+    accessInfo_ = account->ACCESSINFO;
 }
 
 void mmNewAcctDialog::CreateControls()
@@ -169,7 +162,7 @@ void mmNewAcctDialog::CreateControls()
         itemChoice61->Append(wxGetTranslation(type), new wxStringClientData(type));
 
     grid_sizer->Add(itemChoice61, flagsExpand);
-    itemChoice61->SetSelection(ACCT_TYPE_CHECKING);
+    itemChoice61->SetSelection(0);
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Status:")), flags);
 
@@ -180,7 +173,7 @@ void mmNewAcctDialog::CreateControls()
     wxChoice* itemChoice6 = new wxChoice( this,
         ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, wxDefaultPosition, wxDefaultSize, itemChoice6Strings);
     grid_sizer->Add(itemChoice6, flagsExpand);
-    itemChoice6->SetSelection(ACCT_STATUS_OPEN);
+    itemChoice6->SetSelection(0);
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC
         , wxString::Format(_("Initial Balance: %s"),"")), flags);
