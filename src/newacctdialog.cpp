@@ -25,6 +25,7 @@
 #include "paths.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
+#include "model/Model_Account.h"
 
 enum { ACCT_TYPE_CHECKING = 0, ACCT_TYPE_INVESTMENT, ACCT_TYPE_TERM };
 enum { ACCT_STATUS_OPEN = 0, ACCT_STATUS_CLOSED };
@@ -163,13 +164,10 @@ void mmNewAcctDialog::CreateControls()
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Type:")), flags);
 
-    wxArrayString itemAcctTypeStrings;
-    itemAcctTypeStrings.Add(_("Checking"));   // ACCOUNT_TYPE_BANK
-    itemAcctTypeStrings.Add(_("Investment")); // ACCOUNT_TYPE_STOCK
-    itemAcctTypeStrings.Add(_("Term"));       // ACCOUNT_TYPE_TERM
+    wxChoice* itemChoice61 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
+    for (const auto& type: Model_Account::instance().types_)
+        itemChoice61->Append(wxGetTranslation(type), new wxStringClientData(type));
 
-    wxChoice* itemChoice61 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE,
-        wxDefaultPosition, wxDefaultSize, itemAcctTypeStrings);
     grid_sizer->Add(itemChoice61, flagsExpand);
     itemChoice61->SetSelection(ACCT_TYPE_CHECKING);
 
