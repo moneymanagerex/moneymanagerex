@@ -107,7 +107,7 @@ public:
     void addTableHeaderCell(const wxString& value, const bool& numeric = false);
 
     /** Add a Table header cell link */
-    void addTableHeaderCellLink(const wxString& href, const wxString& value);
+    void addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric = false);
 
     /** Add a Table header row */
     void addTableHeaderRow(const wxString& value, int cols = 0);

@@ -156,7 +156,9 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
     }
 	else if (bIsSort)
 	{
-		rb_ -> setSort(sData);
+        long sortColumn = -1;
+        sData.ToLong(&sortColumn);
+		rb_ -> setSortColumn(sortColumn);
 		htmlWindow_ -> SetPage(getReportText());
 	}
     else

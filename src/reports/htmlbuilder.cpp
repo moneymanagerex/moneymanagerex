@@ -246,9 +246,9 @@ void mmHTMLBuilder::addTableCellLink(const wxString& href
         , numeric, italic, bold, fontColor);
 }
 
-void mmHTMLBuilder::addTableHeaderCellLink(const wxString& href, const wxString& value)
+void mmHTMLBuilder::addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric)
 {
-    addTableHeaderCell(wxString::Format(tags::LINK, href, value ), false);
+    addTableHeaderCell(wxString::Format(tags::LINK, href, value ), numeric);
 }
 
 void mmHTMLBuilder::addTableHeaderRowLink(const wxString& href

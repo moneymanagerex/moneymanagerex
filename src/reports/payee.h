@@ -29,14 +29,12 @@ public:
     ~mmReportPayeeExpenses();
 
     wxString getHTMLText();
-	void setSort(const wxString& sort_by);
 
 protected:
     mmDateRange* date_range_;
 
     wxString title_;
     enum TYPE {INCOME = 0, EXPENCES, MAX};
-	bool sortByName_;
     //static const wxString type_names[] = {_("Incomes"), _("Expences")};
 };
 

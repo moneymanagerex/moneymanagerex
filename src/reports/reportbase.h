@@ -30,14 +30,15 @@ class mmPrintableBase
 public:
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
-	virtual void setSort(const wxString& /*sort_by*/) {}
+	void setSortColumn(const int sort_by) { sortColumn_ = sort_by; }
 
 public:
-    mmPrintableBase(mmCoreDB* core): core_(core) {}
+    mmPrintableBase(mmCoreDB* core): core_(core), sortColumn_(0) {}
     virtual wxString version() { return "$Rev$"; }
 
 protected:
     const mmCoreDB* core_;
+	int sortColumn_;
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_REPORTBASE_H_

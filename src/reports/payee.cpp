@@ -12,20 +12,14 @@ mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& tit
     : mmPrintableBase(core)
     , title_(title)
     , date_range_(date_range)
-	, sortByName_(false)
-{}
+{
+	// set initial sort column
+	sortColumn_ = 1;
+}
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
 {
     if (date_range_) delete date_range_;
-}
-
-void mmReportPayeeExpenses::setSort(const wxString& sort_by)
-{
-    if (sort_by == "Name")
-		sortByName_ = true;
-	else if (sort_by == "Amount")
-		sortByName_ = false;
 }
 
 wxString mmReportPayeeExpenses::getHTMLText()
@@ -56,17 +50,18 @@ wxString mmReportPayeeExpenses::getHTMLText()
         data.push_back(line);
     }
 
-	if(sortByName_)
+	switch (sortColumn_)
 	{
+	case 0: // by name
 		std::stable_sort(data.begin(), data.end()
 				, [] (const data_holder x, const data_holder y)
 				{
 					return x.payee_name < y.payee_name;
 				}
 		);
-	}
-	else
-	{
+		break;
+	default: // by amount
+		sortColumn_ = 1;
 		std::stable_sort(data.begin(), data.end()
 				, [] (const data_holder x, const data_holder y)
 				{
@@ -88,16 +83,16 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
     hb.startTable("75%");
     hb.startTableRow();
-	if(sortByName_)
-	    hb.addTableHeaderCell(_("Payee"), true);
+	if(0 == sortColumn_)
+	    hb.addTableHeaderCell(_("Payee"));
 	else
-	    hb.addTableHeaderCellLink("SORT:Name", _("Payee"));
+	    hb.addTableHeaderCellLink("SORT:0", _("Payee"));
     hb.addTableHeaderCell(_("Incomes"), true);
 	hb.addTableHeaderCell(_("Expences"), true);
-	if(sortByName_)
-	    hb.addTableHeaderCellLink("SORT:Amount", _("Difference"));
-	else
+	if(1 == sortColumn_)
 		hb.addTableHeaderCell(_("Difference"), true);
+	else
+	    hb.addTableHeaderCellLink("SORT:1", _("Difference"), true);
     hb.endTableRow();
 
     for (const auto& entry : data)
