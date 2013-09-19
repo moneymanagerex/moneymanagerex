@@ -1880,19 +1880,15 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
     if (selectedItemData_)
     {
         int data = selectedItemData_->getData();
-        mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
-        if (pAccount)
+        Model_Account::Data* account = Model_Account::instance().get(data);
+        if (account)
         {
-           wxString acctType = pAccount->acctType_;
-           if (acctType == ACCOUNT_TYPE_BANK || acctType == ACCOUNT_TYPE_STOCK || acctType == ACCOUNT_TYPE_TERM)
-           {
-              mmNewAcctDialog dlg(m_core.get(), true, data, this);
-              if ( dlg.ShowModal() == wxID_OK )
-              {
-                 createHomePage();
-                 updateNavTreeControl();
-              }
-           }
+            mmNewAcctDialog dlg(m_core.get(), true, account->ACCOUNTID, this);
+            if (dlg.ShowModal() == wxID_OK)
+            {
+                createHomePage();
+                updateNavTreeControl();
+            }
         }
     }
 }
@@ -3616,20 +3612,19 @@ void mmGUIFrame::OnWizardCancel(wxWizardEvent& event)
 
 void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 {
-    if (m_core->accountList_.accounts_.size() == 0)
+    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    if (accounts.empty())
     {
         wxMessageBox(_("No account available to edit!"), _("Accounts"), wxOK|wxICON_WARNING);
         return;
     }
 
     wxArrayString as;
-    std::vector<int> arrAcctID;
-
-    int idx = 0;
-    for (const auto& account: m_core->accountList_.accounts_)
+    wxArrayInt arrAcctID;
+    for (const auto& account: accounts)
     {
-        as.Add(account->name_);
-        arrAcctID[idx ++] = account->id_;
+        as.Add(account.ACCOUNTNAME);
+        arrAcctID.Add(account.ACCOUNTID);
     }
 
     wxSingleChoiceDialog scd(this, _("Choose Account to Edit"), _("Accounts"), as);
