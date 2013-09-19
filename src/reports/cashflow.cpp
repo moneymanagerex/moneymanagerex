@@ -6,6 +6,7 @@
 #include "mmRepeat.h"
 #include "mmCurrencyFormatter.h"
 #include "db/transactionbill.h"
+#include "model/Model_Account.h"
 
 mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
 : mmPrintableBase(core)
@@ -29,8 +30,7 @@ void mmReportCashFlow::getSpecificAccounts()
 {
     wxArrayString accountArray;
     wxArrayString* selections = new wxArrayString();
-
-    for (const auto& account: core_->accountList_.accounts_) accountArray.Add(account->name_);
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
     wxMultiChoiceDialog mcd(0, _("Choose Accounts"), _("Cash Flow"), accountArray);
     if (mcd.ShowModal() == wxID_OK)
@@ -161,60 +161,6 @@ wxString mmReportCashFlow::getHTMLText_i()
     wxDateTime yearFromNow = wxDateTime::Now().Add(wxDateSpan::Years(years));
     forecastVec fvec;
 
-/*  TODO: Activate code using TTransactionBillList
-    when other sections are completed and tested.
-*/
-#define USING_NEW_DB_CLASSES_  // Activation switch
-#ifdef USING_NEW_DB_CLASSES
-    // load a fresh list of repeating transactions.
-    TTransactionBillList repeat_trans_list(core_->db_.get());
-
-    for (const auto& repeat_entry:repeat_trans_list.entrylist_)
-    {
-        bool from_account_found = true, to_account_found = true;
-        if (accountArray_ != NULL)
-        {
-            if (wxNOT_FOUND == accountArray_->Index(core_->accountList_.GetAccountName(repeat_entry->id_from_account_))) //linear search
-                from_account_found = false;
-
-            if (wxNOT_FOUND == accountArray_->Index(core_->accountList_.GetAccountName(repeat_entry->id_to_account_))) //linear search
-                to_account_found = false;
-        }
-        if (!from_account_found && !to_account_found) continue; // skip account
-
-        double convRate = core_->accountList_.getAccountBaseCurrencyConvRate(repeat_entry->id_from_account_);
-        double amount = repeat_entry->AdjustedValue(repeat_entry->id_from_account_) * convRate;
-        if (to_account_found && repeat_entry->IsTransferTo(repeat_entry->id_to_account_))
-        {
-            double toConvRate = core_->accountList_.getAccountBaseCurrencyConvRate(repeat_entry->id_to_account_);
-            amount += repeat_entry->amount_to_ * toConvRate;
-        }
-
-        if (repeat_entry->UsingRepeatProcessing())
-        {
-            if (repeat_entry->UsingIn_X_Processing())
-            {
-                SetRepeatForecast(fvec, repeat_entry, amount);
-            }
-            else if (repeat_entry->UsingEvery_X_Processing())
-            {
-                SetYearsRepeatForecast(fvec, repeat_entry, amount, yearFromNow);
-            }
-            else
-            {
-                while (repeat_entry->num_repeats_ > 0)
-                {
-                    SetRepeatForecast(fvec, repeat_entry, amount);
-                }
-            }
-        }
-        else
-        {
-            SetYearsRepeatForecast(fvec, repeat_entry, amount, yearFromNow);
-        }
-    }
-
-#else
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_BILLSDEPOSITS_V1);
 
     while (q1.NextRow())
@@ -388,7 +334,6 @@ wxString mmReportCashFlow::getHTMLText_i()
         } // end while
     } //end query
     q1.Finalize();
-#endif
 
     // Now we have a vector of dates and amounts over next year
     int fcstsz = cashflowreporttype_ == 0 ? 12 * years : 366 * years;
