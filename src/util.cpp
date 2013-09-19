@@ -98,7 +98,6 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
 
     const wxString langPath = mmex::getPathShared(mmex::LANG_DIR);
     wxLocale &locale = wxGetApp().getLocale();
-    bool verbose = forced_show_dlg;
 
     if (wxDir::Exists(langPath))
     {
@@ -106,7 +105,7 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
     }
     else
     {
-        if (verbose)
+        if (forced_show_dlg)
         {
             //TODO fix string for proper translation
             wxString s = "Directory of language files does not exist:\n\"";
@@ -128,7 +127,7 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
         }
     }
 
-    lang = selectLanguageDlg(parent, langPath, verbose);
+    lang = selectLanguageDlg(parent, langPath, forced_show_dlg);
 
     if (save_setting && !lang.empty())
     {
