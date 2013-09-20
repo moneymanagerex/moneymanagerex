@@ -251,6 +251,31 @@ struct DB_Table_%s : public DB_Table
         }
 '''
         s += '''
+        wxString to_json() const
+        {
+            json::Object o;
+            this->to_json(o);
+            std::stringstream ss;
+            json::Writer::Write(o, ss);
+            return ss.str();
+        }
+        int to_json(json::Object& o) const
+        {'''
+
+        for field in self._fields:
+            type = base_data_types_reverse[field['type']]
+            if type == 'wxString':
+                s += '''
+            o["%s"] = json::String(this->%s.ToStdString());''' % (field['name'], field['name'])
+            else:
+                s += '''
+            o["%s"] = json::Number(this->%s);''' % (field['name'], field['name'])
+            
+        s +='''
+            return 0;
+        }'''
+
+        s += '''
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 
@@ -536,6 +561,10 @@ def generate_base_class(header):
 #include <algorithm>
 #include <functional>
 #include <wx/wxsqlite3.h>
+
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
 
 class wxString;
 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-07 20:33:17.252813.
+ *          AUTO GENERATED at 2013-09-20 14:02:02.201724.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -228,6 +228,29 @@ struct DB_Table_STOCK_V1 : public DB_Table
             return ret;
         }
 
+        wxString to_json() const
+        {
+            json::Object o;
+            this->to_json(o);
+            std::stringstream ss;
+            json::Writer::Write(o, ss);
+            return ss.str();
+        }
+        int to_json(json::Object& o) const
+        {
+            o["STOCKID"] = json::Number(this->STOCKID);
+            o["HELDAT"] = json::Number(this->HELDAT);
+            o["PURCHASEDATE"] = json::String(this->PURCHASEDATE.ToStdString());
+            o["STOCKNAME"] = json::String(this->STOCKNAME.ToStdString());
+            o["SYMBOL"] = json::String(this->SYMBOL.ToStdString());
+            o["NUMSHARES"] = json::Number(this->NUMSHARES);
+            o["PURCHASEPRICE"] = json::Number(this->PURCHASEPRICE);
+            o["NOTES"] = json::String(this->NOTES.ToStdString());
+            o["CURRENTPRICE"] = json::Number(this->CURRENTPRICE);
+            o["VALUE"] = json::Number(this->VALUE);
+            o["COMMISSION"] = json::Number(this->COMMISSION);
+            return 0;
+        }
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-07 20:33:17.252813.
+ *          AUTO GENERATED at 2013-09-20 14:02:02.201724.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -242,6 +242,31 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             return ret;
         }
 
+        wxString to_json() const
+        {
+            json::Object o;
+            this->to_json(o);
+            std::stringstream ss;
+            json::Writer::Write(o, ss);
+            return ss.str();
+        }
+        int to_json(json::Object& o) const
+        {
+            o["ACCOUNTID"] = json::Number(this->ACCOUNTID);
+            o["ACCOUNTNAME"] = json::String(this->ACCOUNTNAME.ToStdString());
+            o["ACCOUNTTYPE"] = json::String(this->ACCOUNTTYPE.ToStdString());
+            o["ACCOUNTNUM"] = json::String(this->ACCOUNTNUM.ToStdString());
+            o["STATUS"] = json::String(this->STATUS.ToStdString());
+            o["NOTES"] = json::String(this->NOTES.ToStdString());
+            o["HELDAT"] = json::String(this->HELDAT.ToStdString());
+            o["WEBSITE"] = json::String(this->WEBSITE.ToStdString());
+            o["CONTACTINFO"] = json::String(this->CONTACTINFO.ToStdString());
+            o["ACCESSINFO"] = json::String(this->ACCESSINFO.ToStdString());
+            o["INITIALBAL"] = json::Number(this->INITIALBAL);
+            o["FAVORITEACCT"] = json::String(this->FAVORITEACCT.ToStdString());
+            o["CURRENCYID"] = json::Number(this->CURRENCYID);
+            return 0;
+        }
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 

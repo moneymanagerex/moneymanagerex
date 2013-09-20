@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-07 20:33:17.252813.
+ *          AUTO GENERATED at 2013-09-20 14:02:02.201724.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -151,6 +151,21 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             return ret;
         }
 
+        wxString to_json() const
+        {
+            json::Object o;
+            this->to_json(o);
+            std::stringstream ss;
+            json::Writer::Write(o, ss);
+            return ss.str();
+        }
+        int to_json(json::Object& o) const
+        {
+            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o["SUBCATEGNAME"] = json::String(this->SUBCATEGNAME.ToStdString());
+            o["CATEGID"] = json::Number(this->CATEGID);
+            return 0;
+        }
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 

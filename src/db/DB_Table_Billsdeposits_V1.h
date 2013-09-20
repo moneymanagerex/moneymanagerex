@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-07 20:33:17.252813.
+ *          AUTO GENERATED at 2013-09-20 14:02:02.201724.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -286,6 +286,35 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             return ret;
         }
 
+        wxString to_json() const
+        {
+            json::Object o;
+            this->to_json(o);
+            std::stringstream ss;
+            json::Writer::Write(o, ss);
+            return ss.str();
+        }
+        int to_json(json::Object& o) const
+        {
+            o["BDID"] = json::Number(this->BDID);
+            o["ACCOUNTID"] = json::Number(this->ACCOUNTID);
+            o["TOACCOUNTID"] = json::Number(this->TOACCOUNTID);
+            o["PAYEEID"] = json::Number(this->PAYEEID);
+            o["TRANSCODE"] = json::String(this->TRANSCODE.ToStdString());
+            o["TRANSAMOUNT"] = json::Number(this->TRANSAMOUNT);
+            o["STATUS"] = json::String(this->STATUS.ToStdString());
+            o["TRANSACTIONNUMBER"] = json::String(this->TRANSACTIONNUMBER.ToStdString());
+            o["NOTES"] = json::String(this->NOTES.ToStdString());
+            o["CATEGID"] = json::Number(this->CATEGID);
+            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o["TRANSDATE"] = json::String(this->TRANSDATE.ToStdString());
+            o["FOLLOWUPID"] = json::Number(this->FOLLOWUPID);
+            o["TOTRANSAMOUNT"] = json::Number(this->TOTRANSAMOUNT);
+            o["REPEATS"] = json::Number(this->REPEATS);
+            o["NEXTOCCURRENCEDATE"] = json::String(this->NEXTOCCURRENCEDATE.ToStdString());
+            o["NUMOCCURRENCES"] = json::Number(this->NUMOCCURRENCES);
+            return 0;
+        }
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-07-07 20:33:17.252813.
+ *          AUTO GENERATED at 2013-09-20 14:02:02.201724.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -181,6 +181,24 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             return ret;
         }
 
+        wxString to_json() const
+        {
+            json::Object o;
+            this->to_json(o);
+            std::stringstream ss;
+            json::Writer::Write(o, ss);
+            return ss.str();
+        }
+        int to_json(json::Object& o) const
+        {
+            o["BUDGETENTRYID"] = json::Number(this->BUDGETENTRYID);
+            o["BUDGETYEARID"] = json::Number(this->BUDGETYEARID);
+            o["CATEGID"] = json::Number(this->CATEGID);
+            o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
+            o["PERIOD"] = json::String(this->PERIOD.ToStdString());
+            o["AMOUNT"] = json::Number(this->AMOUNT);
+            return 0;
+        }
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 
