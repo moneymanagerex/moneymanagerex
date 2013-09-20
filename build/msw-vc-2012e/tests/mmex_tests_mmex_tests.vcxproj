@@ -291,7 +291,6 @@
     <ClCompile Include="..\..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\..\src\reports\transactions.cpp" />
     <ClCompile Include="..\..\..\src\reports\trx_stats.cpp" />
-    <ClCompile Include="..\..\..\src\tests\dbwrapper_test.cpp" />
     <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp" />
     <ClCompile Include="..\..\..\src\mmgraphgenerator.cpp" />
     <ClCompile Include="..\..\..\src\mmgraphincexpensesmonth.cpp" />

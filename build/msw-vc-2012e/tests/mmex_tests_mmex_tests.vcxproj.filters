@@ -198,9 +198,6 @@
     <ClCompile Include="..\..\..\src\lua_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\dbwrapper_test.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\reports\budget.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>

@@ -2126,9 +2126,6 @@
 				RelativePath="..\..\..\src\dbwrapper.cpp">
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\dbwrapper_test.cpp">
-			</File>
-			<File
 				RelativePath="..\..\..\src\db\entry_base.cpp">
 			</File>
 			<File
