@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-09-20 14:02:02.201724.
+ *          AUTO GENERATED at 2013-09-20 14:18:08.997900.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -401,7 +401,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BILLSDEPOSITS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("BILLSDEPOSITS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 

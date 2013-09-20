@@ -363,7 +363,7 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            wxLogError("%s: Exception %%s, %%s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
