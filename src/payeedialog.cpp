@@ -242,7 +242,7 @@ void mmPayeeDialog::OnSelChanged(wxCommandEvent& /*event*/)
     bool ok = m_payee_id_ > -1;
 
     editButton_->Enable(ok);
-    deleteButton_->Enable(ok && !core_->bTransactionList_.IsPayeeUsed(m_payee_id_));
+    deleteButton_->Enable(!Model_Payee::instance().is_used(m_payee_id_));
     selectButton_->Enable(ok && showSelectButton_);
 }
 

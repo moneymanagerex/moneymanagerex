@@ -92,7 +92,7 @@ public:
         }
         return payees;
     }
-private:
+public:
     bool is_used(int id)
     {
         Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, id);
