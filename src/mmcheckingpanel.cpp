@@ -1474,6 +1474,11 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDELETE);
         OnMarkTransaction(evt);
     }
+    else if (wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE))
+    {
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE);
+        OnDeleteTransaction(evt);
+    }
     else {
         event.Skip();
         return;
