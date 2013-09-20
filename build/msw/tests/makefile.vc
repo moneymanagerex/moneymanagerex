@@ -13,7 +13,7 @@
 ### Variables: ###
 
 COMPILER_PREFIX = vc
-WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) \
+WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
@@ -23,13 +23,13 @@ WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) \
 	/EHsc $(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.obj
-SQLITE_CFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
+SQLITE_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
 	/Fdsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS /DSQLITE_CORE /DSQLITE_HAS_CODEC \
 	/DSQLITE_ENABLE_COLUMN_METADATA $(CPPFLAGS) $(CFLAGS)
 SQLITE_OBJECTS =  \
 	sqlite_sqlite3secure.obj
-LUA_CFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
+LUA_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
 	/Fdlua.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	$(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
@@ -71,36 +71,14 @@ LUA_OBJECTS =  \
 	lua_lvm.obj \
 	lua_lzio.obj \
 	lua_strbuf.obj
-UNITTESTPP_CXXFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 /W4 $(__DEBUGINFO) \
-	$(____DEBUGINFO) /FdUnitTestPP.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
-	/D_CRT_SECURE_NO_WARNINGS /EHsc /GR $(CPPFLAGS) $(CXXFLAGS)
-UNITTESTPP_OBJECTS =  \
-	UnitTestPP_AssertException.obj \
-	UnitTestPP_Checks.obj \
-	UnitTestPP_CurrentTest.obj \
-	UnitTestPP_DeferredTestReporter.obj \
-	UnitTestPP_DeferredTestResult.obj \
-	UnitTestPP_MemoryOutStream.obj \
-	UnitTestPP_ReportAssert.obj \
-	UnitTestPP_Test.obj \
-	UnitTestPP_TestDetails.obj \
-	UnitTestPP_TestList.obj \
-	UnitTestPP_TestReporter.obj \
-	UnitTestPP_TestReporterStdout.obj \
-	UnitTestPP_TestResults.obj \
-	UnitTestPP_TestRunner.obj \
-	UnitTestPP_TimeConstraint.obj \
-	UnitTestPP_XmlTestReporter.obj \
-	UnitTestPP_TimeHelpers.obj
-MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_3) /DWIN32 $(____WX_SHARED) \
+MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
 	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex_tests.pdb \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\..\lib\sqlite /I..\..\..\lib\wxsqlite /I..\..\..\lib\lua\src \
-	/I..\..\..\lib /I..\..\..\src /DNOPCH /D_CONSOLE /I..\..\..\src \
-	/I..\..\..\lib\UnitTest++ /EHsc /GR $(__mmex_tests_CL_FLAGS) $(CPPFLAGS) \
-	$(CXXFLAGS)
+	/I..\..\..\lib /I..\..\..\src /DNOPCH /D_CONSOLE /I..\..\..\src /EHsc /GR \
+	$(__mmex_tests_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.obj \
 	mmex_tests_appstartdialog.obj \
@@ -224,10 +202,10 @@ ____mmex_tests_LIB_SUF_FILENAMES = _lib
 ____mmex_tests_LIB_SUF_FILENAMES = _dll
 !endif
 !if "$(WX_SHARED)" == "0"
-____WX_SHARED_61_p_1 = 
+____WX_SHARED_46_p_1 = 
 !endif
 !if "$(WX_SHARED)" == "1"
-____WX_SHARED_61_p_1 = /d WXUSINGDLL
+____WX_SHARED_46_p_1 = /d WXUSINGDLL
 !endif
 !if "$(WX_UNICODE)" == "1"
 __WXUNICODE_DEFINE_p_2 = /d _UNICODE
@@ -254,34 +232,34 @@ __WXLIBPATH_FILENAMES_3 = \lib\$(COMPILER_PREFIX)$(WXCPU)_lib
 __WXLIBPATH_FILENAMES_3 = \lib\$(COMPILER_PREFIX)$(WXCPU)_dll
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_69 = 
+__DEBUGINFO_54 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_69 = /DEBUG
+__DEBUGINFO_54 = /DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-____DEBUGINFO_70_p_1 = 
+____DEBUGINFO_55_p_1 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-____DEBUGINFO_70_p_1 = /d _DEBUG
+____DEBUGINFO_55_p_1 = /d _DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_72 = /opt:ref /opt:icf
+__DEBUGINFO_57 = /opt:ref /opt:icf
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_72 = 
+__DEBUGINFO_57 = 
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_73 = 
+__DEBUGINFO_58 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_73 = $(__DEBUGINFO_72)
+__DEBUGINFO_58 = $(__DEBUGINFO_57)
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUG_DEFINE_p_5 = /d NDEBUG
+__DEBUG_DEFINE_p_4 = /d NDEBUG
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUG_DEFINE_p_5 = /d _DEBUG
+__DEBUG_DEFINE_p_4 = /d _DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
 __mmex_tests_CL_FLAGS = /Zi
@@ -341,10 +319,10 @@ ____DEBUGINFO =
 ____DEBUGINFO = /D_DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_3 = 
+__DEBUGINFO_2 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_3 = d
+__DEBUGINFO_2 = d
 !endif
 !if "$(WX_DEBUG)" == "0"
 __OPTIMIZEFLAG = /O2
@@ -377,7 +355,7 @@ WXCPU = _ia64
 
 ### Targets: ###
 
-all: test_for_selected_wxbuild wxsqlite.lib sqlite.lib lua.lib UnitTestPP.lib mmex_tests.exe
+all: test_for_selected_wxbuild wxsqlite.lib sqlite.lib lua.lib mmex_tests.exe
 
 install: 
 
@@ -390,7 +368,6 @@ clean:
 	-if exist wxsqlite.lib del wxsqlite.lib
 	-if exist sqlite.lib del sqlite.lib
 	-if exist lua.lib del lua.lib
-	-if exist UnitTestPP.lib del UnitTestPP.lib
 	-if exist mmex_tests.exe del mmex_tests.exe
 	-if exist mmex_tests.ilk del mmex_tests.ilk
 	-if exist mmex_tests.pdb del mmex_tests.pdb
@@ -425,15 +402,9 @@ lua.lib: $(LUA_OBJECTS)
 	$(LUA_OBJECTS)
 <<
 
-UnitTestPP.lib: $(UNITTESTPP_OBJECTS)
-	if exist $@ del $@
-	link /LIB /NOLOGO /OUT:$@ @<<
-	$(UNITTESTPP_OBJECTS)
-<<
-
-mmex_tests.exe: $(MMEX_TESTS_OBJECTS) wxsqlite.lib sqlite.lib lua.lib UnitTestPP.lib mmex_tests_mmex_tests.res
-	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_tests_CPU_SUF_FILENAMES)$(____mmex_tests_LIB_SUF_FILENAMES) /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG)  $(__DEBUGINFO_69) /pdb:"mmex_tests.pdb" $(__DEBUGINFO_73) $(__mmex_tests_LINK_FLAGS) /SUBSYSTEM:CONSOLE $(LDFLAGS) @<<
-	$(MMEX_TESTS_OBJECTS) $(MMEX_TESTS_RESOURCES)  wxsqlite.lib sqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib UnitTestPP.lib
+mmex_tests.exe: $(MMEX_TESTS_OBJECTS) wxsqlite.lib sqlite.lib lua.lib mmex_tests_mmex_tests.res
+	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_tests_CPU_SUF_FILENAMES)$(____mmex_tests_LIB_SUF_FILENAMES) /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG)  $(__DEBUGINFO_54) /pdb:"mmex_tests.pdb" $(__DEBUGINFO_58) $(__mmex_tests_LINK_FLAGS) /SUBSYSTEM:CONSOLE $(LDFLAGS) @<<
+	$(MMEX_TESTS_OBJECTS) $(MMEX_TESTS_RESOURCES)  wxsqlite.lib sqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib
 <<
 	mt.exe -manifest ".\mmex_tests.exe.manifest" -outputresource:".\mmex_tests.exe";1
 
@@ -559,57 +530,6 @@ lua_lzio.obj: ..\..\..\lib\lua\src\lzio.c
 
 lua_strbuf.obj: ..\..\..\lib\lua\src\strbuf.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\strbuf.c
-
-UnitTestPP_AssertException.obj: ..\..\..\lib\UnitTest++\AssertException.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\AssertException.cpp
-
-UnitTestPP_Checks.obj: ..\..\..\lib\UnitTest++\Checks.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\Checks.cpp
-
-UnitTestPP_CurrentTest.obj: ..\..\..\lib\UnitTest++\CurrentTest.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\CurrentTest.cpp
-
-UnitTestPP_DeferredTestReporter.obj: ..\..\..\lib\UnitTest++\DeferredTestReporter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\DeferredTestReporter.cpp
-
-UnitTestPP_DeferredTestResult.obj: ..\..\..\lib\UnitTest++\DeferredTestResult.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\DeferredTestResult.cpp
-
-UnitTestPP_MemoryOutStream.obj: ..\..\..\lib\UnitTest++\MemoryOutStream.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\MemoryOutStream.cpp
-
-UnitTestPP_ReportAssert.obj: ..\..\..\lib\UnitTest++\ReportAssert.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\ReportAssert.cpp
-
-UnitTestPP_Test.obj: ..\..\..\lib\UnitTest++\Test.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\Test.cpp
-
-UnitTestPP_TestDetails.obj: ..\..\..\lib\UnitTest++\TestDetails.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TestDetails.cpp
-
-UnitTestPP_TestList.obj: ..\..\..\lib\UnitTest++\TestList.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TestList.cpp
-
-UnitTestPP_TestReporter.obj: ..\..\..\lib\UnitTest++\TestReporter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TestReporter.cpp
-
-UnitTestPP_TestReporterStdout.obj: ..\..\..\lib\UnitTest++\TestReporterStdout.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TestReporterStdout.cpp
-
-UnitTestPP_TestResults.obj: ..\..\..\lib\UnitTest++\TestResults.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TestResults.cpp
-
-UnitTestPP_TestRunner.obj: ..\..\..\lib\UnitTest++\TestRunner.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TestRunner.cpp
-
-UnitTestPP_TimeConstraint.obj: ..\..\..\lib\UnitTest++\TimeConstraint.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\TimeConstraint.cpp
-
-UnitTestPP_XmlTestReporter.obj: ..\..\..\lib\UnitTest++\XmlTestReporter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\XmlTestReporter.cpp
-
-UnitTestPP_TimeHelpers.obj: ..\..\..\lib\UnitTest++\Win32\TimeHelpers.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(UNITTESTPP_CXXFLAGS) ..\..\..\lib\UnitTest++\Win32\TimeHelpers.cpp
 
 mmex_tests_aboutdialog.obj: ..\..\..\src\aboutdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\aboutdialog.cpp
@@ -861,5 +781,5 @@ mmex_tests_mmex_tests.obj: ..\..\..\src\tests\mmex_tests.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\mmex_tests.cpp
 
 mmex_tests_mmex_tests.res: ..\..\..\src\tests\mmex_tests.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_61_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_70_p_1) $(__DEBUG_DEFINE_p_5) /i ..\..\..\lib\sqlite /i ..\..\..\lib\wxsqlite /i ..\..\..\lib\lua\src /i ..\..\..\lib /i ..\..\..\src /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\UnitTest++ ..\..\..\src\tests\mmex_tests.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\..\lib\sqlite /i ..\..\..\lib\wxsqlite /i ..\..\..\lib\lua\src /i ..\..\..\lib /i ..\..\..\src /d NOPCH /d _CONSOLE /i ..\..\..\src ..\..\..\src\tests\mmex_tests.rc
 

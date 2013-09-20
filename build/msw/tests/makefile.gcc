@@ -68,33 +68,12 @@ LUA_OBJECTS =  \
 	lua_lvm.o \
 	lua_lzio.o \
 	lua_strbuf.o
-UNITTESTPP_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
-	$(__DEBUG_DEFINE_p) $(CPPFLAGS) $(CXXFLAGS)
-UNITTESTPP_OBJECTS =  \
-	UnitTestPP_AssertException.o \
-	UnitTestPP_Checks.o \
-	UnitTestPP_CurrentTest.o \
-	UnitTestPP_DeferredTestReporter.o \
-	UnitTestPP_DeferredTestResult.o \
-	UnitTestPP_MemoryOutStream.o \
-	UnitTestPP_ReportAssert.o \
-	UnitTestPP_Test.o \
-	UnitTestPP_TestDetails.o \
-	UnitTestPP_TestList.o \
-	UnitTestPP_TestReporter.o \
-	UnitTestPP_TestReporterStdout.o \
-	UnitTestPP_TestResults.o \
-	UnitTestPP_TestRunner.o \
-	UnitTestPP_TimeConstraint.o \
-	UnitTestPP_XmlTestReporter.o \
-	UnitTestPP_TimeHelpers.o
 MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\..\lib\sqlite -I..\..\..\lib\wxsqlite -I..\..\..\lib\lua\src \
-	-I..\..\..\lib -I..\..\..\src -DNOPCH -I..\..\..\src \
-	-I..\..\..\lib\UnitTest++ $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\..\lib -I..\..\..\src -DNOPCH -I..\..\..\src $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_appstartdialog.o \
@@ -193,10 +172,10 @@ ifeq ($(WX_SHARED),1)
 ____mmex_tests_LIB_SUF_FILENAMES = _dll
 endif
 ifeq ($(WX_SHARED),0)
-____WX_SHARED_35_p_1 = 
+____WX_SHARED_26_p_1 = 
 endif
 ifeq ($(WX_SHARED),1)
-____WX_SHARED_35_p_1 = --define WXUSINGDLL
+____WX_SHARED_26_p_1 = --define WXUSINGDLL
 endif
 ifeq ($(WX_UNICODE),1)
 __WXUNICODE_DEFINE_p_2 = --define _UNICODE
@@ -205,10 +184,10 @@ ifeq ($(WX_DEBUG),1)
 __WXDEBUG_DEFINE_p_2 = --define __WXDEBUG__
 endif
 ifeq ($(WX_DEBUG),0)
-__DEBUG_DEFINE_p_5 = --define NDEBUG
+__DEBUG_DEFINE_p_4 = --define NDEBUG
 endif
 ifeq ($(WX_DEBUG),1)
-__DEBUG_DEFINE_p_5 = --define _DEBUG
+__DEBUG_DEFINE_p_4 = --define _DEBUG
 endif
 ifeq ($(WX_MONOLITHIC),0)
 __WXLIB_CORE_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_core
@@ -292,7 +271,7 @@ endif
 
 ### Targets: ###
 
-all: test_for_selected_wxbuild libwxsqlite.a libsqlite.a liblua.a libUnitTestPP.a mmex_tests.exe
+all: test_for_selected_wxbuild libwxsqlite.a libsqlite.a liblua.a mmex_tests.exe
 
 install: 
 
@@ -304,7 +283,6 @@ clean:
 	-if exist libwxsqlite.a del libwxsqlite.a
 	-if exist libsqlite.a del libsqlite.a
 	-if exist liblua.a del liblua.a
-	-if exist libUnitTestPP.a del libUnitTestPP.a
 	-if exist mmex_tests.exe del mmex_tests.exe
 
 test_for_selected_wxbuild: 
@@ -334,13 +312,8 @@ liblua.a: $(LUA_OBJECTS)
 	ar rcu $@ $(LUA_OBJECTS)
 	ranlib $@
 
-libUnitTestPP.a: $(UNITTESTPP_OBJECTS)
-	if exist $@ del $@
-	ar rcu $@ $(UNITTESTPP_OBJECTS)
-	ranlib $@
-
-mmex_tests.exe: $(MMEX_TESTS_OBJECTS) libwxsqlite.a libsqlite.a liblua.a libUnitTestPP.a mmex_tests_mmex_tests_rc.o
-	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_tests_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO)  $(LDFLAGS)  libwxsqlite.a libsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 libUnitTestPP.a
+mmex_tests.exe: $(MMEX_TESTS_OBJECTS) libwxsqlite.a libsqlite.a liblua.a mmex_tests_mmex_tests_rc.o
+	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_tests_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO)  $(LDFLAGS)  libwxsqlite.a libsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32
 
 check: all
 	.\mmex_tests.exe
@@ -464,57 +437,6 @@ lua_lzio.o: ../../../lib/lua/src/lzio.c
 
 lua_strbuf.o: ../../../lib/lua/src/strbuf.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_AssertException.o: ../../../lib/UnitTest++/AssertException.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_Checks.o: ../../../lib/UnitTest++/Checks.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_CurrentTest.o: ../../../lib/UnitTest++/CurrentTest.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_DeferredTestReporter.o: ../../../lib/UnitTest++/DeferredTestReporter.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_DeferredTestResult.o: ../../../lib/UnitTest++/DeferredTestResult.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_MemoryOutStream.o: ../../../lib/UnitTest++/MemoryOutStream.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_ReportAssert.o: ../../../lib/UnitTest++/ReportAssert.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_Test.o: ../../../lib/UnitTest++/Test.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TestDetails.o: ../../../lib/UnitTest++/TestDetails.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TestList.o: ../../../lib/UnitTest++/TestList.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TestReporter.o: ../../../lib/UnitTest++/TestReporter.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TestReporterStdout.o: ../../../lib/UnitTest++/TestReporterStdout.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TestResults.o: ../../../lib/UnitTest++/TestResults.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TestRunner.o: ../../../lib/UnitTest++/TestRunner.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TimeConstraint.o: ../../../lib/UnitTest++/TimeConstraint.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_XmlTestReporter.o: ../../../lib/UnitTest++/XmlTestReporter.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
-
-UnitTestPP_TimeHelpers.o: ../../../lib/UnitTest++/Win32/TimeHelpers.cpp
-	$(CXX) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_aboutdialog.o: ../../../src/aboutdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
@@ -766,7 +688,7 @@ mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_35_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_5) --include-dir ../../../lib/sqlite --include-dir ../../../lib/wxsqlite --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/UnitTest++
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../../lib/sqlite --include-dir ../../../lib/wxsqlite --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../src --define NOPCH --include-dir ../../../src
 
 .PHONY: all install uninstall clean check
 

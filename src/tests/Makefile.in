@@ -85,31 +85,10 @@ LUA_OBJECTS =  \
 	lua_lvm.o \
 	lua_lzio.o \
 	lua_strbuf.o
-UNITTESTPP_CXXFLAGS =     $(PIC_FLAG)   $(CPPFLAGS) $(CXXFLAGS)
-UNITTESTPP_OBJECTS =  \
-	UnitTestPP_AssertException.o \
-	UnitTestPP_Checks.o \
-	UnitTestPP_CurrentTest.o \
-	UnitTestPP_DeferredTestReporter.o \
-	UnitTestPP_DeferredTestResult.o \
-	UnitTestPP_MemoryOutStream.o \
-	UnitTestPP_ReportAssert.o \
-	UnitTestPP_Test.o \
-	UnitTestPP_TestDetails.o \
-	UnitTestPP_TestList.o \
-	UnitTestPP_TestReporter.o \
-	UnitTestPP_TestReporterStdout.o \
-	UnitTestPP_TestResults.o \
-	UnitTestPP_TestRunner.o \
-	UnitTestPP_TimeConstraint.o \
-	UnitTestPP_XmlTestReporter.o \
-	UnitTestPP_SignalTranslator.o \
-	UnitTestPP_TimeHelpers.o
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/sqlite \
 	-I$(srcdir)/../../lib/wxsqlite -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../src -DNOPCH -I$(srcdir)/../../src \
-	-I$(srcdir)/../../lib/UnitTest++ $(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) \
-	$(CXXFLAGS)
+	$(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_appstartdialog.o \
@@ -209,7 +188,7 @@ MMEX_TESTS_OBJECTS =  \
 
 ### Targets: ###
 
-all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)sqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)UnitTestPP$(LIBEXT) mmex_tests$(EXEEXT)
+all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)sqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex_tests$(EXEEXT)
 
 install: 
 
@@ -223,7 +202,6 @@ clean:
 	rm -f $(LIBPREFIX)wxsqlite$(LIBEXT)
 	rm -f $(LIBPREFIX)sqlite$(LIBEXT)
 	rm -f $(LIBPREFIX)lua$(LIBEXT)
-	rm -f $(LIBPREFIX)UnitTestPP$(LIBEXT)
 	rm -f mmex_tests$(EXEEXT)
 
 distclean: clean
@@ -244,13 +222,8 @@ $(LIBPREFIX)lua$(LIBEXT): $(LUA_OBJECTS)
 	$(AR) $(AROPTIONS) $@ $(LUA_OBJECTS)
 	$(RANLIB) $@
 
-$(LIBPREFIX)UnitTestPP$(LIBEXT): $(UNITTESTPP_OBJECTS)
-	rm -f $@
-	$(AR) $(AROPTIONS) $@ $(UNITTESTPP_OBJECTS)
-	$(RANLIB) $@
-
-mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)sqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)UnitTestPP$(LIBEXT) $(__mmex_tests___win32rc)
-	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS) -L. -L. -L. -L.    $(LDFLAGS)  -lwxsqlite -lsqlite -llua $(WX_LIBS) -lUnitTestPP $(LIBS)
+mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)sqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(__mmex_tests___win32rc)
+	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS) -L. -L. -L.    $(LDFLAGS)  -lwxsqlite -lsqlite -llua $(WX_LIBS) $(LIBS)
 	
 	$(__mmex_tests___mac_setfilecmd)
 
@@ -376,60 +349,6 @@ lua_lzio.o: $(srcdir)/../../lib/lua/src/lzio.c
 
 lua_strbuf.o: $(srcdir)/../../lib/lua/src/strbuf.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/strbuf.c
-
-UnitTestPP_AssertException.o: $(srcdir)/../../lib/UnitTest++/AssertException.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/AssertException.cpp
-
-UnitTestPP_Checks.o: $(srcdir)/../../lib/UnitTest++/Checks.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/Checks.cpp
-
-UnitTestPP_CurrentTest.o: $(srcdir)/../../lib/UnitTest++/CurrentTest.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/CurrentTest.cpp
-
-UnitTestPP_DeferredTestReporter.o: $(srcdir)/../../lib/UnitTest++/DeferredTestReporter.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/DeferredTestReporter.cpp
-
-UnitTestPP_DeferredTestResult.o: $(srcdir)/../../lib/UnitTest++/DeferredTestResult.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/DeferredTestResult.cpp
-
-UnitTestPP_MemoryOutStream.o: $(srcdir)/../../lib/UnitTest++/MemoryOutStream.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/MemoryOutStream.cpp
-
-UnitTestPP_ReportAssert.o: $(srcdir)/../../lib/UnitTest++/ReportAssert.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/ReportAssert.cpp
-
-UnitTestPP_Test.o: $(srcdir)/../../lib/UnitTest++/Test.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/Test.cpp
-
-UnitTestPP_TestDetails.o: $(srcdir)/../../lib/UnitTest++/TestDetails.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TestDetails.cpp
-
-UnitTestPP_TestList.o: $(srcdir)/../../lib/UnitTest++/TestList.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TestList.cpp
-
-UnitTestPP_TestReporter.o: $(srcdir)/../../lib/UnitTest++/TestReporter.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TestReporter.cpp
-
-UnitTestPP_TestReporterStdout.o: $(srcdir)/../../lib/UnitTest++/TestReporterStdout.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TestReporterStdout.cpp
-
-UnitTestPP_TestResults.o: $(srcdir)/../../lib/UnitTest++/TestResults.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TestResults.cpp
-
-UnitTestPP_TestRunner.o: $(srcdir)/../../lib/UnitTest++/TestRunner.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TestRunner.cpp
-
-UnitTestPP_TimeConstraint.o: $(srcdir)/../../lib/UnitTest++/TimeConstraint.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/TimeConstraint.cpp
-
-UnitTestPP_XmlTestReporter.o: $(srcdir)/../../lib/UnitTest++/XmlTestReporter.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/XmlTestReporter.cpp
-
-UnitTestPP_SignalTranslator.o: $(srcdir)/../../lib/UnitTest++/Posix/SignalTranslator.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/Posix/SignalTranslator.cpp
-
-UnitTestPP_TimeHelpers.o: $(srcdir)/../../lib/UnitTest++/Posix/TimeHelpers.cpp
-	$(CXXC) -c -o $@ $(UNITTESTPP_CXXFLAGS) $(srcdir)/../../lib/UnitTest++/Posix/TimeHelpers.cpp
 
 mmex_tests_aboutdialog.o: $(srcdir)/../../src/aboutdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/aboutdialog.cpp
@@ -681,7 +600,7 @@ mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/sqlite --include-dir $(srcdir)/../../lib/wxsqlite --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/UnitTest++
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/sqlite --include-dir $(srcdir)/../../lib/wxsqlite --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src
 
 
 # Include dependency info, if present:

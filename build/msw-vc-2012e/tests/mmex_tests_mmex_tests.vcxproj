@@ -82,7 +82,7 @@
     <ClCompile>
       <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -96,7 +96,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>vc-static-u\sqlite.lib;vc-static-u\wxsqlite.lib;vc-static-u\lua.lib;vc-static-u\UnitTestPP.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>vc-static-u\sqlite.lib;vc-static-u\wxsqlite.lib;vc-static-u\lua.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>vc-static-u\mmex_tests.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -108,19 +108,19 @@
     </Link>
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='wx29 Release Unicode Multilib WX_PYTHON_0|Win32'">
     <ClCompile>
       <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswu;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswu;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -134,7 +134,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>vc-static-29u\wxsqlite.lib;vc-static-29u\sqlite.lib;vc-static-29u\lua.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;vc-static-29u\UnitTestPP.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>vc-static-29u\wxsqlite.lib;vc-static-29u\sqlite.lib;vc-static-29u\lua.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>vc-static-29u\mmex_tests.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN_29)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -145,18 +145,18 @@
     </Link>
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswu;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswu;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug Unicode Multilib WX_PYTHON_0|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;NOPCH;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -172,7 +172,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>vc-static-ud\sqlite.lib;vc-static-ud\wxsqlite.lib;vc-static-ud\lua.lib;vc-static-ud\UnitTestPP.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>vc-static-ud\sqlite.lib;vc-static-ud\wxsqlite.lib;vc-static-ud\lua.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>vc-static-ud\mmex_tests.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -185,18 +185,18 @@
     </Link>
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='wx29 Debug Unicode Multilib WX_PYTHON_0|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswud;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswud;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;NOPCH;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -212,7 +212,7 @@
     </ClCompile>
     <Link>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>vc-static-29ud\wxsqlite.lib;vc-static-29ud\sqlite.lib;vc-static-29ud\lua.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;vc-static-29ud\UnitTestPP.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>vc-static-29ud\wxsqlite.lib;vc-static-29ud\sqlite.lib;vc-static-29ud\lua.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;odbc32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>vc-static-29ud\mmex_tests.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN_29)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -224,12 +224,12 @@
     </Link>
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;$(BOOSTDIR);..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswud;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;..\..\..\lib\UnitTest++;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN_29)\lib\vc_lib\mswud;$(WXWIN_29)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -417,10 +417,6 @@
     </ProjectReference>
     <ProjectReference Include="mmex_tests_sqlite.vcxproj">
       <Project>{954c5780-85d4-55d1-a7bf-83cbbf56408f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="mmex_tests_UnitTestPP.vcxproj">
-      <Project>{f1040ba3-154d-5924-9779-6907cf93ccce}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="mmex_tests_wxsqlite.vcxproj">

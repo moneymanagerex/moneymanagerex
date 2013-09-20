@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #include "../platfdep.h" // GetAppName
-#include <UnitTest++.h>
 #include <wx/app.h>
 //----------------------------------------------------------------------------
 
@@ -32,6 +31,6 @@ int main(int /*argc*/, char const* /*argv*/[])
 
     wxApp::GetInstance()->SetAppName(mmex::GetAppName());
 
-    return UnitTest::RunAllTests();
+    return 0;
 }
 //----------------------------------------------------------------------------

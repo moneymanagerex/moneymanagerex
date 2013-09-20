@@ -5,8 +5,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite", "mmex_tests_sqlite
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "mmex_tests_lua.vcproj", "{38DCDCB4-81BD-5EB5-8E6C-4CDF96CFFDB2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTestPP", "mmex_tests_UnitTestPP.vcproj", "{F1040BA3-154D-5924-9779-6907CF93CCCE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mmex_tests", "mmex_tests_mmex_tests.vcproj", "{41FC52EC-2DA2-5289-AB6A-BB921FCA4B7D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{05486C1A-D087-50A3-9670-0AE3D19887CD} = {05486C1A-D087-50A3-9670-0AE3D19887CD}

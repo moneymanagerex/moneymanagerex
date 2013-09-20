@@ -7,7 +7,6 @@
 Prepackaged Libraries
 - sqlite3
 - wxSqlite3
-- UnitTest++
 
 -------------------------------------------------------------------------------
 2. Building Money Manager Ex
