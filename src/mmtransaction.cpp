@@ -555,7 +555,12 @@ void mmBankTransactionList::LoadAccountTransactions(int accountID, double& accou
         calculate_future = calculate_future || (pBankTransaction->date_ <= today);
         double amount = pBankTransaction->value(accountID);
         if (pBankTransaction->status_ == "R" && calculate_future) reconciled_balance += amount;
-        if (pBankTransaction->status_ != "V" && calculate_future) account_balance += amount;
+        if (
+                pBankTransaction->status_ != "V" 
+                && pBankTransaction->status_ != "X" 
+                && calculate_future
+            )
+            account_balance += amount;
     }
 }
 
