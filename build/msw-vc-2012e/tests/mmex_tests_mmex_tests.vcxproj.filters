@@ -198,13 +198,7 @@
     <ClCompile Include="..\..\..\src\lua_interface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\mmex_lua_test.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\tests\dbwrapper_test.cpp">
-      <Filter>Test Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\testing_util.cpp">
       <Filter>Test Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\reports\budget.cpp">
@@ -472,9 +466,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\lua_interface.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\tests\testing_util.h">
-      <Filter>Test Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\reports\budget.h">
       <Filter>Header Files\reports</Filter>

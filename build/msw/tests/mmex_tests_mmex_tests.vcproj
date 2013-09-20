@@ -2180,9 +2180,6 @@
 				RelativePath="..\..\..\src\mmex.cpp">
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\mmex_lua_test.cpp">
-			</File>
-			<File
 				RelativePath="..\..\..\src\tests\mmex_tests.cpp">
 			</File>
 			<File
@@ -2274,9 +2271,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\summarystocks.cpp">
-			</File>
-			<File
-				RelativePath="..\..\..\src\tests\testing_util.cpp">
 			</File>
 			<File
 				RelativePath="..\..\..\src\db\transaction.cpp">
@@ -2555,9 +2549,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\summarystocks.h">
-			</File>
-			<File
-				RelativePath="..\..\..\src\tests\testing_util.h">
 			</File>
 			<File
 				RelativePath="..\..\..\src\db\transaction.h">

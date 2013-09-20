@@ -178,9 +178,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
-	mmex_tests_mmex_lua_test.o \
 	mmex_tests_mmex_tests.o \
-	mmex_tests_testing_util.o \
 	mmex_tests_mmex_tests_rc.o
 
 ### Conditionally set variables: ###
@@ -764,13 +762,7 @@ mmex_tests_qif_import.o: ../../../src/import_export/qif_import.cpp
 mmex_tests_univcsvdialog.o: ../../../src/import_export/univcsvdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_mmex_lua_test.o: ../../../src/tests/mmex_lua_test.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_testing_util.o: ../../../src/tests/testing_util.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc

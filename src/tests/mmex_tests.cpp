@@ -19,7 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "../platfdep.h" // GetAppName
 #include <UnitTest++.h>
 #include <wx/app.h>
-#include "testing_util.h"
 //----------------------------------------------------------------------------
 
 /*

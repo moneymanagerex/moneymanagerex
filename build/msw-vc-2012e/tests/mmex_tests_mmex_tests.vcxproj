@@ -292,7 +292,6 @@
     <ClCompile Include="..\..\..\src\reports\transactions.cpp" />
     <ClCompile Include="..\..\..\src\reports\trx_stats.cpp" />
     <ClCompile Include="..\..\..\src\tests\dbwrapper_test.cpp" />
-    <ClCompile Include="..\..\..\src\tests\mmex_lua_test.cpp" />
     <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp" />
     <ClCompile Include="..\..\..\src\mmgraphgenerator.cpp" />
     <ClCompile Include="..\..\..\src\mmgraphincexpensesmonth.cpp" />
@@ -307,7 +306,6 @@
     <ClCompile Include="..\..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\..\src\paths.cpp" />
     <ClCompile Include="..\..\..\src\payeedialog.cpp" />
-    <ClCompile Include="..\..\..\src\tests\testing_util.cpp" />
     <ClCompile Include="..\..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\..\src\recentfiles.cpp" />
     <ClCompile Include="..\..\..\src\relocatecategorydialog.cpp" />
@@ -406,7 +404,6 @@
     <ClInclude Include="..\..\..\src\splittransactionsdialog.h" />
     <ClInclude Include="..\..\..\src\stockdialog.h" />
     <ClInclude Include="..\..\..\src\stockspanel.h" />
-    <ClInclude Include="..\..\..\src\tests\testing_util.h" />
     <ClInclude Include="..\..\..\src\transdialog.h" />
     <ClInclude Include="..\..\..\src\univcsvdialog.h" />
     <ClInclude Include="..\..\..\src\util.h" />

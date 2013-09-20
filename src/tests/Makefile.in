@@ -193,9 +193,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
-	mmex_tests_mmex_lua_test.o \
 	mmex_tests_mmex_tests.o \
-	mmex_tests_testing_util.o \
 	$(__mmex_tests___win32rc)
 
 ### Conditionally set variables: ###
@@ -679,14 +677,8 @@ mmex_tests_qif_import.o: $(srcdir)/../../src/import_export/qif_import.cpp
 mmex_tests_univcsvdialog.o: $(srcdir)/../../src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/univcsvdialog.cpp
 
-mmex_tests_mmex_lua_test.o: $(srcdir)/../../src/tests/mmex_lua_test.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_lua_test.cpp
-
 mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
-
-mmex_tests_testing_util.o: $(srcdir)/../../src/tests/testing_util.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/testing_util.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
 	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/sqlite --include-dir $(srcdir)/../../lib/wxsqlite --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/UnitTest++
