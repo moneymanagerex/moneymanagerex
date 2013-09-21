@@ -1168,8 +1168,7 @@ int TransactionListCtrl::OnMarkTransactionDB(const wxString& status)
 void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
 {
     showDeletedTransactions_ = !showDeletedTransactions_;
-    wxLogDebug("%i", showDeletedTransactions_);
-    refreshVisualList();
+    refreshVisualList(m_selectedID);
 }
 
 void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
