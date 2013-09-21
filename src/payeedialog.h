@@ -18,6 +18,7 @@
 
 #ifndef _MM_EX_PAYEEDIALOG_H_
 #define _MM_EX_PAYEEDIALOG_H_
+#pragma warning( disable : 4100 )
 
 #include "defs.h"
 

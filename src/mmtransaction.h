@@ -22,6 +22,7 @@
 #include "mmcurrency.h"
 #include "reports/mmDateRange.h"
 #include <map>
+#pragma warning( disable : 4100 )
 
 class mmCoreDB;
 
