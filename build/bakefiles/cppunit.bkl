@@ -16,10 +16,10 @@
 
     	<!-- paths relative to trunk/mmex -->
       
-        <include>$(SRCDIR)/lib/cppunit/include</include>
-      
         <set var="SRC">lib/cppunit</set>
 
+        <include>$(SRCDIR)/$(SRC)/include</include>
+      
         <headers>$(fileList( [ SRC + '/include/cppunit/*.h', SRC + '/include/cppunit/*/*.h', SRC + '/include/cppunit/ui/text/*.h' ] ))</headers>
         <sources>$(fileList( [ SRC + '/src/cppunit/[a-ce-z]*.cpp', SRC + '/src/cppunit/d[a-km-z]*.cpp' ] ))</sources>
 

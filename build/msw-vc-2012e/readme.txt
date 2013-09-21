@@ -62,8 +62,8 @@ Note: When upgrading from MS VC++ 2010e to MS VC++ 2012e, wxWidgets must be rebu
    
 5. Using the Build ->configurations Manager...
    Select one of following configurations to build accordingly to wxWidgets builds:
-   "Release Unicode Multilib WX_PYTHON_0" <-- choice number one for most people
-   "Debug Unicode Multilib WX_PYTHON_0"
+   "Static Unicode Release Multilib" <-- choice number one for most people
+   "Static Unicode Debug Multilib"
 
 4. Build the mmex solution...
 
