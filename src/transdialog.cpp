@@ -33,8 +33,8 @@
 IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
-    EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
-    EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
+    EVT_BUTTON(mmID_OK, mmTransDialog::OnOk)
+    EVT_BUTTON(mmID_CANCEL, mmTransDialog::OnCancel)
     EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
@@ -521,8 +521,8 @@ void mmTransDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonOK = new wxButton( buttons_panel, wxID_OK, _("&OK"));
-    itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel"));
+    wxButton* itemButtonOK = new wxButton( buttons_panel, mmID_OK, _("&OK"));
+    itemButtonCancel_ = new wxButton( buttons_panel, mmID_CANCEL, _("&Cancel"));
 
     buttons_sizer->Add(itemButtonOK, flags.Border(wxBOTTOM|wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, flags);

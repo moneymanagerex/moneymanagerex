@@ -178,10 +178,10 @@ private:
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW_,         mmCheckingPanel::OnNewTransaction)
-    EVT_BUTTON(wxID_EDIT_,        mmCheckingPanel::OnEditTransaction)
-    EVT_BUTTON(wxID_DELETE_,      mmCheckingPanel::OnDeleteTransaction)
-    EVT_BUTTON(wxID_DUPLICATE_,    mmCheckingPanel::OnDuplicateTransaction)
+    EVT_BUTTON(mmID_NEW,         mmCheckingPanel::OnNewTransaction)
+    EVT_BUTTON(mmID_EDIT,        mmCheckingPanel::OnEditTransaction)
+    EVT_BUTTON(mmID_DELETE,      mmCheckingPanel::OnDeleteTransaction)
+    EVT_BUTTON(mmID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
     EVT_MENU(wxID_ANY, mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
@@ -633,21 +633,21 @@ void mmCheckingPanel::CreateControls()
     wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemButtonsSizer, flags);
 
-    btnNew_ = new wxButton(itemPanel12, wxID_NEW_, _("&New"));
+    btnNew_ = new wxButton(itemPanel12, mmID_NEW, _("&New"));
     btnNew_->SetToolTip(_("New Transaction"));
     itemButtonsSizer->Add(btnNew_, 0, wxRIGHT, 5);
 
-    btnEdit_ = new wxButton(itemPanel12, wxID_EDIT_, _("&Edit"));
+    btnEdit_ = new wxButton(itemPanel12, mmID_EDIT, _("&Edit"));
     btnEdit_->SetToolTip(_("Edit selected transaction"));
     itemButtonsSizer->Add(btnEdit_, 0, wxRIGHT, 5);
     btnEdit_->Enable(false);
 
-    btnDelete_ = new wxButton(itemPanel12, wxID_DELETE_, _("&Delete"));
+    btnDelete_ = new wxButton(itemPanel12, mmID_DELETE, _("&Delete"));
     btnDelete_->SetToolTip(_("Delete selected transaction"));
     itemButtonsSizer->Add(btnDelete_, 0, wxRIGHT, 5);
     btnDelete_->Enable(false);
 
-    btnDuplicate_ = new wxButton(itemPanel12, wxID_DUPLICATE_, _("D&uplicate"));
+    btnDuplicate_ = new wxButton(itemPanel12, mmID_DUPLICATE, _("D&uplicate"));
     btnDuplicate_->SetToolTip(_("Duplicate selected transaction"));
     itemButtonsSizer->Add(btnDuplicate_, 0, wxRIGHT, 5);
     btnDuplicate_->Enable(false);
