@@ -1580,6 +1580,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\currency_test.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\currencydialog.cpp"
 				>
 			</File>
@@ -2019,6 +2023,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\db\currency.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\currency_test.h"
 				>
 			</File>
 			<File

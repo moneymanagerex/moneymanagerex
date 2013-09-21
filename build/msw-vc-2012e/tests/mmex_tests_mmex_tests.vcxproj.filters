@@ -84,6 +84,9 @@
     <ClCompile Include="..\..\..\src\db\currency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\currency_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\currencydialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -411,6 +414,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\db\currency.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\currency_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\currencydialog.h">

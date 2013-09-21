@@ -158,6 +158,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
+	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
 	mmex_tests_mmex_tests_rc.o
 
@@ -689,6 +690,9 @@ mmex_tests_qif_import.o: ../../../src/import_export/qif_import.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_univcsvdialog.o: ../../../src/import_export/univcsvdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_currency_test.o: ../../../src/tests/currency_test.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
