@@ -13,6 +13,13 @@
     <requires version="0.2.6"/>
 
 
+    <!-- define some var's for projects before calling presets -->
+    <if cond="FORMAT in ['msvc6prj','msevc4prj','msvs2003prj','msvs2005prj','msvs2008prj']">
+        <set var="WX_SHARED">0</set>
+        <set var="WX_UNICODE">1</set>
+        <set var="WX_MONOLITHIC">0</set>
+    </if>
+  
     <include file="presets/wx.bkl"/>
     <include file="config.bkl"/>
 
@@ -120,7 +127,7 @@
             <define>$(DEBUG_DEFINE)</define>
         </if>
 
-        <if cond="FORMAT=='msvc'">
+        <if cond="FORMAT in ['msvc', 'msvs2005prj','msvs2008prj']">
           <cppflags>/D_CRT_SECURE_NO_WARNINGS</cppflags>
         </if>
 

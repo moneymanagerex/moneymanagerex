@@ -1,68 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="DLL ANSI Debug Monolithic|Win32">
-      <Configuration>DLL ANSI Debug Monolithic</Configuration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL ANSI Debug Multilib|Win32">
-      <Configuration>DLL ANSI Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL ANSI Release Monolithic|Win32">
-      <Configuration>DLL ANSI Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL ANSI Release Multilib|Win32">
-      <Configuration>DLL ANSI Release Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Debug Monolithic|Win32">
-      <Configuration>DLL Unicode Debug Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Debug Multilib|Win32">
-      <Configuration>DLL Unicode Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Release Monolithic|Win32">
-      <Configuration>DLL Unicode Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Release Multilib|Win32">
-      <Configuration>DLL Unicode Release Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Debug Monolithic|Win32">
-      <Configuration>Static ANSI Debug Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Debug Multilib|Win32">
-      <Configuration>Static ANSI Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Release Monolithic|Win32">
-      <Configuration>Static ANSI Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Release Multilib|Win32">
-      <Configuration>Static ANSI Release Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Debug Monolithic|Win32">
-      <Configuration>Static Unicode Debug Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Debug Multilib|Win32">
-      <Configuration>Static Unicode Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Release Monolithic|Win32">
-      <Configuration>Static Unicode Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Release Multilib|Win32">
-      <Configuration>Static Unicode Release Multilib</Configuration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -71,379 +15,53 @@
     <ProjectGuid>{41FC52EC-2DA2-5289-AB6A-BB921FCA4B7D}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>11.0.60610.1</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
     <LinkIncremental>true</LinkIncremental>
+    <GenerateManifest>true</GenerateManifest>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\mmex_tests\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29_core.lib;wxmsw29_qa.lib;wxbase29_net.lib;wxmsw29_html.lib;wxbase29_xml.lib;wxmsw29_aui.lib;wxmsw29_adv.lib;wxbase29.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
-      <PreprocessorDefinitions>WIN32;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'">
     <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29d_core.lib;wxmsw29d_qa.lib;wxbase29d_net.lib;wxmsw29d_html.lib;wxbase29d_xml.lib;wxmsw29d_aui.lib;wxmsw29d_adv.lib;wxbase29d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -453,6 +71,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat />
     </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <Link>
       <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
       <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -463,57 +86,21 @@
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
+    <Bscmake>
+      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests_mmex_tests.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    </Bscmake>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
     <ClCompile>
+      <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -525,6 +112,11 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <Link>
       <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
@@ -535,340 +127,10 @@
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
     </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
+    <Bscmake>
+      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests_mmex_tests.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29_core.lib;wxmsw29_qa.lib;wxbase29_net.lib;wxmsw29_html.lib;wxbase29_xml.lib;wxmsw29_aui.lib;wxmsw29_adv.lib;wxbase29.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregex.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29d_core.lib;wxmsw29d_qa.lib;wxbase29d_net.lib;wxmsw29d_html.lib;wxbase29d_xml.lib;wxmsw29d_aui.lib;wxmsw29d_adv.lib;wxbase29d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29d.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexd.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'">
-    <ClCompile>
-      <AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Link>
-      <AdditionalOptions>/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_CRT_SECURE_NO_WARNINGS;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\mmex_tests\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\sqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;$(SolutionDir)$(Configuration)\cppunit.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests.exe</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_dll;$(WXWIN)\lib\vc_dll;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>$(SolutionDir)$(Configuration)\mmex_tests.pdb</ProgramDatabaseFile>
-      <SubSystem>Console</SubSystem>
-      <TargetMachine>MachineX86</TargetMachine>
-    </Link>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\aboutdialog.cpp" />

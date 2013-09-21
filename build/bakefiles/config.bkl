@@ -36,14 +36,20 @@
         </description>
     </option>
 
-    <option name="SHARED">
-        <values>0,1</values>
-        <values-description>,DLL</values-description>
-        <default-value>0</default-value>
-        <description>
-            What type of library to build?
-        </description>
-    </option>
+    <!-- don't include DLL in project files. -->
+    <if cond="IS_MSVC_PRJ=='1'">
+        <set var="SHARED">0</set>
+    </if>
+    <if cond="IS_MSVC_PRJ=='0'">
+      <option name="SHARED">
+          <values>0,1</values>
+          <values-description>,DLL</values-description>
+          <default-value>0</default-value>
+          <description>
+              What type of library to build?
+          </description>
+      </option>
+    </if>
 
     <if cond="FORMAT!='autoconf'">
         <option name="TOOLKIT">
@@ -197,18 +203,24 @@ Default is to use debug CRT if and only if BUILD==debug.
         <set var="DEBUG_RUNTIME_LIBS">default</set>
     </if>
 
-    <set var="MONOLITHIC_DEFAULT">
-        <if cond="FORMAT=='watcom'">1</if>
-        <if cond="FORMAT!='watcom'">0</if>
-    </set>
-    <option name="MONOLITHIC">
-        <values>0,1</values>
-        <values-description>Multilib,Monolithic</values-description>
-        <default-value>$(MONOLITHIC_DEFAULT)</default-value>
-        <description>
-            Multiple libraries or single huge monolithic one?
-        </description>
-    </option>
+    <!-- don't include Monolithic in project files. -->
+    <if cond="IS_MSVC_PRJ=='1'">
+        <set var="MONOLITHIC">0</set>
+    </if>
+    <if cond="IS_MSVC_PRJ=='0'">
+      <set var="MONOLITHIC_DEFAULT">
+          <if cond="FORMAT=='watcom'">1</if>
+          <if cond="FORMAT!='watcom'">0</if>
+      </set>
+      <option name="MONOLITHIC">
+          <values>0,1</values>
+          <values-description>Multilib,Monolithic</values-description>
+          <default-value>$(MONOLITHIC_DEFAULT)</default-value>
+          <description>
+              Multiple libraries or single huge monolithic one?
+          </description>
+      </option>
+    </if>
 
     <if cond="FORMAT=='autoconf'"> <!-- FIXME - temporary -->
         <option name="USE_PLUGINS">

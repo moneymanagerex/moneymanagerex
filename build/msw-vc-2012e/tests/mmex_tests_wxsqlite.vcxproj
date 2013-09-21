@@ -1,68 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="DLL ANSI Debug Monolithic|Win32">
-      <Configuration>DLL ANSI Debug Monolithic</Configuration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL ANSI Debug Multilib|Win32">
-      <Configuration>DLL ANSI Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL ANSI Release Monolithic|Win32">
-      <Configuration>DLL ANSI Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL ANSI Release Multilib|Win32">
-      <Configuration>DLL ANSI Release Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Debug Monolithic|Win32">
-      <Configuration>DLL Unicode Debug Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Debug Multilib|Win32">
-      <Configuration>DLL Unicode Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Release Monolithic|Win32">
-      <Configuration>DLL Unicode Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="DLL Unicode Release Multilib|Win32">
-      <Configuration>DLL Unicode Release Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Debug Monolithic|Win32">
-      <Configuration>Static ANSI Debug Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Debug Multilib|Win32">
-      <Configuration>Static ANSI Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Release Monolithic|Win32">
-      <Configuration>Static ANSI Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static ANSI Release Multilib|Win32">
-      <Configuration>Static ANSI Release Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Debug Monolithic|Win32">
-      <Configuration>Static Unicode Debug Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Debug Multilib|Win32">
-      <Configuration>Static Unicode Debug Multilib</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Release Monolithic|Win32">
-      <Configuration>Static Unicode Release Monolithic</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Static Unicode Release Multilib|Win32">
-      <Configuration>Static Unicode Release Multilib</Configuration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -71,393 +15,82 @@
     <ProjectGuid>{05486C1A-D087-50A3-9670-0AE3D19887CD}</ProjectGuid>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'" Label="PropertySheets">
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>11.0.60610.1</_ProjectFileVersion>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)$(Configuration)\wxsqlite\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Multilib|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Release Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Multilib|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static ANSI Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Multilib|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
+    <ClCompile>
+      <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
+      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat />
+    </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Release Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
     <Lib>
       <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    <Bscmake>
+      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests_wxsqlite.bsc</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Bscmake>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Multilib|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </Midl>
     <ClCompile>
+      <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
+      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -469,286 +102,19 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Static Unicode Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
     <Lib>
       <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Multilib|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;WXUSINGDLL;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
+    <Bscmake>
+      <OutputFile>$(SolutionDir)$(Configuration)\mmex_tests_wxsqlite.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;WXUSINGDLL;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;WXUSINGDLL;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Release Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;WXUSINGDLL;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;WXUSINGDLL;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;WXUSINGDLL;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\msw;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Multilib|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;WXUSINGDLL;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;WXUSINGDLL;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;WXUSINGDLL;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL ANSI Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;WXUSINGDLL;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;WXUSINGDLL;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;WXUSINGDLL;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswd;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Multilib|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;WXUSINGDLL;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;WXUSINGDLL;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;WXUSINGDLL;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Release Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;NDEBUG;WXUSINGDLL;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat />
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;NDEBUG;WXUSINGDLL;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;WXUSINGDLL;_UNICODE;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswu;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Multilib|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='DLL Unicode Debug Monolithic|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_LIB;_CRT_SECURE_NO_WARNINGS;_DEBUG;_DEBUG;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <ObjectFileName>$(SolutionDir)$(Configuration)\wxsqlite\</ObjectFileName>
-      <ProgramDataBaseFileName>$(SolutionDir)$(Configuration)\wxsqlite.pdb</ProgramDataBaseFileName>
-      <WarningLevel>Level4</WarningLevel>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>$(SolutionDir)$(Configuration)\wxsqlite.lib</OutputFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-    </Lib>
-    <Midl>
-      <PreprocessorDefinitions>WIN32;_LIB;_DEBUG;_DEBUG;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </Midl>
-    <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;_DEBUG;WXUSINGDLL;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_HAS_CODEC;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_dll\mswud;$(WXWIN)\include;..\..\..\lib\sqlite;..\..\..\lib\wxsqlite;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ResourceCompile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\lib\wxsqlite\wxsqlite3.cpp" />

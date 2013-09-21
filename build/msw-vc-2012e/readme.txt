@@ -61,9 +61,7 @@ Note: When upgrading from MS VC++ 2010e to MS VC++ 2012e, wxWidgets must be rebu
 4  In the Solution Explorer set the mmex project as the Startup Project
    
 5. Using the Build ->configurations Manager...
-   Select one of following configurations to build accordingly to wxWidgets builds:
-   "Static Unicode Release Multilib" <-- choice number one for most people
-   "Static Unicode Debug Multilib"
+   Select one of following configurations to build.
 
 4. Build the mmex solution...
 
