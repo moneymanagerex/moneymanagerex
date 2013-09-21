@@ -30,10 +30,11 @@
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmMainCurrencyDialog, wxDialog )
-    EVT_BUTTON(wxID_ADD, mmMainCurrencyDialog::OnBtnAdd)
-    EVT_BUTTON(wxID_EDIT, mmMainCurrencyDialog::OnBtnEdit)
-    EVT_BUTTON(wxID_SELECTALL, mmMainCurrencyDialog::OnBtnSelect)
-    EVT_BUTTON(wxID_REMOVE, mmMainCurrencyDialog::OnBtnDelete)
+    EVT_BUTTON(mmID_ADD, mmMainCurrencyDialog::OnBtnAdd)
+    EVT_BUTTON(mmID_EDIT, mmMainCurrencyDialog::OnBtnEdit)
+    EVT_BUTTON(mmID_SELECTALL, mmMainCurrencyDialog::OnBtnSelect)
+    EVT_BUTTON(mmID_REMOVE, mmMainCurrencyDialog::OnBtnDelete)
+    EVT_BUTTON(mmID_CANCEL, mmMainCurrencyDialog::OnCancel)
 
     EVT_MENU_RANGE(0, 1, mmMainCurrencyDialog::OnMenuSelected)
 
@@ -130,8 +131,8 @@ void mmMainCurrencyDialog::CreateControls()
     update_button->SetToolTip(_("Online update currency rate"));
     itemBoxSizer22->AddSpacer(10);
 
-    itemBoxSizer22->Add(new wxStaticText( this, wxID_STATIC,
-       _("Currency List")), flags);
+    itemBoxSizer22->Add(new wxStaticText( this, wxID_STATIC
+       , _("Currency List")), flags);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW|wxALL, 5);
@@ -154,14 +155,14 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel5->SetSizer(itemBoxSizer6);
 
-    wxButton* itemButton7 = new wxButton( itemPanel5, wxID_ADD);
+    wxButton* itemButton7 = new wxButton( itemPanel5, mmID_ADD, _("&Add"));
     itemBoxSizer6->Add(itemButton7, flags);
 
-    itemButtonEdit_ = new wxButton( itemPanel5, wxID_EDIT );
+    itemButtonEdit_ = new wxButton( itemPanel5, mmID_EDIT, _("&Edit") );
     itemBoxSizer6->Add(itemButtonEdit_, flags);
     itemButtonEdit_->Disable();
 
-    itemButtonDelete_ = new wxButton( itemPanel5, wxID_REMOVE );
+    itemButtonDelete_ = new wxButton( itemPanel5, mmID_REMOVE, _("&Remove") );
     itemBoxSizer6->Add(itemButtonDelete_, flags);
     itemButtonDelete_->Disable();
 
@@ -177,7 +178,7 @@ void mmMainCurrencyDialog::CreateControls()
     }
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton( this, wxID_CANCEL, _("&Cancel"));
+    wxButton* itemCancelButton = new wxButton( this, mmID_CANCEL, _("&Cancel"));
     itemBoxSizer9->Add(itemCancelButton,  flags);
     itemCancelButton->SetFocus();
 
@@ -337,4 +338,9 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
 
     PopupMenu(mainMenu);
     event.Skip();
+}
+
+void mmMainCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
+{
+    EndModal(wxID_CANCEL);
 }

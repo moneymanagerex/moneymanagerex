@@ -436,7 +436,11 @@ enum
     mmID_YES,
     mmID_NO,
     mmID_CANCEL,
-    mmID_OK
+    mmID_OK,
+    mmID_ADD,
+    mmID_SELECTALL,
+    mmID_REMOVE,
+    
 };
 
 //----------------------------------------------------------------------------

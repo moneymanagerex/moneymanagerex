@@ -98,6 +98,7 @@ private:
     void OnBtnEdit(wxCommandEvent& event);
     void OnBtnSelect(wxCommandEvent& event);
     void OnBtnDelete(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& event);
     void OnListItemActivated(wxDataViewEvent& event);
     void OnListItemSelected(wxDataViewEvent& event);
     void OnValueChanged(wxDataViewEvent& event);
