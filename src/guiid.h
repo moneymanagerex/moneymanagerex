@@ -429,7 +429,10 @@ enum
     MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
     MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
     AUTO_REPEAT_TRANSACTIONS_TIMER_ID,
-
+    wxID_NEW_,
+    wxID_EDIT_,
+    wxID_DELETE_,
+    wxID_DUPLICATE_,
 };
 
 //----------------------------------------------------------------------------

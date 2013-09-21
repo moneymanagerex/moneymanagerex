@@ -78,20 +78,20 @@ void createColumns(wxListCtrl &lst)
 {
     const wxString def_data[3*COL_MAX] =
     {
-        wxString(wxTRANSLATE("Date")).Prepend("      "), "80", "L",
-        wxTRANSLATE("Number"), "-2", "L",
-        wxString(wxTRANSLATE("Payee")).Prepend("   "), "150", "L",
-        wxTRANSLATE("Status"), "-2", "L",
-        wxTRANSLATE("Category"), "-2", "L",
-        wxTRANSLATE("Withdrawal"), "-2", "R",
-        wxTRANSLATE("Deposit"), "-2", "R",
-        wxTRANSLATE("Balance"), "-2", "R",
-        wxTRANSLATE("Notes"), "200", "L"
+        wxString(_("Date")).Prepend("      "), "80", "L",
+        _("Number"), "-2", "L",
+        wxString(_("Payee")).Prepend("   "), "150", "L",
+        _("Status"), "-2", "L",
+        _("Category"), "-2", "L",
+        _("Withdrawal"), "-2", "R",
+        _("Deposit"), "-2", "R",
+        _("Balance"), "-2", "R",
+        _("Notes"), "200", "L"
     };
 
     for (int i = 0; i < COL_MAX; ++i)
     {
-        const wxString col_name = wxGetTranslation(def_data[3*i+0]);
+        const wxString col_name = (def_data[3*i+0]);
         const wxString def_width = def_data[3*i+1];
         const wxString def_format = def_data[3*i+2];
 
@@ -178,10 +178,10 @@ private:
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
-    EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
-    EVT_BUTTON(wxID_DELETE,      mmCheckingPanel::OnDeleteTransaction)
-    EVT_BUTTON(wxID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
+    EVT_BUTTON(wxID_NEW_,         mmCheckingPanel::OnNewTransaction)
+    EVT_BUTTON(wxID_EDIT_,        mmCheckingPanel::OnEditTransaction)
+    EVT_BUTTON(wxID_DELETE_,      mmCheckingPanel::OnDeleteTransaction)
+    EVT_BUTTON(wxID_DUPLICATE_,    mmCheckingPanel::OnDuplicateTransaction)
     EVT_MENU(wxID_ANY, mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
@@ -633,21 +633,21 @@ void mmCheckingPanel::CreateControls()
     wxBoxSizer* itemButtonsSizer = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemButtonsSizer, flags);
 
-    btnNew_ = new wxButton(itemPanel12, wxID_NEW, _("&New"));
+    btnNew_ = new wxButton(itemPanel12, wxID_NEW_, _("&New"));
     btnNew_->SetToolTip(_("New Transaction"));
     itemButtonsSizer->Add(btnNew_, 0, wxRIGHT, 5);
 
-    btnEdit_ = new wxButton(itemPanel12, wxID_EDIT, _("&Edit"));
+    btnEdit_ = new wxButton(itemPanel12, wxID_EDIT_, _("&Edit"));
     btnEdit_->SetToolTip(_("Edit selected transaction"));
     itemButtonsSizer->Add(btnEdit_, 0, wxRIGHT, 5);
     btnEdit_->Enable(false);
 
-    btnDelete_ = new wxButton(itemPanel12, wxID_DELETE, _("&Delete"));
+    btnDelete_ = new wxButton(itemPanel12, wxID_DELETE_, _("&Delete"));
     btnDelete_->SetToolTip(_("Delete selected transaction"));
     itemButtonsSizer->Add(btnDelete_, 0, wxRIGHT, 5);
     btnDelete_->Enable(false);
 
-    btnDuplicate_ = new wxButton(itemPanel12, wxID_DUPLICATE, _("D&uplicate"));
+    btnDuplicate_ = new wxButton(itemPanel12, wxID_DUPLICATE_, _("D&uplicate"));
     btnDuplicate_->SetToolTip(_("Duplicate selected transaction"));
     itemButtonsSizer->Add(btnDuplicate_, 0, wxRIGHT, 5);
     btnDuplicate_->Enable(false);
