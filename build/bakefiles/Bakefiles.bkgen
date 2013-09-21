@@ -31,14 +31,14 @@
         gnu
     </add-formats>
     <add-formats files="mmex.bkl,mmex_tests.bkl">
-        msvs2003prj
+        msvs2008prj
     </add-formats>
 
 
     <!-- Do not generate these formats for given .bkl -->
 
     <del-formats files="../../po/*.bkl,../../setup/win/*.bkl">
-        msvs2003prj
+        msvs2008prj
     </del-formats>
 
     
@@ -53,7 +53,7 @@
     <add-flags files="mmex.bkl" formats="msvc">
         -o../msw/makefile.vc
     </add-flags>
-    <add-flags files="mmex.bkl" formats="msvs2003prj">
+    <add-flags files="mmex.bkl" formats="msvs2008prj">
         -o../msw/mmex.sln
     </add-flags>
 
@@ -66,7 +66,7 @@
     <add-flags files="mmex_tests.bkl" formats="msvc">
         -o../msw/tests/makefile.vc
     </add-flags>
-    <add-flags files="mmex_tests.bkl" formats="msvs2003prj">
+    <add-flags files="mmex_tests.bkl" formats="msvs2008prj">
         -o../msw/tests/mmex_tests.sln
     </add-flags>
 
