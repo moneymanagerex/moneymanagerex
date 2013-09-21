@@ -68,12 +68,65 @@ LUA_OBJECTS =  \
 	lua_lvm.o \
 	lua_lzio.o \
 	lua_strbuf.o
+CPPUNIT_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
+	$(__DEBUG_DEFINE_p) -I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CXXFLAGS)
+CPPUNIT_OBJECTS =  \
+	cppunit_AdditionalMessage.o \
+	cppunit_Asserter.o \
+	cppunit_BeOsDynamicLibraryManager.o \
+	cppunit_BriefTestProgressListener.o \
+	cppunit_CompilerOutputter.o \
+	cppunit_Exception.o \
+	cppunit_Message.o \
+	cppunit_PlugInManager.o \
+	cppunit_PlugInParameters.o \
+	cppunit_Protector.o \
+	cppunit_ProtectorChain.o \
+	cppunit_RepeatedTest.o \
+	cppunit_ShlDynamicLibraryManager.o \
+	cppunit_SourceLine.o \
+	cppunit_StringTools.o \
+	cppunit_SynchronizedObject.o \
+	cppunit_Test.o \
+	cppunit_TestAssert.o \
+	cppunit_TestCase.o \
+	cppunit_TestCaseDecorator.o \
+	cppunit_TestComposite.o \
+	cppunit_TestDecorator.o \
+	cppunit_TestFactoryRegistry.o \
+	cppunit_TestFailure.o \
+	cppunit_TestLeaf.o \
+	cppunit_TestNamer.o \
+	cppunit_TestPath.o \
+	cppunit_TestPlugInDefaultImpl.o \
+	cppunit_TestResult.o \
+	cppunit_TestResultCollector.o \
+	cppunit_TestRunner.o \
+	cppunit_TestSetUp.o \
+	cppunit_TestSuccessListener.o \
+	cppunit_TestSuite.o \
+	cppunit_TestSuiteBuilderContext.o \
+	cppunit_TextOutputter.o \
+	cppunit_TextTestProgressListener.o \
+	cppunit_TextTestResult.o \
+	cppunit_TextTestRunner.o \
+	cppunit_TypeInfoHelper.o \
+	cppunit_UnixDynamicLibraryManager.o \
+	cppunit_Win32DynamicLibraryManager.o \
+	cppunit_XmlDocument.o \
+	cppunit_XmlElement.o \
+	cppunit_XmlOutputter.o \
+	cppunit_XmlOutputterHook.o \
+	cppunit_DefaultProtector.o \
+	cppunit_DynamicLibraryManager.o \
+	cppunit_DynamicLibraryManagerException.o
 MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\..\lib\sqlite -I..\..\..\lib\wxsqlite -I..\..\..\lib\lua\src \
-	-I..\..\..\lib -I..\..\..\src -DNOPCH -I..\..\..\src $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\..\lib -I..\..\..\src -DNOPCH -I..\..\..\src \
+	-I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_appstartdialog.o \
@@ -172,10 +225,10 @@ ifeq ($(WX_SHARED),1)
 ____mmex_tests_LIB_SUF_FILENAMES = _dll
 endif
 ifeq ($(WX_SHARED),0)
-____WX_SHARED_26_p_1 = 
+____WX_SHARED_35_p_1 = 
 endif
 ifeq ($(WX_SHARED),1)
-____WX_SHARED_26_p_1 = --define WXUSINGDLL
+____WX_SHARED_35_p_1 = --define WXUSINGDLL
 endif
 ifeq ($(WX_UNICODE),1)
 __WXUNICODE_DEFINE_p_2 = --define _UNICODE
@@ -184,10 +237,10 @@ ifeq ($(WX_DEBUG),1)
 __WXDEBUG_DEFINE_p_2 = --define __WXDEBUG__
 endif
 ifeq ($(WX_DEBUG),0)
-__DEBUG_DEFINE_p_4 = --define NDEBUG
+__DEBUG_DEFINE_p_5 = --define NDEBUG
 endif
 ifeq ($(WX_DEBUG),1)
-__DEBUG_DEFINE_p_4 = --define _DEBUG
+__DEBUG_DEFINE_p_5 = --define _DEBUG
 endif
 ifeq ($(WX_MONOLITHIC),0)
 __WXLIB_CORE_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_core
@@ -271,7 +324,7 @@ endif
 
 ### Targets: ###
 
-all: test_for_selected_wxbuild libwxsqlite.a libsqlite.a liblua.a mmex_tests.exe
+all: test_for_selected_wxbuild libwxsqlite.a libsqlite.a liblua.a libcppunit.a mmex_tests.exe
 
 install: 
 
@@ -283,6 +336,7 @@ clean:
 	-if exist libwxsqlite.a del libwxsqlite.a
 	-if exist libsqlite.a del libsqlite.a
 	-if exist liblua.a del liblua.a
+	-if exist libcppunit.a del libcppunit.a
 	-if exist mmex_tests.exe del mmex_tests.exe
 
 test_for_selected_wxbuild: 
@@ -312,8 +366,13 @@ liblua.a: $(LUA_OBJECTS)
 	ar rcu $@ $(LUA_OBJECTS)
 	ranlib $@
 
-mmex_tests.exe: $(MMEX_TESTS_OBJECTS) libwxsqlite.a libsqlite.a liblua.a mmex_tests_mmex_tests_rc.o
-	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_tests_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO)  $(LDFLAGS)  libwxsqlite.a libsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32
+libcppunit.a: $(CPPUNIT_OBJECTS)
+	if exist $@ del $@
+	ar rcu $@ $(CPPUNIT_OBJECTS)
+	ranlib $@
+
+mmex_tests.exe: $(MMEX_TESTS_OBJECTS) libwxsqlite.a libsqlite.a liblua.a libcppunit.a mmex_tests_mmex_tests_rc.o
+	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_tests_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO)  $(LDFLAGS)  libwxsqlite.a libsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 libcppunit.a
 
 check: all
 	.\mmex_tests.exe
@@ -437,6 +496,153 @@ lua_lzio.o: ../../../lib/lua/src/lzio.c
 
 lua_strbuf.o: ../../../lib/lua/src/strbuf.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
+
+cppunit_AdditionalMessage.o: ../../../lib/cppunit/src/cppunit/AdditionalMessage.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_Asserter.o: ../../../lib/cppunit/src/cppunit/Asserter.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_BeOsDynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/BeOsDynamicLibraryManager.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_BriefTestProgressListener.o: ../../../lib/cppunit/src/cppunit/BriefTestProgressListener.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_CompilerOutputter.o: ../../../lib/cppunit/src/cppunit/CompilerOutputter.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_Exception.o: ../../../lib/cppunit/src/cppunit/Exception.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_Message.o: ../../../lib/cppunit/src/cppunit/Message.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_PlugInManager.o: ../../../lib/cppunit/src/cppunit/PlugInManager.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_PlugInParameters.o: ../../../lib/cppunit/src/cppunit/PlugInParameters.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_Protector.o: ../../../lib/cppunit/src/cppunit/Protector.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_ProtectorChain.o: ../../../lib/cppunit/src/cppunit/ProtectorChain.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_RepeatedTest.o: ../../../lib/cppunit/src/cppunit/RepeatedTest.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_ShlDynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/ShlDynamicLibraryManager.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_SourceLine.o: ../../../lib/cppunit/src/cppunit/SourceLine.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_StringTools.o: ../../../lib/cppunit/src/cppunit/StringTools.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_SynchronizedObject.o: ../../../lib/cppunit/src/cppunit/SynchronizedObject.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_Test.o: ../../../lib/cppunit/src/cppunit/Test.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestAssert.o: ../../../lib/cppunit/src/cppunit/TestAssert.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestCase.o: ../../../lib/cppunit/src/cppunit/TestCase.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestCaseDecorator.o: ../../../lib/cppunit/src/cppunit/TestCaseDecorator.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestComposite.o: ../../../lib/cppunit/src/cppunit/TestComposite.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestDecorator.o: ../../../lib/cppunit/src/cppunit/TestDecorator.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestFactoryRegistry.o: ../../../lib/cppunit/src/cppunit/TestFactoryRegistry.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestFailure.o: ../../../lib/cppunit/src/cppunit/TestFailure.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestLeaf.o: ../../../lib/cppunit/src/cppunit/TestLeaf.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestNamer.o: ../../../lib/cppunit/src/cppunit/TestNamer.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestPath.o: ../../../lib/cppunit/src/cppunit/TestPath.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestPlugInDefaultImpl.o: ../../../lib/cppunit/src/cppunit/TestPlugInDefaultImpl.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestResult.o: ../../../lib/cppunit/src/cppunit/TestResult.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestResultCollector.o: ../../../lib/cppunit/src/cppunit/TestResultCollector.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestRunner.o: ../../../lib/cppunit/src/cppunit/TestRunner.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestSetUp.o: ../../../lib/cppunit/src/cppunit/TestSetUp.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestSuccessListener.o: ../../../lib/cppunit/src/cppunit/TestSuccessListener.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestSuite.o: ../../../lib/cppunit/src/cppunit/TestSuite.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TestSuiteBuilderContext.o: ../../../lib/cppunit/src/cppunit/TestSuiteBuilderContext.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TextOutputter.o: ../../../lib/cppunit/src/cppunit/TextOutputter.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TextTestProgressListener.o: ../../../lib/cppunit/src/cppunit/TextTestProgressListener.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TextTestResult.o: ../../../lib/cppunit/src/cppunit/TextTestResult.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TextTestRunner.o: ../../../lib/cppunit/src/cppunit/TextTestRunner.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_TypeInfoHelper.o: ../../../lib/cppunit/src/cppunit/TypeInfoHelper.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_UnixDynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/UnixDynamicLibraryManager.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_Win32DynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/Win32DynamicLibraryManager.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_XmlDocument.o: ../../../lib/cppunit/src/cppunit/XmlDocument.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_XmlElement.o: ../../../lib/cppunit/src/cppunit/XmlElement.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_XmlOutputter.o: ../../../lib/cppunit/src/cppunit/XmlOutputter.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_XmlOutputterHook.o: ../../../lib/cppunit/src/cppunit/XmlOutputterHook.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_DefaultProtector.o: ../../../lib/cppunit/src/cppunit/DefaultProtector.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_DynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/DynamicLibraryManager.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
+
+cppunit_DynamicLibraryManagerException.o: ../../../lib/cppunit/src/cppunit/DynamicLibraryManagerException.cpp
+	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_aboutdialog.o: ../../../src/aboutdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
@@ -688,7 +894,7 @@ mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../../lib/sqlite --include-dir ../../../lib/wxsqlite --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../src --define NOPCH --include-dir ../../../src
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_35_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_5) --include-dir ../../../lib/sqlite --include-dir ../../../lib/wxsqlite --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/cppunit/include
 
 .PHONY: all install uninstall clean check
 

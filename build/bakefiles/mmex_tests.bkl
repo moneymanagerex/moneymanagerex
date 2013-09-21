@@ -23,6 +23,7 @@
     
     
     <include file="common.bkl"/>
+    <include file="cppunit.bkl"/>
 
 
     <!-- unit tests console application -->
@@ -30,8 +31,10 @@
     <exe id="mmex_tests" template="mmex_common">
 
         <app-type>console</app-type>
+        <library>cppunit</library>
 
         <include>$(SRCDIR)/src</include>
+        <include>$(SRCDIR)/lib/cppunit/include</include>
 
 
         <!-- IMPLEMENT_APP(mmGUIApp) in mmex.cpp defines main() on Unixes, see wx\app.h.

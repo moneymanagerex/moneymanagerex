@@ -30,6 +30,9 @@
     <add-formats files="../../po/*.bkl,../../setup/win/*.bkl">
         gnu
     </add-formats>
+    <add-formats files="mmex.bkl,mmex_tests.bkl">
+        msvs2003prj
+    </add-formats>
 
 
     <!-- Do not generate these formats for given .bkl -->
