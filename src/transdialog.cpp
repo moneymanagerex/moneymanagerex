@@ -300,7 +300,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
-        cbAccount_->Enable(accounts.size() > 1);
+        cbAccount_->Enable(!accounts.empty());
 
         data = Model_Payee::instance().all_payee_names();
         toTextAmount_->Enable(false);

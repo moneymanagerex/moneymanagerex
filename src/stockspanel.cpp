@@ -85,7 +85,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent
     m_selected_col = 0;
     m_asc = true;
     initVirtualListControl();
-    if ( trans_.size() > 1)
+    if (!trans_.empty())
         EnsureVisible(((int)trans_.size()) - 1);
 
 }
