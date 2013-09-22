@@ -59,7 +59,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 	{
 	case PAYEE_SORT_BY_NAME:
 		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder x, const data_holder y)
+				, [] (const data_holder& x, const data_holder& y)
 				{
 					return x.payee_name < y.payee_name;
 				}
@@ -67,7 +67,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 		break;
 	case PAYEE_SORT_BY_INCOME:
 		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder x, const data_holder y)
+				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.incomes != y.incomes) return x.incomes < y.incomes;
 					else return x.payee_name < y.payee_name;
@@ -76,7 +76,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 		break;
 	case PAYEE_SORT_BY_EXPENSE:
 		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder x, const data_holder y)
+				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.expences != y.expences) return x.expences < y.expences;
 					else return x.payee_name < y.payee_name;
@@ -86,7 +86,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 	default:
 		sortColumn_ = PAYEE_SORT_BY_DIFF;
 		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder x, const data_holder y)
+				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
 					else return x.payee_name < y.payee_name;
