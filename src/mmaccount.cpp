@@ -373,7 +373,7 @@ bool mmAccountList::RemoveAccount(int accountID)
     }
 
     st = core_->db_.get()->PrepareStatement("DELETE FROM INFOTABLE_V1 WHERE INFONAME = ?");
-    st.Bind(1, wxString::Format("ACC_IMAGE_ID_%d", accountID));
+    st.Bind(1, wxString::Format("ACC_IMAGE_ID_%i", accountID));
     st.ExecuteUpdate();
     st.Finalize();
 

@@ -27,7 +27,7 @@
 #include "splittransactionsdialog.h"
 #include "validators.h"
 #include "model/Model_Payee.h"
-
+#include "model/Model_Account.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
@@ -251,12 +251,17 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
     newAccountID_ = accountID_;
     cbAccount_->Clear();
-    data = core_->accountList_.getAccountsName();
-    for (const auto &entry : data)
-        cbAccount_ ->Append(entry);
 
-    cbAccount_->SetStringSelection(core_->accountList_.GetAccountName(accountID_));
+    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    for (const auto &account : accounts)
+    {
+        data.Add(account.ACCOUNTNAME);
+        cbAccount_ ->Append(account.ACCOUNTNAME);
+    }
     cbAccount_->AutoComplete(data);
+
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) cbAccount_->SetStringSelection(account->ACCOUNTNAME);
 
     if (transfer)
     {
@@ -270,8 +275,12 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         toTextAmount_->Enable(cAdvanced_->GetValue());
 
-        if (toID_ > 0) dataStr = core_->accountList_.GetAccountName(toID_);
-        data = core_->accountList_.getAccountsName();
+        if (toID_ > 0)
+        {
+            Model_Account::Data *account = Model_Account::instance().get(toID_);
+            if (account) dataStr = account->ACCOUNTNAME;
+        }
+
         payee_label_->SetLabel(_("To"));
         cbPayee_->SetToolTip(_("Specify which account the transfer is going to"));
         account_label_->SetLabel(_("From"));
@@ -291,7 +300,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
-        cbAccount_->Enable(core_->accountList_.accounts_.size() > 1);
+        cbAccount_->Enable(accounts.size() > 1);
 
         data = Model_Payee::instance().all_payee_names();
         toTextAmount_->Enable(false);

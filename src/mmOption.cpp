@@ -124,24 +124,27 @@ void mmIniOptions::loadOptions()
     transDateDefault_           = Model_Setting::instance().GetIntSetting("TRANSACTION_DATE_DEFAULT", 0);
 }
 
-int mmIniOptions::account_image_id(mmCoreDB* core, int account_id)
+int mmIniOptions::account_image_id(int account_id)
 {
-    double selectedImage = 9;
-    wxString image_num_str = Model_Infotable::instance().GetStringInfo(wxString::Format("ACC_IMAGE_ID_%d", account_id), "");
-    if (CurrencyFormatter::formatCurrencyToDouble(image_num_str, selectedImage))
-    {
-        if (selectedImage > 0)
-            return selectedImage;
-    }
+    int selectedImage = Model_Infotable::instance().GetIntInfo(wxString::Format("ACC_IMAGE_ID_%i", account_id), 99);
+    //TODO: What size of the images spool?
+    if (selectedImage > 0 && selectedImage < 99)
+        return selectedImage;
 
     selectedImage = 9;
     int t = 0, s = 0;
-    Model_Account::Data* account = Model_Account::instance().get(account_id);
-    const wxString acctType = core->accountList_.getAccountType(account_id);
-    int acctStatus = core->accountList_.getAccountStatus(account_id);
-    bool favorite = core->accountList_.getAccountFavorite(account_id);
+    wxString acctType = ACCOUNT_TYPE_BANK, acctStatus = "Open";
+    bool favorite = true;
 
-    if (acctStatus == mmAccount::MMEX_Closed)
+    Model_Account::Data* account = Model_Account::instance().get(account_id);
+    if (account)
+    {
+        acctType = account->ACCOUNTTYPE;
+        acctStatus = account->STATUS;
+        favorite = account->FAVORITEACCT == "TRUE";
+    }
+
+    if (acctStatus == "Closed")
         s = 2;
     else if (favorite)
         s = 1;

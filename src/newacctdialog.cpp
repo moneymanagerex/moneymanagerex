@@ -128,7 +128,7 @@ void mmNewAcctDialog::fillControlsWithData()
     mmDBWrapper::loadCurrencySettings(core_->db_.get(), currencyID_);
     textCtrl->SetValue(CurrencyFormatter::float2String(initBal));
 
-    int selectedImage = mmIniOptions::instance().account_image_id(core_, accountID_);
+    int selectedImage = mmIniOptions::instance().account_image_id(accountID_);
     bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
 
     accessInfo_ = account->ACCESSINFO;
@@ -447,9 +447,9 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
     int selectedImage = event.GetId();
 
-    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%d", accountID_), wxString()<<selectedImage);
+    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", accountID_), wxString()<<selectedImage);
     if (selectedImage == 0)
-        selectedImage = mmIniOptions::instance().account_image_id(core_, accountID_);
+        selectedImage = mmIniOptions::instance().account_image_id(accountID_);
 
     bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
 

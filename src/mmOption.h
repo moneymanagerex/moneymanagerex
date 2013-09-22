@@ -51,7 +51,7 @@ public:
     mmIniOptions();
     static mmIniOptions& instance();
     void loadOptions();
-    int account_image_id(mmCoreDB* core, int account_id);
+    int account_image_id(int account_id);
 
     bool enableAssets_;
     bool enableBudget_;

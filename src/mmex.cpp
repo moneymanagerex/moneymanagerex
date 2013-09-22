@@ -1594,7 +1594,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
                 (vAccts == "Favorites" && account->favoriteAcct_) ||
                 (vAccts == "ALL"))
             {
-                int selectedImage = mmIniOptions::instance().account_image_id(m_core.get(), account->id_);
+                int selectedImage = mmIniOptions::instance().account_image_id(account->id_);
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account->name_, selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account->id_, false));
             }
@@ -1606,7 +1606,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
                 (vAccts == "Favorites" && account->favoriteAcct_) ||
                 (vAccts == "ALL"))
             {
-                int selectedImage = mmIniOptions::instance().account_image_id(m_core.get(), account->id_);
+                int selectedImage = mmIniOptions::instance().account_image_id(account->id_);
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account->name_, selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account->id_, false));
             }
@@ -1618,7 +1618,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
                 (vAccts == "Favorites" && account->favoriteAcct_) ||
                 (vAccts == "ALL"))
             {
-                int selectedImage = mmIniOptions::instance().account_image_id(m_core.get(), account->id_);
+                int selectedImage = mmIniOptions::instance().account_image_id(account->id_);
                 wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account->name_, selectedImage, selectedImage);
                 navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account->id_, false));
             }
