@@ -169,8 +169,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
 	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
     hb.endTableRow();
 
+	bool endSeparator = false;
     for (const auto& entry : data)
     {
+		endSeparator = false;
 		if (entry.categs > 0)
 		{
 			if(CATEGORY_SORT_BY_NAME == sortColumn_)
@@ -184,6 +186,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 					hb.endTableRow();
 				}
 				hb.addRowSeparator(2);
+				endSeparator = true;
 			}
 		}
 		else
@@ -195,7 +198,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 		}
     }
 
-	if(CATEGORY_SORT_BY_NAME != sortColumn_)
+	if (!endSeparator)
 		hb.addRowSeparator(2);
     hb.addTotalRow(_("Grand Total: "), 1, grandtotal);
 
