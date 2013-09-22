@@ -23,6 +23,10 @@
 #include "util.h"
 #include "mmOption.h"
 #include "mmgraphpie.h"
+#include <algorithm>
+
+#define CATEGORY_SORT_BY_NAME		1
+#define CATEGORY_SORT_BY_AMOUNT		2
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 ( mmCoreDB* core, mmDateRange* date_range, const wxString& title, int type)
@@ -31,29 +35,18 @@ mmReportCategoryExpenses::mmReportCategoryExpenses
 , title_(title)
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
-{}
+{
+	// set initial sort column
+	sortColumn_ = CATEGORY_SORT_BY_NAME;
+}
 
 wxString mmReportCategoryExpenses::getHTMLText()
 {
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.addHeader(2, title_);
+	// structure for sorting of data
+    struct data_holder {wxString category_name; double amount; int categs;} line;
+    std::vector<data_holder> data;
 
     bool with_date = date_range_->is_with_date();
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date);
-
-    hb.startCenter();
-
-    // Add the graph
-    mmGraphPie gg;
-    hb.addImage(gg.getOutputFileName());
-
-    hb.startTable("60%");
-    hb.startTableRow();
-    hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Amount"), true);
-    hb.endTableRow();
-
     double grandtotal = 0.0;
 
     std::vector<ValuePair> valueList;
@@ -68,7 +61,6 @@ wxString mmReportCategoryExpenses::getHTMLText()
     for (const auto& category: core_->categoryList_.entries_)
     {
         int categs = 0;
-        bool grandtotalseparator = true;
         double categtotal = 0.0;
         int categID = category->categID_;
         const wxString sCategName = category->categName_;
@@ -86,10 +78,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
             vp.amount = amt;
             valueList.push_back(vp);
 
-            hb.startTableRow();
-            hb.addTableCell(sCategName, false, true);
-            hb.addMoneyCell(amt, false);
-            hb.endTableRow();
+			line.category_name = sCategName;
+			line.amount = amt;
+			line.categs = 0;
+			data.push_back(line);
         }
 
         for (const auto & sub_category: category->children_)
@@ -113,26 +105,98 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 vp.amount = amt;
                 valueList.push_back(vp);
 
-                hb.addTableRow(sFullCategName, amt);
+				line.category_name = sFullCategName;
+				line.amount = amt;
+				line.categs = 0;
+				data.push_back(line);
             }
         }
 
-        if (categs>1)
+        if (categs > 1)
         {
-            hb.addRowSeparator(0);
-            hb.startTableRow();
-            hb.addTableCell(_("Category Total: "),false, true, true, "GRAY");
-            hb.addMoneyCell(categtotal, "GRAY");
-            hb.endTableRow();
+			line.category_name = _("Category Total: ");
+			line.amount = categtotal;
+			line.categs = categs;
+			data.push_back(line);
         }
+        else if (categs > 0)
+        {
+			// Insert place holder to add a seperator
+			line.category_name = "";
+			line.amount = 0;
+			line.categs = categs;
+			data.push_back(line);
+        }
+	}
 
-        if (categs>0)
-        {
-            grandtotalseparator = false;
-            hb.addRowSeparator(2);
-        }
+	if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
+	{
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder& x, const data_holder& y)
+				{
+					if (x.amount != y.amount) return x.amount < y.amount;
+					else return x.category_name < y.category_name;
+				}
+		);
+	}
+	else
+	{
+		// List is presorted by category name
+		sortColumn_ = CATEGORY_SORT_BY_NAME;
+	}
+
+    mmHTMLBuilder hb;
+    hb.init();
+    hb.addHeader(2, title_);
+
+    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date);
+
+    hb.startCenter();
+
+    // Add the graph
+    mmGraphPie gg;
+    hb.addImage(gg.getOutputFileName());
+
+    hb.startTable("60%");
+    hb.startTableRow();
+	if(CATEGORY_SORT_BY_NAME == sortColumn_)
+	    hb.addTableHeaderCell(_("Category"));
+	else
+	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_NAME), _("Category"));
+	if(CATEGORY_SORT_BY_AMOUNT == sortColumn_)
+	    hb.addTableHeaderCell(_("Amount"), true);
+	else
+	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
+    hb.endTableRow();
+
+    for (const auto& entry : data)
+    {
+		if (entry.categs > 0)
+		{
+			if(CATEGORY_SORT_BY_NAME == sortColumn_)
+			{
+				if (entry.category_name != "")
+				{
+					hb.addRowSeparator(0);
+					hb.startTableRow();
+					hb.addTableCell(entry.category_name, false, true, true, "GRAY");
+					hb.addMoneyCell(entry.amount, "GRAY");
+					hb.endTableRow();
+				}
+				hb.addRowSeparator(2);
+			}
+		}
+		else
+		{
+            hb.startTableRow();
+			hb.addTableCell(entry.category_name, false, true);
+			hb.addMoneyCell(entry.amount);
+            hb.endTableRow();
+		}
     }
 
+	if(CATEGORY_SORT_BY_NAME != sortColumn_)
+		hb.addRowSeparator(2);
     hb.addTotalRow(_("Grand Total: "), 1, grandtotal);
 
     hb.endTable();
