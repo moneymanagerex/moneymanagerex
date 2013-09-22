@@ -38,9 +38,8 @@ void CurrencyTest::setUp()
 {
 	locale_.Init(wxLANGUAGE_ENGLISH);
 
-	mmCurrency* currency = new mmCurrency("USD", "United States dollar", L"$", L"", L"", L"", 100, 1);
-	CurrencyFormatter::instance().loadSettings(*currency);
-	delete currency;
+	mmCurrency currency("USD", "United States dollar", L"$", L"", L"", L"", 100, 1);
+	CurrencyFormatter::instance().loadSettings(currency);
 }
 
 void CurrencyTest::tearDown()

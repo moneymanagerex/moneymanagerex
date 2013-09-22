@@ -62,7 +62,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     //Type(Withdrawal/Income/Summ), month, value
     std::map<int, std::map<int, double> > totals;
 
-	// structure for sorting of data
+	// structure for sorting of data (month is used for sorting of period values and is not directly displayed)
     struct data_holder {wxString category_name; double period[MONTHS_IN_PERIOD]; double overall; double month;} line;
     std::vector<data_holder> data;
     for (const auto& category: core_->categoryList_.entries_)
@@ -103,7 +103,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 	if (CATEGORY_SORT_BY_OVERALL == sortColumn_)
 	{
 		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder x, const data_holder y)
+				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.overall != y.overall) return x.overall < y.overall;
 					else return x.category_name < y.category_name;
@@ -116,7 +116,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 			entry.month = entry.period[sortColumn_ - CATEGORY_SORT_BY_PERIOD];
 
 		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder x, const data_holder y)
+				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.month != y.month) return x.month < y.month;
 					else return x.category_name < y.category_name;
@@ -148,7 +148,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     wxDateTime start_date = date_range_->start_date();
     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
     {
-		int sort = CATEGORY_SORT_BY_PERIOD + i;
+		const int sort = CATEGORY_SORT_BY_PERIOD + i;
         wxDateTime d = wxDateTime(start_date).Add(wxDateSpan::Months(i));
 		if(sort == sortColumn_)
 			hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr))
