@@ -99,5 +99,9 @@ wxString CurrencyFormatter::float2Money(double val)
 
 bool CurrencyFormatter::formatCurrencyToDouble(const wxString& str, double& val)
 {
+    const CurrencyFormatter &fmt = CurrencyFormatter::instance();
+	wxString s2d;
+	if (str.StartsWith(fmt.getPrefix(), &s2d))
+		return wxNumberFormatter::FromString(s2d , &val);
     return wxNumberFormatter::FromString(str , &val);
 }

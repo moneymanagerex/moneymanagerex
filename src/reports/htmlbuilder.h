@@ -42,7 +42,6 @@ static const wxString TABLE_CELL_RIGHT = "<td nowrap align=\"right\">";
 static const wxString TABLE_CELL_SPAN = "<td colspan=\"%i\" >";
 static const wxString TABLE_CELL_END = "</td>\n";
 static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
-static const wxString TABLE_CELL_RIGHT_BI = "<td nowrap align=\"right\"><b><i>%s</i></b></td>\n";
 static const wxString TABLE_HEADER = "<th align=\"%s\" valign=\"center\" bgcolor=\"%s\" colspan=\"%i\">";
 static const wxString TABLE_HEADER_END = "</th>\n";
 static const wxString HEADER = "<font size=\"%i\"><b>%s</b></font><br>\n";
@@ -96,12 +95,12 @@ public:
     void addRowSeparator(int cols);
 
     /** Add a special row that will format total values */
-    void addTotalRow(const wxString& caption, int cols, const wxString& value);
-    void addTotalRow(const wxString& caption, int cols, double value);
+    void addTotalRow(const wxString& caption, int cols, const wxString& value, const bool color = true);
+    void addTotalRow(const wxString& caption, int cols, double value, const bool color = true);
 
     /** Add a special row that will format total values */
-    void addTotalRow(const wxString& caption, int cols, const std::vector<wxString>& data);
-    void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data);
+    void addTotalRow(const wxString& caption, int cols, const std::vector<wxString>& data, const bool color = true);
+    void addTotalRow(const wxString& caption, int cols, const std::vector<double>& data, const bool color = true);
 
     /** Add a Table header cell */
     void addTableHeaderCell(const wxString& value, const bool& numeric = false);
@@ -142,10 +141,6 @@ public:
     {
         html_+= tags::TABLE_END;
     };
-    virtual void addTableCellRightBI(const wxString& value)
-    {
-        html_+= wxString::Format(tags::TABLE_CELL_RIGHT_BI, value);
-    }
     virtual void startTableRow()
     {
         html_ += wxString::Format(tags::TABLE_ROW, (color_.bgswitch ? color_.color0 : color_.color1));

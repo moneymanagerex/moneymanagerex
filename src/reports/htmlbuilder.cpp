@@ -125,7 +125,7 @@ void mmHTMLBuilder::addRowSeparator(int cols)
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption
-    , int cols, const wxString& value)
+    , int cols, const wxString& value, const bool color)
 {
     this->startTableRow(color_.bgcolor);
     html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - 1);
@@ -133,17 +133,25 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption
     this->bold_italic(tags::NBSP + tags::NBSP + caption);
     this->font_end();
     this->endTableCell();
-    this->addTableCellRightBI(value);
+    html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
+	double amount = 0;
+	if(CurrencyFormatter::formatCurrencyToDouble(value, amount))
+		this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
+	else
+		this->font_settings(font_size_);
+    this->bold_italic(value);
+    this->font_end();
+    this->endTableCell();
     this->endTableRow();
 }
 
-void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, double value)
+void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, double value, const bool color)
 {
-    this->addTotalRow(caption, cols, CurrencyFormatter::float2Money(value));
+    this->addTotalRow(caption, cols, CurrencyFormatter::float2Money(value), color);
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
-    , const std::vector<wxString>& data)
+    , const std::vector<wxString>& data, const bool color)
 {
     html_+= wxString::Format(tags::TABLE_ROW, color_.bgcolor);
     html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols - (int)data.size());
@@ -155,7 +163,11 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     {
         this->endTableCell();
         html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
-        this->font_settings(font_size_);
+		double amount = 0;
+		if(CurrencyFormatter::formatCurrencyToDouble(data[idx], amount))
+	        this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
+		else
+	        this->font_settings(font_size_);
         this->bold_italic(data[idx]);
         this->font_end();
     }
@@ -163,14 +175,14 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     this->endTableRow();
 }
 
-void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::vector<double>& data)
+void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, const std::vector<double>& data, const bool color)
 {
     std::vector<wxString> data_str;
     for (const auto& value: data)
     {
         data_str.push_back(CurrencyFormatter::float2Money(value));
     }
-    this->addTotalRow(caption, cols, data_str);
+    this->addTotalRow(caption, cols, data_str, color);
 }
 
 void mmHTMLBuilder::addTableHeaderRow(const wxString& value, int cols)
