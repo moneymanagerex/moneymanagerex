@@ -985,11 +985,13 @@ void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
     else if (wxGetKeyState(WXK_UP))
     {
         wxCommandEvent evt(wxEVT_SPIN, wxID_ANY);
+        evt.SetInt(1);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (wxGetKeyState(WXK_DOWN))
     {
         wxCommandEvent evt(wxEVT_SPIN, wxID_ANY);
+        evt.SetInt(-1);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
     else
