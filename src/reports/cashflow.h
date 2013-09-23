@@ -29,11 +29,6 @@ protected:
     typedef std::vector<mmRepeatForecast> forecastVec;
     std::vector<forecastVec> bdForecastVec;
 
-    void SetRepeatForecast(forecastVec& fvec
-                           , TTransactionBillEntry* repeat_entry, double& amount);
-    void SetYearsRepeatForecast(forecastVec& fvec
-                                , TTransactionBillEntry* repeat_entry, double& amount, const wxDateTime& future_year);
-
     const wxArrayString* accountArray_;
     bool activeTermAccounts_;
     bool activeBankAccounts_;

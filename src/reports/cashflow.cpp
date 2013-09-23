@@ -46,26 +46,6 @@ void mmReportCashFlow::getSpecificAccounts()
     this->accountArray_ = selections;
 }
 
-void mmReportCashFlow::SetRepeatForecast(forecastVec& fvec
-, TTransactionBillEntry* repeat_entry, double& amount)
-{
-    mmRepeatForecast rf;
-    rf.date = repeat_entry->NextOccurDate();
-    rf.amount = amount;
-
-    fvec.push_back(rf);
-    repeat_entry->AdjustNextOccuranceDate();
-}
-
-void mmReportCashFlow::SetYearsRepeatForecast(forecastVec& fvec
-, TTransactionBillEntry* repeat_entry, double& amount, const wxDateTime& future_year)
-{
-    while((repeat_entry->NextOccurDate() < future_year))
-    {
-        SetRepeatForecast(fvec, repeat_entry, amount);
-    }
-}
-
 wxString mmReportCashFlow::getHTMLText()
 {
     return this->getHTMLText_i();
