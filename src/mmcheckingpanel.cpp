@@ -1196,9 +1196,11 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
 
     int transID = OnMarkTransactionDB(status);
 
-    refreshVisualList(transID);
-    //TODO: blinkings may be avoided
-    //m_cp->m_listCtrlAccount->RefreshItems(m_selectedIndex, m_selectedIndex);
+    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox())
+        || (status == "X" && !showDeletedTransactions_))
+        refreshVisualList(transID);
+    else 
+        RefreshItems(m_selectedIndex, m_selectedIndex);
 }
 //----------------------------------------------------------------------------
 
