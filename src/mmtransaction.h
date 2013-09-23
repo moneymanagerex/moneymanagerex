@@ -167,24 +167,24 @@ public:
     void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;
 
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-                                , mmDateRange* date_range
+                                , const mmDateRange* date_range
                                 , int accountID
                                 , bool group_by_account = false
                                         , bool group_by_month = false) const;
 
     void getTopCategoryStats(
         std::vector<std::pair<wxString, double> > &categoryStats
-        , mmDateRange* date_range) const;
+        , const mmDateRange* date_range) const;
 
     void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-        , mmDateRange* date_range, bool ignoreFuture
+        , const mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true, bool with_date = true) const;
 
     // The setting asDeposit is only valid if evaluateTransfer is true
     double getAmountForCategory(int categID, int subcategID, bool ignoreDate, const wxDateTime &dtBegin, const wxDateTime &dtEnd, bool evaluateTransfer = false, bool asDeposit = false, bool ignoreFuture = false) const;
     void getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
-        , mmDateRange* date_range, bool ignoreFuture) const;
+        , const mmDateRange* date_range, bool ignoreFuture) const;
     wxDateTime getLastDate(int accountID) const;
 
     double getBalance(int accountID, bool ignoreFuture = false) const;

@@ -608,7 +608,7 @@ void mmBankTransactionList::UpdateTransaction(mmBankTransaction* pBankTransactio
 
 void mmBankTransactionList::getExpensesIncomeStats
     (std::map<int, std::pair<double, double> > &incomeExpensesStats
-    , mmDateRange* date_range
+    , const mmDateRange* date_range
     , int accountID
     , bool group_by_account
     , bool group_by_month) const
@@ -679,7 +679,7 @@ void mmBankTransactionList::getExpensesIncomeStats
 
 void mmBankTransactionList::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
-    , mmDateRange* date_range) const
+    , const mmDateRange* date_range) const
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
@@ -730,21 +730,14 @@ void mmBankTransactionList::getTopCategoryStats(
         { return x.second < y.second; }
     );
 
-    int counter = 0;
-    std::vector<std::pair<wxString, double> >::iterator iter;
-    for (iter = categoryStats.begin(); iter != categoryStats.end(); )
-    {
-        counter++;
-        if (counter > 7)
-            iter = categoryStats.erase(iter);
-        else
-            ++iter;
-    }
+    std::vector<std::pair<wxString, double> > tmp;
+    std::copy(categoryStats.begin(), categoryStats.begin() + 7, tmp.begin());
+    std::swap(categoryStats, tmp);
 }
 
 void mmBankTransactionList::getCategoryStats(
     std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-    , mmDateRange* date_range, bool ignoreFuture
+    , const mmDateRange* date_range, bool ignoreFuture
     , bool group_by_month, bool with_date) const
 {
     //Initialization
@@ -914,7 +907,7 @@ int mmBankTransactionList::getLastUsedPayeeID(int accountID, const wxString& sTy
 }
 
 void mmBankTransactionList::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
-                                          , mmDateRange* date_range, bool ignoreFuture) const
+                                          , const mmDateRange* date_range, bool ignoreFuture) const
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
