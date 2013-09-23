@@ -978,11 +978,23 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 // Workaround for bug http://trac.wxwidgets.org/ticket/11630
 void mmTransDialog::OnDpcKillFocus(wxFocusEvent& event)
 {
-    if (wxGetKeyState(WXK_SHIFT))
+    if (wxGetKeyState(WXK_TAB) && wxGetKeyState(WXK_SHIFT))
         itemButtonCancel_->SetFocus();
-    else
+    else if (wxGetKeyState(WXK_TAB))
         choiceStatus_->SetFocus();
-    event.Skip();
+    else if (wxGetKeyState(WXK_UP))
+    {
+        wxCommandEvent evt(wxEVT_SPIN, wxID_ANY);
+        this->GetEventHandler()->AddPendingEvent(evt);
+    }
+    else if (wxGetKeyState(WXK_DOWN))
+    {
+        wxCommandEvent evt(wxEVT_SPIN, wxID_ANY);
+        this->GetEventHandler()->AddPendingEvent(evt);
+    }
+    else
+        event.Skip();
+
 }
 
 void mmTransDialog::changeFocus(wxChildFocusEvent& event)
