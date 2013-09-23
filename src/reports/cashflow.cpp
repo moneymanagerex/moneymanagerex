@@ -5,7 +5,6 @@
 #include "htmlbuilder.h"
 #include "mmRepeat.h"
 #include "mmCurrencyFormatter.h"
-#include "db/transactionbill.h"
 #include "model/Model_Account.h"
 
 mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)

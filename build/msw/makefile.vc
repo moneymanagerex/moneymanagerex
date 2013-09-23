@@ -177,8 +177,6 @@ MMEX_OBJECTS =  \
 	mmex_entry_base.obj \
 	mmex_splittransaction.obj \
 	mmex_subcategory.obj \
-	mmex_transaction.obj \
-	mmex_transactionbill.obj \
 	mmex_platfdep.obj \
 	mmex_export.obj \
 	mmex_qif_export.obj \
@@ -869,12 +867,6 @@ mmex_splittransaction.obj: ..\..\src\db\splittransaction.cpp
 
 mmex_subcategory.obj: ..\..\src\db\subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\subcategory.cpp
-
-mmex_transaction.obj: ..\..\src\db\transaction.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\transaction.cpp
-
-mmex_transactionbill.obj: ..\..\src\db\transactionbill.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\db\transactionbill.cpp
 
 mmex_platfdep.obj: ..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\win\platfdep.cpp

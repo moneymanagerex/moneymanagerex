@@ -523,14 +523,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\db\transaction.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\db\transactionbill.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\reports\transactions.cpp"
 				>
 			</File>
@@ -990,14 +982,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\summarystocks.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\db\transaction.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\db\transactionbill.h"
 				>
 			</File>
 			<File

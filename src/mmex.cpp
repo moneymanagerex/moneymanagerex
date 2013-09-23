@@ -62,7 +62,6 @@
 #include "import_export/qif_export.h"
 #include "import_export/qif_import.h"
 #include "import_export/univcsvdialog.h"
-#include "db/transactionbill.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Infotable.h"

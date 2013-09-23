@@ -172,8 +172,6 @@ MMEX_OBJECTS =  \
 	mmex_entry_base.o \
 	mmex_splittransaction.o \
 	mmex_subcategory.o \
-	mmex_transaction.o \
-	mmex_transactionbill.o \
 	mmex_platfdep.o \
 	mmex_export.o \
 	mmex_qif_export.o \
@@ -731,12 +729,6 @@ mmex_splittransaction.o: ../../src/db/splittransaction.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_subcategory.o: ../../src/db/subcategory.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_transaction.o: ../../src/db/transaction.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_transactionbill.o: ../../src/db/transactionbill.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_platfdep.o: ../../src/win/platfdep.cpp
