@@ -140,10 +140,17 @@ private:
 
     mmCheckingPanel *m_cp;
 
-    wxListItemAttr m_attr1; // style1
-    wxListItemAttr m_attr2; // style2
-    wxListItemAttr m_attr3; // style, for future dates
-    wxListItemAttr m_attr4; // style, for future dates
+    wxListItemAttr m_attr1;  // style1
+    wxListItemAttr m_attr2;  // style2
+    wxListItemAttr m_attr3;  // style, for future dates
+    wxListItemAttr m_attr4;  // style, for future dates
+    wxListItemAttr m_attr11; // user defined style 1
+    wxListItemAttr m_attr12; // user defined style 2
+    wxListItemAttr m_attr13; // user defined style 3
+    wxListItemAttr m_attr14; // user defined style 4
+    wxListItemAttr m_attr15; // user defined style 5
+    wxListItemAttr m_attr16; // user defined style 6
+    wxListItemAttr m_attr17; // user defined style 7
 
     EColumn m_sortCol;
     bool m_asc;
@@ -171,8 +178,9 @@ private:
     /* Sort Columns */
     void OnColClick(wxListEvent& event);
 
-    /// Called when moving a transaction to a new account.
+    // Called when moving a transaction to a new account.
     int DestinationAccountID();
+    //The topmost visible item
     long topItemIndex_;
 };
 //----------------------------------------------------------------------------
@@ -1364,12 +1372,23 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     mmBankTransaction *tr = ok ? m_cp->m_trans[idx] : 0;
     bool in_the_future = tr && tr->date_.GetDateOnly() > wxDateTime::Now().GetDateOnly();
 
-    if (in_the_future) // apply alternating background pattern
-    {
-        return item % 2 ? (wxListItemAttr*)&m_attr3 : (wxListItemAttr*)&m_attr4;
-    }
+    // apply alternating background pattern
+    int user_colour_id = tr->followupID_;
+    if (user_colour_id < 0 ) user_colour_id = 0;
+    else if (user_colour_id > 7) user_colour_id = 0;
 
-    return item % 2 ? (wxListItemAttr*)&m_attr1 : (wxListItemAttr*)&m_attr2;
+    if (user_colour_id == 1)      return (wxListItemAttr*)&m_attr11;
+    else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
+    else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
+    else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
+    else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
+    else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
+    else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
+    else if (in_the_future && item % 2)
+                                  return (wxListItemAttr*)&m_attr3;
+    else if (in_the_future)       return (wxListItemAttr*)&m_attr4;
+    else if (item % 2)            return (wxListItemAttr*)&m_attr1;
+    else                          return (wxListItemAttr*)&m_attr2;
 
 }
 //----------------------------------------------------------------------------
@@ -1441,8 +1460,8 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         return;
     }
 
-    //find the topmost visible item - this will be used to set
-    // where to display the list again after refresh
+    /* find the topmost visible item - this will be used to set
+       where to display the list again after refresh */
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     //Read status of the selected transaction
@@ -1684,6 +1703,13 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr2(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont),
     m_attr3(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont),
     m_attr4(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont),
+    m_attr11(*wxBLACK, mmColors::userDefColor1, wxNullFont),
+    m_attr12(*wxBLACK, mmColors::userDefColor2, wxNullFont),
+    m_attr13(*wxBLACK, mmColors::userDefColor3, wxNullFont),
+    m_attr14(*wxBLACK, mmColors::userDefColor4, wxNullFont),
+    m_attr15(*wxBLACK, mmColors::userDefColor5, wxNullFont),
+    m_attr16(*wxBLACK, mmColors::userDefColor6, wxNullFont),
+    m_attr17(*wxBLACK, mmColors::userDefColor7, wxNullFont),
     m_sortCol(COL_DEF_SORT),
     m_asc(true),
     showDeletedTransactions_(false)
