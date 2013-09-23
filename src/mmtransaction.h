@@ -195,7 +195,6 @@ public:
     wxArrayString getTransactionNumber(int accountID, const wxDateTime& transaction_date) const;
     bool IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat = true) const;
     bool IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIgnor_subcat = true) const;
-    bool IsPayeeUsed(int iPayeeID) const;
     bool getDailyBalance(int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture = false) const;
 
 

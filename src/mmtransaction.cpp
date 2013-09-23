@@ -1309,31 +1309,3 @@ bool mmBankTransactionList::IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIg
     return found;
 }
 
-bool mmBankTransactionList::IsPayeeUsed(int iPayeeID) const
-{
-    bool found = false;
-    for (const auto& pBankTransaction : transactions_)
-    {
-        if (pBankTransaction->payeeID_ == iPayeeID)
-        {
-            return true;
-        }
-    }
-
-    wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_PAYEEID_FROM_BILLSDEPOSITS_V1);
-    st.Bind(1, iPayeeID);
-
-    try
-    {
-        wxSQLite3ResultSet q1 = st.ExecuteQuery();
-        found = q1.NextRow();
-        st.Finalize();
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("select BILLSDEPOSITS_V1 : %s", e.GetMessage());
-        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
-    }
-
-    return found;
-}
