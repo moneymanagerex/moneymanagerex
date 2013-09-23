@@ -193,6 +193,7 @@
     <ClCompile Include="..\..\src\paths.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
+    <ClCompile Include="..\..\src\reports\transactions.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
@@ -208,9 +209,6 @@
     <ClCompile Include="..\..\src\reports\summary.cpp" />
     <ClCompile Include="..\..\src\reports\summaryassets.cpp" />
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
-    <ClCompile Include="..\..\src\db\transaction.cpp" />
-    <ClCompile Include="..\..\src\db\transactionbill.cpp" />
-    <ClCompile Include="..\..\src\reports\transactions.cpp" />
     <ClCompile Include="..\..\src\transdialog.cpp" />
     <ClCompile Include="..\..\src\reports\trx_stats.cpp" />
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
@@ -324,8 +322,6 @@
     <ClInclude Include="..\..\src\reports\summary.h" />
     <ClInclude Include="..\..\src\reports\summaryassets.h" />
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
-    <ClInclude Include="..\..\src\db\transaction.h" />
-    <ClInclude Include="..\..\src\db\transactionbill.h" />
     <ClInclude Include="..\..\src\reports\transactions.h" />
     <ClInclude Include="..\..\src\transdialog.h" />
     <ClInclude Include="..\..\src\reports\trx_stats.h" />
