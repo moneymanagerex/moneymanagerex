@@ -726,7 +726,7 @@ void mmBankTransactionList::getTopCategoryStats(
     }
 
     std::stable_sort(categoryStats.begin(), categoryStats.end()
-        , [] (const std::pair<wxString, double> x, const std::pair<wxString, double> y)
+        , [] (const std::pair<wxString, double>& x, const std::pair<wxString, double>& y)
         { return x.second < y.second; }
     );
 
