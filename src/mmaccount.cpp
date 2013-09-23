@@ -21,6 +21,7 @@
 #include "mmOption.h"
 #include "constants.h"
 #include "mmcoredb.h"
+#include "model/Model_Account.h"
 
 mmAccount::mmAccount(wxSQLite3ResultSet& q1)
 {
@@ -423,12 +424,13 @@ void mmAccountList::LoadAccounts(const mmCurrencyList& currencyList)
 
 void mmAccountList::getAccountRates(std::map<int, double> &acc_conv_rates)
 {
-    for (const auto& account: core_->accountList_.accounts_)
+    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    for (const auto& account: accounts)
     {
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID);
         wxASSERT(pCurrencyPtr);
         double rate = pCurrencyPtr->baseConv_;
-        acc_conv_rates[account->id_] = rate;
+        acc_conv_rates[account.ACCOUNTID] = rate;
     }
 }
 //----------------------------------------------------------------------------

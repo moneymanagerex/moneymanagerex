@@ -26,6 +26,8 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Account.h"
+
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
 #include <algorithm>
@@ -685,10 +687,11 @@ void mmCheckingPanel::CreateControls()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::setAccountSummary()
 {
-    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(m_AccountID);
+    Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
     core_->accountList_.getCurrencySharedPtr(m_AccountID)->loadCurrencySettings();
 
-    header_text_->SetLabel(wxString::Format(_("Account View : %s"), pAccount->name_));
+    if (account)
+        header_text_->SetLabel(wxString::Format(_("Account View : %s"), account->ACCOUNTNAME));
 
     bool show_displayed_balance_ = (transFilterActive_ || (currentView_ != VIEW_TRANS_ALL_STR));
     wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);

@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "util.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Account.h"
 
 mmExportTransaction::mmExportTransaction(mmCoreDB* core)
     : mmExportBase(core)
@@ -35,8 +36,9 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
     mmBankTransaction* &transaction = pBankTransaction_;
     wxString buffer = "";
     int trans_id = transaction->transactionID();
-    int account_id = transaction->accountID_;
-    wxString accountName = core_->accountList_.GetAccountName(account_id);
+    wxString accountName = "";
+    Model_Account::Data *account = Model_Account::instance().get(transaction->accountID_);
+    if (account) accountName = account->ACCOUNTNAME;
     wxString categ = transaction->fullCatStr_;
     wxString payee = transaction->payeeStr_;
     wxString transNum = transaction->transNum_;
@@ -56,7 +58,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
     }
 
     buffer << "D" << mmGetDateForDisplay(transaction->date_) << "\n";
-    buffer << "T" << transaction->value(!from ? account_id : transaction->toAccountID_)  << "\n";
+    buffer << "T" << transaction->value(!from ? transaction->accountID_ : transaction->toAccountID_)  << "\n";
     if (!payee.IsEmpty())
         buffer << "P" << payee << "\n";
     if (!transNum.IsEmpty())
@@ -94,8 +96,9 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
     mmBankTransaction* &transaction = pBankTransaction_;
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
     wxString buffer = "";
-    int account_id = transaction->accountID_;
-    wxString accountName = core_->accountList_.GetAccountName(account_id);
+    wxString accountName = "";
+    Model_Account::Data *account = Model_Account::instance().get(transaction->accountID_);
+    if (account) accountName = account->ACCOUNTNAME;
     int trans_id = transaction->transactionID();
     wxString categ = transaction->fullCatStr_;
     wxString payee = transaction->payeeStr_;
@@ -152,7 +155,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
             << transaction->status_ << delimit
             << transaction->transType_ << delimit
             << inQuotes(categ, delimit) << delimit
-            << transaction->value(!from ? account_id : transaction->toAccountID_) << delimit
+            << transaction->value(!from ? transaction->accountID_ : transaction->toAccountID_) << delimit
             << "" << delimit
             << inQuotes(notes, delimit)
             << "\n";        
@@ -164,19 +167,29 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
 wxString mmExportTransaction::getAccountHeaderQIF()
 {
     wxString buffer = "";
-    const wxString sAccName = core_->accountList_.GetAccountName(accountID_);
-    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID_);
-    wxASSERT(pAccount);
-    mmCurrency* pCurrency = pAccount->currency_;
-    wxASSERT(pCurrency);
-    double dInitBalance = pAccount->initialBalance_;
+    wxString account_name = "";
+    wxString currency_symbol = "";
+    double dInitBalance = 0;
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account)
+    {
+        account_name = account->ACCOUNTNAME;
+        dInitBalance = account->INITIALBAL;
+    }
+
+    Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+    if (currency)
+    {
+        currency_symbol = currency->CURRENCY_SYMBOL;
+    }
+    wxString currency_code = "[" + currency_symbol + "]";
+
     const wxString sInitBalance = wxString::Format("%f", dInitBalance);
-    const wxString sCurrencyCode = "[" + pCurrency->currencySymbol_ + "]";
 
     buffer = wxString("!Account") << "\n"
-        << "N" << sAccName <<  "\n"
+        << "N" << account_name <<  "\n"
         << "TBank" << "\n"
-        << "D" << sCurrencyCode << "\n"
+        << "D" << currency_code << "\n"
         << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
         << "^" <<  "\n"
         << "!Type:Cash" << "\n";
