@@ -1371,30 +1371,33 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
     wxASSERT(m_cp);
     wxASSERT(item >= 0);
 
-    size_t idx = item;
-    bool ok = m_cp && idx < m_cp->m_trans.size();
+    if (m_cp && item >= 0 && item < (long)m_cp->m_trans.size())
+    {
+        bool in_the_future = false;
+        mmBankTransaction *transaction = m_cp->m_trans[item];
+        if (transaction)
+            in_the_future = transaction->date_.GetDateOnly() > wxDateTime::Now().GetDateOnly();
 
-    mmBankTransaction *tr = ok ? m_cp->m_trans[idx] : 0;
-    bool in_the_future = tr && tr->date_.GetDateOnly() > wxDateTime::Now().GetDateOnly();
+        // apply alternating background pattern
+        int user_colour_id = transaction->followupID_;
+        if (user_colour_id < 0 ) user_colour_id = 0;
+        else if (user_colour_id > 7) user_colour_id = 0;
 
-    // apply alternating background pattern
-    int user_colour_id = tr->followupID_;
-    if (user_colour_id < 0 ) user_colour_id = 0;
-    else if (user_colour_id > 7) user_colour_id = 0;
-
-    if (user_colour_id == 1)      return (wxListItemAttr*)&m_attr11;
-    else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
-    else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
-    else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
-    else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
-    else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
-    else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
-    else if (in_the_future && item % 2)
-                                  return (wxListItemAttr*)&m_attr3;
-    else if (in_the_future)       return (wxListItemAttr*)&m_attr4;
-    else if (item % 2)            return (wxListItemAttr*)&m_attr1;
-    else                          return (wxListItemAttr*)&m_attr2;
-
+        if (user_colour_id != 0)
+        {
+            if (user_colour_id == 1)      return (wxListItemAttr*)&m_attr11;
+            else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
+            else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
+            else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
+            else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
+            else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
+            else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
+        }
+        else if (in_the_future && item % 2) return (wxListItemAttr*)&m_attr3;
+        else if (in_the_future)             return (wxListItemAttr*)&m_attr4;
+        else if (item % 2)                  return (wxListItemAttr*)&m_attr1;
+    }
+    return (wxListItemAttr*)&m_attr2;
 }
 //----------------------------------------------------------------------------
 // If any of these keys are encountered, the search for the event handler
