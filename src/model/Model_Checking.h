@@ -33,6 +33,9 @@ public:
     ~Model_Checking() {};
 
 public:
+    wxArrayString types_;
+
+public:
     static Model_Checking& instance()
     {
         return Singleton<Model_Checking>::instance();
