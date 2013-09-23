@@ -170,7 +170,8 @@ bool TLuaInterface::OptionalParameter(lua_State* lua, int parameter_possition)
     bool has_option = lua_gettop(lua) > parameter_possition - 1;
     if (has_option)
     {
-        lua_pop(lua, 1);    // remove arbitary value from the stack.
+		wxString value = GetLuaString(lua);
+		return GetBoolValue(value);
     }
 
     return has_option;
@@ -684,6 +685,11 @@ int TLuaInterface::cpp2lua_GetSubCategoryList(lua_State* lua)
     return 1;
 }
 
+bool TLuaInterface::GetBoolValue(const wxString& value, const bool def)
+{
+	return (!value.IsEmpty() ? (wxAtoi(value) != 0) : def);
+}
+
 /******************************************************************************
  nil = mmHTMLBuilder("function[, value_1][, value_2][, value_3][, value_4][, value_5][, value_6]")
  *****************************************************************************/
@@ -719,15 +725,14 @@ int TLuaInterface::mmHTMLBuilderUni(lua_State* lua)
         else if (fn_name == "EndTableRow") html_builder_->endTableRow();
         else if (fn_name == "StartTableCell") html_builder_->startTableCell(value_1);
         else if (fn_name == "EndTableCell") html_builder_->endTableCell();
-        else if (fn_name == "AddTableHeaderCell") html_builder_->addTableHeaderCell(value_1, !value_2.IsEmpty());
+        else if (fn_name == "AddTableHeaderCell") html_builder_->addTableHeaderCell(value_1, GetBoolValue(value_2));
         else if (fn_name == "AddTableHeaderRow") html_builder_->addTableHeaderRow(value_1, wxAtoi(value_2));
-        else if (fn_name == "AddTableCell") html_builder_->addTableCell(value_1, !value_2.IsEmpty()
-            , !value_3.IsEmpty(), !value_4.IsEmpty(), value_5);
-        else if (fn_name == "AddTableCellLink") html_builder_->addTableCellLink(value_1, value_2
-            , !value_3.IsEmpty(), !value_4.IsEmpty()
-            , !value_5.IsEmpty(), value_6);
+        else if (fn_name == "AddTableCell") html_builder_->addTableCell(value_1, GetBoolValue(value_2),
+            GetBoolValue(value_3), GetBoolValue(value_4), value_5);
+        else if (fn_name == "AddTableCellLink") html_builder_->addTableCellLink(value_1, value_2,
+            GetBoolValue(value_3), GetBoolValue(value_4), GetBoolValue(value_5), value_6);
         else if (fn_name == "AddRowSeparator") html_builder_->addRowSeparator(wxAtoi(value_1));
-        else if (fn_name == "AddTotalRow") html_builder_->addTotalRow(value_1, wxAtoi(value_2), value_3);
+        else if (fn_name == "AddTotalRow") html_builder_->addTotalRow(value_1, wxAtoi(value_2), value_3, GetBoolValue(value_4, true));
         else if (fn_name == "AddDateNow") html_builder_->addDateNow();
         else if (fn_name == "AddParaText") html_builder_->addParaText(value_1);
         else if (fn_name == "AddLineBreak") html_builder_->addLineBreak();

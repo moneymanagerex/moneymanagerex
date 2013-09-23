@@ -57,6 +57,7 @@ private:
     int lua_result_;
     wxString LuaErrorResult();
 	void LoadCategories(wxSharedPtr<wxSQLite3Database> db);
+	static bool GetBoolValue(const wxString& value, const bool def = false);
 
     static int SetSqlScriptRowCount(const wxString& sScript, int& iRowsCount, int& iError, wxString& sOutput);
     static int SetSqlRestltSet(const wxString& sScript, wxSQLite3ResultSet& sqlQueryResult, int& iError, wxString& sOutput);
