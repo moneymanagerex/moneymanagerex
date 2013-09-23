@@ -707,6 +707,15 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
         if (!openFile(dbpath.GetFullPath(), false))
             showBeginAppDialog(true);
     }
+    
+    const wxAcceleratorEntry entries[] =
+    {
+        wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
+    };
+
+    wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
+    SetAcceleratorTable(tab); 
+   
 }
 //----------------------------------------------------------------------------
 
