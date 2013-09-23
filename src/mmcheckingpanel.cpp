@@ -16,15 +16,16 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "mmcheckingpanel.h"
-#include "transdialog.h"
-#include "splittransactionsdialog.h"
-#include "mmex.h"
 #include "constants.h"
+#include "mmcheckingpanel.h"
 #include "mmCurrencyFormatter.h"
+#include "mmex.h"
+#include "splittransactionsdialog.h"
+#include "transdialog.h"
 #include "validators.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Checking.h"
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
 #include <algorithm>
@@ -125,6 +126,7 @@ public:
     void OnDeleteTransaction(wxCommandEvent& event);
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
+    void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     /// Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
@@ -224,6 +226,7 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_MENU(MENU_ON_PASTE_TRANSACTION,     TransactionListCtrl::OnPaste)
     EVT_MENU(MENU_ON_NEW_TRANSACTION,       TransactionListCtrl::OnNewTransaction)
     EVT_MENU(MENU_ON_DUPLICATE_TRANSACTION, TransactionListCtrl::OnDuplicateTransaction)
+    EVT_MENU_RANGE(MENU_ON_SET_UDC0, MENU_ON_SET_UDC7, TransactionListCtrl::OnSetUserColour)
 
     EVT_MENU(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, TransactionListCtrl::OnViewSplitTransaction)
 
@@ -1585,6 +1588,22 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
         refreshVisualList(transID);
     }
 }
+
+void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
+{
+    int user_colour_id = event.GetId();
+    user_colour_id -= MENU_ON_SET_UDC0;
+    wxLogDebug("id: %i", user_colour_id);
+
+    Model_Checking::Data * transaction = Model_Checking::instance().get(m_selectedID);
+    if (transaction)
+    {
+        transaction->FOLLOWUPID = user_colour_id;
+        Model_Checking::instance().save(transaction);
+        m_cp->m_trans[m_selectedIndex]->followupID_ = user_colour_id;
+        RefreshItems(m_selectedIndex, m_selectedIndex);
+    }
+}
 //----------------------------------------------------------------------------
 
 void TransactionListCtrl::refreshVisualList(int trans_id)
@@ -1721,7 +1740,15 @@ TransactionListCtrl::TransactionListCtrl(
         wxAcceleratorEntry(wxACCEL_CTRL, 'C', MENU_ON_COPY_TRANSACTION),
         wxAcceleratorEntry(wxACCEL_CTRL, 'V', MENU_ON_PASTE_TRANSACTION),
         wxAcceleratorEntry(wxACCEL_ALT,  'N', MENU_ON_NEW_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_ON_DUPLICATE_TRANSACTION)
+        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_ON_DUPLICATE_TRANSACTION),
+        wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
+        wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
+        wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
+        wxAcceleratorEntry(wxACCEL_CTRL, '3', MENU_ON_SET_UDC3),
+        wxAcceleratorEntry(wxACCEL_CTRL, '4', MENU_ON_SET_UDC4),
+        wxAcceleratorEntry(wxACCEL_CTRL, '5', MENU_ON_SET_UDC5),
+        wxAcceleratorEntry(wxACCEL_CTRL, '6', MENU_ON_SET_UDC6),
+        wxAcceleratorEntry(wxACCEL_CTRL, '7', MENU_ON_SET_UDC7)
     };
 
     wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
