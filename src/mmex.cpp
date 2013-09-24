@@ -70,6 +70,8 @@
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
 
 //----------------------------------------------------------------------------
 
