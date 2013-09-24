@@ -66,6 +66,9 @@ public:
         asset->save(this->db_);
         return asset->id();
     }
+public:
+    static wxDate TRANSDATE(const Data* asset) { return Model::to_date(asset->TRANSDATE); }
+    static wxDate TRANSDATE(const Data& asset) { return Model::to_date(asset.TRANSDATE); }
 };
 
 #endif // 
