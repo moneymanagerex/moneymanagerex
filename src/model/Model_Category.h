@@ -75,14 +75,29 @@ public:
         return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r->CATEGID);
     }
 
-    static void top_category(std::vector<std::pair<wxString /*category name*/, double/*amount*/> >& category, const mmDateRange* date_range, int top_n = 7)
+    static void top_category(std::vector<std::pair<wxString /*category name*/
+        , double/*amount*/> >& category, const mmDateRange* date_range, int top_n = 7)
     {
         for (const auto& tran: Model_Checking::instance().all())
         {
-            if (tran.STATUS == "V") continue;
-            // TODO
+            if (tran.STATUS == "V" || tran.STATUS == "X") continue;
+            if (tran.TRANSCODE == TRANS_TYPE_TRANSFER_STR) continue; // skip
+            if (tran.TRANSDATE < date_range->start_date()) continue;
+            if (tran.TRANSDATE.GetDateOnly() > date_range->end_date()) continue;
+            // TODO: see getTopCategoryStats
             const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
             if (!account) continue;
+            const Model_Currency::Data* currency = Model_Account::currency(account);
+            if (!currency) continue;
+            //const Model_Category::Data* category = Model_Category::instance();
+            //if (!category) continue;
+            
+            if (tran.CATEGID > -1)
+            {
+                //const wxString categ_name = core_->categoryList_.GetFullCategoryString(CATEGID, SUBCATEGID);
+                //stat[categ_name] += trx->value(-1) * currency->BASECONVRATE;
+            }
+            
         }
     }
 };
