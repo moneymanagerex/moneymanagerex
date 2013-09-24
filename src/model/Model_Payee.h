@@ -94,17 +94,17 @@ public:
         return payees;
     }
 public:
-    bool is_used(int id)
+    static bool is_used(int id)
     {
         Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, id);
         Model_Billsdeposits::Data_Set bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, id);
         return !trans.empty() || !bills.empty();
     }
-    bool is_used(const Data* record)
+    static bool is_used(const Data* record)
     {
         return is_used(record->PAYEEID);
     }
-    bool is_used(const Data& record)
+    static bool is_used(const Data& record)
     {
         return is_used(&record);
     }

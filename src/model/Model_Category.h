@@ -75,7 +75,7 @@ public:
         return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r->CATEGID);
     }
 
-    void top_category(std::vector<std::pair<wxString /*category name*/, double/*amount*/> >& category, const mmDateRange* date_range, int top_n = 7)
+    static void top_category(std::vector<std::pair<wxString /*category name*/, double/*amount*/> >& category, const mmDateRange* date_range, int top_n = 7)
     {
         for (const auto& tran: Model_Checking::instance().all())
         {
