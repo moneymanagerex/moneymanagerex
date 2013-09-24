@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-09-20 14:18:08.997900.
+ *          AUTO GENERATED at 2013-09-24 17:02:43.779074.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -341,6 +341,11 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
         catch(const wxSQLite3Exception &e) 
         { 
             wxLogError("BUDGETSPLITTRANSACTIONS_V1: Exception %s", e.GetMessage().c_str());
+        }
+        
+        if (!entity) 
+        {
+            wxLogError("%s: %d not found", this->name().c_str(), id);
         }
  
         return entity;

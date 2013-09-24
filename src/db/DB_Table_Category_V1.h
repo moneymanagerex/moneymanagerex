@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-09-20 14:18:08.997900.
+ *          AUTO GENERATED at 2013-09-24 17:02:43.779074.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT NOT NULL)");
+            db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT NOT NULL UNIQUE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
@@ -304,6 +304,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         catch(const wxSQLite3Exception &e) 
         { 
             wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+        }
+        
+        if (!entity) 
+        {
+            wxLogError("%s: %d not found", this->name().c_str(), id);
         }
  
         return entity;

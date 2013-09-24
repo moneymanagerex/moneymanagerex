@@ -445,6 +445,11 @@ struct DB_Table_%s : public DB_Table
         { 
             wxLogError("%s: Exception %%s", e.GetMessage().c_str());
         }
+        
+        if (!entity) 
+        {
+            wxLogError("%%s: %%d not found", this->name().c_str(), id);
+        }
  
         return entity;
     }
