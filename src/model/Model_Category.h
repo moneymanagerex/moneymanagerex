@@ -82,8 +82,8 @@ public:
         {
             if (tran.STATUS == "V" || tran.STATUS == "X") continue;
             if (tran.TRANSCODE == TRANS_TYPE_TRANSFER_STR) continue; // skip
-            if (tran.TRANSDATE < date_range->start_date()) continue;
-            if (tran.TRANSDATE.GetDateOnly() > date_range->end_date()) continue;
+            //if (tran.TRANSDATE < date_range->start_date()) continue;
+            //if (tran.TRANSDATE.GetDateOnly() > date_range->end_date()) continue;
             // TODO: see getTopCategoryStats
             const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
             if (!account) continue;
