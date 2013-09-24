@@ -70,7 +70,7 @@ public:
         return asset->id();
     }
 public:
-    Model_Subcategory::Data_Set sub_category(const Data* r)
+    static Model_Subcategory::Data_Set sub_category(const Data* r)
     {
         return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r->CATEGID);
     }

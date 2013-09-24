@@ -66,6 +66,11 @@ public:
         return this->get(id, this->db_);
     }
 
+    static Model_Currency::Data* currency(const Data* r)
+    {
+        return Model_Currency::instance().get(r->CURRENCYID);
+    }
+
 public:
     static STATUS status(const Data* account)
     {

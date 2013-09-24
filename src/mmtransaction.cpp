@@ -681,9 +681,6 @@ void mmBankTransactionList::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
     , const mmDateRange* date_range) const
 {
-    //Get base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    core_->accountList_.getAccountRates(acc_conv_rates);
     //Temporary map
     std::map<wxString, double> stat;
 
@@ -694,10 +691,15 @@ void mmBankTransactionList::getTopCategoryStats(
         if (trx->date_ < date_range->start_date()) continue;
         if (trx->date_.GetDateOnly() > date_range->end_date()) continue;
 
+        const Model_Account::Data* account = Model_Account::instance().get(trx->accountID_);
+        if (!account) continue;
+        const Model_Currency::Data* currency = Model_Account::currency(account);
+        if (!currency) continue;
+
         if (trx->categID_ > -1)
         {
             const wxString categ_name = core_->categoryList_.GetFullCategoryString(trx->categID_, trx->subcategID_);
-            stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
+            stat[categ_name] += trx->value(-1) * currency->BASECONVRATE;
         }
         else
         {
@@ -707,7 +709,7 @@ void mmBankTransactionList::getTopCategoryStats(
             {
                 const wxString categ_name = core_->categoryList_.GetFullCategoryString(entry->categID_, entry->subCategID_);
                 stat[categ_name] += entry->splitAmount_
-                    * (acc_conv_rates[trx->accountID_]) 
+                    * (currency->BASECONVRATE) 
                     * (trx->value(-1)< 0 ? -1 : 1);
             }
         }
