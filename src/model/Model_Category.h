@@ -21,6 +21,8 @@
 #include "Model.h"
 #include "db/DB_Table_Category_V1.h"
 #include "Model_Subcategory.h"
+#include "Model_Checking.h"
+#include "Model_Account.h"
 
 class Model_Category : public Model, public DB_Table_CATEGORY_V1
 {
@@ -67,9 +69,21 @@ public:
         asset->save(this->db_);
         return asset->id();
     }
+public:
     Model_Subcategory::Data_Set sub_category(const Data* r)
     {
         return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r->CATEGID);
+    }
+
+    void top_category(std::vector<std::pair<wxString /*category name*/, double/*amount*/> >& category, const mmDateRange* date_range, int top_n = 7)
+    {
+        for (const auto& tran: Model_Checking::instance().all())
+        {
+            if (tran.STATUS == "V") continue;
+            // TODO
+            const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
+            if (!account) continue;
+        }
     }
 };
 

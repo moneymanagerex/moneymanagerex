@@ -98,7 +98,7 @@ public:
     {
         Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, id);
         Model_Billsdeposits::Data_Set bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, id);
-        return !trans.empty() && !bills.empty();
+        return !trans.empty() || !bills.empty();
     }
     bool is_used(const Data* record)
     {
