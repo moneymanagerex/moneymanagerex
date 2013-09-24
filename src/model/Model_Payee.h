@@ -72,10 +72,10 @@ public:
         if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);
         return payee;
     }
-    int save(Data* asset)
+    int save(Data* r)
     {
-        asset->save(this->db_);
-        return asset->id();
+        r->save(this->db_);
+        return r->id();
     }
     bool remove(int id)
     {

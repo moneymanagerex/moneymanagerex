@@ -61,10 +61,10 @@ public:
     {
         return this->get(id, this->db_);
     }
-    int save(Data* asset)
+    int save(Data* r)
     {
-        asset->save(this->db_);
-        return asset->id();
+        r->save(this->db_);
+        return r->id();
     }
 };
 

@@ -77,53 +77,53 @@ public:
     {
         return this->get(id, this->db_);
     }
-    int save(Data* asset)
+    int save(Data* r)
     {
-        asset->save(this->db_);
-        return asset->id();
+        r->save(this->db_);
+        return r->id();
     }
     double balance()
     {
         double balance = 0.0;
-        for (const auto& asset: this->all())
+        for (const auto& r: this->all())
         {
-            balance += asset.VALUE;
+            balance += r.VALUE;
         }
         return balance;
     }
 
 public:
-    static wxDate STARTDATE(const Data* asset) { return Model::to_date(asset->STARTDATE); }
-    static wxDate STARTDATE(const Data& asset) { return Model::to_date(asset.STARTDATE); }
+    static wxDate STARTDATE(const Data* r) { return Model::to_date(r->STARTDATE); }
+    static wxDate STARTDATE(const Data& r) { return Model::to_date(r.STARTDATE); }
 
-    static TYPE type(const Data* asset) 
+    static TYPE type(const Data* r) 
     {
-        if (asset->ASSETTYPE.CmpNoCase("Property") == 0)
+        if (r->ASSETTYPE.CmpNoCase("Property") == 0)
             return TYPE_PROPERTY;
-        else if (asset->ASSETTYPE.CmpNoCase("Automobile") == 0)
+        else if (r->ASSETTYPE.CmpNoCase("Automobile") == 0)
             return TYPE_AUTO;
 
         return TYPE(-1);
     }
-    static TYPE type(const Data& asset)
+    static TYPE type(const Data& r)
     {
-        return type(&asset);
+        return type(&r);
     }
 
-    static RATE rate(const Data* asset)
+    static RATE rate(const Data* r)
     {
-        if (asset->VALUECHANGE.CmpNoCase("None") == 0)
+        if (r->VALUECHANGE.CmpNoCase("None") == 0)
             return RATE_NONE;
-        else if (asset->VALUECHANGE.CmpNoCase("Appreciates") == 0)
+        else if (r->VALUECHANGE.CmpNoCase("Appreciates") == 0)
             return RATE_APPRECIATE;
-        else if (asset->VALUECHANGE.CmpNoCase("Depreciates") == 0)
+        else if (r->VALUECHANGE.CmpNoCase("Depreciates") == 0)
             return RATE_DEPRECIATE;
 
         return RATE(-1);
     }
-    static RATE rate(const Data& asset)
+    static RATE rate(const Data& r)
     {
-        return rate(&asset);
+        return rate(&r);
     }
 };
 

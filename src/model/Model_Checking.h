@@ -61,14 +61,14 @@ public:
     {
         return this->get(id, this->db_);
     }
-    int save(Data* asset)
+    int save(Data* r)
     {
-        asset->save(this->db_);
-        return asset->id();
+        r->save(this->db_);
+        return r->id();
     }
 public:
-    static wxDate TRANSDATE(const Data* asset) { return Model::to_date(asset->TRANSDATE); }
-    static wxDate TRANSDATE(const Data& asset) { return Model::to_date(asset.TRANSDATE); }
+    static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }
+    static wxDate TRANSDATE(const Data& r) { return Model::to_date(r.TRANSDATE); }
 };
 
 #endif // 
