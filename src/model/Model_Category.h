@@ -100,6 +100,11 @@ public:
             
         }
     }
+    static bool is_used(int id)
+    {
+        // TODO
+        return true;
+    }
 };
 
 #endif // 
