@@ -29,6 +29,7 @@
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Billsdeposits.h"
 
 
 BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
@@ -514,27 +515,21 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
 //* bills & deposits *//
 wxString mmHomePagePanel::displayBillsAndDeposits()
 {
-    static const char sql[] =
-        "select BDID, NEXTOCCURRENCEDATE, NUMOCCURRENCES"
-        ", REPEATS, PAYEEID, TRANSCODE, ACCOUNTID, TOACCOUNTID"
-        ", TRANSAMOUNT, TOTRANSAMOUNT from BILLSDEPOSITS_V1";
-
     mmHTMLBuilder hb;
     std::vector<mmBDTransactionHolder> trans_;
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql);
 
     const wxDateTime &today = date_range_->today();
     bool visibleEntries = false;
-    while (q1.NextRow())
+    for (const auto& q1 : Model_Billsdeposits::instance().all())
     {
         mmBDTransactionHolder th;
 
-        th.id_             = q1.GetInt("BDID");
-        th.nextOccurDate_  = q1.GetDate("NEXTOCCURRENCEDATE");
+        th.id_             = q1.BDID;
+        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
         th.nextOccurStr_   = mmGetDateForDisplay(th.nextOccurDate_);
-        int numRepeats     = q1.GetInt("NUMOCCURRENCES");
+        int numRepeats     = q1.NUMOCCURRENCES;
 
-        int repeats        = q1.GetInt("REPEATS");
+        int repeats        = q1.REPEATS;
         // DeMultiplex the Auto Executable fields.
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
@@ -564,13 +559,13 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
                 th.daysRemainingStr_ = _("Inactive");
         }
 
-        th.payeeID_        = q1.GetInt("PAYEEID");
-        th.transType_      = q1.GetString("TRANSCODE");
-        th.accountID_      = q1.GetInt("ACCOUNTID");
-        th.toAccountID_    = q1.GetInt("TOACCOUNTID");
+        th.payeeID_        = q1.PAYEEID;
+        th.transType_      = q1.TRANSCODE;
+        th.accountID_      = q1.ACCOUNTID;
+        th.toAccountID_    = q1.TOACCOUNTID;
 
-        th.amt_            = q1.GetDouble("TRANSAMOUNT");
-        th.toAmt_          = q1.GetDouble("TOTRANSAMOUNT");
+        th.amt_            = q1.TRANSAMOUNT;
+        th.toAmt_          = q1.TOTRANSAMOUNT;
 
         th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
         //for Withdrawal amount should be negative
@@ -606,7 +601,6 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
 
         trans_.push_back(th);
     }
-    q1.Finalize();
     std::sort(trans_.begin(), trans_.end(),
         [](const mmBDTransactionHolder& x, const mmBDTransactionHolder& y){ return x.daysRemaining_ < y.daysRemaining_; });
 
