@@ -72,6 +72,7 @@
 #include "model/Model_Checking.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include "model/Model_Billsdeposits.h"
 
 //----------------------------------------------------------------------------
 
@@ -2589,6 +2590,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         Model_Currency::instance(m_db.get());
         Model_Budgetyear::instance(m_db.get());
         Model_Infotable::instance(m_db.get());
+        Model_Category::instance(m_db.get());
+        Model_Subcategory::instance(m_db.get());
+        Model_Billsdeposits::instance(m_db.get());
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())
         {
@@ -2616,9 +2620,15 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             password_ = password;
             Model_Asset::instance(m_db.get());
             Model_Stock::instance(m_db.get());
+            Model_Account::instance(m_db.get());
+            Model_Payee::instance(m_db.get());
+            Model_Checking::instance(m_db.get());
             Model_Currency::instance(m_db.get());
             Model_Budgetyear::instance(m_db.get());
             Model_Infotable::instance(m_db.get());
+            Model_Category::instance(m_db.get());
+            Model_Subcategory::instance(m_db.get());
+            Model_Billsdeposits::instance(m_db.get());
 
             m_core.reset(new mmCoreDB(m_db));
         }
@@ -2628,10 +2638,15 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             password_ = password;
             Model_Asset::instance(m_db.get());
             Model_Stock::instance(m_db.get());
+            Model_Account::instance(m_db.get());
+            Model_Payee::instance(m_db.get());
+            Model_Checking::instance(m_db.get());
             Model_Currency::instance(m_db.get());
-            Model_Currency::instance().all();
             Model_Budgetyear::instance(m_db.get());
             Model_Infotable::instance(m_db.get());
+            Model_Category::instance(m_db.get());
+            Model_Subcategory::instance(m_db.get());
+            Model_Billsdeposits::instance(m_db.get());
 
             openDataBase(fileName);
             m_core.reset(new mmCoreDB(m_db));
