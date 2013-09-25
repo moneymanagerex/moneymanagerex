@@ -596,12 +596,9 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
         }
         else
         {
-            if (th.payeeID_ >0)
-            {
-                Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
-                if (payee)
-                    th.payeeStr_ = payee->PAYEENAME;
-            }
+            Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+            if (payee)
+                th.payeeStr_ = payee->PAYEENAME;
         }
 
         if (th.daysRemaining_ <= 14)
