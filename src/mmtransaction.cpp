@@ -608,7 +608,7 @@ void mmBankTransactionList::UpdateTransaction(mmBankTransaction* pBankTransactio
 
 void mmBankTransactionList::getExpensesIncomeStats
     (std::map<int, std::pair<double, double> > &incomeExpensesStats
-    , const mmDateRange* date_range
+    , mmDateRange* date_range
     , int accountID
     , bool group_by_account
     , bool group_by_month) const
@@ -679,8 +679,11 @@ void mmBankTransactionList::getExpensesIncomeStats
 
 void mmBankTransactionList::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
-    , const mmDateRange* date_range) const
+    , mmDateRange* date_range) const
 {
+    //Get base currency rates for all accounts
+    std::map<int, double> acc_conv_rates;
+    core_->accountList_.getAccountRates(acc_conv_rates);
     //Temporary map
     std::map<wxString, double> stat;
 
@@ -691,15 +694,10 @@ void mmBankTransactionList::getTopCategoryStats(
         if (trx->date_ < date_range->start_date()) continue;
         if (trx->date_.GetDateOnly() > date_range->end_date()) continue;
 
-        const Model_Account::Data* account = Model_Account::instance().get(trx->accountID_);
-        if (!account) continue;
-        const Model_Currency::Data* currency = Model_Account::currency(account);
-        if (!currency) continue;
-
         if (trx->categID_ > -1)
         {
             const wxString categ_name = core_->categoryList_.GetFullCategoryString(trx->categID_, trx->subcategID_);
-            stat[categ_name] += trx->value(-1) * currency->BASECONVRATE;
+            stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
         }
         else
         {
@@ -709,7 +707,7 @@ void mmBankTransactionList::getTopCategoryStats(
             {
                 const wxString categ_name = core_->categoryList_.GetFullCategoryString(entry->categID_, entry->subCategID_);
                 stat[categ_name] += entry->splitAmount_
-                    * (currency->BASECONVRATE) 
+                    * (acc_conv_rates[trx->accountID_]) 
                     * (trx->value(-1)< 0 ? -1 : 1);
             }
         }
@@ -728,18 +726,25 @@ void mmBankTransactionList::getTopCategoryStats(
     }
 
     std::stable_sort(categoryStats.begin(), categoryStats.end()
-        , [] (const std::pair<wxString, double>& x, const std::pair<wxString, double>& y)
+        , [] (const std::pair<wxString, double> x, const std::pair<wxString, double> y)
         { return x.second < y.second; }
     );
 
-    std::vector<std::pair<wxString, double> > tmp;
-    std::copy(categoryStats.begin(), categoryStats.begin() + 7, tmp.begin());
-    std::swap(categoryStats, tmp);
+    int counter = 0;
+    std::vector<std::pair<wxString, double> >::iterator iter;
+    for (iter = categoryStats.begin(); iter != categoryStats.end(); )
+    {
+        counter++;
+        if (counter > 7)
+            iter = categoryStats.erase(iter);
+        else
+            ++iter;
+    }
 }
 
 void mmBankTransactionList::getCategoryStats(
     std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-    , const mmDateRange* date_range, bool ignoreFuture
+    , mmDateRange* date_range, bool ignoreFuture
     , bool group_by_month, bool with_date) const
 {
     //Initialization
@@ -909,7 +914,7 @@ int mmBankTransactionList::getLastUsedPayeeID(int accountID, const wxString& sTy
 }
 
 void mmBankTransactionList::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
-                                          , const mmDateRange* date_range, bool ignoreFuture) const
+                                          , mmDateRange* date_range, bool ignoreFuture) const
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
@@ -1311,3 +1316,31 @@ bool mmBankTransactionList::IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIg
     return found;
 }
 
+bool mmBankTransactionList::IsPayeeUsed(int iPayeeID) const
+{
+    bool found = false;
+    for (const auto& pBankTransaction : transactions_)
+    {
+        if (pBankTransaction->payeeID_ == iPayeeID)
+        {
+            return true;
+        }
+    }
+
+    wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_PAYEEID_FROM_BILLSDEPOSITS_V1);
+    st.Bind(1, iPayeeID);
+
+    try
+    {
+        wxSQLite3ResultSet q1 = st.ExecuteQuery();
+        found = q1.NextRow();
+        st.Finalize();
+    }
+    catch(const wxSQLite3Exception& e)
+    {
+        wxLogDebug("select BILLSDEPOSITS_V1 : %s", e.GetMessage());
+        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
+    }
+
+    return found;
+}

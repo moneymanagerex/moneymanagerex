@@ -22,7 +22,6 @@
 #include "mmcurrency.h"
 #include "reports/mmDateRange.h"
 #include <map>
-#pragma warning( disable : 4100 )
 
 class mmCoreDB;
 
@@ -167,24 +166,24 @@ public:
     void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;
 
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-                                , const mmDateRange* date_range
+                                , mmDateRange* date_range
                                 , int accountID
                                 , bool group_by_account = false
                                         , bool group_by_month = false) const;
 
     void getTopCategoryStats(
         std::vector<std::pair<wxString, double> > &categoryStats
-        , const mmDateRange* date_range) const;
+        , mmDateRange* date_range) const;
 
     void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
-        , const mmDateRange* date_range, bool ignoreFuture
+        , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true, bool with_date = true) const;
 
     // The setting asDeposit is only valid if evaluateTransfer is true
     double getAmountForCategory(int categID, int subcategID, bool ignoreDate, const wxDateTime &dtBegin, const wxDateTime &dtEnd, bool evaluateTransfer = false, bool asDeposit = false, bool ignoreFuture = false) const;
     void getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
-        , const mmDateRange* date_range, bool ignoreFuture) const;
+        , mmDateRange* date_range, bool ignoreFuture) const;
     wxDateTime getLastDate(int accountID) const;
 
     double getBalance(int accountID, bool ignoreFuture = false) const;
@@ -195,6 +194,7 @@ public:
     wxArrayString getTransactionNumber(int accountID, const wxDateTime& transaction_date) const;
     bool IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat = true) const;
     bool IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIgnor_subcat = true) const;
+    bool IsPayeeUsed(int iPayeeID) const;
     bool getDailyBalance(int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture = false) const;
 
 
