@@ -28,6 +28,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 
 
 BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
@@ -513,10 +514,14 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
 //* bills & deposits *//
 wxString mmHomePagePanel::displayBillsAndDeposits()
 {
+    static const char sql[] =
+        "select BDID, NEXTOCCURRENCEDATE, NUMOCCURRENCES"
+        ", REPEATS, PAYEEID, TRANSCODE, ACCOUNTID, TOACCOUNTID"
+        ", TRANSAMOUNT, TOTRANSAMOUNT from BILLSDEPOSITS_V1";
+
     mmHTMLBuilder hb;
     std::vector<mmBDTransactionHolder> trans_;
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(
-        "select BDID, NEXTOCCURRENCEDATE, NUMOCCURRENCES, REPEATS, PAYEEID, TRANSCODE, ACCOUNTID, TOACCOUNTID, TRANSAMOUNT, TOTRANSAMOUNT from BILLSDEPOSITS_V1");
+    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql);
 
     const wxDateTime &today = date_range_->today();
     bool visibleEntries = false;
@@ -577,16 +582,26 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
 
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
-        if (payee)
-            th.payeeStr_ = payee->PAYEENAME; 
-
+        wxString fromAccount = "", toAccount = "";
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
-            wxString fromAccount = core_->accountList_.GetAccountName(th.accountID_);
-            wxString toAccount = core_->accountList_.GetAccountName(th.toAccountID_ );
+            Model_Account::Data *account = Model_Account::instance().get(th.accountID_);
+            if (account)
+                fromAccount = account->ACCOUNTNAME;
+            account = Model_Account::instance().get(th.toAccountID_);
+            if (account)
+                toAccount = account->ACCOUNTNAME;
 
             th.payeeStr_ = toAccount;
+        }
+        else
+        {
+            if (th.payeeID_ >0)
+            {
+                Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+                if (payee)
+                    th.payeeStr_ = payee->PAYEENAME;
+            }
         }
 
         if (th.daysRemaining_ <= 14)
