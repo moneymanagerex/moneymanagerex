@@ -2,6 +2,9 @@
 #include "reportbase.h"
 #include "mmDateRange.h"
 
+#ifndef HTML_WIDGET_TOP_CATEGORIES_H
+#define HTML_WIDGET_TOP_CATEGORIES_H
+
 class htmlWidgetTop7Categories : public mmPrintableBase
 {
 public:
@@ -17,3 +20,4 @@ protected:
     wxString title_;
 };
 
+#endif //
