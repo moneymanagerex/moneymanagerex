@@ -88,7 +88,6 @@ private:
     wxString displayAssets(double& tBalance);
     wxString displayCurrencies();
     wxString displayIncomeVsExpenses();
-    wxString displayBillsAndDeposits();
     wxString getStatWidget();
     wxString getCalendarWidget();
     wxString displayGrandTotals(double& tBalance);
