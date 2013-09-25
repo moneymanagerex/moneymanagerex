@@ -900,16 +900,18 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
-        if (payee)
-            th.payeeStr_ = payee->PAYEENAME;
-
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
             wxString fromAccount = m_core.get()->accountList_.GetAccountName(th.accountID_);
             wxString toAccount = m_core.get()->accountList_.GetAccountName(th.toAccountID_ );
 
             th.payeeStr_ = toAccount;
+        }
+        else
+        {
+            Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+            if (payee)
+                th.payeeStr_ = payee->PAYEENAME;
         }
 
         if (autoExecuteManual && requireExecution)
@@ -920,9 +922,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 mmBDDialog repeatTransactionsDlg(m_core.get()
                     , th.id_ ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
-				{
+                {
                     if (activeHomePage_) createHomePage();
-				}
+                }
                 else // stop repeat executions from occuring
                     continueExecution = false;
             }
@@ -941,7 +943,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran.accountID_ = th.accountID_;
                 tran.toAccountID_ = th.toAccountID_;
                 tran.payeeID_ = th.payeeID_;
-                tran.payeeStr_ = payee->PAYEENAME;
+                tran.payeeStr_ = th.payeeStr_;
                 tran.transType_ = th.transType_;
                 tran.amt_ = th.amt_;
                 tran.status_ = q1.GetString("STATUS");

@@ -223,10 +223,6 @@ void mmBDDialog::dataToControls()
         }
         wxString dispAmount = CurrencyFormatter::float2String(transAmount);
         textAmount_->SetValue(dispAmount);
-        
-        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-        wxString payeeString = payee ? payee->PAYEENAME : "";
-        bPayee_->SetLabel(payeeString);
 
         if (transTypeString == TRANS_TYPE_TRANSFER_STR)
         {
@@ -243,6 +239,12 @@ void mmBDDialog::dataToControls()
                 cAdvanced_->SetValue(true);
                 SetAdvancedTransferControls(true);
             }
+        }
+        else
+        {
+            Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+            if (payee)
+                bPayee_->SetLabel(payee->PAYEENAME);
         }
     }
 
@@ -624,16 +626,17 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                 return;
 
             Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-            bPayee_->SetLabel(payee->PAYEENAME);
-            payeeUnknown_ = false;
+            if (payee)
+            {
+                bPayee_->SetLabel(payee->PAYEENAME);
+                payeeUnknown_ = false;
+                if (payee->CATEGID == -1) return;
 
-            if (payee->CATEGID == -1)
-                return;
-
-            categID_ = payee->CATEGID;
-            subcategID_ = payee->SUBCATEGID;
-            wxString categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
-            bCategory_->SetLabel(categString);
+                categID_ = payee->CATEGID;
+                subcategID_ = payee->SUBCATEGID;
+                const wxString categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
+                bCategory_->SetLabel(categString);
+            }
         }
         else
         {

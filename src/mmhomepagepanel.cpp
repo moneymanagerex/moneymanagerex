@@ -577,17 +577,11 @@ wxString mmHomePagePanel::displayBillsAndDeposits()
 
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        wxString fromAccount = "", toAccount = "";
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
-            Model_Account::Data *account = Model_Account::instance().get(th.accountID_);
+            Model_Account::Data *account = Model_Account::instance().get(th.toAccountID_);
             if (account)
-                fromAccount = account->ACCOUNTNAME;
-            account = Model_Account::instance().get(th.toAccountID_);
-            if (account)
-                toAccount = account->ACCOUNTNAME;
-
-            th.payeeStr_ = toAccount;
+                th.payeeStr_ = account->ACCOUNTNAME;
         }
         else
         {

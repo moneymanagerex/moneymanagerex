@@ -23,6 +23,7 @@
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
@@ -315,17 +316,19 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
         th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
 
-        Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
-        if (payee)
-            th.payeeStr_ = payee->PAYEENAME;
-
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
-            wxString fromAccount = core_->accountList_.GetAccountName(th.accountID_);
-            wxString toAccount = core_->accountList_.GetAccountName(th.toAccountID_ );
-
-            th.payeeStr_ = toAccount;
+            Model_Account::Data *account = Model_Account::instance().get(th.toAccountID_);
+            if (account)
+                th.payeeStr_ = account->ACCOUNTNAME;
         }
+        else
+        {
+            Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
+            if (payee)
+                th.payeeStr_ = payee->PAYEENAME;
+        }
+
         bool toAdd = true;
 
         if (transFilterActive_)
@@ -337,7 +340,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                 toAdd = toAdd && (transFilterDlg_->getFromDateCtrl() <= th.nextOccurDate_
                     && transFilterDlg_->getToDateControl() >= th.nextOccurDate_);
             if (transFilterDlg_->getPayeeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == payee->PAYEENAME);
+                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == th.payeeStr_);
             if (transFilterDlg_->getCategoryCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getCategoryID() == th.categID_
                     && (transFilterDlg_->getSubCategoryID() == th.subcategID_ || transFilterDlg_->getSubCategoryID()<0));
