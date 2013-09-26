@@ -1,3 +1,5 @@
+#pragma once
+
 // Validators -----------------------------------------------------
 class mmCalcValidator : public wxTextValidator
 {
@@ -30,5 +32,18 @@ public:
     {
         this->SetRange(0, 100000000);
     }
+};
+
+class mmDoubleValidator: public wxFloatingPointValidator<double>
+{
+public:
+    mmDoubleValidator(int precision = 2, int max = 100000000)
+        : wxFloatingPointValidator<double>(precision, NULL, wxNUM_VAL_NO_TRAILING_ZEROES)
+        , max_(max)
+    {
+        this->SetRange(0, max_);
+    }
+private:
+    int max_;
 };
 

@@ -224,13 +224,13 @@ void mmCurrencyDialog::CreateControls()
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Scale")), flags);
     scaleTx_ = new wxTextCtrl( this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize
-        , wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator4() );
+        , wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator(1, 10000) );
     itemFlexGridSizer3->Add(scaleTx_, flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Conversion to Base Rate")), flags);
     baseConvRate_ = new wxTextCtrl( this, ID_DIALOG_CURRENCY_TEXT_BASECONVRATE, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator4() );
+        , mmDoubleValidator(4, 10000) );
     itemFlexGridSizer3->Add(baseConvRate_, flagsExpand);
     baseConvRate_ ->SetToolTip(_("Other currency conversion rate. Set Base Currency to 1."));
 
