@@ -7,6 +7,7 @@
 #include "util.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 
 mmExportTransaction::mmExportTransaction(mmCoreDB* core)
     : mmExportBase(core)
@@ -202,25 +203,25 @@ wxString mmExportTransaction::getCategoriesQIF()
     wxString buffer_qif = "";
 
     buffer_qif << "!Type:Cat" << "\n";
-    for (const auto& category: core_->categoryList_.entries_)
+    for (const auto& category: Model_Category::instance().all())
     {
-        const wxString categ_name = category->categName_;
+        const wxString& categ_name = category.CATEGNAME;
         bool bIncome = false;
-        core_->bTransactionList_.IsCategoryUsed(category->categID_
+        core_->bTransactionList_.IsCategoryUsed(category.CATEGID
                 , -1, bIncome, false);
         buffer_qif << "N" << categ_name <<  "\n"
             << (bIncome ? "I" : "E") << "\n"
             << "^" << "\n";
 
-        for (const auto& sub_category: category->children_)
+        for (const auto& sub_category: Model_Category::sub_category(category))
         {
             bIncome = false;
-            bool bSubcateg = sub_category->categID_ != -1;
-            core_->bTransactionList_.IsCategoryUsed(category->categID_
-                , sub_category->categID_, bIncome, false);
+            bool bSubcateg = sub_category.CATEGID != -1;
+            core_->bTransactionList_.IsCategoryUsed(category.CATEGID
+                , sub_category.SUBCATEGID, bIncome, false);
             wxString full_categ_name = wxString()
                 << categ_name << (bSubcateg ? wxString()<<":" : wxString()<<"")
-                << sub_category->categName_;
+                << sub_category.SUBCATEGNAME;
             buffer_qif << "N" << full_categ_name << "\n"
                 << (bIncome ? "I" : "E") << "\n"
                 << "^" << "\n";
@@ -235,22 +236,22 @@ wxString mmExportTransaction::getCategoriesCSV()
     wxString buffer_csv ="";
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
-    for (const auto& category: core_->categoryList_.entries_)
+    for (const auto& category: Model_Category::instance().all())
     {
-        const wxString categ_name = category->categName_;
+        const wxString& categ_name = category.CATEGNAME;
         bool bIncome = false;
-        core_->bTransactionList_.IsCategoryUsed(category->categID_
+        core_->bTransactionList_.IsCategoryUsed(category.CATEGID
                 , -1, bIncome, false);
         buffer_csv << categ_name << delimit << "\n";
 
-        for (const auto& sub_category: category->children_)
+        for (const auto& sub_category: Model_Category::sub_category(category))
         {
             bIncome = false;
-            core_->bTransactionList_.IsCategoryUsed(category->categID_
-                , sub_category->categID_, bIncome, false);
+            core_->bTransactionList_.IsCategoryUsed(category.CATEGID
+                , sub_category.SUBCATEGID, bIncome, false);
             wxString full_categ_name = wxString()
                 << categ_name << delimit
-                << sub_category->categName_;
+                << sub_category.SUBCATEGNAME;
             buffer_csv << full_categ_name << "\n";
         }
     }
