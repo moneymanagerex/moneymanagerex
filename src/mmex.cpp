@@ -838,38 +838,36 @@ void mmGUIFrame::setHomePageActive(bool active)
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     bool continueExecution = false;
-
-    m_core->currencyList_.LoadBaseCurrencySettings();
     m_db.get()->Begin();
-    wxSQLite3ResultSet q1 = m_db.get()->ExecuteQuery(SELECT_ALL_FROM_BILLSDEPOSITS_V1);
-    while (q1.NextRow())
+
+    for (const auto& q1: Model_Billsdeposits::instance().all())
     {
         bool autoExecuteManual = false; // Used when decoding: REPEATS
         bool autoExecuteSilent = false;
         bool requireExecution  = false;
 
         mmBDTransactionHolder th;
-        th.id_             = q1.GetInt("BDID");
-        th.nextOccurDate_  = q1.GetDate("NEXTOCCURRENCEDATE");
+        th.id_             = q1.BDID;
+        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
 
         th.nextOccurStr_   = mmGetDateForDisplay(th.nextOccurDate_);
-        th.payeeID_        = q1.GetInt("PAYEEID");
-        th.transType_      = q1.GetString("TRANSCODE");
-        th.accountID_      = q1.GetInt("ACCOUNTID");
-        th.toAccountID_    = q1.GetInt("TOACCOUNTID");
+        th.payeeID_        = q1.PAYEEID;
+        th.transType_      = q1.TRANSCODE;
+        th.accountID_      = q1.ACCOUNTID;
+        th.toAccountID_    = q1.TOACCOUNTID;
 
         th.accountName_    = m_core.get()->accountList_.GetAccountName(th.accountID_);
-        th.amt_            = q1.GetDouble("TRANSAMOUNT");
-        th.toAmt_          = q1.GetDouble("TOTRANSAMOUNT");
-        th.notes_          = q1.GetString("NOTES");
-        th.categID_        = q1.GetInt("CATEGID");
+        th.amt_            = q1.TRANSAMOUNT;
+        th.toAmt_          = q1.TOTRANSAMOUNT;
+        th.notes_          = q1.NOTES;
+        th.categID_        = q1.CATEGID;
         th.categoryStr_    = m_core.get()->categoryList_.GetCategoryName(th.categID_);
-        th.subcategID_     = q1.GetInt("SUBCATEGID");
+        th.subcategID_     = q1.SUBCATEGID;
         th.subcategoryStr_ = m_core.get()->categoryList_.GetSubCategoryName(th.categID_, th.subcategID_);
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-        int repeats        = q1.GetInt("REPEATS");
-        int numRepeats     = q1.GetInt("NUMOCCURRENCES");
+        int repeats        = q1.REPEATS;
+        int numRepeats     = q1.NUMOCCURRENCES;
 
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
         {
@@ -947,8 +945,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran.payeeStr_ = th.payeeStr_;
                 tran.transType_ = th.transType_;
                 tran.amt_ = th.amt_;
-                tran.status_ = q1.GetString("STATUS");
-                tran.transNum_ = q1.GetString("TRANSACTIONNUMBER");
+                tran.status_ = q1.STATUS;
+                tran.transNum_ = q1.TRANSACTIONNUMBER;
                 tran.notes_ = th.notes_;
                 tran.categID_ = th.categID_;
                 tran.subcategID_ = th.subcategID_;
@@ -970,7 +968,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             }
         }
     }
-    q1.Finalize();
     m_db.get()->Commit();
 
     if (continueExecution)
