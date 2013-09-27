@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "htmlbuilder.h"
 #include "util.h"
 #include <algorithm>
+#include "model/Model_Category.h"
 
 #define CATEGORY_SORT_BY_NAME		1
 #define CATEGORY_SORT_BY_OVERALL	2
@@ -65,10 +66,10 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 	// structure for sorting of data (month is used for sorting of period values and is not directly displayed)
     struct data_holder {wxString category_name; double period[MONTHS_IN_PERIOD]; double overall; double month;} line;
     std::vector<data_holder> data;
-    for (const auto& category: core_->categoryList_.entries_)
+    for (const auto& category: Model_Category::instance().all())
     {
-        int categID = category->categID_;
-		line.category_name = core_->categoryList_.GetFullCategoryString(categID, -1);
+        int categID = category.CATEGID;
+		line.category_name = category.CATEGNAME;
 		line.overall = 0;
 		int month = 0;
         for (const auto &i : categoryStats[categID][-1])
@@ -81,10 +82,10 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             totals[TOTAL][i.first] += value;
         }
         data.push_back(line);
-        for (const auto& sub_category: category->children_)
+        for (const auto& sub_category: Model_Category::sub_category(category))
         {
-            int subcategID = sub_category->categID_;
-			line.category_name = core_->categoryList_.GetFullCategoryString(categID, subcategID);
+            int subcategID = sub_category.SUBCATEGID;
+			line.category_name = category.CATEGNAME + " : " + sub_category.SUBCATEGNAME;
             line.overall = 0;
 			month = 0;
             for (const auto &i : categoryStats[categID][subcategID])
