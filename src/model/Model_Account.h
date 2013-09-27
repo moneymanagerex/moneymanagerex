@@ -82,6 +82,19 @@ public:
     {
         return status(&account);
     }
+    static TYPE type(const Data* account)
+    {
+        if (account->ACCOUNTTYPE.CmpNoCase("Checking") == 0)
+            return CHECKING;
+        else if (account->ACCOUNTTYPE.CmpNoCase("Term") == 0)
+            return TERM;
+        else
+            return INVESTMENT;
+    }
+    static TYPE type(const Data& account)
+    {
+        return type(&account);
+    }
 };
 
 #endif // 

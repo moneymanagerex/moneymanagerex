@@ -6,6 +6,7 @@
 #include "paths.h"
 #include "export.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Account.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmQIFExportDialog, wxDialog )
 
@@ -48,17 +49,17 @@ bool mmQIFExportDialog::Create( wxWindow* parent, wxWindowID id, const wxString&
 
 void mmQIFExportDialog::fillControls()
 {
-    wxArrayString accounts_type;
-    accounts_type.Add(ACCOUNT_TYPE_BANK);
-    accounts_type.Add(ACCOUNT_TYPE_TERM);
-    accounts_id_ = core_->accountList_.getAccountsID(accounts_type);
     bSelectedAccounts_->SetLabel(_("All"));
     bSelectedAccounts_->SetToolTip(_("All"));
 
-    for (const auto &entry : accounts_id_)
+    for (const auto& a: Model_Account::instance().all())
     {
-        accounts_name_.Add(core_->accountList_.GetAccountName(entry));
-        selected_accounts_id_.Add(entry);
+        if (Model_Account::type(a) == Model_Account::CHECKING || Model_Account::type(a) == Model_Account::TERM)
+        {
+            accounts_name_.Add(a.ACCOUNTNAME);
+            selected_accounts_id_.Add(a.ACCOUNTID);
+            accounts_id_.Add(a.ACCOUNTID);
+        }
     }
 
     // redirect logs to text control
