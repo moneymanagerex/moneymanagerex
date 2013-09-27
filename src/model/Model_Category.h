@@ -74,6 +74,10 @@ public:
     {
         return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r->CATEGID);
     }
+    static Model_Subcategory::Data_Set sub_category(const Data& r)
+    {
+        return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r.CATEGID);
+    }
 
     static void top_category(std::vector<std::pair<wxString /*category name*/
         , double/*amount*/> >& category, const mmDateRange* date_range, int top_n = 7)

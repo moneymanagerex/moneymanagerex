@@ -24,6 +24,7 @@
 #include "mmOption.h"
 #include "mmgraphpie.h"
 #include <algorithm>
+#include "model/Model_Category.h"
 
 #define CATEGORY_SORT_BY_NAME		1
 #define CATEGORY_SORT_BY_AMOUNT		2
@@ -58,12 +59,12 @@ wxString mmReportCategoryExpenses::getHTMLText()
         , with_date);
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    for (const auto& category: core_->categoryList_.entries_)
+    for (const auto& category: Model_Category::instance().all())
     {
         int categs = 0;
         double categtotal = 0.0;
-        int categID = category->categID_;
-        const wxString sCategName = category->categName_;
+        int categID = category.CATEGID;
+        const wxString& sCategName = category.CATEGNAME;
         double amt = categoryStats[categID][-1][0];
         if (type_ == GOES && amt < 0.0) amt = 0;
         if (type_ == COME && amt > 0.0) amt = 0;
@@ -84,9 +85,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
 			data.push_back(line);
         }
 
-        for (const auto & sub_category: category->children_)
+        for (const auto& sub_category: Model_Category::sub_category(category))
         {
-            int subcategID = sub_category->categID_;
+            int subcategID = sub_category.SUBCATEGID;
 
             wxString sFullCategName = core_->categoryList_.GetFullCategoryString(categID, subcategID);
             amt = categoryStats[categID][subcategID][0];
