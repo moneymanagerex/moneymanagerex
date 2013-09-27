@@ -73,6 +73,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
 #include "model/Model_Billsdeposits.h"
+#include <wx/cmdline.h>
 
 //----------------------------------------------------------------------------
 
@@ -81,9 +82,15 @@ int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
 IMPLEMENT_APP(mmGUIApp)
 //----------------------------------------------------------------------------
 
+static const wxCmdLineEntryDesc g_cmdLineDesc [] =
+{
+	{ wxCMD_LINE_PARAM,  NULL, NULL, _("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+	{ wxCMD_LINE_NONE }
+}; 
+
 //----------------------------------------------------------------------------
 
-mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0)
+mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam("")
 {
     wxHandleFatalExceptions(); // tell the library to call OnFatalException()
 }
@@ -92,6 +99,19 @@ wxLocale& mmGUIApp::getLocale()
 {
     return this->m_locale;
 }
+
+void mmGUIApp::OnInitCmdLine(wxCmdLineParser& parser)
+{
+    parser.SetDesc (g_cmdLineDesc);
+}
+
+bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
+{
+	if(parser.GetParamCount() > 0)
+		m_optParam = parser.GetParam(0);
+	return true;
+}
+
 //----------------------------------------------------------------------------
 /*
     See also: wxStackWalker, wxDebugReportUpload.
@@ -658,9 +678,17 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
     custRepIndex_ = new CustomReportIndex();
 
     // decide if we need to show app start dialog
-    bool from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
+    bool from_scratch = false;
+	wxFileName dbpath = wxGetApp().m_optParam;
+	if(!dbpath.IsOk())
+	{
+		from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
+		if (from_scratch)
+			dbpath  = wxGetEmptyString();
+		else
+			dbpath = Model_Setting::instance().getLastDbPath();
+	}
 
-    wxFileName dbpath = Model_Setting::instance().getLastDbPath();
     if (from_scratch && !dbpath.IsOk()) mmSelectLanguage(this, true);
 
     /* Create the Controls for the frame */
@@ -699,7 +727,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
             menuItemOnlineUpdateCurRate_->Enable(false);
     }
 
-    if (from_scratch) dbpath  = wxGetEmptyString();
     if (from_scratch || !dbpath.IsOk())
     {
         menuEnableItems(false);

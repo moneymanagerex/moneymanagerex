@@ -52,9 +52,12 @@ public:
     mmGUIApp();
 
     wxLocale& getLocale();
+	virtual void OnInitCmdLine(wxCmdLineParser& parser);
+	virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
 public:
     mmGUIFrame* m_frame;
     wxSQLite3Database* m_setting_db;
+	wxString m_optParam;
 private:
     void reportFatalException(wxDebugReport::Context);
 private:
