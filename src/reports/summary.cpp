@@ -22,6 +22,7 @@
 #include "htmlbuilder.h"
 #include "db/assets.h"
 #include "mmCurrencyFormatter.h"
+#include "model/Model_Account.h"
 
 mmReportSummary::mmReportSummary(mmCoreDB* core)
 : mmPrintableBase(core)
@@ -46,13 +47,13 @@ wxString mmReportSummary::getHTMLText()
     hb.endTableRow();
 
     /* Checking */
-    for (const auto& account: core_->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        if (account->acctType_ == ACCOUNT_TYPE_BANK && account->status_ == mmAccount::MMEX_Open)
+        if (Model_Account::type(account) == Model_Account::CHECKING && Model_Account::status(account) == Model_Account::OPEN)
         {
-            double bal = account->initialBalance_ + core_->bTransactionList_.getBalance(account->id_, mmIniOptions::instance().ignoreFutureTransactions_);
+            double bal = account.INITIALBAL + core_->bTransactionList_.getBalance(account.ACCOUNTID, mmIniOptions::instance().ignoreFutureTransactions_);
 
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID); // TODO
             wxASSERT(pCurrencyPtr);
             CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
             double rate = pCurrencyPtr->baseConv_;
@@ -60,7 +61,7 @@ wxString mmReportSummary::getHTMLText()
             tBalance += bal * rate;
 
             hb.startTableRow();
-            hb.addTableCellLink(wxString::Format("ACCT:%d", account->id_),account->name_, false, true);
+            hb.addTableCellLink(wxString::Format("ACCT:%d", account.ACCOUNTID), account.ACCOUNTNAME, false, true);
 			hb.addMoneyCell(bal);
             hb.endTableRow();
         }
@@ -77,14 +78,13 @@ wxString mmReportSummary::getHTMLText()
 
     /* Terms */
     double tTBalance = 0.0;
-
-    for (const auto& account: core_->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        if (account->status_== mmAccount::MMEX_Open && account->acctType_ == ACCOUNT_TYPE_TERM)
+        if (Model_Account::type(account) == Model_Account::TERM && Model_Account::status(account) == Model_Account::OPEN)
         {
-            double bal = account->initialBalance_ + core_->bTransactionList_.getBalance(account->id_, mmIniOptions::instance().ignoreFutureTransactions_);
+            double bal = account.INITIALBAL + core_->bTransactionList_.getBalance(account.ACCOUNTID, mmIniOptions::instance().ignoreFutureTransactions_);
 
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
+            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID);
             wxASSERT(pCurrencyPtr);
             CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
             double rate = pCurrencyPtr->baseConv_;
@@ -92,7 +92,7 @@ wxString mmReportSummary::getHTMLText()
             tTBalance += bal * rate;
 
             hb.startTableRow();
-            hb.addTableCellLink(wxString::Format("ACCT:%d", account->id_),account->name_, false, true);
+            hb.addTableCellLink(wxString::Format("ACCT:%d", account.ACCOUNTID), account.ACCOUNTNAME, false, true);
             hb.addMoneyCell(bal);
             hb.endTableRow();
         }
