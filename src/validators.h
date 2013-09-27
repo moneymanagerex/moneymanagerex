@@ -16,24 +16,6 @@ public:
 
 };
 
-class mmDoubleValidator2: public wxFloatingPointValidator<double>
-{
-public:
-    mmDoubleValidator2(): wxFloatingPointValidator<double>(2, NULL, wxNUM_VAL_NO_TRAILING_ZEROES)
-    {
-        this->SetRange(0, 100000000);
-    }
-};
-
-class mmDoubleValidator4: public wxFloatingPointValidator<double>
-{
-public:
-    mmDoubleValidator4(): wxFloatingPointValidator<double>(4, NULL, wxNUM_VAL_NO_TRAILING_ZEROES)
-    {
-        this->SetRange(0, 100000000);
-    }
-};
-
 class mmDoubleValidator: public wxFloatingPointValidator<double>
 {
 public:

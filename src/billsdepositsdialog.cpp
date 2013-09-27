@@ -459,12 +459,12 @@ void mmBDDialog::CreateControls()
 
     textAmount_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2() );
+        , mmDoubleValidator() );
     textAmount_->SetToolTip(amountNormalTip_);
 
     toTextAmount_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2() );
+        , mmDoubleValidator() );
     toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);

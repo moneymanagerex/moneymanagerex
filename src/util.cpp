@@ -479,7 +479,7 @@ bool mmCalculator(wxString sInput, wxString& sOutput)
                 wxString sSign = sElement.Mid(0,1);
                 sElement.Remove(0,1);
 
-                if (sElement.ToDouble(&dTempAmount) ||  CurrencyFormatter::formatCurrencyToDouble(sElement, dTempAmount))
+                if (/*sElement.ToDouble(&dTempAmount) ||*/  CurrencyFormatter::formatCurrencyToDouble(sElement, dTempAmount))
                 {
                     if (sSign == "*") dSubtotal = dSubtotal*dTempAmount;
                     else if (sSign == "M") dSubtotal = -dSubtotal*dTempAmount;

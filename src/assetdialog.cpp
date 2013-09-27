@@ -171,7 +171,7 @@ void mmAssetDialog::CreateControls()
 
     m_valueChangeRate = new wxTextCtrl( itemPanel5, wxID_STATIC, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2() );
+        , mmDoubleValidator() );
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in % per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, flags);
     enableDisableRate(false);

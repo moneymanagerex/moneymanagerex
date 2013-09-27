@@ -274,10 +274,10 @@ void mmFilterTransactionsDialog::CreateControls()
 
     amountMinEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2() );
+        , mmDoubleValidator() );
     amountMaxEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator2() );
+        , mmDoubleValidator() );
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, flagsExpand);
