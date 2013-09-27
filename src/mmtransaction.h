@@ -53,7 +53,6 @@ public:
     int splitEntryID_;
     int categID_;
     int subCategID_;
-    wxString sFullCategoryName_;
 
     double splitAmount_;
 };

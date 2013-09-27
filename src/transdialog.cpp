@@ -960,6 +960,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
             categID_    = split_->entries_[0]->categID_;
             subcategID_ = split_->entries_[0]->subCategID_;
             transAmount_  = split_->entries_[0]->splitAmount_;
+            categoryName_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
             if (transAmount_ < 0 )
             {
