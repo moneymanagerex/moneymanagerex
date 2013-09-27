@@ -420,7 +420,7 @@ void mmAddAccountWizard::RunIt(bool modal)
 bool mmAddAccountPage1::TransferDataFromWindow()
 {
     bool result = true;
-    const wxString account_name = textAccountName_->GetValue().Trim();
+    const wxString& account_name = textAccountName_->GetValue().Trim();
     if ( account_name.IsEmpty())
     {
         wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_ERROR, this);
@@ -2562,7 +2562,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             passwordCheckPassed = false;
     }
 
-    const wxString dialogErrorMessageHeading = _("Opening MMEX Database - Error");
+    const wxString& dialogErrorMessageHeading = _("Opening MMEX Database - Error");
 
     // Existing Database
     if (!openingNew
@@ -3139,8 +3139,8 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
             if (dlg->getNumberCheckBox())
             {
-                const wxString transNumber = dlg->getNumber().Trim().Lower();
-                const wxString orig = tran->transNum_.Lower();
+                const wxString& transNumber = dlg->getNumber().Trim().Lower();
+                const wxString& orig = tran->transNum_.Lower();
                 if (!orig.Matches(transNumber))
                     continue;
             }
