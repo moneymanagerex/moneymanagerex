@@ -89,7 +89,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         {
             int subcategID = sub_category.SUBCATEGID;
 
-            wxString sFullCategName = core_->categoryList_.GetFullCategoryString(categID, subcategID);
+            wxString sFullCategName = category.CATEGNAME + " : " + sub_category.SUBCATEGNAME;
             amt = categoryStats[categID][subcategID][0];
 
             if (type_ == GOES && amt < 0.0) amt = 0;
