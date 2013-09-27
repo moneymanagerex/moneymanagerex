@@ -6,6 +6,7 @@
 #include "mmRepeat.h"
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Account.h"
+#include "model/Model_Billsdeposits.h"
 
 mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
 : mmPrintableBase(core)
@@ -140,17 +141,15 @@ wxString mmReportCashFlow::getHTMLText_i()
     wxDateTime yearFromNow = wxDateTime::Now().Add(wxDateSpan::Years(years));
     forecastVec fvec;
 
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_BILLSDEPOSITS_V1);
-
-    while (q1.NextRow())
+    for(const auto& q1: Model_Billsdeposits::instance().all())
     {
-        wxDateTime nextOccurDate = q1.GetDate("NEXTOCCURRENCEDATE");
+        wxDateTime nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
            
-        int repeats             = q1.GetInt("REPEATS");
-        int numRepeats          = q1.GetInt("NUMOCCURRENCES");
-        wxString transType      = q1.GetString("TRANSCODE");
-        double amt              = q1.GetDouble("TRANSAMOUNT");
-        double toAmt            = q1.GetDouble("TOTRANSAMOUNT");
+        int repeats             = q1.REPEATS;
+        int numRepeats          = q1.NUMOCCURRENCES;
+        wxString transType      = q1.TRANSCODE;
+        double amt              = q1.TRANSAMOUNT;
+        double toAmt            = q1.TOTRANSAMOUNT;
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
@@ -171,8 +170,8 @@ wxString mmReportCashFlow::getHTMLText_i()
         if (nextOccurDate > yearFromNow)
             continue;
 
-        int accountID = q1.GetInt("ACCOUNTID");
-        int toAccountID = q1.GetInt("TOACCOUNTID");
+        int accountID = q1.ACCOUNTID;
+        int toAccountID = q1.TOACCOUNTID;
 
         bool isAccountFound = true, isToAccountFound = true;
         if (accountArray_ != NULL)
@@ -312,7 +311,6 @@ wxString mmReportCashFlow::getHTMLText_i()
             else break;
         } // end while
     } //end query
-    q1.Finalize();
 
     // Now we have a vector of dates and amounts over next year
     int fcstsz = cashflowreporttype_ == 0 ? 12 * years : 366 * years;

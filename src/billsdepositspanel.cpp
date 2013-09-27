@@ -24,6 +24,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Billsdeposits.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
@@ -239,36 +240,31 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
 
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    const  wxString sql = wxString::FromUTF8(SELECT_ALL_FROM_BILLSDEPOSITS_V1)
-        + " order by " + (" NEXTOCCURRENCEDATE");
-
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql);
-
     int cnt = 0, selected_item = -1;
-    for (; q1.NextRow(); ++cnt)
+    for (const auto& q1: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
         mmBDTransactionHolder th;
 
-        th.id_           = q1.GetInt("BDID");
-        th.nextOccurDate_  = q1.GetDate("NEXTOCCURRENCEDATE");
+        th.id_           = q1.BDID;
+        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
         th.nextOccurStr_   = mmGetDateForDisplay(th.nextOccurDate_);
-        int repeats        = q1.GetInt("REPEATS");
-        th.payeeID_        = q1.GetInt("PAYEEID");
-        th.sStatus_        = q1.GetString("STATUS");
-        th.transType_      = q1.GetString("TRANSCODE");
-        th.accountID_      = q1.GetInt("ACCOUNTID");
-        th.toAccountID_    = q1.GetInt("TOACCOUNTID");
+        int repeats        = q1.REPEATS;
+        th.payeeID_        = q1.PAYEEID;
+        th.sStatus_        = q1.STATUS;
+        th.transType_      = q1.TRANSCODE;
+        th.accountID_      = q1.ACCOUNTID;
+        th.toAccountID_    = q1.TOACCOUNTID;
         th.accountName_    = core_->accountList_.GetAccountName(th.accountID_);
-        th.amt_            = q1.GetDouble("TRANSAMOUNT");
-        th.toAmt_          = q1.GetDouble("TOTRANSAMOUNT");
-        th.sNumber_        = q1.GetString("TRANSACTIONNUMBER");
-        th.notes_          = q1.GetString("NOTES");
-        th.categID_        = q1.GetInt("CATEGID");
+        th.amt_            = q1.TRANSAMOUNT;
+        th.toAmt_          = q1.TOTRANSAMOUNT;
+        th.sNumber_        = q1.TRANSACTIONNUMBER;
+        th.notes_          = q1.NOTES;
+        th.categID_        = q1.CATEGID;
         th.categoryStr_    = core_->categoryList_.GetCategoryName(th.categID_);
-        th.subcategID_     = q1.GetInt("SUBCATEGID");
+        th.subcategID_     = q1.SUBCATEGID;
         th.subcategoryStr_ = core_->categoryList_.GetSubCategoryName(th.categID_, th.subcategID_);
 
-        int numRepeats     = q1.GetInt("NUMOCCURRENCES");
+        int numRepeats     = q1.NUMOCCURRENCES;
 
         th.bd_repeat_user_ = false;
         th.bd_repeat_auto_ = false;
@@ -362,8 +358,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         if (toAdd) trans_.push_back(th);
         if (th.id_ == id) selected_item = cnt;
     }
-
-    q1.Finalize();
 
     listCtrlAccount_->SetItemCount(static_cast<long>(trans_.size()));
     return selected_item;
