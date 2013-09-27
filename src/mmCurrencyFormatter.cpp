@@ -100,8 +100,38 @@ wxString CurrencyFormatter::float2Money(double val)
 bool CurrencyFormatter::formatCurrencyToDouble(const wxString& str, double& val)
 {
     const CurrencyFormatter &fmt = CurrencyFormatter::instance();
-    wxString s2d;
-    if (str.StartsWith(fmt.getPrefix(), &s2d))
+
+    wxString s2d = str;
+    const wxString decimal_separator =  wxString::Format("%c", fmt.getDecimalPoint());
+    wxString thousand_separator = wxString::Format("%c", fmt.getGroupSeparator());
+    const wxString sys_decimal_separator = wxNumberFormatter::GetDecimalSeparator();
+    wxString sys_thousand_separator = "";
+    wxChar sep = (wxChar)"";
+    if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
+        sys_thousand_separator = wxString::Format("%c", sep);
+
+    if ((decimal_separator == sys_thousand_separator)
+        && (sys_decimal_separator == thousand_separator))
+    {
+        //Swap separators
+        s2d.Replace(decimal_separator, "|");
+        s2d.Replace(thousand_separator, sys_thousand_separator);
+        s2d.Replace("|", sys_decimal_separator);
+    }
+    else if (thousand_separator.IsEmpty()
+        && (decimal_separator == sys_thousand_separator)
+        && !s2d.Contains(sys_decimal_separator))
+    {
+        s2d.Replace(decimal_separator, sys_decimal_separator);
+    }
+
+    //TODO: Very strange 'if'. What about Suffix?
+    if (!fmt.getPrefix().IsEmpty() && s2d.StartsWith(fmt.getPrefix(), &s2d))
+    {
         return wxNumberFormatter::FromString(s2d , &val);
-    return wxNumberFormatter::FromString(str , &val);
+    }
+    else
+    {
+        return wxNumberFormatter::FromString(s2d , &val);
+    }
 }
