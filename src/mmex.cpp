@@ -789,8 +789,6 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 	wxTreeItemIdValue cookie;
 	while (item.IsOk())
 	{
-		wxString s = navTreeCtrl_->GetItemText(item);
-		wxMessageBox(s, "Debug", wxOK);
 		if (navTreeCtrl_->ItemHasChildren(item))
 		{
 			wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
