@@ -161,21 +161,6 @@ wxArrayInt mmAccountList::getAccountsID(const wxArrayString& accounts_type, int 
 
     return accounts_id;
 }
-//TODO: Deprecated function. Use getAccountsID
-wxArrayString mmAccountList::getAccountsName(int except_id) const
-{
-    wxArrayString as;
-    for (const auto& account : accounts_)
-    {
-        if ((account->acctType_ == ACCOUNT_TYPE_TERM || account->acctType_ == ACCOUNT_TYPE_BANK)
-            && account->status_ != mmAccount::MMEX_Closed && account->id_ != except_id)
-        {
-            as.Add(account->name_);
-        }
-    }
-
-    return as;
-}
 
 wxString mmAccountList::getAccountType(int accountID) const
 {

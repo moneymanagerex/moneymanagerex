@@ -6,6 +6,7 @@
 #include "fileviewerdialog.h"
 #include "paths.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 
 enum qifAccountInfoType
 {
@@ -362,7 +363,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     if (bToDate)
         toDate = toDateCtrl_->GetValue().GetDateOnly();
 
-    wxArrayString accounts_name = core_->accountList_.getAccountsName();
+    wxSortedArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
     wxString sDefCurrencyName = core_->currencyList_.getCurrencyName(core_->currencyList_.GetBaseCurrencySettings());
 
@@ -504,7 +506,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     // prevent same account being added multiple times in case of using 'Back' and 'Next' in wizard.
                     if ( ! core_->accountList_.AccountExists(pAccount->name_))
                         from_account_id = core_->accountList_.AddAccount(pAccount);
-                    accounts_name.Add(pAccount->name_);
+                    accountArray.Add(pAccount->name_);
                     acctName = pAccount->name_;
                     sMsg = wxString::Format(_("Added account '%s'"), acctName)
                         << "\n" << wxString::Format(_("Initial Balance: %s"), (wxString()<<val));
@@ -679,7 +681,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             to_account_id = -1;
             if (type == TRANS_TYPE_TRANSFER_STR)
             {
-                if (accounts_name.Index(sToAccountName) == wxNOT_FOUND)
+                if (accountArray.Index(sToAccountName) == wxNOT_FOUND)
                 {
                     mmAccount* ptrBase = new mmAccount();
                     mmAccount* pAccount(ptrBase);
@@ -693,7 +695,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     // prevent same account being added multiple times in case of using 'Back' and 'Next' in wizard.
                     if ( ! core_->accountList_.AccountExists(pAccount->name_))
                         to_account_id = core_->accountList_.AddAccount(pAccount);
-                    accounts_name.Add(sToAccountName);
+                    accountArray.Add(sToAccountName);
 
                     sMsg = wxString::Format(_("Added account '%s'"), sToAccountName);
                     logWindow->AppendText(wxString()<< sMsg << "\n");
@@ -718,8 +720,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     type = TRANS_TYPE_DEPOSIT_STR;
                 else if (val < 0.0)
                     type = TRANS_TYPE_WITHDRAWAL_STR;
-				else
-					bValid = false;
+                else
+                    bValid = false;
 
                 to_account_id = -1;
                 if (sPayee.IsEmpty())
@@ -971,14 +973,15 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
     bbFormat_->Enable(dateFormatIsOK);
     if (dateFormatIsOK)
         bbFormat_->SetBitmapLabel(wxBitmap(flag_xpm));
-	else
-		return false;
+    else
+        return false;
 
     if (sAccountName.IsEmpty() && last_imported_acc_id_<0)
     {
-        wxArrayString data = core_->accountList_.getAccountsName();
+        wxSortedArrayString accountArray;
+        for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
         sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
-            , _("Account"), data);
+            , _("Account"), accountArray);
         last_imported_acc_id_ = core_->accountList_.GetAccountId(sAccountName);
         if (last_imported_acc_id_ < 0) return false;
     }

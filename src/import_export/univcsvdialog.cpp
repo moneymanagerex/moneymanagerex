@@ -24,6 +24,7 @@
 #include <algorithm>
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 
 IMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog)
 
@@ -224,8 +225,10 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer8->Add(itemStaticText6, flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL));
     itemStaticText6->SetFont(staticBoxFontSetting);
 
-    wxArrayString as = core_->accountList_.getAccountsName();
-    m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxSize(210, -1), as, 0);
+    wxSortedArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
+
+    m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxSize(210, -1), accountArray, 0);
     m_choice_account_->SetSelection(0);
     itemBoxSizer8->Add(m_choice_account_, flags);
 

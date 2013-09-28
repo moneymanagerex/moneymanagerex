@@ -88,7 +88,6 @@ public:
     double getAccountBaseCurrencyConvRate(int accountID) const;
     wxString GetAccountName(int accountID) const;
     wxArrayInt getAccountsID(const wxArrayString& account_type, int except_id = -1) const;
-    wxArrayString getAccountsName(int except_id = -1) const;
     wxString getAccountCurrencyDecimalChar(int accountID) const;
     wxString getAccountCurrencyGroupChar(int accountID) const;
     wxString GetAccountCurrencyName(int accountID) const;

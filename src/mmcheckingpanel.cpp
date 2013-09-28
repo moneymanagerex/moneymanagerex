@@ -1654,8 +1654,12 @@ int TransactionListCtrl::DestinationAccountID()
     wxString source_name = m_cp->core_->accountList_.GetAccountName(m_cp->m_AccountID);
     wxString headerMsg = _("Moving Transaction from ") + source_name + _(" to...");
 
-    wxArrayString dest_name_list = m_cp->core_->accountList_.getAccountsName(m_cp->m_AccountID);
-    wxSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , dest_name_list);
+    wxSortedArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all())
+    {
+        if (m_cp->m_AccountID != account.ACCOUNTID) accountArray.Add(account.ACCOUNTNAME);
+    }
+    wxSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accountArray);
 
     int dest_account_id = -1;
     if (scd.ShowModal() == wxID_OK)

@@ -25,6 +25,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
@@ -179,9 +180,10 @@ void mmFilterTransactionsDialog::CreateControls()
                                       wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(accountCheckBox_, flags);
 
-    wxArrayString as = core_->accountList_.getAccountsName();
+    wxSortedArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
-    accountDropDown_ = new wxChoice( itemPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, as, 0 );
+    accountDropDown_ = new wxChoice( itemPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, accountArray, 0 );
     itemPanelSizer->Add(accountDropDown_, flagsExpand);
 
     //--End of Row --------------------------------------------------------

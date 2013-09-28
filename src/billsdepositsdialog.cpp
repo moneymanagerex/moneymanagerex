@@ -28,6 +28,7 @@
 #include "splittransactionsdialog.h"
 #include "validators.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )
@@ -306,8 +307,9 @@ void mmBDDialog::CreateControls()
                                      wxDefaultPosition, wxSize(180, -1));
     if (core_->accountList_.getNumBankAccounts() == 1)
     {
-        wxArrayString accName = core_->accountList_.getAccountsName();
-        wxString accNameStr = accName[0];
+        wxSortedArrayString accountArray;
+        for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
+        wxString accNameStr = accountArray[0];
         itemAccountName_->SetLabel(accNameStr);
         accountID_= core_->accountList_.GetAccountId(accNameStr);
     };
@@ -578,9 +580,10 @@ void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
 {
-    wxArrayString as = core_->accountList_.getAccountsName();
+    wxSortedArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
-    wxSingleChoiceDialog scd(this, _("Choose Bank Account or Term Account"), _("Select Account"), as);
+    wxSingleChoiceDialog scd(this, _("Choose Bank Account or Term Account"), _("Select Account"), accountArray);
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
@@ -593,12 +596,13 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 {
     if (transaction_type_->GetSelection() == DEF_TRANSFER)
     {
-        wxArrayString as = core_->accountList_.getAccountsName();
+        wxSortedArrayString accountArray;
+        for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
         wxString acctName = itemAccountName_->GetLabel();
         bPayee_->SetLabel(acctName);
 
-        wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), as);
+        wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), accountArray);
         if (scd.ShowModal() == wxID_OK)
         {
             acctName = scd.GetStringSelection();
@@ -665,9 +669,10 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
 {
     // This should only get called if we are in a transfer
-    wxArrayString as = core_->accountList_.getAccountsName();
+    wxArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
-    wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), as);
+    wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), accountArray);
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
