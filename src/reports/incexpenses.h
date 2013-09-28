@@ -77,14 +77,14 @@ public:
 };
 
 /////////////////////////////////////////////////////////////////////////////////////
-class mmReportIncomeExpensesMontly: public mmPrintableBase
+class mmReportIncomeExpensesMonthly: public mmPrintableBase
 {
 public:
-    mmReportIncomeExpensesMontly(mmCoreDB* core
+    mmReportIncomeExpensesMonthly(mmCoreDB* core
                                  , int day_ = 1
                                          , int month_ = 1
                                                  , mmDateRange* date_range = new mmCurrentMonth());
-    virtual ~mmReportIncomeExpensesMontly();
+    virtual ~mmReportIncomeExpensesMonthly();
     wxString getHTMLText();
 protected:
     mmDateRange* date_range_;
@@ -97,37 +97,37 @@ protected:
     }
 };
 
-class mmReportIncomeExpensesCurrentYear: public mmReportIncomeExpensesMontly
+class mmReportIncomeExpensesCurrentYear: public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesCurrentYear(mmCoreDB* core): mmReportIncomeExpensesMontly(core, 1, 1, new mmCurrentYear())
+    mmReportIncomeExpensesCurrentYear(mmCoreDB* core): mmReportIncomeExpensesMonthly(core, 1, 1, new mmCurrentYear())
     {
     }
 };
 
-class mmReportIncomeExpensesLastYear: public mmReportIncomeExpensesMontly
+class mmReportIncomeExpensesLastYear: public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesLastYear(mmCoreDB* core): mmReportIncomeExpensesMontly(core, 1, 1, new mmLastYear())
+    mmReportIncomeExpensesLastYear(mmCoreDB* core): mmReportIncomeExpensesMonthly(core, 1, 1, new mmLastYear())
     {
     }
 };
 
-class mmReportIncomeExpensesCurrentFinancialYear: public mmReportIncomeExpensesMontly
+class mmReportIncomeExpensesCurrentFinancialYear: public mmReportIncomeExpensesMonthly
 {
 public:
     mmReportIncomeExpensesCurrentFinancialYear(mmCoreDB* core
-            , const int day, const int month): mmReportIncomeExpensesMontly(core
+            , const int day, const int month): mmReportIncomeExpensesMonthly(core
                         , day, month, new mmCurrentFinancialYear(day, month))
     {
     }
 };
 
-class mmReportIncomeExpensesLastFinancialYear: public mmReportIncomeExpensesMontly
+class mmReportIncomeExpensesLastFinancialYear: public mmReportIncomeExpensesMonthly
 {
 public:
     mmReportIncomeExpensesLastFinancialYear(mmCoreDB* core
-                                            , const int day, const int month): mmReportIncomeExpensesMontly(core
+                                            , const int day, const int month): mmReportIncomeExpensesMonthly(core
                                                         , day, month, new mmLastFinancialYear(day, month))
     {
     }

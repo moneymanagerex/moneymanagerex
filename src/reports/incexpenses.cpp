@@ -83,7 +83,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     return hb.getHTMLText();
 }
 
-mmReportIncomeExpensesMontly::mmReportIncomeExpensesMontly(mmCoreDB* core, int day, int month, mmDateRange* date_range)
+mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(mmCoreDB* core, int day, int month, mmDateRange* date_range)
     : mmPrintableBase(core)
     , day_(day)
     , month_(month)
@@ -92,13 +92,13 @@ mmReportIncomeExpensesMontly::mmReportIncomeExpensesMontly(mmCoreDB* core, int d
 {
 }
 
-mmReportIncomeExpensesMontly::~mmReportIncomeExpensesMontly()
+mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 {
 	if(date_range_)
 		delete date_range_;
 }
 
-wxString mmReportIncomeExpensesMontly::getHTMLText()
+wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
     double total_expenses = 0.0;
     double total_income = 0.0;
