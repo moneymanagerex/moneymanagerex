@@ -764,7 +764,8 @@ void mmGUIFrame::cleanup()
     printer_.reset();
     delete recentFiles_;
     delete custRepIndex_;
-    saveSettings();
+	if(!fileName_.IsEmpty()) // Exiting before file is opened
+	    saveSettings();
 
     m_mgr.UnInit();
 
