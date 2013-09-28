@@ -399,9 +399,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     else
     {
         selectButton_->Enable(bEnableSelect_);
-        bool bIncome = false;
-        bool bUsed = core_->bTransactionList_.IsCategoryUsed(categID_, subcategID_, bIncome, subcategID_ == -1)
-                || Model_Category::is_used(categID_, subcategID_);
+        bool bUsed = Model_Category::is_used(categID_, subcategID_);
         deleteButton_->Enable(!bUsed);
         editButton_->Enable();
         if (subcategID_ != -1)
