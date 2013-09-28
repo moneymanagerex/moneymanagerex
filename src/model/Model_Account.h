@@ -21,6 +21,7 @@
 #include "Model.h"
 #include "db/DB_Table_Accountlist_V1.h"
 #include "Model_Currency.h" // detect base currency
+#include "Model_Checking.h"
 
 class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
 {
@@ -70,7 +71,16 @@ public:
     {
         return Model_Currency::instance().get(r->CURRENCYID);
     }
-
+public:
+    static double balance(const Data* r)
+    {
+        double sum = 0;
+        for (const auto& tran: Model_Checking::instance().find(Model_Checking::COL_ACCOUNTID, r->ACCOUNTID))
+        {
+           sum += Model_Checking::balance(tran, r->ACCOUNTID); 
+        }
+        return sum;
+    }
 public:
     static STATUS status(const Data* account)
     {

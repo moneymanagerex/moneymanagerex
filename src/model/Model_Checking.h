@@ -99,6 +99,27 @@ public:
             return TRANSFER;
     }
     static TYPE type(const Data& r) { return type(&r); }
+    static double balance(const Data* r, int account_id = -1)
+    {
+        double sum = 0;
+        switch (type(r))
+        {
+        case WITHDRAWAL:
+            sum -= r->TRANSAMOUNT;
+            break;
+        case DEPOSIT:
+            sum += r->TRANSAMOUNT;
+            break;
+        case TRANSFER:
+            if (account_id == r->ACCOUNTID)     sum -= r->TRANSAMOUNT;
+            if (account_id == r->TOACCOUNTID)   sum -= r->TRANSAMOUNT;
+            break;
+        default:
+            break;
+        }
+        return sum;
+    }
+    static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
 };
 
 #endif // 
