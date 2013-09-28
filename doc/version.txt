@@ -1,6 +1,8 @@
 Version History of Money Manager Ex
 
 0.9.9.2 (TBA)
+- wxWidgets 2.9.4
+- Externals updated to wxSQLite3 V: 3.0.3 (sqlite3 V: 3.8.0.1)
 - QIF Export/Import updated;
 - Lua scripting language interface added;
 - Transaction Dialogue updated;
@@ -21,9 +23,12 @@ Version History of Money Manager Ex
 - Added user defined icons for accounts;
 - Repeating Transactions updated. A filter added.
 - Remove progress bar from Checking panel as too fast to be useful.
-- Crash using Transaction Report using Vista / USB
+- Crash using Transaction Report using Vista / USB;
 - Crash using Cash Flow Report when a Repeating Transaction
     becomes inactive using frequency of: in/every x days/months
+- Print and preview for Home Page added;
+- Reports sorting functionality provided;
+- Command line option for open DB file;
 
 0.9.9.0 (May 1, 2012)
 - Externals updated to wxSQLite3 V: 3.0.0 (sqlite3 V: 3.7.10.0)
