@@ -767,7 +767,8 @@ void mmGUIFrame::cleanup()
 	if(!fileName_.IsEmpty()) // Exiting before file is opened
 	    saveSettings();
 
-	cleanupNavTreeControl();
+	wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
+	cleanupNavTreeControl(rootitem);
     m_mgr.UnInit();
 
     /* Delete the GUI */
@@ -783,33 +784,23 @@ void mmGUIFrame::cleanup()
     }
 }
 
-void mmGUIFrame::cleanupNavTreeControl()
+void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 {
-	wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
-	if (rootitem.IsOk())
+	wxTreeItemIdValue cookie;
+	while (item.IsOk())
 	{
-		wxTreeItemIdValue cookie;
-		wxTreeItemId item = navTreeCtrl_->GetFirstChild(rootitem, cookie);
-		while (item.IsOk())
+		wxString s = navTreeCtrl_->GetItemText(item);
+		wxMessageBox(s, "Debug", wxOK);
+		if (navTreeCtrl_->ItemHasChildren(item))
 		{
-			if (navTreeCtrl_->ItemHasChildren(item))
-			{
-				wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
-				while (childitem.IsOk())
-				{
-					mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(childitem));
-					navTreeCtrl_->SetItemData(childitem, 0);
-					if (iData)
-						delete iData;
-					childitem = navTreeCtrl_->GetNextChild(item, cookie);
-				}
-			}
-			mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(item));
-			navTreeCtrl_->SetItemData(item, 0);
-			if (iData)
-				delete iData;
-			item = navTreeCtrl_->GetNextChild(rootitem, cookie);
+			wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
+			cleanupNavTreeControl(childitem);
 		}
+		mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(item));
+		navTreeCtrl_->SetItemData(item, 0);
+		if (iData)
+			delete iData;
+		item = navTreeCtrl_->GetNextChild(item, cookie);
 	}
 }
 
@@ -1154,7 +1145,8 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     }
 
     navTreeCtrl_->SetEvtHandlerEnabled(false);
-	cleanupNavTreeControl();
+	wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
+	cleanupNavTreeControl(rootitem);
     navTreeCtrl_->DeleteAllItems();
     //navTreeCtrl_->SetBackgroundColour(mmColors::navTreeBkColor);
 
