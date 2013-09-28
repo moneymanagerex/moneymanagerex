@@ -206,19 +206,15 @@ wxString mmExportTransaction::getCategoriesQIF()
     for (const auto& category: Model_Category::instance().all())
     {
         const wxString& categ_name = category.CATEGNAME;
-        bool bIncome = false;
-        core_->bTransactionList_.IsCategoryUsed(category.CATEGID
-                , -1, bIncome, false);
+        bool bIncome = Model_Category::has_income(category.CATEGID);
         buffer_qif << "N" << categ_name <<  "\n"
             << (bIncome ? "I" : "E") << "\n"
             << "^" << "\n";
 
         for (const auto& sub_category: Model_Category::sub_category(category))
         {
-            bIncome = false;
+            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
             bool bSubcateg = sub_category.CATEGID != -1;
-            core_->bTransactionList_.IsCategoryUsed(category.CATEGID
-                , sub_category.SUBCATEGID, bIncome, false);
             wxString full_categ_name = wxString()
                 << categ_name << (bSubcateg ? wxString()<<":" : wxString()<<"")
                 << sub_category.SUBCATEGNAME;
@@ -239,16 +235,12 @@ wxString mmExportTransaction::getCategoriesCSV()
     for (const auto& category: Model_Category::instance().all())
     {
         const wxString& categ_name = category.CATEGNAME;
-        bool bIncome = false;
-        core_->bTransactionList_.IsCategoryUsed(category.CATEGID
-                , -1, bIncome, false);
+        bool bIncome = Model_Category::has_income(category.CATEGID);
         buffer_csv << categ_name << delimit << "\n";
 
         for (const auto& sub_category: Model_Category::sub_category(category))
         {
-            bIncome = false;
-            core_->bTransactionList_.IsCategoryUsed(category.CATEGID
-                , sub_category.SUBCATEGID, bIncome, false);
+            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
             wxString full_categ_name = wxString()
                 << categ_name << delimit
                 << sub_category.SUBCATEGNAME;

@@ -28,8 +28,13 @@ class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
     using DB_Table_CHECKINGACCOUNT_V1::find;
     using DB_Table_CHECKINGACCOUNT_V1::get;
 public:
+    enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
+public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {
+        this->types_.Add(wxTRANSLATE("Withdrawal"));
+        this->types_.Add(wxTRANSLATE("Deposit"));
+        this->types_.Add(wxTRANSLATE("Transfer"));
     };
     ~Model_Checking() {};
 
@@ -58,6 +63,11 @@ public:
     {
         return find(db_, col, v);
     }
+    template<class V1, class V2>
+    Data_Set find(COLUMN col1, const V1& v1, COLUMN col2, const V2& v2)
+    {
+        return find(db_, col1, v1, col2, v2);
+    }
     Data* get(int id)
     {
         return this->get(id, this->db_);
@@ -67,17 +77,28 @@ public:
         r->save(this->db_);
         return r->id();
     }
-    Model_Splittransaction::Data_Set splittransaction(const Data* r)
+public:
+    static Model_Splittransaction::Data_Set splittransaction(const Data* r)
     {
         return Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, r->TRANSID);
     }
-    Model_Splittransaction::Data_Set splittransaction(const Data& r)
+    static Model_Splittransaction::Data_Set splittransaction(const Data& r)
     {
         return Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, r.TRANSID);
     }
 public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }
     static wxDate TRANSDATE(const Data& r) { return Model::to_date(r.TRANSDATE); }
+    static TYPE type(const Data* r)
+    {
+        if (r->TRANSCODE.CmpNoCase("Withdrawal") == 0)
+            return WITHDRAWAL;
+        else if (r->TRANSCODE.CmpNoCase("Deposit") == 0)
+            return DEPOSIT;
+        else
+            return TRANSFER;
+    }
+    static TYPE type(const Data& r) { return type(&r); }
 };
 
 #endif // 

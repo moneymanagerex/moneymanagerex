@@ -1256,39 +1256,3 @@ void mmBankTransactionList::UpdateCategory(int catID, int subCatID, wxString &fu
     }
 }
 
-bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bIncome, bool bIgnor_subcat) const
-{
-    double sum = 0;
-    bool bTrxUsed = false;
-
-    for (const auto& pBankTransaction : transactions_)
-    {
-        if ((pBankTransaction->categID_ == iCatID)
-            && (bIgnor_subcat ? true : pBankTransaction->subcategID_== iSubCatID))
-        {
-            bTrxUsed = true;
-            if (pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR)
-                sum += pBankTransaction->amt_;
-            else
-                sum -= pBankTransaction->amt_;
-        }
-
-        mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
-
-        for (int i = 0; i < (int)splits->entries_.size(); ++i)
-        {
-            if (splits->entries_[i]->categID_==iCatID && splits->entries_[i]->subCategID_==iSubCatID)
-            {
-                bTrxUsed = true;
-                if ((pBankTransaction->transType_ == TRANS_TYPE_DEPOSIT_STR && splits->entries_[i]->splitAmount_ > 0)
-                    || (pBankTransaction->transType_ == TRANS_TYPE_WITHDRAWAL_STR && splits->entries_[i]->splitAmount_ < 0))
-                    sum += fabs(splits->entries_[i]->splitAmount_);
-                else
-                    sum -= fabs(splits->entries_[i]->splitAmount_);
-            }
-        }
-    }
-    bIncome = sum > 0;
-    return bTrxUsed;
-}
-
