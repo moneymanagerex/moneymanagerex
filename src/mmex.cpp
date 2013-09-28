@@ -786,11 +786,11 @@ void mmGUIFrame::cleanup()
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 {
-	wxTreeItemIdValue cookie;
 	while (item.IsOk())
 	{
 		if (navTreeCtrl_->ItemHasChildren(item))
 		{
+			wxTreeItemIdValue cookie;
 			wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
 			cleanupNavTreeControl(childitem);
 		}
@@ -798,7 +798,7 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 		navTreeCtrl_->SetItemData(item, 0);
 		if (iData)
 			delete iData;
-		item = navTreeCtrl_->GetNextChild(item, cookie);
+		item = navTreeCtrl_->GetNextSibling(item);
 	}
 }
 
@@ -1143,12 +1143,12 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     }
 
     navTreeCtrl_->SetEvtHandlerEnabled(false);
-	wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
-	cleanupNavTreeControl(rootitem);
+	wxTreeItemId root = navTreeCtrl_->GetRootItem();
+	cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
     //navTreeCtrl_->SetBackgroundColour(mmColors::navTreeBkColor);
 
-    wxTreeItemId root = navTreeCtrl_->AddRoot(_("Home Page"), 0, 0);
+    root = navTreeCtrl_->AddRoot(_("Home Page"), 0, 0);
     navTreeCtrl_->SetItemData(root, new mmTreeItemData("Home Page"));
     navTreeCtrl_->SetItemBold(root, true);
     navTreeCtrl_->SetFocus();
