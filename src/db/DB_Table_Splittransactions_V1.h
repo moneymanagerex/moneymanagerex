@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-09-24 17:02:43.779074.
+ *          AUTO GENERATED at 2013-09-28 17:54:28.466444.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID numeric NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+            db->ExecuteUpdate("CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
@@ -106,7 +106,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         Self* view_;
     
         int SPLITTRANSID;//  primay key
-        double TRANSID;
+        int TRANSID;
         int CATEGID;
         int SUBCATEGID;
         double SPLITTRANSAMOUNT;
@@ -118,7 +118,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             view_ = view;
         
             SPLITTRANSID = -1;
-            TRANSID = 0.0;
+            TRANSID = -1;
             CATEGID = -1;
             SUBCATEGID = -1;
             SPLITTRANSAMOUNT = 0.0;
@@ -129,7 +129,7 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             view_ = view;
         
             SPLITTRANSID = q.GetInt("SPLITTRANSID");
-            TRANSID = q.GetDouble("TRANSID");
+            TRANSID = q.GetInt("TRANSID");
             CATEGID = q.GetInt("CATEGID");
             SUBCATEGID = q.GetInt("SUBCATEGID");
             SPLITTRANSAMOUNT = q.GetDouble("SPLITTRANSAMOUNT");

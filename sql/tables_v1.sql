@@ -136,7 +136,7 @@ PAYEEID integer primary key
 -- Describe SPLITTRANSACTIONS_V1
 CREATE TABLE SPLITTRANSACTIONS_V1(
 SPLITTRANSID integer primary key
-, TRANSID numeric NOT NULL
+, TRANSID integer NOT NULL
 , CATEGID integer
 , SUBCATEGID integer
 , SPLITTRANSAMOUNT numeric
