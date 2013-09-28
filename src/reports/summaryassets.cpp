@@ -20,13 +20,99 @@
 #include "htmlbuilder.h"
 #include "model/Model_Asset.h"
 #include "mmex.h"
+#include <algorithm>
+
+#define ASSETS_SORT_BY_DATE		1
+#define ASSETS_SORT_BY_NAME		2
+#define ASSETS_SORT_BY_TYPE		3
+#define ASSETS_SORT_BY_VALUE	4
+#define ASSETS_SORT_BY_NOTES	5
 
 mmReportSummaryAssets::mmReportSummaryAssets(mmCoreDB* core)
 : mmPrintableBase(core)
-{}
+{
+	// set initial sort column
+	sortColumn_ = ASSETS_SORT_BY_NAME;
+}
 
 wxString mmReportSummaryAssets::getHTMLText()
 {
+	// structure for sorting of data
+    struct data_holder {wxString date; wxString name; wxString type; double value; wxString notes;} line;
+    std::vector<data_holder> data;
+
+    core_->currencyList_.LoadBaseCurrencySettings();
+
+    double balance = 0.0;
+    for (const auto& pEntry: Model_Asset::instance().all())
+    {
+        balance += pEntry.VALUE;
+
+		line.date = pEntry.STARTDATE;
+		line.name = pEntry.ASSETNAME;
+		line.type = wxGetTranslation(pEntry.ASSETTYPE);
+		line.value = pEntry.VALUE;
+		line.notes = pEntry.NOTES;
+        data.push_back(line);
+	}
+
+	switch (sortColumn_)
+	{
+	case ASSETS_SORT_BY_DATE:
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder& x, const data_holder& y)
+				{
+					if (x.date != y.date)
+					{
+						wxDateTime dt1, dt2;
+						dt1.ParseDate(x.date);
+						dt2.ParseDate(y.date);
+						if(dt1.IsValid() && dt2.IsValid())
+							return dt1 < dt2;
+						else
+							return x.date < y.date;
+					}
+					else return x.name < y.name;
+				}
+		);
+		break;
+	case ASSETS_SORT_BY_TYPE:
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder& x, const data_holder& y)
+				{
+					if (x.type != y.type) return x.type < y.type;
+					else return x.name < y.name;
+				}
+		);
+		break;
+	case ASSETS_SORT_BY_VALUE:
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder& x, const data_holder& y)
+				{
+					if (x.value != y.value) return x.value < y.value;
+					else return x.name < y.name;
+				}
+		);
+		break;
+	case ASSETS_SORT_BY_NOTES:
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder& x, const data_holder& y)
+				{
+					if (x.notes != y.notes) return x.notes < y.notes;
+					else return x.name < y.name;
+				}
+		);
+		break;
+	default:
+		sortColumn_ = ASSETS_SORT_BY_NAME;
+		std::stable_sort(data.begin(), data.end()
+				, [] (const data_holder& x, const data_holder& y)
+				{
+					return x.name < y.name;
+				}
+		);
+	}
+
     wxGetApp().m_frame->SetStatusText(this->version());
     mmHTMLBuilder hb;
     hb.init();
@@ -37,27 +123,39 @@ wxString mmReportSummaryAssets::getHTMLText()
 
     hb.startTable("95%");
     hb.startTableRow();
-    hb.addTableHeaderCell(_("Date"));
-    hb.addTableHeaderCell(_("Name"));
-    hb.addTableHeaderCell(_("Type"));
-    hb.addTableHeaderCell(_("Current Value"), true);
-    hb.addTableHeaderCell(_("Notes"));
+	if(ASSETS_SORT_BY_DATE == sortColumn_)
+	    hb.addTableHeaderCell(_("Date"));
+	else
+	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ASSETS_SORT_BY_DATE), _("Date"));
+	if(ASSETS_SORT_BY_NAME == sortColumn_)
+	    hb.addTableHeaderCell(_("Name"));
+	else
+	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ASSETS_SORT_BY_NAME), _("Name"));
+	if(ASSETS_SORT_BY_TYPE == sortColumn_)
+		hb.addTableHeaderCell(_("Type"));
+	else
+		hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ASSETS_SORT_BY_TYPE), _("Type"));
+	if(ASSETS_SORT_BY_VALUE == sortColumn_)
+		hb.addTableHeaderCell(_("Current Value"), true);
+	else
+		hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ASSETS_SORT_BY_VALUE), _("Current Value"), true);
+	if(ASSETS_SORT_BY_NOTES == sortColumn_)
+		hb.addTableHeaderCell(_("Notes"));
+	else
+		hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ASSETS_SORT_BY_NOTES), _("Notes"));
     hb.endTableRow();
 
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    double balance = 0.0;
-    for (const auto& pEntry: Model_Asset::instance().all())
+    for (const auto& entry : data)
     {
         hb.startTableRow();
-        hb.addTableCell(pEntry.STARTDATE, false, true);
-        hb.addTableCell(pEntry.ASSETNAME, false, true);
-        hb.addTableCell(wxGetTranslation(pEntry.ASSETTYPE));
-        hb.addMoneyCell(pEntry.VALUE);
-        hb.addTableCell(pEntry.NOTES);
+		hb.addTableCell(entry.date, false, true);
+		hb.addTableCell(entry.name, false, true);
+		hb.addTableCell(entry.type);
+		hb.addMoneyCell(entry.value);
+		hb.addTableCell(entry.notes);
         hb.endTableRow();
-
-        balance += pEntry.VALUE;
     }
     
     /* Assets */
