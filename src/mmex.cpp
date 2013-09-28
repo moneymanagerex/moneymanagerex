@@ -767,6 +767,7 @@ void mmGUIFrame::cleanup()
 	if(!fileName_.IsEmpty()) // Exiting before file is opened
 	    saveSettings();
 
+	cleanupNavTreeControl();
     m_mgr.UnInit();
 
     /* Delete the GUI */
@@ -781,6 +782,37 @@ void mmGUIFrame::cleanup()
         BackupDatabase(fileName_, true);
     }
 }
+
+void mmGUIFrame::cleanupNavTreeControl()
+{
+	wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
+	if (rootitem.IsOk())
+	{
+		wxTreeItemIdValue cookie;
+		wxTreeItemId item = navTreeCtrl_->GetFirstChild(rootitem, cookie);
+		while (item.IsOk())
+		{
+			if (navTreeCtrl_->ItemHasChildren(item))
+			{
+				wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
+				while (childitem.IsOk())
+				{
+					mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(childitem));
+					navTreeCtrl_->SetItemData(childitem, 0);
+					if (iData)
+						delete iData;
+					childitem = navTreeCtrl_->GetNextChild(item, cookie);
+				}
+			}
+			mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(item));
+			navTreeCtrl_->SetItemData(item, 0);
+			if (iData)
+				delete iData;
+			item = navTreeCtrl_->GetNextChild(rootitem, cookie);
+		}
+	}
+}
+
 //----------------------------------------------------------------------------
 // process all events waiting in the event queue if any.
 void mmGUIFrame::processPendingEvents()
@@ -1122,6 +1154,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     }
 
     navTreeCtrl_->SetEvtHandlerEnabled(false);
+	cleanupNavTreeControl();
     navTreeCtrl_->DeleteAllItems();
     //navTreeCtrl_->SetBackgroundColour(mmColors::navTreeBkColor);
 

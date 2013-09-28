@@ -265,6 +265,7 @@ private:
     bool activeTermAccounts_;
 
     void cleanup();
+	void cleanupNavTreeControl();
     wxSizer* cleanupHomePanel(bool new_sizer = true);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
