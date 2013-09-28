@@ -58,7 +58,7 @@ wxString mmReportSummary::getHTMLText()
     {
         if (Model_Account::type(account) == Model_Account::CHECKING && Model_Account::status(account) == Model_Account::OPEN)
         {
-            double bal = account.INITIALBAL + Model_Account::balance(account);
+            double bal = Model_Account::balance(account);
 
             mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID); // TODO
             wxASSERT(pCurrencyPtr);
@@ -80,7 +80,7 @@ wxString mmReportSummary::getHTMLText()
     {
         if (Model_Account::type(account) == Model_Account::TERM && Model_Account::status(account) == Model_Account::OPEN)
         {
-            double bal = account.INITIALBAL + Model_Account::balance(account);
+            double bal = Model_Account::balance(account);
 
             mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID);
             wxASSERT(pCurrencyPtr);

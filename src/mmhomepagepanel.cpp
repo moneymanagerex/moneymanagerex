@@ -215,8 +215,9 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, const wxString& type
         wxASSERT(pCurrencyPtr);
         CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 
-        double bal = account->initialBalance_ + core_->bTransactionList_.getBalance(account->id_
-            , mmIniOptions::instance().ignoreFutureTransactions_);
+        Model_Account::Data* a = Model_Account::instance().get(account->id_);
+        if (!a) continue;
+        double bal = Model_Account::balance(a);
         double reconciledBal = account->initialBalance_ + core_->bTransactionList_.getReconciledBalance(account->id_
             , mmIniOptions::instance().ignoreFutureTransactions_);
         double rate = pCurrencyPtr->baseConv_;

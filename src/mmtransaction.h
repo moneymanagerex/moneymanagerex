@@ -185,7 +185,6 @@ public:
         , mmDateRange* date_range, bool ignoreFuture) const;
     wxDateTime getLastDate(int accountID) const;
 
-    double getBalance(int accountID, bool ignoreFuture = false) const;
     double getReconciledBalance(int accountID, bool ignoreFuture = false) const;
     int countFollowupTransactions() const;
     int getLastUsedCategoryID(int accountID, int payeeID, const wxString& sType, int& subcategID) const;

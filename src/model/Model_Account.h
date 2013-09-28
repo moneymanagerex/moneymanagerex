@@ -74,13 +74,14 @@ public:
 public:
     static double balance(const Data* r)
     {
-        double sum = 0;
-        for (const auto& tran: Model_Checking::instance().find(Model_Checking::COL_ACCOUNTID, r->ACCOUNTID))
+        double sum = r->INITIALBAL;
+        for (const auto& tran: Model_Checking::instance().find(Model_Checking::COL_ACCOUNTID, r->ACCOUNTID, Model_Checking::COL_TOACCOUNTID, r->ACCOUNTID, false))
         {
            sum += Model_Checking::balance(tran, r->ACCOUNTID); 
         }
         return sum;
     }
+    static double balance(const Data& r) { return balance(&r); }
 public:
     static STATUS status(const Data* account)
     {

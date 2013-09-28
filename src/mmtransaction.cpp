@@ -1026,31 +1026,6 @@ double mmBankTransactionList::getAmountForCategory(
     return amt;
 }
 
-double mmBankTransactionList::getBalance(int accountID, bool ignoreFuture) const
-{
-    double balance = 0.0;
-    wxDateTime now = wxDateTime::Now().GetDateOnly();
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if ((pBankTransaction->accountID_ != accountID)
-           && (pBankTransaction->toAccountID_ != accountID))
-            continue; // skip
-
-        if (pBankTransaction->status_ == "V")
-            continue; // skip
-
-        if (ignoreFuture)
-        {
-            if (pBankTransaction->date_.IsLaterThan(now))
-                continue; //skip future dated transactions
-        }
-
-        balance += pBankTransaction->value(accountID);
-    }
-
-    return balance;
-}
-
 double mmBankTransactionList::getReconciledBalance(int accountID, bool ignoreFuture) const
 {
     double balance = 0.0;
