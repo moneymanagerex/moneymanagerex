@@ -20,6 +20,7 @@
 #include "htmlbuilder.h"
 #include "model/Model_Asset.h"
 #include "mmex.h"
+#include "db\assets.h"
 #include <algorithm>
 
 #define ASSETS_SORT_BY_DATE		1
@@ -52,6 +53,26 @@ wxString mmReportSummaryAssets::getHTMLText()
 		line.name = pEntry.ASSETNAME;
 		line.type = wxGetTranslation(pEntry.ASSETTYPE);
 		line.value = pEntry.VALUE;
+		if (ASSET_RATE_DEF[TAssetEntry::RATE_APPRECIATE] == pEntry.VALUECHANGE)
+		{
+			wxDateTime dt;
+			dt.ParseDate(pEntry.STARTDATE);
+			if(dt.IsValid())
+			{
+				int diff_days = abs(dt.Subtract(wxDateTime::Now()).GetDays());
+				line.value += ((pEntry.VALUE * (pEntry.VALUECHANGERATE/100))/365.25) * diff_days;
+			}
+		}
+		else if (ASSET_RATE_DEF[TAssetEntry::RATE_DEPRECIATE] == pEntry.VALUECHANGE)
+		{
+			wxDateTime dt;
+			dt.ParseDate(pEntry.STARTDATE);
+			if(dt.IsValid())
+			{
+				int diff_days = abs(dt.Subtract(wxDateTime::Now()).GetDays());
+				line.value -= ((pEntry.VALUE * (pEntry.VALUECHANGERATE/100))/365.25) * diff_days;
+			}
+		}
 		line.notes = pEntry.NOTES;
         data.push_back(line);
 	}
