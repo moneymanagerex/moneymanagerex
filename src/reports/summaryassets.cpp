@@ -20,7 +20,6 @@
 #include "htmlbuilder.h"
 #include "model/Model_Asset.h"
 #include "mmex.h"
-#include "db\assets.h"
 #include <algorithm>
 
 #define ASSETS_SORT_BY_DATE		1
@@ -39,7 +38,7 @@ mmReportSummaryAssets::mmReportSummaryAssets(mmCoreDB* core)
 wxString mmReportSummaryAssets::getHTMLText()
 {
 	// structure for sorting of data
-    struct data_holder {wxString date; wxString name; wxString type; double value; wxString notes;} line;
+    struct data_holder {wxDateTime date; wxString name; wxString type; double value; wxString notes;} line;
     std::vector<data_holder> data;
 
     core_->currencyList_.LoadBaseCurrencySettings();
@@ -49,30 +48,10 @@ wxString mmReportSummaryAssets::getHTMLText()
     {
         balance += pEntry.VALUE;
 
-		line.date = pEntry.STARTDATE;
+		line.date = Model_Asset::STARTDATE(pEntry);
 		line.name = pEntry.ASSETNAME;
 		line.type = wxGetTranslation(pEntry.ASSETTYPE);
-		line.value = pEntry.VALUE;
-		if (ASSET_RATE_DEF[TAssetEntry::RATE_APPRECIATE] == pEntry.VALUECHANGE)
-		{
-			wxDateTime dt;
-			dt.ParseDate(pEntry.STARTDATE);
-			if(dt.IsValid())
-			{
-				int diff_days = abs(dt.Subtract(wxDateTime::Now()).GetDays());
-				line.value += ((pEntry.VALUE * (pEntry.VALUECHANGERATE/100))/365.25) * diff_days;
-			}
-		}
-		else if (ASSET_RATE_DEF[TAssetEntry::RATE_DEPRECIATE] == pEntry.VALUECHANGE)
-		{
-			wxDateTime dt;
-			dt.ParseDate(pEntry.STARTDATE);
-			if(dt.IsValid())
-			{
-				int diff_days = abs(dt.Subtract(wxDateTime::Now()).GetDays());
-				line.value -= ((pEntry.VALUE * (pEntry.VALUECHANGERATE/100))/365.25) * diff_days;
-			}
-		}
+		line.value = Model_Asset::value(pEntry);
 		line.notes = pEntry.NOTES;
         data.push_back(line);
 	}
@@ -84,15 +63,7 @@ wxString mmReportSummaryAssets::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.date != y.date)
-					{
-						wxDateTime dt1, dt2;
-						dt1.ParseDate(x.date);
-						dt2.ParseDate(y.date);
-						if(dt1.IsValid() && dt2.IsValid())
-							return dt1 < dt2;
-						else
-							return x.date < y.date;
-					}
+						return x.date < y.date;
 					else return x.name < y.name;
 				}
 		);
@@ -171,7 +142,7 @@ wxString mmReportSummaryAssets::getHTMLText()
     for (const auto& entry : data)
     {
         hb.startTableRow();
-		hb.addTableCell(entry.date, false, true);
+		hb.addTableCell(mmGetDateForDisplay(entry.date), false, true);
 		hb.addTableCell(entry.name, false, true);
 		hb.addTableCell(entry.type);
 		hb.addMoneyCell(entry.value);

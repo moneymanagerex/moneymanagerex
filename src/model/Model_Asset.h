@@ -129,6 +129,29 @@ public:
     {
         return Model_Currency::instance().GetBaseCurrency();
     }
+public:
+    static double value(const Data* r)
+    {
+        double sum = r->VALUE;
+        wxDate start_date = STARTDATE(r);
+        int diff_days = abs(start_date.Subtract(wxDateTime::Now()).GetDays());
+        switch (rate(r))
+        {
+        case RATE_NONE:
+            break;
+        case RATE_APPRECIATE:
+            sum += ((r->VALUE * (r->VALUECHANGERATE/100))/365.25) * diff_days;
+            break;
+        case RATE_DEPRECIATE:
+            sum -= ((r->VALUE * (r->VALUECHANGERATE/100))/365.25) * diff_days;
+            break;
+        default:
+            break;
+        }
+
+        return sum;
+    }
+    static double value(const Data& r) { return value(&r); }
 };
 
 #endif // 
