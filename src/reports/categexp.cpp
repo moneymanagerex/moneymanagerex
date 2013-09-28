@@ -41,6 +41,12 @@ mmReportCategoryExpenses::mmReportCategoryExpenses
 	sortColumn_ = CATEGORY_SORT_BY_NAME;
 }
 
+mmReportCategoryExpenses::~mmReportCategoryExpenses()
+{
+	if(date_range_)
+		delete date_range_;
+}
+
 wxString mmReportCategoryExpenses::getHTMLText()
 {
 	// structure for sorting of data

@@ -27,6 +27,7 @@ class mmReportCategoryExpenses : public mmPrintableBase
 public:
     mmReportCategoryExpenses(mmCoreDB* core
                              , mmDateRange* date_range, const wxString& title, int type);
+    virtual ~mmReportCategoryExpenses();
 
     wxString getHTMLText();
 

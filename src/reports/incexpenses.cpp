@@ -12,6 +12,12 @@ mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date
 {
 }
 
+mmReportIncomeExpenses::~mmReportIncomeExpenses()
+{
+	if(date_range_)
+		delete date_range_;
+}
+
 wxString mmReportIncomeExpenses::title() const
 {
     return wxString::Format(this->title_, date_range_->title());
@@ -84,6 +90,12 @@ mmReportIncomeExpensesMontly::mmReportIncomeExpensesMontly(mmCoreDB* core, int d
     , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
 {
+}
+
+mmReportIncomeExpensesMontly::~mmReportIncomeExpensesMontly()
+{
+	if(date_range_)
+		delete date_range_;
 }
 
 wxString mmReportIncomeExpensesMontly::getHTMLText()

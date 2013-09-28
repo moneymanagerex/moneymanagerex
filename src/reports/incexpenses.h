@@ -26,6 +26,7 @@ class mmReportIncomeExpenses : public mmPrintableBase
 {
 public:
     mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range = new mmCurrentMonth());
+    virtual ~mmReportIncomeExpenses();
     wxString getHTMLText();
 
 protected:
@@ -83,6 +84,7 @@ public:
                                  , int day_ = 1
                                          , int month_ = 1
                                                  , mmDateRange* date_range = new mmCurrentMonth());
+    virtual ~mmReportIncomeExpensesMontly();
     wxString getHTMLText();
 protected:
     mmDateRange* date_range_;
