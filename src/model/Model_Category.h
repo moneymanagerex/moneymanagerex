@@ -23,6 +23,7 @@
 #include "Model_Subcategory.h"
 #include "Model_Checking.h"
 #include "Model_Account.h"
+#include "Model_Billsdeposits.h"
 
 class Model_Category : public Model, public DB_Table_CATEGORY_V1
 {
@@ -59,6 +60,11 @@ public:
     Data_Set find(COLUMN col, const V& v)
     {
         return find(db_, col, v);
+    }
+    template<class V1, class V2>
+    Data_Set find(COLUMN col1, const V1& v1, COLUMN col2, const V2& v2)
+    {
+        return find(db_, col1, v1, col2, v2);
     }
     Data* get(int id)
     {
@@ -104,10 +110,10 @@ public:
             
         }
     }
-    static bool is_used(int id)
+    static bool is_used(int id, int sub_id = -1)
     {
-        // TODO
-        return true;
+        Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_CATEGID, id, Model_Billsdeposits::COL_SUBCATEGID, sub_id);
+        return !deposits.empty();
     }
 };
 

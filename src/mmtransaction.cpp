@@ -1292,27 +1292,3 @@ bool mmBankTransactionList::IsCategoryUsed(int iCatID, int iSubCatID, bool& bInc
     return bTrxUsed;
 }
 
-bool mmBankTransactionList::IsCategoryUsedBD(int iCatID, int iSubCatID, bool bIgnor_subcat) const
-{
-    bool found = false;
-
-    wxSQLite3Statement st = core_->db_->PrepareStatement( (bIgnor_subcat ? SELECT_CATEGID_FROM_BILLSDEPOSITS_V1 : SELECT_SUBCATEGID_FROM_BILLSDEPOSITS_V1) );
-    st.Bind(1, iCatID);
-    if (!bIgnor_subcat)
-        st.Bind(2, iSubCatID);
-
-    try
-    {
-        wxSQLite3ResultSet q1 = st.ExecuteQuery();
-        found = q1.NextRow();
-        st.Finalize();
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("select BILLSDEPOSITS_V1 union BUDGETSPLITTRANSACTIONS_V1 : %s", e.GetMessage());
-        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
-    }
-
-    return found;
-}
-

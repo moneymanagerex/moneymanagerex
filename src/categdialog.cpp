@@ -24,6 +24,7 @@
 #include "paths.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Category.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 
@@ -400,7 +401,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
         selectButton_->Enable(bEnableSelect_);
         bool bIncome = false;
         bool bUsed = core_->bTransactionList_.IsCategoryUsed(categID_, subcategID_, bIncome, subcategID_ == -1)
-                || core_->bTransactionList_.IsCategoryUsedBD(categID_, subcategID_, subcategID_ == -1);
+                || Model_Category::is_used(categID_, subcategID_);
         deleteButton_->Enable(!bUsed);
         editButton_->Enable();
         if (subcategID_ != -1)
