@@ -112,7 +112,7 @@ public:
             break;
         case TRANSFER:
             if (account_id == r->ACCOUNTID)     sum -= r->TRANSAMOUNT;
-            if (account_id == r->TOACCOUNTID)   sum -= r->TRANSAMOUNT;
+            if (account_id == r->TOACCOUNTID)   sum += r->TRANSAMOUNT;
             break;
         default:
             break;
