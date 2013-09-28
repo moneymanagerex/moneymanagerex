@@ -20,6 +20,7 @@
 
 #include "Model.h"
 #include "db/DB_Table_Checkingaccount_V1.h"
+#include "Model_Splittransaction.h"
 
 class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
 {
@@ -65,6 +66,14 @@ public:
     {
         r->save(this->db_);
         return r->id();
+    }
+    Model_Splittransaction::Data_Set splittransaction(const Data* r)
+    {
+        return Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, r->TRANSID);
+    }
+    Model_Splittransaction::Data_Set splittransaction(const Data& r)
+    {
+        return Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, r.TRANSID);
     }
 public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }

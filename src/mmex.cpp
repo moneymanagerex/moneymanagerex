@@ -73,6 +73,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
 #include "model/Model_Billsdeposits.h"
+#include "model/Model_Splittransaction.h"
 #include <wx/cmdline.h>
 
 //----------------------------------------------------------------------------
@@ -2641,6 +2642,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         Model_Category::instance(m_db.get());
         Model_Subcategory::instance(m_db.get());
         Model_Billsdeposits::instance(m_db.get());
+        Model_Splittransaction::instance(m_db.get());
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())
         {
@@ -2677,6 +2679,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             Model_Category::instance(m_db.get());
             Model_Subcategory::instance(m_db.get());
             Model_Billsdeposits::instance(m_db.get());
+            Model_Splittransaction::instance(m_db.get());
 
             m_core.reset(new mmCoreDB(m_db));
         }
@@ -2695,6 +2698,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             Model_Category::instance(m_db.get());
             Model_Subcategory::instance(m_db.get());
             Model_Billsdeposits::instance(m_db.get());
+            Model_Splittransaction::instance(m_db.get());
 
             openDataBase(fileName);
             m_core.reset(new mmCoreDB(m_db));

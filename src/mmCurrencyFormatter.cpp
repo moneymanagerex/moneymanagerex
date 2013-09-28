@@ -106,7 +106,7 @@ bool CurrencyFormatter::formatCurrencyToDouble(const wxString& str, double& val)
     wxString thousand_separator = wxString::Format("%c", fmt.getGroupSeparator());
     const wxString sys_decimal_separator = wxNumberFormatter::GetDecimalSeparator();
     wxString sys_thousand_separator = "";
-    wxChar sep = (wxChar)"";
+    wxChar sep = '.';
     if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
         sys_thousand_separator = wxString::Format("%c", sep);
 
