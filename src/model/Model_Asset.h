@@ -87,7 +87,7 @@ public:
         double balance = 0.0;
         for (const auto& r: this->all())
         {
-            balance += r.VALUE;
+            balance += value(r);
         }
         return balance;
     }
