@@ -24,6 +24,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Stock.h"
+#include "model/Model_Account.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
@@ -507,7 +508,6 @@ void mmStocksPanel::updateHeader()
     header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), str));
 
     //mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
-    double originalVal = 0.0;
 
     mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountID_);
     wxASSERT(pCurrencyPtr);
@@ -518,7 +518,11 @@ void mmStocksPanel::updateHeader()
     // + Transfered from other accounts - Transfered to other accounts
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
-    double total = mmDBWrapper::getStockInvestmentBalance(core_->db_.get(), accountID_, originalVal);
+    Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    std::pair<double, double> investment_balance;
+    if (account) investment_balance = Model_Account::investment_balance(account);
+    double originalVal = investment_balance.first;
+    double total = investment_balance.second; 
 
     wxString balance = CurrencyFormatter::float2String(total+initVal);
     wxString original = CurrencyFormatter::float2String(originalVal);

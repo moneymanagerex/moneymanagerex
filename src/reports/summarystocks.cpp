@@ -22,6 +22,7 @@
 #include "constants.h"
 #include "stockspanel.h"
 #include "util.h"
+#include "model/Model_Account.h"
 
 #include <algorithm>
 
@@ -66,23 +67,18 @@ wxString mmReportSummaryStocks::getHTMLText()
     double gain_loss_sum_total = 0.0;
     double stockBalance = 0.0;
 
-    wxArrayString account_type;
-    account_type.Add(ACCOUNT_TYPE_STOCK);
-    const wxArrayInt accounts_id = core_->accountList_.getAccountsID(account_type);
-
-    for (size_t i = 0; i < accounts_id.Count(); ++i)
+    for (const auto& a: Model_Account::instance().all())
     {
-        const int accountID  = accounts_id[i];
-        if ( mmAccount::MMEX_Open != core_->accountList_.GetAccountSharedPtr(accountID)->status_) break;
+        if (Model_Account::type(a) != Model_Account::INVESTMENT) continue;
+        if (Model_Account::status(a) != Model_Account::OPEN) continue;
 
-		account.name = core_->accountList_.GetAccountName(accountID);
+		account.name = a.ACCOUNTNAME;
 		account.gainloss = 0.0;
-        double invested = 0;
-		account.total = mmDBWrapper::getStockInvestmentBalance(core_->db_.get(), accountID, invested);
+		account.total = Model_Account::investment_balance(a).second; 
 		account.data.clear();
 
         wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_ROW_SYMBOL_FROM_STOCK_V1);
-        st.Bind(1, accountID);
+        st.Bind(1, a.ACCOUNTID);
         wxSQLite3ResultSet q2 = st.ExecuteQuery();
 
         while (q2.NextRow())
@@ -103,7 +99,7 @@ wxString mmReportSummaryStocks::getHTMLText()
             wxString dt         = mmGetDateForDisplay(dtdt);
 
             th.gainLoss_        = th.value_ - ((th.numShares_ * th.purchasePrice_) + commission);
-            double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(accountID);
+            double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(a.ACCOUNTID);
             stockBalance += base_conv_rate * th.value_;
             account.gainloss += th.gainLoss_;
             gain_loss_sum_total += th.gainLoss_ * base_conv_rate;

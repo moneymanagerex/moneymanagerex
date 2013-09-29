@@ -25,6 +25,7 @@
 class Model_Stock : public Model, public DB_Table_STOCK_V1
 {
     using DB_Table_STOCK_V1::all;
+    using DB_Table_STOCK_V1::find;
 public:
     Model_Stock(): Model(), DB_Table_STOCK_V1() {};
     ~Model_Stock() {};
@@ -46,10 +47,20 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
-
+    template<class V>
+    Data_Set find(COLUMN col, const V& v)
+    {
+        return find(db_, col, v);
+    }
 public:
     static wxDate PURCHASEDATE(const Data* stock) { return Model::to_date(stock->PURCHASEDATE); }
     static wxDate PURCHASEDATE(const Data& stock) { return Model::to_date(stock.PURCHASEDATE); }
+public:
+    static double value(const Data* r)
+    {
+        return r->NUMSHARES * r->PURCHASEPRICE + r->COMMISSION;
+    }
+    static double value(const Data& r) { return value(&r); }
 };
 
 #endif // 

@@ -582,7 +582,6 @@ int mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& da
 /* Stocks API */
 void deleteStockInvestment(wxSQLite3Database* db, int stockID);
 bool moveStockInvestment(wxSQLite3Database* db, int stockID, int toAccountID);
-double getStockInvestmentBalance(wxSQLite3Database* db, int accountID, double& originalVal);
 
 //----------------------------------------------------------------------------
 

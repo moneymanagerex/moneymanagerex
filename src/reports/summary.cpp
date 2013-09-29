@@ -169,17 +169,12 @@ wxString mmReportSummary::getHTMLText()
     tBalance += tTBalance;
 
     /* Stocks */
-
-    wxArrayString accounts_type;
-    accounts_type.Add(ACCOUNT_TYPE_STOCK);
-    wxArrayInt accounts_id = core_->accountList_.getAccountsID(accounts_type);
-
-    double original_val, stockBalance = 0;
-    for (size_t i = 0; i < accounts_id.Count(); ++i)
+    double stockBalance = 0.0;
+    for (const auto& account: Model_Account::instance().all())
     {
-        double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(accounts_id[i]);
-        double amount = mmDBWrapper::getStockInvestmentBalance(core_->db_.get(), accounts_id[i], original_val);
-        stockBalance += amount * base_conv_rate;
+        if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+        double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(account.ACCOUNTID);
+        stockBalance += base_conv_rate + Model_Account::investment_balance(account).second;
     }
 
     hb.startTableRow();

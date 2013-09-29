@@ -1054,36 +1054,6 @@ bool mmDBWrapper::moveStockInvestment(wxSQLite3Database* db, int stockID, int to
     return true;
 }
 
-double mmDBWrapper::getStockInvestmentBalance(wxSQLite3Database* db
-        , int accountID, double& originalVal)
-{
-    wxASSERT(accountID != -1);
-
-    double balance = 0.0;
-    originalVal = 0.0;
-
-    wxSQLite3Statement st = db->PrepareStatement(SELECT_ROW_HELDAT_FROM_STOCK_V1);
-    st.Bind(1, accountID);
-
-    wxSQLite3ResultSet q1 = st.ExecuteQuery();
-
-    while (q1.NextRow())
-    {
-        double value = q1.GetDouble("VALUE");
-        double numShares = q1.GetDouble("NUMSHARES");
-        double purchasePrice = q1.GetDouble("PURCHASEPRICE");
-        double commission = q1.GetDouble("COMMISSION");
-
-        double investedAmt = (numShares * purchasePrice) + commission;
-        originalVal += investedAmt;
-        balance += value;
-    }
-
-    st.Finalize();
-
-    return balance;
-}
-
 void mmDBWrapper::removeSplitsForAccount(wxSQLite3Database* db, int accountID)
 {
     try

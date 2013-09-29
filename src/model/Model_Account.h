@@ -22,6 +22,7 @@
 #include "db/DB_Table_Accountlist_V1.h"
 #include "Model_Currency.h" // detect base currency
 #include "Model_Checking.h"
+#include "Model_Stock.h"
 
 class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
 {
@@ -82,6 +83,17 @@ public:
         return sum;
     }
     static double balance(const Data& r) { return balance(&r); }
+    static std::pair<double, double> investment_balance(const Data* r)
+    {
+        std::pair<double /*origianl input value*/, double /**/> sum;
+        for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, r->ACCOUNTID))
+        {
+            sum.first += stock.VALUE;
+            sum.second += Model_Stock::value(stock);
+        }
+        return sum;
+    }
+    static std::pair<double, double> investment_balance(const Data& r) { return investment_balance(&r); }
 public:
     static STATUS status(const Data* account)
     {
