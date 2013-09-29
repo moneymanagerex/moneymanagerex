@@ -52,12 +52,12 @@ public:
     mmGUIApp();
 
     wxLocale& getLocale();
-	virtual void OnInitCmdLine(wxCmdLineParser& parser);
-	virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
+    virtual void OnInitCmdLine(wxCmdLineParser& parser);
+    virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
 public:
     mmGUIFrame* m_frame;
     wxSQLite3Database* m_setting_db;
-	wxString m_optParam;
+    wxString m_optParam;
 private:
     void reportFatalException(wxDebugReport::Context);
 private:
@@ -265,7 +265,7 @@ private:
     bool activeTermAccounts_;
 
     void cleanup();
-	void cleanupNavTreeControl(wxTreeItemId& item);
+    void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);

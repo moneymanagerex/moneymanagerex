@@ -58,8 +58,8 @@ mmHomePagePanel::~mmHomePagePanel()
 {
     frame_->setHomePageActive(false);
     frame_->menuPrintingEnable(false);
-	if (date_range_)
-		delete date_range_;
+    if (date_range_)
+        delete date_range_;
 }
 
 wxString mmHomePagePanel::GetHomePageText()

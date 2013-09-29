@@ -14,8 +14,8 @@ mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date
 
 mmReportIncomeExpenses::~mmReportIncomeExpenses()
 {
-	if(date_range_)
-		delete date_range_;
+    if(date_range_)
+        delete date_range_;
 }
 
 wxString mmReportIncomeExpenses::title() const

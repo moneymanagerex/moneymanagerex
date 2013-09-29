@@ -85,8 +85,8 @@ IMPLEMENT_APP(mmGUIApp)
 
 static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 {
-	{ wxCMD_LINE_PARAM,  NULL, NULL, _("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
-	{ wxCMD_LINE_NONE }
+    { wxCMD_LINE_PARAM,  NULL, NULL, _("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
+    { wxCMD_LINE_NONE }
 }; 
 
 //----------------------------------------------------------------------------
@@ -108,9 +108,9 @@ void mmGUIApp::OnInitCmdLine(wxCmdLineParser& parser)
 
 bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
 {
-	if(parser.GetParamCount() > 0)
-		m_optParam = parser.GetParam(0);
-	return true;
+    if(parser.GetParamCount() > 0)
+        m_optParam = parser.GetParam(0);
+    return true;
 }
 
 //----------------------------------------------------------------------------
@@ -680,15 +680,15 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     // decide if we need to show app start dialog
     bool from_scratch = false;
-	wxFileName dbpath = wxGetApp().m_optParam;
-	if(!dbpath.IsOk())
-	{
-		from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
-		if (from_scratch)
-			dbpath  = wxGetEmptyString();
-		else
-			dbpath = Model_Setting::instance().getLastDbPath();
-	}
+    wxFileName dbpath = wxGetApp().m_optParam;
+    if(!dbpath.IsOk())
+    {
+        from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
+        if (from_scratch)
+            dbpath  = wxGetEmptyString();
+        else
+            dbpath = Model_Setting::instance().getLastDbPath();
+    }
 
     if (from_scratch && !dbpath.IsOk()) mmSelectLanguage(this, true);
 
@@ -765,11 +765,11 @@ void mmGUIFrame::cleanup()
     printer_.reset();
     delete recentFiles_;
     delete custRepIndex_;
-	if(!fileName_.IsEmpty()) // Exiting before file is opened
-	    saveSettings();
+    if(!fileName_.IsEmpty()) // Exiting before file is opened
+        saveSettings();
 
-	wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
-	cleanupNavTreeControl(rootitem);
+    wxTreeItemId rootitem = navTreeCtrl_->GetRootItem();
+    cleanupNavTreeControl(rootitem);
     m_mgr.UnInit();
 
     /* Delete the GUI */
@@ -787,20 +787,20 @@ void mmGUIFrame::cleanup()
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 {
-	while (item.IsOk())
-	{
-		if (navTreeCtrl_->ItemHasChildren(item))
-		{
-			wxTreeItemIdValue cookie;
-			wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
-			cleanupNavTreeControl(childitem);
-		}
-		mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(item));
-		navTreeCtrl_->SetItemData(item, 0);
-		if (iData)
-			delete iData;
-		item = navTreeCtrl_->GetNextSibling(item);
-	}
+    while (item.IsOk())
+    {
+        if (navTreeCtrl_->ItemHasChildren(item))
+        {
+            wxTreeItemIdValue cookie;
+            wxTreeItemId childitem = navTreeCtrl_->GetFirstChild(item, cookie);
+            cleanupNavTreeControl(childitem);
+        }
+        mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(item));
+        navTreeCtrl_->SetItemData(item, 0);
+        if (iData)
+            delete iData;
+        item = navTreeCtrl_->GetNextSibling(item);
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -1144,8 +1144,8 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     }
 
     navTreeCtrl_->SetEvtHandlerEnabled(false);
-	wxTreeItemId root = navTreeCtrl_->GetRootItem();
-	cleanupNavTreeControl(root);
+    wxTreeItemId root = navTreeCtrl_->GetRootItem();
+    cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
     //navTreeCtrl_->SetBackgroundColour(mmColors::navTreeBkColor);
 

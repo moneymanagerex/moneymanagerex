@@ -25,31 +25,31 @@
 #include "model/Model_Account.h"
 #include <algorithm>
 
-#define SUMMARY_SORT_BY_NAME		1
-#define SUMMARY_SORT_BY_BALANCE		2
+#define SUMMARY_SORT_BY_NAME        1
+#define SUMMARY_SORT_BY_BALANCE     2
 
 mmReportSummary::mmReportSummary(mmCoreDB* core)
 : mmPrintableBase(core)
 {
-	// set initial sort column
-	sortColumn_ = SUMMARY_SORT_BY_NAME;
+    // set initial sort column
+    sortColumn_ = SUMMARY_SORT_BY_NAME;
 }
 
 // structure for sorting of data
 struct data_holder {wxString name; wxString link; double balance;};
 bool mmSummarySortName (const data_holder& x, const data_holder& y)
 {
-	return x.name < y.name;
+    return x.name < y.name;
 }
 bool mmSummarySortBalance (const data_holder& x, const data_holder& y)
 {
-	if (x.balance != y.balance) return x.balance < y.balance;
-	else return x.name < y.name;
+    if (x.balance != y.balance) return x.balance < y.balance;
+    else return x.name < y.name;
 }
 
 wxString mmReportSummary::getHTMLText()
 {
-	data_holder line;
+    data_holder line;
     std::vector<data_holder> dataChecking, dataTerm;
 
     /* Checking */
@@ -67,10 +67,10 @@ wxString mmReportSummary::getHTMLText()
 
             tBalance += bal * rate;
 
-			line.name = account.ACCOUNTNAME;
-			line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
-			line.balance = bal;
-			dataChecking.push_back(line);
+            line.name = account.ACCOUNTNAME;
+            line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
+            line.balance = bal;
+            dataChecking.push_back(line);
         }
     }
 
@@ -89,24 +89,24 @@ wxString mmReportSummary::getHTMLText()
 
             tTBalance += bal * rate;
 
-			line.name = account.ACCOUNTNAME;
-			line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
-			line.balance = bal;
-			dataTerm.push_back(line);
+            line.name = account.ACCOUNTNAME;
+            line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
+            line.balance = bal;
+            dataTerm.push_back(line);
         }
     }
 
-	switch(sortColumn_)
-	{
-	case SUMMARY_SORT_BY_BALANCE:
-		std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortBalance);
-		std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortBalance);
-		break;
-	default:
-		sortColumn_ = SUMMARY_SORT_BY_NAME;
-		std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortName);
-		std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortName);
-	}
+    switch(sortColumn_)
+    {
+    case SUMMARY_SORT_BY_BALANCE:
+        std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortBalance);
+        std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortBalance);
+        break;
+    default:
+        sortColumn_ = SUMMARY_SORT_BY_NAME;
+        std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortName);
+        std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortName);
+    }
 
     mmHTMLBuilder hb;
     hb.init();
@@ -118,24 +118,24 @@ wxString mmReportSummary::getHTMLText()
 
     hb.startTable("50%");
     hb.startTableRow();
-	if(SUMMARY_SORT_BY_NAME == sortColumn_)
-	    hb.addTableHeaderCell(_("Account Name"));
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", SUMMARY_SORT_BY_NAME), _("Account Name"));
-	if(SUMMARY_SORT_BY_BALANCE == sortColumn_)
-	    hb.addTableHeaderCell(_("Balance"), true);
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", SUMMARY_SORT_BY_BALANCE), _("Balance"), true);
+    if(SUMMARY_SORT_BY_NAME == sortColumn_)
+        hb.addTableHeaderCell(_("Account Name"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", SUMMARY_SORT_BY_NAME), _("Account Name"));
+    if(SUMMARY_SORT_BY_BALANCE == sortColumn_)
+        hb.addTableHeaderCell(_("Balance"), true);
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", SUMMARY_SORT_BY_BALANCE), _("Balance"), true);
     hb.endTableRow();
 
     /* Checking */
     for (const auto& entry : dataChecking)
-	{
+    {
         hb.startTableRow();
         hb.addTableCellLink(entry.link, entry.name, false, true);
-		hb.addMoneyCell(entry.balance);
+        hb.addMoneyCell(entry.balance);
         hb.endTableRow();
-	}
+    }
 
     // all sums below will be in base currency!
     core_->currencyList_.LoadBaseCurrencySettings();
@@ -148,12 +148,12 @@ wxString mmReportSummary::getHTMLText()
 
     /* Terms */
     for (const auto& entry : dataTerm)
-	{
+    {
         hb.startTableRow();
         hb.addTableCellLink(entry.link, entry.name, false, true);
-		hb.addMoneyCell(entry.balance);
+        hb.addMoneyCell(entry.balance);
         hb.endTableRow();
-	}
+    }
 
     // all sums below will be in base currency!
     core_->currencyList_.LoadBaseCurrencySettings();

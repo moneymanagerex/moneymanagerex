@@ -24,15 +24,15 @@
 #include "model/Model_Payee.h"
 #include <algorithm>
 
-#define TRANS_SORT_BY_DATE		1
-#define TRANS_SORT_BY_ACCOUNT	2
-#define TRANS_SORT_BY_PAYEE		3
-#define TRANS_SORT_BY_STATUS	4
-#define TRANS_SORT_BY_CATEGORY	5
-#define TRANS_SORT_BY_TYPE		6
-#define TRANS_SORT_BY_AMOUNT	7
-#define TRANS_SORT_BY_NUMBER	8
-#define TRANS_SORT_BY_NOTE		9
+#define TRANS_SORT_BY_DATE      1
+#define TRANS_SORT_BY_ACCOUNT   2
+#define TRANS_SORT_BY_PAYEE     3
+#define TRANS_SORT_BY_STATUS    4
+#define TRANS_SORT_BY_CATEGORY  5
+#define TRANS_SORT_BY_TYPE      6
+#define TRANS_SORT_BY_AMOUNT    7
+#define TRANS_SORT_BY_NUMBER    8
+#define TRANS_SORT_BY_NOTE      9
 
 mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction>& trans,
     mmCoreDB* core, int refAccountID, mmFilterTransactionsDialog* transDialog)

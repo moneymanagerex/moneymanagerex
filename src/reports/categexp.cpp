@@ -26,8 +26,8 @@
 #include <algorithm>
 #include "model/Model_Category.h"
 
-#define CATEGORY_SORT_BY_NAME		1
-#define CATEGORY_SORT_BY_AMOUNT		2
+#define CATEGORY_SORT_BY_NAME        1
+#define CATEGORY_SORT_BY_AMOUNT      2
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 ( mmCoreDB* core, mmDateRange* date_range, const wxString& title, int type)
@@ -37,19 +37,19 @@ mmReportCategoryExpenses::mmReportCategoryExpenses
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
 {
-	// set initial sort column
-	sortColumn_ = CATEGORY_SORT_BY_NAME;
+    // set initial sort column
+    sortColumn_ = CATEGORY_SORT_BY_NAME;
 }
 
 mmReportCategoryExpenses::~mmReportCategoryExpenses()
 {
-	if(date_range_)
-		delete date_range_;
+    if(date_range_)
+        delete date_range_;
 }
 
 wxString mmReportCategoryExpenses::getHTMLText()
 {
-	// structure for sorting of data
+    // structure for sorting of data
     struct data_holder {wxString name; double amount; int categs;} line;
     std::vector<data_holder> data;
 
@@ -85,10 +85,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
             vp.amount = amt;
             valueList.push_back(vp);
 
-			line.name = sCategName;
-			line.amount = amt;
-			line.categs = 0;
-			data.push_back(line);
+            line.name = sCategName;
+            line.amount = amt;
+            line.categs = 0;
+            data.push_back(line);
         }
 
         for (const auto& sub_category: Model_Category::sub_category(category))
@@ -112,45 +112,45 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 vp.amount = amt;
                 valueList.push_back(vp);
 
-				line.name = sFullCategName;
-				line.amount = amt;
-				line.categs = 0;
-				data.push_back(line);
+                line.name = sFullCategName;
+                line.amount = amt;
+                line.categs = 0;
+                data.push_back(line);
             }
         }
 
         if (categs > 1)
         {
-			line.name = _("Category Total: ");
-			line.amount = categtotal;
-			line.categs = categs;
-			data.push_back(line);
+            line.name = _("Category Total: ");
+            line.amount = categtotal;
+            line.categs = categs;
+            data.push_back(line);
         }
         else if (categs > 0)
         {
-			// Insert place holder to add a seperator
-			line.name = "";
-			line.amount = 0;
-			line.categs = categs;
-			data.push_back(line);
+            // Insert place holder to add a seperator
+            line.name = "";
+            line.amount = 0;
+            line.categs = categs;
+            data.push_back(line);
         }
-	}
+    }
 
-	if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
-	{
-		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder& x, const data_holder& y)
-				{
-					if (x.amount != y.amount) return x.amount < y.amount;
-					else return x.name < y.name;
-				}
-		);
-	}
-	else
-	{
-		// List is presorted by category name
-		sortColumn_ = CATEGORY_SORT_BY_NAME;
-	}
+    if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
+    {
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.amount != y.amount) return x.amount < y.amount;
+                else return x.name < y.name;
+            }
+        );
+    }
+    else
+    {
+        // List is presorted by category name
+        sortColumn_ = CATEGORY_SORT_BY_NAME;
+    }
 
     mmHTMLBuilder hb;
     hb.init();
@@ -166,47 +166,47 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     hb.startTable("60%");
     hb.startTableRow();
-	if(CATEGORY_SORT_BY_NAME == sortColumn_)
-	    hb.addTableHeaderCell(_("Category"));
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_NAME), _("Category"));
-	if(CATEGORY_SORT_BY_AMOUNT == sortColumn_)
-	    hb.addTableHeaderCell(_("Amount"), true);
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
+    if(CATEGORY_SORT_BY_NAME == sortColumn_)
+        hb.addTableHeaderCell(_("Category"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_NAME), _("Category"));
+    if(CATEGORY_SORT_BY_AMOUNT == sortColumn_)
+        hb.addTableHeaderCell(_("Amount"), true);
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
     hb.endTableRow();
 
-	bool endSeparator = false;
+    bool endSeparator = false;
     for (const auto& entry : data)
     {
-		endSeparator = false;
-		if (entry.categs > 0)
-		{
-			if(CATEGORY_SORT_BY_NAME == sortColumn_)
-			{
-				if (entry.name != "")
-				{
-					hb.addRowSeparator(0);
-					hb.startTableRow();
-					hb.addTableCell(entry.name, false, true, true, "GRAY");
-					hb.addMoneyCell(entry.amount, "GRAY");
-					hb.endTableRow();
-				}
-				hb.addRowSeparator(2);
-				endSeparator = true;
-			}
-		}
-		else
-		{
+        endSeparator = false;
+        if (entry.categs > 0)
+        {
+            if(CATEGORY_SORT_BY_NAME == sortColumn_)
+            {
+                if (entry.name != "")
+                {
+                    hb.addRowSeparator(0);
+                    hb.startTableRow();
+                    hb.addTableCell(entry.name, false, true, true, "GRAY");
+                    hb.addMoneyCell(entry.amount, "GRAY");
+                    hb.endTableRow();
+                }
+                hb.addRowSeparator(2);
+                endSeparator = true;
+            }
+        }
+        else
+        {
             hb.startTableRow();
-			hb.addTableCell(entry.name, false, true);
-			hb.addMoneyCell(entry.amount);
+            hb.addTableCell(entry.name, false, true);
+            hb.addMoneyCell(entry.amount);
             hb.endTableRow();
-		}
+        }
     }
 
-	if (!endSeparator)
-		hb.addRowSeparator(2);
+    if (!endSeparator)
+        hb.addRowSeparator(2);
     hb.addTotalRow(_("Grand Total: "), 1, grandtotal);
 
     hb.endTable();

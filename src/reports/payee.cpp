@@ -8,18 +8,18 @@
 
 #include <algorithm>
 
-#define PAYEE_SORT_BY_NAME		1
-#define PAYEE_SORT_BY_INCOME	2
-#define PAYEE_SORT_BY_EXPENSE	3
-#define PAYEE_SORT_BY_DIFF		4
+#define PAYEE_SORT_BY_NAME      1
+#define PAYEE_SORT_BY_INCOME    2
+#define PAYEE_SORT_BY_EXPENSE   3
+#define PAYEE_SORT_BY_DIFF      4
 
 mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
     : mmPrintableBase(core)
     , title_(title)
     , date_range_(date_range)
 {
-	// set initial sort column
-	sortColumn_ = PAYEE_SORT_BY_DIFF;
+    // set initial sort column
+    sortColumn_ = PAYEE_SORT_BY_DIFF;
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()
@@ -55,44 +55,44 @@ wxString mmReportPayeeExpenses::getHTMLText()
         data.push_back(line);
     }
 
-	switch (sortColumn_)
-	{
-	case PAYEE_SORT_BY_NAME:
-		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder& x, const data_holder& y)
-				{
-					return x.name < y.name;
-				}
-		);
-		break;
-	case PAYEE_SORT_BY_INCOME:
-		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder& x, const data_holder& y)
-				{
-					if (x.incomes != y.incomes) return x.incomes < y.incomes;
-					else return x.name < y.name;
-				}
-		);
-		break;
-	case PAYEE_SORT_BY_EXPENSE:
-		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder& x, const data_holder& y)
-				{
-					if (x.expences != y.expences) return x.expences < y.expences;
-					else return x.name < y.name;
-				}
-		);
-		break;
-	default:
-		sortColumn_ = PAYEE_SORT_BY_DIFF;
-		std::stable_sort(data.begin(), data.end()
-				, [] (const data_holder& x, const data_holder& y)
-				{
-					if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
-					else return x.name < y.name;
-				}
-		);
-	}
+    switch (sortColumn_)
+    {
+    case PAYEE_SORT_BY_NAME:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                return x.name < y.name;
+            }
+        );
+        break;
+    case PAYEE_SORT_BY_INCOME:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.incomes != y.incomes) return x.incomes < y.incomes;
+                else return x.name < y.name;
+            }
+        );
+        break;
+    case PAYEE_SORT_BY_EXPENSE:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.expences != y.expences) return x.expences < y.expences;
+                else return x.name < y.name;
+            }
+        );
+        break;
+    default:
+        sortColumn_ = PAYEE_SORT_BY_DIFF;
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
+                else return x.name < y.name;
+            }
+        );
+    }
 
     mmHTMLBuilder hb;
     hb.init();
@@ -106,22 +106,22 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
     hb.startTable("75%");
     hb.startTableRow();
-	if(PAYEE_SORT_BY_NAME == sortColumn_)
-	    hb.addTableHeaderCell(_("Payee"));
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_NAME), _("Payee"));
-	if(PAYEE_SORT_BY_INCOME == sortColumn_)
-	    hb.addTableHeaderCell(_("Incomes"), true);
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
-	if(PAYEE_SORT_BY_EXPENSE == sortColumn_)
-		hb.addTableHeaderCell(_("Expences"), true);
-	else
-		hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_EXPENSE), _("Expences"), true);
-	if(PAYEE_SORT_BY_DIFF == sortColumn_)
-		hb.addTableHeaderCell(_("Difference"), true);
-	else
-	    hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
+    if(PAYEE_SORT_BY_NAME == sortColumn_)
+        hb.addTableHeaderCell(_("Payee"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_NAME), _("Payee"));
+    if(PAYEE_SORT_BY_INCOME == sortColumn_)
+        hb.addTableHeaderCell(_("Incomes"), true);
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
+    if(PAYEE_SORT_BY_EXPENSE == sortColumn_)
+        hb.addTableHeaderCell(_("Expences"), true);
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_EXPENSE), _("Expences"), true);
+    if(PAYEE_SORT_BY_DIFF == sortColumn_)
+        hb.addTableHeaderCell(_("Difference"), true);
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
     hb.endTableRow();
 
     for (const auto& entry : data)
