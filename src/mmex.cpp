@@ -1718,7 +1718,6 @@ void mmGUIFrame::CreateCustomReport(int index)
                 , sScript
                 , custRepIndex_->CurrentReportFileType());
             createReportsPage(csr);
-            //delete csr; // BUG: #215 custom report crashes mmex on export to HTML
         }
     }
     processPendingEvents();         // clear out pending events
@@ -1803,13 +1802,11 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 int year = data;
                 mmPrintableBase* rs = new mmReportBudgetingPerformance(m_core.get(), year);
                 createReportsPage(rs);
-                delete rs; // CHECK
             }
             else if (iParentData->getString() == "Budget Setup Performance")
             {
                 mmPrintableBase* rs = new mmReportBudgetCategorySummary(m_core.get(), year);
                 createReportsPage(rs);
-                delete rs; // CHECK
             }
             else
             {
@@ -3240,7 +3237,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
         mmReportTransactions* rs = new mmReportTransactions(trans, m_core.get(), dlg->getAccountID(), dlg);
         createReportsPage(rs);
-        delete rs; // CHECK
     }
 }
 
@@ -3904,7 +3900,6 @@ void mmGUIFrame::RunCustomSqlDialog(const wxString& customReportSelectedItem)
             mmCustomReport* csr = new mmCustomReport(this,
                 m_core.get(), dlg.sReportTitle(), dlg.sScript(), dlg.sSctiptType());
             createReportsPage(csr);
-            delete csr; // CHECK
             wxEndBusyCursor();
         }
         dialogStatus = dlg.ShowModal();
@@ -3925,6 +3920,7 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 {
     wxASSERT(homePanel_);
 
+    if (panelCurrent_) delete panelCurrent_;
     homePanel_->DestroyChildren();
     homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : 0);
 

@@ -24,6 +24,15 @@
 #include "model/Model_Payee.h"
 #include <algorithm>
 
+#define TRANS_SORT_BY_DATE		1
+#define TRANS_SORT_BY_ACCOUNT	2
+#define TRANS_SORT_BY_PAYEE		3
+#define TRANS_SORT_BY_STATUS	4
+#define TRANS_SORT_BY_CATEGORY	5
+#define TRANS_SORT_BY_TYPE		6
+#define TRANS_SORT_BY_AMOUNT	7
+#define TRANS_SORT_BY_NUMBER	8
+#define TRANS_SORT_BY_NOTE		9
 
 mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction>& trans,
     mmCoreDB* core, int refAccountID, mmFilterTransactionsDialog* transDialog)
@@ -32,8 +41,8 @@ mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction>&
 , refAccountID_(refAccountID)
 , transDialog_(transDialog)
 {
-    std::stable_sort (trans_.begin(), trans_.end());
-// TODO with new database layer support
+    // set initial sort column
+    sortColumn_ = TRANS_SORT_BY_DATE;
 }
 
 mmReportTransactions::~mmReportTransactions()
@@ -52,6 +61,124 @@ wxString addFilterDetailes(wxString sHeader, wxString sValue)
 
 wxString mmReportTransactions::getHTMLText()
 {
+    // structure for sorting of data
+    struct data_holder {wxDateTime date; wxString account; wxString link; wxString payee; wxString status; wxString categ; wxString type; double amount; wxString num; wxString note;} line;
+    std::vector<data_holder> data;
+
+    double total = 0;
+
+    for (auto& transaction: trans_)
+    {
+        transaction.updateTransactionData(refAccountID_, total);
+
+        line.date = transaction.date_;
+        line.account = core_->accountList_.GetAccountName(transaction.accountID_);
+        line.link = wxString::Format("TRXID:%d", transaction.transactionID());
+        Model_Payee::Data* payee = (transaction.payeeID_ > -1 ? Model_Payee::instance().get(transaction.payeeID_) : NULL);
+        line.payee = ( (payee) ? payee->PAYEENAME : "" );
+        line.status = transaction.status_;
+        line.categ = transaction.fullCatStr_;
+        line.type = transaction.transType_;
+        // Get the exchange rate for the selected account
+        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction.accountID_);
+        line.amount = transaction.value(refAccountID_) * dbRate;
+        line.num = transaction.transNum_;
+        line.note = transaction.notes_;
+        data.push_back(line);
+    }
+
+    switch (sortColumn_)
+    {
+    case TRANS_SORT_BY_ACCOUNT:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.account != y.account) return x.account < y.account;
+                else return x.date < y.date;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_PAYEE:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.payee != y.payee) return x.payee < y.payee;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_STATUS:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.status != y.status) return x.status < y.status;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_CATEGORY:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.categ != y.categ) return x.categ < y.categ;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_TYPE:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.type != y.type) return x.type < y.type;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_AMOUNT:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.amount != y.amount) return x.amount < y.amount;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_NUMBER:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.num != y.num) return x.num < y.num;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    case TRANS_SORT_BY_NOTE:
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.note != y.note) return x.note < y.note;
+                else if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+        break;
+    default:
+        sortColumn_ = TRANS_SORT_BY_DATE;
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                if (x.date != y.date) return x.date < y.date;
+                else return x.account < y.account;
+            }
+        );
+    }
+
     mmHTMLBuilder hb;
     hb.init();
 
@@ -71,59 +198,58 @@ wxString mmReportTransactions::getHTMLText()
 
     // Display the data Headings
     hb.startTableRow();
-    hb.addTableHeaderCell(_("Date"));
-    hb.addTableHeaderCell(_("Account"));
-    hb.addTableHeaderCell(_("Payee"));
-    hb.addTableHeaderCell(_("Status"));
-    hb.addTableHeaderCell(_("Category"));
-    hb.addTableHeaderCell(_("Type"));
-    hb.addTableHeaderCell(_("Amount"), true);
-    hb.addTableHeaderCell(_("Number"));
-    hb.addTableHeaderCell(_("Notes"));
+    if(TRANS_SORT_BY_DATE == sortColumn_)
+        hb.addTableHeaderCell(_("Date"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_DATE), _("Date"));
+    if(TRANS_SORT_BY_ACCOUNT == sortColumn_)
+        hb.addTableHeaderCell(_("Account"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_ACCOUNT), _("Account"));
+    if(TRANS_SORT_BY_PAYEE == sortColumn_)
+        hb.addTableHeaderCell(_("Payee"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_PAYEE), _("Payee"));
+    if(TRANS_SORT_BY_STATUS == sortColumn_)
+        hb.addTableHeaderCell(_("Status"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_STATUS), _("Status"));
+    if(TRANS_SORT_BY_CATEGORY == sortColumn_)
+        hb.addTableHeaderCell(_("Category"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_CATEGORY), _("Category"));
+    if(TRANS_SORT_BY_TYPE == sortColumn_)
+        hb.addTableHeaderCell(_("Type"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_TYPE), _("Type"));
+    if(TRANS_SORT_BY_AMOUNT == sortColumn_)
+        hb.addTableHeaderCell(_("Amount"), true);
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_AMOUNT), _("Amount"), true);
+    if(TRANS_SORT_BY_NUMBER == sortColumn_)
+        hb.addTableHeaderCell(_("Number"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_NUMBER), _("Number"));
+    if(TRANS_SORT_BY_NOTE == sortColumn_)
+        hb.addTableHeaderCell(_("Notes"));
+    else
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TRANS_SORT_BY_NOTE), _("Notes"));
     hb.endTableRow();
 
     // Display the data for each row
-    bool unknownnReferenceAccount = true;
-    bool transferTransactionFound = false;
-    double total = 0;
-
-    for (auto& transaction: trans_)
+    for (const auto& entry : data)
     {
-        // For transfer transactions, we need to fix the data reference point first.
-        if ( refAccountID_ > -1 && transaction.transType_ == TRANS_TYPE_TRANSFER_STR &&
-             (refAccountID_ == transaction.accountID_ || refAccountID_ == transaction.toAccountID_) )
-        {
-            const mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(refAccountID_);
-            const mmCurrency* pCurrency = pAccount->currency_;
-            wxASSERT(pCurrency);
-            //FIXME:
-            //pCurrency->loadCurrencySettings();
-        }
-
-        transaction.updateTransactionData(refAccountID_, total);
-
-        // Display the data for the selected row
         hb.startTableRow();
-        hb.addTableCell(transaction.date_);
-        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.transactionID())
-            , core_->accountList_.GetAccountName(transaction.accountID_));
-
-        Model_Payee::Data* payee = Model_Payee::instance().get(transaction.payeeID_);
-        hb.addTableCell(( (payee) ? payee->PAYEENAME : ""));
-        hb.addTableCell(transaction.status_);
-        hb.addTableCell(transaction.fullCatStr_, false, true);
-
-        hb.addTableCell(wxGetTranslation(transaction.transType_));
-
-        // Get the exchange rate for the selected account
-        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction.accountID_);
-        double transAmount = transaction.value(refAccountID_) * dbRate;
-
-        hb.addMoneyCell(transAmount);
-        hb.addTableCell(transaction.transNum_);
-        hb.addTableCell(transaction.notes_, false, true);
+        hb.addTableCell(entry.date);
+        hb.addTableCellLink(entry.link, entry.account);
+        hb.addTableCell(entry.payee);
+        hb.addTableCell(entry.status);
+        hb.addTableCell(entry.categ, false, true);
+        hb.addTableCell(wxGetTranslation(entry.type));
+        hb.addMoneyCell(entry.amount);
+        hb.addTableCell(entry.num);
+        hb.addTableCell(entry.note, false, true);
         hb.endTableRow();
-
     }
 
     // work out the total balance for all the data at base rate
@@ -135,12 +261,6 @@ wxString mmReportTransactions::getHTMLText()
 
     hb.endTable();
     hb.endCenter();
-
-    if (unknownnReferenceAccount && transferTransactionFound)
-    {
-        hb.addHorizontalLine();
-        hb.addHeader(1, _("<b>Note:</b> Transactions contain <b>'transfers'</b> may either be added or subtracted to the <b>'Total Amount'</b> depending on last selected account."));
-    }
 
     // Extract the parameters from the transaction dialog and add them to the report.
     wxString filterDetails;
