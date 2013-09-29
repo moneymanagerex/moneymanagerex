@@ -143,25 +143,6 @@ wxString mmAccountList::GetAccountName(int accountID) const
     return wxEmptyString;
 }
 
-wxArrayInt mmAccountList::getAccountsID(const wxArrayString& accounts_type, int except_id) const
-{
-    wxArrayInt accounts_id;
-    for (const auto& it : accounts_)
-    {
-        const mmAccount* account = it;
-        for (size_t i = 0; i < accounts_type.Count(); ++i)
-        {
-            if ((account->acctType_ == accounts_type[i])
-                && account->status_ != mmAccount::MMEX_Closed && account->id_ != except_id)
-            {
-                accounts_id.Add(account->id_);
-            }
-        }
-    }
-
-    return accounts_id;
-}
-
 wxString mmAccountList::getAccountType(int accountID) const
 {
     for (const auto& account : accounts_)

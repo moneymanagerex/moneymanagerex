@@ -286,14 +286,10 @@ void mmQIFImportDialog::CreateControls()
 
 void mmQIFImportDialog::fillControls()
 {
-    wxArrayString accounts_type;
-    accounts_type.Add(ACCOUNT_TYPE_BANK);
-    accounts_type.Add(ACCOUNT_TYPE_TERM);
-    accounts_id_ = core_->accountList_.getAccountsID(accounts_type);
-
-    for (const auto& entry : accounts_id_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        accounts_name_.Add(core_->accountList_.GetAccountName(entry));
+        if (Model_Account::type(account) != Model_Account::CHECKING && Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+        accounts_name_.Add(account.ACCOUNTNAME);
     }
     bbFile_ ->SetBitmapLabel(wxBitmap(empty_xpm));
     bbFile_ ->Enable(false);
