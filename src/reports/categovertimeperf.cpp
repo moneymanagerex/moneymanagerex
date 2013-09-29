@@ -64,12 +64,12 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     std::map<int, std::map<int, double> > totals;
 
 	// structure for sorting of data (month is used for sorting of period values and is not directly displayed)
-    struct data_holder {wxString category_name; double period[MONTHS_IN_PERIOD]; double overall; double month;} line;
+    struct data_holder {wxString name; double period[MONTHS_IN_PERIOD]; double overall; double month;} line;
     std::vector<data_holder> data;
     for (const auto& category: Model_Category::instance().all())
     {
         int categID = category.CATEGID;
-		line.category_name = category.CATEGNAME;
+		line.name = category.CATEGNAME;
 		line.overall = 0;
 		int month = 0;
         for (const auto &i : categoryStats[categID][-1])
@@ -85,7 +85,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
         for (const auto& sub_category: Model_Category::sub_category(category))
         {
             int subcategID = sub_category.SUBCATEGID;
-			line.category_name = category.CATEGNAME + " : " + sub_category.SUBCATEGNAME;
+			line.name = category.CATEGNAME + " : " + sub_category.SUBCATEGNAME;
             line.overall = 0;
 			month = 0;
             for (const auto &i : categoryStats[categID][subcategID])
@@ -107,7 +107,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.overall != y.overall) return x.overall < y.overall;
-					else return x.category_name < y.category_name;
+					else return x.name < y.name;
 				}
 		);
 	}
@@ -120,7 +120,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.month != y.month) return x.month < y.month;
-					else return x.category_name < y.category_name;
+					else return x.name < y.name;
 				}
 		);
 	}
@@ -168,7 +168,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     for (const auto& entry : data)
     {
         hb.startTableRow();
-        hb.addTableCell(entry.category_name);
+        hb.addTableCell(entry.name);
 		for (int i = 0; i < MONTHS_IN_PERIOD; i++)
 			hb.addMoneyCell(entry.period[i]);
         hb.addMoneyCell(entry.overall);

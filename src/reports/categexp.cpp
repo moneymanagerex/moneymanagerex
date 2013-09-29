@@ -50,7 +50,7 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 wxString mmReportCategoryExpenses::getHTMLText()
 {
 	// structure for sorting of data
-    struct data_holder {wxString category_name; double amount; int categs;} line;
+    struct data_holder {wxString name; double amount; int categs;} line;
     std::vector<data_holder> data;
 
     bool with_date = date_range_->is_with_date();
@@ -85,7 +85,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             vp.amount = amt;
             valueList.push_back(vp);
 
-			line.category_name = sCategName;
+			line.name = sCategName;
 			line.amount = amt;
 			line.categs = 0;
 			data.push_back(line);
@@ -112,7 +112,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 vp.amount = amt;
                 valueList.push_back(vp);
 
-				line.category_name = sFullCategName;
+				line.name = sFullCategName;
 				line.amount = amt;
 				line.categs = 0;
 				data.push_back(line);
@@ -121,7 +121,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
         if (categs > 1)
         {
-			line.category_name = _("Category Total: ");
+			line.name = _("Category Total: ");
 			line.amount = categtotal;
 			line.categs = categs;
 			data.push_back(line);
@@ -129,7 +129,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         else if (categs > 0)
         {
 			// Insert place holder to add a seperator
-			line.category_name = "";
+			line.name = "";
 			line.amount = 0;
 			line.categs = categs;
 			data.push_back(line);
@@ -142,7 +142,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.amount != y.amount) return x.amount < y.amount;
-					else return x.category_name < y.category_name;
+					else return x.name < y.name;
 				}
 		);
 	}
@@ -184,11 +184,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
 		{
 			if(CATEGORY_SORT_BY_NAME == sortColumn_)
 			{
-				if (entry.category_name != "")
+				if (entry.name != "")
 				{
 					hb.addRowSeparator(0);
 					hb.startTableRow();
-					hb.addTableCell(entry.category_name, false, true, true, "GRAY");
+					hb.addTableCell(entry.name, false, true, true, "GRAY");
 					hb.addMoneyCell(entry.amount, "GRAY");
 					hb.endTableRow();
 				}
@@ -199,7 +199,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 		else
 		{
             hb.startTableRow();
-			hb.addTableCell(entry.category_name, false, true);
+			hb.addTableCell(entry.name, false, true);
 			hb.addMoneyCell(entry.amount);
             hb.endTableRow();
 		}

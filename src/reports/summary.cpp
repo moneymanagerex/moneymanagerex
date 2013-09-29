@@ -36,15 +36,15 @@ mmReportSummary::mmReportSummary(mmCoreDB* core)
 }
 
 // structure for sorting of data
-struct data_holder {wxString account_name; wxString link; double balance;};
+struct data_holder {wxString name; wxString link; double balance;};
 bool mmSummarySortName (const data_holder& x, const data_holder& y)
 {
-	return x.account_name < y.account_name;
+	return x.name < y.name;
 }
 bool mmSummarySortBalance (const data_holder& x, const data_holder& y)
 {
 	if (x.balance != y.balance) return x.balance < y.balance;
-	else return x.account_name < y.account_name;
+	else return x.name < y.name;
 }
 
 wxString mmReportSummary::getHTMLText()
@@ -67,7 +67,7 @@ wxString mmReportSummary::getHTMLText()
 
             tBalance += bal * rate;
 
-			line.account_name = account.ACCOUNTNAME;
+			line.name = account.ACCOUNTNAME;
 			line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
 			line.balance = bal;
 			dataChecking.push_back(line);
@@ -89,7 +89,7 @@ wxString mmReportSummary::getHTMLText()
 
             tTBalance += bal * rate;
 
-			line.account_name = account.ACCOUNTNAME;
+			line.name = account.ACCOUNTNAME;
 			line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
 			line.balance = bal;
 			dataTerm.push_back(line);
@@ -132,7 +132,7 @@ wxString mmReportSummary::getHTMLText()
     for (const auto& entry : dataChecking)
 	{
         hb.startTableRow();
-        hb.addTableCellLink(entry.link, entry.account_name, false, true);
+        hb.addTableCellLink(entry.link, entry.name, false, true);
 		hb.addMoneyCell(entry.balance);
         hb.endTableRow();
 	}
@@ -150,7 +150,7 @@ wxString mmReportSummary::getHTMLText()
     for (const auto& entry : dataTerm)
 	{
         hb.startTableRow();
-        hb.addTableCellLink(entry.link, entry.account_name, false, true);
+        hb.addTableCellLink(entry.link, entry.name, false, true);
 		hb.addMoneyCell(entry.balance);
         hb.endTableRow();
 	}

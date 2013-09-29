@@ -35,7 +35,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     double positiveTotal = 0.0, negativeTotal = 0.0;
     std::vector<ValuePair> valueList;
     valueList.clear();
-    struct data_holder {wxString payee_name; double incomes; double expences;} line;
+    struct data_holder {wxString name; double incomes; double expences;} line;
     std::vector<data_holder> data;
 
     std::map<int, std::pair<double, double> > payeeStats;
@@ -49,7 +49,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 
         Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
         if (payee)
-            line.payee_name = payee->PAYEENAME;
+            line.name = payee->PAYEENAME;
         line.incomes = entry.second.first;
         line.expences = entry.second.second;
         data.push_back(line);
@@ -61,7 +61,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 		std::stable_sort(data.begin(), data.end()
 				, [] (const data_holder& x, const data_holder& y)
 				{
-					return x.payee_name < y.payee_name;
+					return x.name < y.name;
 				}
 		);
 		break;
@@ -70,7 +70,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.incomes != y.incomes) return x.incomes < y.incomes;
-					else return x.payee_name < y.payee_name;
+					else return x.name < y.name;
 				}
 		);
 		break;
@@ -79,7 +79,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.expences != y.expences) return x.expences < y.expences;
-					else return x.payee_name < y.payee_name;
+					else return x.name < y.name;
 				}
 		);
 		break;
@@ -89,7 +89,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
 				, [] (const data_holder& x, const data_holder& y)
 				{
 					if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
-					else return x.payee_name < y.payee_name;
+					else return x.name < y.name;
 				}
 		);
 	}
@@ -127,7 +127,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     for (const auto& entry : data)
     {
         hb.startTableRow();
-        hb.addTableCell(entry.payee_name);
+        hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.incomes);
         hb.addMoneyCell(entry.expences);
         hb.addMoneyCell(entry.incomes + entry.expences);
@@ -136,7 +136,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         if (entry.incomes + entry.expences < 0)
         {
             ValuePair vp;
-            vp.label = entry.payee_name;
+            vp.label = entry.name;
             vp.amount = entry.incomes + entry.expences;
             valueList.push_back(vp);
         }
