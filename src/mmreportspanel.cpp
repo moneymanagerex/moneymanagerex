@@ -40,6 +40,7 @@ mmReportsPanel::mmReportsPanel(mmCoreDB* core,
 
 mmReportsPanel::~mmReportsPanel()
 {
+    if(rb_) delete rb_;
 }
 
 bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
