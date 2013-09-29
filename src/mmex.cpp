@@ -441,7 +441,7 @@ void mmAddAccountWizard::RunIt(bool modal)
 bool mmAddAccountPage1::TransferDataFromWindow()
 {
     bool result = true;
-    const wxString& account_name = textAccountName_->GetValue().Trim();
+    const wxString account_name = textAccountName_->GetValue().Trim();
     if ( account_name.IsEmpty())
     {
         wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_ERROR, this);
