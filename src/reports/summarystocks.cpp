@@ -43,20 +43,6 @@ mmReportSummaryStocks::mmReportSummaryStocks(mmCoreDB* core)
 	sortColumn_ = STOCK_SORT_BY_NAME;
 }
 
-static const char SELECT_ROW_SYMBOL_FROM_STOCK_V1[] =
-    "SELECT "
-           "STOCKNAME, "
-           "TOTAL(NUMSHARES) AS NUMSHARES, "
-           "SYMBOL, "
-           "TOTAL(CURRENTPRICE*NUMSHARES)/TOTAL(NUMSHARES) AS CURRENTPRICE, "
-           "TOTAL(PURCHASEPRICE*NUMSHARES)/TOTAL(NUMSHARES) AS PURCHASEPRICE, "
-           "TOTAL(VALUE) AS VALUE, "
-           "TOTAL(COMMISSION) AS COMMISSION, "
-           "MIN(PURCHASEDATE) AS PURCHASEDATE "
-    "FROM STOCK_V1 "
-    "WHERE HELDAT = ? "
-    "GROUP BY UPPER(SYMBOL) ";
-
 wxString mmReportSummaryStocks::getHTMLText()
 {
 	// structure for sorting of data
@@ -77,46 +63,24 @@ wxString mmReportSummaryStocks::getHTMLText()
 		account.total = Model_Account::investment_balance(a).second; 
 		account.data.clear();
 
-        wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_ROW_SYMBOL_FROM_STOCK_V1);
-        st.Bind(1, a.ACCOUNTID);
-        wxSQLite3ResultSet q2 = st.ExecuteQuery();
-
-        while (q2.NextRow())
+        for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, a.ACCOUNTID))
         {
-            mmStockTransactionHolder th;
-
-            //th.id_              = q2.GetInt("STOCKID");
-            th.shareName_       = q2.GetString("STOCKNAME");
-            th.numShares_       = q2.GetDouble("NUMSHARES");
-            th.numSharesStr_    = q2.GetString("NUMSHARES");
-            th.stockSymbol_     = q2.GetString("SYMBOL");
-
-            th.currentPrice_    = q2.GetDouble("CURRENTPRICE");
-            th.purchasePrice_   = q2.GetDouble("PURCHASEPRICE");
-            th.value_           = q2.GetDouble("VALUE");
-            double commission   = q2.GetDouble("COMMISSION");
-            wxDateTime dtdt     = q2.GetDate("PURCHASEDATE");
-            wxString dt         = mmGetDateForDisplay(dtdt);
-
-            th.gainLoss_        = th.value_ - ((th.numShares_ * th.purchasePrice_) + commission);
             double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(a.ACCOUNTID);
-            stockBalance += base_conv_rate * th.value_;
-            account.gainloss += th.gainLoss_;
-            gain_loss_sum_total += th.gainLoss_ * base_conv_rate;
+            stockBalance += base_conv_rate * stock.VALUE;
+            account.gainloss += stock.VALUE - Model_Stock::value(stock);
+            gain_loss_sum_total += (stock.VALUE - Model_Stock::value(stock)) * base_conv_rate;
 
-			line.name = th.shareName_;
-			line.symbol = th.stockSymbol_;
-			line.date = dt;
-			line.qty = th.numShares_;
-			line.purchase = th.purchasePrice_;
-			line.current = th.currentPrice_;
-			line.commission = commission;
-			line.gainloss = th.gainLoss_;
-			line.value = th.value_;
+			line.name = stock.STOCKNAME;
+			line.symbol = stock.SYMBOL;
+			line.date = mmGetDateForDisplay(Model_Stock::PURCHASEDATE(stock));
+			line.qty = stock.NUMSHARES;
+			line.purchase = stock.PURCHASEPRICE;
+			line.current = stock.CURRENTPRICE;
+			line.commission = stock.COMMISSION;
+			line.gainloss = stock.VALUE - Model_Stock::value(stock);
+			line.value = stock.VALUE;
 			account.data.push_back(line);
         }
-        q2.Finalize();
-
 		stocks.push_back(account);
     }
 
