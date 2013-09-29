@@ -28,9 +28,6 @@
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 
-enum { ACCT_TYPE_CHECKING = 0, ACCT_TYPE_TERM, ACCT_TYPE_INVESTMENT };
-enum { ACCT_STATUS_OPEN = 0, ACCT_STATUS_CLOSED };
-
 IMPLEMENT_DYNAMIC_CLASS( mmNewAcctDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
@@ -358,9 +355,9 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     pAccount->acctType_ = ACCOUNT_TYPE_BANK;
-    if (acctType == ACCT_TYPE_INVESTMENT)
+    if (acctType == Model_Account::INVESTMENT)
         pAccount->acctType_ = ACCOUNT_TYPE_STOCK;
-    if (acctType == ACCT_TYPE_TERM)
+    if (acctType == Model_Account::TERM)
     {
         pAccount->acctType_ = ACCOUNT_TYPE_TERM;
         termAccount_ = true;
@@ -375,7 +372,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
     int acctStatus = choice->GetSelection();
     pAccount->status_ = mmAccount::MMEX_Open;
-    if (acctStatus == ACCT_STATUS_CLOSED)
+    if (acctStatus == Model_Account::CLOSED)
         pAccount->status_ = mmAccount::MMEX_Closed;
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
