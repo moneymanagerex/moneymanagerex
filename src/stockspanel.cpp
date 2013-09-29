@@ -191,16 +191,13 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 {
     if (selectedIndex_ == -1) return;
 
-    wxArrayString accounts_type;
-    accounts_type.Add(ACCOUNT_TYPE_STOCK);
-    wxArrayInt accounts_id = stock_panel_->core_->accountList_.getAccountsID(accounts_type, stock_panel_->accountID_);
-    if (accounts_id.Count() < 1) return;
-
     wxArrayString accounts_name;
-    for (size_t i = 0; i < accounts_id.Count(); ++i)
+    for (const auto& account: Model_Account::instance().all())
     {
-        accounts_name.Add(stock_panel_->core_->accountList_.GetAccountName(accounts_id[i]));
+        if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+        accounts_name.Add(account.ACCOUNTNAME);
     }
+    if (accounts_name.Count() < 1) return;
 
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to...")
         ,stock_panel_->core_->accountList_.GetAccountName(stock_panel_->accountID_));

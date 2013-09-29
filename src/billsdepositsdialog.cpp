@@ -308,10 +308,10 @@ void mmBDDialog::CreateControls()
     if (core_->accountList_.getNumBankAccounts() == 1)
     {
         wxSortedArrayString accountArray;
-        for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
-        wxString accNameStr = accountArray[0];
-        itemAccountName_->SetLabel(accNameStr);
-        accountID_= core_->accountList_.GetAccountId(accNameStr);
+        const auto& account = Model_Account::instance().all()[0];
+        accountArray.Add(account.ACCOUNTNAME);
+        itemAccountName_->SetLabel(account.ACCOUNTNAME);
+        accountID_= account.ACCOUNTID; 
     };
     itemFlexGridSizer5->Add(itemAccountName_, flags);
     itemAccountName_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
