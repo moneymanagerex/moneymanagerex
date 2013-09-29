@@ -28,7 +28,7 @@
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 
-enum { ACCT_TYPE_CHECKING = 0, ACCT_TYPE_INVESTMENT, ACCT_TYPE_TERM };
+enum { ACCT_TYPE_CHECKING = 0, ACCT_TYPE_TERM, ACCT_TYPE_INVESTMENT };
 enum { ACCT_STATUS_OPEN = 0, ACCT_STATUS_CLOSED };
 
 IMPLEMENT_DYNAMIC_CLASS( mmNewAcctDialog, wxDialog )
