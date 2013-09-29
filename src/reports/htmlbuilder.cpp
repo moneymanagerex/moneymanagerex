@@ -211,7 +211,10 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
 void mmHTMLBuilder::addMoneyCell(double amount, bool color)
 {
     wxString balance = CurrencyFormatter::float2Money(amount);
-    this->addTableCell(balance, true, true, true, (amount < 0 && color) ? "RED": "");
+	double value = 0;
+	if (!CurrencyFormatter::formatCurrencyToDouble(balance, value))
+		value = amount;
+    this->addTableCell(balance, true, true, true, (value < 0 && color) ? "RED": "");
 }
 
 void mmHTMLBuilder::addMoneyCell(double amount, const wxString& color)
