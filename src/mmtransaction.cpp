@@ -117,6 +117,7 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core) :
     core_(core)
 {
     splitEntries_ = new mmSplitTransactionEntries();
+    sortby_ = DATE;
 }
 
 mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
@@ -141,12 +142,93 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
 
     splitEntries_ = new mmSplitTransactionEntries();
     getSplitTransactions(splitEntries_);
+    sortby_ = DATE;
 }
 
 bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 {
-    if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
-    if (this->accountID_ < tran.accountID_) return true; else if (this->accountID_ > tran.accountID_) return false;
+    wxString value1, value2;
+    switch(sortby_)
+    {
+    case ACCOUNT:
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+        break;
+    case PAYEE:
+        value1 = (this->payeeID_ > -1 ? Model_Payee::instance().get(this->payeeID_)->PAYEENAME : wxEmptyString);
+        value2 = (tran.payeeID_ > -1 ? Model_Payee::instance().get(tran.payeeID_)->PAYEENAME : wxEmptyString);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    case STATUS:
+        if (this->status_ < tran.status_) return true; else if (this->status_ > tran.status_) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    case CATEGORY:
+        if (this->fullCatStr_ < tran.fullCatStr_) return true; else if (this->fullCatStr_ > tran.fullCatStr_) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    case TYPE:
+        if (this->transType_ < tran.transType_) return true; else if (this->transType_ > tran.transType_) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    case AMOUNT:
+        if (this->value(-1) < tran.value(-1)) return true; else if (this->value(-1) > tran.value(-1)) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    case NUMBER:
+        if (this->transNum_ < tran.transNum_) return true; else if (this->transNum_ > tran.transNum_) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    case NOTE:
+        if (this->notes_ < tran.notes_) return true; else if (this->notes_ > tran.notes_) return false;
+
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+        break;
+    default: // DATE
+        if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
+
+        value1 = core_->accountList_.GetAccountName(this->accountID_);
+        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        if (value1 < value2) return true; else if (value1 > value2) return false;
+    }
     return this->transactionID_ < tran.transactionID_;
 }
 

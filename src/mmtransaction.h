@@ -128,6 +128,7 @@ public:
     // used for transaction reports
     double reportCategAmount_;
     wxString reportCategAmountStr_;
+    enum SORT { DATE = 0, ACCOUNT, PAYEE, STATUS, CATEGORY, TYPE, AMOUNT, NUMBER, NOTE } sortby_;
 };
 
 class mmBankTransactionList
