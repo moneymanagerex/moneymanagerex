@@ -22,6 +22,7 @@
 #include "htmlbuilder.h"
 #include "util.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 #include <algorithm>
 
 #define TRANS_SORT_BY_DATE      1
@@ -72,9 +73,10 @@ wxString mmReportTransactions::getHTMLText()
         transaction.updateTransactionData(refAccountID_, total);
 
         line.date = transaction.date_;
-        line.account = core_->accountList_.GetAccountName(transaction.accountID_);
+        Model_Account::Data* account = Model_Account::instance().get(transaction.accountID_);
+        line.account = account ? account->ACCOUNTNAME : "";
         line.link = wxString::Format("TRXID:%d", transaction.transactionID());
-        Model_Payee::Data* payee = (transaction.payeeID_ > -1 ? Model_Payee::instance().get(transaction.payeeID_) : NULL);
+        Model_Payee::Data* payee = Model_Payee::instance().get(transaction.payeeID_);
         line.payee = ( (payee) ? payee->PAYEENAME : "" );
         line.status = transaction.status_;
         line.categ = transaction.fullCatStr_;
