@@ -28,6 +28,7 @@
 #include "guiid.h"
 #include "mmcoredb.h"
 
+// TODO Model_Account & remove mmCoreDB
 class mmNewAcctDialog : public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmNewAcctDialog )

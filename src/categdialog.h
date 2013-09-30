@@ -30,6 +30,7 @@
 #include "dbwrapper.h"
 #include "mmcoredb.h"
 
+// TODO Model_Category, Model_Subcategory
 class mmTreeItemCateg : public wxTreeItemData
 {
 public:

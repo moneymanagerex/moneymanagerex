@@ -23,7 +23,7 @@
 #include "defs.h"
 
 class mmCoreDB;
-
+// TODO Model_Payee & remove mmCoreDB
 class mmPayeeDialog : public wxDialog
 {
     DECLARE_DYNAMIC_CLASS(mmPayeeDialog)
