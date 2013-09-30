@@ -123,7 +123,7 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.date_);
         Model_Account::Data* account = Model_Account::instance().get(transaction.accountID_);
         hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.transactionID()), ( account ? account->ACCOUNTNAME : ""));
-        Model_Payee::Data* payee = (transaction.payeeID_ > -1 ? Model_Payee::instance().get(transaction.payeeID_) : NULL);
+        Model_Payee::Data* payee = (transaction.transType_ != TRANS_TYPE_TRANSFER_STR ? Model_Payee::instance().get(transaction.payeeID_) : NULL);
         hb.addTableCell( payee ? payee->PAYEENAME : "" );
         hb.addTableCell(transaction.status_);
         hb.addTableCell(transaction.fullCatStr_, false, true);
