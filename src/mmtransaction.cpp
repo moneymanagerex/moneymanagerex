@@ -158,8 +158,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
         break;
     case PAYEE:
-        value1 = (this->payeeID_ > -1 ? Model_Payee::instance().get(this->payeeID_)->PAYEENAME : wxEmptyString);
-        value2 = (tran.payeeID_ > -1 ? Model_Payee::instance().get(tran.payeeID_)->PAYEENAME : wxEmptyString);
+        value1 = (this->payeeID_ > -1) ? Model_Payee::instance().get(this->payeeID_)->PAYEENAME : "";
+        value2 = (tran.payeeID_ > -1 ? Model_Payee::instance().get(tran.payeeID_)->PAYEENAME : "");
         if (value1 < value2) return true; else if (value1 > value2) return false;
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
