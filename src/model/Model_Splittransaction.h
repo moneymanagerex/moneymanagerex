@@ -19,7 +19,7 @@
 #define MODEL_SPLITTRANSACTIONS_H
 
 #include "Model.h"
-#include "db/DB_Table_Splittransactions_v1.h"
+#include "db/DB_Table_Splittransactions_V1.h"
 
 class Model_Splittransaction : public Model, public DB_Table_SPLITTRANSACTIONS_V1
 {
