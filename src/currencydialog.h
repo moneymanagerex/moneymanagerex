@@ -49,6 +49,7 @@ enum
     ID_DIALOG_CURRENCY_TEXT_SYMBOL,
 };
 
+// TODO Model_Currency
 class mmCurrencyDialog : public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmCurrencyDialog )
