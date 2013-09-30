@@ -68,7 +68,7 @@ public:
         return r->id();
     }
 public:
-    static bool is_used(int id)
+    static bool is_used(int /* id */)
     {
         // TODO
         return true;

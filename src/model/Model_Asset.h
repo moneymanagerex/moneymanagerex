@@ -125,7 +125,7 @@ public:
     {
         return rate(&r);
     }
-    static Model_Currency::Data* currency(const Data* r)
+    static Model_Currency::Data* currency(const Data* /* r */)
     {
         return Model_Currency::instance().GetBaseCurrency();
     }
