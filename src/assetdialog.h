@@ -15,10 +15,10 @@
  ********************************************************/
 
 #pragma once
-#include "assetspanel.h"
+#include "defs.h"
+#include "model/Model_Asset.h"
 
 class wxDatePickerCtrl;
-class mmCategory;
 
 class mmAssetDialog : public wxDialog
 {
@@ -27,16 +27,10 @@ class mmAssetDialog : public wxDialog
 
 public:
     mmAssetDialog();
-    mmAssetDialog(wxWindow *parent, mmAssetsPanel* assetsPanel,
-                  int asset_id, bool edit);
-    int GetAssetID()
-    {
-        return assetID_;
-    }
-
+    mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset);
+public:
+    Model_Asset::Data* m_asset;
 private:
-    mmAssetsPanel* assetsPanel_;
-    bool m_edit;
     bool assetRichText;
 
     wxTextCtrl* m_assetName;

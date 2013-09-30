@@ -130,10 +130,10 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 {
-    mmAssetDialog dlg(this, cp_, 0, false);
+    mmAssetDialog dlg(this, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
-        doRefreshItems(dlg.GetAssetID());
+        doRefreshItems(dlg.m_asset->ASSETID);
     }
 }
 
@@ -217,11 +217,11 @@ void mmAssetsListCtrl::OnListItemActivated(wxListEvent& event)
 
 bool mmAssetsListCtrl::EditAsset(TAssetEntry* pEntry)
 {
-    mmAssetDialog dlg(this, cp_, pEntry->GetId(), true);
+    mmAssetDialog dlg(this, Model_Asset::instance().get(pEntry->GetId()));
     bool edit = true;
     if (dlg.ShowModal() == wxID_OK)
     {
-        doRefreshItems(dlg.GetAssetID());
+        doRefreshItems(dlg.m_asset->ASSETID);
         cp_->updateExtraAssetData(selectedIndex_);
     }
     else edit = false;

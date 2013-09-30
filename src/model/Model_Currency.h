@@ -21,6 +21,7 @@
 #include "Model.h"
 #include "db/DB_Table_Currencyformats_V1.h"
 #include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
+#include "mmcurrency.h"
 
 class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
 {

@@ -16,6 +16,7 @@
 
 #include "assetdialog.h"
 #include "paths.h"
+#include "util.h"
 #include "mmCurrencyFormatter.h"
 #include "validators.h"
 #include "model/Model_Asset.h"
@@ -45,10 +46,8 @@ END_EVENT_TABLE()
 mmAssetDialog::mmAssetDialog()
 {}
 
-mmAssetDialog::mmAssetDialog(wxWindow* parent, mmAssetsPanel* assetsPanel, int asset_id, bool edit)
-    : assetsPanel_(assetsPanel)
-    , assetID_(asset_id)
-    , m_edit(edit)
+mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
+    : m_asset(asset)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
@@ -68,10 +67,7 @@ bool mmAssetDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
     SetIcon(mmex::getProgramIcon());
 
-    if (m_edit)
-        dataToControls();
-    else
-        enableDisableRate(false);
+    dataToControls();
 
     Centre();
     return true;
@@ -79,23 +75,21 @@ bool mmAssetDialog::Create(wxWindow* parent, wxWindowID id, const wxString& capt
 
 void mmAssetDialog::dataToControls()
 {
-    const Model_Asset::Data* asset = Model_Asset::instance().get(assetID_);
+    if (!this->m_asset) return;
 
-    if (!asset) return;
-
-    m_assetName->SetValue(asset->ASSETNAME);
-    m_notes->SetValue(asset->NOTES);
-    m_dpc->SetValue(Model_Asset::STARTDATE(asset));
-    m_value->SetValue(CurrencyFormatter::float2String(asset->VALUE));
+    m_assetName->SetValue(m_asset->ASSETNAME);
+    m_notes->SetValue(m_asset->NOTES);
+    m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
+    m_value->SetValue(CurrencyFormatter::float2String(m_asset->VALUE));
 
     wxString valueChangeRate;
-    valueChangeRate.Printf("%.3f", asset->VALUECHANGERATE);
+    valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
     m_valueChangeRate->SetValue(valueChangeRate);
 
-    wxString valueChangeTypeStr = asset->VALUECHANGE;
-    m_valueChange->SetStringSelection(wxGetTranslation(valueChangeTypeStr));
-    enableDisableRate(valueChangeTypeStr != ASSET_RATE_DEF[TAssetEntry::RATE_NONE]);
-    m_assetType->SetStringSelection(wxGetTranslation(asset->ASSETTYPE));
+    wxString valueChangeTypeStr = m_asset->VALUECHANGE;
+    m_valueChange->SetStringSelection(wxGetTranslation(m_asset->VALUECHANGE));
+    enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
+    m_assetType->SetStringSelection(wxGetTranslation(m_asset->ASSETTYPE));
 }
 
 void mmAssetDialog::CreateControls()
@@ -264,21 +258,17 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     wxStringClientData* type_obj = (wxStringClientData *)m_assetType->GetClientObject(m_assetType->GetSelection());
     if (type_obj) asset_type = type_obj->GetData();
 
-    Model_Asset::Data* asset = 0;
-    if (m_edit)
-        asset = Model_Asset::instance().get(this->assetID_);
-    else
-        asset = Model_Asset::instance().create();
+    if (!this->m_asset) this->m_asset = Model_Asset::instance().create();
 
-    asset->STARTDATE        = m_dpc->GetValue().FormatISODate();
-    asset->NOTES            = m_notes->GetValue().Trim();
-    asset->ASSETNAME        = m_assetName->GetValue().Trim();
-    asset->VALUE            = value;
-    asset->VALUECHANGE      = valueChangeTypeStr;
-    asset->VALUECHANGERATE  = valueChangeRate;
-    asset->ASSETTYPE        = asset_type;
+    m_asset->STARTDATE        = m_dpc->GetValue().FormatISODate();
+    m_asset->NOTES            = m_notes->GetValue().Trim();
+    m_asset->ASSETNAME        = m_assetName->GetValue().Trim();
+    m_asset->VALUE            = value;
+    m_asset->VALUECHANGE      = valueChangeTypeStr;
+    m_asset->VALUECHANGERATE  = valueChangeRate;
+    m_asset->ASSETTYPE        = asset_type;
 
-    assetID_ = Model_Asset::instance().save(asset);
+    Model_Asset::instance().save(m_asset);
 
     EndModal(wxID_OK);
 }
