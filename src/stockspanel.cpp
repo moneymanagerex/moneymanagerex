@@ -410,6 +410,10 @@ void mmStocksPanel::CreateControls()
     updateExtraStocksData(-1);
 }
 
+void mmStocksPanel::sortTable()
+{
+}
+
 int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 {
     //Just for testing new classes

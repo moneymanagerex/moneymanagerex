@@ -75,6 +75,7 @@ private:
     mmHtmlWindow* htmlWindow_;
     mmDateRange* date_range_;
     void CreateControls();
+    void sortTable();
     void createFrames();
     wxString prepareTemplate(const wxString& left, const wxString& right);
     wxString html_text_;

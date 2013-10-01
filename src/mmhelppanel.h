@@ -48,6 +48,7 @@ private:
                  const wxString& name = wxPanelNameStr);
 
     void CreateControls();
+    virtual void sortTable();
 
     void OnHelpPageBack(wxCommandEvent& event);
     void OnHelpPageForward(wxCommandEvent& event);

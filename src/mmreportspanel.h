@@ -46,6 +46,7 @@ public:
                  const wxString& name = wxPanelNameStr);
 
     void CreateControls();
+    void sortTable();
 
     wxString getReportText();
 

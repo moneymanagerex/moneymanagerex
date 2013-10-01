@@ -87,6 +87,10 @@ void mmReportsPanel::CreateControls()
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
 
+void mmReportsPanel::sortTable()
+{
+}
+
 void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
 {
     wxHtmlLinkInfo link_info = event.GetLinkInfo();

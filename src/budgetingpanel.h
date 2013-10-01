@@ -144,6 +144,7 @@ private:
                  const wxString& name = wxPanelNameStr);
 
     void CreateControls();
+    void sortTable();
     bool DisplayEntryAllowed(mmBudgetEntryHolder& budgetEntry);
     void UpdateBudgetHeading();
 

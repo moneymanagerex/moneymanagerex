@@ -63,7 +63,7 @@ public:
 // TODO
     enum EColumn
     {
-        COL_NAME,
+        COL_NAME = 0,
         COL_DATE,
         COL_TYPE,
         COL_VALUE,

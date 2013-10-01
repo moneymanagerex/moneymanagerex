@@ -51,15 +51,15 @@ public:
     }
 public:
     wxListItemAttr *attr1_, *attr2_; // style1
+    long m_selected_row;
+    int m_selected_col;
+    bool m_asc;
+
 public:
     virtual wxListItemAttr* OnGetItemAttr(long row) const
     {
         return (row % 2) ? attr2_ : attr1_;
     }
-protected:
-    long m_selected_row;
-    int m_selected_col;
-    bool m_asc;
 };
 
 class mmPanelBase : public wxPanel
@@ -83,6 +83,8 @@ public:
         else
             this->Freeze();
     }
+public:
+    virtual void sortTable() = 0;
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_PANELBASE_H_

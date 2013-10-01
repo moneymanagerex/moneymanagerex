@@ -405,7 +405,47 @@ void mmAssetsPanel::CreateControls()
 void mmAssetsPanel::sortTable()
 {
     std::sort(this->m_assets.begin(), this->m_assets.end());
-    // TODO
+    switch (this->m_listCtrlAssets->m_selected_col)
+    {
+    case COL_NAME:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [] (const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return x.ASSETNAME < y.ASSETNAME;
+            });
+        break;
+    case COL_TYPE:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return x.ASSETTYPE < y.ASSETTYPE;
+            });
+        break;
+    case COL_VALUE:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return Model_Asset::value(x) < Model_Asset::value(y);
+            });
+        break;
+    case COL_DATE:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return x.STARTDATE < y.STARTDATE;
+            });
+        break;
+    case COL_NOTES:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                return x.NOTES < y.NOTES;
+            });
+    default:
+        break;
+    }
+
+    if (this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
 }
 
 int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)

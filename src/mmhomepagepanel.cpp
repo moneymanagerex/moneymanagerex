@@ -609,6 +609,10 @@ void mmHomePagePanel::CreateControls()
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 0);
 }
 
+void mmHomePagePanel::sortTable()
+{
+}
+
 void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
 {
     mmGUIFrame* frame = wxGetApp().m_frame;

@@ -103,6 +103,11 @@ void mmHelpPanel::CreateControls()
     }
 }
 
+void mmHelpPanel::sortTable()
+{
+
+}
+
 void mmHelpPanel::OnHelpPageBack(wxCommandEvent& /*event*/)
 {
     if (htmlWindow_->HistoryCanBack() )

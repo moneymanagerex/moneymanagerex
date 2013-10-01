@@ -262,6 +262,10 @@ void mmBudgetingPanel::CreateControls()
     itemBoxSizer2->Add(listCtrlBudget_, 1, wxGROW | wxALL, 1);
 }
 
+void mmBudgetingPanel::sortTable()
+{
+}
+
 bool mmBudgetingPanel::DisplayEntryAllowed(mmBudgetEntryHolder& budgetEntry)
 {
     bool result = false;
