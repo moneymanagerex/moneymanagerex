@@ -17,6 +17,7 @@
 #pragma once
 #include "mmpanelbase.h"
 #include "db/assets.h"
+#include "model/Model_Asset.h"
 
 class wxListEvent;
 class mmAssetsPanel;
@@ -36,7 +37,6 @@ public:
     void OnDeleteAsset(wxCommandEvent& event);
     void OnDuplicateAsset(wxCommandEvent& event);
 
-    void InitVariables();
     void doRefreshItems(int trx_id = -1);
 
 private:
@@ -57,7 +57,7 @@ private:
     void OnListItemDeselected(wxListEvent& event);
     void OnColClick(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
-    bool EditAsset(TAssetEntry* pEntry);
+    bool EditAsset(Model_Asset::Data* pEntry);
 };
 
 class mmAssetsPanel : public mmPanelBase
@@ -81,25 +81,19 @@ public:
     void updateExtraAssetData(int selIndex);
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
     wxString getItem(long item, long column);
-    void SetFilter(const wxString& filter);
     int GetListCtrlWidth(int id);
     void SetListCtrlColumn(int m_selected_col, wxListItem item);
 
-    TAssetList& AssetList()
-    {
-        return asset_list_;
-    }
-
+    Model_Asset::Data_Set m_assets;
+    Model_Asset::TYPE m_filter_type;
 private:
     void enableEditDeleteButtons(bool enable);
     mmAssetsListCtrl* m_listCtrlAssets;
 
     wxStaticText* itemStaticTextMainFilter_;
-    wxString filter_;
     wxStaticText* header_text_;
 
     wxScopedPtr<wxImageList> m_imageList;
-    TAssetList asset_list_;
 
     bool Create(wxWindow *parent, wxWindowID winid, const wxPoint& pos, const wxSize& size, long style, const wxString &name);
     void CreateControls();

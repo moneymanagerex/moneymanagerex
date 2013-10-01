@@ -25,7 +25,9 @@
 class Model_Asset : public Model, public DB_Table_ASSETS_V1
 {
     using DB_Table_ASSETS_V1::all;
+    using DB_Table_ASSETS_V1::find;
     using DB_Table_ASSETS_V1::get;
+    using DB_Table_ASSETS_V1::remove;
 public:
     enum RATE { RATE_NONE = 0, RATE_APPRECIATE, RATE_DEPRECIATE };
     enum TYPE { TYPE_PROPERTY = 0, TYPE_AUTO, TYPE_HOUSE, TYPE_ART, TYPE_JEWELLERY, TYPE_CASH, TYPE_OTHER };
@@ -73,6 +75,11 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+    template<class V>
+    Data_Set find(COLUMN col, const V& v)
+    {
+        return find(db_, col, v);
+    }
     Data* get(int id)
     {
         return this->get(id, this->db_);
@@ -82,6 +89,11 @@ public:
         r->save(this->db_);
         return r->id();
     }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
+    }
+
     double balance()
     {
         double balance = 0.0;
