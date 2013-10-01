@@ -55,5 +55,4 @@ private:
 
     void dataToControls();
     void changeFocus(wxChildFocusEvent& event);
-    int assetID_;
 };
