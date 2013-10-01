@@ -137,7 +137,6 @@
     <ClCompile Include="..\..\src\aboutdialog.cpp" />
     <ClCompile Include="..\..\src\appstartdialog.cpp" />
     <ClCompile Include="..\..\src\assetdialog.cpp" />
-    <ClCompile Include="..\..\src\db\assets.cpp" />
     <ClCompile Include="..\..\src\assetspanel.cpp" />
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
@@ -247,7 +246,6 @@
     <ClInclude Include="..\..\src\aboutdialog.h" />
     <ClInclude Include="..\..\src\appstartdialog.h" />
     <ClInclude Include="..\..\src\assetdialog.h" />
-    <ClInclude Include="..\..\src\db\assets.h" />
     <ClInclude Include="..\..\src\assetspanel.h" />
     <ClInclude Include="..\..\src\billsdepositsdialog.h" />
     <ClInclude Include="..\..\src\billsdepositspanel.h" />

@@ -445,7 +445,7 @@ void mmAssetsPanel::sortTable()
         break;
     }
 
-    if (this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
+    if (!this->m_listCtrlAssets->m_asc) std::reverse(this->m_assets.begin(), this->m_assets.end());
 }
 
 int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
