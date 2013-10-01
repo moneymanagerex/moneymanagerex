@@ -172,6 +172,14 @@ struct DB_Table_%s : public DB_Table
         s +='''
         int id() const { return %s; }
         void id(int id) { %s = id; }
+        bool operator < (const Data& r) const
+        {
+            return this->id() < r.id();
+        }
+        bool operator < (const Data* r) const
+        {
+            return this->id() < r->id();
+        }
 ''' % (self._primay_key, self._primay_key)
         
         s += '''

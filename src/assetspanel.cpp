@@ -401,7 +401,8 @@ void mmAssetsPanel::CreateControls()
 
 void mmAssetsPanel::sortTable()
 {
-//    std::sort(this->m_assets.begin(), this->m_assets.end());
+    std::sort(this->m_assets.begin(), this->m_assets.end());
+    // TODO
 }
 
 int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)

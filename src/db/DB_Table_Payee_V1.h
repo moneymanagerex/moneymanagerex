@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-09-28 17:54:28.466444.
+ *          AUTO GENERATED at 2013-10-01 14:58:59.923271.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -106,6 +106,14 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         int SUBCATEGID;
         int id() const { return PAYEEID; }
         void id(int id) { PAYEEID = id; }
+        bool operator < (const Data& r) const
+        {
+            return this->id() < r.id();
+        }
+        bool operator < (const Data* r) const
+        {
+            return this->id() < r->id();
+        }
 
         Data(Self* view = 0) 
         {
