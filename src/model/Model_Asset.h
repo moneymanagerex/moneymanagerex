@@ -35,24 +35,34 @@ public:
 public:
     Model_Asset(): Model(), DB_Table_ASSETS_V1() 
     {
-        //  keep the sequence with RATE
-        this->rates_.Add(wxTRANSLATE("None"));
-        this->rates_.Add(wxTRANSLATE("Appreciates"));
-        this->rates_.Add(wxTRANSLATE("Depreciates"));
-
-        // keep the sequence with TYPE
-        this->types_.Add(wxTRANSLATE("Property"));
-        this->types_.Add(wxTRANSLATE("Automobile"));
-        this->types_.Add(wxTRANSLATE("Household Object"));
-        this->types_.Add(wxTRANSLATE("Art"));
-        this->types_.Add(wxTRANSLATE("Jewellery"));
-        this->types_.Add(wxTRANSLATE("Cash"));
-        this->types_.Add(wxTRANSLATE("Other"));
     };
     ~Model_Asset() {};
 
 public:
-    wxArrayString rates_, types_;
+    static wxArrayString all_rate()
+    {
+        wxArrayString rates;
+        //  keep the sequence with RATE
+        rates.Add(wxTRANSLATE("None"));
+        rates.Add(wxTRANSLATE("Appreciates"));
+        rates.Add(wxTRANSLATE("Depreciates"));
+
+        return rates;
+    }
+    static wxArrayString all_type()
+    {
+        wxArrayString types;
+        // keep the sequence with TYPE
+        types.Add(wxTRANSLATE("Property"));
+        types.Add(wxTRANSLATE("Automobile"));
+        types.Add(wxTRANSLATE("Household Object"));
+        types.Add(wxTRANSLATE("Art"));
+        types.Add(wxTRANSLATE("Jewellery"));
+        types.Add(wxTRANSLATE("Cash"));
+        types.Add(wxTRANSLATE("Other"));
+
+        return types;
+    }
 
 public:
     static Model_Asset& instance()

@@ -132,7 +132,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Asset Type")), flags);
 
     m_assetType = new wxChoice( itemPanel5, wxID_STATIC, wxDefaultPosition, wxSize(150,-1));
-    for (const auto& a : Model_Asset::instance().types_)
+    for (const auto& a : Model_Asset::all_type())
         m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
 
     m_assetType->SetToolTip(_("Select type of asset"));
@@ -153,7 +153,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Change in Value")), flags);
 
     m_valueChange = new wxChoice( itemPanel5, IDC_COMBO_TYPE, wxDefaultPosition, wxSize(150,-1));
-    for(const auto& a : Model_Asset::instance().rates_)
+    for(const auto& a : Model_Asset::all_rate())
         m_valueChange->Append(wxGetTranslation(a), new wxStringClientData(a));
 
     m_valueChange->SetToolTip(_("Specify if the value of the asset changes over time"));

@@ -418,7 +418,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
     if (this->m_filter_type == Model_Asset::TYPE(-1)) // ALL
         this->m_assets = Model_Asset::instance().all();
     else
-        this->m_assets = Model_Asset::instance().find(Model_Asset::COL_ASSETTYPE, Model_Asset::instance().types_[m_filter_type]);
+        this->m_assets = Model_Asset::instance().find(Model_Asset::COL_ASSETTYPE, Model_Asset::all_type()[m_filter_type]);
     this->sortTable();
 
     m_listCtrlAssets->SetItemCount(this->m_assets.size());
@@ -522,7 +522,7 @@ void mmAssetsPanel::OnMouseLeftDown ( wxMouseEvent& event )
     wxMenu menu;
     menu.Append(++i, wxGetTranslation(wxTRANSLATE("All")));
 
-    for (const auto& type: Model_Asset::instance().types_)
+    for (const auto& type: Model_Asset::all_type())
     {
         menu.Append(++i, wxGetTranslation(type));
     }
@@ -543,7 +543,7 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     else
     {
         this->m_filter_type = Model_Asset::TYPE(evt - 1);
-        itemStaticTextMainFilter_->SetLabel(wxGetTranslation(Model_Asset::instance().types_[evt - 1]));
+        itemStaticTextMainFilter_->SetLabel(wxGetTranslation(Model_Asset::all_type()[evt - 1]));
     }
 
     int trx_id = -1;
