@@ -40,8 +40,8 @@ BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
 END_EVENT_TABLE()
 /*******************************************************/
 
-mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent)
-: mmListCtrl(parent)
+mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
+: mmListCtrl(parent, winid)
 , m_selected_col(0)
 , m_asc(true)
 , cp_(cp)
@@ -307,7 +307,7 @@ void mmAssetsPanel::CreateControls()
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this, wxID_STATIC,
         wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-    m_listCtrlAssets = new mmAssetsListCtrl( this, itemSplitterWindow10);
+    m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, IDC_PANEL_STOCKS_LISTCTRL);
 
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
@@ -430,7 +430,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
         if (asset.ASSETID == id) return selected_item;
         ++ selected_item;
     }
-    return selected_item;
+    return -1;
 }
 
 void mmAssetsPanel::OnDeleteAsset(wxCommandEvent& event)
