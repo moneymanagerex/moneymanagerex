@@ -29,10 +29,8 @@
 #define SUMMARY_SORT_BY_BALANCE     2
 
 mmReportSummary::mmReportSummary(mmCoreDB* core)
-: mmPrintableBase(core)
+: mmPrintableBase(core, SUMMARY_SORT_BY_NAME)
 {
-    // set initial sort column
-    sortColumn_ = SUMMARY_SORT_BY_NAME;
 }
 
 // structure for sorting of data
@@ -188,7 +186,7 @@ wxString mmReportSummary::getHTMLText()
 
     hb.startTableRow();
     hb.addTableCellLink("Assets", _("Assets"), false, true);
-    hb.addTableCell(wxString::Format("%f", asset_balance), true);
+    hb.addMoneyCell(asset_balance);
     hb.endTableRow();
 
     tBalance += stockBalance;

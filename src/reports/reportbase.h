@@ -33,7 +33,7 @@ public:
 	void setSortColumn(const int sort_by) { sortColumn_ = sort_by; }
 
 public:
-    mmPrintableBase(mmCoreDB* core): core_(core), sortColumn_(0) {}
+    mmPrintableBase(mmCoreDB* core, int sort_column = 0): core_(core), sortColumn_(sort_column) {}
     virtual wxString version() { return "$Rev$"; }
 
 protected:

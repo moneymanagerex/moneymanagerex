@@ -29,10 +29,8 @@
 #define ASSETS_SORT_BY_NOTES    5
 
 mmReportSummaryAssets::mmReportSummaryAssets(mmCoreDB* core)
-: mmPrintableBase(core)
+: mmPrintableBase(core, ASSETS_SORT_BY_NAME)
 {
-    // set initial sort column
-    sortColumn_ = ASSETS_SORT_BY_NAME;
 }
 
 wxString mmReportSummaryAssets::getHTMLText()

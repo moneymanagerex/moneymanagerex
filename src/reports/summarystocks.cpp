@@ -37,10 +37,8 @@
 #define STOCK_SORT_BY_VALUE         9
 
 mmReportSummaryStocks::mmReportSummaryStocks(mmCoreDB* core)
-: mmPrintableBase(core)
+: mmPrintableBase(core, STOCK_SORT_BY_NAME)
 {
-    // set initial sort column
-    sortColumn_ = STOCK_SORT_BY_NAME;
 }
 
 wxString mmReportSummaryStocks::getHTMLText()
@@ -216,7 +214,8 @@ wxString mmReportSummaryStocks::getHTMLText()
     return hb.getHTMLText();
 }
 
-void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb) {
+void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb) 
+{
     hb.startTableRow();
     if(STOCK_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Name"));
