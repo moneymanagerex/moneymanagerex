@@ -411,35 +411,40 @@ void mmAssetsPanel::sortTable()
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [] (const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return x.ASSETNAME < y.ASSETNAME;
+                if (x.ASSETNAME != y.ASSETNAME) return x.ASSETNAME < y.ASSETNAME;
+                else return x.STARTDATE < y.STARTDATE;
             });
         break;
     case COL_TYPE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return x.ASSETTYPE < y.ASSETTYPE;
+                if (x.ASSETTYPE != y.ASSETTYPE) return x.ASSETTYPE < y.ASSETTYPE;
+                else return x.STARTDATE < y.STARTDATE;
             });
         break;
     case COL_VALUE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return Model_Asset::value(x) < Model_Asset::value(y);
+                if (Model_Asset::value(x) != Model_Asset::value(y)) return Model_Asset::value(x) < Model_Asset::value(y);
+                else return x.STARTDATE < y.STARTDATE;
             });
         break;
     case COL_DATE:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return x.STARTDATE < y.STARTDATE;
+                if (x.STARTDATE != y.STARTDATE) return x.STARTDATE < y.STARTDATE;
+                else return x.STARTDATE < y.STARTDATE;
             });
         break;
     case COL_NOTES:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                return x.NOTES < y.NOTES;
+                if (x.NOTES != y.NOTES) return x.NOTES < y.NOTES;
+                else return x.STARTDATE < y.STARTDATE;
             });
     default:
         break;
