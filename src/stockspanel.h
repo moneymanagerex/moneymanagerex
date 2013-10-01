@@ -60,8 +60,7 @@ class StocksListCtrl: public mmListCtrl
     DECLARE_EVENT_TABLE()
 
 public:
-    StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, const wxWindowID id,
-                   const wxPoint& pos, const wxSize& size, long style);
+    StocksListCtrl(mmStocksPanel* cp, wxWindow *parent);
     ~StocksListCtrl();
 
     void doRefreshItems(int trx_id = -1);

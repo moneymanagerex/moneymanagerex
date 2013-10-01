@@ -144,9 +144,7 @@ void mmBillsDepositsPanel::CreateControls()
     m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
     m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
 
-    listCtrlAccount_ = new billsDepositsListCtrl( this, itemSplitterWindowBillsDeposit,
-        ID_PANEL_BD_LISTCTRL, wxDefaultPosition, wxDefaultSize,
-        wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL  );
+    listCtrlAccount_ = new billsDepositsListCtrl( this, itemSplitterWindowBillsDeposit);
 
     listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
     wxListItem itemCol;

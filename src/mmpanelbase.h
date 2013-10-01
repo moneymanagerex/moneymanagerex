@@ -36,11 +36,8 @@ struct mmHolderBase
 class mmListCtrl: public wxListCtrl
 {
 public:
-    mmListCtrl(wxWindow *parent,
-               wxWindowID winid = wxID_ANY,
-               const wxPoint& pos = wxDefaultPosition,
-               const wxSize& size = wxDefaultSize,
-               long style = wxLC_REPORT): wxListCtrl(parent, winid, pos, size, style)
+    mmListCtrl(wxWindow *parent)
+        : wxListCtrl(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_HRULES|wxLC_VRULES|wxLC_VIRTUAL|wxLC_SINGLE_SEL|wxLC_EDIT_LABELS)
         , attr1_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont))
         , attr2_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont))
     {}

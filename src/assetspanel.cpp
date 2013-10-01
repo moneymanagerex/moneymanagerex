@@ -40,9 +40,8 @@ BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
 END_EVENT_TABLE()
 /*******************************************************/
 
-mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent,
-const wxWindowID id, const wxPoint& pos, const wxSize& size, long style)
-: mmListCtrl(parent, id, pos, size, style)
+mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent)
+: mmListCtrl(parent)
 , m_selected_col(0)
 , m_asc(true)
 , cp_(cp)
@@ -308,9 +307,7 @@ void mmAssetsPanel::CreateControls()
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this, wxID_STATIC,
         wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-    m_listCtrlAssets = new mmAssetsListCtrl( this, itemSplitterWindow10,
-        IDC_PANEL_STOCKS_LISTCTRL, wxDefaultPosition, wxDefaultSize,
-        wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL);
+    m_listCtrlAssets = new mmAssetsListCtrl( this, itemSplitterWindow10);
 
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));

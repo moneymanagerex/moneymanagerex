@@ -48,10 +48,8 @@ StocksListCtrl::~StocksListCtrl()
     if (m_imageList) delete m_imageList;
 }
 
-StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent
-                               , const wxWindowID id, const wxPoint& pos
-                               , const wxSize& size, long style)
-    : mmListCtrl(parent, id, pos, size, style)
+StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent)
+    : mmListCtrl(parent)
     , stock_panel_(cp)
     , m_imageList(0)
     , selectedIndex_(-1)
@@ -369,10 +367,7 @@ void mmStocksPanel::CreateControls()
             ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200),
             wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-
-    listCtrlAccount_ = new StocksListCtrl(this, itemSplitterWindow10,
-                                           ID_PANEL_STOCKS_LISTCTRL, wxDefaultPosition, wxDefaultSize,
-                                           wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL);
+    listCtrlAccount_ = new StocksListCtrl(this, itemSplitterWindow10);
 
     wxPanel* BottomPanel = new wxPanel(itemSplitterWindow10, wxID_ANY,
                                         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);

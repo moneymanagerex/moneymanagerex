@@ -33,10 +33,8 @@ class billsDepositsListCtrl: public mmListCtrl
     DECLARE_EVENT_TABLE()
 
 public:
-    billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent,
-                          const wxWindowID id, const wxPoint& pos,
-                          const wxSize& size, long style)
-        : mmListCtrl(parent, id, pos, size, style),
+    billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent)
+        : mmListCtrl(parent),
           cp_(cp),
           selectedIndex_(-1)
     {}

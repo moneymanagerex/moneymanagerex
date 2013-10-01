@@ -28,8 +28,7 @@ class mmAssetsListCtrl: public mmListCtrl
     DECLARE_EVENT_TABLE()
 
 public:
-    mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, const wxWindowID id,
-                     const wxPoint& pos, const wxSize& size, long style);
+    mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent);
 
     void OnNewAsset(wxCommandEvent& event);
     void OnEditAsset(wxCommandEvent& event);
