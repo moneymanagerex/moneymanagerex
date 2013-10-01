@@ -23,14 +23,14 @@
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(IDC_PANEL_STOCKS_LISTCTRL,   mmAssetsListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_ACTIVATED(IDC_PANEL_ASSETS_LISTCTRL,   mmAssetsListCtrl::OnListItemActivated)
     EVT_RIGHT_DOWN(mmAssetsListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(mmAssetsListCtrl::OnMouseLeftClick)
-    EVT_LIST_ITEM_SELECTED(IDC_PANEL_STOCKS_LISTCTRL,    mmAssetsListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(IDC_PANEL_STOCKS_LISTCTRL,  mmAssetsListCtrl::OnListItemDeselected)
-    EVT_LIST_COL_END_DRAG(IDC_PANEL_STOCKS_LISTCTRL,     mmAssetsListCtrl::OnItemResize)
-    EVT_LIST_COL_CLICK(IDC_PANEL_STOCKS_LISTCTRL,        mmAssetsListCtrl::OnColClick)
-    EVT_LIST_END_LABEL_EDIT(IDC_PANEL_STOCKS_LISTCTRL,   mmAssetsListCtrl::OnEndLabelEdit)
+    EVT_LIST_ITEM_SELECTED(IDC_PANEL_ASSETS_LISTCTRL,    mmAssetsListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(IDC_PANEL_ASSETS_LISTCTRL,  mmAssetsListCtrl::OnListItemDeselected)
+    EVT_LIST_COL_END_DRAG(IDC_PANEL_ASSETS_LISTCTRL,     mmAssetsListCtrl::OnItemResize)
+    EVT_LIST_COL_CLICK(IDC_PANEL_ASSETS_LISTCTRL,        mmAssetsListCtrl::OnColClick)
+    EVT_LIST_END_LABEL_EDIT(IDC_PANEL_ASSETS_LISTCTRL,   mmAssetsListCtrl::OnEndLabelEdit)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,    mmAssetsListCtrl::OnNewAsset)
     EVT_MENU(MENU_TREEPOPUP_EDIT,   mmAssetsListCtrl::OnEditAsset)
@@ -168,7 +168,7 @@ void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0)     return;
 
-    wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, IDC_PANEL_STOCKS_LISTCTRL);
+    wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, IDC_PANEL_ASSETS_LISTCTRL);
     AddPendingEvent(evt);
 }
 
@@ -313,7 +313,7 @@ void mmAssetsPanel::CreateControls()
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this, wxID_STATIC,
         wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-    m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, IDC_PANEL_STOCKS_LISTCTRL);
+    m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, IDC_PANEL_ASSETS_LISTCTRL);
 
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
