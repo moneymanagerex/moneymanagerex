@@ -99,7 +99,6 @@ const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS   = "IGNORE_FUTURE_TRANSACTIONS"
 const wxString TIPS_BANKS  = "checkingpanel";
 const wxString TIPS_BILLS  = "billsdeposits";
 const wxString TIPS_STOCK  = "investment";
-const wxString TIPS_ASSETS = "assets";
 
 const wxString BILLSDEPOSITS_REPEATS[] =
 {

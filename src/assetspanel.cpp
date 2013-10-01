@@ -21,6 +21,8 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 
+
+enum {IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1};
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(IDC_PANEL_ASSETS_LISTCTRL,   mmAssetsListCtrl::OnListItemActivated)
@@ -215,7 +217,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     wxListItem item;
     item.SetMask(wxLIST_MASK_IMAGE);
     item.SetImage(-1);
-    cp_->SetListCtrlColumn(m_selected_col, item);
+    SetColumn(m_selected_col, item);
 
     m_selected_col = event.GetColumn();
 
@@ -517,11 +519,6 @@ wxString mmAssetsPanel::getItem(long item, long column)
     default:
         return "";
     }
-}
-
-void mmAssetsPanel::SetListCtrlColumn(int m_selected_col, wxListItem item)
-{
-    m_listCtrlAssets->SetColumn(m_selected_col, item);
 }
 
 void mmAssetsPanel::updateExtraAssetData(int selIndex)
