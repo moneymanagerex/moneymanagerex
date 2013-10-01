@@ -26,6 +26,7 @@
 #include "model/Model_Stock.h"
 #include "model/Model_Account.h"
 
+enum {IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1};
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(ID_PANEL_STOCKS_LISTCTRL,   StocksListCtrl::OnListItemActivated)

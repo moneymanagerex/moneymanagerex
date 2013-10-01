@@ -22,7 +22,10 @@
 #include "model/Model_Asset.h"
 
 
-enum {IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1};
+enum {IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1
+, IDC_PANEL_ASSET_STATIC_DETAILS
+, IDC_PANEL_ASSET_STATIC_DETAILS_MINI
+};
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(IDC_PANEL_ASSETS_LISTCTRL,   mmAssetsListCtrl::OnListItemActivated)

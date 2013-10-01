@@ -113,11 +113,6 @@
 
 enum
 {
-    /* Assets panel  */
-    IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1,
-    IDC_PANEL_ASSET_STATIC_DETAILS,
-    IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
-
     /* Main Menu  */
     MENU_NEW,
     MENU_OPEN,
