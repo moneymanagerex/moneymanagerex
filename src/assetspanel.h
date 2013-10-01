@@ -39,9 +39,6 @@ public:
 
 private:
     mmAssetsPanel* cp_;
-    long selectedIndex_;
-    int  m_selected_col;
-    bool m_asc;
 
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;

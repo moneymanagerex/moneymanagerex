@@ -52,7 +52,6 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     : mmListCtrl(parent, winid)
     , stock_panel_(cp)
     , m_imageList(0)
-    , selectedIndex_(-1)
 {
     ColName_[COL_DATE]      = _("Purchase Date");
     ColName_[COL_NAME]      = _("Share Name");
@@ -81,8 +80,6 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
         SetColumnWidth(column.first, col_x);
     }
 
-    m_selected_col = 0;
-    m_asc = true;
     initVirtualListControl();
     if (!trans_.empty())
         EnsureVisible(((int)trans_.size()) - 1);
@@ -97,7 +94,7 @@ void StocksListCtrl::OnItemResize(wxListEvent& event)
 
 void StocksListCtrl::OnItemRightClick(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
+    m_selected_row = event.GetIndex();
 
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Stock Investment"));
@@ -122,8 +119,8 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 
 void StocksListCtrl::OnListItemSelected(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
-    stock_panel_->OnListItemSelected(selectedIndex_);
+    m_selected_row = event.GetIndex();
+    stock_panel_->OnListItemSelected(m_selected_row);
 }
 void mmStocksPanel::OnListItemSelected(int selectedIndex)
 {
@@ -133,8 +130,8 @@ void mmStocksPanel::OnListItemSelected(int selectedIndex)
 
 void StocksListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
 {
-    selectedIndex_ = -1;
-    stock_panel_->OnListItemSelected(selectedIndex_);
+    m_selected_row = -1;
+    stock_panel_->OnListItemSelected(m_selected_row);
 }
 
 int StocksListCtrl::OnGetItemImage(long item) const
@@ -172,22 +169,22 @@ void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
 
 void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ == -1) return;
+    if (m_selected_row == -1) return;
 
     wxMessageDialog msgDlg(this, _("Do you really want to delete the stock investment?")
         , _("Confirm Stock Investment Deletion")
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        mmDBWrapper::deleteStockInvestment(stock_panel_->core_->db_.get(), trans_[selectedIndex_]->id_);
-        DeleteItem(selectedIndex_);
+        mmDBWrapper::deleteStockInvestment(stock_panel_->core_->db_.get(), trans_[m_selected_row]->id_);
+        DeleteItem(m_selected_row);
         doRefreshItems(-1);
     }
 }
 
 void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ == -1) return;
+    if (m_selected_row == -1) return;
 
     wxArrayString accounts_name;
     for (const auto& account: Model_Account::instance().all())
@@ -212,8 +209,8 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if ( toAccountID != -1 )
     {
         stock_panel_->core_->db_.get()->Begin();
-        if (mmDBWrapper::moveStockInvestment(stock_panel_->core_->db_.get(), trans_[selectedIndex_]->id_, toAccountID))
-            DeleteItem(selectedIndex_);
+        if (mmDBWrapper::moveStockInvestment(stock_panel_->core_->db_.get(), trans_[m_selected_row]->id_, toAccountID))
+            DeleteItem(m_selected_row);
         stock_panel_->core_->db_.get()->Commit();
     }
 
@@ -223,7 +220,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 
 void StocksListCtrl::OnEditStocks(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ < 0) return;
+    if (m_selected_row < 0) return;
 
     wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, ID_PANEL_STOCKS_LISTCTRL);
     AddPendingEvent(evt);
@@ -231,7 +228,7 @@ void StocksListCtrl::OnEditStocks(wxCommandEvent& /*event*/)
 
 void StocksListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 {
-    stock_panel_->OnListItemActivated(selectedIndex_);
+    stock_panel_->OnListItemActivated(m_selected_row);
 }
 void mmStocksPanel::OnListItemActivated(int selectedIndex)
 {
@@ -253,7 +250,7 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     m_selected_col = event.GetColumn();
 
     int trx_id = -1;
-    if (selectedIndex_>=0) trx_id = trans_[selectedIndex_]->id_;
+    if (m_selected_row>=0) trx_id = trans_[m_selected_row]->id_;
     doRefreshItems(trx_id);
     stock_panel_->OnListItemSelected(-1);
 }

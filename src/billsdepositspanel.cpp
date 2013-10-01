@@ -398,7 +398,7 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
 
 void billsDepositsListCtrl::OnItemRightClick(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
+    m_selected_row = event.GetIndex();
 
     wxMenu menu;
     menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence..."));
@@ -432,14 +432,14 @@ wxString billsDepositsListCtrl::OnGetItemText(long item, long column) const
 
 void billsDepositsListCtrl::OnListItemSelected(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
-    cp_->updateBottomPanelData(selectedIndex_);
+    m_selected_row = event.GetIndex();
+    cp_->updateBottomPanelData(m_selected_row);
 }
 
 void billsDepositsListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
 {
-    selectedIndex_ = -1;
-    cp_->updateBottomPanelData(selectedIndex_);
+    m_selected_row = -1;
+    cp_->updateBottomPanelData(m_selected_row);
 }
 
 int billsDepositsListCtrl::OnGetItemImage(long item) const
@@ -479,17 +479,17 @@ void billsDepositsListCtrl::OnNewBDSeries(wxCommandEvent& /*event*/)
 
 void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ == -1) return;
+    if (m_selected_row == -1) return;
     if (!cp_->core_->db_.get()) return;
 
-    mmBDDialog dlg(cp_->core_, cp_->trans_[selectedIndex_].id_, true, false, this );
+    mmBDDialog dlg(cp_->core_, cp_->trans_[m_selected_row].id_, true, false, this );
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(dlg.GetTransID()));
 }
 
 void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ < 0) return;
+    if (m_selected_row < 0) return;
     if (!cp_->core_->db_.get()) return;
     if (cp_->trans_.size() == 0) return;
 
@@ -498,18 +498,18 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
                                         wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        mmDBWrapper::deleteBDSeries(cp_->core_->db_.get(), cp_->trans_[selectedIndex_].id_);
+        mmDBWrapper::deleteBDSeries(cp_->core_->db_.get(), cp_->trans_[m_selected_row].id_);
         cp_->initVirtualListControl();
-        refreshVisualList(selectedIndex_);
+        refreshVisualList(m_selected_row);
     }
 }
 
 void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ == -1) return;
+    if (m_selected_row == -1) return;
     if (!cp_->core_->db_.get()) return;
 
-    int id = cp_->trans_[selectedIndex_].id_;
+    int id = cp_->trans_[m_selected_row].id_;
     mmBDDialog dlg(cp_->core_, id, false, true, this );
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(id));
@@ -517,19 +517,19 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 
 void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ == -1 || !cp_->core_->db_.get()) return;
+    if (m_selected_row == -1 || !cp_->core_->db_.get()) return;
 
-    int id = cp_->trans_[selectedIndex_].id_;
+    int id = cp_->trans_[m_selected_row].id_;
     mmDBWrapper::completeBDInSeries(cp_->core_->db_.get(), id);
     refreshVisualList(cp_->initVirtualListControl(id));
 }
 
 void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 {
-    if (selectedIndex_ == -1) return;
+    if (m_selected_row == -1) return;
     if (!cp_->core_->db_.get()) return;
 
-    mmBDDialog dlg(cp_->core_, cp_->trans_[selectedIndex_].id_, true, false, this);
+    mmBDDialog dlg(cp_->core_, cp_->trans_[m_selected_row].id_, true, false, this);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(dlg.GetTransID()));
 }
@@ -594,7 +594,7 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
         SetItemState(selected_index, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
         EnsureVisible(selected_index);
     }
-    selectedIndex_ = selected_index;
+    m_selected_row = selected_index;
     cp_->updateBottomPanelData(selected_index);
 }
 
@@ -602,9 +602,9 @@ void billsDepositsListCtrl::RefreshList()
 {
     if (cp_->trans_.size() == 0) return;
     int id = -1;
-    if (selectedIndex_ != -1)
+    if (m_selected_row != -1)
     {
-        id = cp_->trans_[selectedIndex_].id_;
+        id = cp_->trans_[m_selected_row].id_;
     }
     refreshVisualList(cp_->initVirtualListControl(id));
 }

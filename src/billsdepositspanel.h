@@ -34,9 +34,8 @@ class billsDepositsListCtrl: public mmListCtrl
 
 public:
     billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY)
-        : mmListCtrl(parent, winid),
-          cp_(cp),
-          selectedIndex_(-1)
+        : mmListCtrl(parent, winid)
+        , cp_(cp)
     {}
 
     void OnNewBDSeries(wxCommandEvent& event);
@@ -63,7 +62,6 @@ private:
     void refreshVisualList(int selected_index = -1);
 
     mmBillsDepositsPanel* cp_;
-    long selectedIndex_;
 };
 
 /* Holds a single transaction */

@@ -68,7 +68,7 @@ public:
     void OnDeleteStocks(wxCommandEvent& event);
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
-    long get_selectedIndex() { return selectedIndex_; }
+    long get_selectedIndex() { return m_selected_row; }
     int getColumnsNumber() { return ColName_.size(); }
     wxString getStockInfo(int selectedIndex) const;
     /* Helper Functions/data */
@@ -93,9 +93,6 @@ private:
     void OnItemResize(wxListEvent& event);
 
     mmStocksPanel* stock_panel_;
-    long selectedIndex_;
-    int  m_selected_col;
-    bool m_asc;
     enum EColumn
     {
         COL_DATE = 0,

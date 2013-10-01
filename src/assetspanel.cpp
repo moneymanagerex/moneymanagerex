@@ -43,10 +43,7 @@ END_EVENT_TABLE()
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
 : mmListCtrl(parent, winid)
-, m_selected_col(0)
-, m_asc(true)
 , cp_(cp)
-, selectedIndex_(-1)
 {}
 
 void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
@@ -65,7 +62,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Asset"));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Asset"));
-    if (selectedIndex_ < 0)
+    if (m_selected_row < 0)
     {
         menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
         menu.Enable(MENU_TREEPOPUP_EDIT, false);
@@ -76,7 +73,7 @@ void mmAssetsListCtrl::OnMouseRightClick(wxMouseEvent& event)
 
 void mmAssetsListCtrl::OnMouseLeftClick(wxMouseEvent& event)
 {
-    selectedIndex_ = -1;
+    m_selected_row = -1;
     event.Skip();
 }
 
@@ -87,14 +84,14 @@ wxString mmAssetsListCtrl::OnGetItemText(long item, long column) const
 
 void mmAssetsListCtrl::OnListItemSelected(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
-    cp_->updateExtraAssetData(selectedIndex_);
+    m_selected_row = event.GetIndex();
+    cp_->updateExtraAssetData(m_selected_row);
 }
 
 void mmAssetsListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
 {
-    selectedIndex_ = -1;
-    cp_->updateExtraAssetData(selectedIndex_);
+    m_selected_row = -1;
+    cp_->updateExtraAssetData(m_selected_row);
 }
 
 int mmAssetsListCtrl::OnGetItemImage(long item) const
@@ -144,12 +141,12 @@ void mmAssetsListCtrl::doRefreshItems(int trx_id)
         SetItemState(selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
         EnsureVisible(selectedIndex);
     }
-    selectedIndex_ = selectedIndex;
+    m_selected_row = selectedIndex;
 }
 
 void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ < 0)    return;
+    if (m_selected_row < 0)    return;
 
     wxMessageDialog msgDlg(this
         , _("Do you really want to delete the Asset?")
@@ -158,18 +155,18 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        const Model_Asset::Data& asset = cp_->m_assets[selectedIndex_];
+        const Model_Asset::Data& asset = cp_->m_assets[m_selected_row];
         Model_Asset::instance().remove(asset.ASSETID);
 
-        cp_->initVirtualListControl(selectedIndex_, m_selected_col, m_asc);
-        selectedIndex_ = -1;
-        cp_->updateExtraAssetData(selectedIndex_);
+        cp_->initVirtualListControl(m_selected_row, m_selected_col, m_asc);
+        m_selected_row = -1;
+        cp_->updateExtraAssetData(m_selected_row);
     }
 }
 
 void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ < 0)     return;
+    if (m_selected_row < 0)     return;
 
     wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, IDC_PANEL_STOCKS_LISTCTRL);
     AddPendingEvent(evt);
@@ -177,9 +174,9 @@ void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
 {
-    if (selectedIndex_ < 0)     return;
+    if (m_selected_row < 0)     return;
 
-    const Model_Asset::Data& asset = cp_->m_assets[selectedIndex_];
+    const Model_Asset::Data& asset = cp_->m_assets[m_selected_row];
     Model_Asset::Data* duplicate_asset = Model_Asset::instance().create();
     duplicate_asset->ASSETNAME = asset.ASSETNAME + "duplicate"; 
     duplicate_asset->ASSETTYPE = asset.ASSETTYPE;
@@ -191,8 +188,8 @@ void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::OnListItemActivated(wxListEvent& event)
 {
-    selectedIndex_ = event.GetIndex();
-    EditAsset(&(cp_->m_assets[selectedIndex_]));
+    m_selected_row = event.GetIndex();
+    EditAsset(&(cp_->m_assets[m_selected_row]));
 }
 
 bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
@@ -202,7 +199,7 @@ bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.m_asset->ASSETID);
-        cp_->updateExtraAssetData(selectedIndex_);
+        cp_->updateExtraAssetData(m_selected_row);
     }
     else edit = false;
 
@@ -226,7 +223,7 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     SetColumn(m_selected_col, item);
 
     int trx_id = -1;
-    if (selectedIndex_>=0) trx_id = cp_->m_assets[selectedIndex_].ASSETID;
+    if (m_selected_row>=0) trx_id = cp_->m_assets[m_selected_row].ASSETID;
 
     doRefreshItems(trx_id);
 }
