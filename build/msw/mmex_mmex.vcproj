@@ -227,10 +227,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\assets.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\assetspanel.cpp"
 				>
 			</File>
@@ -653,6 +649,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Splittransaction.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Stock.h"
 				>
 			</File>
@@ -670,10 +670,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\assetdialog.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\assets.h"
 				>
 			</File>
 			<File

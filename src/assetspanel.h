@@ -16,7 +16,6 @@
 
 #pragma once
 #include "mmpanelbase.h"
-#include "db/assets.h"
 #include "model/Model_Asset.h"
 
 class wxListEvent;

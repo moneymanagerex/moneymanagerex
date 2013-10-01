@@ -227,10 +227,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\db\assets.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\assetspanel.cpp"
 				>
 			</File>
@@ -344,6 +340,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\filtertransdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\reports\html_widget_bills_and_deposits.cpp"
 				>
 			</File>
 			<File
@@ -633,6 +633,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Category.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Checking.h"
 				>
 			</File>
@@ -653,7 +657,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Splittransaction.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Stock.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Subcategory.h"
 				>
 			</File>
 			<File
@@ -666,10 +678,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\assetdialog.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\db\assets.h"
 				>
 			</File>
 			<File
@@ -794,6 +802,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\guiid.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\reports\html_widget_bills_and_deposits.h"
 				>
 			</File>
 			<File

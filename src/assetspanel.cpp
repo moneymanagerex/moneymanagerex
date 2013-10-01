@@ -491,7 +491,7 @@ void mmAssetsPanel::updateExtraAssetData(int selIndex)
         enableEditDeleteButtons(true);
         wxString miniInfo;
         miniInfo << "\t" << _("Change in Value") << ": "<< wxGetTranslation(asset.VALUECHANGE);
-        if (Model_Asset::type(asset) != Model_Asset::RATE_NONE)
+        if (Model_Asset::rate(asset) != Model_Asset::RATE_NONE)
             miniInfo<< " = " << asset.VALUECHANGERATE<< "%";
 
         st->SetLabel(asset.NOTES);

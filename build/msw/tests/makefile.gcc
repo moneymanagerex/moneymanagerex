@@ -68,58 +68,6 @@ LUA_OBJECTS =  \
 	lua_lvm.o \
 	lua_lzio.o \
 	lua_strbuf.o
-CPPUNIT_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
-	$(__DEBUG_DEFINE_p) -I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CXXFLAGS)
-CPPUNIT_OBJECTS =  \
-	cppunit_AdditionalMessage.o \
-	cppunit_Asserter.o \
-	cppunit_BeOsDynamicLibraryManager.o \
-	cppunit_BriefTestProgressListener.o \
-	cppunit_CompilerOutputter.o \
-	cppunit_Exception.o \
-	cppunit_Message.o \
-	cppunit_PlugInManager.o \
-	cppunit_PlugInParameters.o \
-	cppunit_Protector.o \
-	cppunit_ProtectorChain.o \
-	cppunit_RepeatedTest.o \
-	cppunit_ShlDynamicLibraryManager.o \
-	cppunit_SourceLine.o \
-	cppunit_StringTools.o \
-	cppunit_SynchronizedObject.o \
-	cppunit_Test.o \
-	cppunit_TestAssert.o \
-	cppunit_TestCase.o \
-	cppunit_TestCaseDecorator.o \
-	cppunit_TestComposite.o \
-	cppunit_TestDecorator.o \
-	cppunit_TestFactoryRegistry.o \
-	cppunit_TestFailure.o \
-	cppunit_TestLeaf.o \
-	cppunit_TestNamer.o \
-	cppunit_TestPath.o \
-	cppunit_TestPlugInDefaultImpl.o \
-	cppunit_TestResult.o \
-	cppunit_TestResultCollector.o \
-	cppunit_TestRunner.o \
-	cppunit_TestSetUp.o \
-	cppunit_TestSuccessListener.o \
-	cppunit_TestSuite.o \
-	cppunit_TestSuiteBuilderContext.o \
-	cppunit_TextOutputter.o \
-	cppunit_TextTestProgressListener.o \
-	cppunit_TextTestResult.o \
-	cppunit_TextTestRunner.o \
-	cppunit_TypeInfoHelper.o \
-	cppunit_UnixDynamicLibraryManager.o \
-	cppunit_Win32DynamicLibraryManager.o \
-	cppunit_XmlDocument.o \
-	cppunit_XmlElement.o \
-	cppunit_XmlOutputter.o \
-	cppunit_XmlOutputterHook.o \
-	cppunit_DefaultProtector.o \
-	cppunit_DynamicLibraryManager.o \
-	cppunit_DynamicLibraryManagerException.o
 MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
@@ -181,6 +129,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categexp.o \
 	mmex_tests_categovertimeperf.o \
 	mmex_tests_chart.o \
+	mmex_tests_html_widget_bills_and_deposits.o \
 	mmex_tests_html_widget_top_categories.o \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
@@ -196,7 +145,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_summarystocks.o \
 	mmex_tests_transactions.o \
 	mmex_tests_trx_stats.o \
-	mmex_tests_assets.o \
 	mmex_tests_budget_table.o \
 	mmex_tests_category.o \
 	mmex_tests_currency.o \
@@ -365,9 +313,9 @@ liblua.a: $(LUA_OBJECTS)
 	ar rcu $@ $(LUA_OBJECTS)
 	ranlib $@
 
-libcppunit.a: $(CPPUNIT_OBJECTS)
+libcppunit.a: 
 	if exist $@ del $@
-	ar rcu $@ $(CPPUNIT_OBJECTS)
+	ar rcu $@
 	ranlib $@
 
 mmex_tests.exe: $(MMEX_TESTS_OBJECTS) libwxsqlite.a libsqlite.a liblua.a libcppunit.a mmex_tests_mmex_tests_rc.o
@@ -495,153 +443,6 @@ lua_lzio.o: ../../../lib/lua/src/lzio.c
 
 lua_strbuf.o: ../../../lib/lua/src/strbuf.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
-
-cppunit_AdditionalMessage.o: ../../../lib/cppunit/src/cppunit/AdditionalMessage.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_Asserter.o: ../../../lib/cppunit/src/cppunit/Asserter.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_BeOsDynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/BeOsDynamicLibraryManager.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_BriefTestProgressListener.o: ../../../lib/cppunit/src/cppunit/BriefTestProgressListener.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_CompilerOutputter.o: ../../../lib/cppunit/src/cppunit/CompilerOutputter.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_Exception.o: ../../../lib/cppunit/src/cppunit/Exception.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_Message.o: ../../../lib/cppunit/src/cppunit/Message.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_PlugInManager.o: ../../../lib/cppunit/src/cppunit/PlugInManager.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_PlugInParameters.o: ../../../lib/cppunit/src/cppunit/PlugInParameters.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_Protector.o: ../../../lib/cppunit/src/cppunit/Protector.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_ProtectorChain.o: ../../../lib/cppunit/src/cppunit/ProtectorChain.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_RepeatedTest.o: ../../../lib/cppunit/src/cppunit/RepeatedTest.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_ShlDynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/ShlDynamicLibraryManager.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_SourceLine.o: ../../../lib/cppunit/src/cppunit/SourceLine.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_StringTools.o: ../../../lib/cppunit/src/cppunit/StringTools.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_SynchronizedObject.o: ../../../lib/cppunit/src/cppunit/SynchronizedObject.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_Test.o: ../../../lib/cppunit/src/cppunit/Test.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestAssert.o: ../../../lib/cppunit/src/cppunit/TestAssert.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestCase.o: ../../../lib/cppunit/src/cppunit/TestCase.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestCaseDecorator.o: ../../../lib/cppunit/src/cppunit/TestCaseDecorator.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestComposite.o: ../../../lib/cppunit/src/cppunit/TestComposite.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestDecorator.o: ../../../lib/cppunit/src/cppunit/TestDecorator.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestFactoryRegistry.o: ../../../lib/cppunit/src/cppunit/TestFactoryRegistry.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestFailure.o: ../../../lib/cppunit/src/cppunit/TestFailure.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestLeaf.o: ../../../lib/cppunit/src/cppunit/TestLeaf.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestNamer.o: ../../../lib/cppunit/src/cppunit/TestNamer.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestPath.o: ../../../lib/cppunit/src/cppunit/TestPath.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestPlugInDefaultImpl.o: ../../../lib/cppunit/src/cppunit/TestPlugInDefaultImpl.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestResult.o: ../../../lib/cppunit/src/cppunit/TestResult.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestResultCollector.o: ../../../lib/cppunit/src/cppunit/TestResultCollector.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestRunner.o: ../../../lib/cppunit/src/cppunit/TestRunner.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestSetUp.o: ../../../lib/cppunit/src/cppunit/TestSetUp.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestSuccessListener.o: ../../../lib/cppunit/src/cppunit/TestSuccessListener.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestSuite.o: ../../../lib/cppunit/src/cppunit/TestSuite.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TestSuiteBuilderContext.o: ../../../lib/cppunit/src/cppunit/TestSuiteBuilderContext.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TextOutputter.o: ../../../lib/cppunit/src/cppunit/TextOutputter.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TextTestProgressListener.o: ../../../lib/cppunit/src/cppunit/TextTestProgressListener.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TextTestResult.o: ../../../lib/cppunit/src/cppunit/TextTestResult.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TextTestRunner.o: ../../../lib/cppunit/src/cppunit/TextTestRunner.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_TypeInfoHelper.o: ../../../lib/cppunit/src/cppunit/TypeInfoHelper.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_UnixDynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/UnixDynamicLibraryManager.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_Win32DynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/Win32DynamicLibraryManager.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_XmlDocument.o: ../../../lib/cppunit/src/cppunit/XmlDocument.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_XmlElement.o: ../../../lib/cppunit/src/cppunit/XmlElement.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_XmlOutputter.o: ../../../lib/cppunit/src/cppunit/XmlOutputter.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_XmlOutputterHook.o: ../../../lib/cppunit/src/cppunit/XmlOutputterHook.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_DefaultProtector.o: ../../../lib/cppunit/src/cppunit/DefaultProtector.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_DynamicLibraryManager.o: ../../../lib/cppunit/src/cppunit/DynamicLibraryManager.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
-
-cppunit_DynamicLibraryManagerException.o: ../../../lib/cppunit/src/cppunit/DynamicLibraryManagerException.cpp
-	$(CXX) -c -o $@ $(CPPUNIT_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_aboutdialog.o: ../../../src/aboutdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
@@ -802,6 +603,9 @@ mmex_tests_categovertimeperf.o: ../../../src/reports/categovertimeperf.cpp
 mmex_tests_chart.o: ../../../src/reports/chart.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_html_widget_bills_and_deposits.o: ../../../src/reports/html_widget_bills_and_deposits.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_html_widget_top_categories.o: ../../../src/reports/html_widget_top_categories.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -845,9 +649,6 @@ mmex_tests_transactions.o: ../../../src/reports/transactions.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_trx_stats.o: ../../../src/reports/trx_stats.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_assets.o: ../../../src/db/assets.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_budget_table.o: ../../../src/db/budget_table.cpp

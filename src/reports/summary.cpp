@@ -20,9 +20,9 @@
 #include "mmex.h"
 #include "constants.h"
 #include "htmlbuilder.h"
-#include "db/assets.h"
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Account.h"
+#include "model/Model_Asset.h"
 #include <algorithm>
 
 #define SUMMARY_SORT_BY_NAME        1
@@ -184,15 +184,15 @@ wxString mmReportSummary::getHTMLText()
     hb.addRowSeparator(2);
 
     /* Assets */
-    TAssetList asset_list(core_->db_.get());
+    double asset_balance = Model_Asset::instance().balance();
 
     hb.startTableRow();
     hb.addTableCellLink("Assets", _("Assets"), false, true);
-    hb.addTableCell(asset_list.GetAssetBalanceCurrencyFormat(), true);
+    hb.addTableCell(wxString::Format("%f", asset_balance), true);
     hb.endTableRow();
 
     tBalance += stockBalance;
-    tBalance += asset_list.GetAssetBalance();
+    tBalance += asset_balance; 
 
     hb.addRowSeparator(2);
 
