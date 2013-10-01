@@ -77,7 +77,6 @@ public:
     void updateExtraAssetData(int selIndex);
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
     wxString getItem(long item, long column);
-    int GetListCtrlWidth(int id);
     void SetListCtrlColumn(int m_selected_col, wxListItem item);
 
     Model_Asset::Data_Set m_assets;

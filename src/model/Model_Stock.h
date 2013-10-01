@@ -26,6 +26,7 @@ class Model_Stock : public Model, public DB_Table_STOCK_V1
 {
     using DB_Table_STOCK_V1::all;
     using DB_Table_STOCK_V1::find;
+    using DB_Table_STOCK_V1::remove;
 public:
     Model_Stock(): Model(), DB_Table_STOCK_V1() {};
     ~Model_Stock() {};
@@ -52,6 +53,11 @@ public:
     {
         return find(db_, col, v);
     }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
+    }
+
 public:
     static wxDate PURCHASEDATE(const Data* stock) { return Model::to_date(stock->PURCHASEDATE); }
     static wxDate PURCHASEDATE(const Data& stock) { return Model::to_date(stock.PURCHASEDATE); }

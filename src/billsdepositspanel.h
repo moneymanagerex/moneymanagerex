@@ -129,11 +129,6 @@ public:
     int initVirtualListControl(int id = -1);
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
-    int GetListCtrlWidth(int id)
-    {
-        return listCtrlAccount_->GetColumnWidth(id);
-    }
-
     void RefreshList();
 
 private:

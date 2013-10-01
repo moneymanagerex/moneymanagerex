@@ -392,7 +392,7 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
     wxString parameter_name = wxString::Format("BD_COL%d_WIDTH", i);
-    int current_width = cp_->GetListCtrlWidth(i);
+    int current_width = GetColumnWidth(i);
     Model_Setting::instance().Set(parameter_name, current_width);
 }
 

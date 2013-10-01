@@ -49,7 +49,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
-    int width = cp_->GetListCtrlWidth(i);
+    int width = this->GetColumnWidth(i);
     Model_Setting::instance().Set(wxString::Format("ASSETS_COL%d_WIDTH", i), width);
 }
 
@@ -512,11 +512,6 @@ wxString mmAssetsPanel::getItem(long item, long column)
     default:
         return "";
     }
-}
-
-int mmAssetsPanel::GetListCtrlWidth(int id)
-{
-    return m_listCtrlAssets->GetColumnWidth(id);
 }
 
 void mmAssetsPanel::SetListCtrlColumn(int m_selected_col, wxListItem item)
