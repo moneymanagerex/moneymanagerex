@@ -30,6 +30,8 @@ BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_DESELECTED(IDC_PANEL_STOCKS_LISTCTRL,  mmAssetsListCtrl::OnListItemDeselected)
     EVT_LIST_COL_END_DRAG(IDC_PANEL_STOCKS_LISTCTRL,     mmAssetsListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(IDC_PANEL_STOCKS_LISTCTRL,        mmAssetsListCtrl::OnColClick)
+    EVT_LIST_BEGIN_LABEL_EDIT(IDC_PANEL_STOCKS_LISTCTRL, mmAssetsListCtrl::OnBeginLabelEdit)
+    EVT_LIST_END_LABEL_EDIT(IDC_PANEL_STOCKS_LISTCTRL,   mmAssetsListCtrl::OnEndLabelEdit)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,    mmAssetsListCtrl::OnNewAsset)
     EVT_MENU(MENU_TREEPOPUP_EDIT,   mmAssetsListCtrl::OnEditAsset)
@@ -46,6 +48,7 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
 , m_asc(true)
 , cp_(cp)
 , selectedIndex_(-1)
+, m_selected_asset(0)
 {}
 
 void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
@@ -230,6 +233,27 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     doRefreshItems(trx_id);
 }
 
+void mmAssetsListCtrl::OnBeginLabelEdit(wxListEvent& event)
+{
+    for (auto& asset: this->cp_->m_assets)
+    {
+        if (asset.ASSETNAME == event.m_item.m_text)
+        {
+            this->m_selected_asset = &asset;
+            break;
+        }
+    }
+}
+
+void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
+{
+    if (event.IsEditCancelled() || !this->m_selected_asset) return;
+    this->m_selected_asset->ASSETNAME = event.m_item.m_text;
+    Model_Asset::instance().save(this->m_selected_asset);
+
+    doRefreshItems(this->m_selected_asset->ASSETID);
+    cp_->updateExtraAssetData(selectedIndex_);
+}
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)

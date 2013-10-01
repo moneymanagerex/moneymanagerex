@@ -42,6 +42,7 @@ private:
     long selectedIndex_;
     int  m_selected_col;
     bool m_asc;
+    Model_Asset::Data* m_selected_asset;
 
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;
@@ -54,6 +55,8 @@ private:
     void OnListItemSelected(wxListEvent& event);
     void OnListItemDeselected(wxListEvent& event);
     void OnColClick(wxListEvent& event);
+    void OnBeginLabelEdit(wxListEvent& event);
+    void OnEndLabelEdit(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
     bool EditAsset(Model_Asset::Data* pEntry);
 };
