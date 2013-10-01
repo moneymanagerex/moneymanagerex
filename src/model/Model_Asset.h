@@ -124,6 +124,16 @@ public:
             return TYPE_PROPERTY;
         else if (r->ASSETTYPE.CmpNoCase("Automobile") == 0)
             return TYPE_AUTO;
+        else if (r->ASSETTYPE.CmpNoCase("Household Object") == 0)
+            return TYPE_HOUSE;
+        else if (r->ASSETTYPE.CmpNoCase("Art") == 0)
+            return TYPE_ART;
+        else if (r->ASSETTYPE.CmpNoCase("Jewellery") == 0)
+            return TYPE_JEWELLERY;
+        else if (r->ASSETTYPE.CmpNoCase("Cash") == 0)
+            return TYPE_CASH;
+        else if (r->ASSETTYPE.CmpNoCase("Other") == 0)
+            return TYPE_OTHER;
 
         return TYPE(-1);
     }
