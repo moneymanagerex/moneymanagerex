@@ -112,6 +112,12 @@ mmCurrencyList::mmCurrencyList(wxSharedPtr<wxSQLite3Database> db)
     : db_(db)
 {}
 
+mmCurrencyList::~mmCurrencyList()
+{
+    for (auto &currency: currencies_)
+        delete currency;
+}
+
 void mmCurrencyList::LoadBaseCurrencySettings() const
 {
     int currencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
@@ -222,6 +228,7 @@ bool mmCurrencyList::DeleteCurrency(int currencyID)
         {
             if ((*Iter)->currencyID_ == currencyID)
             {
+                delete (*Iter);
                 currencies_.erase(Iter);
                 result = true;
                 break;

@@ -38,6 +38,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
         topCategoryStats
         , date_range
     );
+    delete date_range;
 
     for (const auto& i : topCategoryStats)
     {

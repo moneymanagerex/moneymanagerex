@@ -24,6 +24,17 @@
 #include "model/Model_Account.h"
 #include <algorithm>
 
+mmSplitTransactionEntries::~mmSplitTransactionEntries()
+{
+    cleanuplist();
+}
+
+void mmSplitTransactionEntries::cleanuplist()
+{
+    for (auto& entry : entries_)
+        delete entry;
+}
+
 void mmSplitTransactionEntries::addSplit(mmSplitTransactionEntry* split)
 {
     entries_.push_back(split);
@@ -44,6 +55,7 @@ void mmSplitTransactionEntries::removeSplit(int splitID)
     {
         if (entries_[i]->splitEntryID_ == splitID)
         {
+            delete entries_[i];
             entries_.erase(entries_.begin() + i);
             break;
         }
@@ -52,6 +64,7 @@ void mmSplitTransactionEntries::removeSplit(int splitID)
 
 void mmSplitTransactionEntries::removeSplitByIndex(int splitIndex)
 {
+    delete entries_[splitIndex];
     entries_.erase(entries_.begin() + splitIndex);
 }
 
@@ -88,6 +101,7 @@ void mmSplitTransactionEntries::updateToDB(wxSharedPtr<wxSQLite3Database>& db,
 
 void mmSplitTransactionEntries::loadFromBDDB(mmCoreDB* core, int bdID)
 {
+    cleanuplist();
     entries_.clear();
 
     wxSQLite3Statement st = core->db_->PrepareStatement(SELECT_ROW_FROM_BUDGETSPLITTRANSACTIONS_V1);
@@ -143,6 +157,12 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
     splitEntries_ = new mmSplitTransactionEntries();
     getSplitTransactions(splitEntries_);
     sortby_ = DATE;
+}
+
+mmBankTransaction::~mmBankTransaction()
+{
+    if(splitEntries_)
+        delete splitEntries_;
 }
 
 bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
@@ -323,6 +343,9 @@ double mmBankTransaction::value(int accountID) const
 
 void mmBankTransaction::getSplitTransactions(mmSplitTransactionEntries* splits) const
 {
+    for (auto & pEntry: splits->entries_)
+        delete pEntry;
+
     splits->entries_.clear();
 
     wxSQLite3Statement st = core_->db_->PrepareStatement(SELECT_ROW_FROM_SPLITTRANSACTIONS_V1);
@@ -402,6 +425,12 @@ mmBankTransactionList::mmBankTransactionList(mmCoreDB* core)
 {
    /* Allocate some empty space so loading transactions is faster */
    transactions_.reserve(5000);
+}
+
+void mmBankTransactionList::cleanuptranslist()
+{
+    for (const auto& pBankTransaction : transactions_)
+        delete pBankTransaction;
 }
 
 int mmBankTransactionList::addTransaction(mmBankTransaction* pBankTransaction)
@@ -484,7 +513,10 @@ bool mmBankTransactionList::checkForExistingTransaction(mmBankTransaction* pBank
             mmSplitTransactionEntries* temp_splits = pTempTransaction->splitEntries_;
 
             if (splits->entries_.size() != temp_splits->entries_.size())
+            {
+                delete pTempTransaction;
                 continue;
+            }
 
             for (int i = 0; i < (int)splits->entries_.size(); ++i)
             {
@@ -495,6 +527,8 @@ bool mmBankTransactionList::checkForExistingTransaction(mmBankTransaction* pBank
                 if (splits->entries_[i]->subCategID_ != temp_splits->entries_[i]->subCategID_)
                     continue;
             }
+
+            delete pTempTransaction;
         }
     found = true;
     }
@@ -569,6 +603,8 @@ mmBankTransaction* mmBankTransactionList::copyTransaction(
     pCopyTransaction->splitEntries_->updateToDB(core_->db_, pCopyTransaction->transactionID(), false);
     transactions_.push_back(pCopyTransaction);
 
+    delete pBankTransaction;
+
     return pCopyTransaction;
 }
 
@@ -590,6 +626,7 @@ mmBankTransaction* mmBankTransactionList::getBankTransactionPtr(int transactionI
 void mmBankTransactionList::LoadTransactions()
 {
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CHECKINGACCOUNT_V1);
+    cleanuptranslist();
     transactions_.clear();
     while (q1.NextRow())
     {
@@ -1157,6 +1194,7 @@ bool mmBankTransactionList::removeTransaction(int accountID, int transactionID)
             {
                 if (pBankTransaction->transactionID() == transactionID)
                 {
+                    delete (*i);
                     i = transactions_.erase(i);
                     return true;
                 }
@@ -1207,6 +1245,7 @@ void mmBankTransactionList::deleteTransactions(int accountID)
         if ((pBankTransaction->accountID_ == accountID) ||
             (pBankTransaction->toAccountID_ == accountID))
         {
+            cleanuptranslist();
             transactions_.clear();
         }
     }

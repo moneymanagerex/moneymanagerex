@@ -63,6 +63,7 @@ private:
 
 public:
     mmAccountList(mmCoreDB* core);
+    ~mmAccountList();
 
     /* Account Functions */
     mmAccount* GetAccountSharedPtr(int accountID) const;

@@ -61,6 +61,7 @@ class mmSplitTransactionEntries
 {
 public:
     mmSplitTransactionEntries() {}
+    ~mmSplitTransactionEntries();
 
     size_t numEntries() const
     {
@@ -77,6 +78,9 @@ public:
     void loadFromBDDB(mmCoreDB* core, int bdID);
 
     std::vector<mmSplitTransactionEntry* > entries_;
+
+private:
+    void cleanuplist();
 };
 
 class mmBankTransaction : public mmTransaction
@@ -84,7 +88,7 @@ class mmBankTransaction : public mmTransaction
 public:
     mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1);
     mmBankTransaction(mmCoreDB* core);
-    virtual ~mmBankTransaction() {}
+    virtual ~mmBankTransaction();
     bool operator < (const mmBankTransaction& tran) const;
     bool containsCategory(int categID, int subcategID, bool ignoreSubCateg = false) const;
     double getAmountForSplit(int categID, int subcategID) const;
@@ -135,7 +139,7 @@ class mmBankTransactionList
 {
 public:
     mmBankTransactionList(mmCoreDB* core);
-    ~mmBankTransactionList() {}
+    ~mmBankTransactionList() {cleanuptranslist();}
 
     mmBankTransaction* getBankTransactionPtr(int transactionID) const;
     int addTransaction(mmBankTransaction* pTransaction);
@@ -201,6 +205,8 @@ public:
 
 private:
     mmCoreDB* core_;
+
+    void cleanuptranslist();
 };
 
 #endif

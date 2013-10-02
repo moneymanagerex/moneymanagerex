@@ -53,6 +53,12 @@ mmAccountList::mmAccountList(mmCoreDB* core)
 : core_(core)
 {}
 
+mmAccountList::~mmAccountList()
+{
+    for (auto& account : accounts_)
+        delete account;
+}
+
 double mmAccountList::getAccountBaseCurrencyConvRate(int accountID) const
 {
     if (accountID > 0)
@@ -360,6 +366,7 @@ bool mmAccountList::RemoveAccount(int accountID)
         mmAccount* pAccount = (*iter);
         if (pAccount->id_ == accountID)
         {
+            delete pAccount;
             iter = accounts_.erase(iter);
             break;
         }

@@ -23,8 +23,25 @@
 #include "mmOption.h"
 #include "mmcoredb.h"
 
+mmCategoryList::~mmCategoryList()
+{
+    cleanuplist();
+}
+
+void mmCategoryList::cleanuplist()
+{
+    for (auto& category : entries_)
+    {
+        for (auto&  sub_category : category->children_)
+            delete sub_category;
+        category->children_.clear();
+        delete category;
+    }
+}
+
 void mmCategoryList::LoadCategories()
 {
+    cleanuplist();
     entries_.clear();
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_CATEGORIES);
     wxSQLite3ResultSet q2 = core_->db_.get()->ExecuteQuery(SELECT_ALL_SUBCATEGORIES);

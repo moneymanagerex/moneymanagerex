@@ -47,6 +47,7 @@ public:
     mmCategoryList(mmCoreDB* core)
         : core_(core)
     {}
+    ~mmCategoryList();
 
     /* Category Functions */
     int GetCategoryId(const wxString& categoryName) const;
@@ -77,5 +78,7 @@ public:
 
 private:
     mmCoreDB* core_;
+
+    void cleanuplist();
 };
 #endif

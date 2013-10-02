@@ -63,6 +63,7 @@ class mmCurrencyList
 {
 public:
     mmCurrencyList(wxSharedPtr<wxSQLite3Database> db);
+    ~mmCurrencyList();
 
     void LoadCurrencies();
 

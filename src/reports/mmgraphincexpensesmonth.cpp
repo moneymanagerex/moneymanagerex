@@ -10,6 +10,7 @@ mmGraphIncExpensesMonth::mmGraphIncExpensesMonth() :
 
 mmGraphIncExpensesMonth::~mmGraphIncExpensesMonth()
 {
+    delete chart_;
 }
 
 void mmGraphIncExpensesMonth::init(double income, double expenses)
