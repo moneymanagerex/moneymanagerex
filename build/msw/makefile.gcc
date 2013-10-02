@@ -166,12 +166,6 @@ MMEX_OBJECTS =  \
 	mmex_summarystocks.o \
 	mmex_transactions.o \
 	mmex_trx_stats.o \
-	mmex_budget_table.o \
-	mmex_category.o \
-	mmex_currency.o \
-	mmex_entry_base.o \
-	mmex_splittransaction.o \
-	mmex_subcategory.o \
 	mmex_platfdep.o \
 	mmex_export.o \
 	mmex_qif_export.o \
@@ -711,24 +705,6 @@ mmex_transactions.o: ../../src/reports/transactions.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_trx_stats.o: ../../src/reports/trx_stats.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_budget_table.o: ../../src/db/budget_table.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_category.o: ../../src/db/category.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_currency.o: ../../src/db/currency.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_entry_base.o: ../../src/db/entry_base.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_splittransaction.o: ../../src/db/splittransaction.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_subcategory.o: ../../src/db/subcategory.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_platfdep.o: ../../src/win/platfdep.cpp

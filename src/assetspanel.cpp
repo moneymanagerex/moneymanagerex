@@ -20,6 +20,7 @@
 #include "constants.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Currency.h"
 
 
 enum {IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1
@@ -478,7 +479,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabel(wxString::Format(_("Total: %f"), balance)); // balance
+    header_text_->SetLabel(Model_Currency::toString(balance)); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -514,7 +515,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     case COL_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
     case COL_VALUE:
-        return wxString::Format("%f", Model_Asset::value(asset)); // FIXME
+        return Model_Currency::toString(Model_Asset::value(asset));
     case COL_DATE:
         return asset.STARTDATE; // FIXME
     case COL_NOTES:

@@ -243,10 +243,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\budget_table.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\reports\budgetcategorysummary.cpp"
 				>
 			</File>
@@ -283,10 +279,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\category.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\reports\categovertimeperf.cpp"
 				>
 			</File>
@@ -296,10 +288,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\constants.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\currency.cpp"
 				>
 			</File>
 			<File
@@ -320,10 +308,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\dbwrapper.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\entry_base.cpp"
 				>
 			</File>
 			<File
@@ -483,10 +467,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\splittransaction.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\splittransactionsdialog.cpp"
 				>
 			</File>
@@ -496,10 +476,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\stockspanel.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\subcategory.cpp"
 				>
 			</File>
 			<File
@@ -689,10 +665,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\budget_table.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\reports\budgetcategorysummary.h"
 				>
 			</File>
@@ -729,10 +701,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\category.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\reports\categovertimeperf.h"
 				>
 			</File>
@@ -742,10 +710,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\constants.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\currency.h"
 				>
 			</File>
 			<File
@@ -770,10 +734,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\defs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\entry_base.h"
 				>
 			</File>
 			<File
@@ -953,10 +913,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\db\splittransaction.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\splittransactionsdialog.h"
 				>
 			</File>
@@ -966,10 +922,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\stockspanel.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\db\subcategory.h"
 				>
 			</File>
 			<File

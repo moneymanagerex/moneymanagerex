@@ -150,12 +150,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_summarystocks.obj \
 	mmex_tests_transactions.obj \
 	mmex_tests_trx_stats.obj \
-	mmex_tests_budget_table.obj \
-	mmex_tests_category.obj \
-	mmex_tests_currency.obj \
-	mmex_tests_entry_base.obj \
-	mmex_tests_splittransaction.obj \
-	mmex_tests_subcategory.obj \
 	mmex_tests_platfdep.obj \
 	mmex_tests_export.obj \
 	mmex_tests_qif_export.obj \
@@ -744,24 +738,6 @@ mmex_tests_transactions.obj: ..\..\..\src\reports\transactions.cpp
 
 mmex_tests_trx_stats.obj: ..\..\..\src\reports\trx_stats.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\trx_stats.cpp
-
-mmex_tests_budget_table.obj: ..\..\..\src\db\budget_table.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\budget_table.cpp
-
-mmex_tests_category.obj: ..\..\..\src\db\category.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\category.cpp
-
-mmex_tests_currency.obj: ..\..\..\src\db\currency.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\currency.cpp
-
-mmex_tests_entry_base.obj: ..\..\..\src\db\entry_base.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\entry_base.cpp
-
-mmex_tests_splittransaction.obj: ..\..\..\src\db\splittransaction.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\splittransaction.cpp
-
-mmex_tests_subcategory.obj: ..\..\..\src\db\subcategory.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\db\subcategory.cpp
 
 mmex_tests_platfdep.obj: ..\..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\win\platfdep.cpp
