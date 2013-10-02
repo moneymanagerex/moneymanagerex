@@ -114,7 +114,7 @@
 enum
 {
     /* Main Menu  */
-    MENU_NEW,
+    MENU_NEW = wxID_HIGHEST + 1,
     MENU_OPEN,
     MENU_SAVE,
     MENU_SAVE_AS,

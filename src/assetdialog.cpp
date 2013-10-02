@@ -80,7 +80,7 @@ void mmAssetDialog::dataToControls()
     m_assetName->SetValue(m_asset->ASSETNAME);
     m_notes->SetValue(m_asset->NOTES);
     m_dpc->SetValue(Model_Asset::STARTDATE(m_asset));
-    m_value->SetValue(CurrencyFormatter::float2String(m_asset->VALUE));
+    m_value->SetValue(m_asset->VALUE);
 
     wxString valueChangeRate;
     valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
@@ -142,7 +142,7 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Value")), flags);
 
-    m_value = new wxTextCtrl( itemPanel5, wxID_ANY, wxGetEmptyString()
+    m_value = new mmMoneyTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator() );
     m_value->SetToolTip(_("Enter the current value of the asset"));
