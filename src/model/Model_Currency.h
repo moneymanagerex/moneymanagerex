@@ -22,6 +22,7 @@
 #include "db/DB_Table_Currencyformats_V1.h"
 #include "Model_Infotable.h" // detect base currency setting BASECURRENCYID
 #include "mmcurrency.h"
+#include <wx/numformatter.h>
 
 class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
 {
@@ -79,7 +80,21 @@ public:
         int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
         return this->get(currency_id, this->db_);
     }
-
+public:
+    static wxString toString(double value, const Data* currency = 0)
+    {
+        wxString d2s = wxNumberFormatter::ToString(value, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
+        if (currency) 
+        {
+            d2s.Prepend(currency->PFX_SYMBOL);
+            d2s.Append(currency->SFX_SYMBOL);
+        }
+        else
+        {
+            d2s.Prepend("$");
+        }
+        return d2s;
+    }
 };
 
 #endif // 

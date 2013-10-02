@@ -17,6 +17,7 @@
 #pragma once
 #include "defs.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Currency.h"
 
 class wxDatePickerCtrl;
 
@@ -34,7 +35,7 @@ public:
     void SetValue(double value)
     {
         wxString value_str = wxString::Format("%f", value);
-        this->SetValue(value_str);
+        this->SetValue(Model_Currency::toString(value));
     }
 };
 
