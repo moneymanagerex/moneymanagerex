@@ -10,24 +10,31 @@ REM --------------------------------------------------------------------------
 @echo off
 cls
 
-REM To create a release configuration, create the following directories:
-REM - trunk\mmex_release
-REM - trunk\mmex_release\mmex_0.9.9.2_win32_portable
-REM - When creating actual releases, rename the directory to the correct version number
+REM - When creating subsequent releases, rename the variable: mmex_release_version
+REM   to reflect the correct version location
+set mmex_release_version=mmex_0.9.9.2_win32_portable
+set mmex_release_type=release
 
-set mmex_release_destination=..\..\..\mmex_release\mmex_0.9.9.2_win32_portable
+set mmex_release_destination=..\..\mmex_release\%mmex_release_version%
 set mmex_build_location=..\..\build\msw-vc-2012e
-set mmex_release_type=vc-static-u
 set mmex_release_source=%mmex_build_location%\%mmex_release_type%
 
 @echo ------------------------------------------------------------------------
 @echo MMEX Support Files Updating Facility
 @echo.
-@set display_message=Update Build Configurations.
-if not exist %mmex_release_destination% goto display_config_continue
-@set display_message=Update Build and Release Configurations.
+if exist %mmex_release_destination% goto continue_intro
+@echo To collect appropriate files for a System Release,
+@echo create the directorys:-
 @echo.
-@echo Release Configuration Setup:
+@echo - trunk\mmex_release
+@echo - trunk\mmex_release\%mmex_release_version%
+
+:continue_intro
+@set display_message=Update IDE Build Configurations.
+if not exist %mmex_release_destination% goto display_config_continue
+@set display_message=Update IDE Build Configurations and MMEX Release Location.
+@echo.
+@echo MMEX Release Configuration Setup:
 @echo      Source: %mmex_release_source%
 @echo Destination: %mmex_release_destination%
 :display_config_continue
@@ -37,8 +44,8 @@ if not exist %mmex_release_destination% goto display_config_continue
 pause
 cls
 
-REM Starts with Unicode Release
-goto update_u
+REM Starts with Local release
+goto update_release
 
 REM The routine: UpdateFiles
 REM will collect the files for all configurations to the specified location.
@@ -103,46 +110,47 @@ cls
 
 :skip_this_location
 REM Work out where to go next.
-if %location%==vc-static-u          goto update_ud
-if %location%==vc-static-ud         goto update_ud_tests
+if %location%==release              goto update_debug
+if %location%==debug                goto update_debug_tests
+if %location%==tests\debug          goto update_main_release
 goto ScriptEnd
 REM -------------------------------------------------------------------------- 
 
 REM Unicode Release
-:update_u
-set location=vc-static-u
+:update_release
+set location=release
 set current_location=%location%
 goto UpdateFiles
 
 REM Unicode Debug
-:update_ud
-set location=vc-static-ud
+:update_debug
+set location=debug
 set current_location=%location%
 goto UpdateFiles
 
 REM Unicode Debug Tests
-:update_ud_tests
-set location=tests\vc-static-ud
+:update_debug_tests
+set location=tests\debug
 set current_location=%location%
 goto UpdateFiles
 
 REM Update the release
-:update_release
+:update_main_release
 REM Update the exe files first
 if not exist %mmex_release_destination% goto ScriptEnd
 @echo --------------------------------------------------------------------
-@echo Updating MMEX Release
+@echo Updating MMEX Release Location
 @echo.
-@echo To Destination: %mmex_release_destination%
+@echo Destination: %mmex_release_destination%
 @echo From Source: %mmex_release_source%
 @echo --------------------------------------------------------------------
 pause
 cls
 
 @echo --------------------------------------------------------------------
-@echo Updating MMEX Release
+@echo Updating MMEX System Release
 @echo.
-@echo To Destination: %mmex_release_destination%
+@echo Destination: %mmex_release_destination%
 @echo From Source: %mmex_release_source%
 @echo.
 @echo --------------------------------------------------------------------
