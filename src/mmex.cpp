@@ -3144,7 +3144,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
     if (m_core.get()->accountList_.getNumAccounts() == 0) return;
 
-    std::vector<mmBankTransaction> trans;
+    std::vector<mmBankTransaction*> trans;
 
     mmFilterTransactionsDialog* dlg= new mmFilterTransactionsDialog(m_core.get(), this);
     if (dlg->ShowModal() == wxID_OK)
@@ -3232,7 +3232,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                 }
             }
 
-            trans.push_back(*tran);
+            trans.push_back(tran);
         }
 
         mmReportTransactions* rs = new mmReportTransactions(trans, m_core.get(), dlg->getAccountID(), dlg);

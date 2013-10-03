@@ -25,7 +25,7 @@
 #include "model/Model_Account.h"
 #include <algorithm>
 
-mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction>& trans,
+mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction*>& trans,
     mmCoreDB* core, int refAccountID, mmFilterTransactionsDialog* transDialog)
 : mmPrintableBase(core)
 , trans_(trans)
@@ -53,7 +53,7 @@ wxString addFilterDetailes(wxString sHeader, wxString sValue)
 wxString mmReportTransactions::getHTMLText()
 {
     for (auto& transaction: trans_)
-        transaction.sortby_ = (mmBankTransaction::SORT)sortColumn_;
+        transaction->sortby_ = (mmBankTransaction::SORT)sortColumn_;
     std::stable_sort (trans_.begin(), trans_.end());
 
     mmHTMLBuilder hb;
@@ -117,22 +117,22 @@ wxString mmReportTransactions::getHTMLText()
     double total = 0;
     for (auto& transaction: trans_)
     {
-        transaction.updateTransactionData(refAccountID_, total);
+        transaction->updateTransactionData(refAccountID_, total);
 
         hb.startTableRow();
-        hb.addTableCell(transaction.date_);
-        Model_Account::Data* account = Model_Account::instance().get(transaction.accountID_);
-        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.transactionID()), ( account ? account->ACCOUNTNAME : ""));
-        Model_Payee::Data* payee = (transaction.transType_ != TRANS_TYPE_TRANSFER_STR ? Model_Payee::instance().get(transaction.payeeID_) : NULL);
+        hb.addTableCell(transaction->date_);
+        Model_Account::Data* account = Model_Account::instance().get(transaction->accountID_);
+        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction->transactionID()), ( account ? account->ACCOUNTNAME : ""));
+        Model_Payee::Data* payee = (transaction->transType_ != TRANS_TYPE_TRANSFER_STR ? Model_Payee::instance().get(transaction->payeeID_) : NULL);
         hb.addTableCell( payee ? payee->PAYEENAME : "" );
-        hb.addTableCell(transaction.status_);
-        hb.addTableCell(transaction.fullCatStr_, false, true);
-        hb.addTableCell(wxGetTranslation(transaction.transType_));
+        hb.addTableCell(transaction->status_);
+        hb.addTableCell(transaction->fullCatStr_, false, true);
+        hb.addTableCell(wxGetTranslation(transaction->transType_));
         // Get the exchange rate for the selected account
-        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction.accountID_);
-        hb.addMoneyCell(transaction.value(refAccountID_) * dbRate);
-        hb.addTableCell(transaction.transNum_);
-        hb.addTableCell(transaction.notes_, false, true);
+        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction->accountID_);
+        hb.addMoneyCell(transaction->value(refAccountID_) * dbRate);
+        hb.addTableCell(transaction->transNum_);
+        hb.addTableCell(transaction->notes_, false, true);
         hb.endTableRow();
     }
 
