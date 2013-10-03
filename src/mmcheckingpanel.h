@@ -26,7 +26,6 @@
 class mmBankTransaction;
 class TransactionListCtrl;
 class mmFilterTransactionsDialog;
-class mmDateRange;
 //----------------------------------------------------------------------------
 
 class mmCheckingPanel : public mmPanelBase
@@ -59,7 +58,6 @@ private:
     DECLARE_EVENT_TABLE()
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
 
-    mmDateRange* date_range_;
     wxButton* btnNew_;
     wxButton* btnEdit_;
     wxButton* btnDuplicate_;

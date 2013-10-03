@@ -46,7 +46,14 @@ END_EVENT_TABLE()
 
 StocksListCtrl::~StocksListCtrl()
 {
+    cleanuptranslist();
     if (m_imageList) delete m_imageList;
+}
+
+void StocksListCtrl::cleanuptranslist()
+{
+    for (auto &stock : trans_)
+        delete stock;
 }
 
 StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid)
@@ -426,6 +433,7 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 
     stock_panel_->updateHeader();
     /* Clear all the records */
+    cleanuptranslist();
     trans_.clear();
     DeleteAllItems();
 

@@ -914,29 +914,33 @@ void mmCheckingPanel::initViewTransactionsHeader()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
-    date_range_ = new mmAllTime;
+    mmDateRange* date_range = NULL;
 
     if (currentView_ == VIEW_TRANS_ALL_STR)
-        date_range_ = new mmAllTime;
+        date_range = new mmAllTime;
     else if (currentView_ == VIEW_TRANS_TODAY_STR)
-        date_range_ = new mmToday;
+        date_range = new mmToday;
     else if (currentView_ == VIEW_TRANS_CURRENT_MONTH_STR)
-        date_range_ = new mmCurrentMonth;
+        date_range = new mmCurrentMonth;
     else if (currentView_ == VIEW_TRANS_LAST_30_DAYS_STR)
-        date_range_ = new mmLast30Days;
+        date_range = new mmLast30Days;
     else if (currentView_ == VIEW_TRANS_LAST_90_DAYS_STR)
-        date_range_ = new mmLast90Days;
+        date_range = new mmLast90Days;
     else if (currentView_ == VIEW_TRANS_LAST_MONTH_STR)
-        date_range_ = new mmLastMonth;
+        date_range = new mmLastMonth;
     else if (currentView_ == VIEW_TRANS_LAST_3MONTHS_STR)
-        date_range_ = new mmLast3Months;
+        date_range = new mmLast3Months;
     else if (currentView_ == VIEW_TRANS_CURRENT_YEAR_STR)
-        date_range_ = new mmCurrentYear;
+        date_range = new mmCurrentYear;
     else if (currentView_ == VIEW_TRANS_LAST_12MONTHS_STR)
-        date_range_ = new mmLast12Months;
+        date_range = new mmLast12Months;
+    else
+        date_range = new mmAllTime;
 
-    quickFilterBeginDate_ = date_range_->start_date();
-    quickFilterEndDate_ = date_range_->end_date();
+    quickFilterBeginDate_ = date_range->start_date();
+    quickFilterEndDate_ = date_range->end_date();
+
+    delete date_range;
 }
 void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 

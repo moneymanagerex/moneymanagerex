@@ -10,6 +10,7 @@ class mmReportCashFlow : public mmPrintableBase
 {
 public:
     mmReportCashFlow(mmCoreDB* core, int cashflowreporttype);
+    ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
 

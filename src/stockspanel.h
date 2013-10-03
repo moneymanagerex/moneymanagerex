@@ -106,6 +106,7 @@ private:
     };
     std::map<int, wxString> ColName_;
     wxImageList* m_imageList;
+    void cleanuptranslist();
 };
 
 /* ------------------------------------------------------- */

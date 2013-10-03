@@ -16,6 +16,12 @@ mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
 , cashflowreporttype_(cashflowreporttype)
 {}
 
+mmReportCashFlow::~mmReportCashFlow()
+{
+    if (accountArray_)
+        delete accountArray_;
+}
+
 void mmReportCashFlow::activateTermAccounts() 
 {
     activeTermAccounts_ = true;
