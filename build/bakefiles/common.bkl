@@ -136,7 +136,6 @@
 
 
     <include file="wxsqlite.bkl"/>
-    <include file="sqlite.bkl"/>
     <include file="lua.bkl"/>
 
 
@@ -178,8 +177,8 @@
         <cxx-exceptions>on</cxx-exceptions>
         <cxx-rtti>on</cxx-rtti>
 
-        <include>$(SRCDIR)/lib/sqlite</include>
-        <include>$(SRCDIR)/lib/wxsqlite</include>
+        <include>$(SRCDIR)/lib/wxsqlite3/sqlite3/secure/src</include>
+        <include>$(SRCDIR)/lib/wxsqlite3/include</include>
         <include>$(SRCDIR)/lib/lua/src</include>
         <include>$(SRCDIR)/lib</include>
         <include>$(SRCDIR)/src</include>
@@ -188,7 +187,6 @@
         <define>NOPCH</define>
 
         <library>wxsqlite</library>
-        <library>sqlite</library>
         <library>lua</library>
 
         <!-- relative to trunk/mmex -->

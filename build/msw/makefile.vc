@@ -35,23 +35,28 @@ MAKEARGS = PREFIX="$(PREFIX)" EXEC_PREFIX="$(EXEC_PREFIX)" CC="$(CC)" \
 	CPPUNIT_CFLAGS="$(CPPUNIT_CFLAGS)" CPPUNIT_LIBS="$(CPPUNIT_LIBS)" \
 	RUNTIME_LIBS="$(RUNTIME_LIBS)" VSTUDIO_VER="$(VSTUDIO_VER)"
 COMPILER_PREFIX = vc
-WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
+WXSQLITE_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES)\msw$(WXLIBPOSTFIX) \
-	/I$(WX_DIR)\include /DNOPCH /DSQLITE_HAS_CODEC /DWXSQLITE3_HAVE_CODEC \
-	/DWXSQLITE3_HAVE_METADATA /I..\..\lib\sqlite /I..\..\lib\wxsqlite /GR /EHsc \
-	$(CPPFLAGS) $(CXXFLAGS)
+	/I$(WX_DIR)\include /DNOPCH /DSQLITE_CORE /DSQLITE_HAS_CODEC \
+	/DSQLITE_ENABLE_COLUMN_METADATA /DWXSQLITE3_HAVE_CODEC \
+	/DWXSQLITE3_HAVE_METADATA /I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
+WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
+	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
+	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
+	$(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
+	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES)\msw$(WXLIBPOSTFIX) \
+	/I$(WX_DIR)\include /DNOPCH /DSQLITE_CORE /DSQLITE_HAS_CODEC \
+	/DSQLITE_ENABLE_COLUMN_METADATA /DWXSQLITE3_HAVE_CODEC \
+	/DWXSQLITE3_HAVE_METADATA /I..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\lib\wxsqlite3\include /GR /EHsc $(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
-	wxsqlite_wxsqlite3.obj
-SQLITE_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
-	/Fdsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
-	/D_CRT_SECURE_NO_WARNINGS /DSQLITE_CORE /DSQLITE_HAS_CODEC \
-	/DSQLITE_ENABLE_COLUMN_METADATA $(CPPFLAGS) $(CFLAGS)
-SQLITE_OBJECTS =  \
-	sqlite_sqlite3secure.obj
-LUA_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
+	wxsqlite_wxsqlite3.obj \
+	wxsqlite_sqlite3secure.obj
+LUA_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
 	/Fdlua.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	$(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
@@ -93,14 +98,14 @@ LUA_OBJECTS =  \
 	lua_lvm.obj \
 	lua_lzio.obj \
 	lua_strbuf.obj
-MMEX_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
+MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
 	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex.pdb \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
-	/I..\..\lib\sqlite /I..\..\lib\wxsqlite /I..\..\lib\lua\src /I..\..\lib \
-	/I..\..\src /DNOPCH /D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) \
-	$(CXXFLAGS)
+	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
+	/I..\..\lib\lua\src /I..\..\lib /I..\..\src /DNOPCH /D_WINDOWS /EHsc /GR \
+	$(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.obj \
 	mmex_appstartdialog.obj \
@@ -239,10 +244,10 @@ ____mmex_LIB_SUF_FILENAMES = _lib
 ____mmex_LIB_SUF_FILENAMES = _dll
 !endif
 !if "$(WX_SHARED)" == "0"
-____WX_SHARED_46_p_1 = 
+____WX_SHARED_31_p_1 = 
 !endif
 !if "$(WX_SHARED)" == "1"
-____WX_SHARED_46_p_1 = /d WXUSINGDLL
+____WX_SHARED_31_p_1 = /d WXUSINGDLL
 !endif
 !if "$(WX_UNICODE)" == "1"
 __WXUNICODE_DEFINE_p_2 = /d _UNICODE
@@ -269,34 +274,34 @@ __WXLIBPATH_FILENAMES_3 = \lib\$(COMPILER_PREFIX)$(WXCPU)_lib
 __WXLIBPATH_FILENAMES_3 = \lib\$(COMPILER_PREFIX)$(WXCPU)_dll
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_54 = 
+__DEBUGINFO_39 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_54 = /DEBUG
+__DEBUGINFO_39 = /DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-____DEBUGINFO_55_p_1 = 
+____DEBUGINFO_40_p_1 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-____DEBUGINFO_55_p_1 = /d _DEBUG
+____DEBUGINFO_40_p_1 = /d _DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_57 = /opt:ref /opt:icf
+__DEBUGINFO_42 = /opt:ref /opt:icf
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_57 = 
+__DEBUGINFO_42 = 
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_58 = 
+__DEBUGINFO_43 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_58 = $(__DEBUGINFO_57)
+__DEBUGINFO_43 = $(__DEBUGINFO_42)
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUG_DEFINE_p_4 = /d NDEBUG
+__DEBUG_DEFINE_p_3 = /d NDEBUG
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUG_DEFINE_p_4 = /d _DEBUG
+__DEBUG_DEFINE_p_3 = /d _DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
 __mmex_CL_FLAGS = /Zi
@@ -379,10 +384,10 @@ ____DEBUGINFO =
 ____DEBUGINFO = /D_DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_2 = 
+__DEBUGINFO_1 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_2 = d
+__DEBUGINFO_1 = d
 !endif
 !if "$(WX_DEBUG)" == "0"
 __OPTIMIZEFLAG = /O2
@@ -415,7 +420,7 @@ WXCPU = _ia64
 
 ### Targets: ###
 
-all: test_for_selected_wxbuild wxsqlite.lib sqlite.lib lua.lib mmex.exe sub_po
+all: test_for_selected_wxbuild wxsqlite.lib lua.lib mmex.exe sub_po
 
 install: install_mmex
 	-mkdir $(PREFIX)\mmex
@@ -444,7 +449,6 @@ clean:
 	-if exist .\*.res del .\*.res
 	-if exist .\*.pch del .\*.pch
 	-if exist wxsqlite.lib del wxsqlite.lib
-	-if exist sqlite.lib del sqlite.lib
 	-if exist lua.lib del lua.lib
 	-if exist mmex.exe del mmex.exe
 	-if exist mmex.ilk del mmex.ilk
@@ -477,21 +481,15 @@ wxsqlite.lib: $(WXSQLITE_OBJECTS)
 	$(WXSQLITE_OBJECTS)
 <<
 
-sqlite.lib: $(SQLITE_OBJECTS)
-	if exist $@ del $@
-	link /LIB /NOLOGO /OUT:$@ @<<
-	$(SQLITE_OBJECTS)
-<<
-
 lua.lib: $(LUA_OBJECTS)
 	if exist $@ del $@
 	link /LIB /NOLOGO /OUT:$@ @<<
 	$(LUA_OBJECTS)
 <<
 
-mmex.exe: $(MMEX_OBJECTS) wxsqlite.lib sqlite.lib lua.lib mmex_resources_mmex.res
-	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_CPU_SUF_FILENAMES)$(____mmex_LIB_SUF_FILENAMES) /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG)  $(__DEBUGINFO_54) /pdb:"mmex.pdb" $(__DEBUGINFO_58) /SAFESEH:NO $(__mmex_LINK_FLAGS) /SUBSYSTEM:WINDOWS $(LDFLAGS) @<<
-	$(MMEX_OBJECTS) $(MMEX_RESOURCES)  wxsqlite.lib sqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib
+mmex.exe: $(MMEX_OBJECTS) wxsqlite.lib lua.lib mmex_resources_mmex.res
+	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_CPU_SUF_FILENAMES)$(____mmex_LIB_SUF_FILENAMES) /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG)  $(__DEBUGINFO_39) /pdb:"mmex.pdb" $(__DEBUGINFO_43) /SAFESEH:NO $(__mmex_LINK_FLAGS) /SUBSYSTEM:WINDOWS $(LDFLAGS) @<<
+	$(MMEX_OBJECTS) $(MMEX_RESOURCES)  wxsqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib
 <<
 	mt.exe -manifest ".\mmex.exe.manifest" -outputresource:".\mmex.exe";1
 
@@ -517,11 +515,11 @@ sub_check:
 	$(MAKE) -f makefile.vc $(MAKEARGS) check
 	cd "$(MAKEDIR)"
 
-wxsqlite_wxsqlite3.obj: ..\..\lib\wxsqlite\wxsqlite3.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(WXSQLITE_CXXFLAGS) ..\..\lib\wxsqlite\wxsqlite3.cpp
+wxsqlite_wxsqlite3.obj: ..\..\lib\wxsqlite3\src\wxsqlite3.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(WXSQLITE_CXXFLAGS) ..\..\lib\wxsqlite3\src\wxsqlite3.cpp
 
-sqlite_sqlite3secure.obj: ..\..\lib\sqlite\sqlite3secure.c
-	$(CC) /c /nologo /TC /Fo$@ $(SQLITE_CFLAGS) ..\..\lib\sqlite\sqlite3secure.c
+wxsqlite_sqlite3secure.obj: ..\..\lib\wxsqlite3\sqlite3\secure\src\sqlite3secure.c
+	$(CC) /c /nologo /TC /Fo$@ $(WXSQLITE_CFLAGS) ..\..\lib\wxsqlite3\sqlite3\secure\src\sqlite3secure.c
 
 lua_dtoa.obj: ..\..\lib\lua\src\dtoa.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\dtoa.c
@@ -860,5 +858,5 @@ mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\univcsvdialog.cpp
 
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\sqlite /i ..\..\lib\wxsqlite /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
 

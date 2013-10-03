@@ -470,10 +470,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\lib\cppunit\include\cppunit\config-auto.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\lib\cppunit\include\cppunit\config\config-bcb5.h"
 				>
 			</File>

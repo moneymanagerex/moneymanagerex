@@ -28,6 +28,7 @@ CFLAGS = @CFLAGS@
 CXXFLAGS = @CXXFLAGS@
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
+WX_CFLAGS = @WX_CFLAGS@
 WX_CXXFLAGS = @WX_CXXFLAGS@
 WX_LIBS = @WX_LIBS@
 WX_RESCOMP = @WX_RESCOMP@
@@ -35,16 +36,21 @@ WX_RESCOMP = @WX_RESCOMP@
 ### Variables: ###
 
 DESTDIR = 
-WXSQLITE_CXXFLAGS = -DNOPCH -DSQLITE_HAS_CODEC -DWXSQLITE3_HAVE_CODEC \
-	-DWXSQLITE3_HAVE_METADATA -I$(srcdir)/../../lib/sqlite \
-	-I$(srcdir)/../../lib/wxsqlite $(PIC_FLAG) $(WX_CXXFLAGS) $(CPPFLAGS) \
-	$(CXXFLAGS)
+WXSQLITE_CFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_HAS_CODEC \
+	-DSQLITE_ENABLE_COLUMN_METADATA -DWXSQLITE3_HAVE_CODEC \
+	-DWXSQLITE3_HAVE_METADATA \
+	-I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
+	-I$(srcdir)/../../lib/wxsqlite3/include $(PIC_FLAG) $(WX_CFLAGS) \
+	$(CPPFLAGS) $(CFLAGS)
+WXSQLITE_CXXFLAGS = -DNOPCH -DSQLITE_CORE -DSQLITE_HAS_CODEC \
+	-DSQLITE_ENABLE_COLUMN_METADATA -DWXSQLITE3_HAVE_CODEC \
+	-DWXSQLITE3_HAVE_METADATA \
+	-I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
+	-I$(srcdir)/../../lib/wxsqlite3/include $(PIC_FLAG) $(WX_CXXFLAGS) \
+	$(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
-	wxsqlite_wxsqlite3.o
-SQLITE_CFLAGS = -DSQLITE_CORE -DSQLITE_HAS_CODEC \
-	-DSQLITE_ENABLE_COLUMN_METADATA $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
-SQLITE_OBJECTS =  \
-	sqlite_sqlite3secure.o
+	wxsqlite_wxsqlite3.o \
+	wxsqlite_sqlite3secure.o
 LUA_CFLAGS =     $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
 	lua_dtoa.o \
@@ -85,8 +91,8 @@ LUA_OBJECTS =  \
 	lua_lvm.o \
 	lua_lzio.o \
 	lua_strbuf.o
-MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/sqlite \
-	-I$(srcdir)/../../lib/wxsqlite -I$(srcdir)/../../lib/lua/src \
+MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
+	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../src -DNOPCH -I$(srcdir)/../../src \
 	-I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) $(PIC_FLAG) \
 	$(CPPFLAGS) $(CXXFLAGS)
@@ -182,7 +188,7 @@ MMEX_TESTS_OBJECTS =  \
 
 ### Targets: ###
 
-all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)sqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)cppunit$(LIBEXT) mmex_tests$(EXEEXT)
+all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)cppunit$(LIBEXT) mmex_tests$(EXEEXT)
 
 install: 
 
@@ -194,7 +200,6 @@ clean:
 	rm -rf ./.deps ./.pch
 	rm -f ./*.o
 	rm -f $(LIBPREFIX)wxsqlite$(LIBEXT)
-	rm -f $(LIBPREFIX)sqlite$(LIBEXT)
 	rm -f $(LIBPREFIX)lua$(LIBEXT)
 	rm -f $(LIBPREFIX)cppunit$(LIBEXT)
 	rm -f mmex_tests$(EXEEXT)
@@ -207,11 +212,6 @@ $(LIBPREFIX)wxsqlite$(LIBEXT): $(WXSQLITE_OBJECTS)
 	$(AR) $(AROPTIONS) $@ $(WXSQLITE_OBJECTS)
 	$(RANLIB) $@
 
-$(LIBPREFIX)sqlite$(LIBEXT): $(SQLITE_OBJECTS)
-	rm -f $@
-	$(AR) $(AROPTIONS) $@ $(SQLITE_OBJECTS)
-	$(RANLIB) $@
-
 $(LIBPREFIX)lua$(LIBEXT): $(LUA_OBJECTS)
 	rm -f $@
 	$(AR) $(AROPTIONS) $@ $(LUA_OBJECTS)
@@ -222,19 +222,19 @@ $(LIBPREFIX)cppunit$(LIBEXT):
 	$(AR) $(AROPTIONS) $@
 	$(RANLIB) $@
 
-mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)sqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)cppunit$(LIBEXT) $(__mmex_tests___win32rc)
-	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS) -L. -L. -L. -L.    $(LDFLAGS)  -lwxsqlite -lsqlite -llua $(WX_LIBS) -lcppunit $(LIBS)
+mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)cppunit$(LIBEXT) $(__mmex_tests___win32rc)
+	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS) -L. -L. -L.    $(LDFLAGS)  -lwxsqlite -llua $(WX_LIBS) -lcppunit $(LIBS)
 	
 	$(__mmex_tests___mac_setfilecmd)
 
 check: all
 	./mmex_tests
 
-wxsqlite_wxsqlite3.o: $(srcdir)/../../lib/wxsqlite/wxsqlite3.cpp
-	$(CXXC) -c -o $@ $(WXSQLITE_CXXFLAGS) $(srcdir)/../../lib/wxsqlite/wxsqlite3.cpp
+wxsqlite_wxsqlite3.o: $(srcdir)/../../lib/wxsqlite3/src/wxsqlite3.cpp
+	$(CXXC) -c -o $@ $(WXSQLITE_CXXFLAGS) $(srcdir)/../../lib/wxsqlite3/src/wxsqlite3.cpp
 
-sqlite_sqlite3secure.o: $(srcdir)/../../lib/sqlite/sqlite3secure.c
-	$(CCC) -c -o $@ $(SQLITE_CFLAGS) $(srcdir)/../../lib/sqlite/sqlite3secure.c
+wxsqlite_sqlite3secure.o: $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
+	$(CCC) -c -o $@ $(WXSQLITE_CFLAGS) $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
 
 lua_dtoa.o: $(srcdir)/../../lib/lua/src/dtoa.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/dtoa.c
@@ -579,7 +579,7 @@ mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/sqlite --include-dir $(srcdir)/../../lib/wxsqlite --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
 
 
 # Include dependency info, if present:

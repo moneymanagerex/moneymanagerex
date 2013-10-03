@@ -25,7 +25,7 @@
 #include "mmcurrency.h"
 #include "model/Model_Budgetyear.h"
 //----------------------------------------------------------------------------
-#include <sqlite3.h>
+#include "sqlite3.h"
 //----------------------------------------------------------------------------
 
 namespace

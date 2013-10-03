@@ -36,19 +36,25 @@ MAKEARGS = PREFIX="$(PREFIX)" EXEC_PREFIX="$(EXEC_PREFIX)" \
 	RUNTIME_LIBS="$(RUNTIME_LIBS)" GCC_VERSION="$(GCC_VERSION)"
 CPPDEPS = -MT$@ -MF$@.d -MD -MP
 COMPILER_PREFIX = gcc
+WXSQLITE_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
+	$(__DEBUG_DEFINE_p) -DHAVE_W32API_H $(____WX_SHARED) \
+	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
+	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
+	-DSQLITE_CORE -DSQLITE_HAS_CODEC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	$(CPPFLAGS) $(CFLAGS)
 WXSQLITE_CXXFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) -DHAVE_W32API_H $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -DNOPCH \
-	-DSQLITE_HAS_CODEC -DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
-	-I..\..\lib\sqlite -I..\..\lib\wxsqlite $(CPPFLAGS) $(CXXFLAGS)
+	-DSQLITE_CORE -DSQLITE_HAS_CODEC -DSQLITE_ENABLE_COLUMN_METADATA \
+	-DWXSQLITE3_HAVE_CODEC -DWXSQLITE3_HAVE_METADATA \
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	$(CPPFLAGS) $(CXXFLAGS)
 WXSQLITE_OBJECTS =  \
-	wxsqlite_wxsqlite3.o
-SQLITE_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
-	$(__DEBUG_DEFINE_p) -DSQLITE_CORE -DSQLITE_HAS_CODEC \
-	-DSQLITE_ENABLE_COLUMN_METADATA $(CPPFLAGS) $(CFLAGS)
-SQLITE_OBJECTS =  \
-	sqlite_sqlite3secure.o
+	wxsqlite_wxsqlite3.o \
+	wxsqlite_sqlite3secure.o
 LUA_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
@@ -94,8 +100,8 @@ MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
-	-I..\..\lib\sqlite -I..\..\lib\wxsqlite -I..\..\lib\lua\src -I..\..\lib \
-	-I..\..\src -DNOPCH $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
+	-I..\..\lib\lua\src -I..\..\lib -I..\..\src -DNOPCH $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.o \
 	mmex_appstartdialog.o \
@@ -185,10 +191,10 @@ ifeq ($(WX_SHARED),1)
 ____mmex_LIB_SUF_FILENAMES = _dll
 endif
 ifeq ($(WX_SHARED),0)
-____WX_SHARED_26_p_1 = 
+____WX_SHARED_17_p_1 = 
 endif
 ifeq ($(WX_SHARED),1)
-____WX_SHARED_26_p_1 = --define WXUSINGDLL
+____WX_SHARED_17_p_1 = --define WXUSINGDLL
 endif
 ifeq ($(WX_UNICODE),1)
 __WXUNICODE_DEFINE_p_2 = --define _UNICODE
@@ -197,10 +203,10 @@ ifeq ($(WX_DEBUG),1)
 __WXDEBUG_DEFINE_p_2 = --define __WXDEBUG__
 endif
 ifeq ($(WX_DEBUG),0)
-__DEBUG_DEFINE_p_4 = --define NDEBUG
+__DEBUG_DEFINE_p_3 = --define NDEBUG
 endif
 ifeq ($(WX_DEBUG),1)
-__DEBUG_DEFINE_p_4 = --define _DEBUG
+__DEBUG_DEFINE_p_3 = --define _DEBUG
 endif
 ifeq ($(WX_MONOLITHIC),0)
 __WXLIB_CORE_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_core
@@ -299,7 +305,7 @@ endif
 
 ### Targets: ###
 
-all: test_for_selected_wxbuild libwxsqlite.a libsqlite.a liblua.a mmex.exe po
+all: test_for_selected_wxbuild libwxsqlite.a liblua.a mmex.exe po
 
 install: install_mmex
 	-mkdir $(PREFIX)\mmex
@@ -327,7 +333,6 @@ clean:
 	-if exist .\*.o del .\*.o
 	-if exist .\*.d del .\*.d
 	-if exist libwxsqlite.a del libwxsqlite.a
-	-if exist libsqlite.a del libsqlite.a
 	-if exist liblua.a del liblua.a
 	-if exist mmex.exe del mmex.exe
 	$(MAKE) -C ..\..\po -f makefile.gcc $(MAKEARGS) clean
@@ -351,18 +356,13 @@ libwxsqlite.a: $(WXSQLITE_OBJECTS)
 	ar rcu $@ $(WXSQLITE_OBJECTS)
 	ranlib $@
 
-libsqlite.a: $(SQLITE_OBJECTS)
-	if exist $@ del $@
-	ar rcu $@ $(SQLITE_OBJECTS)
-	ranlib $@
-
 liblua.a: $(LUA_OBJECTS)
 	if exist $@ del $@
 	ar rcu $@ $(LUA_OBJECTS)
 	ranlib $@
 
-mmex.exe: $(MMEX_OBJECTS) libwxsqlite.a libsqlite.a liblua.a mmex_resources_mmex_rc.o
-	$(CXX) -o $@ $(MMEX_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO) -Wl,--subsystem,windows -mwindows $(LDFLAGS)  libwxsqlite.a libsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32
+mmex.exe: $(MMEX_OBJECTS) libwxsqlite.a liblua.a mmex_resources_mmex_rc.o
+	$(CXX) -o $@ $(MMEX_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO) -Wl,--subsystem,windows -mwindows $(LDFLAGS)  libwxsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32
 
 install_mmex: mmex.exe
 	-mkdir $(PREFIX)\mmex\bin
@@ -380,11 +380,11 @@ setup: all
 check: 
 	$(MAKE) -C tests -f makefile.gcc $(MAKEARGS) check
 
-wxsqlite_wxsqlite3.o: ../../lib/wxsqlite/wxsqlite3.cpp
+wxsqlite_wxsqlite3.o: ../../lib/wxsqlite3/src/wxsqlite3.cpp
 	$(CXX) -c -o $@ $(WXSQLITE_CXXFLAGS) $(CPPDEPS) $<
 
-sqlite_sqlite3secure.o: ../../lib/sqlite/sqlite3secure.c
-	$(CC) -c -o $@ $(SQLITE_CFLAGS) $(CPPDEPS) $<
+wxsqlite_sqlite3secure.o: ../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
+	$(CC) -c -o $@ $(WXSQLITE_CFLAGS) $(CPPDEPS) $<
 
 lua_dtoa.o: ../../lib/lua/src/dtoa.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
@@ -723,7 +723,7 @@ mmex_univcsvdialog.o: ../../src/import_export/univcsvdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/sqlite --include-dir ../../lib/wxsqlite --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../src --define NOPCH
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_17_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_3) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../src --define NOPCH
 
 .PHONY: all install uninstall clean install_mmex uninstall_mmex po setup check
 

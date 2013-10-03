@@ -36,7 +36,6 @@ public:
         mmHTMLBuilder* hb_;
         Scriptable_HTMLBuilder(lua_State *L): hb_(0)
         {
-            L;
         }
         ~Scriptable_HTMLBuilder()
         {};
