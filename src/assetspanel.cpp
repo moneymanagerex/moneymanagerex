@@ -24,8 +24,8 @@
 
 
 enum {IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1
-, IDC_PANEL_ASSET_STATIC_DETAILS
-, IDC_PANEL_ASSET_STATIC_DETAILS_MINI
+    , IDC_PANEL_ASSET_STATIC_DETAILS
+    , IDC_PANEL_ASSET_STATIC_DETAILS_MINI
 };
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
@@ -48,8 +48,8 @@ END_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
-: mmListCtrl(parent, winid)
-, cp_(cp)
+    : mmListCtrl(parent, winid)
+    , cp_(cp)
 {}
 
 void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
@@ -184,7 +184,8 @@ void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
 
     const Model_Asset::Data& asset = cp_->m_assets[m_selected_row];
     Model_Asset::Data* duplicate_asset = Model_Asset::instance().create();
-    duplicate_asset->ASSETNAME = asset.ASSETNAME + "duplicate"; 
+    //TODO: What about next copy? (numeration needed)
+    duplicate_asset->ASSETNAME = wxString::Format(_("%s - copy%s"), asset.ASSETNAME, ""); 
     duplicate_asset->ASSETTYPE = asset.ASSETTYPE;
     duplicate_asset->STARTDATE = asset.STARTDATE;
     // TODO
