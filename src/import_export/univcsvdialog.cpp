@@ -967,7 +967,7 @@ void mmUnivCSVDialog::update_preview()
                     wxString toamount = "";
                     double value_temp = value;
 
-                    if (type == "Transfer")
+                    if (type == TRANS_TYPE_TRANSFER_STR)
                     {
                         const wxString fromAccount = core_->accountList_.GetAccountName(fAccountID);
                         const wxString toAccount = core_->accountList_.GetAccountName(tAccountID);
@@ -983,7 +983,7 @@ void mmUnivCSVDialog::update_preview()
                          CurrencyFormatter::formatCurrencyToDouble(toamount, tovalue);
                          toamount = CurrencyFormatter::float2String(tovalue);
                     }
-                    else if (type == "Withdrawal")
+                    else if (type == TRANS_TYPE_WITHDRAWAL_STR)
                         value = -value;
 
                     wxString amount = adjustedExportAmount(amtSeparator, wxString()<<value);
@@ -1009,7 +1009,7 @@ void mmUnivCSVDialog::update_preview()
                                 text << inQuotes(mmGetDateForDisplay(pBankTransaction->date_), delimit);
                                 break;
                             case UNIV_CSV_PAYEE:
-                                text << inQuotes(payee->PAYEENAME, delimit);
+                                text << inQuotes( (type != TRANS_TYPE_TRANSFER_STR ? payee->PAYEENAME : "" ), delimit);
                                 break;
                             case UNIV_CSV_AMOUNT:
                                 text << inQuotes(amount, delimit);
