@@ -60,6 +60,7 @@
 //              2012-01-17  - Upgrade to SQLite3 version 3.7.10
 //              2012-10-17  - Upgrade to SQLite3 version 3.7.14.1
 //              2013-03-19  - Upgrade to SQLite3 version 3.7.16
+//              2013-08-29  - Upgrade to SQLite3 version 3.8.0
 //
 // Copyright:   (c) Ulrich Telle
 // Licence:     wxWindows licence
@@ -102,6 +103,13 @@
 
 <dl>
 
+<dt><b>3.0.4</b> - <i>August 2013</i></dt>
+<dd>
+Upgrade to SQLite version 3.8.0<br>
+Added support for querying performance characteristics of prepared statements<br>
+
+
+</dd>
 <dt><b>3.0.3</b> - <i>March 2013</i></dt>
 <dd>
 Upgrade to SQLite version 3.7.16<br>
@@ -447,7 +455,7 @@ First public release
 </dd>
 </dl>
 
-\author Ulrich Telle (<a href="&#109;&#97;&#105;&#108;&#116;&#111;:&#117;&#108;&#114;&#105;&#99;&#104;&#46;&#116;&#101;&#108;&#108;&#101;&#64;&#103;&#109;&#120;&#46;&#100;&#101;">ulrich DOT telle AT gmx DOT de</a>)
+\author Ulrich Telle (ulrich DOT telle AT gmx DOT de)
 
 \section ackn Acknowledgements
 

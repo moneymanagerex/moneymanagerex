@@ -27,7 +27,7 @@
 #include "wx/wxsqlite3def.h"
 
 /// wxSQLite3 version string
-#define wxSQLITE3_VERSION_STRING   wxT("wxSQLite3 3.0.3")
+#define wxSQLITE3_VERSION_STRING   wxT("wxSQLite3 3.0.4")
 
 #define WXSQLITE_ERROR 1000
 
@@ -77,6 +77,15 @@ enum wxSQLite3JournalMode
   WXSQLITE_JOURNALMODE_TRUNCATE   = 3,   // Commit by truncating journal
   WXSQLITE_JOURNALMODE_MEMORY     = 4,   // In-memory journal file
   WXSQLITE_JOURNALMODE_WAL        = 5    // Use write-ahead logging
+};
+
+/// Enumeration of statement status counters
+enum wxSQLite3StatementStatus
+{
+  WXSQLITE_STMTSTATUS_FULLSCAN_STEP = 1,
+  WXSQLITE_STMTSTATUS_SORT          = 2,
+  WXSQLITE_STMTSTATUS_AUTOINDEX     = 3,
+  WXSQLITE_STMTSTATUS_VM_STEP       = 4
 };
 
 #define WXSQLITE_OPEN_READONLY         0x00000001
@@ -1539,6 +1548,16 @@ public:
   * \return TRUE if the prepared statement has been stepped at least once but has not run to completion and/or has not been reset, FALSE otherwise
   */
   bool IsBusy();
+
+  /// Determine internal operation counters of the underlying prepared statement
+  /**
+  * Prepared statements maintain various counters to measure the performance of specific operations.
+  * This method allows to monitor the performance characteristics of the prepared statement.
+  * \param opCode operation code of the operation to be queried
+  * \param resetFlag flag whether the associated counter should be reset to zero (default: false)
+  * \return the counter value for the requested counter
+  */
+  int Status(wxSQLite3StatementStatus opCode, bool resetFlag = false);
 
 private:
   /// Check for valid database connection
