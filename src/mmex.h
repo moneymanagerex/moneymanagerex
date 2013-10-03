@@ -272,7 +272,7 @@ private:
     void createMenu();
     wxToolBar* CreateToolBar(long style=wxTB_HORIZONTAL, wxWindowID id=wxID_ANY, const wxString &name=wxToolBarNameStr);
     void createHomePage();
-    void createReportsPage(mmPrintableBase* rb);
+    void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage();
     void refreshPanelData(bool catUpdate = true);
 

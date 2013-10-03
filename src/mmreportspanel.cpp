@@ -28,18 +28,21 @@ BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 END_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(mmCoreDB* core,
-        mmPrintableBase* rb, wxWindow *parent,
+        mmPrintableBase* rb, bool cleanupReport, wxWindow *parent,
         wxWindowID winid, const wxPoint& pos,
         const wxSize& size, long style,
         const wxString& name )
 : mmPanelBase(core)
 , rb_(rb)
+, cleanup_(cleanupReport)
 {
     Create(parent, winid, pos, size, style, name);
 }
 
 mmReportsPanel::~mmReportsPanel()
 {
+    if (cleanup_ && rb_)
+        delete rb_;
 }
 
 bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,

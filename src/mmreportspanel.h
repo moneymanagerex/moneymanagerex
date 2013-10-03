@@ -31,6 +31,7 @@ class mmReportsPanel : public mmPanelBase
 public:
     mmReportsPanel(mmCoreDB* core,
                     mmPrintableBase* rb,
+                    bool cleanupReport,
                     wxWindow *parent,
                     wxWindowID winid = wxID_ANY,
                     const wxPoint& pos = wxDefaultPosition,
@@ -53,6 +54,7 @@ public:
 private:
     wxHtmlWindow* htmlWindow_;
     mmPrintableBase* rb_;
+    bool cleanup_;
     void OnLinkClicked(wxHtmlLinkEvent& event);
 };
 

@@ -1717,7 +1717,7 @@ void mmGUIFrame::CreateCustomReport(int index)
                 , custRepIndex_->CurrentReportTitle()
                 , sScript
                 , custRepIndex_->CurrentReportFileType());
-            createReportsPage(csr);
+            createReportsPage(csr, true);
         }
     }
     processPendingEvents();         // clear out pending events
@@ -1801,12 +1801,12 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             {
                 int year = data;
                 mmPrintableBase* rs = new mmReportBudgetingPerformance(m_core.get(), year);
-                createReportsPage(rs);
+                createReportsPage(rs, true);
             }
             else if (iParentData->getString() == "Budget Setup Performance")
             {
                 mmPrintableBase* rs = new mmReportBudgetCategorySummary(m_core.get(), year);
-                createReportsPage(rs);
+                createReportsPage(rs, true);
             }
             else
             {
@@ -1912,7 +1912,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         }
         else
         {
-            createReportsPage(iData->get_report());
+            createReportsPage(iData->get_report(), false);
         }
     }
 }
@@ -2193,12 +2193,12 @@ void mmGUIFrame::createHomePage()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::createReportsPage(mmPrintableBase* rs)
+void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 {
     if (!rs) return;
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmReportsPanel(m_core.get(), rs, homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmReportsPanel(m_core.get(), rs, cleanup, homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
@@ -3236,7 +3236,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         }
 
         mmReportTransactions* rs = new mmReportTransactions(trans, m_core.get(), dlg->getAccountID(), dlg);
-        createReportsPage(rs);
+        createReportsPage(rs, true);
     }
 }
 
@@ -3899,7 +3899,7 @@ void mmGUIFrame::RunCustomSqlDialog(const wxString& customReportSelectedItem)
             wxBeginBusyCursor(wxHOURGLASS_CURSOR);
             mmCustomReport* csr = new mmCustomReport(this,
                 m_core.get(), dlg.sReportTitle(), dlg.sScript(), dlg.sSctiptType());
-            createReportsPage(csr);
+            createReportsPage(csr, true);
             wxEndBusyCursor();
         }
         dialogStatus = dlg.ShowModal();
