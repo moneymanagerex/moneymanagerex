@@ -72,7 +72,7 @@ public:
     }
     int getToAccountID()
     {
-        return toID_;
+        return transaction_->TOACCOUNTID;
     }
 
 private:
@@ -136,13 +136,8 @@ private:
     bool edit_; //Deprecated
     bool categUpdated_;
     bool bBestChoice_;
-    wxString categoryName_;
     wxString categStrykes_;
-    wxString subCategoryName_;
-    int categID_;
-    int subcategID_;
     int payeeID_;
-    int toID_;
     bool advancedToTransAmountSet_;
 
     // store the original currency rate for transaction editing

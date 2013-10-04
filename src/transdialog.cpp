@@ -67,10 +67,7 @@ mmTransDialog::mmTransDialog(
     , categUpdated_(false)
     , advancedToTransAmountSet_(false)
     , edit_currency_rate(1.0)
-    , categID_(-1)
-    , subcategID_(-1)
     , payeeID_(-1)
-    , toID_(-1)
     , bBestChoice_(true)
 
 {
@@ -131,13 +128,7 @@ void mmTransDialog::dataToControls()
         if (statusString == "") statusString = "N";
         choiceStatus_->SetSelection(wxString("NRVFD").Find(statusString));
 
-        categID_ = transaction_->CATEGID;
-        categoryName_ = core_->categoryList_.GetCategoryName(categID_);
-        subcategID_ = pBankTransaction_->subcategID_;
-        subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
-
         accountID_ = transaction_->ACCOUNTID; //pBankTransaction_->accountID_;
-        toID_ = transaction_->TOACCOUNTID ;//pBankTransaction_->toAccountID_;
 
         payeeID_ = pBankTransaction_->payeeID_;
         Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
@@ -178,14 +169,9 @@ void mmTransDialog::dataToControls()
     if (edit_)
     {
         *split_ = *core_->bTransactionList_
-            .getBankTransactionPtr(pBankTransaction_->transactionID())->splitEntries_;
+            .getBankTransactionPtr(transaction_->TRANSID)->splitEntries_;
     }
-    else
-    {
-        if (mmIniOptions::instance().transCategorySelectionNone_> 0)
-            if (categID_ > -1) categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
-    }
     SetSplitState();
 
 }
@@ -200,7 +186,8 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
     if (sType != TRANS_TYPE_TRANSFER_STR && transaction_->TRANSCODE == TRANS_TYPE_TRANSFER_STR)
     {
         payee_name_ = resetPayeeString();
-        categID_ = -1;
+        transaction_->CATEGID = -1;
+        transaction_->SUBCATEGID = -1;
     }
 
     updateControlsForTransType();
@@ -214,7 +201,7 @@ void mmTransDialog::updateControlsForTransType()
         if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
         {
             payeeID_ = core_->bTransactionList_.getLastUsedPayeeID(accountID_
-                , transaction_->TRANSCODE, categID_, subcategID_);
+                , transaction_->TRANSCODE, transaction_->CATEGID, transaction_->SUBCATEGID);
 
             Model_Payee::Data *payee = Model_Payee::instance().get(payeeID_);
             if (payee) payee_name_ = payee->PAYEENAME;
@@ -223,11 +210,9 @@ void mmTransDialog::updateControlsForTransType()
         wxString categString = resetCategoryString();
         if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
         {
-            categID_ = core_->bTransactionList_.getLastUsedCategoryID(accountID_
-                , payeeID_, transaction_->TRANSCODE, subcategID_);
-            categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
-            categoryName_    = core_->categoryList_.GetCategoryName(categID_);
-            subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
+            transaction_->CATEGID = core_->bTransactionList_.getLastUsedCategoryID(accountID_
+                , payeeID_, transaction_->TRANSCODE, transaction_->SUBCATEGID);
+            categString = core_->categoryList_.GetFullCategoryString(transaction_->CATEGID, transaction_->SUBCATEGID);
         }
         bCategory_->SetLabel(categString);
     }
@@ -279,9 +264,9 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         toTextAmount_->Enable(cAdvanced_->GetValue());
 
-        if (toID_ > 0)
+        if (transaction_->TOACCOUNTID > 0)
         {
-            Model_Account::Data *account = Model_Account::instance().get(toID_);
+            Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
             if (account) dataStr = account->ACCOUNTNAME;
         }
 
@@ -555,18 +540,25 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
             // if payee has memory of last category used then display last category for payee
             if (payee && payee->CATEGID != -1)
             {
-                categID_ = payee->CATEGID;
-                subcategID_ = payee->SUBCATEGID;
-                bCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-                wxLogDebug("Category: %s", core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-                categoryName_ = core_->categoryList_.GetCategoryName(categID_);
-                subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
+                //TODO: move it to separate function
+                Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
+                Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee->SUBCATEGID);
+                wxString categoryName = "", subCategoryName = "";
+                if (category) categoryName = category->CATEGNAME;
+                if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+                wxString fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
+
+                transaction_->CATEGID = payee->CATEGID;
+                transaction_->SUBCATEGID = payee->SUBCATEGID;
+                bCategory_->SetLabel(fullCategoryName);
+                wxLogDebug("Category: %s", bCategory_->GetLabel());
+
             }
         }
     }
     else
     {
-        toID_ = core_->accountList_.GetAccountId(payee_name_);
+        transaction_->TOACCOUNTID = core_->accountList_.GetAccountId(payee_name_);
     }
 
     event.Skip();
@@ -628,9 +620,9 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
 
         CurrencyFormatter::formatCurrencyToDouble(amountStr, transaction_->TRANSAMOUNT);
 
-        if (toID_ > 0) {
+        if (transaction_->TOACCOUNTID > 0) {
             double rateFrom = core_->accountList_.getAccountBaseCurrencyConvRate(accountID_);
-            double rateTo = core_->accountList_.getAccountBaseCurrencyConvRate(toID_);
+            double rateTo = core_->accountList_.getAccountBaseCurrencyConvRate(transaction_->TOACCOUNTID);
             double convToBaseFrom = rateFrom * transaction_->TRANSAMOUNT;
             transaction_->TOTRANSAMOUNT = convToBaseFrom / rateTo;
         }
@@ -663,12 +655,19 @@ void mmTransDialog::OnCategoryKey(wxKeyEvent& event)
 
         if (!timer_->IsRunning ())
             timer_->Start(INTERVAL, true);
-        core_->categoryList_.GetCategoryLikeString(categStrykes_, categID_, subcategID_);
+        core_->categoryList_.GetCategoryLikeString(categStrykes_, transaction_->CATEGID, transaction_->SUBCATEGID);
 
         //wxLogDebug(key + " | " + categStrykes_ + " | " + core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-        bCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-        categoryName_ = core_->categoryList_.GetCategoryName(categID_);
-        subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
+        //TODO: move it to separate function
+        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
+        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+        wxString categoryName = "", subCategoryName = "";
+        if (category) categoryName = category->CATEGNAME;
+        if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+        wxString fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
+
+        bCategory_->SetLabel(fullCategoryName);
+
     }
     else
         skip = true;
@@ -690,15 +689,12 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     else
     {
         mmCategDialog dlg(core_, parent_, true, false);
-        dlg.setTreeSelection(categoryName_, subCategoryName_);
+        dlg.setTreeSelection(transaction_->CATEGID, transaction_->SUBCATEGID);
         if ( dlg.ShowModal() == wxID_OK )
         {
-            categID_ = dlg.getCategId();
-            subcategID_ = dlg.getSubCategId();
+            transaction_->CATEGID = dlg.getCategId();
+            transaction_->SUBCATEGID = dlg.getSubCategId();
             categUpdated_ = true;
-
-            categoryName_ = core_->categoryList_.GetCategoryName(categID_);
-            subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
         }
     }
     SetSplitState();
@@ -722,8 +718,8 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
 
 wxString mmTransDialog::resetCategoryString()
 {
-    categID_ = -1;
-    subcategID_ = -1;
+    transaction_->CATEGID = -1;
+    transaction_->SUBCATEGID = -1;
 
     return _("Select Category");
 }
@@ -775,7 +771,9 @@ bool mmTransDialog::validateData()
             return false;
         }
 
-        if (categID_ < 1 || !core_->categoryList_.CategoryExists(categoryName_))
+        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
+        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+        if (!category || !subcategory)
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return false;
@@ -833,21 +831,20 @@ bool mmTransDialog::validateData()
 
     if (bTransfer)
     {
-        if (toID_ < 1 || toID_ == newAccountID_)
+        if (transaction_->TOACCOUNTID < 1 || transaction_->TOACCOUNTID == newAccountID_)
         {
             mmShowErrorMessageInvalid(this, _("To Account"));
             cbPayee_->SetFocus();
             return false;
         }
 
-        transaction_->TOACCOUNTID = toID_;
         payeeID_ = -1;
     }
     else
     {
         Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-        payee->CATEGID = categID_;
-        payee->SUBCATEGID = subcategID_;
+        payee->CATEGID = transaction_->CATEGID;
+        payee->SUBCATEGID = transaction_->SUBCATEGID;
         Model_Payee::instance().save(payee);
     }
     return true;
@@ -889,8 +886,8 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     pTransaction->status_ = transaction_->STATUS;
     pTransaction->transNum_ = textNumber_->GetValue();
     pTransaction->notes_ = transaction_->NOTES;
-    pTransaction->categID_ = categID_;
-    pTransaction->subcategID_ = subcategID_;
+    pTransaction->categID_ = transaction_->CATEGID;
+    pTransaction->subcategID_ = transaction_->SUBCATEGID;
     pTransaction->date_ = dpc_->GetValue();
     pTransaction->toAmt_ = transaction_->TOTRANSAMOUNT;
 
@@ -912,18 +909,22 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
 void mmTransDialog::SetSplitState()
 {
     int entries = split_->numEntries();
-    wxString categString;
+    wxString fullCategoryName;
     if (split_->numEntries() > 0)
-        categString = _("Split Category");
+        fullCategoryName = _("Split Category");
     else
     {
-        if (categID_ < 0)
-            categString = edit_ ? pBankTransaction_->fullCatStr_ : wxString(_("Select Category"));
-        else
-            categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
+            //TODO: move it to separate function
+            Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
+            Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+            wxString categoryName = "", subCategoryName = "";
+            if (category) categoryName = category->CATEGNAME;
+            if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+            fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
+            if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
     }
 
-    bCategory_->SetLabel(categString);
+    bCategory_->SetLabel(fullCategoryName);
     cSplit_->SetValue(entries > 0);
     cSplit_->Enable(transaction_->TRANSCODE != TRANS_TYPE_TRANSFER_STR);
 
@@ -946,10 +947,9 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
         }
         else
         {
-            categID_    = split_->entries_[0]->categID_;
-            subcategID_ = split_->entries_[0]->subCategID_;
+            transaction_->CATEGID    = split_->entries_[0]->categID_;
+            transaction_->SUBCATEGID = split_->entries_[0]->subCategID_;
             transaction_->TRANSAMOUNT  = split_->entries_[0]->splitAmount_;
-            categoryName_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
 
             if (transaction_->TRANSAMOUNT < 0 )
             {
@@ -1094,18 +1094,18 @@ void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = transaction_->TRANSCODE == TRANS_TYPE_DEPOSIT_STR;
     mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
-    if (categID_ > -1)
+    if (transaction_->CATEGID > -1)
     {
         wxString sAmount = textAmount_->GetValue();
         if (! CurrencyFormatter::formatCurrencyToDouble(sAmount, transaction_->TRANSAMOUNT))
             transaction_->TRANSAMOUNT = 0;
         pSplitEntry->splitAmount_  = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
-        pSplitEntry->categID_      = categID_;
-        pSplitEntry->subCategID_   = subcategID_;
+        pSplitEntry->categID_      = transaction_->CATEGID;
+        pSplitEntry->subCategID_   = transaction_->SUBCATEGID;
         split_->addSplit(pSplitEntry);
     }
-    categID_ = -1;
-    subcategID_ = -1;
+    transaction_->CATEGID = -1;
+    transaction_->SUBCATEGID = -1;
 
     SplitTransactionDialog dlg(core_, split_, transaction_type_->GetSelection(), this);
     if (dlg.ShowModal() == wxID_OK)

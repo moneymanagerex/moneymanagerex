@@ -463,6 +463,16 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& 
     return catID;
 }
 
+void mmCategDialog::setTreeSelection(int &category_id, int &subcategory_id)
+{
+    Model_Category::Data *category = Model_Category::instance().get(category_id);
+    Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(subcategory_id);
+    wxString categoryName = "", subCategoryName = "";
+    if (category) categoryName = category->CATEGNAME;
+    if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+    setTreeSelection(categoryName, subCategoryName);
+}
+
 void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& subCatName)
 {
     if ( !catName.IsEmpty() )

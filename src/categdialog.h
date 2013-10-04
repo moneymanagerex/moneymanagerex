@@ -73,6 +73,7 @@ public:
                  long style = SYMBOL_CATEGDIALOG_STYLE );
 
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
+    void setTreeSelection(int &category_id, int &subcategory_id);
     int getCategId()
     {
         return categID_;
