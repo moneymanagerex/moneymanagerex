@@ -746,7 +746,7 @@ void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
 {
     int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
-    if (mmMainCurrencyDialog::Execute(core_, this, currencyID) && currencyID != -1)
+    if (mmMainCurrencyDialog::Execute(this, currencyID) && currencyID != -1)
     {
         wxString currName = core_->currencyList_.getCurrencyName(currencyID);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);

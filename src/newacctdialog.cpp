@@ -301,9 +301,8 @@ void mmNewAcctDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
 {
-    //mmMainCurrencyDialog dlg(core_, this);
     //if ( dlg.ShowModal() == wxID_OK )
-    if (mmMainCurrencyDialog::Execute(core_, this,currencyID_))
+    if (mmMainCurrencyDialog::Execute(this,currencyID_))
     {
         //currencyID_ = dlg.currencyID_;
         wxString currName = core_->currencyList_.getCurrencyName(currencyID_);

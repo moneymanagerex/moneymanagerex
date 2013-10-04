@@ -22,7 +22,6 @@
 #include "guiid.h"
 #include "defs.h"
 #include "dbwrapper.h"
-#include "mmcoredb.h"
 #include <wx/dataview.h>
 
 #define ID_MYDIALOG8 10040
@@ -56,7 +55,7 @@ public:
     /// Constructors
     mmMainCurrencyDialog( ) {}
 
-    mmMainCurrencyDialog( mmCoreDB* core, wxWindow* parent,
+    mmMainCurrencyDialog(wxWindow* parent,
                           bool bEnableSelect = true,
                           wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
                           const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
@@ -64,7 +63,7 @@ public:
                           const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
                           long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
 
-    static bool Execute(mmCoreDB* core, wxWindow* parent, int& currencyID);
+    static bool Execute(wxWindow* parent, int& currencyID);
 
 private:
     enum cols
@@ -75,7 +74,6 @@ private:
         BASE_RATE
     };
 
-    mmCoreDB* core_;
     wxDataViewListCtrl* currencyListBox_;
     std::map<int, wxString> ColName_;
     bool bEnableSelect_;

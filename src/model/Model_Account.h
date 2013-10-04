@@ -27,6 +27,7 @@
 class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
 {
     using DB_Table_ACCOUNTLIST_V1::all;
+    using DB_Table_ACCOUNTLIST_V1::find;
     using DB_Table_ACCOUNTLIST_V1::get;
 public:
     enum STATUS { OPEN = 0, CLOSED };
@@ -62,6 +63,11 @@ public:
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
+    }
+    template<class V>
+    Data_Set find(COLUMN col, const V& v)
+    {
+        return find(db_, col, v);
     }
     Data* get(int id)
     {
@@ -117,6 +123,16 @@ public:
     static TYPE type(const Data& account)
     {
         return type(&account);
+    }
+    static bool is_used(const Model_Currency::Data* c)
+    {
+        Data_Set accounts = Model_Account::instance().find(COL_CURRENCYID, c->CURRENCYID);
+        return !accounts.empty();
+       
+    }
+    static bool is_used(const Model_Currency::Data& c)
+    {
+        return is_used(&c);
     }
 };
 

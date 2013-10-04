@@ -386,7 +386,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 {
     currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
 
-    if (mmMainCurrencyDialog::Execute(parent_->m_core, this, currencyID_) && currencyID_ != -1)
+    if (mmMainCurrencyDialog::Execute(this, currencyID_) && currencyID_ != -1)
     {
         wxString currName = parent_->m_core->currencyList_.getCurrencySharedPtr(currencyID_)->currencyName_;
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
@@ -3678,7 +3678,7 @@ void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 {
-    mmMainCurrencyDialog(m_core.get(),this, false).ShowModal();
+    mmMainCurrencyDialog(this, false).ShowModal();
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }

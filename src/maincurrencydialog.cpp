@@ -26,6 +26,7 @@
 #include "validators.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Account.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
@@ -45,7 +46,6 @@ BEGIN_EVENT_TABLE( mmMainCurrencyDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmMainCurrencyDialog::mmMainCurrencyDialog(
-    mmCoreDB* core,
     wxWindow* parent,
     bool bEnableSelect,
     wxWindowID id,
@@ -54,7 +54,6 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     const wxSize& size,
     long style
 ) : currencyID_(-1),
-    core_(core),
     currencyListBox_(),
     bEnableSelect_(bEnableSelect)
 {
@@ -93,8 +92,6 @@ bool mmMainCurrencyDialog::Create(  wxWindow* parent, wxWindowID id,
 
 void mmMainCurrencyDialog::fillControls()
 {
-    if (!core_) return;
-
     currencyListBox_->DeleteAllItems();
     int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
@@ -208,11 +205,11 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
 {
     if (selectedIndex_ < 0) return;
 
-//    int baseCurrencyID = core_->currencyList_.getBaseCurrencySettings();
     int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", 1);
-    bool usedAsBase = currencyID_ == baseCurrencyID;
 
-    if (core_->accountList_.currencyInUse(currencyID_) || usedAsBase)
+    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
+    if (!currency) return;
+    if (Model_Account::is_used(currency) || currencyID_ == baseCurrencyID)
     {
         wxMessageBox(_("Attempt to delete a currency being used by an account\n or as the base currency.")
             ,_("Currency Dialog"), wxOK|wxICON_ERROR);
@@ -223,17 +220,17 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
                          , _("Currency Dialog")
                          , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
         {
-            core_->currencyList_.DeleteCurrency(currencyID_);
+            Model_Currency::instance().remove(currencyID_);
             fillControls();
         }
     }
 }
 
-bool mmMainCurrencyDialog::Execute(mmCoreDB* core, wxWindow* parent, int& currencyID)
+bool mmMainCurrencyDialog::Execute(wxWindow* parent, int& currencyID)
 {
     bool result = false;
 
-    mmMainCurrencyDialog dlg(core, parent);
+    mmMainCurrencyDialog dlg(parent);
     if (dlg.ShowModal() == wxID_OK)
     {
         currencyID = dlg.currencyID_;
@@ -248,25 +245,25 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = currencyListBox_->ItemToRow(item);
+    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
     if (selectedIndex_ >= 0)
     {
         currencyID_ = (int)currencyListBox_->GetItemData(item);
-        wxString currency_name = core_->currencyList_.getCurrencyName(currencyID_);
-        mmCurrency* pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyID_);
-        curr_rate_ = pCurrency->baseConv_;
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
+        if (currency)
+            curr_rate_ = currency->BASECONVRATE;    
         itemButtonEdit_->Enable();
     }
     if (!bEnableSelect_)    // prevent user deleting currencies when editing accounts.
-        itemButtonDelete_->Enable(!core_->accountList_.currencyInUse(currencyID_));
+    {
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
+        if (currency)
+            itemButtonDelete_->Enable(!Model_Account::is_used(currency));
+    }
 }
 
 void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& event)
 {
-    wxDataViewItem item = event.GetItem();
-    selectedIndex_ = currencyListBox_->ItemToRow(item);
-    wxString currency_name = core_->currencyList_.getCurrencyName(currencyID_);
-    wxLogDebug(wxString::Format("activated item:%i currency:%s", selectedIndex_, currency_name));
-
     wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, wxID_ANY);
 
     if (bEnableSelect_)
@@ -289,9 +286,13 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
         if (value != calculated_mount)
             currencyListBox_->SetValue(wxVariant(calculated_mount), row, BASE_RATE);
         calculated_mount.ToDouble(&conv_rate);
-        mmCurrency* pCurrency = core_->currencyList_.getCurrencySharedPtr(currencyID_);
-        pCurrency->baseConv_ = conv_rate;
-        core_->currencyList_.UpdateCurrency(pCurrency);
+
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
+        if (currency)
+        {
+            currency->BASECONVRATE = conv_rate;
+            Model_Currency::instance().save(currency);
+        }
     }
     else
     {
@@ -303,6 +304,8 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 
 void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
+// TODO
+/*
     wxString sMsg = "";
     if (core_->currencyList_.OnlineUpdateCurRate(sMsg))
     {
@@ -315,6 +318,7 @@ void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
         wxMessageDialog msgDlg(this, sMsg, _("Error"), wxOK|wxICON_ERROR);
         msgDlg.ShowModal();
     }
+*/
 }
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
