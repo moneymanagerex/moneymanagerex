@@ -1603,15 +1603,15 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 {
-    //TODO: Simplification needed
     return;
     if (m_selectedIndex < 0) return;
 
     int selected_transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
-    Model_Checking::Data *transaction = Model_Checking::instance().create();
-    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
     Model_Checking::Data *source_transaction = Model_Checking::instance().get(selected_transaction_id);
-    Model_Splittransaction::Data *source_split = Model_Splittransaction::instance().get(selected_transaction_id);
+    Model_Splittransaction::Data_Set source_split = Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, selected_transaction_id);
+
+    Model_Checking::Data *transaction = Model_Checking::instance().create();
+    Model_Checking::instance().save(transaction);
 
     transaction->ACCOUNTID = m_cp->m_AccountID;
     transaction->CATEGID = source_transaction->CATEGID;
@@ -1625,22 +1625,25 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
     transaction->TRANSACTIONNUMBER = source_transaction->TRANSACTIONNUMBER;
     transaction->TRANSAMOUNT = source_transaction->TRANSAMOUNT;
     transaction->TRANSCODE = source_transaction->TRANSCODE;
-    //TODO: Now?
-    transaction->TRANSDATE = source_transaction->TRANSDATE;
+    transaction->TRANSDATE = wxDateTime::Now().FormatISODate();
 
-    //TODO: Duplicate split entries
-    //Model_Splittransaction::instance().save(split);
+    for (const auto& entry: source_split)
+    {
+        wxLogDebug("%s", entry.to_json());
+        Model_Splittransaction::Data *new_split = Model_Splittransaction::instance().create();
+        new_split->CATEGID = entry.CATEGID;
+        new_split->SUBCATEGID = entry.SUBCATEGID;
+        new_split->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
+        new_split->TRANSID = transaction->TRANSID;
+        Model_Splittransaction::instance().save(new_split);
+    }
 
     Model_Checking::instance().save(transaction);
 
-    //wxDateTime transTime = m_cp->m_trans[m_selectedIndex]->date_;
-    //mmTransDialog dlg(transaction, split, this
-    //    , m_cp->core_, m_cp->m_trans[m_selectedIndex], false);
-    //dlg.SetDialogToDuplicateTransaction();
-    //dlg.SetDialogTitle(_("Duplicate Transaction"));
+    //TODO:
+    m_cp->core_->bTransactionList_.LoadTransactions();
 
-    //TODO: 
-    mmBankTransaction* pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(transaction->TRANSID);
+    /*mmBankTransaction* pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(transaction->TRANSID);
     pTransaction->accountID_ = transaction->ACCOUNTID;
     pTransaction->toAccountID_ = transaction->TOACCOUNTID;
     pTransaction->payeeID_ = transaction->PAYEEID;
@@ -1657,14 +1660,10 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
     pTransaction->date_ = mmGetStorageStringAsDate(transaction->TRANSDATE);
     pTransaction->toAmt_ = transaction->TOTRANSAMOUNT;
 
-    m_cp->m_trans.push_back(pTransaction);
+    m_cp->m_trans.push_back(pTransaction);*/
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-    //if ( dlg.ShowModal() == wxID_OK )
-    //{
-        //int transID = dlg.getTransID();
-        refreshVisualList(transaction->TRANSID);
-    //}
+    refreshVisualList(transaction->TRANSID);
 }
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
