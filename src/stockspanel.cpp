@@ -424,13 +424,6 @@ void mmStocksPanel::sortTable()
 
 int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 {
-    //Just for testing new classes
-    for (const auto& stock: Model_Stock::instance().all())
-    {
-        if (stock.HELDAT == stock_panel_->accountID_)
-            wxLogDebug("id:%s %s", wxString()<<stock.STOCKID ,stock.STOCKNAME);
-     }
-
     stock_panel_->updateHeader();
     /* Clear all the records */
     cleanuptranslist();
