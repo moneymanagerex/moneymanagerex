@@ -1563,7 +1563,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
     int transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    Model_Splittransaction::Data *split = Model_Splittransaction::instance().get(transaction_id);
+    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().all();
     if (transaction)
     {
         transaction->ACCOUNTID = m_cp->m_AccountID;
@@ -1580,12 +1580,16 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 {
+    // Use last date used as per user option.
+    wxDateTime trx_date = wxDateTime::Now();
+    if (mmIniOptions::instance().transDateDefault_ != 0)
+        trx_date = m_cp->core_->bTransactionList_.getLastDate(m_cp->m_AccountID);
 
     Model_Checking::Data *transaction = Model_Checking::instance().create();
-    transaction->ACCOUNTID = m_cp->m_AccountID;
-    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
+    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().all();
 
     transaction->ACCOUNTID = m_cp->m_AccountID;
+    transaction->TRANSDATE = trx_date.FormatISODate();
     mmTransDialog dlg(transaction, split, this
         , m_cp->core_, NULL, false);
     dlg.SetDialogTitle(_("New/Edit Transaction"));
@@ -1603,7 +1607,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 {
-    return;
+#if 0 //TODO: Under constraction
     if (m_selectedIndex < 0) return;
 
     int selected_transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
@@ -1664,6 +1668,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
     refreshVisualList(transaction->TRANSID);
+#endif
 }
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)

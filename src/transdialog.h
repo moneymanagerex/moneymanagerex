@@ -45,7 +45,7 @@ public:
 
     mmTransDialog(
         Model_Checking::Data *transaction
-        , Model_Splittransaction::Data * split
+        , Model_Splittransaction::Data_Set split
         , wxWindow* parent
         , mmCoreDB* core
         , mmBankTransaction* pBankTransaction
@@ -100,6 +100,7 @@ private:
     void SetTransferControls(bool transfer = true);
     void activateSplitTransactionsDlg();
     void SetSplitState();
+    bool validateData();
 
     wxTextCtrl *textNumber_;
     wxTextCtrl *textAmount_;
@@ -122,7 +123,7 @@ private:
     wxStaticText* payee_label_;
 
     Model_Checking::Data * transaction_;
-    Model_Splittransaction::Data * splt_;
+    Model_Splittransaction::Data_Set splt_;
     mmSplitTransactionEntries* split_;
     int accountID_;
     int newAccountID_;
@@ -138,13 +139,10 @@ private:
     wxString categoryName_;
     wxString categStrykes_;
     wxString subCategoryName_;
-    wxString sTransaction_type_;
     int categID_;
     int subcategID_;
     int payeeID_;
     int toID_;
-    double toTransAmount_;
-    double transAmount_;
     bool advancedToTransAmountSet_;
 
     // store the original currency rate for transaction editing
