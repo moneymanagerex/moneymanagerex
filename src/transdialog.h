@@ -21,7 +21,6 @@
 #define _MM_EX_TRANSDIALOG_H_
 
 #define SYMBOL_TRANSDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_TRANSDIALOG_TITLE _("New/Edit Transaction")
 #define SYMBOL_TRANSDIALOG_IDNAME ID_DIALOG_TRANS
 #define SYMBOL_TRANSDIALOG_SIZE wxSize(500, 300)
 #define SYMBOL_TRANSDIALOG_POSITION wxDefaultPosition
@@ -46,24 +45,23 @@ public:
 
     mmTransDialog(
         Model_Checking::Data *transaction
-        , Model_Splittransaction::Data *split
-        , mmCoreDB* core
-        , int accountID, mmBankTransaction* pBankTransaction
-        , bool edit
+        , Model_Splittransaction::Data * split
         , wxWindow* parent
-        , wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME
-        , const wxString& caption = SYMBOL_TRANSDIALOG_TITLE
-        , const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION
-        , const wxSize& size = SYMBOL_TRANSDIALOG_SIZE
-        , long style = SYMBOL_TRANSDIALOG_STYLE );
+        , mmCoreDB* core
+        , mmBankTransaction* pBankTransaction
+        , bool edit = true
+    );
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_TRANSDIALOG_SIZE,
-                 long style = SYMBOL_TRANSDIALOG_STYLE );
+    bool Create( wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style
+    );
 
     void SetDialogToDuplicateTransaction();
+    void SetDialogTitle(const wxString& title);
     int getTransID()
     {
         return transID_;
@@ -134,7 +132,7 @@ private:
     mmBankTransaction* pBankTransaction_;
     wxWindow* parent_;
 
-    bool edit_;
+    bool edit_; //Deprecated
     bool categUpdated_;
     bool bBestChoice_;
     wxString categoryName_;

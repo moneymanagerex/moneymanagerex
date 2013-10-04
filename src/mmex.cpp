@@ -3115,7 +3115,8 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
     transaction->ACCOUNTID = gotoAccountID_; //m_cp->m_AccountID;
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
 
-    mmTransDialog dlg(transaction, split, m_core.get(), gotoAccountID_, NULL, false, this);
+    mmTransDialog dlg(transaction, split, this
+        , m_core.get(), NULL, false);
 
     if ( dlg.ShowModal() == wxID_OK )
     {

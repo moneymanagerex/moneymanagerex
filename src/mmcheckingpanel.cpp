@@ -28,6 +28,7 @@
 #include "model/Model_Checking.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Account.h"
+#include "model/Model_Payee.h"
 
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
@@ -1565,8 +1566,10 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().get(transaction_id);
     if (transaction)
     {
-        mmTransDialog dlg(transaction, split, m_cp->core_, m_cp->m_AccountID,
-            m_cp->m_trans[m_selectedIndex], true, this);
+        transaction->ACCOUNTID = m_cp->m_AccountID;
+        mmTransDialog dlg(transaction, split, this
+            , m_cp->core_ , m_cp->m_trans[m_selectedIndex]);
+        dlg.SetDialogTitle(_("New/Edit Transaction"));
         dlg.ShowModal();
 
         topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
@@ -1582,7 +1585,10 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     transaction->ACCOUNTID = m_cp->m_AccountID;
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
 
-    mmTransDialog dlg(transaction, split, m_cp->core_, m_cp->m_AccountID, NULL, false, this);
+    transaction->ACCOUNTID = m_cp->m_AccountID;
+    mmTransDialog dlg(transaction, split, this
+        , m_cp->core_, NULL, false);
+    dlg.SetDialogTitle(_("New/Edit Transaction"));
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
@@ -1597,23 +1603,68 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 {
+    //TODO: Simplification needed
+    return;
     if (m_selectedIndex < 0) return;
 
+    int selected_transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
     Model_Checking::Data *transaction = Model_Checking::instance().create();
-    transaction->ACCOUNTID = m_cp->m_AccountID;
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
+    Model_Checking::Data *source_transaction = Model_Checking::instance().get(selected_transaction_id);
+    Model_Splittransaction::Data *source_split = Model_Splittransaction::instance().get(selected_transaction_id);
 
-    wxDateTime transTime = m_cp->m_trans[m_selectedIndex]->date_;
-    mmTransDialog dlg(transaction, split, m_cp->core_, m_cp->m_AccountID,
-        m_cp->m_trans[m_selectedIndex], true, this);
+    transaction->ACCOUNTID = m_cp->m_AccountID;
+    transaction->CATEGID = source_transaction->CATEGID;
+    transaction->FOLLOWUPID = source_transaction->FOLLOWUPID;
+    transaction->NOTES = source_transaction->NOTES;
+    transaction->PAYEEID = source_transaction->PAYEEID;
+    transaction->STATUS = source_transaction->STATUS;
+    transaction->SUBCATEGID = source_transaction->SUBCATEGID;
+    transaction->TOACCOUNTID = source_transaction->TOACCOUNTID;
+    transaction->TOTRANSAMOUNT = source_transaction->TOTRANSAMOUNT;
+    transaction->TRANSACTIONNUMBER = source_transaction->TRANSACTIONNUMBER;
+    transaction->TRANSAMOUNT = source_transaction->TRANSAMOUNT;
+    transaction->TRANSCODE = source_transaction->TRANSCODE;
+    //TODO: Now?
+    transaction->TRANSDATE = source_transaction->TRANSDATE;
+
+    //TODO: Duplicate split entries
+    //Model_Splittransaction::instance().save(split);
+
+    Model_Checking::instance().save(transaction);
+
+    //wxDateTime transTime = m_cp->m_trans[m_selectedIndex]->date_;
+    //mmTransDialog dlg(transaction, split, this
+    //    , m_cp->core_, m_cp->m_trans[m_selectedIndex], false);
+    //dlg.SetDialogToDuplicateTransaction();
+    //dlg.SetDialogTitle(_("Duplicate Transaction"));
+
+    //TODO: 
+    mmBankTransaction* pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(transaction->TRANSID);
+    pTransaction->accountID_ = transaction->ACCOUNTID;
+    pTransaction->toAccountID_ = transaction->TOACCOUNTID;
+    pTransaction->payeeID_ = transaction->PAYEEID;
+    Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
+    if (payee)
+        pTransaction->payeeStr_ = payee->PAYEENAME;
+    pTransaction->transType_ = transaction->TRANSCODE;
+    pTransaction->amt_ = transaction->TRANSAMOUNT;
+    pTransaction->status_ = transaction->STATUS;
+    pTransaction->transNum_ = transaction->TRANSACTIONNUMBER;
+    pTransaction->notes_ = transaction->NOTES;
+    pTransaction->categID_ = transaction->CATEGID;
+    pTransaction->subcategID_ = transaction->SUBCATEGID;
+    pTransaction->date_ = mmGetStorageStringAsDate(transaction->TRANSDATE);
+    pTransaction->toAmt_ = transaction->TOTRANSAMOUNT;
+
+    m_cp->m_trans.push_back(pTransaction);
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-    dlg.SetDialogToDuplicateTransaction();
-    if ( dlg.ShowModal() == wxID_OK )
-    {
-        int transID = dlg.getTransID();
-        refreshVisualList(transID);
-    }
+    //if ( dlg.ShowModal() == wxID_OK )
+    //{
+        //int transID = dlg.getTransID();
+        refreshVisualList(transaction->TRANSID);
+    //}
 }
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)

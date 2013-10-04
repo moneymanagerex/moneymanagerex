@@ -51,21 +51,20 @@ END_EVENT_TABLE()
 mmTransDialog::mmTransDialog(
     Model_Checking::Data *transaction
     , Model_Splittransaction::Data * split
+    , wxWindow* parent
     , mmCoreDB* core
-    , int accountID, mmBankTransaction* pBankTransaction, bool edit
-    , wxWindow* parent, wxWindowID id
-    , const wxString& caption, const wxPoint& pos
-    , const wxSize& size, long style
+    , mmBankTransaction* pBankTransaction
+    , bool edit
 ) :
     transaction_(transaction)
     , splt_(split)
     , core_(core)
     , parent_(parent)
     , pBankTransaction_(pBankTransaction)
-    , accountID_(accountID)
-    , referenceAccountID_(accountID)
-    , categUpdated_(false)
     , edit_(edit)
+    , accountID_(transaction->ACCOUNTID)
+    , referenceAccountID_(transaction->ACCOUNTID)
+    , categUpdated_(false)
     , advancedToTransAmountSet_(false)
     , edit_currency_rate(1.0)
     , categID_(-1)
@@ -77,7 +76,14 @@ mmTransDialog::mmTransDialog(
     , bBestChoice_(true)
 
 {
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+
+    Create(parent_
+        , wxID_ANY
+        , ""
+        , wxDefaultPosition
+        , wxSize(500, 400)
+        , style);
 }
 
 mmTransDialog::~mmTransDialog()
@@ -1163,10 +1169,14 @@ void mmTransDialog::SetDialogToDuplicateTransaction()
 {
     // we want the dialog to treat the transaction as a new transaction.
     edit_ = false;
-    this->SetTitle(_("Duplicate Transaction"));
 
     // we need to create a new pointer for Split transactions.
     mmSplitTransactionEntries* splitTransEntries(new mmSplitTransactionEntries());
     core_->bTransactionList_.getBankTransactionPtr(pBankTransaction_->transactionID())->getSplitTransactions(splitTransEntries);
     split_->entries_ = splitTransEntries->entries_;
+}
+
+void mmTransDialog::SetDialogTitle(const wxString& title)
+{
+    this->SetTitle(title);
 }
