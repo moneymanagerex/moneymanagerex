@@ -188,14 +188,14 @@ void mmMainCurrencyDialog::CreateControls()
 
 void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
 {
-    mmCurrencyDialog dlg(core_, -1, this);
+    mmCurrencyDialog dlg(0, this);
     dlg.ShowModal();
     fillControls();
 }
 
 void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)
 {
-    mmCurrencyDialog(core_, currencyID_, this).ShowModal();
+    mmCurrencyDialog(Model_Currency::instance().get(currencyID_), this).ShowModal();
     fillControls();
 }
 

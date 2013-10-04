@@ -73,6 +73,11 @@ public:
     {
         return get(id, this->db_);
     }
+    int save(Data* r)
+    {
+        r->save(this->db_);
+        return r->id();
+    }
 public:
     // Getter
     Data* GetBaseCurrency()

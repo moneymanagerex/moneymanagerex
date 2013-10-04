@@ -27,8 +27,8 @@
 
 #include "guiid.h"
 #include "defs.h"
-#include "mmcoredb.h"
 #include "dbwrapper.h"
+#include "model/Model_Currency.h"
 
 enum
 {
@@ -58,15 +58,14 @@ class mmCurrencyDialog : public wxDialog
 public:
     mmCurrencyDialog();
     ~mmCurrencyDialog();
-    mmCurrencyDialog(mmCoreDB* core,
-                     int currencyID,
+    mmCurrencyDialog(Model_Currency::Data* currency,
                      wxWindow* parent,
                      wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
                      const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
                      const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
                      const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
                      long style = SYMBOL_CURRENCYDIALOG_STYLE );
-    mmCurrencyDialog(mmCoreDB* core, wxWindow* parent,
+    mmCurrencyDialog(wxWindow* parent,
                      wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
                      const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
                      const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
@@ -85,13 +84,10 @@ private:
     // utility functions
     void OnUpdate(wxCommandEvent& event);
     void OnCurrencyNameSelected(wxCommandEvent& event);
-    void updateControls();
     void fillControls();
 
 private:
-    mmCoreDB* core_;
-
-    int currencyID_;
+    Model_Currency::Data* m_currency;
     double convRate_;
 
     wxComboBox* currencyNameCombo_;
