@@ -183,12 +183,9 @@ void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
     if (m_selected_row < 0)     return;
 
     const Model_Asset::Data& asset = cp_->m_assets[m_selected_row];
-    Model_Asset::Data* duplicate_asset = Model_Asset::instance().create();
+    Model_Asset::Data* duplicate_asset = Model_Asset::instance().clone(&asset);
     //TODO: What about next copy? (numeration needed)
     duplicate_asset->ASSETNAME = wxString::Format(_("%s - copy%s"), asset.ASSETNAME, ""); 
-    duplicate_asset->ASSETTYPE = asset.ASSETTYPE;
-    duplicate_asset->STARTDATE = asset.STARTDATE;
-    // TODO
     Model_Asset::instance().save(duplicate_asset);
     cp_->initVirtualListControl();
 }

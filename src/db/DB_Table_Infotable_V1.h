@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-01 14:58:59.923271.
+ *          AUTO GENERATED at 2013-10-04 09:04:12.964499.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -216,6 +216,13 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     {
         Self::Data* entity = new Self::Data(this);
         cache_.push_back(entity);
+        return entity;
+    }
+    Self::Data* clone(const Data* e)
+    {
+        Self::Data* entity = create();
+        *entity = *e;
+        entity->id(-1);
         return entity;
     }
 

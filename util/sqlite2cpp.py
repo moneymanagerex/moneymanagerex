@@ -336,6 +336,13 @@ struct DB_Table_%s : public DB_Table
         cache_.push_back(entity);
         return entity;
     }
+    Self::Data* clone(const Data* e)
+    {
+        Self::Data* entity = create();
+        *entity = *e;
+        entity->id(-1);
+        return entity;
+    }
 '''
         s +='''
     bool save(Self::Data* entity, wxSQLite3Database* db)
