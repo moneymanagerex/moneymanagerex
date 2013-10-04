@@ -28,6 +28,8 @@
 #include "validators.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
@@ -47,28 +49,32 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmTransDialog::mmTransDialog(
-    mmCoreDB* core,
-    int accountID, mmBankTransaction* pBankTransaction, bool edit,
-    wxWindow* parent, wxWindowID id,
-    const wxString& caption, const wxPoint& pos,
-    const wxSize& size, long style
+    Model_Checking::Data *transaction
+    , Model_Splittransaction::Data * split
+    , mmCoreDB* core
+    , int accountID, mmBankTransaction* pBankTransaction, bool edit
+    , wxWindow* parent, wxWindowID id
+    , const wxString& caption, const wxPoint& pos
+    , const wxSize& size, long style
 ) :
-    core_(core),
-    parent_(parent),
-    pBankTransaction_(pBankTransaction),
-    accountID_(accountID),
-    referenceAccountID_(accountID),
-    categUpdated_(false),
-    edit_(edit),
-    advancedToTransAmountSet_(false),
-    edit_currency_rate(1.0),
-    categID_(-1),
-    subcategID_(-1),
-    payeeID_(-1),
-    toID_(-1),
-    toTransAmount_(-1),
-    transAmount_(-1),
-    bBestChoice_(true)
+    transaction_(transaction)
+    , splt_(split)
+    , core_(core)
+    , parent_(parent)
+    , pBankTransaction_(pBankTransaction)
+    , accountID_(accountID)
+    , referenceAccountID_(accountID)
+    , categUpdated_(false)
+    , edit_(edit)
+    , advancedToTransAmountSet_(false)
+    , edit_currency_rate(1.0)
+    , categID_(-1)
+    , subcategID_(-1)
+    , payeeID_(-1)
+    , toID_(-1)
+    , toTransAmount_(-1)
+    , transAmount_(-1)
+    , bBestChoice_(true)
 
 {
     Create(parent, id, caption, pos, size, style);
@@ -130,8 +136,8 @@ void mmTransDialog::dataToControls()
         subcategID_ = pBankTransaction_->subcategID_;
         subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
 
-        accountID_ = pBankTransaction_->accountID_;
-        toID_ = pBankTransaction_->toAccountID_;
+        accountID_ = transaction_->ACCOUNTID; //pBankTransaction_->accountID_;
+        toID_ = transaction_->TOACCOUNTID ;//pBankTransaction_->toAccountID_;
 
         payeeID_ = pBankTransaction_->payeeID_;
         Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);

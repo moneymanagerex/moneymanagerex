@@ -26,6 +26,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Splittransaction.h"
 #include "model/Model_Account.h"
 
 //----------------------------------------------------------------------------
@@ -1559,19 +1560,29 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
 
-    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+    int transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
+    Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
+    Model_Splittransaction::Data *split = Model_Splittransaction::instance().get(transaction_id);
+    if (transaction)
+    {
+        mmTransDialog dlg(transaction, split, m_cp->core_, m_cp->m_AccountID,
+            m_cp->m_trans[m_selectedIndex], true, this);
+        dlg.ShowModal();
 
-    mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID,
-       m_cp->m_trans[m_selectedIndex], true, this);
-    dlg.ShowModal();
-
-    refreshVisualList(m_cp->m_trans[m_selectedIndex]->transactionID());
+        topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+        refreshVisualList(m_cp->m_trans[m_selectedIndex]->transactionID());
+    }
 }
 //----------------------------------------------------------------------------
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 {
-    mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID, NULL, false, this);
+
+    Model_Checking::Data *transaction = Model_Checking::instance().create();
+    transaction->ACCOUNTID = m_cp->m_AccountID;
+    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
+
+    mmTransDialog dlg(transaction, split, m_cp->core_, m_cp->m_AccountID, NULL, false, this);
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
@@ -1580,6 +1591,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
         int transID = dlg.getTransID();
         refreshVisualList(transID);
     }
+
 }
 //----------------------------------------------------------------------------
 
@@ -1587,12 +1599,15 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
 
-    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+    Model_Checking::Data *transaction = Model_Checking::instance().create();
+    transaction->ACCOUNTID = m_cp->m_AccountID;
+    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
 
     wxDateTime transTime = m_cp->m_trans[m_selectedIndex]->date_;
-    mmTransDialog dlg(m_cp->core_, m_cp->m_AccountID,
+    mmTransDialog dlg(transaction, split, m_cp->core_, m_cp->m_AccountID,
         m_cp->m_trans[m_selectedIndex], true, this);
 
+    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
     dlg.SetDialogToDuplicateTransaction();
     if ( dlg.ShowModal() == wxID_OK )
     {

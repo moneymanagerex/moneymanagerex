@@ -28,6 +28,9 @@
 
 #include "guiid.h"
 #include "mmcoredb.h"
+#include "model/Model_Splittransaction.h"
+#include "model/Model_Checking.h"
+
 #include <wx/spinbutt.h>
 
 class wxDatePickerCtrl;
@@ -41,15 +44,18 @@ public:
     mmTransDialog() {}
     virtual ~mmTransDialog();
 
-    mmTransDialog( mmCoreDB* core,
-                   int accountID, mmBankTransaction* pBankTransaction,
-                   bool edit,
-                   wxWindow* parent,
-                   wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME,
-                   const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
-                   const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION,
-                   const wxSize& size = SYMBOL_TRANSDIALOG_SIZE,
-                   long style = SYMBOL_TRANSDIALOG_STYLE );
+    mmTransDialog(
+        Model_Checking::Data *transaction
+        , Model_Splittransaction::Data *split
+        , mmCoreDB* core
+        , int accountID, mmBankTransaction* pBankTransaction
+        , bool edit
+        , wxWindow* parent
+        , wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME
+        , const wxString& caption = SYMBOL_TRANSDIALOG_TITLE
+        , const wxPoint& pos = SYMBOL_TRANSDIALOG_POSITION
+        , const wxSize& size = SYMBOL_TRANSDIALOG_SIZE
+        , long style = SYMBOL_TRANSDIALOG_STYLE );
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_TRANSDIALOG_IDNAME,
                  const wxString& caption = SYMBOL_TRANSDIALOG_TITLE,
@@ -72,14 +78,6 @@ public:
     }
 
 private:
-
-    int transID_;
-    mmCoreDB* core_;
-    mmBankTransaction* pBankTransaction_;
-    wxWindow* parent_;
-    int accountID_;
-    int newAccountID_;
-    int referenceAccountID_;    // used for transfer transactions
 
     void CreateControls();
     void OnSplitChecked(wxCommandEvent& event);
@@ -116,24 +114,33 @@ private:
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     wxButton* bAuto_;
-    bool categUpdated_;
-    bool bBestChoice_;
     wxButton* itemButtonCancel_;
-
-    wxString categoryName_;
-    wxString categStrykes_;
-    wxString subCategoryName_;
-    wxString sTransaction_type_;
-
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
-    bool edit_;
-
     wxDatePickerCtrl* dpc_;
     wxSpinButton *spinCtrl_;
     wxStaticText* itemStaticTextWeek_;
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
+
+    Model_Checking::Data * transaction_;
+    Model_Splittransaction::Data * splt_;
+    mmSplitTransactionEntries* split_;
+    int accountID_;
+    int newAccountID_;
+    int referenceAccountID_;    // used for transfer transactions
+    int transID_;
+    mmCoreDB* core_;
+    mmBankTransaction* pBankTransaction_;
+    wxWindow* parent_;
+
+    bool edit_;
+    bool categUpdated_;
+    bool bBestChoice_;
+    wxString categoryName_;
+    wxString categStrykes_;
+    wxString subCategoryName_;
+    wxString sTransaction_type_;
     int categID_;
     int subcategID_;
     int payeeID_;
@@ -141,19 +148,15 @@ private:
     double toTransAmount_;
     double transAmount_;
     bool advancedToTransAmountSet_;
-    mmSplitTransactionEntries* split_;
 
     // store the original currency rate for transaction editing
     double  edit_currency_rate;
-
     wxString payee_name_;
     wxString amountNormalTip_;
     wxString amountTransferTip_;
     wxString notesTip_;
     wxColour notesColour_;
-
     int object_in_focus_;
-
     wxString resetPayeeString(/*bool normal = true*/);
     wxString resetCategoryString();
 
