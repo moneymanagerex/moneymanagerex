@@ -118,7 +118,7 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Name")), flags);
 
-    m_assetName = new wxTextCtrl( itemPanel5, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, 0 );
+    m_assetName = new mmTextCtrl( itemPanel5, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, 0 );
     m_assetName->SetToolTip(_("Enter the name of the asset"));
     itemFlexGridSizer6->Add(m_assetName, flagsExpand);
 
@@ -163,7 +163,7 @@ void mmAssetDialog::CreateControls()
     m_valueChangeRateLabel = new wxStaticText( itemPanel5, wxID_STATIC, _("% Rate"));
     itemFlexGridSizer6->Add(m_valueChangeRateLabel, flags);
 
-    m_valueChangeRate = new wxTextCtrl( itemPanel5, wxID_STATIC, wxGetEmptyString()
+    m_valueChangeRate = new mmTextCtrl( itemPanel5, wxID_STATIC, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmDoubleValidator() );
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in % per year"));
@@ -174,7 +174,7 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->AddSpacer(1);
 
-    m_notes = new wxTextCtrl( this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE );
+    m_notes = new mmTextCtrl( this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE );
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
     itemStaticBoxSizer4->Add(m_notes, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM, 10);
 

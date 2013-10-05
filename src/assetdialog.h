@@ -52,11 +52,11 @@ public:
 private:
     bool assetRichText;
 
-    wxTextCtrl* m_assetName;
+    mmTextCtrl* m_assetName;
     wxDatePickerCtrl* m_dpc;
-    wxTextCtrl* m_notes;
+    mmTextCtrl* m_notes;
     mmTextCtrl* m_value;
-    wxTextCtrl* m_valueChangeRate;
+    mmTextCtrl* m_valueChangeRate;
 
     wxChoice*  m_assetType;
     wxChoice*  m_valueChange;
