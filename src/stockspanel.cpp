@@ -808,7 +808,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
-    Model_Stock::Data* stock = Model_Stock::instance().get(listCtrlAccount_->trans_[selectedIndex]->id_, core_->db_.get());
+    Model_Stock::Data* stock = Model_Stock::instance().get(listCtrlAccount_->trans_[selectedIndex]->id_);
     mmStockDialog dlg(core_, stock, true, accountID_, this);
     if (dlg.ShowModal() == wxID_OK)
     {

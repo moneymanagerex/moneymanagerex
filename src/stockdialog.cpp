@@ -24,6 +24,7 @@
 #include "validators.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
+#include "model/Model_Account.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )
 
@@ -247,14 +248,14 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    wxString pdate = dpc_->GetValue().FormatISODate();
-
-    if (accountID_ == -1)
+    Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    if (!account)
     {
         mmShowErrorMessageInvalid(this, _("Held At"));
         return;
     }
-    wxString heldAt =  core_->accountList_.GetAccountName(accountID_);
+    wxString pdate = dpc_->GetValue().FormatISODate();
+    wxString heldAt = account->ACCOUNTNAME; 
 
     wxString stockName = stockName_->GetValue();
     wxString stockSymbol = stockSymbol_->GetValue();
