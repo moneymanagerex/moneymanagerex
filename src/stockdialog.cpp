@@ -305,33 +305,26 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     double cValue = cPrice * numShares;
 
-    wxSQLite3Statement st;
-    if (edit_)
-        st = core_->db_.get()->PrepareStatement(UPDATE_ROW_STOCK_V1);
-    else
-        st = core_->db_.get()->PrepareStatement(INSERT_ROW_INTO_STOCK_V1);
+    if (!m_stock) m_stock = Model_Stock::instance().create();
 
-    int i = 0;
-    st.Bind(++i, accountID_);
-    st.Bind(++i, pdate);
-    st.Bind(++i, stockName);
-    st.Bind(++i, stockSymbol);
-    st.Bind(++i, numShares);
-    st.Bind(++i, pPrice);
-    st.Bind(++i, notes);
-    st.Bind(++i, cPrice);
-    st.Bind(++i, cValue);
-    st.Bind(++i, commission);
-    if (edit_) st.Bind(++i, stockID_);
+    m_stock->HELDAT = accountID_;
+    m_stock->PURCHASEDATE = pdate;
+    m_stock->STOCKNAME = stockName;
+    m_stock->SYMBOL = stockSymbol;
+    m_stock->NUMSHARES = numShares;
+    m_stock->PURCHASEPRICE = pPrice;
+    m_stock->NOTES = notes;
+    m_stock->CURRENTPRICE = cPrice;
+    m_stock->VALUE = cValue;
+    m_stock->COMMISSION = commission;
+    if (edit_) m_stock->STOCKID = stockID_;
 
-    wxASSERT(st.GetParamCount() == i);
+    Model_Stock::instance().save(m_stock, core_->db_.get());
 
-    st.ExecuteUpdate();
     if (!edit_)
-        transID_ = core_->db_.get()->GetLastRowId().ToLong();
+        transID_ = m_stock->STOCKID;
     else
         transID_ = stockID_;
-    st.Finalize();
 
     EndModal(wxID_OK);
 }
