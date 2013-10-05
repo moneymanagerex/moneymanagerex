@@ -37,14 +37,8 @@ public:
     mmTreeItemCateg(int categID, int subcategID)
         : categID_(categID),
           subcategID_(subcategID) { }
-    int getCategID()
-    {
-        return categID_;
-    }
-    int getSubCategID()
-    {
-        return subcategID_;
-    }
+    int getCategID() {return categID_;}
+    int getSubCategID() {return subcategID_;}
 
 private:
     int categID_;
@@ -90,6 +84,7 @@ public:
     {
         return refreshRequested_;
     }
+    wxString getFullCategName();
 
 private:
     void CreateControls();

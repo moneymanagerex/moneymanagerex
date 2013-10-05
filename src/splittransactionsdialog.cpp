@@ -173,7 +173,9 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     int categID = -1;
     int subcategID = -1;
     double amount  = 0.0;
-    SplitDetailDialog sdd(core_, _("&Select Category"), &categID, &subcategID, &amount, transType_, this);
+
+    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
+    SplitDetailDialog sdd(*split, core_, _("&Select Category"), &categID, &subcategID, &amount, transType_, this);
     if (sdd.ShowModal() == wxID_OK)
     {
         int numToInsert = lcSplit_->GetItemCount();
@@ -255,7 +257,8 @@ void SplitTransactionDialog::EditEntry()
     double amount  = splt_->entries_[item]->splitAmount_;
     wxString category = core_->categoryList_.GetFullCategoryString(categID,subCategID);
 
-    SplitDetailDialog sdd(core_, category, &categID, &subCategID, &amount, transType_, this);
+
+    SplitDetailDialog sdd(split_[item], core_, category, &categID, &subCategID, &amount, transType_, this);
     if (sdd.ShowModal() == wxID_OK)
     {
         splt_->entries_[item]->categID_     = categID;

@@ -641,6 +641,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     if (cSplit_->IsChecked())
     {
         activateSplitTransactionsDlg();
+        SetSplitState();
     }
     else
     {
@@ -650,10 +651,10 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
         {
             transaction_->CATEGID = dlg.getCategId();
             transaction_->SUBCATEGID = dlg.getSubCategId();
+            bCategory_->SetLabel(dlg.getFullCategName());
             categUpdated_ = true;
         }
     }
-    SetSplitState();
 }
 
 wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits or withdrawls

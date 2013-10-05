@@ -597,3 +597,15 @@ bool mmCategDialog::categShowStatus(int categId, int subCategId)
     wxString index = wxString::Format("*%i:%i*",categId, subCategId);
     return hidden_categs_.Index(index) == wxNOT_FOUND;
 }
+
+wxString mmCategDialog::getFullCategName()
+{
+    //TODO: move it to separate function
+    Model_Category::Data *category = Model_Category::instance().get(categID_);
+    Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(subcategID_);
+    wxString categoryName = "", subCategoryName = "";
+    if (category) categoryName = category->CATEGNAME;
+    if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+    const wxString fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
+    return fullCategoryName;
+}

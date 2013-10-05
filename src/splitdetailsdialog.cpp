@@ -38,19 +38,22 @@ SplitDetailDialog::SplitDetailDialog( )
 {
 }
 
-SplitDetailDialog::SplitDetailDialog( mmCoreDB* core,
-                                     const wxString categString,
-                                     int* categID,
-                                     int* subcategID,
-                                     double* amount,
-                                     int transType,
-                                     wxWindow* parent,
-                                     wxWindowID id,
-                                     const wxString& caption,
-                                     const wxPoint& pos,
-                                     const wxSize& size,
-                                     long style )
+SplitDetailDialog::SplitDetailDialog( 
+    Model_Splittransaction::Data split
+    , mmCoreDB* core
+    , const wxString categString
+    , int* categID
+    , int* subcategID
+    , double* amount
+    , int transType
+    , wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style )
 {
+    split_ = split;
     core_ = core;
     m_categID_  = categID;
     m_subcategID_ = subcategID;
@@ -139,10 +142,10 @@ void SplitDetailDialog::CreateControls()
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(buttonSizer, 0, wxALIGN_RIGHT|wxALL, 5);
 
-    wxButton* itemButtonOK = new wxButton( this, wxID_OK, _("&OK"));
+    wxButton* itemButtonOK = new wxButton( this, mmID_OK, _("&OK"));
     buttonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, _("&Cancel"));
+    wxButton* itemButtonCancel = new wxButton( this, mmID_CANCEL, _("&Cancel"));
     buttonSizer->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 
@@ -153,14 +156,13 @@ void SplitDetailDialog::CreateControls()
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 {
     mmCategDialog dlg(core_, this);
-    dlg.setTreeSelection(core_->categoryList_.GetCategoryString(*m_categID_),
-                         core_->categoryList_.GetSubCategoryString(*m_categID_, *m_subcategID_));
+    dlg.setTreeSelection(*m_categID_, *m_subcategID_);
     if ( dlg.ShowModal() == wxID_OK )
     {
         *m_categID_ = dlg.getCategId();
         *m_subcategID_ = dlg.getSubCategId();
 
-        m_categString_ = core_->categoryList_.GetFullCategoryString(*m_categID_, *m_subcategID_);
+        m_categString_ = dlg.getFullCategName();
         bCategory_->SetLabel(m_categString_);
     }
 }
