@@ -1568,7 +1568,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     {
         transaction->ACCOUNTID = m_cp->m_AccountID;
         mmTransDialog dlg(transaction, split, this
-            , m_cp->core_ , m_cp->m_trans[m_selectedIndex]);
+            , m_cp->core_);
         dlg.SetDialogTitle(_("New/Edit Transaction"));
         dlg.ShowModal();
 
@@ -1591,7 +1591,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     transaction->ACCOUNTID = m_cp->m_AccountID;
     transaction->TRANSDATE = trx_date.FormatISODate();
     mmTransDialog dlg(transaction, split, this
-        , m_cp->core_, NULL, false);
+        , m_cp->core_, false);
     dlg.SetDialogTitle(_("New/Edit Transaction"));
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;

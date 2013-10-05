@@ -46,7 +46,6 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_CHILD_FOCUS(mmTransDialog::changeFocus)
     EVT_SPIN(wxID_ANY,mmTransDialog::OnSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
-    EVT_TIMER(wxID_ANY, mmTransDialog::ResetKeyStrikes)
 END_EVENT_TABLE()
 
 mmTransDialog::mmTransDialog(
@@ -54,14 +53,12 @@ mmTransDialog::mmTransDialog(
     , Model_Splittransaction::Data_Set& split
     , wxWindow* parent
     , mmCoreDB* core
-    , mmBankTransaction* pBankTransaction
     , bool edit
 ) :
     transaction_(transaction)
     , splt_(split)
     , core_(core)
     , parent_(parent)
-    , pBankTransaction_(pBankTransaction)
     , edit_(edit)
     , accountID_(transaction->ACCOUNTID)
     , referenceAccountID_(transaction->ACCOUNTID)
@@ -83,7 +80,6 @@ mmTransDialog::mmTransDialog(
 
 mmTransDialog::~mmTransDialog()
 {
-    timer_->Stop();
 }
 
 bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,
@@ -105,7 +101,6 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 
     Centre();
     Fit();
-    timer_ = new wxTimer(this, wxID_ANY);
 
     return TRUE;
 }
@@ -440,9 +435,6 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Category")), flags);
     flex_sizer->Add(bCategory_, flags);
 
-    bCategory_->Connect(ID_DIALOG_TRANS_BUTTONCATEGS, wxEVT_KEY_DOWN
-        , wxCharEventHandler(mmTransDialog::OnCategoryKey), NULL, this);
-
     // Number  ---------------------------------------------
     textNumber_ = new mmTextCtrl(this
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
@@ -640,43 +632,6 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
     SetTransferControls();
 }
 
-void mmTransDialog::OnCategoryKey(wxKeyEvent& event)
-{
-    bool skip = false;
-    if ( !event.HasModifiers() )
-    {
-        //TODO: Get national (non Latin) keys
-        wxString key = wxString() << event.GetUnicodeKey();
-        categStrykes_ << key;
-        if (key <= " ") skip = true;
-
-        if (!timer_->IsRunning ())
-            timer_->Start(INTERVAL, true);
-        core_->categoryList_.GetCategoryLikeString(categStrykes_, transaction_->CATEGID, transaction_->SUBCATEGID);
-
-        //wxLogDebug(key + " | " + categStrykes_ + " | " + core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
-        //TODO: move it to separate function
-        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
-        wxString categoryName = "", subCategoryName = "";
-        if (category) categoryName = category->CATEGNAME;
-        if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
-        wxString fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
-
-        bCategory_->SetLabel(fullCategoryName);
-
-    }
-    else
-        skip = true;
-
-    if (skip) event.Skip();
-}
-
-void mmTransDialog::ResetKeyStrikes(wxTimerEvent& /*event*/)
-{
-    categStrykes_.clear();
-}
-
 void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 {
     if (cSplit_->IsChecked())
@@ -865,7 +820,7 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     else
     {
         pTransaction = core_->bTransactionList_.getBankTransactionPtr(
-            pBankTransaction_->transactionID());
+            transaction_->TRANSID);
     }
 
     transaction_->NOTES = textNotes_->GetValue();
@@ -1112,41 +1067,6 @@ void mmTransDialog::activateSplitTransactionsDlg()
         wxString dispAmount = CurrencyFormatter::float2String(amount);
         textAmount_->SetValue(dispAmount);
     }
-}
-
-void mmTransDialog::onChoiceTransChar(wxKeyEvent& event)
-{
-    int i = transaction_type_->GetSelection();
-    if (event.GetKeyCode()==WXK_DOWN)
-    {
-        if (i < (!Model_Account::instance().all().empty() ? DEF_TRANSFER : DEF_DEPOSIT))
-        {
-            transaction_type_->SetSelection(++i);
-        }
-    }
-    else if (event.GetKeyCode()==WXK_UP)
-    {
-        if (i > DEF_WITHDRAWAL)
-        {
-            transaction_type_->SetSelection(--i);
-        }
-    }
-    else
-    {
-        event.Skip();
-    }
-    updateControlsForTransType();
-}
-
-void mmTransDialog::SetDialogToDuplicateTransaction()
-{
-    // we want the dialog to treat the transaction as a new transaction.
-    edit_ = false;
-
-    // we need to create a new pointer for Split transactions.
-    mmSplitTransactionEntries* splitTransEntries(new mmSplitTransactionEntries());
-    core_->bTransactionList_.getBankTransactionPtr(pBankTransaction_->transactionID())->getSplitTransactions(splitTransEntries);
-    split_->entries_ = splitTransEntries->entries_;
 }
 
 void mmTransDialog::SetDialogTitle(const wxString& title)

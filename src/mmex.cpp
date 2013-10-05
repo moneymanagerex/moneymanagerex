@@ -1962,7 +1962,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 m_core->bTransactionList_.deleteTransactions(account->ACCOUNTID);
-                Model_Account::instance().remove(account->ACCOUNTID);
+                Model_Account::instance().remove(account->ACCOUNTID, m_core.get()->db_.get());
                 updateNavTreeControl();
                 createHomePage();
             }
@@ -3110,7 +3110,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
     Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
 
     mmTransDialog dlg(transaction, split, this
-        , m_core.get(), NULL, false);
+        , m_core.get(), false);
 
     if ( dlg.ShowModal() == wxID_OK )
     {
@@ -3752,8 +3752,8 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            Model_Account::instance().remove(acctID);
             m_core->bTransactionList_.deleteTransactions(acctID);
+            Model_Account::instance().remove(acctID, m_core.get()->db_.get());
 
             updateNavTreeControl();
         }

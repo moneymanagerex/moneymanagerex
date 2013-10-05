@@ -49,7 +49,6 @@ public:
         , Model_Splittransaction::Data_Set& split
         , wxWindow* parent
         , mmCoreDB* core
-        , mmBankTransaction* pBankTransaction
         , bool edit = true
     );
 
@@ -61,7 +60,6 @@ public:
         , long style
     );
 
-    void SetDialogToDuplicateTransaction();
     void SetDialogTitle(const wxString& title);
     int getTransID()
     {
@@ -84,7 +82,6 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
-    void OnCategoryKey(wxKeyEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnAccountUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
@@ -96,7 +93,6 @@ private:
     void updateControlsForTransType();
     void changeFocus(wxChildFocusEvent& event);
     void onTextEntered(wxCommandEvent& event);
-    void onChoiceTransChar(wxKeyEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfer = true);
     void activateSplitTransactionsDlg();
@@ -131,7 +127,6 @@ private:
     int referenceAccountID_;    // used for transfer transactions
     int transID_;
     mmCoreDB* core_;
-    mmBankTransaction* pBankTransaction_;
     wxWindow* parent_;
 
     bool edit_; //Deprecated
@@ -150,9 +145,6 @@ private:
     wxString resetPayeeString(/*bool normal = true*/);
     wxString resetCategoryString();
 
-    wxTimer* timer_;
-    static const int INTERVAL = 1000;
-    void ResetKeyStrikes(wxTimerEvent& /*event*/);
 };
 
 #endif
