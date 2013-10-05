@@ -1612,7 +1612,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
 
     int selected_transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
     Model_Checking::Data *source_transaction = Model_Checking::instance().get(selected_transaction_id);
-    Model_Splittransaction::Data_Set source_split = Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, selected_transaction_id);
+    Model_Splittransaction::Data_Set source_split = Model_Checking::splittransaction(source_transaction);
 
     Model_Checking::Data *transaction = Model_Checking::instance().create();
     Model_Checking::instance().save(transaction);
