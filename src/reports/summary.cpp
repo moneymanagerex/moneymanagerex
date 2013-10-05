@@ -22,6 +22,7 @@
 #include "htmlbuilder.h"
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Account.h"
+#include "model/Model_Currency.h"
 #include "model/Model_Asset.h"
 #include <algorithm>
 
@@ -58,12 +59,8 @@ wxString mmReportSummary::getHTMLText()
         {
             double bal = Model_Account::balance(account);
 
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID); // TODO
-            wxASSERT(pCurrencyPtr);
-            CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-            double rate = pCurrencyPtr->baseConv_;
-
-            tBalance += bal * rate;
+            Model_Currency::Data* currency = Model_Account::currency(account);
+            tBalance += bal * currency->BASECONVRATE;
 
             line.name = account.ACCOUNTNAME;
             line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
@@ -80,12 +77,8 @@ wxString mmReportSummary::getHTMLText()
         {
             double bal = Model_Account::balance(account);
 
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account.ACCOUNTID);
-            wxASSERT(pCurrencyPtr);
-            CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-            double rate = pCurrencyPtr->baseConv_;
-
-            tTBalance += bal * rate;
+            Model_Currency::Data* currency = Model_Account::currency(account);
+            tTBalance += bal * currency->BASECONVRATE;
 
             line.name = account.ACCOUNTNAME;
             line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
@@ -171,8 +164,8 @@ wxString mmReportSummary::getHTMLText()
     for (const auto& account: Model_Account::instance().all())
     {
         if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-        double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(account.ACCOUNTID);
-        stockBalance += base_conv_rate + Model_Account::investment_balance(account).second;
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        stockBalance += currency->BASECONVRATE * Model_Account::investment_balance(account).second;
     }
 
     hb.startTableRow();
