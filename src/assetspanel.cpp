@@ -191,7 +191,10 @@ void mmAssetsListCtrl::OnDuplicateAsset(wxCommandEvent& /*event*/)
 
 void mmAssetsListCtrl::OnListItemActivated(wxListEvent& event)
 {
-    m_selected_row = event.GetIndex();
+    if (m_selected_row < 0)
+    {
+        m_selected_row = event.GetIndex();
+    }
     EditAsset(&(cp_->m_assets[m_selected_row]));
 }
 
