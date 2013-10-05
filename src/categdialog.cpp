@@ -25,6 +25,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Category.h"
+#include "model/Model_Checking.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 
@@ -108,26 +109,27 @@ void mmCategDialog::fillControls()
     bool bResult = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
     cbShowAll_->SetValue(bResult);
 
-    for (const auto& category: core_->categoryList_.entries_)
+    Model_Category::Data_Set categories = Model_Category::instance().all();
+    for (const auto& category: categories)
     {
         wxTreeItemId maincat;
-        bool bShow = categShowStatus(category->categID_, -1);
+        bool bShow = categShowStatus(category.CATEGID, -1);
         if (cbShowAll_->IsChecked() || bShow)
         {
-            maincat = treeCtrl_->AppendItem(root_, category->categName_);
-            treeCtrl_->SetItemData(maincat, new mmTreeItemCateg(category->categID_, -1));
+            maincat = treeCtrl_->AppendItem(root_, category.CATEGNAME);
+            treeCtrl_->SetItemData(maincat, new mmTreeItemCateg(category.CATEGID, -1));
             if (!bShow) treeCtrl_->SetItemTextColour(maincat, wxColour("GREY"));
 
-            for (const auto& sub_category: category->children_)
+            for (const auto& sub_category: Model_Category::sub_category(category))
             {
-                bShow = categShowStatus(category->categID_, sub_category->categID_);
+                bShow = categShowStatus(category.CATEGID, sub_category.CATEGID);
                 if (cbShowAll_->IsChecked() || bShow)
                 {
-                    wxTreeItemId subcat = treeCtrl_->AppendItem(maincat, sub_category->categName_);
-                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category->categID_, sub_category->categID_));
+                    wxTreeItemId subcat = treeCtrl_->AppendItem(maincat, sub_category.SUBCATEGNAME);
+                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category.CATEGID, sub_category.CATEGID));
                     if (!bShow) treeCtrl_->SetItemTextColour(subcat, wxColour("GREY"));
 
-                    if (categID_ == category->categID_ && subcategID_ == sub_category->categID_)
+                    if (categID_ == category.CATEGID && subcategID_ == sub_category.CATEGID)
                         selectedItemId_ = subcat;
                 }
             }
@@ -239,17 +241,20 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 
     if (selectedItemId_ == root_)
     {
-        if (core_->categoryList_.CategoryExists(text))
+        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGNAME, text);
+        if (categories.size() > 0)
         {
             wxString errMsg = _("Category with same name exists");
             errMsg << "\n\n" << _("Tip: If category added now, check bottom of list.\nCategory will be in sorted order next time dialog appears");
-            wxMessageBox(errMsg, _("Organise Categories: Adding Error"),wxOK|wxICON_ERROR);
+            wxMessageBox(errMsg, _("Organise Categories: Adding Error"), wxOK|wxICON_ERROR);
             return;
         }
-        int categID = core_->categoryList_.AddCategory(text);
+        Model_Category::Data *category = Model_Category::instance().create();
+        category->CATEGNAME = text;
+        Model_Category::instance().save(category);
 
         wxTreeItemId tid = treeCtrl_->AppendItem(selectedItemId_, text);
-        treeCtrl_->SetItemData(tid, new mmTreeItemCateg( categID, -1));
+        treeCtrl_->SetItemData(tid, new mmTreeItemCateg( category->CATEGID, -1));
         treeCtrl_->Expand(selectedItemId_);
 
         return;
@@ -260,16 +265,24 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     int subcategID = iData->getSubCategID();
     if (subcategID == -1) // not subcateg
     {
-        if (core_->categoryList_.GetSubCategoryID(categID, text) != -1)
+        Model_Category::Data *category = Model_Category::instance().get(categID);
+        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+        for (const auto& subcategory : subcategories)
         {
-            wxMessageBox(_("Sub Category with same name exists"),
-                _("Organise Categories: Adding Error"),wxOK|wxICON_ERROR);
-            return;
+            if (subcategory.SUBCATEGNAME == text)
+            {
+                wxMessageBox(_("Sub Category with same name exists"),
+                    _("Organise Categories: Adding Error"), wxOK|wxICON_ERROR);
+                return;
+            }
         }
-        int subcategID = core_->categoryList_.AddSubCategory(categID, text);
+        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().create();
+        subcategory->SUBCATEGNAME = text;
+        subcategory->CATEGID = categID;
+        Model_Subcategory::instance().save(subcategory);
 
         wxTreeItemId tid = treeCtrl_->AppendItem(selectedItemId_, text);
-        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(categID, subcategID));
+        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(categID, subcategory->SUBCATEGID));
         treeCtrl_->Expand(selectedItemId_);
         return;
     }
@@ -307,18 +320,26 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
     if (subcategID == -1)
     {
-        if (!core_->categoryList_.DeleteCategory(categID))
+        if (Model_Category::is_used(categID))
         {
             showCategDialogDeleteError(_("Category in use."));
             return;
         }
+        else
+        {
+            Model_Category::instance().remove(categID, core_->db_.get()); //TODO:
+        }
     }
     else
     {
-        if (!core_->categoryList_.DeleteSubCategory(categID, subcategID))
+        if (Model_Category::is_used(categID, subcategID))
         {
             showCategDialogDeleteError(_("Sub-Category in use."), false);
             return;
+        }
+        else
+        {
+            Model_Subcategory::instance().remove(subcategID, core_->db_.get()); //TODO:
         }
     }
 
@@ -333,7 +354,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         else if (subcategID == -1 && hidden_categs_[i].Contains(wxString::Format("*%i:",categID)))
             hidden_categs_.RemoveAt(i, i);
         else
-	        sSettings << hidden_categs_[i] << ";";    
+            sSettings << hidden_categs_[i] << ";";
     }
     sIndex.RemoveLast(1);
 
@@ -433,18 +454,47 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     int categID = iData->getCategID();
     int subcategID = iData->getSubCategID();
 
-    if (!core_->categoryList_.UpdateCategory(categID, subcategID, text))
+    Model_Category::Data* category = Model_Category::instance().get(categID);
+    if (subcategID == -1)
     {
-        wxString errMsg = _("Update Failed");
-        errMsg << "          ";  // added to adjust dialog size
-        wxMessageBox(errMsg, _("Organise Categories"),wxOK|wxICON_ERROR);
-        return;
+        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGNAME, text);
+        if (categories.size() > 0)
+        {
+            wxString errMsg = _("Category with same name exists");
+            wxMessageBox(errMsg, _("Organise Categories: Editing Error"), wxOK|wxICON_ERROR);
+            return;
+        }
+        if (category)
+        {
+            category->CATEGNAME = text;
+            Model_Category::instance().save(category);
+        }
     }
+    else
+    {
+        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+        for (const auto &entry : subcategories)
+        {
+            if (entry.SUBCATEGNAME == text)
+            {
+                wxString errMsg = _("Sub Category with same name exists");
+                wxMessageBox(errMsg, _("Organise Categories: Editing Error"), wxOK|wxICON_ERROR);
+                return;
+            }
+        }
+        Model_Subcategory::Data* subcategory = Model_Subcategory::instance().get(subcategID);
+        if (subcategory)
+        {
+            wxLogDebug("%s", subcategory->to_json());
+            subcategory->SUBCATEGNAME = text;
+            Model_Subcategory::instance().save(subcategory);
+        }
+    }
+
+    treeCtrl_->SetItemText(selectedItemId_, text);
     wxString fullCatStr = core_->categoryList_.GetFullCategoryString(categID, subcategID);
     core_->bTransactionList_.UpdateCategory(categID, subcategID, fullCatStr);
     refreshRequested_ = true;
-
-    treeCtrl_->SetItemText(selectedItemId_, text);
 }
 
 wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& itemText)
