@@ -19,13 +19,15 @@
 #ifndef _MM_EX_STOCKDIALOG_H_
 #define _MM_EX_STOCKDIALOG_H_
 
+#include "defs.h"
+#include "guiid.h"
+#include "model/Model_Stock.h"
+
 #define SYMBOL_STOCKDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
 #define SYMBOL_STOCKDIALOG_TITLE _("New/Edit Stock Investment")
 #define SYMBOL_STOCKDIALOG_IDNAME ID_DIALOG_STOCKS
 #define SYMBOL_STOCKDIALOG_SIZE wxSize(400, 300)
 #define SYMBOL_STOCKDIALOG_POSITION wxDefaultPosition
-
-#include "stockspanel.h"
 
 class wxDatePickerCtrl;
 class mmCoreDB;
@@ -38,7 +40,7 @@ class mmStockDialog : public wxDialog
 public:
     mmStockDialog();
     mmStockDialog(mmCoreDB* core
-                  , mmStockTransactionHolder* stock_holder
+                  , Model_Stock::Data* stock
                   , bool edit, int accountID, wxWindow* parent
                   , wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME
                   , const wxString& caption = SYMBOL_STOCKDIALOG_TITLE
@@ -61,7 +63,7 @@ public:
     void fillControls();
     void dataToControls();
     int transID_;
-    mmStockTransactionHolder* stock_holder_;
+    Model_Stock::Data* m_stock;
 
 private:
     mmCoreDB* core_;

@@ -808,7 +808,8 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
-    mmStockDialog dlg(core_, listCtrlAccount_->trans_[selectedIndex], true, accountID_, this);
+    Model_Stock::Data* stock = Model_Stock::instance().get(listCtrlAccount_->trans_[selectedIndex]->id_, core_->db_.get());
+    mmStockDialog dlg(core_, stock, true, accountID_, this);
     if (dlg.ShowModal() == wxID_OK)
     {
         listCtrlAccount_->doRefreshItems(dlg.transID_);

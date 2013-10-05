@@ -37,13 +37,13 @@ mmStockDialog::mmStockDialog( )
 {
 }
 
-mmStockDialog::mmStockDialog(mmCoreDB* core, mmStockTransactionHolder* stock_holder
+mmStockDialog::mmStockDialog(mmCoreDB* core, Model_Stock::Data* stock
     , bool edit, int accountID
     , wxWindow* parent, wxWindowID id
     ,const wxString& caption, const wxPoint& pos
     ,const wxSize& size, long style )
     : core_(core)
-    , stock_holder_(stock_holder)
+    , m_stock(stock)
     , edit_(edit)
     , accountID_(accountID)
 {
@@ -72,29 +72,28 @@ bool mmStockDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 
 void mmStockDialog::dataToControls()
 {
-    stockID_ = stock_holder_->id_;
+    if (!this->m_stock) return;
 
-    stockName_->SetValue(stock_holder_->shareName_);
-    stockSymbol_->SetValue(stock_holder_->stockSymbol_);
-    notes_->SetValue(stock_holder_->shareNotes_);
-    dpc_->SetValue(stock_holder_-> stockPDate_);
+    stockID_ = m_stock->STOCKID;
 
-    double numShares = stock_holder_->numShares_;
+    stockName_->SetValue(m_stock->STOCKNAME);
+    stockSymbol_->SetValue(m_stock->SYMBOL);
+    notes_->SetValue(m_stock->NOTES);
+    dpc_->SetValue(Model_Stock::PURCHASEDATE(m_stock));
+
+    double numShares = m_stock->NUMSHARES;
     wxString numSharesString;
     //I wish see integer if it integer else double
     if ((numShares - static_cast<long>(numShares)) != 0.0 )
-    {
-        numSharesString = CurrencyFormatter::float2String(numShares);
-        //numSharesString=wxString::Format("%0.4f",numShares);
-    }
+        numSharesString=wxString::Format("%0.4f",numShares);
     else
         numSharesString <<  static_cast<long>(numShares);
 
     numShares_->SetValue(numSharesString);
-    valueInvestment_->SetLabel(CurrencyFormatter::float2String(stock_holder_->value_));
-    purchasePrice_->SetValue(CurrencyFormatter::float2String(stock_holder_->purchasePrice_));
-    currentPrice_->SetValue(CurrencyFormatter::float2String(stock_holder_->currentPrice_));
-    commission_->SetValue(CurrencyFormatter::float2String(stock_holder_->commission_));
+    valueInvestment_->SetLabel(CurrencyFormatter::float2String(m_stock->VALUE));
+    purchasePrice_->SetValue(CurrencyFormatter::float2String(m_stock->PURCHASEPRICE));
+    currentPrice_->SetValue(CurrencyFormatter::float2String(m_stock->CURRENTPRICE));
+    commission_->SetValue(CurrencyFormatter::float2String(m_stock->COMMISSION));
 }
 
 void mmStockDialog::fillControls()
@@ -160,21 +159,21 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Purchase Price")), flags);
 
     purchasePrice_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_PP, "",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator(4) );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
     itemFlexGridSizer6->Add(purchasePrice_, flags);
     purchasePrice_->SetToolTip(_("Enter purchase price for each stock"));
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Current Price")), flags);
 
     currentPrice_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_CP, "",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator(4) );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
     itemFlexGridSizer6->Add(currentPrice_, flags);
     currentPrice_->SetToolTip(_("Enter current stock price"));
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Commission")), flags);
 
     commission_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator(4) );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
     itemFlexGridSizer6->Add(commission_, flags);
     commission_->SetToolTip(_("Enter any commission paid"));
 
