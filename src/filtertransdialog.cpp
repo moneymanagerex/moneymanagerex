@@ -383,7 +383,8 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
     if (accountCheckBox_->IsChecked())
     {
         refAccountStr_ = accountDropDown_->GetStringSelection();
-        refAccountID_ = core_->accountList_.GetAccountId(refAccountStr_);
+        Model_Account::Data* account = Model_Account::instance().get(refAccountStr_);
+        refAccountID_ = account->ACCOUNTID;
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -459,8 +460,8 @@ bool mmFilterTransactionsDialog::somethingSelected()
 
 wxString mmFilterTransactionsDialog::getAccountName()
 {
-    wxString accountName = core_->accountList_.GetAccountName(refAccountID_);
-    return accountName;
+    Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
+    return account->ACCOUNTNAME;
 }
 
 bool mmFilterTransactionsDialog::getDateRange(wxDateTime& startDate, wxDateTime& endDate) const

@@ -242,6 +242,8 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     for (const auto& q1: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
         mmBDTransactionHolder th;
+        Model_Account::Data* account = Model_Account::instance().get(th.accountID_);
+        if (!account) continue;
 
         th.id_           = q1.BDID;
         th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
@@ -252,7 +254,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         th.transType_      = q1.TRANSCODE;
         th.accountID_      = q1.ACCOUNTID;
         th.toAccountID_    = q1.TOACCOUNTID;
-        th.accountName_    = core_->accountList_.GetAccountName(th.accountID_);
+        th.accountName_    = account->ACCOUNTNAME;
         th.amt_            = q1.TRANSAMOUNT;
         th.toAmt_          = q1.TOTRANSAMOUNT;
         th.sNumber_        = q1.TRANSACTIONNUMBER;

@@ -21,7 +21,6 @@
 #define _MM_EX_COREDB_H_
 //----------------------------------------------------------------------------
 #include "mmcategory.h"
-#include "mmaccount.h"
 #include "mmcurrency.h"
 #include "mmtransaction.h"
 
@@ -48,7 +47,6 @@ public:
     /* These variables form a global data access point. */
     mmCurrencyList currencyList_;
     mmCategoryList categoryList_;
-    mmAccountList accountList_;
     mmBankTransactionList bTransactionList_;
     bool displayDatabaseError_;
 };
