@@ -16,11 +16,11 @@
 
 #pragma once
 #include "defs.h"
-#include "mmtextctrl.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Currency.h"
 
 class wxDatePickerCtrl;
+class mmTextCtrl;
 
 class mmAssetDialog : public wxDialog
 {

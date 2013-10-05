@@ -33,6 +33,7 @@
 #include <wx/spinbutt.h>
 
 class wxDatePickerCtrl;
+class mmTextCtrl;
 
 class mmTransDialog : public wxDialog
 {
@@ -102,11 +103,11 @@ private:
     void SetSplitState();
     bool validateData();
 
-    wxTextCtrl *textNumber_;
-    wxTextCtrl *textAmount_;
-    wxTextCtrl *toTextAmount_;
-    wxTextCtrl *textNotes_;
-    wxTextCtrl* textCategory_;
+    mmTextCtrl *textNumber_;
+    mmTextCtrl *textAmount_;
+    mmTextCtrl *toTextAmount_;
+    mmTextCtrl *textNotes_;
+    mmTextCtrl* textCategory_;
     wxButton* bCategory_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;

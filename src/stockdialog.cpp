@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "stockdialog.h"
+#include "mmtextctrl.h"
 #include "constants.h"
 #include "paths.h"
 #include "mmCurrencyFormatter.h"
@@ -126,7 +127,7 @@ void mmStockDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Stock Name")), flags);
 
-    stockName_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
+    stockName_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCKNAME, "");
     itemFlexGridSizer6->Add(stockName_, flagsExpand);
     stockName_->SetToolTip(_("Enter the stock company name"));
     if (!edit_)
@@ -144,7 +145,7 @@ void mmStockDialog::CreateControls()
     //Symbol
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Symbol")), flags);
 
-    stockSymbol_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL,
+    stockSymbol_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_SYMBOL,
         "", wxDefaultPosition, wxSize(150, -1), 0 );
     itemFlexGridSizer6->Add(stockSymbol_, flags);
     stockSymbol_->SetToolTip(_("Enter the stock symbol. (Optional) Include exchange. eg: IBM.BE"));
@@ -152,28 +153,28 @@ void mmStockDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Number of Shares")), flags);
 
-    numShares_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, "",
+    numShares_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, "",
         wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator(4) );
     itemFlexGridSizer6->Add(numShares_, flags);
     numShares_->SetToolTip(_("Enter number of shares held"));
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Purchase Price")), flags);
 
-    purchasePrice_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_PP, "",
+    purchasePrice_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_PP, "",
         wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
     itemFlexGridSizer6->Add(purchasePrice_, flags);
     purchasePrice_->SetToolTip(_("Enter purchase price for each stock"));
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Current Price")), flags);
 
-    currentPrice_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_CP, "",
+    currentPrice_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_CP, "",
         wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
     itemFlexGridSizer6->Add(currentPrice_, flags);
     currentPrice_->SetToolTip(_("Enter current stock price"));
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Commission")), flags);
 
-    commission_ = new wxTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0",
+    commission_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0",
         wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
     itemFlexGridSizer6->Add(commission_, flags);
     commission_->SetToolTip(_("Enter any commission paid"));
@@ -185,7 +186,7 @@ void mmStockDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), flags);
 
-    notes_ = new wxTextCtrl( this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE );
+    notes_ = new mmTextCtrl( this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE );
     itemStaticBoxSizer4->Add(notes_, flagsExpand);
     itemStaticBoxSizer4->AddSpacer(1);
     notes_->SetToolTip(_("Enter notes associated with this investment"));

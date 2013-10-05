@@ -31,6 +31,7 @@
 
 class wxDatePickerCtrl;
 class mmCoreDB;
+class mmTextCtrl;
 
 class mmStockDialog : public wxDialog
 {
@@ -69,15 +70,15 @@ private:
     mmCoreDB* core_;
     int stockID_;
 
-    wxTextCtrl* stockName_;
-    wxTextCtrl* stockSymbol_;
+    mmTextCtrl* stockName_;
+    mmTextCtrl* stockSymbol_;
     wxDatePickerCtrl* dpc_;
-    wxTextCtrl* numShares_;
-    wxTextCtrl* purchasePrice_;
-    wxTextCtrl* notes_;
-    wxTextCtrl* currentPrice_;
+    mmTextCtrl* numShares_;
+    mmTextCtrl* purchasePrice_;
+    mmTextCtrl* notes_;
+    mmTextCtrl* currentPrice_;
     wxStaticText* valueInvestment_;
-    wxTextCtrl* commission_;
+    mmTextCtrl* commission_;
 
     bool edit_;
     int accountID_;

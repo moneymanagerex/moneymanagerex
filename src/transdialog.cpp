@@ -18,6 +18,7 @@
  ********************************************************/
 
 #include "transdialog.h"
+#include "mmtextctrl.h"
 #include "constants.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
@@ -386,13 +387,13 @@ void mmTransDialog::CreateControls()
     typeSizer->Add(cAdvanced_, flags);
 
     // Amount Fields --------------------------------------------
-    textAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
+    textAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
         wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
         wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
-    toTextAmount_ = new wxTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, "",
+    toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
         wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
@@ -453,7 +454,7 @@ void mmTransDialog::CreateControls()
         , wxCharEventHandler(mmTransDialog::OnCategoryKey), NULL, this);
 
     // Number  ---------------------------------------------
-    textNumber_ = new wxTextCtrl(this
+    textNumber_ = new mmTextCtrl(this
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
     textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
@@ -472,7 +473,7 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(bAuto_, flags);
 
     notesTip_ = _("Notes");
-    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "",
+    textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "",
         wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
 
     box_sizer->Add(textNotes_, flagsExpand.Border(wxLEFT|wxRIGHT|wxBOTTOM, 10));

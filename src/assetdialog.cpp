@@ -15,6 +15,7 @@
  ********************************************************/
 
 #include "assetdialog.h"
+#include "mmtextctrl.h"
 #include "paths.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
