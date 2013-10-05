@@ -260,7 +260,6 @@
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\lua_interface.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
-    <ClCompile Include="..\..\src\mmaccount.cpp" />
     <ClCompile Include="..\..\src\mmcategory.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmcoredb.cpp" />
@@ -358,7 +357,6 @@
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\src\lua_interface.h" />
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
-    <ClInclude Include="..\..\src\mmaccount.h" />
     <ClInclude Include="..\..\src\mmcategory.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
     <ClInclude Include="..\..\src\mmcoredb.h" />

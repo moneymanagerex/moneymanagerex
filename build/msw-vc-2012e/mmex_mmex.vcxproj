@@ -171,7 +171,6 @@
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\src\reports\mmRepeat.cpp" />
-    <ClCompile Include="..\..\src\mmaccount.cpp" />
     <ClCompile Include="..\..\src\mmcategory.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmcoredb.cpp" />
@@ -276,7 +275,6 @@
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\mmOption.h" />
     <ClInclude Include="..\..\src\reports\mmRepeat.h" />
-    <ClInclude Include="..\..\src\mmaccount.h" />
     <ClInclude Include="..\..\src\mmcategory.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
     <ClInclude Include="..\..\src\mmcoredb.h" />
