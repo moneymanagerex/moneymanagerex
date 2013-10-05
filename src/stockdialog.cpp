@@ -92,10 +92,11 @@ void mmStockDialog::dataToControls()
         numSharesString <<  static_cast<long>(numShares);
 
     numShares_->SetValue(numSharesString);
-    valueInvestment_->SetLabel(CurrencyFormatter::float2String(m_stock->VALUE));
-    purchasePrice_->SetValue(CurrencyFormatter::float2String(m_stock->PURCHASEPRICE));
-    currentPrice_->SetValue(CurrencyFormatter::float2String(m_stock->CURRENTPRICE));
-    commission_->SetValue(CurrencyFormatter::float2String(m_stock->COMMISSION));
+    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+    valueInvestment_->SetLabel(Model_Account::toString(m_stock->VALUE, account));
+    purchasePrice_->SetValue(Model_Account::toString(m_stock->PURCHASEPRICE, account));
+    currentPrice_->SetValue(Model_Account::toString(m_stock->CURRENTPRICE, account));
+    commission_->SetValue(Model_Account::toString(m_stock->COMMISSION, account));
 }
 
 void mmStockDialog::fillControls()

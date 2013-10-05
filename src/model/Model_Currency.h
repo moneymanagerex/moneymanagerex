@@ -85,13 +85,13 @@ public:
     }
 public:
     // Getter
-    Data* GetBaseCurrency()
+    static Data* GetBaseCurrency()
     {
         int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
-        return this->get(currency_id, this->db_);
+        return Model_Currency::instance().get(currency_id);
     }
 public:
-    static wxString toString(double value, const Data* currency = 0)
+    static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
         wxString d2s = wxNumberFormatter::ToString(value, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
         if (currency) 

@@ -84,6 +84,7 @@ public:
     {
         return Model_Currency::instance().get(r->CURRENCYID);
     }
+    static Model_Currency::Data* currency(const Data& r) { return currency(&r); }
 public:
     static double balance(const Data* r)
     {
@@ -106,6 +107,11 @@ public:
         return sum;
     }
     static std::pair<double, double> investment_balance(const Data& r) { return investment_balance(&r); }
+    static wxString toString(double value, const Data* r)
+    {
+        return Model_Currency::toString(value, currency(r));
+    }
+    static wxString toString(double value, const Data& r) { return toString(value, &r); }
 public:
     static STATUS status(const Data* account)
     {
