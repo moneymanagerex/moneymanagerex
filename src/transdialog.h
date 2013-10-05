@@ -138,12 +138,10 @@ private:
     bool categUpdated_;
     bool bBestChoice_;
     wxString categStrykes_;
-    int payeeID_;
     bool advancedToTransAmountSet_;
 
     // store the original currency rate for transaction editing
     double  edit_currency_rate;
-    wxString payee_name_;
     wxString amountNormalTip_;
     wxString amountTransferTip_;
     wxString notesTip_;

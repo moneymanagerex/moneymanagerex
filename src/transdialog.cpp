@@ -68,7 +68,6 @@ mmTransDialog::mmTransDialog(
     , categUpdated_(false)
     , advancedToTransAmountSet_(false)
     , edit_currency_rate(1.0)
-    , payeeID_(-1)
     , bBestChoice_(true)
 
 {
@@ -131,12 +130,8 @@ void mmTransDialog::dataToControls()
 
         accountID_ = transaction_->ACCOUNTID; //pBankTransaction_->accountID_;
 
-        payeeID_ = pBankTransaction_->payeeID_;
-        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-        if (payee) payee_name_ = payee->PAYEENAME;
-
-        textNotes_->SetValue(pBankTransaction_->notes_);
-        textNumber_->SetValue(pBankTransaction_->transNum_);
+        textNotes_->SetValue(transaction_->NOTES);
+        textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
 
         advancedToTransAmountSet_ = (transaction_->TRANSAMOUNT != transaction_->TOTRANSAMOUNT);
 
@@ -186,7 +181,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
     if (type_obj) transaction_->TRANSCODE = type_obj->GetData();
     if (sType != TRANS_TYPE_TRANSFER_STR && transaction_->TRANSCODE == TRANS_TYPE_TRANSFER_STR)
     {
-        payee_name_ = resetPayeeString();
+        resetPayeeString();
         transaction_->CATEGID = -1;
         transaction_->SUBCATEGID = -1;
     }
@@ -201,18 +196,15 @@ void mmTransDialog::updateControlsForTransType()
     {
         if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
         {
-            payeeID_ = core_->bTransactionList_.getLastUsedPayeeID(accountID_
+            transaction_->PAYEEID = core_->bTransactionList_.getLastUsedPayeeID(accountID_
                 , transaction_->TRANSCODE, transaction_->CATEGID, transaction_->SUBCATEGID);
-
-            Model_Payee::Data *payee = Model_Payee::instance().get(payeeID_);
-            if (payee) payee_name_ = payee->PAYEENAME;
         }
 
         wxString categString = resetCategoryString();
         if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
         {
             transaction_->CATEGID = core_->bTransactionList_.getLastUsedCategoryID(accountID_
-                , payeeID_, transaction_->TRANSCODE, transaction_->SUBCATEGID);
+                , transaction_->PAYEEID, transaction_->TRANSCODE, transaction_->SUBCATEGID);
             categString = core_->categoryList_.GetFullCategoryString(transaction_->CATEGID, transaction_->SUBCATEGID);
         }
         bCategory_->SetLabel(categString);
@@ -232,10 +224,8 @@ void mmTransDialog::SetTransferControls(bool transfer)
     cAdvanced_->SetValue(advancedToTransAmountSet_);
     cAdvanced_->Enable(transfer);
 
-    wxString dataStr = payee_name_;
+    wxString dataStr = "";
     cbPayee_->Clear();
-    payee_name_.Clear();
-    payeeID_ = -1;
     wxSortedArrayString data;
     int type_num = transaction_type_->GetSelection();
 
@@ -273,6 +263,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         payee_label_->SetLabel(_("To"));
         cbPayee_->SetToolTip(_("Specify which account the transfer is going to"));
+        transaction_->PAYEEID = -1;
         account_label_->SetLabel(_("From"));
         cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
         cbAccount_->Enable(true);
@@ -291,6 +282,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
         cbAccount_->Enable(!accounts.empty());
+        transaction_->TOACCOUNTID = -1;
 
         data = Model_Payee::instance().all_payee_names();
         toTextAmount_->Enable(false);
@@ -298,12 +290,10 @@ void mmTransDialog::SetTransferControls(bool transfer)
         advancedToTransAmountSet_ = false;
         cAdvanced_->Enable(false);
 
-        Model_Payee::Data* payee = Model_Payee::instance().get(dataStr);
+        Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
         if (payee)
         {
-            payeeID_ = payee->PAYEEID;
-            payee_name_ = payee->PAYEENAME;
-            dataStr = payee_name_;
+            dataStr = payee->PAYEENAME;
         }
     }
 
@@ -523,21 +513,19 @@ void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
-    payee_name_ = cbPayee_->GetValue();
 
     bool transfer_transaction = transaction_type_->GetStringSelection() == wxGetTranslation(TRANS_TYPE_TRANSFER_STR);
     if (!transfer_transaction)
     {
-        const Model_Payee::Data *payee = Model_Payee::instance().get(payee_name_);
-        if (payee) payeeID_ = payee->PAYEEID;
-        wxLogDebug("Payee: %s id: %i", payee_name_, payeeID_);
+        const Model_Payee::Data *payee = Model_Payee::instance().get(cbPayee_->GetValue());
+        if (payee) transaction_->PAYEEID = payee->PAYEEID;
 
         // Only for new transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
-        if (payeeID_ != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1
+        if (transaction_->PAYEEID != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1
             && !edit_ && !categUpdated_ && split_->numEntries() == 0)
         {
-            Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+            Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             // if payee has memory of last category used then display last category for payee
             if (payee && payee->CATEGID != -1)
             {
@@ -559,7 +547,7 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
     }
     else
     {
-        transaction_->TOACCOUNTID = core_->accountList_.GetAccountId(payee_name_);
+        transaction_->TOACCOUNTID = core_->accountList_.GetAccountId(cbPayee_->GetValue());
     }
 
     event.Skip();
@@ -705,13 +693,13 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
 {
     wxString payeeStr = "";
 
-    payeeID_ = -1;
+    transaction_->PAYEEID = -1;
     Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
     if (filtd.size() == 1)
     {
         //only one payee present. Choose it
         payeeStr = filtd[0].PAYEENAME;
-        payeeID_ = filtd[0].PAYEEID;
+        transaction_->PAYEEID = filtd[0].PAYEEID;
     }
 
     return payeeStr;
@@ -820,7 +808,7 @@ bool mmTransDialog::validateData()
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
-                payeeID_ = Model_Payee::instance().save(payee);
+                transaction_->PAYEEID = Model_Payee::instance().save(payee);
             }
             else
                 return false;
@@ -838,11 +826,11 @@ bool mmTransDialog::validateData()
             return false;
         }
 
-        payeeID_ = -1;
+        transaction_->PAYEEID = -1;
     }
     else
     {
-        Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+        Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
         payee->CATEGID = transaction_->CATEGID;
         payee->SUBCATEGID = transaction_->SUBCATEGID;
         Model_Payee::instance().save(payee);
@@ -872,13 +860,13 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
             pBankTransaction_->transactionID());
     }
 
-    mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(newAccountID_);
-    wxASSERT(pCurrencyPtr);
+    transaction_->NOTES = textNotes_->GetValue();
+    transaction_->TRANSACTIONNUMBER = textNumber_->GetValue();
 
     pTransaction->accountID_ = newAccountID_;
     pTransaction->toAccountID_ = transaction_->TOACCOUNTID;
-    pTransaction->payeeID_ = payeeID_;
-    Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
+    pTransaction->payeeID_ = transaction_->PAYEEID;
+    Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
     if (payee)
         pTransaction->payeeStr_ = payee->PAYEENAME;
     pTransaction->transType_ = transaction_->TRANSCODE;
