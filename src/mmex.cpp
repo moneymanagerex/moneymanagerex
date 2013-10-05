@@ -2038,12 +2038,12 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
             //Favorite //
             //Open     //
 
-            wxMenu *menu = new wxMenu;
-            menu->Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
-            menu->Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
-            menu->Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
-            menu->Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
-            menu->AppendSeparator();
+            wxMenu menu;
+            menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
+            menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
+            menu.AppendSeparator();
             // menu->Append(menuItemOnlineUpdateCurRate_);
             // menu->AppendSeparator();
 
@@ -2053,20 +2053,20 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
                 wxMenu *exportTo = new wxMenu;
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF, _("&QIF Files..."));
-                menu->AppendSubMenu(exportTo,  _("&Export"));
+                menu.AppendSubMenu(exportTo,  _("&Export"));
                 wxMenu *importFrom = new wxMenu;
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV, _("&CSV Files..."));
                 importFrom->Append(MENU_TREEPOPUP_ACCOUNT_IMPORTQIF, _("&QIF Files..."));
-                menu->AppendSubMenu(importFrom,  _("&Import"));
-                menu->AppendSeparator();
+                menu.AppendSubMenu(importFrom,  _("&Import"));
+                menu.AppendSeparator();
             }
 
             wxMenu *viewAccounts = new wxMenu;
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWALL, _("All"));
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, _("Open"));
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("Favorites"));
-            menu->AppendSubMenu(viewAccounts, _("Accounts Visible"));
-            PopupMenu(&*menu, pt);
+            menu.AppendSubMenu(viewAccounts, _("Accounts Visible"));
+            PopupMenu(&menu, pt);
         }
         else
         {
@@ -2075,9 +2075,9 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
             wxString field = customSqlReportSelectedItem_.Mid(6,8);
             if (field == "_Report_")
             {
-                wxMenu* customReportMenu = new wxMenu;
-                customReportMenu->Append(wxID_EDIT, _("Edit Custom Report"));
-                PopupMenu(&*customReportMenu, pt);
+                wxMenu customReportMenu;
+                customReportMenu.Append(wxID_EDIT, _("Edit Custom Report"));
+                PopupMenu(&customReportMenu, pt);
             }
             else if (iData->getString() == "Budgeting")
             {
