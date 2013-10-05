@@ -3,6 +3,7 @@
 #include <wx/textctrl.h>
 #include <wx/string.h>
 #include "model/Model_Currency.h"
+#include "model/Model_Account.h"
 
 class mmTextCtrl : public wxTextCtrl
 {
@@ -17,8 +18,11 @@ public:
             {}
     void SetValue(double value)
     {
-        wxString value_str = wxString::Format("%f", value);
         this->SetValue(Model_Currency::toString(value));
+    }
+    void SetValue(double value, const Model_Account::Data* account)
+    {
+       this->SetValue(Model_Account::toString(value, account)); 
     }
 };
 
