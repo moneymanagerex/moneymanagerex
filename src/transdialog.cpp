@@ -165,6 +165,25 @@ void mmTransDialog::dataToControls()
 
     SetSplitState();
 
+    cbAccount_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
+        wxCommandEventHandler(mmTransDialog::OnAccountUpdated), NULL, this);
+    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
+        wxCommandEventHandler(mmTransDialog::OnPayeeUpdated), NULL, this);
+    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_COMBOBOX_CLOSEUP,
+        wxCommandEventHandler(mmTransDialog::OnPayeeUpdated), NULL, this);
+    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+    textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
+        , wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+
+#ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
+    dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
+        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), NULL, this);
+#endif
+
+
 }
 
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
@@ -215,6 +234,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
     cbAccount_->UnsetToolTip();
 
     cbPayee_->SetEvtHandlerEnabled(false);
+    cbAccount_->SetEvtHandlerEnabled(false);
 
     cAdvanced_->SetValue(advancedToTransAmountSet_);
     cAdvanced_->Enable(transfer);
@@ -300,6 +320,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
         cbPayee_ -> SetValue(dataStr);
     SetSplitState();
     cbPayee_ -> SetEvtHandlerEnabled(true);
+    cbAccount_ -> SetEvtHandlerEnabled(true);
 }
 
 void mmTransDialog::CreateControls()
@@ -325,10 +346,6 @@ void mmTransDialog::CreateControls()
 
     dpc_ = new wxDatePickerCtrl( this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Now()
         , wxDefaultPosition, wxSize(110, -1), date_style);
-#ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
-    dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
-        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), NULL, this);
-#endif
 
     //Text field for day of the week
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
@@ -375,14 +392,10 @@ void mmTransDialog::CreateControls()
     textAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
         wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
-    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
     toTextAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TOTEXTAMOUNT, "",
         wxDefaultPosition, wxSize(110, -1),
         wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
-    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(textAmount_, flags);
@@ -394,8 +407,6 @@ void mmTransDialog::CreateControls()
     // Account ---------------------------------------------
     cbAccount_ = new wxComboBox(this, wxID_ANY, "",
         wxDefaultPosition, wxSize(230, -1));
-    cbAccount_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
-        wxCommandEventHandler(mmTransDialog::OnAccountUpdated), NULL, this);
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     flex_sizer->Add(account_label_, flags);
@@ -409,11 +420,6 @@ void mmTransDialog::CreateControls()
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, "",
         wxDefaultPosition, wxSize(230, -1));
-
-    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
-        wxCommandEventHandler(mmTransDialog::OnPayeeUpdated), NULL, this);
-    cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_COMBOBOX_CLOSEUP,
-        wxCommandEventHandler(mmTransDialog::OnPayeeUpdated), NULL, this);
 
     cbPayee_ -> SetEvtHandlerEnabled(!edit_);
 
@@ -439,8 +445,6 @@ void mmTransDialog::CreateControls()
     textNumber_ = new mmTextCtrl(this
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
-    textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
 
     bAuto_ = new wxButton(this
         , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
