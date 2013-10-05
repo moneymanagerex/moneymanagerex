@@ -3114,7 +3114,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
     Model_Checking::Data *transaction = Model_Checking::instance().create();
     transaction->ACCOUNTID = gotoAccountID_; //m_cp->m_AccountID;
     int id = transaction->TRANSID; //id is -1 here
-    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().all();
+    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
 
     mmTransDialog dlg(transaction, split, this
         , m_core.get(), NULL, false);

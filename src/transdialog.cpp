@@ -50,7 +50,7 @@ END_EVENT_TABLE()
 
 mmTransDialog::mmTransDialog(
     Model_Checking::Data *transaction
-    , Model_Splittransaction::Data_Set split
+    , Model_Splittransaction::Data_Set& split
     , wxWindow* parent
     , mmCoreDB* core
     , mmBankTransaction* pBankTransaction

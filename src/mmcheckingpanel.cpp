@@ -1563,7 +1563,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
     int transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
     Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().all();
+    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     if (transaction)
     {
         transaction->ACCOUNTID = m_cp->m_AccountID;
@@ -1586,7 +1586,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
         trx_date = m_cp->core_->bTransactionList_.getLastDate(m_cp->m_AccountID);
 
     Model_Checking::Data *transaction = Model_Checking::instance().create();
-    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().all();
+    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
 
     transaction->ACCOUNTID = m_cp->m_AccountID;
     transaction->TRANSDATE = trx_date.FormatISODate();
