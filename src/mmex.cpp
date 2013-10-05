@@ -1942,7 +1942,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(data);
         if (account)
         {
-            mmNewAcctDialog dlg(m_core.get(), true, account->ACCOUNTID, this);
+            mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
                 createHomePage();
@@ -3013,7 +3013,8 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
     if (wizard->acctID_ != -1)
     {
         bool firstTermAccount = !hasActiveTermAccounts();
-        mmNewAcctDialog dlg(m_core.get(), true, wizard->acctID_, this);
+        Model_Account::Data* account = Model_Account::instance().create();
+        mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
         if (dlg.termAccountActivated() )
         {
@@ -3713,7 +3714,8 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
     {
         int choice = scd.GetSelection();
         int acctID = arrAcctID[choice];
-        mmNewAcctDialog dlg(m_core.get(), true, acctID, this);
+        Model_Account::Data* account = Model_Account::instance().get(acctID);
+        mmNewAcctDialog dlg(account, this);
         if ( dlg.ShowModal() == wxID_OK )
         {
             updateNavTreeControl();

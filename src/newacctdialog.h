@@ -26,9 +26,8 @@
 #define SYMBOL_NEWCHKGACCTDIALOG_POSITION wxDefaultPosition
 
 #include "guiid.h"
-#include "mmcoredb.h"
+#include "model/Model_Account.h"
 
-// TODO Model_Account & remove mmCoreDB
 class mmNewAcctDialog : public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmNewAcctDialog )
@@ -36,9 +35,7 @@ class mmNewAcctDialog : public wxDialog
 
 public:
     mmNewAcctDialog();
-    mmNewAcctDialog(mmCoreDB* core,
-                    bool edit,
-                    int acctId,
+    mmNewAcctDialog(Model_Account::Data* account,
                     wxWindow* parent, wxWindowID id = SYMBOL_NEWCHKGACCTDIALOG_IDNAME,
                     const wxString& caption = SYMBOL_NEWCHKGACCTDIALOG_TITLE,
                     const wxPoint& pos = SYMBOL_NEWCHKGACCTDIALOG_POSITION,
@@ -59,19 +56,18 @@ private:
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnCurrency(wxCommandEvent& event);
-    void fillControlsWithData(void);
+    void fillControls(void);
     void OnCustonImage(wxCommandEvent& event);
 
     wxBitmapButton* bitmaps_button_;
     void OnImageButton(wxCommandEvent& event);
 
     void changeFocus(wxChildFocusEvent& event);
-    mmCoreDB* core_;
+private:
+    Model_Account::Data* m_account;
+    int currencyID_;
     wxTextCtrl *textAccountName_;
     wxTextCtrl *notesCtrl_;
-    bool edit_;
-    int accountID_;
-    int currencyID_;
     bool termAccount_;
     wxString accessInfo_;
     bool access_changed_;

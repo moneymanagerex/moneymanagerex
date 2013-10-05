@@ -29,6 +29,7 @@ class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
     using DB_Table_ACCOUNTLIST_V1::all;
     using DB_Table_ACCOUNTLIST_V1::find;
     using DB_Table_ACCOUNTLIST_V1::get;
+    using DB_Table_ACCOUNTLIST_V1::save;
 public:
     enum STATUS { OPEN = 0, CLOSED };
     enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
@@ -79,6 +80,11 @@ public:
         Data_Set items = this->find(this->db_, COL_ACCOUNTNAME, name);
         if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
         return account;
+    }
+    int save(Data* r)
+    {
+        r->save(this->db_);
+        return r->id();
     }
     static Model_Currency::Data* currency(const Data* r)
     {

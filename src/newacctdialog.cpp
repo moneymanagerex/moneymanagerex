@@ -42,14 +42,12 @@ mmNewAcctDialog::mmNewAcctDialog( )
 {
 }
 
-mmNewAcctDialog::mmNewAcctDialog( mmCoreDB* core, bool edit, int accountID,
+mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account,
                                  wxWindow* parent, wxWindowID id, const wxString& caption,
                                  const wxPoint& pos, const wxSize& size, long style )
+    : m_account(account)
+    , currencyID_(-1)
 {
-    core_ = core;
-    edit_ = edit;
-    accountID_ = accountID;
-    currencyID_ = -1;
     Create(parent, id, caption, pos, size, style);
     termAccount_ = false;
 }
@@ -69,66 +67,62 @@ bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
     SetIcon(mmex::getProgramIcon());
 
     Centre();
-
-    if (edit_)
-    {
-        fillControlsWithData();
-    }
+    
+    fillControls();
 
     return TRUE;
 }
 
-void mmNewAcctDialog::fillControlsWithData()
+void mmNewAcctDialog::fillControls()
 {
     this->SetTitle(_("Edit Account"));
-    Model_Account::Data* account = Model_Account::instance().get(accountID_);
-    wxASSERT(account);
 
-    textAccountName_->SetValue(account->ACCOUNTNAME);
+    if (!this->m_account) return;
+
+    textAccountName_->SetValue(m_account->ACCOUNTNAME);
 
     wxTextCtrl* textCtrl;
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER);
-    textCtrl->SetValue(account->ACCOUNTNAME);
+    textCtrl->SetValue(m_account->ACCOUNTNAME);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
-    textCtrl->SetValue(account->HELDAT);
+    textCtrl->SetValue(m_account->HELDAT);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);
-    textCtrl->SetValue(account->WEBSITE);
+    textCtrl->SetValue(m_account->WEBSITE);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT);
-    textCtrl->SetValue(account->CONTACTINFO);
+    textCtrl->SetValue(m_account->CONTACTINFO);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_NOTES);
-    textCtrl->SetValue(account->NOTES);
+    textCtrl->SetValue(m_account->NOTES);
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    itemAcctType->SetStringSelection(wxGetTranslation(account->ACCOUNTTYPE));
+    itemAcctType->SetStringSelection(wxGetTranslation(m_account->ACCOUNTTYPE));
     itemAcctType->Enable(false);
 
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
-    choice->SetStringSelection(wxGetTranslation(account->STATUS));
+    choice->SetStringSelection(wxGetTranslation(m_account->STATUS));
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
-    itemCheckBox->SetValue(account->FAVORITEACCT == "TRUE");
+    itemCheckBox->SetValue(m_account->FAVORITEACCT == "TRUE");
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
-    double initBal = account->INITIALBAL;
+    double initBal = m_account->INITIALBAL;
 
-    Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
+    Model_Currency::Data* currency = Model_Currency::instance().get(m_account->CURRENCYID);
     wxASSERT(currency);
 
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
     bn->SetLabel(currency->CURRENCYNAME);
-    currencyID_ = account->CURRENCYID;
+    currencyID_ = m_account->CURRENCYID;
 
-    mmDBWrapper::loadCurrencySettings(core_->db_.get(), currencyID_);
-    textCtrl->SetValue(CurrencyFormatter::float2String(initBal));
+    textCtrl->SetValue(Model_Currency::toString(initBal, currency));
 
-    int selectedImage = mmIniOptions::instance().account_image_id(accountID_);
+    int selectedImage = mmIniOptions::instance().account_image_id(m_account->ACCOUNTID);
     bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
 
-    accessInfo_ = account->ACCESSINFO;
+    accessInfo_ = m_account->ACCESSINFO;
 }
 
 void mmNewAcctDialog::CreateControls()
@@ -182,12 +176,10 @@ void mmNewAcctDialog::CreateControls()
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), flags);
 
-    currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
     wxString currName = _("Select Currency");
-    if (currencyID_ != -1)
-    {
-       currName = core_->currencyList_.getCurrencyName(currencyID_);
-    }
+    Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
+    if (base_currency)
+        currName = base_currency->CURRENCYNAME;
 
     wxButton* itemButton71 = new wxButton( this,
         ID_DIALOG_NEWACCT_BUTTON_CURRENCY, currName );
@@ -301,13 +293,13 @@ void mmNewAcctDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
 {
-    //if ( dlg.ShowModal() == wxID_OK )
-    if (mmMainCurrencyDialog::Execute(this,currencyID_))
+    if (mmMainCurrencyDialog::Execute(this, currencyID_))
     {
-        //currencyID_ = dlg.currencyID_;
-        wxString currName = core_->currencyList_.getCurrencyName(currencyID_);
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
-        bn->SetLabel(currName);
+        bn->SetLabel(currency->CURRENCYNAME);
+
+        if (this->m_account) m_account->CURRENCYID = currency->CURRENCYID;
     }
 }
 
@@ -324,14 +316,6 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         mmShowErrorMessageInvalid(this, _("Account Name "));
         return;
     }
-    else
-    {
-        if (core_->accountList_.AccountExists(acctName) && !edit_)
-        {
-            wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
-            return;
-        }
-    }
 
     if (currencyID_ == -1)
     {
@@ -341,26 +325,13 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxChoice* itemAcctType = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
     int acctType = itemAcctType->GetSelection();
+    
+    if (!this->m_account) this->m_account = Model_Account::instance().create();
 
-    mmAccount* pAccount;
-    if (!edit_)
-    {
-       mmAccount* tAccount(new mmAccount());
-       pAccount = tAccount;
-    }
-    else
-    {
-       pAccount = core_->accountList_.GetAccountSharedPtr(accountID_);
-    }
-
-    pAccount->acctType_ = ACCOUNT_TYPE_BANK;
-    if (acctType == Model_Account::INVESTMENT)
-        pAccount->acctType_ = ACCOUNT_TYPE_STOCK;
+    m_account->ACCOUNTNAME = acctName;
+    m_account->ACCOUNTTYPE = Model_Account::instance().types_[acctType];
     if (acctType == Model_Account::TERM)
-    {
-        pAccount->acctType_ = ACCOUNT_TYPE_TERM;
-        termAccount_ = true;
-    }
+        this->termAccount_ = true;
 
     wxTextCtrl* textCtrlAcctNumber = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER);
     wxTextCtrl* textCtrlHeldAt = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
@@ -369,52 +340,25 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxTextCtrl* textCtrlAccess = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO);
 
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
-    int acctStatus = choice->GetSelection();
-    pAccount->status_ = mmAccount::MMEX_Open;
-    if (acctStatus == Model_Account::CLOSED)
-        pAccount->status_ = mmAccount::MMEX_Closed;
+    m_account->STATUS = Model_Account::instance().statuss_[choice->GetSelection()];
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
-    if (itemCheckBox->IsChecked())
-       pAccount->favoriteAcct_ = true;
-    else
-       pAccount->favoriteAcct_ = false;
+    m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";
 
-    mmDBWrapper::loadCurrencySettings(core_->db_.get(), currencyID_);
     wxTextCtrl* textCtrlInit = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
     wxString bal = textCtrlInit->GetValue().Trim();
-    pAccount->initialBalance_ = 0.0;
-    if (!bal.IsEmpty())
-    {
-        if (! CurrencyFormatter::formatCurrencyToDouble(bal, pAccount->initialBalance_))
-        {
-            mmShowErrorMessageInvalid(this, wxString::Format(_("Initial Balance: %s"), bal));
-            return;
-        }
-    }
-
-    pAccount->name_ = acctName;
-    pAccount->accountNum_ = textCtrlAcctNumber->GetValue();
-    pAccount->notes_ = notesCtrl_->GetValue();
-    pAccount->heldAt_ = textCtrlHeldAt->GetValue();
-    pAccount->website_ = textCtrlWebsite->GetValue();
-    pAccount->contactInfo_ = textCtrlContact->GetValue();
-    pAccount->currencyID_ = currencyID_;
-    pAccount->currency_ = core_->currencyList_.getCurrencySharedPtr(currencyID_);
+    m_account->INITIALBAL = 0.0; // TODO 
+    
+    m_account->ACCOUNTNUM = textCtrlAcctNumber->GetValue();
+    m_account->NOTES = notesCtrl_->GetValue();
+    m_account->HELDAT = textCtrlHeldAt->GetValue();
+    m_account->WEBSITE = textCtrlWebsite->GetValue();
+    m_account->CONTACTINFO = textCtrlContact->GetValue();
+    m_account->CURRENCYID = currencyID_;
     if (access_changed_)
-        pAccount->accessInfo_ = textCtrlAccess->GetValue();
+        m_account->ACCESSINFO = textCtrlAccess->GetValue();
 
-    if (edit_)
-    {
-        if (core_->accountList_.UpdateAccount(pAccount) == 0)
-            EndModal(wxID_OK);
-    }
-    else
-    {
-        if (core_->accountList_.AddAccount(pAccount) > 0)
-            EndModal(wxID_OK);
-    }
-
+    Model_Account::instance().save(m_account);
 }
 
 void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
@@ -443,9 +387,9 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
     int selectedImage = event.GetId();
 
-    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", accountID_), wxString()<<selectedImage);
+    Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", this->m_account->ACCOUNTID), selectedImage);
     if (selectedImage == 0)
-        selectedImage = mmIniOptions::instance().account_image_id(accountID_);
+        selectedImage = mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID);
 
     bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
 
@@ -453,6 +397,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 
 void mmNewAcctDialog::changeFocus(wxChildFocusEvent& event)
 {
+    return;
     wxWindow *w = event.GetWindow();
     int oject_in_focus = 0;
     if ( w )
@@ -461,9 +406,9 @@ void mmNewAcctDialog::changeFocus(wxChildFocusEvent& event)
     {
         wxTextCtrl* textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO);
         textCtrl->SetValue(accessInfo_);
-        access_changed_=true;
+        access_changed_ = true;
     }
-    if (!edit_ && notesCtrl_->GetValue() == notesLabel_)
+    if (notesCtrl_->GetValue() == notesLabel_)
     {
         notesCtrl_->SetValue("");
         notesCtrl_->SetForegroundColour(notesColour_);
