@@ -1962,7 +1962,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 m_core->bTransactionList_.deleteTransactions(account->ACCOUNTID);
-                Model_Account::instance().remove(account->ACCOUNTID, m_core.get()->db_.get());
+                Model_Account::instance().remove(account->ACCOUNTID);
                 updateNavTreeControl();
                 createHomePage();
             }
@@ -3753,7 +3753,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         if (msgDlg.ShowModal() == wxID_YES)
         {
             m_core->bTransactionList_.deleteTransactions(acctID);
-            Model_Account::instance().remove(acctID, m_core.get()->db_.get());
+            Model_Account::instance().remove(acctID);
 
             updateNavTreeControl();
         }

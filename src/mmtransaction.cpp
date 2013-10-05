@@ -152,7 +152,7 @@ mmBankTransaction::mmBankTransaction(mmCoreDB* core, wxSQLite3ResultSet& q1)
     categID_     = q1.GetInt("CATEGID");
     subcategID_  = q1.GetInt("SUBCATEGID");
 
-    core->accountList_.getCurrencySharedPtr(accountID_)->loadCurrencySettings();
+   // core->accountList_.getCurrencySharedPtr(accountID_)->loadCurrencySettings();
 
     splitEntries_ = new mmSplitTransactionEntries();
     getSplitTransactions(splitEntries_);
@@ -168,11 +168,13 @@ mmBankTransaction::~mmBankTransaction()
 bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 {
     wxString value1, value2;
+    const Model_Account::Data* account1 = Model_Account::instance().get(this->accountID_);
+    const Model_Account::Data* account2 = Model_Account::instance().get(tran.accountID_);
     switch(sortby_)
     {
     case ACCOUNT:
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
@@ -184,8 +186,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     case STATUS:
@@ -193,8 +195,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     case CATEGORY:
@@ -202,8 +204,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     case TYPE:
@@ -211,8 +213,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     case AMOUNT:
@@ -220,8 +222,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     case NUMBER:
@@ -229,8 +231,8 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     case NOTE:
@@ -238,15 +240,15 @@ bool mmBankTransaction::operator < (const mmBankTransaction& tran) const
 
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
         break;
     default: // DATE
         if (this->date_ < tran.date_) return true; else if (this->date_ > tran.date_) return false;
 
-        value1 = core_->accountList_.GetAccountName(this->accountID_);
-        value2 = core_->accountList_.GetAccountName(tran.accountID_);
+        value1 = account1->ACCOUNTNAME;
+        value2 = account2->ACCOUNTNAME;
         if (value1 < value2) return true; else if (value1 > value2) return false;
     }
     return this->transactionID_ < tran.transactionID_;
@@ -640,10 +642,10 @@ void mmBankTransactionList::LoadTransactions()
 void mmBankTransactionList::LoadAccountTransactions(int accountID, double& account_balance, double& reconciled_balance)
 {
     wxDateTime today = wxDateTime::Now().GetDateOnly();
-    mmAccount* pAccount = core_->accountList_.GetAccountSharedPtr(accountID);
-    account_balance = pAccount->initialBalance_;
-    reconciled_balance = pAccount->initialBalance_;
-    double balance = pAccount->initialBalance_;
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    account_balance = account->INITIALBAL;
+    reconciled_balance = account->INITIALBAL;
+    double balance = account->INITIALBAL;
     //TODO: get parameter mmIniOptions::instance().ignoreFutureTransactions_;
     bool calculate_future = true;
     accountTransactions_.clear();
@@ -741,20 +743,17 @@ void mmBankTransactionList::getExpensesIncomeStats
     //Store base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
     double convRate = 1;
-    for (const auto& account: core_->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-        double rate = pCurrencyPtr->baseConv_;
-        acc_conv_rates[account->id_] = rate;
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
 
         //Set std::map with zerros
         int i = group_by_month ? 12 : 1;
         for (int m = 0; m < i; m++)
         {
             wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
-            int idx = group_by_account ? (1000000 * account->id_) : 0;
+            int idx = group_by_account ? (1000000 * account.ACCOUNTID) : 0;
             idx += group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
             incomeExpensesStats[idx] = incomeExpensesPair;
         }
@@ -802,7 +801,11 @@ void mmBankTransactionList::getTopCategoryStats(
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
-    core_->accountList_.getAccountRates(acc_conv_rates);
+    for (const auto& account: Model_Account::instance().all())
+    {
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+    }
     //Temporary map
     std::map<wxString, double> stat;
 
@@ -869,7 +872,11 @@ void mmBankTransactionList::getCategoryStats(
     //Initialization
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
-    core_->accountList_.getAccountRates(acc_conv_rates);
+    for (const auto& account: Model_Account::instance().all())
+    {
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+    }
     //Set std::map with zerros
     double value = 0;
     for (const auto& category: core_->categoryList_.entries_)
@@ -1037,7 +1044,11 @@ void mmBankTransactionList::getPayeeStats(std::map<int, std::pair<double, double
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
-    core_->accountList_.getAccountRates(acc_conv_rates);
+    for (const auto& account: Model_Account::instance().all())
+    {
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+    }
 
     for (const auto & pBankTransaction: transactions_)
     {
@@ -1116,7 +1127,9 @@ double mmBankTransactionList::getAmountForCategory(
             if (pBankTransaction->date_.GetDateOnly().IsLaterThan(dtNow)) continue;
         }
 
-        double convRate = core_->accountList_.getAccountBaseCurrencyConvRate(pBankTransaction->accountID_);
+        Model_Account::Data* account = Model_Account::instance().get(pBankTransaction->accountID_);
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        double convRate = currency->BASECONVRATE;
         if (pBankTransaction->transType_ == TRANS_TYPE_TRANSFER_STR)
         {
             if (evaluateTransfer)
@@ -1220,7 +1233,9 @@ bool mmBankTransactionList::deleteTransaction(int accountID, int transactionID)
 bool mmBankTransactionList::getDailyBalance(int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture) const
 {
     wxDateTime now = wxDateTime::Now();
-    double convRate = core_->accountList_.getAccountBaseCurrencyConvRate(accountID);
+    Model_Account::Data* account = Model_Account::instance().get(accountID);
+    Model_Currency::Data* currency = Model_Account::currency(account);
+    double convRate = currency->BASECONVRATE;
     for (const auto & pBankTransaction: transactions_)
     {
         if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)

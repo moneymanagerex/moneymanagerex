@@ -690,7 +690,6 @@ void mmCheckingPanel::CreateControls()
 void mmCheckingPanel::setAccountSummary()
 {
     Model_Account::Data *account = Model_Account::instance().get(m_AccountID);
-    core_->accountList_.getCurrencySharedPtr(m_AccountID)->loadCurrencySettings();
 
     if (account)
         header_text_->SetLabel(wxString::Format(_("Account View : %s"), account->ACCOUNTNAME));
@@ -764,45 +763,44 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 {
     int accountId = m_trans[selIndex]->accountID_;
     int toaccountId = m_trans[selIndex]->toAccountID_;
-    wxString intoaccStr = core_->accountList_.GetAccountName(toaccountId);
-    wxString fromaccStr = core_->accountList_.GetAccountName(accountId);
+    Model_Account::Data* account = Model_Account::instance().get(accountId);
+    wxString fromaccStr = account->ACCOUNTNAME;
     int basecurrencyid = Model_Infotable::instance().GetBaseCurrencyId();
     wxString transcodeStr = m_trans[selIndex]->transType_;
 
     double amount = m_trans[selIndex]->amt_;
     wxString amountStr;
 
-    mmCurrency* pCurrency = core_->accountList_.getCurrencySharedPtr(accountId);
-    int currencyid = pCurrency->currencyID_;
+    Model_Currency::Data* currency = Model_Account::currency(account);
+    int currencyid = currency->CURRENCYID;
     //TODO: FIXME: If base currency does not set bug may happens
     if (basecurrencyid == -1) basecurrencyid = currencyid;
-    wxString curpfxStr = pCurrency->pfxSymbol_;
-    wxString cursfxStr = pCurrency->sfxSymbol_;
-    double convrate = core_->accountList_.getAccountBaseCurrencyConvRate(accountId);
+    wxString curpfxStr = currency->PFX_SYMBOL;
+    wxString cursfxStr = currency->SFX_SYMBOL;
+    double convrate = currency->BASECONVRATE; 
 
     wxString infoStr = "";
     if (transcodeStr == TRANS_TYPE_TRANSFER_STR)
     {
-        double toconvrate = core_->accountList_.getAccountBaseCurrencyConvRate(toaccountId);
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(toaccountId);
-        wxASSERT(pCurrencyPtr);
-        wxString tocurpfxStr = pCurrencyPtr->pfxSymbol_;
-        wxString tocursfxStr = pCurrencyPtr->sfxSymbol_;
+        Model_Account::Data* to_account = Model_Account::instance().get(toaccountId);
+        Model_Currency::Data* to_currency = Model_Account::currency(to_account);
+        wxString intoaccStr = to_account->ACCOUNTNAME;
+        double toconvrate = to_currency->BASECONVRATE;
+        wxString tocurpfxStr = to_currency->PFX_SYMBOL;
+        wxString tocursfxStr = to_currency->SFX_SYMBOL;
 
-        int tocurrencyid = pCurrencyPtr->currencyID_;
+        int tocurrencyid = to_currency->CURRENCYID;
         double toamount = m_trans[selIndex]->toAmt_;
         double convertion = 0.0;
         if (toamount != 0.0 && amount != 0.0)
             convertion = ( convrate < toconvrate ? amount/toamount : toamount/amount);
         wxString toamountStr, convertionStr;
 
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+//        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
         toamountStr = CurrencyFormatter::float2Money(toamount);
         convertionStr = CurrencyFormatter::float2String(convertion);
 
-        pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountId);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+//        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
         amountStr = CurrencyFormatter::float2Money(amount);
         //if (currencyid == basecurrencyid)
         convertionStr = CurrencyFormatter::float2String(convertion);
@@ -857,9 +855,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
             mmDBWrapper::loadCurrencySettings(core_->db_.get(), pCurrencyBase->currencyID_);
             basecuramountStr = CurrencyFormatter::float2Money(amount*convrate);
 
-            pCurrencyBase = core_->accountList_.getCurrencySharedPtr(accountId);
-            wxASSERT(pCurrencyBase);
-            CurrencyFormatter::instance().loadSettings(*pCurrencyBase);
+//            CurrencyFormatter::instance().loadSettings(*pCurrencyBase);
             amountStr = CurrencyFormatter::float2Money(amount);
 
             //output
@@ -1119,7 +1115,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
     menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
-    if (hide_menu_item || (m_cp->core_->accountList_.getNumBankAccounts() < 2)
+    if (hide_menu_item || (Model_Account::checking_account_num() < 2)
         || m_cp->m_trans[m_selectedIndex]->transType_ == TRANS_TYPE_TRANSFER_STR)
         menu.Enable(MENU_TREEPOPUP_MOVE, false);
     menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
@@ -1725,7 +1721,8 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 //  Called when moving a transaction to a new account.
 int TransactionListCtrl::DestinationAccountID()
 {
-    wxString source_name = m_cp->core_->accountList_.GetAccountName(m_cp->m_AccountID);
+    const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
+    wxString source_name = source_account->ACCOUNTNAME;
     wxString headerMsg = _("Moving Transaction from ") + source_name + _(" to...");
 
     wxSortedArrayString accountArray;
@@ -1739,7 +1736,8 @@ int TransactionListCtrl::DestinationAccountID()
     if (scd.ShowModal() == wxID_OK)
     {
         wxString dest_account_name = scd.GetStringSelection();
-        dest_account_id = m_cp->core_->accountList_.GetAccountId(dest_account_name);
+        Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
+        dest_account_id = dest_account->ACCOUNTID;
     }
 
     return dest_account_id;

@@ -158,6 +158,10 @@ public:
     {
         return is_used(&c);
     }
+    static int checking_account_num()
+    {
+        return Model_Account::instance().find(COL_ACCOUNTTYPE, "Checking").size();
+    }
 };
 
 #endif // 
