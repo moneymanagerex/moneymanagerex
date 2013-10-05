@@ -73,7 +73,13 @@ public:
     {
         return this->get(id, this->db_);
     }
-
+    Data* get(const wxString& name)
+    {
+        Data* account = 0;
+        Data_Set items = this->find(this->db_, COL_ACCOUNTNAME, name);
+        if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
+        return account;
+    }
     static Model_Currency::Data* currency(const Data* r)
     {
         return Model_Currency::instance().get(r->CURRENCYID);

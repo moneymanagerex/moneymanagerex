@@ -726,11 +726,10 @@ wxString mmTransDialog::resetCategoryString()
 
 bool mmTransDialog::validateData()
 {
-    Model_Account::Data_Set account = Model_Account::instance().find(Model_Account::COL_ACCOUNTNAME, cbAccount_->GetValue());
-    if (account.size() > 0)
-        newAccountID_ = account[0].ACCOUNTID;
-
-    if (newAccountID_ < 1)
+    Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
+    if (account)
+        newAccountID_ = account->ACCOUNTID;
+    else
     {
         mmShowErrorMessageInvalid(this, _("Account"));
         return false;
