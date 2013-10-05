@@ -359,6 +359,8 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
         m_account->ACCESSINFO = textCtrlAccess->GetValue();
 
     Model_Account::instance().save(m_account);
+
+    EndModal(wxID_OK);
 }
 
 void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)

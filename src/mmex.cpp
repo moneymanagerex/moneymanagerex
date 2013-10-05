@@ -3005,7 +3005,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
     if (wizard->acctID_ != -1)
     {
         bool firstTermAccount = !hasActiveTermAccounts();
-        Model_Account::Data* account = Model_Account::instance().create();
+        Model_Account::Data* account = Model_Account::instance().get(wizard->acctID_);
         mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
         if (dlg.termAccountActivated() )
