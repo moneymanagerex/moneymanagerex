@@ -29,6 +29,7 @@
 #include "validators.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Billsdeposits.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )
@@ -123,47 +124,33 @@ bool mmBDDialog::Create( wxWindow* parent, wxWindowID id, const wxString& captio
 
 void mmBDDialog::dataToControls()
 {
-    static const char billsdepositsSql[] =
-
-        "select BDID, ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, "
-        "SUBCATEGID, FOLLOWUPID, TOTRANSAMOUNT, REPEATS, NUMOCCURRENCES, "
-        "NEXTOCCURRENCEDATE, date(TRANSDATE, 'localtime') as TRANSDATE "
-        "from BILLSDEPOSITS_V1 where BDID = ? ";
-        // Removed "date(NEXTOCCURRENCEDATE, 'localtime') as NEXTOCCURRENCEDATE, "
-        // because causing problems with some systems and in different time zones
-
-    wxSQLite3Statement st = core_->db_.get()->PrepareStatement(billsdepositsSql);
-    st.Bind(1, bdID_);
-
-    wxSQLite3ResultSet q1 = st.ExecuteQuery();
-
-    if (q1.NextRow())
+    Model_Billsdeposits::Data* bill = Model_Billsdeposits::instance().get(bdID_);
+    if (bill)
     {
-        categID_ = q1.GetInt("CATEGID");
-        subcategID_ = q1.GetInt("SUBCATEGID");
+        categID_ = bill->CATEGID;
+        subcategID_ = bill->SUBCATEGID;
 
-        wxString transNumString = q1.GetString("TRANSACTIONNUMBER");
-        wxString notesString  = q1.GetString("NOTES");
-        wxString transTypeString = q1.GetString("TRANSCODE");
-        double transAmount = q1.GetDouble("TRANSAMOUNT");
-        toTransAmount_ = q1.GetDouble("TOTRANSAMOUNT");
+        wxString transNumString = bill->TRANSACTIONNUMBER;
+        wxString notesString  = bill->NOTES;
+        wxString transTypeString = bill->TRANSCODE;
+        double transAmount = bill->TRANSAMOUNT;
+        toTransAmount_ = bill->TOTRANSAMOUNT;
 
-        wxString statusString  = q1.GetString("STATUS");
+        wxString statusString  = bill->STATUS;
         //wxString statusString  = pBankTransaction_->status_;
         if (statusString == "") statusString = "N";
         choiceStatus_->SetSelection(wxString("NRVFD").Find(statusString));
 
-        wxString numRepeatStr  = q1.GetString("NUMOCCURRENCES");
-        if (numRepeatStr != "-1")
-            textNumRepeats_->SetValue(numRepeatStr);
+        if (bill->NUMOCCURRENCES)
+            textNumRepeats_->SetValue(wxString::Format("%d", bill->NUMOCCURRENCES));
 
-        wxDateTime dtno =  q1.GetDate("NEXTOCCURRENCEDATE");
+        wxDateTime dtno =  Model_Billsdeposits::NEXTOCCURRENCEDATE(bill);
         wxString dtnostr = mmGetDateForDisplay(dtno);
         dpcbd_->SetValue(dtno);
         dpc_->SetValue(dtno);
         calendarCtrl_->SetDate (dtno);
 
-        int repeatSel = q1.GetInt("REPEATS");
+        int repeatSel = bill->REPEATS;
         // Have used repeatSel to multiplex auto repeat fields.
         if (repeatSel >= BD_REPEATS_MULTIPLEX_BASE)
         {
@@ -193,10 +180,11 @@ void mmBDDialog::dataToControls()
             transaction_type_->SetSelection(DEF_TRANSFER);
         updateControlsForTransType();
 
-        payeeID_ = q1.GetInt("PAYEEID");
-        toID_ = q1.GetInt("TOACCOUNTID");
-        accountID_ = q1.GetInt("ACCOUNTID");
-        wxString accountName = core_->accountList_.GetAccountName(accountID_);
+        payeeID_ = bill->PAYEEID;
+        toID_ = bill->TOACCOUNTID;
+        accountID_ = bill->ACCOUNTID;
+        Model_Account::Data* account = Model_Account::instance().get(bill->ACCOUNTID);
+        wxString accountName = account->ACCOUNTNAME;
         itemAccountName_->SetLabel(accountName);
 
         split_->loadFromBDDB(core_, bdID_);
@@ -227,8 +215,9 @@ void mmBDDialog::dataToControls()
 
         if (transTypeString == TRANS_TYPE_TRANSFER_STR)
         {
-            wxString fromAccount = core_->accountList_.GetAccountName(accountID_);
-            wxString toAccount = core_->accountList_.GetAccountName(toID_);
+            Model_Account::Data* to_account = Model_Account::instance().get(toID_);
+            wxString fromAccount = account->ACCOUNTNAME;
+            wxString toAccount = to_account->ACCOUNTNAME;
 
             bPayee_->SetLabel(fromAccount);
             bTo_->SetLabel(toAccount);
@@ -248,9 +237,6 @@ void mmBDDialog::dataToControls()
                 bPayee_->SetLabel(payee->PAYEENAME);
         }
     }
-
-    st.Finalize();
-    st.Reset();
 }
 
 void mmBDDialog::CreateControls()
@@ -305,7 +291,7 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Account Name")), flags);
     itemAccountName_ = new wxButton( this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"),
                                      wxDefaultPosition, wxSize(180, -1));
-    if (core_->accountList_.getNumBankAccounts() == 1)
+    if (Model_Account::checking_account_num() == 1)
     {
         wxSortedArrayString accountArray;
         const auto& account = Model_Account::instance().all()[0];
@@ -434,7 +420,7 @@ void mmBDDialog::CreateControls()
 
     // Restrict choise if accounts number less than 2
     size = sizeof(TRANSACTION_TYPE)/sizeof(wxString);
-    if (core_->accountList_.getNumBankAccounts() < 2) size--;
+    if (Model_Account::checking_account_num() < 2) size--;
     for(size_t i = 0; i < size; ++i)
     transaction_type_->Append(wxGetTranslation(TRANSACTION_TYPE[i]),
         new wxStringClientData(TRANSACTION_TYPE[i]));
@@ -587,7 +573,8 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
-        accountID_ = core_->accountList_.GetAccountId(acctName);
+        Model_Account::Data* account = Model_Account::instance().get(acctName);
+        accountID_ = account->ACCOUNTID;
         itemAccountName_->SetLabel(acctName);
     }
 }
@@ -606,7 +593,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
         if (scd.ShowModal() == wxID_OK)
         {
             acctName = scd.GetStringSelection();
-            payeeID_ = core_->accountList_.GetAccountId(acctName);
+            Model_Account::Data* account = Model_Account::instance().get(acctName);
+            payeeID_ = account->ACCOUNTID;
             bPayee_->SetLabel(acctName);
             itemAccountName_->SetLabel(acctName);
         }
@@ -676,7 +664,8 @@ void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
-        toID_ = core_->accountList_.GetAccountId(acctName);
+        Model_Account::Data* account = Model_Account::instance().get(acctName);
+        toID_ = account->ACCOUNTID;
         bTo_->SetLabel(acctName);
     }
 }
@@ -896,9 +885,16 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         // subsequent edits will not allow automatic update of the amount
         if (!edit_)
         {
-            if(toAccountID != -1) {
-                double rateFrom = core_->accountList_.getAccountBaseCurrencyConvRate(fromAccountID);
-                double rateTo = core_->accountList_.getAccountBaseCurrencyConvRate(toAccountID);
+            if(toAccountID != -1) 
+            {
+                Model_Account::Data* from_account = Model_Account::instance().get(fromAccountID);
+                Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
+
+                Model_Currency::Data* from_currency = Model_Account::currency(from_account);
+                Model_Currency::Data* to_currency = Model_Account::currency(to_account);
+
+                double rateFrom = from_currency->BASECONVRATE; 
+                double rateTo = to_currency->BASECONVRATE;
 
                 double convToBaseFrom = rateFrom * amount;
                 toTransAmount_ = convToBaseFrom / rateTo;
