@@ -1062,7 +1062,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
 
-    SplitTransactionDialog dlg(core_, split_, transaction_type_->GetSelection(), this);
+    SplitTransactionDialog dlg(splt_, this, transaction_type_->GetSelection(), core_, split_);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = split_->getTotalSplits();

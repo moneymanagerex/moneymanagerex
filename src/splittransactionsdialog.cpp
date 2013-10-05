@@ -41,23 +41,22 @@ SplitTransactionDialog::SplitTransactionDialog( )
 }
 
 SplitTransactionDialog::SplitTransactionDialog(
-    mmCoreDB* core,
-    mmSplitTransactionEntries* split,
-    int transType,
-    wxWindow* parent, wxWindowID id,
-    const wxString& caption,
-    const wxPoint& pos,
-    const wxSize& size,
-    long style )
+    Model_Splittransaction::Data_Set &split
+    , wxWindow* parent
+    , int transType
+    , mmCoreDB* core
+    , mmSplitTransactionEntries* splt)
 {
-    core_  = core;
+    core_ = core;
+    splt_ = splt;
     split_ = split;
-
     transType_ = transType;
     if (transType_ == DEF_TRANSFER)
         transType_ = DEF_WITHDRAWAL;
 
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("Split Transaction Dialog")
+        , wxDefaultPosition, wxSize(400, 300), style);
 }
 
 bool SplitTransactionDialog::Create( wxWindow* parent, wxWindowID id,
@@ -84,13 +83,13 @@ void SplitTransactionDialog::DataToControls()
 {
     lcSplit_->DeleteAllItems();
     long idx = 0;
-    for (const auto & entry : split_->entries_)
+    for (const auto & entry : split_)
     {
         lcSplit_->InsertItem((long)idx
-            , core_->categoryList_.GetFullCategoryString(entry->categID_, entry->subCategID_)
+            , core_->categoryList_.GetFullCategoryString(entry.CATEGID, entry.SUBCATEGID)
             , -1);
 
-        lcSplit_->SetItem((long)idx++, 1, CurrencyFormatter::float2String(entry->splitAmount_));
+        lcSplit_->SetItem((long)idx++, 1, CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT));
     }
     UpdateSplitTotal();
     itemButtonNew_->SetFocus();
@@ -186,7 +185,7 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
         pSplitEntry->splitAmount_  = *sdd.m_amount_;
         pSplitEntry->categID_      = categID;
         pSplitEntry->subCategID_   = subcategID;
-        split_->addSplit(pSplitEntry);
+        splt_->addSplit(pSplitEntry);
 
         UpdateSplitTotal();
     }
@@ -203,7 +202,7 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& /*event*/ )
     if (item >= 0) // Item found in list
     {
         lcSplit_->DeleteItem(item);
-        split_->removeSplitByIndex(item);
+        splt_->removeSplitByIndex(item);
         UpdateSplitTotal();
     }
 }
@@ -225,7 +224,7 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    transAmount_->SetLabel(CurrencyFormatter::float2String(split_->getTotalSplits()));
+    transAmount_->SetLabel(CurrencyFormatter::float2String(splt_->getTotalSplits()));
 }
 
 long SplitTransactionDialog::GetSelectedItem()
@@ -251,17 +250,17 @@ void SplitTransactionDialog::EditEntry()
     long item = this->GetSelectedItem();
     if (item == wxNOT_FOUND) return;
 
-    int categID    = split_->entries_[item]->categID_;
-    int subCategID = split_->entries_[item]->subCategID_;
-    double amount  = split_->entries_[item]->splitAmount_;
+    int categID    = splt_->entries_[item]->categID_;
+    int subCategID = splt_->entries_[item]->subCategID_;
+    double amount  = splt_->entries_[item]->splitAmount_;
     wxString category = core_->categoryList_.GetFullCategoryString(categID,subCategID);
 
     SplitDetailDialog sdd(core_, category, &categID, &subCategID, &amount, transType_, this);
     if (sdd.ShowModal() == wxID_OK)
     {
-        split_->entries_[item]->categID_     = categID;
-        split_->entries_[item]->subCategID_  = subCategID;
-        split_->entries_[item]->splitAmount_ = amount;
+        splt_->entries_[item]->categID_     = categID;
+        splt_->entries_[item]->subCategID_  = subCategID;
+        splt_->entries_[item]->splitAmount_ = amount;
         DataToControls();
         UpdateSplitTotal();
     }

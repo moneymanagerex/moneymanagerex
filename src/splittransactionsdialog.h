@@ -21,6 +21,7 @@
 
 #include "guiid.h"
 #include "mmtransaction.h"
+#include "model\Model_Splittransaction.h"
 ////@end includes
 
 /*!
@@ -31,22 +32,7 @@
 class wxListCtrl;
 ////@end forward declarations
 
-/*!
- * Control identifiers
- */
-
-////@begin control identifiers
-#define ID_SPLITTRANSACTIONS_DIALOG 10117
-#define SYMBOL_SPLITTRANSACTIONDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_SPLITTRANSACTIONDIALOG_TITLE _("Split Transaction Dialog")
-#define SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME ID_SPLITTRANSACTIONS_DIALOG
-#define SYMBOL_SPLITTRANSACTIONDIALOG_SIZE wxSize(400, 300)
-#define SYMBOL_SPLITTRANSACTIONDIALOG_POSITION wxDefaultPosition
 #define ID_LISTCTRL3 10118
-//#define ID_BUTTONADD 10119
-//#define ID_BUTTONREMOVE 10120
-//#define ID_BUTTONCLOSE 10121
-////@end control identifiers
 
 /*!
  * Compatibility
@@ -72,24 +58,20 @@ public:
     /// Constructors
     SplitTransactionDialog( );
     SplitTransactionDialog(
-        mmCoreDB* core,
-        mmSplitTransactionEntries* split,
-        int transType,
+        Model_Splittransaction::Data_Set &split,
         wxWindow* parent,
-        wxWindowID id = SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_SPLITTRANSACTIONDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_SPLITTRANSACTIONDIALOG_POSITION,
-        const wxSize& size = SYMBOL_SPLITTRANSACTIONDIALOG_SIZE,
-        long style = SYMBOL_SPLITTRANSACTIONDIALOG_STYLE );
+        int transType,
+        mmCoreDB* core,
+        mmSplitTransactionEntries* splt);
 
     /// Creation
     bool Create(
         wxWindow* parent,
-        wxWindowID id = SYMBOL_SPLITTRANSACTIONDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_SPLITTRANSACTIONDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_SPLITTRANSACTIONDIALOG_POSITION,
-        const wxSize& size = SYMBOL_SPLITTRANSACTIONDIALOG_SIZE,
-        long style = SYMBOL_SPLITTRANSACTIONDIALOG_STYLE );
+        wxWindowID id,
+        const wxString& caption,
+        const wxPoint& pos,
+        const wxSize& size,
+        long style);
 
     /// Creates the controls and sizers
     void CreateControls();
@@ -122,9 +104,11 @@ public:
     void SetDisplaySplitCategories();
 
 private:
-    mmCoreDB* core_;
-    mmSplitTransactionEntries* split_;
+    Model_Splittransaction::Data_Set split_;
     int transType_;
+
+    mmCoreDB* core_;
+    mmSplitTransactionEntries* splt_;
 
     wxButton* itemButtonNew_;
     wxButton* itemButtonEdit_;

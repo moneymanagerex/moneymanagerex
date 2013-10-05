@@ -1900,11 +1900,14 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     if (transTypeStr== TRANS_TYPE_DEPOSIT_STR)  transType = 1;
     if (transTypeStr== TRANS_TYPE_TRANSFER_STR) transType = 2;
 
+    Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
+    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     SplitTransactionDialog splitTransDialog(
-        core_,
-        core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_,
-        transType,
-        this
+        split
+        , this
+        , transType
+        , core_
+        , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
     );
     splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
