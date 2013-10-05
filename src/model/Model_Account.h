@@ -162,6 +162,10 @@ public:
     {
         return Model_Account::instance().find(COL_ACCOUNTTYPE, "Checking").size();
     }
+    static int investment_account_num()
+    {
+        return Model_Account::instance().find(COL_ACCOUNTTYPE, "Investment").size();
+    }
 };
 
 #endif // 

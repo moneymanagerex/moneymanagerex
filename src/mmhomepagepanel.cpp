@@ -109,7 +109,7 @@ void mmHomePagePanel::createFrames()
         tBalance += termBalance;
     }
 
-    if (core_->accountList_.has_stock_account())
+    if (Model_Account::investment_account_num())
          stocks = displayStocks(tBalance);
 
     leftFrame << acc << term << stocks;
@@ -209,20 +209,16 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, const wxString& type
         hb.addText(displaySummaryHeader(_("Term account")));
 
     // Get account balances and display accounts if we want them displayed
-    for (const auto& account: core_->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        if (account->acctType_ != type || account->status_ == mmAccount::MMEX_Closed) continue;
+        if (account.ACCOUNTTYPE != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
 
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+        Model_Currency::Data* currency = Model_Account::currency(account);
 
-        Model_Account::Data* a = Model_Account::instance().get(account->id_);
-        if (!a) continue;
-        double bal = Model_Account::balance(a);
-        double reconciledBal = account->initialBalance_ + core_->bTransactionList_.getReconciledBalance(account->id_
+        double bal = Model_Account::balance(account);
+        double reconciledBal = account.INITIALBAL + core_->bTransactionList_.getReconciledBalance(account.ACCOUNTID
             , mmIniOptions::instance().ignoreFutureTransactions_);
-        double rate = pCurrencyPtr->baseConv_;
+        double rate = currency->BASECONVRATE;
         tBalance += bal * rate; // actual amount in that account in the original rate
         tRecBalance += reconciledBal * rate;
 
@@ -232,13 +228,13 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, const wxString& type
         {
 
             // show the actual amount in that account
-            if (((vAccts_ == "Open" && account->status_ == mmAccount::MMEX_Open) ||
-                (vAccts_ == "Favorites" && account->favoriteAcct_) ||
+            if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts_ == "Favorites" && account.FAVORITEACCT == "TRUE") ||
                 (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
                 && ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts()))
             {
                 hb.startTableRow();
-                hb.addTableCellLink(wxString::Format("ACCT:%d", account->id_), account->name_, false, true);
+                hb.addTableCellLink(wxString::Format("ACCT:%d", account.ACCOUNTID), account.ACCOUNTNAME, false, true);
                 hb.addMoneyCell(reconciledBal, true);
                 hb.addMoneyCell(bal);
                 hb.endTableRow();
@@ -294,9 +290,8 @@ wxString mmHomePagePanel::displayStocks(double& tBalance /*, double& tIncome, do
         double baseconvrate = q1.GetDouble("BASECONVRATE");
         double stockGain = q1.GetDouble("GAIN");
 
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(stockaccountId);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+        Model_Account::Data* account = Model_Account::instance().get(stockaccountId);
+        Model_Currency::Data* currency = Model_Account::currency(account);
 
         // if Stock accounts being displayed, include income/expense totals on home page.
         //tIncome += income * baseconvrate;
@@ -410,11 +405,10 @@ wxString mmHomePagePanel::displayCurrencies()
             double convRate = q1.GetDouble("BASECONVRATE");
             wxString convRateStr;
 
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountId);
-            wxASSERT(pCurrencyPtr);
+            Model_Account::Data* account = Model_Account::instance().get(accountId);
+            Model_Currency::Data* currency = Model_Account::currency(account);
 
             wxString tBalanceStr;
-            CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 
             hb.startTableRow();
             hb.addTableCell(currencyStr, false, false, true);
@@ -445,16 +439,14 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
     bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
     bool show_all = (frame_->expandedBankAccounts() && frame_->expandedTermAccounts()) || show_nothing;
     bool show_bank = frame_->expandedBankAccounts();
-    for (const auto& account: core_->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        //if (account->status_ == mmAccount::MMEX_Closed && vAccts_ == VIEW_ACCOUNTS_OPEN_STR) continue;
-        //if (!account->favoriteAcct_ && vAccts_ == VIEW_ACCOUNTS_FAVORITES_STR) continue;
         if (!show_all)
         {
-            if (show_bank && account->acctType_ != ACCOUNT_TYPE_BANK) continue;
-            if (frame_->expandedTermAccounts() && account->acctType_ != ACCOUNT_TYPE_TERM) continue;
+            if (show_bank && Model_Account::type(account) != Model_Account::CHECKING) continue;
+            if (frame_->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
         }
-        int idx = group_by_account ? (1000000 * account->id_) : 0;
+        int idx = group_by_account ? (1000000 * account.ACCOUNTID) : 0;
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
         if (!group_by_account) break;
@@ -637,7 +629,8 @@ void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
         long id = -1;
         number.ToLong(&id);
         frame->setGotoAccountID(id);
-        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        Model_Account::Data* account = Model_Account::instance().get(id);
+        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -646,7 +639,8 @@ void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
         long id = -1;
         number.ToLong(&id);
         frame->setGotoAccountID(id);
-        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        Model_Account::Data* account = Model_Account::instance().get(id);
+        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
