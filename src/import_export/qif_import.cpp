@@ -346,8 +346,9 @@ bool mmQIFImportDialog::warning_message()
 
 int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 {
-    wxString acctName = core_->accountList_.GetAccountName(last_imported_acc_id_);
-    fromAccountID_ = core_->accountList_.GetAccountId(acctName);
+    Model_Account::Data* account = Model_Account::instance().get(last_imported_acc_id_);
+    wxString acctName = account->ACCOUNTNAME;
+    fromAccountID_ = account->ACCOUNTID;
     wxString sMsg;
 
     //Check date restrictions
@@ -487,29 +488,27 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     }
                 }
 
-                if (core_->accountList_.GetAccountId(acctName) < 0)
+                Model_Account::Data* account = Model_Account::instance().get(acctName);
+                if (!account)
                 {
                     //TODO: Repeated code
-                    mmAccount* ptrBase = new mmAccount();
-                    mmAccount* pAccount(ptrBase);
+                    account = Model_Account::instance().create();
 
-                    pAccount->favoriteAcct_ = true;
-                    pAccount->status_ = mmAccount::MMEX_Open;
-                    pAccount->acctType_ = ACCOUNT_TYPE_BANK;
-                    pAccount->name_ = acctName;
-                    pAccount->initialBalance_ = val;
-                    pAccount->currency_ = core_->currencyList_.getCurrencySharedPtr(sDefCurrencyName);
-                    // prevent same account being added multiple times in case of using 'Back' and 'Next' in wizard.
-                    if ( ! core_->accountList_.AccountExists(pAccount->name_))
-                        from_account_id = core_->accountList_.AddAccount(pAccount);
-                    accountArray.Add(pAccount->name_);
-                    acctName = pAccount->name_;
+                    account->FAVORITEACCT = "TRUE";
+                    account->STATUS = Model_Account::instance().statuss_[Model_Account::OPEN];
+                    account->ACCOUNTTYPE = Model_Account::instance().types_[Model_Account::CHECKING];
+                    account->ACCOUNTNAME = acctName;
+                    account->INITIALBAL = val;
+
+                    Model_Account::instance().save(account);
+                    from_account_id = account->ACCOUNTID;
+                    accountArray.Add(account->ACCOUNTNAME);
                     sMsg = wxString::Format(_("Added account '%s'"), acctName)
                         << "\n" << wxString::Format(_("Initial Balance: %s"), (wxString()<<val));
                     logWindow->AppendText(wxString()<< sMsg << "\n");
                 }
 
-                fromAccountID_ = core_->accountList_.GetAccountId(acctName);
+                fromAccountID_ = account->ACCOUNTID;
 
                 sMsg = wxString::Format(_("Line: %ld"), numLines) << " : "
                     << wxString::Format(_("Account name: %s"), acctName);
@@ -677,26 +676,28 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             to_account_id = -1;
             if (type == TRANS_TYPE_TRANSFER_STR)
             {
-                if (accountArray.Index(sToAccountName) == wxNOT_FOUND)
+                Model_Account::Data* account = Model_Account::instance().get(sToAccountName);
+                if (!account)
                 {
-                    mmAccount* ptrBase = new mmAccount();
-                    mmAccount* pAccount(ptrBase);
+                    account = Model_Account::instance().create();
 
-                    pAccount->favoriteAcct_ = true;
-                    pAccount->status_ = mmAccount::MMEX_Open;
-                    pAccount->acctType_ = ACCOUNT_TYPE_BANK;
-                    pAccount->name_ = sToAccountName;
-                    pAccount->initialBalance_ = 0;
-                    pAccount->currency_ = core_->currencyList_.getCurrencySharedPtr(sDefCurrencyName);
-                    // prevent same account being added multiple times in case of using 'Back' and 'Next' in wizard.
-                    if ( ! core_->accountList_.AccountExists(pAccount->name_))
-                        to_account_id = core_->accountList_.AddAccount(pAccount);
+                    account->FAVORITEACCT = "TRUE";
+                    account->STATUS = Model_Account::instance().statuss_[Model_Account::OPEN];
+                    account->ACCOUNTTYPE = Model_Account::instance().types_[Model_Account::CHECKING];
+                    account->ACCOUNTNAME = sToAccountName;
+                    account->INITIALBAL = 0;
+
+                    Model_Account::instance().save(account);
+                    from_account_id = account->ACCOUNTID;
+                    accountArray.Add(account->ACCOUNTNAME);
+
+                    to_account_id = account->ACCOUNTID;
                     accountArray.Add(sToAccountName);
 
                     sMsg = wxString::Format(_("Added account '%s'"), sToAccountName);
                     logWindow->AppendText(wxString()<< sMsg << "\n");
                 }
-                to_account_id = core_->accountList_.GetAccountId(sToAccountName);
+                to_account_id = account->ACCOUNTID;
                 if (val > 0.0)
                 {
                     from_account_id = to_account_id;
@@ -763,15 +764,18 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 sValid = "SKIP";
                 bValid = false;
             }
+            const Model_Account::Data* from_account = Model_Account::instance().get(from_account_id);
+            const Model_Account::Data* to_account = Model_Account::instance().get(to_account_id);
+
             sMsg = wxString::Format(
                 "Line:%ld Trx:%ld %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
                 , trxNumLine
                 , vQIF_trxs_.size() + 1
                 , sValid
                 , convDate
-                , core_->accountList_.GetAccountName(from_account_id)
+                , from_account->ACCOUNTNAME
                 , wxString((type == TRANS_TYPE_TRANSFER_STR ? "<->" : ""))
-                , core_->accountList_.GetAccountName(to_account_id)
+                , to_account->ACCOUNTNAME
                 , payee->PAYEENAME
                 , (wxString()<<val)
                 , sFullCateg
@@ -809,9 +813,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             transaction.subcategID_ = subCategID;
             transaction.fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID, subCategID);
             *transaction.splitEntries_ = *mmSplit;
-
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(from_account_id);
-            wxASSERT(pCurrencyPtr);
 
             //For any transfer transaction always mirrored transaction present
             //Just take alternate amount and skip it
@@ -858,8 +859,9 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     int num = 0;
     for (const auto& transaction : vQIF_trxs_)
     {
+        const Model_Account::Data* account = Model_Account::instance().get(transaction.accountID_);
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(core_->accountList_.GetAccountName(transaction.accountID_)));
+        data.push_back(wxVariant(account->ACCOUNTNAME));
         data.push_back(wxVariant(transaction.date_.FormatISODate()));
         data.push_back(wxVariant(transaction.transNum_));
         data.push_back(wxVariant(transaction.payeeStr_));
@@ -978,7 +980,9 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
         for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
         sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
             , _("Account"), accountArray);
-        last_imported_acc_id_ = core_->accountList_.GetAccountId(sAccountName);
+
+        const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
+        last_imported_acc_id_ = account->ACCOUNTID;
         if (last_imported_acc_id_ < 0) return false;
     }
 
@@ -1034,12 +1038,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 
         for (auto& refTrans : vQIF_trxs_)
         {
-            //fromAccountID_ = refTrans.accountID_;
-            mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID_);
-            wxASSERT(pCurrencyPtr);
             refTrans.amt_ = fabs(refTrans.amt_);
             refTrans.toAmt_ = fabs(refTrans.toAmt_);
-            //refTrans.updateAllData(core_, fromAccountID_, pCurrencyPtr);
 
             core_->bTransactionList_.addTransaction(&refTrans);
             last_imported_acc_id_ = refTrans.accountID_;

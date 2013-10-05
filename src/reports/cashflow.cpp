@@ -117,28 +117,26 @@ wxString mmReportCashFlow::getHTMLText_i()
     double tInitialBalance = 0.0;
     std::map<wxDateTime, double> daily_balance;
           
-    for (const auto& account: core_->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        if (account->status_ == mmAccount::MMEX_Closed || account->acctType_ == ACCOUNT_TYPE_STOCK) continue;
+        if (Model_Account::status(account) == Model_Account::CLOSED 
+            || Model_Account::type(account) == Model_Account::INVESTMENT) continue;
 
         if (accountArray_) 
         {
-            if (wxNOT_FOUND == accountArray_->Index(account->name_)) continue;
+            if (wxNOT_FOUND == accountArray_->Index(account.ACCOUNTNAME)) continue;
         }
         else
         {
-            if (! activeTermAccounts_ && account->acctType_ == ACCOUNT_TYPE_TERM) continue;
-            if (! activeBankAccounts_ && account->acctType_ == ACCOUNT_TYPE_BANK) continue;
+            if (! activeTermAccounts_ && Model_Account::type(account) == Model_Account::TERM) continue;
+            if (! activeBankAccounts_ && Model_Account::type(account) == Model_Account::CHECKING) continue;
         }
 
 
-        core_->bTransactionList_.getDailyBalance(account->id_, daily_balance);
+        core_->bTransactionList_.getDailyBalance(account.ACCOUNTID, daily_balance);
 
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(account->id_);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-        double rate = pCurrencyPtr->baseConv_;
-        tInitialBalance += account->initialBalance_ * rate;
+        const Model_Currency::Data* currency = Model_Account::currency(account);
+        tInitialBalance += account.INITIALBAL * currency->BASECONVRATE;
    }
 
     // We now know the total balance on the account
@@ -179,20 +177,25 @@ wxString mmReportCashFlow::getHTMLText_i()
         int accountID = q1.ACCOUNTID;
         int toAccountID = q1.TOACCOUNTID;
 
+        const Model_Account::Data* account = Model_Account::instance().get(accountID);
+        const Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
+
+        if (!account || !to_account) continue;
+
         bool isAccountFound = true, isToAccountFound = true;
         if (accountArray_ != NULL)
         {
-            if (wxNOT_FOUND == accountArray_->Index(core_->accountList_.GetAccountName(accountID))) //linear search
+            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) //linear search
                 isAccountFound = false;
 
-            if (wxNOT_FOUND == accountArray_->Index(core_->accountList_.GetAccountName(toAccountID))) //linear search
+            if (wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)) //linear search
                 isToAccountFound = false;
         }
 
         if (!isAccountFound && !isToAccountFound) continue; // skip account
 
-        double convRate = core_->accountList_.getAccountBaseCurrencyConvRate(accountID);
-        double toConvRate = core_->accountList_.getAccountBaseCurrencyConvRate(toAccountID);
+        double convRate = Model_Account::currency(account)->BASECONVRATE;
+        double toConvRate = Model_Account::currency(to_account)->BASECONVRATE;
 
         // Process all possible repeating transactions for this BD
         while(1)

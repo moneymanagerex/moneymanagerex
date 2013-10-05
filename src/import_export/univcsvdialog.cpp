@@ -553,14 +553,12 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
     bool canceledbyuser = false;
     wxString acctName = m_choice_account_->GetStringSelection();
-    fromAccountID_ = core_->accountList_.GetAccountId(acctName);
+    Model_Account::Data* from_account = Model_Account::instance().get(acctName);
 
-    if (fromAccountID_ > 0)
+    if (from_account)
     {
-
-        mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(fromAccountID_);
-        wxASSERT(pCurrencyPtr);
-        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+        Model_Currency::Data* currency = Model_Account::currency(from_account);
+        // CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
 
         wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
@@ -752,9 +750,10 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 {
     wxString delimit = this->delimit_;
     wxString acctName = m_choice_account_->GetStringSelection();
-    int fromAccountID = core_->accountList_.GetAccountId(acctName);
+    Model_Account::Data* from_account = Model_Account::instance().get(acctName);
+    int fromAccountID = from_account->ACCOUNTID;
 
-    if (fromAccountID > 0)
+    if(from_account)
     {
         wxString chooseExt;
         chooseExt << _("CSV Files") << " (*.csv)|*.csv;*.CSV";
@@ -770,6 +769,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
         wxDateTime trx_date;
 
         long numRecords = 0;
+        Model_Currency::Data* currency = Model_Account::currency(from_account);
 
         for (const auto& pBankTransaction: core_->bTransactionList_.transactions_)
         {
@@ -780,7 +780,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                 Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction->payeeID_);
                 int fAccountID = pBankTransaction->accountID_;
                 int tAccountID = pBankTransaction->toAccountID_;
-                const wxString amtSeparator = core_->accountList_.getAccountCurrencyDecimalChar(fromAccountID);
+                const wxString& amtSeparator = currency->GROUP_SEPARATOR;
 
                 double value = pBankTransaction->amt_;
                 double tovalue = 0;
@@ -789,8 +789,9 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 
                 if (type == "Transfer")
                 {
-                    const wxString fromAccount = core_->accountList_.GetAccountName(fAccountID);
-                    const wxString toAccount = core_->accountList_.GetAccountName(tAccountID);
+                    Model_Account::Data* to_account = Model_Account::instance().get(tAccountID);
+                    const wxString& fromAccount = from_account->ACCOUNTNAME;
+                    const wxString& toAccount = to_account->ACCOUNTNAME;
                     tovalue = pBankTransaction->toAmt_;
 
                     if (tAccountID == fromAccountID) {
@@ -943,13 +944,15 @@ void mmUnivCSVDialog::update_preview()
     {
         wxString date_format = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
         wxString acctName = m_choice_account_->GetStringSelection();
-        int fromAccountID = core_->accountList_.GetAccountId(acctName);
+        Model_Account::Data* from_account = Model_Account::instance().get(acctName);
+        int fromAccountID = from_account->ACCOUNTID;
 
-        if (fromAccountID > 0)
+        if (from_account)
         {
             size_t count = 0;
             int row = 0;
             wxString delimit = this->delimit_;
+            Model_Currency::Data* currency = Model_Account::currency(from_account);
 
             for(const auto& pBankTransaction : core_->bTransactionList_.transactions_)
             {
@@ -960,7 +963,7 @@ void mmUnivCSVDialog::update_preview()
                     Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction->payeeID_);
                     int fAccountID = pBankTransaction->accountID_;
                     int tAccountID = pBankTransaction->toAccountID_;
-                    const wxString amtSeparator = core_->accountList_.getAccountCurrencyDecimalChar(fromAccountID);
+                    const wxString amtSeparator = currency->GROUP_SEPARATOR;
 
                     double value = pBankTransaction->amt_;
                     double tovalue = 0;
@@ -969,8 +972,9 @@ void mmUnivCSVDialog::update_preview()
 
                     if (type == TRANS_TYPE_TRANSFER_STR)
                     {
-                        const wxString fromAccount = core_->accountList_.GetAccountName(fAccountID);
-                        const wxString toAccount = core_->accountList_.GetAccountName(tAccountID);
+                        Model_Account::Data* to_account = Model_Account::instance().get(tAccountID);
+                        const wxString fromAccount = from_account->ACCOUNTNAME;
+                        const wxString toAccount = to_account->ACCOUNTNAME;
                         tovalue = pBankTransaction->toAmt_;
 
                         if (tAccountID == fromAccountID) {
@@ -1159,8 +1163,9 @@ void mmUnivCSVDialog::OnAccountChange(wxCommandEvent& event)
         update_preview();
     }
     wxString acctName = m_choice_account_->GetStringSelection();
-    int account_id = core_->accountList_.GetAccountId(acctName);
-    *log_field_ << _("Currency:") << " " << core_->accountList_.GetAccountCurrencyName(account_id) << "\n";
+    Model_Account::Data* account = Model_Account::instance().get(acctName);
+    Model_Currency::Data* currency = Model_Account::currency(account);
+    *log_field_ << _("Currency:") << " " << currency->CURRENCYNAME << "\n";
 }
 
 void mmUnivCSVDialog::OnListBox(wxCommandEvent& event)

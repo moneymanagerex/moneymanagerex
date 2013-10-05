@@ -130,11 +130,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
                 if (trans_[bdidx].daysRemaining_ < 0)
                     colorStr = "#FF6600";
 
-                // Load the currency for this BD
-                mmCurrency* pCurrency = core_->accountList_.getCurrencySharedPtr(trans_[bdidx].accountID_);
-                wxASSERT(pCurrency);
-                if (pCurrency)
-                    pCurrency->loadCurrencySettings();
+                // TODO Load the currency for this BD
 
                 hb.startTableRow();
                 hb.addTableCell(trans_[bdidx].payeeStr_, false, true);

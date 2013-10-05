@@ -216,8 +216,8 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
         {
             int index = entry;
             const wxString accounts_name = accounts_name_[index];
-            int account_id =  core_->accountList_.GetAccountId(accounts_name);
-            selected_accounts_id_.Add(account_id);
+            const Model_Account::Data* account = Model_Account::instance().get(accounts_name);
+            selected_accounts_id_.Add(account->ACCOUNTID); // TODO store the id/name in wxMultiChoiceDialog
             baloon += accounts_name + "\n";
         }
     }
@@ -230,8 +230,8 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     else if (selected_accounts_id_.GetCount() == 1)
     {
         int account_id = accounts_id_[selected_items[0]];
-        const wxString account_name = core_->accountList_.GetAccountName(account_id);
-        bSelectedAccounts_->SetLabel(account_name);
+        const Model_Account::Data* account = Model_Account::instance().get(account_id);
+        bSelectedAccounts_->SetLabel(account->ACCOUNTNAME);
     }
     else if (selected_accounts_id_.GetCount() > 1)
     {
@@ -264,7 +264,7 @@ void mmQIFExportDialog::OnOk(wxCommandEvent& /*event*/)
 {
     bool bCorrect = false;
     wxString sErrorMsg = "";
-    if (core_->accountList_.getNumAccounts() == 0 && accountsCheckBox_->GetValue())
+    if (Model_Account::instance().all().empty() && accountsCheckBox_->GetValue())
     {
         sErrorMsg =_("No Account available for export");
     }

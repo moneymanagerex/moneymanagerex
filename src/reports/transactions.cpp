@@ -62,8 +62,8 @@ wxString mmReportTransactions::getHTMLText()
     wxString transHeading = _("Transaction List ");
     if (refAccountID_ > -1)
     {
-        transHeading = wxString::Format(_("Transaction List for Account: %s")
-            ,core_->accountList_.GetAccountName(refAccountID_));
+        const Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
+        transHeading = wxString::Format(_("Transaction List for Account: %s"), account->ACCOUNTNAME);
     }
     hb.addHeader(2, transHeading);
 
@@ -129,7 +129,8 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction->fullCatStr_, false, true);
         hb.addTableCell(wxGetTranslation(transaction->transType_));
         // Get the exchange rate for the selected account
-        double dbRate = core_->accountList_.getAccountBaseCurrencyConvRate(transaction->accountID_);
+        const Model_Currency::Data* currency = Model_Account::currency(account);
+        double dbRate = currency->BASECONVRATE;
         hb.addMoneyCell(transaction->value(refAccountID_) * dbRate);
         hb.addTableCell(transaction->transNum_);
         hb.addTableCell(transaction->notes_, false, true);

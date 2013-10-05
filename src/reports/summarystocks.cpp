@@ -23,6 +23,7 @@
 #include "stockspanel.h"
 #include "util.h"
 #include "model/Model_Account.h"
+#include "model/Model_Currency.h"
 
 #include <algorithm>
 
@@ -63,10 +64,10 @@ wxString mmReportSummaryStocks::getHTMLText()
 
         for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, a.ACCOUNTID))
         {
-            double base_conv_rate = core_->accountList_.getAccountBaseCurrencyConvRate(a.ACCOUNTID);
-            stockBalance += base_conv_rate * stock.VALUE;
+            const Model_Currency::Data* currency = Model_Account::currency(a);
+            stockBalance += currency->BASECONVRATE * stock.VALUE;
             account.gainloss += stock.VALUE - Model_Stock::value(stock);
-            gain_loss_sum_total += (stock.VALUE - Model_Stock::value(stock)) * base_conv_rate;
+            gain_loss_sum_total += (stock.VALUE - Model_Stock::value(stock)) * currency->BASECONVRATE;
 
             line.name = stock.STOCKNAME;
             line.symbol = stock.SYMBOL;
