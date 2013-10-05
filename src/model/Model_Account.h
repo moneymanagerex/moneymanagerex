@@ -30,6 +30,7 @@ class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
     using DB_Table_ACCOUNTLIST_V1::find;
     using DB_Table_ACCOUNTLIST_V1::get;
     using DB_Table_ACCOUNTLIST_V1::save;
+    using DB_Table_ACCOUNTLIST_V1::remove;
 public:
     enum STATUS { OPEN = 0, CLOSED };
     enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
@@ -86,6 +87,11 @@ public:
         r->save(this->db_);
         return r->id();
     }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
+    }
+
     static Model_Currency::Data* currency(const Data* r)
     {
         return Model_Currency::instance().get(r->CURRENCYID);

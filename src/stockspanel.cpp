@@ -202,8 +202,8 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     }
     if (accounts_name.Count() < 1) return;
 
-    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to...")
-        ,stock_panel_->core_->accountList_.GetAccountName(stock_panel_->accountID_));
+    const Model_Account::Data* from_account = Model_Account::instance().get(stock_panel_->accountID_);
+    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), from_account->ACCOUNTNAME);
     wxSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts_name);
 
     int toAccountID = -1;
@@ -211,7 +211,8 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if (error_code == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
-        toAccountID = stock_panel_->core_->accountList_.GetAccountId(acctName);
+        const Model_Account::Data* to_account = Model_Account::instance().get(acctName);
+        toAccountID = to_account->ACCOUNTID;
     }
 
     if ( toAccountID != -1 )
@@ -444,7 +445,7 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     wxSQLite3ResultSet q1 = st.ExecuteQuery();
 
     int cnt = 0, selected_item = -1;
-
+    const Model_Account::Data* account = Model_Account::instance().get(stock_panel_->accountID_);
     for ( ; q1.NextRow(); ++cnt)
     {
         mmStockTransactionHolder th;
@@ -453,7 +454,7 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
         th.stockPDate_        = q1.GetDate("PURCHDATE");
         int accountID         = q1.GetInt("HELDAT");
         th.stockSymbol_       = q1.GetString ("SYMBOL");
-        th.heldAt_            = stock_panel_->core_->accountList_.GetAccountName(accountID);
+        th.heldAt_            = account->ACCOUNTNAME;
         th.shareName_         = q1.GetString("STOCKNAME");
         th.shareNotes_        = q1.GetString("NOTES");
         th.numSharesStr_      = "";
@@ -499,21 +500,16 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 
 void mmStocksPanel::updateHeader()
 {
-    wxString str = core_->accountList_.GetAccountName(accountID_);
-    header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), str));
+    const Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), account->ACCOUNTNAME));
 
-    //mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
-
-    mmCurrency* pCurrencyPtr = core_->accountList_.getCurrencySharedPtr(accountID_);
-    wxASSERT(pCurrencyPtr);
-    CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
+    const Model_Currency::Data* currency = Model_Account::currency(account);
 
     //Get Init Value of the account
-    double initVal = core_->accountList_.GetAccountSharedPtr(accountID_)->initialBalance_;
+    double initVal = account->INITIALBAL;
     // + Transfered from other accounts - Transfered to other accounts
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
-    Model_Account::Data* account = Model_Account::instance().get(accountID_);
     std::pair<double, double> investment_balance;
     if (account) investment_balance = Model_Account::investment_balance(account);
     double originalVal = investment_balance.first;

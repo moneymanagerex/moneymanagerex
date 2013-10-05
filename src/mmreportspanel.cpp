@@ -22,6 +22,7 @@
 #include "reports/htmlbuilder.h"
 #include "mmex.h"
 #include "lua_interface.h"
+#include "model/Model_Account.h"
 
 BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
@@ -121,7 +122,8 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         long id = -1;
         sData.ToLong(&id);
         frame->setGotoAccountID(id);
-        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        const Model_Account::Data* account = Model_Account::instance().get(id);
+        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -130,7 +132,8 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         long id = -1;
         sData.ToLong(&id);
         frame->setGotoAccountID(id);
-        frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(id));
+        const Model_Account::Data* account = Model_Account::instance().get(id);
+        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -142,7 +145,8 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         {
             int account_id = core_->bTransactionList_.getBankTransactionPtr(transID)->accountID_;
             frame->setGotoAccountID(account_id, transID);
-            frame->setAccountNavTreeSection(core_->accountList_.GetAccountName(account_id));
+            const Model_Account::Data* account = Model_Account::instance().get(account_id);
+            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
             frame->GetEventHandler()->AddPendingEvent(evt);
         }

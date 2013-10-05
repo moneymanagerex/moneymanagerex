@@ -508,7 +508,8 @@ void mmTransDialog::CreateControls()
 void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 {
     wxString sAccountName = cbAccount_->GetValue();
-    newAccountID_ = core_->accountList_.GetAccountId(sAccountName);
+    const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
+    newAccountID_ = account->ACCOUNTID;
 }
 
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -547,7 +548,8 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
     }
     else
     {
-        transaction_->TOACCOUNTID = core_->accountList_.GetAccountId(cbPayee_->GetValue());
+        const Model_Account::Data* account = Model_Account::instance().get(cbPayee_->GetValue());
+        transaction_->TOACCOUNTID = account->ACCOUNTID;
     }
 
     event.Skip();
@@ -609,9 +611,15 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
 
         CurrencyFormatter::formatCurrencyToDouble(amountStr, transaction_->TRANSAMOUNT);
 
-        if (transaction_->TOACCOUNTID > 0) {
-            double rateFrom = core_->accountList_.getAccountBaseCurrencyConvRate(accountID_);
-            double rateTo = core_->accountList_.getAccountBaseCurrencyConvRate(transaction_->TOACCOUNTID);
+        if (transaction_->TOACCOUNTID > 0) 
+        {
+            const Model_Account::Data* from_account = Model_Account::instance().get(accountID_);
+            const Model_Account::Data* to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
+
+            const Model_Currency::Data* from_currency = Model_Account::currency(from_account);
+            const Model_Currency::Data* to_currency = Model_Account::currency(to_account);
+            double rateFrom = from_currency->BASECONVRATE;
+            double rateTo = to_currency->BASECONVRATE;
             double convToBaseFrom = rateFrom * transaction_->TRANSAMOUNT;
             transaction_->TOTRANSAMOUNT = convToBaseFrom / rateTo;
         }
@@ -1111,7 +1119,7 @@ void mmTransDialog::onChoiceTransChar(wxKeyEvent& event)
     int i = transaction_type_->GetSelection();
     if (event.GetKeyCode()==WXK_DOWN)
     {
-        if (i < (core_->accountList_.getNumBankAccounts() > 1 ? DEF_TRANSFER : DEF_DEPOSIT))
+        if (i < (!Model_Account::instance().all().empty() ? DEF_TRANSFER : DEF_DEPOSIT))
         {
             transaction_type_->SetSelection(++i);
         }

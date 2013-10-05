@@ -449,7 +449,7 @@ bool mmAddAccountPage1::TransferDataFromWindow()
     }
     else
     {
-        if (parent_->m_core->accountList_.AccountExists(account_name))
+        if (Model_Account::instance().get(account_name))
         {
             wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
             result = false;
@@ -527,20 +527,17 @@ bool mmAddAccountPage2::TransferDataFromWindow()
         return false;
     }
 
-    mmAccount* ptrBase = new mmAccount();
-    mmAccount* pAccount(ptrBase);
+    Model_Account::Data* account = Model_Account::instance().create();
 
-    pAccount->favoriteAcct_ = true;
-    pAccount->status_ = mmAccount::MMEX_Open;
-    pAccount->acctType_ = acctTypeStr;
-    pAccount->name_ = parent_->accountName_;
-    pAccount->initialBalance_ = 0;
-    pAccount->currency_ = parent_->m_core->currencyList_.getCurrencySharedPtr(currencyID);
-    // prevent same account being added multiple times in case of using 'Back' and 'Next' in wizard.
-    if ( ! parent_->m_core->accountList_.AccountExists(pAccount->name_))
-        parent_->acctID_ = parent_->m_core->accountList_.AddAccount(pAccount);
-    else
-        return false;
+    account->FAVORITEACCT = "TRUE";
+    account->STATUS = Model_Account::instance().statuss_[Model_Account::OPEN];
+    account->ACCOUNTTYPE = acctTypeStr;
+    account->ACCOUNTNAME = parent_->accountName_;
+    account->INITIALBAL = 0;
+    account->CURRENCYID = currencyID;
+
+    Model_Account::instance().save(account);
+    parent_->acctID_ = account->ACCOUNTID;
 
     return true;
 }
@@ -905,8 +902,10 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         th.transType_      = q1.TRANSCODE;
         th.accountID_      = q1.ACCOUNTID;
         th.toAccountID_    = q1.TOACCOUNTID;
-
-        th.accountName_    = m_core.get()->accountList_.GetAccountName(th.accountID_);
+        
+        Model_Account::Data* account = Model_Account::instance().get(q1.ACCOUNTID);
+        Model_Account::Data* to_account = Model_Account::instance().get(q1.TOACCOUNTID);
+        th.accountName_    = account ? account->ACCOUNTNAME : "";
         th.amt_            = q1.TRANSAMOUNT;
         th.toAmt_          = q1.TOTRANSAMOUNT;
         th.notes_          = q1.NOTES;
@@ -951,8 +950,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
         if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
         {
-            wxString fromAccount = m_core.get()->accountList_.GetAccountName(th.accountID_);
-            wxString toAccount = m_core.get()->accountList_.GetAccountName(th.toAccountID_ );
+            wxString fromAccount = account->ACCOUNTNAME;
+            wxString toAccount = to_account->ACCOUNTNAME;
 
             th.payeeStr_ = toAccount;
         }
@@ -985,9 +984,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             {
                 continueExecution = true;
                 mmBankTransaction tran(m_core.get());
-
-                mmCurrency* pCurrencyPtr = m_core.get()->accountList_.getCurrencySharedPtr(th.accountID_);
-                wxASSERT(pCurrencyPtr);
 
                 tran.accountID_ = th.accountID_;
                 tran.toAccountID_ = th.toAccountID_;
@@ -1138,7 +1134,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 {
     activeTermAccounts_ = false;
     // if no database is present yet, ignore testing for Term Accounts
-    if (m_db && m_core->accountList_.has_term_account())
+    if (m_db) // TODO has term account?
     {
         activeTermAccounts_ = true;
     }
@@ -1647,42 +1643,42 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
         vAccts = VIEW_ACCOUNTS_ALL_STR;
 
-    for (const auto& account: m_core->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
         // Checking/Bank Accounts
-        if (account->acctType_ == ACCOUNT_TYPE_BANK)
+        if (Model_Account::type(account) == Model_Account::CHECKING)
         {
-            if ((vAccts == "Open" && account->status_ == mmAccount::MMEX_Open) ||
-                (vAccts == "Favorites" && account->favoriteAcct_) ||
+            if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
                 (vAccts == "ALL"))
             {
-                int selectedImage = mmIniOptions::instance().account_image_id(account->id_);
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account->name_, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account->id_, false));
+                int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
         }
         // Term Accounts
-        else if (account->acctType_ == ACCOUNT_TYPE_TERM)
+        else if (Model_Account::type(account) == Model_Account::TERM)
         {
-            if ((vAccts == "Open" && account->status_ == mmAccount::MMEX_Open) ||
-                (vAccts == "Favorites" && account->favoriteAcct_) ||
+            if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
                 (vAccts == "ALL"))
             {
-                int selectedImage = mmIniOptions::instance().account_image_id(account->id_);
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account->name_, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account->id_, false));
+                int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
         }
         // Stock Accounts
         else //if (account->acctType_ == ACCOUNT_TYPE_STOCK)
         {
-            if ((vAccts == "Open" && account->status_ == mmAccount::MMEX_Open) ||
-                (vAccts == "Favorites" && account->favoriteAcct_) ||
+            if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+                (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
                 (vAccts == "ALL"))
             {
-                int selectedImage = mmIniOptions::instance().account_image_id(account->id_);
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account->name_, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account->id_, false));
+                int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+                wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
             }
         }
     }
@@ -1815,12 +1811,10 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         }
         else
         {
-           mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
-           if (pAccount)
+           Model_Account::Data* account = Model_Account::instance().get(data);
+           if (account)
            {
-                wxString acctType = pAccount->acctType_;
-
-                if ((acctType == ACCOUNT_TYPE_BANK) || acctType == ACCOUNT_TYPE_TERM)
+                if (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::TERM)
                 {
                     gotoAccountID_ = data;
                     if (gotoAccountID_ != -1) createCheckingAccountPage(gotoAccountID_);
@@ -1923,10 +1917,10 @@ void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
    if (selectedItemData_)
    {
       int data = selectedItemData_->getData();
-      mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
-      if (pAccount)
+      Model_Account::Data* account = Model_Account::instance().get(data);
+      if (account)
       {
-         wxString website = pAccount->website_;
+         wxString website = account->WEBSITE;
          if (!website.IsEmpty()) wxLaunchDefaultBrowser(website);
          return;
       }
@@ -1958,8 +1952,8 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
     if (selectedItemData_)
     {
         int data = selectedItemData_->getData();
-        mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
-        if (pAccount)
+        Model_Account::Data* account = Model_Account::instance().get(data);
+        if (account)
         {
             wxMessageDialog msgDlg(this
                 , _("Do you really want to delete the account?")
@@ -1967,8 +1961,8 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
                 , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
-                m_core->bTransactionList_.deleteTransactions(pAccount->id_);
-                m_core->accountList_.RemoveAccount(pAccount->id_);
+                m_core->bTransactionList_.deleteTransactions(account->ACCOUNTID);
+                Model_Account::instance().remove(account->ACCOUNTID);
                 updateNavTreeControl();
                 createHomePage();
             }
@@ -2004,24 +1998,20 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
         int data = iData->getData();
         if (!iData->isBudgetingNode())
         {
-            mmAccount* pAccount = m_core->accountList_.GetAccountSharedPtr(data);
-            if (pAccount)
+            Model_Account::Data* account = Model_Account::instance().get(data);
+            if (account)
             {
-                wxString acctType = pAccount->acctType_;
-                if (acctType == ACCOUNT_TYPE_BANK || acctType == ACCOUNT_TYPE_TERM || acctType == ACCOUNT_TYPE_STOCK)
-                {
-                    wxMenu menu;
+                wxMenu menu;
 //                  menu.Append(MENU_TREEPOPUP_GOTO, _("&Go To.."));
-                    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
-                    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
-                    menu.AppendSeparator();
-                    menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
-                    // Enable menu item only if a website exists for the account.
-                    bool webStatus = !pAccount->website_.IsEmpty();
-                    menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, webStatus);
+                menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Account"));
+                menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Account"));
+                menu.AppendSeparator();
+                menu.Append(MENU_TREEPOPUP_LAUNCHWEBSITE, _("&Launch Account Website"));
+                // Enable menu item only if a website exists for the account.
+                bool webStatus = !account->WEBSITE.IsEmpty();
+                menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, webStatus);
 
-                    PopupMenu(&menu, pt);
-                }
+                PopupMenu(&menu, pt);
             }
         }
     }
@@ -2971,7 +2961,8 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     if (account_id > 0)
     {
         setGotoAccountID(account_id, -1);
-        setAccountNavTreeSection(m_core->accountList_.GetAccountName(account_id));
+        Model_Account::Data* account = Model_Account::instance().get(account_id);
+        setAccountNavTreeSection(account->ACCOUNTNAME);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
         this->GetEventHandler()->AddPendingEvent(evt);
     }
@@ -2980,7 +2971,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 {
-    if (m_core.get()->accountList_.getNumAccounts() == 0)
+    if (Model_Account::instance().all().empty())
     {
         wxMessageBox(_("No account available to import"),_("Universal CSV Import"), wxOK|wxICON_WARNING );
         return;
@@ -2990,7 +2981,8 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
     univCSVDialog.ShowModal();
     if (univCSVDialog.InportCompletedSuccessfully())
     {
-        setAccountNavTreeSection(m_core.get()->accountList_.GetAccountName(univCSVDialog.ImportedAccountID()));
+        Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
+        setAccountNavTreeSection(account->ACCOUNTNAME);
         createCheckingAccountPage(univCSVDialog.ImportedAccountID());
     }
 }
@@ -3149,7 +3141,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 {
     if (!m_db) return;
 
-    if (m_core.get()->accountList_.getNumAccounts() == 0) return;
+    if (Model_Account::instance().all().empty()) return;
 
     std::vector<mmBankTransaction*> trans;
 
@@ -3229,7 +3221,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                 if (tran->splitEntries_->numEntries() > 0)
                 {
                     tran->reportCategAmount_ = tran->getAmountForSplit(categID, subcategID);
-                    m_core.get()->accountList_.getCurrencySharedPtr(tran->accountID_)->loadCurrencySettings();
                     tran->reportCategAmountStr_ = CurrencyFormatter::float2String(tran->reportCategAmount_);
                 }
                 else
@@ -3732,7 +3723,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 {
-    if (m_core->accountList_.accounts_.size() == 0)
+    if (Model_Account::instance().all().empty())
     {
         wxMessageBox(_("No account available to delete!"), _("Accounts"), wxOK|wxICON_WARNING);
         return;
@@ -3742,10 +3733,10 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
     std::vector<int> arrAcctID;
 
     int idx = 0;
-    for (const auto& account: m_core->accountList_.accounts_)
+    for (const auto& account: Model_Account::instance().all())
     {
-        as.Add(account->name_);
-        arrAcctID[idx ++] = account->id_;
+        as.Add(account.ACCOUNTNAME);
+        arrAcctID[idx ++] = account.ACCOUNTID;
     }
 
     wxSingleChoiceDialog scd (this, _("Choose Account to Delete"), _("Accounts"), as);
@@ -3754,13 +3745,14 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         int choice = scd.GetSelection();
         int acctID = arrAcctID[choice];
 
-        wxString deletingAccountName = _("Are you sure you want to delete\n") + m_core->accountList_.accounts_[choice]->acctType_ +
-                                       _(" account: ") + m_core->accountList_.accounts_[choice]->name_ + " ?";
+        Model_Account::Data* account = Model_Account::instance().get(acctID);
+        wxString deletingAccountName = _("Are you sure you want to delete\n") + account->ACCOUNTTYPE +
+                                       _(" account: ") + account->ACCOUNTNAME + " ?";
         wxMessageDialog msgDlg(this, deletingAccountName, _("Confirm Account Deletion"),
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            m_core->accountList_.RemoveAccount(acctID);
+            Model_Account::instance().remove(acctID);
             m_core->bTransactionList_.deleteTransactions(acctID);
 
             updateNavTreeControl();
