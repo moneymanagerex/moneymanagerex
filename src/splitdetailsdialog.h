@@ -99,6 +99,7 @@ private:
     /// wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTONOK
     void OnButtonOKClick( wxCommandEvent& event );
     void onTextEntered(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& /*event*/);
 
 ////@end SplitDetailDialog event handler declarations
 

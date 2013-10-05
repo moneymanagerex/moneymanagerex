@@ -30,7 +30,8 @@ enum
 
 BEGIN_EVENT_TABLE( SplitDetailDialog, wxDialog )
     EVT_BUTTON( ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick )
-    EVT_BUTTON( wxID_OK, SplitDetailDialog::OnButtonOKClick )
+    EVT_BUTTON( mmID_OK, SplitDetailDialog::OnButtonOKClick )
+    EVT_BUTTON( mmID_CANCEL, SplitDetailDialog::OnCancel )
     EVT_TEXT_ENTER( ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered )
 END_EVENT_TABLE()
 
@@ -219,4 +220,8 @@ wxBitmap SplitDetailDialog::GetBitmapResource( const wxString& /*name*/ )
 wxIcon SplitDetailDialog::GetIconResource( const wxString& /*name*/ )
 {
     return wxNullIcon;
+}
+void SplitDetailDialog::OnCancel(wxCommandEvent& /*event*/)
+{
+    EndModal(wxID_CANCEL);
 }
