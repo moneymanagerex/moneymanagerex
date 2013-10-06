@@ -231,36 +231,6 @@ static const char DELETE_FROM_BUDGETSPLITTRANSACTIONS_V1[] =
     "FROM BILLSDEPOSITS_V1 "
     "WHERE ACCOUNTID = ? OR TOACCOUNTID = ? )";
 
-static const char SELECT_ROW_HELDAT_FROM_STOCK_V1[] =
-    "select "
-    "S.PURCHASEDATE as PURCHASEDATE, "
-    "S.STOCKNAME, "
-    "S.NUMSHARES as NUMSHARES, "
-    "S.VALUE as VALUE, "
-    "(S.VALUE - (S.NUMSHARES*S.PURCHASEPRICE + S.COMMISSION)) as GAIN_LOSS, "
-    "S.CURRENTPRICE as CURRENTPRICE, "
-    "S.NOTES, "
-    "T.AVG_PURCHASEPRICE as AVG_PURCHASEPRICE, "
-    "S.PURCHASEPRICE as PURCHASEPRICE, "
-    "S.STOCKID, S.HELDAT, UPPER(S.SYMBOL) SYMBOL, "
-    "S.COMMISSION as COMMISSION, "
-    "julianday('now', 'localtime')-julianday (S.PURCHASEDATE, 'localtime') as DAYSOWN, "
-    "t.TOTAL_NUMSHARES, T.PURCHASEDTIME, "
-    "S.PURCHASEDATE as PURCHDATE "
-    "from STOCK_V1 S "
-    "left join infotable_v1 i on i.INFONAME='DATEFORMAT' "
-    "left join ( "
-    "select count (UPPER (SYMBOL)) as PURCHASEDTIME, "
-    "HELDAT, UPPER (SYMBOL) as SYMBOL, "
-    "total (NUMSHARES) as TOTAL_NUMSHARES, "
-    "total(PURCHASEPRICE*NUMSHARES)/total(NUMSHARES) as AVG_PURCHASEPRICE "
-    "from STOCK_V1 "
-    "left join infotable_v1 i on i.INFONAME='DATEFORMAT' "
-    "group by HELDAT, UPPER (SYMBOL) "
-    "order by julianday(min (PURCHASEDATE),'localtime'), SYMBOL, STOCKNAME "
-    ") T on UPPER (T.SYMBOL)=UPPER (S.SYMBOL) and T.HELDAT=S.HELDAT "
-    "where S.HELDAT = ? ";
-
 static const char SELECT_ROW_FROM_STOCK_V1[] =
     "SELECT HELDAT, STOCKNAME, SYMBOL, NOTES, "
     "PURCHASEDATE, NUMSHARES, VALUE, "

@@ -184,7 +184,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        mmDBWrapper::deleteStockInvestment(stock_panel_->core_->db_.get(), trans_[m_selected_row]->id_);
+        Model_Stock::instance().remove(trans_[m_selected_row]->id_);
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
     }
@@ -217,10 +217,11 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 
     if ( toAccountID != -1 )
     {
-        stock_panel_->core_->db_.get()->Begin();
-        if (mmDBWrapper::moveStockInvestment(stock_panel_->core_->db_.get(), trans_[m_selected_row]->id_, toAccountID))
-            DeleteItem(m_selected_row);
-        stock_panel_->core_->db_.get()->Commit();
+        Model_Stock::Data* stock = Model_Stock::instance().get(trans_[m_selected_row]->id_);
+        stock->HELDAT = toAccountID;
+        Model_Stock::instance().save(stock);
+
+        DeleteItem(m_selected_row);
     }
 
     if (error_code == wxID_OK)
@@ -436,38 +437,40 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     item.SetImage(asc ? 3 : 2);
     SetColumn(col, item);
 
-    const  wxString sql =  wxString::FromUTF8(SELECT_ROW_HELDAT_FROM_STOCK_V1)
-        + " order by " + (wxString()<<col+1)
-        + (!asc ? " desc" : " ");
-
-    wxSQLite3Statement st = stock_panel_->core_->db_.get()->PrepareStatement(sql);
-    st.Bind(1, stock_panel_->accountID_);
-    wxSQLite3ResultSet q1 = st.ExecuteQuery();
-
     int cnt = 0, selected_item = -1;
     const Model_Account::Data* account = Model_Account::instance().get(stock_panel_->accountID_);
-    for ( ; q1.NextRow(); ++cnt)
+    for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, stock_panel_->accountID_))
     {
+        int purchasedTime = 0;
+        double totalNumShares = 0;
+        double avgPurchasePrice = 0;
+        for (const auto& s: Model_Stock::instance().find(Model_Stock::COL_SYMBOL, stock.SYMBOL))
+        {
+            purchasedTime++;
+            totalNumShares += s.NUMSHARES;
+            avgPurchasePrice += s.PURCHASEPRICE * s.NUMSHARES;
+        }
+        avgPurchasePrice /= totalNumShares;
+
         mmStockTransactionHolder th;
 
-        th.id_                = q1.GetInt("STOCKID");
-        th.stockPDate_        = q1.GetDate("PURCHDATE");
-        int accountID         = q1.GetInt("HELDAT");
-        th.stockSymbol_       = q1.GetString ("SYMBOL");
+        th.id_                = stock.STOCKID;
+        th.stockPDate_        = Model_Stock::PURCHASEDATE(stock);
+        th.stockSymbol_       = stock.SYMBOL.Upper();
         th.heldAt_            = account->ACCOUNTNAME;
-        th.shareName_         = q1.GetString("STOCKNAME");
-        th.shareNotes_        = q1.GetString("NOTES");
+        th.shareName_         = stock.STOCKNAME;
+        th.shareNotes_        = stock.NOTES;
         th.numSharesStr_      = "";
-        th.numShares_         = q1.GetDouble("NUMSHARES");
-        th.totalnumShares_    = q1.GetDouble("TOTAL_NUMSHARES");
-        th.purchasedTime_     = q1.GetInt ("PURCHASEDTIME");
+        th.numShares_         = stock.NUMSHARES;
+        th.totalnumShares_    = totalNumShares;
+        th.purchasedTime_     = purchasedTime;
 
-        th.currentPrice_      = q1.GetDouble("CURRENTPRICE");
-        th.purchasePrice_     = q1.GetDouble("PURCHASEPRICE");
-        th.avgpurchasePrice_  = q1.GetDouble ("AVG_PURCHASEPRICE");
-        th.value_             = q1.GetDouble("VALUE");
-        th.commission_        = q1.GetDouble("COMMISSION");
-        th.stockDays_         = q1.GetDouble ("DAYSOWN");
+        th.currentPrice_      = stock.CURRENTPRICE;
+        th.purchasePrice_     = stock.PURCHASEPRICE;
+        th.avgpurchasePrice_  = avgPurchasePrice;
+        th.value_             = stock.VALUE;
+        th.commission_        = stock.COMMISSION;
+        th.stockDays_         = wxDateTime::Now().Subtract(Model_Stock::PURCHASEDATE(stock)).GetDays();
 
         if (th.id_ == id) selected_item = cnt;
         th.gainLoss_          = th.value_ - ((th.numShares_ * th.purchasePrice_) + th.commission_);
@@ -491,9 +494,10 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
             th.totalnumSharesStr_ <<  static_cast<long>(th.totalnumShares_);
 
         trans_.push_back(new mmStockTransactionHolder(th));
+
+        ++cnt;
     }
 
-    st.Finalize();
     SetItemCount(cnt);
     return selected_item;
 }
