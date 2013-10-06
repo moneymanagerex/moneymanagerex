@@ -41,6 +41,7 @@ public:
                     const wxPoint& pos = SYMBOL_NEWCHKGACCTDIALOG_POSITION,
                     const wxSize& size = SYMBOL_NEWCHKGACCTDIALOG_SIZE,
                     long style = SYMBOL_NEWCHKGACCTDIALOG_STYLE );
+    ~mmNewAcctDialog();
 
     bool Create( wxWindow* parent, wxWindowID id = SYMBOL_NEWCHKGACCTDIALOG_IDNAME,
                  const wxString& caption = SYMBOL_NEWCHKGACCTDIALOG_TITLE,
@@ -73,6 +74,7 @@ private:
     bool access_changed_;
     wxString notesLabel_;
     wxColour notesColour_;
+    wxImageList* imageList_;
 };
 
 #endif

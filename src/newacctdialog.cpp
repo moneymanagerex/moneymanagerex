@@ -48,8 +48,15 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account,
     : m_account(account)
     , currencyID_(-1)
 {
+    imageList_ = navtree_images_list_();
     Create(parent, id, caption, pos, size, style);
     termAccount_ = false;
+}
+
+mmNewAcctDialog::~mmNewAcctDialog()
+{
+    if (imageList_)
+        delete imageList_;
 }
 
 bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
@@ -121,7 +128,7 @@ void mmNewAcctDialog::fillControls()
     textCtrl->SetValue(Model_Currency::toString(initBal, currency));
 
     int selectedImage = mmIniOptions::instance().account_image_id(m_account->ACCOUNTID);
-    bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
+    bitmaps_button_->SetBitmapLabel(imageList_->GetBitmap(selectedImage));
 
     accessInfo_ = m_account->ACCESSINFO;
 
@@ -376,16 +383,15 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     wxMenu* mainMenu = new wxMenu;
     mainMenu->Append(new wxMenuItem(mainMenu, 0, "-=======-"));
 
-    wxImageList* imageList = navtree_images_list_();
-
-    for (int i = k; i < imageList->GetImageCount(); ++i)
+    for (int i = k; i < imageList_->GetImageCount(); ++i)
     {
         wxMenuItem* menuItem = new wxMenuItem(mainMenu, i, wxString(_("Image #")) << i - k +1);
-        menuItem->SetBitmap(imageList->GetBitmap(i));
+        menuItem->SetBitmap(imageList_->GetBitmap(i));
         mainMenu->Append(menuItem);
     }
     //TODO: Provide wxMenu with pictures or spin buttons
     PopupMenu(mainMenu);
+    delete mainMenu;
 }
 
 void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
@@ -396,7 +402,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
     if (selectedImage == 0)
         selectedImage = mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID);
 
-    bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
+    bitmaps_button_->SetBitmapLabel(imageList_->GetBitmap(selectedImage));
 
 }
 

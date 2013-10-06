@@ -341,6 +341,7 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Append(new wxMenuItem(mainMenu, 0, _("Set as Base Currency")));
 
     PopupMenu(mainMenu);
+    delete mainMenu;
     event.Skip();
 }
 
