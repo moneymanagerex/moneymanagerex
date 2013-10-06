@@ -110,7 +110,7 @@ void mmNewAcctDialog::fillControls()
     itemAcctType->Enable(false);
 
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
-    choice->SetStringSelection(wxGetTranslation(m_account->STATUS));
+    choice->SetSelection(Model_Account::status(m_account));
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
     itemCheckBox->SetValue(m_account->FAVORITEACCT == "TRUE");
@@ -131,7 +131,6 @@ void mmNewAcctDialog::fillControls()
     bitmaps_button_->SetBitmapLabel(imageList_->GetBitmap(selectedImage));
 
     accessInfo_ = m_account->ACCESSINFO;
-
 }
 
 void mmNewAcctDialog::CreateControls()
@@ -166,12 +165,9 @@ void mmNewAcctDialog::CreateControls()
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Status:")), flags);
 
-    wxArrayString itemChoice6Strings;
-    itemChoice6Strings.Add(_("Open"));
-    itemChoice6Strings.Add(_("Closed"));
-
-    wxChoice* itemChoice6 = new wxChoice( this,
-        ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS, wxDefaultPosition, wxDefaultSize, itemChoice6Strings);
+    wxChoice* itemChoice6 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
+    for(const auto& status: Model_Account::all_status())
+        itemChoice6->Append(wxGetTranslation(status), new wxStringClientData(status));
     grid_sizer->Add(itemChoice6, flagsExpand);
     itemChoice6->SetSelection(0);
 
@@ -279,7 +275,7 @@ void mmNewAcctDialog::CreateControls()
 
     Fit();
 
-    if (true == true)
+    if (true)
     {
         textAccountName_->SetToolTip(_("Enter the Name of the Account. This name can be renamed at any time."));
         itemChoice61->SetToolTip(_("Specify the type of account to be created."));
@@ -408,6 +404,7 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 
 void mmNewAcctDialog::changeFocus(wxChildFocusEvent& event)
 {
+    return; // TODO
     wxWindow *w = event.GetWindow();
     int oject_in_focus = 0;
     if ( w )
