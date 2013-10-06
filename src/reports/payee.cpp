@@ -29,9 +29,6 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
 
 wxString mmReportPayeeExpenses::getHTMLText()
 {
-    core_->currencyList_.LoadBaseCurrencySettings();
-    //Model_Infotable::instance().GetBaseCurrencyId();
-
     double positiveTotal = 0.0, negativeTotal = 0.0;
     std::vector<ValuePair> valueList;
     valueList.clear();

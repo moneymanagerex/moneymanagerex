@@ -25,6 +25,7 @@
 #include "constants.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Currency.h"
 
 enum
 {
@@ -190,8 +191,9 @@ void mmOptionsDialog::CreateControls()
     currencyStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Base Currency")), flags);
 
     wxString currName = _("Set Currency");
-    if (currencyId_ != -1)
-        currName = core_->currencyList_.getCurrencyName(currencyId_);
+    Model_Currency::Data* currency = Model_Currency::instance().get(currencyId_);
+    if (currency)
+        currName = currency->CURRENCYNAME;
     wxButton* baseCurrencyButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY,
         currName, wxDefaultPosition, wxDefaultSize);
     baseCurrencyButton->SetToolTip(_("Sets the default currency for the database."));
@@ -748,9 +750,9 @@ void mmOptionsDialog::OnCurrency(wxCommandEvent& /*event*/)
 
     if (mmMainCurrencyDialog::Execute(this, currencyID) && currencyID != -1)
     {
-        wxString currName = core_->currencyList_.getCurrencyName(currencyID);
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabel(currName);
+        bn->SetLabel(currency->CURRENCYNAME);
         currencyId_ = currencyID;
 
         wxMessageDialog msgDlg(this, _("Remember to update currency rate"), _("Important note"));
@@ -916,7 +918,7 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
     mmSelectLanguage(this, false);
 
-    core_->currencyList_.SetBaseCurrencySettings(currencyId_);
+    Model_Infotable::instance().Set("BASECURRENCYID", currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
     SaveFinancialYearStart();
 }

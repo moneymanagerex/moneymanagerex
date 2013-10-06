@@ -8,6 +8,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "model/Model_Currency.h"
 
 enum qifAccountInfoType
 {
@@ -363,8 +364,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 
     wxSortedArrayString accountArray;
     for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
-
-    wxString sDefCurrencyName = core_->currencyList_.getCurrencyName(core_->currencyList_.GetBaseCurrencySettings());
 
     wxTextCtrl*& logWindow = log_field_;
 
@@ -1011,8 +1010,8 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
 
     if (newAccounts_->GetCount() > 0)
     {
-        int iBaseCurrencyID = core_->currencyList_.GetBaseCurrencySettings();
-        if (iBaseCurrencyID < 0)
+        Model_Currency::Data* base_currency = Model_Currency::GetBaseCurrency();
+        if (!base_currency)
         {
             mmShowErrorMessageInvalid(this, _("Base Currency Not Set"));
             return false;

@@ -61,8 +61,6 @@ wxString mmReportSummaryAssets::getHTMLText()
         hb.addTableHeaderCellLink(wxString::Format("SORT:%d", Model_Asset::COL_NOTES), _("Notes"));
     hb.endTableRow();
 
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     double balance = 0.0;
     for (const auto& pEntry: Model_Asset::instance().all((Model_Asset::COLUMN)sortColumn_))
     {

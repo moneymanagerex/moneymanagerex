@@ -202,7 +202,6 @@ wxString mmReportSummaryStocks::getHTMLText()
         hb.addTotalRow(_("Total:"), 8, acct.gainloss);
         hb.addMoneyCell(acct.total);
     }
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     hb.addRowSeparator(9);
     hb.addTotalRow(_("Grand Total:"), 8, gain_loss_sum_total);

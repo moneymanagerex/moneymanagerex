@@ -38,7 +38,6 @@ wxString mmReportIncomeExpenses::getHTMLText()
         , date_range_
         , -1
     );
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     for (const auto &stats: incomeExpensesStats)
     {
@@ -122,7 +121,6 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
 
     core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
         , date_range_, -1, false, true);
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     for (const auto &stats: incomeExpensesStats)
     {

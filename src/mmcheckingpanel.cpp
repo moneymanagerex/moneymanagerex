@@ -850,14 +850,11 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
         if (currencyid != basecurrencyid) //Show nothing if account currency is base
         {
             //load settings for base currency
-            wxString currencyName = core_->currencyList_.getCurrencyName(basecurrencyid);
-            mmCurrency* pCurrencyBase = core_->currencyList_.getCurrencySharedPtr(currencyName);
-            wxASSERT(pCurrencyBase);
+            Model_Currency::Data* currency = Model_Currency::instance().get(basecurrencyid);
             wxString basecuramountStr;
-            mmDBWrapper::loadCurrencySettings(core_->db_.get(), pCurrencyBase->currencyID_);
+            mmDBWrapper::loadCurrencySettings(core_->db_.get(), basecurrencyid); // TODO
             basecuramountStr = CurrencyFormatter::float2Money(amount*convrate);
 
-//            CurrencyFormatter::instance().loadSettings(*pCurrencyBase);
             amountStr = CurrencyFormatter::float2Money(amount);
 
             //output

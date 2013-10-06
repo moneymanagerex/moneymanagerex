@@ -43,8 +43,6 @@ public:
     // Global access point to the database.
     wxSharedPtr<wxSQLite3Database> db_;
 
-    /* These variables form a global data access point. */
-    mmCurrencyList currencyList_;
     mmBankTransactionList bTransactionList_;
     bool displayDatabaseError_;
 };

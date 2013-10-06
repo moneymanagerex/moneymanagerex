@@ -25,7 +25,6 @@
 //----------------------------------------------------------------------------
 mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
 : db_(db)
-, currencyList_(db)
 , bTransactionList_(this)
 , displayDatabaseError_(true)
 {
@@ -39,8 +38,6 @@ mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
     /* Create the appropriate tables first if required */
     mmDBWrapper::initDB(db_.get());
 
-    /* Load the DB into memory */
-    currencyList_.LoadCurrencies();             // populate currencyList_
     bTransactionList_.LoadTransactions();   // populate bTransactionList_
 }
 

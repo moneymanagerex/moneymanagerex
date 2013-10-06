@@ -59,8 +59,6 @@ wxString mmReportCashFlow::getHTMLText()
 
 wxString mmReportCashFlow::getHTMLText_i()
 {
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     mmHTMLBuilder hb;
     hb.init();
     int years = cashflowreporttype_ == 0 ? 10: 1;// Monthly for 10 years or Daily for 1 year
@@ -340,8 +338,6 @@ wxString mmReportCashFlow::getHTMLText_i()
 			if (! d_balance.first.IsLaterThan(dtEnd)) forecastOver12Months[idx] += d_balance.second;
 		}
     }
-
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     bool initialMonths = true;
     int displayYear    = wxDateTime::Now().GetYear();

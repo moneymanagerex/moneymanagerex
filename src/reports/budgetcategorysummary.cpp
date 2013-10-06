@@ -115,8 +115,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.addTableHeaderCell(_("Actual"), true);
     hb.endTableRow();
 
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     wxSQLite3Statement st = core_->db_.get()->PrepareStatement(SELECT_SUBCATEGS_FROM_SUBCATEGORY_V1);
 
     wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CATEGORY_V1);

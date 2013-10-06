@@ -123,9 +123,6 @@ wxString mmReportSummary::getHTMLText()
         hb.endTableRow();
     }
 
-    // all sums below will be in base currency!
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     hb.startTableRow();
     hb.addTotalRow(_("Bank Accounts Total:"), 2, tBalance);
     hb.endTableRow();
@@ -140,9 +137,6 @@ wxString mmReportSummary::getHTMLText()
         hb.addMoneyCell(entry.balance);
         hb.endTableRow();
     }
-
-    // all sums below will be in base currency!
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     if (wxGetApp().m_frame->hasActiveTermAccounts() )
     {

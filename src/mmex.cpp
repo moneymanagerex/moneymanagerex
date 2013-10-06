@@ -388,10 +388,10 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 
     if (mmMainCurrencyDialog::Execute(this, currencyID_) && currencyID_ != -1)
     {
-        wxString currName = parent_->m_core->currencyList_.getCurrencySharedPtr(currencyID_)->currencyName_;
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabel(currName);
-        parent_->m_core->currencyList_.SetBaseCurrencySettings(currencyID_);
+        bn->SetLabel(currency->CURRENCYNAME);
+        Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
     }
 }
 //----------------------------------------------------------------------------
@@ -2694,8 +2694,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             wizard->CenterOnParent();
             wizard->RunIt(true);
 
-            m_core->currencyList_.LoadBaseCurrencySettings();
-
             /* Load User Name and Other Settings */
             mmOptions::instance().loadOptions();
 
@@ -3390,6 +3388,8 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
+// TODO
+/*
     wxString sMsg = "";
     if (m_core.get()->currencyList_.OnlineUpdateCurRate(sMsg))
     {
@@ -3404,6 +3404,7 @@ void mmGUIFrame::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     //AddPendingEvent(evt);
     OnAccountList(evt);
+*/    
 }
 //----------------------------------------------------------------------------
 

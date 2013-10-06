@@ -320,8 +320,6 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }
 
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     for (const auto& category: Model_Category::instance().all())
     {
         mmBudgetEntryHolder th;

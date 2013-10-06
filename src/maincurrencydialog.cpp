@@ -305,20 +305,6 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
 // TODO
-/*
-    wxString sMsg = "";
-    if (core_->currencyList_.OnlineUpdateCurRate(sMsg))
-    {
-        wxMessageDialog msgDlg(this, sMsg, _("Currency rate updated"));
-        msgDlg.ShowModal();
-        fillControls();
-    }
-    else
-    {
-        wxMessageDialog msgDlg(this, sMsg, _("Error"), wxOK|wxICON_ERROR);
-        msgDlg.ShowModal();
-    }
-*/
 }
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)

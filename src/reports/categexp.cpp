@@ -63,7 +63,6 @@ wxString mmReportCategoryExpenses::getHTMLText()
         , ignoreFutureDate_
         , false
         , with_date);
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {

@@ -137,9 +137,6 @@ wxString mmReportTransactions::getHTMLText()
         hb.endTableRow();
     }
 
-    // work out the total balance for all the data at base rate
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     // display the total balance.
     hb.addRowSeparator(9);
     hb.addTotalRow(_("Total Amount: "), 7, total);

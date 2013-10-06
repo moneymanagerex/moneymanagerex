@@ -57,7 +57,6 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     core_->bTransactionList_.getCategoryStats(categoryStats
         , date_range_
         , mmIniOptions::instance().ignoreFutureTransactions_);
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     //Init totals
     //Type(Withdrawal/Income/Summ), month, value

@@ -237,8 +237,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     trans_.clear();
     listCtrlAccount_->DeleteAllItems();
 
-    core_->currencyList_.LoadBaseCurrencySettings();
-
     int cnt = 0, selected_item = -1;
     for (const auto& q1: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {

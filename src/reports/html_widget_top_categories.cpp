@@ -19,7 +19,6 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
     mmHTMLBuilder hb;
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     wxString headerMsg = wxString::Format(_("Top Withdrawals: %s"), date_range_->title());
 

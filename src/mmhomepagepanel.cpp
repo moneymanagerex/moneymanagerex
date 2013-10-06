@@ -182,7 +182,6 @@ wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, doubl
 {
     mmHTMLBuilder hb;
     // format the totals for display
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     std::vector<double> data;
     data.push_back(tRecBalance);
@@ -325,7 +324,6 @@ wxString mmHomePagePanel::displayStocks(double& tBalance /*, double& tIncome, do
 wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
     mmHTMLBuilder hb;
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     if (mmIniOptions::instance().enableAssets_)
     {
@@ -434,7 +432,6 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
         , -1
         , group_by_account
     );
-    core_->currencyList_.LoadBaseCurrencySettings();
 
     bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
     bool show_all = (frame_->expandedBankAccounts() && frame_->expandedTermAccounts()) || show_nothing;
@@ -579,7 +576,6 @@ wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     mmHTMLBuilder hb;
     //  Display the grand total from all sections
     wxString tBalanceStr;
-    core_->currencyList_.LoadBaseCurrencySettings();
     tBalanceStr = CurrencyFormatter::float2Money(tBalance);
 
     hb.startTable("100%");
