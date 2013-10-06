@@ -24,6 +24,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 #include "model/Model_Billsdeposits.h"
 
 /*******************************************************/
@@ -260,9 +261,11 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         th.sNumber_        = q1.TRANSACTIONNUMBER;
         th.notes_          = q1.NOTES;
         th.categID_        = q1.CATEGID;
-        th.categoryStr_    = core_->categoryList_.GetCategoryName(th.categID_);
+        const Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
+        const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(q1.SUBCATEGID);
+        th.categoryStr_    = category->CATEGNAME;
         th.subcategID_     = q1.SUBCATEGID;
-        th.subcategoryStr_ = core_->categoryList_.GetSubCategoryName(th.categID_, th.subcategID_);
+        th.subcategoryStr_ = sub_category ? sub_category->SUBCATEGNAME : "";
 
         int numRepeats     = q1.NUMOCCURRENCES;
 

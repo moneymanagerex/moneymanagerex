@@ -26,6 +26,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
@@ -106,11 +107,16 @@ void mmFilterTransactionsDialog::dataToControls()
     btnCategory_ ->Enable(status);
 
     wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
-    categID_ = core_->categoryList_.GetCategoryId(categ_token.GetNextToken().Trim());
+    Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
+    categID_ = category->CATEGID;
+    Model_Subcategory::Data* sub_category = 0;
     wxString subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
-        subcategID_ = core_->categoryList_.GetSubCategoryID(categID_, subcateg_name);
-    btnCategory_ ->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
+    {
+        sub_category = Model_Subcategory::instance().get(subcateg_name);
+        subcategID_ = sub_category->SUBCATEGID;
+    }
+    btnCategory_ ->SetLabel(Model_Category::full_name(category, sub_category));
     bExpandStaus_ = true;
 
     status = get_next_value(tkz, value);
@@ -431,14 +437,18 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
 {
     mmCategDialog dlg(core_, this);
 
-    dlg.setTreeSelection(core_->categoryList_.GetCategoryName(categID_)
-    , core_->categoryList_.GetSubCategoryName(categID_,subcategID_));
+    Model_Category::Data* category = Model_Category::instance().get(categID_);
+    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+    dlg.setTreeSelection(category->CATEGNAME, sub_category ? sub_category->SUBCATEGNAME : "");
 
     if (dlg.ShowModal() == wxID_OK)
     {
         categID_ = dlg.getCategId();
         subcategID_ = dlg.getSubCategId();
-        btnCategory_->SetLabel(core_->categoryList_.GetFullCategoryString(categID_, subcategID_));
+        Model_Category::Data* category = Model_Category::instance().get(categID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+
+        btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
         bExpandStaus_ = dlg.getExpandStatus();
     }
 }

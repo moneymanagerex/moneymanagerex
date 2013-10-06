@@ -70,6 +70,13 @@ public:
     {
         return this->get(id, this->db_);
     }
+    Data* get(const wxString& name)
+    {
+        Data* category = 0;
+        Data_Set items = this->find(this->db_, COL_CATEGNAME, name);
+        if (!items.empty()) category = this->get(items[0].CATEGID, this->db_);
+        return category;
+    }
     int save(Data* r)
     {
         r->save(this->db_);

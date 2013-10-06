@@ -26,6 +26,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Budgetyear.h"
+#include "model/Model_Category.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -321,12 +322,12 @@ void mmBudgetingPanel::initVirtualListControl()
 
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    for (const auto& category: core_->categoryList_.entries_)
+    for (const auto& category: Model_Category::instance().all())
     {
         mmBudgetEntryHolder th;
         budgetDetails.initBudgetEntryFields(th, budgetYearID_);
-        th.categID_ = category->categID_;
-        th.catStr_ = category->categName_;
+        th.categID_ = category.CATEGID;
+        th.catStr_ = category.CATEGNAME;
 
         mmDBWrapper::getBudgetEntry(core_->db_.get(),
             budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
@@ -376,14 +377,14 @@ void mmBudgetingPanel::initVirtualListControl()
             trans_.push_back(th);
         }
 
-        for (const auto& sub_category : category->children_)
+        for (const auto& sub_category : Model_Category::sub_category(category))
         {
             mmBudgetEntryHolder thsub;
             budgetDetails.initBudgetEntryFields(thsub, budgetYearID_);
             thsub.categID_ = th.categID_;
             thsub.catStr_ = th.catStr_;
-            thsub.subcategID_ = sub_category->categID_;
-            thsub.subCatStr_   = sub_category->categName_;
+            thsub.subcategID_ = sub_category.SUBCATEGID;
+            thsub.subCatStr_   = sub_category.SUBCATEGNAME;
 
             mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_,
                 thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);

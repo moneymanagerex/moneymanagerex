@@ -19,6 +19,7 @@
 #include "budgetentrydialog.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
+#include "model/Model_Category.h"
 #include "paths.h"
 #include <wx/valnum.h>
 
@@ -133,9 +134,11 @@ void mmBudgetEntryDialog::CreateControls()
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 10, 10);
     itemPanel7->SetSizer(itemGridSizer2);
     
+    const Model_Category::Data* category = Model_Category::instance().get(categID_);
+    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
     wxStaticText* itemTextCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Category: "));
     wxStaticText* itemTextCatName = new wxStaticText( itemPanel7, wxID_STATIC, 
-        core_->categoryList_.GetCategoryName(categID_), wxDefaultPosition, wxDefaultSize, 0 );
+        category->CATEGNAME, wxDefaultPosition, wxDefaultSize, 0 );
 
     wxStaticText* itemTextEstCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Estimated:"));
     wxStaticText* itemTextEstCatAmt = new wxStaticText( itemPanel7, wxID_STATIC, catEstimateAmountStr_);
@@ -148,8 +151,7 @@ void mmBudgetEntryDialog::CreateControls()
     if (subcategID_ >= 0) { 
         wxStaticText* itemTextSubCatTag = new wxStaticText( itemPanel7, wxID_STATIC, 
             _("Sub Category: "), wxDefaultPosition, wxDefaultSize, 0 );
-        wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC, 
-            core_->categoryList_.GetSubCategoryString(categID_, subcategID_));
+        wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC, sub_category->SUBCATEGNAME);
         
         itemGridSizer2->Add(itemTextSubCatTag, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
         itemGridSizer2->Add(itemTextSubCatName,0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
