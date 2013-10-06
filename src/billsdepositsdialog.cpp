@@ -676,23 +676,24 @@ void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
 {
-   if (cSplit_->GetValue())
-   {
-       activateSplitTransactionsDlg();
-   }
-   else
-   {
-      mmCategDialog dlg(core_, this);
-      dlg.setTreeSelection(categoryName_, subCategoryName_);
-      if ( dlg.ShowModal() == wxID_OK )
-      {
-         categID_ = dlg.getCategId();
-         subcategID_ = dlg.getSubCategId();
+    if (cSplit_->GetValue())
+    {
+        activateSplitTransactionsDlg();
+    }
+    else
+    {
+        mmCategDialog dlg(core_, this);
+        dlg.setTreeSelection(categoryName_, subCategoryName_);
+        if ( dlg.ShowModal() == wxID_OK )
+        {
+            categID_ = dlg.getCategId();
+            subcategID_ = dlg.getSubCategId();
 
-         wxString categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
-         bCategory_->SetLabel(categString);
-      }
-   }
+            const Model_Category::Data* category = Model_Category::instance().get(categID_);
+            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+            bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+        }
+    }
 }
 
 void mmBDDialog::displayControlsForType( int transType, bool enableAdvanced )
@@ -1072,6 +1073,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         // repeats now hold extra info. Need to get repeats from dialog selection
         if ( (itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (numRepeats > 0) )
         {
+            const Model_Category::Data* category = Model_Category::instance().get(categID_);
+            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+
             mmBankTransaction* pTransaction = new mmBankTransaction(core_);
 
             pTransaction->accountID_ = fromAccountID;
@@ -1087,7 +1091,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             pTransaction->notes_ = notes;
             pTransaction->categID_ = categID_;
             pTransaction->subcategID_ = subcategID_;
-            pTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
+            pTransaction->fullCatStr_ = Model_Category::full_name(category, sub_category);
             pTransaction->date_ = dpc_->GetValue();
             pTransaction->toAmt_ = toTransAmount_;
 
