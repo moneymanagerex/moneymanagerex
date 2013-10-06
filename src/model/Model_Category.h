@@ -84,6 +84,13 @@ public:
     {
         return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r.CATEGID);
     }
+    static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0)
+    {
+        if (!sub_category)
+            return category->CATEGNAME;
+        else
+            return category->CATEGNAME + ":" + sub_category->SUBCATEGNAME; 
+    }
 
     static void top_category(std::vector<std::pair<wxString /*category name*/
         , double/*amount*/> >& /* category */, const mmDateRange* date_range, int /* top_n = 7 */)

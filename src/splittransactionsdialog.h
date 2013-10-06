@@ -21,7 +21,7 @@
 
 #include "guiid.h"
 #include "mmtransaction.h"
-#include "model\Model_Splittransaction.h"
+#include "model/Model_Splittransaction.h"
 ////@end includes
 
 /*!
