@@ -687,19 +687,16 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     //--//
 
     core_->db_.get()->Begin();
-    wxSQLite3Statement st = core_->db_.get()->PrepareStatement(UPDATE_STOCK_V1);
 
     for (vec_t::const_iterator i = stockVec.begin(); i != stockVec.end(); ++i)
     {
-        st.Bind(1, i->currentPrice_);
-        st.Bind(2, i->value_);
-        st.Bind(3, i->shareName_);
-        st.Bind(4, i->id_);
-
-        st.ExecuteUpdate();
-        st.Reset();
+        Model_Stock::Data* stock = Model_Stock::instance().get(i->id_);
+        stock->CURRENTPRICE = i->currentPrice_;
+        stock->VALUE = i->value_;
+        stock->STOCKNAME = i->shareName_;
+        Model_Stock::instance().save(stock, core_->db_.get());
     }
-    st.Finalize();
+
     core_->db_.get()->Commit();
 
     // Now refresh the display
