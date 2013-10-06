@@ -82,7 +82,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
                 value = -value;
             const wxString split_amount = wxString()<<value;
             const Model_Category::Data* category = Model_Category::instance().get(split_entry->categID_);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_entry->subCategID_);
+            const Model_Subcategory::Data* sub_category = (split_entry->subCategID_ != -1 ? Model_Subcategory::instance().get(split_entry->subCategID_) : 0);
             const wxString split_categ = Model_Category::full_name(category, sub_category);
             buffer << "S" << split_categ << "\n"
                 << "$" << split_amount << "\n";
@@ -132,7 +132,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
             const wxString split_amount = wxString()<<value;
 
             const Model_Category::Data* category = Model_Category::instance().get(split_entry->categID_);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_entry->subCategID_);
+            const Model_Subcategory::Data* sub_category = (split_entry->subCategID_ != -1 ? Model_Subcategory::instance().get(split_entry->subCategID_) : 0);
             const wxString split_categ = Model_Category::full_name(category, sub_category);
 
             buffer << trans_id << delimit

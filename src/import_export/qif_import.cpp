@@ -610,7 +610,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 sMsg = wxString::Format(_("Added category: %s"), sCateg);
                 logWindow->AppendText(sMsg << "\n");
             }
-            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sSubCateg, categID);
+            Model_Subcategory::Data* sub_category = (!sSubCateg.IsEmpty() ? Model_Subcategory::instance().get(sSubCateg, categID) : 0);
             if (!sub_category)
             {
                 sub_category = Model_Subcategory::instance().create();
@@ -764,7 +764,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             else
             {
                 Model_Category::Data* category = Model_Category::instance().get(categID);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subCategID);
+                Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
                 sFullCateg = Model_Category::full_name(category, sub_category);
             }
 
@@ -802,7 +802,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 int s = mmSplit->entries_[i]->subCategID_;
 
                 Model_Category::Data* category = Model_Category::instance().get(c);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(s);
+                Model_Subcategory::Data* sub_category = (s != -1 ? Model_Subcategory::instance().get(s) : 0);
 
                 wxString cn = category->CATEGNAME;
                 wxString sn = (sub_category ? sub_category->SUBCATEGNAME : ""); 
@@ -829,7 +829,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             transaction.categID_ = categID;
             transaction.subcategID_ = subCategID;
             Model_Category::Data* category = Model_Category::instance().get(categID);
-            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subCategID);
+            Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
             transaction.fullCatStr_ = Model_Category::full_name(category, sub_category);
             *transaction.splitEntries_ = *mmSplit;
 
@@ -887,7 +887,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         data.push_back(wxVariant(transaction.status_));
 
         Model_Category::Data* category = Model_Category::instance().get(transaction.categID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(transaction.subcategID_);
+        Model_Subcategory::Data* sub_category = (transaction.subcategID_ != -1 ? Model_Subcategory::instance().get(transaction.subcategID_) : 0);
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
         data.push_back(wxVariant(wxString::Format("%.2f", transaction.value(-1))));
         data.push_back(wxVariant(transaction.notes_));

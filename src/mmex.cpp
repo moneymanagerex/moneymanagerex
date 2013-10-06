@@ -911,7 +911,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
         th.categoryStr_    = category->CATEGNAME;
         th.subcategID_     = q1.SUBCATEGID;
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(q1.SUBCATEGID);
+        Model_Subcategory::Data* sub_category = (q1.SUBCATEGID != -1 ? Model_Subcategory::instance().get(q1.SUBCATEGID) : 0);
         th.subcategoryStr_ = Model_Category::full_name(category, sub_category);
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS

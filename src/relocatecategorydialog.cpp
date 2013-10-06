@@ -90,7 +90,7 @@ void relocateCategoryDialog::CreateControls()
     if (sourceCatID_ > -1)
     {
         Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sourceSubCatID_);
+        Model_Subcategory::Data* sub_category = (sourceSubCatID_ != -1 ? Model_Subcategory::instance().get(sourceSubCatID_) : 0);
         sourceBtn_->SetLabel(Model_Category::full_name(category, sub_category));
     }
     destBtn_ = new wxButton( this, wxID_NEW,_("Destination Category"), wxDefaultPosition, wxSize(200, -1));
@@ -129,7 +129,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 {
     mmCategDialog sourceCat(core_ , this, true, false);
     Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
-    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sourceSubCatID_);
+    Model_Subcategory::Data* sub_category = (sourceSubCatID_ != -1 ? Model_Subcategory::instance().get(sourceSubCatID_) : 0);
 
     sourceCat.setTreeSelection(category->CATEGNAME, Model_Category::full_name(category, sub_category));
 
@@ -138,7 +138,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
         sourceCatID_    = sourceCat.getCategId();
         sourceSubCatID_ = sourceCat.getSubCategId();
         Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sourceSubCatID_);
+        Model_Subcategory::Data* sub_category = (sourceSubCatID_ != -1 ? Model_Subcategory::instance().get(sourceSubCatID_) : 0);
 
         sourceBtn_->SetLabel(Model_Category::full_name(category, sub_category));
     }
@@ -149,7 +149,7 @@ void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
 {
     mmCategDialog destCat(core_ , this, true, false);
     Model_Category::Data* category = Model_Category::instance().get(destCatID_);
-    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(destSubCatID_);
+    Model_Subcategory::Data* sub_category = (destSubCatID_ != -1 ? Model_Subcategory::instance().get(destSubCatID_) : 0);
 
     destCat.setTreeSelection(category->CATEGNAME, Model_Category::full_name(category, sub_category));
 
@@ -158,7 +158,7 @@ void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
         destCatID_    = destCat.getCategId();
         destSubCatID_ = destCat.getSubCategId();
         Model_Category::Data* category = Model_Category::instance().get(destCatID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(destSubCatID_);
+        Model_Subcategory::Data* sub_category = (destSubCatID_ != -1 ? Model_Subcategory::instance().get(destSubCatID_) : 0);
 
         destBtn_->SetLabel(Model_Category::full_name(category, sub_category));
     }

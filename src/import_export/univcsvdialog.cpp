@@ -816,7 +816,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 
                 buffer = "";
                 Model_Category::Data* category = Model_Category::instance().get(pBankTransaction->categID_);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction->subcategID_);
+                Model_Subcategory::Data* sub_category = (pBankTransaction->subcategID_ != -1 ? Model_Subcategory::instance().get(pBankTransaction->subcategID_) : 0);
                 for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++ sit)
                 {
                     switch (*sit)
@@ -1006,7 +1006,7 @@ void mmUnivCSVDialog::update_preview()
                     m_list_ctrl_->SetItem(itemIndex, col, buf);
 
                     Model_Category::Data* category = Model_Category::instance().get(pBankTransaction->categID_);
-                    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction->subcategID_);
+                    Model_Subcategory::Data* sub_category = (pBankTransaction->subcategID_ != -1 ? Model_Subcategory::instance().get(pBankTransaction->subcategID_) : 0);
                     for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++ sit)
                     {
                         ++ col;
@@ -1270,7 +1270,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             if (categID_ == -1)
                 return;
 
-            sub_category = Model_Subcategory::instance().get(token, categID_);
+            sub_category = (!token.IsEmpty() ? Model_Subcategory::instance().get(token, categID_) : 0);
             if (!sub_category)
             {
                 sub_category = Model_Subcategory::instance().create();

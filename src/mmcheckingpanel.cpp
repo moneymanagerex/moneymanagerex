@@ -839,7 +839,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
                     amount = -amount;
                 amountStr = CurrencyFormatter::float2Money(amount);
                 Model_Category::Data* category = Model_Category::instance().get(i->categID_);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(i->subCategID_);
+                Model_Subcategory::Data* sub_category = (i->subCategID_ != -1 ? Model_Subcategory::instance().get(i->subCategID_) : 0);
                 infoStr << Model_Category::full_name(category, sub_category) 
                     << " = "
                     << amountStr

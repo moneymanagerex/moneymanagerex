@@ -260,7 +260,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         th.notes_          = q1.NOTES;
         th.categID_        = q1.CATEGID;
         const Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
-        const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(q1.SUBCATEGID);
+        const Model_Subcategory::Data* sub_category = (q1.SUBCATEGID != -1 ? Model_Subcategory::instance().get(q1.SUBCATEGID) : 0);
         th.categoryStr_    = category->CATEGNAME;
         th.subcategID_     = q1.SUBCATEGID;
         th.subcategoryStr_ = sub_category ? sub_category->SUBCATEGNAME : "";

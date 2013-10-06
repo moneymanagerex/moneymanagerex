@@ -198,7 +198,7 @@ void mmBDDialog::dataToControls()
         else
         {
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
             categoryName_ = category->CATEGNAME;
             subCategoryName_ = sub_category ? sub_category->SUBCATEGNAME : "";
             bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
@@ -630,7 +630,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                 subcategID_ = payee->SUBCATEGID;
 
                 const Model_Category::Data* category = Model_Category::instance().get(categID_);
-                const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+                const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
                 bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
             }
         }
@@ -690,7 +690,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
             subcategID_ = dlg.getSubCategId();
 
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
             bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
         }
     }
@@ -1074,7 +1074,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         if ( (itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (numRepeats > 0) )
         {
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
 
             mmBankTransaction* pTransaction = new mmBankTransaction(core_);
 

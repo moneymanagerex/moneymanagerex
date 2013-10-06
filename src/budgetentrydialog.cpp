@@ -134,7 +134,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemPanel7->SetSizer(itemGridSizer2);
     
     const Model_Category::Data* category = Model_Category::instance().get(categID_);
-    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+    const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
     wxStaticText* itemTextCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Category: "));
     wxStaticText* itemTextCatName = new wxStaticText( itemPanel7, wxID_STATIC, 
         category->CATEGNAME, wxDefaultPosition, wxDefaultSize, 0 );

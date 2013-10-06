@@ -87,7 +87,7 @@ void SplitTransactionDialog::DataToControls()
     for (const auto & entry : split_)
     {
         const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
-        const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(entry.SUBCATEGID);
+        const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
 
         lcSplit_->InsertItem((long)idx
             , Model_Category::full_name(category, sub_category) 
@@ -260,7 +260,7 @@ void SplitTransactionDialog::EditEntry()
     int subCategID = splt_->entries_[item]->subCategID_;
     double amount  = splt_->entries_[item]->splitAmount_;
     const Model_Category::Data* category = Model_Category::instance().get(categID);
-    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subCategID);
+    const Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
     wxString category_name = Model_Category::full_name(category, sub_category);
 
 

@@ -114,7 +114,7 @@ void mmFilterTransactionsDialog::dataToControls()
     wxString subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
     {
-        sub_category = Model_Subcategory::instance().get(subcateg_name);
+        sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
         if (sub_category)
             subcategID_ = sub_category->SUBCATEGID;
     }
@@ -440,7 +440,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
     mmCategDialog dlg(core_, this);
 
     Model_Category::Data* category = Model_Category::instance().get(categID_);
-    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+    Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
     dlg.setTreeSelection(category->CATEGNAME, sub_category ? sub_category->SUBCATEGNAME : "");
 
     if (dlg.ShowModal() == wxID_OK)
@@ -448,7 +448,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         categID_ = dlg.getCategId();
         subcategID_ = dlg.getSubCategId();
         Model_Category::Data* category = Model_Category::instance().get(categID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+        Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
 
         btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
         bExpandStaus_ = dlg.getExpandStatus();

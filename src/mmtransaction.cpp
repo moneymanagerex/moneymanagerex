@@ -308,7 +308,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
         categID_ = -1;
         subcategID_ = -1;
         Model_Category::Data* category = Model_Category::instance().get(splitEntries_->entries_[0]->categID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splitEntries_->entries_[0]->subCategID_);
+        Model_Subcategory::Data* sub_category = (splitEntries_->entries_[0]->subCategID_ != -1 ? Model_Subcategory::instance().get(splitEntries_->entries_[0]->subCategID_) : 0);
         fullCatStr_= Model_Category::full_name(category, sub_category);
     }
     else if (splitEntries_->numEntries() > 1)
@@ -320,7 +320,7 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     else
     {
         Model_Category::Data* category = Model_Category::instance().get(categID_);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+        Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
 
         fullCatStr_ = Model_Category::full_name(category, sub_category);
     }
@@ -824,7 +824,7 @@ void mmBankTransactionList::getTopCategoryStats(
         if (trx->categID_ > -1)
         {
             Model_Category::Data* category = Model_Category::instance().get(trx->categID_);
-            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(trx->subcategID_);
+            Model_Subcategory::Data* sub_category = (trx->subcategID_ != -1 ? Model_Subcategory::instance().get(trx->subcategID_) : 0);
 
             const wxString categ_name = Model_Category::full_name(category, sub_category);
             stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
@@ -836,7 +836,7 @@ void mmBankTransactionList::getTopCategoryStats(
             for (const auto& entry : splits->entries_)
             {
                 Model_Category::Data* category = Model_Category::instance().get(entry->categID_);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(entry->subCategID_);
+                Model_Subcategory::Data* sub_category = (entry->subCategID_ != -1 ? Model_Subcategory::instance().get(entry->subCategID_) : 0);
 
                 const wxString categ_name = Model_Category::full_name(category, sub_category);
                 stat[categ_name] += entry->splitAmount_
@@ -1345,7 +1345,7 @@ int mmBankTransactionList::RelocateCategory(int destCatID
                 pBankTransaction->categID_ = destCatID;
                 pBankTransaction->subcategID_ = destSubCatID;
                 Model_Category::Data* category = Model_Category::instance().get(destCatID);
-                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(destSubCatID);
+                Model_Subcategory::Data* sub_category = (destSubCatID != -1 ? Model_Subcategory::instance().get(destSubCatID) : 0);
 
                 pBankTransaction->fullCatStr_ = Model_Category::full_name(category, sub_category);
             }

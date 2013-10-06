@@ -220,7 +220,7 @@ void mmTransDialog::updateControlsForTransType()
             transaction_->CATEGID = core_->bTransactionList_.getLastUsedCategoryID(accountID_
                 , transaction_->PAYEEID, transaction_->TRANSCODE, transaction_->SUBCATEGID);
             const Model_Category::Data* category = Model_Category::instance().get(transaction_->CATEGID);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+            const Model_Subcategory::Data* sub_category = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
             categString = Model_Category::full_name(category, sub_category);
         }
         bCategory_->SetLabel(categString);
@@ -528,7 +528,7 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
             if (payee && payee->CATEGID != -1)
             {
                 Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
-                Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee->SUBCATEGID);
+                Model_Subcategory::Data *subcategory = (payee->SUBCATEGID != -1 ? Model_Subcategory::instance().get(payee->SUBCATEGID) : 0);
                 wxString fullCategoryName = Model_Category::full_name(category, subcategory);
 
                 transaction_->CATEGID = payee->CATEGID;
@@ -725,7 +725,7 @@ bool mmTransDialog::validateData()
         }
 
         Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+        Model_Subcategory::Data *subcategory = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
         if (!category || !subcategory)
         {
             mmShowErrorMessageInvalid(this, _("Category"));
@@ -868,7 +868,7 @@ void mmTransDialog::SetSplitState()
     else
     {
             Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-            Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+            Model_Subcategory::Data *subcategory = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
             fullCategoryName = Model_Category::full_name(category, subcategory);
             if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
     }

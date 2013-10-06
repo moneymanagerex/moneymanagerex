@@ -455,7 +455,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     int subcategID = iData->getSubCategID();
 
     Model_Category::Data* category = Model_Category::instance().get(categID);
-    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID);
+    Model_Subcategory::Data* sub_category = (subcategID != -1 ? Model_Subcategory::instance().get(subcategID) : 0);
     if (subcategID == -1)
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGNAME, text);
@@ -516,7 +516,7 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& 
 void mmCategDialog::setTreeSelection(int &category_id, int &subcategory_id)
 {
     Model_Category::Data *category = Model_Category::instance().get(category_id);
-    Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(subcategory_id);
+    Model_Subcategory::Data *subcategory = (subcategory_id != -1 ? Model_Subcategory::instance().get(subcategory_id) : 0);
     wxString categoryName = "", subCategoryName = "";
     if (category) categoryName = category->CATEGNAME;
     if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
@@ -651,6 +651,6 @@ bool mmCategDialog::categShowStatus(int categId, int subCategId)
 wxString mmCategDialog::getFullCategName()
 {
     Model_Category::Data *category = Model_Category::instance().get(categID_);
-    Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(subcategID_);
+    Model_Subcategory::Data *subcategory = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
     return Model_Category::full_name(category, subcategory);
 }
