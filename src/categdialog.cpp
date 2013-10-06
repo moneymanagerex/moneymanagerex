@@ -455,6 +455,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     int subcategID = iData->getSubCategID();
 
     Model_Category::Data* category = Model_Category::instance().get(categID);
+    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID);
     if (subcategID == -1)
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGNAME, text);
@@ -482,17 +483,16 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
                 return;
             }
         }
-        Model_Subcategory::Data* subcategory = Model_Subcategory::instance().get(subcategID);
-        if (subcategory)
+        if (sub_category)
         {
-            wxLogDebug("%s", subcategory->to_json());
-            subcategory->SUBCATEGNAME = text;
-            Model_Subcategory::instance().save(subcategory);
+            wxLogDebug("%s", sub_category->to_json());
+            sub_category->SUBCATEGNAME = text;
+            Model_Subcategory::instance().save(sub_category);
         }
     }
 
     treeCtrl_->SetItemText(selectedItemId_, text);
-    wxString fullCatStr = core_->categoryList_.GetFullCategoryString(categID, subcategID);
+    wxString fullCatStr = Model_Category::full_name(category, sub_category);
     core_->bTransactionList_.UpdateCategory(categID, subcategID, fullCatStr);
     refreshRequested_ = true;
 }
