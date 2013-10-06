@@ -29,6 +29,7 @@
 #include "validators.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 #include "model/Model_Billsdeposits.h"
 #include <wx/valnum.h>
 
@@ -196,10 +197,11 @@ void mmBDDialog::dataToControls()
         }
         else
         {
-            wxString categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
-            categoryName_ = core_->categoryList_.GetCategoryName(categID_);
-            subCategoryName_ = core_->categoryList_.GetSubCategoryName(categID_, subcategID_);
-            bCategory_->SetLabel(categString);
+            const Model_Category::Data* category = Model_Category::instance().get(categID_);
+            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+            categoryName_ = category->CATEGNAME;
+            subCategoryName_ = sub_category ? sub_category->SUBCATEGNAME : "";
+            bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
         }
 
         textNotes_->SetValue(notesString);
@@ -626,8 +628,10 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 
                 categID_ = payee->CATEGID;
                 subcategID_ = payee->SUBCATEGID;
-                const wxString categString = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
-                bCategory_->SetLabel(categString);
+
+                const Model_Category::Data* category = Model_Category::instance().get(categID_);
+                const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+                bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
             }
         }
         else
