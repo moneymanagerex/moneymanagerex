@@ -908,9 +908,11 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         th.toAmt_          = q1.TOTRANSAMOUNT;
         th.notes_          = q1.NOTES;
         th.categID_        = q1.CATEGID;
-        th.categoryStr_    = m_core.get()->categoryList_.GetCategoryName(th.categID_);
+        Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
+        th.categoryStr_    = category->CATEGNAME;
         th.subcategID_     = q1.SUBCATEGID;
-        th.subcategoryStr_ = m_core.get()->categoryList_.GetSubCategoryName(th.categID_, th.subcategID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(q1.SUBCATEGID);
+        th.subcategoryStr_ = Model_Category::full_name(category, sub_category);
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         int repeats        = q1.REPEATS;
@@ -994,7 +996,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran.notes_ = th.notes_;
                 tran.categID_ = th.categID_;
                 tran.subcategID_ = th.subcategID_;
-                tran.fullCatStr_ = m_core->categoryList_.GetFullCategoryString(th.categID_, th.subcategID_);
+                tran.fullCatStr_ = Model_Category::full_name(category, sub_category);
                 tran.date_ = th.nextOccurDate_;
                 tran.toAmt_ = th.toAmt_;
 
