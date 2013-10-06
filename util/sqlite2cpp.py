@@ -163,7 +163,7 @@ struct DB_Table_%s : public DB_Table
         s += '''
     struct Data
     {
-        friend class DB_Table_%s;
+        friend struct DB_Table_%s;
         Self* view_;
     ''' % self._table.upper()
         for field in self._fields:

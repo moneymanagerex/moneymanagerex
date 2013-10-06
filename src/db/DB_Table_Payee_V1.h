@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 18:16:25.682721.
+ *          AUTO GENERATED at 2013-10-06 22:38:36.390096.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -20,9 +20,8 @@
 
 #include "DB_Table.h"
 
-class DB_Table_PAYEE_V1 : public DB_Table
+struct DB_Table_PAYEE_V1 : public DB_Table
 {
-public:
     struct Data;
     typedef DB_Table_PAYEE_V1 Self;
     typedef std::vector<Self::Data> Data_Set;
@@ -99,7 +98,7 @@ public:
     
     struct Data
     {
-        friend class DB_Table_PAYEE_V1;
+        friend struct DB_Table_PAYEE_V1;
         Self* view_;
     
         int PAYEEID;//  primay key

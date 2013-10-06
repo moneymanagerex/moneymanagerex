@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 18:16:25.682721.
+ *          AUTO GENERATED at 2013-10-06 22:38:36.390096.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -30,9 +30,8 @@
 
 class wxString;
 
-class DB_Table
+struct DB_Table
 {
-public:
     DB_Table() {};
     virtual ~DB_Table() {};
     wxString query_;
