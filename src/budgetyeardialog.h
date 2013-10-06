@@ -27,6 +27,7 @@
 
 #include "guiid.h"
 #include "mmcoredb.h"
+#include "defs.h"
 
 class mmBudgetYearDialog : public wxDialog
 {

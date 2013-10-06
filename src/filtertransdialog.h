@@ -21,7 +21,8 @@
 #ifndef wxFIXED_MINSIZE
 #define wxFIXED_MINSIZE 0
 #endif
-
+#include <wx/dialog.h>
+#include "defs.h"
 class mmDateRange;
 
 class mmFilterTransactionsDialog: public wxDialog

@@ -9,6 +9,7 @@
 #define SYMBOL_QIFIMPORT_POSITION wxDefaultPosition
 
 #include "mmcoredb.h"
+#include "defs.h"
 #include <wx/dataview.h>
 
 class wxDatePickerCtrl;

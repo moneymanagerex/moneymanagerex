@@ -18,7 +18,6 @@
 #define _MM_EX_MMTRANSACTION_H_
 
 #include "dbwrapper.h"
-#include "mmcategory.h"
 #include "mmcurrency.h"
 #include "reports/mmDateRange.h"
 #include <map>

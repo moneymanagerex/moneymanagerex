@@ -62,10 +62,10 @@ public:
     {
         return this->get(id, this->db_);
     }
-    Data* get(const wxString& name)
+    Data* get(const wxString& name, int category_id = -1)
     {
         Data* category = 0;
-        Data_Set items = this->find(this->db_, COL_SUBCATEGNAME, name);
+        Data_Set items = this->find(this->db_, COL_SUBCATEGNAME, name, COL_CATEGID, category_id);
         if (!items.empty()) category = this->get(items[0].SUBCATEGID, this->db_);
         return category;
     }

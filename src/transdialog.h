@@ -26,6 +26,7 @@
 #define SYMBOL_TRANSDIALOG_POSITION wxDefaultPosition
 
 #include "guiid.h"
+#include "defs.h"
 #include "mmcoredb.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"

@@ -25,6 +25,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 
 IMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog)
 
@@ -814,6 +815,8 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                 wxString amount_tmp = CurrencyFormatter::float2String(-value);
 
                 buffer = "";
+                Model_Category::Data* category = Model_Category::instance().get(pBankTransaction->categID_);
+                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction->subcategID_);
                 for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++ sit)
                 {
                     switch (*sit)
@@ -829,11 +832,10 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                             buffer << inQuotes(amount, delimit);
                             break;
                         case UNIV_CSV_CATEGORY:
-                            buffer << inQuotes(core_->categoryList_.GetCategoryName(pBankTransaction->categID_), delimit);
+                            buffer << inQuotes(category->CATEGNAME, delimit);
                             break;
                         case UNIV_CSV_SUBCATEGORY:
-                            buffer << inQuotes(core_->categoryList_
-                                .GetSubCategoryName(pBankTransaction->categID_, pBankTransaction->subcategID_), delimit);
+                            buffer << inQuotes(sub_category ? sub_category->SUBCATEGNAME : "" , delimit);
                             break;
                         case UNIV_CSV_TRANSNUM:
                             buffer << inQuotes(pBankTransaction->transNum_, delimit);
@@ -1003,6 +1005,8 @@ void mmUnivCSVDialog::update_preview()
                     buf.Printf(_T("%d"), row + 1);
                     m_list_ctrl_->SetItem(itemIndex, col, buf);
 
+                    Model_Category::Data* category = Model_Category::instance().get(pBankTransaction->categID_);
+                    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(pBankTransaction->subcategID_);
                     for (std::vector<int>::const_iterator sit = csvFieldOrder_.begin(); sit != csvFieldOrder_.end(); ++ sit)
                     {
                         ++ col;
@@ -1019,11 +1023,10 @@ void mmUnivCSVDialog::update_preview()
                                 text << inQuotes(amount, delimit);
                                 break;
                             case UNIV_CSV_CATEGORY:
-                                text << inQuotes(core_->categoryList_.GetCategoryName(pBankTransaction->categID_), delimit);
+                                text << inQuotes(category->CATEGNAME, delimit);
                                 break;
                             case UNIV_CSV_SUBCATEGORY:
-                                text << inQuotes(core_->categoryList_
-                                    .GetSubCategoryName(pBankTransaction->categID_, pBankTransaction->subcategID_), delimit);
+                                text << inQuotes(sub_category ? sub_category->SUBCATEGNAME : "", delimit);
                                 break;
                             case UNIV_CSV_TRANSNUM:
                                 text << inQuotes(pBankTransaction->transNum_, delimit);
@@ -1215,6 +1218,8 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
 {
     if (token.Trim().IsEmpty()) return;
     Model_Payee::Data* payee = 0;
+    Model_Category::Data* category = 0;
+    Model_Subcategory::Data* sub_category = 0;
 
     switch (index)
     {
@@ -1250,18 +1255,30 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_CATEGORY:
-            categID_ = core_->categoryList_.GetCategoryId(token);
-            if (categID_ == -1)
-                categID_ =  core_->categoryList_.AddCategory(token);
+            category = Model_Category::instance().get(token);
+            if (!category)
+            {
+                category = Model_Category::instance().create();
+                category->CATEGNAME = token;
+                Model_Category::instance().save(category);
+            }
+
+            categID_ = category->CATEGID;
             break;
 
         case UNIV_CSV_SUBCATEGORY:
             if (categID_ == -1)
                 return;
 
-            subCategID_ = core_->categoryList_.GetSubCategoryID(categID_, token);
-            if (subCategID_ == -1)
-                subCategID_ = core_->categoryList_.AddSubCategory(categID_, token);
+            sub_category = Model_Subcategory::instance().get(token, categID_);
+            if (!sub_category)
+            {
+                sub_category = Model_Subcategory::instance().create();
+                sub_category->CATEGID = categID_;
+                sub_category->SUBCATEGNAME = token;
+                Model_Subcategory::instance().save(sub_category);
+            }
+            subCategID_ = sub_category->SUBCATEGID; 
             break;
 
         case UNIV_CSV_NOTES:

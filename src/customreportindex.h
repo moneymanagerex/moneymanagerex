@@ -19,6 +19,7 @@
 #define _MM_EX_CUSTOMREPORTINDEX_H_
 
 #include "mmcoredb.h"
+#include "defs.h"
 
 //===============================================================
 // Class: CustomReportIndex

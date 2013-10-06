@@ -120,7 +120,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_maincurrencydialog.o \
 	mmex_tests_mmCurrencyFormatter.o \
 	mmex_tests_mmOption.o \
-	mmex_tests_mmcategory.o \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmcoredb.o \
 	mmex_tests_mmcurrency.o \
@@ -417,9 +416,6 @@ mmex_tests_mmCurrencyFormatter.o: $(srcdir)/../../src/mmCurrencyFormatter.cpp
 
 mmex_tests_mmOption.o: $(srcdir)/../../src/mmOption.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmOption.cpp
-
-mmex_tests_mmcategory.o: $(srcdir)/../../src/mmcategory.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmcategory.cpp
 
 mmex_tests_mmcheckingpanel.o: $(srcdir)/../../src/mmcheckingpanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmcheckingpanel.cpp

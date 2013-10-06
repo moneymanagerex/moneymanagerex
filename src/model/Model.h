@@ -24,6 +24,8 @@
 #include <wx/datetime.h>
 #include "singleton.h"
 #include <wx/sharedptr.h>
+#include <wx/log.h>
+#include <wx/string.h>
 
 class wxString;
 class wxSQLite3Statement;

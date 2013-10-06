@@ -25,7 +25,6 @@
 //----------------------------------------------------------------------------
 mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
 : db_(db)
-, categoryList_(this)
 , currencyList_(db)
 , bTransactionList_(this)
 , displayDatabaseError_(true)
@@ -42,7 +41,6 @@ mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
 
     /* Load the DB into memory */
     currencyList_.LoadCurrencies();             // populate currencyList_
-    categoryList_.LoadCategories();             // populate categoryList_
     bTransactionList_.LoadTransactions();   // populate bTransactionList_
 }
 

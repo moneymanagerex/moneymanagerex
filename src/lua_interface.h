@@ -26,7 +26,6 @@
 #include "lua.hpp"
 
 static mmCurrencyList* g_static_currency_list;
-static std::vector< mmCategory* > g_static_category_list;
 
 class TLuaInterface
 {
@@ -56,7 +55,6 @@ private:
     int lua_result_;
     void cleanuplist();
     wxString LuaErrorResult();
-	void LoadCategories(wxSharedPtr<wxSQLite3Database> db);
 	static bool GetBoolValue(const wxString& value, const bool def = false);
 
     static int SetSqlScriptRowCount(const wxString& sScript, int& iRowsCount, int& iError, wxString& sOutput);
@@ -95,8 +93,6 @@ private:
     static int cpp2lua_GetDocDir(lua_State* lua);
     static int cpp2lua_GetExeDir(lua_State* lua);
     static int cpp2lua_GetLuaDir(lua_State* lua);
-    static int cpp2lua_GetCategoryList(lua_State* lua);
-    static int cpp2lua_GetSubCategoryList(lua_State* lua);
 
     static int mmHTMLBuilderUni(lua_State* lua);
     static int mmHTMLReportHeader(lua_State* lua);
