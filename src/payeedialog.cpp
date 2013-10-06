@@ -207,7 +207,7 @@ void mmPayeeDialog::fillControls()
     bool bResult = Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_PAYEES", true);
     cbShowAll_->SetValue(bResult);
 
-    Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
+    Model_Payee::Data_Set filtd = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
 
     listBox_->Clear();
 
