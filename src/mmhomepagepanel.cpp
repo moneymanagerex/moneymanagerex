@@ -105,7 +105,7 @@ void mmHomePagePanel::createFrames()
 
     if ( frame_->hasActiveTermAccounts())
     {
-        term = displayAccounts(termBalance, ACCOUNT_TYPE_TERM);
+        term = displayAccounts(termBalance, Model_Account::TERM);
         tBalance += termBalance;
     }
 
@@ -195,9 +195,9 @@ wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, doubl
 }
 
 /* Accounts */
-wxString mmHomePagePanel::displayAccounts(double& tBalance, const wxString& type)
+wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
 {
-    bool type_is_bank = type == ACCOUNT_TYPE_BANK;
+    bool type_is_bank = type == Model_Account::CHECKING;
     double tRecBalance = 0.0;
 
     mmHTMLBuilder hb;
@@ -211,7 +211,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, const wxString& type
     // Get account balances and display accounts if we want them displayed
     for (const auto& account: Model_Account::instance().all())
     {
-        if (account.ACCOUNTTYPE != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
+        if (Model_Account::type(account)!= type || Model_Account::status(account) == Model_Account::CLOSED) continue;
 
         Model_Currency::Data* currency = Model_Account::currency(account);
 

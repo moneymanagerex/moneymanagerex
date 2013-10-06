@@ -133,13 +133,14 @@ int mmIniOptions::account_image_id(int account_id)
 
     selectedImage = 9;
     int t = 0, s = 0;
-    wxString acctType = ACCOUNT_TYPE_BANK, acctStatus = "Open";
+    wxString acctStatus = "Open";
+    Model_Account::TYPE acctType = Model_Account::CHECKING;
     bool favorite = true;
 
     Model_Account::Data* account = Model_Account::instance().get(account_id);
     if (account)
     {
-        acctType = account->ACCOUNTTYPE;
+        acctType = Model_Account::type(account);
         acctStatus = account->STATUS;
         favorite = account->FAVORITEACCT == "TRUE";
     }
@@ -149,9 +150,9 @@ int mmIniOptions::account_image_id(int account_id)
     else if (favorite)
         s = 1;
 
-    if (acctType == "Term")
+    if (acctType == Model_Account::TERM) 
         t = 3;
-    else if (acctType == "Investment")
+    else if (acctType == Model_Account::INVESTMENT)
         t = 6;
 
     selectedImage += t + s;

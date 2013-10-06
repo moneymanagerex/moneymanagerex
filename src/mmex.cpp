@@ -487,7 +487,7 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
     for (const auto& type: Model_Account::all_type())
         itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
     itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
-    itemChoiceType_->SetStringSelection(wxGetTranslation(ACCOUNT_TYPE_BANK));
+    itemChoiceType_->SetSelection(Model_Account::CHECKING);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -515,9 +515,6 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
 
 bool mmAddAccountPage2::TransferDataFromWindow()
 {
-    const wxStringClientData* type_obj = (wxStringClientData *)itemChoiceType_->GetClientObject(itemChoiceType_->GetSelection());
-    wxString acctTypeStr = (type_obj) ? type_obj->GetData() : ACCOUNT_TYPE_BANK;
-
     int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
     if (currencyID == -1)
     {
@@ -532,7 +529,7 @@ bool mmAddAccountPage2::TransferDataFromWindow()
 
     account->FAVORITEACCT = "TRUE";
     account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-    account->ACCOUNTTYPE = acctTypeStr;
+    account->ACCOUNTTYPE = Model_Account::all_type()[itemChoiceType_->GetSelection()];
     account->ACCOUNTNAME = parent_->accountName_;
     account->INITIALBAL = 0;
     account->CURRENCYID = currencyID;
@@ -1671,7 +1668,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
             }
         }
         // Stock Accounts
-        else //if (account->acctType_ == ACCOUNT_TYPE_STOCK)
+        else 
         {
             if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
                 (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
