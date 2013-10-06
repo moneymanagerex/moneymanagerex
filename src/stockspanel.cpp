@@ -516,8 +516,8 @@ void mmStocksPanel::updateHeader()
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
     std::pair<double, double> investment_balance;
     if (account) investment_balance = Model_Account::investment_balance(account);
-    double originalVal = investment_balance.first;
-    double total = investment_balance.second; 
+    double originalVal = investment_balance.second;
+    double total = investment_balance.first; 
 
     wxString balance = CurrencyFormatter::float2String(total+initVal);
     wxString original = CurrencyFormatter::float2String(originalVal);
