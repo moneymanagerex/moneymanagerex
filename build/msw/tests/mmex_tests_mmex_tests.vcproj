@@ -367,10 +367,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\mmcategory.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\mmcheckingpanel.cpp"
 				>
 			</File>
@@ -798,10 +794,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\mmRepeat.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\mmcategory.h"
 				>
 			</File>
 			<File

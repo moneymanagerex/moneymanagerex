@@ -130,7 +130,6 @@ MMEX_OBJECTS =  \
 	mmex_maincurrencydialog.obj \
 	mmex_mmCurrencyFormatter.obj \
 	mmex_mmOption.obj \
-	mmex_mmcategory.obj \
 	mmex_mmcheckingpanel.obj \
 	mmex_mmcoredb.obj \
 	mmex_mmcurrency.obj \
@@ -702,9 +701,6 @@ mmex_mmCurrencyFormatter.obj: ..\..\src\mmCurrencyFormatter.cpp
 
 mmex_mmOption.obj: ..\..\src\mmOption.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmOption.cpp
-
-mmex_mmcategory.obj: ..\..\src\mmcategory.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmcategory.cpp
 
 mmex_mmcheckingpanel.obj: ..\..\src\mmcheckingpanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmcheckingpanel.cpp
