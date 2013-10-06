@@ -63,7 +63,7 @@ public:
     /// Constructors
     SplitDetailDialog( );
     SplitDetailDialog( 
-        Model_Splittransaction::Data split
+        Model_Splittransaction::Data* split
         , mmCoreDB* core,
         const wxString categString,
         int* categID,
@@ -114,7 +114,7 @@ private:
     static bool ShowToolTips();
 
 ////@begin SplitDetailDialog member variables
-    Model_Splittransaction::Data split_;
+    Model_Splittransaction::Data* split_;
     mmCoreDB* core_;
     int transType_;
     int localTransType_;

@@ -163,8 +163,9 @@ struct DB_Table_%s : public DB_Table
         s += '''
     struct Data
     {
+        friend class DB_Table_%s;
         Self* view_;
-    '''
+    ''' % self._table.upper()
         for field in self._fields:
             s += '''
         %s %s;%s''' % (base_data_types_reverse[field['type']], field['name'], field['pk'] and '//  primay key' or '')
@@ -183,6 +184,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
         
         s += '''
+    private:
         Data(Self* view = 0) 
         {
             view_ = view;
@@ -214,6 +216,7 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
         }
+    public:
 '''
         s +='''
         wxString to_string(COLUMN col) const

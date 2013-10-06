@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 15:18:30.953207.
+ *          AUTO GENERATED at 2013-10-06 18:16:25.682721.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -88,6 +88,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     
     struct Data
     {
+        friend class DB_Table_BUDGETYEAR_V1;
         Self* view_;
     
         int BUDGETYEARID;//  primay key
@@ -103,6 +104,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             return this->id() < r->id();
         }
 
+    private:
         Data(Self* view = 0) 
         {
             view_ = view;
@@ -117,6 +119,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
             BUDGETYEARID = q.GetInt("BUDGETYEARID");
             BUDGETYEARNAME = q.GetString("BUDGETYEARNAME");
         }
+    public:
 
         wxString to_string(COLUMN col) const
         {

@@ -40,7 +40,7 @@ SplitDetailDialog::SplitDetailDialog( )
 }
 
 SplitDetailDialog::SplitDetailDialog( 
-    Model_Splittransaction::Data split
+    Model_Splittransaction::Data* split
     , mmCoreDB* core
     , const wxString categString
     , int* categID
@@ -53,8 +53,8 @@ SplitDetailDialog::SplitDetailDialog(
     , const wxPoint& pos
     , const wxSize& size
     , long style )
+    : split_(split)
 {
-    split_ = split;
     core_ = core;
     m_categID_  = categID;
     m_subcategID_ = subcategID;
