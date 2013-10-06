@@ -219,7 +219,9 @@ void mmTransDialog::updateControlsForTransType()
         {
             transaction_->CATEGID = core_->bTransactionList_.getLastUsedCategoryID(accountID_
                 , transaction_->PAYEEID, transaction_->TRANSCODE, transaction_->SUBCATEGID);
-            categString = core_->categoryList_.GetFullCategoryString(transaction_->CATEGID, transaction_->SUBCATEGID);
+            const Model_Category::Data* category = Model_Category::instance().get(transaction_->CATEGID);
+            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+            categString = Model_Category::full_name(category, sub_category);
         }
         bCategory_->SetLabel(categString);
     }
