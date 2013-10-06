@@ -3871,7 +3871,7 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
 {
-    relocatePayeeDialog dlg(m_core.get(), this);
+    relocatePayeeDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;

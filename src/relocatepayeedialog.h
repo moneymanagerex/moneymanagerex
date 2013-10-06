@@ -38,8 +38,7 @@ class relocatePayeeDialog : public wxDialog
 
 public:
     relocatePayeeDialog();
-    relocatePayeeDialog( mmCoreDB* core,
-                         wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
+    relocatePayeeDialog( wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
                          const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
                          const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
                          const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,

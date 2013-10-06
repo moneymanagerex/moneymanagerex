@@ -30,19 +30,18 @@ END_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
 {
-    core_           =  0;
-
     sourcePayeeID_  = -1;
     destPayeeID_    = -1;
     changedPayees_  = 0;
 }
 
-relocatePayeeDialog::relocatePayeeDialog( mmCoreDB* core,
-    wxWindow* parent, wxWindowID id, const wxString& caption,
-    const wxPoint& pos, const wxSize& size, long style )
+relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style )
 {
-    core_           = core;
-
     sourcePayeeID_  = -1;
     destPayeeID_    = -1;
 
@@ -150,10 +149,19 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Payee Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            if (core_->bTransactionList_.RelocatePayee(destPayeeID_, sourcePayeeID_, changedPayees_) == 0)
+            Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+            changedPayees_ = 0;
+            for (const auto &trx : transactions)
             {
-                EndModal(wxID_OK);
+                Model_Checking::Data *transaction = Model_Checking::instance().get(trx.TRANSID);
+                if (transaction->PAYEEID == sourcePayeeID_)
+                {
+                    transaction->PAYEEID = destPayeeID_;
+                    changedPayees_++;
+                    Model_Checking::instance().save(transaction);
+                }
             }
+            EndModal(wxID_OK);
         }
     }
 }

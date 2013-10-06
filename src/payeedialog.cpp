@@ -342,7 +342,7 @@ void mmPayeeDialog::OnEdit(wxCommandEvent& event)
 
 void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& event)
 {
-    relocatePayeeDialog dlg(core_, this);
+    relocatePayeeDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
