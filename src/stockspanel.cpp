@@ -660,44 +660,18 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         }
     }
 
-    typedef std::vector<mmStockTransactionHolder> vec_t;
-    vec_t stockVec;
-
-    for (const auto &stock : listCtrlAccount_->trans_)
+    for (const auto &s: listCtrlAccount_->trans_)
     {
-        mmStockTransactionHolder sh;
+        std::map<wxString, std::pair<double, wxString> >::const_iterator it = stocks_data.find(s->stockSymbol_.Upper());
+        if (it == stocks_data.end()) continue;
+        dPrice = it->second.first;
 
-        std::pair<double, wxString> &data = stocks_data[stock->stockSymbol_.Upper()];
-        dPrice = data.first;
-
-        sh.id_ = stock->id_;
-        sh.numShares_ = stock->numShares_;
-        // If the stock's symbol is not found, Yahoo CSV will return 0 for the current price.
-        // Therefore, we assume the current price of all existing stock's symbols are greater
-        // than zero and we will not update any stock if its curreny price is zero.
-        if(dPrice == 0 || sh.numShares_ < 0.0) dPrice = stock->currentPrice_;
-        sh.shareName_ = stock->shareName_;
-        if (sh.shareName_.IsEmpty()) sh.shareName_ = data.second;
-
-        sh.currentPrice_ = dPrice;
-        sh.value_ = sh.numShares_ * dPrice;
-        stockVec.push_back(sh);
+        Model_Stock::Data* stock = Model_Stock::instance().get(s->id_);
+        stock->CURRENTPRICE = dPrice;
+        stock->VALUE = dPrice * s->numShares_ ;
+        stock->STOCKNAME = s->shareName_;
+        Model_Stock::instance().save(stock);
     }
-
-    //--//
-
-    core_->db_.get()->Begin();
-
-    for (vec_t::const_iterator i = stockVec.begin(); i != stockVec.end(); ++i)
-    {
-        Model_Stock::Data* stock = Model_Stock::instance().get(i->id_);
-        stock->CURRENTPRICE = i->currentPrice_;
-        stock->VALUE = i->value_;
-        stock->STOCKNAME = i->shareName_;
-        Model_Stock::instance().save(stock, core_->db_.get());
-    }
-
-    core_->db_.get()->Commit();
 
     // Now refresh the display
     int selected_id = -1;

@@ -26,6 +26,7 @@ class Model_Stock : public Model, public DB_Table_STOCK_V1
 {
     using DB_Table_STOCK_V1::all;
     using DB_Table_STOCK_V1::get;
+    using DB_Table_STOCK_V1::save;
     using DB_Table_STOCK_V1::find;
     using DB_Table_STOCK_V1::remove;
 public:
@@ -57,6 +58,11 @@ public:
     Data* get(int id)
     {
         return this->get(id, this->db_);
+    }
+    int save(Data* r)
+    {
+        r->save(this->db_);
+        return r->id();
     }
     bool remove(int id)
     {

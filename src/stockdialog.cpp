@@ -319,7 +319,7 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
     m_stock->COMMISSION = commission;
     if (edit_) m_stock->STOCKID = stockID_;
 
-    Model_Stock::instance().save(m_stock, core_->db_.get());
+    Model_Stock::instance().save(m_stock);
 
     if (!edit_)
         transID_ = m_stock->STOCKID;
