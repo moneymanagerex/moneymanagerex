@@ -209,7 +209,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
         hb.addText(displaySummaryHeader(_("Term account")));
 
     // Get account balances and display accounts if we want them displayed
-    for (const auto& account: Model_Account::instance().all())
+    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account)!= type || Model_Account::status(account) == Model_Account::CLOSED) continue;
 

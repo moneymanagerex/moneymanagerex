@@ -1641,7 +1641,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
         vAccts = VIEW_ACCOUNTS_ALL_STR;
 
-    for (const auto& account: Model_Account::instance().all())
+    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         // Checking/Bank Accounts
         if (Model_Account::type(account) == Model_Account::CHECKING)
