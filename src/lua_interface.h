@@ -33,7 +33,7 @@ public:
     struct Scriptable_HTMLBuilder
     {
         mmHTMLBuilder* hb_;
-        Scriptable_HTMLBuilder(lua_State *L): hb_(0)
+        Scriptable_HTMLBuilder(lua_State* /* L */): hb_(0)
         {
         }
         ~Scriptable_HTMLBuilder()

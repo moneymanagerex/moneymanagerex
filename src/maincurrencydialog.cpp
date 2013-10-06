@@ -245,7 +245,6 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = currencyListBox_->ItemToRow(item);
-    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
     if (selectedIndex_ >= 0)
     {
         currencyID_ = (int)currencyListBox_->GetItemData(item);
@@ -262,7 +261,7 @@ void mmMainCurrencyDialog::OnListItemSelected(wxDataViewEvent& event)
     }
 }
 
-void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& event)
+void mmMainCurrencyDialog::OnListItemActivated(wxDataViewEvent& /* event */)
 {
     wxCommandEvent evt(wxEVT_COMMAND_BUTTON_CLICKED, wxID_ANY);
 
