@@ -67,7 +67,7 @@ bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
     SetIcon(mmex::getProgramIcon());
 
     Centre();
-    
+
     fillControls();
 
     return TRUE;
@@ -75,6 +75,7 @@ bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
 
 void mmNewAcctDialog::fillControls()
 {
+
     this->SetTitle(_("Edit Account"));
 
     if (!this->m_account) return;
@@ -123,6 +124,7 @@ void mmNewAcctDialog::fillControls()
     bitmaps_button_->SetBitmapLabel(navtree_images_list_()->GetBitmap(selectedImage));
 
     accessInfo_ = m_account->ACCESSINFO;
+
 }
 
 void mmNewAcctDialog::CreateControls()
@@ -253,12 +255,13 @@ void mmNewAcctDialog::CreateControls()
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
-    bitmaps_button_ = new wxBitmapButton( itemPanel27,
-        wxID_STATIC, wxNullBitmap, wxDefaultPosition,
-        wxSize(textAccountName_->GetSize().GetHeight(), textAccountName_->GetSize().GetHeight()));
+    bitmaps_button_ = new wxBitmapButton( itemPanel27
+        , wxID_STATIC, wxNullBitmap, wxDefaultPosition
+        , wxSize(textAccountName_->GetSize().GetHeight(), textAccountName_->GetSize().GetHeight()));
+    bitmaps_button_->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmNewAcctDialog::OnImageButton), NULL, this);
+
     itemBoxSizer28->Add(bitmaps_button_, flags);
-    bitmaps_button_->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmNewAcctDialog::OnImageButton), NULL, this);
     itemBoxSizer28->AddSpacer(20);
 
     wxButton* itemButton29 = new wxButton( itemPanel27, wxID_OK);
@@ -399,7 +402,6 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 
 void mmNewAcctDialog::changeFocus(wxChildFocusEvent& event)
 {
-    return;
     wxWindow *w = event.GetWindow();
     int oject_in_focus = 0;
     if ( w )

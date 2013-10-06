@@ -487,6 +487,7 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
     for (const auto& type: Model_Account::instance().types_)
         itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
     itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
+    itemChoiceType_->SetStringSelection(wxGetTranslation(ACCOUNT_TYPE_BANK));
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
