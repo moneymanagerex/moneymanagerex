@@ -46,7 +46,7 @@ BDID integer primary key
 , TOTRANSAMOUNT numeric
 , REPEATS integer
 , NEXTOCCURRENCEDATE TEXT
-, NUMOCCURRENCES numeric
+, NUMOCCURRENCES integer 
 );
 
 -- Describe BUDGETSPLITTRANSACTIONS_V1

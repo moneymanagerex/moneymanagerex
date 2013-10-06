@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-04 09:04:12.964499.
+ *          AUTO GENERATED at 2013-10-06 12:38:00.651500.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES numeric)");
+            db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
         }
         catch(const wxSQLite3Exception &e) 
         { 
@@ -181,7 +181,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         double TOTRANSAMOUNT;
         int REPEATS;
         wxString NEXTOCCURRENCEDATE;
-        double NUMOCCURRENCES;
+        int NUMOCCURRENCES;
         int id() const { return BDID; }
         void id(int id) { BDID = id; }
         bool operator < (const Data& r) const
@@ -207,7 +207,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             FOLLOWUPID = -1;
             TOTRANSAMOUNT = 0.0;
             REPEATS = -1;
-            NUMOCCURRENCES = 0.0;
+            NUMOCCURRENCES = -1;
         }
 
         Data(wxSQLite3ResultSet& q, Self* view = 0)
@@ -230,7 +230,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             TOTRANSAMOUNT = q.GetDouble("TOTRANSAMOUNT");
             REPEATS = q.GetInt("REPEATS");
             NEXTOCCURRENCEDATE = q.GetString("NEXTOCCURRENCEDATE");
-            NUMOCCURRENCES = q.GetDouble("NUMOCCURRENCES");
+            NUMOCCURRENCES = q.GetInt("NUMOCCURRENCES");
         }
 
         wxString to_string(COLUMN col) const
