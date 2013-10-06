@@ -29,6 +29,7 @@
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Category.h"
 
 //----------------------------------------------------------------------------
 #include <wx/srchctrl.h>
@@ -837,8 +838,9 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
                 if (m_trans[selIndex]->transType_ != TRANS_TYPE_DEPOSIT_STR)
                     amount = -amount;
                 amountStr = CurrencyFormatter::float2Money(amount);
-                infoStr << core_->categoryList_.GetFullCategoryString(
-                    i->categID_, i->subCategID_)
+                Model_Category::Data* category = Model_Category::instance().get(i->categID_);
+                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(i->subCategID_);
+                infoStr << Model_Category::full_name(category, sub_category) 
                     << " = "
                     << amountStr
                     << "\n";

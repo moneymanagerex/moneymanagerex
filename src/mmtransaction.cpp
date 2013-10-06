@@ -22,6 +22,7 @@
 #include "mmcoredb.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 #include <algorithm>
 
 mmSplitTransactionEntries::~mmSplitTransactionEntries()
@@ -306,8 +307,9 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     {
         categID_ = -1;
         subcategID_ = -1;
-        fullCatStr_= core_->categoryList_.GetFullCategoryString(splitEntries_->entries_[0]->categID_
-            , splitEntries_->entries_[0]->subCategID_);
+        Model_Category::Data* category = Model_Category::instance().get(splitEntries_->entries_[0]->categID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(splitEntries_->entries_[0]->subCategID_);
+        fullCatStr_= Model_Category::full_name(category, sub_category);
     }
     else if (splitEntries_->numEntries() > 1)
     {
@@ -317,7 +319,10 @@ void mmBankTransaction::updateTransactionData(int accountID, double& balance)
     }
     else
     {
-        fullCatStr_ = core_->categoryList_.GetFullCategoryString(categID_, subcategID_);
+        Model_Category::Data* category = Model_Category::instance().get(categID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+
+        fullCatStr_ = Model_Category::full_name(category, sub_category);
     }
 }
 
@@ -818,7 +823,10 @@ void mmBankTransactionList::getTopCategoryStats(
 
         if (trx->categID_ > -1)
         {
-            const wxString categ_name = core_->categoryList_.GetFullCategoryString(trx->categID_, trx->subcategID_);
+            Model_Category::Data* category = Model_Category::instance().get(trx->categID_);
+            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(trx->subcategID_);
+
+            const wxString categ_name = Model_Category::full_name(category, sub_category);
             stat[categ_name] += trx->value(-1) * (acc_conv_rates[trx->accountID_]);
         }
         else
@@ -827,7 +835,10 @@ void mmBankTransactionList::getTopCategoryStats(
             trx->getSplitTransactions(splits);
             for (const auto& entry : splits->entries_)
             {
-                const wxString categ_name = core_->categoryList_.GetFullCategoryString(entry->categID_, entry->subCategID_);
+                Model_Category::Data* category = Model_Category::instance().get(entry->categID_);
+                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(entry->subCategID_);
+
+                const wxString categ_name = Model_Category::full_name(category, sub_category);
                 stat[categ_name] += entry->splitAmount_
                     * (acc_conv_rates[trx->accountID_]) 
                     * (trx->value(-1)< 0 ? -1 : 1);
@@ -879,7 +890,7 @@ void mmBankTransactionList::getCategoryStats(
     }
     //Set std::map with zerros
     double value = 0;
-    for (const auto& category: core_->categoryList_.entries_)
+    for (const auto& category: Model_Category::instance().all())
     {
         int columns = group_by_month ? 12 : 1;
         wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
@@ -887,10 +898,10 @@ void mmBankTransactionList::getCategoryStats(
         {
             wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
             int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
-            categoryStats[category->categID_][-1][idx] = value;
-            for (const auto & sub_category: category->children_)
+            categoryStats[category.CATEGID][-1][idx] = value;
+            for (const auto & sub_category: Model_Category::sub_category(category))
             {
-                categoryStats[category->categID_][sub_category->categID_][idx] = value;
+                categoryStats[category.CATEGID][sub_category.SUBCATEGID][idx] = value;
             }
         }
     }
@@ -1333,7 +1344,10 @@ int mmBankTransactionList::RelocateCategory(int destCatID
             {
                 pBankTransaction->categID_ = destCatID;
                 pBankTransaction->subcategID_ = destSubCatID;
-                pBankTransaction->fullCatStr_ = core_->categoryList_.GetFullCategoryString(destCatID, destSubCatID);
+                Model_Category::Data* category = Model_Category::instance().get(destCatID);
+                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(destSubCatID);
+
+                pBankTransaction->fullCatStr_ = Model_Category::full_name(category, sub_category);
             }
             else if (pBankTransaction && (pBankTransaction->categID_ == -1))
             {

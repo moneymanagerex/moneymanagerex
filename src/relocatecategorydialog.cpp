@@ -21,6 +21,7 @@
 #include "paths.h"
 #include "categdialog.h"
 #include "wx/statline.h"
+#include "model/Model_Category.h"
 
 IMPLEMENT_DYNAMIC_CLASS( relocateCategoryDialog, wxDialog )
 
@@ -87,7 +88,11 @@ void relocateCategoryDialog::CreateControls()
 
     sourceBtn_ = new wxButton( this, wxID_CLEAR,_("Source Category"), wxDefaultPosition, wxSize(200, -1));
     if (sourceCatID_ > -1)
-        sourceBtn_->SetLabel(core_->categoryList_.GetFullCategoryString(sourceCatID_, sourceSubCatID_));
+    {
+        Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sourceSubCatID_);
+        sourceBtn_->SetLabel(Model_Category::full_name(category, sub_category));
+    }
     destBtn_ = new wxButton( this, wxID_NEW,_("Destination Category"), wxDefaultPosition, wxSize(200, -1));
     wxStaticLine* lineBottom = new wxStaticLine(this, wxID_STATIC);
 
@@ -123,15 +128,19 @@ void relocateCategoryDialog::CreateControls()
 void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 {
     mmCategDialog sourceCat(core_ , this, true, false);
+    Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
+    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sourceSubCatID_);
 
-    sourceCat.setTreeSelection(core_->categoryList_.GetCategoryName(sourceCatID_)
-    , core_->categoryList_.GetSubCategoryName(sourceCatID_, sourceSubCatID_));
+    sourceCat.setTreeSelection(category->CATEGNAME, Model_Category::full_name(category, sub_category));
 
     if (sourceCat.ShowModal() == wxID_OK)
     {
         sourceCatID_    = sourceCat.getCategId();
         sourceSubCatID_ = sourceCat.getSubCategId();
-        sourceBtn_->SetLabel(core_->categoryList_.GetFullCategoryString(sourceCatID_, sourceSubCatID_));
+        Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(sourceSubCatID_);
+
+        sourceBtn_->SetLabel(Model_Category::full_name(category, sub_category));
     }
     sourceCat.Destroy();
 }
@@ -139,16 +148,19 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
 {
     mmCategDialog destCat(core_ , this, true, false);
+    Model_Category::Data* category = Model_Category::instance().get(destCatID_);
+    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(destSubCatID_);
 
-    destCat.setTreeSelection(core_->categoryList_.GetCategoryName(destCatID_)
-    , core_->categoryList_.GetSubCategoryName(destCatID_, destSubCatID_));
+    destCat.setTreeSelection(category->CATEGNAME, Model_Category::full_name(category, sub_category));
 
     if (destCat.ShowModal() == wxID_OK)
     {
         destCatID_    = destCat.getCategId();
         destSubCatID_ = destCat.getSubCategId();
+        Model_Category::Data* category = Model_Category::instance().get(destCatID_);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(destSubCatID_);
 
-        destBtn_->SetLabel(core_->categoryList_.GetFullCategoryString(destCatID_, destSubCatID_));
+        destBtn_->SetLabel(Model_Category::full_name(category, sub_category));
     }
 }
 
