@@ -805,7 +805,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(s);
 
                 wxString cn = category->CATEGNAME;
-                wxString sn = sub_category->SUBCATEGNAME; 
+                wxString sn = (sub_category ? sub_category->SUBCATEGNAME : ""); 
                 double v = mmSplit->entries_[i]->splitAmount_;
                 sMsg = (cn << ":" << sn << " " << v << "\n");
                 logWindow->AppendText(sMsg);
