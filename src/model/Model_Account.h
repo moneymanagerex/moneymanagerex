@@ -37,17 +37,27 @@ public:
 public:
     Model_Account(): Model(), DB_Table_ACCOUNTLIST_V1() 
     {
-        this->statuss_.Add(wxTRANSLATE("Open"));
-        this->statuss_.Add(wxTRANSLATE("Closed"));
-
-        this->types_.Add(wxTRANSLATE("Checking"));
-        this->types_.Add(wxTRANSLATE("Term"));
-        this->types_.Add(wxTRANSLATE("Investment"));
     };
     ~Model_Account() {};
 
 public:
-    wxArrayString statuss_, types_;
+    static wxArrayString all_status()
+    {
+        wxArrayString status;
+        status.Add(wxTRANSLATE("Open"));
+        status.Add(wxTRANSLATE("Closed"));
+
+        return status;
+    }
+    static wxArrayString all_type()
+    {
+        wxArrayString type;
+        type.Add(wxTRANSLATE("Checking"));
+        type.Add(wxTRANSLATE("Term"));
+        type.Add(wxTRANSLATE("Investment"));
+
+        return type;
+    }
 
 public:
     static Model_Account& instance()

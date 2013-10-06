@@ -151,7 +151,7 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Account Type:")), flags);
 
     wxChoice* itemChoice61 = new wxChoice( this, ID_DIALOG_NEWACCT_COMBO_ACCTTYPE);
-    for (const auto& type: Model_Account::instance().types_)
+    for (const auto& type: Model_Account::all_type())
         itemChoice61->Append(wxGetTranslation(type), new wxStringClientData(type));
 
     grid_sizer->Add(itemChoice61, flagsExpand);
@@ -332,7 +332,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (!this->m_account) this->m_account = Model_Account::instance().create();
 
     m_account->ACCOUNTNAME = acctName;
-    m_account->ACCOUNTTYPE = Model_Account::instance().types_[acctType];
+    m_account->ACCOUNTTYPE = Model_Account::all_type()[acctType];
     if (acctType == Model_Account::TERM)
         this->termAccount_ = true;
 
@@ -343,7 +343,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxTextCtrl* textCtrlAccess = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO);
 
     wxChoice* choice = (wxChoice*)FindWindow(ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS);
-    m_account->STATUS = Model_Account::instance().statuss_[choice->GetSelection()];
+    m_account->STATUS = Model_Account::all_status()[choice->GetSelection()];
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
     m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";

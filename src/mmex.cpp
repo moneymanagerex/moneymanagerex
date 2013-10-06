@@ -484,7 +484,7 @@ mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent) :
     parent_(parent)
 {
     itemChoiceType_ = new wxChoice(this, wxID_ANY);
-    for (const auto& type: Model_Account::instance().types_)
+    for (const auto& type: Model_Account::all_type())
         itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
     itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
     itemChoiceType_->SetStringSelection(wxGetTranslation(ACCOUNT_TYPE_BANK));
@@ -531,7 +531,7 @@ bool mmAddAccountPage2::TransferDataFromWindow()
     Model_Account::Data* account = Model_Account::instance().create();
 
     account->FAVORITEACCT = "TRUE";
-    account->STATUS = Model_Account::instance().statuss_[Model_Account::OPEN];
+    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
     account->ACCOUNTTYPE = acctTypeStr;
     account->ACCOUNTNAME = parent_->accountName_;
     account->INITIALBAL = 0;

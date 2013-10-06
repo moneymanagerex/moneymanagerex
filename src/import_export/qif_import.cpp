@@ -495,8 +495,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     account = Model_Account::instance().create();
 
                     account->FAVORITEACCT = "TRUE";
-                    account->STATUS = Model_Account::instance().statuss_[Model_Account::OPEN];
-                    account->ACCOUNTTYPE = Model_Account::instance().types_[Model_Account::CHECKING];
+                    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+                    account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
                     account->ACCOUNTNAME = acctName;
                     account->INITIALBAL = val;
 
@@ -682,8 +682,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     account = Model_Account::instance().create();
 
                     account->FAVORITEACCT = "TRUE";
-                    account->STATUS = Model_Account::instance().statuss_[Model_Account::OPEN];
-                    account->ACCOUNTTYPE = Model_Account::instance().types_[Model_Account::CHECKING];
+                    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+                    account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
                     account->ACCOUNTNAME = sToAccountName;
                     account->INITIALBAL = 0;
 
