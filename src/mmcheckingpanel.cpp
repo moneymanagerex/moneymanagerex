@@ -36,160 +36,8 @@
 #include <algorithm>
 //----------------------------------------------------------------------------
 
-enum EColumn
-{
-    COL_DATE_OR_TRANSACTION_ID = 0,
-    COL_TRANSACTION_NUMBER,
-    COL_PAYEE_STR,
-    COL_STATUS,
-    COL_CATEGORY,
-    COL_WITHDRAWAL,
-    COL_DEPOSIT,
-    COL_BALANCE,
-    COL_NOTES,
-    COL_MAX, // number of columns
-    COL_DEF_SORT = COL_DATE_OR_TRANSACTION_ID
-};
 //----------------------------------------------------------------------------
 
-enum EIcons //m_imageList
-{
-    ICON_RECONCILED,
-    ICON_VOID,
-    ICON_FOLLOWUP,
-    ICON_NONE,
-    ICON_DESC,
-    ICON_ASC,
-    ICON_DUPLICATE,
-    ICON_TRASH
-};
-//----------------------------------------------------------------------------
-EColumn g_sortcol = COL_DEF_SORT; // index of column to sort
-bool g_asc = true; // asc\desc sorting
-//----------------------------------------------------------------------------
-
-EColumn toEColumn(long col)
-{
-    EColumn res = COL_DEF_SORT;
-    if (col >= 0 && col < COL_MAX) res = static_cast<EColumn>(col);
-
-    return res;
-}
-//----------------------------------------------------------------------------
-
-/*
-    Adds columns to list controls and setup their initial widths.
-*/
-void createColumns(wxListCtrl &lst)
-{
-    const wxString def_data[3*COL_MAX] =
-    {
-        wxString(_("Date")).Prepend("      "), "80", "L",
-        _("Number"), "-2", "L",
-        wxString(_("Payee")).Prepend("   "), "150", "L",
-        _("Status"), "-2", "L",
-        _("Category"), "-2", "L",
-        _("Withdrawal"), "-2", "R",
-        _("Deposit"), "-2", "R",
-        _("Balance"), "-2", "R",
-        _("Notes"), "200", "L"
-    };
-
-    for (int i = 0; i < COL_MAX; ++i)
-    {
-        const wxString col_name = (def_data[3*i+0]);
-        const wxString def_width = def_data[3*i+1];
-        const wxString def_format = def_data[3*i+2];
-
-        wxString name = wxString::Format("CHECK_COL%d_WIDTH", i);
-        wxString val = Model_Setting::instance().GetStringSetting(name, def_width);
-        long width = -1;
-        int format = wxLIST_FORMAT_RIGHT;
-        if (def_format == "L") format = wxLIST_FORMAT_LEFT;
-        lst.InsertColumn((long)i, col_name, format);
-        if (val.ToLong(&width)) lst.SetColumnWidth(i, (int)width);
-    }
-}
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-class TransactionListCtrl : public wxListCtrl
-{
-public:
-    TransactionListCtrl(mmCheckingPanel *cp, wxWindow *parent
-        , const wxWindowID id, const wxPoint& pos,const wxSize& size, long style);
-
-    bool getSortOrder() const { return m_asc; }
-    EColumn getSortColumn() const { return m_sortCol; }
-
-    void setSortOrder(bool asc) { m_asc = asc; }
-    void setSortColumn(EColumn col) { m_sortCol = col; }
-
-    void setColumnImage(EColumn col, int image);
-
-    void OnNewTransaction(wxCommandEvent& event);
-    void OnDeleteTransaction(wxCommandEvent& event);
-    void OnEditTransaction(wxCommandEvent& event);
-    void OnDuplicateTransaction(wxCommandEvent& event);
-    void OnSetUserColour(wxCommandEvent& event);
-    void OnMoveTransaction(wxCommandEvent& event);
-    /// Displays the split categories for the selected transaction
-    void OnViewSplitTransaction(wxCommandEvent& event);
-    long m_selectedIndex;
-    long m_selectedForCopy;
-    long m_selectedID;
-    void refreshVisualList(int trans_id = -1);
-    bool showDeletedTransactions_;
-
-private:
-    DECLARE_NO_COPY_CLASS(TransactionListCtrl)
-    DECLARE_EVENT_TABLE()
-
-    mmCheckingPanel *m_cp;
-
-    wxListItemAttr m_attr1;  // style1
-    wxListItemAttr m_attr2;  // style2
-    wxListItemAttr m_attr3;  // style, for future dates
-    wxListItemAttr m_attr4;  // style, for future dates
-    wxListItemAttr m_attr11; // user defined style 1
-    wxListItemAttr m_attr12; // user defined style 2
-    wxListItemAttr m_attr13; // user defined style 3
-    wxListItemAttr m_attr14; // user defined style 4
-    wxListItemAttr m_attr15; // user defined style 5
-    wxListItemAttr m_attr16; // user defined style 6
-    wxListItemAttr m_attr17; // user defined style 7
-
-    EColumn m_sortCol;
-    bool m_asc;
-
-    /* required overrides for virtual style list control */
-    virtual wxString OnGetItemText(long item, long column) const;
-    virtual int OnGetItemColumnImage(long item, long column) const;
-    virtual wxListItemAttr *OnGetItemAttr(long item) const;
-
-    void OnListRightClick(wxMouseEvent& event);
-    void OnListLeftClick(wxMouseEvent& event);
-    void OnItemResize(wxListEvent& event);
-    void OnListItemSelected(wxListEvent& event);
-    void OnListItemDeselected(wxListEvent& event);
-    void OnListItemActivated(wxListEvent& event);
-    void OnMarkTransaction(wxCommandEvent& event);
-    void OnShowChbClick(wxCommandEvent& /*event*/);
-    void OnMarkAllTransactions(wxCommandEvent& event);
-    void OnListKeyDown(wxListEvent& event);
-    void OnChar(wxKeyEvent& event);
-    int OnMarkTransactionDB(const wxString& status);
-    void OnCopy(wxCommandEvent& WXUNUSED(event));
-    void OnPaste(wxCommandEvent& WXUNUSED(event));
-
-    /* Sort Columns */
-    void OnColClick(wxListEvent& event);
-
-    // Called when moving a transaction to a new account.
-    int DestinationAccountID();
-    //The topmost visible item
-    long topItemIndex_;
-};
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
@@ -264,7 +112,6 @@ mmCheckingPanel::~mmCheckingPanel()
 {
     wxGetApp().m_frame->SetCheckingAccountPageInactive();
 }
-//----------------------------------------------------------------------------
 
 bool mmCheckingPanel::Create(
     wxWindow *parent,
@@ -294,7 +141,7 @@ bool mmCheckingPanel::Create(
 void mmCheckingPanel::sortTable()
 {
     std::sort(this->m_trans.begin(), this->m_trans.end()); // default sorter
-    if (g_sortcol == COL_DATE_OR_TRANSACTION_ID)
+    if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_DATE_OR_TRANSACTION_ID)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
@@ -304,13 +151,13 @@ void mmCheckingPanel::sortTable()
             }
         );
     }
-    else if (g_sortcol == COL_TRANSACTION_NUMBER)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_TRANSACTION_NUMBER)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
             { return x->transNum_ < y->transNum_; });
     }
-    else if (g_sortcol == COL_PAYEE_STR)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_PAYEE_STR)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
@@ -320,7 +167,7 @@ void mmCheckingPanel::sortTable()
             }
         );
     }
-    else if (g_sortcol == COL_STATUS)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_STATUS)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
@@ -330,7 +177,7 @@ void mmCheckingPanel::sortTable()
             }
         );
     }
-    else if (g_sortcol == COL_CATEGORY)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_CATEGORY)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
@@ -340,32 +187,32 @@ void mmCheckingPanel::sortTable()
             }
         );
     }
-    else if (g_sortcol == COL_WITHDRAWAL)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_WITHDRAWAL)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
         { return x->withdrawal_amt_ < y->withdrawal_amt_; });
     }
-    else if (g_sortcol == COL_DEPOSIT)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_DEPOSIT)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
         { return x->deposit_amt_ < y->deposit_amt_; });
     }
-    else if (g_sortcol == COL_BALANCE)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_BALANCE)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
             { return x->balance_ < y->balance_; });
     }
-    else if (g_sortcol == COL_NOTES)
+    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_NOTES)
     {
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [] (const mmBankTransaction* x, const mmBankTransaction* y)
             { return x->notes_ < y->notes_; });
     }
 
-    if (!g_asc) std::reverse(this->m_trans.begin(), this->m_trans.end());
+    if (!m_listCtrlAccount->g_asc) std::reverse(this->m_trans.begin(), this->m_trans.end());
 }
 
 void mmCheckingPanel::filterTable()
@@ -448,7 +295,7 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
 
     if (m_trans.size() > 0 && m_listCtrlAccount->m_selectedIndex < 0)
     {
-        if (g_asc)
+        if (m_listCtrlAccount->g_asc)
             m_listCtrlAccount->EnsureVisible(static_cast<long>(m_trans.size()) - 1);
         else
             m_listCtrlAccount->EnsureVisible(0);
@@ -502,7 +349,7 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     m_listCtrlAccount->DeleteAllItems();
 
     // decide whether top or down icon needs to be shown
-    m_listCtrlAccount->setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
+    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->g_sortcol, m_listCtrlAccount->g_asc ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC);
     sortTable();
     filterTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
@@ -613,26 +460,26 @@ void mmCheckingPanel::CreateControls()
         wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL);
 
     m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
-    m_listCtrlAccount->setSortOrder(g_asc);
-    m_listCtrlAccount->setSortColumn(g_sortcol);
+    m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
+    m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
     m_listCtrlAccount->SetFocus();
 
-    createColumns(*m_listCtrlAccount);
+    m_listCtrlAccount->createColumns(*m_listCtrlAccount);
 
     // load the global variables
-    long val = COL_DEF_SORT;
+    long val = m_listCtrlAccount->COL_DEF_SORT;
     wxString strVal = Model_Setting::instance().GetStringSetting("CHECK_SORT_COL", wxString() << val);
-    if (strVal.ToLong(&val)) g_sortcol = toEColumn(val);
+    if (strVal.ToLong(&val)) m_listCtrlAccount->g_sortcol = m_listCtrlAccount->toEColumn(val);
     // --
     val = 1; // asc sorting default
     strVal = Model_Setting::instance().GetStringSetting("CHECK_ASC", wxString() << val);
-    if (strVal.ToLong(&val)) g_asc = val != 0;
+    if (strVal.ToLong(&val)) m_listCtrlAccount->g_asc = val != 0;
 
     // --
-    m_listCtrlAccount->setSortColumn(g_sortcol);
-    m_listCtrlAccount->setSortOrder(g_asc);
+    m_listCtrlAccount->setSortColumn(m_listCtrlAccount->g_sortcol);
+    m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
     m_listCtrlAccount->setColumnImage(m_listCtrlAccount->getSortColumn()
-        , m_listCtrlAccount->getSortOrder() ? ICON_ASC : ICON_DESC); // asc\desc sort mark (arrow)
+        , m_listCtrlAccount->getSortOrder() ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC); // asc\desc sort mark (arrow)
 
     wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, ID_PANEL1
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
@@ -1052,7 +899,233 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     m_listCtrlAccount->refreshVisualList();
 }
 
+
+wxString mmCheckingPanel::getItem(long item, long column) const
+{
+    wxString cell_value = "";
+
+    bool ok = !m_trans.empty() &&
+              ( item >= 0 ) &&
+              ( item < static_cast<long>(m_trans.size()) ) &&
+              m_trans[item];
+
+    if (ok)
+    {
+        const mmBankTransaction &t = *m_trans[item];
+
+        if (column == m_listCtrlAccount->COL_DATE_OR_TRANSACTION_ID) cell_value = mmGetDateForDisplay(t.date_);
+        else if (column == m_listCtrlAccount->COL_TRANSACTION_NUMBER) cell_value = t.transNum_;
+        else if (column == m_listCtrlAccount->COL_PAYEE_STR) cell_value = t.arrow_ + t.payeeStr_;
+        else if (column == m_listCtrlAccount->COL_STATUS) cell_value = t.status_;
+        else if (column == m_listCtrlAccount->COL_CATEGORY) cell_value = t.fullCatStr_.IsEmpty() ? "..." : t.fullCatStr_;
+        else if (column == m_listCtrlAccount->COL_WITHDRAWAL)
+            cell_value = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
+        else if (column == m_listCtrlAccount->COL_DEPOSIT)
+            cell_value = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
+        else if (column == m_listCtrlAccount->COL_BALANCE)
+            cell_value = CurrencyFormatter::float2String(t.balance_);
+        else if (column == m_listCtrlAccount->COL_NOTES)
+        {
+            cell_value = t.notes_;
+            cell_value.Replace("\n", " ");
+        }
+        else
+            wxASSERT(false);
+    }
+
+    return cell_value;
+}
+
+wxSharedPtr<wxSQLite3Database> mmCheckingPanel::getDb() const
+{
+    wxASSERT(core_);
+    return core_->db_;
+}
+
+void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
+{
+    //event.GetString() does not working. It seems wxWidgets issue
+    //wxString searchString = event.GetString();
+
+    wxSearchCtrl* st = (wxSearchCtrl*)FindWindow(wxID_FIND);
+    wxString search_string = st->GetValue().Lower();
+    if (search_string.IsEmpty()) return;
+
+    double amount= 0, deposit = 0, withdrawal = 0;
+    bool valid_amount =  CurrencyFormatter::formatCurrencyToDouble(search_string, amount);
+    bool withdrawal_only = false;
+    if (valid_amount && amount < 0)
+    {
+        amount = -amount;
+        withdrawal_only = true;
+    }
+
+    long last = m_listCtrlAccount->GetItemCount();
+    long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+    if (selectedItem < 0) //nothing selected
+        selectedItem = m_listCtrlAccount->g_asc ? last - 1 : 0;
+
+    search_string.Append("*");
+    while (selectedItem >= 0 && selectedItem <= last)
+    {
+        m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
+        const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES);
+        if (valid_amount)  CurrencyFormatter::formatCurrencyToDouble(getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT), deposit);
+        if (valid_amount)  CurrencyFormatter::formatCurrencyToDouble(getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL), withdrawal);
+        if (t.Lower().Matches(search_string)
+            || (valid_amount && amount == deposit && !withdrawal_only)
+            || (valid_amount && amount == withdrawal))
+        {
+            //First of all any items should be unselected
+            long cursel = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            if (cursel != wxNOT_FOUND)
+                m_listCtrlAccount->SetItemState(cursel, !wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            //Then finded item will be selected
+            m_listCtrlAccount->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            m_listCtrlAccount->EnsureVisible(selectedItem);
+            break;
+        }
+    }
+}
+
+void mmCheckingPanel::DisplaySplitCategories(int transID)
+{
+    wxString transTypeStr = core_->bTransactionList_.getBankTransactionPtr(transID)->transType_;
+    int transType = 0;
+    if (transTypeStr== TRANS_TYPE_DEPOSIT_STR)  transType = 1;
+    if (transTypeStr== TRANS_TYPE_TRANSFER_STR) transType = 2;
+
+    Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
+    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
+    SplitTransactionDialog splitTransDialog(
+        split
+        , this
+        , transType
+        , core_
+        , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
+    );
+    splitTransDialog.SetDisplaySplitCategories();
+    splitTransDialog.ShowModal();
+}
+
+// Refresh account screen with new details
+void mmCheckingPanel::DisplayAccountDetails(int accountID)
+{
+    m_AccountID = accountID;
+    this->windowsFreezeThaw();   // prevent screen updates while controls being repopulated
+
+    initViewTransactionsHeader();
+
+    m_listCtrlAccount->m_selectedIndex = -1;
+    m_listCtrlAccount->refreshVisualList();
+    showTips();
+
+    this->windowsFreezeThaw();     // Enable screen refresh with new data.
+}
+
+void mmCheckingPanel::RefreshList()
+{
+    m_listCtrlAccount->refreshVisualList();
+}
+
+void mmCheckingPanel::SetTransactionFilterState(bool active)
+{
+    bitmapTransFilter_->Enable(active || transFilterActive_);
+    statTextTransFilter_->Enable(active || transFilterActive_);
+    bitmapMainFilter_->Enable(!transFilterActive_);
+    stxtMainFilter_->Enable(!transFilterActive_);
+}
+
+void mmCheckingPanel::SetSelectedTransaction(int transID)
+{
+    m_listCtrlAccount->refreshVisualList(transID);
+    m_listCtrlAccount->SetFocus();
+}
+
 //----------------------------------------------------------------------------
+
+TransactionListCtrl::TransactionListCtrl(
+    mmCheckingPanel *cp,
+    wxWindow *parent,
+    const wxWindowID id,
+    const wxPoint& pos,
+    const wxSize& size,
+    long style
+) :
+    wxListCtrl(parent, id, pos, size, style | wxWANTS_CHARS),
+    m_cp(cp),
+    m_selectedIndex(-1),
+    m_selectedForCopy(-1),
+    m_attr1(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont),
+    m_attr2(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont),
+    m_attr3(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont),
+    m_attr4(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont),
+    m_attr11(*wxBLACK, mmColors::userDefColor1, wxNullFont),
+    m_attr12(*wxBLACK, mmColors::userDefColor2, wxNullFont),
+    m_attr13(*wxBLACK, mmColors::userDefColor3, wxNullFont),
+    m_attr14(*wxBLACK, mmColors::userDefColor4, wxNullFont),
+    m_attr15(*wxBLACK, mmColors::userDefColor5, wxNullFont),
+    m_attr16(*wxBLACK, mmColors::userDefColor6, wxNullFont),
+    m_attr17(*wxBLACK, mmColors::userDefColor7, wxNullFont),
+    m_sortCol(COL_DEF_SORT),
+    m_asc(true),
+    showDeletedTransactions_(false),
+    g_sortcol(COL_DEF_SORT),
+    g_asc(true)
+{
+    wxASSERT(m_cp);
+
+    const wxAcceleratorEntry entries[] =
+    {
+        wxAcceleratorEntry(wxACCEL_CTRL, 'C', MENU_ON_COPY_TRANSACTION),
+        wxAcceleratorEntry(wxACCEL_CTRL, 'V', MENU_ON_PASTE_TRANSACTION),
+        wxAcceleratorEntry(wxACCEL_ALT,  'N', MENU_ON_NEW_TRANSACTION),
+        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_ON_DUPLICATE_TRANSACTION),
+        wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
+        wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
+        wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
+        wxAcceleratorEntry(wxACCEL_CTRL, '3', MENU_ON_SET_UDC3),
+        wxAcceleratorEntry(wxACCEL_CTRL, '4', MENU_ON_SET_UDC4),
+        wxAcceleratorEntry(wxACCEL_CTRL, '5', MENU_ON_SET_UDC5),
+        wxAcceleratorEntry(wxACCEL_CTRL, '6', MENU_ON_SET_UDC6),
+        wxAcceleratorEntry(wxACCEL_CTRL, '7', MENU_ON_SET_UDC7)
+    };
+
+    wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
+    SetAcceleratorTable(tab);
+}
+
+//----------------------------------------------------------------------------
+void TransactionListCtrl::createColumns(wxListCtrl &lst)
+{
+    const wxString def_data[3*COL_MAX] =
+    {
+        wxString(_("Date")).Prepend("      "), "80", "L",
+        _("Number"), "-2", "L",
+        wxString(_("Payee")).Prepend("   "), "150", "L",
+        _("Status"), "-2", "L",
+        _("Category"), "-2", "L",
+        _("Withdrawal"), "-2", "R",
+        _("Deposit"), "-2", "R",
+        _("Balance"), "-2", "R",
+        _("Notes"), "200", "L"
+    };
+
+    for (int i = 0; i < COL_MAX; ++i)
+    {
+        const wxString col_name = (def_data[3*i+0]);
+        const wxString def_width = def_data[3*i+1];
+        const wxString def_format = def_data[3*i+2];
+
+        wxString name = wxString::Format("CHECK_COL%d_WIDTH", i);
+        wxString val = Model_Setting::instance().GetStringSetting(name, def_width);
+        long width = -1;
+        int format = wxLIST_FORMAT_RIGHT;
+        if (def_format == "L") format = wxLIST_FORMAT_LEFT;
+        lst.InsertColumn((long)i, col_name, format);
+        if (val.ToLong(&width)) lst.SetColumnWidth(i, (int)width);
+    }
+}
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
@@ -1292,43 +1365,6 @@ void TransactionListCtrl::setColumnImage(EColumn col, int image)
     item.SetImage(image);
 
     SetColumn(col, item);
-}
-//----------------------------------------------------------------------------
-
-wxString mmCheckingPanel::getItem(long item, long column) const
-{
-    wxString cell_value = "";
-
-    bool ok = !m_trans.empty() &&
-              ( item >= 0 ) &&
-              ( item < static_cast<long>(m_trans.size()) ) &&
-              m_trans[item];
-
-    if (ok)
-    {
-        const mmBankTransaction &t = *m_trans[item];
-
-        if (column == COL_DATE_OR_TRANSACTION_ID) cell_value = mmGetDateForDisplay(t.date_);
-        else if (column == COL_TRANSACTION_NUMBER) cell_value = t.transNum_;
-        else if (column == COL_PAYEE_STR) cell_value = t.arrow_ + t.payeeStr_;
-        else if (column == COL_STATUS) cell_value = t.status_;
-        else if (column == COL_CATEGORY) cell_value = t.fullCatStr_.IsEmpty() ? "..." : t.fullCatStr_;
-        else if (column == COL_WITHDRAWAL)
-            cell_value = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
-        else if (column == COL_DEPOSIT)
-            cell_value = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
-        else if (column == COL_BALANCE)
-            cell_value = CurrencyFormatter::float2String(t.balance_);
-        else if (column == COL_NOTES)
-        {
-            cell_value = t.notes_;
-            cell_value.Replace("\n", " ");
-        }
-        else
-            wxASSERT(false);
-    }
-
-    return cell_value;
 }
 //----------------------------------------------------------------------------
 
@@ -1788,160 +1824,3 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
-
-TransactionListCtrl::TransactionListCtrl(
-    mmCheckingPanel *cp,
-    wxWindow *parent,
-    const wxWindowID id,
-    const wxPoint& pos,
-    const wxSize& size,
-    long style
-) :
-    wxListCtrl(parent, id, pos, size, style | wxWANTS_CHARS),
-    m_cp(cp),
-    m_selectedIndex(-1),
-    m_selectedForCopy(-1),
-    m_attr1(*wxBLACK, mmColors::listAlternativeColor0, wxNullFont),
-    m_attr2(*wxBLACK, mmColors::listAlternativeColor1, wxNullFont),
-    m_attr3(mmColors::listFutureDateColor, mmColors::listAlternativeColor0, wxNullFont),
-    m_attr4(mmColors::listFutureDateColor, mmColors::listAlternativeColor1, wxNullFont),
-    m_attr11(*wxBLACK, mmColors::userDefColor1, wxNullFont),
-    m_attr12(*wxBLACK, mmColors::userDefColor2, wxNullFont),
-    m_attr13(*wxBLACK, mmColors::userDefColor3, wxNullFont),
-    m_attr14(*wxBLACK, mmColors::userDefColor4, wxNullFont),
-    m_attr15(*wxBLACK, mmColors::userDefColor5, wxNullFont),
-    m_attr16(*wxBLACK, mmColors::userDefColor6, wxNullFont),
-    m_attr17(*wxBLACK, mmColors::userDefColor7, wxNullFont),
-    m_sortCol(COL_DEF_SORT),
-    m_asc(true),
-    showDeletedTransactions_(false)
-{
-    wxASSERT(m_cp);
-
-    const wxAcceleratorEntry entries[] =
-    {
-        wxAcceleratorEntry(wxACCEL_CTRL, 'C', MENU_ON_COPY_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'V', MENU_ON_PASTE_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_ALT,  'N', MENU_ON_NEW_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_CTRL, 'D', MENU_ON_DUPLICATE_TRANSACTION),
-        wxAcceleratorEntry(wxACCEL_CTRL, '0', MENU_ON_SET_UDC0),
-        wxAcceleratorEntry(wxACCEL_CTRL, '1', MENU_ON_SET_UDC1),
-        wxAcceleratorEntry(wxACCEL_CTRL, '2', MENU_ON_SET_UDC2),
-        wxAcceleratorEntry(wxACCEL_CTRL, '3', MENU_ON_SET_UDC3),
-        wxAcceleratorEntry(wxACCEL_CTRL, '4', MENU_ON_SET_UDC4),
-        wxAcceleratorEntry(wxACCEL_CTRL, '5', MENU_ON_SET_UDC5),
-        wxAcceleratorEntry(wxACCEL_CTRL, '6', MENU_ON_SET_UDC6),
-        wxAcceleratorEntry(wxACCEL_CTRL, '7', MENU_ON_SET_UDC7)
-    };
-
-    wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
-    SetAcceleratorTable(tab);
-}
-//----------------------------------------------------------------------------
-
-wxSharedPtr<wxSQLite3Database> mmCheckingPanel::getDb() const
-{
-    wxASSERT(core_);
-    return core_->db_;
-}
-
-//----------------------------------------------------------------------------
-void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
-{
-    //event.GetString() does not working. It seems wxWidgets issue
-    //wxString searchString = event.GetString();
-
-    wxSearchCtrl* st = (wxSearchCtrl*)FindWindow(wxID_FIND);
-    wxString search_string = st->GetValue().Lower();
-    if (search_string.IsEmpty()) return;
-
-    double amount= 0, deposit = 0, withdrawal = 0;
-    bool valid_amount =  CurrencyFormatter::formatCurrencyToDouble(search_string, amount);
-    bool withdrawal_only = false;
-    if (valid_amount && amount < 0)
-    {
-        amount = -amount;
-        withdrawal_only = true;
-    }
-
-    long last = m_listCtrlAccount->GetItemCount();
-    long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    if (selectedItem < 0) //nothing selected
-        selectedItem = g_asc ? last - 1 : 0;
-
-    search_string.Append("*");
-    while (selectedItem >= 0 && selectedItem <= last)
-    {
-        g_asc ?  selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, COL_NOTES);
-        if (valid_amount)  CurrencyFormatter::formatCurrencyToDouble(getItem(selectedItem, COL_DEPOSIT), deposit);
-        if (valid_amount)  CurrencyFormatter::formatCurrencyToDouble(getItem(selectedItem, COL_WITHDRAWAL), withdrawal);
-        if (t.Lower().Matches(search_string)
-            || (valid_amount && amount == deposit && !withdrawal_only)
-            || (valid_amount && amount == withdrawal))
-        {
-            //First of all any items should be unselected
-            long cursel = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-            if (cursel != wxNOT_FOUND)
-                m_listCtrlAccount->SetItemState(cursel, !wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-            //Then finded item will be selected
-            m_listCtrlAccount->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-            m_listCtrlAccount->EnsureVisible(selectedItem);
-            break;
-        }
-    }
-}
-
-void mmCheckingPanel::DisplaySplitCategories(int transID)
-{
-    wxString transTypeStr = core_->bTransactionList_.getBankTransactionPtr(transID)->transType_;
-    int transType = 0;
-    if (transTypeStr== TRANS_TYPE_DEPOSIT_STR)  transType = 1;
-    if (transTypeStr== TRANS_TYPE_TRANSFER_STR) transType = 2;
-
-    Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
-    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
-    SplitTransactionDialog splitTransDialog(
-        split
-        , this
-        , transType
-        , core_
-        , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
-    );
-    splitTransDialog.SetDisplaySplitCategories();
-    splitTransDialog.ShowModal();
-}
-
-// Refresh account screen with new details
-void mmCheckingPanel::DisplayAccountDetails(int accountID)
-{
-    m_AccountID = accountID;
-    this->windowsFreezeThaw();   // prevent screen updates while controls being repopulated
-
-    initViewTransactionsHeader();
-
-    m_listCtrlAccount->m_selectedIndex = -1;
-    m_listCtrlAccount->refreshVisualList();
-    showTips();
-
-    this->windowsFreezeThaw();     // Enable screen refresh with new data.
-}
-
-void mmCheckingPanel::RefreshList()
-{
-    m_listCtrlAccount->refreshVisualList();
-}
-
-void mmCheckingPanel::SetTransactionFilterState(bool active)
-{
-    bitmapTransFilter_->Enable(active || transFilterActive_);
-    statTextTransFilter_->Enable(active || transFilterActive_);
-    bitmapMainFilter_->Enable(!transFilterActive_);
-    stxtMainFilter_->Enable(!transFilterActive_);
-}
-
-void mmCheckingPanel::SetSelectedTransaction(int transID)
-{
-    m_listCtrlAccount->refreshVisualList(transID);
-    m_listCtrlAccount->SetFocus();
-}
