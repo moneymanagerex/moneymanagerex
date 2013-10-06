@@ -18,6 +18,7 @@
 #include "util.h"
 #include "mmCurrencyFormatter.h"
 #include <wx/statline.h>
+#include "model/Model_Category.h"
 
 /*!
  * SplitTransactionDialog type definition
@@ -85,8 +86,11 @@ void SplitTransactionDialog::DataToControls()
     long idx = 0;
     for (const auto & entry : split_)
     {
+        const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
+        const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(entry.SUBCATEGID);
+
         lcSplit_->InsertItem((long)idx
-            , core_->categoryList_.GetFullCategoryString(entry.CATEGID, entry.SUBCATEGID)
+            , Model_Category::full_name(category, sub_category) 
             , -1);
 
         lcSplit_->SetItem((long)idx++, 1, CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT));
@@ -255,10 +259,12 @@ void SplitTransactionDialog::EditEntry()
     int categID    = splt_->entries_[item]->categID_;
     int subCategID = splt_->entries_[item]->subCategID_;
     double amount  = splt_->entries_[item]->splitAmount_;
-    wxString category = core_->categoryList_.GetFullCategoryString(categID,subCategID);
+    const Model_Category::Data* category = Model_Category::instance().get(categID);
+    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subCategID);
+    wxString category_name = Model_Category::full_name(category, sub_category);
 
 
-    SplitDetailDialog sdd(split_[item], core_, category, &categID, &subCategID, &amount, transType_, this);
+    SplitDetailDialog sdd(split_[item], core_, category_name, &categID, &subCategID, &amount, transType_, this);
     if (sdd.ShowModal() == wxID_OK)
     {
         splt_->entries_[item]->categID_     = categID;
