@@ -20,8 +20,9 @@
 
 #include "DB_Table.h"
 
-struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
+class DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 {
+public:
     struct Data;
     typedef DB_Table_BILLSDEPOSITS_V1 Self;
     typedef std::vector<Self::Data> Data_Set;

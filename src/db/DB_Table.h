@@ -30,8 +30,9 @@
 
 class wxString;
 
-struct DB_Table
+class DB_Table
 {
+public:
     DB_Table() {};
     virtual ~DB_Table() {};
     wxString query_;
