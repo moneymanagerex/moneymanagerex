@@ -86,10 +86,15 @@ public:
     }
     static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0)
     {
-        if (!sub_category)
-            return category->CATEGNAME;
+        if (category)
+        {
+            if (!sub_category)
+                return category->CATEGNAME;
+            else
+                return category->CATEGNAME + ":" + sub_category->SUBCATEGNAME;
+        }
         else
-            return category->CATEGNAME + ":" + sub_category->SUBCATEGNAME; 
+            return "";
     }
 
     static void top_category(std::vector<std::pair<wxString /*category name*/

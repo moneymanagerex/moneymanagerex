@@ -122,14 +122,14 @@ void mmCategDialog::fillControls()
 
             for (const auto& sub_category: Model_Category::sub_category(category))
             {
-                bShow = categShowStatus(category.CATEGID, sub_category.CATEGID);
+                bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
                 if (cbShowAll_->IsChecked() || bShow)
                 {
                     wxTreeItemId subcat = treeCtrl_->AppendItem(maincat, sub_category.SUBCATEGNAME);
-                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category.CATEGID, sub_category.CATEGID));
+                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category.CATEGID, sub_category.SUBCATEGID));
                     if (!bShow) treeCtrl_->SetItemTextColour(subcat, wxColour("GREY"));
 
-                    if (categID_ == category.CATEGID && subcategID_ == sub_category.CATEGID)
+                    if (categID_ == category.CATEGID && subcategID_ == sub_category.SUBCATEGID)
                         selectedItemId_ = subcat;
                 }
             }
@@ -650,12 +650,7 @@ bool mmCategDialog::categShowStatus(int categId, int subCategId)
 
 wxString mmCategDialog::getFullCategName()
 {
-    //TODO: move it to separate function
     Model_Category::Data *category = Model_Category::instance().get(categID_);
     Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(subcategID_);
-    wxString categoryName = "", subCategoryName = "";
-    if (category) categoryName = category->CATEGNAME;
-    if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
-    const wxString fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
-    return fullCategoryName;
+    return Model_Category::full_name(category, subcategory);
 }

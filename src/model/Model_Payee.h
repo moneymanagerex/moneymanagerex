@@ -86,7 +86,7 @@ public:
 public:
     wxArrayString all_payee_names()
     {
-        wxArrayString payees;
+        wxSortedArrayString payees;
         for (const auto &payee: this->all())
         {
             payees.Add(payee.PAYEENAME);

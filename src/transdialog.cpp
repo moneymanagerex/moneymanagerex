@@ -299,7 +299,6 @@ void mmTransDialog::SetTransferControls(bool transfer)
         cbAccount_->Enable(!accounts.empty());
         transaction_->TOACCOUNTID = -1;
 
-        data = Model_Payee::instance().all_payee_names();
         toTextAmount_->Enable(false);
         toTextAmount_->SetValue("");
         advancedToTransAmountSet_ = false;
@@ -312,9 +311,9 @@ void mmTransDialog::SetTransferControls(bool transfer)
         }
     }
 
-    for (const auto & entry : data)
+    for (const auto & entry : Model_Payee::instance().all_payee_names())
         cbPayee_ ->Append(entry);
-    cbPayee_->AutoComplete(data);
+    cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
 
     if (!cbPayee_ -> SetStringSelection(dataStr))
         cbPayee_ -> SetValue(dataStr);
@@ -526,13 +525,9 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
             // if payee has memory of last category used then display last category for payee
             if (payee && payee->CATEGID != -1)
             {
-                //TODO: move it to separate function
                 Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
                 Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee->SUBCATEGID);
-                wxString categoryName = "", subCategoryName = "";
-                if (category) categoryName = category->CATEGNAME;
-                if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
-                wxString fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
+                wxString fullCategoryName = Model_Category::full_name(category, subcategory);
 
                 transaction_->CATEGID = payee->CATEGID;
                 transaction_->SUBCATEGID = payee->SUBCATEGID;
@@ -870,13 +865,9 @@ void mmTransDialog::SetSplitState()
         fullCategoryName = _("Split Category");
     else
     {
-            //TODO: move it to separate function
             Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
             Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
-            wxString categoryName = "", subCategoryName = "";
-            if (category) categoryName = category->CATEGNAME;
-            if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
-            fullCategoryName = categoryName + (subCategoryName.IsEmpty() ? "" : ":" + subCategoryName);
+            fullCategoryName = Model_Category::full_name(category, subcategory);
             if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
     }
 
