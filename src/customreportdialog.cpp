@@ -62,6 +62,7 @@ mmCustomSQLDialog::mmCustomSQLDialog(CustomReportIndex* reportIndex, const wxStr
 mmCustomSQLDialog::~mmCustomSQLDialog()
 {
     timer_->Stop();
+    delete timer_;
 }
 
 

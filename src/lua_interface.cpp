@@ -45,11 +45,24 @@ TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 TLuaInterface::~TLuaInterface()
 {
     delete g_static_currency_list;
+    cleanuplist();
     lua_close(lua_);
+}
+
+void TLuaInterface::cleanuplist()
+{
+    for (auto& category : g_static_category_list)
+    {
+        for (auto&  sub_category : category->children_)
+            delete sub_category;
+        category->children_.clear();
+        delete category;
+    }
 }
 
 void TLuaInterface::LoadCategories(wxSharedPtr<wxSQLite3Database> db)
 {
+    cleanuplist();
     g_static_category_list.clear();
     wxSQLite3ResultSet q1 = db.get()->ExecuteQuery(SELECT_ALL_CATEGORIES);
     wxSQLite3ResultSet q2 = db.get()->ExecuteQuery(SELECT_ALL_SUBCATEGORIES);

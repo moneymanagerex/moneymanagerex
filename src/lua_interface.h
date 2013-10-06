@@ -54,6 +54,7 @@ public:
 private:
     lua_State* lua_;
     int lua_result_;
+    void cleanuplist();
     wxString LuaErrorResult();
 	void LoadCategories(wxSharedPtr<wxSQLite3Database> db);
 	static bool GetBoolValue(const wxString& value, const bool def = false);
