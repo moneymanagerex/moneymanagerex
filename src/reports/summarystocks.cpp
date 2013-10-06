@@ -52,7 +52,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     double gain_loss_sum_total = 0.0;
     double stockBalance = 0.0;
 
-    for (const auto& a: Model_Account::instance().all())
+    for (const auto& a: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(a) != Model_Account::INVESTMENT) continue;
         if (Model_Account::status(a) != Model_Account::OPEN) continue;

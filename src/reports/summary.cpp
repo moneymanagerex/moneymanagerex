@@ -36,10 +36,6 @@ mmReportSummary::mmReportSummary(mmCoreDB* core)
 
 // structure for sorting of data
 struct data_holder {wxString name; wxString link; double balance;};
-bool mmSummarySortName (const data_holder& x, const data_holder& y)
-{
-    return x.name < y.name;
-}
 bool mmSummarySortBalance (const data_holder& x, const data_holder& y)
 {
     if (x.balance != y.balance) return x.balance < y.balance;
@@ -53,7 +49,7 @@ wxString mmReportSummary::getHTMLText()
 
     /* Checking */
     double tBalance = 0.0;
-    for (const auto& account: Model_Account::instance().all())
+    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) == Model_Account::CHECKING && Model_Account::status(account) == Model_Account::OPEN)
         {
@@ -71,7 +67,7 @@ wxString mmReportSummary::getHTMLText()
 
     /* Terms */
     double tTBalance = 0.0;
-    for (const auto& account: Model_Account::instance().all())
+    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) == Model_Account::TERM && Model_Account::status(account) == Model_Account::OPEN)
         {
@@ -87,16 +83,15 @@ wxString mmReportSummary::getHTMLText()
         }
     }
 
-    switch(sortColumn_)
+    if (SUMMARY_SORT_BY_BALANCE == sortColumn_)
     {
-    case SUMMARY_SORT_BY_BALANCE:
         std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortBalance);
         std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortBalance);
-        break;
-    default:
+    }
+    else
+    {
+        // List is presorted by account name
         sortColumn_ = SUMMARY_SORT_BY_NAME;
-        std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortName);
-        std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortName);
     }
 
     mmHTMLBuilder hb;

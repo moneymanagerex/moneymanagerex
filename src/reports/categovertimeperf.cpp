@@ -66,7 +66,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     // structure for sorting of data (month is used for sorting of period values and is not directly displayed)
     struct data_holder {wxString name; double period[MONTHS_IN_PERIOD]; double overall; double month;} line;
     std::vector<data_holder> data;
-    for (const auto& category: Model_Category::instance().all())
+    for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         int categID = category.CATEGID;
         line.name = category.CATEGNAME;

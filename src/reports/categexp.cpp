@@ -65,7 +65,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         , with_date);
     core_->currencyList_.LoadBaseCurrencySettings();
 
-    for (const auto& category: Model_Category::instance().all())
+    for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         int categs = 0;
         double categtotal = 0.0;
