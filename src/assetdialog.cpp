@@ -246,7 +246,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     double valueChangeRate = 0;
     if(!valueChangeRateStr.ToDouble(&valueChangeRate))
     {
-        valueChangeRate = -1.0;
+        valueChangeRate = 0;
     }
     //This should be unnecessary with hidden controls
     if ((valueChangeType != Model_Asset::RATE_NONE) && (valueChangeRate < 0.0))
