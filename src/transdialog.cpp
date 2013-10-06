@@ -96,6 +96,11 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 
     mmSplitTransactionEntries* split(new mmSplitTransactionEntries());
     split_ = split;
+    if (edit_)
+    {
+        *split_ = *core_->bTransactionList_
+            .getBankTransactionPtr(transaction_->TRANSID)->splitEntries_;
+    }
 
     dataToControls();
 
@@ -157,12 +162,6 @@ void mmTransDialog::dataToControls()
     wxString categString = _("Select Category");
 
     updateControlsForTransType();
-    if (edit_)
-    {
-        *split_ = *core_->bTransactionList_
-            .getBankTransactionPtr(transaction_->TRANSID)->splitEntries_;
-    }
-
     SetSplitState();
 
     cbAccount_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
