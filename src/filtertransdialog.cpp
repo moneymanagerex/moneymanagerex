@@ -108,13 +108,15 @@ void mmFilterTransactionsDialog::dataToControls()
 
     wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
     Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
-    categID_ = category->CATEGID;
+    if (category)
+        categID_ = category->CATEGID;
     Model_Subcategory::Data* sub_category = 0;
     wxString subcateg_name = categ_token.GetNextToken().Trim(false);
     if (!subcateg_name.IsEmpty())
     {
         sub_category = Model_Subcategory::instance().get(subcateg_name);
-        subcategID_ = sub_category->SUBCATEGID;
+        if (sub_category)
+            subcategID_ = sub_category->SUBCATEGID;
     }
     btnCategory_ ->SetLabel(Model_Category::full_name(category, sub_category));
     bExpandStaus_ = true;
