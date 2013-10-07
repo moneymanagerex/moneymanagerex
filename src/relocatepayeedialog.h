@@ -44,7 +44,7 @@ public:
                          const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
                          long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
 
-    wxString updatedPayeesCount();
+    int updatedPayeesCount();
 
 private:
     mmCoreDB* core_;

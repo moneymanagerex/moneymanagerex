@@ -347,7 +347,7 @@ void mmPayeeDialog::OnPayeeRelocate(wxCommandEvent& event)
     {
         wxString msgStr;
         msgStr << _("Payee Relocation Completed.") << "\n\n"
-            << wxString::Format(_("Records have been updated in the database: %s")
+            << wxString::Format(_("Records have been updated in the database: %i")
                 , dlg.updatedPayeesCount())
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));

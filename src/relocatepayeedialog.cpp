@@ -120,11 +120,9 @@ void relocatePayeeDialog::CreateControls()
     boxSizer->Add(buttonBoxSizer, flags);
 }
 
-wxString relocatePayeeDialog::updatedPayeesCount()
+int relocatePayeeDialog::updatedPayeesCount()
 {
-    wxString countStr;
-    countStr << changedRecords_;
-    return countStr;
+    return changedRecords_;
 }
 
 void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
