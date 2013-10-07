@@ -124,10 +124,7 @@ void relocateCategoryDialog::CreateControls()
 void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 {
     mmCategDialog sourceCat(this, true, false);
-    Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
-    Model_Subcategory::Data* sub_category = (sourceSubCatID_ != -1 ? Model_Subcategory::instance().get(sourceSubCatID_) : 0);
-
-    sourceCat.setTreeSelection(category->CATEGNAME, Model_Category::full_name(category, sub_category));
+    sourceCat.setTreeSelection(sourceCatID_,  sourceSubCatID_);
 
     if (sourceCat.ShowModal() == wxID_OK)
     {
@@ -144,10 +141,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
 {
     mmCategDialog destCat(this, true, false);
-    Model_Category::Data* category = Model_Category::instance().get(destCatID_);
-    Model_Subcategory::Data* sub_category = (destSubCatID_ != -1 ? Model_Subcategory::instance().get(destSubCatID_) : 0);
-
-    destCat.setTreeSelection(category->CATEGNAME, Model_Category::full_name(category, sub_category));
+    destCat.setTreeSelection(destCatID_, destSubCatID_);
 
     if (destCat.ShowModal() == wxID_OK)
     {

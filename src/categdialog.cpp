@@ -520,12 +520,16 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& 
 
 void mmCategDialog::setTreeSelection(int &category_id, int &subcategory_id)
 {
-    Model_Category::Data *category = Model_Category::instance().get(category_id);
-    Model_Subcategory::Data *subcategory = (subcategory_id != -1 ? Model_Subcategory::instance().get(subcategory_id) : 0);
-    wxString categoryName = "", subCategoryName = "";
-    if (category) categoryName = category->CATEGNAME;
-    if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
-    setTreeSelection(categoryName, subCategoryName);
+    Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGID, category_id);
+    if (!categories.empty())
+    {
+        Model_Category::Data *category = Model_Category::instance().get(category_id);
+        Model_Subcategory::Data *subcategory = (subcategory_id != -1 ? Model_Subcategory::instance().get(subcategory_id) : 0);
+        wxString categoryName = "", subCategoryName = "";
+        if (category) categoryName = category->CATEGNAME;
+        if (subcategory) subCategoryName = subcategory->SUBCATEGNAME;
+        setTreeSelection(categoryName, subCategoryName);
+    }
 }
 
 void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& subCatName)
