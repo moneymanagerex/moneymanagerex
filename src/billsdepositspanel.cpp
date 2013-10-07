@@ -37,11 +37,11 @@ BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
 END_EVENT_TABLE()
 /*******************************************************/
 BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(ID_PANEL_BD_LISTCTRL,   billsDepositsListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_RIGHT_CLICK(ID_PANEL_BD_LISTCTRL, billsDepositsListCtrl::OnItemRightClick)
-    EVT_LIST_ITEM_SELECTED(ID_PANEL_BD_LISTCTRL,    billsDepositsListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(ID_PANEL_BD_LISTCTRL,    billsDepositsListCtrl::OnListItemDeselected)
-    EVT_LIST_COL_END_DRAG(ID_PANEL_BD_LISTCTRL, billsDepositsListCtrl::OnItemResize)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   billsDepositsListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, billsDepositsListCtrl::OnItemRightClick)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemDeselected)
+    EVT_LIST_COL_END_DRAG(wxID_ANY, billsDepositsListCtrl::OnItemResize)
 
 
     EVT_MENU(MENU_TREEPOPUP_NEW,              billsDepositsListCtrl::OnNewBDSeries)
@@ -50,7 +50,7 @@ BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,       billsDepositsListCtrl::OnEnterBDTransaction)
     EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,        billsDepositsListCtrl::OnSkipBDTransaction)
 
-    EVT_LIST_KEY_DOWN(ID_PANEL_BD_LISTCTRL,   billsDepositsListCtrl::OnListKeyDown)
+    EVT_LIST_KEY_DOWN(wxID_ANY,   billsDepositsListCtrl::OnListKeyDown)
 END_EVENT_TABLE()
 /*******************************************************/
 
