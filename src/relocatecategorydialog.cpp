@@ -171,9 +171,11 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 {
     if ((sourceCatID_ > 0) && (destCatID_ > 0) )
     {
-        wxString msgStr = _("Please Confirm:");
-        msgStr << "\n\n" << _("Changing all categories of: ")
-            << sourceBtn_->GetLabelText() << "\n\n" << _("to category: ") << destBtn_->GetLabelText();
+        wxString msgStr = wxString()
+            <<_("Please Confirm:")
+            << "\n\n" 
+            << wxString::Format(_("Changing all categories of: %s\n\nto category: %s")
+                , sourceBtn_->GetLabelText(), destBtn_->GetLabelText());
 
         int ans = wxMessageBox(msgStr,_("Category Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
@@ -186,6 +188,30 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
                 trx.SUBCATEGID = destSubCatID_;
             }
             Model_Checking::instance().save(transactions);
+
+            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_CATEGID, sourceCatID_);
+            for (auto &trx : billsdeposits)
+            {
+                if (sourceCatID_==trx.CATEGID && sourceSubCatID_==trx.SUBCATEGID)
+                {
+                    trx.CATEGID = destCatID_;
+                    trx.SUBCATEGID = destSubCatID_;
+                }
+            }
+            Model_Billsdeposits::instance().save(billsdeposits);
+
+            Model_Splittransaction::Data_Set checking_split = Model_Splittransaction::instance().find(Model_Splittransaction::COL_CATEGID, sourceCatID_);
+            for (auto &trx : checking_split)
+            {
+                if (sourceCatID_==trx.CATEGID && sourceSubCatID_==trx.SUBCATEGID)
+                {
+                    trx.CATEGID = destCatID_;
+                    trx.SUBCATEGID = destSubCatID_;
+                }
+            }
+            Model_Splittransaction::instance().save(checking_split);
+            //TODO: same changes for billsdeposits split transactions
+
             EndModal(wxID_OK);
         }
     }
