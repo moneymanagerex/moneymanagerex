@@ -490,16 +490,15 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     treeCtrl_->SetItemText(selectedItemId_, text);
     wxString fullCatStr = Model_Category::full_name(category, sub_category);
     //core_->bTransactionList_.UpdateCategory(categID, subcategID, fullCatStr);
-    Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, categID);
+    Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, categID
+        , Model_Checking::COL_SUBCATEGID, subcategID);
     for (auto &trx : transactions)
     {
-        if (categID==trx.CATEGID && subcategID==trx.SUBCATEGID)
-        {
-            trx.CATEGID = categID;
-            trx.SUBCATEGID = subcategID;
-            Model_Checking::instance().save(&trx);
-        }
+        trx.CATEGID = categID;
+        trx.SUBCATEGID = subcategID;
     }
+    Model_Checking::instance().save(transactions);
+
     refreshRequested_ = true;
 }
 

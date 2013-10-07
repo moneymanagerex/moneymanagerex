@@ -178,16 +178,14 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Category Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, sourceCatID_);
+            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, sourceCatID_
+                , Model_Checking::COL_SUBCATEGID, sourceSubCatID_);
             for (auto &trx : transactions)
             {
-                if (sourceCatID_==trx.CATEGID && sourceSubCatID_==trx.SUBCATEGID)
-                {
-                    trx.CATEGID = destCatID_;
-                    trx.SUBCATEGID = destSubCatID_;
-                    Model_Checking::instance().save(&trx);
-                }
+                trx.CATEGID = destCatID_;
+                trx.SUBCATEGID = destSubCatID_;
             }
+            Model_Checking::instance().save(transactions);
             EndModal(wxID_OK);
         }
     }
