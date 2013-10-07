@@ -151,14 +151,13 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         {
             Model_Checking::Data_Set transactions = Model_Checking::instance().all();
             changedPayees_ = 0;
-            for (const auto &trx : transactions)
+            for (auto &trx : transactions)
             {
-                Model_Checking::Data *transaction = Model_Checking::instance().get(trx.TRANSID);
-                if (transaction->PAYEEID == sourcePayeeID_)
+                if (trx.PAYEEID == sourcePayeeID_)
                 {
-                    transaction->PAYEEID = destPayeeID_;
+                    trx.PAYEEID = destPayeeID_;
                     changedPayees_++;
-                    Model_Checking::instance().save(transaction);
+                    Model_Checking::instance().save(&trx);
                 }
             }
             EndModal(wxID_OK);
