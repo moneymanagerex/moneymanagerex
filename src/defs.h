@@ -66,5 +66,9 @@
 #include <wx/choice.h>
 #include <wx/statline.h>
 
+#ifdef __VISUALC__
+#pragma warning (disable:4100)
+#endif
+
 #endif // _MM_EX_DEFS_H_
 
