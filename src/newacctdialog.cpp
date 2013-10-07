@@ -35,7 +35,6 @@ BEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
     EVT_MENU_RANGE(0, 99, mmNewAcctDialog::OnCustonImage)
-    EVT_CHILD_FOCUS(mmNewAcctDialog::changeFocus)
 END_EVENT_TABLE()
 
 mmNewAcctDialog::mmNewAcctDialog( )
@@ -47,10 +46,13 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account,
                                  const wxPoint& pos, const wxSize& size, long style )
     : m_account(account)
     , currencyID_(-1)
+    , termAccount_(false)
 {
     imageList_ = navtree_images_list_();
     Create(parent, id, caption, pos, size, style);
-    termAccount_ = false;
+
+    fillControls();
+    this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::changeFocus), NULL, this);
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()
@@ -74,8 +76,6 @@ bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
     SetIcon(mmex::getProgramIcon());
 
     Centre();
-
-    fillControls();
 
     return TRUE;
 }
@@ -404,7 +404,6 @@ void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 
 void mmNewAcctDialog::changeFocus(wxChildFocusEvent& event)
 {
-    return; // TODO
     wxWindow *w = event.GetWindow();
     int oject_in_focus = 0;
     if ( w )
