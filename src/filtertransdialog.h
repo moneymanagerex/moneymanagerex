@@ -35,7 +35,6 @@ public:
     mmFilterTransactionsDialog( );
     mmFilterTransactionsDialog
     (
-        mmCoreDB* core,
         wxWindow* parent,
         wxWindowID id = SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME,
         const wxString& caption = SYMBOL_MMFILTERTRANSACTIONSDIALOG_TITLE,
@@ -212,7 +211,6 @@ private:
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
     std::vector< mmBankTransaction* >* trans_;
-    mmCoreDB* core_;
     mmDateRange* date_range_;
 
     int categID_;

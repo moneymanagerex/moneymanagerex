@@ -83,7 +83,7 @@ bool mmBillsDepositsPanel::Create( wxWindow *parent,
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
-    transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
+    transFilterDlg_    = new mmFilterTransactionsDialog(this);
 
     initVirtualListControl();
     

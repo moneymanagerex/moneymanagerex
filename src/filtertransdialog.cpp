@@ -46,11 +46,9 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
 }
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog(
-    mmCoreDB* core,
     wxWindow* parent, wxWindowID id, const wxString& caption,
     const wxPoint& pos, const wxSize& size,long style)
-: core_(core)
-, categID_(-1)
+: categID_(-1)
 , subcategID_(-1)
 , payeeID_(-1)
 , refAccountID_(-1)

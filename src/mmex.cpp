@@ -3158,7 +3158,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
     std::vector<mmBankTransaction*> trans;
 
-    mmFilterTransactionsDialog* dlg= new mmFilterTransactionsDialog(m_core.get(), this);
+    mmFilterTransactionsDialog* dlg= new mmFilterTransactionsDialog(this);
     if (dlg->ShowModal() == wxID_OK)
     {
         for (const auto& tran: m_core.get()->bTransactionList_.transactions_)

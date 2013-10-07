@@ -128,7 +128,7 @@ bool mmCheckingPanel::Create(
     GetSizer()->SetSizeHints(this);
 
     transFilterActive_ = false;
-    transFilterDlg_    = new mmFilterTransactionsDialog(core_, this);
+    transFilterDlg_    = new mmFilterTransactionsDialog(this);
     initViewTransactionsHeader();
     initFilterSettings();
 

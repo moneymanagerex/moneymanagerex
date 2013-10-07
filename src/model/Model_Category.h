@@ -17,7 +17,7 @@ class Model_Category : public Model, public DB_Table_CATEGORY_V1
     using DB_Table_CATEGORY_V1::get;
     using DB_Table_CATEGORY_V1::remove;
 public:
-    Model_Category(): Model(), DB_Table_CATEGORY_V1() 
+    Model_Category(): Model(), DB_Table_CATEGORY_V1()
     {
     };
     ~Model_Category() {};
@@ -108,13 +108,13 @@ public:
             if (!currency) continue;
             //const Model_Category::Data* category = Model_Category::instance();
             //if (!category) continue;
-            
+
             if (tran.CATEGID > -1)
             {
                 //const wxString categ_name = core_->categoryList_.GetFullCategoryString(CATEGID, SUBCATEGID);
                 //stat[categ_name] += trx->value(-1) * currency->BASECONVRATE;
             }
-            
+
         }
     }
     static bool is_used(int id, int sub_id = -1)
@@ -160,4 +160,4 @@ public:
     }
 };
 
-#endif // 
+#endif //
