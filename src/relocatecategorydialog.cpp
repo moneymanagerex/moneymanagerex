@@ -204,7 +204,9 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
                 }
             }
             Model_Splittransaction::instance().save(checking_split);
+
             //TODO: same changes for billsdeposits split transactions
+            //TODO: Budget categories should be replaced too
 
             EndModal(wxID_OK);
         }
