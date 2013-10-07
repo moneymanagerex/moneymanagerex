@@ -238,34 +238,43 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     listCtrlAccount_->DeleteAllItems();
 
     int cnt = 0, selected_item = -1;
-    for (const auto& q1: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+    for (const auto& entry: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
         mmBDTransactionHolder th;
-        Model_Account::Data* account = Model_Account::instance().get(th.accountID_);
-        if (!account) continue;
 
-        th.id_           = q1.BDID;
-        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
+        Model_Account::Data* account = Model_Account::instance().get(entry.ACCOUNTID);
+        const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
+        const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
+        if (!account || !category)
+        {
+            if (!account)
+                wxLogDebug("Account %i is missing -----------------------------------------", entry.ACCOUNTID);
+            if (!category ||!sub_category)
+                wxLogDebug("Category %i is missing -------------------------------------", entry.CATEGID);
+            wxASSERT(false);
+            continue;
+        }
+
+        th.id_           = entry.BDID;
+        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(entry);
         th.nextOccurStr_   = mmGetDateForDisplay(th.nextOccurDate_);
-        int repeats        = q1.REPEATS;
-        th.payeeID_        = q1.PAYEEID;
-        th.sStatus_        = q1.STATUS;
-        th.transType_      = q1.TRANSCODE;
-        th.accountID_      = q1.ACCOUNTID;
-        th.toAccountID_    = q1.TOACCOUNTID;
+        int repeats        = entry.REPEATS;
+        th.payeeID_        = entry.PAYEEID;
+        th.sStatus_        = entry.STATUS;
+        th.transType_      = entry.TRANSCODE;
+        th.accountID_      = entry.ACCOUNTID;
+        th.toAccountID_    = entry.TOACCOUNTID;
         th.accountName_    = account->ACCOUNTNAME;
-        th.amt_            = q1.TRANSAMOUNT;
-        th.toAmt_          = q1.TOTRANSAMOUNT;
-        th.sNumber_        = q1.TRANSACTIONNUMBER;
-        th.notes_          = q1.NOTES;
-        th.categID_        = q1.CATEGID;
-        const Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
-        const Model_Subcategory::Data* sub_category = (q1.SUBCATEGID != -1 ? Model_Subcategory::instance().get(q1.SUBCATEGID) : 0);
+        th.amt_            = entry.TRANSAMOUNT;
+        th.toAmt_          = entry.TOTRANSAMOUNT;
+        th.sNumber_        = entry.TRANSACTIONNUMBER;
+        th.notes_          = entry.NOTES;
+        th.categID_        = entry.CATEGID;
         th.categoryStr_    = category->CATEGNAME;
-        th.subcategID_     = q1.SUBCATEGID;
+        th.subcategID_     = entry.SUBCATEGID;
         th.subcategoryStr_ = sub_category ? sub_category->SUBCATEGNAME : "";
 
-        int numRepeats     = q1.NUMOCCURRENCES;
+        int numRepeats     = entry.NUMOCCURRENCES;
 
         th.bd_repeat_user_ = false;
         th.bd_repeat_auto_ = false;
