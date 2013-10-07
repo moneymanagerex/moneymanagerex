@@ -517,7 +517,7 @@ wxString mmAssetsPanel::getItem(long item, long column)
     case COL_VALUE:
         return Model_Currency::toString(Model_Asset::value(asset));
     case COL_DATE:
-        return asset.STARTDATE; // FIXME
+        return mmGetDateForDisplay(mmGetStorageStringAsDate(asset.STARTDATE));
     case COL_NOTES:
         return asset.NOTES;
     default:
