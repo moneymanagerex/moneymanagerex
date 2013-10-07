@@ -490,8 +490,8 @@ void mmTransDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonOK = new wxButton( buttons_panel, mmID_OK, _("&OK"));
-    itemButtonCancel_ = new wxButton( buttons_panel, mmID_CANCEL, _("&Cancel"));
+    wxButton* itemButtonOK = new wxButton( buttons_panel, mmID_OK, _("&OK "));
+    itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
 
     buttons_sizer->Add(itemButtonOK, flags.Border(wxBOTTOM|wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, flags);

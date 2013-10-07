@@ -30,8 +30,8 @@ enum
 
 BEGIN_EVENT_TABLE( SplitDetailDialog, wxDialog )
     EVT_BUTTON( ID_BUTTONCATEGORY, SplitDetailDialog::OnButtonCategoryClick )
-    EVT_BUTTON( mmID_OK, SplitDetailDialog::OnButtonOKClick )
-    EVT_BUTTON( mmID_CANCEL, SplitDetailDialog::OnCancel )
+    EVT_BUTTON( wxID_OK, SplitDetailDialog::OnButtonOKClick )
+    EVT_BUTTON( wxID_CANCEL, SplitDetailDialog::OnCancel )
     EVT_TEXT_ENTER( ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered )
 END_EVENT_TABLE()
 
@@ -143,10 +143,10 @@ void SplitDetailDialog::CreateControls()
     wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(buttonSizer, 0, wxALIGN_RIGHT|wxALL, 5);
 
-    wxButton* itemButtonOK = new wxButton( this, mmID_OK, _("&OK"));
+    wxButton* itemButtonOK = new wxButton( this, wxID_OK, _("&OK "));
     buttonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    wxButton* itemButtonCancel = new wxButton( this, mmID_CANCEL, _("&Cancel"));
+    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, _("&Cancel "));
     buttonSizer->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 }
 
