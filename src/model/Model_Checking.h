@@ -61,6 +61,14 @@ public:
         r->save(this->db_);
         return r->id();
     }
+    int save(Data_Set& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->save(&r);
+        this->Commit();
+
+        return rows.size();
+    }
 public:
     static Model_Splittransaction::Data_Set splittransaction(const Data* r)
     {
