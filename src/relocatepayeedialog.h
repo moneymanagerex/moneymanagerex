@@ -63,7 +63,7 @@ private:
 
     wxComboBox* cbSourcePayee_;
     wxComboBox* cbDestPayee_;
-    int changedPayees_;
+    int changedRecords_;
     wxString prev_value_;
 
 };

@@ -56,7 +56,7 @@ public:
     void OnSelectDest(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
 
-    wxString updatedCategoriesCount() const;
+    int updatedCategoriesCount() const;
 
 private:
 
@@ -67,8 +67,7 @@ private:
     int destCatID_;
     int destSubCatID_;
     wxButton* destBtn_;
-    int changedCats_;
-    int changedSubCats_;
+    int changedRecords_;
 };
 
 #endif

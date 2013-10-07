@@ -32,12 +32,7 @@ BEGIN_EVENT_TABLE( relocateCategoryDialog, wxDialog )
 END_EVENT_TABLE()
 
 relocateCategoryDialog::relocateCategoryDialog( )
-{
-    destCatID_      = -1;
-    destSubCatID_   = -1;
-    changedCats_    = 0;
-    changedSubCats_ = 0;
-}
+{}
 
 relocateCategoryDialog::relocateCategoryDialog(
     wxWindow* parent, int sourceCatID, int sourceSubCatID,
@@ -50,6 +45,7 @@ relocateCategoryDialog::relocateCategoryDialog(
 
     destCatID_      = -1;
     destSubCatID_   = -1;
+    changedRecords_ =  0;
 
     Create(parent, id, caption, pos, size, style);
 }
@@ -154,59 +150,66 @@ void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
     }
 }
 
-wxString relocateCategoryDialog::updatedCategoriesCount() const
+int relocateCategoryDialog::updatedCategoriesCount() const
 {
-    wxString countStr;
-    countStr << (changedCats_ + changedSubCats_);
-    return countStr;
+    return changedRecords_;
 }
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    //TODO: same changes for billsdeposits split transactions
+    //TODO: Budget categories should be replaced too
     if ((sourceCatID_ > 0) && (destCatID_ > 0) )
     {
+        Model_Checking::Data_Set transactions = Model_Checking::instance()
+            .find(Model_Checking::COL_CATEGID, sourceCatID_
+                , Model_Checking::COL_SUBCATEGID, sourceSubCatID_);
+        Model_Splittransaction::Data_Set checking_split = Model_Splittransaction::instance()
+            .find(Model_Splittransaction::COL_CATEGID, sourceCatID_
+                , Model_Splittransaction::COL_SUBCATEGID, sourceSubCatID_);
+        Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance()
+            .find(Model_Billsdeposits::COL_CATEGID, sourceCatID_
+                , Model_Billsdeposits::COL_SUBCATEGID, sourceSubCatID_);
+
         wxString msgStr = wxString()
             <<_("Please Confirm:")
-            << "\n\n" 
-            << wxString::Format(_("Changing all categories of: %s\n\nto category: %s")
+            << "\n\n"
+            << wxString::Format(_("Records found in transactions: %i"), transactions.size()) << "\n"
+            << wxString::Format(_("Records found in split transactions: %i"), checking_split.size()) << "\n"
+            << wxString::Format(_("Records found in repeating transactions: %i"), billsdeposits.size()) << "\n\n"
+            //<< wxString::Format(_("Records found in budget: %i"), xxx.size()) << "\n\n"
+            << wxString::Format(_("Changing all categories of: \n%s to category: %s")
                 , sourceBtn_->GetLabelText(), destBtn_->GetLabelText());
 
-        int ans = wxMessageBox(msgStr,_("Category Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
+        int ans = wxMessageBox(msgStr, _("Category Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, sourceCatID_
-                , Model_Checking::COL_SUBCATEGID, sourceSubCatID_);
-            for (auto &trx : transactions)
+            for (auto &entry : transactions)
             {
-                trx.CATEGID = destCatID_;
-                trx.SUBCATEGID = destSubCatID_;
+                entry.CATEGID = destCatID_;
+                entry.SUBCATEGID = destSubCatID_;
             }
-            Model_Checking::instance().save(transactions);
+            changedRecords_ += Model_Checking::instance().save(transactions);
 
-            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_CATEGID, sourceCatID_);
-            for (auto &trx : billsdeposits)
+            for (auto &entry : billsdeposits)
             {
-                if (sourceCatID_==trx.CATEGID && sourceSubCatID_==trx.SUBCATEGID)
+                if (sourceCatID_==entry.CATEGID && sourceSubCatID_==entry.SUBCATEGID)
                 {
-                    trx.CATEGID = destCatID_;
-                    trx.SUBCATEGID = destSubCatID_;
+                    entry.CATEGID = destCatID_;
+                    entry.SUBCATEGID = destSubCatID_;
                 }
             }
-            Model_Billsdeposits::instance().save(billsdeposits);
+            changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
 
-            Model_Splittransaction::Data_Set checking_split = Model_Splittransaction::instance().find(Model_Splittransaction::COL_CATEGID, sourceCatID_);
-            for (auto &trx : checking_split)
+            for (auto &entry : checking_split)
             {
-                if (sourceCatID_==trx.CATEGID && sourceSubCatID_==trx.SUBCATEGID)
+                if (sourceCatID_==entry.CATEGID && sourceSubCatID_==entry.SUBCATEGID)
                 {
-                    trx.CATEGID = destCatID_;
-                    trx.SUBCATEGID = destSubCatID_;
+                    entry.CATEGID = destCatID_;
+                    entry.SUBCATEGID = destSubCatID_;
                 }
             }
-            Model_Splittransaction::instance().save(checking_split);
-
-            //TODO: same changes for billsdeposits split transactions
-            //TODO: Budget categories should be replaced too
+            changedRecords_ += Model_Splittransaction::instance().save(checking_split);
 
             EndModal(wxID_OK);
         }

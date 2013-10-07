@@ -1306,9 +1306,9 @@ wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const w
     return number_strings;
 }
 
-int mmBankTransactionList::RelocatePayee(int destPayeeID, int sourcePayeeID, int& changedPayees_)
+int mmBankTransactionList::RelocatePayee(int destPayeeID, int sourcePayeeID, int& changedRecords_)
 {
-    int err = mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID, changedPayees_);
+    int err = mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID, changedRecords_);
     Model_Payee::Data* payee = Model_Payee::instance().get(destPayeeID);
     if (err == 0)
     {

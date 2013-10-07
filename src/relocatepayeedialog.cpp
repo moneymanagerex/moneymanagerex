@@ -32,7 +32,7 @@ relocatePayeeDialog::relocatePayeeDialog( )
 {
     sourcePayeeID_  = -1;
     destPayeeID_    = -1;
-    changedPayees_  = 0;
+    changedRecords_  = 0;
 }
 
 relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent
@@ -123,7 +123,7 @@ void relocatePayeeDialog::CreateControls()
 wxString relocatePayeeDialog::updatedPayeesCount()
 {
     wxString countStr;
-    countStr << changedPayees_;
+    countStr << changedRecords_;
     return countStr;
 }
 
@@ -150,10 +150,15 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         if (ans == wxOK)
         {
             Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, sourcePayeeID_);
-            for (auto &trx : transactions)
-                trx.PAYEEID = destPayeeID_;
+            for (auto &entry : transactions)
+                entry.PAYEEID = destPayeeID_;
+            changedRecords_ += Model_Checking::instance().save(transactions);
 
-            changedPayees_ = Model_Checking::instance().save(transactions);
+            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, sourcePayeeID_);
+            for (auto &entry : billsdeposits)
+                entry.PAYEEID = destPayeeID_;
+            changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
+
             EndModal(wxID_OK);
         }
     }

@@ -41,6 +41,11 @@ public:
     {
         return find(db_, col, v);
     }
+    template<class V1, class V2>
+    Data_Set find(COLUMN col1, const V1& v1, COLUMN col2, const V2& v2)
+    {
+        return find(db_, col1, v1, col2, v2);
+    }
     Data* get(int id)
     {
         return this->get(id, this->db_);
