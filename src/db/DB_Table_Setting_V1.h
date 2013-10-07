@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 22:38:36.390096.
+ *          AUTO GENERATED at 2013-10-07 08:28:01.695171.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT NOT NULL UNIQUE, SETTINGVALUE TEXT)");
+            db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, SETTINGVALUE TEXT)");
         }
         catch(const wxSQLite3Exception &e) 
         { 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 22:38:36.390096.
+ *          AUTO GENERATED at 2013-10-07 08:28:01.695171.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT NOT NULL UNIQUE)");
+            db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 

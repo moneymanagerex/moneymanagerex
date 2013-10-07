@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 22:38:36.390096.
+ *          AUTO GENERATED at 2013-10-07 08:28:01.695171.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
+            db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
         }
         catch(const wxSQLite3Exception &e) 
         { 

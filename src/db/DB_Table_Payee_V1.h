@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-06 22:38:36.390096.
+ *          AUTO GENERATED at 2013-10-07 08:28:01.695171.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
+            db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
