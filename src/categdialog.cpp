@@ -327,7 +327,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         }
         else
         {
-            Model_Category::instance().remove(categID, core_->db_.get()); //TODO:
+            Model_Category::instance().remove(categID);
         }
     }
     else
@@ -339,7 +339,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         }
         else
         {
-            Model_Subcategory::instance().remove(subcategID, core_->db_.get()); //TODO:
+            Model_Subcategory::instance().remove(subcategID);
         }
     }
 

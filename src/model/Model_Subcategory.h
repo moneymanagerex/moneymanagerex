@@ -27,6 +27,7 @@ class Model_Subcategory : public Model, public DB_Table_SUBCATEGORY_V1
     using DB_Table_SUBCATEGORY_V1::all;
     using DB_Table_SUBCATEGORY_V1::find;
     using DB_Table_SUBCATEGORY_V1::get;
+    using DB_Table_SUBCATEGORY_V1::remove;
 public:
     Model_Subcategory(): Model(), DB_Table_SUBCATEGORY_V1() 
     {
@@ -73,6 +74,10 @@ public:
     {
         r->save(this->db_);
         return r->id();
+    }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
     }
 public:
     static bool is_used(int /* id */)

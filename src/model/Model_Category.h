@@ -30,6 +30,7 @@ class Model_Category : public Model, public DB_Table_CATEGORY_V1
     using DB_Table_CATEGORY_V1::all;
     using DB_Table_CATEGORY_V1::find;
     using DB_Table_CATEGORY_V1::get;
+    using DB_Table_CATEGORY_V1::remove;
 public:
     Model_Category(): Model(), DB_Table_CATEGORY_V1() 
     {
@@ -81,6 +82,10 @@ public:
     {
         r->save(this->db_);
         return r->id();
+    }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
     }
 public:
     static Model_Subcategory::Data_Set sub_category(const Data* r)
