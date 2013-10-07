@@ -8,7 +8,7 @@
 #include "Model_Checking.h"
 #include "Model_Account.h"
 #include "Model_Billsdeposits.h"
-#include "reports\mmDateRange.h"
+#include "reports/mmDateRange.h"
 
 class Model_Category : public Model, public DB_Table_CATEGORY_V1
 {
@@ -21,9 +21,6 @@ public:
     {
     };
     ~Model_Category() {};
-
-public:
-    wxArrayString types_;
 
 public:
     static Model_Category& instance()
@@ -46,11 +43,6 @@ public:
     Data_Set find(COLUMN col, const V& v)
     {
         return find(db_, col, v);
-    }
-    template<class V1, class V2>
-    Data_Set find(COLUMN col1, const V1& v1, COLUMN col2, const V2& v2)
-    {
-        return find(db_, col1, v1, col2, v2);
     }
     Data* get(int id)
     {
