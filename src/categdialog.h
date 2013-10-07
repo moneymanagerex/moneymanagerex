@@ -27,8 +27,6 @@
 
 #include "guiid.h"
 #include "defs.h"
-#include "dbwrapper.h"
-#include "mmcoredb.h"
 
 // TODO Model_Category, Model_Subcategory
 class mmTreeItemCateg : public wxTreeItemData
@@ -52,7 +50,7 @@ class mmCategDialog : public wxDialog
 
 public:
     mmCategDialog();
-    mmCategDialog(mmCoreDB* core, wxWindow* parent,
+    mmCategDialog(wxWindow* parent,
                   bool bEnableSelect = true, bool bEnableRelocate = true,
                   wxWindowID id = SYMBOL_CATEGDIALOG_IDNAME,
                   const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
@@ -101,7 +99,6 @@ private:
     void OnSelChanged(wxTreeEvent& event);
     void OnDoubleClicked(wxTreeEvent& event);
 
-    mmCoreDB* core_;
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId selectedItemId_;
     wxTextCtrl* textCtrl_;

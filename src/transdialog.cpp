@@ -641,7 +641,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(core_, parent_, true, false);
+        mmCategDialog dlg(parent_, true, false);
         dlg.setTreeSelection(transaction_->CATEGID, transaction_->SUBCATEGID);
         if ( dlg.ShowModal() == wxID_OK )
         {

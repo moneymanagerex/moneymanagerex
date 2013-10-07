@@ -33,21 +33,17 @@ END_EVENT_TABLE()
 
 relocateCategoryDialog::relocateCategoryDialog( )
 {
-    core_           =  0;
-
     destCatID_      = -1;
     destSubCatID_   = -1;
     changedCats_    = 0;
     changedSubCats_ = 0;
-
 }
 
-relocateCategoryDialog::relocateCategoryDialog( mmCoreDB* core,
+relocateCategoryDialog::relocateCategoryDialog(
     wxWindow* parent, int sourceCatID, int sourceSubCatID,
     wxWindowID id, const wxString& caption,
     const wxPoint& pos, const wxSize& size, long style )
 {
-    core_           = core;
 
     sourceCatID_    = sourceCatID;
     sourceSubCatID_ = sourceSubCatID;
@@ -127,7 +123,7 @@ void relocateCategoryDialog::CreateControls()
 
 void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 {
-    mmCategDialog sourceCat(core_ , this, true, false);
+    mmCategDialog sourceCat(this, true, false);
     Model_Category::Data* category = Model_Category::instance().get(sourceCatID_);
     Model_Subcategory::Data* sub_category = (sourceSubCatID_ != -1 ? Model_Subcategory::instance().get(sourceSubCatID_) : 0);
 
@@ -147,7 +143,7 @@ void relocateCategoryDialog::OnSelectSource(wxCommandEvent& /*event*/)
 
 void relocateCategoryDialog::OnSelectDest(wxCommandEvent& /*event*/)
 {
-    mmCategDialog destCat(core_ , this, true, false);
+    mmCategDialog destCat(this, true, false);
     Model_Category::Data* category = Model_Category::instance().get(destCatID_);
     Model_Subcategory::Data* sub_category = (destSubCatID_ != -1 ? Model_Subcategory::instance().get(destSubCatID_) : 0);
 
@@ -182,10 +178,17 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Category Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            if (core_->bTransactionList_.RelocateCategory(destCatID_
-                , destSubCatID_, sourceCatID_, sourceSubCatID_
-                , changedCats_, changedSubCats_) == 0)
-                EndModal(wxID_OK);
+            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, sourceCatID_);
+            for (auto &trx : transactions)
+            {
+                if (sourceCatID_==trx.CATEGID && sourceSubCatID_==trx.SUBCATEGID)
+                {
+                    trx.CATEGID = destCatID_;
+                    trx.SUBCATEGID = destSubCatID_;
+                    Model_Checking::instance().save(&trx);
+                }
+            }
+            EndModal(wxID_OK);
         }
     }
 }

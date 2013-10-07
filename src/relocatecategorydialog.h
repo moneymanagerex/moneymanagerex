@@ -28,8 +28,6 @@
 
 #include "guiid.h"
 #include "defs.h"
-#include "dbwrapper.h"
-#include "mmcoredb.h"
 
 class relocateCategoryDialog : public wxDialog
 {
@@ -38,8 +36,7 @@ class relocateCategoryDialog : public wxDialog
 
 public:
     relocateCategoryDialog();
-    relocateCategoryDialog( mmCoreDB* core,
-                            wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1,
+    relocateCategoryDialog( wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1,
                             wxWindowID id = SYMBOL_RELOCATECATEGORYDIALOG_IDNAME,
                             const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
                             const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
@@ -62,7 +59,6 @@ public:
     wxString updatedCategoriesCount() const;
 
 private:
-    mmCoreDB* core_;
 
     int sourceCatID_;
     int sourceSubCatID_;

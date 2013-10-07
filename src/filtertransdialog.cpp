@@ -437,7 +437,7 @@ void mmFilterTransactionsDialog::OnButtoncancelClick( wxCommandEvent& /*event*/ 
 
 void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
 {
-    mmCategDialog dlg(core_, this);
+    mmCategDialog dlg(this);
 
     Model_Category::Data* category = Model_Category::instance().get(categID_);
     Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);

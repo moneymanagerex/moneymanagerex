@@ -156,7 +156,7 @@ void SplitDetailDialog::CreateControls()
 
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 {
-    mmCategDialog dlg(core_, this);
+    mmCategDialog dlg(this);
     dlg.setTreeSelection(*m_categID_, *m_subcategID_);
     if ( dlg.ShowModal() == wxID_OK )
     {

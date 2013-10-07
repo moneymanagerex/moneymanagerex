@@ -3096,7 +3096,7 @@ void mmGUIFrame::refreshPanelData(bool catUpdate)
 
 void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 {
-    mmCategDialog dlg(m_core.get(), this, false);
+    mmCategDialog dlg(this, false);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {
@@ -3883,7 +3883,7 @@ void mmGUIFrame::OnIgnoreFutureTransactions(wxCommandEvent &event)
 
 void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
 {
-    relocateCategoryDialog dlg(m_core.get(), this);
+    relocateCategoryDialog dlg(this);
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;

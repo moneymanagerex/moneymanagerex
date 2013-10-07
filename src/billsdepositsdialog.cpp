@@ -682,7 +682,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(core_, this);
+        mmCategDialog dlg(this);
         dlg.setTreeSelection(categoryName_, subCategoryName_);
         if ( dlg.ShowModal() == wxID_OK )
         {

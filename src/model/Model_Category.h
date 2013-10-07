@@ -8,6 +8,7 @@
 #include "Model_Checking.h"
 #include "Model_Account.h"
 #include "Model_Billsdeposits.h"
+#include "reports\mmDateRange.h"
 
 class Model_Category : public Model, public DB_Table_CATEGORY_V1
 {
@@ -89,8 +90,10 @@ public:
             return category->CATEGNAME + ":" + sub_category->SUBCATEGNAME;
     }
 
-    static void top_category(std::vector<std::pair<wxString /*category name*/
-        , double/*amount*/> >& /* category */, const mmDateRange* date_range, int /* top_n = 7 */)
+    static void top_category(
+        std::vector<std::pair<wxString /*category name*/, double/*amount*/> >& /* category */
+        , const mmDateRange* date_range
+        , int /* top_n = 7 */)
     {
         for (const auto& tran: Model_Checking::instance().all())
         {

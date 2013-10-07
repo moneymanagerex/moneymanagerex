@@ -51,13 +51,11 @@ mmCategDialog::mmCategDialog( )
     refreshRequested_ = false;
 }
 
-mmCategDialog::mmCategDialog(mmCoreDB* core,
-                             wxWindow* parent, bool bEnableSelect, bool bEnableRelocate,
+mmCategDialog::mmCategDialog(wxWindow* parent, bool bEnableSelect, bool bEnableRelocate,
                              wxWindowID id, const wxString& caption,
                              const wxPoint& pos, const wxSize& size, long style )
 {
     // Initialize fields in constructor
-    core_ = core;
     categID_ = -1;
     subcategID_ = -1;
     selectedItemId_ = 0;
@@ -98,8 +96,6 @@ bool mmCategDialog::Create( wxWindow* parent, wxWindowID id,
 
 void mmCategDialog::fillControls()
 {
-    if (!core_) return;
-
     treeCtrl_->DeleteAllItems();
     root_ = treeCtrl_->AddRoot(_("Categories"));
     selectedItemId_ = root_;
@@ -493,7 +489,17 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
 
     treeCtrl_->SetItemText(selectedItemId_, text);
     wxString fullCatStr = Model_Category::full_name(category, sub_category);
-    core_->bTransactionList_.UpdateCategory(categID, subcategID, fullCatStr);
+    //core_->bTransactionList_.UpdateCategory(categID, subcategID, fullCatStr);
+    Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, categID);
+    for (auto &trx : transactions)
+    {
+        if (categID==trx.CATEGID && subcategID==trx.SUBCATEGID)
+        {
+            trx.CATEGID = categID;
+            trx.SUBCATEGID = subcategID;
+            Model_Checking::instance().save(&trx);
+        }
+    }
     refreshRequested_ = true;
 }
 
@@ -545,7 +551,7 @@ void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& su
 
 void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
 {
-    relocateCategoryDialog dlg(core_, this, categID_, subcategID_);
+    relocateCategoryDialog dlg(this, categID_, subcategID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msgStr;
