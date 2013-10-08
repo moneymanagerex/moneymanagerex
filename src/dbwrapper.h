@@ -527,13 +527,6 @@ bool getBudgetEntry(wxSQLite3Database* db, int budgetYearID, int categID, int su
 /* Account API */
 void removeSplitsForAccount(wxSQLite3Database* db, int accountID);
 
-/* Category Table API */
-bool deleteCategoryWithConstraints(wxSQLite3Database* db, int categID);
-bool deleteSubCategoryWithConstraints(wxSQLite3Database* db, int categID, int subcategID);
-bool updateCategory(wxSQLite3Database* db, int categID, int subcategID, const wxString &newName);
-bool addCategory(wxSQLite3Database* db, const wxString &newName);
-bool addSubCategory(wxSQLite3Database* db, int categID, const wxString &newName);
-
 /* Transactions API */
 bool updateTransactionWithStatus(wxSQLite3Database &db, int transID, const wxString& status);
 bool deleteTransaction(wxSQLite3Database* db, int transID);
