@@ -29,8 +29,6 @@ TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
     this->html_builder_ = hb;
 
 	wxSharedPtr<wxSQLite3Database> db = static_db_ptr();
-    g_static_currency_list = new mmCurrencyList(db);
-    g_static_currency_list->LoadCurrencies();
 
     lua_ = luaL_newstate();
     wxASSERT(lua_);
@@ -43,7 +41,6 @@ TLuaInterface::TLuaInterface(mmHTMLBuilder* hb)
 // Destructor: Shuts down Lua on completion
 TLuaInterface::~TLuaInterface()
 {
-    delete g_static_currency_list;
     cleanuplist();
     lua_close(lua_);
 }
@@ -516,7 +513,6 @@ int TLuaInterface::cpp2Lua_BaseCurrencyFormat(lua_State* lua)
     bool for_edit = OptionalParameter(lua, 2);
     double number = GetLuaDouble(lua);
 
-    g_static_currency_list->LoadBaseCurrencySettings();
     SetCurrencyFormat(lua, number, for_edit);
 
     return 1;
@@ -529,20 +525,6 @@ int TLuaInterface::cpp2Lua_CurrencyFormat(lua_State* lua)
 {
     bool for_edit = OptionalParameter(lua, 3);
     double number = GetLuaDouble(lua);
-
-    wxString currency_symbol = GetLuaString(lua).MakeUpper();
-    g_static_currency_list->LoadCurrencySetting(currency_symbol);
-
-    mmCurrency* pCurrency = g_static_currency_list->getCurrencySharedPtr(currency_symbol, true);
-    if (pCurrency)
-    {
-        number = number * pCurrency->baseConv_;
-    }
-    else
-    {
-        wxString lua_error = wxString::Format(_("Base conversion for currency symbol: %s has not been set."), currency_symbol);
-        ReportLuaError(lua, lua_error);
-    }
 
     SetCurrencyFormat(lua, number, for_edit);
 

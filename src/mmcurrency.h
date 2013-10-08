@@ -59,37 +59,4 @@ public:
     static std::vector<mmCurrency> currency_map();
 };
 
-class mmCurrencyList
-{
-public:
-    mmCurrencyList(wxSharedPtr<wxSQLite3Database> db);
-    ~mmCurrencyList();
-
-    void LoadCurrencies();
-
-    /* Currency Functions */
-    int AddCurrency(mmCurrency* pCurrency);
-    bool DeleteCurrency(int currencyID);
-    void UpdateCurrency(mmCurrency* pCurrency);
-    int getCurrencyID(const wxString& currencyName, bool symbol = false) const;
-    wxString getCurrencyName(int currencyID, bool symbol = false) const;
-    mmCurrency* getCurrencySharedPtr(int currencyID) const;
-    mmCurrency* getCurrencySharedPtr(const wxString& currencyName, bool symbol = false) const;
-
-    void LoadBaseCurrencySettings() const;
-    void LoadCurrencySetting(const wxString& currencySymbol);
-    int GetBaseCurrencySettings() const;
-    void SetBaseCurrencySettings(int currencyID);
-    bool OnlineUpdateCurRate(wxString& sError);
-
-    std::vector< mmCurrency* > currencies_;
-
-    typedef std::vector< mmCurrency* >::const_iterator const_iterator;
-
-private:
-    wxSharedPtr<wxSQLite3Database> db_;
-
-    void SetCurrencySetting(mmCurrency* pCurrency) const;
-};
-
 #endif

@@ -25,8 +25,6 @@
 #include "reports/htmlbuilder.h"
 #include "lua.hpp"
 
-static mmCurrencyList* g_static_currency_list;
-
 class TLuaInterface
 {
 public:

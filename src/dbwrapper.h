@@ -537,8 +537,6 @@ void completeBDInSeries(wxSQLite3Database* db, int bdID);
 
 /* Operations on the CURRENCY */
 void loadCurrencySettings(wxSQLite3Database* db, int currencyID);
-bool deleteCurrency(wxSQLite3Database* db, int currencyID);
-int mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& data, const wxString& sql, long &lLastRowId);
 
 //----------------------------------------------------------------------------
 

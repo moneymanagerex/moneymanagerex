@@ -747,25 +747,6 @@ void mmDBWrapper::removeSplitsForAccount(wxSQLite3Database* db, int accountID)
     }
 }
 
-bool mmDBWrapper::deleteCurrency(wxSQLite3Database* db, int currencyID)
-{
-    try
-    {
-        wxSQLite3Statement st = db->PrepareStatement(DELETE_CURRENCYID_FROM_CURRENCYFORMATS_V1);
-        st.Bind(1, currencyID);
-        st.ExecuteUpdate();
-        st.Finalize();
-
-        mmOptions::instance().databaseUpdated_ = true;
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogError(wxString::Format(_("Error: %s"), e.GetMessage()));
-        return false;
-    }
-    return true;
-}
-
 bool mmDBWrapper::IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows)
 {
     wxString sql_script_exception;
@@ -789,30 +770,6 @@ bool mmDBWrapper::IsSelect(wxSQLite3Database* db, const wxString& sScript, int &
     return true;
 }
 
-int mmDBWrapper::mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& data, const wxString& sql, long &lLastRowId)
-{
-    int iError = 0;
-    try
-    {
-        wxSQLite3Statement st = db->PrepareStatement(sql);
-        int i = 0;
-        for (std::vector<wxString>::const_iterator d = data.begin(); d != data.end(); ++d)
-            st.Bind(++i, *d);
-
-        st.ExecuteUpdate();
-        st.Finalize();
-        lLastRowId = db->GetLastRowId().ToLong();
-
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Function::mmSQLiteExecuteUpdate: %s", e.GetMessage());
-        wxLogError("mmSQLiteExecuteUpdate. " + wxString::Format(_("Error: %s"), e.GetMessage()));
-        iError = e.GetErrorCode();
-    }
-
-    return iError;
-}
 //----------------------------------------------------------------------------
 
 /*
