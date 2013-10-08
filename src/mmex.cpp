@@ -3107,7 +3107,7 @@ void mmGUIFrame::OnOrgCategories(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 {
-    mmPayeeDialog dlg(this, m_core.get(), false);
+    mmPayeeDialog dlg(this, false);
     dlg.ShowModal();
     if (dlg.getRefreshRequested())
     {

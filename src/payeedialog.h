@@ -22,15 +22,13 @@
 
 #include "defs.h"
 
-class mmCoreDB;
-// TODO Model_Payee & remove mmCoreDB
 class mmPayeeDialog : public wxDialog
 {
     DECLARE_DYNAMIC_CLASS(mmPayeeDialog)
     DECLARE_EVENT_TABLE()
 
 public:
-    mmPayeeDialog(wxWindow* parent, mmCoreDB* core, bool showSelectButton = true);
+    mmPayeeDialog(wxWindow* parent, bool showSelectButton = true);
 
     int getPayeeId() const
     {
@@ -43,17 +41,12 @@ public:
 
 private:
     int m_payee_id_;
-    mmCoreDB *core_;
     bool showSelectButton_;
     wxListBox* listBox_;
     wxButton* addButton_;
     wxButton* editButton_;
     wxButton* deleteButton_;
-    wxButton* selectButton_;
     wxButton* btnCancel_;
-    wxTextCtrl* textCtrl_;
-    wxTextCtrl* hideTextCtrl_;
-    wxCheckBox* cbShowAll_;
     bool refreshRequested_;
 
     mmPayeeDialog() : m_payee_id_(-1), refreshRequested_(false) {}
@@ -64,18 +57,12 @@ private:
 
     void OnAdd(wxCommandEvent& event);
     void OnDelete(wxCommandEvent& event);
-    void OnBSelect(wxCommandEvent& event);
     void OnEdit(wxCommandEvent& event);
-    void OnListKeyDown(wxKeyEvent &event);
-    void OnTextCtrlChanged(wxCommandEvent& event);
     void OnSelChanged(wxCommandEvent& event);
     void OnComboSelected(wxCommandEvent& event);
     void OnPayeeRelocate(wxCommandEvent& event);
-    void OnDoubleClicked(wxCommandEvent& event);
-    void OnFocus(wxFocusEvent& event);
+    void OnDoubleClicked(wxCommandEvent& event);    void OnFocus(wxFocusEvent& event);
     void OnSetFocus(wxFocusEvent& event);
     void OnCancel(wxCommandEvent& /*event*/);
-    void OnShowHiddenChbClick(wxCommandEvent& /*event*/);
-    void saveFilterSettings(wxCommandEvent& event);
 };
 #endif // _MM_EX_PAYEEDIALOG_H_
