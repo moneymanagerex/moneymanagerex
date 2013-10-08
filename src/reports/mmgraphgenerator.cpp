@@ -25,7 +25,7 @@
 class Eraser
 {
 public:
-    Eraser() : files(mmGraphGenerator::TYPE_MAX) {}
+    Eraser() : files(2 * mmGraphGenerator::TYPE_MAX) {}
     ~Eraser();
 
     wxString getFilePath(mmGraphGenerator::EType type);
@@ -65,6 +65,12 @@ wxString Eraser::getFilePath(mmGraphGenerator::EType type)
 
     if (path.empty()) 
         path = wxFileName::CreateTempFileName(wxGetEmptyString());
+    else
+    {
+        path = files[2 * type];
+        if (path.empty())
+            path = wxFileName::CreateTempFileName(wxGetEmptyString());
+    }
 
     return path;
 }

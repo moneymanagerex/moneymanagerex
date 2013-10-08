@@ -57,6 +57,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     double grandtotal = 0.0;
 
     std::vector<ValuePair> valueList;
+    std::vector<ValuePair> valueListTotals;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     core_->bTransactionList_.getCategoryStats(categoryStats
         , date_range_
@@ -118,6 +119,14 @@ wxString mmReportCategoryExpenses::getHTMLText()
             }
         }
 
+        if (categtotal != 0)
+        {
+            ValuePair vp_total;
+            vp_total.label = category.CATEGNAME;
+            vp_total.amount = categtotal;
+            valueListTotals.push_back(vp_total);
+        }
+
         if (categs > 1)
         {
             line.name = _("Category Total: ");
@@ -160,8 +169,14 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.startCenter();
 
     // Add the graph
+    mmGraphPie ggtotal;
+    hb.addImage(ggtotal.getOutputFileName());
+    ggtotal.init(valueListTotals);
+    ggtotal.Generate(wxEmptyString);
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
+    gg.init(valueList);
+    gg.Generate(wxEmptyString);
 
     hb.startTable("60%");
     hb.startTableRow();
@@ -211,9 +226,6 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.endTable();
     hb.endCenter();
     hb.end();
-
-    gg.init(valueList);
-    gg.Generate(wxEmptyString);
 
     return hb.getHTMLText();
 }
