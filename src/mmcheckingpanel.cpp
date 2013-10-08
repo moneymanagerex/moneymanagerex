@@ -1247,8 +1247,12 @@ int TransactionListCtrl::OnMarkTransactionDB(const wxString& status)
     if (m_selectedIndex < 0) return -1;
 
     int transID = m_cp->m_trans[m_selectedIndex]->transactionID();
-    if (mmDBWrapper::updateTransactionWithStatus(*m_cp->getDb(), transID, status))
-        m_cp->m_trans[m_selectedIndex]->status_ = status;
+    Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
+    if (transaction)
+    {
+        transaction->STATUS = status;
+        Model_Checking::instance().save(transaction);
+    }
 
     return transID;
 }
