@@ -720,45 +720,6 @@ void mmDBWrapper::completeBDInSeries(wxSQLite3Database* db, int bdID)
     }
 }
 
-void mmDBWrapper::deleteStockInvestment(wxSQLite3Database* db, int stockID)
-{
-    try
-    {
-        wxSQLite3Statement st = db->PrepareStatement("DELETE FROM STOCK_V1 where STOCKID = ?");
-        st.Bind(1, stockID);
-        st.ExecuteUpdate();
-        st.Finalize();
-        mmOptions::instance().databaseUpdated_ = true;
-
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Function::deleteStockInvestment: %s", e.GetMessage());
-        wxLogError("Delete Stock Investment. " + wxString::Format(_("Error: %s"), e.GetMessage()));
-    }
-}
-
-bool mmDBWrapper::moveStockInvestment(wxSQLite3Database* db, int stockID, int toAccountID)
-{
-    try
-    {
-        wxSQLite3Statement st = db->PrepareStatement("UPDATE STOCK_V1 SET HELDAT = ? where STOCKID = ?");
-        st.Bind(1, toAccountID);
-        st.Bind(2, stockID);
-        st.ExecuteUpdate();
-        st.Finalize();
-        mmOptions::instance().databaseUpdated_ = true;
-
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Function::moveStockInvestment: %s", e.GetMessage());
-        wxLogError("Delete Stock Investment. " + wxString::Format(_("Error: %s"), e.GetMessage()));
-        return false;
-    }
-    return true;
-}
-
 void mmDBWrapper::removeSplitsForAccount(wxSQLite3Database* db, int accountID)
 {
     try

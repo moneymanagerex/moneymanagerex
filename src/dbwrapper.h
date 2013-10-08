@@ -540,10 +540,6 @@ void loadCurrencySettings(wxSQLite3Database* db, int currencyID);
 bool deleteCurrency(wxSQLite3Database* db, int currencyID);
 int mmSQLiteExecuteUpdate(wxSQLite3Database* db, const std::vector<wxString>& data, const wxString& sql, long &lLastRowId);
 
-/* Stocks API */
-void deleteStockInvestment(wxSQLite3Database* db, int stockID);
-bool moveStockInvestment(wxSQLite3Database* db, int stockID, int toAccountID);
-
 //----------------------------------------------------------------------------
 
 } // namespace mmDBWrapper
