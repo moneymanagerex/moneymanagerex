@@ -537,8 +537,6 @@ bool addSubCategory(wxSQLite3Database* db, int categID, const wxString &newName)
 /* Transactions API */
 bool updateTransactionWithStatus(wxSQLite3Database &db, int transID, const wxString& status);
 bool deleteTransaction(wxSQLite3Database* db, int transID);
-int relocatePayee(wxSQLite3Database* db, int destPayeeID, int sourcePayeeID, int &changed);
-int relocateCategory(wxSQLite3Database* db, int destCatID, int destSubCatID, int sourceCatID, int sourceSubCatID, int &changedCat, int &changedSubCat);
 
 /* Bills & Deposits API */
 void deleteBDSeries(wxSQLite3Database* db, int bdID);

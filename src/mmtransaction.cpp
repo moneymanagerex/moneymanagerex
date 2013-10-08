@@ -1306,69 +1306,6 @@ wxArrayString mmBankTransactionList::getTransactionNumber(int accountID, const w
     return number_strings;
 }
 
-int mmBankTransactionList::RelocatePayee(int destPayeeID, int sourcePayeeID, int& changedRecords_)
-{
-    int err = mmDBWrapper::relocatePayee(core_->db_.get(), destPayeeID, sourcePayeeID, changedRecords_);
-    Model_Payee::Data* payee = Model_Payee::instance().get(destPayeeID);
-    if (err == 0)
-    {
-        for (const auto & pBankTransaction: transactions_)
-        {
-            if (pBankTransaction->payeeID_ == sourcePayeeID && payee)
-            {
-                pBankTransaction->payeeStr_ = payee->PAYEENAME;
-                pBankTransaction->payeeID_ = destPayeeID;
-            }
-        }
-
-    }
-    return err;
-}
-
-int mmBankTransactionList::RelocateCategory(int destCatID
-                                            , int destSubCatID
-                                            , int sourceCatID
-                                            , int sourceSubCatID
-                                            , int& changedCats
-                                            , int& changedSubCats)
-{
-    int err = mmDBWrapper::relocateCategory(core_->db_.get(),
-        destCatID, destSubCatID, sourceCatID, sourceSubCatID,
-        changedCats, changedSubCats);
-    if ( err == 0 )
-    {
-        for (const auto & pBankTransaction: transactions_)
-        {
-            if ((pBankTransaction->categID_ == sourceCatID)
-                && pBankTransaction->subcategID_== sourceSubCatID)
-            {
-                pBankTransaction->categID_ = destCatID;
-                pBankTransaction->subcategID_ = destSubCatID;
-                Model_Category::Data* category = Model_Category::instance().get(destCatID);
-                Model_Subcategory::Data* sub_category = (destSubCatID != -1 ? Model_Subcategory::instance().get(destSubCatID) : 0);
-
-                pBankTransaction->fullCatStr_ = Model_Category::full_name(category, sub_category);
-            }
-            else if (pBankTransaction && (pBankTransaction->categID_ == -1))
-            {
-                mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
-                pBankTransaction->getSplitTransactions(splits);
-
-                for (int i = 0; i < (int)splits->entries_.size(); ++i)
-                {
-                    if (splits->entries_[i]->categID_==sourceCatID && splits->entries_[i]->subCategID_==sourceSubCatID)
-                    {
-                        splits->entries_[i]->categID_ = destCatID;
-                        splits->entries_[i]->subCategID_ = destSubCatID;
-                    }
-                }
-
-            }
-        }
-    }
-    return err;
-}
-
 void mmBankTransactionList::UpdateCategory(int catID, int subCatID, wxString &fullCatStr)
 {
     for (const auto & pBankTransaction: transactions_)

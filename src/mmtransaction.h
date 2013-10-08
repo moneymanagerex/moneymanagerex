@@ -156,13 +156,6 @@ public:
     bool removeTransaction(int accountID, int transactionID);
     bool deleteTransaction(int accountID, int transactionID);
     void deleteTransactions(int accountID);
-    int RelocatePayee(int destPayeeID, int sourcePayeeID, int& changedRecords_);
-    int RelocateCategory(int destCatID
-        , int destSubCatID
-        , int sourceCatID
-        , int sourceSubCatID
-        , int& changedCats
-        , int& changedSubCats);
     void UpdateCategory(int catID, int subCatID, wxString &fullCatStr);
 
     /* Query Functions */
