@@ -23,6 +23,7 @@
 #include "paths.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Category.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
 
@@ -33,14 +34,20 @@ BEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
     EVT_BUTTON(wxID_EDIT, mmPayeeDialog::OnEdit)
     EVT_LISTBOX(wxID_ANY, mmPayeeDialog::OnSelChanged)
     EVT_LISTBOX_DCLICK(wxID_ANY, mmPayeeDialog::OnDoubleClicked)
+    EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
+    EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
 END_EVENT_TABLE()
 
 
-mmPayeeDialog::mmPayeeDialog(wxWindow *parent, bool showSelectButton) :
+mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     m_payee_id_(-1),
-    showSelectButton_(showSelectButton),
     refreshRequested_(false)
 {
+    ColName_[PAYEE_ID]   = _("#");
+    ColName_[PAYEE_NAME] = _("Name");
+    ColName_[PAYEE_CATEGORY]   = _("Default Category");
+    ColName_[PAYEE_ACTIVE]   = _("Active");
+
     do_create(parent);
 }
 
@@ -91,6 +98,16 @@ void mmPayeeDialog::CreateControls()
        wxDefaultPosition, wxSize(100, vertical_size_), wxArrayString(), wxLB_SINGLE);
     itemBoxSizer2->Add(listBox_, 1, wxEXPAND|wxALL, 1);
 
+    //TODO:provide proper style
+    payeeListBox_ = new wxDataViewListCtrl( this
+        , wxID_ANY, wxDefaultPosition, wxSize(100, vertical_size_)/*, wxDV_HORIZ_RULES*/);
+
+    payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_ID], wxDATAVIEW_CELL_INERT, 30 );
+    payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 130);
+    payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 130);
+    payeeListBox_ ->AppendToggleColumn( ColName_[PAYEE_ACTIVE], wxDATAVIEW_CELL_INERT, 30 );
+    itemBoxSizer2->Add(payeeListBox_, 1, wxGROW|wxALL, 1);
+
     wxNotebook* payee_notebook = new wxNotebook(this,
         wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE );
     itemBoxSizer2->Add(payee_notebook, flagsExpand);
@@ -133,16 +150,65 @@ void mmPayeeDialog::fillControls()
         wxStringClientData *data = new wxStringClientData((wxStringClientData)wxString::Format("%i", payee.PAYEEID));
         listBox_->Append(payee.PAYEENAME, data);
     }
+
+    payeeListBox_->DeleteAllItems();
+    for (const auto& payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    {
+        Model_Category::Data *category = Model_Category::instance().get(payee.CATEGID);
+        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee.SUBCATEGID);
+        const wxString full_category_name = Model_Category::instance().full_name(category, subcategory);
+        int payeeID = payee.PAYEEID;
+        wxVector<wxVariant> data;
+        data.push_back(wxVariant(payeeID));
+        data.push_back(wxVariant(payee.PAYEENAME));
+        data.push_back(wxVariant(full_category_name));
+        data.push_back(wxVariant(false)); //TODO:
+        payeeListBox_->AppendItem(data, (wxUIntPtr)payeeID);
+    }
 }
 
+void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
+{
+    int row = payeeListBox_->ItemToRow(event.GetItem());
+    wxVariant var;
+    payeeListBox_->GetValue(var, row, event.GetColumn());
+    wxString value = var.GetString();
+    wxLogDebug(value);
+
+    Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id_);
+    if (payee)
+    {
+        payee->PAYEENAME = value;
+        Model_Payee::instance().save(payee);
+    }
+    refreshRequested_ = true;
+
+}
+
+void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
+{
+    wxDataViewItem item = event.GetItem();
+    selectedIndex_ = payeeListBox_->ItemToRow(item);
+    if (selectedIndex_ < 0) return;
+
+    wxString payee_name = listBox_->GetStringSelection();
+    Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
+    m_payee_id_ = (int)payeeListBox_->GetItemData(item);
+    bool ok = m_payee_id_ > -1;
+
+    editButton_->Enable(ok);
+    deleteButton_->Enable(!Model_Payee::is_used(m_payee_id_));
+}
 
 void mmPayeeDialog::OnSelChanged(wxCommandEvent& event)
 {
     wxStringClientData *client_object = (wxStringClientData *)listBox_->GetClientObject(event.GetSelection());
-    if (client_object) m_payee_id_ = wxAtoi(client_object->GetData());
-    else return;
+    if (client_object)
+        m_payee_id_ = wxAtoi(client_object->GetData());
+    else
+        return;
     editButton_->Enable(true);
-    deleteButton_->Enable(!Model_Payee::is_used(m_payee_id_));
+    //deleteButton_->Enable(!Model_Payee::is_used(m_payee_id_));
 }
 
 void mmPayeeDialog::OnAdd(wxCommandEvent& event)

@@ -21,6 +21,8 @@
 #pragma warning( disable : 4100 )
 
 #include "defs.h"
+#include <wx/dataview.h>
+#include <map>
 
 class mmPayeeDialog : public wxDialog
 {
@@ -28,7 +30,7 @@ class mmPayeeDialog : public wxDialog
     DECLARE_EVENT_TABLE()
 
 public:
-    mmPayeeDialog(wxWindow* parent, bool showSelectButton = true);
+    mmPayeeDialog(wxWindow* parent);
 
     int getPayeeId() const
     {
@@ -40,8 +42,19 @@ public:
     }
 
 private:
+    enum cols
+    {
+        PAYEE_ID = 0,
+        PAYEE_NAME,
+        PAYEE_CATEGORY,
+        PAYEE_ACTIVE
+    };
+
+    wxDataViewListCtrl* payeeListBox_;
+
     int m_payee_id_;
-    bool showSelectButton_;
+    int selectedIndex_;
+    std::map<int, wxString> ColName_;
     wxListBox* listBox_;
     wxButton* addButton_;
     wxButton* editButton_;
@@ -64,5 +77,8 @@ private:
     void OnDoubleClicked(wxCommandEvent& event);    void OnFocus(wxFocusEvent& event);
     void OnSetFocus(wxFocusEvent& event);
     void OnCancel(wxCommandEvent& /*event*/);
+
+    void OnListItemSelected(wxDataViewEvent& event);
+    void OnDataChanged(wxDataViewEvent& event);
 };
 #endif // _MM_EX_PAYEEDIALOG_H_
