@@ -20,7 +20,7 @@
 #define _MM_EX_CURRENCY_FORMATEER_H_
 
 #include "mmcurrency.h"
-#include "model\Model_Account.h"
+#include "model/Model_Account.h"
 #include <math.h>
 
 class CurrencyFormatter
