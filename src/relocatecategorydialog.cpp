@@ -22,6 +22,7 @@
 #include "categdialog.h"
 #include "wx/statline.h"
 #include "model/Model_Category.h"
+#include "model/Model_Payee.h"
 
 IMPLEMENT_DYNAMIC_CLASS( relocateCategoryDialog, wxDialog )
 
@@ -170,13 +171,17 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance()
             .find(Model_Billsdeposits::COL_CATEGID, sourceCatID_
                 , Model_Billsdeposits::COL_SUBCATEGID, sourceSubCatID_);
+        Model_Payee::Data_Set payees = Model_Payee::instance()
+            .find(Model_Payee::COL_CATEGID, sourceCatID_
+            ,Model_Payee::COL_SUBCATEGID, sourceSubCatID_);
 
         wxString msgStr = wxString()
             <<_("Please Confirm:")
             << "\n\n"
             << wxString::Format(_("Records found in transactions: %i"), transactions.size()) << "\n"
             << wxString::Format(_("Records found in split transactions: %i"), checking_split.size()) << "\n"
-            << wxString::Format(_("Records found in repeating transactions: %i"), billsdeposits.size()) << "\n\n"
+            << wxString::Format(_("Records found in repeating transactions: %i"), billsdeposits.size()) << "\n"
+            << wxString::Format(_("Records found as Default Payee Category: %i"), payees.size()) << "\n\n"
             //<< wxString::Format(_("Records found in budget: %i"), xxx.size()) << "\n\n"
             << wxString::Format(_("Changing all categories of: \n%s to category: %s")
                 , sourceBtn_->GetLabelText(), destBtn_->GetLabelText());
@@ -210,6 +215,16 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
                 }
             }
             changedRecords_ += Model_Splittransaction::instance().save(checking_split);
+
+            for (auto &entry : payees)
+            {
+                if (sourceCatID_==entry.CATEGID && sourceSubCatID_==entry.SUBCATEGID)
+                {
+                    entry.CATEGID = destCatID_;
+                    entry.SUBCATEGID = destSubCatID_;
+                }
+            }
+            changedRecords_ += Model_Payee::instance().save(payees);
 
             EndModal(wxID_OK);
         }

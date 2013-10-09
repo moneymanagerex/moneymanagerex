@@ -12,6 +12,7 @@ class Model_Payee : public Model, public DB_Table_PAYEE_V1
     using DB_Table_PAYEE_V1::all;
     using DB_Table_PAYEE_V1::get;
     using DB_Table_PAYEE_V1::remove;
+    using DB_Table_PAYEE_V1::find;
 public:
     Model_Payee(): Model(), DB_Table_PAYEE_V1() 
     {
@@ -34,6 +35,11 @@ public:
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
+    }
+    template<class V1, class V2>
+    Data_Set find(COLUMN col1, const V1& v1, COLUMN col2, const V2& v2)
+    {
+        return find(db_, col1, v1, col2, v2);
     }
     Data_Set FilterPayees(const wxString& payee_pattern)
     {
@@ -60,6 +66,14 @@ public:
     {
         r->save(this->db_);
         return r->id();
+    }
+    int save(Data_Set& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->save(&r);
+        this->Commit();
+
+        return rows.size();
     }
     bool remove(int id)
     {
