@@ -97,6 +97,8 @@ void mmPayeeDialog::CreateControls()
     listBox_ = new wxListBox( this, wxID_ANY,
        wxDefaultPosition, wxSize(100, vertical_size_), wxArrayString(), wxLB_SINGLE);
     itemBoxSizer2->Add(listBox_, 1, wxEXPAND|wxALL, 1);
+    
+    listBox_ ->Show(false);
 
     //TODO:provide proper style
     payeeListBox_ = new wxDataViewListCtrl( this
@@ -147,7 +149,7 @@ void mmPayeeDialog::fillControls()
 
     for (const auto& payee: filtd)
     {
-        wxStringClientData *data = new wxStringClientData((wxStringClientData)wxString::Format("%i", payee.PAYEEID));
+        wxStringClientData *data = new wxStringClientData((wxStringClientData)wxString::Format("%ld", payee.PAYEEID));
         listBox_->Append(payee.PAYEENAME, data);
     }
 
@@ -191,13 +193,12 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
     selectedIndex_ = payeeListBox_->ItemToRow(item);
     if (selectedIndex_ < 0) return;
 
-    wxString payee_name = listBox_->GetStringSelection();
-    Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
     m_payee_id_ = (int)payeeListBox_->GetItemData(item);
-    bool ok = m_payee_id_ > -1;
+    Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id_);
 
-    editButton_->Enable(ok);
-    deleteButton_->Enable(!Model_Payee::is_used(m_payee_id_));
+    editButton_->Enable(payee);
+    deleteButton_->Enable(payee && !Model_Payee::is_used(m_payee_id_));
+
 }
 
 void mmPayeeDialog::OnSelChanged(wxCommandEvent& event)
