@@ -251,9 +251,8 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
 END_EVENT_TABLE()
 /*******************************************************/
 
-mmAssetsPanel::mmAssetsPanel(wxWindow *parent, mmCoreDB* core)
-: mmPanelBase(core)
-, m_filter_type(Model_Asset::TYPE(-1))
+mmAssetsPanel::mmAssetsPanel(wxWindow *parent)
+: m_filter_type(Model_Asset::TYPE(-1))
 {
     this->tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     Create(parent, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);

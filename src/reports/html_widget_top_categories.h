@@ -1,4 +1,5 @@
 
+#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
 
@@ -18,6 +19,7 @@ public:
 protected:
     mmDateRange* date_range_;
     wxString title_;
+    const mmCoreDB* core_;
 };
 
 #endif //

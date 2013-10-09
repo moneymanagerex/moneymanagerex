@@ -46,7 +46,7 @@ mmHomePagePanel::mmHomePagePanel(mmCoreDB* core,
             const wxSize& size,
             long style,
             const wxString& name )
-        : mmPanelBase(core)
+        : core_(core)
         , frame_(wxGetApp().m_frame)
 {
     Create(parent, winid, pos, size, style, name);
@@ -124,7 +124,7 @@ void mmHomePagePanel::createFrames()
     //Also displays the Income vs Expenses graph.
     rightFrame << displayIncomeVsExpenses();
 
-    htmlWidgetBillsAndDeposits bills_and_deposits(core_, _("Upcoming Transactions"));
+    htmlWidgetBillsAndDeposits bills_and_deposits(_("Upcoming Transactions"));
     rightFrame += bills_and_deposits.getHTMLText();
 
     rightFrame << getStatWidget();

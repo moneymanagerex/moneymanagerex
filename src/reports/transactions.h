@@ -28,7 +28,7 @@ class mmReportTransactions : public mmPrintableBase
 {
 public:
     mmReportTransactions(const std::vector<mmBankTransaction*>& trans,
-                         mmCoreDB* core, int refAccountID, mmFilterTransactionsDialog* transDialog);
+                         int refAccountID, mmFilterTransactionsDialog* transDialog);
     ~mmReportTransactions();
 
     wxString getHTMLText();

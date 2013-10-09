@@ -94,7 +94,7 @@ mmCheckingPanel::mmCheckingPanel(
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name
     )
-    : mmPanelBase(core)
+    : core_(core)
     , filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
@@ -936,12 +936,6 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     return cell_value;
 }
 
-wxSharedPtr<wxSQLite3Database> mmCheckingPanel::getDb() const
-{
-    wxASSERT(core_);
-    return core_->db_;
-}
-
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
 {
     //event.GetString() does not working. It seems wxWidgets issue
@@ -1329,7 +1323,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
         for (const auto& i : m_cp->m_trans)
         {
             int transID = i->transactionID();
-            if (mmDBWrapper::updateTransactionWithStatus(*m_cp->getDb(), transID, status))
+            if (mmDBWrapper::updateTransactionWithStatus(*m_cp->core_->db_, transID, status))
                 i->status_ = status;
         }
 

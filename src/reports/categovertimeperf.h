@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef _MM_EX_REPORTCATEGOVERTIME_H_
 #define _MM_EX_REPORTCATEGOVERTIME_H_
 //----------------------------------------------------------------------------
+#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
 //----------------------------------------------------------------------------
@@ -33,6 +34,7 @@ public:
     wxString getHTMLText();
 
 protected:
+    const mmCoreDB* core_;
     mmDateRange* date_range_;
     wxString title_;
 };

@@ -26,14 +26,12 @@
 #include <algorithm>
 
 mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction*>& trans,
-    mmCoreDB* core, int refAccountID, mmFilterTransactionsDialog* transDialog)
-: mmPrintableBase(core)
+    int refAccountID, mmFilterTransactionsDialog* transDialog)
+: mmPrintableBase(mmBankTransaction::DATE)
 , trans_(trans)
 , refAccountID_(refAccountID)
 , transDialog_(transDialog)
 {
-    // set initial sort column
-    sortColumn_ = mmBankTransaction::DATE;
 }
 
 mmReportTransactions::~mmReportTransactions()

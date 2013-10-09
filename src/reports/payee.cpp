@@ -14,12 +14,11 @@
 #define PAYEE_SORT_BY_DIFF      4
 
 mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
-    : mmPrintableBase(core)
+    : mmPrintableBase(PAYEE_SORT_BY_DIFF)
+    , core_(core)
     , title_(title)
     , date_range_(date_range)
 {
-    // set initial sort column
-    sortColumn_ = PAYEE_SORT_BY_DIFF;
 }
 
 mmReportPayeeExpenses::~mmReportPayeeExpenses()

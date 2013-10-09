@@ -19,6 +19,7 @@
 #ifndef _MM_EX_BUDGETINGPANEL_H_
 #define _MM_EX_BUDGETINGPANEL_H_
 
+#include "mmcoredb.h"
 #include "mmpanelbase.h"
 #include "util.h"
 
@@ -123,6 +124,7 @@ public:
     void RefreshList();
 
 private:
+    mmCoreDB* core_; // TODO
 
     std::vector<mmBudgetEntryHolder> trans_;
     budgetingListCtrl* listCtrlBudget_;

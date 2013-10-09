@@ -29,8 +29,7 @@ class mmHelpPanel : public mmPanelBase
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHelpPanel(wxSQLite3Database* db,
-                 wxWindow *parent,
+    mmHelpPanel(wxWindow *parent,
                  wxWindowID winid = wxID_ANY,
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
@@ -39,7 +38,6 @@ public:
 
 private:
     wxHtmlWindow* htmlWindow_;
-    wxSQLite3Database* db_;
 
     bool Create( wxWindow *parent, wxWindowID winid,
                  const wxPoint& pos = wxDefaultPosition,

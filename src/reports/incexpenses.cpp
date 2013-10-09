@@ -6,7 +6,7 @@
 #include "mmgraphincexpensesmonth.h"
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range)
-    : mmPrintableBase(core)
+    : core_(core)
     , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
 {
@@ -83,7 +83,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(mmCoreDB* core, int day, int month, mmDateRange* date_range)
-    : mmPrintableBase(core)
+    : core_(core)
     , day_(day)
     , month_(month)
     , date_range_(date_range)

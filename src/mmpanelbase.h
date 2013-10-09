@@ -19,7 +19,6 @@
 #ifndef _MM_EX_PANELBASE_H_
 #define _MM_EX_PANELBASE_H_
 
-#include "mmcoredb.h"
 #include "util.h"
 #include <wx/listctrl.h>
 //----------------------------------------------------------------------------
@@ -66,11 +65,7 @@ class mmPanelBase : public wxPanel
 {
 public:
     mmPanelBase() {}
-    mmPanelBase(mmCoreDB* core)
-        : core_(core)
-    {}
 
-    mmCoreDB* core_; // TODO
 public:
     void windowsFreezeThaw()
     {

@@ -20,7 +20,6 @@
 #ifndef _MM_EX_REPORTBASE_H_
 #define _MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
-#include "mmcoredb.h"
 #include "mmOption.h"
 class wxString;
 //----------------------------------------------------------------------------
@@ -33,11 +32,10 @@ public:
 	void setSortColumn(const int sort_by) { sortColumn_ = sort_by; }
 
 public:
-    mmPrintableBase(mmCoreDB* core, int sort_column = 0): core_(core), sortColumn_(sort_column) {}
+    mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}
     virtual wxString version() { return "$Rev$"; }
 
 protected:
-    const mmCoreDB* core_;
 	int sortColumn_;
 };
 //----------------------------------------------------------------------------

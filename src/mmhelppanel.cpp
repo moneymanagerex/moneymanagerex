@@ -27,10 +27,8 @@ BEGIN_EVENT_TABLE(mmHelpPanel, wxPanel)
     EVT_BUTTON(wxID_FORWARD, mmHelpPanel::OnHelpPageForward)
 END_EVENT_TABLE()
 
-mmHelpPanel::mmHelpPanel(wxSQLite3Database* db,
-    wxWindow *parent, wxWindowID winid,
+mmHelpPanel::mmHelpPanel(wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-: db_(db)
 {
     Create(parent, winid, pos, size, style, name);
 }

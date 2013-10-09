@@ -29,8 +29,8 @@
 #define SUMMARY_SORT_BY_NAME        1
 #define SUMMARY_SORT_BY_BALANCE     2
 
-mmReportSummary::mmReportSummary(mmCoreDB* core)
-: mmPrintableBase(core, SUMMARY_SORT_BY_NAME)
+mmReportSummary::mmReportSummary()
+: mmPrintableBase(SUMMARY_SORT_BY_NAME)
 {
 }
 

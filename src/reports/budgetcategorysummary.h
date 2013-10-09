@@ -22,6 +22,7 @@
 #ifndef _MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
 #define _MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
 
+#include "mmcoredb.h"
 #include "budget.h"
 
 class mmReportBudgetCategorySummary : public mmReportBudget
@@ -33,6 +34,7 @@ public:
 
 private:
     int budgetYearID_;
+    const mmCoreDB* core_;
 
     void displayReportLine(mmHTMLBuilder& hb, const mmBudgetEntryHolder& budEntry);
     wxString actualAmountColour(const mmBudgetEntryHolder& budEntry, bool total = false);

@@ -31,14 +31,13 @@
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
 ( mmCoreDB* core, mmDateRange* date_range, const wxString& title, int type)
-: mmPrintableBase(core)
+: mmPrintableBase(CATEGORY_SORT_BY_NAME)
+, core_(core)
 , date_range_(date_range)
 , title_(title)
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
 {
-    // set initial sort column
-    sortColumn_ = CATEGORY_SORT_BY_NAME;
 }
 
 mmReportCategoryExpenses::~mmReportCategoryExpenses()

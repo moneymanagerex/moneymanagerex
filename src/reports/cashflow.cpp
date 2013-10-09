@@ -9,7 +9,7 @@
 #include "model/Model_Billsdeposits.h"
 
 mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
-: mmPrintableBase(core)
+: core_(core)
 , accountArray_(0)
 , activeTermAccounts_(false)
 , activeBankAccounts_(false)

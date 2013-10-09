@@ -19,6 +19,7 @@
 #ifndef _MM_EX_HOMEPAGEPANEL_H_
 #define _MM_EX_HOMEPAGEPANEL_H_
 
+#include "mmcoredb.h"
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "reports/mmDateRange.h"
@@ -71,6 +72,7 @@ public:
     wxString GetHomePageText();
 
 private:
+    mmCoreDB* core_; // TODO
     mmGUIFrame* frame_;
     mmHtmlWindow* htmlWindow_;
     mmDateRange* date_range_;

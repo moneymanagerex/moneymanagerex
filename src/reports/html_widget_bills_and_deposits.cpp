@@ -10,9 +10,8 @@
 
 #include <algorithm>
 
-htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
-    : mmPrintableBase(core)
-    , title_(title)
+htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
+    : title_(title)
     , date_range_(date_range)
 {}
 

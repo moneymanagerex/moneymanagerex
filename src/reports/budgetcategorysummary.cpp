@@ -26,7 +26,7 @@
 #include "model/Model_Budgetyear.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, int budgetYearID)
-: mmReportBudget(core)
+: core_(core)
 , budgetYearID_(budgetYearID)
 {}
 

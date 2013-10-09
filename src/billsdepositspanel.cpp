@@ -57,7 +57,7 @@ END_EVENT_TABLE()
 mmBillsDepositsPanel::mmBillsDepositsPanel(mmCoreDB* core,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-: mmPanelBase(core)
+: core_(core)
 , m_imageList()
 , listCtrlAccount_()
 {

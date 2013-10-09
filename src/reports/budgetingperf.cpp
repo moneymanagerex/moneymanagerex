@@ -5,7 +5,7 @@
 #include "model/Model_Budgetyear.h"
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance(mmCoreDB* core, int budgetYearID)
-: mmReportBudget(core)
+: core_(core)
 , budgetYearID_(budgetYearID)
 {}
 

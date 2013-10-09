@@ -23,8 +23,7 @@
 
 mmCustomReport::mmCustomReport(wxWindow* parent, mmCoreDB* core
 , const wxString& reportTitle, const wxString& sScript, const wxString& sScriptType)
-: mmPrintableBase(core)
-, parent_(parent)
+: parent_(parent)
 , reportTitle_(reportTitle)
 , sScript_(sScript)
 , sScriptType_(sScriptType)

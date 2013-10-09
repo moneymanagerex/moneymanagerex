@@ -1233,17 +1233,17 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Summary of Accounts"), 4, 4);
     navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Summary of Accounts"
-        , new mmReportSummary(m_core.get())));
+        , new mmReportSummary()));
 
     wxTreeItemId reportsStocks = navTreeCtrl_->AppendItem(reportsSummary, _("Stocks"), 4, 4);
     navTreeCtrl_->SetItemData(reportsStocks, new mmTreeItemData("Summary of Stocks"
-        , new mmReportSummaryStocks(m_core.get())));
+        , new mmReportSummaryStocks()));
 
     if (mmIniOptions::instance().enableAssets_)
     {
         wxTreeItemId reportsAssets = navTreeCtrl_->AppendItem(reportsSummary, _("Assets"), 4, 4);
         navTreeCtrl_->SetItemData(reportsAssets, new mmTreeItemData("Summary of Assets"
-        , new mmReportSummaryAssets(m_core.get())));
+        , new mmReportSummaryAssets()));
     }
 
     /* ================================================================================================= */
@@ -1824,7 +1824,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 {
                     wxSizer *sizer = cleanupHomePanel();
 
-                    panelCurrent_ = new mmStocksPanel(m_core.get(), data, homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+                    panelCurrent_ = new mmStocksPanel(data, homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
                     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
 
                     homePanel_->Layout();
@@ -2204,7 +2204,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     if (!rs) return;
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmReportsPanel(m_core.get(), rs, cleanup, homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmReportsPanel(rs, cleanup, homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
@@ -2218,7 +2218,7 @@ void mmGUIFrame::createHelpPage()
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmHelpPanel(m_db.get(), homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmHelpPanel(homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
@@ -3246,7 +3246,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
             trans.push_back(tran);
         }
 
-        mmReportTransactions* rs = new mmReportTransactions(trans, m_core.get(), dlg->getAccountID(), dlg);
+        mmReportTransactions* rs = new mmReportTransactions(trans, dlg->getAccountID(), dlg);
         createReportsPage(rs, true);
     }
 }
@@ -3619,7 +3619,7 @@ void mmGUIFrame::createStocksAccountPage(int accountID)
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmStocksPanel(m_core.get(), accountID, homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmStocksPanel(accountID, homePanel_, wxID_STATIC,
                                       wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL
                                       );
 
@@ -3679,7 +3679,7 @@ void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 {
     wxSizer *sizer = cleanupHomePanel();
-    panelCurrent_ = new mmAssetsPanel(homePanel_, m_core.get());
+    panelCurrent_ = new mmAssetsPanel(homePanel_);
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
     homePanel_->Layout();
 }

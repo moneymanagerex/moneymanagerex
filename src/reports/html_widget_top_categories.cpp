@@ -6,7 +6,7 @@
 #include <algorithm>
 
 htmlWidgetTop7Categories::htmlWidgetTop7Categories(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
-    : mmPrintableBase(core)
+    : core_(core)
     , title_(title)
     , date_range_(date_range)
 {}

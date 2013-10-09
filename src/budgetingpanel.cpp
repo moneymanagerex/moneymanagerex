@@ -45,7 +45,7 @@ mmBudgetingPanel::mmBudgetingPanel(
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size,
     long style,const wxString& name)
-: mmPanelBase(core)
+: core_(core)
 , m_imageList()
 , listCtrlBudget_()
 , budgetYearID_(budgetYearID)

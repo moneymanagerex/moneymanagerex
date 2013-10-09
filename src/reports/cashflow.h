@@ -1,6 +1,7 @@
 #ifndef _MM_EX_REPORTCASHFLOW_H_
 #define _MM_EX_REPORTCASHFLOW_H_
 
+#include "mmcoredb.h"
 #include "reportbase.h"
 
 class wxArrayString;
@@ -34,6 +35,7 @@ protected:
     bool activeTermAccounts_;
     bool activeBankAccounts_;
     int cashflowreporttype_;
+    const mmCoreDB* core_;
 };
 
 class mmReportCashFlowAllAccounts : public mmReportCashFlow

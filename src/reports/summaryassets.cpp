@@ -22,8 +22,8 @@
 #include "mmex.h"
 #include <algorithm>
 
-mmReportSummaryAssets::mmReportSummaryAssets(mmCoreDB* core)
-: mmPrintableBase(core, Model_Asset::COL_ASSETNAME)
+mmReportSummaryAssets::mmReportSummaryAssets()
+: mmPrintableBase(Model_Asset::COL_ASSETNAME)
 {
 }
 

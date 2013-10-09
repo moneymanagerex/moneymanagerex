@@ -297,13 +297,11 @@ BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
     EVT_BUTTON(wxID_REFRESH,     mmStocksPanel::OnRefreshQuotes)
 END_EVENT_TABLE()
 /*******************************************************/
-mmStocksPanel::mmStocksPanel(mmCoreDB* core,
-                             int accountID,
+mmStocksPanel::mmStocksPanel(int accountID,
                              wxWindow *parent,
                              wxWindowID winid, const wxPoint& pos, const wxSize& size, long style,
                              const wxString& name)
-: mmPanelBase(core)
-, accountID_(accountID)
+: accountID_(accountID)
 {
     this->tips_ = _("Using MMEX it is possible to track stocks/mutual funds investments.");
     Create(parent, winid, pos, size, style, name);

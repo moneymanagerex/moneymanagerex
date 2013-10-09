@@ -23,18 +23,18 @@
 #include "mmex.h"
 #include "lua_interface.h"
 #include "model/Model_Account.h"
+#include "model/Model_Checking.h"
 
 BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
 END_EVENT_TABLE()
 
-mmReportsPanel::mmReportsPanel(mmCoreDB* core,
+mmReportsPanel::mmReportsPanel(
         mmPrintableBase* rb, bool cleanupReport, wxWindow *parent,
         wxWindowID winid, const wxPoint& pos,
         const wxSize& size, long style,
         const wxString& name )
-: mmPanelBase(core)
-, rb_(rb)
+: rb_(rb)
 , cleanup_(cleanupReport)
 {
     Create(parent, winid, pos, size, style, name);
@@ -143,12 +143,16 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         sData.ToLong(&transID);
         if (transID > 0)
         {
-            int account_id = core_->bTransactionList_.getBankTransactionPtr(transID)->accountID_;
-            frame->setGotoAccountID(account_id, transID);
-            const Model_Account::Data* account = Model_Account::instance().get(account_id);
-            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-            frame->GetEventHandler()->AddPendingEvent(evt);
+            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_TRANSID, transID);
+            if (transactions.size() > 0)
+            {
+                int account_id = transactions[0].ACCOUNTID;
+                frame->setGotoAccountID(account_id, transID);
+                const Model_Account::Data* account = Model_Account::instance().get(account_id);
+                frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                frame->GetEventHandler()->AddPendingEvent(evt);
+            }
         }
     }
     else if (bIsLuaScript)

@@ -24,7 +24,7 @@
 class mmReportSummary : public mmPrintableBase
 {
 public:
-    mmReportSummary(mmCoreDB* core);
+    mmReportSummary();
     wxString getHTMLText();
 };
 

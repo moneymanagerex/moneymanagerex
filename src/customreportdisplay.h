@@ -18,6 +18,7 @@
 #ifndef _MM_EX_CUSTOMREPORTDISPLAY_H_
 #define _MM_EX_CUSTOMREPORTDISPLAY_H_
 
+#include "mmcoredb.h"
 #include "reports/reportbase.h"
 #include "reports/htmlbuilder.h"
 
@@ -30,6 +31,7 @@ public:
     wxString getHTMLText();
 
 private:
+    const mmCoreDB* core_;
     wxString reportTitle_;
     wxString sScript_;
     wxString sScriptType_;

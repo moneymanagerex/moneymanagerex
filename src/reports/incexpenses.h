@@ -19,6 +19,7 @@
 #ifndef _MM_EX_REPORTINCEXP_H_
 #define _MM_EX_REPORTINCEXP_H_
 
+#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
 
@@ -30,6 +31,7 @@ public:
     wxString getHTMLText();
 
 protected:
+    const mmCoreDB* core_;
     mmDateRange* date_range_;
     wxString title_;
     virtual wxString title() const;
@@ -87,6 +89,7 @@ public:
     virtual ~mmReportIncomeExpensesMonthly();
     wxString getHTMLText();
 protected:
+    const mmCoreDB* core_;
     mmDateRange* date_range_;
     int day_;
     int month_;

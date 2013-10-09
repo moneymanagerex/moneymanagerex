@@ -26,7 +26,7 @@ class mmHTMLBuilder;
 class mmReportSummaryStocks : public mmPrintableBase
 {
 public:
-    mmReportSummaryStocks(mmCoreDB* core);
+    mmReportSummaryStocks();
     wxString getHTMLText();
 
 private:

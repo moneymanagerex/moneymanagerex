@@ -19,6 +19,7 @@
 #ifndef _MM_EX_REPORTCATEGEXP_H_
 #define _MM_EX_REPORTCATEGEXP_H_
 
+#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
 
@@ -35,6 +36,7 @@ public:
     enum TYPE { NONE = 0, GOES, COME, CATEGORY};
 
 protected:
+    const mmCoreDB* core_;
     mmDateRange* date_range_;
     bool ignoreFutureDate_;
     wxString title_;

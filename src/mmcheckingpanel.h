@@ -19,6 +19,7 @@
 #ifndef _MM_EX_CHECKINGPANEL_H_
 #define _MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
+#include "mmcoredb.h"
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "reports/mmDateRange.h"
@@ -175,6 +176,7 @@ public:
 
     void RefreshList();
 
+    mmCoreDB* core_; // TODO
 private:
     DECLARE_EVENT_TABLE()
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
@@ -205,7 +207,6 @@ private:
     wxScopedPtr<wxImageList> m_imageList;
     std::vector<mmBankTransaction*> m_trans;
 
-    wxSharedPtr<wxSQLite3Database> getDb() const;
     void initViewTransactionsHeader();
     void initFilterSettings();
     void setAccountSummary();

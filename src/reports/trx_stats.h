@@ -19,6 +19,7 @@
 #ifndef _MM_EX_REPORTTRANSSTATS_H_
 #define _MM_EX_REPORTTRANSSTATS_H_
 
+#include "mmcoredb.h"
 #include "reportbase.h"
 
 class mmReportTransactionStats : public mmPrintableBase
@@ -29,6 +30,7 @@ public:
 
 private:
     int year_;
+    const mmCoreDB* core_;
 };
 
 #endif // _MM_EX_REPORTTRANSSTATS_H_

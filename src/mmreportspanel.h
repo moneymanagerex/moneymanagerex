@@ -29,8 +29,7 @@ class mmReportsPanel : public mmPanelBase
     DECLARE_EVENT_TABLE()
 
 public:
-    mmReportsPanel(mmCoreDB* core,
-                    mmPrintableBase* rb,
+    mmReportsPanel(mmPrintableBase* rb,
                     bool cleanupReport,
                     wxWindow *parent,
                     wxWindowID winid = wxID_ANY,

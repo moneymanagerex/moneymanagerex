@@ -37,8 +37,8 @@
 #define STOCK_SORT_BY_GAIN_LOSS     8
 #define STOCK_SORT_BY_VALUE         9
 
-mmReportSummaryStocks::mmReportSummaryStocks(mmCoreDB* core)
-: mmPrintableBase(core, STOCK_SORT_BY_NAME)
+mmReportSummaryStocks::mmReportSummaryStocks()
+: mmPrintableBase(STOCK_SORT_BY_NAME)
 {
 }
 

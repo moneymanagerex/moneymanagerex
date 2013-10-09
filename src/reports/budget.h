@@ -31,7 +31,7 @@ class wxDateTime;
 class mmReportBudget : public mmPrintableBase
 {
 public:
-    mmReportBudget(mmCoreDB* core = NULL);
+    mmReportBudget();
 
     /// Initialise index and secondary fields for a budget entry
     void initBudgetEntryFields(mmBudgetEntryHolder& budEntry, int id = -1);

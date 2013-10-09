@@ -21,8 +21,7 @@
 #include "budgetingpanel.h"
 #include "htmlbuilder.h"
 
-mmReportBudget::mmReportBudget(mmCoreDB* core)
-: mmPrintableBase(core)
+mmReportBudget::mmReportBudget()
 {}
 
 /**************************************************************************************

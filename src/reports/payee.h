@@ -19,6 +19,7 @@
 #ifndef _MM_EX_REPORTPAYEE_H_
 #define _MM_EX_REPORTPAYEE_H_
 
+#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
 
@@ -31,6 +32,7 @@ public:
     wxString getHTMLText();
 
 protected:
+    const mmCoreDB* core_;
     mmDateRange* date_range_;
 
     wxString title_;

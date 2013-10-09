@@ -34,13 +34,12 @@ static const wxString type_names[] = {_("Incomes"), _("Expences"), _("Total")};
 
 mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance(mmCoreDB *core
 , mmDateRange* date_range) :
-    mmPrintableBase(core)
+    mmPrintableBase(CATEGORY_SORT_BY_NAME)
+    , core_(core)
     , date_range_(date_range)
     , title_(_("Category Income/Expenses: %s"))
 {
     wxASSERT(core_);
-    // set initial sort column
-    sortColumn_ = CATEGORY_SORT_BY_NAME;
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()

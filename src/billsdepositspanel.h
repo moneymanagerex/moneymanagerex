@@ -19,6 +19,7 @@
 #ifndef _MM_EX_BILLSDEPOSITSPANEL_H_
 #define _MM_EX_BILLSDEPOSITSPANEL_H_
 
+#include "mmcoredb.h"
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "util.h"
@@ -131,6 +132,7 @@ public:
     wxString getItem(long item, long column);
     void RefreshList();
 
+    mmCoreDB* core_; // TODO
 private:
     void CreateControls();
 
