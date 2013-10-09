@@ -32,35 +32,33 @@ class mmPayeeDialog : public wxDialog
 public:
     mmPayeeDialog(wxWindow* parent);
 
-    int getPayeeId() const
-    {
-        return m_payee_id_;
-    }
-    bool getRefreshRequested()
-    {
-        return refreshRequested_;
-    }
+    int getPayeeId() const {return m_payee_id_;}
+    bool getRefreshRequested() const {return refreshRequested_;}
 
 private:
     enum cols
     {
         PAYEE_ID = 0,
         PAYEE_NAME,
-        PAYEE_CATEGORY,
-        PAYEE_ACTIVE
+        PAYEE_CATEGORY
+    };
+
+    enum menu_items
+    {
+        MENU_DEFINE_CATEGORY = 0,
+        NENU_NEW_PAYEE,
+        MENU_DELETE_PAYEE,
+        MENU_RELOCATE_PAYEE
     };
 
     wxDataViewListCtrl* payeeListBox_;
 
     int m_payee_id_;
     int selectedIndex_;
-    std::map<int, wxString> ColName_;
-    wxListBox* listBox_;
-    wxButton* addButton_;
-    wxButton* editButton_;
-    wxButton* deleteButton_;
-    wxButton* btnCancel_;
     bool refreshRequested_;
+    std::map<int, wxString> ColName_;
+    wxButton* btnCancel_;
+    wxButton* button_OK_;
 
     mmPayeeDialog() : m_payee_id_(-1), refreshRequested_(false) {}
 
@@ -68,17 +66,18 @@ private:
     void CreateControls();
     void fillControls();
 
-    void OnAdd(wxCommandEvent& event);
-    void OnDelete(wxCommandEvent& event);
-    void OnEdit(wxCommandEvent& event);
-    void OnSelChanged(wxCommandEvent& event);
-    void OnComboSelected(wxCommandEvent& event);
-    void OnPayeeRelocate(wxCommandEvent& event);
-    void OnDoubleClicked(wxCommandEvent& event);    void OnFocus(wxFocusEvent& event);
-    void OnSetFocus(wxFocusEvent& event);
+    void AddPayee();
+    void DeletePayee();
+    void DefineDefaultCategory();
+    void OnPayeeRelocate();
     void OnCancel(wxCommandEvent& /*event*/);
+    void OnOk(wxCommandEvent& /*event*/);
 
     void OnListItemSelected(wxDataViewEvent& event);
     void OnDataChanged(wxDataViewEvent& event);
+    void OnMenuSelected(wxCommandEvent& event);
+    void OnItemRightClick(wxDataViewEvent& event);
+
+    bool debug_;
 };
 #endif // _MM_EX_PAYEEDIALOG_H_

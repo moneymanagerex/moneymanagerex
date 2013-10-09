@@ -30,22 +30,16 @@ END_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
 {
-    sourcePayeeID_  = -1;
-    destPayeeID_    = -1;
     changedRecords_  = 0;
 }
 
-relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent
-    , wxWindowID id
-    , const wxString& caption
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style )
+relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
 {
-    sourcePayeeID_  = -1;
+    sourcePayeeID_  = source_payee_id;
     destPayeeID_    = -1;
+    long style = wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX;
 
-    Create(parent, id, caption, pos, size, style);
+    Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
 bool relocatePayeeDialog::Create( wxWindow* parent, wxWindowID id,
@@ -77,22 +71,33 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new wxComboBox(this, wxID_ANY, "",
-        wxDefaultPosition, btnSize,
-        Model_Payee::instance().all_payee_names()/*, wxTE_PROCESS_ENTER*/);
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
-        wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
+    cbSourcePayee_ = new wxComboBox(this, wxID_ANY, ""
+        , wxDefaultPosition, btnSize);
+    for (const auto payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    {
+        //wxStringClientData* data = (wxStringClientData*)payee.PAYEEID;
+        cbSourcePayee_->Append(payee.PAYEENAME/*, data*/);
+        if (payee.PAYEEID == sourcePayeeID_)
+            cbSourcePayee_->SetStringSelection(payee.PAYEENAME);
+    }
+
     cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+    cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
 
-    cbDestPayee_ = new wxComboBox(this, wxID_NEW, "",
-        wxDefaultPosition, btnSize,
-        Model_Payee::instance().all_payee_names()/*, wxTE_PROCESS_ENTER*/);
-    cbDestPayee_->Connect(wxID_NEW, wxEVT_COMMAND_TEXT_UPDATED,
-        wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
+    cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
+        , wxDefaultPosition, btnSize);
+    for (const auto payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    {
+        //wxStringClientData* data = (wxStringClientData*)payee.PAYEEID;
+        cbDestPayee_->Append(payee.PAYEENAME/*, data*/);
+    }
     cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+    cbDestPayee_->Connect(wxID_NEW, wxEVT_COMMAND_TEXT_UPDATED
+        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
 
-    wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC,
-        wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+    wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
     wxBoxSizer* topSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(topSizer);
@@ -111,8 +116,8 @@ void relocatePayeeDialog::CreateControls()
     boxSizer->Add(request_sizer, flagsExpand);
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this,wxID_OK);
-    wxButton* cancelButton = new wxButton(this,wxID_CANCEL);
+    wxButton* okButton = new wxButton(this,wxID_OK, _("&OK "));
+    wxButton* cancelButton = new wxButton(this,wxID_CANCEL, _("&Cancel "));
     cancelButton-> SetFocus () ;
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flags);
@@ -133,11 +138,8 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
 
     Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
     Model_Payee::Data* source_payee = Model_Payee::instance().get(sourcePayeeName);
-    if (dest_payee)
-        destPayeeID_ = dest_payee->PAYEEID; 
-    if (source_payee)
-        sourcePayeeID_ = source_payee->PAYEEID;
-    if ((sourcePayeeID_ > 0) &&  (destPayeeID_ > 0) )
+
+    if ( dest_payee &&  source_payee )
     {
         wxString msgStr = _("Please Confirm:") ;
         msgStr << "\n\n";
@@ -147,14 +149,14 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Payee Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, sourcePayeeID_);
+            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, source_payee->PAYEEID);
             for (auto &entry : transactions)
-                entry.PAYEEID = destPayeeID_;
+                entry.PAYEEID = dest_payee->PAYEEID;
             changedRecords_ += Model_Checking::instance().save(transactions);
 
-            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, sourcePayeeID_);
+            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, source_payee->PAYEEID);
             for (auto &entry : billsdeposits)
-                entry.PAYEEID = destPayeeID_;
+                entry.PAYEEID = dest_payee->PAYEEID;
             changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
 
             EndModal(wxID_OK);
@@ -171,7 +173,11 @@ void relocatePayeeDialog::OnPayeeUpdated(wxCommandEvent& event)
     if (source_payee)
         cbPayeeInFocus = cbDestPayee_;
 
-    wxString value = cbPayeeInFocus->GetValue().Lower();
+    wxString value = cbPayeeInFocus->GetValue();
+
+    //wxStringClientData* data_obj = (wxStringClientData *)cbPayeeInFocus->GetClientObject(cbPayeeInFocus->GetSelection());
+    //if (data_obj) wxLogDebug("%s", data_obj->GetData());
+
     Model_Payee::Data* payee = Model_Payee::instance().get(value);
     if (payee)
     {

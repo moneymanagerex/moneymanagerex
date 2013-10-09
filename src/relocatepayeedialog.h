@@ -20,16 +20,8 @@
 #ifndef _MM_EX_RELOCATEPAYEEDIALOG_H_
 #define _MM_EX_RELOCATEPAYEEDIALOG_H_
 
-#define SYMBOL_RELOCATEPAYEEDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_RELOCATEPAYEEDIALOG_TITLE _("Relocate Payee Dialog")
-#define SYMBOL_RELOCATEPAYEEDIALOG_IDNAME ID_DIALOG_BUDGETENTRY
-#define SYMBOL_RELOCATEPAYEEDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_RELOCATEPAYEEDIALOG_POSITION wxDefaultPosition
-
 #include "guiid.h"
 #include "defs.h"
-#include "dbwrapper.h"
-#include "mmcoredb.h"
 
 class relocatePayeeDialog : public wxDialog
 {
@@ -38,21 +30,16 @@ class relocatePayeeDialog : public wxDialog
 
 public:
     relocatePayeeDialog();
-    relocatePayeeDialog( wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
-                         const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
-                         const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
-                         const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
-                         long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
+    relocatePayeeDialog( wxWindow* parent, int source_payee_id = -1);
 
     int updatedPayeesCount();
 
 private:
-    mmCoreDB* core_;
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_RELOCATEPAYEEDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_RELOCATEPAYEEDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_RELOCATEPAYEEDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_RELOCATEPAYEEDIALOG_SIZE,
-                 long style = SYMBOL_RELOCATEPAYEEDIALOG_STYLE );
+    bool Create( wxWindow* parent, wxWindowID id,
+                 const wxString& caption,
+                 const wxPoint& pos,
+                 const wxSize& size,
+                 long style );
 
     void CreateControls();
     void OnOk(wxCommandEvent& event);
