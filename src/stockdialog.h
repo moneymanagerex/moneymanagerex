@@ -30,7 +30,6 @@
 #define SYMBOL_STOCKDIALOG_POSITION wxDefaultPosition
 
 class wxDatePickerCtrl;
-class mmCoreDB;
 class mmTextCtrl;
 
 class mmStockDialog : public wxDialog
@@ -40,8 +39,7 @@ class mmStockDialog : public wxDialog
 
 public:
     mmStockDialog();
-    mmStockDialog(mmCoreDB* core
-                  , Model_Stock::Data* stock
+    mmStockDialog(Model_Stock::Data* stock
                   , bool edit, int accountID, wxWindow* parent
                   , wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME
                   , const wxString& caption = SYMBOL_STOCKDIALOG_TITLE
@@ -67,7 +65,6 @@ public:
     Model_Stock::Data* m_stock;
 
 private:
-    mmCoreDB* core_;
     int stockID_;
 
     mmTextCtrl* stockName_;

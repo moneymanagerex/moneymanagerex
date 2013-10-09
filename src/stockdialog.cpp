@@ -39,18 +39,17 @@ mmStockDialog::mmStockDialog( )
 {
 }
 
-mmStockDialog::mmStockDialog(mmCoreDB* core, Model_Stock::Data* stock
+mmStockDialog::mmStockDialog(Model_Stock::Data* stock
     , bool edit, int accountID
     , wxWindow* parent, wxWindowID id
     ,const wxString& caption, const wxPoint& pos
     ,const wxSize& size, long style )
-    : core_(core)
-    , m_stock(stock)
+    : m_stock(stock)
     , edit_(edit)
     , accountID_(accountID)
 {
     Create(parent, id, caption, pos, size, style);
-    mmDBWrapper::loadCurrencySettings(core_->db_.get(), accountID_);
+    CurrencyFormatter::instance().loadSettings(Model_Account::instance().get(accountID));
 }
 
 bool mmStockDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,

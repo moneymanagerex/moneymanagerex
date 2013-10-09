@@ -20,6 +20,7 @@
 #define _MM_EX_CURRENCY_FORMATEER_H_
 
 #include "mmcurrency.h"
+#include "model\Model_Account.h"
 #include <math.h>
 
 class CurrencyFormatter
@@ -30,6 +31,8 @@ public:
 
     void loadDefaultSettings();
     void loadSettings(const mmCurrency &cur);
+    void loadSettings(const Model_Currency::Data* currency);
+    void loadSettings(const Model_Account::Data* account);
 
     void loadSettings(const wxString &pfx, const wxString &sfx,
                       wxChar dec, wxChar grp,

@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include "mmCurrencyFormatter.h"
 #include "singleton.h"
 #include <wx/numformatter.h>
@@ -72,6 +73,24 @@ void CurrencyFormatter::loadSettings(const mmCurrency &cur)
     wxUniChar grp = cur.grp_.IsEmpty() ? wxUniChar('\0') : cur.grp_.GetChar(0);
 
     loadSettings(cur.pfxSymbol_, cur.sfxSymbol_, dec, grp, cur.unit_, cur.cent_, cur.scaleDl_);
+}
+
+void CurrencyFormatter::loadSettings(const Model_Currency::Data* currency)
+{
+    if(currency)
+    {
+        loadSettings(currency->PFX_SYMBOL, currency->SFX_SYMBOL, currency->DECIMAL_POINT.GetChar(0), currency->GROUP_SEPARATOR.GetChar(0),
+            currency->UNIT_NAME, currency->CENT_NAME, currency->SCALE);
+    }
+}
+
+void CurrencyFormatter::loadSettings(const Model_Account::Data* account)
+{
+    if(account)
+    {
+        Model_Currency::Data* currency = Model_Account::instance().currency(account);
+        loadSettings(currency);
+    }
 }
 
 CurrencyFormatter& CurrencyFormatter::instance()

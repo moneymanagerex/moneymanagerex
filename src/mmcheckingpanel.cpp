@@ -698,8 +698,8 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
         {
             //load settings for base currency
             Model_Currency::Data* currency = Model_Currency::instance().get(basecurrencyid);
+            CurrencyFormatter::instance().loadSettings(currency);
             wxString basecuramountStr;
-            mmDBWrapper::loadCurrencySettings(core_->db_.get(), basecurrencyid); // TODO
             basecuramountStr = CurrencyFormatter::float2Money(amount*convrate);
 
             amountStr = CurrencyFormatter::float2Money(amount);
