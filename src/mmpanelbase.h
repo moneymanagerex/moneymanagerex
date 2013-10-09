@@ -70,7 +70,7 @@ public:
         : core_(core)
     {}
 
-    mmCoreDB* core_;
+    mmCoreDB* core_; // TODO
 public:
     void windowsFreezeThaw()
     {
