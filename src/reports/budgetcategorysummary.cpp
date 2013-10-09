@@ -117,7 +117,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
     wxSQLite3Statement st = core_->db_.get()->PrepareStatement(SELECT_SUBCATEGS_FROM_SUBCATEGORY_V1);
 
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CATEGORY_V1);
+    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CATEGORY_V1); // TODO
     while (q1.NextRow())
     {
         mmBudgetEntryHolder th;
@@ -170,7 +170,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
 
         //START: SUBCATEGORY ROW
         st.Bind(1, th.categID_);
-        wxSQLite3ResultSet q2 = st.ExecuteQuery();
+        wxSQLite3ResultSet q2 = st.ExecuteQuery(); // TODO
 
         while(q2.NextRow())
         {
