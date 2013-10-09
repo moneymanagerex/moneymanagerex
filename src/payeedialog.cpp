@@ -161,7 +161,7 @@ void mmPayeeDialog::fillControls()
         const wxString full_category_name = Model_Category::instance().full_name(category, subcategory);
         int payeeID = payee.PAYEEID;
         wxVector<wxVariant> data;
-        data.push_back(wxVariant(payeeID));
+        data.push_back(wxVariant(wxString::Format("%i", payeeID)));
         data.push_back(wxVariant(payee.PAYEENAME));
         data.push_back(wxVariant(full_category_name));
         data.push_back(wxVariant(false)); //TODO:
