@@ -278,7 +278,7 @@ wxString mmHomePagePanel::displayStocks(double& tBalance /*, double& tIncome, do
     "and a.status='Open' "
     "group by st.heldat ";
 
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql);
+    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql); // FIXME
     while(q1.NextRow())
     {
         int stockaccountId = q1.GetInt("ACCOUNTID");
@@ -375,8 +375,7 @@ wxString mmHomePagePanel::displayCurrencies()
         "where a.status='Open' and balance<>0 "
         "group by c.currencyid) order by CURRENCYNAME ";
 
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql);
-    q1 = core_->db_.get()->ExecuteQuery(sql);
+    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql); // FIXME
 
     //Determine how many currencies used
     int curnumber = 0;
