@@ -81,9 +81,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
             if (transaction->transType_ == "Withdrawal")
                 value = -value;
             const wxString split_amount = wxString()<<value;
-            const Model_Category::Data* category = Model_Category::instance().get(split_entry->categID_);
-            const Model_Subcategory::Data* sub_category = (split_entry->subCategID_ != -1 ? Model_Subcategory::instance().get(split_entry->subCategID_) : 0);
-            const wxString split_categ = Model_Category::full_name(category, sub_category);
+            const wxString split_categ = Model_Category::full_name(split_entry->categID_, split_entry->subCategID_);
             buffer << "S" << split_categ << "\n"
                 << "$" << split_amount << "\n";
         }
@@ -131,9 +129,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
                 value = -value;
             const wxString split_amount = wxString()<<value;
 
-            const Model_Category::Data* category = Model_Category::instance().get(split_entry->categID_);
-            const Model_Subcategory::Data* sub_category = (split_entry->subCategID_ != -1 ? Model_Subcategory::instance().get(split_entry->subCategID_) : 0);
-            const wxString split_categ = Model_Category::full_name(category, sub_category);
+            const wxString split_categ = Model_Category::full_name(split_entry->categID_, split_entry->subCategID_);
 
             buffer << trans_id << delimit
                 << inQuotes(accountName, delimit) << delimit

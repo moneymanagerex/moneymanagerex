@@ -685,9 +685,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
                 if (m_trans[selIndex]->transType_ != TRANS_TYPE_DEPOSIT_STR)
                     amount = -amount;
                 amountStr = CurrencyFormatter::float2Money(amount);
-                Model_Category::Data* category = Model_Category::instance().get(i->categID_);
-                Model_Subcategory::Data* sub_category = (i->subCategID_ != -1 ? Model_Subcategory::instance().get(i->subCategID_) : 0);
-                infoStr << Model_Category::full_name(category, sub_category) 
+                infoStr << Model_Category::full_name(i->categID_, i->subCategID_) 
                     << " = "
                     << amountStr
                     << "\n";

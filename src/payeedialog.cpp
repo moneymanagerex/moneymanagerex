@@ -113,9 +113,7 @@ void mmPayeeDialog::fillControls()
     payeeListBox_->DeleteAllItems();
     for (const auto& payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
     {
-        Model_Category::Data *category = Model_Category::instance().get(payee.CATEGID);
-        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee.SUBCATEGID);
-        const wxString full_category_name = Model_Category::instance().full_name(category, subcategory);
+        const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
         int payeeID = payee.PAYEEID;
         wxVector<wxVariant> data;
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", payeeID)));

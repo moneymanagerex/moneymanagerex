@@ -116,7 +116,7 @@ void mmFilterTransactionsDialog::dataToControls()
         if (sub_category)
             subcategID_ = sub_category->SUBCATEGID;
     }
-    btnCategory_ ->SetLabel(Model_Category::full_name(category, sub_category));
+    btnCategory_ ->SetLabel(Model_Category::full_name(categID_, subcategID_));
     bExpandStaus_ = true;
 
     status = get_next_value(tkz, value);
