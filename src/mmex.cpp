@@ -1620,7 +1620,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     ///////////////////////////////////////////////////////
     wxTreeItemId transactionStats = navTreeCtrl_->AppendItem(reports, _("Transaction Statistics"), 4, 4);
-    navTreeCtrl_->SetItemData(transactionStats, new mmTreeItemData("Transaction Statistics", new mmReportTransactionStats(m_core.get(), wxDateTime::Now().GetYear())));
+    navTreeCtrl_->SetItemData(transactionStats, new mmTreeItemData("Transaction Statistics", new mmReportTransactionStats(wxDateTime::Now().GetYear())));
 
      ///////////////////////////////////////////////////////////////////
 

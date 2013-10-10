@@ -947,35 +947,6 @@ void mmBankTransactionList::getCategoryStats(
     }
 }
 
-void mmBankTransactionList::getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const
-{
-    //Initialization
-    int end_year = wxDateTime::Now().GetYear();
-    for (wxDateTime::Month m = wxDateTime::Jan; m != wxDateTime::Inv_Month; m = wxDateTime::Month(m + 1))
-    {
-        std::map<int, int> month_stat;
-        for (int y = start_year; y <= end_year; y++)
-        {
-            month_stat[y] = 0;
-        }
-        stats[m] = month_stat;
-    }
-
-    //Calculations
-    for (const auto &trxs : transactions_)
-    {
-        if (trxs->status_ == "V")
-            continue; // skip
-
-        if (trxs->date_.GetYear() < start_year)
-            continue;
-        if (trxs->date_.GetYear() > end_year)
-            continue; //skip future dated transactions for next years
-
-        stats[trxs->date_.GetMonth()][trxs->date_.GetYear()] += 1;
-    }
-}
-
 wxDateTime mmBankTransactionList::getLastDate(int accountID) const
 {
     // Set initial date a long time in past

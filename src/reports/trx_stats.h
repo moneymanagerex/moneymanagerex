@@ -25,12 +25,12 @@
 class mmReportTransactionStats : public mmPrintableBase
 {
 public:
-    mmReportTransactionStats(mmCoreDB* core, int year);
+    mmReportTransactionStats(int year);
     wxString getHTMLText();
 
 private:
     int year_;
-    const mmCoreDB* core_;
+    void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;
 };
 
 #endif // _MM_EX_REPORTTRANSSTATS_H_

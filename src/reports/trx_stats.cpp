@@ -2,10 +2,10 @@
 #include "trx_stats.h"
 #include "htmlbuilder.h"
 #include "util.h"
+#include "model/Model_Checking.h"
 
-mmReportTransactionStats::mmReportTransactionStats(mmCoreDB* core, int year)
-: core_(core)
-, year_(year)
+mmReportTransactionStats::mmReportTransactionStats(int year)
+: year_(year)
 {}
 
 wxString mmReportTransactionStats::getHTMLText()
@@ -24,7 +24,7 @@ wxString mmReportTransactionStats::getHTMLText()
 
     std::map<int, int> grand_total;
     std::map<wxDateTime::Month, std::map<int, int> > totals;
-    core_->bTransactionList_.getTransactionStats(totals, year_ - yearsHist +1);
+    getTransactionStats(totals, year_ - yearsHist +1);
 
     //Header
     // Month 2014 2013 2012 2011 .....
@@ -67,4 +67,35 @@ wxString mmReportTransactionStats::getHTMLText()
     hb.end();
 
     return hb.getHTMLText();
+}
+
+void mmReportTransactionStats::getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const
+{
+    //Initialization
+    int end_year = wxDateTime::Now().GetYear();
+    for (wxDateTime::Month m = wxDateTime::Jan; m != wxDateTime::Inv_Month; m = wxDateTime::Month(m + 1))
+    {
+        std::map<int, int> month_stat;
+        for (int y = start_year; y <= end_year; y++)
+        {
+            month_stat[y] = 0;
+        }
+        stats[m] = month_stat;
+    }
+
+    //Calculations
+    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    for (const auto &trx : transactions)
+    {
+        if (trx.TRANSCODE == "V")
+            continue; // skip
+
+        wxDateTime trx_date = mmGetStorageStringAsDate(trx.TRANSDATE);
+        if (trx_date.GetYear() < start_year)
+            continue;
+        if (trx_date.GetYear() > end_year)
+            continue; //skip future dated transactions for next years
+
+        stats[trx_date.GetMonth()][trx_date.GetYear()] += 1;
+    }
 }

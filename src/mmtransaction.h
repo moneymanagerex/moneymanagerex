@@ -159,13 +159,12 @@ public:
     void UpdateCategory(int catID, int subCatID, wxString &fullCatStr);
 
     /* Query Functions */
-    void getTransactionStats(std::map<wxDateTime::Month, std::map<int, int> > &stats, int start_year) const;
 
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
                                 , mmDateRange* date_range
                                 , int accountID
                                 , bool group_by_account = false
-                                        , bool group_by_month = false) const;
+                                , bool group_by_month = false) const;
 
     void getTopCategoryStats(
         std::vector<std::pair<wxString, double> > &categoryStats
