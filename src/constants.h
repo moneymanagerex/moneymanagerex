@@ -155,13 +155,6 @@ static const wxString TRANSACTION_STATUSES[] =
     wxTRANSLATE("All Except Reconciled")
 };
 
-static const wxString TRANSACTION_TYPE[] =
-{
-    wxTRANSLATE("Withdrawal"),
-    wxTRANSLATE("Deposit"),
-    wxTRANSLATE("Transfer")
-};
-
 static const wxString TIPS[] =
 {
     wxTRANSLATE("Recommendation: Always backup your .mmb database file regularly."),

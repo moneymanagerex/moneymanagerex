@@ -155,7 +155,7 @@ void mmTransDialog::dataToControls()
     if (transaction_->TRANSAMOUNT > 0.0)
         edit_currency_rate = transaction_->TOTRANSAMOUNT / transaction_->TRANSAMOUNT;
 
-    for(const auto& i : TRANSACTION_TYPE)
+    for(const auto& i : Model_Checking::all_type())
         transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
     transaction_type_->SetStringSelection(wxGetTranslation(transaction_->TRANSCODE));
 

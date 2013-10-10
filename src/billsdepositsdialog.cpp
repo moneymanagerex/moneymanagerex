@@ -420,12 +420,8 @@ void mmBDDialog::CreateControls()
     transaction_type_ = new wxChoice( transactionPanel, ID_DIALOG_TRANS_TYPE,
                                  wxDefaultPosition, wxSize(110, -1));
 
-    // Restrict choise if accounts number less than 2
-    size = sizeof(TRANSACTION_TYPE)/sizeof(wxString);
-    if (Model_Account::checking_account_num() < 2) size--;
-    for(size_t i = 0; i < size; ++i)
-    transaction_type_->Append(wxGetTranslation(TRANSACTION_TYPE[i]),
-        new wxStringClientData(TRANSACTION_TYPE[i]));
+    for(const auto& i: Model_Checking::all_type())
+        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     transaction_type_->SetSelection(0);
     transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
