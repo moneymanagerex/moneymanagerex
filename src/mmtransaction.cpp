@@ -1021,66 +1021,6 @@ int mmBankTransactionList::getLastUsedPayeeID(int accountID, const wxString& sTy
     return payee_id;
 }
 
-void mmBankTransactionList::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
-                                          , mmDateRange* date_range, bool ignoreFuture) const
-{
-    //Get base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
-    }
-
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if (pBankTransaction->status_ == "V") continue; // skip
-        if (pBankTransaction->transType_ == TRANS_TYPE_TRANSFER_STR) continue;
-
-        if (ignoreFuture)
-        {
-            if (pBankTransaction->date_.IsLaterThan(wxDateTime::Now()))
-                continue; //skip future dated transactions
-        }
-
-        if (!pBankTransaction->date_.IsBetween(date_range->start_date(), date_range->end_date()))
-            continue; //skip
-
-        double convRate = acc_conv_rates[pBankTransaction->accountID_];
-
-        if (pBankTransaction->categID_ > -1)
-        {
-            if (pBankTransaction->value(-1) >= 0)
-                payeeStats[pBankTransaction->payeeID_].first += pBankTransaction->value(-1) * convRate;
-            else
-                payeeStats[pBankTransaction->payeeID_].second += pBankTransaction->value(-1) * convRate;
-        }
-        else
-        {
-            mmSplitTransactionEntries* splits = pBankTransaction->splitEntries_;
-            pBankTransaction->getSplitTransactions(splits);
-            for (const auto& entry : splits->entries_)
-            {
-                if (pBankTransaction->value(-1) * entry->splitAmount_ > 0)
-                    payeeStats[pBankTransaction->payeeID_].first -= entry->splitAmount_ * convRate;
-                else
-                    payeeStats[pBankTransaction->payeeID_].second -= entry->splitAmount_ * convRate;
-            }
-        }
-    }
-    //TODO: Sort values by amount
-    /*std::sort(valueList.begin(), valueList.end(),
-        [](const ValuePair& x, const ValuePair& y)
-    {
-        if (x.amount < 0 && y.amount < 0)
-            return x.amount < y.amount ;
-        else
-            return x.amount > y.amount;
-    }
-    );*/
-
-}
-
 double mmBankTransactionList::getAmountForCategory(
     int categID,
     int subcategID,

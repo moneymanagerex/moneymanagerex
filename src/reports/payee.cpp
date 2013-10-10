@@ -5,6 +5,7 @@
 #include "mmgraphpie.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Account.h"
 
 #include <algorithm>
 
@@ -13,9 +14,8 @@
 #define PAYEE_SORT_BY_EXPENSE   3
 #define PAYEE_SORT_BY_DIFF      4
 
-mmReportPayeeExpenses::mmReportPayeeExpenses(mmCoreDB* core, const wxString& title, mmDateRange* date_range)
+mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange* date_range)
     : mmPrintableBase(PAYEE_SORT_BY_DIFF)
-    , core_(core)
     , title_(title)
     , date_range_(date_range)
 {
@@ -35,7 +35,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
     std::vector<data_holder> data;
 
     std::map<int, std::pair<double, double> > payeeStats;
-    core_->bTransactionList_.getPayeeStats(payeeStats, date_range_
+    getPayeeStats(payeeStats, date_range_
         , mmIniOptions::instance().ignoreFutureTransactions_ );
 
     for (const auto& entry : payeeStats)
@@ -153,4 +153,59 @@ wxString mmReportPayeeExpenses::getHTMLText()
     gg.Generate(title_);
 
     return hb.getHTMLText();
+}
+
+void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double> > &payeeStats
+                                          , mmDateRange* date_range, bool ignoreFuture) const
+{
+    //Get base currency rates for all accounts
+    std::map<int, double> acc_conv_rates;
+    for (const auto& account: Model_Account::instance().all())
+    {
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+    }
+
+    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    for (const auto & trx: transactions)
+    {
+        if (trx.STATUS == "V") continue; // skip
+        if (trx.TRANSCODE == TRANS_TYPE_TRANSFER_STR) continue;
+
+        wxDateTime trx_date = mmGetStorageStringAsDate(trx.TRANSDATE);
+        if (ignoreFuture)
+        {
+            if (trx_date.IsLaterThan(wxDateTime::Now()))
+                continue; //skip future dated transactions
+        }
+
+        if (!trx_date.IsBetween(date_range->start_date(), date_range->end_date()))
+            continue; //skip
+
+        double convRate = acc_conv_rates[trx.ACCOUNTID];
+
+        if (trx.STATUS == TRANS_TYPE_DEPOSIT_STR)
+            payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
+        else
+            payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
+        /*if (trx.CATEGID > -1)
+        {
+            if (trx->value(-1) >= 0)
+                payeeStats[trx.PAYEEID].first += trx->value(-1) * convRate;
+            else
+                payeeStats[trx.PAYEEID].second += trx->value(-1) * convRate;
+        }
+        else
+        {
+            mmSplitTransactionEntries* splits = trx->splitEntries_;
+            trx->getSplitTransactions(splits);
+            for (const auto& entry : splits->entries_)
+            {
+                if (trx->value(-1) * entry->splitAmount_ > 0)
+                    payeeStats[trx.PAYEEID].first -= entry->splitAmount_ * convRate;
+                else
+                    payeeStats[trx.PAYEEID].second -= entry->splitAmount_ * convRate;
+            }
+        }*/
+    }
 }
