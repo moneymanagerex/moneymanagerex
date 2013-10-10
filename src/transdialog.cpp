@@ -192,7 +192,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
     wxStringClientData* type_obj = (wxStringClientData *)transaction_type_->GetClientObject(
         transaction_type_->GetSelection());
     if (type_obj) transaction_->TRANSCODE = type_obj->GetData();
-    if (sType != TRANS_TYPE_TRANSFER_STR && transaction_->TRANSCODE == TRANS_TYPE_TRANSFER_STR)
+    if (sType != TRANS_TYPE_TRANSFER_STR && Model_Checking::type(transaction_) == Model_Checking::TRANSFER)
     {
         resetPayeeString();
         transaction_->CATEGID = -1;
@@ -204,7 +204,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
 
 void mmTransDialog::updateControlsForTransType()
 {
-    bool transfer = transaction_->TRANSCODE == TRANS_TYPE_TRANSFER_STR;
+    bool transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
     if (!edit_)
     {
         if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
@@ -511,7 +511,7 @@ void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
 
-    bool transfer_transaction = transaction_type_->GetStringSelection() == wxGetTranslation(TRANS_TYPE_TRANSFER_STR);
+    bool transfer_transaction = transaction_type_->GetSelection() == Model_Checking::TRANSFER;
     if (!transfer_transaction)
     {
         const Model_Payee::Data *payee = Model_Payee::instance().get(cbPayee_->GetValue());
@@ -688,7 +688,7 @@ bool mmTransDialog::validateData()
         return false;
     }
 
-    bool bTransfer = (transaction_->TRANSCODE == TRANS_TYPE_TRANSFER_STR);
+    bool bTransfer = (Model_Checking::type(transaction_) == Model_Checking::TRANSFER);
     advancedToTransAmountSet_ = cAdvanced_->IsChecked();
 
     if (cSplit_->IsChecked())
@@ -874,7 +874,7 @@ void mmTransDialog::SetSplitState()
 
     bCategory_->SetLabel(fullCategoryName);
     cSplit_->SetValue(entries > 0);
-    cSplit_->Enable(transaction_->TRANSCODE != TRANS_TYPE_TRANSFER_STR);
+    cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
 
     textAmount_->Enable(entries < 1);
 }

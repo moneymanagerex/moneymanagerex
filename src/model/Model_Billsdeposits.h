@@ -11,13 +11,24 @@ class Model_Billsdeposits : public Model, public DB_Table_BILLSDEPOSITS_V1
     using DB_Table_BILLSDEPOSITS_V1::find;
     using DB_Table_BILLSDEPOSITS_V1::get;
 public:
+    enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
+public:
     Model_Billsdeposits(): Model(), DB_Table_BILLSDEPOSITS_V1() 
     {
     };
     ~Model_Billsdeposits() {};
 
 public:
-    wxArrayString types_;
+    static wxArrayString all_type()
+    {
+        wxArrayString types;
+        // keep the sequence with TYPE
+        types.Add(wxTRANSLATE("Withdrawal"));
+        types.Add(wxTRANSLATE("Deposit"));
+        types.Add(wxTRANSLATE("Transfer"));
+
+        return types;
+    }
 
 public:
     static Model_Billsdeposits& instance()
@@ -33,6 +44,16 @@ public:
 public:
     static wxDate NEXTOCCURRENCEDATE(const Data* r) { return Model::to_date(r->NEXTOCCURRENCEDATE); }
     static wxDate NEXTOCCURRENCEDATE(const Data& r) { return Model::to_date(r.NEXTOCCURRENCEDATE); }
+    static TYPE type(const Data* r)
+    {
+        if (r->TRANSCODE.CmpNoCase("Withdrawal") == 0)
+            return WITHDRAWAL;
+        else if (r->TRANSCODE.CmpNoCase("Deposit") == 0)
+            return DEPOSIT;
+        else
+            return TRANSFER;
+    }
+    static TYPE type(const Data& r) { return type(&r); }
 
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)

@@ -169,8 +169,8 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
     for (const auto & trx: transactions)
     {
-        if (trx.STATUS == "V") continue; // skip
-        if (trx.TRANSCODE == TRANS_TYPE_TRANSFER_STR) continue;
+        if (Model_Checking::status(trx) == Model_Checking::VOID) continue;
+        if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
 
         wxDateTime trx_date = mmGetStorageStringAsDate(trx.TRANSDATE);
         if (ignoreFuture)

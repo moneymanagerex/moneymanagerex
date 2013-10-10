@@ -102,8 +102,8 @@ public:
     {
         for (const auto& tran: Model_Checking::instance().all())
         {
-            if (tran.STATUS == "V" || tran.STATUS == "X") continue;
-            if (tran.TRANSCODE == TRANS_TYPE_TRANSFER_STR) continue; // skip
+            if (Model_Checking::status(tran) == Model_Checking::VOID) continue;
+            if (Model_Checking::type(tran) == Model_Checking::TRANSFER) continue;
             if (Model_Checking::TRANSDATE(tran) < date_range->start_date()) continue;
             if (Model_Checking::TRANSDATE(tran) > date_range->end_date()) continue;
             // TODO: see getTopCategoryStats

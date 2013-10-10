@@ -902,7 +902,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         th.toAccountID_    = q1.TOACCOUNTID;
         
         Model_Account::Data* account = Model_Account::instance().get(q1.ACCOUNTID);
-        Model_Account::Data* to_account = (q1.TRANSCODE == TRANS_TYPE_TRANSFER_STR ? Model_Account::instance().get(q1.TOACCOUNTID) : NULL);
+        Model_Account::Data* to_account = (Model_Billsdeposits::type(q1) == Model_Billsdeposits::TRANSFER ? Model_Account::instance().get(q1.TOACCOUNTID) : NULL);
         th.accountName_    = account ? account->ACCOUNTNAME : "";
         th.amt_            = q1.TRANSAMOUNT;
         th.toAmt_          = q1.TOTRANSAMOUNT;
