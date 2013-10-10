@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-10 21:23:03.924251.
+ *          AUTO GENERATED at 2013-10-11 07:31:04.970935.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -351,7 +351,9 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         if (!entity) 
         {
             if (id > 0)
+            {
                 wxLogError("%s: %d not found", this->name().c_str(), id);
+            }
         }
  
         return entity;
