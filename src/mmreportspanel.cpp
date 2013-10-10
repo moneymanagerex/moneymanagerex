@@ -143,10 +143,10 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         sData.ToLong(&transID);
         if (transID > 0)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_TRANSID, transID);
-            if (transactions.size() > 0)
+            const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
+            if (transaction)
             {
-                int account_id = transactions[0].ACCOUNTID;
+                int account_id = transaction->ACCOUNTID;
                 frame->setGotoAccountID(account_id, transID);
                 const Model_Account::Data* account = Model_Account::instance().get(account_id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
