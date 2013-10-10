@@ -32,14 +32,11 @@ static const wxString type_names[] = {_("Incomes"), _("Expences"), _("Total")};
 
 //----------------------------------------------------------------------------
 
-mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance(mmCoreDB *core
-, mmDateRange* date_range) :
-    mmPrintableBase(CATEGORY_SORT_BY_NAME)
-    , core_(core)
+mmReportCategoryOverTimePerformance::mmReportCategoryOverTimePerformance(mmDateRange* date_range)
+    : mmPrintableBase(CATEGORY_SORT_BY_NAME)
     , date_range_(date_range)
     , title_(_("Category Income/Expenses: %s"))
 {
-    wxASSERT(core_);
 }
 //----------------------------------------------------------------------------
 mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
@@ -53,7 +50,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
 
     //Get statistic
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    core_->bTransactionList_.getCategoryStats(categoryStats
+    Model_Category::instance().getCategoryStats(categoryStats
         , date_range_
         , mmIniOptions::instance().ignoreFutureTransactions_);
 
@@ -124,8 +121,13 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     }
     else
     {
-        // List is presorted by category name
         sortColumn_ = CATEGORY_SORT_BY_NAME;
+        std::stable_sort(data.begin(), data.end()
+            , [] (const data_holder& x, const data_holder& y)
+            {
+                return x.name < y.name;
+            }
+        );
     }
 
     mmHTMLBuilder hb;

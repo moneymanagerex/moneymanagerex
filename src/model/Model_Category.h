@@ -163,6 +163,76 @@ public:
 
         return sum > 0;
     }
+    static void getCategoryStats(
+        std::map<int, std::map<int, std::map<int, double> > > &categoryStats
+        , mmDateRange* date_range, bool ignoreFuture
+        , bool group_by_month = true, bool with_date = true)
+    {
+        //Initialization
+        //Get base currency rates for all accounts
+        std::map<int, double> acc_conv_rates;
+        for (const auto& account: Model_Account::instance().all())
+        {
+            Model_Currency::Data* currency = Model_Account::currency(account);
+            acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+        }
+        //Set std::map with zerros
+        double value = 0;
+        for (const auto& category: Model_Category::instance().all())
+        {
+            int columns = group_by_month ? 12 : 1;
+            wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
+            for (int m = 0; m < columns; m++)
+            {
+                wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
+                int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+                categoryStats[category.CATEGID][-1][idx] = value;
+                for (const auto & sub_category: Model_Category::sub_category(category))
+                {
+                    categoryStats[category.CATEGID][sub_category.SUBCATEGID][idx] = value;
+                }
+            }
+        }
+        //Calculations
+        for (const auto& transaction: Model_Checking::instance().all())
+        {
+            if (transaction.STATUS == "V") continue; // skip
+
+            if (ignoreFuture)
+            {
+                if (Model_Checking::to_date(transaction.TRANSDATE).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+                    continue; //skip future dated transactions
+            }
+
+            if (with_date)
+            {
+                if (!Model_Checking::to_date(transaction.TRANSDATE).IsBetween(date_range->start_date(), date_range->end_date()))
+                    continue; //skip
+            }
+
+            // We got this far, get the currency conversion rate for this account
+            double convRate = acc_conv_rates[transaction.ACCOUNTID];
+
+            wxDateTime d = Model_Checking::to_date(transaction.TRANSDATE);
+            int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+            int categID = transaction.CATEGID;
+
+            if (categID > -1)
+            {
+                if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR)
+                    categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::value(transaction) * convRate;
+            }
+            else
+            {
+                Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
+                for (const auto& entry: split)
+                {
+                    categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT 
+                        * convRate * (Model_Checking::value(transaction) < 0 ? -1 : 1);
+                }
+            }
+        }
+    }
 };
 
 #endif //
