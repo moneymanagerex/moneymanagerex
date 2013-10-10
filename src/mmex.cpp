@@ -93,7 +93,10 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 
 mmGUIApp::mmGUIApp(): m_frame(0), m_setting_db(0), m_optParam("")
 {
-    wxHandleFatalExceptions(); // tell the library to call OnFatalException()
+#if wxUSE_ON_FATAL_EXCEPTION
+    // catch fatal exceptions
+    wxHandleFatalExceptions(true);
+#endif
 }
 
 wxLocale& mmGUIApp::getLocale()
