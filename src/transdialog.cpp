@@ -367,7 +367,7 @@ void mmTransDialog::CreateControls()
     choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS,
         wxDefaultPosition, wxSize(110, -1));
 
-    for(const auto& i : TRANSACTION_STATUS)
+    for(const auto& i : Model_Checking::all_status())
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), flags);

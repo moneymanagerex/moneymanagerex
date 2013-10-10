@@ -135,15 +135,6 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_CURRENT_YEAR_STR
 };
 
-static const wxString TRANSACTION_STATUS[] =
-{
-    wxTRANSLATE("None"),
-    wxTRANSLATE("Reconciled"),
-    wxTRANSLATE("Void"),
-    wxTRANSLATE("Follow up"),
-    wxTRANSLATE("Duplicate")
-};
-
 static const wxString TRANSACTION_STATUSES[] =
 {
     wxTRANSLATE("None"),

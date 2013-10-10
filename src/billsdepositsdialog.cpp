@@ -407,9 +407,8 @@ void mmBDDialog::CreateControls()
     choiceStatus_ = new wxChoice( transactionPanel, ID_DIALOG_TRANS_STATUS,
                                   wxDefaultPosition, wxSize(110, -1));
 
-    for(size_t i = 0; i < sizeof(TRANSACTION_STATUS)/sizeof(wxString); ++i)
-        choiceStatus_->Append(wxGetTranslation(TRANSACTION_STATUS[i]),
-        new wxStringClientData(TRANSACTION_STATUS[i]));
+    for(const auto& i: Model_Checking::all_status())
+        choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
     choiceStatus_->SetSelection(mmIniOptions::instance().transStatusReconciled_);
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
 

@@ -26,6 +26,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Checking.h"
 
 enum
 {
@@ -568,9 +569,8 @@ void mmOptionsDialog::CreateControls()
         ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS,
         wxDefaultPosition, defaultDateChoice->GetSize());
 
-    for(size_t i = 0; i < sizeof(TRANSACTION_STATUS)/sizeof(wxString); ++i)
-        default_status->Append(wxGetTranslation(TRANSACTION_STATUS[i]),
-        new wxStringClientData(TRANSACTION_STATUS[i]));
+    for(const auto& i: Model_Checking::all_status())
+        default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     default_status->SetSelection(mmIniOptions::instance().transStatusReconciled_);
 

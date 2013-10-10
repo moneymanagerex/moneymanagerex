@@ -13,6 +13,7 @@ class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
     using DB_Table_CHECKINGACCOUNT_V1::get;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
+    enum STATUS { NONE = 0, RECONCILED, VOID, FOLLOWUP, DUPLICATE };
 public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {
@@ -29,6 +30,18 @@ public:
         types.Add(wxTRANSLATE("Transfer"));
 
         return types;
+    }
+    static wxArrayString all_status()
+    {
+        wxArrayString status;
+        // keep the sequence with STATUS
+        status.Add(wxTRANSLATE("None"));
+        status.Add(("Reconciled"));
+        status.Add(("Void"));
+        status.Add(("Follow up"));
+        status.Add(("Duplicate"));
+
+        return status;
     }
 public:
     static Model_Checking& instance()
@@ -96,6 +109,22 @@ public:
             return TRANSFER;
     }
     static TYPE type(const Data& r) { return type(&r); }
+    static STATUS status(const Data* r)
+    {
+        if (r->STATUS.CmpNoCase("None") == 0)
+            return NONE;
+        else if (r->STATUS.CmpNoCase("Reconciled") == 0 || r->STATUS.CmpNoCase("R") == 0)
+            return RECONCILED;
+        else if (r->STATUS.CmpNoCase("Void") == 0 || r->STATUS.CmpNoCase("V") == 0)
+            return VOID;
+        else if (r->STATUS.CmpNoCase("Follow up") == 0 || r->STATUS.CmpNoCase("F") == 0)
+            return FOLLOWUP;
+        else if (r->STATUS.CmpNoCase("Duplicate") == 0)
+            return DUPLICATE;
+        else 
+            return NONE;
+    }
+    static STATUS status(const Data& r) { return status(&r); }
     static double balance(const Data* r, int account_id = -1)
     {
         double sum = 0;
