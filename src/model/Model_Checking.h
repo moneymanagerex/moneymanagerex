@@ -16,15 +16,20 @@ public:
 public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {
-        this->types_.Add(wxTRANSLATE("Withdrawal"));
-        this->types_.Add(wxTRANSLATE("Deposit"));
-        this->types_.Add(wxTRANSLATE("Transfer"));
     };
     ~Model_Checking() {};
 
 public:
-    wxArrayString types_;
+    static wxArrayString all_type()
+    {
+        wxArrayString types;
+        // keep the sequence with TYPE
+        types.Add(wxTRANSLATE("Withdrawal"));
+        types.Add(wxTRANSLATE("Deposit"));
+        types.Add(wxTRANSLATE("Transfer"));
 
+        return types;
+    }
 public:
     static Model_Checking& instance()
     {
