@@ -1,8 +1,8 @@
 #ifndef _MM_EX_REPORTCASHFLOW_H_
 #define _MM_EX_REPORTCASHFLOW_H_
 
-#include "mmcoredb.h"
 #include "reportbase.h"
+#include <vector>
 
 class wxArrayString;
 class TTransactionBillEntry;
@@ -10,7 +10,7 @@ class TTransactionBillEntry;
 class mmReportCashFlow : public mmPrintableBase
 {
 public:
-    mmReportCashFlow(mmCoreDB* core, int cashflowreporttype);
+    mmReportCashFlow(int cashflowreporttype);
     ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
@@ -35,38 +35,37 @@ protected:
     bool activeTermAccounts_;
     bool activeBankAccounts_;
     int cashflowreporttype_;
-    const mmCoreDB* core_;
 };
 
 class mmReportCashFlowAllAccounts : public mmReportCashFlow
 {
 public:
-    mmReportCashFlowAllAccounts(mmCoreDB* core);
+    mmReportCashFlowAllAccounts();
 };
 
 class mmReportCashFlowBankAccounts : public mmReportCashFlow
 {
 public:
-    mmReportCashFlowBankAccounts(mmCoreDB* core);
+    mmReportCashFlowBankAccounts();
 };
 
 class mmReportCashFlowTermAccounts: public mmReportCashFlow
 {
 public:
-    mmReportCashFlowTermAccounts(mmCoreDB* core);
+    mmReportCashFlowTermAccounts();
 };
 
 class mmReportCashFlowSpecificAccounts: public mmReportCashFlow
 {
 public:
-    mmReportCashFlowSpecificAccounts(mmCoreDB* core);
+    mmReportCashFlowSpecificAccounts();
     virtual wxString getHTMLText();
 };
 
 class mmReportDailyCashFlowSpecificAccounts: public mmReportCashFlowSpecificAccounts
 {
 public:
-    mmReportDailyCashFlowSpecificAccounts(mmCoreDB* core);
+    mmReportDailyCashFlowSpecificAccounts();
 };
 
 #endif // _MM_EX_REPORTCASHFLOW_H_

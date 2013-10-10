@@ -92,10 +92,15 @@ public:
     }
     static Model_Currency::Data* currency(const Data& r) { return currency(&r); }
 public:
+    static Model_Checking::Data_Set transaction(const Data*r )
+    {
+        return Model_Checking::instance().find(Model_Checking::COL_ACCOUNTID, r->ACCOUNTID, Model_Checking::COL_TOACCOUNTID, r->ACCOUNTID, false);
+    }
+    static Model_Checking::Data_Set transaction(const Data& r) { return transaction(&r); }
     static double balance(const Data* r)
     {
         double sum = r->INITIALBAL;
-        for (const auto& tran: Model_Checking::instance().find(Model_Checking::COL_ACCOUNTID, r->ACCOUNTID, Model_Checking::COL_TOACCOUNTID, r->ACCOUNTID, false))
+        for (const auto& tran: transaction(r))
         {
            sum += Model_Checking::balance(tran, r->ACCOUNTID); 
         }

@@ -1152,29 +1152,6 @@ bool mmBankTransactionList::deleteTransaction(int accountID, int transactionID)
     return false;
 }
 
-bool mmBankTransactionList::getDailyBalance(int accountID, std::map<wxDateTime, double>& daily_balance, bool ignoreFuture) const
-{
-    wxDateTime now = wxDateTime::Now();
-    Model_Account::Data* account = Model_Account::instance().get(accountID);
-    Model_Currency::Data* currency = Model_Account::currency(account);
-    double convRate = currency->BASECONVRATE;
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
-        continue; // skip
-        if (pBankTransaction->status_ == "V")
-            continue; // skip
-        if (ignoreFuture)
-        {
-            if (pBankTransaction->date_.IsLaterThan(now))
-                continue; //skip future dated transactions
-        }
-        daily_balance[pBankTransaction->date_] += pBankTransaction->value(accountID) * convRate;
-    }
-    return true;
-}
-
-
 void mmBankTransactionList::deleteTransactions(int accountID)
 {
     for (const auto& pBankTransaction : transactions_ )

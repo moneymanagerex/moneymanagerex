@@ -8,9 +8,8 @@
 #include "model/Model_Account.h"
 #include "model/Model_Billsdeposits.h"
 
-mmReportCashFlow::mmReportCashFlow(mmCoreDB* core, int cashflowreporttype)
-: core_(core)
-, accountArray_(0)
+mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
+: accountArray_(0)
 , activeTermAccounts_(false)
 , activeBankAccounts_(false)
 , cashflowreporttype_(cashflowreporttype)
@@ -130,12 +129,14 @@ wxString mmReportCashFlow::getHTMLText_i()
             if (! activeBankAccounts_ && Model_Account::type(account) == Model_Account::CHECKING) continue;
         }
 
-
-        core_->bTransactionList_.getDailyBalance(account.ACCOUNTID, daily_balance);
-
         const Model_Currency::Data* currency = Model_Account::currency(account);
         tInitialBalance += account.INITIALBAL * currency->BASECONVRATE;
-   }
+
+        for (const auto& tran: Model_Account::transaction(account))
+        {
+            daily_balance[Model_Checking::TRANSDATE(tran)] += Model_Checking::balance(tran, account.ACCOUNTID) * currency->BASECONVRATE;
+        }
+    }
 
     // We now know the total balance on the account
     // Start by walking through the repeating transaction list
@@ -405,28 +406,28 @@ wxString mmReportCashFlow::getHTMLText_i()
 }
 
 //-----------------------------------------------------------------------------
-mmReportCashFlowAllAccounts::mmReportCashFlowAllAccounts(mmCoreDB* core)
-: mmReportCashFlow(core, 0)
+mmReportCashFlowAllAccounts::mmReportCashFlowAllAccounts()
+: mmReportCashFlow(0)
 {
     this->activateBankAccounts();
     this->activateTermAccounts();
 }
 
-mmReportCashFlowBankAccounts::mmReportCashFlowBankAccounts(mmCoreDB* core)
-: mmReportCashFlow(core, 0)
+mmReportCashFlowBankAccounts::mmReportCashFlowBankAccounts()
+: mmReportCashFlow(0)
 {
     this->activateBankAccounts();
 }
 
-mmReportCashFlowTermAccounts::mmReportCashFlowTermAccounts(mmCoreDB* core)
-: mmReportCashFlow(core, 0)
+mmReportCashFlowTermAccounts::mmReportCashFlowTermAccounts()
+: mmReportCashFlow(0)
 {
     this->activateTermAccounts();
 }
 
 //-----------------------------------------------------------------------------
-mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts(mmCoreDB* core)
-: mmReportCashFlow(core, 0)
+mmReportCashFlowSpecificAccounts::mmReportCashFlowSpecificAccounts()
+: mmReportCashFlow(0)
 {
     this->cashflowreporttype_ = 0;
 }
@@ -438,8 +439,8 @@ wxString mmReportCashFlowSpecificAccounts::getHTMLText()
 }
 
 //-----------------------------------------------------------------------------
-mmReportDailyCashFlowSpecificAccounts::mmReportDailyCashFlowSpecificAccounts(mmCoreDB* core)
-: mmReportCashFlowSpecificAccounts(core)
+mmReportDailyCashFlowSpecificAccounts::mmReportDailyCashFlowSpecificAccounts()
+: mmReportCashFlowSpecificAccounts()
 {
     this->cashflowreporttype_ = 1;
 }
