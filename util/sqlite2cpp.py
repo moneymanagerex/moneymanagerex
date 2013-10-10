@@ -466,7 +466,8 @@ struct DB_Table_%s : public DB_Table
         
         if (!entity) 
         {
-            wxLogError("%%s: %%d not found", this->name().c_str(), id);
+            if (id > 0)
+                wxLogError("%%s: %%d not found", this->name().c_str(), id);
         }
  
         return entity;
