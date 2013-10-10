@@ -188,6 +188,8 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
             payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
         else
             payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
+
+        //TODO: some split transaction may be withdrawal some deposit for one transaction
         /*if (trx.CATEGID > -1)
         {
             if (trx->value(-1) >= 0)
