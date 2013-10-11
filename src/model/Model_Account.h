@@ -94,7 +94,7 @@ public:
 public:
     static Model_Checking::Data_Set transaction(const Data*r )
     {
-        return Model_Checking::instance().find(Model_Checking::COL_ACCOUNTID, r->ACCOUNTID, Model_Checking::COL_TOACCOUNTID, r->ACCOUNTID, false);
+        return Model_Checking::instance().find(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID), false);
     }
     static Model_Checking::Data_Set transaction(const Data& r) { return transaction(&r); }
     static double balance(const Data* r)

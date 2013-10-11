@@ -489,8 +489,8 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
 
     treeCtrl_->SetItemText(selectedItemId_, text);
     wxString fullCatStr = Model_Category::full_name(categID, subcategID);
-    Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_CATEGID, categID
-        , Model_Checking::COL_SUBCATEGID, subcategID);
+    Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::CATEGID(categID)
+        , Model_Checking::SUBCATEGID(subcategID));
     for (auto &trx : transactions)
     {
         trx.CATEGID = categID;

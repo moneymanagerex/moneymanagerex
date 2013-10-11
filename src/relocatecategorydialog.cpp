@@ -163,17 +163,17 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
     if ((sourceCatID_ > 0) && (destCatID_ > 0) )
     {
         Model_Checking::Data_Set transactions = Model_Checking::instance()
-            .find(Model_Checking::COL_CATEGID, sourceCatID_
-                , Model_Checking::COL_SUBCATEGID, sourceSubCatID_);
+            .find(Model_Checking::CATEGID(sourceCatID_)
+                , Model_Checking::SUBCATEGID(sourceSubCatID_));
         Model_Splittransaction::Data_Set checking_split = Model_Splittransaction::instance()
-            .find(Model_Splittransaction::COL_CATEGID, sourceCatID_
-                , Model_Splittransaction::COL_SUBCATEGID, sourceSubCatID_);
+            .find(Model_Splittransaction::CATEGID(sourceCatID_)
+                , Model_Splittransaction::SUBCATEGID(sourceSubCatID_));
         Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance()
-            .find(Model_Billsdeposits::COL_CATEGID, sourceCatID_
-                , Model_Billsdeposits::COL_SUBCATEGID, sourceSubCatID_);
+            .find(Model_Billsdeposits::CATEGID(sourceCatID_)
+                , Model_Billsdeposits::SUBCATEGID(sourceSubCatID_));
         Model_Payee::Data_Set payees = Model_Payee::instance()
-            .find(Model_Payee::COL_CATEGID, sourceCatID_
-            ,Model_Payee::COL_SUBCATEGID, sourceSubCatID_);
+            .find(Model_Payee::CATEGID(sourceCatID_)
+            ,Model_Payee::SUBCATEGID(sourceSubCatID_));
 
         wxString msgStr = wxString()
             <<_("Please Confirm:")

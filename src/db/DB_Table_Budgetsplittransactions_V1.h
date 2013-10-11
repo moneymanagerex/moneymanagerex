@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 15:31:37.712883.
+ *          AUTO GENERATED at 2013-10-11 15:47:04.704673.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -419,20 +419,20 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
     }
 
     template<class V1, class V2>
-    Data_Set find(wxSQLite3Database* db, COLUMN col1, const V1& v1, COLUMN col2, const V2& v2, bool op_and = true)
+    Data_Set find(wxSQLite3Database* db, const V1& v1, const V2& v2, bool op_and = true)
     {
         Data_Set result;
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE "
-                                                                + column_to_name(col1) + " = ? "
+                                                                + V1::name() + " = ? "
                                                                 + (op_and ? " AND " : " OR ")
-                                                                + column_to_name(col2) + " = ?"
-                                                                + " ORDER BY " + column_to_name(col1)
-                                                                + "," + column_to_name(col2)
+                                                                + V2::name() + " = ?"
+                                                                + " ORDER BY " + V1::name()
+                                                                + "," + V2::name()
                                                                 );
-            stmt.Bind(1, v1);
-            stmt.Bind(2, v2);
+            stmt.Bind(1, v1.v_);
+            stmt.Bind(2, v2.v_);
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
             while(q.NextRow())

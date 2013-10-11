@@ -124,14 +124,14 @@ public:
     }
     static bool is_used(int id, int sub_id = -1)
     {
-        Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_CATEGID, id, Model_Billsdeposits::COL_SUBCATEGID, sub_id);
-        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::COL_CATEGID, id, Model_Checking::COL_SUBCATEGID, sub_id);
+        Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
+        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(id));
         return !deposits.empty() || !trans.empty();
     }
     static bool has_income(int id, int sub_id = -1)
     {
         double sum = 0.0;
-        for (const auto& tran: Model_Checking::instance().find(Model_Checking::COL_CATEGID, id, Model_Checking::COL_SUBCATEGID, sub_id))
+        for (const auto& tran: Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id)))
         {
             switch (Model_Checking::type(tran))
             {
