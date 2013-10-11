@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,17 +49,61 @@ struct DB_Table_STOCK_V1 : public DB_Table
         return true;
     }
 
-    struct STOCKID { wxString name() const { return "STOCKID"; } };
-    struct HELDAT { wxString name() const { return "HELDAT"; } };
-    struct PURCHASEDATE { wxString name() const { return "PURCHASEDATE"; } };
-    struct STOCKNAME { wxString name() const { return "STOCKNAME"; } };
-    struct SYMBOL { wxString name() const { return "SYMBOL"; } };
-    struct NUMSHARES { wxString name() const { return "NUMSHARES"; } };
-    struct PURCHASEPRICE { wxString name() const { return "PURCHASEPRICE"; } };
-    struct NOTES { wxString name() const { return "NOTES"; } };
-    struct CURRENTPRICE { wxString name() const { return "CURRENTPRICE"; } };
-    struct VALUE { wxString name() const { return "VALUE"; } };
-    struct COMMISSION { wxString name() const { return "COMMISSION"; } };
+    struct STOCKID : public DB_Column<int>
+    { 
+        static wxString name() { return "STOCKID"; } 
+        STOCKID(const int &v): DB_Column<int>(v) {}
+    };
+    struct HELDAT : public DB_Column<int>
+    { 
+        static wxString name() { return "HELDAT"; } 
+        HELDAT(const int &v): DB_Column<int>(v) {}
+    };
+    struct PURCHASEDATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "PURCHASEDATE"; } 
+        PURCHASEDATE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct STOCKNAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "STOCKNAME"; } 
+        STOCKNAME(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct SYMBOL : public DB_Column<wxString>
+    { 
+        static wxString name() { return "SYMBOL"; } 
+        SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct NUMSHARES : public DB_Column<double>
+    { 
+        static wxString name() { return "NUMSHARES"; } 
+        NUMSHARES(const double &v): DB_Column<double>(v) {}
+    };
+    struct PURCHASEPRICE : public DB_Column<double>
+    { 
+        static wxString name() { return "PURCHASEPRICE"; } 
+        PURCHASEPRICE(const double &v): DB_Column<double>(v) {}
+    };
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        NOTES(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct CURRENTPRICE : public DB_Column<double>
+    { 
+        static wxString name() { return "CURRENTPRICE"; } 
+        CURRENTPRICE(const double &v): DB_Column<double>(v) {}
+    };
+    struct VALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "VALUE"; } 
+        VALUE(const double &v): DB_Column<double>(v) {}
+    };
+    struct COMMISSION : public DB_Column<double>
+    { 
+        static wxString name() { return "COMMISSION"; } 
+        COMMISSION(const double &v): DB_Column<double>(v) {}
+    };
     typedef STOCKID PRIMARY;
     enum COLUMN
     {
@@ -461,7 +505,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -494,7 +538,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -503,11 +547,10 @@ struct DB_Table_STOCK_V1 : public DB_Table
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {

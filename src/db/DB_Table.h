@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -29,6 +29,13 @@
 #include "cajun/json/writer.h"
 
 class wxString;
+template<class V>
+struct DB_Column
+{
+    V v_;
+    DB_Column(const V& v): v_(v)
+    {}
+};
 
 struct DB_Table
 {

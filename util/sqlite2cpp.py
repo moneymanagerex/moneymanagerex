@@ -99,7 +99,11 @@ struct DB_Table_%s : public DB_Table
 
         for field in self._fields:
             s += '''
-    struct %s { wxString name() const { return "%s"; } };''' % (field['name'], field['name'])
+    struct %s : public DB_Column<%s>
+    { 
+        static wxString name() { return "%s"; } 
+        %s(const %s &v): DB_Column<%s>(v) {}
+    };''' % (field['name'], base_data_types_reverse[field['type']], field['name'], field['name'], base_data_types_reverse[field['type']], base_data_types_reverse[field['type']])
 
         s += '''
     typedef %s PRIMARY;''' % self._primay_key
@@ -498,12 +502,12 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
     }
-''' % self._table
+'''
 
         s +='''
     template<class V1, class V2>
@@ -533,22 +537,21 @@ struct DB_Table_%s : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
     }
-''' % self._table
+'''
 
         s +='''
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {
@@ -591,6 +594,13 @@ def generate_base_class(header):
 #include "cajun/json/writer.h"
 
 class wxString;
+template<class V>
+struct DB_Column
+{
+    V v_;
+    DB_Column(const V& v): v_(v)
+    {}
+};
 
 struct DB_Table
 {

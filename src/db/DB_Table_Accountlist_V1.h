@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,19 +49,71 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         return true;
     }
 
-    struct ACCOUNTID { wxString name() const { return "ACCOUNTID"; } };
-    struct ACCOUNTNAME { wxString name() const { return "ACCOUNTNAME"; } };
-    struct ACCOUNTTYPE { wxString name() const { return "ACCOUNTTYPE"; } };
-    struct ACCOUNTNUM { wxString name() const { return "ACCOUNTNUM"; } };
-    struct STATUS { wxString name() const { return "STATUS"; } };
-    struct NOTES { wxString name() const { return "NOTES"; } };
-    struct HELDAT { wxString name() const { return "HELDAT"; } };
-    struct WEBSITE { wxString name() const { return "WEBSITE"; } };
-    struct CONTACTINFO { wxString name() const { return "CONTACTINFO"; } };
-    struct ACCESSINFO { wxString name() const { return "ACCESSINFO"; } };
-    struct INITIALBAL { wxString name() const { return "INITIALBAL"; } };
-    struct FAVORITEACCT { wxString name() const { return "FAVORITEACCT"; } };
-    struct CURRENCYID { wxString name() const { return "CURRENCYID"; } };
+    struct ACCOUNTID : public DB_Column<int>
+    { 
+        static wxString name() { return "ACCOUNTID"; } 
+        ACCOUNTID(const int &v): DB_Column<int>(v) {}
+    };
+    struct ACCOUNTNAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ACCOUNTNAME"; } 
+        ACCOUNTNAME(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct ACCOUNTTYPE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ACCOUNTTYPE"; } 
+        ACCOUNTTYPE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct ACCOUNTNUM : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ACCOUNTNUM"; } 
+        ACCOUNTNUM(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct STATUS : public DB_Column<wxString>
+    { 
+        static wxString name() { return "STATUS"; } 
+        STATUS(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        NOTES(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct HELDAT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "HELDAT"; } 
+        HELDAT(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct WEBSITE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "WEBSITE"; } 
+        WEBSITE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct CONTACTINFO : public DB_Column<wxString>
+    { 
+        static wxString name() { return "CONTACTINFO"; } 
+        CONTACTINFO(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct ACCESSINFO : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ACCESSINFO"; } 
+        ACCESSINFO(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct INITIALBAL : public DB_Column<double>
+    { 
+        static wxString name() { return "INITIALBAL"; } 
+        INITIALBAL(const double &v): DB_Column<double>(v) {}
+    };
+    struct FAVORITEACCT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "FAVORITEACCT"; } 
+        FAVORITEACCT(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct CURRENCYID : public DB_Column<int>
+    { 
+        static wxString name() { return "CURRENCYID"; } 
+        CURRENCYID(const int &v): DB_Column<int>(v) {}
+    };
     typedef ACCOUNTID PRIMARY;
     enum COLUMN
     {
@@ -479,7 +531,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ACCOUNTLIST_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -512,7 +564,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ACCOUNTLIST_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -521,11 +573,10 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {

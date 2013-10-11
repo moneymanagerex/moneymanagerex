@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,14 +49,46 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         return true;
     }
 
-    struct ASSETID { wxString name() const { return "ASSETID"; } };
-    struct STARTDATE { wxString name() const { return "STARTDATE"; } };
-    struct ASSETNAME { wxString name() const { return "ASSETNAME"; } };
-    struct VALUE { wxString name() const { return "VALUE"; } };
-    struct VALUECHANGE { wxString name() const { return "VALUECHANGE"; } };
-    struct NOTES { wxString name() const { return "NOTES"; } };
-    struct VALUECHANGERATE { wxString name() const { return "VALUECHANGERATE"; } };
-    struct ASSETTYPE { wxString name() const { return "ASSETTYPE"; } };
+    struct ASSETID : public DB_Column<int>
+    { 
+        static wxString name() { return "ASSETID"; } 
+        ASSETID(const int &v): DB_Column<int>(v) {}
+    };
+    struct STARTDATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "STARTDATE"; } 
+        STARTDATE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct ASSETNAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ASSETNAME"; } 
+        ASSETNAME(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct VALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "VALUE"; } 
+        VALUE(const double &v): DB_Column<double>(v) {}
+    };
+    struct VALUECHANGE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "VALUECHANGE"; } 
+        VALUECHANGE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        NOTES(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct VALUECHANGERATE : public DB_Column<double>
+    { 
+        static wxString name() { return "VALUECHANGERATE"; } 
+        VALUECHANGERATE(const double &v): DB_Column<double>(v) {}
+    };
+    struct ASSETTYPE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "ASSETTYPE"; } 
+        ASSETTYPE(const wxString &v): DB_Column<wxString>(v) {}
+    };
     typedef ASSETID PRIMARY;
     enum COLUMN
     {
@@ -424,7 +456,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -457,7 +489,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -466,11 +498,10 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {

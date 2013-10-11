@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,20 +49,76 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         return true;
     }
 
-    struct TRANSID { wxString name() const { return "TRANSID"; } };
-    struct ACCOUNTID { wxString name() const { return "ACCOUNTID"; } };
-    struct TOACCOUNTID { wxString name() const { return "TOACCOUNTID"; } };
-    struct PAYEEID { wxString name() const { return "PAYEEID"; } };
-    struct TRANSCODE { wxString name() const { return "TRANSCODE"; } };
-    struct TRANSAMOUNT { wxString name() const { return "TRANSAMOUNT"; } };
-    struct STATUS { wxString name() const { return "STATUS"; } };
-    struct TRANSACTIONNUMBER { wxString name() const { return "TRANSACTIONNUMBER"; } };
-    struct NOTES { wxString name() const { return "NOTES"; } };
-    struct CATEGID { wxString name() const { return "CATEGID"; } };
-    struct SUBCATEGID { wxString name() const { return "SUBCATEGID"; } };
-    struct TRANSDATE { wxString name() const { return "TRANSDATE"; } };
-    struct FOLLOWUPID { wxString name() const { return "FOLLOWUPID"; } };
-    struct TOTRANSAMOUNT { wxString name() const { return "TOTRANSAMOUNT"; } };
+    struct TRANSID : public DB_Column<int>
+    { 
+        static wxString name() { return "TRANSID"; } 
+        TRANSID(const int &v): DB_Column<int>(v) {}
+    };
+    struct ACCOUNTID : public DB_Column<int>
+    { 
+        static wxString name() { return "ACCOUNTID"; } 
+        ACCOUNTID(const int &v): DB_Column<int>(v) {}
+    };
+    struct TOACCOUNTID : public DB_Column<int>
+    { 
+        static wxString name() { return "TOACCOUNTID"; } 
+        TOACCOUNTID(const int &v): DB_Column<int>(v) {}
+    };
+    struct PAYEEID : public DB_Column<int>
+    { 
+        static wxString name() { return "PAYEEID"; } 
+        PAYEEID(const int &v): DB_Column<int>(v) {}
+    };
+    struct TRANSCODE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "TRANSCODE"; } 
+        TRANSCODE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct TRANSAMOUNT : public DB_Column<double>
+    { 
+        static wxString name() { return "TRANSAMOUNT"; } 
+        TRANSAMOUNT(const double &v): DB_Column<double>(v) {}
+    };
+    struct STATUS : public DB_Column<wxString>
+    { 
+        static wxString name() { return "STATUS"; } 
+        STATUS(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct TRANSACTIONNUMBER : public DB_Column<wxString>
+    { 
+        static wxString name() { return "TRANSACTIONNUMBER"; } 
+        TRANSACTIONNUMBER(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct NOTES : public DB_Column<wxString>
+    { 
+        static wxString name() { return "NOTES"; } 
+        NOTES(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct CATEGID : public DB_Column<int>
+    { 
+        static wxString name() { return "CATEGID"; } 
+        CATEGID(const int &v): DB_Column<int>(v) {}
+    };
+    struct SUBCATEGID : public DB_Column<int>
+    { 
+        static wxString name() { return "SUBCATEGID"; } 
+        SUBCATEGID(const int &v): DB_Column<int>(v) {}
+    };
+    struct TRANSDATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "TRANSDATE"; } 
+        TRANSDATE(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct FOLLOWUPID : public DB_Column<int>
+    { 
+        static wxString name() { return "FOLLOWUPID"; } 
+        FOLLOWUPID(const int &v): DB_Column<int>(v) {}
+    };
+    struct TOTRANSAMOUNT : public DB_Column<double>
+    { 
+        static wxString name() { return "TOTRANSAMOUNT"; } 
+        TOTRANSAMOUNT(const double &v): DB_Column<double>(v) {}
+    };
     typedef TRANSID PRIMARY;
     enum COLUMN
     {
@@ -496,7 +552,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -529,7 +585,7 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CHECKINGACCOUNT_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -538,11 +594,10 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {

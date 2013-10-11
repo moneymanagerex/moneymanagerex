@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,12 +49,36 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         return true;
     }
 
-    struct BUDGETENTRYID { wxString name() const { return "BUDGETENTRYID"; } };
-    struct BUDGETYEARID { wxString name() const { return "BUDGETYEARID"; } };
-    struct CATEGID { wxString name() const { return "CATEGID"; } };
-    struct SUBCATEGID { wxString name() const { return "SUBCATEGID"; } };
-    struct PERIOD { wxString name() const { return "PERIOD"; } };
-    struct AMOUNT { wxString name() const { return "AMOUNT"; } };
+    struct BUDGETENTRYID : public DB_Column<int>
+    { 
+        static wxString name() { return "BUDGETENTRYID"; } 
+        BUDGETENTRYID(const int &v): DB_Column<int>(v) {}
+    };
+    struct BUDGETYEARID : public DB_Column<int>
+    { 
+        static wxString name() { return "BUDGETYEARID"; } 
+        BUDGETYEARID(const int &v): DB_Column<int>(v) {}
+    };
+    struct CATEGID : public DB_Column<int>
+    { 
+        static wxString name() { return "CATEGID"; } 
+        CATEGID(const int &v): DB_Column<int>(v) {}
+    };
+    struct SUBCATEGID : public DB_Column<int>
+    { 
+        static wxString name() { return "SUBCATEGID"; } 
+        SUBCATEGID(const int &v): DB_Column<int>(v) {}
+    };
+    struct PERIOD : public DB_Column<wxString>
+    { 
+        static wxString name() { return "PERIOD"; } 
+        PERIOD(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct AMOUNT : public DB_Column<double>
+    { 
+        static wxString name() { return "AMOUNT"; } 
+        AMOUNT(const double &v): DB_Column<double>(v) {}
+    };
     typedef BUDGETENTRYID PRIMARY;
     enum COLUMN
     {
@@ -404,7 +428,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -437,7 +461,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("BUDGETTABLE_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -446,11 +470,10 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {

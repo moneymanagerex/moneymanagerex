@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 10:03:32.476419.
+ *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -49,17 +49,61 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return true;
     }
 
-    struct CURRENCYID { wxString name() const { return "CURRENCYID"; } };
-    struct CURRENCYNAME { wxString name() const { return "CURRENCYNAME"; } };
-    struct PFX_SYMBOL { wxString name() const { return "PFX_SYMBOL"; } };
-    struct SFX_SYMBOL { wxString name() const { return "SFX_SYMBOL"; } };
-    struct DECIMAL_POINT { wxString name() const { return "DECIMAL_POINT"; } };
-    struct GROUP_SEPARATOR { wxString name() const { return "GROUP_SEPARATOR"; } };
-    struct UNIT_NAME { wxString name() const { return "UNIT_NAME"; } };
-    struct CENT_NAME { wxString name() const { return "CENT_NAME"; } };
-    struct SCALE { wxString name() const { return "SCALE"; } };
-    struct BASECONVRATE { wxString name() const { return "BASECONVRATE"; } };
-    struct CURRENCY_SYMBOL { wxString name() const { return "CURRENCY_SYMBOL"; } };
+    struct CURRENCYID : public DB_Column<int>
+    { 
+        static wxString name() { return "CURRENCYID"; } 
+        CURRENCYID(const int &v): DB_Column<int>(v) {}
+    };
+    struct CURRENCYNAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "CURRENCYNAME"; } 
+        CURRENCYNAME(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct PFX_SYMBOL : public DB_Column<wxString>
+    { 
+        static wxString name() { return "PFX_SYMBOL"; } 
+        PFX_SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct SFX_SYMBOL : public DB_Column<wxString>
+    { 
+        static wxString name() { return "SFX_SYMBOL"; } 
+        SFX_SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct DECIMAL_POINT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "DECIMAL_POINT"; } 
+        DECIMAL_POINT(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct GROUP_SEPARATOR : public DB_Column<wxString>
+    { 
+        static wxString name() { return "GROUP_SEPARATOR"; } 
+        GROUP_SEPARATOR(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct UNIT_NAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "UNIT_NAME"; } 
+        UNIT_NAME(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct CENT_NAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "CENT_NAME"; } 
+        CENT_NAME(const wxString &v): DB_Column<wxString>(v) {}
+    };
+    struct SCALE : public DB_Column<int>
+    { 
+        static wxString name() { return "SCALE"; } 
+        SCALE(const int &v): DB_Column<int>(v) {}
+    };
+    struct BASECONVRATE : public DB_Column<double>
+    { 
+        static wxString name() { return "BASECONVRATE"; } 
+        BASECONVRATE(const double &v): DB_Column<double>(v) {}
+    };
+    struct CURRENCY_SYMBOL : public DB_Column<wxString>
+    { 
+        static wxString name() { return "CURRENCY_SYMBOL"; } 
+        CURRENCY_SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+    };
     typedef CURRENCYID PRIMARY;
     enum COLUMN
     {
@@ -457,7 +501,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYFORMATS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -490,7 +534,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CURRENCYFORMATS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -499,11 +543,10 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
-        PRIMARY primay;
         try
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
-                + "," + primay.name());
+                + "," + PRIMARY::name());
 
             while(q.NextRow())
             {
