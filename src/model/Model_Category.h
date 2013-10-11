@@ -102,7 +102,7 @@ public:
     {
         for (const auto& tran: Model_Checking::instance().all())
         {
-            if (Model_Checking::status(tran) == Model_Checking::VOID) continue;
+            if (Model_Checking::status(tran) == Model_Checking::VOID_) continue;
             if (Model_Checking::type(tran) == Model_Checking::TRANSFER) continue;
             if (Model_Checking::TRANSDATE(tran) < date_range->start_date()) continue;
             if (Model_Checking::TRANSDATE(tran) > date_range->end_date()) continue;

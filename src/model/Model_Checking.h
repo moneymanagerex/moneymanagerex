@@ -13,7 +13,7 @@ class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
     using DB_Table_CHECKINGACCOUNT_V1::get;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS { NONE = 0, RECONCILED, VOID, FOLLOWUP, DUPLICATE };
+    enum STATUS { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {
@@ -116,11 +116,11 @@ public:
         else if (r->STATUS.CmpNoCase("Reconciled") == 0 || r->STATUS.CmpNoCase("R") == 0)
             return RECONCILED;
         else if (r->STATUS.CmpNoCase("Void") == 0 || r->STATUS.CmpNoCase("V") == 0)
-            return VOID;
+            return VOID_;
         else if (r->STATUS.CmpNoCase("Follow up") == 0 || r->STATUS.CmpNoCase("F") == 0)
             return FOLLOWUP;
         else if (r->STATUS.CmpNoCase("Duplicate") == 0)
-            return DUPLICATE;
+            return DUPLICATE_;
         else 
             return NONE;
     }
