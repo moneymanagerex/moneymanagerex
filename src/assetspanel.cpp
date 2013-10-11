@@ -471,7 +471,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
     if (this->m_filter_type == Model_Asset::TYPE(-1)) // ALL
         this->m_assets = Model_Asset::instance().all();
     else
-        this->m_assets = Model_Asset::instance().find(Model_Asset::COL_ASSETTYPE, Model_Asset::all_type()[m_filter_type]);
+        this->m_assets = Model_Asset::instance().find(Model_Asset::ASSETTYPE(Model_Asset::all_type()[m_filter_type]));
     this->sortTable();
 
     m_listCtrlAssets->SetItemCount(this->m_assets.size());

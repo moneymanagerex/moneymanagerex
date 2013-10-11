@@ -437,12 +437,12 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 
     int cnt = 0, selected_item = -1;
     const Model_Account::Data* account = Model_Account::instance().get(stock_panel_->accountID_);
-    for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, stock_panel_->accountID_))
+    for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(stock_panel_->accountID_)))
     {
         int purchasedTime = 0;
         double totalNumShares = 0;
         double avgPurchasePrice = 0;
-        for (const auto& s: Model_Stock::instance().find(Model_Stock::COL_SYMBOL, stock.SYMBOL))
+        for (const auto& s: Model_Stock::instance().find(Model_Stock::SYMBOL(stock.SYMBOL)))
         {
             purchasedTime++;
             totalNumShares += s.NUMSHARES;

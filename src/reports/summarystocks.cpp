@@ -62,7 +62,7 @@ wxString mmReportSummaryStocks::getHTMLText()
         account.total = Model_Account::investment_balance(a).second; 
         account.data.clear();
 
-        for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, a.ACCOUNTID))
+        for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(a.ACCOUNTID)))
         {
             const Model_Currency::Data* currency = Model_Account::currency(a);
             stockBalance += currency->BASECONVRATE * stock.VALUE;

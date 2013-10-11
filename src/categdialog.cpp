@@ -237,7 +237,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 
     if (selectedItemId_ == root_)
     {
-        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGNAME, text);
+        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
         if (categories.size() > 0)
         {
             wxString errMsg = _("Category with same name exists");
@@ -454,7 +454,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     Model_Subcategory::Data* sub_category = (subcategID != -1 ? Model_Subcategory::instance().get(subcategID) : 0);
     if (subcategID == -1)
     {
-        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGNAME, text);
+        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
         if (categories.size() > 0)
         {
             wxString errMsg = _("Category with same name exists");
@@ -519,7 +519,7 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& 
 
 void mmCategDialog::setTreeSelection(int &category_id, int &subcategory_id)
 {
-    Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::COL_CATEGID, category_id);
+    Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGID(category_id));
     if (!categories.empty())
     {
         Model_Category::Data *category = Model_Category::instance().get(category_id);

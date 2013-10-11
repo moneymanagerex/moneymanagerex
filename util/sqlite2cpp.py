@@ -488,7 +488,7 @@ struct DB_Table_%s : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
                 + V::name() + " = ?"
                 );
-            stmt.Bind(1, v);
+            stmt.Bind(1, v.v_);
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
             while(q.NextRow())

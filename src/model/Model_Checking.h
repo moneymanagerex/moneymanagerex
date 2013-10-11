@@ -61,9 +61,9 @@ public:
         return all(db_, col, asc);
     }
     template<class V>
-    Data_Set find(COLUMN col, const V& v)
+    Data_Set find(const V& v)
     {
-        return find(db_, col, v);
+        return find(db_, v);
     }
     template<class V1, class V2>
     Data_Set find(COLUMN col1, const V1& v1, COLUMN col2, const V2& v2, bool op_and = true)
@@ -90,11 +90,11 @@ public:
 public:
     static Model_Splittransaction::Data_Set splittransaction(const Data* r)
     {
-        return Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, r->TRANSID);
+        return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r->TRANSID));
     }
     static Model_Splittransaction::Data_Set splittransaction(const Data& r)
     {
-        return Model_Splittransaction::instance().find(Model_Splittransaction::COL_TRANSID, r.TRANSID);
+        return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
     }
 public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }

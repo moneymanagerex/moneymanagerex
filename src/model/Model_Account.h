@@ -61,9 +61,9 @@ public:
         return all(db_, col, asc);
     }
     template<class V>
-    Data_Set find(COLUMN col, const V& v)
+    Data_Set find(const V& v)
     {
-        return find(db_, col, v);
+        return find(db_, v);
     }
     Data* get(int id)
     {
@@ -72,7 +72,7 @@ public:
     Data* get(const wxString& name)
     {
         Data* account = 0;
-        Data_Set items = this->find(this->db_, COL_ACCOUNTNAME, name);
+        Data_Set items = this->find(this->db_, ACCOUNTNAME(name));
         if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
         return account;
     }
@@ -110,7 +110,7 @@ public:
     static std::pair<double, double> investment_balance(const Data* r)
     {
         std::pair<double /*origianl input value*/, double /**/> sum;
-        for (const auto& stock: Model_Stock::instance().find(Model_Stock::COL_HELDAT, r->ACCOUNTID))
+        for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
         {
             sum.first += stock.VALUE;
             sum.second += Model_Stock::value(stock);
@@ -149,7 +149,7 @@ public:
     }
     static bool is_used(const Model_Currency::Data* c)
     {
-        Data_Set accounts = Model_Account::instance().find(COL_CURRENCYID, c->CURRENCYID);
+        Data_Set accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
         return !accounts.empty();
        
     }
@@ -159,11 +159,11 @@ public:
     }
     static int checking_account_num()
     {
-        return Model_Account::instance().find(COL_ACCOUNTTYPE, "Checking").size();
+        return Model_Account::instance().find(ACCOUNTTYPE("Checking")).size();
     }
     static int investment_account_num()
     {
-        return Model_Account::instance().find(COL_ACCOUNTTYPE, "Investment").size();
+        return Model_Account::instance().find(ACCOUNTTYPE("Investment")).size();
     }
 };
 

@@ -58,7 +58,7 @@ public:
     Data* get(const wxString& name)
     {
         Data* payee = 0;
-        Data_Set items = this->find(this->db_, COL_PAYEENAME, name);
+        Data_Set items = this->find(this->db_, PAYEENAME(name));
         if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);
         return payee;
     }
@@ -94,8 +94,8 @@ public:
 public:
     static bool is_used(int id)
     {
-        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, id);
-        Model_Billsdeposits::Data_Set bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, id);
+        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
+        Model_Billsdeposits::Data_Set bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
         return !trans.empty() || !bills.empty();
     }
     static bool is_used(const Data* record)

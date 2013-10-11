@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 15:10:52.121003.
+ *          AUTO GENERATED at 2013-10-11 15:23:52.028250.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -414,7 +414,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
                 + V::name() + " = ?"
                 );
-            stmt.Bind(1, v);
+            stmt.Bind(1, v.v_);
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
             while(q.NextRow())

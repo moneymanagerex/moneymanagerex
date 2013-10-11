@@ -149,12 +149,12 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
         int ans = wxMessageBox(msgStr,_("Payee Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
         if (ans == wxOK)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::COL_PAYEEID, source_payee->PAYEEID);
+            Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(source_payee->PAYEEID));
             for (auto &entry : transactions)
                 entry.PAYEEID = dest_payee->PAYEEID;
             changedRecords_ += Model_Checking::instance().save(transactions);
 
-            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::COL_PAYEEID, source_payee->PAYEEID);
+            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(source_payee->PAYEEID));
             for (auto &entry : billsdeposits)
                 entry.PAYEEID = dest_payee->PAYEEID;
             changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);

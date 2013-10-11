@@ -39,9 +39,9 @@ public:
         return all(db_, col, asc);
     }
     template<class V>
-    Data_Set find(COLUMN col, const V& v)
+    Data_Set find(const V& v)
     {
-        return find(db_, col, v);
+        return find(db_, v);
     }
     Data* get(int id)
     {

@@ -40,9 +40,9 @@ public:
         return all(db_, col, asc);
     }
     template<class V>
-    Data_Set find(COLUMN col, const V& v)
+    Data_Set find(const V& v)
     {
-        return find(db_, col, v);
+        return find(db_, v);
     }
     Data* get(int id)
     {
@@ -51,7 +51,7 @@ public:
     Data* get(const wxString& name)
     {
         Data* category = 0;
-        Data_Set items = this->find(this->db_, COL_CATEGNAME, name);
+        Data_Set items = this->find(this->db_, CATEGNAME(name));
         if (!items.empty()) category = this->get(items[0].CATEGID, this->db_);
         return category;
     }
@@ -67,11 +67,11 @@ public:
 public:
     static Model_Subcategory::Data_Set sub_category(const Data* r)
     {
-        return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r->CATEGID);
+        return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r->CATEGID));
     }
     static Model_Subcategory::Data_Set sub_category(const Data& r)
     {
-        return Model_Subcategory::instance().find(Model_Subcategory::COL_CATEGID, r.CATEGID);
+        return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r.CATEGID));
     }
     static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0)
     {
@@ -83,7 +83,7 @@ public:
     }
     static wxString full_name(int category_id, int subcategory_id = -1)
     {
-        Data_Set categories = instance().find(COL_CATEGID, category_id);
+        Data_Set categories = instance().find(CATEGID(category_id));
         if (categories.size() < 1) return "";
         Data* category = instance().get(category_id);
         if (category && subcategory_id < 0)
