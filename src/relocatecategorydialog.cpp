@@ -198,31 +198,22 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 
             for (auto &entry : billsdeposits)
             {
-                if (sourceCatID_==entry.CATEGID && sourceSubCatID_==entry.SUBCATEGID)
-                {
-                    entry.CATEGID = destCatID_;
-                    entry.SUBCATEGID = destSubCatID_;
-                }
+                entry.CATEGID = destCatID_;
+                entry.SUBCATEGID = destSubCatID_;
             }
             changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
 
             for (auto &entry : checking_split)
             {
-                if (sourceCatID_==entry.CATEGID && sourceSubCatID_==entry.SUBCATEGID)
-                {
-                    entry.CATEGID = destCatID_;
-                    entry.SUBCATEGID = destSubCatID_;
-                }
+                entry.CATEGID = destCatID_;
+                entry.SUBCATEGID = destSubCatID_;
             }
             changedRecords_ += Model_Splittransaction::instance().save(checking_split);
 
             for (auto &entry : payees)
             {
-                if (sourceCatID_==entry.CATEGID && sourceSubCatID_==entry.SUBCATEGID)
-                {
-                    entry.CATEGID = destCatID_;
-                    entry.SUBCATEGID = destSubCatID_;
-                }
+                entry.CATEGID = destCatID_;
+                entry.SUBCATEGID = destSubCatID_;
             }
             changedRecords_ += Model_Payee::instance().save(payees);
 
