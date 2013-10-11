@@ -480,6 +480,35 @@ struct DB_Table_%s : public DB_Table
 
         s +='''
     template<class V>
+    Data_Set find(wxSQLite3Database* db, const V& v)
+    {
+        Data_Set result;
+        try
+        {
+            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
+                + V::name() + " = ?"
+                );
+            stmt.Bind(1, v);
+            wxSQLite3ResultSet q = stmt.ExecuteQuery();
+
+            while(q.NextRow())
+            {
+                Self::Data entity(q, this);
+                result.push_back(entity);
+            }
+
+            q.Finalize();
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
+        }
+
+        return result;
+    }
+'''
+        s +='''
+    template<class V>
     Data_Set find(wxSQLite3Database* db, COLUMN col, const V& v)
     {
         Data_Set result;
@@ -508,7 +537,6 @@ struct DB_Table_%s : public DB_Table
         return result;
     }
 '''
-
         s +='''
     template<class V1, class V2>
     Data_Set find(wxSQLite3Database* db, COLUMN col1, const V1& v1, COLUMN col2, const V2& v2, bool op_and = true)

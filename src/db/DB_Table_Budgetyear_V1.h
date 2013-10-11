@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 14:41:03.820623.
+ *          AUTO GENERATED at 2013-10-11 15:10:52.121003.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -339,6 +339,34 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         }
  
         return entity;
+    }
+
+    template<class V>
+    Data_Set find(wxSQLite3Database* db, const V& v)
+    {
+        Data_Set result;
+        try
+        {
+            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
+                + V::name() + " = ?"
+                );
+            stmt.Bind(1, v);
+            wxSQLite3ResultSet q = stmt.ExecuteQuery();
+
+            while(q.NextRow())
+            {
+                Self::Data entity(q, this);
+                result.push_back(entity);
+            }
+
+            q.Finalize();
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
+        }
+
+        return result;
     }
 
     template<class V>
