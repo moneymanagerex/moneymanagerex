@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 15:23:52.028250.
+ *          AUTO GENERATED at 2013-10-11 15:31:37.712883.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -400,35 +400,6 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
                 + V::name() + " = ?"
                 );
             stmt.Bind(1, v.v_);
-            wxSQLite3ResultSet q = stmt.ExecuteQuery();
-
-            while(q.NextRow())
-            {
-                Self::Data entity(q, this);
-                result.push_back(entity);
-            }
-
-            q.Finalize();
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
-        }
-
-        return result;
-    }
-
-    template<class V>
-    Data_Set find(wxSQLite3Database* db, COLUMN col, const V& v)
-    {
-        Data_Set result;
-        try
-        {
-            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
-                + column_to_name(col) + " = ?"
-                + " ORDER BY " + column_to_name(col)
-                );
-            stmt.Bind(1, v);
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
             while(q.NextRow())
