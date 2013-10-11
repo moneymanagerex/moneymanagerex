@@ -146,29 +146,6 @@ public:
         return sum;
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
-    static double value(const Data& r, int account_id = -1)
-    {
-        double balance = 0.0;
-        switch (type(r))
-        {
-        case WITHDRAWAL:
-            balance -= r.TRANSAMOUNT;
-            break;
-        case DEPOSIT:
-            balance = r.TRANSAMOUNT;
-        case TRANSFER:
-            //Bug fix for broken transactions (as result of wrong import) if account and to account the same
-            if (account_id != r.TOACCOUNTID)
-            {
-                if (account_id == r.ACCOUNTID)     balance -= r.TRANSAMOUNT;
-                if (account_id == r.TOACCOUNTID)   balance += r.TRANSAMOUNT;
-            }
-            break;
-        default:
-            break;
-        }
-        return balance;
-    }
 };
 
 #endif // 

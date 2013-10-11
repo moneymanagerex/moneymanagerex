@@ -220,7 +220,7 @@ public:
             if (categID > -1)
             {
                 if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR)
-                    categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::value(transaction) * convRate;
+                    categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
             }
             else
             {
@@ -228,7 +228,7 @@ public:
                 for (const auto& entry: split)
                 {
                     categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT 
-                        * convRate * (Model_Checking::value(transaction) < 0 ? -1 : 1);
+                        * convRate * (Model_Checking::balance(transaction) < 0 ? -1 : 1);
                 }
             }
         }
