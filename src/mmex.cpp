@@ -694,7 +694,9 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
     createMenu();
     CreateToolBar(wxTB_FLAT | wxTB_NODIVIDER, wxID_ANY, "ToolBar");
     createControls();
+#if wxUSE_STATUSBAR
     CreateStatusBar();
+#endif // wxUSE_STATUSBAR
     recentFiles_ = new RecentDatabaseFiles(menuRecentFiles_);
 
     // Load perspective
