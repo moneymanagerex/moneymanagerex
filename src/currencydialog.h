@@ -71,6 +71,7 @@ private:
 
     Model_Currency::Data* m_currency;
     double convRate_;
+    int scale_;
 
     wxComboBox* currencyNameCombo_;
     wxStaticText* baseRateSample_;

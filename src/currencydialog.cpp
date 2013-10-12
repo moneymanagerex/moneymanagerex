@@ -57,6 +57,7 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
+    scale_ = static_cast<int>(log10((double)m_currency->SCALE));
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -98,10 +99,12 @@ void mmCurrencyDialog::fillControls()
     currencyNameCombo_->Connect(ID_DIALOG_CURRENCY_CHOICE, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmCurrencyDialog::OnCurrencyNameSelected), NULL, this);
 
+    const Model_Currency::Data *base_currency = Model_Currency::instance().GetBaseCurrency();
+    //CurrencyFormatter::loadSettings(base_currency); //FIXME: 
     wxString dispAmount, dispAmount2;
     double amount = 1000;
     dispAmount = CurrencyFormatter::float2Money(amount);
-    dispAmount2 = wxString() << dispAmount << " " << _("Converted to:") << " ";
+    dispAmount2 = wxString() << dispAmount << " ";
 
     if (this->m_currency)
     {
@@ -111,7 +114,9 @@ void mmCurrencyDialog::fillControls()
         grpTx_->SetValue(m_currency->GROUP_SEPARATOR);
         unitTx_->SetValue(m_currency->UNIT_NAME);
         centTx_->SetValue(m_currency->CENT_NAME);
-        scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(m_currency->SCALE)));
+        scale_ = static_cast<int>(log10((double)m_currency->SCALE));
+        wxString scale_value = wxString::Format("%i", scale_);
+        scaleTx_->SetValue(scale_value);
         convRate_ = m_currency->BASECONVRATE;
         baseConvRate_->SetValue(wxString::Format("%.4f", m_currency->BASECONVRATE));
         currencySymbolCombo_->SetValue(m_currency->CURRENCY_SYMBOL);
@@ -126,8 +131,13 @@ void mmCurrencyDialog::fillControls()
         baseConvRate_->SetValue("1");
     }
 
+
+    Model_Currency::Data *currency = Model_Currency::instance().get(m_currency->CURRENCYID);
+    //CurrencyFormatter::loadSettings(currency); //FIXME:
     dispAmount = CurrencyFormatter::float2Money(amount);
-    baseRateSample_->SetLabel(dispAmount2 + dispAmount);
+    dispAmount2 += wxString() << _("Converted to:") << " " << dispAmount;
+
+    baseRateSample_->SetLabel(dispAmount2);
 
     amount = 123456.78;
     dispAmount = wxString() << "123456.78 " << _("Shown As: ") << CurrencyFormatter::float2Money(amount);
@@ -186,10 +196,10 @@ void mmCurrencyDialog::CreateControls()
     grpTx_ = new wxTextCtrl( this, ID_DIALOG_CURRENCY_TEXT_GROUP, "");
     itemFlexGridSizer3->Add(grpTx_, flagsExpand);
 
-    wxIntegerValidator<int> valInt(&m_currency->SCALE,
+    wxIntegerValidator<int> valInt(&scale_,
         wxNUM_VAL_THOUSANDS_SEPARATOR | wxNUM_VAL_ZERO_AS_BLANK);
     valInt.SetMin(0); // Only allow positive numbers
-    valInt.SetMax(10000);
+    valInt.SetMax(6);
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Scale")), flags);
     scaleTx_ = new wxTextCtrl( this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize
         , wxALIGN_RIGHT|wxTE_PROCESS_ENTER , valInt );
@@ -235,12 +245,7 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 {
     if (!this->m_currency) this->m_currency = Model_Currency::instance().create();
 
-    long scal = 0;
-    wxString value = scaleTx_->GetValue();
-    value.Replace(",","");
-    value.ToLong(&scal);
-    wxLogDebug("%s %i %i", scaleTx_->GetValue(), scal, m_currency->SCALE);
-
+    int scal = wxAtoi(scaleTx_->GetValue());
     baseConvRate_->GetValue().ToDouble(&convRate_);
 
     m_currency->PFX_SYMBOL = pfxTx_->GetValue();
@@ -249,7 +254,7 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
     m_currency->GROUP_SEPARATOR =  grpTx_->GetValue();
     m_currency->UNIT_NAME = unitTx_->GetValue();
     m_currency->CENT_NAME = centTx_->GetValue();
-    m_currency->SCALE = static_cast<int>(scal);
+    m_currency->SCALE = static_cast<int>(pow(10,scal));
     m_currency->BASECONVRATE = convRate_;
     m_currency->CURRENCY_SYMBOL = currencySymbolCombo_->GetValue();
     m_currency->CURRENCYNAME = currencyNameCombo_->GetValue();
@@ -272,7 +277,7 @@ void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
             grpTx_->SetValue(i.grp_);
             unitTx_->SetValue(i.unit_);
             centTx_->SetValue(i.cent_);
-            scaleTx_->SetValue(wxString() << i.scaleDl_);
+            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double)i.scaleDl_))));
             convRate_ = i.baseConv_;
             baseConvRate_->SetValue(wxString::Format("%.4f",convRate_));
             currencySymbolCombo_->SetValue(i.currencySymbol_);

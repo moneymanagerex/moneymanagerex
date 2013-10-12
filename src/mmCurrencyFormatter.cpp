@@ -100,7 +100,9 @@ CurrencyFormatter& CurrencyFormatter::instance()
 
 wxString CurrencyFormatter::float2String(double val)
 {
-    wxString d2s = wxNumberFormatter::ToString(val, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
+    const CurrencyFormatter &fmt = CurrencyFormatter::instance();
+    wxString d2s = wxNumberFormatter::ToString(val, log10(fmt.getScale())
+        , wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
     //TODO: Remove it with new wx release
     d2s.Replace("-,", "-");
     if (d2s =="-0.00") d2s = "0.00";
