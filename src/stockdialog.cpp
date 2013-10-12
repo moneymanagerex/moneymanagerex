@@ -20,7 +20,6 @@
 #include "mmtextctrl.h"
 #include "constants.h"
 #include "paths.h"
-#include "mmCurrencyFormatter.h"
 #include "util.h"
 #include "validators.h"
 #include <wx/valnum.h>
@@ -49,7 +48,6 @@ mmStockDialog::mmStockDialog(Model_Stock::Data* stock
     , accountID_(accountID)
 {
     Create(parent, id, caption, pos, size, style);
-    CurrencyFormatter::instance().loadSettings(Model_Account::instance().get(accountID));
 }
 
 bool mmStockDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,
@@ -264,21 +262,15 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString numSharesStr = numShares_->GetValue().Trim();
     double numShares = 0;
-    if (!numSharesStr.ToDouble(&numShares) /*|| (numShares = 0.0)*/)
+    if (!numSharesStr.ToDouble(&numShares))
     {
         mmShowErrorMessage(this, _("Invalid number of shares entered "), _("Error"));
         return;
     }
 
-    /*if (numShares <= 0)
-    {
-        mmShowErrorMessageInvalid(this, _("Num Shares"));
-        return;
-    }*/
-
     wxString pPriceStr    = purchasePrice_->GetValue().Trim();
     double pPrice;
-    if (! CurrencyFormatter::formatCurrencyToDouble(pPriceStr, pPrice) || (pPrice < 0.0))
+    if (!pPriceStr.ToDouble(&pPrice))
     {
         mmShowErrorMessage(this, _("Invalid purchase price entered "), _("Error"));
         return;
@@ -286,17 +278,15 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString currentPriceStr = currentPrice_->GetValue().Trim();
     double cPrice;
-    if (! CurrencyFormatter::formatCurrencyToDouble(currentPriceStr, cPrice) || (cPrice < 0.0))
+    if (!currentPriceStr.ToDouble(&cPrice))
     {
-        //mmShowErrorMessage(this, _("Invalid current price entered "), _("Error"));
-        //return;
         // we assume current price = purchase price
         cPrice = pPrice;
     }
 
     wxString commissionStr = commission_->GetValue().Trim();
     double commission;
-    if (! CurrencyFormatter::formatCurrencyToDouble(commissionStr, commission) || (commission < 0.0))
+    if (!commissionStr.ToDouble(&commission))
     {
         mmShowErrorMessage(this, _("Invalid commission entered "), _("Error"));
         return;
