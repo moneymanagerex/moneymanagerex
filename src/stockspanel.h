@@ -22,36 +22,10 @@
 #include "mmpanelbase.h"
 #include "guiid.h"
 #include <wx/tglbtn.h>
+#include "model/Model_Stock.h"
 
 class wxListEvent;
 class mmStocksPanel;
-
-/* Holds a single transaction */
-struct mmStockTransactionHolder: public mmHolderBase
-{
-    wxString heldAt_;
-    wxDateTime stockPDate_;
-    wxString shareName_;
-    wxString stockSymbol_;
-    wxString sPercentagePerYear_;
-    wxString shareNotes_;
-    wxString numSharesStr_;
-    wxString totalnumSharesStr_;
-    wxString gainLossStr_;
-    wxString cPriceStr_;
-    wxString pPriceStr_;
-    wxString avgPurchasePriceStr_;
-
-    double currentPrice_;
-    double purchasePrice_;
-    double commission_;
-    double avgpurchasePrice_;
-    double gainLoss_;
-    double numShares_;
-    double totalnumShares_;
-    double stockDays_;
-    int purchasedTime_ ;
-};
 
 /* Custom ListCtrl class that implements virtual LC style */
 class StocksListCtrl: public mmListCtrl
@@ -72,7 +46,7 @@ public:
     int getColumnsNumber() { return ColName_.size(); }
     wxString getStockInfo(int selectedIndex) const;
     /* Helper Functions/data */
-    std::vector<mmStockTransactionHolder*> trans_;
+    Model_Stock::Data_Set m_stocks;
     /* updates thstockide checking panel data */
     int initVirtualListControl(int trx_id = -1, int col = 0, bool asc = true);
 
@@ -106,7 +80,7 @@ private:
     };
     std::map<int, wxString> ColName_;
     wxImageList* m_imageList;
-    void cleanuptranslist();
+    double getGainLoss(long item) const;
 };
 
 /* ------------------------------------------------------- */

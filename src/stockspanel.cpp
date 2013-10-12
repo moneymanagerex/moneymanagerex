@@ -19,11 +19,9 @@
 #include "stockspanel.h"
 #include "stockdialog.h"
 #include "constants.h"
-#include "mmCurrencyFormatter.h"
 #include "util.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
-#include "model/Model_Stock.h"
 #include "model/Model_Account.h"
 
 enum {IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1};
@@ -46,14 +44,7 @@ END_EVENT_TABLE()
 
 StocksListCtrl::~StocksListCtrl()
 {
-    cleanuptranslist();
     if (m_imageList) delete m_imageList;
-}
-
-void StocksListCtrl::cleanuptranslist()
-{
-    for (auto &stock : trans_)
-        delete stock;
 }
 
 StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID winid)
@@ -89,8 +80,8 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     }
 
     initVirtualListControl();
-    if (!trans_.empty())
-        EnsureVisible(((int)trans_.size()) - 1);
+    if (m_stocks.size() > 0)
+        EnsureVisible(m_stocks.size() - 1);
 
 }
 
@@ -114,15 +105,20 @@ void StocksListCtrl::OnItemRightClick(wxListEvent& event)
 
 wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
-    if (column == COL_DATE)         return mmGetDateForDisplay(trans_[item]->stockPDate_);
-    if (column == COL_NAME)         return trans_[item]->shareName_;
-    if (column == COL_NUMBER)       return trans_[item]->numSharesStr_;
-    if (column == COL_GAIN_LOSS)    return trans_[item]->gainLossStr_;
-    if (column == COL_VALUE)        return trans_[item]->valueStr_;
-    if (column == COL_CURRENT)      return trans_[item]->cPriceStr_;
-    if (column == COL_NOTES)        return trans_[item]->shareNotes_;
+    if (column == COL_DATE)         return m_stocks[item].PURCHASEDATE;
+    if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
+    if (column == COL_NUMBER)       return Model_Stock::NUMSHARES(m_stocks[item]);
+    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item));
+    if (column == COL_VALUE)        return m_stocks[item].to_string(Model_Stock::COL_VALUE);
+    if (column == COL_CURRENT)      return m_stocks[item].to_string(Model_Stock::COL_CURRENTPRICE);
+    if (column == COL_NOTES)        return m_stocks[item].NOTES;
 
     return "";
+}
+
+double StocksListCtrl::getGainLoss(long item) const
+{
+    return m_stocks[item].VALUE - ((m_stocks[item].NUMSHARES * m_stocks[item].PURCHASEPRICE) + m_stocks[item].COMMISSION);
 }
 
 void StocksListCtrl::OnListItemSelected(wxListEvent& event)
@@ -145,7 +141,7 @@ void StocksListCtrl::OnListItemDeselected(wxListEvent& /*event*/)
 int StocksListCtrl::OnGetItemImage(long item) const
 {
     /* Returns the icon to be shown for each entry */
-    if (trans_[item]->gainLoss_ > 0) return 0;
+    if (getGainLoss(item) > 0) return 0;
     return 1;
 }
 
@@ -184,7 +180,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        Model_Stock::instance().remove(trans_[m_selected_row]->id_);
+        Model_Stock::instance().remove(m_stocks[m_selected_row].STOCKID);
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
     }
@@ -217,7 +213,7 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 
     if ( toAccountID != -1 )
     {
-        Model_Stock::Data* stock = Model_Stock::instance().get(trans_[m_selected_row]->id_);
+        Model_Stock::Data* stock = Model_Stock::instance().get(m_stocks[m_selected_row].STOCKID);
         stock->HELDAT = toAccountID;
         Model_Stock::instance().save(stock);
 
@@ -260,7 +256,7 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     m_selected_col = event.GetColumn();
 
     int trx_id = -1;
-    if (m_selected_row>=0) trx_id = trans_[m_selected_row]->id_;
+    if (m_selected_row>=0) trx_id = m_stocks[m_selected_row].STOCKID;
     doRefreshItems(trx_id);
     stock_panel_->OnListItemSelected(-1);
 }
@@ -268,7 +264,7 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
 void StocksListCtrl::doRefreshItems(int trx_id)
 {
     int selectedIndex = initVirtualListControl(trx_id, m_selected_col, m_asc);
-    long cnt = static_cast<long>(trans_.size());
+    long cnt = static_cast<long>(m_stocks.size());
 
     if (selectedIndex >= cnt || selectedIndex < 0)
         selectedIndex = m_asc ? cnt - 1 : 0;
@@ -426,8 +422,6 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 {
     stock_panel_->updateHeader();
     /* Clear all the records */
-    cleanuptranslist();
-    trans_.clear();
     DeleteAllItems();
 
     wxListItem item;
@@ -436,67 +430,18 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     SetColumn(col, item);
 
     int cnt = 0, selected_item = -1;
-    const Model_Account::Data* account = Model_Account::instance().get(stock_panel_->accountID_);
-    for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(stock_panel_->accountID_)))
+    m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(stock_panel_->accountID_));
+    for (const auto& stock: m_stocks)
     {
-        int purchasedTime = 0;
-        double totalNumShares = 0;
-        double avgPurchasePrice = 0;
-        for (const auto& s: Model_Stock::instance().find(Model_Stock::SYMBOL(stock.SYMBOL)))
+        if (id == stock.STOCKID)
         {
-            purchasedTime++;
-            totalNumShares += s.NUMSHARES;
-            avgPurchasePrice += s.PURCHASEPRICE * s.NUMSHARES;
+            selected_item = cnt;
+            break;
         }
-        avgPurchasePrice /= totalNumShares;
-
-        mmStockTransactionHolder th;
-
-        th.id_                = stock.STOCKID;
-        th.stockPDate_        = Model_Stock::PURCHASEDATE(stock);
-        th.stockSymbol_       = stock.SYMBOL.Upper();
-        th.heldAt_            = account->ACCOUNTNAME;
-        th.shareName_         = stock.STOCKNAME;
-        th.shareNotes_        = stock.NOTES;
-        th.numSharesStr_      = "";
-        th.numShares_         = stock.NUMSHARES;
-        th.totalnumShares_    = totalNumShares;
-        th.purchasedTime_     = purchasedTime;
-
-        th.currentPrice_      = stock.CURRENTPRICE;
-        th.purchasePrice_     = stock.PURCHASEPRICE;
-        th.avgpurchasePrice_  = avgPurchasePrice;
-        th.value_             = stock.VALUE;
-        th.commission_        = stock.COMMISSION;
-        th.stockDays_         = wxDateTime::Now().Subtract(Model_Stock::PURCHASEDATE(stock)).GetDays();
-
-        if (th.id_ == id) selected_item = cnt;
-        th.gainLoss_          = th.value_ - ((th.numShares_ * th.purchasePrice_) + th.commission_);
-        th.sPercentagePerYear_ = CurrencyFormatter::float2String(((th.value_ / ((th.numShares_ * th.purchasePrice_)
-            + th.commission_)-1.0)*100.0 * 365.0 / th.stockDays_));
-
-        th.gainLossStr_ = CurrencyFormatter::float2String(th.gainLoss_);
-        th.valueStr_ = CurrencyFormatter::float2String(th.value_);
-        th.cPriceStr_ = CurrencyFormatter::float2String(th.currentPrice_);
-        th.avgPurchasePriceStr_ = CurrencyFormatter::float2String(th.avgpurchasePrice_);
-
-        //I wish see integer if it integer else double
-        if ((th.numShares_ - static_cast<long>(th.numShares_)) != 0.0)
-            th.numSharesStr_=wxString::Format("%.4f",th.numShares_);
-        else
-            th.numSharesStr_ <<  static_cast<long>(th.numShares_);
-
-        if ((th.totalnumShares_ - static_cast<long>(th.totalnumShares_)) != 0.0)
-             th.totalnumSharesStr_ = CurrencyFormatter::float2String(th.totalnumShares_);
-        else
-            th.totalnumSharesStr_ <<  static_cast<long>(th.totalnumShares_);
-
-        trans_.push_back(new mmStockTransactionHolder(th));
-
         ++cnt;
     }
 
-    SetItemCount(cnt);
+    SetItemCount(m_stocks.size());
     return selected_item;
 }
 
@@ -504,8 +449,6 @@ void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(accountID_);
     header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), account->ACCOUNTNAME));
-
-    const Model_Currency::Data* currency = Model_Account::currency(account);
 
     //Get Init Value of the account
     double initVal = account->INITIALBAL;
@@ -517,9 +460,9 @@ void mmStocksPanel::updateHeader()
     double originalVal = investment_balance.second;
     double total = investment_balance.first; 
 
-    wxString balance = CurrencyFormatter::float2String(total+initVal);
-    wxString original = CurrencyFormatter::float2String(originalVal);
-    wxString diffStr = CurrencyFormatter::float2String(total > originalVal ? total - originalVal : originalVal - total);
+    wxString balance = Model_Currency::toString(total+initVal);
+    wxString original = Model_Currency::toString(originalVal);
+    wxString diffStr = Model_Currency::toString(total > originalVal ? total - originalVal : originalVal - total);
 
     wxString lbl;
     lbl << _("Total: ") << balance << "     " << _("Invested: ") << original;
@@ -531,7 +474,7 @@ void mmStocksPanel::updateHeader()
         else
             lbl << "     " << _("Loss: ");
         double diffPercents = (total > originalVal ? total/originalVal*100.0-100.0 : -(total/originalVal*100.0-100.0));
-        lbl << diffStr << "  ( " << CurrencyFormatter::float2String(diffPercents) << " %)";
+        lbl << diffStr << "  ( " << wxNumberFormatter::ToString(diffPercents, 2) << " %)";
     }
 
     header_total_->SetLabel(lbl);
@@ -579,7 +522,7 @@ void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
 /*** Trigger a quote download ***/
 bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 {
-    if(listCtrlAccount_->trans_.size() < 1)
+    if(listCtrlAccount_->m_stocks.size() < 1)
     {
         sError = _("Nothing to update");
         return false;
@@ -590,14 +533,14 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     wxString site = "";
     wxSortedArrayString symbols_array;
 
-    for (const auto &stock : listCtrlAccount_->trans_)
+    for (const auto &stock : listCtrlAccount_->m_stocks)
     {
-        const wxString symbol = stock->stockSymbol_.Upper();
+        const wxString symbol = stock.SYMBOL.Upper();
         if (!symbol.IsEmpty())
         {
             if (stocks_data.find(symbol) == stocks_data.end())
             {
-                stocks_data[symbol] = std::make_pair(stock->currentPrice_, "");
+                stocks_data[symbol] = std::make_pair(stock.CURRENTPRICE, "");
                 site << symbol << "+";
             }
         }
@@ -662,23 +605,21 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         }
     }
 
-    for (const auto &s: listCtrlAccount_->trans_)
+    for (auto &s: listCtrlAccount_->m_stocks)
     {
-        std::map<wxString, std::pair<double, wxString> >::const_iterator it = stocks_data.find(s->stockSymbol_.Upper());
+        std::map<wxString, std::pair<double, wxString> >::const_iterator it = stocks_data.find(s.SYMBOL.Upper());
         if (it == stocks_data.end()) continue;
         dPrice = it->second.first;
 
-        Model_Stock::Data* stock = Model_Stock::instance().get(s->id_);
-        stock->CURRENTPRICE = dPrice;
-        stock->VALUE = dPrice * s->numShares_ ;
-        stock->STOCKNAME = s->shareName_;
-        Model_Stock::instance().save(stock);
+        s.CURRENTPRICE = dPrice;
+        s.VALUE = dPrice * s.NUMSHARES;
+        Model_Stock::instance().save(&s);
     }
 
     // Now refresh the display
     int selected_id = -1;
     if (listCtrlAccount_->get_selectedIndex() > -1)
-        selected_id = listCtrlAccount_->trans_[listCtrlAccount_->get_selectedIndex()]->id_;
+        selected_id = listCtrlAccount_->m_stocks[listCtrlAccount_->get_selectedIndex()].STOCKID;
     listCtrlAccount_->doRefreshItems(selected_id);
 
     // We are done!
@@ -709,60 +650,64 @@ void mmStocksPanel::updateExtraStocksData(int selectedIndex)
 
 wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 {
-        wxString sNumShares = trans_[selectedIndex]->numSharesStr_;
-        wxString sTotalNumShares = trans_[selectedIndex]->totalnumSharesStr_;
-        wxString sGainLoss = trans_[selectedIndex]->gainLossStr_;
+    int purchasedTime = 0;
+    double stocktotalnumShares = 0;
+    double stockavgPurchasePrice = 0;
+    for (const auto& s: Model_Stock::instance().find(Model_Stock::SYMBOL(m_stocks[selectedIndex].SYMBOL)))
+    {
+        purchasedTime++;
+        stocktotalnumShares += s.NUMSHARES;
+        stockavgPurchasePrice += s.PURCHASEPRICE * s.NUMSHARES;
+    }
+    stockavgPurchasePrice /= stocktotalnumShares;
 
-        double stockPurchasePrice = trans_[selectedIndex]->purchasePrice_;
-        double stockCurrentPrice = trans_[selectedIndex]->currentPrice_;
-        double stockDifference = stockCurrentPrice - stockPurchasePrice;
+    wxString sNumShares = Model_Stock::NUMSHARES(m_stocks[selectedIndex]);
+    wxString sTotalNumShares;
+    if ((stocktotalnumShares - static_cast<long>(stocktotalnumShares)) != 0.0)
+        sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);
+    else
+        sTotalNumShares <<  static_cast<long>(stocktotalnumShares);
+    wxString sGainLoss = Model_Currency::toString(getGainLoss(selectedIndex));
 
-        double stockavgPurchasePrice = trans_[selectedIndex]->avgpurchasePrice_;
-        double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
-        double stockDaysOwn = trans_[selectedIndex]->stockDays_;
-        //Commision don't calculates here
-        double stockPercentage = (stockCurrentPrice/stockPurchasePrice-1.0)*100.0;
-        double stockPercentagePerYear = stockPercentage * 365.0 / stockDaysOwn;
-        double stocktotalPercentage = (stockCurrentPrice/stockavgPurchasePrice-1.0)*100.0;
-        //  double stocknumShares = trans_[selectedIndex]->numShares_;
-        double stocktotalnumShares = trans_[selectedIndex]->totalnumShares_;
-        double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
+    double stockPurchasePrice = m_stocks[selectedIndex].PURCHASEPRICE;
+    double stockCurrentPrice = m_stocks[selectedIndex].CURRENTPRICE;
+    double stockDifference = stockCurrentPrice - stockPurchasePrice;
 
-        wxString sPurchasePrice = CurrencyFormatter::float2String(stockPurchasePrice);
-        wxString sAvgPurchasePrice = CurrencyFormatter::float2String(stockavgPurchasePrice);
-        wxString sCurrentPrice = CurrencyFormatter::float2String(stockCurrentPrice);
-        wxString sDifference = CurrencyFormatter::float2String(stockDifference);
-        wxString sTotalDifference = CurrencyFormatter::float2String(stocktotalDifference);
-        wxString sPercentage = CurrencyFormatter::float2String(stockPercentage);
-        wxString sPercentagePerYear = CurrencyFormatter::float2String(stockPercentagePerYear);
-        wxString sTotalPercentage = CurrencyFormatter::float2String(stocktotalPercentage);
-        wxString sTotalGainLoss = CurrencyFormatter::float2String(stocktotalgainloss);
+    double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
+    //Commision don't calculates here
+    double stockPercentage = (stockCurrentPrice/stockPurchasePrice-1.0)*100.0;
+    double stocktotalPercentage = (stockCurrentPrice/stockavgPurchasePrice-1.0)*100.0;
+    double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
-        wxString miniInfo = "";
-        if (trans_[selectedIndex]->stockSymbol_ != "")
-        miniInfo << "\t" << _("Symbol: ") << trans_[selectedIndex]->stockSymbol_ << "\t\t";
-        miniInfo << _ ("Total:") << " (" << trans_[selectedIndex]->totalnumSharesStr_ << ") ";
-        //If some share has been bot for a short period we don't need that info because the forecast may be too optimistic
-        //if (stockDaysOwn > 182.5)
-        //miniInfo << "\t\t" << _("Percent/Year: ") << trans_[selectedIndex]->sPercentagePerYear_;
-        stock_panel_->stock_details_short_->SetLabel(miniInfo);
+    wxString sPurchasePrice = Model_Currency::toString(stockPurchasePrice);
+    wxString sAvgPurchasePrice = Model_Currency::toString(stockavgPurchasePrice);
+    wxString sCurrentPrice = Model_Currency::toString(stockCurrentPrice);
+    wxString sDifference = Model_Currency::toString(stockDifference);
+    wxString sTotalDifference = Model_Currency::toString(stocktotalDifference);
+    wxString sPercentage = wxNumberFormatter::ToString(stockPercentage, 2);
+    wxString sTotalPercentage = wxNumberFormatter::ToString(stocktotalPercentage, 2);
+    wxString sTotalGainLoss = Model_Currency::toString(stocktotalgainloss);
 
-        wxString additionInfo = "";
-        //Selected share info
-        additionInfo
-        << "|" << sCurrentPrice << " - " << sPurchasePrice << "|" << " = " << sDifference
-        << " * " << sNumShares << " = " << sGainLoss << " ( " << sPercentage << "%"
-        //<< " | "<< sPercentagePerYear << "% "  << _("Yearly")
-        << " )" << "\n";
-        //Summary for account for selected symbol
-        if (trans_[selectedIndex]->purchasedTime_ > 1)
-        {
-            additionInfo << "|" << sCurrentPrice << " - " << sAvgPurchasePrice << "|" << " = " << sTotalDifference
-            << " * " << sTotalNumShares << " = " << sTotalGainLoss << " ( " << sTotalPercentage << "%"
-            //<< " | "<< sPercentagePerYear << "% " << _("Yearly")
-            << " )" //<< "\n"
-            << "\n" << OnGetItemText(selectedIndex, (long)COL_NOTES);
-        }
+    wxString miniInfo = "";
+    if (m_stocks[selectedIndex].SYMBOL != "")
+        miniInfo << "\t" << _("Symbol: ") << m_stocks[selectedIndex].SYMBOL << "\t\t";
+    miniInfo << _ ("Total:") << " (" << stocktotalnumShares << ") ";
+    stock_panel_->stock_details_short_->SetLabel(miniInfo);
+
+    wxString additionInfo = "";
+    //Selected share info
+    additionInfo
+    << "|" << sCurrentPrice << " - " << sPurchasePrice << "|" << " = " << sDifference
+    << " * " << sNumShares << " = " << sGainLoss << " ( " << sPercentage << "%"
+    << " )" << "\n";
+    //Summary for account for selected symbol
+    if (purchasedTime > 1)
+    {
+        additionInfo << "|" << sCurrentPrice << " - " << sAvgPurchasePrice << "|" << " = " << sTotalDifference
+        << " * " << sTotalNumShares << " = " << sTotalGainLoss << " ( " << sTotalPercentage << "%"
+        << " )"
+        << "\n" << OnGetItemText(selectedIndex, (long)COL_NOTES);
+    }
     return additionInfo;
 }
 void mmStocksPanel::enableEditDeleteButtons(bool en)
@@ -777,7 +722,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
-    Model_Stock::Data* stock = Model_Stock::instance().get(listCtrlAccount_->trans_[selectedIndex]->id_);
+    Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
     mmStockDialog dlg(stock, true, accountID_, this);
     if (dlg.ShowModal() == wxID_OK)
     {

@@ -80,15 +80,7 @@ void mmStockDialog::dataToControls()
     notes_->SetValue(m_stock->NOTES);
     dpc_->SetValue(Model_Stock::PURCHASEDATE(m_stock));
 
-    double numShares = m_stock->NUMSHARES;
-    wxString numSharesString;
-    //I wish see integer if it integer else double
-    if ((numShares - static_cast<long>(numShares)) != 0.0 )
-        numSharesString=wxString::Format("%0.4f",numShares);
-    else
-        numSharesString <<  static_cast<long>(numShares);
-
-    numShares_->SetValue(numSharesString);
+    numShares_->SetValue(Model_Stock::NUMSHARES(m_stock));
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     valueInvestment_->SetLabel(Model_Account::toString(m_stock->VALUE, account));
     purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account);

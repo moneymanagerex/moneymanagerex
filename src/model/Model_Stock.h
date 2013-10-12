@@ -62,6 +62,17 @@ public:
         return r->NUMSHARES * r->PURCHASEPRICE + r->COMMISSION;
     }
     static double value(const Data& r) { return value(&r); }
+    static wxString NUMSHARES(const Data* stock)
+    {
+        wxString numSharesStr;
+        double numShares = stock->NUMSHARES;
+        if ((numShares - static_cast<long>(numShares)) != 0.0)
+            numSharesStr = wxString::Format("%.4f", numShares);
+        else
+            numSharesStr << static_cast<long>(numShares);
+        return numSharesStr;
+    }
+    static wxString NUMSHARES(const Data& stock) { return NUMSHARES(&stock); }
 };
 
 #endif // 
