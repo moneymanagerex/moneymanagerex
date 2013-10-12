@@ -140,6 +140,7 @@
     <ClCompile Include="..\..\src\assetspanel.cpp" />
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
+    <ClCompile Include="..\..\src\mmCalculator.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\src\reports\budgetcategorysummary.cpp" />
     <ClCompile Include="..\..\src\budgetentrydialog.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
+    <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
