@@ -19,23 +19,17 @@
 #ifndef _MM_EX_CURRENCYDIALOG_H_
 #define _MM_EX_CURRENCYDIALOG_H_
 
-#define SYMBOL_CURRENCYDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_CURRENCYDIALOG_TITLE _("Currency Manager")
-#define SYMBOL_CURRENCYDIALOG_IDNAME ID_DIALOG_CURRENCY
-#define SYMBOL_CURRENCYDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_CURRENCYDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "defs.h"
 #include "dbwrapper.h"
 #include "model/Model_Currency.h"
+
+class mmTextCtrl;
 
 enum
 {
     ID_DIALOG_CURRENCY = wxID_HIGHEST + 1,
     ID_DIALOG_CURRENCY_BUTTON_ADD,
     ID_DIALOG_CURRENCY_BUTTON_SELECT,
-    ID_DIALOG_CURRENCY_BUTTON_UPDATE,
     ID_DIALOG_CURRENCY_CHOICE,
     ID_DIALOG_CURRENCY_TEXT_PFX,
     ID_DIALOG_CURRENCY_TEXT_SFX,
@@ -58,25 +52,13 @@ class mmCurrencyDialog : public wxDialog
 public:
     mmCurrencyDialog();
     ~mmCurrencyDialog();
-    mmCurrencyDialog(Model_Currency::Data* currency,
-                     wxWindow* parent,
-                     wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
-                     const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
-                     const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
-                     const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
-                     long style = SYMBOL_CURRENCYDIALOG_STYLE );
-    mmCurrencyDialog(wxWindow* parent,
-                     wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
-                     const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
-                     const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
-                     const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
-                     long style = SYMBOL_CURRENCYDIALOG_STYLE );
+    mmCurrencyDialog(Model_Currency::Data* currency, wxWindow* parent);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_CURRENCYDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_CURRENCYDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_CURRENCYDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_CURRENCYDIALOG_SIZE,
-                 long style = SYMBOL_CURRENCYDIALOG_STYLE );
+    bool Create( wxWindow* parent, wxWindowID id,
+                 const wxString& caption,
+                 const wxPoint& pos,
+                 const wxSize& size,
+                 long style);
 
 private:
     void CreateControls();
@@ -85,8 +67,8 @@ private:
     void OnUpdate(wxCommandEvent& event);
     void OnCurrencyNameSelected(wxCommandEvent& event);
     void fillControls();
+    void onTextEntered(wxCommandEvent& event);
 
-private:
     Model_Currency::Data* m_currency;
     double convRate_;
 
@@ -94,7 +76,7 @@ private:
     wxStaticText* baseRateSample_;
     wxStaticText* sampleText_;
     wxComboBox* currencySymbolCombo_;
-    wxTextCtrl* baseConvRate_;
+    mmTextCtrl* baseConvRate_;
     wxTextCtrl* pfxTx_;
     wxTextCtrl* sfxTx_;
     wxTextCtrl* decTx_;

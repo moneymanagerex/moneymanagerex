@@ -1019,17 +1019,16 @@ void mmTransDialog::onTextEntered(wxCommandEvent& event)
 {
     wxString sAmount = "";
 
+    mmCalculator *calc = new mmCalculator();
     if (object_in_focus_ == textAmount_->GetId())
     {
-        mmCalculator *calc = new mmCalculator(textAmount_->GetValue());
-        if (calc->is_ok())
+        if (calc->is_ok(textAmount_->GetValue()))
             textAmount_->SetValue(calc->get_result());
         textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        mmCalculator *calc = new mmCalculator(toTextAmount_->GetValue());
-        if (calc->is_ok())
+        if (calc->is_ok(toTextAmount_->GetValue()))
             toTextAmount_->SetValue(calc->get_result());
         toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
     }

@@ -9,15 +9,16 @@
 class mmCalculator
 {
 public:
-    mmCalculator(const wxString& input);
-    const virtual bool is_ok();
-    const virtual wxString get_result() {return output_;}
+    mmCalculator();
+    const virtual bool is_ok(const wxString& input);
+    const virtual double get_result() {return output_;}
 
 protected:
-    const wxString input_;
-    wxString output_;
-    const virtual bool check_syntax() const;
-    const virtual bool calculate();
+
+private:
+    double output_;
+    const virtual bool check_syntax(const wxString& input) const;
+    const virtual bool calculate(const wxString& input);
 };
 
 #endif 

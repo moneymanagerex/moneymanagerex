@@ -293,8 +293,8 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
 {
     wxString sAmount = "";
 
-    mmCalculator *calc = new mmCalculator(m_value->GetValue());
-    if (calc->is_ok())
+    mmCalculator *calc = new mmCalculator();
+    if (calc->is_ok(m_value->GetValue()))
         m_value->SetValue(calc->get_result());
     m_value->SetInsertionPoint(m_value->GetValue().Len());
 

@@ -4,24 +4,22 @@
 #include "mmCalculator.h"
 #include <wx/tokenzr.h>
 
-mmCalculator::mmCalculator(const wxString& input)
-    :
-    input_(input)
+mmCalculator::mmCalculator()
 {
-    output_ = "";
+    output_ = 0;
 }
 
-const bool mmCalculator::is_ok()
+const bool mmCalculator::is_ok(const wxString& input)
 {
-    bool ok = check_syntax();
-    if (ok) ok = calculate();
+    bool ok = check_syntax(input);
+    if (ok) ok = calculate(input);
     return ok;
 }
 
-const bool mmCalculator::calculate()
+const bool mmCalculator::calculate(const wxString& input)
 {
     bool ok = true;
-    wxString temp = input_;
+    wxString temp = input;
     temp = temp.Trim().Prepend("(").Append(")");
     wxString string_between_brackets, string_to_calc;
     double amount = 0;
@@ -81,22 +79,20 @@ const bool mmCalculator::calculate()
     }
     if (ok)
     {
-        if (temp.Contains("(")||temp.Contains(")")) ok = false;
+        if (temp.Contains("(")||temp.Contains(")"))
+            ok = false;
         else
-        {
-            output_ = wxString()<<amount;
-            ok = !output_.IsEmpty() && ok;
-        }
+            output_ = amount;
     }
     return ok;
 }
 
-const bool mmCalculator::check_syntax() const
+const bool mmCalculator::check_syntax(const wxString& input) const
 {
     bool ok = false;
-    wxString input = input_;
-    int a = input.Replace("(", "(");
-    int b = input.Replace(")", ")");
+    wxString temp = input;
+    int a = temp.Replace("(", "(");
+    int b = temp.Replace(")", ")");
     ok = (a == b);
     if (ok && a > 0)
     {
@@ -105,7 +101,7 @@ const bool mmCalculator::check_syntax() const
             if (input[i] == '(') a += i;
             else if (input[i] == ')') b += i;
             if (input[i] == '(' && i > 0) ok = (ok && (wxString("(+-*/").Contains(input[i-1])));
-            if (input[i] == ')' && i < input_.Len()-1) ok = (ok && wxString(")+-*/").Contains(input[i+1]));
+            if (input[i] == ')' && i < input.Len()-1) ok = (ok && wxString(")+-*/").Contains(input[i+1]));
         }
         ok = (a < b);
     }
