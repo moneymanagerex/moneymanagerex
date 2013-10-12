@@ -26,6 +26,7 @@
 #include "paths.h"
 #include "categdialog.h"
 #include "splittransactionsdialog.h"
+#include "mmCalculator.h"
 #include "validators.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
@@ -1020,14 +1021,16 @@ void mmTransDialog::onTextEntered(wxCommandEvent& event)
 
     if (object_in_focus_ == textAmount_->GetId())
     {
-        if (mmCalculator(textAmount_->GetValue(), sAmount))
-            textAmount_->SetValue(sAmount);
+        mmCalculator *calc = new mmCalculator(textAmount_->GetValue());
+        if (calc->is_ok())
+            textAmount_->SetValue(calc->get_result());
         textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        if (mmCalculator(toTextAmount_->GetValue(), sAmount))
-            toTextAmount_->SetValue(sAmount);
+        mmCalculator *calc = new mmCalculator(toTextAmount_->GetValue());
+        if (calc->is_ok())
+            toTextAmount_->SetValue(calc->get_result());
         toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
     }
     else if (object_in_focus_ == textNumber_->GetId())

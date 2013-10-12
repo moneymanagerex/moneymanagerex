@@ -16,6 +16,7 @@
 #include "mmCurrencyFormatter.h"
 #include "constants.h"
 #include "validators.h"
+#include "mmCalculator.h"
 
 #include <wx/valnum.h>
 
@@ -170,10 +171,9 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& event)
 {
-    wxString sAmount = "";
-
-    if (mmCalculator(textAmount_->GetValue(), sAmount))
-        textAmount_->SetValue(sAmount);
+    mmCalculator *calc = new mmCalculator(textAmount_->GetValue());
+    if (calc->is_ok())
+        textAmount_->SetValue(calc->get_result());
     textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
 
     event.Skip();

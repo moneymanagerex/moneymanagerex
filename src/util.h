@@ -143,7 +143,6 @@ public:
 
 wxString Tips(wxString type);
 int site_content(const wxString& site, wxString& output);
-bool mmCalculator(wxString sInput, wxString& sOutput);
 
 wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 

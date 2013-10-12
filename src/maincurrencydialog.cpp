@@ -23,6 +23,7 @@
 #include "util.h"
 #include "defs.h"
 #include "paths.h"
+#include "mmCalculator.h"
 #include "validators.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Currency.h"
@@ -280,8 +281,10 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 
     wxString calculated_mount = "";
     double conv_rate = curr_rate_;
-    if (mmCalculator(value, calculated_mount))
+    mmCalculator *calc = new mmCalculator(value);
+    if (calc->is_ok())
     {
+        calculated_mount = calc->get_result();
         if (value != calculated_mount)
             currencyListBox_->SetValue(wxVariant(calculated_mount), row, BASE_RATE);
         calculated_mount.ToDouble(&conv_rate);

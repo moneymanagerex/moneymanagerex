@@ -18,6 +18,7 @@
 #include "mmtextctrl.h"
 #include "paths.h"
 #include "util.h"
+#include "mmCalculator.h"
 #include "mmCurrencyFormatter.h"
 #include "validators.h"
 #include "model/Model_Asset.h"
@@ -292,8 +293,9 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
 {
     wxString sAmount = "";
 
-    if (mmCalculator(m_value->GetValue(), sAmount))
-        m_value->SetValue(sAmount);
+    mmCalculator *calc = new mmCalculator(m_value->GetValue());
+    if (calc->is_ok())
+        m_value->SetValue(calc->get_result());
     m_value->SetInsertionPoint(m_value->GetValue().Len());
 
     event.Skip();
