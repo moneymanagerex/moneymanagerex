@@ -432,8 +432,8 @@ install: install_mmex
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.png $(PREFIX)\mmex\help )
-	-mkdir $(PREFIX)\mmex\po
-	( cd ..\..\po && copy /Y  *.mo $(PREFIX)\mmex\po )
+	-mkdir $(PREFIX)\mmex\po\en
+	( cd ..\..\po && copy /Y  *.mo $(PREFIX)\mmex\po\en )
 
 uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\*.txt -del *.txt
@@ -441,7 +441,7 @@ uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html
 	-if exist $(PREFIX)\mmex\help\*.png -del *.png
-	-if exist $(PREFIX)\mmex\po\*.mo -del *.mo
+	-if exist $(PREFIX)\mmex\po\en\*.mo -del *.mo
 
 clean: 
 	-if exist .\*.obj del .\*.obj

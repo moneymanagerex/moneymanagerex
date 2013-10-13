@@ -39,13 +39,15 @@ wxString selectLanguageDlg(wxWindow *parent, const wxString &langPath, bool verb
     wxString lang;
 
     wxArrayString lang_files;
-    size_t cnt = wxDir::GetAllFiles(langPath, &lang_files, "*.mo");
+    wxFileName fn(langPath, "");
+    fn.AppendDir("en");
+    size_t cnt = wxDir::GetAllFiles(fn.GetPath(), &lang_files, "*.mo");
 
     if (!cnt)
     {
         if (verbose)
         {
-            wxString s = wxString::Format("Can't find language files (.mo) at \"%s\"", langPath);
+            wxString s = wxString::Format("Can't find language files (.mo) at \"%s\"", fn.GetPath());
 
             wxMessageDialog dlg(parent, s, "Error", wxOK|wxICON_ERROR);
             dlg.ShowModal();

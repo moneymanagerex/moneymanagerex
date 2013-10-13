@@ -51,7 +51,7 @@
     </data-files>
 
 	<data-files>
-        <install-to>$(DATADIR)/mmex/po</install-to>
+        <install-to>$(DATADIR)/mmex/po/en</install-to>
         <srcdir>$(SRCDIR)/po</srcdir>
         <files>*.mo</files>
     </data-files>
@@ -163,7 +163,7 @@
     <!-- po/* -> mmex/po -->
 
     <data-files>
-        <install-to>$(PREFIX)/mmex/po</install-to>
+        <install-to>$(PREFIX)/mmex/po/en</install-to>
         <srcdir>$(SRCDIR)/po</srcdir>
         <files>*.mo</files>
     </data-files>
