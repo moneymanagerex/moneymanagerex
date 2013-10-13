@@ -60,13 +60,6 @@ void Eraser::cleanup()
 
 wxString Eraser::getFilePath()
 {
-    // limit memory growth size
-    if(files.size() > 3) // max number of simultaneous graphs
-    {
-        wxMemoryFSHandler::RemoveFile(files[0]);
-        files.erase(files.begin());
-    }
-
     wxString path = wxString::Format("chart%d.png", ++count);
     files.push_back(path);
     return path.Prepend("memory:");

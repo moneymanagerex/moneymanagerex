@@ -20,6 +20,7 @@
 #define _MM_EX_PANELBASE_H_
 
 #include "util.h"
+#include "reports/mmgraphgenerator.h"
 #include <wx/listctrl.h>
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
@@ -65,6 +66,7 @@ class mmPanelBase : public wxPanel
 {
 public:
     mmPanelBase() {}
+    virtual ~mmPanelBase() {mmGraphGenerator::cleanup();}
 
 public:
     void windowsFreezeThaw()
