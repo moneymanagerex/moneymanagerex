@@ -288,12 +288,11 @@ void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 
 void mmCurrencyDialog::onTextEntered(wxCommandEvent& event)
 {
-    mmCalculator *calc = new mmCalculator();
     if (event.GetId() == baseConvRate_->GetId())
     {
-        if (calc->is_ok(baseConvRate_->GetValue()))
-            baseConvRate_->SetValue(wxString::Format("%.4f", calc->get_result()));
+        mmCalculator calc;
+        if (calc.is_ok(baseConvRate_->GetValue()))
+            baseConvRate_->SetValue(wxString::Format("%.4f", calc.get_result()));
         baseConvRate_->SetInsertionPoint(baseConvRate_->GetValue().Len());
     }
-    delete calc;
 }

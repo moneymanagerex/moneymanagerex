@@ -281,10 +281,10 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 
     wxString calculated_mount = "";
     double conv_rate = curr_rate_;
-    mmCalculator *calc = new mmCalculator();
-    if (calc->is_ok(value))
+    mmCalculator calc;
+    if (calc.is_ok(value))
     {
-        calculated_mount = CurrencyFormatter::float2String(calc->get_result());
+        calculated_mount = CurrencyFormatter::float2String(calc.get_result());
         if (value != calculated_mount)
             currencyListBox_->SetValue(wxVariant(calculated_mount), row, BASE_RATE);
         calculated_mount.ToDouble(&conv_rate);

@@ -171,9 +171,9 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& event)
 {
-    mmCalculator *calc = new mmCalculator();
-    if (calc->is_ok(textAmount_->GetValue()))
-        textAmount_->SetValue(CurrencyFormatter::float2String(calc->get_result()));
+    mmCalculator calc;
+    if (calc.is_ok(textAmount_->GetValue()))
+        textAmount_->SetValue(CurrencyFormatter::float2String(calc.get_result()));
     textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
 
     event.Skip();
