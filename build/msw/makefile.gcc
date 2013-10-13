@@ -124,6 +124,7 @@ MMEX_OBJECTS =  \
 	mmex_filtertransdialog.o \
 	mmex_lua_interface.o \
 	mmex_maincurrencydialog.o \
+	mmex_mmCalculator.o \
 	mmex_mmCurrencyFormatter.o \
 	mmex_mmOption.o \
 	mmex_mmcheckingpanel.o \
@@ -559,6 +560,9 @@ mmex_lua_interface.o: ../../src/lua_interface.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_maincurrencydialog.o: ../../src/maincurrencydialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmCalculator.o: ../../src/mmCalculator.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmCurrencyFormatter.o: ../../src/mmCurrencyFormatter.cpp

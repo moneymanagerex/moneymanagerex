@@ -77,7 +77,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF"
-				AdditionalDependencies="$(SolutionDir)$(ConfigurationName)\wxsqlite.lib $(SolutionDir)$(ConfigurationName)\lua.lib wxmsw29u_core.lib wxmsw29u_qa.lib wxbase29u_net.lib wxmsw29u_html.lib wxbase29u_xml.lib wxmsw29u_aui.lib wxmsw29u_adv.lib wxbase29u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(SolutionDir)$(ConfigurationName)\cppunit.lib"
+				AdditionalDependencies="$(SolutionDir)$(ConfigurationName)\wxsqlite.lib $(SolutionDir)$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(SolutionDir)$(ConfigurationName)\cppunit.lib"
 				OutputFile="$(SolutionDir)$(ConfigurationName)\mmex_tests.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -169,7 +169,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO"
-				AdditionalDependencies="$(SolutionDir)$(ConfigurationName)\wxsqlite.lib $(SolutionDir)$(ConfigurationName)\lua.lib wxmsw29ud_core.lib wxmsw29ud_qa.lib wxbase29ud_net.lib wxmsw29ud_html.lib wxbase29ud_xml.lib wxmsw29ud_aui.lib wxmsw29ud_adv.lib wxbase29ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(SolutionDir)$(ConfigurationName)\cppunit.lib"
+				AdditionalDependencies="$(SolutionDir)$(ConfigurationName)\wxsqlite.lib $(SolutionDir)$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(SolutionDir)$(ConfigurationName)\cppunit.lib"
 				OutputFile="$(SolutionDir)$(ConfigurationName)\mmex_tests.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -348,6 +348,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\maincurrencydialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\mmCalculator.cpp"
 				>
 			</File>
 			<File
@@ -778,6 +782,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\maincurrencydialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\mmCalculator.h"
 				>
 			</File>
 			<File

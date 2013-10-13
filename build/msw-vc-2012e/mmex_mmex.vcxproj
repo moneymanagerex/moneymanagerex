@@ -23,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120_CTP_Nov2012</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -38,7 +38,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>11.0.60315.1</_ProjectFileVersion>
+    <_ProjectFileVersion>11.0.60610.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
@@ -78,7 +78,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SAFESEH:NO /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29u_core.lib;wxmsw29u_qa.lib;wxbase29u_net.lib;wxmsw29u_html.lib;wxbase29u_xml.lib;wxmsw29u_aui.lib;wxmsw29u_adv.lib;wxbase29u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw30u_core.lib;wxmsw30u_qa.lib;wxbase30u_net.lib;wxmsw30u_html.lib;wxbase30u_xml.lib;wxmsw30u_aui.lib;wxmsw30u_adv.lib;wxbase30u.lib;wxtiff.lib;wxjpeg.lib;wxpng.lib;wxzlib.lib;wxregexu.lib;wxexpat.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -119,7 +119,7 @@
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw29ud_core.lib;wxmsw29ud_qa.lib;wxbase29ud_net.lib;wxmsw29ud_html.lib;wxbase29ud_xml.lib;wxmsw29ud_aui.lib;wxmsw29ud_adv.lib;wxbase29ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)$(Configuration)\wxsqlite.lib;$(SolutionDir)$(Configuration)\lua.lib;wxmsw30ud_core.lib;wxmsw30ud_qa.lib;wxbase30ud_net.lib;wxmsw30ud_html.lib;wxbase30ud_xml.lib;wxmsw30ud_aui.lib;wxmsw30ud_adv.lib;wxbase30ud.lib;wxtiffd.lib;wxjpegd.lib;wxpngd.lib;wxzlibd.lib;wxregexud.lib;wxexpatd.lib;kernel32.lib;user32.lib;gdi32.lib;comdlg32.lib;winspool.lib;winmm.lib;shell32.lib;comctl32.lib;ole32.lib;oleaut32.lib;uuid.lib;rpcrt4.lib;advapi32.lib;wsock32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)$(Configuration)\mmex.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <AdditionalLibraryDirectories>$(WXWIN)\lib\vc_lib;$(WXWIN)\lib\vc_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -140,7 +140,6 @@
     <ClCompile Include="..\..\src\assetspanel.cpp" />
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
-    <ClCompile Include="..\..\src\mmCalculator.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\src\reports\budgetcategorysummary.cpp" />
     <ClCompile Include="..\..\src\budgetentrydialog.cpp" />
@@ -168,6 +167,7 @@
     <ClCompile Include="..\..\src\reports\incexpenses.cpp" />
     <ClCompile Include="..\..\src\lua_interface.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
+    <ClCompile Include="..\..\src\mmCalculator.cpp" />
     <ClCompile Include="..\..\src\mmCurrencyFormatter.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
@@ -225,7 +225,6 @@
     <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
-    <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
@@ -275,6 +274,7 @@
     <ClInclude Include="..\..\src\reports\incexpenses.h" />
     <ClInclude Include="..\..\src\lua_interface.h" />
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
+    <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\mmCurrencyFormatter.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\mmOption.h" />

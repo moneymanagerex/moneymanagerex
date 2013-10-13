@@ -44,7 +44,7 @@ WX_UNICODE = 1
 WX_DEBUG = 0
 
 # Version of the wx library to build against. 
-WX_VERSION = 29
+WX_VERSION = 30
 
 # Use monolithic build of wxWidgets? [0,1]
 WX_MONOLITHIC = 0
