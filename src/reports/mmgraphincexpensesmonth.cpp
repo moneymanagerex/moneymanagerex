@@ -3,7 +3,7 @@
 #include <vector>
 
 mmGraphIncExpensesMonth::mmGraphIncExpensesMonth() : 
-        mmGraphGenerator(EXPENSES_MONTHS),
+        mmGraphGenerator(),
         chart_(new BarChart(200, 240))
 {
 }

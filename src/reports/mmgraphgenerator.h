@@ -24,10 +24,9 @@
 class mmGraphGenerator
 {
 public:
-    enum EType { EXPENSES_MONTHS, PIE, TOP_CATEG, TYPE_MAX };
-
-    mmGraphGenerator(EType type);
+    mmGraphGenerator();
     virtual ~mmGraphGenerator() {}
+    static void cleanup();
 
     virtual bool Generate(const wxString& chartTitle) = 0;
 

@@ -20,59 +20,56 @@
 #include "mmgraphgenerator.h"
 #include "util.h"
 #include "singleton.h"
+#include <wx/fs_mem.h>
 //----------------------------------------------------------------------------
 
 class Eraser
 {
 public:
-    Eraser() : files(2 * mmGraphGenerator::TYPE_MAX) {}
+    Eraser();
     ~Eraser();
+    void cleanup();
 
-    wxString getFilePath(mmGraphGenerator::EType type);
+    wxString getFilePath();
     static Eraser& instance();
 
 private:
+    unsigned long count;
     std::vector<wxString> files;
-    void clear();
 };
 //----------------------------------------------------------------------------
 
+Eraser::Eraser()
+    : count(0)
+{
+    wxFileSystem::AddHandler(new wxMemoryFSHandler);
+}
+
 Eraser::~Eraser()
 {
-    try {
-        clear();
-    } catch (...) {
-        wxASSERT(false);
-    }
 }
-//----------------------------------------------------------------------------
 
-void Eraser::clear()
+void Eraser::cleanup()
 {
-//    for_each(files.begin(), files.end(), wxRemoveFile);
+    for(auto& f: files)
+        wxMemoryFSHandler::RemoveFile(f);
     files.clear();
 }
+
 //----------------------------------------------------------------------------
 
-/*
-    FIXME: do not create temp files in public temporary directory.
-*/
-wxString Eraser::getFilePath(mmGraphGenerator::EType type)
+wxString Eraser::getFilePath()
 {
-    wxASSERT(type < mmGraphGenerator::TYPE_MAX);
-
-    wxString &path = files[type];
-
-    if (path.empty()) 
-        path = wxFileName::CreateTempFileName(wxGetEmptyString());
-    else
+    // limit memory growth size
+    if(files.size() > 3) // max number of simultaneous graphs
     {
-        path = files[2 * type];
-        if (path.empty())
-            path = wxFileName::CreateTempFileName(wxGetEmptyString());
+        wxMemoryFSHandler::RemoveFile(files[0]);
+        files.erase(files.begin());
     }
 
-    return path;
+    wxString path = wxString::Format("chart%d.png", ++count);
+    files.push_back(path);
+    return path.Prepend("memory:");
 }
 //----------------------------------------------------------------------------
 
@@ -82,8 +79,13 @@ Eraser& Eraser::instance()
 }
 //----------------------------------------------------------------------------
 
-mmGraphGenerator::mmGraphGenerator(EType type) :
-    m_path(Eraser::instance().getFilePath(type))
+mmGraphGenerator::mmGraphGenerator() :
+    m_path(Eraser::instance().getFilePath())
 {
+}
+
+void mmGraphGenerator::cleanup()
+{
+    Eraser::instance().cleanup();
 }
 //----------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 #include <algorithm>
 
 mmGraphPie::mmGraphPie() : 
-        mmGraphGenerator(PIE),
+        mmGraphGenerator(),
         chart_(new PieChart(480, 320))
 {
 }

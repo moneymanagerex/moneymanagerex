@@ -2,6 +2,7 @@
 #include <limits>
 #include <algorithm> // min, max
 #include <math.h>
+#include <wx/fs_mem.h>
 //----------------------------------------------------------------------------
 #include "chart.h"
 //----------------------------------------------------------------------------
@@ -140,7 +141,11 @@ bool AbstractChart::Save( const wxString& file )
 {
     wxImage pic = image_.ConvertToImage();
     pic.SetMaskColour(255,255,255);
-    pic.SaveFile( file, wxBITMAP_TYPE_PNG );
+    wxString f;
+    if (file.StartsWith("memory:", &f))
+        wxMemoryFSHandler::AddFile(f, pic, wxBITMAP_TYPE_PNG);
+    else
+        pic.SaveFile( file, wxBITMAP_TYPE_PNG );
     return true;
 }
 

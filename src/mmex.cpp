@@ -46,6 +46,7 @@
 #include "recentfiles.h"
 #include "stockspanel.h"
 #include "transdialog.h"
+#include "reports/mmgraphgenerator.h"
 #include "reports/budgetcategorysummary.h"
 #include "reports/budgetingperf.h"
 #include "reports/cashflow.h"
@@ -240,6 +241,7 @@ bool mmGUIApp::OnInit()
 int mmGUIApp::OnExit()
 {
     if (m_setting_db) delete m_setting_db;
+    mmGraphGenerator::cleanup();
 
     return 0;
 }

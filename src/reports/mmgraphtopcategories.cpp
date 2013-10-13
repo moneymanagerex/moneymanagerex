@@ -4,7 +4,7 @@
 //----------------------------------------------------------------------------
 
 mmGraphTopCategories::mmGraphTopCategories() : 
-        mmGraphGenerator(TOP_CATEG),
+        mmGraphGenerator(),
         m_chart(new BarChart(320, 240))
 {
 }
