@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-11 15:47:04.704673.
+ *          AUTO GENERATED at 2013-10-13 17:07:54.219292.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -388,6 +388,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(11, entity->STOCKID);
 
+            wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
         }
@@ -408,6 +409,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
             wxString sql = "DELETE FROM STOCK_V1 WHERE STOCKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
+            wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -446,21 +448,33 @@ struct DB_Table_STOCK_V1 : public DB_Table
     
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id < 0) return 0;
+        if (id < 0) 
+        {
+            ++ skip_;
+            wxLogDebug("%s :%d SKIP (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
+            return 0;
+        }
         for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
         {
             Self::Data* entity = *it;
             if (entity->id() == id) 
+            {
+                ++ hit_;
+                wxLogDebug("%s :%d HIT (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
                 return entity;
+            }
         }
-
+        
+        ++ miss_;
+        wxLogDebug("%s :%d MISS (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
         Self::Data* entity = 0;
-        wxString where = wxString::Format(" WHERE STOCKID = ?");
+        wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
+            wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -471,7 +485,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
         
         if (!entity) 
@@ -492,6 +506,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
                 + V::name() + " = ?"
                 );
             stmt.Bind(1, v.v_);
+            wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
             while(q.NextRow())
@@ -504,7 +519,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%%s: Exception %%s", this->name().c_str(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
@@ -525,6 +540,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
                                                                 );
             stmt.Bind(1, v1.v_);
             stmt.Bind(2, v2.v_);
+            wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
             while(q.NextRow())
@@ -537,7 +553,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("%%s: Exception %%s", this->name(), e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name(), e.GetMessage().c_str());
         }
 
         return result;
@@ -551,6 +567,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
             wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
                 + "," + PRIMARY::name());
 
+            wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
@@ -561,7 +578,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("STOCK_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
         }
 
         return result;
