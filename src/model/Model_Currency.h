@@ -77,7 +77,7 @@ public:
 public:
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
-        wxString d2s = wxNumberFormatter::ToString(value, 2); // Style_WithThousandsSep
+        wxString d2s = wxNumberFormatter::ToString(value, Model_Currency::precision(currency)); // Style_WithThousandsSep
         if (currency) 
         {
             d2s.Prepend(currency->PFX_SYMBOL);
@@ -89,6 +89,11 @@ public:
         }
         return d2s;
     }
+    static int precision(const Data* r)
+    {
+        return static_cast<int>(log10(static_cast<double>(r->SCALE)));
+    }
+    static int precision(const Data& r) { return precision(&r); }
 };
 
 #endif // 

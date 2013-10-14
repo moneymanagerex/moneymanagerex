@@ -57,7 +57,7 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
-    scale_ = static_cast<int>(log10((double)m_currency->SCALE));
+    scale_ = Model_Currency::precision(m_currency);
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -114,7 +114,7 @@ void mmCurrencyDialog::fillControls()
         grpTx_->SetValue(m_currency->GROUP_SEPARATOR);
         unitTx_->SetValue(m_currency->UNIT_NAME);
         centTx_->SetValue(m_currency->CENT_NAME);
-        scale_ = static_cast<int>(log10((double)m_currency->SCALE));
+        scale_ = Model_Currency::precision(m_currency);
         wxString scale_value = wxString::Format("%i", scale_);
         scaleTx_->SetValue(scale_value);
         convRate_ = m_currency->BASECONVRATE;
