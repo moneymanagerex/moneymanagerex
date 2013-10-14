@@ -17,7 +17,6 @@
 #include "constants.h"
 #include "mmtransaction.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include "mmcoredb.h"
 #include "model/Model_Payee.h"

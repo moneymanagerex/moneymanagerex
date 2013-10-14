@@ -20,7 +20,6 @@
 #include "mmex.h"
 #include "constants.h"
 #include "htmlbuilder.h"
-#include "mmCurrencyFormatter.h"
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Asset.h"

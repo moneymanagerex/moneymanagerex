@@ -24,7 +24,6 @@
 #include "paths.h"
 #include "constants.h"
 #include "singleton.h"
-#include "mmCurrencyFormatter.h"
 #include "model/Model_Setting.h"
 //----------------------------------------------------------------------------
 

@@ -4,7 +4,6 @@
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "mmRepeat.h"
-#include "mmCurrencyFormatter.h"
 #include "model/Model_Account.h"
 #include "model/Model_Billsdeposits.h"
 

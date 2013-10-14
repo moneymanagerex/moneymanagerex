@@ -21,7 +21,6 @@
 #include "import_export/univcsvdialog.h"
 #include "constants.h"
 #include "singleton.h"
-#include "mmCurrencyFormatter.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Account.h"
