@@ -10,27 +10,27 @@ class mmTextCtrl : public wxTextCtrl
 public:
     using wxTextCtrl::SetValue;
 
-    mmTextCtrl() : currency(0) {}
+    mmTextCtrl() : currency_(0) {}
     mmTextCtrl(wxWindow *parent, wxWindowID id, const wxString &value=wxEmptyString
             , const wxPoint &pos=wxDefaultPosition, const wxSize &size=wxDefaultSize
             , long style=0, const wxValidator &validator=wxDefaultValidator, const wxString &name=wxTextCtrlNameStr)
-            : wxTextCtrl(parent, id, value, pos, size, style, validator, name), currency(0)
+            : wxTextCtrl(parent, id, value, pos, size, style, validator, name), currency_(0)
             {}
     void SetValue(double value)
     {
-        currency = Model_Currency::GetBaseCurrency();
+        currency_ = Model_Currency::GetBaseCurrency();
         this->SetValue(Model_Currency::toString(value));
     }
     void SetValue(double value, const Model_Account::Data* account)
     {
-        currency = Model_Currency::instance().get(account->CURRENCYID);
+        currency_ = Model_Currency::instance().get(account->CURRENCYID);
         this->SetValue(Model_Account::toString(value, account));
     }
     wxString GetValue() const
     {
         // Remove prefix and suffix characters from value
-        wxString prefix = (currency ? currency->PFX_SYMBOL : "");
-        wxString suffix = (currency ? currency->SFX_SYMBOL : "");
+        wxString prefix = (currency_ ? currency_->PFX_SYMBOL : "");
+        wxString suffix = (currency_ ? currency_->SFX_SYMBOL : "");
         wxString val = wxTextCtrl::GetValue();
         if (!prefix.IsEmpty())
         {
@@ -48,7 +48,7 @@ public:
         return val;
     }
 private:
-    const Model_Currency::Data* currency;
+    const Model_Currency::Data* currency_;
 };
 
 

@@ -109,8 +109,8 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
     if (column == COL_NUMBER)       return Model_Stock::NUMSHARES(m_stocks[item]);
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item));
-    if (column == COL_VALUE)        return m_stocks[item].to_string(Model_Stock::COL_VALUE);
-    if (column == COL_CURRENT)      return m_stocks[item].to_string(Model_Stock::COL_CURRENTPRICE);
+    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE);
+    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE);
     if (column == COL_NOTES)        return m_stocks[item].NOTES;
 
     return "";
