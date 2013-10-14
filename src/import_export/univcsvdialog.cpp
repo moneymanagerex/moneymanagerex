@@ -64,7 +64,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     core_(core),
     is_importer_(is_importer),
     delimit_(","),
-    db_ (core->db_.get()),
     importSuccessful_(false)
 {
     CSVFieldName_[UNIV_CSV_DATE] = _("Date");
@@ -592,7 +591,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             wxProgressDialog progressDlg(_("Universal CSV Import"),
                 _("Transactions imported from CSV: "), 100,
                 NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
-            db_->Begin();
+            core_->db_.get()->Begin();
 
             wxString line;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
@@ -674,27 +673,25 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                wxString status = "F";
                int toAccountID = -1;
 
-               mmBankTransaction* pTransaction(new mmBankTransaction(core_));
-               pTransaction->accountID_ = fromAccountID_;
-               pTransaction->toAccountID_ = toAccountID;
-               pTransaction->payeeID_ = payeeID_;
-               Model_Payee::Data* payee = Model_Payee::instance().get(payeeID_);
-               if (payee)
-                pTransaction->payeeStr_ = payee->PAYEENAME;
-               pTransaction->transType_ = type_;
-               pTransaction->amt_ = val_;
-               pTransaction->status_ = status;
-               pTransaction->transNum_ = transNum_;
-               pTransaction->notes_ = notes_;
-               pTransaction->date_ = dtdt_;
-               pTransaction->toAmt_ = 0.0;
+               Model_Checking::Data *pTransaction = Model_Checking::instance().create();
+               pTransaction->ACCOUNTID = fromAccountID_;
+               pTransaction->TOACCOUNTID = toAccountID;
+               pTransaction->PAYEEID = payeeID_;
+               pTransaction->TRANSCODE = type_;
+               pTransaction->TRANSAMOUNT = val_;
+               pTransaction->STATUS = status;
+               pTransaction->TRANSACTIONNUMBER = transNum_;
+               pTransaction->NOTES = notes_;
+               pTransaction->TRANSDATE = dtdt_.FormatISODate();
+               pTransaction->TOTRANSAMOUNT = 0.0;
 
-               int transID = core_->bTransactionList_.addTransaction(pTransaction);
+               Model_Checking::instance().save(pTransaction);
+               int transID = pTransaction->TRANSID;
                CSV_transID.push_back(transID);
 
                countImported++;
-               log << _("Line : ") << wxString::Format("%ld", countNumTotal) << _(" imported OK.") << endl;
-               *log_field_ << _("Line : ") << wxString::Format("%ld", countNumTotal) << _(" imported OK.") << "\n";
+               log << _("Line : %ld imported OK.", countNumTotal) << endl;
+               *log_field_ << _("Line : %ld imported OK.", countNumTotal) << "\n";
             }
 
             progressDlg.Destroy();
@@ -718,7 +715,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             if (!canceledbyuser)
             {
                 // we need to save them to the database.
-                db_->Commit();
+                core_->db_.get()->Commit();
                 importSuccessful_ = true;
                 msg << _("Transactions saved to database in account: ") << acctName;
             }
@@ -732,7 +729,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                     core_->bTransactionList_.removeTransaction(fromAccountID_,transID);
                 }
                 // and discard the database changes.
-                db_->Rollback();
+                core_->db_.get()->Rollback();
                 msg  << _("Imported transactions discarded by user!");
             }
 

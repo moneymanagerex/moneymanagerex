@@ -96,7 +96,7 @@ private:
     mmCoreDB* core_;
     bool is_importer_;
     wxString delimit_;
-    wxSQLite3Database* db_;
+
     std::vector<int> csvFieldOrder_;
     wxListBox* csvFieldCandicate_;
     wxListBox* csvListBox_;
