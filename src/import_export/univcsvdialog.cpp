@@ -690,8 +690,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                CSV_transID.push_back(transID);
 
                countImported++;
-               log << _("Line : %ld imported OK.", countNumTotal) << endl;
-               *log_field_ << _("Line : %ld imported OK.", countNumTotal) << "\n";
+               log << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << endl;
+               *log_field_ << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << "\n";
             }
 
             progressDlg.Destroy();
