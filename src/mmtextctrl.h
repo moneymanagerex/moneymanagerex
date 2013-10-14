@@ -8,36 +8,29 @@
 class mmTextCtrl : public wxTextCtrl
 {
 public:
-    mmTextCtrl() {}
+    using wxTextCtrl::SetValue;
+
+    mmTextCtrl() : currency(0) {}
     mmTextCtrl(wxWindow *parent, wxWindowID id, const wxString &value=wxEmptyString
             , const wxPoint &pos=wxDefaultPosition, const wxSize &size=wxDefaultSize
             , long style=0, const wxValidator &validator=wxDefaultValidator, const wxString &name=wxTextCtrlNameStr)
-            : wxTextCtrl(parent, id, value, pos, size, style, validator, name)
+            : wxTextCtrl(parent, id, value, pos, size, style, validator, name), currency(0)
             {}
-    void SetValue(const wxString &value)
-    {
-        prefix = "";
-        suffix = "";
-        wxTextCtrl::SetValue(value);
-    }
     void SetValue(double value)
     {
+        currency = Model_Currency::GetBaseCurrency();
         this->SetValue(Model_Currency::toString(value));
-        // update after call to SetValue
-        prefix = Model_Currency::GetBaseCurrency()->PFX_SYMBOL;
-        suffix = Model_Currency::GetBaseCurrency()->SFX_SYMBOL;
     }
     void SetValue(double value, const Model_Account::Data* account)
     {
+        currency = Model_Currency::instance().get(account->CURRENCYID);
         this->SetValue(Model_Account::toString(value, account));
-        // update after call to SetValue
-        Model_Currency::Data* currency = Model_Currency::instance().get(account->CURRENCYID);
-        prefix = (currency ? currency->PFX_SYMBOL : "");
-        suffix = (currency ? currency->SFX_SYMBOL : "");
     }
     wxString GetValue() const
     {
         // Remove prefix and suffix characters from value
+        wxString prefix = (currency ? currency->PFX_SYMBOL : "");
+        wxString suffix = (currency ? currency->SFX_SYMBOL : "");
         wxString val = wxTextCtrl::GetValue();
         if (!prefix.IsEmpty())
         {
@@ -55,8 +48,7 @@ public:
         return val;
     }
 private:
-    wxString prefix;
-    wxString suffix;
+    const Model_Currency::Data* currency;
 };
 
 
