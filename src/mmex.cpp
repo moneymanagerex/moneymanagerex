@@ -3262,7 +3262,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 {
     if (!m_db.get()) return;
 
-    mmOptionsDialog systemOptions(m_core.get(), this);
+    mmOptionsDialog systemOptions(this);
     if (systemOptions.ShowModal() == wxOK && systemOptions.AppliedChanges())
     {
         systemOptions.SaveNewSystemSettings();

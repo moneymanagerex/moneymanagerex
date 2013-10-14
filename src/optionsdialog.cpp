@@ -62,11 +62,9 @@ mmOptionsDialog::~mmOptionsDialog( )
 }
 
 mmOptionsDialog::mmOptionsDialog(
-    mmCoreDB* core,
     wxWindow* parent, wxWindowID id,
     const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
-: core_(core)
-, restartRequired_(false)
+: restartRequired_(false)
 , changesApplied_(false)
 {
     Create(parent, id, caption, pos, size, style);
@@ -885,8 +883,11 @@ void mmOptionsDialog::SaveStocksUrl()
     }
     else
     {
+        //TODO:
         // Clear database record: Allows value to reset to system default.
-        core_->db_.get()->ExecuteUpdate("DELETE FROM INFOTABLE_V1 where INFONAME = \"STOCKURL\";");
+        //Model_Infotable::Data *entry = Model_Infotable::instance().GetStringSetting("STOCKURL", "");
+        //if (entry) Model_Infotable::instance().remove(entry);
+        //core_->db_.get()->ExecuteUpdate("DELETE FROM INFOTABLE_V1 where INFONAME = \"STOCKURL\";");
     }
 }
 

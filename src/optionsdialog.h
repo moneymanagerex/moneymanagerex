@@ -21,7 +21,6 @@
 #define _MM_EX_OPTIONSDIALOG_H_
 
 #include "guiid.h"
-#include "mmcoredb.h"
 #include "defs.h"
 #include <wx/spinctrl.h>
 
@@ -38,8 +37,7 @@ class mmOptionsDialog: public wxDialog
 
 public:
     mmOptionsDialog( );
-    mmOptionsDialog(mmCoreDB* core,
-                    wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
+    mmOptionsDialog(wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
                     const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
                     const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
                     const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
@@ -62,8 +60,6 @@ public:
     }
 
 private:
-    /// System database access variables
-    mmCoreDB* core_;
 
     /// Dialog specific controls
     wxImageList* m_imageList;
