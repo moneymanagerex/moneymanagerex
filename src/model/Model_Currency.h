@@ -77,7 +77,7 @@ public:
 public:
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
-        wxString d2s = wxNumberFormatter::ToString(value, wxNumberFormatter::Style_NoTrailingZeroes); // Style_WithThousandsSep
+        wxString d2s = wxNumberFormatter::ToString(value, 2); // Style_WithThousandsSep
         if (currency) 
         {
             d2s.Prepend(currency->PFX_SYMBOL);
