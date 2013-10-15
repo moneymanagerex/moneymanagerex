@@ -883,11 +883,9 @@ void mmOptionsDialog::SaveStocksUrl()
     }
     else
     {
-        //TODO:
-        // Clear database record: Allows value to reset to system default.
-        //Model_Infotable::Data *entry = Model_Infotable::instance().GetStringSetting("STOCKURL", "");
-        //if (entry) Model_Infotable::instance().remove(entry);
-        //core_->db_.get()->ExecuteUpdate("DELETE FROM INFOTABLE_V1 where INFONAME = \"STOCKURL\";");
+        Model_Infotable::Data_Set items = Model_Infotable::instance().find(Model_Infotable::INFONAME("STOCKURL"));
+        if (!items.empty())
+            Model_Infotable::instance().remove(items[0].INFOID);
     }
 }
 

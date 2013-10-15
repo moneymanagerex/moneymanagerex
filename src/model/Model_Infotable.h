@@ -27,6 +27,8 @@
 class Model_Infotable : public Model, public DB_Table_INFOTABLE_V1
 {
     using DB_Table_INFOTABLE_V1::all;
+    using DB_Table_INFOTABLE_V1::get;
+    using DB_Table_INFOTABLE_V1::remove;
 public:
     Model_Infotable(): Model(), DB_Table_INFOTABLE_V1() {};
     ~Model_Infotable() 
@@ -45,11 +47,24 @@ public:
         return ins;
     }
 
-private:
+public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return this->all(this->db_, col, asc);
+    }
+    template<typename... Args>
+    Data_Set find(const Args&... args)
+    {
+        return find_by(this, db_, true, args...);
+    }
+    Data* get(int id)
+    {
+        return this->get(id, this->db_);
+    }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
     }
 
 public:
