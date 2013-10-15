@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "reportbase.h"
+#include <map>
 
 #ifndef HTML_WIDGET_STOCKS_H
 #define HTML_WIDGET_STOCKS_H
@@ -26,6 +27,8 @@ class htmlWidgetStocks : public mmPrintableBase
 public:
     ~htmlWidgetStocks();
     htmlWidgetStocks();
+    double get_total();
+    double get_total_gein_lost();
     void enable_detailes(bool enable);
 
     wxString getHTMLText();
@@ -34,6 +37,9 @@ protected:
 
     wxString title_;
     bool enable_details_;
+    double grand_total_;
+    double grand_gain_lost_;
+    void calculate_stats(std::map<int, std::pair<double, double> > &stockStats);
 };
 
 #endif //

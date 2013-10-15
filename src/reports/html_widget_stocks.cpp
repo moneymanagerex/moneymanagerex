@@ -29,6 +29,8 @@ htmlWidgetStocks::htmlWidgetStocks()
 {
     title_ = _("Stocks");
     enable_details_ = true;
+    grand_gain_lost_ = 0.0;
+    grand_total_ = 0.0;
 }
 
 htmlWidgetStocks::~htmlWidgetStocks()
@@ -42,8 +44,8 @@ wxString htmlWidgetStocks::getHTMLText()
     hb.startTable("100%");
     if (Model_Stock::instance().all().size())
     {
-        double stTotalBalance = 0.0, stTotalGain = 0.0;
-        wxString tBalanceStr, tGainStr;
+        std::map<int, std::pair<double, double> > stockStats;
+        calculate_stats(stockStats);
 
         hb.startTableRow();
         hb.addTableHeaderCell(_("Stocks"), false);
@@ -51,26 +53,26 @@ wxString htmlWidgetStocks::getHTMLText()
         hb.addTableHeaderCell(_("Total"), true);
         hb.endTableRow();
 
-        //TODO:
         if (enable_details_)
         {
             Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
             for (const auto& account : accounts)
             {
+                Model_Currency::Data *currency = Model_Currency::instance().get(account.ACCOUNTID);
+                //TODO: How to load currency settings?
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
                 hb.startTableRow();
                 hb.addTableCellLink(wxString::Format("STOCK:%i", account.ACCOUNTID)
                     , account.ACCOUNTNAME, false, true);
-                hb.addMoneyCell(1, true);
-                hb.addMoneyCell(2, true);
+                hb.addMoneyCell(stockStats[account.ACCOUNTID].first, true);
+                hb.addMoneyCell(stockStats[account.ACCOUNTID].second, true);
                 hb.endTableRow();
             }
         }
-        double tRecBalance = 1, tBalance =2;
 
         std::vector<double> data;
-        data.push_back(tRecBalance);
-        data.push_back(tBalance);
+        data.push_back(grand_gain_lost_);
+        data.push_back(grand_total_);
 
         hb.addTotalRow(_("Stocks Total:"), 3, data);
         hb.endTable();
@@ -84,3 +86,34 @@ void htmlWidgetStocks::enable_detailes(bool enable)
     enable_details_ = enable;
 }
 
+void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> > &stockStats)
+{
+    Model_Stock::Data_Set stocks = Model_Stock::instance().all();
+    for (const auto& stock : stocks)
+    {
+        double conv_rate = 1;
+        Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
+        if (account)
+        {
+            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+            conv_rate = currency->BASECONVRATE;
+        }
+        std::pair<double, double> values = stockStats[stock.HELDAT];
+        double gain_lost = (stock.VALUE - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
+        values.first += gain_lost;
+        values.second += stock.VALUE;
+        stockStats[stock.HELDAT] = values;
+        grand_gain_lost_ += gain_lost * conv_rate;
+        grand_total_ += stock.VALUE * conv_rate;
+    }
+}
+
+double htmlWidgetStocks::get_total()
+{
+    return grand_total_;
+}
+
+double htmlWidgetStocks::get_total_gein_lost()
+{
+    return grand_gain_lost_;
+}

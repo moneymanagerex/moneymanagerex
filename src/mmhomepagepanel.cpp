@@ -116,6 +116,7 @@ void mmHomePagePanel::createFrames()
     {
         stocks = stocks_widget.getHTMLText();
     }
+    tBalance += stocks_widget.get_total();
 
     leftFrame << acc << term << stocks;
     leftFrame << displayAssets(tBalance);
