@@ -87,7 +87,7 @@ void mmReportTransactionStats::getTransactionStats(std::map<wxDateTime::Month, s
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
     for (const auto &trx : transactions)
     {
-        if (trx.STATUS == "V")
+        if (trx.STATUS == "V" || trx.STATUS == "X")
             continue; // skip
 
         wxDateTime trx_date = mmGetStorageStringAsDate(trx.TRANSDATE);
