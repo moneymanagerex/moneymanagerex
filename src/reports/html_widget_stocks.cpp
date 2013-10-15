@@ -37,20 +37,34 @@ wxString htmlWidgetStocks::getHTMLText()
 {
     mmHTMLBuilder hb;
 
-    double stTotalBalance = 0.0, stTotalGain = 0.0;
-    wxString tBalanceStr, tGainStr;
-
-    hb.startTable("100%");
-    //if (frame_->expandedStockAccounts())
+    if (Model_Stock::instance().all().size())
     {
-        hb.startTableRow();
-        hb.addTableHeaderCell(_("Stocks"), false);
-        hb.addTableHeaderCell(_("Gain/Loss"), true);
-        hb.addTableHeaderCell(_("Total"), true);
-        hb.endTableRow();
-    }
+        double stTotalBalance = 0.0, stTotalGain = 0.0;
+        wxString tBalanceStr, tGainStr;
 
-    //TODO:
+        hb.startTable("100%");
+        //if (frame_->expandedStockAccounts())
+        {
+            hb.startTableRow();
+            hb.addTableHeaderCell(_("Stocks"), false);
+            hb.addTableHeaderCell(_("Gain/Loss"), true);
+            hb.addTableHeaderCell(_("Total"), true);
+            hb.endTableRow();
+        }
+
+        //TODO:
+        double tRecBalance = 1, tBalance =2;
+
+        std::vector<double> data;
+        data.push_back(tRecBalance);
+        data.push_back(tBalance);
+
+        hb.startTableRow();
+        hb.addTotalRow(_("Stocks Total:"), 3, data);
+        hb.endTableRow();
+
+        hb.endTable();
+    }
 
     return hb.getHTMLinTableWraper(true);
 }
