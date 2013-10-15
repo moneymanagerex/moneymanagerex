@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,16 +53,19 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     { 
         static wxString name() { return "SUBCATEGID"; } 
         SUBCATEGID(const int &v): DB_Column<int>(v) {}
+        SUBCATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "SUBCATEGNAME"; } 
         SUBCATEGNAME(const wxString &v): DB_Column<wxString>(v) {}
+        SUBCATEGNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         CATEGID(const int &v): DB_Column<int>(v) {}
+        CATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     typedef SUBCATEGID PRIMARY;
     enum COLUMN

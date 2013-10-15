@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,31 +53,37 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     { 
         static wxString name() { return "BUDGETENTRYID"; } 
         BUDGETENTRYID(const int &v): DB_Column<int>(v) {}
+        BUDGETENTRYID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct BUDGETYEARID : public DB_Column<int>
     { 
         static wxString name() { return "BUDGETYEARID"; } 
         BUDGETYEARID(const int &v): DB_Column<int>(v) {}
+        BUDGETYEARID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         CATEGID(const int &v): DB_Column<int>(v) {}
+        CATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
         SUBCATEGID(const int &v): DB_Column<int>(v) {}
+        SUBCATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct PERIOD : public DB_Column<wxString>
     { 
         static wxString name() { return "PERIOD"; } 
         PERIOD(const wxString &v): DB_Column<wxString>(v) {}
+        PERIOD(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct AMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "AMOUNT"; } 
         AMOUNT(const double &v): DB_Column<double>(v) {}
+        AMOUNT(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     typedef BUDGETENTRYID PRIMARY;
     enum COLUMN

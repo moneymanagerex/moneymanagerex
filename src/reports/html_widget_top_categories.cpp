@@ -78,13 +78,15 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Temporary map
     std::map<wxString, double> stat;
 
-    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->start_date().FormatISODate(), Model_Checking::TRANSDATE::GREATER_OR_EQUAL)
+            , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate(), Model_Checking::TRANSDATE::LESS_OR_EQUAL));
+                
+    wxLogDebug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     for (const auto &trx : transactions)
     {
         if (Model_Checking::status(trx) ==  Model_Checking::VOID_) continue; // skip
         if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue; // skip
-        if (Model_Checking::TRANSDATE(trx) < date_range->start_date()) continue;
-        if (Model_Checking::TRANSDATE(trx).GetDateOnly() > date_range->end_date()) continue;
 
         if (trx.CATEGID > -1)
         {

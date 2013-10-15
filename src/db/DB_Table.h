@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -32,8 +32,12 @@ class wxString;
 template<class V>
 struct DB_Column
 {
+    enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL };
     V v_;
-    DB_Column(const V& v): v_(v)
+    OP op_;
+    DB_Column(const V& v): v_(v), op_(EQUAL)
+    {}
+    DB_Column(const V& v, OP op): v_(v), op_(op)
     {}
 };
 
@@ -56,13 +60,31 @@ struct DB_Table
 template<typename Arg1>
 void condition(wxString& out, bool op_and, const Arg1& arg1)
 {
-    out += Arg1::name() + " = ? ";
+    out += Arg1::name();
+    switch (arg1.op_)
+    {
+    case Arg1::GREATER:           out += " > ? ";     break;
+    case Arg1::GREATER_OR_EQUAL:  out += " >= ? ";    break;
+    case Arg1::LESS:              out += " < ? ";     break;
+    case Arg1::LESS_OR_EQUAL:     out += " <= ? ";    break;
+    default:
+        out += " = ? "; break;
+    }
 }
 
 template<typename Arg1, typename... Args>
 void condition(wxString& out, bool op_and, const Arg1& arg1, const Args&... args) 
 {
-    out += Arg1::name() + " = ? ";
+    out += Arg1::name();
+    switch (arg1.op_)
+    {
+    case Arg1::GREATER:           out += " > ? ";     break;
+    case Arg1::GREATER_OR_EQUAL:  out += " >= ? ";    break;
+    case Arg1::LESS:              out += " < ? ";     break;
+    case Arg1::LESS_OR_EQUAL:     out += " <= ? ";    break;
+    default:
+        out += " = ? "; break;
+    }
     out += op_and? " AND " : " OR ";
     condition(out, op_and, args...);
 }

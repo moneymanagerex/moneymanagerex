@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,41 +53,49 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     { 
         static wxString name() { return "ASSETID"; } 
         ASSETID(const int &v): DB_Column<int>(v) {}
+        ASSETID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct STARTDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "STARTDATE"; } 
         STARTDATE(const wxString &v): DB_Column<wxString>(v) {}
+        STARTDATE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct ASSETNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "ASSETNAME"; } 
         ASSETNAME(const wxString &v): DB_Column<wxString>(v) {}
+        ASSETNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
         VALUE(const double &v): DB_Column<double>(v) {}
+        VALUE(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct VALUECHANGE : public DB_Column<wxString>
     { 
         static wxString name() { return "VALUECHANGE"; } 
         VALUECHANGE(const wxString &v): DB_Column<wxString>(v) {}
+        VALUECHANGE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         NOTES(const wxString &v): DB_Column<wxString>(v) {}
+        NOTES(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct VALUECHANGERATE : public DB_Column<double>
     { 
         static wxString name() { return "VALUECHANGERATE"; } 
         VALUECHANGERATE(const double &v): DB_Column<double>(v) {}
+        VALUECHANGERATE(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct ASSETTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "ASSETTYPE"; } 
         ASSETTYPE(const wxString &v): DB_Column<wxString>(v) {}
+        ASSETTYPE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     typedef ASSETID PRIMARY;
     enum COLUMN

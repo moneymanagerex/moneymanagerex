@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,16 +53,19 @@ struct DB_Table_SETTING_V1 : public DB_Table
     { 
         static wxString name() { return "SETTINGID"; } 
         SETTINGID(const int &v): DB_Column<int>(v) {}
+        SETTINGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct SETTINGNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "SETTINGNAME"; } 
         SETTINGNAME(const wxString &v): DB_Column<wxString>(v) {}
+        SETTINGNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct SETTINGVALUE : public DB_Column<wxString>
     { 
         static wxString name() { return "SETTINGVALUE"; } 
         SETTINGVALUE(const wxString &v): DB_Column<wxString>(v) {}
+        SETTINGVALUE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     typedef SETTINGID PRIMARY;
     enum COLUMN

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,56 +53,67 @@ struct DB_Table_STOCK_V1 : public DB_Table
     { 
         static wxString name() { return "STOCKID"; } 
         STOCKID(const int &v): DB_Column<int>(v) {}
+        STOCKID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct HELDAT : public DB_Column<int>
     { 
         static wxString name() { return "HELDAT"; } 
         HELDAT(const int &v): DB_Column<int>(v) {}
+        HELDAT(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct PURCHASEDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "PURCHASEDATE"; } 
         PURCHASEDATE(const wxString &v): DB_Column<wxString>(v) {}
+        PURCHASEDATE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct STOCKNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "STOCKNAME"; } 
         STOCKNAME(const wxString &v): DB_Column<wxString>(v) {}
+        STOCKNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "SYMBOL"; } 
         SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+        SYMBOL(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct NUMSHARES : public DB_Column<double>
     { 
         static wxString name() { return "NUMSHARES"; } 
         NUMSHARES(const double &v): DB_Column<double>(v) {}
+        NUMSHARES(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct PURCHASEPRICE : public DB_Column<double>
     { 
         static wxString name() { return "PURCHASEPRICE"; } 
         PURCHASEPRICE(const double &v): DB_Column<double>(v) {}
+        PURCHASEPRICE(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
         NOTES(const wxString &v): DB_Column<wxString>(v) {}
+        NOTES(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct CURRENTPRICE : public DB_Column<double>
     { 
         static wxString name() { return "CURRENTPRICE"; } 
         CURRENTPRICE(const double &v): DB_Column<double>(v) {}
+        CURRENTPRICE(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
         VALUE(const double &v): DB_Column<double>(v) {}
+        VALUE(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct COMMISSION : public DB_Column<double>
     { 
         static wxString name() { return "COMMISSION"; } 
         COMMISSION(const double &v): DB_Column<double>(v) {}
+        COMMISSION(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     typedef STOCKID PRIMARY;
     enum COLUMN

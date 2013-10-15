@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,11 +53,13 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     { 
         static wxString name() { return "BUDGETYEARID"; } 
         BUDGETYEARID(const int &v): DB_Column<int>(v) {}
+        BUDGETYEARID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct BUDGETYEARNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "BUDGETYEARNAME"; } 
         BUDGETYEARNAME(const wxString &v): DB_Column<wxString>(v) {}
+        BUDGETYEARNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     typedef BUDGETYEARID PRIMARY;
     enum COLUMN

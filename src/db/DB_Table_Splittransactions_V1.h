@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,26 +53,31 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
     { 
         static wxString name() { return "SPLITTRANSID"; } 
         SPLITTRANSID(const int &v): DB_Column<int>(v) {}
+        SPLITTRANSID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct TRANSID : public DB_Column<int>
     { 
         static wxString name() { return "TRANSID"; } 
         TRANSID(const int &v): DB_Column<int>(v) {}
+        TRANSID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
         CATEGID(const int &v): DB_Column<int>(v) {}
+        CATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
         SUBCATEGID(const int &v): DB_Column<int>(v) {}
+        SUBCATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct SPLITTRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "SPLITTRANSAMOUNT"; } 
         SPLITTRANSAMOUNT(const double &v): DB_Column<double>(v) {}
+        SPLITTRANSAMOUNT(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     typedef SPLITTRANSID PRIMARY;
     enum COLUMN

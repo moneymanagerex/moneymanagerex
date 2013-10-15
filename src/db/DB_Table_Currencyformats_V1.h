@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,56 +53,67 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     { 
         static wxString name() { return "CURRENCYID"; } 
         CURRENCYID(const int &v): DB_Column<int>(v) {}
+        CURRENCYID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct CURRENCYNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCYNAME"; } 
         CURRENCYNAME(const wxString &v): DB_Column<wxString>(v) {}
+        CURRENCYNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct PFX_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "PFX_SYMBOL"; } 
         PFX_SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+        PFX_SYMBOL(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct SFX_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "SFX_SYMBOL"; } 
         SFX_SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+        SFX_SYMBOL(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct DECIMAL_POINT : public DB_Column<wxString>
     { 
         static wxString name() { return "DECIMAL_POINT"; } 
         DECIMAL_POINT(const wxString &v): DB_Column<wxString>(v) {}
+        DECIMAL_POINT(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct GROUP_SEPARATOR : public DB_Column<wxString>
     { 
         static wxString name() { return "GROUP_SEPARATOR"; } 
         GROUP_SEPARATOR(const wxString &v): DB_Column<wxString>(v) {}
+        GROUP_SEPARATOR(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct UNIT_NAME : public DB_Column<wxString>
     { 
         static wxString name() { return "UNIT_NAME"; } 
         UNIT_NAME(const wxString &v): DB_Column<wxString>(v) {}
+        UNIT_NAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct CENT_NAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CENT_NAME"; } 
         CENT_NAME(const wxString &v): DB_Column<wxString>(v) {}
+        CENT_NAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     struct SCALE : public DB_Column<int>
     { 
         static wxString name() { return "SCALE"; } 
         SCALE(const int &v): DB_Column<int>(v) {}
+        SCALE(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct BASECONVRATE : public DB_Column<double>
     { 
         static wxString name() { return "BASECONVRATE"; } 
         BASECONVRATE(const double &v): DB_Column<double>(v) {}
+        BASECONVRATE(const double &v, OP op): DB_Column<double>(v, op) {}
     };
     struct CURRENCY_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCY_SYMBOL"; } 
         CURRENCY_SYMBOL(const wxString &v): DB_Column<wxString>(v) {}
+        CURRENCY_SYMBOL(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     typedef CURRENCYID PRIMARY;
     enum COLUMN

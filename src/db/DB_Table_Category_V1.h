@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
+ *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -53,11 +53,13 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     { 
         static wxString name() { return "CATEGID"; } 
         CATEGID(const int &v): DB_Column<int>(v) {}
+        CATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
     };
     struct CATEGNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CATEGNAME"; } 
         CATEGNAME(const wxString &v): DB_Column<wxString>(v) {}
+        CATEGNAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
     };
     typedef CATEGID PRIMARY;
     enum COLUMN
