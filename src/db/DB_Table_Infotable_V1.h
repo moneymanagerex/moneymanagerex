@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
+ *          AUTO GENERATED at 2013-10-15 21:38:03.100321.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -52,20 +52,17 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     struct INFOID : public DB_Column<int>
     { 
         static wxString name() { return "INFOID"; } 
-        INFOID(const int &v): DB_Column<int>(v) {}
-        INFOID(const int &v, OP op): DB_Column<int>(v, op) {}
+        INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct INFONAME : public DB_Column<wxString>
     { 
         static wxString name() { return "INFONAME"; } 
-        INFONAME(const wxString &v): DB_Column<wxString>(v) {}
-        INFONAME(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct INFOVALUE : public DB_Column<wxString>
     { 
         static wxString name() { return "INFOVALUE"; } 
-        INFOVALUE(const wxString &v): DB_Column<wxString>(v) {}
-        INFOVALUE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef INFOID PRIMARY;
     enum COLUMN

@@ -102,10 +102,8 @@ struct DB_Table_%s : public DB_Table
     struct %s : public DB_Column<%s>
     { 
         static wxString name() { return "%s"; } 
-        %s(const %s &v): DB_Column<%s>(v) {}
-        %s(const %s &v, OP op): DB_Column<%s>(v, op) {}
+        %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
     };''' % (field['name'], base_data_types_reverse[field['type']], field['name']
-            , field['name'], base_data_types_reverse[field['type']], base_data_types_reverse[field['type']]
             , field['name'], base_data_types_reverse[field['type']], base_data_types_reverse[field['type']])
 
         s += '''
@@ -549,9 +547,7 @@ struct DB_Column
     enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL };
     V v_;
     OP op_;
-    DB_Column(const V& v): v_(v), op_(EQUAL)
-    {}
-    DB_Column(const V& v, OP op): v_(v), op_(op)
+    DB_Column(const V& v, OP op = EQUAL): v_(v), op_(op)
     {}
 };
 

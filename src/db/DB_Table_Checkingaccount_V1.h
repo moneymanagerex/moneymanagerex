@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-15 21:02:48.018598.
+ *          AUTO GENERATED at 2013-10-15 21:38:03.100321.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -52,86 +52,72 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     struct TRANSID : public DB_Column<int>
     { 
         static wxString name() { return "TRANSID"; } 
-        TRANSID(const int &v): DB_Column<int>(v) {}
-        TRANSID(const int &v, OP op): DB_Column<int>(v, op) {}
+        TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct ACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        ACCOUNTID(const int &v): DB_Column<int>(v) {}
-        ACCOUNTID(const int &v, OP op): DB_Column<int>(v, op) {}
+        ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct TOACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "TOACCOUNTID"; } 
-        TOACCOUNTID(const int &v): DB_Column<int>(v) {}
-        TOACCOUNTID(const int &v, OP op): DB_Column<int>(v, op) {}
+        TOACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct PAYEEID : public DB_Column<int>
     { 
         static wxString name() { return "PAYEEID"; } 
-        PAYEEID(const int &v): DB_Column<int>(v) {}
-        PAYEEID(const int &v, OP op): DB_Column<int>(v, op) {}
+        PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct TRANSCODE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSCODE"; } 
-        TRANSCODE(const wxString &v): DB_Column<wxString>(v) {}
-        TRANSCODE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        TRANSCODE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct TRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "TRANSAMOUNT"; } 
-        TRANSAMOUNT(const double &v): DB_Column<double>(v) {}
-        TRANSAMOUNT(const double &v, OP op): DB_Column<double>(v, op) {}
+        TRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct STATUS : public DB_Column<wxString>
     { 
         static wxString name() { return "STATUS"; } 
-        STATUS(const wxString &v): DB_Column<wxString>(v) {}
-        STATUS(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct TRANSACTIONNUMBER : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSACTIONNUMBER"; } 
-        TRANSACTIONNUMBER(const wxString &v): DB_Column<wxString>(v) {}
-        TRANSACTIONNUMBER(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        TRANSACTIONNUMBER(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
-        NOTES(const wxString &v): DB_Column<wxString>(v) {}
-        NOTES(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
-        CATEGID(const int &v): DB_Column<int>(v) {}
-        CATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
+        CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
-        SUBCATEGID(const int &v): DB_Column<int>(v) {}
-        SUBCATEGID(const int &v, OP op): DB_Column<int>(v, op) {}
+        SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct TRANSDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "TRANSDATE"; } 
-        TRANSDATE(const wxString &v): DB_Column<wxString>(v) {}
-        TRANSDATE(const wxString &v, OP op): DB_Column<wxString>(v, op) {}
+        TRANSDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct FOLLOWUPID : public DB_Column<int>
     { 
         static wxString name() { return "FOLLOWUPID"; } 
-        FOLLOWUPID(const int &v): DB_Column<int>(v) {}
-        FOLLOWUPID(const int &v, OP op): DB_Column<int>(v, op) {}
+        FOLLOWUPID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct TOTRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "TOTRANSAMOUNT"; } 
-        TOTRANSAMOUNT(const double &v): DB_Column<double>(v) {}
-        TOTRANSAMOUNT(const double &v, OP op): DB_Column<double>(v, op) {}
+        TOTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     typedef TRANSID PRIMARY;
     enum COLUMN
