@@ -166,10 +166,6 @@ public:
                                 , bool group_by_account = false
                                 , bool group_by_month = false) const;
 
-    void getTopCategoryStats(
-        std::vector<std::pair<wxString, double> > &categoryStats
-        , mmDateRange* date_range) const;
-
     void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
         , mmDateRange* date_range, bool ignoreFuture

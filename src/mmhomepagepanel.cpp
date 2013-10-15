@@ -118,7 +118,8 @@ void mmHomePagePanel::createFrames()
     curr = displayCurrencies();
     leftFrame << displayCurrencies();
 
-    htmlWidgetTop7Categories top_trx(core_);
+    mmDateRange* date_range = new mmLast30Days();
+    htmlWidgetTop7Categories top_trx(date_range);
     leftFrame += top_trx.getHTMLText();
 
     //Also displays the Income vs Expenses graph.
