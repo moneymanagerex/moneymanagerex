@@ -60,7 +60,7 @@ void Eraser::cleanup()
 
 wxString Eraser::getFilePath()
 {
-    wxString path = wxString::Format("chart%d.png", ++count);
+    wxString path = wxString::Format("chart%ld.png", ++count);
     files.push_back(path);
     return path.Prepend("memory:");
 }

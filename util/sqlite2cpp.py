@@ -188,8 +188,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
         
         s += '''
-    private:
-        Data(Self* view = 0) 
+        Data(Self* view) 
         {
             view_ = view;
         '''
@@ -220,7 +219,6 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
         }
-    public:
 '''
         s +='''
         wxString to_string(COLUMN col) const
@@ -491,73 +489,6 @@ struct DB_Table_%s : public DB_Table
         return entity;
     }
 '''
-
-        s +='''
-    template<class V>
-    Data_Set find(wxSQLite3Database* db, const V& v)
-    {
-        Data_Set result;
-        try
-        {
-            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
-                + V::name() + " = ?"
-                );
-            stmt.Bind(1, v.v_);
-            wxLogDebug(stmt.GetSQL());
-            wxSQLite3ResultSet q = stmt.ExecuteQuery();
-
-            while(q.NextRow())
-            {
-                Self::Data entity(q, this);
-                result.push_back(entity);
-            }
-
-            q.Finalize();
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
-        }
-
-        return result;
-    }
-'''
-        s +='''
-    template<class V1, class V2>
-    Data_Set find(wxSQLite3Database* db, const V1& v1, const V2& v2, bool op_and = true)
-    {
-        Data_Set result;
-        try
-        {
-            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE "
-                                                                + V1::name() + " = ? "
-                                                                + (op_and ? " AND " : " OR ")
-                                                                + V2::name() + " = ?"
-                                                                + " ORDER BY " + V1::name()
-                                                                + "," + V2::name()
-                                                                );
-            stmt.Bind(1, v1.v_);
-            stmt.Bind(2, v2.v_);
-            wxLogDebug(stmt.GetSQL());
-            wxSQLite3ResultSet q = stmt.ExecuteQuery();
-
-            while(q.NextRow())
-            {
-                Self::Data entity(q, this);
-                result.push_back(entity);
-            }
-
-            q.Finalize();
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("%s: Exception %s", this->name(), e.GetMessage().c_str());
-        }
-
-        return result;
-    }
-'''
-
         s +='''
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
@@ -632,6 +563,63 @@ struct DB_Table
        return db->TableExists(this->name()); 
     }
 };
+
+template<typename Arg1>
+void condition(wxString& out, bool op_and, const Arg1& arg1)
+{
+    out += Arg1::name() + " = ? ";
+}
+
+template<typename Arg1, typename... Args>
+void condition(wxString& out, bool op_and, const Arg1& arg1, const Args&... args) 
+{
+    out += Arg1::name() + " = ? ";
+    out += op_and? " AND " : " OR ";
+    condition(out, op_and, args...);
+}
+
+template<typename Arg1>
+void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1)
+{
+    stmt.Bind(index, arg1.v_);
+}
+
+template<typename Arg1, typename... Args>
+void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1, const Args&... args)
+{
+    stmt.Bind(index, arg1.v_); 
+    bind(stmt, index+1, args...);
+}
+
+template<typename TABLE, typename... Args>
+typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_and, const Args&... args)
+{
+    typename TABLE::Data_Set result;
+    try
+    {
+        wxString query = table->query() + " WHERE ";
+        condition(query, op_and, args...);
+        wxSQLite3Statement stmt = db->PrepareStatement(query);
+        bind(stmt, 1, args...);
+
+        wxLogDebug(stmt.GetSQL());
+        wxSQLite3ResultSet q = stmt.ExecuteQuery();
+
+        while(q.NextRow())
+        {
+            typename TABLE::Data entity(q, table);
+            result.push_back(entity);
+        }
+
+        q.Finalize();
+    }
+    catch(const wxSQLite3Exception &e) 
+    { 
+        wxLogError("%s: Exception %s", table->name().c_str(), e.GetMessage().c_str());
+    }
+ 
+    return result;
+}
 #endif // 
 '''
    fp = open('db_table.h', 'w')

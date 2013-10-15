@@ -26,7 +26,6 @@
 class Model_Subcategory : public Model, public DB_Table_SUBCATEGORY_V1
 {
     using DB_Table_SUBCATEGORY_V1::all;
-    using DB_Table_SUBCATEGORY_V1::find;
     using DB_Table_SUBCATEGORY_V1::get;
     using DB_Table_SUBCATEGORY_V1::remove;
 public:
@@ -55,11 +54,12 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
-    template<class V>
-    Data_Set find(const V& v)
+    template<typename... Args>
+    Data_Set find(const Args&... args)
     {
-        return find(db_, v);
+        return find_by(this, db_, true, args...);
     }
+
     Data* get(int id)
     {
         return this->get(id, this->db_);
@@ -67,7 +67,7 @@ public:
     Data* get(const wxString& name, int category_id = -1)
     {
         Data* category = 0;
-        Data_Set items = this->find(this->db_, SUBCATEGNAME(name), CATEGID(category_id));
+        Data_Set items = this->find(SUBCATEGNAME(name), CATEGID(category_id));
         if (!items.empty()) category = this->get(items[0].SUBCATEGID, this->db_);
         return category;
     }

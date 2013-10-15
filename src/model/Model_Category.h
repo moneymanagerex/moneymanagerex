@@ -30,7 +30,6 @@
 class Model_Category : public Model, public DB_Table_CATEGORY_V1
 {
     using DB_Table_CATEGORY_V1::all;
-    using DB_Table_CATEGORY_V1::find;
     using DB_Table_CATEGORY_V1::get;
     using DB_Table_CATEGORY_V1::remove;
 public:
@@ -56,10 +55,10 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
-    template<class V>
-    Data_Set find(const V& v)
+    template<typename... Args>
+    Data_Set find(const Args&... args)
     {
-        return find(db_, v);
+        return find_by(this, db_, true, args...);
     }
     Data* get(int id)
     {
@@ -68,7 +67,7 @@ public:
     Data* get(const wxString& name)
     {
         Data* category = 0;
-        Data_Set items = this->find(this->db_, CATEGNAME(name));
+        Data_Set items = this->find(CATEGNAME(name));
         if (!items.empty()) category = this->get(items[0].CATEGID, this->db_);
         return category;
     }

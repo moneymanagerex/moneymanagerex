@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-13 17:07:54.219292.
+ *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -52,4 +52,61 @@ struct DB_Table
        return db->TableExists(this->name()); 
     }
 };
+
+template<typename Arg1>
+void condition(wxString& out, bool op_and, const Arg1& arg1)
+{
+    out += Arg1::name() + " = ? ";
+}
+
+template<typename Arg1, typename... Args>
+void condition(wxString& out, bool op_and, const Arg1& arg1, const Args&... args) 
+{
+    out += Arg1::name() + " = ? ";
+    out += op_and? " AND " : " OR ";
+    condition(out, op_and, args...);
+}
+
+template<typename Arg1>
+void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1)
+{
+    stmt.Bind(index, arg1.v_);
+}
+
+template<typename Arg1, typename... Args>
+void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1, const Args&... args)
+{
+    stmt.Bind(index, arg1.v_); 
+    bind(stmt, index+1, args...);
+}
+
+template<typename TABLE, typename... Args>
+typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_and, const Args&... args)
+{
+    typename TABLE::Data_Set result;
+    try
+    {
+        wxString query = table->query() + " WHERE ";
+        condition(query, op_and, args...);
+        wxSQLite3Statement stmt = db->PrepareStatement(query);
+        bind(stmt, 1, args...);
+
+        wxLogDebug(stmt.GetSQL());
+        wxSQLite3ResultSet q = stmt.ExecuteQuery();
+
+        while(q.NextRow())
+        {
+            typename TABLE::Data entity(q, table);
+            result.push_back(entity);
+        }
+
+        q.Finalize();
+    }
+    catch(const wxSQLite3Exception &e) 
+    { 
+        wxLogError("%s: Exception %s", table->name().c_str(), e.GetMessage().c_str());
+    }
+ 
+    return result;
+}
 #endif // 

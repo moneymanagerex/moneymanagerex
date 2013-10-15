@@ -29,7 +29,6 @@ class Model_Payee : public Model, public DB_Table_PAYEE_V1
     using DB_Table_PAYEE_V1::all;
     using DB_Table_PAYEE_V1::get;
     using DB_Table_PAYEE_V1::remove;
-    using DB_Table_PAYEE_V1::find;
 public:
     Model_Payee(): Model(), DB_Table_PAYEE_V1() 
     {
@@ -53,10 +52,10 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
-    template<class V1, class V2>
-    Data_Set find(const V1& v1, const V2& v2)
+    template<typename... Args>
+    Data_Set find(const Args&... args)
     {
-        return find(db_, v1, v2);
+        return find_by(this, db_, true, args...);
     }
     Data_Set FilterPayees(const wxString& payee_pattern)
     {
@@ -75,7 +74,7 @@ public:
     Data* get(const wxString& name)
     {
         Data* payee = 0;
-        Data_Set items = this->find(this->db_, PAYEENAME(name));
+        Data_Set items = this->find(PAYEENAME(name));
         if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);
         return payee;
     }

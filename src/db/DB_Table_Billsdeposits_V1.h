@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-13 17:07:54.219292.
+ *          AUTO GENERATED at 2013-10-15 13:58:18.154138.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -262,8 +262,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             return this->id() < r->id();
         }
 
-    private:
-        Data(Self* view = 0) 
+        Data(Self* view) 
         {
             view_ = view;
         
@@ -302,7 +301,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             NEXTOCCURRENCEDATE = q.GetString("NEXTOCCURRENCEDATE");
             NUMOCCURRENCES = q.GetInt("NUMOCCURRENCES");
         }
-    public:
 
         wxString to_string(COLUMN col) const
         {
@@ -588,69 +586,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         }
  
         return entity;
-    }
-
-    template<class V>
-    Data_Set find(wxSQLite3Database* db, const V& v)
-    {
-        Data_Set result;
-        try
-        {
-            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE " 
-                + V::name() + " = ?"
-                );
-            stmt.Bind(1, v.v_);
-            wxLogDebug(stmt.GetSQL());
-            wxSQLite3ResultSet q = stmt.ExecuteQuery();
-
-            while(q.NextRow())
-            {
-                Self::Data entity(q, this);
-                result.push_back(entity);
-            }
-
-            q.Finalize();
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("%s: Exception %s", this->name().c_str(), e.GetMessage().c_str());
-        }
-
-        return result;
-    }
-
-    template<class V1, class V2>
-    Data_Set find(wxSQLite3Database* db, const V1& v1, const V2& v2, bool op_and = true)
-    {
-        Data_Set result;
-        try
-        {
-            wxSQLite3Statement stmt = db->PrepareStatement(this->query() + " WHERE "
-                                                                + V1::name() + " = ? "
-                                                                + (op_and ? " AND " : " OR ")
-                                                                + V2::name() + " = ?"
-                                                                + " ORDER BY " + V1::name()
-                                                                + "," + V2::name()
-                                                                );
-            stmt.Bind(1, v1.v_);
-            stmt.Bind(2, v2.v_);
-            wxLogDebug(stmt.GetSQL());
-            wxSQLite3ResultSet q = stmt.ExecuteQuery();
-
-            while(q.NextRow())
-            {
-                Self::Data entity(q, this);
-                result.push_back(entity);
-            }
-
-            q.Finalize();
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("%s: Exception %s", this->name(), e.GetMessage().c_str());
-        }
-
-        return result;
     }
 
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)

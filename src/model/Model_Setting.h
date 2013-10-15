@@ -49,6 +49,11 @@ public:
         this->ensure(this->db_);
         return this->all(this->db_, col, asc);
     }
+    template<typename... Args>
+    Data_Set find(const Args&... args)
+    {
+        return find_by(this, db_, true, args...);
+    }
 
 public:
     // Setter
@@ -70,7 +75,7 @@ public:
     void Set(const wxString& key, const wxString& value)
     {
         Data* setting = 0;
-        Data_Set items = this->find(this->db_, SETTINGNAME(key));
+        Data_Set items = this->find(SETTINGNAME(key));
         if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
         if (setting)
         {

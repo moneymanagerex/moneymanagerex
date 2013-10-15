@@ -25,7 +25,6 @@
 class Model_Billsdeposits : public Model, public DB_Table_BILLSDEPOSITS_V1
 {
     using DB_Table_BILLSDEPOSITS_V1::all;
-    using DB_Table_BILLSDEPOSITS_V1::find;
     using DB_Table_BILLSDEPOSITS_V1::get;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
@@ -78,15 +77,10 @@ public:
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
-    template<class V>
-    Data_Set find(const V& v)
+    template<typename... Args>
+    Data_Set find(const Args&... args)
     {
-        return find(db_, v);
-    }
-    template<class V1, class V2>
-    Data_Set find(const V1& v1, const V2& v2)
-    {
-        return find(db_, v1, v2);
+        return find_by(this, db_, true, args...);
     }
     Data* get(int id)
     {
