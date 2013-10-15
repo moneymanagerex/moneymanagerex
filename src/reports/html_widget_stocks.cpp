@@ -58,14 +58,13 @@ wxString htmlWidgetStocks::getHTMLText()
             Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
             for (const auto& account : accounts)
             {
-                Model_Currency::Data *currency = Model_Currency::instance().get(account.ACCOUNTID);
-                //TODO: How to load currency settings?
+                Model_Currency::Data *currency = Model_Currency::instance().get(account.CURRENCYID);
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
                 hb.startTableRow();
                 hb.addTableCellLink(wxString::Format("STOCK:%i", account.ACCOUNTID)
                     , account.ACCOUNTNAME, false, true);
-                hb.addMoneyCell(stockStats[account.ACCOUNTID].first, true);
-                hb.addMoneyCell(stockStats[account.ACCOUNTID].second, true);
+                hb.addTableCell(Model_Currency::toString(stockStats[account.ACCOUNTID].first, currency), true);
+                hb.addTableCell(Model_Currency::toString(stockStats[account.ACCOUNTID].second, currency), true);
                 hb.endTableRow();
             }
         }

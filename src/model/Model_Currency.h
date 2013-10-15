@@ -94,15 +94,16 @@ public:
 public:
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
-        wxString d2s = wxNumberFormatter::ToString(value, Model_Currency::precision(currency)); // Style_WithThousandsSep
+        wxString d2s = "";
         if (currency) 
         {
+            d2s = wxNumberFormatter::ToString(value, Model_Currency::precision(currency)); // Style_WithThousandsSep
             d2s.Prepend(currency->PFX_SYMBOL);
             d2s.Append(currency->SFX_SYMBOL);
         }
         else
         {
-            d2s.Prepend("$");
+            d2s = wxNumberFormatter::ToString(value, 1);
         }
         return d2s;
     }
