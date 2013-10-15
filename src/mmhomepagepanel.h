@@ -87,7 +87,6 @@ private:
     wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
 
     wxString displayAccounts(double& tBalance, int account_type = 0 /*CHEKCING*/);
-    wxString displayStocks(double& tBalance /*, double& tIncome, double& tExpenses */);
     wxString displayAssets(double& tBalance);
     wxString displayCurrencies();
     wxString displayIncomeVsExpenses();

@@ -19,6 +19,7 @@
 #include "mmhomepagepanel.h"
 #include "reports/html_widget_top_categories.h"
 #include "reports/html_widget_bills_and_deposits.h"
+#include "reports/html_widget_stocks.h"
 #include "mmex.h"
 
 #include "reports/htmlbuilder.h"
@@ -110,7 +111,10 @@ void mmHomePagePanel::createFrames()
     }
 
     if (Model_Account::investment_account_num())
-         stocks = displayStocks(tBalance);
+    {
+        htmlWidgetStocks stocks_widget;
+        stocks = stocks_widget.getHTMLText();
+    }
 
     leftFrame << acc << term << stocks;
     leftFrame << displayAssets(tBalance);
@@ -245,79 +249,6 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
     hb.addText(displaySectionTotal(totalStr, tRecBalance, tBalance));
     hb.endTable();
 
-    return hb.getHTMLinTableWraper();
-}
-
-//* Stocks *//
-wxString mmHomePagePanel::displayStocks(double& tBalance /*, double& tIncome, double& tExpenses */)
-{
-    mmHTMLBuilder hb;
-    double stTotalBalance = 0.0, stTotalGain = 0.0;
-    wxString tBalanceStr, tGainStr;
-
-    hb.startTable("100%");
-    if (frame_->expandedStockAccounts())
-    {
-        hb.startTableRow();
-        hb.addTableHeaderCell(_("Stocks"), false);
-        hb.addTableHeaderCell(_("Gain/Loss"), true);
-        hb.addTableHeaderCell(_("Total"), true);
-        hb.endTableRow();
-    }
-
-    static const char sql[] =
-    "select "
-    "c.BASECONVRATE, "
-    "st.heldat as ACCOUNTID, a.accountname as ACCOUNTNAME, "
-    "a.initialbal + "
-    "total((st.CURRENTPRICE)*st.NUMSHARES) as BALANCE, "
-    "total ((st.CURRENTPRICE-st.PURCHASEPRICE)*st.NUMSHARES-st.COMMISSION) as GAIN "
-    "from  stock_v1 st "
-    "left join accountlist_v1 a on a.accountid=st.heldat "
-    "left join currencyformats_v1 c on c.currencyid=a.currencyid "
-    "    where st.purchasedate<=date ('now','localtime') "
-    "and a.status='Open' "
-    "group by st.heldat ";
-
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql); // FIXME
-    while(q1.NextRow())
-    {
-        int stockaccountId = q1.GetInt("ACCOUNTID");
-        double stockBalance = q1.GetDouble("BALANCE");
-        wxString stocknameStr = q1.GetString("ACCOUNTNAME");
-        //double income = q1.GetDouble("INCOME");
-        //double expenses = q1.GetDouble("EXPENCES");
-        double baseconvrate = q1.GetDouble("BASECONVRATE");
-        double stockGain = q1.GetDouble("GAIN");
-
-        Model_Account::Data* account = Model_Account::instance().get(stockaccountId);
-        Model_Currency::Data* currency = Model_Account::currency(account);
-
-        // if Stock accounts being displayed, include income/expense totals on home page.
-        //tIncome += income * baseconvrate;
-        //tExpenses += expenses * baseconvrate;
-        stTotalBalance += stockBalance * baseconvrate;
-        stTotalGain += stockGain * baseconvrate;
-        //We can hide or show Stocks on Home Page
-        if (frame_->expandedStockAccounts())
-        {
-            hb.startTableRow();
-            //////
-            //hb.addTableCell(stocknameStr, false,true);
-            hb.addTableCellLink(wxString::Format("STOCK:%d"
-                , stockaccountId), stocknameStr, false, true);
-            hb.addMoneyCell(stockGain, true);
-            hb.addMoneyCell(stockBalance, true);
-            hb.endTableRow();
-        }
-    }
-    q1.Finalize();
-
-    hb.addText(displaySectionTotal(_("Stocks Total:"), stTotalGain, stTotalBalance));
-    hb.endTable();
-
-    // Add Stock balance to Grand Total balance
-    tBalance += stTotalBalance;
     return hb.getHTMLinTableWraper();
 }
 
