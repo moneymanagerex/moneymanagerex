@@ -110,9 +110,10 @@ void mmHomePagePanel::createFrames()
         tBalance += termBalance;
     }
 
+    htmlWidgetStocks stocks_widget;
+    stocks_widget.enable_detailes(frame_->expandedStockAccounts());
     if (Model_Account::investment_account_num())
     {
-        htmlWidgetStocks stocks_widget;
         stocks = stocks_widget.getHTMLText();
     }
 

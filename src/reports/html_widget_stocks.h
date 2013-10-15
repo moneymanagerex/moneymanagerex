@@ -26,12 +26,14 @@ class htmlWidgetStocks : public mmPrintableBase
 public:
     ~htmlWidgetStocks();
     htmlWidgetStocks();
+    void enable_detailes(bool enable);
 
     wxString getHTMLText();
 
 protected:
 
     wxString title_;
+    bool enable_details_;
 };
 
 #endif //
