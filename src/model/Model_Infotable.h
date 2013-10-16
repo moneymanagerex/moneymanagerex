@@ -81,13 +81,10 @@ public:
     void Set(const wxString& key, const wxString& value)
     {
         Data* info = 0;
-        for (auto& record: this->all())
+        for (auto& record: this->find(INFONAME(key)))
         {
-            if (record.INFONAME == key)
-            {
-                info = this->get(record.INFOID, this->db_);
-                break;
-            }
+            info = this->get(record.INFOID, this->db_);
+            break;
         }
         if (info)
         {
@@ -121,10 +118,9 @@ public:
     }
     wxString GetStringInfo(const wxString& key, const wxString& default_value)
     {
-        for (const auto& record: this->all())
+        for (const auto& record: this->find(INFONAME(key)))
         {
-            if (record.INFONAME == key) 
-                return record.INFOVALUE;
+            return record.INFOVALUE;
         }
 
         return default_value;
@@ -135,10 +131,9 @@ public:
     }
     bool Exists(const wxString& key)
     {
-        for (const auto& record: this->all())
+        for (const auto& record: this->find(INFONAME(key)))
         {
-            if (record.INFONAME == key) 
-                return true;
+            return true;
         }
         return false;
     }

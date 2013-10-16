@@ -134,10 +134,9 @@ public:
 
     wxString GetStringSetting(const wxString& key, const wxString& default_value)
     {
-        for (const auto& record: this->all())
+        for (const auto& record: this->find(SETTINGNAME(key)))
         {
-            if (record.SETTINGNAME == key)
-                return record.SETTINGVALUE;
+            return record.SETTINGVALUE;
         }
         return default_value;
     }
