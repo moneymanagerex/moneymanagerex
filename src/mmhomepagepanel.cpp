@@ -421,7 +421,7 @@ wxString mmHomePagePanel::getStatWidget()
     //FIXME:
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
     int countFollowUp = 0, total_transactions = transactions.size();
-    for (const auto &trx : Model_Checking::instance().all()) {if (trx.STATUS == "Follow up") countFollowUp++;}
+    for (const auto &trx : transactions) {if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) countFollowUp++;}
 
     hb.startTable("100%");
     hb.addTableHeaderRow(_("Transaction Statistics"), 2);
