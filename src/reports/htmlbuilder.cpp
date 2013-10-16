@@ -134,11 +134,11 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption
     this->font_end();
     this->endTableCell();
     html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
-	double amount = 0;
-	if(CurrencyFormatter::formatCurrencyToDouble(value, amount))
-		this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
-	else
-		this->font_settings(font_size_);
+    double amount = 0;
+    if(CurrencyFormatter::formatCurrencyToDouble(value, amount))
+        this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
+    else
+        this->font_settings(font_size_);
     this->bold_italic(value);
     this->font_end();
     this->endTableCell();
@@ -163,11 +163,11 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
     {
         this->endTableCell();
         html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
-		double amount = 0;
-		if(CurrencyFormatter::formatCurrencyToDouble(data[idx], amount))
-	        this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
-		else
-	        this->font_settings(font_size_);
+        double amount = 0;
+        if(CurrencyFormatter::formatCurrencyToDouble(data[idx], amount))
+            this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
+        else
+            this->font_settings(font_size_);
         this->bold_italic(data[idx]);
         this->font_end();
     }
