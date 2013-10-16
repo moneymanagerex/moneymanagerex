@@ -79,12 +79,9 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     std::map<wxString, double> stat;
 
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->start_date().FormatISODate()
-                , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE::GREATER_OR_EQUAL)
-            , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate()
-                , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE::LESS_OR_EQUAL));
+            DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
+            , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
 
-    wxLogDebug("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
     for (const auto &trx : transactions)
     {
         if (Model_Checking::status(trx) ==  Model_Checking::VOID_) continue; // skip

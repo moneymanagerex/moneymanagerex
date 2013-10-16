@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-16 21:00:32.104748.
+ *          AUTO GENERATED at 2013-10-16 22:20:21.081694.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -29,10 +29,10 @@
 #include "cajun/json/writer.h"
 
 class wxString;
+enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };
 template<class V>
 struct DB_Column
 {
-    enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL };
     V v_;
     OP op_;
     DB_Column(const V& v, OP op = EQUAL): v_(v), op_(op)
@@ -61,10 +61,11 @@ void condition(wxString& out, bool op_and, const Arg1& arg1)
     out += Arg1::name();
     switch (arg1.op_)
     {
-    case Arg1::GREATER:           out += " > ? ";     break;
-    case Arg1::GREATER_OR_EQUAL:  out += " >= ? ";    break;
-    case Arg1::LESS:              out += " < ? ";     break;
-    case Arg1::LESS_OR_EQUAL:     out += " <= ? ";    break;
+    case GREATER:           out += " > ? ";     break;
+    case GREATER_OR_EQUAL:  out += " >= ? ";    break;
+    case LESS:              out += " < ? ";     break;
+    case LESS_OR_EQUAL:     out += " <= ? ";    break;
+    case NOT_EQUAL:         out += " != ? ";    break;
     default:
         out += " = ? "; break;
     }
@@ -76,10 +77,11 @@ void condition(wxString& out, bool op_and, const Arg1& arg1, const Args&... args
     out += Arg1::name();
     switch (arg1.op_)
     {
-    case Arg1::GREATER:           out += " > ? ";     break;
-    case Arg1::GREATER_OR_EQUAL:  out += " >= ? ";    break;
-    case Arg1::LESS:              out += " < ? ";     break;
-    case Arg1::LESS_OR_EQUAL:     out += " <= ? ";    break;
+    case GREATER:           out += " > ? ";     break;
+    case GREATER_OR_EQUAL:  out += " >= ? ";    break;
+    case LESS:              out += " < ? ";     break;
+    case LESS_OR_EQUAL:     out += " <= ? ";    break;
+    case NOT_EQUAL:         out += " != ? ";    break;
     default:
         out += " = ? "; break;
     }
