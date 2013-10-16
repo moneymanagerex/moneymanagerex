@@ -22,6 +22,7 @@
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "reports/mmDateRange.h"
+#include "model/Model_Account.h"
 
 class mmGUIFrame;
 class mmHTMLBuilder;
@@ -80,7 +81,8 @@ private:
     wxString displaySummaryHeader(const wxString& summaryTitle );
     wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
 
-    wxString displayAccounts(double& tBalance, int account_type = 0 /*CHEKCING*/);
+    wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type = Model_Account::CHECKING);
+    void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
     wxString displayAssets(double& tBalance);
     wxString displayIncomeVsExpenses();
     wxString getStatWidget();

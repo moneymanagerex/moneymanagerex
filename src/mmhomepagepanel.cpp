@@ -31,7 +31,6 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
-#include "model/Model_Account.h"
 #include "model/Model_Billsdeposits.h"
 
 
@@ -94,17 +93,20 @@ void mmHomePagePanel::createFrames()
         date_range_ = new mmCurrentMonthToDate;
     else
         date_range_ = new mmCurrentMonth;
+
     vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 
-
     double tBalance = 0.0, termBalance = 0.0;
-    wxString acc, term ="", stocks="", assets="", grand_total="", top="", leftFrame="", rightFrame="";
+    wxString stocks="", assets="", grand_total="", top="", leftFrame="", rightFrame="";
 
-    acc = displayAccounts(tBalance);
 
+    std::map<int, std::pair<double, double> > accountStats;
+    get_account_stats(accountStats);
+
+    leftFrame = displayAccounts(tBalance, accountStats);
     if ( frame_->hasActiveTermAccounts())
     {
-        term = displayAccounts(termBalance, Model_Account::TERM);
+        leftFrame += displayAccounts(termBalance, accountStats, Model_Account::TERM);
         tBalance += termBalance;
     }
 
@@ -116,7 +118,7 @@ void mmHomePagePanel::createFrames()
     }
     tBalance += stocks_widget.get_total();
 
-    leftFrame << acc << term << stocks;
+    leftFrame << stocks;
     leftFrame << displayAssets(tBalance);
     leftFrame << displayGrandTotals(tBalance);
 
@@ -134,7 +136,6 @@ void mmHomePagePanel::createFrames()
 
     wxString pageHTML = prepareTemplate(leftFrame, rightFrame);
     htmlWindow_->SetPage(pageHTML);
-
 }
 
 wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
@@ -196,22 +197,10 @@ wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, doubl
     return hb.getHTMLText();
 }
 
-/* Accounts */
-wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
+void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
 {
-    bool type_is_bank = type == Model_Account::CHECKING;
-
-    mmHTMLBuilder hb;
-    hb.startTable("100%");
-    // Only Show the account titles if we want to display Bank accounts.
-    if ( frame_->expandedBankAccounts() && type_is_bank)
-        hb.addText(displaySummaryHeader(_("Bank Account")));
-    else if (frame_->expandedTermAccounts() && !type_is_bank)
-        hb.addText(displaySummaryHeader(_("Term account")));
-
     //TODO: mmIniOptions::instance().ignoreFutureTransactions_
-    //TODO: move it from here (runs twice)
-    std::map<int, std::pair<double, double> > accountStats;
+
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
     for (const auto& trx : transactions)
     {
@@ -231,6 +220,21 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
             }
         }
     }
+}
+
+/* Accounts */
+wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+{
+    bool type_is_bank = type == Model_Account::CHECKING;
+
+    mmHTMLBuilder hb;
+    hb.startTable("100%");
+
+    // Only Show the account titles if we want to display Bank accounts.
+    if ( frame_->expandedBankAccounts() && type_is_bank)
+        hb.addText(displaySummaryHeader(_("Bank Account")));
+    else if (frame_->expandedTermAccounts() && !type_is_bank)
+        hb.addText(displaySummaryHeader(_("Term account")));
 
     // Get account balances and display accounts if we want them displayed
     for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
