@@ -88,7 +88,6 @@ private:
 
     wxString displayAccounts(double& tBalance, int account_type = 0 /*CHEKCING*/);
     wxString displayAssets(double& tBalance);
-    wxString displayCurrencies();
     wxString displayIncomeVsExpenses();
     wxString getStatWidget();
     wxString getCalendarWidget();

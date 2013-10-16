@@ -100,7 +100,7 @@ void mmHomePagePanel::createFrames()
 
 
     double tBalance = 0.0, termBalance = 0.0;
-    wxString acc, term ="", stocks="", assets="", grand_total="", curr="", top="", leftFrame="", rightFrame="";
+    wxString acc, term ="", stocks="", assets="", grand_total="", top="", leftFrame="", rightFrame="";
 
     acc = displayAccounts(tBalance);
 
@@ -121,8 +121,6 @@ void mmHomePagePanel::createFrames()
     leftFrame << acc << term << stocks;
     leftFrame << displayAssets(tBalance);
     leftFrame << displayGrandTotals(tBalance);
-    curr = displayCurrencies();
-    leftFrame << displayCurrencies();
 
     mmDateRange* date_range = new mmLast30Days();
     htmlWidgetTop7Categories top_trx(date_range);
@@ -272,86 +270,6 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
         tBalance += Model_Asset::instance().balance();
     }
     return hb.getHTMLinTableWraper();
-}
-
-//* Currencies *//
-wxString mmHomePagePanel::displayCurrencies()
-{
-    static const char sql[] =
-        "select ACCOUNTID, CURRENCYNAME, BALANCE, BASECONVRATE from ( "
-        "select t.accountid as ACCOUNTID, c.currencyname as CURRENCYNAME, "
-        "total (t.BALANCE) as BALANCE, "
-        "c.BASECONVRATE as BASECONVRATE "
-        "from ( "
-        "select  acc.accountid as ACCOUNTID, acc.INITIALBAL as BALANCE "
-        "from ACCOUNTLIST_V1 ACC "
-        "where ACC.STATUS='Open' "
-        "group by acc.accountid  "
-        "union all "
-        "select  "
-        "st.heldat as ACCOUNTID, "
-        "total((st.CURRENTPRICE)*st.NUMSHARES-st.COMMISSION) as BALANCE "
-        "from  stock_v1 st "
-        "where st.purchasedate<=date ('now','localtime') "
-        "group by st.heldat "
-        "union all "
-        "select ca.toaccountid,  total(ca.totransamount) "
-        "from checkingaccount_v1 ca "
-        "where ca.transcode ='Transfer' and ca.STATUS<>'V' and ca.transdate<=date ('now','localtime') "
-        "group by ca.toaccountid "
-        "union all "
-        "select ca.accountid,  total(case ca.transcode when 'Deposit' then ca.transamount else -ca.transamount end)  "
-        "from checkingaccount_v1 ca "
-        "where ca.STATUS<>'V' and ca.transdate<=date ('now','localtime') "
-        "group by ca.accountid) t "
-        "left join accountlist_v1 a on a.accountid=t.accountid "
-        "left join  currencyformats_v1 c on c.currencyid=a.currencyid "
-        "where a.status='Open' and balance<>0 "
-        "group by c.currencyid) order by CURRENCYNAME ";
-
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(sql); // FIXME
-
-    //Determine how many currencies used
-    int curnumber = 0;
-    while(q1.NextRow())
-        curnumber+=1;
-
-    mmHTMLBuilder hb;
-    if (curnumber > 1 )
-    {
-        // display the currency header
-        hb.startTable("100%");
-        hb.startTableRow();
-        hb.addTableHeaderCell(_("Currency"), false);
-        hb.addTableHeaderCell(_("Base Rate"), true);
-        hb.addTableHeaderCell(_("Summary"), true);
-        hb.endTableRow();
-
-        // display the totals for each currency value
-        while(q1.NextRow())
-        {
-            int accountId = q1.GetInt("ACCOUNTID");
-            double currBalance = q1.GetDouble("BALANCE");
-            wxString currencyStr = q1.GetString("CURRENCYNAME");
-            double convRate = q1.GetDouble("BASECONVRATE");
-            wxString convRateStr;
-
-            Model_Account::Data* account = Model_Account::instance().get(accountId);
-            Model_Currency::Data* currency = Model_Account::currency(account);
-
-            wxString tBalanceStr;
-
-            hb.startTableRow();
-            hb.addTableCell(currencyStr, false, false, true);
-            hb.addTableCell(CurrencyFormatter::float2String(convRate), true);
-            hb.addMoneyCell(currBalance);
-            hb.endTableRow();
-        }
-        hb.endTable();
-        q1.Finalize();
-    }
-
-    return hb.getHTMLinTableWraper(true);
 }
 
 //* Income vs Expenses *//
