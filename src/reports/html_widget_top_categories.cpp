@@ -80,13 +80,12 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
             DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
-            , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate(), LESS_OR_EQUAL));
+            , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate(), LESS_OR_EQUAL)
+            , DB_Table_CHECKINGACCOUNT_V1::STATUS(Model_Checking::all_status()[Model_Checking::VOID_], NOT_EQUAL)
+            , DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(Model_Checking::all_type()[Model_Checking::TRANSFER], NOT_EQUAL));
 
     for (const auto &trx : transactions)
     {
-        if (Model_Checking::status(trx) ==  Model_Checking::VOID_) continue; // skip
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue; // skip
-
         if (trx.CATEGID > -1)
         {
             Model_Category::Data* category = Model_Category::instance().get(trx.CATEGID);
