@@ -27,6 +27,7 @@
 #include "reports/mmgraphincexpensesmonth.h"
 #include "mmCurrencyFormatter.h"
 #include <algorithm>
+
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
@@ -90,7 +91,6 @@ bool mmHomePagePanel::Create( wxWindow *parent,
 
 void mmHomePagePanel::createFrames()
 {
-    if (!core_->db_.get()) return;
 
     if (mmIniOptions::instance().ignoreFutureTransactions_)
         date_range_ = new mmCurrentMonthToDate;
@@ -202,7 +202,6 @@ wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, doubl
 wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
 {
     bool type_is_bank = type == Model_Account::CHECKING;
-    double tRecBalance = 0.0;
 
     mmHTMLBuilder hb;
     hb.startTable("100%");
@@ -212,6 +211,29 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
     else if (frame_->expandedTermAccounts() && !type_is_bank)
         hb.addText(displaySummaryHeader(_("Term account")));
 
+    //TODO: mmIniOptions::instance().ignoreFutureTransactions_
+    //TODO: move it from here (runs twice)
+    std::map<int, std::pair<double, double> > accountStats;
+    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    for (const auto& trx : transactions)
+    {
+        if (Model_Checking::status(trx) != Model_Checking::VOID_)
+        {
+            double amount = (Model_Checking::type(trx) == Model_Checking::DEPOSIT ? trx.TRANSAMOUNT : -trx.TRANSAMOUNT);
+            double reconciled_amount = (Model_Checking::status(trx) == Model_Checking::RECONCILED ? amount : 0);
+
+            accountStats[trx.ACCOUNTID].first += reconciled_amount;
+            accountStats[trx.ACCOUNTID].second += amount;
+
+            if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+            {
+                reconciled_amount = (Model_Checking::status(trx) == Model_Checking::RECONCILED ? trx.TOTRANSAMOUNT : 0);
+                accountStats[trx.TOACCOUNTID].first += reconciled_amount;
+                accountStats[trx.TOACCOUNTID].second += trx.TOTRANSAMOUNT;
+            }
+        }
+    }
+
     // Get account balances and display accounts if we want them displayed
     for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -219,12 +241,8 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
 
         Model_Currency::Data* currency = Model_Account::currency(account);
 
-        double bal = Model_Account::balance(account);
-        double reconciledBal = account.INITIALBAL + core_->bTransactionList_.getReconciledBalance(account.ACCOUNTID
-            , mmIniOptions::instance().ignoreFutureTransactions_);
-        double rate = currency->BASECONVRATE;
-        tBalance += bal * rate; // actual amount in that account in the original rate
-        tRecBalance += reconciledBal * rate;
+        double bal = accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
+        double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
 
         // Display the individual account links if we want to display them
         if ( ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts())
@@ -246,7 +264,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, int type)
         }
     }
     const wxString totalStr = (type_is_bank) ? _("Bank Accounts Total:") : _("Term Accounts Total:");
-    hb.addText(displaySectionTotal(totalStr, tRecBalance, tBalance));
+    hb.addText(displaySectionTotal(totalStr, 0, tBalance)); //TODO: totals
     hb.endTable();
 
     return hb.getHTMLinTableWraper();
@@ -400,7 +418,10 @@ wxString mmHomePagePanel::getCalendarWidget()
 wxString mmHomePagePanel::getStatWidget()
 {
     mmHTMLBuilder hb;
-    int countFollowUp = core_->bTransactionList_.countFollowupTransactions();
+    //FIXME:
+    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    int countFollowUp = 0, total_transactions = transactions.size();
+    for (const auto &trx : Model_Checking::instance().all()) {if (trx.STATUS == "Follow up") countFollowUp++;}
 
     hb.startTable("100%");
     hb.addTableHeaderRow(_("Transaction Statistics"), 2);
@@ -415,7 +436,7 @@ wxString mmHomePagePanel::getStatWidget()
 
     hb.startTableRow();
     hb.addTableCell( _("Total Transactions: "));
-    hb.addTableCell(wxString::Format("%ld", core_->bTransactionList_.transactions_.size()), true, true, true);
+    hb.addTableCell(wxString::Format("%ld", total_transactions), true, true, true);
     hb.endTableRow();
     hb.endTable();
 

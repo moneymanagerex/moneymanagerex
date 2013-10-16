@@ -1004,42 +1004,6 @@ double mmBankTransactionList::getAmountForCategory(
     return amt;
 }
 
-double mmBankTransactionList::getReconciledBalance(int accountID, bool ignoreFuture) const
-{
-    double balance = 0.0;
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if (pBankTransaction->accountID_ != accountID && pBankTransaction->toAccountID_ != accountID)
-            continue; // skip
-
-        if (ignoreFuture)
-        {
-            if (pBankTransaction->date_.IsLaterThan(wxDateTime::Now()))
-                continue; //skip future dated transactions
-        }
-
-        if (pBankTransaction->status_ != "R")
-            continue; // skip
-
-        balance += pBankTransaction->value(accountID);
-    }
-
-    return balance;
-}
-
-int mmBankTransactionList::countFollowupTransactions() const
-{
-    int numFollowup = 0;
-    for (const auto & pBankTransaction: transactions_)
-    {
-        if (pBankTransaction->status_ != "F")
-            continue; // skip
-
-        numFollowup++;
-    }
-    return numFollowup;
-}
-
 /** removes the transaction from memory */
 bool mmBankTransactionList::removeTransaction(int accountID, int transactionID)
 {
