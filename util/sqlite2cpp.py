@@ -570,7 +570,16 @@ struct DB_Table
 template<typename Arg1>
 void condition(wxString& out, bool op_and, const Arg1& arg1)
 {
-    out += Arg1::name() + " = ? ";
+    out += Arg1::name();
+    switch (arg1.op_)
+    {
+    case Arg1::GREATER:           out += " > ? ";     break;
+    case Arg1::GREATER_OR_EQUAL:  out += " >= ? ";    break;
+    case Arg1::LESS:              out += " < ? ";     break;
+    case Arg1::LESS_OR_EQUAL:     out += " <= ? ";    break;
+    default:
+        out += " = ? "; break;
+    }
 }
 
 template<typename Arg1, typename... Args>

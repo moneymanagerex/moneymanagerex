@@ -131,11 +131,7 @@ public:
     }
     bool Exists(const wxString& key)
     {
-        for (const auto& record: this->find(INFONAME(key)))
-        {
-            return true;
-        }
-        return false;
+        return !this->find(INFONAME(key)).empty();
     }
 
     bool checkDBVersion()
