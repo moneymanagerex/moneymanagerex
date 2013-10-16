@@ -19,7 +19,6 @@
 #ifndef _MM_EX_HOMEPAGEPANEL_H_
 #define _MM_EX_HOMEPAGEPANEL_H_
 
-#include "mmcoredb.h"
 #include "mmpanelbase.h"
 #include "constants.h"
 #include "reports/mmDateRange.h"
@@ -34,18 +33,15 @@ class mmHtmlWindow: public wxHtmlWindow
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHtmlWindow(wxWindow *parent, mmCoreDB* core,
+    mmHtmlWindow(wxWindow *parent,
                  const wxWindowID id, const wxPoint& pos,
                  const wxSize& size, long style)
         : wxHtmlWindow(parent, id, pos, size, style)
-        , core_(core)
     {}
 
 public:
     void OnLinkClicked(const wxHtmlLinkInfo& link);
 
-private:
-    mmCoreDB* core_;
 };
 
 class mmHomePagePanel : public mmPanelBase
@@ -53,8 +49,7 @@ class mmHomePagePanel : public mmPanelBase
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHomePagePanel(mmCoreDB* core_,
-                     wxWindow *parent,
+    mmHomePagePanel( wxWindow *parent,
                      wxWindowID winid = wxID_ANY,
                      const wxPoint& pos = wxDefaultPosition,
                      const wxSize& size = wxDefaultSize,
@@ -72,7 +67,6 @@ public:
     wxString GetHomePageText();
 
 private:
-    mmCoreDB* core_; // TODO
     mmGUIFrame* frame_;
     mmHtmlWindow* htmlWindow_;
     mmDateRange* date_range_;

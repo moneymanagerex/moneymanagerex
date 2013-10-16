@@ -2189,7 +2189,7 @@ void mmGUIFrame::createHomePage()
 #endif
     {
         wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmHomePagePanel(m_core.get(),
+        panelCurrent_ = new mmHomePagePanel(
             homePanel_,
             wxID_STATIC,
             wxDefaultPosition,

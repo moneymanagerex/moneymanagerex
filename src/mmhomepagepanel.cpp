@@ -41,15 +41,13 @@ END_EVENT_TABLE()
 BEGIN_EVENT_TABLE(mmHtmlWindow, wxHtmlWindow)
 END_EVENT_TABLE()
 
-mmHomePagePanel::mmHomePagePanel(mmCoreDB* core,
-            wxWindow *parent,
+mmHomePagePanel::mmHomePagePanel(wxWindow *parent,
             wxWindowID winid,
             const wxPoint& pos,
             const wxSize& size,
             long style,
             const wxString& name )
-        : core_(core)
-        , frame_(wxGetApp().m_frame)
+        : frame_(wxGetApp().m_frame)
 {
     Create(parent, winid, pos, size, style, name);
     frame_->setHomePageActive();
@@ -296,11 +294,11 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
     bool group_by_account = true;
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
-    core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
-        , date_range_
-        , -1
-        , group_by_account
-    );
+    //core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
+    //    , date_range_
+    //    , -1
+    //    , group_by_account
+    //);
 
     bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
     bool show_all = (frame_->expandedBankAccounts() && frame_->expandedTermAccounts()) || show_nothing;
@@ -418,7 +416,6 @@ wxString mmHomePagePanel::getCalendarWidget()
 wxString mmHomePagePanel::getStatWidget()
 {
     mmHTMLBuilder hb;
-    //FIXME:
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
     int countFollowUp = 0, total_transactions = transactions.size();
     for (const auto &trx : transactions) {if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) countFollowUp++;}
@@ -462,7 +459,7 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    htmlWindow_ = new mmHtmlWindow(this, core_,
+    htmlWindow_ = new mmHtmlWindow(this,
         ID_PANEL_HOMEPAGE_HTMLWINDOW,
         wxDefaultPosition, wxDefaultSize,
         wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );

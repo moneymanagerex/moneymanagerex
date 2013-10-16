@@ -21,6 +21,7 @@
 #include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include "constants.h"
+#include "model/Model_Currency.h"
 
 mmHTMLBuilder::mmHTMLBuilder()
 {
@@ -210,11 +211,13 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
 
 void mmHTMLBuilder::addMoneyCell(double amount, bool color)
 {
-    wxString balance = CurrencyFormatter::float2Money(amount);
-    double value = 0;
-    if (!CurrencyFormatter::formatCurrencyToDouble(balance, value))
-        value = amount;
-    this->addTableCell(balance, true, true, true, (value < 0 && color) ? "RED": "");
+    wxString balance = "";
+    const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    if (currency)
+        balance = Model_Currency::toString(amount, currency);
+    else
+        balance = Model_Currency::toString(amount);
+    this->addTableCell(balance, true, true, true, (amount < 0 && color) ? "RED": "");
 }
 
 void mmHTMLBuilder::addMoneyCell(double amount, const wxString& color)
