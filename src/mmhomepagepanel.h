@@ -81,10 +81,16 @@ private:
     wxString displaySummaryHeader(const wxString& summaryTitle );
     wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
 
-    wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type = Model_Account::CHECKING);
+    wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
+                             , int type = Model_Account::CHECKING);
     void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
     wxString displayAssets(double& tBalance);
     wxString displayIncomeVsExpenses();
+    void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
+                                , mmDateRange* date_range
+                                , int accountID
+                                , bool group_by_account = false
+                                , bool group_by_month = false) const;
     wxString getStatWidget();
     wxString getCalendarWidget();
     wxString displayGrandTotals(double& tBalance);

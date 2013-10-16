@@ -292,17 +292,85 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
     return hb.getHTMLinTableWraper();
 }
 
+//TODO: temporary solution, this code usefull for income/expences report
+void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
+                                             , mmDateRange* date_range
+                                             , int accountID
+                                             , bool group_by_account
+                                             , bool group_by_month) const
+{
+    //Initialization
+    //bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+    std::pair<double, double> incomeExpensesPair;
+    incomeExpensesPair.first = 0;
+    incomeExpensesPair.second = 0;
+    wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
+
+    //Store base currency rates for all accounts
+    std::map<int, double> acc_conv_rates;
+    double convRate = 1;
+    for (const auto& account: Model_Account::instance().all())
+    {
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+
+        //Set std::map with zerros
+        int i = group_by_month ? 12 : 1;
+        for (int m = 0; m < i; m++)
+        {
+            wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
+            int idx = group_by_account ? (1000000 * account.ACCOUNTID) : 0;
+            idx += group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
+            incomeExpensesStats[idx] = incomeExpensesPair;
+        }
+    }
+
+    //Calculations
+    Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+        DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
+        , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate(), LESS_OR_EQUAL)
+        , DB_Table_CHECKINGACCOUNT_V1::STATUS(Model_Checking::all_status()[Model_Checking::VOID_], NOT_EQUAL)
+        , DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(Model_Checking::all_type()[Model_Checking::TRANSFER], NOT_EQUAL)
+    );
+
+    for (const auto& pBankTransaction : transactions)
+    {
+        if (Model_Checking::status(pBankTransaction)==Model_Checking::VOID_) continue; // skip
+        if (accountID != -1)
+        {
+            if (pBankTransaction.ACCOUNTID != accountID && pBankTransaction.TOACCOUNTID != accountID)
+                continue; // skip
+        }
+
+        // We got this far, get the currency conversion rate for this account
+        convRate = acc_conv_rates[pBankTransaction.ACCOUNTID];
+
+        int idx = group_by_account ? (1000000 * pBankTransaction.ACCOUNTID) : 0;
+        idx += group_by_month ? (Model_Checking::to_date(pBankTransaction.TRANSDATE).GetYear()*100
+            + (int)Model_Checking::to_date(pBankTransaction.TRANSDATE).GetMonth()) : 0;
+
+        if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
+            incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
+        else if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL)
+            incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
+        else
+        {
+            // transfers are not considered in income/expenses calculations
+        }
+    }
+}
+
 //* Income vs Expenses *//
 wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
     bool group_by_account = true;
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
-    //core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
-    //    , date_range_
-    //    , -1
-    //    , group_by_account
-    //);
+    getExpensesIncomeStats( incomeExpensesStats
+        , date_range_
+        , -1
+        , group_by_account
+    );
 
     bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
     bool show_all = (frame_->expandedBankAccounts() && frame_->expandedTermAccounts()) || show_nothing;
