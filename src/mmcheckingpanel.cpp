@@ -677,7 +677,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
         //if (split_)
         {
             mmSplitTransactionEntries* splits = m_trans[selIndex]->splitEntries_;
-            m_trans[selIndex]->getSplitTransactions(splits);
+            if (splits) m_trans[selIndex]->getSplitTransactions(splits);
 
             for (const auto &i : splits->entries_)
             {
@@ -694,16 +694,11 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 
         if (currencyid != basecurrencyid) //Show nothing if account currency is base
         {
-            //load settings for base currency
-            Model_Currency::Data* currency = Model_Currency::instance().get(basecurrencyid);
-            CurrencyFormatter::instance().loadSettings(currency);
-            wxString basecuramountStr;
-            basecuramountStr = CurrencyFormatter::float2Money(amount*convrate);
-
-            amountStr = CurrencyFormatter::float2Money(amount);
-
-            //output
-            infoStr << amountStr << " = " << basecuramountStr;
+            Model_Currency::Data *currency = Model_Currency::instance().get(currencyid);
+            amountStr = wxString::Format( "%f4", amount);
+            if (currency) amountStr = Model_Currency::toString(amount, currency);
+            infoStr << amountStr
+                << " = " << Model_Currency::toString(amount*convrate);
         }
     }
     return infoStr;
@@ -1737,14 +1732,14 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 
     if (m_selectedIndex >= 0 && m_cp->m_trans.size() > 0)
     {
-        SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+        //SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        //SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
         if (topItemIndex_ < 0 || (topItemIndex_ - m_selectedIndex) > GetCountPerPage())
             topItemIndex_ = m_selectedIndex;
         EnsureVisible(topItemIndex_);
     }
     //debuger
-    //wxLogDebug(wxString::Format("+trx id:%ld | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex));
+    wxLogDebug(wxString::Format("+trx id:%ld | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex));
 
     m_cp->updateExtraTransactionData(m_selectedIndex);
 }
