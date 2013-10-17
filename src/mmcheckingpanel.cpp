@@ -1739,7 +1739,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
         EnsureVisible(topItemIndex_);
     }
     //debuger
-    wxLogDebug(wxString::Format("+trx id:%ld | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex));
+    wxLogDebug("+trx id:%d | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
 
     m_cp->updateExtraTransactionData(m_selectedIndex);
 }

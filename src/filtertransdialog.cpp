@@ -619,7 +619,7 @@ void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
     settings_string_ = GetCurrentSettings();
     Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
     Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
-    wxLogDebug(wxString::Format("Settings Saled to registry %i\n %s", i, settings_string_));
+    wxLogDebug("Settings Saled to registry %i\n %s", i, settings_string_);
 }
 
 void mmFilterTransactionsDialog::OnButtonClearClick( wxCommandEvent& /*event*/ )
