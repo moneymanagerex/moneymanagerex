@@ -154,7 +154,7 @@ void mmGUIApp::HandleEvent(wxEvtHandler *handler, wxEventFunction func, wxEvent&
     }
     catch (const std::exception &e)
     {
-        wxLogError(wxString::Format("%s", e.what()));
+        wxLogError("%s", e.what());
     }
 }
 //----------------------------------------------------------------------------
@@ -232,7 +232,7 @@ bool mmGUIApp::OnInit()
     }
     catch (const std::exception &e)
     {
-        wxLogError(wxString::Format("%s", e.what()));
+        wxLogError("%s", e.what());
     }
 
     return ok;
