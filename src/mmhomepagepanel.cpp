@@ -306,25 +306,6 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     incomeExpensesPair.second = 0;
     wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
 
-    //Store base currency rates for all accounts
-    std::map<int, double> acc_conv_rates;
-    double convRate = 1;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
-
-        //Set std::map with zerros
-        int i = group_by_month ? 12 : 1;
-        for (int m = 0; m < i; m++)
-        {
-            wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
-            int idx = group_by_account ? (1000000 * account.ACCOUNTID) : 0;
-            idx += group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
-            incomeExpensesStats[idx] = incomeExpensesPair;
-        }
-    }
-
     //Calculations
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
@@ -343,7 +324,9 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
         }
 
         // We got this far, get the currency conversion rate for this account
-        convRate = acc_conv_rates[pBankTransaction.ACCOUNTID];
+        Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
+        double convRate = 1;
+        if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
 
         int idx = group_by_account ? (1000000 * pBankTransaction.ACCOUNTID) : 0;
         idx += group_by_month ? (Model_Checking::to_date(pBankTransaction.TRANSDATE).GetYear()*100
@@ -351,12 +334,8 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 
         if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
-        else if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL)
-            incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
         else
-        {
-            // transfers are not considered in income/expenses calculations
-        }
+            incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
     }
 }
 
