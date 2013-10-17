@@ -29,7 +29,7 @@ class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
     using DB_Table_CHECKINGACCOUNT_V1::get;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
-    enum STATUS { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
+    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {
@@ -113,6 +113,10 @@ public:
         return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
     }
 public:
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op); }
+    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::STATUS(all_status()[status], op); }
+    static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE type, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op); }
+public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }
     static wxDate TRANSDATE(const Data& r) { return Model::to_date(r.TRANSDATE); }
     static TYPE type(const Data* r)
@@ -125,7 +129,7 @@ public:
             return TRANSFER;
     }
     static TYPE type(const Data& r) { return type(&r); }
-    static STATUS status(const Data* r)
+    static STATUS_ENUM status(const Data* r)
     {
         if (r->STATUS.CmpNoCase("None") == 0)
             return NONE;
@@ -140,7 +144,7 @@ public:
         else 
             return NONE;
     }
-    static STATUS status(const Data& r) { return status(&r); }
+    static STATUS_ENUM status(const Data& r) { return status(&r); }
     static double balance(const Data* r, int account_id = -1)
     {
         double sum = 0;

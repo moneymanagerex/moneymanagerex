@@ -327,8 +327,8 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 
     //Calculations
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
-        DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->start_date().FormatISODate(), GREATER_OR_EQUAL)
-        , DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date_range->end_date().FormatISODate(), LESS_OR_EQUAL)
+        Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
         , DB_Table_CHECKINGACCOUNT_V1::STATUS(Model_Checking::all_status()[Model_Checking::VOID_], NOT_EQUAL)
         , DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(Model_Checking::all_type()[Model_Checking::TRANSFER], NOT_EQUAL)
     );

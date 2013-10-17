@@ -113,7 +113,9 @@ public:
         }
         return balance;
     }
-
+public:
+    static DB_Table_ASSETS_V1::ASSETTYPE ASSETTYPE(TYPE type, OP op=EQUAL) { return DB_Table_ASSETS_V1::ASSETTYPE(all_type()[type], op); }
+    static DB_Table_ASSETS_V1::STARTDATE STARTDATE(const wxDate& date, OP op=EQUAL) { return DB_Table_ASSETS_V1::STARTDATE(date.FormatISODate(), op); }
 public:
     static wxDate STARTDATE(const Data* r) { return Model::to_date(r->STARTDATE); }
     static wxDate STARTDATE(const Data& r) { return Model::to_date(r.STARTDATE); }
