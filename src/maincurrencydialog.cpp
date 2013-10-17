@@ -32,11 +32,11 @@
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmMainCurrencyDialog, wxDialog )
-    EVT_BUTTON(mmID_ADD, mmMainCurrencyDialog::OnBtnAdd)
-    EVT_BUTTON(mmID_EDIT, mmMainCurrencyDialog::OnBtnEdit)
-    EVT_BUTTON(mmID_SELECTALL, mmMainCurrencyDialog::OnBtnSelect)
-    EVT_BUTTON(mmID_REMOVE, mmMainCurrencyDialog::OnBtnDelete)
-    EVT_BUTTON(mmID_CANCEL, mmMainCurrencyDialog::OnCancel)
+    EVT_BUTTON(wxID_ADD, mmMainCurrencyDialog::OnBtnAdd)
+    EVT_BUTTON(wxID_EDIT, mmMainCurrencyDialog::OnBtnEdit)
+    EVT_BUTTON(wxID_SELECTALL, mmMainCurrencyDialog::OnBtnSelect)
+    EVT_BUTTON(wxID_REMOVE, mmMainCurrencyDialog::OnBtnDelete)
+    EVT_BUTTON(wxID_CANCEL, mmMainCurrencyDialog::OnCancel)
 
     EVT_MENU_RANGE(0, 1, mmMainCurrencyDialog::OnMenuSelected)
 
@@ -153,14 +153,14 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel5->SetSizer(itemBoxSizer6);
 
-    wxButton* itemButton7 = new wxButton( itemPanel5, mmID_ADD, _("&Add"));
+    wxButton* itemButton7 = new wxButton( itemPanel5, wxID_ADD, _("&Add "));
     itemBoxSizer6->Add(itemButton7, flags);
 
-    itemButtonEdit_ = new wxButton( itemPanel5, mmID_EDIT, _("&Edit") );
+    itemButtonEdit_ = new wxButton( itemPanel5, wxID_EDIT, _("&Edit ") );
     itemBoxSizer6->Add(itemButtonEdit_, flags);
     itemButtonEdit_->Disable();
 
-    itemButtonDelete_ = new wxButton( itemPanel5, mmID_REMOVE, _("&Remove") );
+    itemButtonDelete_ = new wxButton( itemPanel5, wxID_REMOVE, _("&Remove ") );
     itemBoxSizer6->Add(itemButtonDelete_, flags);
     itemButtonDelete_->Disable();
 
@@ -176,7 +176,7 @@ void mmMainCurrencyDialog::CreateControls()
     }
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton( this, mmID_CANCEL, _("&Cancel"));
+    wxButton* itemCancelButton = new wxButton( this, wxID_CANCEL, _("&Cancel "));
     itemBoxSizer9->Add(itemCancelButton,  flags);
     itemCancelButton->SetFocus();
 
