@@ -82,6 +82,11 @@ public:
     {
         return find_by(this, db_, true, args...);
     }
+    template<typename... Args>
+    Data_Set find(bool op_and, const Args&... args)
+    {
+        return find_by(this, db_, op_and, args...);
+    }
     Data* get(int id)
     {
         return this->get(id, this->db_);

@@ -23,6 +23,7 @@
 #include "db/DB_Table_Accountlist_V1.h"
 #include "Model_Currency.h" // detect base currency
 #include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
 #include "Model_Stock.h"
 
 class Model_Account : public Model, public DB_Table_ACCOUNTLIST_V1
@@ -113,6 +114,11 @@ public:
         return Model_Checking::instance().find(false, Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
     }
     static Model_Checking::Data_Set transaction(const Data& r) { return transaction(&r); }
+    static Model_Billsdeposits::Data_Set billsdeposits(const Data* r)
+    {
+        return Model_Billsdeposits::instance().find(false, Model_Billsdeposits::ACCOUNTID(r->ACCOUNTID), Model_Billsdeposits::TOACCOUNTID(r->ACCOUNTID));
+    }
+    static Model_Billsdeposits::Data_Set billsdeposits(const Data& r) { return billsdeposits(&r); }
     static double balance(const Data* r)
     {
         double sum = r->INITIALBAL;

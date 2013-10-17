@@ -1967,22 +1967,13 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
                 , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
             if (msgDlg.ShowModal() == wxID_YES)
             {
-                //m_core->bTransactionList_.deleteTransactions(account->ACCOUNTID);
-                Model_Checking::Data_Set transactions = Model_Checking::instance().all();
-                for (const auto& transaction : transactions)
+                for (const auto& transaction : Model_Account::transaction(account))
                 {
-                    if (transaction.ACCOUNTID == account->ACCOUNTID || transaction.TOACCOUNTID == account->ACCOUNTID)
-                    {
-                        Model_Checking::instance().remove(transaction.TRANSID, m_core->db_.get());
-                    }
+                    Model_Checking::instance().remove(transaction.TRANSID);
                 }
-                Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().all();
-                for (const auto& billsdeposit : billsdeposits)
+                for (const auto& billsdeposit : Model_Account::billsdeposit(account))
                 {
-                    if (billsdeposit.ACCOUNTID == account->ACCOUNTID || billsdeposit.TOACCOUNTID == account->ACCOUNTID)
-                    {
-                        Model_Checking::instance().remove(billsdeposit.BDID, m_core->db_.get());
-                    }
+                    Model_Billsdeposits::instance().remove(billsdeposit.BDID);
                 }
                 Model_Account::instance().remove(account->ACCOUNTID);
                 updateNavTreeControl();
@@ -3778,21 +3769,13 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             //m_core->bTransactionList_.deleteTransactions(acctID);
             //TODO: Before delete account all transaction should be deleted the all repeted transactions too
             //Separate function to delete account needed
-            Model_Checking::Data_Set transactions = Model_Checking::instance().all();
-            for (const auto& transaction : transactions)
+            for (const auto& transaction : Model_Account::transaction(account))
             {
-                if (transaction.ACCOUNTID == acctID || transaction.TOACCOUNTID == acctID)
-                {
-                    Model_Checking::instance().remove(transaction.TRANSID, m_core->db_.get());
-                }
+                Model_Checking::instance().remove(transaction.TRANSID);
             }
-            Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance().all();
-            for (const auto& billsdeposit : billsdeposits)
+            for (const auto& billsdeposit : Model_Account::billsdeposits(account))
             {
-                if (billsdeposit.ACCOUNTID == acctID || billsdeposit.TOACCOUNTID == acctID)
-                {
-                    Model_Checking::instance().remove(billsdeposit.BDID, m_core->db_.get());
-                }
+                Model_Billsdeposits::instance().remove(billsdeposit.BDID);
             }
             Model_Account::instance().remove(acctID);
         }
