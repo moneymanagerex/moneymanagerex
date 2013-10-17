@@ -612,63 +612,65 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     int accountId = m_trans[selIndex]->accountID_;
     int toaccountId = m_trans[selIndex]->toAccountID_;
     Model_Account::Data* account = Model_Account::instance().get(accountId);
-    wxString fromaccStr = account->ACCOUNTNAME;
+    Model_Currency::Data* currency = Model_Account::currency(account);
     int basecurrencyid = Model_Infotable::instance().GetBaseCurrencyId();
-    wxString transcodeStr = m_trans[selIndex]->transType_;
+    int currencyid = basecurrencyid;
+    int tocurrencyid = basecurrencyid;
 
     double amount = m_trans[selIndex]->amt_;
-    wxString amountStr;
+    double convrate = 1.0, toconvrate = 1.0;
+    wxString amountStr, infoStr = "", intoaccStr = "";
+    wxString fromaccStr = "", one = "1.0";
+    if (account) fromaccStr = account->ACCOUNTNAME;
 
-    Model_Currency::Data* currency = Model_Account::currency(account);
-    int currencyid = currency->CURRENCYID;
-    //TODO: FIXME: If base currency does not set bug may happens
-    if (basecurrencyid == -1) basecurrencyid = currencyid;
-    wxString curpfxStr = currency->PFX_SYMBOL;
-    wxString cursfxStr = currency->SFX_SYMBOL;
-    double convrate = currency->BASECONVRATE; 
+    if (currency) 
+    {
+        currencyid = currency->CURRENCYID;
+        convrate = currency->BASECONVRATE;
+        one = Model_Currency::toString(1, currency);
+    }
 
-    wxString infoStr = "";
-    if (transcodeStr == TRANS_TYPE_TRANSFER_STR)
+    if (m_trans[selIndex]->transType_ == TRANS_TYPE_TRANSFER_STR)
     {
         Model_Account::Data* to_account = Model_Account::instance().get(toaccountId);
+        if (to_account) intoaccStr = to_account->ACCOUNTNAME;
         Model_Currency::Data* to_currency = Model_Account::currency(to_account);
-        wxString intoaccStr = to_account->ACCOUNTNAME;
-        double toconvrate = to_currency->BASECONVRATE;
-        wxString tocurpfxStr = to_currency->PFX_SYMBOL;
-        wxString tocursfxStr = to_currency->SFX_SYMBOL;
+        if (!to_currency)
+        {
+            wxASSERT(false);
+            to_currency = Model_Currency::GetBaseCurrency();
+        }
 
-        int tocurrencyid = to_currency->CURRENCYID;
+        toconvrate = to_currency->BASECONVRATE;
+        tocurrencyid = to_currency->CURRENCYID;
+
         double toamount = m_trans[selIndex]->toAmt_;
         double convertion = 0.0;
         if (toamount != 0.0 && amount != 0.0)
             convertion = ( convrate < toconvrate ? amount/toamount : toamount/amount);
         wxString toamountStr, convertionStr;
 
-//        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-        toamountStr = CurrencyFormatter::float2Money(toamount);
-        convertionStr = CurrencyFormatter::float2String(convertion);
-
-//        CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-        amountStr = CurrencyFormatter::float2Money(amount);
-        //if (currencyid == basecurrencyid)
-        convertionStr = CurrencyFormatter::float2String(convertion);
+        amountStr = Model_Currency::toString(amount, currency);
+        toamountStr = Model_Currency::toString(toamount, to_currency);
+        convertionStr = Model_Currency::toString(convertion, to_currency);
 
         infoStr << amountStr << " ";
-        if (amount!=toamount || tocurrencyid != currencyid)
+        if (amount != toamount || tocurrencyid != currencyid)
             infoStr << "-> "  << toamountStr << " ";
         infoStr << wxString::Format(_("From %s to %s"), fromaccStr, intoaccStr);
 
         if (tocurrencyid != currencyid)
         {
+            one = Model_Currency::toString(1, currency);
             infoStr << " ( ";
             if (accountId == m_AccountID && convrate < toconvrate)
-                infoStr  << tocurpfxStr << "1" << tocursfxStr << " = " << curpfxStr << convertionStr << cursfxStr << " ";
+                infoStr  << one << " = " << convertionStr << " ";
             else if (accountId == m_AccountID && convrate > toconvrate)
-                infoStr << curpfxStr << "1" << cursfxStr << " = " << tocurpfxStr << convertionStr << tocursfxStr << " ";
+                infoStr << one << " = " << convertionStr << " ";
             else if (accountId != m_AccountID && convrate < toconvrate)
-                infoStr << tocurpfxStr << "1" << tocursfxStr << " = " << curpfxStr << convertionStr << cursfxStr << " ";
+                infoStr << one << " = " << convertionStr << " ";
             else
-                infoStr << curpfxStr << "1" << cursfxStr << " = " << tocurpfxStr << convertionStr << tocursfxStr << " ";
+                infoStr << one << " = " << convertionStr << " ";
             infoStr << " )";
         }
     }
@@ -694,7 +696,6 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 
         if (currencyid != basecurrencyid) //Show nothing if account currency is base
         {
-            Model_Currency::Data *currency = Model_Currency::instance().get(currencyid);
             amountStr = wxString::Format( "%f4", amount);
             if (currency) amountStr = Model_Currency::toString(amount, currency);
             infoStr << amountStr
