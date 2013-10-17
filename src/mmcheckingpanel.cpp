@@ -1589,7 +1589,6 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     if (transaction)
     {
-        transaction->ACCOUNTID = m_cp->m_AccountID;
         mmTransDialog dlg(transaction, split, this
             , m_cp->core_);
         dlg.SetDialogTitle(_("New/Edit Transaction"));

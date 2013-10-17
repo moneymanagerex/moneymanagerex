@@ -725,8 +725,10 @@ bool mmTransDialog::validateData()
         }
 
         Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        Model_Subcategory::Data *subcategory = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
-        if (!category || !subcategory)
+        bool ok = category;
+        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+        ok = ok && (subcategory || transaction_->SUBCATEGID < 0);
+        if (!ok)
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return false;
@@ -780,7 +782,7 @@ bool mmTransDialog::validateData()
         }
     }
 
-    transaction_->TOACCOUNTID = -1;
+    transaction_->TOACCOUNTID;
 
     if (bTransfer)
     {
