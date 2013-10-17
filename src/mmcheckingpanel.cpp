@@ -1733,8 +1733,8 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 
     if (m_selectedIndex >= 0 && m_cp->m_trans.size() > 0)
     {
-        //SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
-        //SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+        SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
         if (topItemIndex_ < 0 || (topItemIndex_ - m_selectedIndex) > GetCountPerPage())
             topItemIndex_ = m_selectedIndex;
         EnsureVisible(topItemIndex_);
