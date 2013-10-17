@@ -1969,11 +1969,11 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             {
                 for (const auto& transaction : Model_Account::transaction(account))
                 {
-                    Model_Checking::instance().remove(transaction.TRANSID , m_core->db_.get());
+                    Model_Checking::instance().remove(transaction.TRANSID);
                 }
                 for (const auto& billsdeposit : Model_Account::billsdeposits(account))
                 {
-                    Model_Billsdeposits::instance().remove(billsdeposit.BDID, m_core->db_.get());
+                    Model_Billsdeposits::instance().remove(billsdeposit.BDID);
                 }
                 Model_Account::instance().remove(account->ACCOUNTID);
                 updateNavTreeControl();
@@ -3771,11 +3771,11 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             //Separate function to delete account needed
             for (const auto& transaction : Model_Account::transaction(account))
             {
-                Model_Checking::instance().remove(transaction.TRANSID, m_core->db_.get());
+                Model_Checking::instance().remove(transaction.TRANSID);
             }
             for (const auto& billsdeposit : Model_Account::billsdeposits(account))
             {
-                Model_Billsdeposits::instance().remove(billsdeposit.BDID, m_core->db_.get());
+                Model_Billsdeposits::instance().remove(billsdeposit.BDID);
             }
             Model_Account::instance().remove(acctID);
         }

@@ -26,6 +26,7 @@ class Model_Billsdeposits : public Model, public DB_Table_BILLSDEPOSITS_V1
 {
     using DB_Table_BILLSDEPOSITS_V1::all;
     using DB_Table_BILLSDEPOSITS_V1::get;
+    using DB_Table_BILLSDEPOSITS_V1::remove;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
 public:
@@ -104,7 +105,10 @@ public:
 
         return rows.size();
     }
-
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
+    }
 };
 
 #endif // 

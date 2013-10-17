@@ -27,6 +27,7 @@ class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
 {
     using DB_Table_CHECKINGACCOUNT_V1::all;
     using DB_Table_CHECKINGACCOUNT_V1::get;
+    using DB_Table_CHECKINGACCOUNT_V1::remove;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
@@ -102,6 +103,10 @@ public:
         this->Commit();
 
         return rows.size();
+    }
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
     }
 public:
     static Model_Splittransaction::Data_Set splittransaction(const Data* r)
