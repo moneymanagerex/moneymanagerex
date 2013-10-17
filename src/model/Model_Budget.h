@@ -71,7 +71,7 @@ public:
     static void getBudgetEntry(int budgetYearID, int categID, int subCategID, wxString& period, double& amt)
     {
         const Data_Set budget = instance().find(BUDGETYEARID(budgetYearID), CATEGID(categID), SUBCATEGID(subCategID));
-        if (budget.size() > 0)
+        if (!budget.empty())
         {
             period = budget[0].PERIOD;
             amt = budget[0].AMOUNT;

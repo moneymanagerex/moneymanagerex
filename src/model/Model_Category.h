@@ -182,26 +182,24 @@ public:
             }
         }
         //Calculations
-        for (const auto& transaction: Model_Checking::instance().all())
+        for (const auto& transaction: Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
         {
-            if (transaction.STATUS == "V") continue; // skip
-
             if (ignoreFuture)
             {
-                if (Model_Checking::to_date(transaction.TRANSDATE).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+                if (Model_Checking::TRANSDATE(transaction).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
                     continue; //skip future dated transactions
             }
 
             if (with_date)
             {
-                if (!Model_Checking::to_date(transaction.TRANSDATE).IsBetween(date_range->start_date(), date_range->end_date()))
+                if (!Model_Checking::TRANSDATE(transaction).IsBetween(date_range->start_date(), date_range->end_date()))
                     continue; //skip
             }
 
             // We got this far, get the currency conversion rate for this account
             double convRate = acc_conv_rates[transaction.ACCOUNTID];
 
-            wxDateTime d = Model_Checking::to_date(transaction.TRANSDATE);
+            wxDateTime d = Model_Checking::TRANSDATE(transaction);
             int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
             int categID = transaction.CATEGID;
 
@@ -235,23 +233,22 @@ public:
         double amt = 0.0;
         const wxDateTime dtNow = wxDateTime::Now().GetDateOnly();
 
-        for (const auto& transaction: Model_Checking::instance().all())
+        for (const auto& transaction: Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
         {
-            if (transaction.STATUS == "V") continue;
             if (!ignoreDate)
             {
-                if (!Model_Checking::to_date(transaction.TRANSDATE).GetDateOnly().IsBetween(dtBegin, dtEnd)) continue;
+                if (!Model_Checking::TRANSDATE(transaction).GetDateOnly().IsBetween(dtBegin, dtEnd)) continue;
             }
             if (ignoreFuture)
             {
                 //skip future dated transactions
-                if (Model_Checking::to_date(transaction.TRANSDATE).GetDateOnly().IsLaterThan(dtNow)) continue;
+                if (Model_Checking::TRANSDATE(transaction).GetDateOnly().IsLaterThan(dtNow)) continue;
             }
 
             Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
             Model_Currency::Data* currency = Model_Account::currency(account);
             double convRate = currency->BASECONVRATE;
-            if (transaction.TRANSCODE == TRANS_TYPE_TRANSFER_STR)
+            if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
             {
                 if (evaluateTransfer)
                 {
@@ -266,11 +263,11 @@ public:
                 }
                 continue;  //skip
             }
-            if (transaction.TRANSCODE == TRANS_TYPE_WITHDRAWAL_STR)
+            if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
             {
                 amt -= Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
             }
-            else if (transaction.TRANSCODE == TRANS_TYPE_DEPOSIT_STR)
+            else if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
             {
                 amt += Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
             }
