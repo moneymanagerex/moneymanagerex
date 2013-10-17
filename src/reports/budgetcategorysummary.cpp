@@ -24,10 +24,12 @@
 #include "htmlbuilder.h"
 #include "mmex.h"
 #include "model/Model_Budgetyear.h"
+#include "model/Model_Budget.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
 
-mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(mmCoreDB* core, int budgetYearID)
-: core_(core)
-, budgetYearID_(budgetYearID)
+mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(int budgetYearID)
+: budgetYearID_(budgetYearID)
 {}
 
 wxString mmReportBudgetCategorySummary::actualAmountColour(const mmBudgetEntryHolder& budEntry, bool total)
@@ -115,16 +117,13 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.addTableHeaderCell(_("Actual"), true);
     hb.endTableRow();
 
-    wxSQLite3Statement st = core_->db_.get()->PrepareStatement(SELECT_SUBCATEGS_FROM_SUBCATEGORY_V1);
-
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CATEGORY_V1); // TODO
-    while (q1.NextRow())
+    for (const Model_Category::Data& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         mmBudgetEntryHolder th;
         initBudgetEntryFields(th, budgetYearID_);
-        th.categID_ = q1.GetInt("CATEGID");
-        th.catStr_ = q1.GetString("CATEGNAME");
-        mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
+        th.categID_ = category.CATEGID;
+        th.catStr_ = category.CATEGNAME;
+        Model_Budget::instance().getBudgetEntry(budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
 
         setBudgetEstimate(th,monthlyBudget);
         if (th.estimated_ < 0) {
@@ -138,7 +137,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         {
             transferAsDeposit = false;
         }
-        th.actual_ = core_->bTransactionList_.getAmountForCategory(th.categID_, th.subcategID_, false,
+
+        th.actual_ = Model_Category::instance().getAmountForCategory(th.categID_, th.subcategID_, false,
             yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
         );
 
@@ -169,18 +169,15 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         /***************************************************************************/
 
         //START: SUBCATEGORY ROW
-        st.Bind(1, th.categID_);
-        wxSQLite3ResultSet q2 = st.ExecuteQuery(); // TODO
-
-        while(q2.NextRow())
+        for (const Model_Subcategory::Data& subcategory: Model_Subcategory::instance().find(Model_Subcategory::CATEGID(th.categID_)))
         {
             mmBudgetEntryHolder thsub;
             initBudgetEntryFields(thsub, budgetYearID_);
             thsub.categID_ = th.categID_;
             thsub.catStr_ = th.catStr_;
-            thsub.subcategID_ = q2.GetInt("SUBCATEGID");
-            thsub.subCatStr_   = q2.GetString("SUBCATEGNAME");
-            mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
+            thsub.subcategID_ = subcategory.SUBCATEGID;
+            thsub.subCatStr_  = subcategory.SUBCATEGNAME;
+            Model_Budget::instance().getBudgetEntry(budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
 
             setBudgetEstimate(thsub,monthlyBudget);
             if (thsub.estimated_ < 0) {
@@ -194,7 +191,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             {
                 transferAsDeposit = false;
             }
-            thsub.actual_ = core_->bTransactionList_.getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
+            thsub.actual_ = Model_Category::instance().getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
                 yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
             );
             if (thsub.actual_ < 0) {
@@ -216,7 +213,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             catTotals.actual_    += thsub.actual_;
         }
         //END: SUBCATEGORY ROW
-        st.Reset();
 
         /***************************************************************************
             Display a TOTALS entry for the category.
@@ -236,8 +232,6 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         hb.addRowSeparator(6);
         /***************************************************************************/
     }
-    q1.Finalize();
-    st.Finalize();
 
     hb.endTable();
     hb.endCenter();

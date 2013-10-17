@@ -221,6 +221,63 @@ public:
             }
         }
     }
+    static double getAmountForCategory(
+        int categID,
+        int subcategID,
+        bool ignoreDate,
+        const wxDateTime &dtBegin,
+        const wxDateTime &dtEnd,
+        bool evaluateTransfer,      // activates the asDeposit parameter.
+        bool asDeposit,             // No effect when evaluateTransfer is false.
+        bool ignoreFuture
+    )
+    {
+        double amt = 0.0;
+        const wxDateTime dtNow = wxDateTime::Now().GetDateOnly();
+
+        for (const auto& transaction: Model_Checking::instance().all())
+        {
+            if (transaction.STATUS == "V") continue;
+            if (!ignoreDate)
+            {
+                if (!Model_Checking::to_date(transaction.TRANSDATE).GetDateOnly().IsBetween(dtBegin, dtEnd)) continue;
+            }
+            if (ignoreFuture)
+            {
+                //skip future dated transactions
+                if (Model_Checking::to_date(transaction.TRANSDATE).GetDateOnly().IsLaterThan(dtNow)) continue;
+            }
+
+            Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
+            Model_Currency::Data* currency = Model_Account::currency(account);
+            double convRate = currency->BASECONVRATE;
+            if (transaction.TRANSCODE == TRANS_TYPE_TRANSFER_STR)
+            {
+                if (evaluateTransfer)
+                {
+                    if (asDeposit)
+                    {
+                        amt += Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
+                    }
+                    else
+                    {
+                        amt -= Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
+                    }
+                }
+                continue;  //skip
+            }
+            if (transaction.TRANSCODE == TRANS_TYPE_WITHDRAWAL_STR)
+            {
+                amt -= Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
+            }
+            else if (transaction.TRANSCODE == TRANS_TYPE_DEPOSIT_STR)
+            {
+                amt += Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
+            }
+        }
+
+        return amt;
+    }
 };
 
 #endif //

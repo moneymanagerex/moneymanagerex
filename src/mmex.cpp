@@ -74,6 +74,7 @@
 #include "model/Model_Subcategory.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Splittransaction.h"
+#include "model/Model_Budget.h"
 #include <wx/cmdline.h>
 
 //----------------------------------------------------------------------------
@@ -1806,7 +1807,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             }
             else if (iParentData->getString() == "Budget Setup Performance")
             {
-                mmPrintableBase* rs = new mmReportBudgetCategorySummary(m_core.get(), year);
+                mmPrintableBase* rs = new mmReportBudgetCategorySummary(year);
                 createReportsPage(rs, true);
             }
             else
@@ -2651,6 +2652,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         Model_Subcategory::instance(m_db.get());
         Model_Billsdeposits::instance(m_db.get());
         Model_Splittransaction::instance(m_db.get());
+        Model_Budget::instance(m_db.get());
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())
         {

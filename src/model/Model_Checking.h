@@ -162,6 +162,29 @@ public:
         return sum;
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
+    static double getAmountForSplit(const Data& r, int categID, int subcategID)
+    {
+        double splitAmount = 0.0;
+        const Model_Splittransaction::Data_Set& splitEntries = Model_Checking::instance().splittransaction(r);
+        if (splitEntries.size() > 0)
+        {
+            for (const auto & pSplitEntry: splitEntries)
+            {
+                if ((pSplitEntry.CATEGID == categID) &&
+                    (pSplitEntry.SUBCATEGID == subcategID))
+                {
+                    splitAmount += pSplitEntry.SPLITTRANSAMOUNT;
+                }
+            }
+        }
+        else if ((r.CATEGID == categID) &&
+            (r.SUBCATEGID == subcategID))
+        {
+            splitAmount = r.TRANSAMOUNT;
+        }
+
+        return splitAmount;
+    }
 };
 
 #endif // 
