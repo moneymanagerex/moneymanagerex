@@ -100,6 +100,11 @@ public:
     }
     bool remove(int id)
     {
+        for (const auto& r: Model_Checking::instance().find(false, Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
+            Model_Checking::instance().remove(r.TRANSID);
+        for (const auto& r: Model_Billsdeposits::instance().find(false, Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
+            Model_Billsdeposits::instance().remove(r.BDID);
+
         return this->remove(id, db_);
     }
 
