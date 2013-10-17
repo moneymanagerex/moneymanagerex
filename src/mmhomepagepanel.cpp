@@ -505,7 +505,7 @@ wxString mmHomePagePanel::getStatWidget()
 
     hb.startTableRow();
     hb.addTableCell( _("Total Transactions: "));
-    hb.addTableCell(wxString::Format("%ld", total_transactions), true, true, true);
+    hb.addTableCell(wxString::Format("%d", total_transactions), true, true, true);
     hb.endTableRow();
     hb.endTable();
 
