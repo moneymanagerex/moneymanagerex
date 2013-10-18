@@ -99,16 +99,9 @@ public:
     }
     static wxString full_name(int category_id, int subcategory_id = -1)
     {
-        Data_Set categories = instance().find(CATEGID(category_id));
-        if (categories.size() < 1) return "";
-        Data* category = instance().get(category_id);
-        if (category && subcategory_id < 0)
-            return category->CATEGNAME;
-        else
-        {
-            Model_Subcategory::Data *sub_category = Model_Subcategory::instance().get(subcategory_id);
-            return category->CATEGNAME + ( sub_category ? ":" + sub_category->SUBCATEGNAME : "");
-        }
+        Data* category = Model_Category::instance().get(category_id);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategory_id);
+        return full_name(category, sub_category);
     }
     static bool is_used(int id, int sub_id = -1)
     {
