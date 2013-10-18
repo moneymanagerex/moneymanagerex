@@ -174,6 +174,11 @@ public:
     {
         return type(&account);
     }
+    static bool FAVORITEACCT(const Data* r)
+    {
+        return r->FAVORITEACCT.CmpNoCase("TRUE") == 0;
+    }
+    static bool FAVORITEACCT(const Data& r) { return FAVORITEACCT(&r); }
     static bool is_used(const Model_Currency::Data* c)
     {
         Data_Set accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));

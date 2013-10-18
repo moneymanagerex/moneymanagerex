@@ -1655,7 +1655,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         if (Model_Account::type(account) == Model_Account::CHECKING)
         {
             if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
+                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
                 (vAccts == "ALL"))
             {
                 int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
@@ -1667,7 +1667,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         else if (Model_Account::type(account) == Model_Account::TERM)
         {
             if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
+                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
                 (vAccts == "ALL"))
             {
                 int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
@@ -1679,7 +1679,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         else 
         {
             if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && account.FAVORITEACCT == "TRUE") ||
+                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
                 (vAccts == "ALL"))
             {
                 int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);

@@ -253,7 +253,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
 
             // show the actual amount in that account
             if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts_ == "Favorites" && account.FAVORITEACCT == "TRUE") ||
+                (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
                 (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
                 && ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts()))
             {
