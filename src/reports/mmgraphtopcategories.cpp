@@ -1,6 +1,7 @@
 //----------------------------------------------------------------------------
 #include "mmgraphtopcategories.h"
 #include "chart.h"
+#include <algorithm>
 //----------------------------------------------------------------------------
 
 mmGraphTopCategories::mmGraphTopCategories() : 
