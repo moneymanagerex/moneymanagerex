@@ -140,6 +140,8 @@ bool mmCheckingPanel::Create(
 
 void mmCheckingPanel::sortTable()
 {
+    // TODO m_trans_2
+
     std::sort(this->m_trans.begin(), this->m_trans.end()); // default sorter
     if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_DATE_OR_TRANSACTION_ID)
     {
@@ -346,6 +348,7 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     filteredBalance_ = 0.0;
     // clear everything
     m_trans = core_->bTransactionList_.accountTransactions_;
+    this->m_trans_2 = Model_Checking::instance().find(Model_Checking::ACCOUNTID(m_AccountID));
     m_listCtrlAccount->DeleteAllItems();
 
     // decide whether top or down icon needs to be shown
