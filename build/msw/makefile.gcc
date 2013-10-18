@@ -156,6 +156,7 @@ MMEX_OBJECTS =  \
 	mmex_categovertimeperf.o \
 	mmex_chart.o \
 	mmex_html_widget_bills_and_deposits.o \
+	mmex_html_widget_stocks.o \
 	mmex_html_widget_top_categories.o \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
@@ -656,6 +657,9 @@ mmex_chart.o: ../../src/reports/chart.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_html_widget_bills_and_deposits.o: ../../src/reports/html_widget_bills_and_deposits.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_html_widget_stocks.o: ../../src/reports/html_widget_stocks.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_html_widget_top_categories.o: ../../src/reports/html_widget_top_categories.cpp

@@ -202,6 +202,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categovertimeperf.o \
 	mmex_tests_chart.o \
 	mmex_tests_html_widget_bills_and_deposits.o \
+	mmex_tests_html_widget_stocks.o \
 	mmex_tests_html_widget_top_categories.o \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
@@ -706,6 +707,9 @@ mmex_tests_chart.o: $(srcdir)/../../src/reports/chart.cpp
 
 mmex_tests_html_widget_bills_and_deposits.o: $(srcdir)/../../src/reports/html_widget_bills_and_deposits.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/html_widget_bills_and_deposits.cpp
+
+mmex_tests_html_widget_stocks.o: $(srcdir)/../../src/reports/html_widget_stocks.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/html_widget_stocks.cpp
 
 mmex_tests_html_widget_top_categories.o: $(srcdir)/../../src/reports/html_widget_top_categories.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/html_widget_top_categories.cpp

@@ -102,6 +102,9 @@
     <ClCompile Include="..\..\..\src\reports\html_widget_bills_and_deposits.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\reports\html_widget_stocks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\src\reports\html_widget_top_categories.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -302,6 +305,9 @@
     <ClInclude Include="..\..\..\src\model\Model_Billsdeposits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\model\Model_Budget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\src\model\Model_Budgetyear.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -423,6 +429,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\reports\html_widget_bills_and_deposits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\reports\html_widget_stocks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\reports\html_widget_top_categories.h">

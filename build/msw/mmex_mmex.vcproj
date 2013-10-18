@@ -327,6 +327,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\reports\html_widget_stocks.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\reports\html_widget_top_categories.cpp"
 				>
 			</File>
@@ -593,6 +597,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Budget.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Budgetyear.h"
 				>
 			</File>
@@ -750,6 +758,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\reports\html_widget_bills_and_deposits.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\reports\html_widget_stocks.h"
 				>
 			</File>
 			<File
