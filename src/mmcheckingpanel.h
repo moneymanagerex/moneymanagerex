@@ -23,6 +23,7 @@
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "reports/mmDateRange.h"
+#include "model/Model_Checking.h"
 //----------------------------------------------------------------------------
 class mmBankTransaction;
 class mmCheckingPanel;
@@ -206,6 +207,7 @@ private:
     int m_AccountID;
     wxScopedPtr<wxImageList> m_imageList;
     std::vector<mmBankTransaction*> m_trans;
+    Model_Checking::Data_Set m_trans_2;
 
     void initViewTransactionsHeader();
     void initFilterSettings();
