@@ -208,22 +208,28 @@ void mmTransDialog::updateControlsForTransType()
     bool transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
     if (!edit_)
     {
+        wxString categString = resetCategoryString();
         if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
         {
-            transaction_->PAYEEID = core_->bTransactionList_.getLastUsedPayeeID(accountID_
-                , transaction_->TRANSCODE, transaction_->CATEGID, transaction_->SUBCATEGID);
+			Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
+			for (const auto &trx : transactions)
+			{
+				if (trx.ACCOUNTID != transaction_->ACCOUNTID) continue;
+				if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
+				transaction_->PAYEEID = trx.PAYEEID;
+				Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
+				if (payee)
+				{
+					transaction_->CATEGID = payee->CATEGID;
+					transaction_->SUBCATEGID = payee->SUBCATEGID;
+				}
+				break;
+			}
         }
-
-        wxString categString = resetCategoryString();
-        if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
-        {
-            transaction_->CATEGID = core_->bTransactionList_.getLastUsedCategoryID(accountID_
-                , transaction_->PAYEEID, transaction_->TRANSCODE, transaction_->SUBCATEGID);
-            const Model_Category::Data* category = Model_Category::instance().get(transaction_->CATEGID);
-            const Model_Subcategory::Data* sub_category = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
-            categString = Model_Category::full_name(category, sub_category);
-        }
-        bCategory_->SetLabel(categString);
+		if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
+		    bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
+		else
+			bCategory_->SetLabel(resetCategoryString());
     }
 
     SetTransferControls(transfer);
