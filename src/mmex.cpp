@@ -1802,7 +1802,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             if (iParentData->getString() == "Budget Performance")
             {
                 int year = data;
-                mmPrintableBase* rs = new mmReportBudgetingPerformance(m_core.get(), year);
+                mmPrintableBase* rs = new mmReportBudgetingPerformance(year);
                 createReportsPage(rs, true);
             }
             else if (iParentData->getString() == "Budget Setup Performance")

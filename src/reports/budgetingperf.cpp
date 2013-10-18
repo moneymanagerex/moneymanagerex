@@ -3,10 +3,12 @@
 #include "htmlbuilder.h"
 #include "mmex.h"
 #include "model/Model_Budgetyear.h"
+#include "model/Model_Budget.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
 
-mmReportBudgetingPerformance::mmReportBudgetingPerformance(mmCoreDB* core, int budgetYearID)
-: core_(core)
-, budgetYearID_(budgetYearID)
+mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
+: budgetYearID_(budgetYearID)
 {}
 
 void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth)
@@ -50,7 +52,7 @@ void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, mmBudg
         {
             transferAsDeposit = false;
         }
-        double actualMonthVal = core_->bTransactionList_.getAmountForCategory(budgetEntry.categID_, budgetEntry.subcategID_,
+        double actualMonthVal = Model_Category::instance().getAmountForCategory(budgetEntry.categID_, budgetEntry.subcategID_,
             false, dtBegin, dtEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
         );
 
@@ -105,16 +107,13 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.addTableHeaderCell(_("%"));
     hb.endTableRow();
 
-    wxSQLite3Statement st = core_->db_.get()->PrepareStatement(SELECT_SUBCATEGS_FROM_SUBCATEGORY_V1);
-    wxSQLite3ResultSet q1 = core_->db_.get()->ExecuteQuery(SELECT_ALL_FROM_CATEGORY_V1); // TODO
-
-    while (q1.NextRow())
+    for (const Model_Category::Data& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         mmBudgetEntryHolder th;
         initBudgetEntryFields(th, budgetYearID_);
-        th.categID_ = q1.GetInt("CATEGID");
-        th.catStr_  = q1.GetString("CATEGNAME");
-        mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
+        th.categID_ = category.CATEGID;
+        th.catStr_  = category.CATEGNAME;
+        Model_Budget::instance().getBudgetEntry(budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
 
         // Set the estimated amount for the year
         setBudgetYearlyEstimate(th);
@@ -126,7 +125,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         {
             transferAsDeposit = false;
         }
-        th.actual_ = core_->bTransactionList_.getAmountForCategory(th.categID_, th.subcategID_, false,
+        th.actual_ = Model_Category::instance().getAmountForCategory(th.categID_, th.subcategID_, false,
             yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
         );
 
@@ -176,19 +175,16 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.addRowSeparator(16);
         }
 
-        st.Bind(1, th.categID_);
-        wxSQLite3ResultSet q2 = st.ExecuteQuery(); // TODO
-
-        while(q2.NextRow())
+        for (const Model_Subcategory::Data& subcategory: Model_Subcategory::instance().find(Model_Subcategory::CATEGID(th.categID_)))
         {
             mmBudgetEntryHolder thsub;
             initBudgetEntryFields(thsub, budgetYearID_);
             thsub.categID_ = th.categID_;
             thsub.catStr_  = th.catStr_;
-            thsub.subcategID_ = q2.GetInt("SUBCATEGID");
-            thsub.subCatStr_  = q2.GetString("SUBCATEGNAME");
+            thsub.subcategID_ = subcategory.SUBCATEGID;
+            thsub.subCatStr_  = subcategory.SUBCATEGNAME;
 
-            mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
+            Model_Budget::instance().getBudgetEntry(budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
 
             // Set the estimated amount for the year
             setBudgetYearlyEstimate(thsub);
@@ -200,7 +196,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             {
                 transferAsDeposit = false;
             }
-            thsub.actual_ = core_->bTransactionList_.getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
+            thsub.actual_ = Model_Category::instance().getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
                 yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
             );
 
@@ -247,11 +243,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 hb.addRowSeparator(16);
             }
         }
-        st.Reset();
     }
-
-    st.Finalize();
-    q1.Finalize();
 
     hb.endTable();
     hb.endCenter();

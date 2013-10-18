@@ -19,19 +19,17 @@
 #ifndef _MM_EX_REPORTBUDGETING_PERFORMANCE_H_
 #define _MM_EX_REPORTBUDGETING_PERFORMANCE_H_
 
-#include "mmcoredb.h"
 #include "budget.h"
 
 class mmReportBudgetingPerformance : public mmReportBudget
 {
 public:
-    mmReportBudgetingPerformance(mmCoreDB* core, int budgetYearID);
+    mmReportBudgetingPerformance(int budgetYearID);
 
     wxString getHTMLText();
 
 private:
     int budgetYearID_;
-    const mmCoreDB* core_;
 
     void DisplayEstimateMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth);
     void DisplayActualMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth, long startYear);
