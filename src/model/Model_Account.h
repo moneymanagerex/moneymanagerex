@@ -100,9 +100,9 @@ public:
     }
     bool remove(int id)
     {
-        for (const auto& r: Model_Checking::instance().find(false, Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
+        for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
             Model_Checking::instance().remove(r.TRANSID);
-        for (const auto& r: Model_Billsdeposits::instance().find(false, Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
+        for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
             Model_Billsdeposits::instance().remove(r.BDID);
 
         return this->remove(id, db_);
@@ -116,13 +116,13 @@ public:
 public:
     static Model_Checking::Data_Set transaction(const Data*r )
     {
-        return Model_Checking::instance().find(false, Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
-    }
+        return Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+	}
     static Model_Checking::Data_Set transaction(const Data& r) { return transaction(&r); }
     static Model_Billsdeposits::Data_Set billsdeposits(const Data* r)
     {
-        return Model_Billsdeposits::instance().find(false, Model_Billsdeposits::ACCOUNTID(r->ACCOUNTID), Model_Billsdeposits::TOACCOUNTID(r->ACCOUNTID));
-    }
+		return Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(r->ACCOUNTID), Model_Billsdeposits::TOACCOUNTID(r->ACCOUNTID));
+	}
     static Model_Billsdeposits::Data_Set billsdeposits(const Data& r) { return billsdeposits(&r); }
     static double balance(const Data* r)
     {

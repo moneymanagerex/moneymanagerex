@@ -84,9 +84,9 @@ public:
         return find_by(this, db_, true, args...);
     }
     template<typename... Args>
-    Data_Set find(bool op_and, const Args&... args)
+    Data_Set find_or(const Args&... args)
     {
-        return find_by(this, db_, op_and, args...);
+        return find_by(this, db_, false, args...);
     }
     Data* get(int id)
     {
