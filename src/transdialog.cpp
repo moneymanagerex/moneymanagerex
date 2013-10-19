@@ -556,16 +556,17 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
 {
-    wxString current_number = textNumber_->GetValue();
-    wxDateTime transaction_date = dpc_->GetValue();
-    wxArrayString number_strings = core_->bTransactionList_.getTransactionNumber(accountID_, transaction_date);
-    int i = number_strings.GetCount();
-    int s = 0;
-    if (number_strings.Index(current_number) != wxNOT_FOUND)
-         s = number_strings.Index(current_number);
-    i = (s+1)%i;
+    //TODO:
+    wxString number = textNumber_->GetValue();
+    double next_number = 1;
+    if (number.ToDouble(&next_number))
+    {
+        next_number++;
+        number = wxString::Format("%i", static_cast<int>(next_number));
+    }
 
-    textNumber_->SetValue( number_strings[i] );
+    if (number.IsEmpty()) number = "1";
+    textNumber_->SetValue(number);
 }
 
 void mmTransDialog::OnSpin(wxSpinEvent& event)
