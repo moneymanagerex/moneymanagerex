@@ -126,12 +126,12 @@ public:
     static wxDate TRANSDATE(const Data& r) { return Model::to_date(r.TRANSDATE); }
     static TYPE type(const Data* r)
     {
-        if (r->TRANSCODE.CmpNoCase("Withdrawal") == 0)
-            return WITHDRAWAL;
-        else if (r->TRANSCODE.CmpNoCase("Deposit") == 0)
+        if (r->TRANSCODE == all_type()[DEPOSIT])
             return DEPOSIT;
-        else
+        else if (r->TRANSCODE == all_type()[TRANSFER])
             return TRANSFER;
+        else
+            return WITHDRAWAL;
     }
     static TYPE type(const Data& r) { return type(&r); }
     static STATUS_ENUM status(const Data* r)

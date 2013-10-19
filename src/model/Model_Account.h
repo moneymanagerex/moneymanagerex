@@ -42,6 +42,15 @@ public:
     ~Model_Account() {};
 
 public:
+    wxArrayString all_account_names()
+    {
+        wxSortedArrayString accounts;
+        for (const auto &account : this->all(COL_ACCOUNTNAME))
+        {
+            accounts.Add(account.ACCOUNTNAME);
+        }
+        return accounts;
+    }
     static wxArrayString all_status()
     {
         wxArrayString status;

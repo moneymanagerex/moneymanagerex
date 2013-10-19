@@ -19,7 +19,6 @@
 
 #include "transdialog.h"
 #include "mmtextctrl.h"
-#include "constants.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
 #include "mmOption.h"
@@ -114,7 +113,7 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 void mmTransDialog::dataToControls()
 {
     //Date
-    wxDateTime trx_date = mmGetStorageStringAsDate(transaction_->TRANSDATE);
+    const wxDateTime trx_date = Model_Checking::TRANSDATE(transaction_);
     dpc_->SetValue(trx_date);
     //process date change event for set weekday name
     wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
@@ -122,26 +121,18 @@ void mmTransDialog::dataToControls()
     dpc_->SetFocus();
 
     //Status
-    wxString statusString = transaction_->STATUS;
-    if (mmIniOptions::instance().transStatusReconciled_ == 1 && !edit_) statusString = "R";
-    transaction_->TRANSCODE = TRANS_TYPE_WITHDRAWAL_STR;
-    if (statusString == "") statusString = "N";
-    choiceStatus_->SetSelection(wxString("NRVFD").Find(statusString));
+    choiceStatus_->SetSelection(Model_Checking::status(transaction_));
 
     //Type
     for (const auto& i : Model_Checking::all_type())
         transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
-    transaction_type_->SetStringSelection(wxGetTranslation(transaction_->TRANSCODE));
+    transaction_type_->SetSelection(Model_Checking::type(transaction_));
 
     //Amounts
-    wxString dispAmount;
-    if (edit_)
-    {
-        dispAmount = CurrencyFormatter::float2String(transaction_->TRANSAMOUNT);
-        textAmount_->SetValue(dispAmount);
-        dispAmount = CurrencyFormatter::float2String(transaction_->TOTRANSAMOUNT);
-        toTextAmount_->SetValue(dispAmount);
-    }
+    if (transaction_->TRANSAMOUNT)
+        textAmount_->SetValue(transaction_->TRANSAMOUNT, Model_Account::instance().get(accountID_));
+    if (transaction_->TOTRANSAMOUNT)
+        toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, Model_Account::instance().get(accountID_));
 
     //Account
     Model_Account::Data_Set accounts = Model_Account::instance().all();
@@ -246,7 +237,6 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
     wxString dataStr = "";
     wxSortedArrayString data;
-    int type_num = transaction_type_->GetSelection();
 
     newAccountID_ = accountID_;
 
@@ -282,12 +272,16 @@ void mmTransDialog::SetTransferControls(bool transfer)
     {
         textAmount_->SetToolTip(amountNormalTip_);
 
-        if (type_num == DEF_WITHDRAWAL)
+        if (transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+        {
             cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
+            payee_label_->SetLabel(_("Payee"));
+        }
         else
+        {
             cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
-
-        payee_label_->SetLabel((type_num == DEF_WITHDRAWAL) ? _("Payee") : _("From"));
+            payee_label_->SetLabel(_("From"));
+        }
 
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
@@ -706,7 +700,7 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
 
 void mmTransDialog::activateSplitTransactionsDlg()
 {
-    bool bDeposit = transaction_->TRANSCODE == TRANS_TYPE_DEPOSIT_STR;
+    bool bDeposit = transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT];
     mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
     if (transaction_->CATEGID > -1)
     {
@@ -781,7 +775,6 @@ void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
-
     bool transfer_transaction = transaction_type_->GetSelection() == Model_Checking::TRANSFER;
     if (!transfer_transaction)
     {
