@@ -86,9 +86,9 @@ public:
     {
         for (const Data& data : instance().find(BUDGETYEARID(baseYearID)))
         {
-            Data budgetEntry(data);
-            budgetEntry.BUDGETYEARID = newYearID;
-            instance().save(&budgetEntry);
+            Data* budgetEntry = instance().clone(&data);
+            budgetEntry->BUDGETYEARID = newYearID;
+            instance().save(budgetEntry);
         }
     }
 };
