@@ -732,10 +732,8 @@ bool mmTransDialog::validateData()
         }
 
         Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        bool ok = (category!=0);
         Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
-        ok = ok && (subcategory || transaction_->SUBCATEGID < 0);
-        if (!ok)
+        if (!category || !(subcategory || transaction_->SUBCATEGID < 0))
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return false;
