@@ -765,7 +765,7 @@ void mmTransDialog::OnSpin(wxSpinEvent& event)
 
 void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 {
-    wxString old_type = transaction_->TRANSCODE;
+    const wxString old_type = transaction_->TRANSCODE;
     wxStringClientData *client_obj = (wxStringClientData *) event.GetClientObject();
     if (client_obj) transaction_->TRANSCODE = client_obj->GetData();
     if (old_type != transaction_->TRANSCODE)
@@ -775,8 +775,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 
 void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 {
-    wxString sAccountName = cbAccount_->GetValue();
-    const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
+    const Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     newAccountID_ = account->ACCOUNTID;
 }
 
