@@ -41,13 +41,11 @@ BEGIN_EVENT_TABLE(budgetingListCtrl, wxListCtrl)
     EVT_LIST_COL_END_DRAG(ID_PANEL_CHECKING_LISTCTRL_ACCT, budgetingListCtrl::OnItemResize)
 END_EVENT_TABLE()
 /*******************************************************/
-mmBudgetingPanel::mmBudgetingPanel(
-    mmCoreDB* core, int budgetYearID,
+mmBudgetingPanel::mmBudgetingPanel(int budgetYearID,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size,
     long style,const wxString& name)
-: core_(core)
-, m_imageList()
+: m_imageList()
 , listCtrlBudget_()
 , budgetYearID_(budgetYearID)
 {
@@ -328,8 +326,7 @@ void mmBudgetingPanel::initVirtualListControl()
         th.categID_ = category.CATEGID;
         th.catStr_ = category.CATEGNAME;
 
-        mmDBWrapper::getBudgetEntry(core_->db_.get(),
-            budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
+        Model_Budget::instance().getBudgetEntry(budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
         budgetDetails.setBudgetEstimate(th, monthlyBudget);
         if (th.estimated_ < 0)
             estExpenses += th.estimated_;
@@ -341,7 +338,7 @@ void mmBudgetingPanel::initVirtualListControl()
         {
             transferAsDeposit = false;
         }
-        th.actual_ = core_->bTransactionList_.getAmountForCategory(
+        th.actual_ = Model_Category::instance().getAmountForCategory(
             th.categID_, th.subcategID_, false,
             dtBegin, dtEnd, evaluateTransfer, transferAsDeposit,
             mmIniOptions::instance().ignoreFutureTransactions_
@@ -385,8 +382,7 @@ void mmBudgetingPanel::initVirtualListControl()
             thsub.subcategID_ = sub_category.SUBCATEGID;
             thsub.subCatStr_   = sub_category.SUBCATEGNAME;
 
-            mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_,
-                thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
+            Model_Budget::instance().getBudgetEntry(budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
             budgetDetails.setBudgetEstimate(thsub, monthlyBudget);
             if (thsub.estimated_ < 0)
                 estExpenses += thsub.estimated_;
@@ -398,7 +394,7 @@ void mmBudgetingPanel::initVirtualListControl()
             {
                 transferAsDeposit = false;
             }
-            thsub.actual_ = core_->bTransactionList_.getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
+            thsub.actual_ = Model_Category::instance().getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
                 dtBegin, dtEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
             );
             if (thsub.actual_ < 0)

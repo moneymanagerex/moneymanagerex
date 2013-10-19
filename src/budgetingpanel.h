@@ -19,7 +19,6 @@
 #ifndef _MM_EX_BUDGETINGPANEL_H_
 #define _MM_EX_BUDGETINGPANEL_H_
 
-#include "mmcoredb.h"
 #include "mmpanelbase.h"
 #include "util.h"
 #include "model/Model_Budget.h"
@@ -90,8 +89,7 @@ class mmBudgetingPanel : public mmPanelBase
     DECLARE_EVENT_TABLE()
 
 public:
-    mmBudgetingPanel( mmCoreDB* core,
-                      int budgetYearID, wxWindow *parent,
+    mmBudgetingPanel( int budgetYearID, wxWindow *parent,
                       wxWindowID winid = wxID_ANY,
                       const wxPoint& pos = wxDefaultPosition,
                       const wxSize& size = wxDefaultSize,
@@ -125,8 +123,6 @@ public:
     void RefreshList();
 
 private:
-    mmCoreDB* core_; // TODO
-
     std::vector<mmBudgetEntryHolder> trans_;
     Model_Budget::Data_Set m_trans;
     budgetingListCtrl* listCtrlBudget_;

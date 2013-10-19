@@ -26,7 +26,6 @@
 #define SYMBOL_BUDGETYEARDIALOG_POSITION wxDefaultPosition
 
 #include "guiid.h"
-#include "mmcoredb.h"
 #include "defs.h"
 
 class mmBudgetYearDialog : public wxDialog
@@ -36,8 +35,7 @@ class mmBudgetYearDialog : public wxDialog
 
 public:
     mmBudgetYearDialog();
-    mmBudgetYearDialog(mmCoreDB* core,
-                       wxWindow* parent, wxWindowID id = SYMBOL_BUDGETYEARDIALOG_IDNAME,
+    mmBudgetYearDialog(wxWindow* parent, wxWindowID id = SYMBOL_BUDGETYEARDIALOG_IDNAME,
                        const wxString& caption = SYMBOL_BUDGETYEARDIALOG_TITLE,
                        const wxPoint& pos = SYMBOL_BUDGETYEARDIALOG_POSITION,
                        const wxSize& size = SYMBOL_BUDGETYEARDIALOG_SIZE,
@@ -63,7 +61,6 @@ private:
     void fillControls();
     void OnDoubleClicked(wxCommandEvent& event);
 
-    mmCoreDB* core_;
     wxListBox* listBox_;
 
     int budgetYearID_;

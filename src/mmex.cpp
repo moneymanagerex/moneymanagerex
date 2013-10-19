@@ -2153,7 +2153,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
     {
         wxSizer *sizer = cleanupHomePanel();
 
-        budgetingPage_ = new mmBudgetingPanel(m_core.get(), budgetYearID,
+        budgetingPage_ = new mmBudgetingPanel(budgetYearID,
             homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = budgetingPage_;
         activeBudgetingPage_ = true;
@@ -3133,7 +3133,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
 {
     if (m_db)
     {
-        mmBudgetYearDialog(m_core.get(), this).ShowModal();
+        mmBudgetYearDialog(this).ShowModal();
         createHomePage();
         updateNavTreeControl();
     }

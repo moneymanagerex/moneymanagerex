@@ -27,7 +27,6 @@
 
 #include "guiid.h"
 #include "defs.h"
-#include "mmcoredb.h"
 
 class wxSpinCtrl;
 
@@ -38,7 +37,7 @@ class mmBudgetYearEntryDialog : public wxDialog
 
 public:
     mmBudgetYearEntryDialog();
-    mmBudgetYearEntryDialog(mmCoreDB* core, wxWindow* parent,
+    mmBudgetYearEntryDialog(wxWindow* parent,
                             bool withMonth = false,
                             wxWindowID id = SYMBOL_BUDGETYEARENTRYDIALOG_IDNAME,
                             const wxString& caption = SYMBOL_BUDGETYEARENTRYDIALOG_TITLE,
@@ -58,7 +57,6 @@ public:
     void OnOk(wxCommandEvent& event);
 
 private:
-    mmCoreDB* core_;
     wxChoice* itemChoice_;
     wxSpinCtrl* textYear_;
     bool withMonth_;

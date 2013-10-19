@@ -33,16 +33,13 @@ END_EVENT_TABLE()
 
 mmBudgetYearDialog::mmBudgetYearDialog( )
 {
-    core_ = 0;
     budgetYearID_ = -1;
 }
 
-mmBudgetYearDialog::mmBudgetYearDialog( mmCoreDB* core, 
-                                       wxWindow* parent, 
+mmBudgetYearDialog::mmBudgetYearDialog(wxWindow* parent, 
                                        wxWindowID id, const wxString& caption, 
                                        const wxPoint& pos, const wxSize& size, long style )
 {
-    core_ = core;
     budgetYearID_ = -1;
     Create(parent, id, caption, pos, size, style);
 }
@@ -126,7 +123,7 @@ void mmBudgetYearDialog::CreateControls()
 
 void mmBudgetYearDialog::OnAdd(wxCommandEvent& /*event*/)
 {
-    mmBudgetYearEntryDialog dlg(core_, this); 
+    mmBudgetYearEntryDialog dlg(this); 
     if ( dlg.ShowModal() == wxID_OK )
     {
         listBox_->Clear();
@@ -136,7 +133,7 @@ void mmBudgetYearDialog::OnAdd(wxCommandEvent& /*event*/)
  
 void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
 {
-    mmBudgetYearEntryDialog dlg(core_, this, true); 
+    mmBudgetYearEntryDialog dlg(this, true); 
     if ( dlg.ShowModal() == wxID_OK )
     {
         listBox_->Clear();
@@ -147,7 +144,8 @@ void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
 void mmBudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
 {
     wxString budgetYearString = listBox_->GetStringSelection();
-    mmDBWrapper::deleteBudgetYear(core_->db_.get(), budgetYearString);
+    int budgetYearID = Model_Budgetyear::instance().Get(budgetYearString);
+    Model_Budgetyear::instance().remove(budgetYearID);
     listBox_->Clear();
     fillControls();
 }

@@ -82,6 +82,15 @@ public:
             amt = 0;
         }
     }
+    static void copyBudgetYear(int newYearID, int baseYearID)
+    {
+        for (const Data& data : instance().find(BUDGETYEARID(baseYearID)))
+        {
+            Data budgetEntry(data);
+            budgetEntry.BUDGETYEARID = newYearID;
+            instance().save(&budgetEntry);
+        }
+    }
 };
 
 #endif // 

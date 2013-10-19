@@ -32,15 +32,13 @@ BEGIN_EVENT_TABLE( mmBudgetYearEntryDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmBudgetYearEntryDialog::mmBudgetYearEntryDialog() 
-: core_()
 {
 }
 
 mmBudgetYearEntryDialog::mmBudgetYearEntryDialog(
-    mmCoreDB* core, wxWindow* parent,
+    wxWindow* parent,
 	bool withMonth, wxWindowID id, const wxString& caption, 
 	const wxPoint& pos, const wxSize& size, long style ) 
-: core_(core)
 {
     withMonth_ = withMonth;
     Create(parent, id, caption, pos, size, style);
@@ -158,8 +156,7 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
         {
             int baseYearID = Model_Budgetyear::instance().Get(baseYear);
             int newYearID  = Model_Budgetyear::instance().Get(currYearText);
-
-            mmDBWrapper::copyBudgetYear(core_->db_.get(), newYearID, baseYearID);
+            Model_Budget::copyBudgetYear(newYearID, baseYearID);
         }
     }
 

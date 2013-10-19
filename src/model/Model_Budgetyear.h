@@ -20,11 +20,13 @@
 #define MODEL_BUDGETYEAR_H
 
 #include "Model.h"
+#include "Model_Budget.h"
 #include "db/DB_Table_Budgetyear_V1.h"
 
 class Model_Budgetyear : public Model, public DB_Table_BUDGETYEAR_V1
 {
     using DB_Table_BUDGETYEAR_V1::all;
+    using DB_Table_BUDGETYEAR_V1::remove;
 public:
     Model_Budgetyear(): Model(), DB_Table_BUDGETYEAR_V1() {};
     ~Model_Budgetyear() 
@@ -46,6 +48,12 @@ public:
     {
         this->ensure(this->db_);
         return this->all(this->db_, col, asc);
+    }
+    bool remove(int id)
+    {
+        for (Model_Budget::Data& d : Model_Budget::instance().find(Model_Budget::BUDGETYEARID(id)))
+            Model_Budget::instance().remove(d.BUDGETENTRYID);
+        return this->remove(id, db_);
     }
 
 public:
