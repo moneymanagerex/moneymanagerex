@@ -22,6 +22,7 @@
 #include "mmcoredb.h"
 #include "mmpanelbase.h"
 #include "util.h"
+#include "model/Model_Budget.h"
 
 class wxListCtrl;
 class wxListEvent;
@@ -127,6 +128,7 @@ private:
     mmCoreDB* core_; // TODO
 
     std::vector<mmBudgetEntryHolder> trans_;
+    Model_Budget::Data_Set m_trans;
     budgetingListCtrl* listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
