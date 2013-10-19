@@ -81,11 +81,9 @@ public:
     void Set(const wxString& key, const wxString& value)
     {
         Data* info = 0;
-        for (auto& record: this->find(INFONAME(key)))
-        {
-            info = this->get(record.INFOID, this->db_);
-            break;
-        }
+        Data_Set items = this->find(INFONAME(key));
+        if (!items.empty())
+            info = this->get(items[0].INFOID);
         if (info)
         {
             info->INFOVALUE= value;
@@ -118,10 +116,8 @@ public:
     }
     wxString GetStringInfo(const wxString& key, const wxString& default_value)
     {
-        for (const auto& record: this->find(INFONAME(key)))
-        {
-            return record.INFOVALUE;
-        }
+        Data_Set items = this->find(INFONAME(key));
+        if (!items.empty()) return items[0].INFOVALUE;
 
         return default_value;
     }

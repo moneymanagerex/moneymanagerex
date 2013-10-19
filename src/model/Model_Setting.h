@@ -134,10 +134,8 @@ public:
 
     wxString GetStringSetting(const wxString& key, const wxString& default_value)
     {
-        for (const auto& record: this->find(SETTINGNAME(key)))
-        {
-            return record.SETTINGVALUE;
-        }
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (!items.empty()) return items[0].SETTINGVALUE;
         return default_value;
     }
     wxString getLastDbPath()
