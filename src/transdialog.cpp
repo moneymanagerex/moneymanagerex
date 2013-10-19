@@ -113,54 +113,64 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 
 void mmTransDialog::dataToControls()
 {
-    // Use last date used as per user option.
+    //Date
     wxDateTime trx_date = mmGetStorageStringAsDate(transaction_->TRANSDATE);
-
     dpc_->SetValue(trx_date);
     //process date change event for set weekday name
     wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
     GetEventHandler()->ProcessEvent(dateEvent);
     dpc_->SetFocus();
 
+    //Status
+    wxString statusString = transaction_->STATUS;
+    if (mmIniOptions::instance().transStatusReconciled_ == 1 && !edit_) statusString = "R";
+    transaction_->TRANSCODE = TRANS_TYPE_WITHDRAWAL_STR;
+    if (statusString == "") statusString = "N";
+    choiceStatus_->SetSelection(wxString("NRVFD").Find(statusString));
+
+    //Type
+    for (const auto& i : Model_Checking::all_type())
+        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    transaction_type_->SetStringSelection(wxGetTranslation(transaction_->TRANSCODE));
+
+    //Amounts
     wxString dispAmount;
     if (edit_)
     {
-        wxString statusString = transaction_->STATUS;
-        if (statusString == "") statusString = "N";
-        choiceStatus_->SetSelection(wxString("NRVFD").Find(statusString));
-
-        accountID_ = transaction_->ACCOUNTID; //pBankTransaction_->accountID_;
-
-        textNotes_->SetValue(transaction_->NOTES);
-        textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
-
-        advancedToTransAmountSet_ = (transaction_->TRANSAMOUNT != transaction_->TOTRANSAMOUNT);
-
         dispAmount = CurrencyFormatter::float2String(transaction_->TRANSAMOUNT);
         textAmount_->SetValue(dispAmount);
         dispAmount = CurrencyFormatter::float2String(transaction_->TOTRANSAMOUNT);
         toTextAmount_->SetValue(dispAmount);
     }
-    else
-    {
-        choiceStatus_->SetSelection(mmIniOptions::instance().transStatusReconciled_);
-        transaction_->TRANSCODE = TRANS_TYPE_WITHDRAWAL_STR;
 
+    //Account
+    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    for (const auto &account : accounts)
+    {
+        cbAccount_->Append(account.ACCOUNTNAME);
+        if (account.ACCOUNTID == accountID_) cbAccount_->SetValue(account.ACCOUNTNAME);
+    }
+    //cbAccount_->AutoComplete(Model_Account::all_account_names()); //TODO:
+    accountID_ = transaction_->ACCOUNTID;
+
+    // backup the original currency rate first
+    if (transaction_->TRANSAMOUNT > 0.0)
+        edit_currency_rate = transaction_->TOTRANSAMOUNT / transaction_->TRANSAMOUNT;
+
+    wxString categString = _("Select Category");
+
+    //Notes
+    textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
+
+    textNotes_->SetValue(transaction_->NOTES);
+    if (!edit_)
+    {
         notesColour_ = textNotes_->GetForegroundColour();
         textNotes_->SetForegroundColour(wxColour("GREY"));
         textNotes_->SetValue(notesTip_);
         int font_size = textNotes_->GetFont().GetPointSize();
         textNotes_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, ""));
     }
-    // backup the original currency rate first
-    if (transaction_->TRANSAMOUNT > 0.0)
-        edit_currency_rate = transaction_->TOTRANSAMOUNT / transaction_->TRANSAMOUNT;
-
-    for(const auto& i : Model_Checking::all_type())
-        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
-    transaction_type_->SetStringSelection(wxGetTranslation(transaction_->TRANSCODE));
-
-    wxString categString = _("Select Category");
 
     updateControlsForTransType();
     SetSplitState();
@@ -186,29 +196,21 @@ void mmTransDialog::dataToControls()
 
 }
 
-void mmTransDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
-{
-    wxString sType = transaction_->TRANSCODE;
-    transaction_->TRANSCODE = TRANS_TYPE_WITHDRAWAL_STR;
-    wxStringClientData* type_obj = (wxStringClientData *)transaction_type_->GetClientObject(
-        transaction_type_->GetSelection());
-    if (type_obj) transaction_->TRANSCODE = type_obj->GetData();
-    if (sType != TRANS_TYPE_TRANSFER_STR && Model_Checking::type(transaction_) == Model_Checking::TRANSFER)
-    {
-        resetPayeeString();
-        transaction_->CATEGID = -1;
-        transaction_->SUBCATEGID = -1;
-    }
-
-    updateControlsForTransType();
-}
-
 void mmTransDialog::updateControlsForTransType()
 {
     bool transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
-    if (!edit_)
+
+    textAmount_->UnsetToolTip();
+    toTextAmount_->UnsetToolTip();
+    cbAccount_->UnsetToolTip();
+
+    cbPayee_->SetEvtHandlerEnabled(false);
+    cbAccount_->SetEvtHandlerEnabled(false);
+
+    if (!transfer)
     {
-        wxString categString = resetCategoryString();
+        cbPayee_->Clear();
+
         if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
         {
 			Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
@@ -218,7 +220,7 @@ void mmTransDialog::updateControlsForTransType()
 				if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
 				transaction_->PAYEEID = trx.PAYEEID;
 				Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
-				if (payee)
+				if (payee && !edit_)
 				{
 					transaction_->CATEGID = payee->CATEGID;
 					transaction_->SUBCATEGID = payee->SUBCATEGID;
@@ -226,9 +228,9 @@ void mmTransDialog::updateControlsForTransType()
 				break;
 			}
         }
-		if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
+		if (mmIniOptions::instance().transCategorySelectionNone_ != 0 || edit_)
 		    bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
-		else
+        else
 			bCategory_->SetLabel(resetCategoryString());
     }
 
@@ -237,31 +239,17 @@ void mmTransDialog::updateControlsForTransType()
 
 void mmTransDialog::SetTransferControls(bool transfer)
 {
-    textAmount_->UnsetToolTip();
-    toTextAmount_->UnsetToolTip();
-    cbAccount_->UnsetToolTip();
 
-    cbPayee_->SetEvtHandlerEnabled(false);
-    cbAccount_->SetEvtHandlerEnabled(false);
-
+    //Advanced
+    advancedToTransAmountSet_ = (transaction_->TRANSAMOUNT != transaction_->TOTRANSAMOUNT);
     cAdvanced_->SetValue(advancedToTransAmountSet_);
     cAdvanced_->Enable(transfer);
 
     wxString dataStr = "";
-    cbPayee_->Clear();
     wxSortedArrayString data;
     int type_num = transaction_type_->GetSelection();
 
     newAccountID_ = accountID_;
-    cbAccount_->Clear();
-
-    Model_Account::Data_Set accounts = Model_Account::instance().all();
-    for (const auto &account : accounts)
-    {
-        data.Add(account.ACCOUNTNAME);
-        cbAccount_ ->Append(account.ACCOUNTNAME);
-    }
-    cbAccount_->AutoComplete(data);
 
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) cbAccount_->SetStringSelection(account->ACCOUNTNAME);
@@ -304,7 +292,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
-        cbAccount_->Enable(!accounts.empty());
+        //cbAccount_->Enable(!accounts.empty());
         transaction_->TOACCOUNTID = -1;
 
         toTextAmount_->Enable(false);
@@ -508,6 +496,42 @@ void mmTransDialog::CreateControls()
     this->SetSizer(box_sizer1);
 }
 
+//** --------------=Event handlers=----------------- **//
+void mmTransDialog::OnDateChanged(wxDateEvent& event)
+{
+    //get weekday name
+    wxDateTime date = dpc_->GetValue();
+    if (event.GetDate().IsValid())
+        itemStaticTextWeek_->SetLabel(wxGetTranslation(date.GetWeekDayName(date.GetWeekDay())));
+    event.Skip();
+}
+
+void mmTransDialog::OnSpin(wxSpinEvent& event)
+{
+    wxDateTime date = dpc_->GetValue();
+    int value = event.GetPosition();
+
+    date = date.Add(wxDateSpan::Days(value));
+    dpc_->SetValue(date);
+    spinCtrl_->SetValue(0);
+
+    //process date change event for set weekday name
+    wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
+    GetEventHandler()->ProcessEvent(dateEvent);
+
+    event.Skip();
+}
+
+void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
+{
+    wxString old_type = transaction_->TRANSCODE;
+    wxStringClientData *client_obj = (wxStringClientData *) event.GetClientObject();
+    if (client_obj) transaction_->TRANSCODE = client_obj->GetData();
+    if (old_type != transaction_->TRANSCODE)
+        updateControlsForTransType();
+}
+
+
 void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 {
     wxString sAccountName = cbAccount_->GetValue();
@@ -567,31 +591,6 @@ void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
 
     if (number.IsEmpty()) number = "1";
     textNumber_->SetValue(number);
-}
-
-void mmTransDialog::OnSpin(wxSpinEvent& event)
-{
-    wxDateTime date = dpc_->GetValue();
-    int value = event.GetPosition();
-
-    date = date.Add(wxDateSpan::Days(value));
-    dpc_->SetValue (date);
-    spinCtrl_->SetValue(0);
-
-    //process date change event for set weekday name
-    wxDateEvent dateEvent(dpc_, date, wxEVT_DATE_CHANGED);
-    GetEventHandler()->ProcessEvent(dateEvent);
-
-    event.Skip();
-}
-
-void mmTransDialog::OnDateChanged(wxDateEvent& event)
-{
-    //get weekday name
-    wxDateTime date = dpc_->GetValue();
-    if (event.GetDate().IsValid())
-        itemStaticTextWeek_->SetLabel(wxGetTranslation(date.GetWeekDayName(date.GetWeekDay())));
-    event.Skip();
 }
 
 void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
