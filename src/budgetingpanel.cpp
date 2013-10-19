@@ -27,6 +27,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
+#include "model/Model_Budget.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -530,13 +531,27 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
      A TOTALS entry does not contain a budget entry, therefore ignore the event.
      ***************************************************************************/
     if (trans_[selectedIndex].id_ < 0) return;
-    mmBudgetEntryDialog dlg(
-        core_, GetBudgetYearID(),
-        trans_[selectedIndex].categID_,
-        trans_[selectedIndex].subcategID_,
+
+    Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(GetBudgetYearID()),
+        Model_Budget::CATEGID(trans_[selectedIndex].categID_), Model_Budget::SUBCATEGID(trans_[selectedIndex].subcategID_));
+    Model_Budget::Data* entry = 0;
+    if (budget.empty())
+    {
+        entry = Model_Budget::instance().create();
+        entry->BUDGETYEARID = GetBudgetYearID();
+        entry->CATEGID = trans_[selectedIndex].categID_;
+        entry->SUBCATEGID = trans_[selectedIndex].subcategID_;
+        entry->PERIOD = "";
+        entry->AMOUNT = 0.0;
+        Model_Budget::instance().save(entry);
+    }
+    else
+        entry = &budget[0];
+
+    mmBudgetEntryDialog dlg(entry,
         trans_[selectedIndex].estimatedStr_,
         trans_[selectedIndex].actualStr_, this);
-    if ( dlg.ShowModal() == wxID_OK )
+    if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();
     }

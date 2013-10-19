@@ -26,8 +26,9 @@
 #define SYMBOL_BUDGETENTRYDIALOG_POSITION wxDefaultPosition
 
 #include "guiid.h"
-#include "mmcoredb.h"
 #include "defs.h"
+#include "mmtextctrl.h"
+#include "model/Model_Budget.h"
 
 class mmBudgetEntryDialog : public wxDialog
 {
@@ -36,8 +37,7 @@ class mmBudgetEntryDialog : public wxDialog
 
 public:
     mmBudgetEntryDialog();
-    mmBudgetEntryDialog(mmCoreDB* core,
-                        int budgetYearID, int categID, int subcategID,
+    mmBudgetEntryDialog(Model_Budget::Data* entry,
                         const wxString& categoryEstimate, const wxString& CategoryActual,
                         wxWindow* parent, wxWindowID id = SYMBOL_BUDGETENTRYDIALOG_IDNAME,
                         const wxString& caption = SYMBOL_BUDGETENTRYDIALOG_TITLE,
@@ -59,18 +59,13 @@ public:
     void fillControls();
 
 private:
-    mmCoreDB* core_;
+    Model_Budget::Data* budgetEntry_;
     wxChoice* itemChoice_;
-    wxTextCtrl* textAmount_;
+    mmTextCtrl* textAmount_;
     wxChoice* type_;
 
     wxString catEstimateAmountStr_;
     wxString catActualAmountStr_;
-
-public:
-    int budgetYearID_;
-    int categID_;
-    int subcategID_;
 };
 
 #endif

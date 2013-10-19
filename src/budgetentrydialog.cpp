@@ -18,8 +18,8 @@
 
 #include "budgetentrydialog.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "model/Model_Category.h"
+#include "validators.h"
 #include "paths.h"
 #include <wx/valnum.h>
 
@@ -36,22 +36,15 @@ END_EVENT_TABLE()
 
 mmBudgetEntryDialog::mmBudgetEntryDialog( )
 {
-    budgetYearID_ = -1;
-    categID_ = -1;
-    subcategID_ = -1;
 }
 
-mmBudgetEntryDialog::mmBudgetEntryDialog( mmCoreDB* core,
-                                         int budgetYearID, int categID, int subcategID,
+mmBudgetEntryDialog::mmBudgetEntryDialog(Model_Budget::Data* entry,
                                          const wxString& categoryEstimate, const wxString& CategoryActual,
                                          wxWindow* parent, 
                                          wxWindowID id, const wxString& caption, 
                                          const wxPoint& pos, const wxSize& size, long style )
 {
-    core_ = core;
-    budgetYearID_ = budgetYearID;
-    categID_ = categID;
-    subcategID_ = subcategID;
+    budgetEntry_ = entry;
     catEstimateAmountStr_= categoryEstimate;
     catActualAmountStr_  = CategoryActual;
     Create(parent, id, caption, pos, size, style);
@@ -78,10 +71,9 @@ bool mmBudgetEntryDialog::Create( wxWindow* parent, wxWindowID id,
 
 void mmBudgetEntryDialog::fillControls()
 {
-
-    wxString period = "Monthly";
-    double amt = 0.0;
-    mmDBWrapper::getBudgetEntry(core_->db_.get(), budgetYearID_, categID_, subcategID_, period, amt);
+    wxString period = budgetEntry_->PERIOD;
+    if (period == "")
+        period = "Monthly";
 
     if (period == "None")
         itemChoice_->SetSelection(DEF_FREQ_NONE);
@@ -105,8 +97,8 @@ void mmBudgetEntryDialog::fillControls()
         wxASSERT(false);
 
     wxString displayAmtString = "0";
-
-    if (amt <= 0.0)
+    double amt = budgetEntry_->AMOUNT;
+    if (amt < 0.0)
     {
         type_->SetSelection(DEF_TYPE_EXPENSE);
         amt = -amt;
@@ -114,8 +106,7 @@ void mmBudgetEntryDialog::fillControls()
     else
         type_->SetSelection(DEF_TYPE_INCOME);
     
-    displayAmtString = CurrencyFormatter::float2String(amt);
-    textAmount_->SetValue(displayAmtString);
+    textAmount_->SetValue(amt);
 }
 
 void mmBudgetEntryDialog::CreateControls()
@@ -133,8 +124,8 @@ void mmBudgetEntryDialog::CreateControls()
     wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 10, 10);
     itemPanel7->SetSizer(itemGridSizer2);
     
-    const Model_Category::Data* category = Model_Category::instance().get(categID_);
-    const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
+    const Model_Category::Data* category = Model_Category::instance().get(budgetEntry_->CATEGID);
+    const Model_Subcategory::Data* sub_category = (budgetEntry_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(budgetEntry_->SUBCATEGID) : 0);
     wxStaticText* itemTextCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Category: "));
     wxStaticText* itemTextCatName = new wxStaticText( itemPanel7, wxID_STATIC, 
         category->CATEGNAME, wxDefaultPosition, wxDefaultSize, 0 );
@@ -147,7 +138,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(itemTextCatTag,    0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
     itemGridSizer2->Add(itemTextCatName,   0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
     // only add the subcategory if it exists.
-    if (subcategID_ >= 0) { 
+    if (budgetEntry_->SUBCATEGID >= 0) {
         wxStaticText* itemTextSubCatTag = new wxStaticText( itemPanel7, wxID_STATIC, 
             _("Sub Category: "), wxDefaultPosition, wxDefaultSize, 0 );
         wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC, sub_category->SUBCATEGNAME);
@@ -201,8 +192,8 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(itemStaticText3, 0, 
         wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
 
-    textAmount_ = new wxTextCtrl( itemPanel7, 
-        ID_DIALOG_BUDGETENTRY_TEXTCTRL_AMOUNT, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER, wxFloatingPointValidator<double>());
+    textAmount_ = new mmTextCtrl( itemPanel7, 
+        ID_DIALOG_BUDGETENTRY_TEXTCTRL_AMOUNT, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmDoubleValidator());
     itemGridSizer2->Add(textAmount_);
     textAmount_->SetToolTip(_("Enter the amount budgeted for this category."));
     textAmount_->SetFocus();
@@ -247,8 +238,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 
     wxString displayAmtString = textAmount_->GetValue().Trim();
     double amt = 0.0;
-    if (! CurrencyFormatter::formatCurrencyToDouble(displayAmtString, amt)
-        || (amt < 0.0))
+    if (!displayAmtString.ToDouble(&amt))
     {
         mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
         return;
@@ -267,7 +257,9 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
     if (typeSelection == DEF_TYPE_EXPENSE)
         amt = -amt;
 
-    mmDBWrapper::updateBudgetEntry(core_->db_.get(), budgetYearID_, categID_, subcategID_, period, amt);
+    budgetEntry_->PERIOD = period;
+    budgetEntry_->AMOUNT = amt;
+    Model_Budget::instance().save(budgetEntry_);
 
     EndModal(wxID_OK);
 }
