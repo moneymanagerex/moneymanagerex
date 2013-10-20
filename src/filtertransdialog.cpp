@@ -187,7 +187,7 @@ void mmFilterTransactionsDialog::CreateControls()
     itemPanelSizer->Add(accountCheckBox_, flags);
 
     wxArrayString accountArray;
-    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
+    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
 
     accountDropDown_ = new wxChoice( itemPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, accountArray, 0 );
     itemPanelSizer->Add(accountDropDown_, flagsExpand);
