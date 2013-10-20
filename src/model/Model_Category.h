@@ -85,9 +85,19 @@ public:
     {
         return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r->CATEGID));
     }
-    static Model_Subcategory::Data_Set sub_category(const Data& r)
+    static Model_Subcategory::Data_Set sub_category(const Data& r, bool byName = false)
     {
-        return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r.CATEGID));
+        Model_Subcategory::Data_Set ds = Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r.CATEGID));
+        if (byName)
+        {
+            std::stable_sort(ds.begin(), ds.end()
+                , [](const Model_Subcategory::Data& x, const Model_Subcategory::Data& y)
+                {
+                    return x.SUBCATEGNAME < y.SUBCATEGNAME;
+                }
+            );
+        }
+        return ds;
     }
     static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0)
     {

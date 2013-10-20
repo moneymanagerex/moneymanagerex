@@ -27,6 +27,7 @@
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include <algorithm>
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(int budgetYearID)
 : budgetYearID_(budgetYearID)
@@ -169,7 +170,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         /***************************************************************************/
 
         //START: SUBCATEGORY ROW
-        for (const Model_Subcategory::Data& subcategory: Model_Subcategory::instance().find(Model_Subcategory::CATEGID(th.categID_)))
+        for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category, true))
         {
             mmBudgetEntryHolder thsub;
             initBudgetEntryFields(thsub, budgetYearID_);

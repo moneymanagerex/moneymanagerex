@@ -319,7 +319,7 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }
 
-    for (const auto& category: Model_Category::instance().all())
+    for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         mmBudgetEntryHolder th;
         budgetDetails.initBudgetEntryFields(th, budgetYearID_);
@@ -373,7 +373,7 @@ void mmBudgetingPanel::initVirtualListControl()
             trans_.push_back(th);
         }
 
-        for (const auto& sub_category : Model_Category::sub_category(category))
+        for (const auto& sub_category : Model_Category::sub_category(category, true))
         {
             mmBudgetEntryHolder thsub;
             budgetDetails.initBudgetEntryFields(thsub, budgetYearID_);

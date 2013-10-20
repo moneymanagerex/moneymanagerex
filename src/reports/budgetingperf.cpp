@@ -6,6 +6,7 @@
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include <algorithm>
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
 : budgetYearID_(budgetYearID)
@@ -175,7 +176,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.addRowSeparator(16);
         }
 
-        for (const Model_Subcategory::Data& subcategory: Model_Subcategory::instance().find(Model_Subcategory::CATEGID(th.categID_)))
+        for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category, true))
         {
             mmBudgetEntryHolder thsub;
             initBudgetEntryFields(thsub, budgetYearID_);
