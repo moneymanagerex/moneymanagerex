@@ -208,20 +208,22 @@ wxString mmReportCashFlow::getHTMLText_i()
             rf.date = nextOccurDate;
             rf.amount = 0.0;
 
-            if (transType == TRANS_TYPE_WITHDRAWAL_STR)
+            switch (Model_Billsdeposits::type(q1))
             {
-                rf.amount = -amt * convRate;
-            }
-            else if (transType == TRANS_TYPE_DEPOSIT_STR)
-            {
-                rf.amount = +amt * convRate;
-            }
-            else //if (transType == TRANS_TYPE_TRANSFER_STR)
-            {
-                if (isAccountFound)
-                    rf.amount -= amt * convRate;
-                if (isToAccountFound)
-                    rf.amount += toAmt * toConvRate;
+                case Model_Billsdeposits::WITHDRAWAL:
+                    rf.amount = -amt * convRate;
+                    break;
+                case Model_Billsdeposits::DEPOSIT:
+                    rf.amount = +amt * convRate;
+                    break;
+                case Model_Billsdeposits::TRANSFER:
+                    if (isAccountFound)
+                        rf.amount -= amt * convRate;
+                    if (isToAccountFound)
+                        rf.amount += toAmt * toConvRate;
+                    break;
+                default:
+                    break;
             }
 
             fvec.push_back(rf);   
