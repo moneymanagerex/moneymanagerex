@@ -31,7 +31,7 @@ public:
     wxString getHTMLText();
 
 private:
-    const mmCoreDB* core_;
+    const mmCoreDB* core_; // TODO
     wxString reportTitle_;
     wxString sScript_;
     wxString sScriptType_;

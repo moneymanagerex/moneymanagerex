@@ -57,7 +57,7 @@ private:
     void OnOk(wxCommandEvent& /*event*/);
 
     std::vector<mmBankTransaction> vQIF_trxs_;
-    mmCoreDB* core_;
+    mmCoreDB* core_; // TODO
     wxWindow* parent_;
     wxString dateFormat_;
     wxArrayInt accounts_id_;

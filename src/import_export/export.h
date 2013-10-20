@@ -15,7 +15,7 @@ public:
     mmExportBase(mmCoreDB* core): core_(core) {}
 
 protected:
-    const mmCoreDB* core_;
+    const mmCoreDB* core_; // TODO
 };
 
 class mmExportTransaction : public mmExportBase

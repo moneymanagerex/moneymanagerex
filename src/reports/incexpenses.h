@@ -31,7 +31,7 @@ public:
     wxString getHTMLText();
 
 protected:
-    const mmCoreDB* core_;
+    const mmCoreDB* core_; // TODO
     mmDateRange* date_range_;
     wxString title_;
     virtual wxString title() const;
@@ -89,7 +89,7 @@ public:
     virtual ~mmReportIncomeExpensesMonthly();
     wxString getHTMLText();
 protected:
-    const mmCoreDB* core_;
+    const mmCoreDB* core_; // TODO
     mmDateRange* date_range_;
     int day_;
     int month_;

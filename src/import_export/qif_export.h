@@ -51,7 +51,7 @@ private:
     void CreateControls();
     void fillControls();
 
-    mmCoreDB* core_;
+    mmCoreDB* core_; // TODO
     wxWindow* parent_;
     wxArrayInt accounts_id_;
     /* Selected accounts id */

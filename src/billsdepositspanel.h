@@ -66,6 +66,7 @@ private:
 };
 
 /* Holds a single transaction */
+// TODO
 struct mmBDTransactionHolder: public mmHolderBase
 {
     wxDateTime nextOccurDate_;

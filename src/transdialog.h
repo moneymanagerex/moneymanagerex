@@ -127,7 +127,7 @@ private:
     int newAccountID_;
     int referenceAccountID_;    // used for transfer transactions
     int transID_;
-    mmCoreDB* core_;
+    mmCoreDB* core_; // TODO
     wxWindow* parent_;
 
     bool edit_; //Deprecated

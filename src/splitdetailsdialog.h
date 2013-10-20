@@ -115,7 +115,7 @@ private:
 
 ////@begin SplitDetailDialog member variables
     Model_Splittransaction::Data* split_;
-    mmCoreDB* core_;
+    mmCoreDB* core_; // TODO
     int transType_;
     int localTransType_;
 

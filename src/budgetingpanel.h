@@ -64,6 +64,7 @@ private:
     long selectedIndex_;
 };
 
+// TODO
 struct mmBudgetEntryHolder: public mmHolderBase
 {
     int categID_;

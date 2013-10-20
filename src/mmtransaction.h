@@ -22,6 +22,7 @@
 #include "reports/mmDateRange.h"
 #include <map>
 
+// TODO remove this file
 class mmCoreDB;
 
 class mmTransaction

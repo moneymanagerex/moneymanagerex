@@ -107,7 +107,7 @@ private:
     Model_Splittransaction::Data_Set split_;
     int transType_;
 
-    mmCoreDB* core_;
+    mmCoreDB* core_; // TODO
     mmSplitTransactionEntries* splt_;
 
     wxButton* itemButtonNew_;
