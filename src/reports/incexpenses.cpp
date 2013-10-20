@@ -4,6 +4,8 @@
 #include "htmlbuilder.h"
 #include "util.h"
 #include "mmgraphincexpensesmonth.h"
+#include "model/Model_Checking.h"
+#include "model/Model_Account.h"
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range)
     : core_(core)
@@ -38,6 +40,12 @@ wxString mmReportIncomeExpenses::getHTMLText()
         , date_range_
         , -1
     );
+
+    for (const auto& transaction: Model_Checking::instance().all())
+    {
+        if (Model_Checking::status(transaction) == Model_Checking::VOID_) continue;
+        // TODO
+    }
 
     for (const auto &stats: incomeExpensesStats)
     {
@@ -122,6 +130,13 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
         , date_range_, -1, false, true);
 
+    for (const auto& transaction: Model_Checking::instance().find(
+        Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
+            , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
+            , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
+    {
+        // TODO
+    }
     for (const auto &stats: incomeExpensesStats)
     {
         total_expenses += stats.second.second;
