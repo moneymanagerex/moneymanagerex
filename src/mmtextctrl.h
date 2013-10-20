@@ -19,7 +19,7 @@ public:
     void SetValue(double value)
     {
         currency_ = Model_Currency::GetBaseCurrency();
-        this->SetValue(Model_Currency::toString(value));
+        this->SetValue(Model_Currency::toString(value, currency_));
     }
     void SetValue(double value, const Model_Account::Data* account)
     {

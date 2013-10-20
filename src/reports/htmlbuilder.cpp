@@ -209,6 +209,11 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
     color_.bgswitch = false;
 }
 
+void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency)
+{
+    wxString balance = Model_Currency::toCurrency(amount, currency);
+    this->addTableCell(balance, true, true, true, (amount < 0) ? "RED" : "");
+}
 void mmHTMLBuilder::addMoneyCell(double amount, bool color)
 {
     wxString balance = "";

@@ -154,6 +154,10 @@ public:
         return sum;
     }
     static std::pair<double, double> investment_balance(const Data& r) { return investment_balance(&r); }
+    static wxString toCurrency(double value, const Data* r)
+    {
+        return Model_Currency::toCurrency(value, currency(r));
+    }    
     static wxString toString(double value, const Data* r)
     {
         return Model_Currency::toString(value, currency(r));

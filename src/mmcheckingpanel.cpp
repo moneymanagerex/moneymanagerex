@@ -547,18 +547,18 @@ void mmCheckingPanel::setAccountSummary()
 
     bool show_displayed_balance_ = (transFilterActive_ || (currentView_ != VIEW_TRANS_ALL_STR));
     wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER1);
-    header->SetLabel(CurrencyFormatter::float2Money(account_balance_));
+    header->SetLabel(Model_Account::toCurrency(account_balance_, account));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER2);
-    header->SetLabel(CurrencyFormatter::float2Money(reconciled_balance_));
+    header->SetLabel(Model_Account::toCurrency(reconciled_balance_, account));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER3);
-    header->SetLabel(CurrencyFormatter::float2Money(account_balance_ - reconciled_balance_));
+    header->SetLabel(Model_Account::toCurrency(account_balance_ - reconciled_balance_, account));
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER4);
     header->SetLabel(show_displayed_balance_
         ? _("Displayed Bal: ")
         : "                                 ");
     header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_BALHEADER5);
     header->SetLabel(show_displayed_balance_
-        ? CurrencyFormatter::float2Money(filteredBalance_)
+        ? Model_Account::toCurrency(filteredBalance_, account)
         : "                                 ");
 }
 

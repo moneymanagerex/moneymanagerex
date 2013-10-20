@@ -92,11 +92,12 @@ public:
         return Model_Currency::instance().get(currency_id);
     }
 public:
-    static wxString toMoney(double value, const Data* currency = GetBaseCurrency())
+    static wxString toCurrency(double value, const Data* currency = GetBaseCurrency())
     {
         wxString d2s = toString(value, currency);
         d2s.Prepend(currency->PFX_SYMBOL);
         d2s.Append(currency->SFX_SYMBOL);
+        return d2s;
     }
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {

@@ -259,8 +259,8 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
             {
                 hb.startTableRow();
                 hb.addTableCellLink(wxString::Format("ACCT:%d", account.ACCOUNTID), account.ACCOUNTNAME, false, true);
-                hb.addMoneyCell(reconciledBal, true);
-                hb.addMoneyCell(bal);
+                hb.addCurrencyCell(reconciledBal, currency);
+                hb.addCurrencyCell(bal, currency);
                 hb.endTableRow();
             }
         }

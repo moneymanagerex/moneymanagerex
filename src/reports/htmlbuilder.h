@@ -21,6 +21,7 @@
 
 #include "defs.h"
 #include <vector>
+#include "model/Model_Currency.h"
 
 namespace tags
 {
@@ -114,6 +115,7 @@ public:
     /** Add a Table header row with link */
     void addTableHeaderRowLink(const wxString& href, const wxString& value, int cols = 0);
 
+    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
     void addMoneyCell(double amount, bool color = true);
     void addMoneyCell(double amount, const wxString& color);
     void addTableCellMonth(int month);
