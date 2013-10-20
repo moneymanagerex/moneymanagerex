@@ -172,7 +172,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         if (Model_Checking::status(trx) == Model_Checking::VOID_) continue;
         if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
 
-        wxDateTime trx_date = mmGetStorageStringAsDate(trx.TRANSDATE);
+        wxDateTime trx_date = Model_Checking::TRANSDATE(trx);
         if (ignoreFuture)
         {
             if (trx_date.IsLaterThan(wxDateTime::Now()))
@@ -184,7 +184,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 
-        if (trx.STATUS == TRANS_TYPE_DEPOSIT_STR)
+        if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
             payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
         else
             payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;

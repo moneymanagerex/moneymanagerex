@@ -210,7 +210,6 @@ private:
     wxRadioBox* m_radio_box_;
     wxCheckBox* transNumberCheckBox_;
     wxTextCtrl* transNumberEdit_;
-    std::vector< mmBankTransaction* >* trans_;
     mmDateRange* date_range_;
 
     int categID_;

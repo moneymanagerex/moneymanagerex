@@ -186,7 +186,7 @@ void mmFilterTransactionsDialog::CreateControls()
                                       wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(accountCheckBox_, flags);
 
-    wxSortedArrayString accountArray;
+    wxArrayString accountArray;
     for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
 
     accountDropDown_ = new wxChoice( itemPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, accountArray, 0 );
@@ -247,7 +247,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
 
-    for(const auto i : TRANSACTION_STATUSES)
+    for(const auto& i : TRANSACTION_STATUSES)
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     itemPanelSizer->Add(choiceStatus_, flagsExpand);

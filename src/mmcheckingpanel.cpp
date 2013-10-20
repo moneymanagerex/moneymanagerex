@@ -1686,7 +1686,7 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
     pTransaction->notes_ = transaction->NOTES;
     pTransaction->categID_ = transaction->CATEGID;
     pTransaction->subcategID_ = transaction->SUBCATEGID;
-    pTransaction->date_ = mmGetStorageStringAsDate(transaction->TRANSDATE);
+    pTransaction->date_ = Model_Checking::TRANSDATE(transaction);
     pTransaction->toAmt_ = transaction->TOTRANSAMOUNT;
 
     m_cp->m_trans.push_back(pTransaction);*/
