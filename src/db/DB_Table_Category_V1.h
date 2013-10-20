@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-16 22:20:21.081694.
+ *          AUTO GENERATED at 2013-10-20 09:15:08.699779.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -358,7 +358,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         Data_Set result;
         try
         {
-            wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + (asc ? " ASC " : " DESC ")
+            wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC ")
                 + "," + PRIMARY::name());
 
             wxLogDebug(q.GetSQL());
