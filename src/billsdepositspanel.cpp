@@ -247,11 +247,6 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
         const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
         if (!account || !category)
         {
-            if (!account)
-                wxLogDebug("Account %i is missing -----------------------------------------", entry.ACCOUNTID);
-            if (!category ||!sub_category)
-                wxLogDebug("Category %i is missing -------------------------------------", entry.CATEGID);
-            wxASSERT(false);
             continue;
         }
 
