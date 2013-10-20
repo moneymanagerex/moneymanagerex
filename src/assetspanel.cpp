@@ -346,8 +346,12 @@ void mmAssetsPanel::CreateControls()
     m_listCtrlAssets->InsertColumn(COL_TYPE, itemCol);
 
     itemCol.SetAlign(wxLIST_FORMAT_RIGHT);
-    itemCol.SetText(_("Value"));
-    m_listCtrlAssets->InsertColumn(COL_VALUE, itemCol);
+    itemCol.SetText(_("Initial Value"));
+    m_listCtrlAssets->InsertColumn(COL_VALUE_INITIAL, itemCol);
+
+    itemCol.SetAlign(wxLIST_FORMAT_RIGHT);
+    itemCol.SetText(_("Current Value"));
+    m_listCtrlAssets->InsertColumn(COL_VALUE_CURRENT, itemCol);
 
     itemCol.SetAlign(wxLIST_FORMAT_RIGHT);
     itemCol.SetText(_("Date"));
@@ -367,7 +371,8 @@ void mmAssetsPanel::CreateControls()
     m_listCtrlAssets->SetColumnWidth(COL_NAME, col0);
     m_listCtrlAssets->SetColumnWidth(COL_DATE, col1);
     m_listCtrlAssets->SetColumnWidth(COL_TYPE, col2);
-    m_listCtrlAssets->SetColumnWidth(COL_VALUE, col3);
+    m_listCtrlAssets->SetColumnWidth(COL_VALUE_INITIAL, col3);
+    m_listCtrlAssets->SetColumnWidth(COL_VALUE_CURRENT, col3);
     m_listCtrlAssets->SetColumnWidth(COL_NOTES, col4);
 
     wxPanel* assets_panel = new wxPanel( itemSplitterWindow10, wxID_ANY,
@@ -431,7 +436,15 @@ void mmAssetsPanel::sortTable()
                 else return x.STARTDATE < y.STARTDATE;
             });
         break;
-    case COL_VALUE:
+    case COL_VALUE_INITIAL:
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
+            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
+            {
+                if (x.VALUE != y.VALUE) return x.VALUE < y.VALUE;
+                else return x.STARTDATE < y.STARTDATE;
+            });
+        break;
+    case COL_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
@@ -516,10 +529,12 @@ wxString mmAssetsPanel::getItem(long item, long column)
         return asset.ASSETNAME;
     case COL_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
-    case COL_VALUE:
+    case COL_VALUE_INITIAL:
+        return Model_Currency::toString(asset.VALUE);
+    case COL_VALUE_CURRENT:
         return Model_Currency::toString(Model_Asset::value(asset));
     case COL_DATE:
-        return mmGetDateForDisplay(Model_Asset::STARTDATE((asset)));
+        return mmGetDateForDisplay(Model_Asset::STARTDATE(asset));
     case COL_NOTES:
         return asset.NOTES;
     default:

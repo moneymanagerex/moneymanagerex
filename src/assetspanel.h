@@ -66,7 +66,8 @@ public:
         COL_NAME = 0,
         COL_DATE,
         COL_TYPE,
-        COL_VALUE,
+        COL_VALUE_INITIAL,
+        COL_VALUE_CURRENT,
         COL_NOTES,
         COL_MAX, // number of columns
     };
