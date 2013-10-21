@@ -323,6 +323,17 @@ struct DB_Table_%s : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 ''' % len(self._fields)
+
+        for field in self._fields:
+            s += '''
+    struct SorterBy%s
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.%s < y.%s;
+        }
+    };''' % (field['name'], field['name'], field['name'])
+
         
         s += '''
     wxString name() const { return "%s"; }

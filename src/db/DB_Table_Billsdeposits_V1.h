@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-20 09:15:08.699779.
+ *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -424,6 +424,125 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
+    struct SorterByBDID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.BDID < y.BDID;
+        }
+    };
+    struct SorterByACCOUNTID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.ACCOUNTID < y.ACCOUNTID;
+        }
+    };
+    struct SorterByTOACCOUNTID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TOACCOUNTID < y.TOACCOUNTID;
+        }
+    };
+    struct SorterByPAYEEID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.PAYEEID < y.PAYEEID;
+        }
+    };
+    struct SorterByTRANSCODE
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TRANSCODE < y.TRANSCODE;
+        }
+    };
+    struct SorterByTRANSAMOUNT
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TRANSAMOUNT < y.TRANSAMOUNT;
+        }
+    };
+    struct SorterBySTATUS
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.STATUS < y.STATUS;
+        }
+    };
+    struct SorterByTRANSACTIONNUMBER
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
+        }
+    };
+    struct SorterByNOTES
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.NOTES < y.NOTES;
+        }
+    };
+    struct SorterByCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.CATEGID < y.CATEGID;
+        }
+    };
+    struct SorterBySUBCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.SUBCATEGID < y.SUBCATEGID;
+        }
+    };
+    struct SorterByTRANSDATE
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TRANSDATE < y.TRANSDATE;
+        }
+    };
+    struct SorterByFOLLOWUPID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.FOLLOWUPID < y.FOLLOWUPID;
+        }
+    };
+    struct SorterByTOTRANSAMOUNT
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TOTRANSAMOUNT < y.TOTRANSAMOUNT;
+        }
+    };
+    struct SorterByREPEATS
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.REPEATS < y.REPEATS;
+        }
+    };
+    struct SorterByNEXTOCCURRENCEDATE
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.NEXTOCCURRENCEDATE < y.NEXTOCCURRENCEDATE;
+        }
+    };
+    struct SorterByNUMOCCURRENCES
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.NUMOCCURRENCES < y.NUMOCCURRENCES;
+        }
+    };
     wxString name() const { return "BILLSDEPOSITS_V1"; }
 
     DB_Table_BILLSDEPOSITS_V1() 

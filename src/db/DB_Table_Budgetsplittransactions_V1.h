@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-20 09:15:08.699779.
+ *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -250,6 +250,41 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
+    struct SorterBySPLITTRANSID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.SPLITTRANSID < y.SPLITTRANSID;
+        }
+    };
+    struct SorterByTRANSID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.TRANSID < y.TRANSID;
+        }
+    };
+    struct SorterByCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.CATEGID < y.CATEGID;
+        }
+    };
+    struct SorterBySUBCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.SUBCATEGID < y.SUBCATEGID;
+        }
+    };
+    struct SorterBySPLITTRANSAMOUNT
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.SPLITTRANSAMOUNT < y.SPLITTRANSAMOUNT;
+        }
+    };
     wxString name() const { return "BUDGETSPLITTRANSACTIONS_V1"; }
 
     DB_Table_BUDGETSPLITTRANSACTIONS_V1() 

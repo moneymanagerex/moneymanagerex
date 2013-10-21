@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-20 09:15:08.699779.
+ *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -234,6 +234,34 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
+    struct SorterByPAYEEID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.PAYEEID < y.PAYEEID;
+        }
+    };
+    struct SorterByPAYEENAME
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.PAYEENAME < y.PAYEENAME;
+        }
+    };
+    struct SorterByCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.CATEGID < y.CATEGID;
+        }
+    };
+    struct SorterBySUBCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.SUBCATEGID < y.SUBCATEGID;
+        }
+    };
     wxString name() const { return "PAYEE_V1"; }
 
     DB_Table_PAYEE_V1() 

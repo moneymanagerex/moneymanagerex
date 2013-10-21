@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-20 09:15:08.699779.
+ *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -264,6 +264,48 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
+    struct SorterByBUDGETENTRYID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.BUDGETENTRYID < y.BUDGETENTRYID;
+        }
+    };
+    struct SorterByBUDGETYEARID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.BUDGETYEARID < y.BUDGETYEARID;
+        }
+    };
+    struct SorterByCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.CATEGID < y.CATEGID;
+        }
+    };
+    struct SorterBySUBCATEGID
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.SUBCATEGID < y.SUBCATEGID;
+        }
+    };
+    struct SorterByPERIOD
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.PERIOD < y.PERIOD;
+        }
+    };
+    struct SorterByAMOUNT
+    { 
+        bool operator()(const Data& x, const Data& y)
+        {
+            return x.AMOUNT < y.AMOUNT;
+        }
+    };
     wxString name() const { return "BUDGETTABLE_V1"; }
 
     DB_Table_BUDGETTABLE_V1() 
