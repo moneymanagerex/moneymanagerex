@@ -64,7 +64,6 @@ public:
         COL_MAX, // number of columns
         COL_DEF_SORT = COL_DATE_OR_TRANSACTION_ID
     };
-
     EColumn toEColumn(long col)
     {
         EColumn res = COL_DEF_SORT;
@@ -179,6 +178,32 @@ public:
 
     mmCoreDB* core_; // TODO
 private:
+    enum menu
+    {
+        MENU_VIEW_ALLTRANSACTIONS,
+        MENU_VIEW_TODAY,
+        MENU_VIEW_CURRENTMONTH,
+        MENU_VIEW_LAST30,
+        MENU_VIEW_LAST90,
+        MENU_VIEW_LASTMONTH,
+        MENU_VIEW_LAST3MONTHS,
+        MENU_VIEW_LAST12MONTHS,
+        MENU_VIEW_CURRENTYEAR,
+    };
+    static wxArrayString menu_labels()
+    {
+        wxArrayString items;
+        items.Add(wxTRANSLATE("View All Transactions"));
+        items.Add(wxTRANSLATE("View Today"));
+        items.Add(wxTRANSLATE("View Current Month"));
+        items.Add(wxTRANSLATE("View Last 30 days"));
+        items.Add(wxTRANSLATE("View Last 90 days"));
+        items.Add(wxTRANSLATE("View Last Month"));
+        items.Add(wxTRANSLATE("View Last 3 Months"));
+        items.Add(wxTRANSLATE("View Last 12 Months"));
+        items.Add(wxTRANSLATE("View Current Year"));
+        return items;
+    }
     DECLARE_EVENT_TABLE()
     friend class TransactionListCtrl; // needs access to m_core, initdb_, ...
 
@@ -195,7 +220,7 @@ private:
     wxStaticBitmap* bitmapMainFilter_;
     mmFilterTransactionsDialog* transFilterDlg_;
 
-    wxString currentView_;
+    int currentView_;
     wxDateTime quickFilterBeginDate_;
     wxDateTime quickFilterEndDate_;
     bool transFilterActive_;

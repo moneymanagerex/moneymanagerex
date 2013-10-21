@@ -326,7 +326,7 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
         {
             wxMenu menu;
             int id = MENU_VIEW_ALLTRANSACTIONS;
-            for (const auto& i : DATE_PRESETTINGS)
+            for (const auto& i : menu_labels())
             {
                 menu.Append(id++, wxGetTranslation(i));
             }
@@ -747,36 +747,37 @@ void mmCheckingPanel::OnMoveTransaction(wxCommandEvent& event)
 void mmCheckingPanel::initViewTransactionsHeader()
 {
     wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
-    currentView_   = Model_Infotable::instance().GetStringInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), vTrans);
+    int def_view_selection = menu_labels().Index(vTrans);
+    currentView_ = Model_Infotable::instance().GetIntInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view_selection);
 
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
-    stxtMainFilter_->SetLabel(wxGetTranslation(currentView_));
+    stxtMainFilter_->SetLabel(wxGetTranslation(menu_labels()[currentView_]));
 }
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
-    mmDateRange* date_range = NULL;
+    mmDateRange* date_range = new mmAllTime;
 
-    if (currentView_ == VIEW_TRANS_ALL_STR)
+    if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
         date_range = new mmAllTime;
-    else if (currentView_ == VIEW_TRANS_TODAY_STR)
+    else if (currentView_ == MENU_VIEW_TODAY)
         date_range = new mmToday;
-    else if (currentView_ == VIEW_TRANS_CURRENT_MONTH_STR)
+    else if (currentView_ == MENU_VIEW_CURRENTMONTH)
         date_range = new mmCurrentMonth;
-    else if (currentView_ == VIEW_TRANS_LAST_30_DAYS_STR)
+    else if (currentView_ == MENU_VIEW_LAST30)
         date_range = new mmLast30Days;
-    else if (currentView_ == VIEW_TRANS_LAST_90_DAYS_STR)
+    else if (currentView_ == MENU_VIEW_LAST90)
         date_range = new mmLast90Days;
-    else if (currentView_ == VIEW_TRANS_LAST_MONTH_STR)
+    else if (currentView_ == MENU_VIEW_LASTMONTH)
         date_range = new mmLastMonth;
-    else if (currentView_ == VIEW_TRANS_LAST_3MONTHS_STR)
+    else if (currentView_ == MENU_VIEW_LAST3MONTHS)
         date_range = new mmLast3Months;
-    else if (currentView_ == VIEW_TRANS_CURRENT_YEAR_STR)
+    else if (currentView_ == MENU_VIEW_LAST12MONTHS)
         date_range = new mmCurrentYear;
-    else if (currentView_ == VIEW_TRANS_LAST_12MONTHS_STR)
+    else if (currentView_ == MENU_VIEW_CURRENTYEAR)
         date_range = new mmLast12Months;
     else
-        date_range = new mmAllTime;
+        wxASSERT(false);
 
     quickFilterBeginDate_ = date_range->start_date();
     quickFilterEndDate_ = date_range->end_date();
@@ -791,8 +792,8 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
         return;
     }
 
-    stxtMainFilter_->SetLabel(_("View All transactions"));
-    currentView_ = VIEW_TRANS_ALL_STR;
+    currentView_ = MENU_VIEW_ALLTRANSACTIONS;
+    stxtMainFilter_->SetLabel(menu_labels()[currentView_]);
     SetTransactionFilterState(true);
     initFilterSettings();
 
@@ -803,33 +804,12 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
-    int evt =  event.GetId();
+    currentView_ = event.GetId();
 
-    if (evt ==  MENU_VIEW_ALLTRANSACTIONS)
-    {
-        currentView_ = VIEW_TRANS_ALL_STR;
+    if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
         transFilterActive_ = false;
-    }
-    else if (evt == MENU_VIEW_TODAY)
-        currentView_ = VIEW_TRANS_TODAY_STR;
-    else if (evt == MENU_VIEW_CURRENTMONTH)
-        currentView_ = VIEW_TRANS_CURRENT_MONTH_STR;
-    else if (evt == MENU_VIEW_LAST30)
-        currentView_ = VIEW_TRANS_LAST_30_DAYS_STR;
-    else if (evt == MENU_VIEW_LAST90)
-        currentView_ = VIEW_TRANS_LAST_90_DAYS_STR;
-    else if (evt == MENU_VIEW_LAST3MONTHS)
-        currentView_ = VIEW_TRANS_LAST_3MONTHS_STR;
-    else if (evt == MENU_VIEW_LASTMONTH)
-        currentView_ = VIEW_TRANS_LAST_MONTH_STR;
-    else if (evt == MENU_VIEW_CURRENTYEAR)
-        currentView_ = VIEW_TRANS_CURRENT_YEAR_STR;
-    else if (evt == MENU_VIEW_LAST12MONTHS)
-        currentView_ = VIEW_TRANS_LAST_12MONTHS_STR;
-    else
-        wxASSERT(false);
 
-    stxtMainFilter_->SetLabel(wxGetTranslation(currentView_));
+    stxtMainFilter_->SetLabel(wxGetTranslation(menu_labels()[currentView_]));
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
 
     m_listCtrlAccount->m_selectedIndex = -1;
