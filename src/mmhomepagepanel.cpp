@@ -321,12 +321,11 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
-        double convRate = 1;
-        if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
+        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
 
         int idx = group_by_account ? (1000000 * pBankTransaction.ACCOUNTID) : 0;
-        idx += group_by_month ? (Model_Checking::to_date(pBankTransaction.TRANSDATE).GetYear()*100
-            + (int)Model_Checking::to_date(pBankTransaction.TRANSDATE).GetMonth()) : 0;
+        idx += group_by_month ? (Model_Checking::TRANSDATE(pBankTransaction).GetYear() * 100
+            + (int) Model_Checking::TRANSDATE(pBankTransaction).GetMonth()) : 0;
 
         if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
