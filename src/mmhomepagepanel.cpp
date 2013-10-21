@@ -316,12 +316,8 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 
     for (const auto& pBankTransaction : transactions)
     {
-        if (Model_Checking::status(pBankTransaction)==Model_Checking::VOID_) continue; // skip
-        if (accountID != -1)
-        {
-            if (pBankTransaction.ACCOUNTID != accountID && pBankTransaction.TOACCOUNTID != accountID)
-                continue; // skip
-        }
+        if (pBankTransaction.ACCOUNTID != accountID && pBankTransaction.TOACCOUNTID != accountID)
+            continue; // skip
 
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);

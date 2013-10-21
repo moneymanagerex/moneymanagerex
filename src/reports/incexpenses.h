@@ -19,19 +19,17 @@
 #ifndef _MM_EX_REPORTINCEXP_H_
 #define _MM_EX_REPORTINCEXP_H_
 
-#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
 
 class mmReportIncomeExpenses : public mmPrintableBase
 {
 public:
-    mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range = new mmCurrentMonth());
+    mmReportIncomeExpenses(mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpenses();
     wxString getHTMLText();
 
 protected:
-    const mmCoreDB* core_; // TODO
     mmDateRange* date_range_;
     wxString title_;
     virtual wxString title() const;
@@ -41,7 +39,7 @@ protected:
 class mmReportIncomeExpensesAllTime: public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesAllTime(mmCoreDB* core): mmReportIncomeExpenses(core, new mmAllTime())
+    mmReportIncomeExpensesAllTime(): mmReportIncomeExpenses(new mmAllTime())
     {
     }
 };
@@ -49,7 +47,7 @@ public:
 class mmReportIncomeExpensesCurrentMonth: public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesCurrentMonth(mmCoreDB* core): mmReportIncomeExpenses(core, new mmCurrentMonth())
+    mmReportIncomeExpensesCurrentMonth(): mmReportIncomeExpenses(new mmCurrentMonth())
     {
     }
 };
@@ -57,7 +55,7 @@ public:
 class mmReportIncomeExpensesCurrentMonthToDate: public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesCurrentMonthToDate(mmCoreDB* core): mmReportIncomeExpenses(core, new mmCurrentMonthToDate())
+    mmReportIncomeExpensesCurrentMonthToDate(): mmReportIncomeExpenses(new mmCurrentMonthToDate())
     {
     }
 };
@@ -65,7 +63,7 @@ public:
 class mmReportIncomeExpensesLastMonth: public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesLastMonth(mmCoreDB* core): mmReportIncomeExpenses(core, new mmLastMonth())
+    mmReportIncomeExpensesLastMonth(): mmReportIncomeExpenses(new mmLastMonth())
     {
     }
 };
@@ -73,7 +71,7 @@ public:
 class mmReportIncomeExpensesLast30Days: public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesLast30Days(mmCoreDB* core): mmReportIncomeExpenses(core, new mmLast30Days())
+    mmReportIncomeExpensesLast30Days(): mmReportIncomeExpenses(new mmLast30Days())
     {
     }
 };
@@ -82,14 +80,13 @@ public:
 class mmReportIncomeExpensesMonthly: public mmPrintableBase
 {
 public:
-    mmReportIncomeExpensesMonthly(mmCoreDB* core
-                                 , int day_ = 1
+    mmReportIncomeExpensesMonthly(int day_ = 1
                                          , int month_ = 1
                                                  , mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpensesMonthly();
     wxString getHTMLText();
 protected:
-    const mmCoreDB* core_; // TODO
+
     mmDateRange* date_range_;
     int day_;
     int month_;
@@ -103,7 +100,7 @@ protected:
 class mmReportIncomeExpensesCurrentYear: public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesCurrentYear(mmCoreDB* core): mmReportIncomeExpensesMonthly(core, 1, 1, new mmCurrentYear())
+    mmReportIncomeExpensesCurrentYear(): mmReportIncomeExpensesMonthly(1, 1, new mmCurrentYear())
     {
     }
 };
@@ -111,7 +108,7 @@ public:
 class mmReportIncomeExpensesLastYear: public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesLastYear(mmCoreDB* core): mmReportIncomeExpensesMonthly(core, 1, 1, new mmLastYear())
+    mmReportIncomeExpensesLastYear(): mmReportIncomeExpensesMonthly(1, 1, new mmLastYear())
     {
     }
 };
@@ -119,9 +116,8 @@ public:
 class mmReportIncomeExpensesCurrentFinancialYear: public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesCurrentFinancialYear(mmCoreDB* core
-            , const int day, const int month): mmReportIncomeExpensesMonthly(core
-                        , day, month, new mmCurrentFinancialYear(day, month))
+    mmReportIncomeExpensesCurrentFinancialYear(const int day, const int month)
+        : mmReportIncomeExpensesMonthly(day, month, new mmCurrentFinancialYear(day, month))
     {
     }
 };
@@ -129,9 +125,8 @@ public:
 class mmReportIncomeExpensesLastFinancialYear: public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesLastFinancialYear(mmCoreDB* core
-                                            , const int day, const int month): mmReportIncomeExpensesMonthly(core
-                                                        , day, month, new mmLastFinancialYear(day, month))
+    mmReportIncomeExpensesLastFinancialYear(const int day, const int month)
+        : mmReportIncomeExpensesMonthly(day, month, new mmLastFinancialYear(day, month))
     {
     }
 };

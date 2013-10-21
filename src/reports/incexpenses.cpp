@@ -7,9 +7,8 @@
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
 
-mmReportIncomeExpenses::mmReportIncomeExpenses(mmCoreDB* core, mmDateRange* date_range)
-    : core_(core)
-    , date_range_(date_range)
+mmReportIncomeExpenses::mmReportIncomeExpenses(mmDateRange* date_range)
+    : date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
 {
 }
@@ -34,23 +33,21 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.addLineBreak();
     hb.startCenter();
 
-    std::map<int, std::pair<double, double> > incomeExpensesStats;
-    double expenses = 0.0, income = 0.0;
-    core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
-        , date_range_
-        , -1
-    );
-
-    for (const auto& transaction: Model_Checking::instance().all())
+    std::pair<double, double> income_expemses_rair;
+    for (const auto& transaction : Model_Checking::instance().find(
+        Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
-        if (Model_Checking::status(transaction) == Model_Checking::VOID_) continue;
-        // TODO
-    }
+        // We got this far, get the currency conversion rate for this account
+        Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        double convRate = 1;
+        if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
 
-    for (const auto &stats: incomeExpensesStats)
-    {
-        income = stats.second.first;
-        expenses = stats.second.second;
+        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
+            income_expemses_rair.first += transaction.TRANSAMOUNT * convRate;
+        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+            income_expemses_rair.second += transaction.TRANSAMOUNT * convRate;
     }
 
     hb.startTable("75%");
@@ -59,7 +56,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.startTableRow();
     hb.startTableCell();
     mmGraphIncExpensesMonth gg;
-    gg.init(income, expenses);
+    gg.init(income_expemses_rair.first, income_expemses_rair.second);
     gg.Generate(_("Income vs Expenses"));
     hb.addImage(gg.getOutputFileName());
     hb.endTableCell();
@@ -72,11 +69,11 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.endTableRow();
 
     hb.startTableRow();
-    hb.addTableRow(_("Income:"), income);
-    hb.addTableRow(_("Expenses:"), expenses);
+    hb.addTableRow(_("Income:"), income_expemses_rair.first);
+    hb.addTableRow(_("Expenses:"), income_expemses_rair.second);
 
     hb.addRowSeparator(2);
-    hb.addTotalRow(_("Difference:"), 2, income - expenses);
+    hb.addTotalRow(_("Difference:"), 2, income_expemses_rair.first - income_expemses_rair.second);
 
     hb.endTable();
 
@@ -90,9 +87,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
     return hb.getHTMLText();
 }
 
-mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(mmCoreDB* core, int day, int month, mmDateRange* date_range)
-    : core_(core)
-    , day_(day)
+mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(int day, int month, mmDateRange* date_range)
+    : day_(day)
     , month_(month)
     , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
@@ -107,10 +103,7 @@ mmReportIncomeExpensesMonthly::~mmReportIncomeExpensesMonthly()
 
 wxString mmReportIncomeExpensesMonthly::getHTMLText()
 {
-    double total_expenses = 0.0;
-    double total_income = 0.0;
-    std::map<int, std::pair<double, double> > incomeExpensesStats;
-
+    //FIXME: runing twice
     mmHTMLBuilder hb;
     hb.init();
     hb.addHeader(2, this->title());
@@ -127,17 +120,30 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addTableHeaderCell(_("Difference"), true);
     hb.endTableRow();
 
-    core_->bTransactionList_.getExpensesIncomeStats(incomeExpensesStats
-        , date_range_, -1, false, true);
-
-    for (const auto& transaction: Model_Checking::instance().find(
+    wxLogDebug("from %s till %s", date_range_->start_date().FormatISODate(), date_range_->end_date().FormatISODate());
+    std::map<int, std::pair<double, double> > incomeExpensesStats;
+    for (const auto& transaction : Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range_->start_date(), GREATER_OR_EQUAL)
             , Model_Checking::TRANSDATE(date_range_->end_date(), LESS_OR_EQUAL)
             , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
-        // TODO
+        // We got this far, get the currency conversion rate for this account
+        Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        double convRate = 1;
+        if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
+
+        int idx = (Model_Checking::to_date(transaction.TRANSDATE).GetYear() * 100
+            + (int) Model_Checking::to_date(transaction.TRANSDATE).GetMonth());
+
+        if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
+            incomeExpensesStats[idx].first += transaction.TRANSAMOUNT * convRate;
+        else if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+            incomeExpensesStats[idx].second += transaction.TRANSAMOUNT * convRate;
     }
-    for (const auto &stats: incomeExpensesStats)
+
+    double total_expenses = 0.0;
+    double total_income = 0.0;
+    for (const auto &stats : incomeExpensesStats)
     {
         total_expenses += stats.second.second;
         total_income += stats.second.first;
