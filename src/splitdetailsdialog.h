@@ -13,35 +13,8 @@
 #ifndef _MM_EX_SPLITDETAILSDIALOG_H_
 #define _MM_EX_SPLITDETAILSDIALOG_H_
 
-/*!
- * Includes
- */
-
-////@begin includes
-#include "guiid.h"
 #include "defs.h"
-#include "mmcoredb.h"
 #include "model/Model_Splittransaction.h"
-////@end includes
-
-
-/*!
- * Control identifiers
- */
-
-////@begin control identifiers
-#define ID_SPLIT_DETAIL_DIALOG 10125
-#define SYMBOL_SPLITDETAILDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_SPLITDETAILDIALOG_TITLE _("Split Detail Dialog")
-#define SYMBOL_SPLITDETAILDIALOG_IDNAME ID_SPLIT_DETAIL_DIALOG
-#define SYMBOL_SPLITDETAILDIALOG_SIZE wxSize(400, 300)
-#define SYMBOL_SPLITDETAILDIALOG_POSITION wxDefaultPosition
-//#define ID_BUTTONCANCEL 10126
-////@end control identifiers
-
-/*!
- * Compatibility
- */
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
@@ -50,10 +23,6 @@
 #define wxFIXED_MINSIZE 0
 #endif
 
-/*!
- * SplitDetailDialog class declaration
- */
-
 class SplitDetailDialog: public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( SplitDetailDialog )
@@ -61,20 +30,15 @@ class SplitDetailDialog: public wxDialog
 
 public:
     /// Constructors
-    SplitDetailDialog( );
+    SplitDetailDialog();
     SplitDetailDialog( 
-        Model_Splittransaction::Data* split
-        , mmCoreDB* core,
-        const wxString categString,
-        int* categID,
-        int* subcategID,
-        double* amount,
-        int transType,
-        wxWindow* parent,
-        wxWindowID id = SYMBOL_SPLITDETAILDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_SPLITDETAILDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_SPLITDETAILDIALOG_POSITION,
-        const wxSize& size = SYMBOL_SPLITDETAILDIALOG_SIZE, long style = SYMBOL_SPLITDETAILDIALOG_STYLE
+        wxWindow* parent
+        , Model_Splittransaction::Data* split
+        , const wxString categString
+        , int* categID
+        , int* subcategID
+        , double* amount
+        , int transType
     );
 
     int* m_categID_;
@@ -84,11 +48,7 @@ public:
 
 private:
     /// Creation
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_SPLITDETAILDIALOG_IDNAME
-        , const wxString& caption = SYMBOL_SPLITDETAILDIALOG_TITLE
-        , const wxPoint& pos = SYMBOL_SPLITDETAILDIALOG_POSITION
-        , const wxSize& size = SYMBOL_SPLITDETAILDIALOG_SIZE
-        , long style = SYMBOL_SPLITDETAILDIALOG_STYLE );
+    bool Create(wxWindow* parent);
 
     /// Creates the controls and sizers
     void CreateControls();
@@ -115,7 +75,7 @@ private:
 
 ////@begin SplitDetailDialog member variables
     Model_Splittransaction::Data* split_;
-    mmCoreDB* core_; // TODO
+
     int transType_;
     int localTransType_;
 

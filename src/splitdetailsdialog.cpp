@@ -17,6 +17,7 @@
 #include "constants.h"
 #include "validators.h"
 #include "mmCalculator.h"
+#include "model/Model_Checking.h"
 
 #include <wx/valnum.h>
 
@@ -41,22 +42,15 @@ SplitDetailDialog::SplitDetailDialog( )
 }
 
 SplitDetailDialog::SplitDetailDialog( 
-    Model_Splittransaction::Data* split
-    , mmCoreDB* core
+    wxWindow* parent
+    , Model_Splittransaction::Data* split
     , const wxString categString
     , int* categID
     , int* subcategID
     , double* amount
-    , int transType
-    , wxWindow* parent
-    , wxWindowID id
-    , const wxString& caption
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style )
+    , int transType)
     : split_(split)
 {
-    core_ = core;
     m_categID_  = categID;
     m_subcategID_ = subcategID;
     transType_ = transType;
@@ -74,17 +68,13 @@ SplitDetailDialog::SplitDetailDialog(
     m_amount_ = amount;
 
     m_categString_ = categString;
-    Create(parent, id, caption, pos, size, style);
+    Create(parent);
 }
 
-bool SplitDetailDialog::Create( wxWindow* parent, wxWindowID id,
-                               const wxString& caption,
-                               const wxPoint& pos,
-                               const wxSize& size,
-                               long style )
+bool SplitDetailDialog::Create(wxWindow* parent)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX | wxWS_EX_BLOCK_EVENTS;
+    wxDialog::Create(parent, wxID_ANY, _("Split Detail Dialog"), wxDefaultPosition, wxSize(400, 300), style);
 
     CreateControls();
     GetSizer()->Fit(this);
