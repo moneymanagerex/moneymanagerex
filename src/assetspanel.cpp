@@ -418,55 +418,29 @@ void mmAssetsPanel::CreateControls()
 void mmAssetsPanel::sortTable()
 {
     std::sort(this->m_assets.begin(), this->m_assets.end());
+    std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterBySTARTDATE());
     switch (this->m_listCtrlAssets->m_selected_col)
     {
     case COL_NAME:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
-            , [] (const Model_Asset::Data& x, const Model_Asset::Data& y)
-            {
-                if (x.ASSETNAME != y.ASSETNAME) return x.ASSETNAME < y.ASSETNAME;
-                else return x.STARTDATE < y.STARTDATE;
-            });
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByASSETNAME());
         break;
     case COL_TYPE:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
-            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
-            {
-                if (x.ASSETTYPE != y.ASSETTYPE) return x.ASSETTYPE < y.ASSETTYPE;
-                else return x.STARTDATE < y.STARTDATE;
-            });
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByASSETTYPE());
         break;
     case COL_VALUE_INITIAL:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
-            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
-            {
-                if (x.VALUE != y.VALUE) return x.VALUE < y.VALUE;
-                else return x.STARTDATE < y.STARTDATE;
-            });
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByVALUE());
         break;
     case COL_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
             , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
             {
-                if (Model_Asset::value(x) != Model_Asset::value(y)) return Model_Asset::value(x) < Model_Asset::value(y);
-                else return x.STARTDATE < y.STARTDATE;
+                return Model_Asset::value(x) < Model_Asset::value(y);
             });
         break;
     case COL_DATE:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
-            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
-            {
-                if (x.STARTDATE != y.STARTDATE) return x.STARTDATE < y.STARTDATE;
-                else return x.STARTDATE < y.STARTDATE;
-            });
         break;
     case COL_NOTES:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end()
-            , [](const Model_Asset::Data& x, const Model_Asset::Data& y)
-            {
-                if (x.NOTES != y.NOTES) return x.NOTES < y.NOTES;
-                else return x.STARTDATE < y.STARTDATE;
-            });
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByNOTES());
     default:
         break;
     }
