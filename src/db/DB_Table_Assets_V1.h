@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-21 17:34:51.230171.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -38,7 +38,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
         try
         {
-            db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL , ASSETNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
+            db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL , ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
