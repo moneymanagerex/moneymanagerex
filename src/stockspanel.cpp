@@ -416,6 +416,7 @@ void mmStocksPanel::CreateControls()
 
 void mmStocksPanel::sortTable()
 {
+    // TODO
 }
 
 int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
