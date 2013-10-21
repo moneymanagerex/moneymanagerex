@@ -60,6 +60,18 @@ public:
 
         return status;
     }
+    static wxArrayString all_status_db()
+    {
+        wxArrayString status;
+        // keep the sequence with STATUS
+        status.Add("");
+        status.Add(("R"));
+        status.Add(("V"));
+        status.Add(("F"));
+        status.Add(("D"));
+
+        return status;
+    }
 public:
     static Model_Checking& instance()
     {
@@ -119,7 +131,7 @@ public:
     }
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op); }
-    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::STATUS(all_status()[status], op); }
+    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::STATUS(all_status_db()[status], op); }
     static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE type, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op); }
 public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }
@@ -144,7 +156,7 @@ public:
             return VOID_;
         else if (r->STATUS.CmpNoCase("Follow up") == 0 || r->STATUS.CmpNoCase("F") == 0)
             return FOLLOWUP;
-        else if (r->STATUS.CmpNoCase("Duplicate") == 0)
+        else if (r->STATUS.CmpNoCase("Duplicate") == 0 || r->STATUS.CmpNoCase("D") == 0)
             return DUPLICATE_;
         else 
             return NONE;
@@ -171,29 +183,6 @@ public:
         return sum;
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
-    static double getAmountForSplit(const Data& r, int categID, int subcategID)
-    {
-        double splitAmount = 0.0;
-        const Model_Splittransaction::Data_Set& splitEntries = Model_Checking::instance().splittransaction(r);
-        if (splitEntries.size() > 0)
-        {
-            for (const auto & pSplitEntry: splitEntries)
-            {
-                if ((pSplitEntry.CATEGID == categID) &&
-                    (pSplitEntry.SUBCATEGID == subcategID))
-                {
-                    splitAmount += pSplitEntry.SPLITTRANSAMOUNT;
-                }
-            }
-        }
-        else if ((r.CATEGID == categID) &&
-            (r.SUBCATEGID == subcategID))
-        {
-            splitAmount = r.TRANSAMOUNT;
-        }
-
-        return splitAmount;
-    }
 };
 
 #endif // 

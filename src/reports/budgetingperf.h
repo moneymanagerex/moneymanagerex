@@ -20,6 +20,7 @@
 #define _MM_EX_REPORTBUDGETING_PERFORMANCE_H_
 
 #include "budget.h"
+#include <map>
 
 class mmReportBudgetingPerformance : public mmReportBudget
 {
@@ -31,8 +32,8 @@ public:
 private:
     int budgetYearID_;
 
-    void DisplayEstimateMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth);
-    void DisplayActualMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth, long startYear);
+    void DisplayEstimateMonths(mmHTMLBuilder& hb, double estimated);
+    void DisplayActualMonths(mmHTMLBuilder& hb, double estimated, std::map<int, double>& actual);
 };
 
 #endif // _MM_EX_REPORTBUDGETING_PERFORMANCE_H_

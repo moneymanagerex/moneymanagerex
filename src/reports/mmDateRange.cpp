@@ -180,3 +180,11 @@ const bool mmAllTime::is_with_date() const
 {
     return false;
 }
+
+mmSpecifiedRange::mmSpecifiedRange(wxDateTime& start, wxDateTime& end)
+: mmDateRange()
+{
+    this->title_ = "";
+    this->start_date_ = start;
+    this->end_date_ = end;
+}

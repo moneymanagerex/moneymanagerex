@@ -107,4 +107,10 @@ public:
     const bool is_with_date() const;
 };
 
+class mmSpecifiedRange : public mmDateRange
+{
+public:
+    mmSpecifiedRange(wxDateTime& start, wxDateTime& end);
+};
+
 #endif // _MM_EX_DATE_RANGE_H_

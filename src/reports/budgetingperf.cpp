@@ -12,52 +12,23 @@ mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
 : budgetYearID_(budgetYearID)
 {}
 
-void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth)
+void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, double estimated)
 {
-    int month;
     for (int yidx = 0; yidx < 12; yidx++)
     {
-        month = yidx + startMonth;
-        if (month > 11)
-        {
-            month = month - 12;
-        }
         // Set the estimate for each month
-        hb.addMoneyCell(budgetEntry.estimated_ / 12);
+        hb.addMoneyCell(estimated / 12);
     }
 }
 
-void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, mmBudgetEntryHolder& budgetEntry, int startMonth, long startYear)
+void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, double estimated, std::map<int, double>& actual)
 {
-    bool evaluateTransfer = false;
-    if (wxGetApp().m_frame->budgetTransferTotal())
+    double est = estimated / 12;
+    for (const auto &i : actual)
     {
-        evaluateTransfer = true;
-    }
-    int month;
-    for (int yidx = 0; yidx < 12; yidx++)
-    {
-        double currentStartYear = startYear;
-        double currentEndYear = startYear;
-        month = yidx + startMonth;
-        if (month > 11)
-        {
-            month = month - 12;
-            currentStartYear ++;
-            currentEndYear++;
-        }
-        wxDateTime dtBegin(1, (wxDateTime::Month)month, currentStartYear);
-        wxDateTime dtEnd = dtBegin.GetLastMonthDay((wxDateTime::Month)month, currentEndYear);
-        bool transferAsDeposit = true;
-        if (budgetEntry.amt_ < 0)
-        {
-            transferAsDeposit = false;
-        }
-        double actualMonthVal = Model_Category::instance().getAmountForCategory(budgetEntry.categID_, budgetEntry.subcategID_,
-            false, dtBegin, dtEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
-        );
+        double actualMonthVal = i.second;
 
-        if(actualMonthVal < budgetEntry.estimated_)
+        if (actualMonthVal < est)
         {
             hb.addMoneyCell(actualMonthVal, "RED");
         }
@@ -84,12 +55,38 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     wxDateTime yearEnd(endDay, (wxDateTime::Month)endMonth, startYear);
 
     AdjustDateForEndFinancialYear(yearEnd);
+    mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
     if (wxGetApp().m_frame->budgetTransferTotal())
     {
         evaluateTransfer = true;
     }
+    //Get statistics
+    std::map<int, std::map<int, std::map<int, double> > > categoryStats;
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_, true, true, evaluateTransfer);
+    //Init totals
+    std::map<int, std::map<int, double> > totals;
+    for (const auto& category : Model_Category::instance().all())
+    {
+        totals[category.CATEGID][-1] = 0;
+        for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category))
+        {
+            totals[category.CATEGID][subcategory.SUBCATEGID] = 0;
+        }
+    }
+    for (const auto& category : Model_Category::instance().all())
+    {
+        for (const auto &i : categoryStats[category.CATEGID][-1])
+        {
+            totals[category.CATEGID][-1] += categoryStats[category.CATEGID][-1][i.first];
+            for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category))
+            {
+                totals[category.CATEGID][subcategory.SUBCATEGID] += categoryStats[category.CATEGID][subcategory.SUBCATEGID][i.first];
+            }
+        }
+    }
+
     mmHTMLBuilder hb;
     hb.init();
     hb.addHeader(2, _("Budget Performance for ") + headingStr );
@@ -121,14 +118,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         double totalEstimated_ = th.estimated_;
 
         // set the actual amount for the year
-        bool transferAsDeposit = true;
-        if (th.amt_ < 0)
-        {
-            transferAsDeposit = false;
-        }
-        th.actual_ = Model_Category::instance().getAmountForCategory(th.categID_, th.subcategID_, false,
-            yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
-        );
+        th.actual_ = totals[th.categID_][th.subcategID_];
 
         // estimated stuff
         if ((totalEstimated_ != 0.0) || (th.actual_ != 0.0))
@@ -137,7 +127,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.addTableCell(th.catStr_, false, true);
             hb.addTableCell(_("Estimated"));
 
-            DisplayEstimateMonths(hb, th, startMonth);
+            DisplayEstimateMonths(hb, th.estimated_);
 
             hb.addMoneyCell(totalEstimated_);
             hb.addTableCell("-");
@@ -148,7 +138,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.addTableCell(th.catStr_, false, true);
             hb.addTableCell(_("Actual"));
 
-            DisplayActualMonths(hb, th, startMonth, startYear);
+            DisplayActualMonths(hb, th.estimated_, categoryStats[th.categID_][th.subcategID_]);
 
             // year end
             if(th.actual_ < totalEstimated_)
@@ -192,14 +182,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             totalEstimated_ = thsub.estimated_;
 
             // set the actual abount for the year
-            transferAsDeposit = true;
-            if (thsub.amt_ < 0)
-            {
-                transferAsDeposit = false;
-            }
-            thsub.actual_ = Model_Category::instance().getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
-                yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
-            );
+            thsub.actual_ = totals[thsub.categID_][thsub.subcategID_];
 
             if ((totalEstimated_ != 0.0) || (thsub.actual_ != 0.0))
             {
@@ -207,7 +190,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 hb.addTableCell(thsub.catStr_+ ": " + thsub.subCatStr_, false, true);
                 hb.addTableCell(_("Estimated"));
 
-                DisplayEstimateMonths(hb, thsub, startMonth);
+                DisplayEstimateMonths(hb, thsub.estimated_);
 
                 hb.addMoneyCell(totalEstimated_);
                 hb.addTableCell("-");
@@ -217,7 +200,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
                 hb.addTableCell(thsub.catStr_+ ": " + thsub.subCatStr_, false, true);
                 hb.addTableCell(_("Actual"));
 
-                DisplayActualMonths(hb, thsub, startMonth, startYear);
+                DisplayActualMonths(hb, thsub.estimated_, categoryStats[thsub.categID_][thsub.subcategID_]);
 
                 // year end
                 if(thsub.actual_ < totalEstimated_)

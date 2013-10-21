@@ -318,6 +318,10 @@ void mmBudgetingPanel::initVirtualListControl()
         budgetDetails.AdjustYearValues(day, month, dtBegin);
         budgetDetails.AdjustDateForEndFinancialYear(dtEnd);
     }
+    mmSpecifiedRange date_range(dtBegin, dtEnd);
+    //Get statistics
+    std::map<int, std::map<int, std::map<int, double> > > categoryStats;
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_, false, true, evaluateTransfer);
 
     for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
@@ -333,16 +337,7 @@ void mmBudgetingPanel::initVirtualListControl()
         else
             estIncome += th.estimated_;
 
-        bool transferAsDeposit = true;
-        if (th.amt_ < 0)
-        {
-            transferAsDeposit = false;
-        }
-        th.actual_ = Model_Category::instance().getAmountForCategory(
-            th.categID_, th.subcategID_, false,
-            dtBegin, dtEnd, evaluateTransfer, transferAsDeposit,
-            mmIniOptions::instance().ignoreFutureTransactions_
-        );
+        th.actual_ = categoryStats[th.categID_][th.subcategID_][0];
         if (th.actual_ < 0)
             actExpenses += th.actual_;
         else
@@ -389,14 +384,7 @@ void mmBudgetingPanel::initVirtualListControl()
             else
                 estIncome += thsub.estimated_;
 
-            transferAsDeposit = true;
-            if (thsub.amt_ < 0)
-            {
-                transferAsDeposit = false;
-            }
-            thsub.actual_ = Model_Category::instance().getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
-                dtBegin, dtEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
-            );
+            thsub.actual_ = categoryStats[thsub.categID_][thsub.subcategID_][0];
             if (thsub.actual_ < 0)
                 actExpenses += thsub.actual_;
             else

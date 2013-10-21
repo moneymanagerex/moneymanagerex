@@ -157,8 +157,9 @@ public:
     static void getCategoryStats(
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
         , mmDateRange* date_range, bool ignoreFuture
-        , bool group_by_month = true, bool with_date = true)
-    {
+        , bool group_by_month = true, bool with_date = true
+        , bool evaluateTransfer = false)
+        {
         //Initialization
         //Get base currency rates for all accounts
         std::map<int, double> acc_conv_rates;
@@ -208,7 +209,7 @@ public:
 
             if (categID > -1)
             {
-                if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR)
+                if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR || evaluateTransfer)
                     categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
             }
             else
@@ -221,62 +222,6 @@ public:
                 }
             }
         }
-    }
-    static double getAmountForCategory(
-        int categID,
-        int subcategID,
-        bool ignoreDate,
-        const wxDateTime &dtBegin,
-        const wxDateTime &dtEnd,
-        bool evaluateTransfer,      // activates the asDeposit parameter.
-        bool asDeposit,             // No effect when evaluateTransfer is false.
-        bool ignoreFuture
-    )
-    {
-        double amt = 0.0;
-        const wxDateTime dtNow = wxDateTime::Now().GetDateOnly();
-
-        for (const auto& transaction: Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
-        {
-            if (!ignoreDate)
-            {
-                if (!Model_Checking::TRANSDATE(transaction).GetDateOnly().IsBetween(dtBegin, dtEnd)) continue;
-            }
-            if (ignoreFuture)
-            {
-                //skip future dated transactions
-                if (Model_Checking::TRANSDATE(transaction).GetDateOnly().IsLaterThan(dtNow)) continue;
-            }
-
-            Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
-            Model_Currency::Data* currency = Model_Account::currency(account);
-            double convRate = currency->BASECONVRATE;
-            if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
-            {
-                if (evaluateTransfer)
-                {
-                    if (asDeposit)
-                    {
-                        amt += Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
-                    }
-                    else
-                    {
-                        amt -= Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
-                    }
-                }
-                continue;  //skip
-            }
-            if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
-            {
-                amt -= Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
-            }
-            else if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT)
-            {
-                amt += Model_Checking::instance().getAmountForSplit(transaction, categID, subcategID) * convRate;
-            }
-        }
-
-        return amt;
     }
 };
 

@@ -85,12 +85,17 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     } else {
         AdjustDateForEndFinancialYear(yearEnd);
     }
+    mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
     if (wxGetApp().m_frame->budgetTransferTotal())
     {
         evaluateTransfer = true;
     }
+    //Get statistics
+    std::map<int, std::map<int, std::map<int, double> > > categoryStats;
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_, false, true, evaluateTransfer);
+
     mmHTMLBuilder hb;
     hb.init();
     wxString headerStartupMsg;
@@ -133,15 +138,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             estIncome += th.estimated_;
         }
 
-        bool transferAsDeposit = true;
-        if (th.amt_ < 0)
-        {
-            transferAsDeposit = false;
-        }
-
-        th.actual_ = Model_Category::instance().getAmountForCategory(th.categID_, th.subcategID_, false,
-            yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
-        );
+        th.actual_ = categoryStats[th.categID_][th.subcategID_][0];
 
         if (th.actual_ < 0) {
             actExpenses += th.actual_;
@@ -187,14 +184,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 estIncome += thsub.estimated_;
             }
 
-            transferAsDeposit = true;
-            if (thsub.amt_ < 0)
-            {
-                transferAsDeposit = false;
-            }
-            thsub.actual_ = Model_Category::instance().getAmountForCategory(thsub.categID_, thsub.subcategID_, false,
-                yearBegin, yearEnd, evaluateTransfer, transferAsDeposit, mmIniOptions::instance().ignoreFutureTransactions_
-            );
+            thsub.actual_ = categoryStats[thsub.categID_][thsub.subcategID_][0];
             if (thsub.actual_ < 0) {
                 actExpenses += thsub.actual_;
             } else {
