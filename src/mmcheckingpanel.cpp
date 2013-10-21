@@ -972,7 +972,6 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
         split
         , this
         , transType
-        , core_
         , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
     );
     splitTransDialog.SetDisplaySplitCategories();

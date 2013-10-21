@@ -34,7 +34,9 @@ BEGIN_EVENT_TABLE( SplitTransactionDialog, wxDialog )
     EVT_BUTTON( wxID_ADD, SplitTransactionDialog::OnButtonAddClick )
     EVT_BUTTON( wxID_REMOVE, SplitTransactionDialog::OnButtonRemoveClick )
     EVT_BUTTON( wxID_EDIT, SplitTransactionDialog::OnButtonEditClick )
-    EVT_LIST_ITEM_ACTIVATED( ID_LISTCTRL3 ,SplitTransactionDialog::OnListDblClick )
+    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, SplitTransactionDialog::OnListDblClick)
+    EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, SplitTransactionDialog::OnListItemSelected)
+    //EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, SplitTransactionDialog::OnItemRightClick)
 END_EVENT_TABLE()
 
 SplitTransactionDialog::SplitTransactionDialog( )
@@ -45,13 +47,12 @@ SplitTransactionDialog::SplitTransactionDialog(
     Model_Splittransaction::Data_Set &split
     , wxWindow* parent
     , int transType
-    , mmCoreDB* core
     , mmSplitTransactionEntries* splt)
 {
-    core_ = core;
-    splt_ = splt;
     split_ = split;
     transType_ = transType;
+    split_id_ = 0;
+    selectedIndex_ = 0;
     if (transType_ == DEF_TRANSFER)
         transType_ = DEF_WITHDRAWAL;
 
@@ -83,17 +84,15 @@ bool SplitTransactionDialog::Create( wxWindow* parent, wxWindowID id,
 void SplitTransactionDialog::DataToControls()
 {
     lcSplit_->DeleteAllItems();
-    long idx = 0;
     for (const auto & entry : split_)
     {
         const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
         const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
 
-        lcSplit_->InsertItem((long)idx
-            , Model_Category::full_name(category, sub_category) 
-            , -1);
-
-        lcSplit_->SetItem((long)idx++, 1, CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT));
+        wxVector<wxVariant> data;
+        data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
+        data.push_back(wxVariant(CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT)));
+        lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
     }
     UpdateSplitTotal();
     itemButtonNew_->SetFocus();
@@ -110,20 +109,12 @@ void SplitTransactionDialog::CreateControls()
     wxBoxSizer* listCtrlSizer = new wxBoxSizer(wxHORIZONTAL);
     dialogMainSizerV->Add(listCtrlSizer, 1, wxGROW|wxALL, 5);
 
-    lcSplit_ = new wxListCtrl( this, ID_LISTCTRL3, wxDefaultPosition
-        , wxSize(265, 120), wxLC_REPORT|wxLC_SINGLE_SEL );
-    listCtrlSizer->Add(lcSplit_, 1, wxGROW|wxALL, 5);
+    lcSplit_ = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition
+        , wxSize(265, 120));
+    lcSplit_->AppendTextColumn(_("Category"), wxDATAVIEW_CELL_INERT, 180);
+    lcSplit_->AppendTextColumn(_("Amount"), wxDATAVIEW_CELL_INERT, 180);
 
-    wxListItem itemCol;
-    itemCol.SetText(_("Category"));
-    lcSplit_->InsertColumn(0, itemCol);
-    lcSplit_->SetColumnWidth( 0, 180 );
-
-    wxListItem itemCol1;
-    itemCol1.SetText(_("Amount"));
-    itemCol1.SetAlign(wxLIST_FORMAT_RIGHT);
-    lcSplit_->InsertColumn(1, itemCol1);
-    lcSplit_->SetColumnWidth( 1, 80 );
+    listCtrlSizer->Add(lcSplit_, 1, wxGROW | wxALL, 5);
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
     wxString totalMessage = _("Total:");
@@ -182,35 +173,29 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     SplitDetailDialog sdd(this, split, _("&Select Category"), &categID, &subcategID, &amount, transType_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        int numToInsert = lcSplit_->GetItemCount();
-        lcSplit_->InsertItem(numToInsert, sdd.m_categString_, -1);
-
-        lcSplit_->SetItem(numToInsert, 1, CurrencyFormatter::float2String(*sdd.m_amount_));
-
-        mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
-        pSplitEntry->splitAmount_  = *sdd.m_amount_;
-        pSplitEntry->categID_      = categID;
-        pSplitEntry->subCategID_   = subcategID;
-        splt_->addSplit(pSplitEntry);
-
-        UpdateSplitTotal();
+        split->CATEGID = categID;
+        split->SUBCATEGID = subcategID;
+        split->SPLITTRANSAMOUNT = *sdd.m_amount_;
+        //TODO:
     }
 }
 
 void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
 {
-    EditEntry();
+    EditEntry(split_id_);
 }
 
-void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& /*event*/ )
+void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
+    /*wxDataViewItem item = event.GetItem();
+    selectedIndex_ = currencyListBox_->ItemToRow(item);
     long item = GetSelectedItem();
     if (item >= 0) // Item found in list
     {
         lcSplit_->DeleteItem(item);
-        splt_->removeSplitByIndex(item);
+        split_.erase();  removeSplitByIndex(item);
         UpdateSplitTotal();
-    }
+    }*/
 }
 
 bool SplitTransactionDialog::ShowToolTips()
@@ -230,54 +215,46 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    transAmount_->SetLabel(CurrencyFormatter::float2String(splt_->getTotalSplits()));
+    transAmount_->SetLabel(CurrencyFormatter::float2String(123456));
 }
 
-long SplitTransactionDialog::GetSelectedItem()
+void SplitTransactionDialog::EditEntry(int id)
 {
-    // locate the selected item in the list
-    long selectedItem = -1;
-    long item = -1;
-    for ( ;; )
-    {
-        item = lcSplit_->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-        if ( item == -1 )
-            break;
-        // this item is selected - do whatever is needed with it
-        selectedItem = item;
-    }
+    Model_Splittransaction::Data *split = Model_Splittransaction::instance().get(id);
+    if (!split) return;
 
-    return selectedItem;
-}
-
-void SplitTransactionDialog::EditEntry()
-{
-    // locate the selected item in the list and exit if not found
-    long item = this->GetSelectedItem();
-    if (item == wxNOT_FOUND) return;
-
-    int categID    = splt_->entries_[item]->categID_;
-    int subCategID = splt_->entries_[item]->subCategID_;
-    double amount  = splt_->entries_[item]->splitAmount_;
+    int categID    = split->CATEGID;
+    int subCategID = split->SUBCATEGID;
+    double amount = split->SPLITTRANSAMOUNT;
     const Model_Category::Data* category = Model_Category::instance().get(categID);
     const Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
     wxString category_name = Model_Category::full_name(category, sub_category);
 
-
-    SplitDetailDialog sdd(this, &split_[item], category_name, &categID, &subCategID, &amount, transType_);
+    SplitDetailDialog sdd(this, split, category_name, &categID, &subCategID, &amount, transType_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        splt_->entries_[item]->categID_     = categID;
-        splt_->entries_[item]->subCategID_  = subCategID;
-        splt_->entries_[item]->splitAmount_ = amount;
+        split->CATEGID = categID;
+        split->SUBCATEGID = subCategID;
+        split->SPLITTRANSAMOUNT;
         DataToControls();
         UpdateSplitTotal();
     }
 }
 
-void SplitTransactionDialog::OnListDblClick(wxListEvent& /*event*/)
+void SplitTransactionDialog::OnListItemSelected(wxDataViewEvent& event)
 {
-    if (itemButtonEdit_->IsShown()) EditEntry();
+    wxDataViewItem item = event.GetItem();
+    selectedIndex_ = lcSplit_->ItemToRow(item);
+    if (selectedIndex_ >= 0)
+    {
+        split_id_ = (int) lcSplit_->GetItemData(item);
+
+    }
+}
+
+void SplitTransactionDialog::OnListDblClick(wxDataViewEvent& event)
+{
+    if (itemButtonEdit_->IsShown()) EditEntry(split_id_);
 }
 
 void SplitTransactionDialog::SetDisplaySplitCategories()

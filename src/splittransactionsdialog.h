@@ -22,21 +22,9 @@
 #include "guiid.h"
 #include "mmtransaction.h"
 #include "model/Model_Splittransaction.h"
-////@end includes
+#include <wx/dataview.h>
 
-/*!
- * Forward declarations
- */
-
-////@begin forward declarations
 class wxListCtrl;
-////@end forward declarations
-
-#define ID_LISTCTRL3 10118
-
-/*!
- * Compatibility
- */
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
@@ -56,13 +44,13 @@ class SplitTransactionDialog: public wxDialog
 
 public:
     /// Constructors
-    SplitTransactionDialog( );
+    SplitTransactionDialog();
     SplitTransactionDialog(
         Model_Splittransaction::Data_Set &split,
         wxWindow* parent,
         int transType,
-        mmCoreDB* core,
-        mmSplitTransactionEntries* splt);
+        mmSplitTransactionEntries* splt //TODO: delete
+        );
 
     /// Creation
     bool Create(
@@ -98,7 +86,7 @@ public:
     /// Should we show tooltips?
     static bool ShowToolTips();
 
-    wxListCtrl* lcSplit_;
+    wxDataViewListCtrl* lcSplit_;
     wxStaticText* transAmount_;
 
     void SetDisplaySplitCategories();
@@ -107,17 +95,18 @@ private:
     Model_Splittransaction::Data_Set split_;
     int transType_;
 
-    mmCoreDB* core_; // TODO
-    mmSplitTransactionEntries* splt_;
+    //mmSplitTransactionEntries* splt_;
 
     wxButton* itemButtonNew_;
     wxButton* itemButtonEdit_;
     wxButton* itemButtonDelete_;
     wxButton* itemButtonOK_;
 
-    void OnListDblClick(wxListEvent& event);
-    void EditEntry();
-    long GetSelectedItem();
+    void OnListDblClick(wxDataViewEvent& event);
+    void OnListItemSelected(wxDataViewEvent& event);
+    void EditEntry(int id);
+    int selectedIndex_;
+    int split_id_;
 };
 
 #endif

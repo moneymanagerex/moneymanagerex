@@ -37,7 +37,7 @@ BEGIN_EVENT_TABLE( SplitDetailDialog, wxDialog )
     EVT_TEXT_ENTER( ID_TEXTCTRLAMOUNT, SplitDetailDialog::onTextEntered )
 END_EVENT_TABLE()
 
-SplitDetailDialog::SplitDetailDialog( )
+SplitDetailDialog::SplitDetailDialog()
 {
 }
 
