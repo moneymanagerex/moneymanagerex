@@ -50,7 +50,7 @@ public:
     {
         this->db_->Commit();
     }
-public:
+protected:
     static wxDate to_date(const wxString& str_date)
     {
         wxDate date = wxDateTime::Today();
