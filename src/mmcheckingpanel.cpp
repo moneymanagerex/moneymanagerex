@@ -348,7 +348,7 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     filteredBalance_ = 0.0;
     // clear everything
     m_trans = core_->bTransactionList_.accountTransactions_;
-    this->m_trans_2 = Model_Checking::instance().find(Model_Checking::ACCOUNTID(m_AccountID));
+    this->m_trans_2 = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID));
     m_listCtrlAccount->DeleteAllItems();
 
     // decide whether top or down icon needs to be shown
@@ -911,6 +911,26 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     }
 
     return cell_value;
+
+    const Model_Checking::Data& tran = this->m_trans_2.at(item);
+    switch (column)
+    {
+    case TransactionListCtrl::COL_DATE_OR_TRANSACTION_ID:
+        return mmGetDateForDisplay(Model_Checking::TRANSDATE(tran));
+    case TransactionListCtrl::COL_TRANSACTION_NUMBER:
+        return tran.TRANSACTIONNUMBER;
+    case TransactionListCtrl::COL_PAYEE_STR:
+    case TransactionListCtrl::COL_STATUS:
+        return tran.STATUS;
+    case TransactionListCtrl::COL_CATEGORY:
+    case TransactionListCtrl::COL_WITHDRAWAL:
+    case TransactionListCtrl::COL_DEPOSIT:
+    case TransactionListCtrl::COL_BALANCE:
+    case TransactionListCtrl::COL_NOTES:
+        return tran.NOTES;
+    default:
+        return "";
+    }
 }
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
