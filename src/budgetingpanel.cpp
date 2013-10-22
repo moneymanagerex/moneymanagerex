@@ -320,17 +320,23 @@ void mmBudgetingPanel::initVirtualListControl()
     }
     mmSpecifiedRange date_range(dtBegin, dtEnd);
     //Get statistics
+    std::map<int, std::map<int, wxString> > budgetPeriod;
+    std::map<int, std::map<int, double> > budgetAmt;
+    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_, false, true, evaluateTransfer);
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
+        false, true, (evaluateTransfer ? &budgetAmt : 0));
 
-    for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
+    const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
+    for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         mmBudgetEntryHolder th;
         budgetDetails.initBudgetEntryFields(th, budgetYearID_);
         th.categID_ = category.CATEGID;
         th.catStr_ = category.CATEGNAME;
 
-        Model_Budget::instance().getBudgetEntry(budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
+        th.period_ = budgetPeriod[th.categID_][th.subcategID_];
+        th.amt_ = budgetAmt[th.categID_][th.subcategID_];
         budgetDetails.setBudgetEstimate(th, monthlyBudget);
         if (th.estimated_ < 0)
             estExpenses += th.estimated_;
@@ -368,8 +374,9 @@ void mmBudgetingPanel::initVirtualListControl()
             trans_.push_back(th);
         }
 
-        for (const auto& sub_category : Model_Category::sub_category(category, true))
+        for (const auto& sub_category : allSubcategories)
         {
+            if (sub_category.CATEGID != category.CATEGID) continue;
             mmBudgetEntryHolder thsub;
             budgetDetails.initBudgetEntryFields(thsub, budgetYearID_);
             thsub.categID_ = th.categID_;
@@ -377,7 +384,8 @@ void mmBudgetingPanel::initVirtualListControl()
             thsub.subcategID_ = sub_category.SUBCATEGID;
             thsub.subCatStr_   = sub_category.SUBCATEGNAME;
 
-            Model_Budget::instance().getBudgetEntry(budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
+            thsub.period_ = budgetPeriod[thsub.categID_][thsub.subcategID_];
+            thsub.amt_ = budgetAmt[thsub.categID_][thsub.subcategID_];
             budgetDetails.setBudgetEstimate(thsub, monthlyBudget);
             if (thsub.estimated_ < 0)
                 estExpenses += thsub.estimated_;

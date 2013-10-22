@@ -6,7 +6,6 @@
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
-#include <algorithm>
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
 : budgetYearID_(budgetYearID)
@@ -63,26 +62,34 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
+    std::map<int, std::map<int, wxString> > budgetPeriod;
+    std::map<int, std::map<int, double> > budgetAmt;
+    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_, true, true, evaluateTransfer);
+    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
+        true, true, (evaluateTransfer ? &budgetAmt : 0));
     //Init totals
+    const Model_Category::Data_Set allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
+    const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     std::map<int, std::map<int, double> > totals;
-    for (const auto& category : Model_Category::instance().all())
+    for (const auto& category : allCategories)
     {
         totals[category.CATEGID][-1] = 0;
-        for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category))
+        for (const Model_Subcategory::Data& subcategory : allSubcategories)
         {
-            totals[category.CATEGID][subcategory.SUBCATEGID] = 0;
+            if (subcategory.CATEGID == category.CATEGID)
+                totals[category.CATEGID][subcategory.SUBCATEGID] = 0;
         }
     }
-    for (const auto& category : Model_Category::instance().all())
+    for (const auto& category : allCategories)
     {
         for (const auto &i : categoryStats[category.CATEGID][-1])
         {
             totals[category.CATEGID][-1] += categoryStats[category.CATEGID][-1][i.first];
-            for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category))
+            for (const Model_Subcategory::Data& subcategory : allSubcategories)
             {
-                totals[category.CATEGID][subcategory.SUBCATEGID] += categoryStats[category.CATEGID][subcategory.SUBCATEGID][i.first];
+                if (subcategory.CATEGID == category.CATEGID)
+                    totals[category.CATEGID][subcategory.SUBCATEGID] += categoryStats[category.CATEGID][subcategory.SUBCATEGID][i.first];
             }
         }
     }
@@ -105,13 +112,14 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.addTableHeaderCell(_("%"));
     hb.endTableRow();
 
-    for (const Model_Category::Data& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
+    for (const Model_Category::Data& category : allCategories)
     {
         mmBudgetEntryHolder th;
         initBudgetEntryFields(th, budgetYearID_);
         th.categID_ = category.CATEGID;
         th.catStr_  = category.CATEGNAME;
-        Model_Budget::instance().getBudgetEntry(budgetYearID_, th.categID_, th.subcategID_, th.period_, th.amt_);
+        th.period_ = budgetPeriod[th.categID_][th.subcategID_];
+        th.amt_ = budgetAmt[th.categID_][th.subcategID_];
 
         // Set the estimated amount for the year
         setBudgetYearlyEstimate(th);
@@ -166,16 +174,17 @@ wxString mmReportBudgetingPerformance::getHTMLText()
             hb.addRowSeparator(16);
         }
 
-        for (const Model_Subcategory::Data& subcategory : Model_Category::sub_category(category, true))
+        for (const Model_Subcategory::Data& subcategory : allSubcategories)
         {
+            if (subcategory.CATEGID != category.CATEGID) continue;
             mmBudgetEntryHolder thsub;
             initBudgetEntryFields(thsub, budgetYearID_);
             thsub.categID_ = th.categID_;
             thsub.catStr_  = th.catStr_;
             thsub.subcategID_ = subcategory.SUBCATEGID;
             thsub.subCatStr_  = subcategory.SUBCATEGNAME;
-
-            Model_Budget::instance().getBudgetEntry(budgetYearID_, thsub.categID_, thsub.subcategID_, thsub.period_, thsub.amt_);
+            thsub.period_ = budgetPeriod[thsub.categID_][thsub.subcategID_];
+            thsub.amt_ = budgetAmt[thsub.categID_][thsub.subcategID_];
 
             // Set the estimated amount for the year
             setBudgetYearlyEstimate(thsub);

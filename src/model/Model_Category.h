@@ -85,19 +85,9 @@ public:
     {
         return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r->CATEGID));
     }
-    static Model_Subcategory::Data_Set sub_category(const Data& r, bool byName = false)
+    static Model_Subcategory::Data_Set sub_category(const Data& r)
     {
-        Model_Subcategory::Data_Set ds = Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r.CATEGID));
-        if (byName)
-        {
-            std::stable_sort(ds.begin(), ds.end()
-                , [](const Model_Subcategory::Data& x, const Model_Subcategory::Data& y)
-                {
-                    return x.SUBCATEGNAME < y.SUBCATEGNAME;
-                }
-            );
-        }
-        return ds;
+        return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r.CATEGID));
     }
     static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0)
     {
@@ -158,8 +148,8 @@ public:
         std::map<int, std::map<int, std::map<int, double> > > &categoryStats
         , mmDateRange* date_range, bool ignoreFuture
         , bool group_by_month = true, bool with_date = true
-        , bool evaluateTransfer = false)
-        {
+        , std::map<int, std::map<int, double> > *budgetAmt = 0)
+    {
         //Initialization
         //Get base currency rates for all accounts
         std::map<int, double> acc_conv_rates;
@@ -169,19 +159,21 @@ public:
             acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
         }
         //Set std::map with zerros
+        const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all();
         double value = 0;
+        int columns = group_by_month ? 12 : 1;
+        wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
         for (const auto& category: Model_Category::instance().all())
         {
-            int columns = group_by_month ? 12 : 1;
-            wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
             for (int m = 0; m < columns; m++)
             {
                 wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
                 int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
                 categoryStats[category.CATEGID][-1][idx] = value;
-                for (const auto & sub_category: Model_Category::sub_category(category))
+                for (const auto & sub_category : allSubcategories)
                 {
-                    categoryStats[category.CATEGID][sub_category.SUBCATEGID][idx] = value;
+                    if (sub_category.CATEGID == category.CATEGID)
+                        categoryStats[category.CATEGID][sub_category.SUBCATEGID][idx] = value;
                 }
             }
         }
@@ -209,8 +201,18 @@ public:
 
             if (categID > -1)
             {
-                if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR || evaluateTransfer)
+                if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR)
+                {
                     categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
+                }
+                else if (budgetAmt != 0)
+                {
+                    double amt = transaction.TRANSAMOUNT * convRate;
+                    if ((*budgetAmt)[categID][transaction.SUBCATEGID] < 0)
+                        categoryStats[categID][transaction.SUBCATEGID][idx] -= amt;
+                    else
+                        categoryStats[categID][transaction.SUBCATEGID][idx] += amt;
+                }
             }
             else
             {

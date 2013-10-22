@@ -21,6 +21,8 @@
 
 #include "Model.h"
 #include "db/DB_Table_Budgettable_V1.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
 
 class Model_Budget : public Model, public DB_Table_BUDGETTABLE_V1
 {
@@ -68,18 +70,30 @@ public:
     {
         return this->remove(id, db_);
     }
-    static void getBudgetEntry(int budgetYearID, int categID, int subCategID, wxString& period, double& amt)
+    static void getBudgetEntry(int budgetYearID, std::map<int, std::map<int, wxString> > &budgetPeriod,
+        std::map<int, std::map<int, double> > &budgetAmt)
     {
-        const Data_Set budget = instance().find(BUDGETYEARID(budgetYearID), CATEGID(categID), SUBCATEGID(subCategID));
-        if (!budget.empty())
+        const Model_Category::Data_Set allCategories = Model_Category::instance().all();
+        const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all();
+        //Set std::map with zerros
+        double value = 0;
+        for (const auto& category : allCategories)
         {
-            period = budget[0].PERIOD;
-            amt = budget[0].AMOUNT;
+            budgetPeriod[category.CATEGID][-1] = "";
+            budgetAmt[category.CATEGID][-1] = value;
+            for (const auto & sub_category : allSubcategories)
+            {
+                if (sub_category.CATEGID == category.CATEGID)
+                {
+                    budgetPeriod[category.CATEGID][sub_category.SUBCATEGID] = "";
+                    budgetAmt[category.CATEGID][sub_category.SUBCATEGID] = value;
+                }
+            }
         }
-        else
+        for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
         {
-            period = "";
-            amt = 0;
+            budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = budget.PERIOD;
+            budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
         }
     }
     static void copyBudgetYear(int newYearID, int baseYearID)
