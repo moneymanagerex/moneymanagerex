@@ -93,6 +93,11 @@ void SplitTransactionDialog::DataToControls()
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
         data.push_back(wxVariant(CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT)));
         lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
+        if (entry.SPLITTRANSID == split_id_)
+        {
+            lcSplit_->SelectRow(lcSplit_->GetItemCount());
+            selectedIndex_ = lcSplit_->GetItemCount() - 1;
+        }
     }
     UpdateSplitTotal();
     itemButtonNew_->SetFocus();
@@ -166,6 +171,7 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     if (sdd.ShowModal() == wxID_OK)
     {
         this->m_splits->push_back(*split);
+        split_id_ = split->SPLITTRANSID;
     }
     DataToControls();
 }
@@ -179,15 +185,12 @@ void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
     if (selectedIndex_ < 0) return;
-    /*wxDataViewItem item = event.GetItem();
-    selectedIndex_ = currencyListBox_->ItemToRow(item);
-    long item = GetSelectedItem();
-    if (item >= 0) // Item found in list
+    //TODO: rewrite
+    for (auto &item : *m_splits)
     {
-        lcSplit_->DeleteItem(item);
-        split_.erase();  removeSplitByIndex(item);
-        UpdateSplitTotal();
-    }*/
+        if (split_id_ == item.SPLITTRANSID) Model_Splittransaction::instance().remove(split_id_);
+    }
+    DataToControls();
 }
 
 bool SplitTransactionDialog::ShowToolTips()

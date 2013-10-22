@@ -74,6 +74,11 @@ public:
 
         return rows.size();
     }
+    bool remove(int id)
+    {
+        return true;//return this->remove(id, this->db_);
+    }
+
 public:
     double get_total(Data_Set& rows)
     {

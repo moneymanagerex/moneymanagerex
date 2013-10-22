@@ -84,7 +84,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         //else if ( (int)accountArray_->size() > 1 )
         //    msgString = "s" + msgString; //<-- we can't translate it to other languages
 
-        if ( (int)accountArray_->size() > 0 )
+        if ( !accountArray_->empty() )
         {
             headerMsg << accountArray_->Item(arrIdx);
             arrIdx ++;
