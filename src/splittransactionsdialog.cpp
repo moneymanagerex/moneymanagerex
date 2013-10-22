@@ -30,14 +30,14 @@ IMPLEMENT_DYNAMIC_CLASS( SplitTransactionDialog, wxDialog )
  * SplitTransactionDialog event table definition
  */
 
-BEGIN_EVENT_TABLE( SplitTransactionDialog, wxDialog )
-    EVT_BUTTON( wxID_ADD, SplitTransactionDialog::OnButtonAddClick )
-    EVT_BUTTON( wxID_REMOVE, SplitTransactionDialog::OnButtonRemoveClick )
-    EVT_BUTTON( wxID_EDIT, SplitTransactionDialog::OnButtonEditClick )
-    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, SplitTransactionDialog::OnListDblClick)
-    EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, SplitTransactionDialog::OnListItemSelected)
-    //EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, SplitTransactionDialog::OnItemRightClick)
-END_EVENT_TABLE()
+ BEGIN_EVENT_TABLE(SplitTransactionDialog, wxDialog)
+     EVT_BUTTON(wxID_ADD, SplitTransactionDialog::OnButtonAddClick)
+     EVT_BUTTON(wxID_REMOVE, SplitTransactionDialog::OnButtonRemoveClick)
+     EVT_BUTTON(wxID_EDIT, SplitTransactionDialog::OnButtonEditClick)
+     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, SplitTransactionDialog::OnListDblClick)
+     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, SplitTransactionDialog::OnListItemSelected)
+     //EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, SplitTransactionDialog::OnItemRightClick)
+ END_EVENT_TABLE()
 
 SplitTransactionDialog::SplitTransactionDialog( )
 {
@@ -61,11 +61,11 @@ SplitTransactionDialog::SplitTransactionDialog(
         , wxDefaultPosition, wxSize(400, 300), style);
 }
 
-bool SplitTransactionDialog::Create( wxWindow* parent, wxWindowID id,
+bool SplitTransactionDialog::Create(wxWindow* parent, wxWindowID id,
                                     const wxString& caption,
                                     const wxPoint& pos,
                                     const wxSize& size,
-                                    long style )
+                                    long style)
 {
     lcSplit_ = NULL;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
@@ -159,10 +159,6 @@ void SplitTransactionDialog::CreateControls()
     bottomRowButtonSizer->Add(itemButtonCancel, 0, wxALIGN_RIGHT|wxTOP, 5);
 }
 
-/*!
- * wxEVT_COMMAND_BUTTON_CLICKED event handler for ID_BUTTONADD
- */
-
 void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 {
     int categID = -1;
@@ -171,22 +167,26 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
     SplitDetailDialog sdd(this, split, _("&Select Category"), &categID, &subcategID, &amount, transType_);
-    if (sdd.ShowModal() == wxID_OK)
+    if (sdd.ShowModal() == wxID_OK && categID > 0)
     {
         split->CATEGID = categID;
         split->SUBCATEGID = subcategID;
         split->SPLITTRANSAMOUNT = *sdd.m_amount_;
-        //TODO:
+        split->TRANSID = m_tran->TRANSID;
+        Model_Splittransaction::instance().save(split);
     }
+    DataToControls();
 }
 
 void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
 {
     EditEntry(split_id_);
+    DataToControls();
 }
 
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
+    if (selectedIndex_ < 0) return;
     /*wxDataViewItem item = event.GetItem();
     selectedIndex_ = currencyListBox_->ItemToRow(item);
     long item = GetSelectedItem();
