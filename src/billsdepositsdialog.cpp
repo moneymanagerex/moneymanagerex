@@ -1335,8 +1335,7 @@ void mmBDDialog::OnPeriodChange(wxCommandEvent& /*event*/)
 void mmBDDialog::activateSplitTransactionsDlg()
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID_);
-    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
-    SplitTransactionDialog dlg(split, this, transaction_type_->GetSelection(), split_.get());
+    SplitTransactionDialog dlg(transaction, this, transaction_type_->GetSelection(), split_.get());
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = split_->getTotalSplits();

@@ -21,7 +21,7 @@
 
 #include "guiid.h"
 #include "mmtransaction.h"
-#include "model/Model_Splittransaction.h"
+#include "model/Model_Checking.h"
 #include <wx/dataview.h>
 
 class wxListCtrl;
@@ -46,7 +46,7 @@ public:
     /// Constructors
     SplitTransactionDialog();
     SplitTransactionDialog(
-        Model_Splittransaction::Data_Set &split,
+        Model_Checking::Data* tran,
         wxWindow* parent,
         int transType,
         mmSplitTransactionEntries* splt //TODO: delete
@@ -92,7 +92,7 @@ public:
     void SetDisplaySplitCategories();
 
 private:
-    Model_Splittransaction::Data_Set split_;
+    Model_Checking::Data* m_tran;
     int transType_;
 
     //mmSplitTransactionEntries* splt_;

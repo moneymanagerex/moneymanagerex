@@ -44,12 +44,12 @@ SplitTransactionDialog::SplitTransactionDialog( )
 }
 
 SplitTransactionDialog::SplitTransactionDialog(
-    Model_Splittransaction::Data_Set &split
+    Model_Checking::Data * tran
     , wxWindow* parent
     , int transType
     , mmSplitTransactionEntries* splt)
+    : m_tran(tran)
 {
-    split_ = split;
     transType_ = transType;
     split_id_ = 0;
     selectedIndex_ = 0;
@@ -84,7 +84,7 @@ bool SplitTransactionDialog::Create( wxWindow* parent, wxWindowID id,
 void SplitTransactionDialog::DataToControls()
 {
     lcSplit_->DeleteAllItems();
-    for (const auto & entry : split_)
+    for (const auto & entry : Model_Checking::splittransaction(this->m_tran))
     {
         const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
         const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);

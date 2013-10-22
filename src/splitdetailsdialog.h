@@ -34,7 +34,7 @@ public:
     SplitDetailDialog( 
         wxWindow* parent
         , Model_Splittransaction::Data* split
-        , const wxString categString
+        , const wxString& categString
         , int* categID
         , int* subcategID
         , double* amount

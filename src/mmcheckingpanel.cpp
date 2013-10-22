@@ -967,9 +967,8 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     if (transTypeStr== TRANS_TYPE_TRANSFER_STR) transType = 2;
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
-    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     SplitTransactionDialog splitTransDialog(
-        split
+        transaction 
         , this
         , transType
         , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
