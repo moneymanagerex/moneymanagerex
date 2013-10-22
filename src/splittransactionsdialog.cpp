@@ -161,18 +161,10 @@ void SplitTransactionDialog::CreateControls()
 
 void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 {
-    int categID = -1;
-    int subcategID = -1;
-    double amount  = 0.0;
-
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
-    SplitDetailDialog sdd(this, split, _("&Select Category"), &categID, &subcategID, &amount, transType_);
+    SplitDetailDialog sdd(this, split, transType_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        split->CATEGID = categID;
-        split->SUBCATEGID = subcategID;
-        split->SPLITTRANSAMOUNT = *sdd.m_amount_;
-// TODO        split->TRANSID
         this->m_splits->push_back(*split);
     }
     DataToControls();
@@ -215,27 +207,28 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    transAmount_->SetLabel(CurrencyFormatter::float2String(123456));
+    double total = Model_Splittransaction::instance().get_total(*m_splits);
+    transAmount_->SetLabel(CurrencyFormatter::float2String(total));
 }
 
 void SplitTransactionDialog::EditEntry(int id)
 {
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().get(id);
     if (!split) return;
-
-    int categID    = split->CATEGID;
-    int subCategID = split->SUBCATEGID;
-    double amount = split->SPLITTRANSAMOUNT;
-    const Model_Category::Data* category = Model_Category::instance().get(categID);
-    const Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
-    wxString category_name = Model_Category::full_name(category, sub_category);
-
-    SplitDetailDialog sdd(this, split, category_name, &categID, &subCategID, &amount, transType_);
+    m_splits[id];
+    SplitDetailDialog sdd(this, split, transType_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        split->CATEGID = categID;
-        split->SUBCATEGID = subCategID;
-        split->SPLITTRANSAMOUNT;
+        for (auto &entry : *m_splits)
+        {
+            if (entry.SPLITTRANSID == id)
+            {
+                entry.CATEGID = split->CATEGID;
+                entry.SUBCATEGID = split->SUBCATEGID;
+                entry.SPLITTRANSAMOUNT = split->SPLITTRANSAMOUNT;
+            }
+        }
+
         DataToControls();
         UpdateSplitTotal();
     }

@@ -640,9 +640,9 @@ bool mmTransDialog::validateData()
 
 void mmTransDialog::SetSplitState()
 {
-    int entries = split_->numEntries();
+    int entries = m_splits->size();
     wxString fullCategoryName;
-    if (split_->numEntries() > 0)
+    if (entries > 0)
         fullCategoryName = _("Split Category");
     else
     {
@@ -656,6 +656,8 @@ void mmTransDialog::SetSplitState()
     cSplit_->SetValue(entries > 0);
     cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
 
+    double total = Model_Splittransaction::instance().get_total(*m_splits);
+    textAmount_->SetValue(total);
     textAmount_->Enable(entries < 1);
 }
 

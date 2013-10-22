@@ -18,6 +18,8 @@
 #include "validators.h"
 #include "mmCalculator.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Category.h"
+#include "model/Model_Subcategory.h"
 
 #include <wx/valnum.h>
 
@@ -44,30 +46,22 @@ SplitDetailDialog::SplitDetailDialog()
 SplitDetailDialog::SplitDetailDialog( 
     wxWindow* parent
     , Model_Splittransaction::Data* split
-    , const wxString& categString
-    , int* categID
-    , int* subcategID
-    , double* amount
     , int transType)
     : split_(split)
 {
-    m_categID_  = categID;
-    m_subcategID_ = subcategID;
     transType_ = transType;
     localTransType_ = transType;
 
-    if (*amount < 0.0)
+    if (split_->SPLITTRANSAMOUNT < 0.0)
     {
         if (transType == DEF_DEPOSIT)
            localTransType_ = DEF_WITHDRAWAL;
         else if (transType == DEF_WITHDRAWAL)
            localTransType_ = DEF_DEPOSIT;
 
-        *amount = abs(*amount);
+        split_->SPLITTRANSAMOUNT = abs(split_->SPLITTRANSAMOUNT);
     }
-    m_amount_ = amount;
 
-    m_categString_ = categString;
     Create(parent);
 }
 
@@ -80,10 +74,23 @@ bool SplitDetailDialog::Create(wxWindow* parent)
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
     Centre();
+    DataToControls();
 
-    textAmount_->SetValue( *m_amount_ != 0 ? CurrencyFormatter::float2String(*m_amount_) : "" );
-    textAmount_->SetFocus();
     return TRUE;
+}
+
+void SplitDetailDialog::DataToControls()
+{
+    const Model_Category::Data* category = Model_Category::instance().get(split_->CATEGID);
+    const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(split_->SUBCATEGID);
+    const wxString category_name = Model_Category::full_name(category, sub_category);
+
+    bCategory_->SetLabel(category_name);
+    choiceType_->SetSelection(localTransType_);
+
+    textAmount_->SetValue(split_->SPLITTRANSAMOUNT);
+    textAmount_->SetFocus();
+
 }
 
 void SplitDetailDialog::CreateControls()
@@ -110,21 +117,20 @@ void SplitDetailDialog::CreateControls()
         _("Deposit"),
     };
     choiceType_ = new wxChoice(itemPanel7,ID_DIALOG_SPLTTRANS_TYPE,wxDefaultPosition,wxDefaultSize,2,itemChoiceStrings,0);
-    choiceType_->SetSelection(localTransType_);
     choiceType_->SetToolTip(_("Specify the type of transactions to be created."));
     controlSizer->Add(choiceType_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
 
     wxStaticText* staticTextAmount = new wxStaticText( itemPanel7, wxID_STATIC, _("Amount"));
     controlSizer->Add(staticTextAmount, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
 
-    textAmount_ = new wxTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
+    textAmount_ = new mmTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
         , wxDefaultPosition, wxSize(110,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     controlSizer->Add(textAmount_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     wxStaticText* staticTextCategory = new wxStaticText( itemPanel7, wxID_STATIC, _("Category"));
     controlSizer->Add(staticTextCategory, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
-    bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, m_categString_
+    bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, ""
         , wxDefaultPosition, wxSize(200, -1), 0 );
     controlSizer->Add(bCategory_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
@@ -148,15 +154,15 @@ void SplitDetailDialog::CreateControls()
 void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 {
     mmCategDialog dlg(this);
-    dlg.setTreeSelection(*m_categID_, *m_subcategID_);
+    dlg.setTreeSelection(split_->CATEGID, split_->SUBCATEGID);
     if ( dlg.ShowModal() == wxID_OK )
     {
-        *m_categID_ = dlg.getCategId();
-        *m_subcategID_ = dlg.getSubCategId();
+        split_->CATEGID = dlg.getCategId();
+        split_->SUBCATEGID = dlg.getSubCategId();
 
-        m_categString_ = dlg.getFullCategName();
-        bCategory_->SetLabel(m_categString_);
+        bCategory_->SetLabel(dlg.getFullCategName());
     }
+    DataToControls();
 }
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& event)
@@ -167,11 +173,12 @@ void SplitDetailDialog::onTextEntered(wxCommandEvent& event)
     textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
 
     event.Skip();
+    DataToControls();
 }
 
 void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
-    if (*m_categID_ == -1)
+    if (split_->CATEGID == -1)
     {
         mmShowErrorMessage(this, _("Invalid Category Entered "), _("Error"));
         bCategory_->SetFocus();
@@ -192,8 +199,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
             amount = -amount;
     }
 
-    *m_amount_ = amount;
-
+    split_->SPLITTRANSAMOUNT = amount;
     EndModal(wxID_OK);
 }
 

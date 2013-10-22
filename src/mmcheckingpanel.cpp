@@ -1591,12 +1591,12 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     if (transaction)
     {
-        mmTransDialog dlg(transaction, &split, this
-            , m_cp->core_);
+        mmTransDialog dlg(transaction, &split, this, m_cp->core_);
         dlg.SetDialogTitle(_("New/Edit Transaction"));
         if (dlg.ShowModal() == wxID_OK)
         {
             for (auto& item: split) item.TRANSID = transaction->TRANSID;
+            if (split.size() > 0) transaction->TRANSAMOUNT = Model_Splittransaction::instance().get_total(split);
             Model_Splittransaction::instance().save(split);
         };
 
