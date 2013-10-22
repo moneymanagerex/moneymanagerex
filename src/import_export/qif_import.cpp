@@ -756,7 +756,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 }
             }
 
-            if (mmSplit->entries_.size() > 0)
+            if (!mmSplit->entries_.empty())
             {
                 categID = -1;
                 sFullCateg = _("Split Category");

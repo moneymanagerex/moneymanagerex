@@ -238,7 +238,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     if (selectedItemId_ == root_)
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
-        if (categories.size() > 0)
+        if (!categories.empty())
         {
             wxString errMsg = _("Category with same name exists");
             errMsg << "\n\n" << _("Tip: If category added now, check bottom of list.\nCategory will be in sorted order next time dialog appears");

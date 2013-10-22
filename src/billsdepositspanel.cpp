@@ -589,13 +589,13 @@ void billsDepositsListCtrl::refreshVisualList(int selected_index)
     //TODO:
     if (selected_index >= (long)cp_->trans_.size() || selected_index < 0)
         selected_index = /*g_asc*/ true ? (long)cp_->trans_.size() - 1 : 0;
-    if (cp_->trans_.size() > 0) {
+    if (!cp_->trans_.empty()) {
         RefreshItems(0, cp_->trans_.size() - 1);
     }
     else
         selected_index = -1;
 
-    if (selected_index >= 0 && cp_->trans_.size() > 0)
+    if (selected_index >= 0 && !cp_->trans_.empty())
     {
         SetItemState(selected_index, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(selected_index, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);

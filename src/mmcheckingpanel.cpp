@@ -295,7 +295,7 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
         ++i;
     }
 
-    if (m_trans.size() > 0 && m_listCtrlAccount->m_selectedIndex < 0)
+    if (!m_trans.empty() && m_listCtrlAccount->m_selectedIndex < 0)
     {
         if (m_listCtrlAccount->g_asc)
             m_listCtrlAccount->EnsureVisible(static_cast<long>(m_trans.size()) - 1);
@@ -1596,7 +1596,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         if (dlg.ShowModal() == wxID_OK)
         {
             for (auto& item: split) item.TRANSID = transaction->TRANSID;
-            if (split.size() > 0) transaction->TRANSAMOUNT = Model_Splittransaction::instance().get_total(split);
+            if (!split.empty()) transaction->TRANSAMOUNT = Model_Splittransaction::instance().get_total(split);
             Model_Splittransaction::instance().save(split);
         };
 
@@ -1732,13 +1732,13 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
-    if (m_cp->m_trans.size() > 0) {
+    if (!m_cp->m_trans.empty()) {
         RefreshItems(0, m_cp->m_trans.size() - 1);
     }
     else
         m_selectedIndex = -1;
 
-    if (m_selectedIndex >= 0 && m_cp->m_trans.size() > 0)
+    if (m_selectedIndex >= 0 && !m_cp->m_trans.empty())
     {
         SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
         SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
