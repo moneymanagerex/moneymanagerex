@@ -1601,10 +1601,16 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 
     if ( dlg.ShowModal() == wxID_OK )
     {
-        int transID = dlg.getTransID();
-        refreshVisualList(transID);
+        Model_Checking::instance().save(transaction);
+        if (split.size() > 0)
+        {
+            for (auto &item : split)
+                item.TRANSID = transaction->TRANSID;
+            Model_Splittransaction::instance().save(split);
+        }
+ 
+        refreshVisualList(transaction->TRANSID);
     }
-
 }
 //----------------------------------------------------------------------------
 
