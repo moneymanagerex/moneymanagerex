@@ -967,8 +967,9 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     if (transTypeStr== TRANS_TYPE_TRANSFER_STR) transType = 2;
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
+    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
     SplitTransactionDialog splitTransDialog(
-        transaction 
+        &splits
         , this
         , transType
         , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
@@ -1570,10 +1571,14 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     if (transaction)
     {
-        mmTransDialog dlg(transaction, split, this
+        mmTransDialog dlg(transaction, &split, this
             , m_cp->core_);
         dlg.SetDialogTitle(_("New/Edit Transaction"));
-        dlg.ShowModal();
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            for (auto& item: split) item.TRANSID = transaction->TRANSID;
+            Model_Splittransaction::instance().save(split);
+        };
 
         topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
         refreshVisualList(m_cp->m_trans[m_selectedIndex]->transactionID());
@@ -1589,11 +1594,11 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
         trx_date = m_cp->core_->bTransactionList_.getLastDate(m_cp->m_AccountID);
 
     Model_Checking::Data *transaction = Model_Checking::instance().create();
-    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
+    Model_Splittransaction::Data_Set split;
 
     transaction->ACCOUNTID = m_cp->m_AccountID;
     transaction->TRANSDATE = trx_date.FormatISODate();
-    mmTransDialog dlg(transaction, split, this
+    mmTransDialog dlg(transaction, &split, this
         , m_cp->core_, false);
     dlg.SetDialogTitle(_("New/Edit Transaction"));
 
@@ -1602,12 +1607,8 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     if ( dlg.ShowModal() == wxID_OK )
     {
         Model_Checking::instance().save(transaction);
-        if (split.size() > 0)
-        {
-            for (auto &item : split)
-                item.TRANSID = transaction->TRANSID;
-            Model_Splittransaction::instance().save(split);
-        }
+        for (auto &item : split) item.TRANSID = transaction->TRANSID;
+        Model_Splittransaction::instance().save(split);
  
         refreshVisualList(transaction->TRANSID);
     }

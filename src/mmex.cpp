@@ -3110,13 +3110,16 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().create();
     transaction->ACCOUNTID = gotoAccountID_; //m_cp->m_AccountID;
-    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
+    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
 
-    mmTransDialog dlg(transaction, split, this
+    mmTransDialog dlg(transaction, &splits, this
         , m_core.get(), false);
 
     if ( dlg.ShowModal() == wxID_OK )
     {
+        Model_Checking::instance().save(transaction);
+        for(auto& split: splits) split.TRANSID = transaction->TRANSID;
+        Model_Splittransaction::instance().save(splits);
         if (activeCheckingAccountPage_)
         {
             if (gotoAccountID_ == dlg.getToAccountID() || gotoAccountID_ == dlg.getAccountID())

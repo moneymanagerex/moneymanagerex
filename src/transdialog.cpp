@@ -50,13 +50,13 @@ END_EVENT_TABLE()
 
 mmTransDialog::mmTransDialog(
     Model_Checking::Data *transaction
-    , Model_Splittransaction::Data_Set& split
+    , Model_Splittransaction::Data_Set* split
     , wxWindow* parent
     , mmCoreDB* core
     , bool edit
 ) :
     transaction_(transaction)
-    , splt_(split)
+    , m_splits(split)
     , core_(core)
     , parent_(parent)
     , edit_(edit)
@@ -714,8 +714,8 @@ void mmTransDialog::activateSplitTransactionsDlg()
     }
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
-
-    SplitTransactionDialog dlg(transaction_, this, transaction_type_->GetSelection(), split_);
+    
+    SplitTransactionDialog dlg(this->m_splits, this, transaction_type_->GetSelection(), split_);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = split_->getTotalSplits();

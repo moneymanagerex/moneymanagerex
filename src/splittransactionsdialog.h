@@ -46,7 +46,7 @@ public:
     /// Constructors
     SplitTransactionDialog();
     SplitTransactionDialog(
-        Model_Checking::Data* tran,
+        Model_Splittransaction::Data_Set* splits,
         wxWindow* parent,
         int transType,
         mmSplitTransactionEntries* splt //TODO: delete
@@ -92,7 +92,7 @@ public:
     void SetDisplaySplitCategories();
 
 private:
-    Model_Checking::Data* m_tran;
+    Model_Splittransaction::Data_Set* m_splits;
     int transType_;
 
     //mmSplitTransactionEntries* splt_;

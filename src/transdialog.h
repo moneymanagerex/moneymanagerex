@@ -47,7 +47,7 @@ public:
 
     mmTransDialog(
         Model_Checking::Data *transaction
-        , Model_Splittransaction::Data_Set& split
+        , Model_Splittransaction::Data_Set* split
         , wxWindow* parent
         , mmCoreDB* core
         , bool edit = true
@@ -121,7 +121,7 @@ private:
     wxStaticText* payee_label_;
 
     Model_Checking::Data * transaction_;
-    Model_Splittransaction::Data_Set splt_;
+    Model_Splittransaction::Data_Set* m_splits;
     mmSplitTransactionEntries* split_;
     int accountID_;
     int newAccountID_;

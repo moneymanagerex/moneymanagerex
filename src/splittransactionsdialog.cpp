@@ -44,11 +44,11 @@ SplitTransactionDialog::SplitTransactionDialog( )
 }
 
 SplitTransactionDialog::SplitTransactionDialog(
-    Model_Checking::Data * tran
+    Model_Splittransaction::Data_Set* splits 
     , wxWindow* parent
     , int transType
     , mmSplitTransactionEntries* splt)
-    : m_tran(tran)
+    : m_splits(splits)
 {
     transType_ = transType;
     split_id_ = 0;
@@ -84,7 +84,7 @@ bool SplitTransactionDialog::Create(wxWindow* parent, wxWindowID id,
 void SplitTransactionDialog::DataToControls()
 {
     lcSplit_->DeleteAllItems();
-    for (const auto & entry : Model_Checking::splittransaction(this->m_tran))
+    for (const auto & entry : *this->m_splits)
     {
         const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
         const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
@@ -167,13 +167,13 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
     SplitDetailDialog sdd(this, split, _("&Select Category"), &categID, &subcategID, &amount, transType_);
-    if (sdd.ShowModal() == wxID_OK && categID > 0)
+    if (sdd.ShowModal() == wxID_OK)
     {
         split->CATEGID = categID;
         split->SUBCATEGID = subcategID;
         split->SPLITTRANSAMOUNT = *sdd.m_amount_;
-        split->TRANSID = m_tran->TRANSID;
-        Model_Splittransaction::instance().save(split);
+// TODO        split->TRANSID
+        this->m_splits->push_back(*split);
     }
     DataToControls();
 }
