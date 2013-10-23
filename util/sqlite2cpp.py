@@ -122,19 +122,6 @@ struct DB_Table_%s : public DB_Table
     };
 '''
         s += '''
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_%s);'''% self._primay_key.upper();
-        for index, name in enumerate([field['name'] for field in self._fields if not field['pk']]):
-            s += '''
-        result.push_back(COL_%s);''' % name.upper()
-
-        s += '''
-        return result;
-    }
-'''
-        s += '''
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -219,49 +206,6 @@ struct DB_Table_%s : public DB_Table
             %s = q.%s("%s");''' % (field['name'], func, field['name'])
 
         s += '''
-        }
-'''
-        s +='''
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_%s: ret << %s; break;''' % (self._primay_key.upper(), self._primay_key)
-
-        for index, name in enumerate([field['name'] for field in self._fields if not field['pk']]):
-            s += '''
-                case COL_%s: ret << %s; break;''' %(name.upper(), name)
-        s +='''
-                default: break;
-            }
-            
-            return ret;
-        }
-'''
-        s +='''
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-'''
-        s += '''
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << %s;''' % self._primay_key
-
-        for index, name in enumerate([field['name'] for field in self._fields if not field['pk']]):
-            s += '''
-            ret << delimiter << %s;''' % name
-        
-        s +='''
-            return ret;
         }
 '''
         s += '''
