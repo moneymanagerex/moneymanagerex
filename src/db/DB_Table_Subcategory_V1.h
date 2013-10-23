@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-23 11:32:46.576643.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -72,15 +72,6 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         , COL_CATEGID = 2
     };
 
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_SUBCATEGID);
-        result.push_back(COL_SUBCATEGNAME);
-        result.push_back(COL_CATEGID);
-        return result;
-    }
-
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -137,39 +128,6 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             SUBCATEGID = q.GetInt("SUBCATEGID");
             SUBCATEGNAME = q.GetString("SUBCATEGNAME");
             CATEGID = q.GetInt("CATEGID");
-        }
-
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_SUBCATEGID: ret << SUBCATEGID; break;
-                case COL_SUBCATEGNAME: ret << SUBCATEGNAME; break;
-                case COL_CATEGID: ret << CATEGID; break;
-                default: break;
-            }
-            
-            return ret;
-        }
-
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << SUBCATEGID;
-            ret << delimiter << SUBCATEGNAME;
-            ret << delimiter << CATEGID;
-            return ret;
         }
 
         wxString to_json() const

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-23 11:32:46.576643.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -120,23 +120,6 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         , COL_CURRENCY_SYMBOL = 10
     };
 
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_CURRENCYID);
-        result.push_back(COL_CURRENCYNAME);
-        result.push_back(COL_PFX_SYMBOL);
-        result.push_back(COL_SFX_SYMBOL);
-        result.push_back(COL_DECIMAL_POINT);
-        result.push_back(COL_GROUP_SEPARATOR);
-        result.push_back(COL_UNIT_NAME);
-        result.push_back(COL_CENT_NAME);
-        result.push_back(COL_SCALE);
-        result.push_back(COL_BASECONVRATE);
-        result.push_back(COL_CURRENCY_SYMBOL);
-        return result;
-    }
-
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -226,55 +209,6 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             SCALE = q.GetInt("SCALE");
             BASECONVRATE = q.GetDouble("BASECONVRATE");
             CURRENCY_SYMBOL = q.GetString("CURRENCY_SYMBOL");
-        }
-
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_CURRENCYID: ret << CURRENCYID; break;
-                case COL_CURRENCYNAME: ret << CURRENCYNAME; break;
-                case COL_PFX_SYMBOL: ret << PFX_SYMBOL; break;
-                case COL_SFX_SYMBOL: ret << SFX_SYMBOL; break;
-                case COL_DECIMAL_POINT: ret << DECIMAL_POINT; break;
-                case COL_GROUP_SEPARATOR: ret << GROUP_SEPARATOR; break;
-                case COL_UNIT_NAME: ret << UNIT_NAME; break;
-                case COL_CENT_NAME: ret << CENT_NAME; break;
-                case COL_SCALE: ret << SCALE; break;
-                case COL_BASECONVRATE: ret << BASECONVRATE; break;
-                case COL_CURRENCY_SYMBOL: ret << CURRENCY_SYMBOL; break;
-                default: break;
-            }
-            
-            return ret;
-        }
-
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << CURRENCYID;
-            ret << delimiter << CURRENCYNAME;
-            ret << delimiter << PFX_SYMBOL;
-            ret << delimiter << SFX_SYMBOL;
-            ret << delimiter << DECIMAL_POINT;
-            ret << delimiter << GROUP_SEPARATOR;
-            ret << delimiter << UNIT_NAME;
-            ret << delimiter << CENT_NAME;
-            ret << delimiter << SCALE;
-            ret << delimiter << BASECONVRATE;
-            ret << delimiter << CURRENCY_SYMBOL;
-            return ret;
         }
 
         wxString to_json() const

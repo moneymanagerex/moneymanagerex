@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-23 11:32:46.576643.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -132,25 +132,6 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         , COL_CURRENCYID = 12
     };
 
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_ACCOUNTID);
-        result.push_back(COL_ACCOUNTNAME);
-        result.push_back(COL_ACCOUNTTYPE);
-        result.push_back(COL_ACCOUNTNUM);
-        result.push_back(COL_STATUS);
-        result.push_back(COL_NOTES);
-        result.push_back(COL_HELDAT);
-        result.push_back(COL_WEBSITE);
-        result.push_back(COL_CONTACTINFO);
-        result.push_back(COL_ACCESSINFO);
-        result.push_back(COL_INITIALBAL);
-        result.push_back(COL_FAVORITEACCT);
-        result.push_back(COL_CURRENCYID);
-        return result;
-    }
-
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -248,59 +229,6 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             INITIALBAL = q.GetDouble("INITIALBAL");
             FAVORITEACCT = q.GetString("FAVORITEACCT");
             CURRENCYID = q.GetInt("CURRENCYID");
-        }
-
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_ACCOUNTID: ret << ACCOUNTID; break;
-                case COL_ACCOUNTNAME: ret << ACCOUNTNAME; break;
-                case COL_ACCOUNTTYPE: ret << ACCOUNTTYPE; break;
-                case COL_ACCOUNTNUM: ret << ACCOUNTNUM; break;
-                case COL_STATUS: ret << STATUS; break;
-                case COL_NOTES: ret << NOTES; break;
-                case COL_HELDAT: ret << HELDAT; break;
-                case COL_WEBSITE: ret << WEBSITE; break;
-                case COL_CONTACTINFO: ret << CONTACTINFO; break;
-                case COL_ACCESSINFO: ret << ACCESSINFO; break;
-                case COL_INITIALBAL: ret << INITIALBAL; break;
-                case COL_FAVORITEACCT: ret << FAVORITEACCT; break;
-                case COL_CURRENCYID: ret << CURRENCYID; break;
-                default: break;
-            }
-            
-            return ret;
-        }
-
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << ACCOUNTID;
-            ret << delimiter << ACCOUNTNAME;
-            ret << delimiter << ACCOUNTTYPE;
-            ret << delimiter << ACCOUNTNUM;
-            ret << delimiter << STATUS;
-            ret << delimiter << NOTES;
-            ret << delimiter << HELDAT;
-            ret << delimiter << WEBSITE;
-            ret << delimiter << CONTACTINFO;
-            ret << delimiter << ACCESSINFO;
-            ret << delimiter << INITIALBAL;
-            ret << delimiter << FAVORITEACCT;
-            ret << delimiter << CURRENCYID;
-            return ret;
         }
 
         wxString to_json() const

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-23 11:32:46.576643.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -138,26 +138,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         , COL_TOTRANSAMOUNT = 13
     };
 
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_TRANSID);
-        result.push_back(COL_ACCOUNTID);
-        result.push_back(COL_TOACCOUNTID);
-        result.push_back(COL_PAYEEID);
-        result.push_back(COL_TRANSCODE);
-        result.push_back(COL_TRANSAMOUNT);
-        result.push_back(COL_STATUS);
-        result.push_back(COL_TRANSACTIONNUMBER);
-        result.push_back(COL_NOTES);
-        result.push_back(COL_CATEGID);
-        result.push_back(COL_SUBCATEGID);
-        result.push_back(COL_TRANSDATE);
-        result.push_back(COL_FOLLOWUPID);
-        result.push_back(COL_TOTRANSAMOUNT);
-        return result;
-    }
-
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -265,61 +245,6 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             TRANSDATE = q.GetString("TRANSDATE");
             FOLLOWUPID = q.GetInt("FOLLOWUPID");
             TOTRANSAMOUNT = q.GetDouble("TOTRANSAMOUNT");
-        }
-
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_TRANSID: ret << TRANSID; break;
-                case COL_ACCOUNTID: ret << ACCOUNTID; break;
-                case COL_TOACCOUNTID: ret << TOACCOUNTID; break;
-                case COL_PAYEEID: ret << PAYEEID; break;
-                case COL_TRANSCODE: ret << TRANSCODE; break;
-                case COL_TRANSAMOUNT: ret << TRANSAMOUNT; break;
-                case COL_STATUS: ret << STATUS; break;
-                case COL_TRANSACTIONNUMBER: ret << TRANSACTIONNUMBER; break;
-                case COL_NOTES: ret << NOTES; break;
-                case COL_CATEGID: ret << CATEGID; break;
-                case COL_SUBCATEGID: ret << SUBCATEGID; break;
-                case COL_TRANSDATE: ret << TRANSDATE; break;
-                case COL_FOLLOWUPID: ret << FOLLOWUPID; break;
-                case COL_TOTRANSAMOUNT: ret << TOTRANSAMOUNT; break;
-                default: break;
-            }
-            
-            return ret;
-        }
-
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << TRANSID;
-            ret << delimiter << ACCOUNTID;
-            ret << delimiter << TOACCOUNTID;
-            ret << delimiter << PAYEEID;
-            ret << delimiter << TRANSCODE;
-            ret << delimiter << TRANSAMOUNT;
-            ret << delimiter << STATUS;
-            ret << delimiter << TRANSACTIONNUMBER;
-            ret << delimiter << NOTES;
-            ret << delimiter << CATEGID;
-            ret << delimiter << SUBCATEGID;
-            ret << delimiter << TRANSDATE;
-            ret << delimiter << FOLLOWUPID;
-            ret << delimiter << TOTRANSAMOUNT;
-            return ret;
         }
 
         wxString to_json() const

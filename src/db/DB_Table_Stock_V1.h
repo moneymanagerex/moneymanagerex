@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-23 11:32:46.576643.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -120,23 +120,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
         , COL_COMMISSION = 10
     };
 
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_STOCKID);
-        result.push_back(COL_HELDAT);
-        result.push_back(COL_PURCHASEDATE);
-        result.push_back(COL_STOCKNAME);
-        result.push_back(COL_SYMBOL);
-        result.push_back(COL_NUMSHARES);
-        result.push_back(COL_PURCHASEPRICE);
-        result.push_back(COL_NOTES);
-        result.push_back(COL_CURRENTPRICE);
-        result.push_back(COL_VALUE);
-        result.push_back(COL_COMMISSION);
-        return result;
-    }
-
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -230,55 +213,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
             CURRENTPRICE = q.GetDouble("CURRENTPRICE");
             VALUE = q.GetDouble("VALUE");
             COMMISSION = q.GetDouble("COMMISSION");
-        }
-
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_STOCKID: ret << STOCKID; break;
-                case COL_HELDAT: ret << HELDAT; break;
-                case COL_PURCHASEDATE: ret << PURCHASEDATE; break;
-                case COL_STOCKNAME: ret << STOCKNAME; break;
-                case COL_SYMBOL: ret << SYMBOL; break;
-                case COL_NUMSHARES: ret << NUMSHARES; break;
-                case COL_PURCHASEPRICE: ret << PURCHASEPRICE; break;
-                case COL_NOTES: ret << NOTES; break;
-                case COL_CURRENTPRICE: ret << CURRENTPRICE; break;
-                case COL_VALUE: ret << VALUE; break;
-                case COL_COMMISSION: ret << COMMISSION; break;
-                default: break;
-            }
-            
-            return ret;
-        }
-
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << STOCKID;
-            ret << delimiter << HELDAT;
-            ret << delimiter << PURCHASEDATE;
-            ret << delimiter << STOCKNAME;
-            ret << delimiter << SYMBOL;
-            ret << delimiter << NUMSHARES;
-            ret << delimiter << PURCHASEPRICE;
-            ret << delimiter << NOTES;
-            ret << delimiter << CURRENTPRICE;
-            ret << delimiter << VALUE;
-            ret << delimiter << COMMISSION;
-            return ret;
         }
 
         wxString to_json() const

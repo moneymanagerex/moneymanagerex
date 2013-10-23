@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-21 11:39:55.647480.
+ *          AUTO GENERATED at 2013-10-23 11:32:46.576643.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -78,16 +78,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         , COL_SUBCATEGID = 3
     };
 
-    std::vector<COLUMN> all_columns() const
-    {
-        std::vector<COLUMN> result;
-        result.push_back(COL_PAYEEID);
-        result.push_back(COL_PAYEENAME);
-        result.push_back(COL_CATEGID);
-        result.push_back(COL_SUBCATEGID);
-        return result;
-    }
-
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -149,41 +139,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             PAYEENAME = q.GetString("PAYEENAME");
             CATEGID = q.GetInt("CATEGID");
             SUBCATEGID = q.GetInt("SUBCATEGID");
-        }
-
-        wxString to_string(COLUMN col) const
-        {
-            wxString ret = wxEmptyString;
-            switch(col)
-            {
-                case COL_PAYEEID: ret << PAYEEID; break;
-                case COL_PAYEENAME: ret << PAYEENAME; break;
-                case COL_CATEGID: ret << CATEGID; break;
-                case COL_SUBCATEGID: ret << SUBCATEGID; break;
-                default: break;
-            }
-            
-            return ret;
-        }
-
-        wxString to_string(std::vector<COLUMN> columns, const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            std::vector<COLUMN>::const_iterator it = columns.begin(); 
-            if (it != columns.end()) ret << to_string(*it);
-            for ( ; it != columns.end(); ++ it) ret << delimiter << to_string(*it);
-
-            return ret;
-        }
-
-        wxString to_string(const wxString& delimiter = ",") const
-        {
-            wxString ret = wxEmptyString;
-            ret << PAYEEID;
-            ret << delimiter << PAYEENAME;
-            ret << delimiter << CATEGID;
-            ret << delimiter << SUBCATEGID;
-            return ret;
         }
 
         wxString to_json() const
