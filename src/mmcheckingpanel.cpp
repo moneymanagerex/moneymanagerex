@@ -1593,9 +1593,16 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     {
         mmTransDialog dlg(transaction, &split, this, m_cp->core_);
         dlg.SetDialogTitle(_("New/Edit Transaction"));
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            Model_Checking::instance().save(transaction);
+            for (auto &item : split) item.TRANSID = transaction->TRANSID;
+            Model_Splittransaction::instance().save(split);
 
-        topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-        refreshVisualList(m_cp->m_trans[m_selectedIndex]->transactionID());
+            refreshVisualList(transaction->TRANSID);
+        }
+        //topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+        //refreshVisualList(m_cp->m_trans[m_selectedIndex]->transactionID());
     }
 }
 //----------------------------------------------------------------------------
