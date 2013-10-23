@@ -51,7 +51,9 @@ SplitTransactionDialog::SplitTransactionDialog(
     , mmSplitTransactionEntries* splt)
     : m_splits(splits)
 {
-    std::copy(this->m_splits->begin(), this->m_splits->end(), this->m_local_splits.begin());
+    //std::copy(m_splits->begin(), m_splits->end(), m_local_splits.begin());
+    for (const auto &item : *m_splits) m_local_splits.push_back(item);
+
     transType_ = transType;
     selectedIndex_ = 0;
     if (transType_ == DEF_TRANSFER)
@@ -146,15 +148,15 @@ void SplitTransactionDialog::CreateControls()
     mainButtonSizer->Add(bottomRowButtonSizer, 0, wxALIGN_RIGHT|wxALL, 0);
     dialogMainSizerV->Add(mainButtonSizer, 0, wxALIGN_RIGHT|wxALL, 10);
 
-    itemButtonNew_ = new wxButton( this, wxID_ADD);
-    itemButtonEdit_ = new wxButton( this, wxID_EDIT);
+    itemButtonNew_ = new wxButton( this, wxID_ADD, _("&Add "));
+    itemButtonEdit_ = new wxButton( this, wxID_EDIT, _("&Edit "));
     itemButtonDelete_ = new wxButton( this, wxID_REMOVE);
     topRowButtonSizer->Add(itemButtonNew_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 5);
     topRowButtonSizer->Add(itemButtonEdit_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 5);
     topRowButtonSizer->Add(itemButtonDelete_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 0);
 
-    itemButtonOK_ = new wxButton( this, wxID_OK);
-    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL);
+    itemButtonOK_ = new wxButton( this, wxID_OK, _("&OK "));
+    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, _("&Cancel "));
     itemButtonCancel->SetFocus();
 
     bottomRowButtonSizer->Add(itemButtonOK_, 0, wxALIGN_RIGHT|wxTOP|wxRIGHT, 5);
@@ -182,6 +184,8 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
     // finally 
     this->m_splits->swap(this->m_local_splits);
+    EndModal(wxID_OK);
+
 }
 
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )

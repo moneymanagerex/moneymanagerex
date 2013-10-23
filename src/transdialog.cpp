@@ -225,10 +225,10 @@ void mmTransDialog::updateControlsForTransType()
 			bCategory_->SetLabel(resetCategoryString());
     }
 
-    SetTransferControls(transfer);
+    updateControlsForTransType2(transfer);
 }
 
-void mmTransDialog::SetTransferControls(bool transfer)
+void mmTransDialog::updateControlsForTransType2(bool transfer)
 {
 
     //Advanced
@@ -307,7 +307,7 @@ void mmTransDialog::SetTransferControls(bool transfer)
 
     if (!cbPayee_ -> SetStringSelection(dataStr))
         cbPayee_ -> SetValue(dataStr);
-    SetSplitState();
+
     cbPayee_ -> SetEvtHandlerEnabled(true);
     cbAccount_ -> SetEvtHandlerEnabled(true);
 }
@@ -902,10 +902,9 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
         transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
     }
 
-    amountStr = CurrencyFormatter::float2String(transaction_->TOTRANSAMOUNT);
-    toTextAmount_->SetValue(amountStr);
+    toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT);
 
-    SetTransferControls();
+    updateControlsForTransType2();
 }
 
 void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)

@@ -95,7 +95,7 @@ private:
     void changeFocus(wxChildFocusEvent& event);
     void onTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
-    void SetTransferControls(bool transfer = true);
+    void updateControlsForTransType2(bool transfer = true);
     void activateSplitTransactionsDlg();
     void SetSplitState();
     bool validateData();
