@@ -34,6 +34,7 @@ IMPLEMENT_DYNAMIC_CLASS( SplitTransactionDialog, wxDialog )
      EVT_BUTTON(wxID_ADD, SplitTransactionDialog::OnButtonAddClick)
      EVT_BUTTON(wxID_REMOVE, SplitTransactionDialog::OnButtonRemoveClick)
      EVT_BUTTON(wxID_EDIT, SplitTransactionDialog::OnButtonEditClick)
+     EVT_BUTTON(wxID_OK, SplitTransactionDialog::OnOk)
      EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, SplitTransactionDialog::OnListDblClick)
      EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, SplitTransactionDialog::OnListItemSelected)
      //EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, SplitTransactionDialog::OnItemRightClick)
@@ -50,8 +51,8 @@ SplitTransactionDialog::SplitTransactionDialog(
     , mmSplitTransactionEntries* splt)
     : m_splits(splits)
 {
+    std::copy(this->m_splits->begin(), this->m_splits->end(), this->m_local_splits.begin());
     transType_ = transType;
-    split_id_ = 0;
     selectedIndex_ = 0;
     if (transType_ == DEF_TRANSFER)
         transType_ = DEF_WITHDRAWAL;
@@ -84,7 +85,7 @@ bool SplitTransactionDialog::Create(wxWindow* parent, wxWindowID id,
 void SplitTransactionDialog::DataToControls()
 {
     lcSplit_->DeleteAllItems();
-    for (const auto & entry : *this->m_splits)
+    for (const auto & entry : this->m_local_splits)
     {
         const Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
         const Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
@@ -93,12 +94,8 @@ void SplitTransactionDialog::DataToControls()
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
         data.push_back(wxVariant(CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT)));
         lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
-        if (entry.SPLITTRANSID == split_id_)
-        {
-            lcSplit_->SelectRow(lcSplit_->GetItemCount());
-            selectedIndex_ = lcSplit_->GetItemCount() - 1;
-        }
     }
+    lcSplit_->SelectRow(selectedIndex_);
     UpdateSplitTotal();
     itemButtonNew_->SetFocus();
 }
@@ -170,26 +167,27 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     SplitDetailDialog sdd(this, split, transType_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        this->m_splits->push_back(*split);
-        split_id_ = split->SPLITTRANSID;
+        this->m_local_splits.push_back(*split);
     }
     DataToControls();
 }
 
 void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
 {
-    EditEntry(split_id_);
+    EditEntry(selectedIndex_);
     DataToControls();
+}
+
+void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
+{
+    // finally 
+    this->m_splits->swap(this->m_local_splits);
 }
 
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
-    if (selectedIndex_ < 0) return;
-    //TODO: rewrite
-    for (auto &item : *m_splits)
-    {
-        if (split_id_ == item.SPLITTRANSID) Model_Splittransaction::instance().remove(split_id_);
-    }
+    if (selectedIndex_ < 0 || selectedIndex_ >= this->m_local_splits.size()) return;
+    this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
     DataToControls();
 }
 
@@ -210,28 +208,17 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    double total = Model_Splittransaction::instance().get_total(*m_splits);
+    double total = Model_Splittransaction::instance().get_total(this->m_local_splits);
     transAmount_->SetLabel(CurrencyFormatter::float2String(total));
 }
 
-void SplitTransactionDialog::EditEntry(int id)
+void SplitTransactionDialog::EditEntry(int index)
 {
-    Model_Splittransaction::Data *split = Model_Splittransaction::instance().get(id);
-    if (!split) return;
-    m_splits[id];
-    SplitDetailDialog sdd(this, split, transType_);
+    if (index < 0 || index >= this->m_local_splits.size()) return;
+    Model_Splittransaction::Data& split = this->m_local_splits[index];
+    SplitDetailDialog sdd(this, &split, transType_);
     if (sdd.ShowModal() == wxID_OK)
     {
-        for (auto &entry : *m_splits)
-        {
-            if (entry.SPLITTRANSID == id)
-            {
-                entry.CATEGID = split->CATEGID;
-                entry.SUBCATEGID = split->SUBCATEGID;
-                entry.SPLITTRANSAMOUNT = split->SPLITTRANSAMOUNT;
-            }
-        }
-
         DataToControls();
         UpdateSplitTotal();
     }
@@ -241,16 +228,11 @@ void SplitTransactionDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = lcSplit_->ItemToRow(item);
-    if (selectedIndex_ >= 0)
-    {
-        split_id_ = (int) lcSplit_->GetItemData(item);
-
-    }
 }
 
 void SplitTransactionDialog::OnListDblClick(wxDataViewEvent& event)
 {
-    if (itemButtonEdit_->IsShown()) EditEntry(split_id_);
+    if (itemButtonEdit_->IsShown()) EditEntry(selectedIndex_);
 }
 
 void SplitTransactionDialog::SetDisplaySplitCategories()

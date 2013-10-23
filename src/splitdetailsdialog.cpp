@@ -196,7 +196,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 
     if ( choiceType_->GetSelection() != transType_ )
     {
-            amount = -amount;
+        amount = -amount;
     }
 
     split_->SPLITTRANSAMOUNT = amount;

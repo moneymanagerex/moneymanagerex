@@ -74,6 +74,7 @@ public:
 
     /// wxEVT_COMMAND_BUTTON_CLICKED event handler for wxID_EDIT
     void OnButtonEditClick( wxCommandEvent& event );
+    void OnOk( wxCommandEvent& event );
 
     void UpdateSplitTotal();
 
@@ -93,6 +94,7 @@ public:
 
 private:
     Model_Splittransaction::Data_Set* m_splits;
+    Model_Splittransaction::Data_Set m_local_splits;
     int transType_;
 
     //mmSplitTransactionEntries* splt_;
@@ -106,7 +108,6 @@ private:
     void OnListItemSelected(wxDataViewEvent& event);
     void EditEntry(int id);
     int selectedIndex_;
-    int split_id_;
 };
 
 #endif
