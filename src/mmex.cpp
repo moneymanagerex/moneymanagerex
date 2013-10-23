@@ -3117,9 +3117,6 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 
     if ( dlg.ShowModal() == wxID_OK )
     {
-        Model_Checking::instance().save(transaction);
-        for(auto& split: splits) split.TRANSID = transaction->TRANSID;
-        Model_Splittransaction::instance().save(splits);
         if (activeCheckingAccountPage_)
         {
             if (gotoAccountID_ == dlg.getToAccountID() || gotoAccountID_ == dlg.getAccountID())

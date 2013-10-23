@@ -122,6 +122,7 @@ private:
 
     Model_Checking::Data * transaction_;
     Model_Splittransaction::Data_Set* m_splits;
+    Model_Splittransaction::Data_Set m_local_splits;
     mmSplitTransactionEntries* split_;
     int accountID_;
     int newAccountID_;

@@ -68,6 +68,7 @@ mmTransDialog::mmTransDialog(
     , bBestChoice_(true)
 
 {
+    std::copy(this->m_splits->begin(), this->m_splits->end(), this->m_local_splits.begin());
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
     Create(parent_
@@ -640,25 +641,25 @@ bool mmTransDialog::validateData()
 
 void mmTransDialog::SetSplitState()
 {
-    int entries = m_splits->size();
+    bool has_split = !this->m_local_splits.empty();
     wxString fullCategoryName;
-    if (entries > 0)
+    if (has_split)
         fullCategoryName = _("Split Category");
     else
     {
-            Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-            Model_Subcategory::Data *subcategory = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
-            fullCategoryName = Model_Category::full_name(category, subcategory);
-            if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
+        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
+        Model_Subcategory::Data *subcategory = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
+        fullCategoryName = Model_Category::full_name(category, subcategory);
+        if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
     }
 
     bCategory_->SetLabel(fullCategoryName);
-    cSplit_->SetValue(entries > 0);
+    cSplit_->SetValue(has_split);
     cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
 
-    double total = Model_Splittransaction::instance().get_total(*m_splits);
+    double total = Model_Splittransaction::instance().get_total(this->m_local_splits);
     textAmount_->SetValue(total);
-    textAmount_->Enable(entries < 1);
+    textAmount_->Enable(!has_split);
 }
 
 //----------------------------------------------------------------------------
@@ -717,7 +718,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
     
-    SplitTransactionDialog dlg(this->m_splits, this, transaction_type_->GetSelection(), split_);
+    SplitTransactionDialog dlg(&this->m_local_splits, this, transaction_type_->GetSelection(), split_);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = split_->getTotalSplits();
@@ -1006,6 +1007,12 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
         core_->bTransactionList_.UpdateTransaction(pTransaction);
         transID_ = pTransaction->transactionID();
     }
+
+    this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
+    Model_Checking::instance().save(this->transaction_);
+    for (auto& item: m_local_splits) item.TRANSID = this->transaction_->TRANSID;
+    Model_Splittransaction::instance().save(m_local_splits);
+    this->m_splits->swap(this->m_local_splits);
 
     EndModal(wxID_OK);
 }
