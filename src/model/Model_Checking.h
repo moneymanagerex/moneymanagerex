@@ -52,23 +52,11 @@ public:
     {
         wxArrayString status;
         // keep the sequence with STATUS
-        status.Add(wxTRANSLATE("None"));
+        status.Add(("None"));
         status.Add(("Reconciled"));
         status.Add(("Void"));
         status.Add(("Follow up"));
         status.Add(("Duplicate"));
-
-        return status;
-    }
-    static wxArrayString all_status_db()
-    {
-        wxArrayString status;
-        // keep the sequence with STATUS
-        status.Add("");
-        status.Add(("R"));
-        status.Add(("V"));
-        status.Add(("F"));
-        status.Add(("D"));
 
         return status;
     }
@@ -131,7 +119,12 @@ public:
     }
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op); }
-    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::STATUS(all_status_db()[status], op); }
+    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL)
+    {
+        wxString s = all_status()[status].Left(1);
+        s.Replace("N", "");
+        return DB_Table_CHECKINGACCOUNT_V1::STATUS(s, op);
+    }
     static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE type, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op); }
 public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }
