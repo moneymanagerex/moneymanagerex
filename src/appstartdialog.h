@@ -19,7 +19,6 @@
 #ifndef _MM_EX_APPSTARTDIALOG_H_
 #define _MM_EX_APPSTARTDIALOG_H_
 
-#include "dbwrapper.h"
 #include <wx/dialog.h>
 
 class wxCheckBox;

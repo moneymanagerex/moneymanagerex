@@ -20,7 +20,6 @@
 #define _MM_EX_CURRENCYDIALOG_H_
 
 #include "defs.h"
-#include "dbwrapper.h"
 #include "model/Model_Currency.h"
 
 class mmTextCtrl;

@@ -16,7 +16,6 @@
 
 #include "mmcurrency.h"
 #include "util.h"
-#include "dbwrapper.h"
 #include "mmCurrencyFormatter.h"
 #include <map>
 #include "model/Model_Infotable.h"
