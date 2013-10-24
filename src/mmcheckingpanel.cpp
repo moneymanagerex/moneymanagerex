@@ -1596,15 +1596,70 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
         {
             Model_Checking::instance().save(transaction);
             for (auto &item : split) item.TRANSID = transaction->TRANSID;
-            Model_Splittransaction::instance().save(split);
-
+            if (!split.empty())
+            {
+                Model_Splittransaction::instance().save(split);
+            }
+            save_transaction_temp_function(transaction, split, true); //TODO: remove
             refreshVisualList(transaction->TRANSID);
         }
-        //topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-        //refreshVisualList(m_cp->m_trans[m_selectedIndex]->transactionID());
+        topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
+
+        wxLogDebug(transaction->to_json());
     }
 }
 //----------------------------------------------------------------------------
+int TransactionListCtrl::save_transaction_temp_function(Model_Checking::Data *transaction
+    , Model_Splittransaction::Data_Set split, bool edit)
+{
+#if 1
+    int transID = -1;
+    mmBankTransaction* pTransaction;
+    if (!edit)
+    {
+        mmBankTransaction* pTemp(new mmBankTransaction(m_cp->core_));
+        pTransaction = pTemp;
+    }
+    else
+    {
+        pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(
+            transaction->TRANSID);
+    }
+
+    pTransaction->accountID_ = transaction->ACCOUNTID;
+    pTransaction->toAccountID_ = transaction->TOACCOUNTID;
+    pTransaction->payeeID_ = transaction->PAYEEID;
+    Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
+    if (payee)
+        pTransaction->payeeStr_ = payee->PAYEENAME;
+    pTransaction->transType_ = transaction->TRANSCODE;
+    pTransaction->amt_ = transaction->TRANSAMOUNT;
+    pTransaction->status_ = transaction->STATUS;
+    pTransaction->transNum_ = transaction->TRANSACTIONNUMBER;
+    pTransaction->notes_ = transaction->NOTES;
+    pTransaction->categID_ = transaction->CATEGID;
+    pTransaction->subcategID_ = transaction->SUBCATEGID;
+    pTransaction->date_ = Model_Checking::TRANSDATE(transaction);
+    pTransaction->toAmt_ = transaction->TOTRANSAMOUNT;
+
+    if (!edit)
+    {
+        transID = m_cp->core_->bTransactionList_.addTransaction(pTransaction);
+    }
+    else
+    {
+        m_cp->core_->bTransactionList_.UpdateTransaction(pTransaction);
+        transID = pTransaction->transactionID();
+    }
+
+    Model_Checking::instance().save(transaction);
+    for (auto& item : split) item.TRANSID = transaction->TRANSID;
+    Model_Splittransaction::instance().save(split);
+
+    return transID;
+#endif
+    //return 0;
+}
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 {
@@ -1618,6 +1673,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 
     transaction->ACCOUNTID = m_cp->m_AccountID;
     transaction->TRANSDATE = trx_date.FormatISODate();
+
     mmTransDialog dlg(transaction, &split, this);
     dlg.SetDialogTitle(_("New/Edit Transaction"));
 
@@ -1628,7 +1684,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
         Model_Checking::instance().save(transaction);
         for (auto &item : split) item.TRANSID = transaction->TRANSID;
         Model_Splittransaction::instance().save(split);
- 
+        save_transaction_temp_function(transaction, split, true); //TODO: remove 
         refreshVisualList(transaction->TRANSID);
     }
 }

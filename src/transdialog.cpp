@@ -954,7 +954,8 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     transaction_->TOACCOUNTID = transaction_->TOACCOUNTID;
     transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
 
-    this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
+    if (!m_local_splits.empty())
+        this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
 
     EndModal(wxID_OK);
 }
