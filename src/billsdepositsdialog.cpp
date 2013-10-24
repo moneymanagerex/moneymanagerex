@@ -1336,7 +1336,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID_);
     Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
-    SplitTransactionDialog dlg(&splits, this, transaction_type_->GetSelection(), split_.get());
+    SplitTransactionDialog dlg(&splits, this, transaction_type_->GetSelection());
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = split_->getTotalSplits();

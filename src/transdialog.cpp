@@ -42,7 +42,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmTransDialog::OnCategs)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
-    EVT_CHECKBOX(ID_DIALOG_TRANS_SPLITCHECKBOX, mmTransDialog::OnSplitChecked)
+    EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::changeFocus)
     EVT_SPIN(wxID_ANY,mmTransDialog::OnSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
@@ -52,14 +52,10 @@ mmTransDialog::mmTransDialog(
     Model_Checking::Data *transaction
     , Model_Splittransaction::Data_Set* split
     , wxWindow* parent
-    , mmCoreDB* core
-    , bool edit
 ) :
     transaction_(transaction)
     , m_splits(split)
-    , core_(core)
     , parent_(parent)
-    , edit_(edit)
     , accountID_(transaction->ACCOUNTID)
     , referenceAccountID_(transaction->ACCOUNTID)
     , categUpdated_(false)
@@ -95,14 +91,6 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
     GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
-
-    mmSplitTransactionEntries* split(new mmSplitTransactionEntries());
-    split_ = split;
-    if (edit_)
-    {
-        *split_ = *core_->bTransactionList_
-            .getBankTransactionPtr(transaction_->TRANSID)->splitEntries_;
-    }
 
     dataToControls();
 
@@ -156,7 +144,7 @@ void mmTransDialog::dataToControls()
     textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
 
     textNotes_->SetValue(transaction_->NOTES);
-    if (!edit_)
+    if (transaction_->NOTES.IsEmpty())
     {
         notesColour_ = textNotes_->GetForegroundColour();
         textNotes_->SetForegroundColour(wxColour("GREY"));
@@ -212,7 +200,7 @@ void mmTransDialog::updateControlsForTransType()
 				if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
 				transaction_->PAYEEID = trx.PAYEEID;
 				Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
-				if (payee && !edit_)
+				if (payee)
 				{
 					transaction_->CATEGID = payee->CATEGID;
 					transaction_->SUBCATEGID = payee->SUBCATEGID;
@@ -220,7 +208,7 @@ void mmTransDialog::updateControlsForTransType()
 				break;
 			}
         }
-		if (mmIniOptions::instance().transCategorySelectionNone_ != 0 || edit_)
+		if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
 		    bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
         else
 			bCategory_->SetLabel(resetCategoryString());
@@ -252,7 +240,7 @@ void mmTransDialog::updateControlsForTransType2(bool transfer)
         if (cSplit_->IsChecked())
         {
             cSplit_->SetValue(false);
-            split_->entries_.clear();
+            //TODO: m_splits->erase();
         }
 
         toTextAmount_->Enable(cAdvanced_->GetValue());
@@ -408,17 +396,15 @@ void mmTransDialog::CreateControls()
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
-    cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, "",
-        wxDefaultPosition, wxSize(230, -1));
-
-    cbPayee_ -> SetEvtHandlerEnabled(!edit_);
+    cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
+        , wxDefaultPosition, wxSize(230, -1));
 
     flex_sizer->Add(payee_label_, flags);
     flex_sizer->Add(cbPayee_, flags);
 
     // Split Category -------------------------------------------
-    cSplit_ = new wxCheckBox(this, ID_DIALOG_TRANS_SPLITCHECKBOX,
-        _("Split"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cSplit_ = new wxCheckBox(this, wxID_FORWARD
+        , _("Split"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     cSplit_->SetValue(FALSE);
 
     flex_sizer->AddSpacer(20);  // Fill empty space.
@@ -449,8 +435,8 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(bAuto_, flags);
 
     notesTip_ = _("Notes");
-    textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "",
-        wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
+    textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
+        , wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
 
     box_sizer->Add(textNotes_, flagsExpand.Border(wxLEFT|wxRIGHT|wxBOTTOM, 10));
 
@@ -531,7 +517,7 @@ bool mmTransDialog::validateData()
 
     if (cSplit_->IsChecked())
     {
-        transaction_->TRANSAMOUNT = split_->getTotalSplits();
+        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(*m_splits);
         if (transaction_->TRANSAMOUNT < 0.0)
         {
             if (bTransfer) {
@@ -543,7 +529,7 @@ bool mmTransDialog::validateData()
             }
         }
 
-        if (split_->numEntries() == 0)
+        if (m_splits->empty())
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return false;
@@ -615,11 +601,14 @@ bool mmTransDialog::validateData()
             else
                 return false;
         }
+        transaction_->TOACCOUNTID = -1;
+
+        payee = Model_Payee::instance().get(transaction_->PAYEEID);
+        payee->CATEGID = transaction_->CATEGID;
+        payee->SUBCATEGID = transaction_->SUBCATEGID;
+        Model_Payee::instance().save(payee);
     }
-
-    transaction_->TOACCOUNTID;
-
-    if (bTransfer)
+    else
     {
         if (transaction_->TOACCOUNTID < 1 || transaction_->TOACCOUNTID == newAccountID_)
         {
@@ -629,13 +618,6 @@ bool mmTransDialog::validateData()
         }
 
         transaction_->PAYEEID = -1;
-    }
-    else
-    {
-        Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
-        payee->CATEGID = transaction_->CATEGID;
-        payee->SUBCATEGID = transaction_->SUBCATEGID;
-        Model_Payee::instance().save(payee);
     }
     return true;
 }
@@ -694,7 +676,7 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
     if ( w )
         object_in_focus_ = w->GetId();
 
-    if (!edit_ && textNotes_->GetValue() == notesTip_ && object_in_focus_ == ID_DIALOG_TRANS_TEXTNOTES)
+    if (textNotes_->GetValue() == notesTip_ && object_in_focus_ == ID_DIALOG_TRANS_TEXTNOTES)
     {
         textNotes_->SetValue("");
         textNotes_->SetForegroundColour(notesColour_);
@@ -705,24 +687,26 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
 void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT];
-    mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
+    //mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
+
     if (transaction_->CATEGID > -1)
     {
+        Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
         wxString sAmount = textAmount_->GetValue();
         if (! CurrencyFormatter::formatCurrencyToDouble(sAmount, transaction_->TRANSAMOUNT))
             transaction_->TRANSAMOUNT = 0;
-        pSplitEntry->splitAmount_  = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
-        pSplitEntry->categID_      = transaction_->CATEGID;
-        pSplitEntry->subCategID_   = transaction_->SUBCATEGID;
-        split_->addSplit(pSplitEntry);
+        split->SPLITTRANSAMOUNT = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
+        split->CATEGID = transaction_->CATEGID;
+        split->SUBCATEGID = transaction_->SUBCATEGID;
+        m_splits->push_back(*split);
     }
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
     
-    SplitTransactionDialog dlg(&this->m_local_splits, this, transaction_type_->GetSelection(), split_);
+    SplitTransactionDialog dlg(&this->m_local_splits, this, transaction_type_->GetSelection());
     if (dlg.ShowModal() == wxID_OK)
     {
-        double amount = split_->getTotalSplits();
+        double amount = Model_Splittransaction::instance().get_total(*m_splits);
         if (transaction_type_->GetSelection() == DEF_TRANSFER && amount < 0)
             amount = - amount;
         wxString dispAmount = CurrencyFormatter::float2String(amount);
@@ -788,7 +772,7 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
         // Only for new transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
         if (transaction_->PAYEEID != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1
-            && !edit_ && !categUpdated_ && split_->numEntries() == 0)
+            && !categUpdated_ && m_splits->empty())
         {
             Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             // if payee has memory of last category used then display last category for payee
@@ -825,25 +809,23 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (split_->numEntries() != 1)
+        if (m_splits->size() != 1)
         {
             transaction_->TRANSAMOUNT = 0;
         }
         else
         {
-            transaction_->CATEGID = split_->entries_[0]->categID_;
-            transaction_->SUBCATEGID = split_->entries_[0]->subCategID_;
-            transaction_->TRANSAMOUNT = split_->entries_[0]->splitAmount_;
+            transaction_->CATEGID = m_splits->begin()->CATEGID;
+            transaction_->SUBCATEGID = m_splits->begin()->SUBCATEGID;
+            transaction_->TRANSAMOUNT = m_splits->begin()->SPLITTRANSAMOUNT;
 
             if (transaction_->TRANSAMOUNT < 0)
             {
                 transaction_->TRANSAMOUNT = -transaction_->TRANSAMOUNT;
                 transaction_type_->SetStringSelection(wxGetTranslation(TRANS_TYPE_WITHDRAWAL_STR));
             }
-            split_->removeSplitByIndex(0);
         }
-        wxString dispAmount = CurrencyFormatter::float2String(transaction_->TRANSAMOUNT);
-        textAmount_->SetValue(dispAmount);
+        textAmount_->SetValue(transaction_->TRANSAMOUNT);
     }
     SetSplitState();
 }
@@ -965,54 +947,14 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     wxStringClientData* status_obj = (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
     if (status_obj) transaction_->STATUS = Model_Checking::toShortStatus(status_obj->GetData());
 
-    mmBankTransaction* pTransaction;
-    if (!edit_)
-    {
-        mmBankTransaction* pTemp(new mmBankTransaction(core_));
-        pTransaction = pTemp;
-    }
-    else
-    {
-        pTransaction = core_->bTransactionList_.getBankTransactionPtr(
-            transaction_->TRANSID);
-    }
-
     transaction_->NOTES = textNotes_->GetValue();
     transaction_->TRANSACTIONNUMBER = textNumber_->GetValue();
 
-    pTransaction->accountID_ = newAccountID_;
-    pTransaction->toAccountID_ = transaction_->TOACCOUNTID;
-    pTransaction->payeeID_ = transaction_->PAYEEID;
-    Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
-    if (payee)
-        pTransaction->payeeStr_ = payee->PAYEENAME;
-    pTransaction->transType_ = transaction_->TRANSCODE;
-    pTransaction->amt_ = transaction_->TRANSAMOUNT;
-    pTransaction->status_ = transaction_->STATUS;
-    pTransaction->transNum_ = textNumber_->GetValue();
-    pTransaction->notes_ = transaction_->NOTES;
-    pTransaction->categID_ = transaction_->CATEGID;
-    pTransaction->subcategID_ = transaction_->SUBCATEGID;
-    pTransaction->date_ = dpc_->GetValue();
-    pTransaction->toAmt_ = transaction_->TOTRANSAMOUNT;
-
-    *pTransaction->splitEntries_ = *split_;
-
-    if (!edit_)
-    {
-        transID_ = core_->bTransactionList_.addTransaction(pTransaction);
-    }
-    else
-    {
-        core_->bTransactionList_.UpdateTransaction(pTransaction);
-        transID_ = pTransaction->transactionID();
-    }
+    transaction_->ACCOUNTID = newAccountID_;
+    transaction_->TOACCOUNTID = transaction_->TOACCOUNTID;
+    transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
 
     this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
-    Model_Checking::instance().save(this->transaction_);
-    for (auto& item: m_local_splits) item.TRANSID = this->transaction_->TRANSID;
-    Model_Splittransaction::instance().save(m_local_splits);
-    this->m_splits->swap(this->m_local_splits);
 
     EndModal(wxID_OK);
 }

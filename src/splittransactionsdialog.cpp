@@ -47,8 +47,7 @@ SplitTransactionDialog::SplitTransactionDialog( )
 SplitTransactionDialog::SplitTransactionDialog(
     Model_Splittransaction::Data_Set* splits 
     , wxWindow* parent
-    , int transType
-    , mmSplitTransactionEntries* splt)
+    , int transType)
     : m_splits(splits)
 {
     //std::copy(m_splits->begin(), m_splits->end(), m_local_splits.begin());

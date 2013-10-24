@@ -992,7 +992,6 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
         &splits
         , this
         , transType
-        , core_->bTransactionList_.getBankTransactionPtr(transID)->splitEntries_
     );
     splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
@@ -1591,7 +1590,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
     if (transaction)
     {
-        mmTransDialog dlg(transaction, &split, this, m_cp->core_);
+        mmTransDialog dlg(transaction, &split, this);
         dlg.SetDialogTitle(_("New/Edit Transaction"));
         if (dlg.ShowModal() == wxID_OK)
         {
@@ -1619,8 +1618,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 
     transaction->ACCOUNTID = m_cp->m_AccountID;
     transaction->TRANSDATE = trx_date.FormatISODate();
-    mmTransDialog dlg(transaction, &split, this
-        , m_cp->core_, false);
+    mmTransDialog dlg(transaction, &split, this);
     dlg.SetDialogTitle(_("New/Edit Transaction"));
 
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;

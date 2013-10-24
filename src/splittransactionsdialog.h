@@ -46,10 +46,9 @@ public:
     /// Constructors
     SplitTransactionDialog();
     SplitTransactionDialog(
-        Model_Splittransaction::Data_Set* splits,
-        wxWindow* parent,
-        int transType,
-        mmSplitTransactionEntries* splt //TODO: delete
+        Model_Splittransaction::Data_Set* splits
+        , wxWindow* parent
+        , int transType
         );
 
     /// Creation

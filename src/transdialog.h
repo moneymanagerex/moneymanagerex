@@ -49,8 +49,6 @@ public:
         Model_Checking::Data *transaction
         , Model_Splittransaction::Data_Set* split
         , wxWindow* parent
-        , mmCoreDB* core
-        , bool edit = true
     );
 
     bool Create( wxWindow* parent
@@ -62,10 +60,6 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getTransID()
-    {
-        return transID_;
-    }
     int getAccountID()
     {
         return newAccountID_;
@@ -123,15 +117,13 @@ private:
     Model_Checking::Data * transaction_;
     Model_Splittransaction::Data_Set* m_splits;
     Model_Splittransaction::Data_Set m_local_splits;
-    mmSplitTransactionEntries* split_;
+
     int accountID_;
     int newAccountID_;
     int referenceAccountID_;    // used for transfer transactions
-    int transID_;
-    mmCoreDB* core_; // TODO
+
     wxWindow* parent_;
 
-    bool edit_; //Deprecated
     bool categUpdated_;
     bool bBestChoice_;
     wxString categStrykes_;
