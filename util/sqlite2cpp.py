@@ -176,7 +176,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
         
         s += '''
-        Data(Self* view) 
+        Data(Self* view = 0) 
         {
             view_ = view;
         '''

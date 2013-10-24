@@ -32,6 +32,20 @@ public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 public:
+    struct Full_Data: Data
+    {
+        Full_Data(): Data(0) {}
+        Full_Data(const Data& r): Data(r) {}
+
+        ~Full_Data(){}
+        wxString ACCOUNTNAME;
+        wxString PAYEENAME;
+        wxString CATEGNAME;
+        wxString SUBCATEGNAME;
+    };
+    typedef std::vector<Full_Data> Full_Data_Set;
+
+public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {
     };

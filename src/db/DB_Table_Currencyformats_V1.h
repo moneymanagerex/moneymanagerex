@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
+ *          AUTO GENERATED at 2013-10-24 16:49:19.314909.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -185,7 +185,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             return this->id() < r->id();
         }
 
-        Data(Self* view) 
+        Data(Self* view = 0) 
         {
             view_ = view;
         
