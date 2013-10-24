@@ -96,8 +96,8 @@ void SplitTransactionDialog::DataToControls()
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
         data.push_back(wxVariant(CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT)));
         lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
+        if (lcSplit_->GetItemCount()-1 == selectedIndex_) lcSplit_->SelectRow(selectedIndex_);
     }
-    lcSplit_->SelectRow(selectedIndex_);
     UpdateSplitTotal();
     itemButtonNew_->SetFocus();
 }

@@ -88,7 +88,8 @@ void SplitDetailDialog::DataToControls()
     bCategory_->SetLabel(category_name);
     choiceType_->SetSelection(localTransType_);
 
-    textAmount_->SetValue(split_->SPLITTRANSAMOUNT);
+    if (split_->SPLITTRANSAMOUNT)
+        textAmount_->SetValue(split_->SPLITTRANSAMOUNT);
     textAmount_->SetFocus();
 
 }
