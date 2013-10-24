@@ -961,9 +961,9 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     textNotes_->SetFocus();
     transaction_->NOTES = textNotes_->GetValue();
 
-    wxStringClientData* status_obj = (wxStringClientData *) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
-    if (status_obj) transaction_->STATUS = status_obj->GetData().Left(1);
-    transaction_->STATUS.Replace("N", "");
+    transaction_->STATUS = "";
+    wxStringClientData* status_obj = (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
+    if (status_obj) transaction_->STATUS = Model_Checking::toShortStatus(status_obj->GetData());
 
     mmBankTransaction* pTransaction;
     if (!edit_)

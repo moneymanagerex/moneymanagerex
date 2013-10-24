@@ -119,12 +119,7 @@ public:
     }
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSDATE(date.FormatISODate(), op); }
-    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL)
-    {
-        wxString s = all_status()[status].Left(1);
-        s.Replace("N", "");
-        return DB_Table_CHECKINGACCOUNT_V1::STATUS(s, op);
-    }
+    static DB_Table_CHECKINGACCOUNT_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::STATUS(toShortStatus(all_status()[status]), op); }
     static DB_Table_CHECKINGACCOUNT_V1::TRANSCODE TRANSCODE(TYPE type, OP op=EQUAL) { return DB_Table_CHECKINGACCOUNT_V1::TRANSCODE(all_type()[type], op); }
 public:
     static wxDate TRANSDATE(const Data* r) { return Model::to_date(r->TRANSDATE); }
@@ -176,6 +171,12 @@ public:
         return sum;
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
+    static wxString toShortStatus(const wxString& fullStatus)
+    {
+        wxString s = fullStatus.Left(1);
+        s.Replace("N", "");
+        return s;
+    }
 };
 
 #endif // 
