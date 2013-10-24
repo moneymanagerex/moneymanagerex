@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -266,83 +266,6 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterByCURRENCYID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CURRENCYID < y.CURRENCYID;
-        }
-    };
-    struct SorterByCURRENCYNAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CURRENCYNAME < y.CURRENCYNAME;
-        }
-    };
-    struct SorterByPFX_SYMBOL
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.PFX_SYMBOL < y.PFX_SYMBOL;
-        }
-    };
-    struct SorterBySFX_SYMBOL
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SFX_SYMBOL < y.SFX_SYMBOL;
-        }
-    };
-    struct SorterByDECIMAL_POINT
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.DECIMAL_POINT < y.DECIMAL_POINT;
-        }
-    };
-    struct SorterByGROUP_SEPARATOR
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.GROUP_SEPARATOR < y.GROUP_SEPARATOR;
-        }
-    };
-    struct SorterByUNIT_NAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.UNIT_NAME < y.UNIT_NAME;
-        }
-    };
-    struct SorterByCENT_NAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CENT_NAME < y.CENT_NAME;
-        }
-    };
-    struct SorterBySCALE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SCALE < y.SCALE;
-        }
-    };
-    struct SorterByBASECONVRATE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.BASECONVRATE < y.BASECONVRATE;
-        }
-    };
-    struct SorterByCURRENCY_SYMBOL
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CURRENCY_SYMBOL < y.CURRENCY_SYMBOL;
-        }
-    };
     wxString name() const { return "CURRENCYFORMATS_V1"; }
 
     DB_Table_CURRENCYFORMATS_V1() 

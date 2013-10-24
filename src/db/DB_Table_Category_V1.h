@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -165,20 +165,6 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterByCATEGID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CATEGID < y.CATEGID;
-        }
-    };
-    struct SorterByCATEGNAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CATEGNAME < y.CATEGNAME;
-        }
-    };
     wxString name() const { return "CATEGORY_V1"; }
 
     DB_Table_CATEGORY_V1() 

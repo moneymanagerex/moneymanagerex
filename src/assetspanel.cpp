@@ -418,17 +418,17 @@ void mmAssetsPanel::CreateControls()
 void mmAssetsPanel::sortTable()
 {
     std::sort(this->m_assets.begin(), this->m_assets.end());
-    std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterBySTARTDATE());
+    std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterBySTARTDATE());
     switch (this->m_listCtrlAssets->m_selected_col)
     {
     case COL_NAME:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByASSETNAME());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETNAME());
         break;
     case COL_TYPE:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByASSETTYPE());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByASSETTYPE());
         break;
     case COL_VALUE_INITIAL:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByVALUE());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByVALUE());
         break;
     case COL_VALUE_CURRENT:
         std::stable_sort(this->m_assets.begin(), this->m_assets.end()
@@ -440,7 +440,7 @@ void mmAssetsPanel::sortTable()
     case COL_DATE:
         break;
     case COL_NOTES:
-        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), Model_Asset::SorterByNOTES());
+        std::stable_sort(this->m_assets.begin(), this->m_assets.end(), SorterByNOTES());
     default:
         break;
     }

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -288,97 +288,6 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterByACCOUNTID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ACCOUNTID < y.ACCOUNTID;
-        }
-    };
-    struct SorterByACCOUNTNAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ACCOUNTNAME < y.ACCOUNTNAME;
-        }
-    };
-    struct SorterByACCOUNTTYPE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ACCOUNTTYPE < y.ACCOUNTTYPE;
-        }
-    };
-    struct SorterByACCOUNTNUM
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ACCOUNTNUM < y.ACCOUNTNUM;
-        }
-    };
-    struct SorterBySTATUS
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.STATUS < y.STATUS;
-        }
-    };
-    struct SorterByNOTES
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.NOTES < y.NOTES;
-        }
-    };
-    struct SorterByHELDAT
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.HELDAT < y.HELDAT;
-        }
-    };
-    struct SorterByWEBSITE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.WEBSITE < y.WEBSITE;
-        }
-    };
-    struct SorterByCONTACTINFO
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CONTACTINFO < y.CONTACTINFO;
-        }
-    };
-    struct SorterByACCESSINFO
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ACCESSINFO < y.ACCESSINFO;
-        }
-    };
-    struct SorterByINITIALBAL
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.INITIALBAL < y.INITIALBAL;
-        }
-    };
-    struct SorterByFAVORITEACCT
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.FAVORITEACCT < y.FAVORITEACCT;
-        }
-    };
-    struct SorterByCURRENCYID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CURRENCYID < y.CURRENCYID;
-        }
-    };
     wxString name() const { return "ACCOUNTLIST_V1"; }
 
     DB_Table_ACCOUNTLIST_V1() 

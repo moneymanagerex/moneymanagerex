@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -202,41 +202,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterBySPLITTRANSID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SPLITTRANSID < y.SPLITTRANSID;
-        }
-    };
-    struct SorterByTRANSID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.TRANSID < y.TRANSID;
-        }
-    };
-    struct SorterByCATEGID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CATEGID < y.CATEGID;
-        }
-    };
-    struct SorterBySUBCATEGID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SUBCATEGID < y.SUBCATEGID;
-        }
-    };
-    struct SorterBySPLITTRANSAMOUNT
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SPLITTRANSAMOUNT < y.SPLITTRANSAMOUNT;
-        }
-    };
     wxString name() const { return "SPLITTRANSACTIONS_V1"; }
 
     DB_Table_SPLITTRANSACTIONS_V1() 

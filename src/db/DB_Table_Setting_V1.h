@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,27 +176,6 @@ struct DB_Table_SETTING_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterBySETTINGID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SETTINGID < y.SETTINGID;
-        }
-    };
-    struct SorterBySETTINGNAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SETTINGNAME < y.SETTINGNAME;
-        }
-    };
-    struct SorterBySETTINGVALUE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SETTINGVALUE < y.SETTINGVALUE;
-        }
-    };
     wxString name() const { return "SETTING_V1"; }
 
     DB_Table_SETTING_V1() 

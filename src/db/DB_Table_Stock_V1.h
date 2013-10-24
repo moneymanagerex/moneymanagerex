@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -270,83 +270,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterBySTOCKID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.STOCKID < y.STOCKID;
-        }
-    };
-    struct SorterByHELDAT
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.HELDAT < y.HELDAT;
-        }
-    };
-    struct SorterByPURCHASEDATE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.PURCHASEDATE < y.PURCHASEDATE;
-        }
-    };
-    struct SorterBySTOCKNAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.STOCKNAME < y.STOCKNAME;
-        }
-    };
-    struct SorterBySYMBOL
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.SYMBOL < y.SYMBOL;
-        }
-    };
-    struct SorterByNUMSHARES
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.NUMSHARES < y.NUMSHARES;
-        }
-    };
-    struct SorterByPURCHASEPRICE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.PURCHASEPRICE < y.PURCHASEPRICE;
-        }
-    };
-    struct SorterByNOTES
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.NOTES < y.NOTES;
-        }
-    };
-    struct SorterByCURRENTPRICE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.CURRENTPRICE < y.CURRENTPRICE;
-        }
-    };
-    struct SorterByVALUE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.VALUE < y.VALUE;
-        }
-    };
-    struct SorterByCOMMISSION
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.COMMISSION < y.COMMISSION;
-        }
-    };
     wxString name() const { return "STOCK_V1"; }
 
     DB_Table_STOCK_V1() 

@@ -268,17 +268,6 @@ struct DB_Table_%s : public DB_Table
     size_t num_columns() const { return NUM_COLUMNS; }
 ''' % len(self._fields)
 
-        for field in self._fields:
-            s += '''
-    struct SorterBy%s
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.%s < y.%s;
-        }
-    };''' % (field['name'], field['name'], field['name'])
-
-        
         s += '''
     wxString name() const { return "%s"; }
 ''' % self._table
@@ -479,9 +468,9 @@ struct DB_Table_%s : public DB_Table
 ''' 
         return s
 
-def generate_base_class(header):
-   fp = open('DB_Table.h', 'w')
-   code = header + '''
+def generate_base_class(header, fields=set):
+    fp = open('DB_Table.h', 'w')
+    code = header + '''
 #ifndef DB_TABLE_H
 #define DB_TABLE_H
 
@@ -598,11 +587,25 @@ typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_an
  
     return result;
 }
+'''
+    for field in fields:
+        code += '''
+struct SorterBy%s
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.%s< y.%s;
+    }
+};
+''' % (field, field, field)
+
+    code += '''
 #endif // 
 '''
-   fp = open('db_table.h', 'w')
-   fp.write(code)
-   fp.close
+    fp = open('db_table.h', 'w')
+    fp.write(code)
+    fp.close
 
 if __name__ == '__main__':
     header =  '''// -*- C++ -*-
@@ -623,7 +626,6 @@ if __name__ == '__main__':
 //=============================================================================
 '''% (os.path.basename(__file__), str(datetime.datetime.now()))
 
-    generate_base_class(header)
     conn, cur, sql_file = None, None, None
     try:
         sql_file = sys.argv[1]
@@ -640,10 +642,15 @@ if __name__ == '__main__':
 
     cur.executescript(sql)
   
+    all_fields = set()
     for table, sql in get_table_list(cur):
         fields = _table_info(cur, table)
         view = DB_Table(table, fields)
         view.generate_class(header, sql)
+        for field in fields:
+            all_fields.add(field['name'])
+
+    generate_base_class(header, all_fields)
 
     conn.close()
 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -233,62 +233,6 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterByASSETID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ASSETID < y.ASSETID;
-        }
-    };
-    struct SorterBySTARTDATE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.STARTDATE < y.STARTDATE;
-        }
-    };
-    struct SorterByASSETNAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ASSETNAME < y.ASSETNAME;
-        }
-    };
-    struct SorterByVALUE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.VALUE < y.VALUE;
-        }
-    };
-    struct SorterByVALUECHANGE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.VALUECHANGE < y.VALUECHANGE;
-        }
-    };
-    struct SorterByNOTES
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.NOTES < y.NOTES;
-        }
-    };
-    struct SorterByVALUECHANGERATE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.VALUECHANGERATE < y.VALUECHANGERATE;
-        }
-    };
-    struct SorterByASSETTYPE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.ASSETTYPE < y.ASSETTYPE;
-        }
-    };
     wxString name() const { return "ASSETS_V1"; }
 
     DB_Table_ASSETS_V1() 

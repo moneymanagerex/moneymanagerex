@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 09:23:15.645831.
+ *          AUTO GENERATED at 2013-10-24 14:47:24.620134.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,27 +176,6 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
-    struct SorterByINFOID
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.INFOID < y.INFOID;
-        }
-    };
-    struct SorterByINFONAME
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.INFONAME < y.INFONAME;
-        }
-    };
-    struct SorterByINFOVALUE
-    { 
-        bool operator()(const Data& x, const Data& y)
-        {
-            return x.INFOVALUE < y.INFOVALUE;
-        }
-    };
     wxString name() const { return "INFOTABLE_V1"; }
 
     DB_Table_INFOTABLE_V1() 
