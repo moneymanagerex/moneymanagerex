@@ -40,6 +40,7 @@ public:
     {
         Model_Setting& ins = Singleton<Model_Setting>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
 

@@ -69,6 +69,7 @@ public:
     {
         Model_Checking& ins = Singleton<Model_Checking>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
 public:

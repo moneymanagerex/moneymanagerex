@@ -78,6 +78,7 @@ public:
     {
         Model_Account& ins = Singleton<Model_Account>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
 public:

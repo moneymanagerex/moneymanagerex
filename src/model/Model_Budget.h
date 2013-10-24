@@ -86,6 +86,7 @@ public:
     {
         Model_Budget& ins = Singleton<Model_Budget>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)

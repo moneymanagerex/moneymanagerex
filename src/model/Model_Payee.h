@@ -44,6 +44,7 @@ public:
     {
         Model_Payee& ins = Singleton<Model_Payee>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
 public:

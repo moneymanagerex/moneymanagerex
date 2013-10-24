@@ -44,6 +44,7 @@ public:
     {
         Model_Infotable& ins = Singleton<Model_Infotable>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
 

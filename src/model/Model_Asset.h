@@ -73,6 +73,7 @@ public:
     {
         Model_Asset& ins = Singleton<Model_Asset>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
     static wxString version()

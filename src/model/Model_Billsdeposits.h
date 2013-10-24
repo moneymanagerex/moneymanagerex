@@ -56,6 +56,7 @@ public:
     {
         Model_Billsdeposits& ins = Singleton<Model_Billsdeposits>::instance();
         ins.db_ = db;
+        ins.all();
         return ins;
     }
 public:
