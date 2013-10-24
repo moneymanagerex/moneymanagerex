@@ -37,6 +37,47 @@ public:
     };
 
 public:
+    enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY };
+    static wxArrayString all_period()
+    {
+        wxArrayString period;
+        // keep the sequence with PERIOD_ENUM
+        period.Add(wxTRANSLATE("None"));
+        period.Add(wxTRANSLATE("Weekly"));
+        period.Add(wxTRANSLATE("Bi-Weekly"));
+        period.Add(wxTRANSLATE("Monthly"));
+        period.Add(wxTRANSLATE("Bi-Monthly"));
+        period.Add(wxTRANSLATE("Quarterly"));
+        period.Add(wxTRANSLATE("Half-Yearly"));
+        period.Add(wxTRANSLATE("Yearly"));
+        period.Add(wxTRANSLATE("Daily"));
+        return period;
+    }
+    static PERIOD_ENUM period(const Data* r)
+    {
+        if (r->PERIOD.CmpNoCase("None") == 0)
+            return NONE;
+        else if (r->PERIOD.CmpNoCase("Weekly") == 0)
+            return WEEKLY;
+        else if (r->PERIOD.CmpNoCase("Bi-Weekly") == 0)
+            return BIWEEKLY;
+        else if (r->PERIOD.CmpNoCase("Monthly") == 0)
+            return MONTHLY;
+        else if (r->PERIOD.CmpNoCase("Bi-Monthly") == 0)
+            return BIMONTHLY;
+        else if (r->PERIOD.CmpNoCase("Quarterly") == 0)
+            return QUARTERLY;
+        else if (r->PERIOD.CmpNoCase("Half-Yearly") == 0)
+            return HALFYEARLY;
+        else if (r->PERIOD.CmpNoCase("Yearly") == 0)
+            return YEARLY;
+        else if (r->PERIOD.CmpNoCase("Daily") == 0)
+            return DAILY;
+        else
+            return NONE;
+    }
+    static PERIOD_ENUM period(const Data& r) { return period(&r); }
+    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL) { return DB_Table_BUDGETTABLE_V1::PERIOD(all_period()[period], op); }
     static Model_Budget& instance()
     {
         return Singleton<Model_Budget>::instance();
