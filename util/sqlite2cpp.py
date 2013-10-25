@@ -74,7 +74,12 @@ struct DB_Table_%s : public DB_Table
     Cache cache_;
     ~DB_Table_%s() 
     {
+        destroy_cache();
+    }
+    void destroy_cache()
+    {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        cache_.clear();
     }
 ''' % (self._table.upper(), self._table.upper(), self._table, self._table, self._table)
         
@@ -82,6 +87,7 @@ struct DB_Table_%s : public DB_Table
     bool ensure(wxSQLite3Database* db) const
     {
         if (exists(db)) return true;
+        this->destroy_cache();
 
         try
         {
@@ -461,7 +467,6 @@ struct DB_Table_%s : public DB_Table
     }
 '''
 
-            
         s += '''
 };
 #endif //
@@ -595,7 +600,7 @@ struct SorterBy%s
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return x.%s< y.%s;
+        return x.%s < y.%s;
     }
 };
 ''' % (field, field, field)
