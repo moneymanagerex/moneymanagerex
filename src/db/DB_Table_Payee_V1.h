@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-24 16:49:19.314909.
+ *          AUTO GENERATED at 2013-10-25 10:39:04.545992.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -29,7 +29,12 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     Cache cache_;
     ~DB_Table_PAYEE_V1() 
     {
+        destroy_cache();
+    }
+    void destroy_cache()
+    {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
+        cache_.clear();
     }
 
     bool ensure(wxSQLite3Database* db) const
