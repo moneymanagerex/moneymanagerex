@@ -400,10 +400,10 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
-mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame, mmCoreDB* core) :
+mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame) :
     wxWizard(frame,wxID_ANY,_("Add Account Wizard"),
     wxBitmap(addacctwiz_xpm),wxDefaultPosition,
-    wxDEFAULT_DIALOG_STYLE), m_core(core), acctID_(-1)
+    wxDEFAULT_DIALOG_STYLE), acctID_(-1)
 {
     // a wizard page may be either an object of predefined class
     page1 = new wxWizardPageSimple(this);
@@ -3002,7 +3002,7 @@ void mmGUIFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 {
-    mmAddAccountWizard* wizard = new mmAddAccountWizard(this, m_core.get());
+    mmAddAccountWizard* wizard = new mmAddAccountWizard(this);
     wizard->CenterOnParent();
     wizard->RunIt(true);
 

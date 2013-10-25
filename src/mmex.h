@@ -111,11 +111,10 @@ private:
 class mmAddAccountWizard : public wxWizard
 {
 public:
-    mmAddAccountWizard(wxFrame *frame, mmCoreDB* core);
+    mmAddAccountWizard(wxFrame *frame);
     void RunIt(bool modal);
     wxString accountName_;
 
-    mmCoreDB* m_core;
     int acctID_;
 
 private:
