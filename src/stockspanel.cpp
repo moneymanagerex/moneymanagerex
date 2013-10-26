@@ -414,9 +414,42 @@ void mmStocksPanel::CreateControls()
     updateExtraStocksData(-1);
 }
 
-void mmStocksPanel::sortTable()
+void StocksListCtrl::sortTable()
 {
-    // TODO
+    std::sort(m_stocks.begin(), m_stocks.end());
+    switch (m_selected_col)
+    {
+    case StocksListCtrl::COL_DATE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByPURCHASEDATE());
+        break;
+    case StocksListCtrl::COL_NAME:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterBySTOCKNAME());
+        break;
+    case StocksListCtrl::COL_NUMBER:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNUMSHARES());
+        break;
+    case StocksListCtrl::COL_VALUE:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByVALUE());
+        break;
+    case StocksListCtrl::COL_GAIN_LOSS:
+        std::stable_sort(m_stocks.begin(), m_stocks.end()
+            , [](const Model_Stock::Data& x, const Model_Stock::Data& y)
+        {
+            double valueX = x.VALUE - ((x.NUMSHARES * x.PURCHASEPRICE) + x.COMMISSION);
+            double valueY = y.VALUE - ((y.NUMSHARES * y.PURCHASEPRICE) + y.COMMISSION);
+            return valueX < valueY;
+        });
+        break;
+    case StocksListCtrl::COL_CURRENT:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByCURRENTPRICE());
+        break;
+    case StocksListCtrl::COL_NOTES:
+        std::stable_sort(m_stocks.begin(), m_stocks.end(), SorterByNOTES());
+        break;
+    default:
+        break;
+    }
+    if (!m_asc) std::reverse(m_stocks.begin(), m_stocks.end());
 }
 
 int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
@@ -430,8 +463,10 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     item.SetImage(asc ? 3 : 2);
     SetColumn(col, item);
 
-    int cnt = 0, selected_item = -1;
     m_stocks = Model_Stock::instance().find(Model_Stock::HELDAT(stock_panel_->accountID_));
+    sortTable();
+
+    int cnt = 0, selected_item = -1;
     for (const auto& stock: m_stocks)
     {
         if (id == stock.STOCKID)

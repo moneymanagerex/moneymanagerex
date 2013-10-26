@@ -81,6 +81,7 @@ private:
     std::map<int, wxString> ColName_;
     wxImageList* m_imageList;
     double getGainLoss(long item) const;
+    void sortTable();
 };
 
 /* ------------------------------------------------------- */
@@ -129,7 +130,7 @@ public:
 private:
     wxStaticText* stock_details_;
     void call_dialog(int selectedIndex);
-    void sortTable();
+    void sortTable() {}
 
     wxStaticText* header_text_;
     wxStaticText* header_total_;
