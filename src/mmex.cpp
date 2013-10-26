@@ -3112,10 +3112,13 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 
     if ( dlg.ShowModal() == wxID_OK )
     {
-        if (gotoAccountID_ == dlg.getToAccountID() || gotoAccountID_ == dlg.getAccountID())
+        gotoAccountID_ = dlg.getAccountID();
+        refreshRequested_ = true;
+        Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
+        if (account)
         {
-            refreshRequested_ = true;
-            createCheckingAccountPage(dlg.getAccountID());
+            setAccountNavTreeSection(account->ACCOUNTNAME);
+            createCheckingAccountPage(gotoAccountID_);
         }
     }
 }

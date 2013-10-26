@@ -59,7 +59,7 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID() {return newAccountID_;}
+    int getAccountID() { return newAccountID_; }
     int getToAccountID() { return transaction_->TOACCOUNTID; }
     int getTransactionID() { return transaction_->TRANSID; }
 
