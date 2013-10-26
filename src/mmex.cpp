@@ -3115,7 +3115,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
         if (gotoAccountID_ == dlg.getToAccountID() || gotoAccountID_ == dlg.getAccountID())
         {
             refreshRequested_ = true;
-            createCheckingAccountPage(gotoAccountID_);
+            createCheckingAccountPage(dlg.getAccountID());
         }
     }
 }
