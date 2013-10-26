@@ -209,6 +209,7 @@ public:
                 all_categoris.push_back(std::make_pair(wxTRANSLATE("Transfer"), sub_categoris));
             }
 
+            this->Begin();
             for (const auto& record : all_categoris)
             {
                 Model_Category::Data* category = Model_Category::instance().create();
@@ -222,6 +223,7 @@ public:
                     Model_Subcategory::instance().save(sub_category);
                 }
             }
+            this->Commit();
         }
         return all(db_, col, asc);
     }

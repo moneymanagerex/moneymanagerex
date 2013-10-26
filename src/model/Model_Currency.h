@@ -213,6 +213,8 @@ public:
                 std::make_tuple("ZMK", "Zambian kwacha"        , L"ZK", L"", L"", L"", 1, 1),
                 std::make_tuple("ZWR", "Zimbabwean dollar"     , L"Z$", L"", L"", L"", 100, 1)
             };
+
+            this->Begin();
             for (const auto& i : all_currency)
             {
                 Data *currency = this->create();
@@ -230,6 +232,7 @@ public:
 
                 currency->save(this->db_);
             }
+            this->Commit();
         }
         return all(db_, col, asc);
     }
