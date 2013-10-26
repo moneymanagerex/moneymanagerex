@@ -97,6 +97,8 @@ mmCheckingPanel::mmCheckingPanel(
     : filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
+    , m_account(Model_Account::instance().get(accountID))
+    , m_currency(Model_Account::currency(m_account))
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -802,9 +804,15 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_WITHDRAWAL:
-        // TODO
+        if (Model_Checking::type(&tran) == Model_Checking::WITHDRAWAL)
+            return Model_Currency::toCurrency(tran.TRANSAMOUNT, this->m_currency);
+        else 
+            return "";
     case TransactionListCtrl::COL_DEPOSIT:
-        // TODO
+        if (Model_Checking::type(&tran) == Model_Checking::DEPOSIT)
+			return Model_Currency::toCurrency(tran.TRANSAMOUNT, this->m_currency);
+        else
+            return "";
     case TransactionListCtrl::COL_BALANCE:
         // TODO
     case TransactionListCtrl::COL_NOTES:

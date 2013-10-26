@@ -23,8 +23,8 @@
 #include "mmpanelbase.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Account.h"
 //----------------------------------------------------------------------------
-class mmBankTransaction;
 class mmCheckingPanel;
 class mmFilterTransactionsDialog;
 //----------------------------------------------------------------------------
@@ -228,6 +228,8 @@ private:
 
     TransactionListCtrl *m_listCtrlAccount;
     int m_AccountID;
+    Model_Account::Data* m_account;
+    Model_Currency::Data* m_currency;
     wxScopedPtr<wxImageList> m_imageList;
     Model_Checking::Full_Data_Set m_trans;
 
