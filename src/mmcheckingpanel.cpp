@@ -90,16 +90,14 @@ END_EVENT_TABLE();
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(
-    mmCoreDB* core, int accountID,
+    int accountID,
     wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name
     )
-    : core_(core)
-    , filteredBalance_(0.0)
+    : filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
 {
-    wxASSERT(core_);
     Create(parent, winid, pos, size, style, name);
 }
 //----------------------------------------------------------------------------
@@ -272,7 +270,6 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
     //Initialization
     account_balance_ = 0.0, reconciled_balance_ = 0.0;
-    core_->bTransactionList_.LoadAccountTransactions(m_AccountID, account_balance_, reconciled_balance_);
     filteredBalance_ = 0.0;
     // clear everything
     m_listCtrlAccount->DeleteAllItems();
@@ -865,10 +862,8 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
 
 void mmCheckingPanel::DisplaySplitCategories(int transID)
 {
-    wxString transTypeStr = core_->bTransactionList_.getBankTransactionPtr(transID)->transType_;
-    int transType = 0;
-    if (transTypeStr== TRANS_TYPE_DEPOSIT_STR)  transType = 1;
-    if (transTypeStr== TRANS_TYPE_TRANSFER_STR) transType = 2;
+    const Model_Checking::Data* tran = Model_Checking::instance().get(transID);
+    int transType = Model_Checking::type(tran);
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
@@ -1190,9 +1185,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            m_cp->core_->db_.get()->Begin();
             m_cp->DeleteFlaggedTransactions("F");
-            m_cp->core_->db_.get()->Commit();
         }
     }
     else
@@ -1358,12 +1351,13 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
-    mmBankTransaction* pCopiedTrans =
-        m_cp->core_->bTransactionList_.copyTransaction(m_selectedForCopy, m_cp->m_AccountID, useOriginalDate);
+    Model_Checking::Data* tran = Model_Checking::instance().get(m_selectedForCopy);
+    Model_Checking::Data* copy = Model_Checking::instance().clone(tran);
+    if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
+    Model_Checking::instance().save(copy);
 
-    int transID = pCopiedTrans->transactionID();
     topItemIndex_ = m_selectedIndex;
-    refreshVisualList(transID);
+    refreshVisualList();
 }
 //----------------------------------------------------------------------------
 

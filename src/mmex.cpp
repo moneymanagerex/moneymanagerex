@@ -3633,7 +3633,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
     {
         wxSizer *sizer = cleanupHomePanel();
 
-        checkingAccountPage_ = new mmCheckingPanel(m_core.get(),
+        checkingAccountPage_ = new mmCheckingPanel(
                                    accountID, homePanel_, wxID_STATIC,
                                    wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = checkingAccountPage_;

@@ -19,7 +19,6 @@
 #ifndef _MM_EX_CHECKINGPANEL_H_
 #define _MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
-#include "mmcoredb.h"
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "reports/mmDateRange.h"
@@ -157,7 +156,6 @@ class mmCheckingPanel : public mmPanelBase
 public:
 
     mmCheckingPanel(
-        mmCoreDB* core,
         int accountID,
         wxWindow *parent,
         wxWindowID winid = wxID_ANY,
@@ -177,8 +175,6 @@ public:
     void SetSelectedTransaction(int transID);
 
     void RefreshList();
-
-    mmCoreDB* core_; // TODO
 private:
     enum menu
     {
