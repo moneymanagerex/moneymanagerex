@@ -78,10 +78,8 @@ public:
     double getAmountMax();
     double getAmountMin();
 
-    bool getPayeeCheckBox()
-    {
-        return payeeCheckBox_->GetValue();
-    }
+    bool checkPayee(int payeeID);
+
     int getPayeeID() const;
 
     bool getStatusCheckBox()
@@ -132,6 +130,7 @@ public:
     {
         return bExpandStaus_;
     }
+    bool checkPayeeCheckBox() { return payeeCheckBox_->IsChecked(); }
 
     /// Returns the payee string, when Payee is selected.
     wxString userPayeeStr() const;
@@ -216,6 +215,7 @@ private:
     int subcategID_;
     bool bExpandStaus_;
     int payeeID_;
+    wxString payeeStr_;
     int refAccountID_;
     wxString refAccountStr_;
 };

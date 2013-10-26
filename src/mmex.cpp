@@ -3170,9 +3170,8 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                     continue; // skip
             }
 
-            if (dlg->getPayeeCheckBox())
+            if (!dlg->checkPayee(tran->payeeID_))
             {
-                if (tran->payeeID_ != dlg->getPayeeID())
                     continue; // skip
             }
 

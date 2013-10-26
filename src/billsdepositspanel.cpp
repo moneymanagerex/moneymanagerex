@@ -340,8 +340,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
             if (transFilterDlg_->getDateRangeCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getFromDateCtrl() <= th.nextOccurDate_
                     && transFilterDlg_->getToDateControl() >= th.nextOccurDate_);
-            if (transFilterDlg_->getPayeeCheckBox())
-                toAdd = toAdd && (transFilterDlg_->userPayeeStr() == th.payeeStr_);
+            toAdd = toAdd && transFilterDlg_->checkPayee(th.payeeID_);
             if (transFilterDlg_->getCategoryCheckBox())
                 toAdd = toAdd && (transFilterDlg_->getCategoryID() == th.categID_
                     && (transFilterDlg_->getSubCategoryID() == th.subcategID_ || transFilterDlg_->getSubCategoryID()<0));

@@ -129,6 +129,8 @@ bool mmCheckingPanel::Create(
 
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(this);
+    SetTransactionFilterState(true);
+
     initViewTransactionsHeader();
     initFilterSettings();
 
@@ -183,33 +185,37 @@ void mmCheckingPanel::filterTable()
     this->m_trans.clear();
     for (const auto& tran : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID)))
     {
-        if (transFilterDlg_->getAccountCheckBox() 
-            && (transFilterDlg_->getAccountID() != tran.ACCOUNTID && transFilterDlg_->getAccountID() != tran.TOACCOUNTID)) continue;
+        if (transFilterActive_)
+        {
+            if (transFilterDlg_->getAccountCheckBox()
+                && (transFilterDlg_->getAccountID() != tran.ACCOUNTID && transFilterDlg_->getAccountID() != tran.TOACCOUNTID)) continue;
 
-        //wxLogDebug("Check date? %i trx date:%s %s %s", transFilterDlg_->getDateRangeCheckBox(), tran.TRANSDATE, transFilterDlg_->getFromDateCtrl().GetDateOnly().FormatISODate(), transFilterDlg_->getToDateControl().GetDateOnly().FormatISODate());
-        //if (transFilterDlg_->getDateRangeCheckBox() 
-        //    && !Model_Checking::TRANSDATE(tran).IsBetween(transFilterDlg_->getFromDateCtrl().GetDateOnly()
-        //                                                , transFilterDlg_->getToDateControl().GetDateOnly()
-        //        )
-        //    ) continue;
-
-        if (transFilterDlg_->getCategoryCheckBox() && !(transFilterDlg_->getCategoryID() == tran.CATEGID && transFilterDlg_->getSubCategoryID() == tran.SUBCATEGID)) continue;
-        if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
-        if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
-        if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;
-        if (transFilterDlg_->getAmountRangeCheckBoxMax() && transFilterDlg_->getAmountMax() < tran.TRANSAMOUNT) continue;
-        if (transFilterDlg_->getNumberCheckBox() && transFilterDlg_->getNumber() != tran.TRANSACTIONNUMBER) continue;
-        if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
+            //wxLogDebug("Check date? %i trx date:%s %s %s", transFilterDlg_->getDateRangeCheckBox(), tran.TRANSDATE, transFilterDlg_->getFromDateCtrl().GetDateOnly().FormatISODate(), transFilterDlg_->getToDateControl().GetDateOnly().FormatISODate());
+            if (transFilterDlg_->getDateRangeCheckBox() 
+                && !Model_Checking::TRANSDATE(tran).IsBetween(transFilterDlg_->getFromDateCtrl().GetDateOnly()
+                                                            , transFilterDlg_->getToDateControl().GetDateOnly()
+                    )
+                ) continue;
+            if (Model_Checking::TRANSFER != Model_Checking::type(tran) && !transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
+            if (transFilterDlg_->getCategoryCheckBox() && !(transFilterDlg_->getCategoryID() == tran.CATEGID && transFilterDlg_->getSubCategoryID() == tran.SUBCATEGID)) continue;
+            if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
+            if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
+            if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;
+            if (transFilterDlg_->getAmountRangeCheckBoxMax() && transFilterDlg_->getAmountMax() < tran.TRANSAMOUNT) continue;
+            if (transFilterDlg_->getNumberCheckBox() && transFilterDlg_->getNumber() != tran.TRANSACTIONNUMBER) continue;
+            if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
+        }
 
         Model_Checking::Full_Data full_tran(tran);
         if (Model_Checking::TRANSFER != Model_Checking::type(tran))
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-            if (transFilterDlg_->getPayeeCheckBox())
-            {
-                if (transFilterDlg_->userPayeeStr().CmpNoCase(payee->PAYEENAME)) continue;
-            }
-            full_tran.PAYEENAME = payee->PAYEENAME;
+            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+        }
+        else
+        {
+            const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
+            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME; //TODO: to account
         }
         Model_Category::Data* category = Model_Category::instance().get(tran.CATEGID);
 
@@ -354,7 +360,6 @@ void mmCheckingPanel::CreateControls()
     statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY,
         _("Transaction Filter"));
     itemFlexGridSizerHHeader2->Add(statTextTransFilter_, flags);
-    SetTransactionFilterState(false);
 
     wxStaticText* itemStaticText12 = new wxStaticText( headerPanel,
             ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120,-1));
@@ -918,10 +923,10 @@ void mmCheckingPanel::RefreshList()
 
 void mmCheckingPanel::SetTransactionFilterState(bool active)
 {
-    bitmapTransFilter_->Enable(active || transFilterActive_);
+    /*bitmapTransFilter_->Enable(active || transFilterActive_);
     statTextTransFilter_->Enable(active || transFilterActive_);
     bitmapMainFilter_->Enable(!transFilterActive_);
-    stxtMainFilter_->Enable(!transFilterActive_);
+    stxtMainFilter_->Enable(!transFilterActive_);*/
 }
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)
