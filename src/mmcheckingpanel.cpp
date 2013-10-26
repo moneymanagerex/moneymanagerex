@@ -181,14 +181,18 @@ void mmCheckingPanel::sortTable()
 void mmCheckingPanel::filterTable()
 {
     this->m_trans.clear();
-    for (const auto& tran: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID)))
+    for (const auto& tran : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID)))
     {
-        if (transFilterDlg_->getAccountCheckBox() && transFilterDlg_->getAccountID() != tran.TOACCOUNTID) continue;
-        if (transFilterDlg_->getDateRangeCheckBox() && ! Model_Checking::TRANSDATE(tran).IsBetween(transFilterDlg_->getFromDateCtrl().GetDateOnly(), transFilterDlg_->getToDateControl().GetDateOnly())) continue;
+        if (transFilterDlg_->getAccountCheckBox() 
+            && (transFilterDlg_->getAccountID() != tran.ACCOUNTID && transFilterDlg_->getAccountID() != tran.TOACCOUNTID)) continue;
 
-        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-        if (!payee) continue;
-        if (transFilterDlg_->getPayeeCheckBox() && transFilterDlg_->userPayeeStr() != payee->PAYEENAME) continue;
+        //wxLogDebug("Check date? %i trx date:%s %s %s", transFilterDlg_->getDateRangeCheckBox(), tran.TRANSDATE, transFilterDlg_->getFromDateCtrl().GetDateOnly().FormatISODate(), transFilterDlg_->getToDateControl().GetDateOnly().FormatISODate());
+        //if (transFilterDlg_->getDateRangeCheckBox() 
+        //    && !Model_Checking::TRANSDATE(tran).IsBetween(transFilterDlg_->getFromDateCtrl().GetDateOnly()
+        //                                                , transFilterDlg_->getToDateControl().GetDateOnly()
+        //        )
+        //    ) continue;
+
         if (transFilterDlg_->getCategoryCheckBox() && !(transFilterDlg_->getCategoryID() == tran.CATEGID && transFilterDlg_->getSubCategoryID() == tran.SUBCATEGID)) continue;
         if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
         if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
@@ -197,15 +201,21 @@ void mmCheckingPanel::filterTable()
         if (transFilterDlg_->getNumberCheckBox() && transFilterDlg_->getNumber() != tran.TRANSACTIONNUMBER) continue;
         if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
 
-        filteredBalance_ += tran.TRANSAMOUNT;
-
-        Model_Category::Data* category = Model_Category::instance().get(tran.CATEGID);
-        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(tran.SUBCATEGID);
-
         Model_Checking::Full_Data full_tran(tran);
-        full_tran.CATEGNAME = category ? category->CATEGNAME: "";
-        full_tran.SUBCATEGNAME = sub_category ? sub_category->SUBCATEGNAME: "";
-        full_tran.PAYEENAME = payee->PAYEENAME;
+        if (Model_Checking::TRANSFER != Model_Checking::type(tran))
+        {
+            const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+            if (transFilterDlg_->getPayeeCheckBox())
+            {
+                if (transFilterDlg_->userPayeeStr().CmpNoCase(payee->PAYEENAME)) continue;
+            }
+            full_tran.PAYEENAME = payee->PAYEENAME;
+        }
+        Model_Category::Data* category = Model_Category::instance().get(tran.CATEGID);
+
+        full_tran.CATEGNAME = category ? Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID) : "";
+        //Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(tran.SUBCATEGID);
+        //full_tran.SUBCATEGNAME = sub_category ? sub_category->SUBCATEGNAME: "";
 
         this->m_trans.push_back(full_tran);
     }
@@ -278,7 +288,8 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     m_listCtrlAccount->DeleteAllItems();
 
     // decide whether top or down icon needs to be shown
-    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->g_sortcol, m_listCtrlAccount->g_asc ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC);
+    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->g_sortcol
+        , m_listCtrlAccount->g_asc ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC);
     filterTable();
     sortTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
@@ -369,9 +380,9 @@ void mmCheckingPanel::CreateControls()
 
     /* ---------------------- */
 
-    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this,
-        ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200),
-        wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER );
+    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this
+        , ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200)
+        , wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER );
 
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
@@ -789,7 +800,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 
 wxString mmCheckingPanel::getItem(long item, long column) const
 {
-    if (item < 0 || item >= m_trans.size()) return "";
+    if (item < 0 || item >= (int)m_trans.size()) return "";
     
     const Model_Checking::Full_Data& tran = this->m_trans.at(item);
     switch (column)
@@ -1282,7 +1293,7 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
 */
 wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 {
-    if (item < 0 || item >= m_cp->m_trans.size()) return 0;
+    if (item < 0 || item >= (int)m_cp->m_trans.size()) return 0;
 
     const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
     bool in_the_future = Model_Checking::TRANSDATE(&tran) > wxDateTime::Now().GetDateOnly();
