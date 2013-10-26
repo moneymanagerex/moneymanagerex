@@ -3108,11 +3108,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 {
-    Model_Checking::Data *transaction = Model_Checking::instance().create();
-    transaction->ACCOUNTID = gotoAccountID_; //m_cp->m_AccountID;
-    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
-
-    mmTransDialog dlg(transaction, &splits, this);
+    mmTransDialog dlg(this, gotoAccountID_, NULL);
 
     if ( dlg.ShowModal() == wxID_OK )
     {

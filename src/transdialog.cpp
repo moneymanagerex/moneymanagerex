@@ -48,24 +48,40 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
 END_EVENT_TABLE()
 
-mmTransDialog::mmTransDialog(
-    Model_Checking::Data *transaction
-    , Model_Splittransaction::Data_Set* split
-    , wxWindow* parent
+mmTransDialog::mmTransDialog(wxWindow* parent
+    , int account_id
+    , int transaction_id
 ) :
-    transaction_(transaction)
-    , m_splits(split)
-    , parent_(parent)
-    , accountID_(transaction->ACCOUNTID)
-    , referenceAccountID_(transaction->ACCOUNTID)
+      parent_(parent)
+    , accountID_(account_id)
+    , referenceAccountID_(account_id)
+    , transaction_id_(transaction_id)
     , categUpdated_(false)
     , advancedToTransAmountSet_(false)
     , edit_currency_rate(1.0)
-    , bBestChoice_(true)
 
 {
+    if (transaction_id_)
+    {
+        transaction_ = Model_Checking::instance().get(transaction_id_);
+        //TODO: m_splits = Model_Checking::splittransaction(transaction_);
+        for (const auto& item : Model_Checking::splittransaction(transaction_)) m_local_splits.push_back(item);
+    }
+    else
+    {
+        wxDateTime trx_date = wxDateTime::Now();
+        if (mmIniOptions::instance().transDateDefault_ != 0)
+            trx_date = wxDateTime::Now(); //TODO: getLastDate(m_cp->m_AccountID);
+
+        transaction_ = Model_Checking::instance().create();
+
+        transaction_->ACCOUNTID = accountID_;
+        transaction_->TRANSDATE = trx_date.FormatISODate();
+
+        SetDialogTitle(_("New Transaction"));
+    }
     //std::copy(this->m_splits->begin(), this->m_splits->end(), this->m_local_splits.begin());
-    for (const auto& item : *m_splits) m_local_splits.push_back(item);
+    //for (const auto& item : *m_splits) m_local_splits.push_back(item);
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
     Create(parent_
@@ -517,7 +533,7 @@ bool mmTransDialog::validateData()
 
     if (cSplit_->IsChecked())
     {
-        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(*m_splits);
+        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
         if (transaction_->TRANSAMOUNT < 0.0)
         {
             if (bTransfer) {
@@ -529,7 +545,7 @@ bool mmTransDialog::validateData()
             }
         }
 
-        if (m_splits->empty())
+        if (m_local_splits.empty())
         {
             mmShowErrorMessageInvalid(this, _("Category"));
             return false;
@@ -627,7 +643,11 @@ void mmTransDialog::SetSplitState()
     bool has_split = !this->m_local_splits.empty();
     wxString fullCategoryName;
     if (has_split)
+    {
         fullCategoryName = _("Split Category");
+        double total = Model_Splittransaction::instance().get_total(m_local_splits);
+        textAmount_->SetValue(total);
+    }
     else
     {
         Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
@@ -639,10 +659,6 @@ void mmTransDialog::SetSplitState()
     bCategory_->SetLabel(fullCategoryName);
     cSplit_->SetValue(has_split);
     cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
-
-    double total = Model_Splittransaction::instance().get_total(this->m_local_splits);
-    textAmount_->SetValue(total);
-    textAmount_->Enable(!has_split);
 }
 
 //----------------------------------------------------------------------------
@@ -698,15 +714,15 @@ void mmTransDialog::activateSplitTransactionsDlg()
         split->SPLITTRANSAMOUNT = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
         split->CATEGID = transaction_->CATEGID;
         split->SUBCATEGID = transaction_->SUBCATEGID;
-        m_splits->push_back(*split);
+        m_local_splits.push_back(*split);
     }
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
     
-    SplitTransactionDialog dlg(&this->m_local_splits, this, transaction_type_->GetSelection());
+    SplitTransactionDialog dlg(&m_local_splits, this, transaction_type_->GetSelection());
     if (dlg.ShowModal() == wxID_OK)
     {
-        double amount = Model_Splittransaction::instance().get_total(*m_splits);
+        double amount = Model_Splittransaction::instance().get_total(m_local_splits);
         if (transaction_type_->GetSelection() == DEF_TRANSFER && amount < 0)
             amount = - amount;
         wxString dispAmount = CurrencyFormatter::float2String(amount);
@@ -772,7 +788,7 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
         // Only for new transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
         if (transaction_->PAYEEID != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1
-            && !categUpdated_ && m_splits->empty())
+            && !categUpdated_ && m_local_splits.empty())
         {
             Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             // if payee has memory of last category used then display last category for payee
@@ -809,15 +825,15 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (m_splits->size() != 1)
+        if (m_local_splits.size() != 1)
         {
             transaction_->TRANSAMOUNT = 0;
         }
         else
         {
-            transaction_->CATEGID = m_splits->begin()->CATEGID;
-            transaction_->SUBCATEGID = m_splits->begin()->SUBCATEGID;
-            transaction_->TRANSAMOUNT = m_splits->begin()->SPLITTRANSAMOUNT;
+            transaction_->CATEGID = m_local_splits.begin()->CATEGID;
+            transaction_->SUBCATEGID = m_local_splits.begin()->SUBCATEGID;
+            transaction_->TRANSAMOUNT = m_local_splits.begin()->SPLITTRANSAMOUNT;
 
             if (transaction_->TRANSAMOUNT < 0)
             {
@@ -940,13 +956,11 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
 {
     if (!validateData()) return;
 
-    textNotes_->SetFocus();
-    transaction_->NOTES = textNotes_->GetValue();
-
     transaction_->STATUS = "";
     wxStringClientData* status_obj = (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
     if (status_obj) transaction_->STATUS = Model_Checking::toShortStatus(status_obj->GetData());
 
+    textNotes_->SetFocus();
     transaction_->NOTES = textNotes_->GetValue();
     transaction_->TRANSACTIONNUMBER = textNumber_->GetValue();
 
@@ -957,6 +971,11 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     if (!m_local_splits.empty())
         this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
 
+    transaction_id_ = Model_Checking::instance().save(transaction_);
+    for (auto &item : m_local_splits) item.TRANSID = transaction_->TRANSID;
+    Model_Splittransaction::instance().save(m_local_splits);
+
+    wxLogDebug(transaction_->to_json());
     EndModal(wxID_OK);
 }
 
@@ -1004,15 +1023,10 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
     if ((int) object_in_focus_ == (int) textNumber_->GetId())
     {
         if (!textNumber_->IsEmpty())
-        {
             textNumber_->SetValue("");
-            return;
-        }
         else
-        {
             itemButtonCancel_->SetFocus();
-            return;
-        }
+        return;
     }
 
     EndModal(wxID_CANCEL);

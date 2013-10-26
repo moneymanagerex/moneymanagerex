@@ -27,7 +27,6 @@
 
 #include "guiid.h"
 #include "defs.h"
-#include "mmcoredb.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
 
@@ -46,9 +45,9 @@ public:
     virtual ~mmTransDialog();
 
     mmTransDialog(
-        Model_Checking::Data *transaction
-        , Model_Splittransaction::Data_Set* split
-        , wxWindow* parent
+        wxWindow* parent
+        , int account_id
+        , int transaction_id
     );
 
     bool Create( wxWindow* parent
@@ -60,14 +59,9 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID()
-    {
-        return newAccountID_;
-    }
-    int getToAccountID()
-    {
-        return transaction_->TOACCOUNTID;
-    }
+    int getAccountID() {return newAccountID_;}
+    int getToAccountID() { return transaction_->TOACCOUNTID; }
+    int getTransactionID() { return transaction_->TRANSID; }
 
 private:
 
@@ -94,6 +88,7 @@ private:
     void SetSplitState();
     bool validateData();
 
+    wxWindow* parent_;
     mmTextCtrl *textNumber_;
     mmTextCtrl *textAmount_;
     mmTextCtrl *toTextAmount_;
@@ -114,19 +109,7 @@ private:
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
 
-    Model_Checking::Data * transaction_;
-    Model_Splittransaction::Data_Set* m_splits;
-    Model_Splittransaction::Data_Set m_local_splits;
-
-    int accountID_;
-    int newAccountID_;
-    int referenceAccountID_;    // used for transfer transactions
-
-    wxWindow* parent_;
-
     bool categUpdated_;
-    bool bBestChoice_;
-    wxString categStrykes_;
     bool advancedToTransAmountSet_;
 
     // store the original currency rate for transaction editing
@@ -138,6 +121,14 @@ private:
     int object_in_focus_;
     wxString resetPayeeString(/*bool normal = true*/);
     wxString resetCategoryString();
+
+    Model_Checking::Data * transaction_;
+    Model_Splittransaction::Data_Set* m_splits;
+    Model_Splittransaction::Data_Set m_local_splits;
+    int accountID_; //The transaction account ID
+    int newAccountID_;
+    int referenceAccountID_; // used for transfer transactions
+    int transaction_id_; //The transaction ID. NULL if new transaction
 
 };
 

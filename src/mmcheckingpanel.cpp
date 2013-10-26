@@ -912,6 +912,7 @@ wxString mmCheckingPanel::getItem(long item, long column) const
 
     return cell_value;
 
+#if 0
     const Model_Checking::Data& tran = this->m_trans_2.at(item);
     switch (column)
     {
@@ -931,6 +932,7 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     default:
         return "";
     }
+#endif
 }
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
@@ -1586,83 +1588,23 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     if (m_selectedIndex < 0) return;
 
     int transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
-    Model_Checking::Data *transaction = Model_Checking::instance().get(transaction_id);
-    Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
-    if (transaction)
+    mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
+    if (dlg.ShowModal() == wxID_OK)
     {
-        mmTransDialog dlg(transaction, &split, this);
-        dlg.SetDialogTitle(_("New/Edit Transaction"));
-        if (dlg.ShowModal() == wxID_OK)
-        {
-            Model_Checking::instance().save(transaction);
-            for (auto &item : split) item.TRANSID = transaction->TRANSID;
-            if (!split.empty())
-            {
-                Model_Splittransaction::instance().save(split);
-            }
-            save_transaction_temp_function(transaction, split, true); //TODO: remove
-            refreshVisualList(transaction->TRANSID);
-        }
-        topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-
-        wxLogDebug(transaction->to_json());
+        refreshVisualList(transaction_id);
     }
-}
-//----------------------------------------------------------------------------
-int TransactionListCtrl::save_transaction_temp_function(Model_Checking::Data *transaction
-    , Model_Splittransaction::Data_Set split, bool edit)
-{
-#if 1
-    int transID = -1;
-    mmBankTransaction* pTransaction;
-    if (!edit)
-    {
-        mmBankTransaction* pTemp(new mmBankTransaction(m_cp->core_));
-        pTransaction = pTemp;
-    }
-    else
-    {
-        pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(
-            transaction->TRANSID);
-    }
-
-    pTransaction->accountID_ = transaction->ACCOUNTID;
-    pTransaction->toAccountID_ = transaction->TOACCOUNTID;
-    pTransaction->payeeID_ = transaction->PAYEEID;
-    Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
-    if (payee)
-        pTransaction->payeeStr_ = payee->PAYEENAME;
-    pTransaction->transType_ = transaction->TRANSCODE;
-    pTransaction->amt_ = transaction->TRANSAMOUNT;
-    pTransaction->status_ = transaction->STATUS;
-    pTransaction->transNum_ = transaction->TRANSACTIONNUMBER;
-    pTransaction->notes_ = transaction->NOTES;
-    pTransaction->categID_ = transaction->CATEGID;
-    pTransaction->subcategID_ = transaction->SUBCATEGID;
-    pTransaction->date_ = Model_Checking::TRANSDATE(transaction);
-    pTransaction->toAmt_ = transaction->TOTRANSAMOUNT;
-
-    if (!edit)
-    {
-        transID = m_cp->core_->bTransactionList_.addTransaction(pTransaction);
-    }
-    else
-    {
-        m_cp->core_->bTransactionList_.UpdateTransaction(pTransaction);
-        transID = pTransaction->transactionID();
-    }
-
-    Model_Checking::instance().save(transaction);
-    for (auto& item : split) item.TRANSID = transaction->TRANSID;
-    Model_Splittransaction::instance().save(split);
-
-    return transID;
-#endif
-    //return 0;
+    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 {
+    mmTransDialog dlg(this, m_cp->m_AccountID, NULL);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        refreshVisualList(dlg.getTransactionID());
+    }
+
+#if 0
     // Use last date used as per user option.
     wxDateTime trx_date = wxDateTime::Now();
     if (mmIniOptions::instance().transDateDefault_ != 0)
@@ -1687,6 +1629,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
         save_transaction_temp_function(transaction, split, true); //TODO: remove 
         refreshVisualList(transaction->TRANSID);
     }
+#endif
 }
 //----------------------------------------------------------------------------
 
