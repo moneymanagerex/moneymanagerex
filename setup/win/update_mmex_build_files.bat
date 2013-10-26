@@ -1,7 +1,7 @@
 REM --------------------------------------------------------------------------
 REM Author : Stefano Giorgio - Copyright (C) 2012 
 REM Purpose: To allow the easy collection of support files required for
-REM          - testing in the msw-vc-2012e environment.
+REM          - testing in the msw-vc-2013e environment.
 REM          - providing a release version for others.
 REM 
 REM Revision of last commit: $Revision$
@@ -16,7 +16,7 @@ set mmex_release_version=mmex_0.9.9.2_win32_portable
 set mmex_release_type=release
 
 set mmex_release_destination=..\..\mmex_release\%mmex_release_version%
-set mmex_build_location=..\..\build\msw-vc-2012e
+set mmex_build_location=..\..\build\msw-vc-2013e
 set mmex_release_source=%mmex_build_location%\%mmex_release_type%
 
 @echo ------------------------------------------------------------------------
@@ -93,7 +93,8 @@ copy "..\..\doc\help\spanish\*.*" "%mmex_build_dir%\help\spanish"
 @echo Copying Language files for: %current_location%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\po mkdir %mmex_build_dir%\po
-copy "..\..\po\*.mo" "%mmex_build_dir%\po"
+if not exist %mmex_build_dir%\po\en mkdir %mmex_build_dir%\po\en
+copy "..\..\po\*.mo" "%mmex_build_dir%\po\en"
 @echo.
 @echo ------------------------------------------------------------------------
 @echo Copying Resources files for: %current_location%
@@ -164,8 +165,8 @@ if not exist %mmex_release_bin_dir% mkdir %mmex_release_bin_dir%
 
 REM set up the executable files
 copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
-copy "C:\Windows\sysWOW64\msvcp100.dll" %mmex_release_bin_dir%
-copy "C:\Windows\sysWOW64\msvcr100.dll" %mmex_release_bin_dir%
+copy "C:\Windows\sysWOW64\msvcp120.dll" %mmex_release_bin_dir%
+copy "C:\Windows\sysWOW64\msvcr120.dll" %mmex_release_bin_dir%
 
 REM Set up the support files before ending process.
 set mmex_build_location=%mmex_release_destination%
