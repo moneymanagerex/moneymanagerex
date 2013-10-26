@@ -205,6 +205,7 @@ void mmCheckingPanel::filterTable()
         Model_Checking::Full_Data full_tran(tran);
         full_tran.CATEGNAME = category ? category->CATEGNAME: "";
         full_tran.SUBCATEGNAME = sub_category ? sub_category->SUBCATEGNAME: "";
+        full_tran.PAYEENAME = payee->PAYEENAME;
 
         this->m_trans.push_back(full_tran);
     }
