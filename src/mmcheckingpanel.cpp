@@ -815,7 +815,7 @@ wxString mmCheckingPanel::getItem(long item, long column) const
         else
             return "";
     case TransactionListCtrl::COL_BALANCE:
-        // TODO
+        return Model_Currency::toCurrency(Model_Checking::balance(&tran, this->m_AccountID), this->m_currency);
     case TransactionListCtrl::COL_NOTES:
         return tran.NOTES;
     default:
