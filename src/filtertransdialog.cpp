@@ -778,13 +778,12 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 
 bool mmFilterTransactionsDialog::checkPayee(int payeeID)
 {
-    if (!payeeCheckBox_->IsChecked())
-        return false;
-    else
+    if (payeeCheckBox_->IsChecked())
     {
         const Model_Payee::Data* payee = Model_Payee::instance().get(payeeID);
         if (payee)
-            return cbPayee_->GetValue().CmpNoCase(payee->PAYEENAME) == 0;
+            return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
         return false;
     }
+    return true;
 }

@@ -185,6 +185,7 @@ void mmCheckingPanel::filterTable()
     this->m_trans.clear();
     account_balance_ = 0.0;
     reconciled_balance_ = 0.0;
+    filteredBalance_ = 0.0;
     if (m_account)
     {
         account_balance_ = m_account->INITIALBAL;
@@ -203,11 +204,12 @@ void mmCheckingPanel::filterTable()
                 && (transFilterDlg_->getAccountID() != tran.ACCOUNTID && transFilterDlg_->getAccountID() != tran.TOACCOUNTID)) continue;
 
             //wxLogDebug("Check date? %i trx date:%s %s %s", transFilterDlg_->getDateRangeCheckBox(), tran.TRANSDATE, transFilterDlg_->getFromDateCtrl().GetDateOnly().FormatISODate(), transFilterDlg_->getToDateControl().GetDateOnly().FormatISODate());
-            if (transFilterDlg_->getDateRangeCheckBox() 
-                && !Model_Checking::TRANSDATE(tran).IsBetween(transFilterDlg_->getFromDateCtrl().GetDateOnly()
-                                                            , transFilterDlg_->getToDateControl().GetDateOnly()
-                    )
-                ) continue;
+            if (transFilterDlg_->getDateRangeCheckBox()
+                && !Model_Checking::TRANSDATE(tran)
+                .IsBetween( transFilterDlg_->getFromDateCtrl().GetDateOnly()
+                          , transFilterDlg_->getToDateControl().GetDateOnly()
+                )
+            ) continue;
             if (Model_Checking::TRANSFER != Model_Checking::type(tran) && !transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
             if (transFilterDlg_->getCategoryCheckBox() && !(transFilterDlg_->getCategoryID() == tran.CATEGID && transFilterDlg_->getSubCategoryID() == tran.SUBCATEGID)) continue;
             if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
