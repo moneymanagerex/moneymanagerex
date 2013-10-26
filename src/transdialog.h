@@ -64,8 +64,10 @@ public:
     int getTransactionID() { return transaction_->TRANSID; }
 
 private:
-
     void CreateControls();
+    void dataToControls();
+    bool validateData();
+
     void OnSplitChecked(wxCommandEvent& event);
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
@@ -78,15 +80,10 @@ private:
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
-    void dataToControls();
-    void updateControlsForTransType();
     void changeFocus(wxChildFocusEvent& event);
     void onTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
-    void updateControlsForTransType2(bool transfer = true);
     void activateSplitTransactionsDlg();
-    void SetSplitState();
-    bool validateData();
 
     wxWindow* parent_;
     mmTextCtrl *textNumber_;

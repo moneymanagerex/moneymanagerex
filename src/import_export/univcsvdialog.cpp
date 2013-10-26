@@ -557,9 +557,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
     if (from_account)
     {
-        Model_Currency::Data* currency = Model_Account::currency(from_account);
-        // CurrencyFormatter::instance().loadSettings(*pCurrencyPtr);
-
         wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
         if (fileName.IsEmpty() || !csv_file.FileExists())

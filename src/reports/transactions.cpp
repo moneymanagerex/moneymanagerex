@@ -153,7 +153,7 @@ wxString mmReportTransactions::getHTMLText()
         filterDetails << addFilterDetailes(_("Date Range:"), transDialog_->userDateRangeStr());
 
     //Payees
-    if ( transDialog_->getPayeeCheckBox())
+    if ( transDialog_->checkPayeeCheckBox())
         filterDetails << addFilterDetailes(_("Payee:"), transDialog_->userPayeeStr());
 
     //Category
