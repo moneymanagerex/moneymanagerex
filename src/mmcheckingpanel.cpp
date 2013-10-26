@@ -1168,11 +1168,13 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKDELETE)             status = "X";
     else wxASSERT(false);
 
-    int transID = OnMarkTransactionDB(status);
+    m_cp->m_trans[m_selectedIndex].STATUS = status;
+    Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
+    if (trx) Model_Checking::instance().save(trx);
 
     if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox())
         || (status == "X" && !showDeletedTransactions_))
-        refreshVisualList(transID);
+        refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     else 
         RefreshItems(m_selectedIndex, m_selectedIndex);
 }
