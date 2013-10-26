@@ -765,12 +765,14 @@ void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 
 void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
+    cbPayee_->SetEvtHandlerEnabled(false);
     Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
     if (payee)
     {
         payeeID_ = payee->PAYEEID;
         cbPayee_->SetValue(payee->PAYEENAME);
     }
+    cbPayee_->SetEvtHandlerEnabled(true);
     event.Skip();
 }
 
