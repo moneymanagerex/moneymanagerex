@@ -64,7 +64,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     if (transaction_id_)
     {
         transaction_ = Model_Checking::instance().get(transaction_id_);
-        //TODO: m_splits = Model_Checking::splittransaction(transaction_);
         for (const auto& item : Model_Checking::splittransaction(transaction_)) m_local_splits.push_back(item);
     }
     else
@@ -80,8 +79,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
         SetDialogTitle(_("New Transaction"));
     }
-    //std::copy(this->m_splits->begin(), this->m_splits->end(), this->m_local_splits.begin());
-    //for (const auto& item : *m_splits) m_local_splits.push_back(item);
+
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
     Create(parent_
@@ -147,14 +145,12 @@ void mmTransDialog::dataToControls()
         cbAccount_->Append(account.ACCOUNTNAME);
         if (account.ACCOUNTID == accountID_) cbAccount_->SetValue(account.ACCOUNTNAME);
     }
-    //cbAccount_->AutoComplete(Model_Account::all_account_names()); //TODO:
+    cbAccount_->AutoComplete(Model_Account::instance().all_account_names());
     accountID_ = transaction_->ACCOUNTID;
 
     // backup the original currency rate first
     if (transaction_->TRANSAMOUNT > 0.0)
         edit_currency_rate = transaction_->TOTRANSAMOUNT / transaction_->TRANSAMOUNT;
-
-    wxString categString = _("Select Category");
 
     //Notes
     textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
@@ -647,16 +643,19 @@ void mmTransDialog::SetSplitState()
         fullCategoryName = _("Split Category");
         double total = Model_Splittransaction::instance().get_total(m_local_splits);
         textAmount_->SetValue(total);
+        transaction_->CATEGID = -1;
+        transaction_->SUBCATEGID = -1;
     }
     else
     {
         Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        Model_Subcategory::Data *subcategory = (transaction_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(transaction_->SUBCATEGID) : 0);
+        Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(transaction_->SUBCATEGID));
         fullCategoryName = Model_Category::full_name(category, subcategory);
         if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
     }
 
     bCategory_->SetLabel(fullCategoryName);
+    textAmount_->Enable(!has_split);
     cSplit_->SetValue(has_split);
     cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
 }
@@ -703,7 +702,6 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
 void mmTransDialog::activateSplitTransactionsDlg()
 {
     bool bDeposit = transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT];
-    //mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
 
     if (transaction_->CATEGID > -1)
     {
@@ -727,6 +725,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
             amount = - amount;
         wxString dispAmount = CurrencyFormatter::float2String(amount);
         textAmount_->SetValue(dispAmount);
+        textAmount_->Enable(false);
     }
 }
 
@@ -817,8 +816,6 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 
 void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 {
-    /* Reset Category */
-    //split_ = wxSharedPtr<mmSplitTransactionEntries>(new mmSplitTransactionEntries());
     if (cSplit_->IsChecked())
     {
         activateSplitTransactionsDlg();
