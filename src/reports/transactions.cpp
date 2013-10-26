@@ -23,14 +23,15 @@
 #include "util.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
+#include "model/Model_Category.h"
 #include <algorithm>
 
-mmReportTransactions::mmReportTransactions(const std::vector<mmBankTransaction*>& trans,
+mmReportTransactions::mmReportTransactions(const Model_Checking::Data_Set trans,
     int refAccountID, mmFilterTransactionsDialog* transDialog)
-: mmPrintableBase(mmBankTransaction::DATE)
-, trans_(trans)
-, refAccountID_(refAccountID)
-, transDialog_(transDialog)
+    : mmPrintableBase(mmBankTransaction::DATE)
+    , trans_(trans)
+    , refAccountID_(refAccountID)
+    , transDialog_(transDialog)
 {
 }
 
@@ -50,8 +51,8 @@ wxString addFilterDetailes(wxString sHeader, wxString sValue)
 
 wxString mmReportTransactions::getHTMLText()
 {
-    for (auto& transaction: trans_)
-        transaction->sortby_ = (mmBankTransaction::SORT)sortColumn_;
+    //for (auto& transaction: trans_)
+    //    transaction->sortby_ = (mmBankTransaction::SORT)sortColumn_;
     std::stable_sort (trans_.begin(), trans_.end());
 
     mmHTMLBuilder hb;
@@ -115,23 +116,38 @@ wxString mmReportTransactions::getHTMLText()
     double total = 0;
     for (auto& transaction: trans_)
     {
-        transaction->updateTransactionData(refAccountID_, total);
-
         hb.startTableRow();
-        hb.addTableCell(transaction->date_);
-        Model_Account::Data* account = Model_Account::instance().get(transaction->accountID_);
-        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction->transactionID()), ( account ? account->ACCOUNTNAME : ""));
-        Model_Payee::Data* payee = (transaction->transType_ != TRANS_TYPE_TRANSFER_STR ? Model_Payee::instance().get(transaction->payeeID_) : NULL);
-        hb.addTableCell( payee ? payee->PAYEENAME : "" );
-        hb.addTableCell(transaction->status_);
-        hb.addTableCell(transaction->fullCatStr_, false, true);
-        hb.addTableCell(wxGetTranslation(transaction->transType_));
+        hb.addTableCell(transaction.TRANSDATE);
+        Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
+        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.TRANSID), (account ? account->ACCOUNTNAME : ""));
+        
+        if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
+        {
+            Model_Payee::Data* payee = Model_Payee::instance().get(transaction.PAYEEID);
+            hb.addTableCell(payee ? payee->PAYEENAME : "");
+        }
+        else
+        {
+            Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+            hb.addTableCell(account ? account->ACCOUNTNAME : "");
+        }
+        hb.addTableCell(transaction.STATUS);
+        hb.addTableCell(Model_Category::full_name(transaction.CATEGID, transaction.SUBCATEGID), false, true);
+        hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
         // Get the exchange rate for the selected account
+        double dbRate = 1;
         const Model_Currency::Data* currency = Model_Account::currency(account);
-        double dbRate = currency->BASECONVRATE;
-        hb.addMoneyCell(transaction->value(refAccountID_) * dbRate);
-        hb.addTableCell(transaction->transNum_);
-        hb.addTableCell(transaction->notes_, false, true);
+        if (currency)
+        {
+            dbRate = currency->BASECONVRATE;
+            double amount = Model_Checking::balance(transaction) * dbRate;
+            hb.addCurrencyCell(amount);
+            total += amount;
+        }
+        else
+            hb.addTableCell("");
+        hb.addTableCell(transaction.TRANSACTIONNUMBER);
+        hb.addTableCell(transaction.NOTES, false, true);
         hb.endTableRow();
     }
 

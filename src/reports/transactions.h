@@ -21,20 +21,21 @@
 
 #include "reportbase.h"
 #include "filtertransdialog.h"
+#include "model/Model_Checking.h"
 
 class mmBankTransaction;
 
 class mmReportTransactions : public mmPrintableBase
 {
 public:
-    mmReportTransactions(const std::vector<mmBankTransaction*>& trans,
+    mmReportTransactions(const Model_Checking::Data_Set trans,
                          int refAccountID, mmFilterTransactionsDialog* transDialog);
     ~mmReportTransactions();
 
     wxString getHTMLText();
 
 private:
-    std::vector<mmBankTransaction*> trans_;
+    Model_Checking::Data_Set trans_;
     bool ignoreDate_;
     int refAccountID_;
     mmFilterTransactionsDialog* transDialog_;

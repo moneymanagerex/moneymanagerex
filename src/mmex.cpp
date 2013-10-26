@@ -3141,54 +3141,52 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
     if (Model_Account::instance().all().empty()) return;
 
-    std::vector<mmBankTransaction*> trans;
+    //std::vector<mmBankTransaction*> trans;
+    Model_Checking::Data_Set trans;
 
     mmFilterTransactionsDialog* dlg= new mmFilterTransactionsDialog(this);
     if (dlg->ShowModal() == wxID_OK)
     {
-        for (const auto& tran: m_core.get()->bTransactionList_.transactions_)
+        for (const auto& tran: Model_Checking::instance().all())
         {
-            if (dlg->getAmountRangeCheckBoxMin() && tran->amt_ < dlg->getAmountMin())
+            if (dlg->getAmountRangeCheckBoxMin() && tran.TRANSAMOUNT < dlg->getAmountMin())
                     continue; // skip
-            if (dlg->getAmountRangeCheckBoxMax() && tran->amt_ > dlg->getAmountMax())
+            if (dlg->getAmountRangeCheckBoxMax() && tran.TRANSAMOUNT > dlg->getAmountMax())
                     continue; // skip
 
             if (dlg->getAccountCheckBox())
             {
                 int fromAccountID = dlg->getAccountID();
 
-                if ((tran->accountID_ != fromAccountID) && (tran->toAccountID_ != fromAccountID))
+                if ((tran.ACCOUNTID != fromAccountID) && (tran.TOACCOUNTID != fromAccountID))
                     continue; // skip
             }
 
             if (dlg->getDateRangeCheckBox())
             {
-                wxDateTime dtBegin = dlg->getFromDateCtrl();
-                wxDateTime dtEnd = dlg->getToDateControl();
-
-                if (!tran->date_.IsBetween(dtBegin, dtEnd))
+                if (!Model_Checking::TRANSDATE(tran).IsBetween(dlg->getFromDateCtrl(), dlg->getToDateControl()))
                     continue; // skip
             }
 
-            if (!dlg->checkPayee(tran->payeeID_))
+            if (dlg->checkPayee(tran.PAYEEID))
             {
                     continue; // skip
             }
 
             if (dlg->getStatusCheckBox())
             {
-                if (!dlg->compareStatus(tran->status_)) continue; //skip
+                if (!dlg->compareStatus(tran.STATUS)) continue; //skip
             }
 
             if (dlg->getTypeCheckBox())
             {
-                if (!dlg->getType().Contains(tran->transType_)) continue;
+                if (!dlg->getType().Contains(tran.TRANSCODE)) continue;
             }
 
             if (dlg->getNumberCheckBox())
             {
                 const wxString& transNumber = dlg->getNumber().Trim().Lower();
-                const wxString& orig = tran->transNum_.Lower();
+                const wxString& orig = tran.TRANSACTIONNUMBER.Lower();
                 if (!orig.Matches(transNumber))
                     continue;
             }
@@ -3196,7 +3194,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
             if (dlg->getNotesCheckBox())
             {
                 wxString filter_notes = dlg->getNotes().Trim().Lower();
-                wxString trx_notes = tran->notes_.Lower();
+                wxString trx_notes = tran.NOTES.Lower();
 
                 if (!trx_notes.Matches(filter_notes))
                     continue;
@@ -3209,22 +3207,11 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                 int categID = dlg->getCategoryID();
                 if (subcategID == -1)
                     ignoreSubCateg = dlg->getExpandStatus();
-                if (!tran->containsCategory(categID, subcategID, ignoreSubCateg))
+                if (!tran.CATEGID != categID)
                 {
-                    tran->reportCategAmountStr_ = "";
                     continue;
                 }
-
-                if (tran->splitEntries_->numEntries() > 0)
-                {
-                    tran->reportCategAmount_ = tran->getAmountForSplit(categID, subcategID);
-                    tran->reportCategAmountStr_ = CurrencyFormatter::float2String(tran->reportCategAmount_);
-                }
-                else
-                {
-                    tran->reportCategAmount_ = -1;
-                    tran->reportCategAmountStr_.clear();
-                }
+                //TODO: Check categories for split entries
             }
 
             trans.push_back(tran);

@@ -474,7 +474,10 @@ bool mmFilterTransactionsDialog::somethingSelected()
 wxString mmFilterTransactionsDialog::getAccountName()
 {
     Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
-    return account->ACCOUNTNAME;
+    if (account)
+        return account->ACCOUNTNAME;
+    else
+        return "";
 }
 
 bool mmFilterTransactionsDialog::getDateRange(wxDateTime& startDate, wxDateTime& endDate) const
@@ -773,7 +776,8 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
 
 bool mmFilterTransactionsDialog::checkPayee(int payeeID)
 {
-    if (!payeeCheckBox_->IsChecked()) return false;
+    if (!payeeCheckBox_->IsChecked())
+        return false;
     else
     {
         const Model_Payee::Data* payee = Model_Payee::instance().get(payeeID);
