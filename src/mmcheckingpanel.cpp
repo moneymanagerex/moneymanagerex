@@ -140,78 +140,39 @@ bool mmCheckingPanel::Create(
 
 void mmCheckingPanel::sortTable()
 {
-    // TODO m_trans_2
-
-    std::sort(this->m_trans.begin(), this->m_trans.end()); // default sorter
-    if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_DATE_OR_TRANSACTION_ID)
+    std::sort(this->m_trans.begin(), this->m_trans.end());
+    std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE()); 
+    switch (m_listCtrlAccount->g_sortcol)
     {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            {
-                if (x->date_ != y->date_) return x->date_ < y->date_;
-                else return x->transactionID() < y->transactionID();
-            }
-        );
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_TRANSACTION_NUMBER)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->transNum_ < y->transNum_; });
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_PAYEE_STR)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            {
-                if (x->payeeStr_ != y->payeeStr_) return x->payeeStr_ < y->payeeStr_;
-                else return x->date_ < y->date_;
-            }
-        );
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_STATUS)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            {
-                if (x->status_ != y->status_) return x->status_ < y->status_;
-                else return x->date_ < y->date_;
-            }
-        );
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_CATEGORY)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            {
-                if (x->fullCatStr_ != y->fullCatStr_) return x->fullCatStr_ < y->fullCatStr_;
-                else return x->date_ < y->date_;
-            }
-        );
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_WITHDRAWAL)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-        { return x->withdrawal_amt_ < y->withdrawal_amt_; });
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_DEPOSIT)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-        { return x->deposit_amt_ < y->deposit_amt_; });
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_BALANCE)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->balance_ < y->balance_; });
-    }
-    else if (m_listCtrlAccount->g_sortcol == m_listCtrlAccount->COL_NOTES)
-    {
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [] (const mmBankTransaction* x, const mmBankTransaction* y)
-            { return x->notes_ < y->notes_; });
+    case TransactionListCtrl::COL_DATE_OR_TRANSACTION_ID:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE()); 
+        break;
+    case TransactionListCtrl::COL_TRANSACTION_NUMBER:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSACTIONNUMBER());
+        break;
+    case TransactionListCtrl::COL_PAYEE_STR:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByPAYEENAME());
+        break;
+    case TransactionListCtrl::COL_STATUS:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterBySTATUS());
+        break;
+    case TransactionListCtrl::COL_CATEGORY:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByCATEGNAME());
+        break;
+    case TransactionListCtrl::COL_WITHDRAWAL:
+        // TODO
+        break;
+    case TransactionListCtrl::COL_DEPOSIT:
+        // TODO
+        break;
+    case TransactionListCtrl::COL_BALANCE:
+        // TODO
+        break;
+    case TransactionListCtrl::COL_NOTES:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES());
+        break;
+    default:
+        break;
     }
 
     if (!m_listCtrlAccount->g_asc) std::reverse(this->m_trans.begin(), this->m_trans.end());
@@ -219,76 +180,43 @@ void mmCheckingPanel::sortTable()
 
 void mmCheckingPanel::filterTable()
 {
-    if (transFilterActive_ &&transFilterDlg_->somethingSelected())
+    this->m_trans.clear();
+    for (const auto& tran: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID)))
     {
-        std::vector<mmBankTransaction*>::iterator iter;
-        for (iter = m_trans.begin(); iter != m_trans.end(); )
-        {
-            if (!m_listCtrlAccount->showDeletedTransactions_ && (*iter)->status_=="X")
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getAccountCheckBox()
-                    && transFilterDlg_->getAccountID() != (*iter)->toAccountID_)
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getDateRangeCheckBox()
-                    && ((transFilterDlg_->getFromDateCtrl().GetDateOnly() > (*iter)->date_.GetDateOnly()
-                        || transFilterDlg_->getToDateControl().GetDateOnly() < (*iter)->date_.GetDateOnly())))
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getPayeeCheckBox()
-                    && transFilterDlg_->userPayeeStr() != (*iter)->payeeStr_)
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getCategoryCheckBox()
-                    && !(*iter)->containsCategory(transFilterDlg_->getCategoryID()
-                    ,transFilterDlg_->getSubCategoryID(), transFilterDlg_->getSubCategoryID() < 0))
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getStatusCheckBox()
-                    && !transFilterDlg_->compareStatus((*iter)->status_))
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getTypeCheckBox()
-                    && !transFilterDlg_->getType().Contains((*iter)->transType_))
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getAmountRangeCheckBoxMin()
-                    && transFilterDlg_->getAmountMin() > (*iter)->amt_)
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getAmountRangeCheckBoxMax()
-                    && transFilterDlg_->getAmountMax() < (*iter)->amt_)
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getNumberCheckBox()
-                    && transFilterDlg_->getNumber().Trim().Lower() != (*iter)->transNum_.Lower())
-                iter = m_trans.erase(iter);
-            else if (transFilterDlg_->getNotesCheckBox()
-                    && !(*iter)->notes_.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()))
-                iter = m_trans.erase(iter);
-            else
-            {
-                filteredBalance_ += (*iter)->value(-1);
-                ++iter;
-            }
-        }
-    }
-    else
-    {
-        std::vector<mmBankTransaction*>::iterator iter;
+        if (transFilterDlg_->getAccountCheckBox() && transFilterDlg_->getAccountID() != tran.TOACCOUNTID) continue;
+        if (transFilterDlg_->getDateRangeCheckBox() && ! Model_Checking::TRANSDATE(tran).IsBetween(transFilterDlg_->getFromDateCtrl().GetDateOnly(), transFilterDlg_->getToDateControl().GetDateOnly())) continue;
 
-        for (iter = m_trans.begin(); iter != m_trans.end(); )
-        {
-            if (!m_listCtrlAccount->showDeletedTransactions_ && (*iter)->status_=="X")
-                iter = m_trans.erase(iter);
-            //TODO: What about future dates?
-            else if (quickFilterBeginDate_ <= (*iter)->date_.GetDateOnly()
-                    && quickFilterEndDate_ >= (*iter)->date_.GetDateOnly())
-                ++iter;
-            else
-                iter = m_trans.erase(iter);
-        }
+        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+        if (!payee) continue;
+        if (transFilterDlg_->getPayeeCheckBox() && transFilterDlg_->userPayeeStr() != payee->PAYEENAME) continue;
+        if (transFilterDlg_->getCategoryCheckBox() && !(transFilterDlg_->getCategoryID() == tran.CATEGID && transFilterDlg_->getSubCategoryID() == tran.SUBCATEGID)) continue;
+        if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
+        if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
+        if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;
+        if (transFilterDlg_->getAmountRangeCheckBoxMax() && transFilterDlg_->getAmountMax() < tran.TRANSAMOUNT) continue;
+        if (transFilterDlg_->getNumberCheckBox() && transFilterDlg_->getNumber() != tran.TRANSACTIONNUMBER) continue;
+        if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
+
+        filteredBalance_ += tran.TRANSAMOUNT;
+
+        Model_Category::Data* category = Model_Category::instance().get(tran.CATEGID);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(tran.SUBCATEGID);
+
+        Model_Checking::Full_Data full_tran(tran);
+        full_tran.CATEGNAME = category ? category->CATEGNAME: "";
+        full_tran.SUBCATEGNAME = sub_category ? sub_category->SUBCATEGNAME: "";
+
+        this->m_trans.push_back(full_tran);
     }
 }
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
     long i = 0;
-    for (const auto & pTrans : m_trans)
+    for (const auto & tran : m_trans)
     {
-        if (trans_id == pTrans->transactionID() && trans_id > 0) {
+        if (trans_id == tran.TRANSID && trans_id > 0) 
+        {
             m_listCtrlAccount->m_selectedIndex = i;
             break;
         }
@@ -347,14 +275,12 @@ void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
     core_->bTransactionList_.LoadAccountTransactions(m_AccountID, account_balance_, reconciled_balance_);
     filteredBalance_ = 0.0;
     // clear everything
-    m_trans = core_->bTransactionList_.accountTransactions_;
-    this->m_trans_2 = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID));
     m_listCtrlAccount->DeleteAllItems();
 
     // decide whether top or down icon needs to be shown
     m_listCtrlAccount->setColumnImage(m_listCtrlAccount->g_sortcol, m_listCtrlAccount->g_asc ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC);
-    sortTable();
     filterTable();
+    sortTable();
     m_listCtrlAccount->SetItemCount(m_trans.size());
     setAccountSummary();
 }
@@ -585,7 +511,8 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
     if (selIndex > -1)
     {
         enableEditDeleteButtons(true);
-        info_panel_->SetLabel(wxString() << m_trans[selIndex]->notes_);
+        const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
+        info_panel_->SetLabel(tran.NOTES);
         wxString miniStr;
         miniStr = getMiniInfoStr(selIndex);
 
@@ -612,15 +539,16 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
 //----------------------------------------------------------------------------
 wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 {
-    int accountId = m_trans[selIndex]->accountID_;
-    int toaccountId = m_trans[selIndex]->toAccountID_;
+    const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
+    int accountId = tran.ACCOUNTID;
+    int toaccountId = tran.TOACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(accountId);
     Model_Currency::Data* currency = Model_Account::currency(account);
     int basecurrencyid = Model_Infotable::instance().GetBaseCurrencyId();
     int currencyid = basecurrencyid;
     int tocurrencyid = basecurrencyid;
 
-    double amount = m_trans[selIndex]->amt_;
+    double amount = tran.TRANSAMOUNT;
     double convrate = 1.0, toconvrate = 1.0;
     wxString amountStr, infoStr = "", intoaccStr = "";
     wxString fromaccStr = "", one = "1.0";
@@ -633,7 +561,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
         one = Model_Currency::toString(1, currency);
     }
 
-    if (m_trans[selIndex]->transType_ == TRANS_TYPE_TRANSFER_STR)
+    if (Model_Checking::type(&tran) == Model_Checking::TRANSFER)
     {
         Model_Account::Data* to_account = Model_Account::instance().get(toaccountId);
         if (to_account) intoaccStr = to_account->ACCOUNTNAME;
@@ -647,7 +575,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
         toconvrate = to_currency->BASECONVRATE;
         tocurrencyid = to_currency->CURRENCYID;
 
-        double toamount = m_trans[selIndex]->toAmt_;
+        double toamount = tran.TOTRANSAMOUNT;
         double convertion = 0.0;
         if (toamount != 0.0 && amount != 0.0)
             convertion = ( convrate < toconvrate ? amount/toamount : toamount/amount);
@@ -679,24 +607,6 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     }
     else //For deposits and withdrawals calculates amount in base currency
     {
-        //if (split_)
-        {
-            mmSplitTransactionEntries* splits = m_trans[selIndex]->splitEntries_;
-            if (splits) m_trans[selIndex]->getSplitTransactions(splits);
-
-            for (const auto &i : splits->entries_)
-            {
-                amount = i->splitAmount_;
-                if (m_trans[selIndex]->transType_ != TRANS_TYPE_DEPOSIT_STR)
-                    amount = -amount;
-                amountStr = CurrencyFormatter::float2Money(amount);
-                infoStr << Model_Category::full_name(i->categID_, i->subCategID_) 
-                    << " = "
-                    << amountStr
-                    << "\n";
-            }
-        }
-
         if (currencyid != basecurrencyid) //Show nothing if account currency is base
         {
             amountStr = wxString::Format( "%f4", amount);
@@ -822,25 +732,25 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
 void mmCheckingPanel::DeleteViewedTransactions()
 {
-    core_->db_.get()->Begin();
-    for (const auto& i : m_trans)
+    for (const auto& tran: this->m_trans)
     {
-        if (m_listCtrlAccount->m_selectedForCopy == (long)i->transactionID())
-            m_listCtrlAccount->m_selectedForCopy = -1;
-        core_->bTransactionList_.deleteTransaction(m_AccountID, i->transactionID());
+        Model_Checking::instance().remove(tran.TRANSID);
+        // TODO remove split
+        // CHECK
+        if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
-    core_->db_.get()->Commit();
 }
 
 void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
 {
-    for (const auto& i : m_trans)
+    for (const auto& tran: this->m_trans)
     {
-        if (i->status_ == status)
+        if (tran.STATUS == status)
         {
-            if (m_listCtrlAccount->m_selectedForCopy == (long)i->transactionID())
-                m_listCtrlAccount->m_selectedForCopy = -1;
-            core_->bTransactionList_.deleteTransaction(m_AccountID, i->transactionID());
+            Model_Checking::instance().remove(tran.TRANSID);
+            // TODO remove split
+            // CHECK
+            if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
 }
@@ -879,41 +789,9 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 
 wxString mmCheckingPanel::getItem(long item, long column) const
 {
-    wxString cell_value = "";
-
-    bool ok = !m_trans.empty() &&
-              ( item >= 0 ) &&
-              ( item < static_cast<long>(m_trans.size()) ) &&
-              m_trans[item];
-
-    if (ok)
-    {
-        const mmBankTransaction &t = *m_trans[item];
-
-        if (column == m_listCtrlAccount->COL_DATE_OR_TRANSACTION_ID) cell_value = mmGetDateForDisplay(t.date_);
-        else if (column == m_listCtrlAccount->COL_TRANSACTION_NUMBER) cell_value = t.transNum_;
-        else if (column == m_listCtrlAccount->COL_PAYEE_STR) cell_value = t.arrow_ + t.payeeStr_;
-        else if (column == m_listCtrlAccount->COL_STATUS) cell_value = t.status_;
-        else if (column == m_listCtrlAccount->COL_CATEGORY) cell_value = t.fullCatStr_.IsEmpty() ? "..." : t.fullCatStr_;
-        else if (column == m_listCtrlAccount->COL_WITHDRAWAL)
-            cell_value = (t.withdrawal_amt_ >= 0) ? CurrencyFormatter::float2String(t.withdrawal_amt_) : "";
-        else if (column == m_listCtrlAccount->COL_DEPOSIT)
-            cell_value = (t.deposit_amt_ > 0) ? CurrencyFormatter::float2String(t.deposit_amt_) : "";
-        else if (column == m_listCtrlAccount->COL_BALANCE)
-            cell_value = CurrencyFormatter::float2String(t.balance_);
-        else if (column == m_listCtrlAccount->COL_NOTES)
-        {
-            cell_value = t.notes_;
-            cell_value.Replace("\n", " ");
-        }
-        else
-            wxASSERT(false);
-    }
-
-    return cell_value;
-
-#if 0
-    const Model_Checking::Data& tran = this->m_trans_2.at(item);
+    if (item < 0 || item >= m_trans.size()) return "";
+    
+    const Model_Checking::Full_Data& tran = this->m_trans.at(item);
     switch (column)
     {
     case TransactionListCtrl::COL_DATE_OR_TRANSACTION_ID:
@@ -921,18 +799,22 @@ wxString mmCheckingPanel::getItem(long item, long column) const
     case TransactionListCtrl::COL_TRANSACTION_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_PAYEE_STR:
+        return tran.PAYEENAME;
     case TransactionListCtrl::COL_STATUS:
         return tran.STATUS;
     case TransactionListCtrl::COL_CATEGORY:
+        return tran.CATEGNAME;
     case TransactionListCtrl::COL_WITHDRAWAL:
+        // TODO
     case TransactionListCtrl::COL_DEPOSIT:
+        // TODO
     case TransactionListCtrl::COL_BALANCE:
+        // TODO
     case TransactionListCtrl::COL_NOTES:
         return tran.NOTES;
     default:
         return "";
     }
-#endif
 }
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
@@ -1126,7 +1008,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     if (m_cp->m_listCtrlAccount->GetSelectedItemCount()>1)
         m_cp->btnEdit_->Enable(false);
 
-    m_cp->m_listCtrlAccount->m_selectedID = m_cp->m_trans[m_selectedIndex]->transactionID();
+    m_cp->m_listCtrlAccount->m_selectedID = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
 //----------------------------------------------------------------------------
 
@@ -1159,7 +1041,6 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
 
 void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
 {
-
     long selectedIndex = m_selectedIndex;
     if (m_selectedIndex > -1)
     {
@@ -1168,6 +1049,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     }
 
     bool hide_menu_item = (selectedIndex < 0);
+    const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Transaction"));
     menu.AppendSeparator();
@@ -1179,7 +1061,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
     menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
     if (hide_menu_item || (Model_Account::checking_account_num() < 2)
-        || m_cp->m_trans[m_selectedIndex]->transType_ == TRANS_TYPE_TRANSFER_STR)
+        || Model_Checking::type(&tran) == Model_Checking::TRANSFER)
         menu.Enable(MENU_TREEPOPUP_MOVE, false);
     menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
     if (m_selectedForCopy < 0) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
@@ -1187,7 +1069,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
-    if (hide_menu_item || (m_cp->m_trans[m_selectedIndex]->categID_ > -1))
+    if (hide_menu_item || (tran.CATEGID > -1))
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
     menu.AppendSeparator();
@@ -1237,7 +1119,7 @@ int TransactionListCtrl::OnMarkTransactionDB(const wxString& status)
 {
     if (m_selectedIndex < 0) return -1;
 
-    int transID = m_cp->m_trans[m_selectedIndex]->transactionID();
+    int transID = m_cp->m_trans[m_selectedIndex].TRANSID;
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     if (transaction)
     {
@@ -1315,16 +1197,11 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     }
     else
     {
-        m_cp->core_->db_.get()->Begin();
-
-        for (const auto& i : m_cp->m_trans)
+        for (auto& tran: m_cp->m_trans)
         {
-            int transID = i->transactionID();
-            if (mmDBWrapper::updateTransactionWithStatus(*m_cp->core_->db_, transID, status))
-                i->status_ = status;
+            tran.STATUS = status;
+            Model_Checking::instance().save(&tran);
         }
-
-        m_cp->core_->db_.get()->Commit();
     }
 
     refreshVisualList();
@@ -1374,7 +1251,7 @@ wxString TransactionListCtrl::OnGetItemText(long item, long column) const
 */
 int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
 {
-    if (m_cp->m_trans.size() < 1) return ICON_NONE;
+    if (m_cp->m_trans.empty()) return ICON_NONE;
 
     int res = -1;
     if(column == COL_DATE_OR_TRANSACTION_ID)
@@ -1403,35 +1280,30 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
 */
 wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 {
-    wxASSERT(m_cp);
-    wxASSERT(item >= 0);
+    if (item < 0 || item >= m_cp->m_trans.size()) return 0;
 
-    if (m_cp && item >= 0 && item < (long)m_cp->m_trans.size())
+    const Model_Checking::Full_Data& tran = m_cp->m_trans[item];
+    bool in_the_future = Model_Checking::TRANSDATE(&tran) > wxDateTime::Now().GetDateOnly();
+
+    // apply alternating background pattern
+    int user_colour_id = tran.FOLLOWUPID;
+    if (user_colour_id < 0 ) user_colour_id = 0;
+    else if (user_colour_id > 7) user_colour_id = 0;
+
+    if (user_colour_id != 0)
     {
-        bool in_the_future = false;
-        mmBankTransaction *transaction = m_cp->m_trans[item];
-        if (transaction)
-            in_the_future = transaction->date_.GetDateOnly() > wxDateTime::Now().GetDateOnly();
-
-        // apply alternating background pattern
-        int user_colour_id = transaction->followupID_;
-        if (user_colour_id < 0 ) user_colour_id = 0;
-        else if (user_colour_id > 7) user_colour_id = 0;
-
-        if (user_colour_id != 0)
-        {
-            if (user_colour_id == 1)      return (wxListItemAttr*)&m_attr11;
-            else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
-            else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
-            else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
-            else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
-            else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
-            else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
-        }
-        else if (in_the_future && item % 2) return (wxListItemAttr*)&m_attr3;
-        else if (in_the_future)             return (wxListItemAttr*)&m_attr4;
-        else if (item % 2)                  return (wxListItemAttr*)&m_attr1;
+        if (user_colour_id == 1)      return (wxListItemAttr*)&m_attr11;
+        else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
+        else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
+        else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;
+        else if (user_colour_id == 5) return (wxListItemAttr*)&m_attr15;
+        else if (user_colour_id == 6) return (wxListItemAttr*)&m_attr16;
+        else if (user_colour_id == 7) return (wxListItemAttr*)&m_attr17;
     }
+    else if (in_the_future && item % 2) return (wxListItemAttr*)&m_attr3;
+    else if (in_the_future)             return (wxListItemAttr*)&m_attr4;
+    else if (item % 2)                  return (wxListItemAttr*)&m_attr1;
+
     return (wxListItemAttr*)&m_attr2;
 }
 //----------------------------------------------------------------------------
@@ -1476,7 +1348,7 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selectedIndex < 0) return;
 
-    m_selectedForCopy = m_cp->m_trans[m_selectedIndex]->transactionID();
+    m_selectedForCopy = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
 //----------------------------------------------------------------------------
 
@@ -1508,7 +1380,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     //Read status of the selected transaction
-    wxString status = m_cp->m_trans[m_selectedIndex]->status_;
+    wxString status = m_cp->m_trans[m_selectedIndex].STATUS;
 
     if (wxGetKeyState(wxKeyCode('R')) && status != "R") {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
@@ -1562,21 +1434,20 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        m_cp->core_->db_.get()->Begin();
         long x = 0;
         for (const auto& i : m_cp->m_trans)
         {
-            long transID = i->transactionID();
+            long transID = i.TRANSID;
             if (m_cp->m_listCtrlAccount->GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
-                m_cp->core_->bTransactionList_.deleteTransaction(m_cp->m_AccountID, transID);
+                Model_Checking::instance().remove(transID);
+                // TODO remove split
                 if (x <= topItemIndex_) topItemIndex_--;
                 m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;
             }
-        x++;
+            x++;
         }
-        m_cp->core_->db_.get()->Commit();
 
         refreshVisualList();
     }
@@ -1587,7 +1458,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
 
-    int transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
+    int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
     mmTransDialog dlg(this, m_cp->m_AccountID, transaction_id);
     if (dlg.ShowModal() == wxID_OK)
     {
@@ -1710,7 +1581,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
     {
         transaction->FOLLOWUPID = user_colour_id;
         Model_Checking::instance().save(transaction);
-        m_cp->m_trans[m_selectedIndex]->followupID_ = user_colour_id;
+        m_cp->m_trans[m_selectedIndex].FOLLOWUPID = user_colour_id;
         RefreshItems(m_selectedIndex, m_selectedIndex);
     }
 }
@@ -1782,21 +1653,13 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     int toAccountID = DestinationAccountID();
     if (toAccountID != -1)
     {
-        mmBankTransaction* pTransaction;
-        pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(
-            m_cp->m_trans[m_selectedIndex]->transactionID()
-        );
+        Model_Checking::Full_Data& tran = m_cp->m_trans[m_selectedIndex];
+        if (m_cp->m_AccountID == tran.ACCOUNTID)
+            tran.ACCOUNTID = toAccountID;
+        if (m_cp->m_AccountID == tran.TOACCOUNTID)
+            tran.TOACCOUNTID = toAccountID;
 
-        // Looking at transaction from A end. Transaction is a deposit, withdrawal or transfer.
-        if (m_cp->m_AccountID == pTransaction->accountID_)
-            pTransaction->accountID_ = toAccountID;
-
-        // Looking at transaction from b end. Transaction is a transfer
-        if (m_cp->m_AccountID == pTransaction->toAccountID_)
-            pTransaction->toAccountID_ = toAccountID;
-
-        // Update the transaction
-        m_cp->core_->bTransactionList_.UpdateTransaction(pTransaction);
+        Model_Checking::instance().save(&tran);
         refreshVisualList();
     }
 }
@@ -1806,8 +1669,8 @@ void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
 
-    if (m_cp->m_trans[m_selectedIndex]->categID_ < 0)
-        m_cp->DisplaySplitCategories(m_cp->m_trans[m_selectedIndex]->transactionID());
+    if (m_cp->m_trans[m_selectedIndex].CATEGID < 0)
+        m_cp->DisplaySplitCategories(m_cp->m_trans[m_selectedIndex].TRANSID);
 
 }
 

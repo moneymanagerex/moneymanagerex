@@ -233,8 +233,7 @@ private:
     TransactionListCtrl *m_listCtrlAccount;
     int m_AccountID;
     wxScopedPtr<wxImageList> m_imageList;
-    std::vector<mmBankTransaction*> m_trans;
-    Model_Checking::Data_Set m_trans_2;
+    Model_Checking::Full_Data_Set m_trans;
 
     void initViewTransactionsHeader();
     void initFilterSettings();
