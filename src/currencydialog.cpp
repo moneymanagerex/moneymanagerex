@@ -99,15 +99,19 @@ void mmCurrencyDialog::fillControls()
     currencyNameCombo_->Connect(ID_DIALOG_CURRENCY_CHOICE, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmCurrencyDialog::OnCurrencyNameSelected), NULL, this);
 
-    const Model_Currency::Data *base_currency = Model_Currency::instance().GetBaseCurrency();
-    //CurrencyFormatter::loadSettings(base_currency); //FIXME: 
-    wxString dispAmount, dispAmount2;
+    wxString dispAmount = "";
     double amount = 1000;
-    dispAmount = CurrencyFormatter::float2Money(amount);
-    dispAmount2 = wxString() << dispAmount << " ";
 
     if (this->m_currency)
     {
+        dispAmount = wxString::Format(_("%.0f Converted to: %s"), amount
+            , Model_Currency::toCurrency(amount, m_currency));
+        baseRateSample_->SetLabel(dispAmount);
+        amount = 123456.78;
+        dispAmount = wxString::Format(_("%.2f Shown As: %s"), amount
+            , Model_Currency::toCurrency(amount, m_currency));
+        sampleText_->SetLabel(dispAmount);
+
         pfxTx_->SetValue(m_currency->PFX_SYMBOL);
         sfxTx_->SetValue(m_currency->SFX_SYMBOL);
         decTx_->SetValue(m_currency->DECIMAL_POINT);
@@ -130,18 +134,6 @@ void mmCurrencyDialog::fillControls()
         convRate_ = 1;
         baseConvRate_->SetValue("1");
     }
-
-
-    Model_Currency::Data *currency = Model_Currency::instance().get(m_currency->CURRENCYID);
-    //CurrencyFormatter::loadSettings(currency); //FIXME:
-    dispAmount = CurrencyFormatter::float2Money(amount);
-    dispAmount2 += wxString() << _("Converted to:") << " " << dispAmount;
-
-    baseRateSample_->SetLabel(dispAmount2);
-
-    amount = 123456.78;
-    dispAmount = wxString() << "123456.78 " << _("Shown As: ") << CurrencyFormatter::float2Money(amount);
-    sampleText_->SetLabel(dispAmount);
 
     // resize the dialog window
     Fit();
