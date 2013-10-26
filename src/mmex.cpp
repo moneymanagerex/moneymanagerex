@@ -3112,13 +3112,10 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 
     if ( dlg.ShowModal() == wxID_OK )
     {
-        if (activeCheckingAccountPage_)
+        if (gotoAccountID_ == dlg.getToAccountID() || gotoAccountID_ == dlg.getAccountID())
         {
-            if (gotoAccountID_ == dlg.getToAccountID() || gotoAccountID_ == dlg.getAccountID())
-            {
-                refreshRequested_ = true;
-                createCheckingAccountPage(gotoAccountID_);
-            }
+            refreshRequested_ = true;
+            createCheckingAccountPage(gotoAccountID_);
         }
     }
 }

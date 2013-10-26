@@ -773,7 +773,8 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 {
     const Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
-    newAccountID_ = account->ACCOUNTID;
+    if (account) newAccountID_ = account->ACCOUNTID;
+    wxLogDebug("%i", newAccountID_);
 }
 
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
