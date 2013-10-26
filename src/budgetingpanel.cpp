@@ -20,14 +20,12 @@
 #include "budgetingpanel.h"
 #include "budgetentrydialog.h"
 #include "mmOption.h"
-#include "mmCurrencyFormatter.h"
 #include "mmex.h"
 #include "reports/budget.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
-#include "model/Model_Budget.h"
 
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
@@ -65,6 +63,11 @@ bool mmBudgetingPanel::Create( wxWindow *parent,
     GetSizer()->SetSizeHints(this);
 
     initVirtualListControl();
+    if (!budget_.empty())
+    {
+        listCtrlBudget_->RefreshItems(0, (static_cast<long>(budget_.size() - 1)));
+        listCtrlBudget_->EnsureVisible(0);
+    }
 
     this->windowsFreezeThaw();
     return TRUE;
@@ -107,9 +110,10 @@ void mmBudgetingPanel::RefreshList()
 {
     listCtrlBudget_->DeleteAllItems();
     initVirtualListControl();
-    if (!trans_.empty())
+    if (!budget_.empty())
     {
-        listCtrlBudget_->RefreshItems(0, (static_cast<long>(trans_.size()-1)));
+        listCtrlBudget_->RefreshItems(0, (static_cast<long>(budget_.size() - 1)));
+        listCtrlBudget_->EnsureVisible(0);
     }
 }
 
@@ -266,18 +270,31 @@ void mmBudgetingPanel::sortTable()
 {
 }
 
-bool mmBudgetingPanel::DisplayEntryAllowed(mmBudgetEntryHolder& budgetEntry)
+bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
 {
     bool result = false;
 
+    double actual = 0;
+    double estimated = 0;
+    if (categoryID < 0)
+    {
+        actual = budgetTotals_[subcategoryID].second;
+        estimated = budgetTotals_[subcategoryID].first;
+    }
+    else
+    {
+        actual = categoryStats_[categoryID][subcategoryID][0];
+        estimated = getEstimate(categoryID, subcategoryID);
+    }
+
     if (currentView_ == "View Non-Zero Budget Categories")
-        result =((budgetEntry.estimated_ != 0.0) || (budgetEntry.actual_ != 0.0));
+        result = ((estimated != 0.0) || (actual != 0.0));
     else if (currentView_ == "View Income Budget Categories")
-        result = ((budgetEntry.estimated_ > 0.0) || (budgetEntry.actual_ > 0.0));
+        result = ((estimated > 0.0) || (actual > 0.0));
     else if (currentView_ == "View Expense Budget Categories")
-        result = ((budgetEntry.estimated_ < 0.0) || (budgetEntry.actual_ < 0.0));
+        result = ((estimated < 0.0) || (actual < 0.0));
     else if (currentView_ == "View Budget Category Summary")
-        result = ((budgetEntry.id_ < 0.0));
+        result = ((categoryID < 0.0));
     else
         result = true;
 
@@ -286,7 +303,11 @@ bool mmBudgetingPanel::DisplayEntryAllowed(mmBudgetEntryHolder& budgetEntry)
 
 void mmBudgetingPanel::initVirtualListControl()
 {
-    trans_.clear();
+    budget_.clear();
+    budgetTotals_.clear();
+    budgetPeriod_.clear();
+    budgetAmt_.clear();
+    categoryStats_.clear();
     double estIncome = 0.0;
     double estExpenses = 0.0;
     double actIncome = 0.0;
@@ -306,9 +327,9 @@ void mmBudgetingPanel::initVirtualListControl()
     wxDateTime dtBegin(1, wxDateTime::Jan, year);
     wxDateTime dtEnd(31, wxDateTime::Dec, year);
 
-    bool monthlyBudget = (budgetYearStr.length() > 5);
+    monthlyBudget_ = (budgetYearStr.length() > 5);
 
-    if (monthlyBudget)
+    if (monthlyBudget_)
     {
         budgetDetails.SetBudgetMonth(budgetYearStr, dtBegin, dtEnd);
     }
@@ -320,116 +341,88 @@ void mmBudgetingPanel::initVirtualListControl()
     }
     mmSpecifiedRange date_range(dtBegin, dtEnd);
     //Get statistics
-    std::map<int, std::map<int, wxString> > budgetPeriod;
-    std::map<int, std::map<int, double> > budgetAmt;
-    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
-    std::map<int, std::map<int, std::map<int, double> > > categoryStats;
-    Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
-        false, true, (evaluateTransfer ? &budgetAmt : 0));
+    Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod_, budgetAmt_);
+    Model_Category::instance().getCategoryStats(categoryStats_, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
+        false, true, (evaluateTransfer ? &budgetAmt_ : 0));
 
     const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
-        mmBudgetEntryHolder th;
-        budgetDetails.initBudgetEntryFields(th, budgetYearID_);
-        th.categID_ = category.CATEGID;
-        th.catStr_ = category.CATEGNAME;
-
-        th.period_ = budgetPeriod[th.categID_][th.subcategID_];
-        th.amt_ = budgetAmt[th.categID_][th.subcategID_];
-        budgetDetails.setBudgetEstimate(th, monthlyBudget);
-        if (th.estimated_ < 0)
-            estExpenses += th.estimated_;
+        double estimated = getEstimate(category.CATEGID, -1);
+        if (estimated < 0)
+            estExpenses += estimated;
         else
-            estIncome += th.estimated_;
+            estIncome += estimated;
 
-        th.actual_ = categoryStats[th.categID_][th.subcategID_][0];
-        if (th.actual_ < 0)
-            actExpenses += th.actual_;
+        double actual = categoryStats_[category.CATEGID][-1][0];
+        if (actual < 0)
+            actExpenses += actual;
         else
-            actIncome += th.actual_;
-
-        th.amtString_ = CurrencyFormatter::float2String(th.amt_);
-        th.estimatedStr_ = CurrencyFormatter::float2String(th.estimated_);
-        th.actualStr_ = CurrencyFormatter::float2String(th.actual_);
+            actIncome += actual;
 
         /***************************************************************************
          Create a TOTALS entry for the category.
          ***************************************************************************/
-        mmBudgetEntryHolder catTotals;
-        catTotals.id_ = -1;
-        catTotals.categID_ = -1;
-        catTotals.catStr_  = th.catStr_;
-        catTotals.subcategID_ = -1;
-        catTotals.subCatStr_ = wxEmptyString;
-        catTotals.period_    = wxEmptyString;
-        catTotals.amt_       = th.amt_;
-        catTotals.estimated_ = th.estimated_;
-        catTotals.actual_    = th.actual_;
-        catTotals.amtString_ = CurrencyFormatter::float2String(catTotals.amt_);
-        catTotals.estimatedStr_ = CurrencyFormatter::float2String(catTotals.estimated_);
-        catTotals.actualStr_ = CurrencyFormatter::float2String(catTotals.actual_);
+        double catTotalsEstimated = estimated;
+        double catTotalsActual = actual;
 
-        if (DisplayEntryAllowed(th)) {
-            trans_.push_back(th);
+        if (DisplayEntryAllowed(category.CATEGID, -1)) {
+            std::pair <int, int> category_pair;
+            category_pair.first = category.CATEGID;
+            category_pair.second = -1;
+            budget_.push_back(category_pair);
         }
 
-        for (const auto& sub_category : allSubcategories)
+        for (const auto& subcategory : allSubcategories)
         {
-            if (sub_category.CATEGID != category.CATEGID) continue;
-            mmBudgetEntryHolder thsub;
-            budgetDetails.initBudgetEntryFields(thsub, budgetYearID_);
-            thsub.categID_ = th.categID_;
-            thsub.catStr_ = th.catStr_;
-            thsub.subcategID_ = sub_category.SUBCATEGID;
-            thsub.subCatStr_   = sub_category.SUBCATEGNAME;
+            if (subcategory.CATEGID != category.CATEGID) continue;
 
-            thsub.period_ = budgetPeriod[thsub.categID_][thsub.subcategID_];
-            thsub.amt_ = budgetAmt[thsub.categID_][thsub.subcategID_];
-            budgetDetails.setBudgetEstimate(thsub, monthlyBudget);
-            if (thsub.estimated_ < 0)
-                estExpenses += thsub.estimated_;
+            estimated = getEstimate(category.CATEGID, subcategory.SUBCATEGID);
+            if (estimated < 0)
+                estExpenses += estimated;
             else
-                estIncome += thsub.estimated_;
+                estIncome += estimated;
 
-            thsub.actual_ = categoryStats[thsub.categID_][thsub.subcategID_][0];
-            if (thsub.actual_ < 0)
-                actExpenses += thsub.actual_;
+            actual = categoryStats_[category.CATEGID][subcategory.SUBCATEGID][0];
+            if (actual < 0)
+                actExpenses += actual;
             else
-                actIncome += thsub.actual_;
-
-            thsub.amtString_ = CurrencyFormatter::float2String(thsub.amt_);
-            thsub.estimatedStr_ = CurrencyFormatter::float2String(thsub.estimated_);
-            thsub.actualStr_ = CurrencyFormatter::float2String(thsub.actual_);
+                actIncome += actual;
 
             /***************************************************************************
              Update the TOTALS entry for the subcategory.
             ***************************************************************************/
-            catTotals.estimated_    += thsub.estimated_;
-            catTotals.actual_       += thsub.actual_;
-            catTotals.amtString_ = wxEmptyString;
-            catTotals.estimatedStr_ = CurrencyFormatter::float2String(catTotals.estimated_);
-            catTotals.actualStr_ = CurrencyFormatter::float2String(catTotals.actual_);
+            catTotalsEstimated += estimated;
+            catTotalsActual += actual;
 
-            if (DisplayEntryAllowed(thsub)) {
-                trans_.push_back(thsub);
+            if (DisplayEntryAllowed(category.CATEGID, subcategory.SUBCATEGID)) {
+                std::pair <int, int> category_pair;
+                category_pair.first = category.CATEGID;
+                category_pair.second = subcategory.SUBCATEGID;
+                budget_.push_back(category_pair);
             }
         }
 
-        if (wxGetApp().m_frame->budgetSetupWithSummary() && DisplayEntryAllowed(catTotals))
+        budgetTotals_[category.CATEGID].first = catTotalsEstimated;
+        budgetTotals_[category.CATEGID].second = catTotalsActual;
+
+        if (wxGetApp().m_frame->budgetSetupWithSummary() && DisplayEntryAllowed(-1, category.CATEGID))
         {
-            trans_.push_back(catTotals);
-            int transCatTotalIndex = (int)trans_.size()-1;
+            std::pair <int, int> category_pair;
+            category_pair.first = -1;
+            category_pair.second = category.CATEGID;
+            budget_.push_back(category_pair);
+            int transCatTotalIndex = (int)budget_.size() - 1;
             listCtrlBudget_->RefreshItem(transCatTotalIndex);
         }
     }
 
-    listCtrlBudget_->SetItemCount((int)trans_.size());
+    listCtrlBudget_->SetItemCount((int)budget_.size());
 
     wxString est_amount, act_amount, diff_amount;
-    est_amount = CurrencyFormatter::float2Money(estIncome);
-    act_amount = CurrencyFormatter::float2Money(actIncome);
-    diff_amount = CurrencyFormatter::float2Money(estIncome - actIncome);
+    est_amount = Model_Currency::toString(estIncome);
+    act_amount = Model_Currency::toString(actIncome);
+    diff_amount = Model_Currency::toString(estIncome - actIncome);
 
     income_estimated_->SetLabel(est_amount);
     income_actual_->SetLabel(act_amount);
@@ -437,9 +430,9 @@ void mmBudgetingPanel::initVirtualListControl()
 
     if (estExpenses < 0.0) estExpenses = -estExpenses;
     if (actExpenses < 0.0) actExpenses = -actExpenses;
-    est_amount = CurrencyFormatter::float2Money(estExpenses);
-    act_amount = CurrencyFormatter::float2Money(actExpenses);
-    diff_amount = CurrencyFormatter::float2Money(estExpenses -actExpenses);
+    est_amount = Model_Currency::toString(estExpenses);
+    act_amount = Model_Currency::toString(actExpenses);
+    diff_amount = Model_Currency::toString(estExpenses - actExpenses);
 
     expences_estimated_->SetLabel(est_amount);
     expences_actual_->SetLabel(act_amount);
@@ -447,13 +440,18 @@ void mmBudgetingPanel::initVirtualListControl()
     UpdateBudgetHeading();
 }
 
+double mmBudgetingPanel::getEstimate(int category, int subcategory) const
+{
+    Model_Budget::PERIOD_ENUM period = budgetPeriod_.at(category).at(subcategory);
+    double amt = budgetAmt_.at(category).at(subcategory);
+    return (monthlyBudget_ ? Model_Budget::getMonthlyEstimate(period, amt) : Model_Budget::getYearlyEstimate(period, amt));
+}
+
 void mmBudgetingPanel::DisplayBudgetingDetails(int budgetYearID)
 {
     this->windowsFreezeThaw();
     budgetYearID_ = budgetYearID;
-    initVirtualListControl();
-    UpdateBudgetHeading();
-    listCtrlBudget_->RefreshItem(0);
+    RefreshList();
     this->windowsFreezeThaw();
 }
 
@@ -470,14 +468,68 @@ void budgetingListCtrl::OnListItemSelected(wxListEvent& event)
 
 wxString mmBudgetingPanel::getItem(long item, long column)
 {
-    if (column == 0) return trans_[item].catStr_;
-    if (column == 1) return trans_[item].subCatStr_;
-    if (column == 2) return wxGetTranslation(trans_[item].period_);
-    if (column == 3) return trans_[item].amtString_;
-    if (column == 4) return trans_[item].estimatedStr_;
-    if (column == 5) return trans_[item].actualStr_;
-
-    return "";
+    wxString text = "";
+    if (column == 0)
+    {
+        if (budget_[item].first < 0)
+        {
+            Model_Category::Data* category = Model_Category::instance().get(budget_[item].second);
+            if(category) text = category->CATEGNAME;
+        }
+        else
+        {
+            Model_Category::Data* category = Model_Category::instance().get(budget_[item].first);
+            if (category) text = category->CATEGNAME;
+        }
+    }
+    if (column == 1)
+    {
+        if (budget_[item].first >= 0)
+        {
+            Model_Subcategory::Data* subcategory = Model_Subcategory::instance().get(budget_[item].second);
+            if (subcategory) text = subcategory->SUBCATEGNAME;
+        }
+    }
+    if (column == 2)
+    {
+        if (budget_[item].first >= 0)
+            text = wxGetTranslation(Model_Budget::all_period()[budgetPeriod_[budget_[item].first][budget_[item].second]]);
+    }
+    if (column == 3)
+    {
+        if (budget_[item].first >= 0)
+        {
+            double amt = budgetAmt_[budget_[item].first][budget_[item].second];
+            text = Model_Currency::toString(amt);
+        }
+    }
+    if (column == 4)
+    {
+        if (budget_[item].first < 0)
+        {
+            double estimated = budgetTotals_[budget_[item].second].first;
+            text = Model_Currency::toString(estimated);
+        }
+        else
+        {
+            double estimated = getEstimate(budget_[item].first, budget_[item].second);
+            text = Model_Currency::toString(estimated);
+        }
+    }
+    if (column == 5)
+    {
+        if (budget_[item].first < 0)
+        {
+            double actual = budgetTotals_[budget_[item].second].second;
+            text = Model_Currency::toString(actual);
+        }
+        else
+        {
+            double actual = categoryStats_[budget_[item].first][budget_[item].second][0];
+            text = Model_Currency::toString(actual);
+        }
+    }
+    return text;
 }
 
 int budgetingListCtrl::OnGetItemImage(long item) const
@@ -486,10 +538,23 @@ int budgetingListCtrl::OnGetItemImage(long item) const
 }
 int mmBudgetingPanel::GetItemImage(long item) const
 {
-    if ((trans_[item].estimated_ == 0.0) && (trans_[item].actual_ == 0.0)) return 3;
-    if ((trans_[item].estimated_ == 0.0) && (trans_[item].actual_ != 0.0)) return 2;
-    if (trans_[item].estimated_ < trans_[item].actual_) return 0;
-    if (fabs(trans_[item].estimated_ - trans_[item].actual_)  < 0.001) return 0;
+    double estimated = 0;
+    double actual = 0;
+    if (budget_[item].first < 0)
+    {
+        estimated = budgetTotals_.at(budget_[item].second).first;
+        actual = budgetTotals_.at(budget_[item].second).second;
+    }
+    else
+    {
+        estimated = getEstimate(budget_[item].first, budget_[item].second);
+        actual = categoryStats_.at(budget_[item].first).at(budget_[item].second).at(0);
+    }
+
+    if ((estimated == 0.0) && (actual == 0.0)) return 3;
+    if ((estimated == 0.0) && (actual != 0.0)) return 2;
+    if (estimated < actual) return 0;
+    if (fabs(estimated - actual)  < 0.001) return 0;
     return 1;
 }
 
@@ -522,17 +587,17 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     /***************************************************************************
      A TOTALS entry does not contain a budget entry, therefore ignore the event.
      ***************************************************************************/
-    if (trans_[selectedIndex].id_ < 0) return;
+    if (budget_[selectedIndex].first < 0) return;
 
     Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(GetBudgetYearID()),
-        Model_Budget::CATEGID(trans_[selectedIndex].categID_), Model_Budget::SUBCATEGID(trans_[selectedIndex].subcategID_));
+        Model_Budget::CATEGID(budget_[selectedIndex].first), Model_Budget::SUBCATEGID(budget_[selectedIndex].second));
     Model_Budget::Data* entry = 0;
     if (budget.empty())
     {
         entry = Model_Budget::instance().create();
         entry->BUDGETYEARID = GetBudgetYearID();
-        entry->CATEGID = trans_[selectedIndex].categID_;
-        entry->SUBCATEGID = trans_[selectedIndex].subcategID_;
+        entry->CATEGID = budget_[selectedIndex].first;
+        entry->SUBCATEGID = budget_[selectedIndex].second;
         entry->PERIOD = "";
         entry->AMOUNT = 0.0;
         Model_Budget::instance().save(entry);
@@ -540,11 +605,14 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     else
         entry = &budget[0];
 
-    mmBudgetEntryDialog dlg(entry,
-        trans_[selectedIndex].estimatedStr_,
-        trans_[selectedIndex].actualStr_, this);
+    double estimated = getEstimate(budget_[selectedIndex].first, budget_[selectedIndex].second);
+    double actual = categoryStats_[budget_[selectedIndex].first][budget_[selectedIndex].second][0];
+
+    mmBudgetEntryDialog dlg(entry, Model_Currency::toString(estimated), Model_Currency::toString(actual), this);
     if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();
+        listCtrlBudget_->RefreshItem(selectedIndex);
+        listCtrlBudget_->EnsureVisible(selectedIndex);
     }
 }

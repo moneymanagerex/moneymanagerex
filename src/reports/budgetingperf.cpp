@@ -1,5 +1,4 @@
 #include "budgetingperf.h"
-#include "budgetingpanel.h"
 #include "htmlbuilder.h"
 #include "mmex.h"
 #include "model/Model_Budgetyear.h"
@@ -16,7 +15,7 @@ void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, doub
     for (int yidx = 0; yidx < 12; yidx++)
     {
         // Set the estimate for each month
-        hb.addMoneyCell(estimated / 12);
+        hb.addMoneyCell(estimated / 12, false);
     }
 }
 
@@ -29,11 +28,11 @@ void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, double
 
         if (actualMonthVal < est)
         {
-            hb.addMoneyCell(actualMonthVal, "RED");
+            hb.addMoneyCell(actualMonthVal, wxString("RED"));
         }
         else
         {
-            hb.addMoneyCell(actualMonthVal);
+            hb.addMoneyCell(actualMonthVal, false);
         }
     }
 }
@@ -62,7 +61,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int, std::map<int, wxString> > budgetPeriod;
+    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
@@ -114,54 +113,46 @@ wxString mmReportBudgetingPerformance::getHTMLText()
 
     for (const Model_Category::Data& category : allCategories)
     {
-        mmBudgetEntryHolder th;
-        initBudgetEntryFields(th, budgetYearID_);
-        th.categID_ = category.CATEGID;
-        th.catStr_  = category.CATEGNAME;
-        th.period_ = budgetPeriod[th.categID_][th.subcategID_];
-        th.amt_ = budgetAmt[th.categID_][th.subcategID_];
-
         // Set the estimated amount for the year
-        setBudgetYearlyEstimate(th);
-        double totalEstimated_ = th.estimated_;
+        double estimated = Model_Budget::getYearlyEstimate(budgetPeriod[category.CATEGID][-1], budgetAmt[category.CATEGID][-1]);
 
         // set the actual amount for the year
-        th.actual_ = totals[th.categID_][th.subcategID_];
+        double actual = totals[category.CATEGID][-1];
 
         // estimated stuff
-        if ((totalEstimated_ != 0.0) || (th.actual_ != 0.0))
+        if ((estimated != 0.0) || (actual != 0.0))
         {
             hb.startTableRow();
-            hb.addTableCell(th.catStr_, false, true);
+            hb.addTableCell(category.CATEGNAME, false, true);
             hb.addTableCell(_("Estimated"));
 
-            DisplayEstimateMonths(hb, th.estimated_);
+            DisplayEstimateMonths(hb, estimated);
 
-            hb.addMoneyCell(totalEstimated_);
+            hb.addMoneyCell(estimated, false);
             hb.addTableCell("-");
             hb.endTableRow();
 
             // actual stuff
             hb.startTableRow();
-            hb.addTableCell(th.catStr_, false, true);
+            hb.addTableCell(category.CATEGNAME, false, true);
             hb.addTableCell(_("Actual"));
 
-            DisplayActualMonths(hb, th.estimated_, categoryStats[th.categID_][th.subcategID_]);
+            DisplayActualMonths(hb, estimated, categoryStats[category.CATEGID][-1]);
 
             // year end
-            if(th.actual_ < totalEstimated_)
+            if(actual < estimated)
             {
-                hb.addMoneyCell(th.actual_, "RED");
+                hb.addMoneyCell(actual, wxString("RED"));
             }
             else
             {
-                hb.addMoneyCell(th.actual_);
+                hb.addMoneyCell(actual, false);
             }
 
-            if (((totalEstimated_ < 0) && (th.actual_ < 0)) ||
-                ((totalEstimated_ > 0) && (th.actual_ > 0)))
+            if (((estimated < 0) && (actual < 0)) ||
+                ((estimated > 0) && (actual > 0)))
             {
-                double percent = (fabs(th.actual_) / fabs(totalEstimated_)) * 100.0;
+                double percent = (fabs(actual) / fabs(estimated)) * 100.0;
                 hb.addTableCell(wxString::Format("%.0f", percent));
             }
             else
@@ -177,54 +168,45 @@ wxString mmReportBudgetingPerformance::getHTMLText()
         for (const Model_Subcategory::Data& subcategory : allSubcategories)
         {
             if (subcategory.CATEGID != category.CATEGID) continue;
-            mmBudgetEntryHolder thsub;
-            initBudgetEntryFields(thsub, budgetYearID_);
-            thsub.categID_ = th.categID_;
-            thsub.catStr_  = th.catStr_;
-            thsub.subcategID_ = subcategory.SUBCATEGID;
-            thsub.subCatStr_  = subcategory.SUBCATEGNAME;
-            thsub.period_ = budgetPeriod[thsub.categID_][thsub.subcategID_];
-            thsub.amt_ = budgetAmt[thsub.categID_][thsub.subcategID_];
 
             // Set the estimated amount for the year
-            setBudgetYearlyEstimate(thsub);
-            totalEstimated_ = thsub.estimated_;
+            estimated = Model_Budget::getYearlyEstimate(budgetPeriod[category.CATEGID][subcategory.SUBCATEGID], budgetAmt[category.CATEGID][subcategory.SUBCATEGID]);
 
             // set the actual abount for the year
-            thsub.actual_ = totals[thsub.categID_][thsub.subcategID_];
+            actual = totals[category.CATEGID][subcategory.SUBCATEGID];
 
-            if ((totalEstimated_ != 0.0) || (thsub.actual_ != 0.0))
+            if ((estimated != 0.0) || (actual != 0.0))
             {
                 hb.startTableRow();
-                hb.addTableCell(thsub.catStr_+ ": " + thsub.subCatStr_, false, true);
+                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, false, true);
                 hb.addTableCell(_("Estimated"));
 
-                DisplayEstimateMonths(hb, thsub.estimated_);
+                DisplayEstimateMonths(hb, estimated);
 
-                hb.addMoneyCell(totalEstimated_);
+                hb.addMoneyCell(estimated, false);
                 hb.addTableCell("-");
                 hb.endTableRow();
 
                 hb.startTableRow();
-                hb.addTableCell(thsub.catStr_+ ": " + thsub.subCatStr_, false, true);
+                hb.addTableCell(category.CATEGNAME + ": " + subcategory.SUBCATEGNAME, false, true);
                 hb.addTableCell(_("Actual"));
 
-                DisplayActualMonths(hb, thsub.estimated_, categoryStats[thsub.categID_][thsub.subcategID_]);
+                DisplayActualMonths(hb, estimated, categoryStats[category.CATEGID][subcategory.SUBCATEGID]);
 
                 // year end
-                if(thsub.actual_ < totalEstimated_)
+                if(actual < estimated)
                 {
-                    hb.addMoneyCell(thsub.actual_, "RED");
+                    hb.addMoneyCell(actual, wxString("RED"));
                 }
                 else
                 {
-                    hb.addMoneyCell(thsub.actual_);
+                    hb.addMoneyCell(actual, false);
                 }
 
-                if (((totalEstimated_ < 0) && (thsub.actual_ < 0)) ||
-                    ((totalEstimated_ > 0) && (thsub.actual_ > 0)))
+                if (((estimated < 0) && (actual < 0)) ||
+                    ((estimated > 0) && (actual > 0)))
                 {
-                    double percent = (fabs(thsub.actual_) / fabs(totalEstimated_)) * 100.0;
+                    double percent = (fabs(actual) / fabs(estimated)) * 100.0;
                     hb.addTableCell(wxString::Format("%.0f", percent));
                 }
                 else

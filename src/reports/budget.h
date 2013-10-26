@@ -20,7 +20,6 @@
 
 #include "reportbase.h"
 
-struct mmBudgetEntryHolder;
 class mmHTMLBuilder;
 class wxDateTime;
 
@@ -32,18 +31,6 @@ class mmReportBudget : public mmPrintableBase
 {
 public:
     mmReportBudget();
-
-    /// Initialise index and secondary fields for a budget entry
-    void initBudgetEntryFields(mmBudgetEntryHolder& budEntry, int id = -1);
-
-    /// Set budget estimate for a day based on the required period
-    void setBudgetMonthlyEstimate(mmBudgetEntryHolder& budEntry);
-
-    /// Set budget estimate for a yearly period
-    void setBudgetYearlyEstimate(mmBudgetEntryHolder& budEntry);
-
-    /// Set budget estimate for the appropriate period
-    void setBudgetEstimate(mmBudgetEntryHolder& budEntry, bool monthBudget);
 
     /// Returns correct values for day and month, adjusted to financial year if required.
     void AdjustYearValues(int& day, int& month, wxDateTime& year);

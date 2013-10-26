@@ -20,7 +20,6 @@
  Renamed after extensive modifications to original file reportbudgetsetup.cpp
 **************************************************************************/
 #include "budgetcategorysummary.h"
-#include "budgetingpanel.h"
 #include "htmlbuilder.h"
 #include "mmex.h"
 #include "model/Model_Budgetyear.h"
@@ -32,35 +31,22 @@ mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(int budgetYearID)
 : budgetYearID_(budgetYearID)
 {}
 
-wxString mmReportBudgetCategorySummary::actualAmountColour(const mmBudgetEntryHolder& budEntry, bool total)
+wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total)
 {
     wxString actAmtColStr = "black";
     if (total) {
         actAmtColStr = "blue";
     }
 
-    if (budEntry.amt_ == 0) {
+    if (amount == 0) {
         actAmtColStr = "blue";
     } else {
-        if (budEntry.actual_ < budEntry.estimated_) {
+        if (actual < estimated) {
             actAmtColStr = "red";
         }
     }
 
     return actAmtColStr;
-}
-
-// Displays Row: Category, Sub Category, Period, Amount, Estimated, Actual
-void mmReportBudgetCategorySummary::displayReportLine(mmHTMLBuilder& hb, const mmBudgetEntryHolder& budEntry)
-{
-    hb.startTableRow();
-    hb.addTableCell(budEntry.catStr_, false, true);
-    hb.addTableCell(budEntry.subCatStr_, false, true);
-	hb.addMoneyCell(budEntry.amt_);
-    hb.addTableCell(budEntry.period_, false, true);
-	hb.addMoneyCell(budEntry.estimated_);
-	hb.addMoneyCell(budEntry.actual_, this->actualAmountColour(budEntry));
-    hb.endTableRow();
 }
 
 wxString mmReportBudgetCategorySummary::getHTMLText()
@@ -92,7 +78,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         evaluateTransfer = true;
     }
     //Get statistics
-    std::map<int, std::map<int, wxString> > budgetPeriod;
+    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod;
     std::map<int, std::map<int, double> > budgetAmt;
     Model_Budget::instance().getBudgetEntry(budgetYearID_, budgetPeriod, budgetAmt);
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
@@ -129,86 +115,80 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     for (const Model_Category::Data& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
-        mmBudgetEntryHolder th;
-        initBudgetEntryFields(th, budgetYearID_);
-        th.categID_ = category.CATEGID;
-        th.catStr_ = category.CATEGNAME;
-        th.period_ = budgetPeriod[th.categID_][th.subcategID_];
-        th.amt_ = budgetAmt[th.categID_][th.subcategID_];
-
-        setBudgetEstimate(th,monthlyBudget);
-        if (th.estimated_ < 0) {
-            estExpenses += th.estimated_;
+        double estimated = (monthlyBudget ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.CATEGID][-1], budgetAmt[category.CATEGID][-1]) :
+            Model_Budget::getYearlyEstimate(budgetPeriod[category.CATEGID][-1], budgetAmt[category.CATEGID][-1]));
+        if (estimated < 0) {
+            estExpenses += estimated;
         } else {
-            estIncome += th.estimated_;
+            estIncome += estimated;
         }
 
-        th.actual_ = categoryStats[th.categID_][th.subcategID_][0];
-
-        if (th.actual_ < 0) {
-            actExpenses += th.actual_;
+        double actual = categoryStats[category.CATEGID][-1][0];
+        if (actual < 0) {
+            actExpenses += actual;
         } else {
-            actIncome += th.actual_;
+            actIncome += actual;
         }
 
         if (wxGetApp().m_frame->budgetCategoryTotal())
         {
-            th.subCatStr_ = wxEmptyString;
-            displayReportLine(hb, th);
+            double amt = budgetAmt[category.CATEGID][-1];
+            hb.startTableRow();
+            hb.addTableCell(category.CATEGNAME, false, true);
+            hb.addTableCell(wxEmptyString, false, true);
+            hb.addMoneyCell(amt, false);
+            hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.CATEGID][-1]], false, true);
+            hb.addMoneyCell(estimated, false);
+            hb.addMoneyCell(actual, actualAmountColour(amt, actual, estimated));
+            hb.endTableRow();
         }
         /***************************************************************************
          Create a TOTALS entry for the category.
          ***************************************************************************/
-        mmBudgetEntryHolder catTotals;
-        catTotals.id_ = -1;
-        catTotals.categID_ = -1;
-        catTotals.catStr_  = th.catStr_;
-        catTotals.subcategID_ = -1;
-        catTotals.subCatStr_ = wxEmptyString;
-        catTotals.period_    = wxEmptyString;
-        catTotals.amt_       = th.amt_;
-        catTotals.estimated_ = th.estimated_;
-        catTotals.actual_    = th.actual_;
+        double catTotalsAmt = budgetAmt[category.CATEGID][-1];
+        double catTotalsEstimated = estimated;
+        double catTotalsActual = actual;
         /***************************************************************************/
 
         //START: SUBCATEGORY ROW
         for (const Model_Subcategory::Data& subcategory : allSubcategories)
         {
             if (subcategory.CATEGID != category.CATEGID) continue;
-            mmBudgetEntryHolder thsub;
-            initBudgetEntryFields(thsub, budgetYearID_);
-            thsub.categID_ = th.categID_;
-            thsub.catStr_ = th.catStr_;
-            thsub.subcategID_ = subcategory.SUBCATEGID;
-            thsub.subCatStr_  = subcategory.SUBCATEGNAME;
-            thsub.period_ = budgetPeriod[thsub.categID_][thsub.subcategID_];
-            thsub.amt_ = budgetAmt[thsub.categID_][thsub.subcategID_];
 
-            setBudgetEstimate(thsub,monthlyBudget);
-            if (thsub.estimated_ < 0) {
-                estExpenses += thsub.estimated_;
+            estimated = (monthlyBudget ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.CATEGID][subcategory.SUBCATEGID], budgetAmt[category.CATEGID][subcategory.SUBCATEGID]) :
+                Model_Budget::getYearlyEstimate(budgetPeriod[category.CATEGID][subcategory.SUBCATEGID], budgetAmt[category.CATEGID][subcategory.SUBCATEGID]));
+            if (estimated < 0) {
+                estExpenses += estimated;
             } else {
-                estIncome += thsub.estimated_;
+                estIncome += estimated;
             }
 
-            thsub.actual_ = categoryStats[thsub.categID_][thsub.subcategID_][0];
-            if (thsub.actual_ < 0) {
-                actExpenses += thsub.actual_;
+            actual = categoryStats[category.CATEGID][subcategory.SUBCATEGID][0];
+            if (actual < 0) {
+                actExpenses += actual;
             } else {
-                actIncome += thsub.actual_;
+                actIncome += actual;
             }
 
             if (wxGetApp().m_frame->budgetCategoryTotal())
             {
-                displayReportLine(hb, thsub);
+                double amt = budgetAmt[category.CATEGID][subcategory.SUBCATEGID];
+                hb.startTableRow();
+                hb.addTableCell(category.CATEGNAME, false, true);
+                hb.addTableCell(subcategory.SUBCATEGNAME, false, true);
+                hb.addMoneyCell(amt, false);
+                hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.CATEGID][subcategory.SUBCATEGID]], false, true);
+                hb.addMoneyCell(estimated, false);
+                hb.addMoneyCell(actual, actualAmountColour(amt, actual, estimated));
+                hb.endTableRow();
             }
 
             /***************************************************************************
              Update the TOTALS entry for the subcategory.
              ***************************************************************************/
-            catTotals.amt_       += thsub.amt_;
-            catTotals.estimated_ += thsub.estimated_;
-            catTotals.actual_    += thsub.actual_;
+            catTotalsAmt += budgetAmt[category.CATEGID][subcategory.SUBCATEGID];
+            catTotalsEstimated += estimated;
+            catTotalsActual += actual;
         }
         //END: SUBCATEGORY ROW
 
@@ -220,12 +200,12 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         }
         // Category, Sub Category, Period, Amount, Estimated, Actual
         hb.startTableRow();
-        hb.addTableCell(catTotals.catStr_, false, true, true, "blue");
-        hb.addTableCell("", false, true, true, "blue");
+        hb.addTableCell(category.CATEGNAME, false, true, true, "blue");
+        hb.addTableCell(wxEmptyString, false, true, true, "blue");
         hb.addTableCell(wxEmptyString, true, false,true, "blue");
-        hb.addTableCell(catTotals.period_, false, true, true, "blue");
-		hb.addMoneyCell(catTotals.estimated_, "blue");
-		hb.addMoneyCell(catTotals.actual_, this->actualAmountColour(catTotals, true));
+        hb.addTableCell(wxEmptyString, false, true, true, "blue");
+        hb.addMoneyCell(catTotalsEstimated, wxString("blue"));
+        hb.addMoneyCell(catTotalsActual, this->actualAmountColour(catTotalsAmt, catTotalsActual, catTotalsEstimated, true));
         hb.endTableRow();
         hb.addRowSeparator(6);
         /***************************************************************************/
@@ -243,15 +223,15 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.startTable("50%");
 //    hb.addRowSeparator(3);
     hb.startTableRow();
-	hb.addMoneyCell(estIncome); 
-	hb.addMoneyCell(actIncome);
-	hb.addMoneyCell(difIncome);
+	hb.addMoneyCell(estIncome, false); 
+	hb.addMoneyCell(actIncome, false);
+	hb.addMoneyCell(difIncome, false);
     hb.endTableRow();
 
     hb.startTableRow();
-	hb.addMoneyCell(estExpenses);
-	hb.addMoneyCell(actExpenses);
-	hb.addMoneyCell(difExpense);
+	hb.addMoneyCell(estExpenses, false);
+	hb.addMoneyCell(actExpenses, false);
+	hb.addMoneyCell(difExpense, false);
     hb.endTableRow();
     hb.addRowSeparator(3);
     hb.endTable();

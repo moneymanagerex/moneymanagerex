@@ -18,99 +18,10 @@
 #include "budget.h"
 
 #include "mmex.h"
-#include "budgetingpanel.h"
 #include "htmlbuilder.h"
 
 mmReportBudget::mmReportBudget()
 {}
-
-/**************************************************************************************
- This will set the budget estimate for a month in a year.
- ***************************************************************************************/
-void mmReportBudget::setBudgetMonthlyEstimate(mmBudgetEntryHolder& budEntry)
-{
-    int ndays = 365;
-
-    if (budEntry.period_ == "Monthly") {
-        budEntry.estimated_ = budEntry.amt_;
-
-    } else if (budEntry.period_ == "Yearly") {
-        budEntry.estimated_ = budEntry.amt_ / 12;
-
-    } else if (budEntry.period_ == "Weekly") {
-        budEntry.estimated_ = ((budEntry.amt_ / 7) * ndays) / 12;
-
-    } else if (budEntry.period_ == "Bi-Weekly") {
-        budEntry.estimated_ = ((budEntry.amt_ / 14) * ndays) / 12;
-
-    } else if (budEntry.period_ == "Bi-Monthly") {
-        budEntry.estimated_ = budEntry.amt_ / 2;
-
-    } else if (budEntry.period_ == "Quarterly") {
-        budEntry.estimated_ = budEntry.amt_ / 3;
-
-    } else if (budEntry.period_ == "Half-Yearly") {
-        budEntry.estimated_ = (budEntry.amt_ / 6);
-
-    } else if (budEntry.period_ == "Daily") {
-        budEntry.estimated_ = (budEntry.amt_ * ndays) / 12;
-
-    } else {
-        wxASSERT(true);
-    }
-}
-
-void mmReportBudget::setBudgetYearlyEstimate(mmBudgetEntryHolder& budEntry)
-{
-    if (budEntry.period_ == "Monthly") {
-        budEntry.estimated_ = budEntry.amt_ * 12;
-
-    } else if (budEntry.period_ == "Yearly") {
-        budEntry.estimated_ = budEntry.amt_;
-
-    } else if (budEntry.period_ == "Weekly") {
-        budEntry.estimated_ = budEntry.amt_ * 52;
-
-    } else if (budEntry.period_ == "Bi-Weekly") {
-        budEntry.estimated_ = budEntry.amt_ * 26;
-
-    } else if (budEntry.period_ == "Bi-Monthly") {
-        budEntry.estimated_ = budEntry.amt_ * 6;
-
-    } else if (budEntry.period_ == "Quarterly") {
-        budEntry.estimated_ = budEntry.amt_ * 4;
-
-    } else if (budEntry.period_ == "Half-Yearly") {
-        budEntry.estimated_ = budEntry.amt_ * 2;
-
-    } else if (budEntry.period_ == "Daily") {
-        budEntry.estimated_ = budEntry.amt_ * 365;
-
-    } else {
-        wxASSERT(true);
-    }
-}
-
-void mmReportBudget::setBudgetEstimate(mmBudgetEntryHolder& budEntry, bool monthBudget)
-{
-    if (monthBudget)
-        setBudgetMonthlyEstimate(budEntry);
-    else
-        setBudgetYearlyEstimate(budEntry);
-}
-
-void mmReportBudget::initBudgetEntryFields(mmBudgetEntryHolder& budEntry, int id)
-{
-    budEntry.id_ = id;
-    budEntry.subcategID_ = -1;
-    budEntry.subCatStr_  = "";
-    budEntry.amt_ = 0.0;
-    budEntry.period_ = "None";
-    budEntry.estimated_ = 0.0;
-    budEntry.estimatedStr_ = "0.0";
-    budEntry.actual_ = 0.0;
-    budEntry.actualStr_ = "0.0";
-}
 
 void mmReportBudget::SetDateToEndOfMonth(int month, wxDateTime& date)
 {

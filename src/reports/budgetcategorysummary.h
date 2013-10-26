@@ -34,8 +34,7 @@ public:
 private:
     int budgetYearID_;
 
-    void displayReportLine(mmHTMLBuilder& hb, const mmBudgetEntryHolder& budEntry);
-    wxString actualAmountColour(const mmBudgetEntryHolder& budEntry, bool total = false);
+    wxString actualAmountColour(double amount, double actual, double estimated, bool total = false);
 };
 
 #endif // _MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_

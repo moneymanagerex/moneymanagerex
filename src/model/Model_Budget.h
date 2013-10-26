@@ -42,15 +42,15 @@ public:
     {
         wxArrayString period;
         // keep the sequence with PERIOD_ENUM
-        period.Add(wxTRANSLATE("None"));
-        period.Add(wxTRANSLATE("Weekly"));
-        period.Add(wxTRANSLATE("Bi-Weekly"));
-        period.Add(wxTRANSLATE("Monthly"));
-        period.Add(wxTRANSLATE("Bi-Monthly"));
-        period.Add(wxTRANSLATE("Quarterly"));
-        period.Add(wxTRANSLATE("Half-Yearly"));
-        period.Add(wxTRANSLATE("Yearly"));
-        period.Add(wxTRANSLATE("Daily"));
+        period.Add("None");
+        period.Add("Weekly");
+        period.Add("Bi-Weekly");
+        period.Add("Monthly");
+        period.Add("Bi-Monthly");
+        period.Add("Quarterly");
+        period.Add("Half-Yearly");
+        period.Add("Yearly");
+        period.Add("Daily");
         return period;
     }
     static PERIOD_ENUM period(const Data* r)
@@ -112,7 +112,7 @@ public:
     {
         return this->remove(id, db_);
     }
-    static void getBudgetEntry(int budgetYearID, std::map<int, std::map<int, wxString> > &budgetPeriod,
+    static void getBudgetEntry(int budgetYearID, std::map<int, std::map<int, PERIOD_ENUM> > &budgetPeriod,
         std::map<int, std::map<int, double> > &budgetAmt)
     {
         const Model_Category::Data_Set allCategories = Model_Category::instance().all();
@@ -121,20 +121,20 @@ public:
         double value = 0;
         for (const auto& category : allCategories)
         {
-            budgetPeriod[category.CATEGID][-1] = "";
+            budgetPeriod[category.CATEGID][-1] = NONE;
             budgetAmt[category.CATEGID][-1] = value;
             for (const auto & sub_category : allSubcategories)
             {
                 if (sub_category.CATEGID == category.CATEGID)
                 {
-                    budgetPeriod[category.CATEGID][sub_category.SUBCATEGID] = "";
+                    budgetPeriod[category.CATEGID][sub_category.SUBCATEGID] = NONE;
                     budgetAmt[category.CATEGID][sub_category.SUBCATEGID] = value;
                 }
             }
         }
         for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
         {
-            budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = budget.PERIOD;
+            budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
             budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
         }
     }
@@ -146,6 +146,81 @@ public:
             budgetEntry->BUDGETYEARID = newYearID;
             instance().save(budgetEntry);
         }
+    }
+    static double getMonthlyEstimate(const PERIOD_ENUM period, const double amount)
+    {
+        double estimated = 0;
+        int ndays = 365;
+        if (period == MONTHLY) {
+            estimated = amount;
+
+        }
+        else if (period == YEARLY) {
+            estimated = amount / 12;
+
+        }
+        else if (period == WEEKLY) {
+            estimated = ((amount / 7) * ndays) / 12;
+
+        }
+        else if (period == BIWEEKLY) {
+            estimated = ((amount / 14) * ndays) / 12;
+
+        }
+        else if (period == BIMONTHLY) {
+            estimated = amount / 2;
+
+        }
+        else if (period == QUARTERLY) {
+            estimated = amount / 3;
+
+        }
+        else if (period == HALFYEARLY) {
+            estimated = (amount / 6);
+
+        }
+        else if (period == DAILY) {
+            estimated = (amount * ndays) / 12;
+
+        }
+        return estimated;
+    }
+    static double getYearlyEstimate(const PERIOD_ENUM period, const double amount)
+    {
+        double estimated = 0;
+        if (period == MONTHLY) {
+            estimated = amount * 12;
+
+        }
+        else if (period == YEARLY) {
+            estimated = amount;
+
+        }
+        else if (period == WEEKLY) {
+            estimated = amount * 52;
+
+        }
+        else if (period == BIWEEKLY) {
+            estimated = amount * 26;
+
+        }
+        else if (period == BIMONTHLY) {
+            estimated = amount * 6;
+
+        }
+        else if (period == QUARTERLY) {
+            estimated = amount * 4;
+
+        }
+        else if (period == HALFYEARLY) {
+            estimated = amount * 2;
+
+        }
+        else if (period== DAILY) {
+            estimated = amount * 365;
+
+        }
+        return estimated;
     }
 };
 

@@ -64,27 +64,6 @@ private:
     long selectedIndex_;
 };
 
-// TODO
-struct mmBudgetEntryHolder: public mmHolderBase
-{
-    int categID_;
-    wxString catStr_;
-
-    int subcategID_;
-    wxString subCatStr_;
-
-    wxString period_;
-
-    wxString amtString_;
-    double amt_;
-
-    wxString estimatedStr_;
-    double estimated_;
-
-    wxString actualStr_;
-    double actual_;
-};
-
 class mmBudgetingPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
@@ -118,14 +97,18 @@ public:
     void OnListItemActivated(int selectedIndex);
     int GetTransID(long item)
     {
-        return trans_[item].id_;
+        return budget_[item].first;
     }
 
     void RefreshList();
 
 private:
-    std::vector<mmBudgetEntryHolder> trans_;
-    Model_Budget::Data_Set m_trans;
+    std::vector<std::pair<int, int> > budget_;
+    std::map<int, std::pair<double, double> > budgetTotals_;
+    std::map<int, std::map<int, Model_Budget::PERIOD_ENUM> > budgetPeriod_;
+    std::map<int, std::map<int, double> > budgetAmt_;
+    std::map<int, std::map<int, std::map<int, double> > > categoryStats_;
+    bool monthlyBudget_;
     budgetingListCtrl* listCtrlBudget_;
     wxString currentView_;
     int budgetYearID_;
@@ -146,8 +129,9 @@ private:
 
     void CreateControls();
     void sortTable();
-    bool DisplayEntryAllowed(mmBudgetEntryHolder& budgetEntry);
+    bool DisplayEntryAllowed(int categoryID, int subcategoryID);
     void UpdateBudgetHeading();
+    double getEstimate(int category, int subcategory) const;
 
     /* Event handlers for Buttons */
     void OnViewPopupSelected(wxCommandEvent& event);
