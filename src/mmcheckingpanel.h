@@ -24,6 +24,7 @@
 #include "reports/mmDateRange.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
+#include <map>
 //----------------------------------------------------------------------------
 class mmCheckingPanel;
 class mmFilterTransactionsDialog;
@@ -232,6 +233,7 @@ private:
     Model_Currency::Data* m_currency;
     wxScopedPtr<wxImageList> m_imageList;
     Model_Checking::Full_Data_Set m_trans;
+    std::map<int, double> m_balances;
 
     void initViewTransactionsHeader();
     void initFilterSettings();
@@ -272,7 +274,7 @@ private:
     void updateExtraTransactionData(int selIndex);
 
     /* Getter for Virtual List Control */
-    wxString getItem(long item, long column) const;
+    const wxString getItem(long item, long column);
 
     wxString getMiniInfoStr(int selIndex) const;
 };

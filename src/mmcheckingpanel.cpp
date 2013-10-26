@@ -183,8 +183,20 @@ void mmCheckingPanel::sortTable()
 void mmCheckingPanel::filterTable()
 {
     this->m_trans.clear();
+    account_balance_ = 0.0;
+    reconciled_balance_ = 0.0;
+    if (m_account)
+    {
+        account_balance_ = m_account->INITIALBAL;
+        reconciled_balance_ = account_balance_;
+    }
+
     for (const auto& tran : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID)))
     {
+        double transaction_amount = (Model_Checking::status(tran) != Model_Checking::VOID_) ? Model_Checking::balance(tran) : 0;
+        account_balance_ += transaction_amount;
+        reconciled_balance_ += (Model_Checking::status(tran) == Model_Checking::RECONCILED) ? transaction_amount : 0;
+        this->m_balances[tran.TRANSID] = account_balance_;
         if (transFilterActive_)
         {
             if (transFilterDlg_->getAccountCheckBox()
@@ -223,6 +235,7 @@ void mmCheckingPanel::filterTable()
         //Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(tran.SUBCATEGID);
         //full_tran.SUBCATEGNAME = sub_category ? sub_category->SUBCATEGNAME: "";
 
+        filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
     }
 }
@@ -287,9 +300,6 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
 
 void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
 {
-    //Initialization
-    account_balance_ = 0.0, reconciled_balance_ = 0.0;
-    filteredBalance_ = 0.0;
     // clear everything
     m_listCtrlAccount->DeleteAllItems();
 
@@ -803,10 +813,10 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
 }
 
 
-wxString mmCheckingPanel::getItem(long item, long column) const
+const wxString mmCheckingPanel::getItem(long item, long column)
 {
     if (item < 0 || item >= (int)m_trans.size()) return "";
-    
+
     const Model_Checking::Full_Data& tran = this->m_trans.at(item);
     switch (column)
     {
@@ -822,16 +832,16 @@ wxString mmCheckingPanel::getItem(long item, long column) const
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_WITHDRAWAL:
         if (Model_Checking::type(&tran) == Model_Checking::WITHDRAWAL)
-            return Model_Currency::toCurrency(tran.TRANSAMOUNT, this->m_currency);
+            return Model_Currency::toString(tran.TRANSAMOUNT, this->m_currency);
         else 
             return "";
     case TransactionListCtrl::COL_DEPOSIT:
         if (Model_Checking::type(&tran) == Model_Checking::DEPOSIT)
-			return Model_Currency::toCurrency(tran.TRANSAMOUNT, this->m_currency);
+			return Model_Currency::toString(tran.TRANSAMOUNT, this->m_currency);
         else
             return "";
     case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toCurrency(Model_Checking::balance(&tran, this->m_AccountID), this->m_currency);
+        return Model_Currency::toString(this->m_balances[tran.TRANSID], this->m_currency);
     case TransactionListCtrl::COL_NOTES:
         return tran.NOTES;
     default:
