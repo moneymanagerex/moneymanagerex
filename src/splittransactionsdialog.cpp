@@ -217,7 +217,7 @@ void SplitTransactionDialog::UpdateSplitTotal()
 
 void SplitTransactionDialog::EditEntry(int index)
 {
-    if (index < 0 || index >= this->m_local_splits.size()) return;
+    if (index < 0 || index >= (int)this->m_local_splits.size()) return;
     Model_Splittransaction::Data& split = this->m_local_splits[index];
     SplitDetailDialog sdd(this, &split, transType_);
     if (sdd.ShowModal() == wxID_OK)
