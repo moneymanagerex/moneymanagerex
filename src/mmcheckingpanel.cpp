@@ -227,8 +227,8 @@ void mmCheckingPanel::filterTable()
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
             if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
-            full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
         }
+        full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
 
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
