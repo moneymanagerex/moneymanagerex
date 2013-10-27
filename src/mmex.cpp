@@ -251,10 +251,10 @@ BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame, mmCoreDB* core)
+mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
          :wxWizard(frame,wxID_ANY,_("New Database Wizard"),
                    wxBitmap(addacctwiz_xpm),wxDefaultPosition,
-                   wxDEFAULT_DIALOG_STYLE), m_core(core)
+                   wxDEFAULT_DIALOG_STYLE)
 {
 /****************** Message to be displayed******************
 
@@ -1030,7 +1030,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 void mmGUIFrame::saveSettings()
 {
     Model_Setting::instance().Begin();
-    m_core->db_.get()->Begin();
     if (! fileName_.IsEmpty())
     {
         wxFileName fname(fileName_);
@@ -1053,7 +1052,6 @@ void mmGUIFrame::saveSettings()
     Model_Setting::instance().Set("SIZEH", value_h);
     Model_Setting::instance().Set("ISMAXIMIZED", (bool)this->IsMaximized());
     Model_Setting::instance().Commit();
-    m_core->db_.get()->Commit();
 }
 //----------------------------------------------------------------------------
 
@@ -2691,7 +2689,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             openDataBase(fileName);
             m_core.reset(new mmCoreDB(m_db));
 
-            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this, m_core.get());
+            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
             wizard->CenterOnParent();
             wizard->RunIt(true);
 

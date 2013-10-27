@@ -76,10 +76,8 @@ DECLARE_APP(mmGUIApp)
 class mmNewDatabaseWizard : public wxWizard
 {
 public:
-    mmNewDatabaseWizard(wxFrame *frame, mmCoreDB* core);
+    mmNewDatabaseWizard(wxFrame *frame);
     void RunIt(bool modal);
-
-    mmCoreDB* m_core;
 
 private:
     wxWizardPageSimple* page1;

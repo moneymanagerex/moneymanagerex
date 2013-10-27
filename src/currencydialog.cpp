@@ -19,8 +19,8 @@
 #include "currencydialog.h"
 #include "constants.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "mmCalculator.h"
+#include "model/Model_Currency.h"
 #include "defs.h"
 #include "paths.h"
 #include "validators.h"
@@ -76,13 +76,13 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
 void mmCurrencyDialog::fillControls()
 {
     wxSortedArrayString currency_names, currency_symbols;
-    for(const auto& currency : mmCurrency::currency_map())
+    for (const auto& currency : Model_Currency::instance().all())
     {
-        currency_symbols.Add(currency.currencySymbol_);
-        currencySymbolCombo_->Append(currency.currencySymbol_);
+        currency_symbols.Add(currency.CURRENCY_SYMBOL);
+        currencySymbolCombo_->Append(currency.CURRENCY_SYMBOL);
 
-        currency_names.Add(currency.currencyName_);
-        currencyNameCombo_->Append(currency.currencyName_);
+        currency_names.Add(currency.CURRENCYNAME);
+        currencyNameCombo_->Append(currency.CURRENCYNAME);
     }
     
     currencyNameCombo_->AutoComplete(currency_names);
@@ -258,21 +258,20 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 
 void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 {
-    for (const auto& i : mmCurrency::currency_map())
+    for (const auto& i: Model_Currency::instance().all())
     {
-        if (i.currencyName_ == currencyNameCombo_->GetValue())
+        if (i.CURRENCYNAME == currencyNameCombo_->GetValue())
         {
-            currencySymbolCombo_->SetValue(i.currencySymbol_);
-            pfxTx_->SetValue(i.pfxSymbol_);
-            sfxTx_->SetValue(i.sfxSymbol_);
-            decTx_->SetValue(i.dec_);
-            grpTx_->SetValue(i.grp_);
-            unitTx_->SetValue(i.unit_);
-            centTx_->SetValue(i.cent_);
-            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double)i.scaleDl_))));
-            convRate_ = i.baseConv_;
-            baseConvRate_->SetValue(wxString::Format("%.4f",convRate_));
-            currencySymbolCombo_->SetValue(i.currencySymbol_);
+            currencySymbolCombo_->SetValue(i.CURRENCY_SYMBOL);
+            pfxTx_->SetValue(i.PFX_SYMBOL);
+            sfxTx_->SetValue(i.SFX_SYMBOL);
+            decTx_->SetValue(i.DECIMAL_POINT);
+            grpTx_->SetValue(i.GROUP_SEPARATOR);
+            unitTx_->SetValue(i.UNIT_NAME);
+            centTx_->SetValue(i.CENT_NAME);
+            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double)i.SCALE))));
+            baseConvRate_->SetValue(wxString::Format("%.4f", i.BASECONVRATE));
+            currencySymbolCombo_->SetValue(i.CURRENCY_SYMBOL);
             break;
         }
     }
