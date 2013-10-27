@@ -168,7 +168,7 @@ void mmCheckingPanel::sortTable()
         // TODO
         break;
     case TransactionListCtrl::COL_BALANCE:
-        // TODO
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByBALANCE());
         break;
     case TransactionListCtrl::COL_NOTES:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES());
@@ -197,7 +197,6 @@ void mmCheckingPanel::filterTable()
         double transaction_amount = (Model_Checking::status(tran) != Model_Checking::VOID_) ? Model_Checking::balance(tran) : 0;
         account_balance_ += transaction_amount;
         reconciled_balance_ += (Model_Checking::status(tran) == Model_Checking::RECONCILED) ? transaction_amount : 0;
-        this->m_balances[tran.TRANSID] = account_balance_;
         if (transFilterActive_)
         {
             if (transFilterDlg_->getAccountCheckBox()
@@ -221,21 +220,18 @@ void mmCheckingPanel::filterTable()
         }
 
         Model_Checking::Full_Data full_tran(tran);
-        if (Model_Checking::TRANSFER != Model_Checking::type(tran))
+        full_tran.BALANCE = account_balance_;
+        if (Model_Checking::TRANSFER == Model_Checking::type(tran))
         {
-            const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+            const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID == this->m_AccountID ? tran.TOACCOUNTID : tran.ACCOUNTID);
+            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
         }
         else
         {
-            const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
-            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME; //TODO: to account
+            const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+            full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
         }
-        Model_Category::Data* category = Model_Category::instance().get(tran.CATEGID);
-
-        full_tran.CATEGNAME = category ? Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID) : "";
-        //Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(tran.SUBCATEGID);
-        //full_tran.SUBCATEGNAME = sub_category ? sub_category->SUBCATEGNAME: "";
 
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
@@ -843,7 +839,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
         else
             return "";
     case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(this->m_balances[tran.TRANSID], this->m_currency);
+        return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:
         return tran.NOTES;
     default:

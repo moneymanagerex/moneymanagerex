@@ -34,17 +34,24 @@ public:
 public:
     struct Full_Data: Data
     {
-        Full_Data(): Data(0) {}
-        Full_Data(const Data& r): Data(r) {}
+        Full_Data(): Data(0), BALANCE(0) {}
+        Full_Data(const Data& r): Data(r), BALANCE(0) {}
 
         ~Full_Data(){}
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        wxString SUBCATEGNAME;
+        double BALANCE;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
-
+    struct SorterByBALANCE
+    { 
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return x.BALANCE < y.BALANCE;
+        }
+    };
 public:
     Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
     {

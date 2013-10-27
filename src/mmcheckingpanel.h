@@ -233,7 +233,6 @@ private:
     Model_Currency::Data* m_currency;
     wxScopedPtr<wxImageList> m_imageList;
     Model_Checking::Full_Data_Set m_trans;
-    std::map<int, double> m_balances;
 
     void initViewTransactionsHeader();
     void initFilterSettings();
