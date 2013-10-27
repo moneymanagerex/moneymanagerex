@@ -32,12 +32,9 @@
 #include "model/Model_Category.h"
 
 //----------------------------------------------------------------------------
+
 #include <wx/srchctrl.h>
 #include <algorithm>
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
@@ -130,6 +127,8 @@ bool mmCheckingPanel::Create(
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(this);
     SetTransactionFilterState(true);
+    m_account = Model_Account::instance().get(m_AccountID);
+    if (!m_account) return false;
 
     initViewTransactionsHeader();
     initFilterSettings();
