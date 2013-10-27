@@ -161,8 +161,7 @@ void mmTransDialog::dataToControls()
     for (const auto &account : accounts)
     {
         cbAccount_->Append(account.ACCOUNTNAME);
-        //if (account.ACCOUNTID == accountID_) cbAccount_->SetValue(account.ACCOUNTNAME);
-        if (account.ACCOUNTID == accountID_) cbAccount_->SetStringSelection(account.ACCOUNTNAME);
+        if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->SetStringSelection(account.ACCOUNTNAME);
     }
     cbAccount_->AutoComplete(Model_Account::instance().all_account_names());
     cbAccount_->UnsetToolTip();
