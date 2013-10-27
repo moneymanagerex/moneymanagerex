@@ -609,6 +609,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Budgetsplittransaction.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Budgetyear.h"
 				>
 			</File>

@@ -231,6 +231,7 @@
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
     <ClInclude Include="..\..\src\model\Model_Billsdeposits.h" />
     <ClInclude Include="..\..\src\model\Model_Budget.h" />
+    <ClInclude Include="..\..\src\model\Model_Budgetsplittransaction.h" />
     <ClInclude Include="..\..\src\model\Model_Budgetyear.h" />
     <ClInclude Include="..\..\src\model\Model_Category.h" />
     <ClInclude Include="..\..\src\model\Model_Checking.h" />

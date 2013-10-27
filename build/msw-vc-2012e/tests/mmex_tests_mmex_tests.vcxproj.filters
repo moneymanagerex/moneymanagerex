@@ -590,6 +590,9 @@
     <ClInclude Include="..\..\..\src\validators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\model\Model_Budgetsplittransaction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\src\tests\mmex_tests.rc">
