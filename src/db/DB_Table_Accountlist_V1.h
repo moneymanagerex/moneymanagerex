@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-25 10:39:04.545992.
+ *          AUTO GENERATED at 2013-10-27 22:29:08.373622.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -37,9 +37,10 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         cache_.clear();
     }
 
-    bool ensure(wxSQLite3Database* db) const
+    bool ensure(wxSQLite3Database* db)
     {
         if (exists(db)) return true;
+        this->destroy_cache();
 
         try
         {
