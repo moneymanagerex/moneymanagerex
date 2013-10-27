@@ -63,8 +63,8 @@ wxString htmlWidgetStocks::getHTMLText()
                 hb.startTableRow();
                 hb.addTableCellLink(wxString::Format("STOCK:%i", account.ACCOUNTID)
                     , account.ACCOUNTNAME, false, true);
-                hb.addTableCell(Model_Currency::toString(stockStats[account.ACCOUNTID].first, currency), true);
-                hb.addTableCell(Model_Currency::toString(stockStats[account.ACCOUNTID].second, currency), true);
+                hb.addTableCell(Model_Currency::toCurrency(stockStats[account.ACCOUNTID].first, currency), true);
+                hb.addTableCell(Model_Currency::toCurrency(stockStats[account.ACCOUNTID].second, currency), true);
                 hb.endTableRow();
             }
         }

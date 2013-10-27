@@ -243,8 +243,11 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
 
         Model_Currency::Data* currency = Model_Account::currency(account);
 
+        double currency_rate = 1;
+        if (currency) currency_rate = currency->BASECONVRATE;
         double bal = accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
+        tBalance += bal * currency_rate;
 
         // Display the individual account links if we want to display them
         if ( ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts())
@@ -283,7 +286,7 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
         hb.startTableRow();
         hb.addTableCellLink("Assets", _("Assets"), false, true);
         hb.addTableCell("", true);
-        hb.addMoneyCell(Model_Asset::instance().balance());
+        hb.addCurrencyCell(Model_Asset::instance().balance());
         hb.endTableRow();
         hb.endTable();
 
@@ -450,7 +453,7 @@ wxString mmHomePagePanel::getCalendarWidget()
     }
     hb.addTableCell(wxString::Format(_("Week#%d")
         , today.GetWeekOfYear())
-        , false, false, true);
+        , false, true, false);
     hb.addTableCell(wxString()<<wxDateTime::Now().GetYear(), false, false, true);
 
     hb.endTableRow();
@@ -490,8 +493,7 @@ wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
     mmHTMLBuilder hb;
     //  Display the grand total from all sections
-    wxString tBalanceStr;
-    tBalanceStr = CurrencyFormatter::float2Money(tBalance);
+    wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
     hb.startTable("100%");
     hb.addTotalRow(_("Grand Total:"), 2, tBalanceStr);
