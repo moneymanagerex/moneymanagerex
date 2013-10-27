@@ -189,7 +189,7 @@ void mmCheckingPanel::filterTable()
         reconciled_balance_ = account_balance_;
     }
 
-    for (const auto& tran : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_AccountID), Model_Checking::TOACCOUNTID(m_AccountID)))
+    for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = (Model_Checking::status(tran) != Model_Checking::VOID_) ? Model_Checking::balance(tran, m_AccountID) : 0;
         account_balance_ += transaction_amount;
