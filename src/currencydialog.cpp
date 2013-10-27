@@ -100,11 +100,15 @@ void mmCurrencyDialog::fillControls()
         wxCommandEventHandler(mmCurrencyDialog::OnCurrencyNameSelected), NULL, this);
 
     wxString dispAmount = "";
-    double amount = 1000;
+    double base_amount = 1000;
+    double amount = base_amount;
 
     if (this->m_currency)
     {
-        dispAmount = wxString::Format(_("%.0f Converted to: %s"), amount
+        if (m_currency->BASECONVRATE != 0.0)
+            amount = base_amount / m_currency->BASECONVRATE;
+        dispAmount = wxString::Format(_("%s Converted to: %s")
+            , Model_Currency::toCurrency(base_amount)
             , Model_Currency::toCurrency(amount, m_currency));
         baseRateSample_->SetLabel(dispAmount);
         amount = 123456.78;
@@ -124,10 +128,6 @@ void mmCurrencyDialog::fillControls()
         convRate_ = m_currency->BASECONVRATE;
         baseConvRate_->SetValue(wxString::Format("%.4f", m_currency->BASECONVRATE));
         currencySymbolCombo_->SetValue(m_currency->CURRENCY_SYMBOL);
-        if (m_currency->BASECONVRATE != 0.0 )
-            amount = amount / m_currency->BASECONVRATE;
-        else
-            amount = 0.0;
     }
     else
     {
