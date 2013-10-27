@@ -127,8 +127,6 @@ bool mmCheckingPanel::Create(
     transFilterActive_ = false;
     transFilterDlg_    = new mmFilterTransactionsDialog(this);
     SetTransactionFilterState(true);
-    m_account = Model_Account::instance().get(m_AccountID);
-    if (!m_account) return false;
 
     initViewTransactionsHeader();
     initFilterSettings();
@@ -912,6 +910,9 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 void mmCheckingPanel::DisplayAccountDetails(int accountID)
 {
     m_AccountID = accountID;
+    m_account = Model_Account::instance().get(accountID);
+    if (m_account)
+        m_currency = Model_Account::currency(m_account);
     this->windowsFreezeThaw();   // prevent screen updates while controls being repopulated
 
     initViewTransactionsHeader();

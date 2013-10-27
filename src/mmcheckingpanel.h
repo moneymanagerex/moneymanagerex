@@ -86,8 +86,6 @@ public:
     void OnNewTransaction(wxCommandEvent& event);
     void OnDeleteTransaction(wxCommandEvent& event);
     void OnEditTransaction(wxCommandEvent& event);
-    int save_transaction_temp_function(Model_Checking::Data *transaction
-        , Model_Splittransaction::Data_Set split, bool edit = true);
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
