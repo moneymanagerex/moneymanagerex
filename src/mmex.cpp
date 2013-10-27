@@ -593,7 +593,6 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
     // May be taken out in future after being added to Options Dialog.
     EVT_MENU(MENU_IGNORE_FUTURE_TRANSACTIONS, mmGUIFrame::OnIgnoreFutureTransactions)
 
-    EVT_MENU(MENU_ONLINE_UPD_CURRENCY_RATE, mmGUIFrame::OnOnlineUpdateCurRate)
     EVT_UPDATE_UI(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbarUpdateUI)
     EVT_UPDATE_UI(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinksUpdateUI)
     EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
@@ -656,7 +655,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 , menuBar_()
 , toolBar_()
 , selectedItemData_()
-, menuItemOnlineUpdateCurRate_()
 , helpFileIndex_(mmex::HTML_INDEX)
 , activeTermAccounts_(false)
 , expandedReportNavTree_(true)
@@ -716,18 +714,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     // "commit" all changes made to wxAuiManager
     m_mgr.Update();
-
-    // enable or disable online update currency rate
-    if (Model_Setting::instance().GetBoolSetting(INIDB_UPDATE_CURRENCY_RATE, false))
-    {
-        if (menuItemOnlineUpdateCurRate_)
-            menuItemOnlineUpdateCurRate_->Enable(true);
-    }
-    else
-    {
-        if (menuItemOnlineUpdateCurRate_)
-            menuItemOnlineUpdateCurRate_->Enable(false);
-    }
 
     if (from_scratch || !dbpath.IsOk())
     {
@@ -2042,8 +2028,6 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_ACCOUNT_EDIT, _("&Edit Account"));
             menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
             menu.AppendSeparator();
-            // menu->Append(menuItemOnlineUpdateCurRate_);
-            // menu->AppendSeparator();
 
             // Create only for Bank Accounts
             if ( (iData->getString() != "Term Accounts") && (iData->getString() != "Stocks") )
@@ -2449,14 +2433,6 @@ void mmGUIFrame::createMenu()
         _("Convert Encrypted DB to Non-Encrypted DB"));
     menuItemConvertDB->SetBitmap(wxBitmap(encrypt_db_xpm));
     menuTools->Append(menuItemConvertDB);
-
-    menuTools->AppendSeparator();
-
-    menuItemOnlineUpdateCurRate_ = new wxMenuItem(menuTools, MENU_ONLINE_UPD_CURRENCY_RATE,
-        _("Online &Update Currency Rate"),
-        _("Online update currency rate"));
-    menuItemOnlineUpdateCurRate_->SetBitmap(wxBitmap(update_currency_xpm));
-    menuTools->Append(menuItemOnlineUpdateCurRate_);
 
     // Help Menu
     wxMenu *menuHelp = new wxMenu;
@@ -3224,8 +3200,6 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     if (systemOptions.ShowModal() == wxOK && systemOptions.AppliedChanges())
     {
         systemOptions.SaveNewSystemSettings();
-        // enable or disable online update currency rate
-        menuItemOnlineUpdateCurRate_->Enable(systemOptions.GetUpdateCurrencyRateSetting());
 
         //set the View Menu Option items the same as the options saved.
         menuBar_->FindItem(MENU_VIEW_BANKACCOUNTS)->Check(mmIniOptions::instance().expandBankHome_);
@@ -3361,28 +3335,6 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     versionDetails << "\n\n" << _("Proceed to website: ") << urlString;
     if (wxMessageBox(versionDetails, _("MMEX System Information Check"), style) == wxOK)
         wxLaunchDefaultBrowser(urlString);
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
-{
-// TODO
-/*
-    wxString sMsg = "";
-    if (m_core.get()->currencyList_.OnlineUpdateCurRate(sMsg))
-    {
-        wxMessageDialog msgDlg(this, sMsg, _("Currency rate updated"));
-        msgDlg.ShowModal();
-    }
-    else
-    {
-        wxMessageDialog msgDlg(this, sMsg, _("Error"), wxOK|wxICON_ERROR);
-        msgDlg.ShowModal();
-    }
-    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-    //AddPendingEvent(evt);
-    OnAccountList(evt);
-*/    
 }
 //----------------------------------------------------------------------------
 

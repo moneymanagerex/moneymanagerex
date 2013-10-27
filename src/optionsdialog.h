@@ -47,9 +47,6 @@ public:
     /// Saves the updated System Options to the appropriate databases.
     void SaveNewSystemSettings();
 
-    /// Returns the value of the dialog setting;
-    bool GetUpdateCurrencyRateSetting();
-
     bool RequiresRestart()
     {
         return restartRequired_;
@@ -88,7 +85,6 @@ private:
 
     wxCheckBox* cbUseOrgDateCopyPaste_;
     wxCheckBox* cbUseSound_;
-    wxCheckBox* cbEnableCurrencyUpd_;
 
     wxCheckBox* cbBudgetFinancialYears_;
     wxCheckBox* cbBudgetIncludeTransfers_;

@@ -240,7 +240,6 @@ private:
     wxToolBar* toolBar_;
 
     mmTreeItemData* selectedItemData_;
-    wxMenuItem* menuItemOnlineUpdateCurRate_; // Menu Item for Disabling Item
 
     wxTreeItemId getTreeItemfor(wxTreeItemId itemID, const wxString& accountName) const;
     bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
@@ -320,7 +319,6 @@ private:
     void OnViewToolbarUpdateUI(wxUpdateUIEvent &event);
     void OnViewStatusbarUpdateUI(wxUpdateUIEvent &event);
     void OnViewLinksUpdateUI(wxUpdateUIEvent &event);
-    void OnOnlineUpdateCurRate(wxCommandEvent& event);
     void OnNewAccount(wxCommandEvent& event);
     void OnAccountList(wxCommandEvent& event);
     void OnEditAccount(wxCommandEvent& event);

@@ -130,7 +130,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer22->AddSpacer(10);
 
     itemBoxSizer22->Add(new wxStaticText( this, wxID_STATIC
-       , _("Currency List")), flags);
+       , _("Online Update")), flags);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW|wxALL, 5);
@@ -304,10 +304,106 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 
 }
 
+bool mmMainCurrencyDialog::onlineUpdateCurRate(wxString& error_message)
+{
+    wxString base_symbol = "";
+    wxString site = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv";
+    int currencyID;
+
+    Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
+    if (base_currency)
+    {
+        base_symbol = base_currency->CURRENCY_SYMBOL;
+        currencyID = base_currency->id();
+    }
+    else
+    {
+        error_message = _("Could not find base currency symbol!");
+        return false;
+    }
+
+    wxString buffer = "";
+    Model_Currency::Data_Set currencies = Model_Currency::instance().all();
+    for (const auto &currency : currencies)
+    {
+        const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
+        if (!symbol.IsEmpty()) buffer << symbol << base_symbol << "=X+";
+    }
+    if (buffer.Right(1).Contains("+")) buffer.RemoveLast(1);
+    site = wxString::Format(site, buffer);
+
+    wxString sOutput;
+    int err_code = site_content(site, sOutput);
+    if (err_code != wxURL_NOERR)
+    {
+        error_message = sOutput;
+        return false;
+    }
+
+    wxString CurrencySymbol, sName;
+    double dRate = 1;
+
+    std::map<wxString, std::pair<double, wxString> > currency_data;
+
+    // Break it up into lines
+    wxStringTokenizer tkz(sOutput, "\r\n");
+
+    while (tkz.HasMoreTokens())
+    {
+        wxString csvline = tkz.GetNextToken();
+
+        wxRegEx pattern("\"(...)...=X\",([^,][0-9.]+),\"([^\"]*)\"");
+        if (pattern.Matches(csvline))
+        {
+            CurrencySymbol = pattern.GetMatch(csvline, 1);
+            pattern.GetMatch(csvline, 2).ToDouble(&dRate);
+            sName = pattern.GetMatch(csvline, 3);
+            currency_data[CurrencySymbol] = std::make_pair(dRate, sName);
+        }
+    }
+
+    wxString msg = _("Currency rate updated");
+    msg << "\n\n";
+
+    for (auto &currency : currencies)
+    {
+        const wxString currency_symbol = currency.CURRENCY_SYMBOL.Upper();
+        if (!currency_symbol.IsEmpty())
+        {
+            if (currency_data.find(currency_symbol) != currency_data.end())
+            {
+                if (base_symbol == currency_symbol) currency.BASECONVRATE = 1;
+                msg << wxString::Format(_("%s\t: %0.4f -> %0.4f\n")
+                    , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
+                currency.BASECONVRATE = currency_data[currency_symbol].first;
+            }
+            else
+            {
+                msg << wxString::Format(_("%s\t: %s\n"), currency_symbol, _("Invalid Value "));
+            }
+        }
+    }
+
+    Model_Currency::instance().save(currencies);
+
+    error_message = msg;
+    return true;
+}
+
 void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
-// TODO
-    wxMessageBox(_("coming soon..."), _("Update Currency Rate"), wxOK);
+    wxString sMsg = "";
+    if (onlineUpdateCurRate(sMsg))
+    {
+        wxMessageDialog msgDlg(this, sMsg, _("Currency rate updated"));
+        msgDlg.ShowModal();
+        fillControls();
+    }
+    else
+    {
+        wxMessageDialog msgDlg(this, sMsg, _("Error"), wxOK | wxICON_ERROR);
+        msgDlg.ShowModal();
+    }
 }
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)

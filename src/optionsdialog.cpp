@@ -604,11 +604,6 @@ void mmOptionsDialog::CreateControls()
     cbUseSound_->SetToolTip(_("Select whether to use sounds when entering transactions"));
     othersPanelSizer->Add(cbUseSound_, flags);
 
-    cbEnableCurrencyUpd_ = new wxCheckBox(othersPanel, wxID_STATIC, _("Enable online currency update"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbEnableCurrencyUpd_->SetValue(GetIniDatabaseCheckboxValue(INIDB_UPDATE_CURRENCY_RATE, false));
-    cbEnableCurrencyUpd_->SetToolTip(_("Enable or disable get data from Yahoo.com to update currency rate"));
-    othersPanelSizer->Add(cbEnableCurrencyUpd_, flags);
-
     // Backup Settings
     wxStaticBox* backupStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("Database Backup"));
     backupStaticBox->SetFont(staticBoxFontSetting);
@@ -1025,7 +1020,6 @@ void mmOptionsDialog::SaveOthersPanelSettings()
 
     Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
     Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
-    Model_Setting::instance().Set(INIDB_UPDATE_CURRENCY_RATE, cbEnableCurrencyUpd_->GetValue());
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
     Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue() );
@@ -1041,11 +1035,6 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
     wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
     wxString delim = st->GetValue();
     if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
-}
-
-bool mmOptionsDialog::GetUpdateCurrencyRateSetting()
-{
-    return cbEnableCurrencyUpd_->GetValue();
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
