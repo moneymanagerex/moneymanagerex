@@ -20,9 +20,9 @@
 #define _MM_EX_UTIL_H_
 
 #include "defs.h"
-#include "mmcurrency.h"
 #include "reports/reportbase.h"
 #include <wx/valnum.h>
+#include <map>
 
 class mmCoreDB;
 

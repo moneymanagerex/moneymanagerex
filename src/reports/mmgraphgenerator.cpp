@@ -21,6 +21,7 @@
 #include "util.h"
 #include "singleton.h"
 #include <wx/fs_mem.h>
+#include <vector>
 //----------------------------------------------------------------------------
 
 class Eraser

@@ -307,6 +307,7 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
 void mmMainCurrencyDialog::OnOnlineUpdateCurRate(wxCommandEvent& /*event*/)
 {
 // TODO
+    wxMessageBox(_("coming soon..."), _("Update Currency Rate"), wxOK);
 }
 
 void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
