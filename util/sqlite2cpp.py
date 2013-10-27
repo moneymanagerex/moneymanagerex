@@ -84,7 +84,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._table.upper(), self._table.upper(), self._table, self._table, self._table)
         
         s += '''
-    bool ensure(wxSQLite3Database* db) const
+    bool ensure(wxSQLite3Database* db)
     {
         if (exists(db)) return true;
         this->destroy_cache();
