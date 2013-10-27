@@ -1071,27 +1071,20 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
             const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
 
-            mmBankTransaction* pTransaction = new mmBankTransaction(core_);
+            Model_Checking::Data* tran = Model_Checking::instance().create();
+            tran->ACCOUNTID = fromAccountID;
+            tran->TOACCOUNTID = toAccountID;
+            tran->PAYEEID = payeeID_;
+            tran->TRANSCODE = transaction_type;
+            tran->STATUS = status;
+            tran->TRANSACTIONNUMBER = transNum;
+            tran->NOTES = notes;
+            tran->CATEGID = categID_;
+            tran->SUBCATEGID = subcategID_;
+            tran->TRANSDATE = dpc_->GetValue().FormatISODate();
 
-            pTransaction->accountID_ = fromAccountID;
-            pTransaction->toAccountID_ = toAccountID;
-            pTransaction->payeeID_ = payeeID_;
-            Model_Payee::Data* payee =  Model_Payee::instance().get(payeeID_);
-            if (payee)
-                pTransaction->payeeStr_ = payee->PAYEENAME;
-            pTransaction->transType_ = transaction_type;
-            pTransaction->amt_ = amount;
-            pTransaction->status_ = status;
-            pTransaction->transNum_ = transNum;
-            pTransaction->notes_ = notes;
-            pTransaction->categID_ = categID_;
-            pTransaction->subcategID_ = subcategID_;
-            pTransaction->fullCatStr_ = Model_Category::full_name(category, sub_category);
-            pTransaction->date_ = dpc_->GetValue();
-            pTransaction->toAmt_ = toTransAmount_;
-
-            *pTransaction->splitEntries_ = *split_;
-            core_->bTransactionList_.addTransaction(pTransaction);
+            Model_Checking::instance().save(tran);
+            // TODO split
         }
         mmDBWrapper::completeBDInSeries(core_->db_.get(), bdID_);
     }
