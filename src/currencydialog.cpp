@@ -45,6 +45,7 @@ mmCurrencyDialog::~mmCurrencyDialog()
 
 mmCurrencyDialog::mmCurrencyDialog(Model_Currency::Data* currency, wxWindow* parent)
     : m_currency(currency)
+    , scale_(1)
 {
     long style = wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX;
     Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxSize(500, 300), style);
@@ -57,7 +58,6 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 
-    scale_ = Model_Currency::precision(m_currency);
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
@@ -132,6 +132,7 @@ void mmCurrencyDialog::fillControls()
     else
     {
         convRate_ = 1;
+        scale_ = 1;
         baseConvRate_->SetValue("1");
     }
 
