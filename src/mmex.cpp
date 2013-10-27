@@ -989,28 +989,23 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14))
             {
                 continueExecution = true;
-                mmBankTransaction tran(m_core.get());
+                Model_Checking::Data* tran = Model_Checking::instance().create();
+                
+                tran->ACCOUNTID         = q1.ACCOUNTID;
+                tran->TOACCOUNTID       = q1.TOACCOUNTID;
+                tran->PAYEEID           = q1.PAYEEID;
+                tran->TRANSCODE         = q1.TRANSCODE;
+                tran->TRANSAMOUNT       = q1.TRANSAMOUNT;
+                tran->TOTRANSAMOUNT     = q1.TOTRANSAMOUNT;
+                tran->STATUS            = q1.STATUS;
+                tran->TRANSACTIONNUMBER = q1.TRANSACTIONNUMBER;
+                tran->NOTES             = q1.NOTES;
+                tran->CATEGID           = q1.CATEGID;
+                tran->SUBCATEGID        = q1.SUBCATEGID;
+                tran->TRANSDATE         = q1.NEXTOCCURRENCEDATE;
 
-                tran.accountID_ = th.accountID_;
-                tran.toAccountID_ = th.toAccountID_;
-                tran.payeeID_ = th.payeeID_;
-                tran.payeeStr_ = th.payeeStr_;
-                tran.transType_ = th.transType_;
-                tran.amt_ = th.amt_;
-                tran.status_ = q1.STATUS;
-                tran.transNum_ = q1.TRANSACTIONNUMBER;
-                tran.notes_ = th.notes_;
-                tran.categID_ = th.categID_;
-                tran.subcategID_ = th.subcategID_;
-                tran.fullCatStr_ = Model_Category::full_name(category, sub_category);
-                tran.date_ = th.nextOccurDate_;
-                tran.toAmt_ = th.toAmt_;
-
-                mmSplitTransactionEntries* split(new mmSplitTransactionEntries());
-                split->loadFromBDDB(m_core.get(),th.id_);
-                *tran.splitEntries_ = *split;
-
-                m_core.get()->bTransactionList_.addTransaction(&tran);
+                Model_Checking::instance().save(tran);
+                // TODO split
             }
             mmDBWrapper::completeBDInSeries(m_db.get(), th.id_);
 
@@ -3141,7 +3136,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
     if (Model_Account::instance().all().empty()) return;
 
-    //std::vector<mmBankTransaction*> trans;
     Model_Checking::Data_Set trans;
 
     mmFilterTransactionsDialog* dlg= new mmFilterTransactionsDialog(this);
