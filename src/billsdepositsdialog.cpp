@@ -1068,9 +1068,6 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         // repeats now hold extra info. Need to get repeats from dialog selection
         if ( (itemRepeats_->GetSelection() < 11) || (itemRepeats_->GetSelection() > 14) || (numRepeats > 0) )
         {
-            const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
-
             Model_Checking::Data* tran = Model_Checking::instance().create();
             tran->ACCOUNTID = fromAccountID;
             tran->TOACCOUNTID = toAccountID;

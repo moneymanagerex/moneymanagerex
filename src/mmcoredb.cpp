@@ -35,9 +35,6 @@ mmCoreDB::mmCoreDB(wxSharedPtr<wxSQLite3Database> db)
 
     mmOptions::instance().loadOptions();
 
-    /* Create the appropriate tables first if required */
-    mmDBWrapper::initDB(db_.get());
-
     bTransactionList_.LoadTransactions();   // populate bTransactionList_
 }
 

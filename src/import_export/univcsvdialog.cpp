@@ -785,8 +785,6 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                 if (type == "Transfer")
                 {
                     Model_Account::Data* to_account = Model_Account::instance().get(tAccountID);
-                    const wxString& fromAccount = from_account->ACCOUNTNAME;
-                    const wxString& toAccount = to_account->ACCOUNTNAME;
                     tovalue = pBankTransaction->toAmt_;
 
                     if (tAccountID == fromAccountID) {

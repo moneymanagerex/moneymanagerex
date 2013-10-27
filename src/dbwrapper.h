@@ -356,101 +356,6 @@ static const char INSERT_ROW_INTO_SUBCATEGORY_V1[] =
     "( SUBCATEGNAME, CATEGID ) "
     "VALUES (:name, :id)";
 
-//CREATE
-static const char CREATE_TABLE_ACCOUNTLIST_V1[] =
-    "CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, "
-    "ACCOUNTNAME TEXT NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL, ACCOUNTNUM TEXT, "
-    "STATUS TEXT NOT NULL, "
-    "NOTES TEXT, HELDAT TEXT, WEBSITE TEXT, CONTACTINFO TEXT, "
-    "ACCESSINFO TEXT, INITIALBAL numeric, FAVORITEACCT TEXT NOT NULL, "
-    "CURRENCYID integer NOT NULL, "
-    "CHECK (CURRENCYID > 0 and ACCOUNTID > 0))";
-
-static const char CREATE_TABLE_ASSETS_V1[] =
-    "CREATE TABLE ASSETS_V1 (ASSETID integer primary key, "
-    "STARTDATE TEXT NOT NULL, ASSETNAME TEXT NOT NULL UNIQUE, "
-    "VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, "
-    "ASSETTYPE TEXT)";
-
-static const char CREATE_TABLE_BILLSDEPOSITS_V1[] =
-    "CREATE TABLE BILLSDEPOSITS_V1 (BDID INTEGER PRIMARY KEY, "
-    "ACCOUNTID INTEGER NOT NULL, TOACCOUNTID INTEGER, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, "
-    "TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, "
-    "CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, "
-    "REPEATS numeric, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES numeric)";
-
-static const char CREATE_TABLE_BUDGETTABLE_V1[] =
-    "CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, "
-    "BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, "
-    "PERIOD TEXT NOT NULL, AMOUNT numeric NOT NULL)";
-
-static const char CREATE_TABLE_BUDGETSPLITTRANSACTIONS_V1[]=
-    "CREATE TABLE BUDGETSPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, "
-    "TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)";
-
-static const char CREATE_TABLE_BUDGETYEAR_V1[] =
-    "CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, "
-    "BUDGETYEARNAME TEXT NOT NULL UNIQUE)";
-
-static const char CREATE_TABLE_CATEGORY_V1[]=
-    "CREATE TABLE CATEGORY_V1(CATEGID integer primary key, "
-    "CATEGNAME TEXT NOT NULL)";
-
-static const char CREATE_TABLE_CHECKINGACCOUNT_V1[]=
-    "CREATE TABLE CHECKINGACCOUNT_V1(TRANSID integer primary key, "
-    "ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, "
-    "TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, "
-    "CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, "
-    "CHECK (ACCOUNTID > 0))";
-
-static const char CREATE_TABLE_CURRENCYFORMATS_V1[] =
-    "CREATE TABLE CURRENCYFORMATS_V1 (CURRENCYID integer primary key, "
-    "CURRENCYNAME TEXT NOT NULL UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, "
-    "DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, "
-    "UNIT_NAME TEXT, CENT_NAME TEXT, SCALE numeric, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT)";
-
-static const char CREATE_TABLE_INFOTABLE_V1[] =
-    "CREATE TABLE INFOTABLE_V1 "
-    "( INFOID integer not null primary key, "
-    "INFONAME TEXT NOT NULL UNIQUE, "
-    "INFOVALUE TEXT NOT NULL )";
-
-static const char CREATE_TABLE_PAYEE_V1[]=
-    "CREATE TABLE PAYEE_V1(PAYEEID integer primary key, "
-    "PAYEENAME TEXT NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)";
-
-static const char CREATE_TABLE_STOCK_V1[] =
-    "CREATE TABLE STOCK_V1(STOCKID integer primary key, "
-    "HELDAT numeric, PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT, SYMBOL TEXT, "
-    "NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, "
-    "VALUE numeric, COMMISSION numeric)";
-
-static const char  CREATE_TABLE_SPLITTRANSACTIONS_V1[]=
-    "CREATE TABLE SPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, "
-    "TRANSID numeric NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)";
-
-static const char CREATE_TABLE_SUBCATEGORY_V1[]=
-    "CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, "
-    "SUBCATEGNAME TEXT NOT NULL, CATEGID integer NOT NULL)";
-
-static const wxString TABLE_NAMES[] =
-{
-    "ASSETS_V1",
-    "ACCOUNTLIST_V1",
-    "CHECKINGACCOUNT_V1",
-    "PAYEE_V1",
-    "BILLSDEPOSITS_V1",
-    "STOCK_V1",
-    "SPLITTRANSACTIONS_V1",
-    "BUDGETSPLITTRANSACTIONS_V1",
-    "CATEGORY_V1",
-    "SUBCATEGORY_V1",
-    "BUDGETYEAR_V1",
-    "BUDGETTABLE_V1",
-    "CURRENCYFORMATS_V1",
-};
-const wxArrayString CREATE_TABLE_SQL();
-
 static const char CREATE_VIEW_ALLDATA[] =
     "create  view alldata as "
     "select \n"
@@ -511,8 +416,6 @@ bool ViewExists(wxSQLite3Database* db, const char *viewName);
 bool IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows);
 
 /* Creating new DBs */
-void initDB(wxSQLite3Database* db);
-int createTable(wxSQLite3Database* db, const wxString &sTableName, const wxString &sql);
 int createAllDataView(wxSQLite3Database* db);
 
 bool copyBudgetYear(wxSQLite3Database* db, int newYear, int baseYear);
