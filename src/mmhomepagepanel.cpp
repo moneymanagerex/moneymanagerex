@@ -237,6 +237,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
         hb.addText(displaySummaryHeader(_("Term account")));
 
     // Get account balances and display accounts if we want them displayed
+    double tReconciled = 0;
     for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account)!= type || Model_Account::status(account) == Model_Account::CLOSED) continue;
@@ -245,9 +246,10 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
 
         double currency_rate = 1;
         if (currency) currency_rate = currency->BASECONVRATE;
-        double bal = accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
+        double bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
         tBalance += bal * currency_rate;
+        tReconciled += reconciledBal * currency_rate;
 
         // Display the individual account links if we want to display them
         if ( ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts())
@@ -269,7 +271,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
         }
     }
     const wxString totalStr = (type_is_bank) ? _("Bank Accounts Total:") : _("Term Accounts Total:");
-    hb.addText(displaySectionTotal(totalStr, 0, tBalance)); //TODO: totals
+    hb.addText(displaySectionTotal(totalStr, tReconciled, tBalance));
     hb.endTable();
 
     return hb.getHTMLinTableWraper();
