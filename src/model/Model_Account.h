@@ -126,7 +126,11 @@ public:
 public:
     static Model_Checking::Data_Set transaction(const Data*r )
     {
-        return Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+        Model_Checking::Data_Set trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+        std::sort(trans.begin(), trans.end());
+        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+
+        return trans;
 	}
     static Model_Checking::Data_Set transaction(const Data& r) { return transaction(&r); }
     static Model_Billsdeposits::Data_Set billsdeposits(const Data* r)
@@ -134,6 +138,14 @@ public:
 		return Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(r->ACCOUNTID), Model_Billsdeposits::TOACCOUNTID(r->ACCOUNTID));
 	}
     static Model_Billsdeposits::Data_Set billsdeposits(const Data& r) { return billsdeposits(&r); }
+    static wxDate last_date(const Data* r)
+    {
+        Model_Checking::Data_Set trans = Model_Account::transaction(r);
+        if (!trans.empty()) return Model_Checking::TRANSDATE(trans.back());
+        
+        return wxDateTime::Now().GetDateOnly();
+    }
+    static wxDate last_date(const Data& r) { return last_date(&r); }
     static double balance(const Data* r)
     {
         double sum = r->INITIALBAL;
