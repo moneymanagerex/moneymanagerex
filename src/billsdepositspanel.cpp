@@ -478,7 +478,7 @@ void billsDepositsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void billsDepositsListCtrl::OnNewBDSeries(wxCommandEvent& /*event*/)
 {
-    mmBDDialog dlg(cp_->core_, 0, false, false, this );
+    mmBDDialog dlg(0, false, false, this );
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(dlg.GetTransID()));
 }
@@ -488,7 +488,7 @@ void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
     if (m_selected_row == -1) return;
     if (!cp_->core_->db_.get()) return;
 
-    mmBDDialog dlg(cp_->core_, cp_->trans_[m_selected_row].id_, true, false, this );
+    mmBDDialog dlg(cp_->trans_[m_selected_row].id_, true, false, this );
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(dlg.GetTransID()));
 }
@@ -516,7 +516,7 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
     if (!cp_->core_->db_.get()) return;
 
     int id = cp_->trans_[m_selected_row].id_;
-    mmBDDialog dlg(cp_->core_, id, false, true, this );
+    mmBDDialog dlg(id, false, true, this );
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(id));
 }
@@ -526,7 +526,7 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
     if (m_selected_row == -1 || !cp_->core_->db_.get()) return;
 
     int id = cp_->trans_[m_selected_row].id_;
-    mmDBWrapper::completeBDInSeries(cp_->core_->db_.get(), id);
+    Model_Billsdeposits::instance().completeBDInSeries(id);
     refreshVisualList(cp_->initVirtualListControl(id));
 }
 
@@ -535,7 +535,7 @@ void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
     if (m_selected_row == -1) return;
     if (!cp_->core_->db_.get()) return;
 
-    mmBDDialog dlg(cp_->core_, cp_->trans_[m_selected_row].id_, true, false, this);
+    mmBDDialog dlg(cp_->trans_[m_selected_row].id_, true, false, this);
     if ( dlg.ShowModal() == wxID_OK )
         refreshVisualList(cp_->initVirtualListControl(dlg.GetTransID()));
 }

@@ -436,7 +436,6 @@ bool deleteTransaction(wxSQLite3Database* db, int transID);
 
 /* Bills & Deposits API */
 void deleteBDSeries(wxSQLite3Database* db, int bdID);
-void completeBDInSeries(wxSQLite3Database* db, int bdID);
 
 /* Operations on the CURRENCY */
 void loadCurrencySettings(wxSQLite3Database* db, int currencyID);

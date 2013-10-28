@@ -21,6 +21,9 @@
 
 #include "Model.h"
 #include "db/DB_Table_Billsdeposits_V1.h"
+#include "Model_Budgetsplittransaction.h"
+#include "mmOption.h"
+#include "constants.h"
 
 class Model_Billsdeposits : public Model, public DB_Table_BILLSDEPOSITS_V1
 {
@@ -29,6 +32,7 @@ class Model_Billsdeposits : public Model, public DB_Table_BILLSDEPOSITS_V1
     using DB_Table_BILLSDEPOSITS_V1::remove;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
+    enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 public:
     Model_Billsdeposits(): Model(), DB_Table_BILLSDEPOSITS_V1() 
     {
@@ -40,11 +44,23 @@ public:
     {
         wxArrayString types;
         // keep the sequence with TYPE
-        types.Add(wxTRANSLATE("Withdrawal"));
-        types.Add(wxTRANSLATE("Deposit"));
-        types.Add(wxTRANSLATE("Transfer"));
+        types.Add(("Withdrawal"));
+        types.Add(("Deposit"));
+        types.Add(("Transfer"));
 
         return types;
+    }
+    static wxArrayString all_status()
+    {
+        wxArrayString status;
+        // keep the sequence with STATUS
+        status.Add(("None"));
+        status.Add(("Reconciled"));
+        status.Add(("Void"));
+        status.Add(("Follow up"));
+        status.Add(("Duplicate"));
+
+        return status;
     }
 
 public:
@@ -72,6 +88,28 @@ public:
             return TRANSFER;
     }
     static TYPE type(const Data& r) { return type(&r); }
+    static STATUS_ENUM status(const Data* r)
+    {
+        if (r->STATUS.CmpNoCase("None") == 0)
+            return NONE;
+        else if (r->STATUS.CmpNoCase("Reconciled") == 0 || r->STATUS.CmpNoCase("R") == 0)
+            return RECONCILED;
+        else if (r->STATUS.CmpNoCase("Void") == 0 || r->STATUS.CmpNoCase("V") == 0)
+            return VOID_;
+        else if (r->STATUS.CmpNoCase("Follow up") == 0 || r->STATUS.CmpNoCase("F") == 0)
+            return FOLLOWUP;
+        else if (r->STATUS.CmpNoCase("Duplicate") == 0 || r->STATUS.CmpNoCase("D") == 0)
+            return DUPLICATE_;
+        else
+            return NONE;
+    }
+    static STATUS_ENUM status(const Data& r) { return status(&r); }
+    static wxString toShortStatus(const wxString& fullStatus)
+    {
+        wxString s = fullStatus.Left(1);
+        s.Replace("N", "");
+        return s;
+    }
 
 public:
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
@@ -109,6 +147,154 @@ public:
     bool remove(int id)
     {
         return this->remove(id, db_);
+    }
+
+    static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL) { return DB_Table_BILLSDEPOSITS_V1::STATUS(toShortStatus(all_status()[status]), op); }
+    static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL) { return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(all_type()[type], op); }
+
+    static Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r)
+    {
+        return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r->BDID));
+    }
+    static Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r)
+    {
+        return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r.BDID));
+    }
+    void completeBDInSeries(int bdID)
+    {
+        try
+        {
+            static const char sql[] =
+                "SELECT NUMOCCURRENCES, "
+                "NEXTOCCURRENCEDATE, "
+                "REPEATS "
+                "FROM BILLSDEPOSITS_V1 "
+                "WHERE BDID = ?";
+            // Removed "date(NEXTOCCURRENCEDATE, 'localtime') as NEXTOCCURRENCEDATE, "
+            // because causing problems with some systems and in different time zones
+
+            wxDateTime updateOccur = wxDateTime::Now();
+            int numRepeats = -1;
+
+            wxSQLite3Statement st = db_->PrepareStatement(sql);
+            st.Bind(1, bdID);
+
+            wxSQLite3ResultSet q1 = st.ExecuteQuery();
+
+            if (q1.NextRow())
+            {
+                wxDateTime dtno = q1.GetDate("NEXTOCCURRENCEDATE");
+                updateOccur = dtno;
+
+                int repeats = q1.GetInt("REPEATS");
+
+                // DeMultiplex the Auto Executable fields.
+                if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+                    repeats -= BD_REPEATS_MULTIPLEX_BASE;
+                if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+                    repeats -= BD_REPEATS_MULTIPLEX_BASE;
+
+                numRepeats = q1.GetInt("NUMOCCURRENCES");
+                if (numRepeats != -1)
+                {
+                    if ((repeats < 11) || (repeats > 14)) --numRepeats;
+                }
+
+                if (repeats == 0)
+                {
+                    numRepeats = 0;
+                }
+                else if (repeats == 1)
+                {
+                    updateOccur = dtno.Add(wxTimeSpan::Week());
+                }
+                else if (repeats == 2)
+                {
+                    updateOccur = dtno.Add(wxTimeSpan::Weeks(2));
+                }
+                else if (repeats == 3)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Month());
+                }
+                else if (repeats == 4)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Months(2));
+                }
+                else if (repeats == 5)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Months(3));
+                }
+                else if (repeats == 6)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Months(6));
+                }
+                else if (repeats == 7)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Year());
+                }
+                else if (repeats == 8)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Months(4));
+                }
+                else if (repeats == 9)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Weeks(4));
+                }
+                else if (repeats == 10)
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Days(1));
+                }
+                else if ((repeats == 11) || (repeats == 12))
+                {
+                    if (numRepeats != -1) numRepeats = -1;
+                }
+                else if (repeats == 13)
+                {
+                    if (numRepeats > 0) updateOccur = dtno.Add(wxDateSpan::Days(numRepeats));
+                }
+                else if (repeats == 14)
+                {
+                    if (numRepeats > 0) updateOccur = dtno.Add(wxDateSpan::Months(numRepeats));
+                }
+                else if ((repeats == 15) || (repeats == 16))
+                {
+                    updateOccur = dtno.Add(wxDateSpan::Month());
+                    updateOccur = updateOccur.SetToLastMonthDay(updateOccur.GetMonth(), updateOccur.GetYear());
+                    if (repeats == 16) // last weekday of month
+                    {
+                        if (updateOccur.GetWeekDay() == wxDateTime::Sun || updateOccur.GetWeekDay() == wxDateTime::Sat)
+                            updateOccur.SetToPrevWeekDay(wxDateTime::Fri);
+                    }
+                }
+            }
+
+            st.Finalize();
+
+            {
+                static const char UPDATE_BILLSDEPOSITS_V1[] =
+                    "UPDATE BILLSDEPOSITS_V1 "
+                    "set NEXTOCCURRENCEDATE = ?, "
+                    "NUMOCCURRENCES = ? "
+                    "where BDID = ?";
+
+                wxSQLite3Statement st = db_->PrepareStatement(UPDATE_BILLSDEPOSITS_V1);
+
+                st.Bind(1, updateOccur.FormatISODate());
+                st.Bind(2, numRepeats);
+                st.Bind(3, bdID);
+
+                st.ExecuteUpdate();
+                st.Finalize();
+            }
+            db_->ExecuteUpdate("DELETE FROM BILLSDEPOSITS_V1 where NUMOCCURRENCES = 0");
+            mmOptions::instance().databaseUpdated_ = true;
+
+        }
+        catch (const wxSQLite3Exception& e)
+        {
+            wxLogDebug("Function::completeBDInSeries: %s", e.GetMessage());
+            wxLogError("Complete BD In Series. " + wxString::Format(_("Error: %s"), e.GetMessage()));
+        }
     }
 };
 

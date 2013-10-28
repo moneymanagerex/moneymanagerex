@@ -901,7 +901,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
         th.notes_          = q1.NOTES;
         th.categID_        = q1.CATEGID;
         Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
-        th.categoryStr_    = category->CATEGNAME;
+        th.categoryStr_ = (category ? category->CATEGNAME : "");
         th.subcategID_     = q1.SUBCATEGID;
         Model_Subcategory::Data* sub_category = (q1.SUBCATEGID != -1 ? Model_Subcategory::instance().get(q1.SUBCATEGID) : 0);
         if (sub_category) th.subcategoryStr_ = sub_category->SUBCATEGNAME;
@@ -959,8 +959,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14) )
             {
                 continueExecution = true;
-                mmBDDialog repeatTransactionsDlg(m_core.get()
-                    , th.id_ ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
+                mmBDDialog repeatTransactionsDlg(th.id_ ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
                 {
                     if (activeHomePage_) createHomePage();
@@ -993,7 +992,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 Model_Checking::instance().save(tran);
                 // TODO split
             }
-            mmDBWrapper::completeBDInSeries(m_db.get(), th.id_);
+            Model_Billsdeposits::instance().completeBDInSeries(th.id_);
 
             if (activeHomePage_)
             {
@@ -2604,6 +2603,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         Model_Subcategory::instance(m_db.get());
         Model_Billsdeposits::instance(m_db.get());
         Model_Splittransaction::instance(m_db.get());
+        Model_Budgetsplittransaction::instance(m_db.get());
         Model_Budget::instance(m_db.get());
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())

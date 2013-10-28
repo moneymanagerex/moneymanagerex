@@ -22,27 +22,28 @@
 #include "Model.h"
 #include "db/DB_Table_Budgetsplittransactions_V1.h"
 
-class Model_Splittransaction : public Model, public DB_Table_BUDGETSPLITTRANSACTIONS_V1
+class Model_Budgetsplittransaction : public Model, public DB_Table_BUDGETSPLITTRANSACTIONS_V1
 {
     using DB_Table_BUDGETSPLITTRANSACTIONS_V1::all;
     using DB_Table_BUDGETSPLITTRANSACTIONS_V1::get;
+    using DB_Table_BUDGETSPLITTRANSACTIONS_V1::remove;
 public:
-    Model_Splittransaction() : Model(), DB_Table_BUDGETSPLITTRANSACTIONS_V1()
+    Model_Budgetsplittransaction() : Model(), DB_Table_BUDGETSPLITTRANSACTIONS_V1()
     {
     };
-    ~Model_Splittransaction() {};
+    ~Model_Budgetsplittransaction() {};
 
 public:
     wxArrayString types_;
 
 public:
-    static Model_Splittransaction& instance()
+    static Model_Budgetsplittransaction& instance()
     {
-        return Singleton<Model_Splittransaction>::instance();
+        return Singleton<Model_Budgetsplittransaction>::instance();
     }
-    static Model_Splittransaction& instance(wxSQLite3Database* db)
+    static Model_Budgetsplittransaction& instance(wxSQLite3Database* db)
     {
-        Model_Splittransaction& ins = Singleton<Model_Splittransaction>::instance();
+        Model_Budgetsplittransaction& ins = Singleton<Model_Budgetsplittransaction>::instance();
         ins.db_ = db;
         ins.all();
         return ins;
@@ -77,7 +78,7 @@ public:
     }
     bool remove(int id)
     {
-        return true;//return this->remove(id, this->db_);
+        return this->remove(id, this->db_);
     }
 
 public:

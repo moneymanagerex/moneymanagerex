@@ -28,9 +28,11 @@
 
 #include "guiid.h"
 #include "defs.h"
-#include "mmcoredb.h"
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
+#include "mmtextctrl.h"
+#include "model/Model_Budgetsplittransaction.h"
+#include "model/Model_Billsdeposits.h"
 
 class wxDatePickerCtrl;
 
@@ -41,8 +43,7 @@ class mmBDDialog : public wxDialog
 
 public:
     mmBDDialog();
-    mmBDDialog( mmCoreDB* core,
-                int bdD, bool edit, bool enterOccur, wxWindow* parent,
+    mmBDDialog( int bdD, bool edit, bool enterOccur, wxWindow* parent,
                 wxWindowID id = SYMBOL_BDDIALOG_IDNAME,
                 const wxString& caption = SYMBOL_BDDIALOG_TITLE,
                 const wxPoint& pos = SYMBOL_BDDIALOG_POSITION,
@@ -81,11 +82,9 @@ private:
     void OnCalendarSelChanged(wxCalendarEvent& event);
     int transID_;
 
-    mmCoreDB* core_;
-
     wxTextCtrl *textNumber_;
-    wxTextCtrl *textAmount_;
-    wxTextCtrl *toTextAmount_;
+    mmTextCtrl *textAmount_;
+    mmTextCtrl *toTextAmount_;
     wxTextCtrl *textNotes_;
     wxTextCtrl* textCategory_;
     wxTextCtrl* textNumRepeats_;
@@ -95,9 +94,6 @@ private:
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     bool payeeUnknown_;
-
-    wxString categoryName_;
-    wxString subCategoryName_;
 
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
@@ -115,15 +111,15 @@ private:
     bool autoExecuteUserAck_;
     bool autoExecuteSilent_;
 
+    Model_Budgetsplittransaction::Data_Set local_splits_;
     int categID_;
     int subcategID_;
     int payeeID_;
-    int accountID_;
+    int accountID_; 
     int toID_;
     int bdID_;
     double toTransAmount_;
     bool advancedToTransAmountSet_;
-    wxSharedPtr<mmSplitTransactionEntries> split_;
 
     wxString payeeDepositTip_;
     wxString payeeWithdrawalTip_;
@@ -132,8 +128,8 @@ private:
     wxSpinButton *spinNextOccDate_;
     wxSpinButton *spinTransDate_;
 
-    void displayControlsForType( int transType, bool enableAdvanced = false);
-    void resetPayeeString(bool normal = true);
+    void displayControlsForType(Model_Billsdeposits::TYPE transType, bool enableAdvanced = false);
+    void resetPayeeString();
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);
