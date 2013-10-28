@@ -186,7 +186,7 @@ public:
             break;
         case TRANSFER:
             if (account_id == r->ACCOUNTID)     sum -= r->TRANSAMOUNT;
-            if (account_id == r->TOACCOUNTID)   sum += r->TRANSAMOUNT;
+            if (account_id == r->TOACCOUNTID)   sum += r->TOTRANSAMOUNT;
             break;
         default:
             break;
@@ -194,6 +194,24 @@ public:
         return sum;
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
+    static double withdrawal(const Data* r, int account_id = -1)
+    {
+        double balance = Model_Checking::balance(r, account_id);
+        return balance < 0 ? -balance : 0;
+    }
+    static double withdrawal(const Data& r, int account_id) { return withdrawal(&r, account_id); };
+    static double deposit(const Data* r, int account_id)
+    {
+        double balance = Model_Checking::balance(r, account_id);
+        return balance > 0 ? balance : 0;
+    }
+    static double deposit(const Data& r, int account_id) { return deposit(&r, account_id); }
+    static double reconciled(const Data* r, int account_id) 
+    {
+        double balance = Model_Checking::balance(r, account_id);
+        return Model_Checking::type(r) == Model_Checking::RECONCILED ? balance : 0;
+    }
+    static double reconciled(const Data& r, int account_id) { return reconciled(&r, account_id); }
     static wxString toShortStatus(const wxString& fullStatus)
     {
         wxString s = fullStatus.Left(1);
