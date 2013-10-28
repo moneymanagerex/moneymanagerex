@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-27 22:29:08.373622.
+ *          AUTO GENERATED at 2013-10-28 21:00:23.904000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -24,23 +24,27 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_SUBCATEGORY_V1 Self;
+    /** A List container to hold Data records for the table*/
     typedef std::vector<Self::Data> Data_Set;
+    /** A List container to hold Data record pointers for the table*/
     typedef std::vector<Self::Data*> Cache;
     Cache cache_;
     ~DB_Table_SUBCATEGORY_V1() 
     {
         destroy_cache();
     }
+    
+    /** Removes all table data stored in memory*/ 
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
         cache_.clear();
     }
 
-    bool ensure(wxSQLite3Database* db)
+    /** Creates the database table if the table does not exist*/
+    bool ensure(wxSQLite3Database* db) const
     {
         if (exists(db)) return true;
-        this->destroy_cache();
 
         try
         {
@@ -78,6 +82,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         , COL_CATEGID = 2
     };
 
+    /** Returns the column name as a string*/
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -91,6 +96,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return "UNKNOWN";
     }
 
+    /** Returns the comumn number from the given column name*/
     COLUMN name_to_column(const wxString& name) const
     {
         if ("SUBCATEGID" == name) return COL_SUBCATEGID;
@@ -100,6 +106,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return COLUMN(-1);
     }
     
+    /** Contains the table record for the table*/
     struct Data
     {
         friend struct DB_Table_SUBCATEGORY_V1;
@@ -144,6 +151,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             json::Writer::Write(o, ss);
             return ss.str();
         }
+        
         int to_json(json::Object& o) const
         {
             o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
@@ -151,6 +159,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             o["CATEGID"] = json::Number(this->CATEGID);
             return 0;
         }
+
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 
@@ -183,6 +192,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
+    /** Name of the table*/    
     wxString name() const { return "SUBCATEGORY_V1"; }
 
     DB_Table_SUBCATEGORY_V1() 
@@ -190,12 +200,15 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         query_ = "SELECT SUBCATEGID, SUBCATEGNAME, CATEGID FROM SUBCATEGORY_V1 ";
     }
 
+    /** Create a new data record*/
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
         cache_.push_back(entity);
         return entity;
     }
+    
+    /** Create a copy of the data record*/
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -204,6 +217,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return entity;
     }
 
+    /** Save the data record to the database, either create new or update the existing record*/
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
         wxString sql = wxEmptyString;
@@ -333,6 +347,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         return entity;
     }
 
+    /** Return a list of all the records in the database*/
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;

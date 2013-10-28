@@ -69,13 +69,17 @@ struct DB_Table_%s : public DB_Table
 {
     struct Data;
     typedef DB_Table_%s Self;
+    /** A List container to hold Data records for the table*/
     typedef std::vector<Self::Data> Data_Set;
+    /** A List container to hold Data record pointers for the table*/
     typedef std::vector<Self::Data*> Cache;
     Cache cache_;
     ~DB_Table_%s() 
     {
         destroy_cache();
     }
+    
+    /** Removes all table data stored in memory*/ 
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
@@ -84,10 +88,10 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._table.upper(), self._table.upper(), self._table, self._table, self._table)
         
         s += '''
-    bool ensure(wxSQLite3Database* db)
+    /** Creates the database table if the table does not exist*/
+    bool ensure(wxSQLite3Database* db) const
     {
         if (exists(db)) return true;
-        this->destroy_cache();
 
         try
         {
@@ -128,6 +132,7 @@ struct DB_Table_%s : public DB_Table
     };
 '''
         s += '''
+    /** Returns the column name as a string*/
     wxString column_to_name(COLUMN col) const
     {
         switch(col)
@@ -145,6 +150,7 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s +='''
+    /** Returns the comumn number from the given column name*/
     COLUMN name_to_column(const wxString& name) const
     {
         if ("%s" == name) return COL_%s;''' % (self._primay_key, self._primay_key.upper())
@@ -159,6 +165,7 @@ struct DB_Table_%s : public DB_Table
     }
     '''
         s += '''
+    /** Contains the table record for the table*/
     struct Data
     {
         friend struct DB_Table_%s;
@@ -223,6 +230,7 @@ struct DB_Table_%s : public DB_Table
             json::Writer::Write(o, ss);
             return ss.str();
         }
+        
         int to_json(json::Object& o) const
         {'''
 
@@ -240,6 +248,7 @@ struct DB_Table_%s : public DB_Table
         }'''
 
         s += '''
+
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 
@@ -275,6 +284,7 @@ struct DB_Table_%s : public DB_Table
 ''' % len(self._fields)
 
         s += '''
+    /** Name of the table*/    
     wxString name() const { return "%s"; }
 ''' % self._table
         
@@ -286,12 +296,15 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._table, ', '.join([field['name'] for field in self._fields]), self._table)
         
         s +='''
+    /** Create a new data record*/
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
         cache_.push_back(entity);
         return entity;
     }
+    
+    /** Create a copy of the data record*/
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -301,6 +314,7 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s +='''
+    /** Save the data record to the database, either create new or update the existing record*/
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
         wxString sql = wxEmptyString;
@@ -441,6 +455,7 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s +='''
+    /** Return a list of all the records in the database*/
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
