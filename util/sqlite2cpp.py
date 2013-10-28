@@ -92,6 +92,7 @@ struct DB_Table_%s : public DB_Table
     bool ensure(wxSQLite3Database* db) const
     {
         if (exists(db)) return true;
+        destroy_cache();
 
         try
         {
