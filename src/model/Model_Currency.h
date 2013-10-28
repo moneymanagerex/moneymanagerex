@@ -25,10 +25,6 @@
 #include <wx/numformatter.h>
 #include <tuple>
 
-#ifdef __VISUALC__
-#pragma warning (disable:4566)
-#endif
-
 class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
 {
     using DB_Table_CURRENCYFORMATS_V1::all;
@@ -62,7 +58,7 @@ public:
                 std::make_tuple("USD", "United States dollar"  , L"$"   , L""     , L"", L"", 100,1),
                 std::make_tuple("EUR", "European euro"         , L"€"   , L""     , L"", L"", 100,1),
                 std::make_tuple("GBP", "UK Pound"              , L"£"   , ""      , "Pound", "Pence", 100, 1),
-                std::make_tuple("RUB", "Russian Ruble"         , ""     , L"р"    , "руб.", "коп.", 100, 1),
+                std::make_tuple("RUB", "Russian Ruble"         , ""     , L"р"    , L"руб.", L"коп.", 100, 1),
                 std::make_tuple("UAH", "Ukrainian hryvnia"     , L"₴"   , L""     , L"", L"", 100, 1),
                 std::make_tuple("AFN", "Afghan afghani"        , L"؋"   , L""     , L"" , L"pul", 100 , 1),
                 std::make_tuple("ALL", "Albanian lek"          , L""    , L"L"     , L"", L"", 1, 1),
@@ -291,9 +287,5 @@ public:
     }
     static int precision(const Data& r) { return precision(&r); }
 };
-
-#ifdef __VISUALC__
-#pragma warning (default:4566)
-#endif
 
 #endif // 
