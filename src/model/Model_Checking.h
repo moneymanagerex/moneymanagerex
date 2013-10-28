@@ -172,9 +172,8 @@ public:
             return NONE;
     }
     static STATUS_ENUM status(const Data& r) { return status(&r); }
-    static double balance(const Data* r, int account_id = -1)
+    static double amount(const Data* r, int account_id = -1)
     {
-        if (Model_Checking::status(r) == Model_Checking::VOID_) return 0;
         double sum = 0;
         switch (type(r))
         {
@@ -192,6 +191,12 @@ public:
             break;
         }
         return sum;
+    }
+    static double amount(const Data&r, int account_id = -1) { return amount(&r, account_id); }
+    static double balance(const Data* r, int account_id = -1)
+    {
+        if (Model_Checking::status(r) == Model_Checking::VOID_) return 0;
+        return amount(r, account_id);
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
     static double withdrawal(const Data* r, int account_id = -1)
