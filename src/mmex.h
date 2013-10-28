@@ -264,6 +264,7 @@ private:
     void cleanupNavTreeControl(wxTreeItemId& item);
     wxSizer* cleanupHomePanel(bool new_sizer = true);
     bool openFile(const wxString& fileName, bool openingNew, const wxString &password = "");
+    void InitializeModelTables();
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
     wxToolBar* CreateToolBar(long style=wxTB_HORIZONTAL, wxWindowID id=wxID_ANY, const wxString &name=wxToolBarNameStr);

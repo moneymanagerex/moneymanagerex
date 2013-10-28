@@ -2546,6 +2546,39 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::InitializeModelTables()
+{
+    Model_Asset::instance(m_db.get());
+    Model_Asset::instance().destroy_cache();
+    Model_Stock::instance(m_db.get());
+    Model_Stock::instance().destroy_cache();
+    Model_Account::instance(m_db.get());
+    Model_Account::instance().destroy_cache();
+    Model_Payee::instance(m_db.get());
+    Model_Payee::instance().destroy_cache();
+    Model_Checking::instance(m_db.get());
+    Model_Checking::instance().destroy_cache();
+    Model_Currency::instance(m_db.get());
+    Model_Currency::instance().destroy_cache();
+    Model_Budgetyear::instance(m_db.get());
+    Model_Budgetyear::instance().destroy_cache();
+    Model_Infotable::instance(m_db.get());
+    Model_Infotable::instance().destroy_cache();
+    Model_Category::instance(m_db.get());
+    Model_Category::instance().destroy_cache();
+    Model_Subcategory::instance(m_db.get());
+    Model_Subcategory::instance().destroy_cache();
+    Model_Billsdeposits::instance(m_db.get());
+    Model_Billsdeposits::instance().destroy_cache();
+    Model_Splittransaction::instance(m_db.get());
+    Model_Splittransaction::instance().destroy_cache();
+
+//  Model_Budgetsplittransaction::instance(m_db.get());
+//  Model_Budgetsplittransaction::instance().destroy_cache();
+//  Model_Budget::instance(m_db.get());
+//  Model_Budget::instance().destroy_cache();
+}
+
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
 {
     if (m_core) m_core.reset();
@@ -2591,20 +2624,12 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db = mmDBWrapper::Open(fileName, password);
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
-        Model_Asset::instance(m_db.get());
-        Model_Stock::instance(m_db.get());
-        Model_Account::instance(m_db.get());
-        Model_Payee::instance(m_db.get());
-        Model_Checking::instance(m_db.get());
-        Model_Currency::instance(m_db.get());
-        Model_Budgetyear::instance(m_db.get());
-        Model_Infotable::instance(m_db.get());
-        Model_Category::instance(m_db.get());
-        Model_Subcategory::instance(m_db.get());
-        Model_Billsdeposits::instance(m_db.get());
-        Model_Splittransaction::instance(m_db.get());
+        InitializeModelTables();
         Model_Budgetsplittransaction::instance(m_db.get());
+        Model_Budgetsplittransaction::instance().destroy_cache();
         Model_Budget::instance(m_db.get());
+        Model_Budget::instance().destroy_cache();
+
         // we need to check the db whether it is the right version
         if (!Model_Infotable::instance().checkDBVersion())
         {
@@ -2630,18 +2655,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             wxCopyFile(mmIniOptions::instance().customTemplateDB_, fileName, true);
             m_db = mmDBWrapper::Open(fileName);
             password_ = password;
-            Model_Asset::instance(m_db.get());
-            Model_Stock::instance(m_db.get());
-            Model_Account::instance(m_db.get());
-            Model_Payee::instance(m_db.get());
-            Model_Checking::instance(m_db.get());
-            Model_Currency::instance(m_db.get());
-            Model_Budgetyear::instance(m_db.get());
-            Model_Infotable::instance(m_db.get());
-            Model_Category::instance(m_db.get());
-            Model_Subcategory::instance(m_db.get());
-            Model_Billsdeposits::instance(m_db.get());
-            Model_Splittransaction::instance(m_db.get());
+			InitializeModelTables();
 
             m_core.reset(new mmCoreDB(m_db));
         }
@@ -2649,19 +2663,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         {
             m_db = mmDBWrapper::Open(fileName, password);
             password_ = password;
-            Model_Asset::instance(m_db.get());
-            Model_Stock::instance(m_db.get());
-            Model_Account::instance(m_db.get());
-            Model_Payee::instance(m_db.get());
-            Model_Checking::instance(m_db.get());
-            Model_Currency::instance(m_db.get());
-            Model_Budgetyear::instance(m_db.get());
-            Model_Infotable::instance(m_db.get());
-            Model_Category::instance(m_db.get());
-            Model_Subcategory::instance(m_db.get());
-            Model_Billsdeposits::instance(m_db.get());
-            Model_Splittransaction::instance(m_db.get());
-
+			InitializeModelTables();
+			
             openDataBase(fileName);
             m_core.reset(new mmCoreDB(m_db));
 
