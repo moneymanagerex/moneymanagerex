@@ -174,6 +174,7 @@ public:
     static STATUS_ENUM status(const Data& r) { return status(&r); }
     static double balance(const Data* r, int account_id = -1)
     {
+        if (Model_Checking::type(r) == Model_Checking::VOID_) return 0;
         double sum = 0;
         switch (type(r))
         {
