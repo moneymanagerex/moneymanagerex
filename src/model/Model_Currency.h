@@ -25,6 +25,10 @@
 #include <wx/numformatter.h>
 #include <tuple>
 
+#ifdef __VISUALC__
+#pragma warning (disable:4566)
+#endif
+
 class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
 {
     using DB_Table_CURRENCYFORMATS_V1::all;
@@ -287,5 +291,9 @@ public:
     }
     static int precision(const Data& r) { return precision(&r); }
 };
+
+#ifdef __VISUALC__
+#pragma warning (default:4566)
+#endif
 
 #endif // 
