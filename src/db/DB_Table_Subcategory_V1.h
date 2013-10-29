@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-28 21:00:23.904000.
+ *          AUTO GENERATED at 2013-10-29 15:19:18.567932.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -42,9 +42,10 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     }
 
     /** Creates the database table if the table does not exist*/
-    bool ensure(wxSQLite3Database* db) const
+    bool ensure(wxSQLite3Database* db)
     {
         if (exists(db)) return true;
+        destroy_cache();
 
         try
         {
@@ -305,7 +306,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             wxLogDebug("%s :%d SKIP (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
             return 0;
         }
-        for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
+        for(Cache::reverse_iterator it = cache_.rbegin(); it != cache_.rend(); ++ it)
         {
             Self::Data* entity = *it;
             if (entity->id() == id) 

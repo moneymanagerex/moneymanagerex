@@ -89,7 +89,7 @@ struct DB_Table_%s : public DB_Table
         
         s += '''
     /** Creates the database table if the table does not exist*/
-    bool ensure(wxSQLite3Database* db) const
+    bool ensure(wxSQLite3Database* db)
     {
         if (exists(db)) return true;
         destroy_cache();
@@ -413,7 +413,7 @@ struct DB_Table_%s : public DB_Table
             wxLogDebug("%s :%d SKIP (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
             return 0;
         }
-        for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
+        for(Cache::reverse_iterator it = cache_.rbegin(); it != cache_.rend(); ++ it)
         {
             Self::Data* entity = *it;
             if (entity->id() == id) 
