@@ -16,7 +16,6 @@
 #include "splittransactionsdialog.h"
 #include "splitdetailsdialog.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include <wx/statline.h>
 #include "model/Model_Category.h"
 
@@ -93,7 +92,7 @@ void SplitTransactionDialog::DataToControls()
 
         wxVector<wxVariant> data;
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
-        data.push_back(wxVariant(CurrencyFormatter::float2String(entry.SPLITTRANSAMOUNT)));
+        data.push_back(wxVariant(Model_Currency::toCurrency(entry.SPLITTRANSAMOUNT)));
         lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
         if (lcSplit_->GetItemCount()-1 == selectedIndex_) lcSplit_->SelectRow(selectedIndex_);
     }
@@ -212,7 +211,7 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 void SplitTransactionDialog::UpdateSplitTotal()
 {
     double total = Model_Splittransaction::instance().get_total(this->m_local_splits);
-    transAmount_->SetLabel(CurrencyFormatter::float2String(total));
+    transAmount_->SetLabel(Model_Currency::toCurrency(total));
 }
 
 void SplitTransactionDialog::EditEntry(int index)

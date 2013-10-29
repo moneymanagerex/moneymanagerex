@@ -468,7 +468,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabel(Model_Currency::toString(balance)); // balance
+    header_text_->SetLabel(Model_Currency::toCurrency(balance)); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
@@ -504,9 +504,9 @@ wxString mmAssetsPanel::getItem(long item, long column)
     case COL_TYPE:
         return wxGetTranslation(asset.ASSETTYPE);
     case COL_VALUE_INITIAL:
-        return Model_Currency::toString(asset.VALUE);
+        return Model_Currency::toCurrency(asset.VALUE);
     case COL_VALUE_CURRENT:
-        return Model_Currency::toString(Model_Asset::value(asset));
+        return Model_Currency::toCurrency(Model_Asset::value(asset));
     case COL_DATE:
         return mmGetDateForDisplay(Model_Asset::STARTDATE(asset));
     case COL_NOTES:

@@ -13,7 +13,6 @@
 #include "splitdetailsdialog.h"
 #include "categdialog.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "constants.h"
 #include "validators.h"
 #include "mmCalculator.h"
@@ -170,7 +169,7 @@ void SplitDetailDialog::onTextEntered(wxCommandEvent& event)
 {
     mmCalculator calc;
     if (calc.is_ok(textAmount_->GetValue()))
-        textAmount_->SetValue(CurrencyFormatter::float2String(calc.get_result()));
+        textAmount_->SetValue(calc.get_result());
     textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
 
     event.Skip();
@@ -188,7 +187,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 
     wxString amountStr = textAmount_->GetValue().Trim();
     double amount;
-    if (! CurrencyFormatter::formatCurrencyToDouble(amountStr, amount) || (amount < 0.0))
+    if (!amountStr.ToDouble(&amount))
     {
         mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
         textAmount_->SetFocus();

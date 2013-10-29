@@ -18,7 +18,6 @@
  ********************************************************/
 
 #include "billsdepositsdialog.h"
-#include "constants.h"
 #include "util.h"
 #include "mmOption.h"
 #include "paths.h"

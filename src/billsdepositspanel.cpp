@@ -18,7 +18,6 @@
 
 #include "billsdepositspanel.h"
 #include "billsdepositsdialog.h"
-#include "constants.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
 #include "model/Model_Setting.h"
@@ -54,11 +53,9 @@ BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
 END_EVENT_TABLE()
 /*******************************************************/
 
-mmBillsDepositsPanel::mmBillsDepositsPanel(mmCoreDB* core,
-    wxWindow *parent, wxWindowID winid,
+mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name)
-: core_(core)
-, m_imageList()
+: m_imageList()
 , listCtrlAccount_()
 {
     this->tips_.Add(_("MMEX allows regular payments to be set up as transactions. These transactions can also be regular deposits, or transfers that will occur at some future time. These transactions act a reminder that an event is about to occur, and appears on the Home Page 14 days before the transaction is due. "));
@@ -486,7 +483,6 @@ void billsDepositsListCtrl::OnNewBDSeries(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
-    if (!cp_->core_->db_.get()) return;
 
     mmBDDialog dlg(cp_->trans_[m_selected_row].id_, true, false, this );
     if ( dlg.ShowModal() == wxID_OK )
@@ -496,7 +492,6 @@ void billsDepositsListCtrl::OnEditBDSeries(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
-    if (!cp_->core_->db_.get()) return;
     if (cp_->trans_.size() == 0) return;
 
     wxMessageDialog msgDlg(this, _("Do you really want to delete the series?"),
@@ -504,7 +499,7 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
                                         wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        mmDBWrapper::deleteBDSeries(cp_->core_->db_.get(), cp_->trans_[m_selected_row].id_);
+        Model_Billsdeposits::instance().remove(cp_->trans_[m_selected_row].id_);
         cp_->initVirtualListControl();
         refreshVisualList(m_selected_row);
     }
@@ -513,7 +508,6 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
-    if (!cp_->core_->db_.get()) return;
 
     int id = cp_->trans_[m_selected_row].id_;
     mmBDDialog dlg(id, false, true, this );
@@ -523,7 +517,7 @@ void billsDepositsListCtrl::OnEnterBDTransaction(wxCommandEvent& /*event*/)
 
 void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 {
-    if (m_selected_row == -1 || !cp_->core_->db_.get()) return;
+    if (m_selected_row == -1) return;
 
     int id = cp_->trans_[m_selected_row].id_;
     Model_Billsdeposits::instance().completeBDInSeries(id);
@@ -533,7 +527,6 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
 void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
-    if (!cp_->core_->db_.get()) return;
 
     mmBDDialog dlg(cp_->trans_[m_selected_row].id_, true, false, this);
     if ( dlg.ShowModal() == wxID_OK )

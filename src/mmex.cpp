@@ -875,36 +875,12 @@ void mmGUIFrame::setHomePageActive(bool active)
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     bool continueExecution = false;
-    m_db.get()->Begin();
 
     for (const auto& q1: Model_Billsdeposits::instance().all())
     {
         bool autoExecuteManual = false; // Used when decoding: REPEATS
         bool autoExecuteSilent = false;
         bool requireExecution  = false;
-
-        mmBDTransactionHolder th;
-        th.id_             = q1.BDID;
-        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
-
-        th.nextOccurStr_   = mmGetDateForDisplay(th.nextOccurDate_);
-        th.payeeID_        = q1.PAYEEID;
-        th.transType_      = q1.TRANSCODE;
-        th.accountID_      = q1.ACCOUNTID;
-        th.toAccountID_    = q1.TOACCOUNTID;
-        
-        Model_Account::Data* account = Model_Account::instance().get(q1.ACCOUNTID);
-        Model_Account::Data* to_account = (Model_Billsdeposits::type(q1) == Model_Billsdeposits::TRANSFER ? Model_Account::instance().get(q1.TOACCOUNTID) : NULL);
-        th.accountName_    = account ? account->ACCOUNTNAME : "";
-        th.amt_            = q1.TRANSAMOUNT;
-        th.toAmt_          = q1.TOTRANSAMOUNT;
-        th.notes_          = q1.NOTES;
-        th.categID_        = q1.CATEGID;
-        Model_Category::Data* category = Model_Category::instance().get(q1.CATEGID);
-        th.categoryStr_ = (category ? category->CATEGNAME : "");
-        th.subcategID_     = q1.SUBCATEGID;
-        Model_Subcategory::Data* sub_category = (q1.SUBCATEGID != -1 ? Model_Subcategory::instance().get(q1.SUBCATEGID) : 0);
-        if (sub_category) th.subcategoryStr_ = sub_category->SUBCATEGNAME;
 
         // DeMultiplex the Auto Executable fields from the db entry: REPEATS
         int repeats        = q1.REPEATS;
@@ -923,35 +899,18 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         }
 
+        wxDate nextOccurDate  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
         wxDateTime today = wxDateTime::Now();
-        wxTimeSpan ts = th.nextOccurDate_.Subtract(today);
-        th.daysRemaining_ = ts.GetDays();
-        int minutesRemaining_ = ts.GetMinutes();
+        wxTimeSpan ts = nextOccurDate.Subtract(today);
+        int daysRemaining = ts.GetDays();
+        int minutesRemaining = ts.GetMinutes();
 
-        requireExecution = false;
-        if (minutesRemaining_ > 0)
-            th.daysRemaining_ += 1;
+        if (minutesRemaining > 0)
+            daysRemaining += 1;
 
-        if (th.daysRemaining_ < 1)
+        if (daysRemaining < 1)
         {
             requireExecution = true;
-        }
-
-        th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
-        th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
-
-        if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
-        {
-            wxString fromAccount = account->ACCOUNTNAME;
-            wxString toAccount = to_account->ACCOUNTNAME;
-
-            th.payeeStr_ = toAccount;
-        }
-        else
-        {
-            Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
-            if (payee)
-                th.payeeStr_ = payee->PAYEENAME;
         }
 
         if (autoExecuteManual && requireExecution)
@@ -959,7 +918,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14) )
             {
                 continueExecution = true;
-                mmBDDialog repeatTransactionsDlg(th.id_ ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
+                mmBDDialog repeatTransactionsDlg(q1.BDID ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
                 {
                     if (activeHomePage_) createHomePage();
@@ -989,10 +948,21 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
                 tran->SUBCATEGID        = q1.SUBCATEGID;
                 tran->TRANSDATE         = q1.NEXTOCCURRENCEDATE;
 
-                Model_Checking::instance().save(tran);
-                // TODO split
+                int transID = Model_Checking::instance().save(tran);
+
+                Model_Splittransaction::Data_Set checking_splits;
+                for (const auto &item : Model_Billsdeposits::splittransaction(q1))
+                {
+                    Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
+                    split->TRANSID = transID;
+                    split->CATEGID = item.CATEGID;
+                    split->SUBCATEGID = item.SUBCATEGID;
+                    split->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
+                    checking_splits.push_back(*split);
+                }
+                Model_Splittransaction::instance().save(checking_splits);
             }
-            Model_Billsdeposits::instance().completeBDInSeries(th.id_);
+            Model_Billsdeposits::instance().completeBDInSeries(q1.BDID);
 
             if (activeHomePage_)
             {
@@ -1000,7 +970,6 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             }
         }
     }
-    m_db.get()->Commit();
 
     if (continueExecution)
     {
@@ -3524,7 +3493,7 @@ void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmBillsDepositsPanel(m_core.get(), homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmBillsDepositsPanel(homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);

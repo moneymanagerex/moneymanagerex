@@ -1,5 +1,4 @@
 #include "billsdepositspanel.h"
-#include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"

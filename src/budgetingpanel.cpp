@@ -420,9 +420,9 @@ void mmBudgetingPanel::initVirtualListControl()
     listCtrlBudget_->SetItemCount((int)budget_.size());
 
     wxString est_amount, act_amount, diff_amount;
-    est_amount = Model_Currency::toString(estIncome);
-    act_amount = Model_Currency::toString(actIncome);
-    diff_amount = Model_Currency::toString(estIncome - actIncome);
+    est_amount = Model_Currency::toCurrency(estIncome);
+    act_amount = Model_Currency::toCurrency(actIncome);
+    diff_amount = Model_Currency::toCurrency(estIncome - actIncome);
 
     income_estimated_->SetLabel(est_amount);
     income_actual_->SetLabel(act_amount);
@@ -430,9 +430,9 @@ void mmBudgetingPanel::initVirtualListControl()
 
     if (estExpenses < 0.0) estExpenses = -estExpenses;
     if (actExpenses < 0.0) actExpenses = -actExpenses;
-    est_amount = Model_Currency::toString(estExpenses);
-    act_amount = Model_Currency::toString(actExpenses);
-    diff_amount = Model_Currency::toString(estExpenses - actExpenses);
+    est_amount = Model_Currency::toCurrency(estExpenses);
+    act_amount = Model_Currency::toCurrency(actExpenses);
+    diff_amount = Model_Currency::toCurrency(estExpenses - actExpenses);
 
     expences_estimated_->SetLabel(est_amount);
     expences_actual_->SetLabel(act_amount);
@@ -500,7 +500,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         if (budget_[item].first >= 0)
         {
             double amt = budgetAmt_[budget_[item].first][budget_[item].second];
-            text = Model_Currency::toString(amt);
+            text = Model_Currency::toCurrency(amt);
         }
     }
     if (column == 4)
@@ -508,12 +508,12 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         if (budget_[item].first < 0)
         {
             double estimated = budgetTotals_[budget_[item].second].first;
-            text = Model_Currency::toString(estimated);
+            text = Model_Currency::toCurrency(estimated);
         }
         else
         {
             double estimated = getEstimate(budget_[item].first, budget_[item].second);
-            text = Model_Currency::toString(estimated);
+            text = Model_Currency::toCurrency(estimated);
         }
     }
     if (column == 5)
@@ -521,12 +521,12 @@ wxString mmBudgetingPanel::getItem(long item, long column)
         if (budget_[item].first < 0)
         {
             double actual = budgetTotals_[budget_[item].second].second;
-            text = Model_Currency::toString(actual);
+            text = Model_Currency::toCurrency(actual);
         }
         else
         {
             double actual = categoryStats_[budget_[item].first][budget_[item].second][0];
-            text = Model_Currency::toString(actual);
+            text = Model_Currency::toCurrency(actual);
         }
     }
     return text;
@@ -608,7 +608,7 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     double estimated = getEstimate(budget_[selectedIndex].first, budget_[selectedIndex].second);
     double actual = categoryStats_[budget_[selectedIndex].first][budget_[selectedIndex].second][0];
 
-    mmBudgetEntryDialog dlg(entry, Model_Currency::toString(estimated), Model_Currency::toString(actual), this);
+    mmBudgetEntryDialog dlg(entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual), this);
     if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();

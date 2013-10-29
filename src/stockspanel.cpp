@@ -108,9 +108,9 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_DATE)         return m_stocks[item].PURCHASEDATE;
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
     if (column == COL_NUMBER)       return Model_Stock::NUMSHARES(m_stocks[item]);
-    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item));
-    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE);
-    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE);
+    if (column == COL_GAIN_LOSS)    return Model_Currency::toCurrency(getGainLoss(item));
+    if (column == COL_VALUE)        return Model_Currency::toCurrency(m_stocks[item].VALUE);
+    if (column == COL_CURRENT)      return Model_Currency::toCurrency(m_stocks[item].CURRENTPRICE);
     if (column == COL_NOTES)        return m_stocks[item].NOTES;
 
     return "";
@@ -496,9 +496,9 @@ void mmStocksPanel::updateHeader()
     double originalVal = investment_balance.second;
     double total = investment_balance.first; 
 
-    wxString balance = Model_Currency::toString(total+initVal);
-    wxString original = Model_Currency::toString(originalVal);
-    wxString diffStr = Model_Currency::toString(total > originalVal ? total - originalVal : originalVal - total);
+    wxString balance = Model_Currency::toCurrency(total + initVal);
+    wxString original = Model_Currency::toCurrency(originalVal);
+    wxString diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total);
 
     wxString lbl;
     lbl << _("Total: ") << balance << "     " << _("Invested: ") << original;
@@ -703,7 +703,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
         sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);
     else
         sTotalNumShares <<  static_cast<long>(stocktotalnumShares);
-    wxString sGainLoss = Model_Currency::toString(getGainLoss(selectedIndex));
+    wxString sGainLoss = Model_Currency::toCurrency(getGainLoss(selectedIndex));
 
     double stockPurchasePrice = m_stocks[selectedIndex].PURCHASEPRICE;
     double stockCurrentPrice = m_stocks[selectedIndex].CURRENTPRICE;
@@ -715,14 +715,14 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     double stocktotalPercentage = (stockCurrentPrice/stockavgPurchasePrice-1.0)*100.0;
     double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
-    wxString sPurchasePrice = Model_Currency::toString(stockPurchasePrice);
-    wxString sAvgPurchasePrice = Model_Currency::toString(stockavgPurchasePrice);
-    wxString sCurrentPrice = Model_Currency::toString(stockCurrentPrice);
-    wxString sDifference = Model_Currency::toString(stockDifference);
-    wxString sTotalDifference = Model_Currency::toString(stocktotalDifference);
+    wxString sPurchasePrice = Model_Currency::toCurrency(stockPurchasePrice);
+    wxString sAvgPurchasePrice = Model_Currency::toCurrency(stockavgPurchasePrice);
+    wxString sCurrentPrice = Model_Currency::toCurrency(stockCurrentPrice);
+    wxString sDifference = Model_Currency::toCurrency(stockDifference);
+    wxString sTotalDifference = Model_Currency::toCurrency(stocktotalDifference);
     wxString sPercentage = wxNumberFormatter::ToString(stockPercentage, 2);
     wxString sTotalPercentage = wxNumberFormatter::ToString(stocktotalPercentage, 2);
-    wxString sTotalGainLoss = Model_Currency::toString(stocktotalgainloss);
+    wxString sTotalGainLoss = Model_Currency::toCurrency(stocktotalgainloss);
 
     wxString miniInfo = "";
     if (m_stocks[selectedIndex].SYMBOL != "")

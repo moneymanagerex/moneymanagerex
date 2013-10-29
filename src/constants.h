@@ -199,8 +199,6 @@ static const wxString gDaysInWeek[7] =
 
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
 
-const int BD_REPEATS_MULTIPLEX_BASE  = 100;
-
 const wxString TRANS_TYPE_WITHDRAWAL_STR = "Withdrawal";
 const wxString TRANS_TYPE_DEPOSIT_STR    = "Deposit";
 const wxString TRANS_TYPE_TRANSFER_STR   = "Transfer";

@@ -82,7 +82,7 @@ void mmStockDialog::dataToControls()
 
     numShares_->SetValue(Model_Stock::NUMSHARES(m_stock));
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-    valueInvestment_->SetLabel(Model_Account::toString(m_stock->VALUE, account));
+    valueInvestment_->SetLabel(Model_Account::toCurrency(m_stock->VALUE, account));
     purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account);
     currentPrice_->SetValue(m_stock->CURRENTPRICE, account);
     commission_->SetValue(m_stock->COMMISSION, account);
