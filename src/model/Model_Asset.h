@@ -65,14 +65,21 @@ public:
     }
 
 public:
+    /** Return the address of the global database table*/
     static Model_Asset& instance()
     {
         return Singleton<Model_Asset>::instance();
     }
+
+    /**
+     * Initialize the global database table.
+     * Create the table if it does not exist.
+    */
     static Model_Asset& instance(wxSQLite3Database* db)
     {
         Model_Asset& ins = Singleton<Model_Asset>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }
@@ -81,6 +88,7 @@ public:
         return "$Rev$";
     }
 public:
+    /** Return a list of all the records in the database table*/
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);

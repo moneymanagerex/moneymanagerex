@@ -90,6 +90,7 @@ public:
     {
         Model_Checking& ins = Singleton<Model_Checking>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }

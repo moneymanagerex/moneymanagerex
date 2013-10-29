@@ -44,6 +44,7 @@ public:
     {
         Model_Splittransaction& ins = Singleton<Model_Splittransaction>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }

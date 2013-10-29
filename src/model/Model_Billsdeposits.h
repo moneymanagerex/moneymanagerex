@@ -65,14 +65,21 @@ public:
     }
 
 public:
+    /** Return the address of the global database table*/
     static Model_Billsdeposits& instance()
     {
         return Singleton<Model_Billsdeposits>::instance();
     }
+
+    /**
+     * Initialize the global database table.
+     * Create the table if it does not exist.
+    */
     static Model_Billsdeposits& instance(wxSQLite3Database* db)
     {
         Model_Billsdeposits& ins = Singleton<Model_Billsdeposits>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }
@@ -113,6 +120,7 @@ public:
     }
 
 public:
+    /** Return a list of all the records in the database table*/
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);

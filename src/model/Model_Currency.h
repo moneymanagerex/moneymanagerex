@@ -43,6 +43,7 @@ public:
     {
         Model_Currency& ins = Singleton<Model_Currency>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }

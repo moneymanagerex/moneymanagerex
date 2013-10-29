@@ -47,6 +47,7 @@ public:
     {
         Model_Category& ins = Singleton<Model_Category>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }

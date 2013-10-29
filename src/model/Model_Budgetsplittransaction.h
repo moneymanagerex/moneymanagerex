@@ -45,6 +45,7 @@ public:
     {
         Model_Budgetsplittransaction& ins = Singleton<Model_Budgetsplittransaction>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }

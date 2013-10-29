@@ -42,6 +42,7 @@ public:
     {
         Model_Stock& ins = Singleton<Model_Stock>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }

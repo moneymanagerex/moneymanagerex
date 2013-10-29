@@ -42,6 +42,7 @@ public:
     {
         Model_Budgetyear& ins = Singleton<Model_Budgetyear>::instance();
         ins.db_ = db;
+        ins.destroy_cache();
         ins.all();
         return ins;
     }
