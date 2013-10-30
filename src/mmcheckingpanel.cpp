@@ -140,12 +140,8 @@ bool mmCheckingPanel::Create(
 void mmCheckingPanel::sortTable()
 {
     std::sort(this->m_trans.begin(), this->m_trans.end());
-    std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE()); 
     switch (m_listCtrlAccount->g_sortcol)
     {
-    case TransactionListCtrl::COL_DATE_OR_TRANSACTION_ID:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE()); 
-        break;
     case TransactionListCtrl::COL_TRANSACTION_NUMBER:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSACTIONNUMBER());
         break;
@@ -171,6 +167,7 @@ void mmCheckingPanel::sortTable()
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByNOTES());
         break;
     default:
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
         break;
     }
 
@@ -188,6 +185,11 @@ void mmCheckingPanel::filterTable()
         account_balance_ = m_account->INITIALBAL;
         reconciled_balance_ = account_balance_;
     }
+
+    //Sort table by date and transaction ID to get proper transaction balances
+    std::sort(this->m_trans.begin(), this->m_trans.end());
+    std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
+
 
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
