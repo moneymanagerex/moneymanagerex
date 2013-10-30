@@ -19,8 +19,8 @@
 #ifndef _MM_EX_REPORTTRANSSTATS_H_
 #define _MM_EX_REPORTTRANSSTATS_H_
 
-#include "mmcoredb.h"
 #include "reportbase.h"
+#include <map>
 
 class mmReportTransactionStats : public mmPrintableBase
 {

@@ -21,9 +21,10 @@
 
 #include "defs.h"
 #include <iostream>
-#include "mmcoredb.h"
 #include "reports/htmlbuilder.h"
 #include "lua.hpp"
+
+class wxSQLite3ResultSet;
 
 class TLuaInterface
 {

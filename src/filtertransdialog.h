@@ -7,7 +7,6 @@
 #pragma interface "filtertransdialog.cpp"
 #endif
 
-#include "mmcoredb.h"
 #include "reports/mmDateRange.h"
 
 #define ID_MYDIALOG9 10095

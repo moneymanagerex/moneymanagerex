@@ -24,6 +24,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "mmtransaction.h"
 #include <algorithm>
 
 mmReportTransactions::mmReportTransactions(const Model_Checking::Data_Set trans,

@@ -1,7 +1,7 @@
 
-#include "mmcoredb.h"
 #include "reportbase.h"
 #include "mmDateRange.h"
+#include <vector>
 
 #ifndef HTML_WIDGET_TOP_CATEGORIES_H
 #define HTML_WIDGET_TOP_CATEGORIES_H

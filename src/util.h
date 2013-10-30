@@ -24,8 +24,6 @@
 #include <wx/valnum.h>
 #include <map>
 
-class mmCoreDB;
-
 struct ValuePair
 {
     wxString label;

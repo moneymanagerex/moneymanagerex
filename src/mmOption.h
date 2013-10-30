@@ -22,7 +22,6 @@
 #include "defs.h"
 #include <wx/sharedptr.h>
 
-class mmCoreDB;
 /*
    mmOptions caches the options for MMEX
    so that we don't hit the DB that often

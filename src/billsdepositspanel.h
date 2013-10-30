@@ -22,6 +22,7 @@
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "util.h"
+#include <vector>
 
 class wxListEvent;
 class mmBillsDepositsPanel;
