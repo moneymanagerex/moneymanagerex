@@ -604,14 +604,13 @@ bool mmTransDialog::validateData()
             {
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
-                transaction_->PAYEEID = Model_Payee::instance().save(payee);
             }
             else
                 return false;
         }
+        transaction_->PAYEEID = payee->PAYEEID;
         transaction_->TOACCOUNTID = -1;
 
-        payee = Model_Payee::instance().get(transaction_->PAYEEID);
         payee->CATEGID = transaction_->CATEGID;
         payee->SUBCATEGID = transaction_->SUBCATEGID;
         Model_Payee::instance().save(payee);
