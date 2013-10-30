@@ -42,11 +42,10 @@ wxString htmlWidgetStocks::getHTMLText()
     mmHTMLBuilder hb;
 
     hb.startTable("100%");
-    if (Model_Stock::instance().all().size())
+    std::map<int, std::pair<double, double> > stockStats;
+    calculate_stats(stockStats);
+    if (!stockStats.empty())
     {
-        std::map<int, std::pair<double, double> > stockStats;
-        calculate_stats(stockStats);
-
         hb.startTableRow();
         hb.addTableHeaderCell(_("Stocks"), false);
         hb.addTableHeaderCell(_("Gain/Loss"), true);
@@ -58,8 +57,8 @@ wxString htmlWidgetStocks::getHTMLText()
             Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
             for (const auto& account : accounts)
             {
-                Model_Currency::Data *currency = Model_Currency::instance().get(account.CURRENCYID);
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+                Model_Currency::Data *currency = Model_Currency::instance().get(account.CURRENCYID);
                 hb.startTableRow();
                 hb.addTableCellLink(wxString::Format("STOCK:%i", account.ACCOUNTID)
                     , account.ACCOUNTNAME, false, true);
@@ -87,6 +86,8 @@ void htmlWidgetStocks::enable_detailes(bool enable)
 
 void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> > &stockStats)
 {
+    this->grand_total_ = 0;
+    this->grand_gain_lost_ = 0;
     Model_Stock::Data_Set stocks = Model_Stock::instance().all();
     for (const auto& stock : stocks)
     {
@@ -97,11 +98,10 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
             Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
             conv_rate = currency->BASECONVRATE;
         }
-        std::pair<double, double> values = stockStats[stock.HELDAT];
+        std::pair<double, double>& values = stockStats[stock.HELDAT];
         double gain_lost = (stock.VALUE - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
         values.first += gain_lost;
         values.second += stock.VALUE;
-        stockStats[stock.HELDAT] = values;
         grand_gain_lost_ += gain_lost * conv_rate;
         grand_total_ += stock.VALUE * conv_rate;
     }
