@@ -256,15 +256,16 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DEFINE_CATEGORY, _("Define Default Category")));
     if (!payee) mainMenu->Enable(MENU_DEFINE_CATEGORY, false);
     mainMenu->AppendSeparator();
+
     mainMenu->Append(new wxMenuItem(mainMenu, NENU_NEW_PAYEE, _("&Add ")));
-    if (!payee) mainMenu->Enable(NENU_NEW_PAYEE, false);
     mainMenu->AppendSeparator();
+
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));
     if (!payee || Model_Payee::is_used(m_payee_id_)) mainMenu->Enable(MENU_DELETE_PAYEE, false);
     mainMenu->AppendSeparator();
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_RELOCATE_PAYEE, _("Relocate Payee")));
     //SetToolTip(_("Change all transactions using one Payee to another Payee"));
-    if (!payee) mainMenu->Enable(MENU_DELETE_PAYEE, false);
+    if (!payee) mainMenu->Enable(MENU_RELOCATE_PAYEE, false);
 
     PopupMenu(mainMenu);
     delete mainMenu;
