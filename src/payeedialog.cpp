@@ -145,9 +145,10 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = payeeListBox_->ItemToRow(item);
-    if (selectedIndex_ < 0) return;
 
-    m_payee_id_ = (int)payeeListBox_->GetItemData(item);
+
+    if (selectedIndex_ > 0)
+        m_payee_id_ = (int)payeeListBox_->GetItemData(item);
 }
 
 void mmPayeeDialog::AddPayee()
@@ -177,38 +178,44 @@ void mmPayeeDialog::AddPayee()
 
 void mmPayeeDialog::DeletePayee()
 {
-    if (!Model_Payee::instance().remove(m_payee_id_))
+    Model_Payee::Data_Set payees = Model_Payee::instance().find(m_payee_id_);
+    if (!payees.empty())
     {
-        wxString deletePayeeErrMsg = _("Payee in use.");
-        deletePayeeErrMsg
-            << "\n\n"
-            << _("Tip: Change all transactions using this Payee to another Payee\nusing the relocate command:")
-            << "\n\n" << _("Tools -> Relocation of -> Payees");
-        wxMessageBox(deletePayeeErrMsg,_("Organize Payees: Delete Error"), wxOK|wxICON_ERROR);
-        return;
+        if (!Model_Payee::instance().remove(m_payee_id_))
+        {
+            wxString deletePayeeErrMsg = _("Payee in use.");
+            deletePayeeErrMsg
+                << "\n\n"
+                << _("Tip: Change all transactions using this Payee to another Payee\nusing the relocate command:")
+                << "\n\n" << _("Tools -> Relocation of -> Payees");
+            wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
+            return;
+        }
+        fillControls();
     }
-
-    fillControls();
 }
 
 void mmPayeeDialog::DefineDefaultCategory()
 {
-    Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id_);
-    mmCategDialog dlg(this, true, false);
-    dlg.setTreeSelection(payee->CATEGID, payee->SUBCATEGID);
-    if ( dlg.ShowModal() == wxID_OK )
+    Model_Payee::Data_Set payees = Model_Payee::instance().find(m_payee_id_);
+    if (!payees.empty())
     {
-        payee->CATEGID = dlg.getCategId();
-        payee->SUBCATEGID = dlg.getSubCategId();
-        refreshRequested_ = true;
-        Model_Payee::instance().save(payee);
-    }
-    else
-    {
-        payee->CATEGID = -1;
-        payee->SUBCATEGID = -1;
-        refreshRequested_ = true;
-        Model_Payee::instance().save(payee);
+        mmCategDialog dlg(this, true, false);
+        dlg.setTreeSelection(payee->CATEGID, payee->SUBCATEGID);
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            payee->CATEGID = dlg.getCategId();
+            payee->SUBCATEGID = dlg.getSubCategId();
+            refreshRequested_ = true;
+            Model_Payee::instance().save(payee);
+        }
+        else
+        {
+            payee->CATEGID = -1;
+            payee->SUBCATEGID = -1;
+            refreshRequested_ = true;
+            Model_Payee::instance().save(payee);
+        }
     }
     fillControls();
 }
