@@ -197,8 +197,8 @@ void mmPayeeDialog::DeletePayee()
 
 void mmPayeeDialog::DefineDefaultCategory()
 {
-    Model_Payee::Data_Set payees = Model_Payee::instance().find(m_payee_id_);
-    if (!payees.empty())
+    Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id_);
+    if (payee)
     {
         mmCategDialog dlg(this, true, false);
         dlg.setTreeSelection(payee->CATEGID, payee->SUBCATEGID);
