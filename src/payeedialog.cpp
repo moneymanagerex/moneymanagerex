@@ -178,8 +178,8 @@ void mmPayeeDialog::AddPayee()
 
 void mmPayeeDialog::DeletePayee()
 {
-    Model_Payee::Data_Set payees = Model_Payee::instance().find(m_payee_id_);
-    if (!payees.empty())
+    Model_Payee::Data *payees = Model_Payee::instance().get(m_payee_id_);
+    if (payees)
     {
         if (!Model_Payee::instance().remove(m_payee_id_))
         {
