@@ -88,8 +88,7 @@ void mmAssetDialog::dataToControls()
     valueChangeRate.Printf("%.3f", m_asset->VALUECHANGERATE);
     m_valueChangeRate->SetValue(valueChangeRate);
 
-    wxString valueChangeTypeStr = m_asset->VALUECHANGE;
-    m_valueChange->SetStringSelection(wxGetTranslation(m_asset->VALUECHANGE));
+    m_valueChange->SetSelection(Model_Asset::rate(m_asset));
     enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
     m_assetType->SetStringSelection(wxGetTranslation(m_asset->ASSETTYPE));
 }
@@ -156,7 +155,7 @@ void mmAssetDialog::CreateControls()
 
     m_valueChange = new wxChoice( itemPanel5, IDC_COMBO_TYPE, wxDefaultPosition, wxSize(150,-1));
     for(const auto& a : Model_Asset::all_rate())
-        m_valueChange->Append(wxGetTranslation(a), new wxStringClientData(a));
+        m_valueChange->Append(wxGetTranslation(a));
 
     m_valueChange->SetToolTip(_("Specify if the value of the asset changes over time"));
     m_valueChange->SetSelection(Model_Asset::RATE_NONE);
@@ -234,10 +233,6 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     }
 
     int valueChangeType = m_valueChange->GetSelection();
-    wxString valueChangeTypeStr= "";
-    wxStringClientData* value_change_obj = (wxStringClientData *)m_valueChange->GetClientObject(m_valueChange->GetSelection());
-    if (value_change_obj) valueChangeTypeStr = value_change_obj->GetData();
-
     wxString valueChangeRateStr = m_valueChangeRate->GetValue().Trim();
     if (valueChangeRateStr.IsEmpty() && valueChangeType != Model_Asset::RATE_NONE)
     {
@@ -266,7 +261,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->NOTES            = m_notes->GetValue().Trim();
     m_asset->ASSETNAME        = m_assetName->GetValue().Trim();
     m_asset->VALUE            = value;
-    m_asset->VALUECHANGE      = valueChangeTypeStr;
+    m_asset->VALUECHANGE      = Model_Asset::all_rate()[valueChangeType];
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
