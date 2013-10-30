@@ -90,7 +90,7 @@ void mmAssetDialog::dataToControls()
 
     m_valueChange->SetSelection(Model_Asset::rate(m_asset));
     enableDisableRate(Model_Asset::rate(m_asset) != Model_Asset::RATE_NONE);
-    m_assetType->SetStringSelection(wxGetTranslation(m_asset->ASSETTYPE));
+    m_assetType->SetSelection(Model_Asset::type(m_asset));
 }
 
 void mmAssetDialog::CreateControls()
