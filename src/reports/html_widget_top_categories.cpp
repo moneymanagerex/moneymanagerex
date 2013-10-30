@@ -66,7 +66,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
 
 void htmlWidgetTop7Categories::getTopCategoryStats(
     std::vector<std::pair<wxString, double> > &categoryStats
-    , mmDateRange* date_range) const
+    , const mmDateRange* date_range) const
 {
     //Get base currency rates for all accounts
     std::map<int, double> acc_conv_rates;
@@ -76,7 +76,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
     }
     //Temporary map
-    std::map<wxString, double> stat;
+    std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
 
     Model_Checking::Data_Set transactions = Model_Checking::instance().find(
             Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
@@ -88,25 +88,19 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     {
         if (trx.CATEGID > -1)
         {
-            Model_Category::Data* category = Model_Category::instance().get(trx.CATEGID);
-            Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(trx.SUBCATEGID);
-
-            const wxString categ_name = Model_Category::full_name(category, sub_category);
+            std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
             if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
-                stat[categ_name] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+                stat[category] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
             else
-                stat[categ_name] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+                stat[category] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
         }
         else
         {
             Model_Splittransaction::Data_Set splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(trx.TRANSID));
             for (const auto& entry : splits)
             {
-                Model_Category::Data* category = Model_Category::instance().get(entry.CATEGID);
-                Model_Subcategory::Data* sub_category = (entry.SUBCATEGID != -1 ? Model_Subcategory::instance().get(entry.SUBCATEGID) : 0);
-
-                const wxString categ_name = Model_Category::full_name(category, sub_category);
-                stat[categ_name] += entry.SPLITTRANSAMOUNT
+                std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
+                stat[category] += entry.SPLITTRANSAMOUNT
                     * (acc_conv_rates[trx.ACCOUNTID]) 
                     * (trx.TRANSAMOUNT< 0 ? -1 : 1);
             }
@@ -119,7 +113,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         if (i.second < 0)
         {
             std::pair <wxString, double> stat_pair;
-            stat_pair.first = i.first;
+            stat_pair.first = Model_Category::full_name(i.first.first, i.first.second);
             stat_pair.second = i.second;
             categoryStats.push_back(stat_pair);
         }

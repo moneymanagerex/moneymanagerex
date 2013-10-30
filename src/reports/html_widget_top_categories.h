@@ -20,7 +20,7 @@ protected:
     wxString title_;
     void getTopCategoryStats(
         std::vector<std::pair<wxString, double> > &categoryStats
-        , mmDateRange* date_range) const;
+        , const mmDateRange* date_range) const;
 };
 
 #endif //
