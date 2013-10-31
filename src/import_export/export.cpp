@@ -9,47 +9,41 @@
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 
-mmExportTransaction::mmExportTransaction(mmCoreDB* core)
-    : mmExportBase(core)
-    , pBankTransaction_(0)
-    , accountID_(-1)
+mmExportTransaction::mmExportTransaction()
 {}
 
-mmExportTransaction::mmExportTransaction(mmCoreDB* core, mmBankTransaction* pBankTransaction)
-    : mmExportBase(core)
-    , pBankTransaction_(pBankTransaction)
-    , accountID_(pBankTransaction->accountID_)
+mmExportTransaction::mmExportTransaction(int accountID)
+: m_transaction_id(0)
+, m_account_id(accountID)
 {}
 
-mmExportTransaction::mmExportTransaction(mmCoreDB* core, int accountID)
-    : mmExportBase(core)
-    , pBankTransaction_(0)
-    , accountID_(accountID)
-{
-    if (!core) wxASSERT(false);
-}
+mmExportTransaction::mmExportTransaction(int transactionID, int accountID)
+: m_transaction_id(transactionID)
+, m_account_id(accountID)
+{}
 
 mmExportTransaction::~mmExportTransaction()
 {}
 
 wxString mmExportTransaction::getTransactionQIF(bool from)
 {
-    mmBankTransaction* &transaction = pBankTransaction_;
+    Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
+    if (!transaction) return "";
+    Model_Checking::Full_Data full_tran(*transaction);
+
     wxString buffer = "";
-    int trans_id = transaction->transactionID();
-    wxString accountName = "";
-    Model_Account::Data *account = Model_Account::instance().get(transaction->accountID_);
-    if (account) accountName = account->ACCOUNTNAME;
-    wxString categ = transaction->fullCatStr_;
-    wxString payee = transaction->payeeStr_;
-    wxString transNum = transaction->transNum_;
-    wxString notes = (transaction->notes_);
+    int trans_id = transaction->TRANSID;
+    wxString accountName = full_tran.ACCOUNTNAME;
+    wxString categ = full_tran.CATEGNAME;
+    wxString payee = full_tran.PAYEENAME;
+    wxString transNum = full_tran.TRANSACTIONNUMBER;
+    wxString notes = (full_tran.NOTES);
     notes.Replace("''", "'");
     notes.Replace("\n", " ");
 
-    if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
+    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = wxString::Format("[%s]", from ? accountName : payee);
+        categ = "[" + (from ? accountName : payee) + "]";
         payee = "";
 
         //Transaction number used to make transaction unique
@@ -57,9 +51,9 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
         if (transNum.IsEmpty() && notes.IsEmpty())
             transNum = wxString::Format("#%i", trans_id);
     }
-
-    buffer << "D" << mmGetDateForDisplay(transaction->date_) << "\n";
-    buffer << "T" << transaction->value(!from ? transaction->accountID_ : transaction->toAccountID_)  << "\n";
+    
+    buffer << "D" << full_tran.TRANSDATE << "\n";
+    buffer << "T" << Model_Checking::balance(*transaction, (!from ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << "\n";
     if (!payee.IsEmpty())
         buffer << "P" << payee << "\n";
     if (!transNum.IsEmpty())
@@ -70,18 +64,16 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
         buffer << "M" << notes << "\n";
 
     //if categ id is empty that mean this is split transaction
-    if (transaction->categID_ == -1)
+    if (transaction->CATEGID == -1)
     {
-        mmSplitTransactionEntries* splits = transaction->splitEntries_;
-        transaction->getSplitTransactions(splits);
 
-        for (const auto &split_entry : splits->entries_)
+        for (const auto &split_entry : Model_Checking::splittransaction(transaction))
         {
-            double value = split_entry->splitAmount_;
-            if (transaction->transType_ == "Withdrawal")
+            double value = split_entry.SPLITTRANSAMOUNT;
+            if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
                 value = -value;
             const wxString split_amount = wxString()<<value;
-            const wxString split_categ = Model_Category::full_name(split_entry->categID_, split_entry->subCategID_);
+            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
             buffer << "S" << split_categ << "\n"
                 << "$" << split_amount << "\n";
         }
@@ -93,50 +85,51 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
 
 wxString mmExportTransaction::getTransactionCSV(bool from)
 {
-    mmBankTransaction* &transaction = pBankTransaction_;
+    Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
+    if (!transaction) return "";
+    Model_Checking::Full_Data full_tran(*transaction);
+
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+
     wxString buffer = "";
-    wxString accountName = "";
-    Model_Account::Data *account = Model_Account::instance().get(transaction->accountID_);
-    if (account) accountName = account->ACCOUNTNAME;
-    int trans_id = transaction->transactionID();
-    wxString categ = transaction->fullCatStr_;
-    wxString payee = transaction->payeeStr_;
-    wxString transNum = transaction->transNum_;
-    wxString notes = (transaction->notes_);
+    int trans_id = transaction->TRANSID;
+    wxString accountName = full_tran.ACCOUNTNAME;
+    wxString categ = full_tran.CATEGNAME;
+    wxString payee = full_tran.PAYEENAME;
+    wxString transNum = full_tran.TRANSACTIONNUMBER;
+    wxString notes = (full_tran.NOTES);
     notes.Replace("''", "'");
     notes.Replace("\n", " ");
 
-    if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
+    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = wxString::Format("[%s]", from ? accountName : payee);
+        categ = "[" + (from ? accountName : payee) + "]";
         payee = "";
+
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
             transNum = wxString::Format("#%i", trans_id);
     }
 
-    if (transaction->categID_ == -1)
+    //if categ id is empty that mean this is split transaction
+    if (transaction->CATEGID == -1)
     {
-        mmSplitTransactionEntries* splits = transaction->splitEntries_;
-        transaction->getSplitTransactions(splits);
-
-        for (const auto &split_entry : splits->entries_)
+        for (const auto &split_entry : Model_Checking::splittransaction(transaction))
         {
-            double value = split_entry->splitAmount_;
-            if (transaction->transType_ == "Withdrawal")
+            double value = split_entry.SPLITTRANSAMOUNT;
+            if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
                 value = -value;
-            const wxString split_amount = wxString()<<value;
+            const wxString split_amount = wxString() << value;
 
-            const wxString split_categ = Model_Category::full_name(split_entry->categID_, split_entry->subCategID_);
+            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
 
             buffer << trans_id << delimit
                 << inQuotes(accountName, delimit) << delimit
-                << inQuotes(mmGetDateForDisplay(transaction->date_), delimit) << delimit
+                << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(transaction)), delimit) << delimit
                 << inQuotes(payee, delimit) << delimit
-                << transaction->status_ << delimit
-                << transaction->transType_ << delimit
+                << transaction->STATUS << delimit
+                << transaction->TRANSCODE << delimit
                 << inQuotes(split_categ, delimit) << delimit
                 << inQuotes(split_amount, delimit) << delimit
                 << "" << delimit
@@ -149,18 +142,17 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
     {
         buffer << trans_id << delimit
             << inQuotes(accountName, delimit) << delimit
-            << inQuotes(mmGetDateForDisplay(transaction->date_), delimit) << delimit
+            << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(transaction)), delimit) << delimit
             << inQuotes(payee, delimit) << delimit
-            << transaction->status_ << delimit
-            << transaction->transType_ << delimit
+            << transaction->STATUS << delimit
+            << transaction->TRANSCODE << delimit
             << inQuotes(categ, delimit) << delimit
-            << transaction->value(!from ? transaction->accountID_ : transaction->toAccountID_) << delimit
+            << Model_Checking::balance(*transaction, (!from ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << delimit
             << "" << delimit
             << inQuotes(notes, delimit)
             << "\n";        
     }
     return buffer;
-
 }
 
 wxString mmExportTransaction::getAccountHeaderQIF()
@@ -169,7 +161,7 @@ wxString mmExportTransaction::getAccountHeaderQIF()
     wxString account_name = "";
     wxString currency_symbol = "";
     double dInitBalance = 0;
-    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
     if (account)
     {
         account_name = account->ACCOUNTNAME;

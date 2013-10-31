@@ -18,12 +18,10 @@ BEGIN_EVENT_TABLE( mmQIFExportDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmQIFExportDialog::mmQIFExportDialog(
-    mmCoreDB* core,
     wxWindow* parent, wxWindowID id,
     const wxString& caption, const wxPoint& pos,
     const wxSize& size, long style
 ) :
-    core_(core),
     parent_(parent)
 {
     Create(parent, id, caption, pos, size, style);
@@ -52,6 +50,7 @@ void mmQIFExportDialog::fillControls()
     bSelectedAccounts_->SetLabel(_("All"));
     bSelectedAccounts_->SetToolTip(_("All"));
 
+    //TODO: Sort order needed
     for (const auto& a: Model_Account::instance().all())
     {
         if (Model_Account::type(a) == Model_Account::CHECKING || Model_Account::type(a) == Model_Account::TERM)
@@ -116,8 +115,8 @@ void mmQIFExportDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     bSelectedAccounts_ = new wxButton(main_tab, wxID_STATIC, _("All")
         , wxDefaultPosition, wxSize(fieldWidth,-1));
-    bSelectedAccounts_ -> Connect(wxID_ANY,
-        wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmQIFExportDialog::OnAccountsButton), NULL, this);
+    bSelectedAccounts_ -> Connect(wxID_ANY
+        , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmQIFExportDialog::OnAccountsButton), NULL, this);
     accountsCheckBox_->SetValue(true);
     flex_sizer->Add(accountsCheckBox_, flags);
     flex_sizer->Add(bSelectedAccounts_, flags);
@@ -355,7 +354,7 @@ void mmQIFExportDialog::mmExportQIF()
     //Export categories
     if (exp_categ)
     {
-        mmExportTransaction categories(core_);
+        mmExportTransaction categories;
         if (qif_csv)
             buffer << categories.getCategoriesQIF();
          else
@@ -368,37 +367,37 @@ void mmQIFExportDialog::mmExportQIF()
         /* Array with transfer transactions */
         std::map <int, wxString> transferTransactions;
 
-        for (const auto &entry : selected_accounts_id_)
+        for (const auto &account_id : selected_accounts_id_)
         {
-            mmExportTransaction header(core_, entry);
             if (qif_csv)
+            {
+                mmExportTransaction header(account_id);
                 buffer << header.getAccountHeaderQIF();
+            }
 
-            double account_balance = 0.0, reconciled_balance = 0.0;
-            core_->bTransactionList_.LoadAccountTransactions(entry, account_balance, reconciled_balance);
-
-            for (const auto& transaction : core_->bTransactionList_.accountTransactions_)
+            for (const auto& transaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(account_id)
+                , Model_Checking::TOACCOUNTID(account_id)))
             {
                 //Filtering
-                if (dateFromCheckBox_->IsChecked() && transaction->date_ < fromDateCtrl_->GetValue() )
+                if (dateFromCheckBox_->IsChecked() && Model_Checking::TRANSDATE(transaction) < fromDateCtrl_->GetValue())
                     continue;
-                if (dateToCheckBox_->IsChecked() && transaction->date_ > toDateCtrl_->GetValue() )
+                if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(transaction) > toDateCtrl_->GetValue())
                     continue;
 
-                if (transaction->arrow_ != "< ") numRecords++;
+                numRecords++;
 
-                mmExportTransaction data(core_, transaction);
+                mmExportTransaction data(transaction.TRANSID, account_id);
                 if (qif_csv)
                     buffer << data.getTransactionQIF();
                 else
                     buffer << data.getTransactionCSV();
 
-                if (transaction->transType_ == TRANS_TYPE_TRANSFER_STR)
+                if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
-                    int index = transaction->arrow_ == "> " ? transaction->toAccountID_ : transaction->accountID_;
+                    int index = transaction.ACCOUNTID == account_id ? transaction.TOACCOUNTID : transaction.ACCOUNTID;
                     if (selected_accounts_id_.Index(index) == wxNOT_FOUND)
                     {
-                        //TODO: get second part of transfer transaction
+                        //get second part of transfer transaction
                         wxString second_part = "";
                         if (qif_csv)
                             second_part = data.getTransactionQIF(true);
@@ -413,10 +412,13 @@ void mmQIFExportDialog::mmExportQIF()
         //Export second part of transfer transactions
         for (const auto &entry : transferTransactions)
         {
-            mmExportTransaction header(core_, entry.first);
             if (qif_csv)
+            {
+                mmExportTransaction header(entry.first);
                 buffer << header.getAccountHeaderQIF();
+            }
             buffer << entry.second;
+            numRecords--;
         }
     }
 

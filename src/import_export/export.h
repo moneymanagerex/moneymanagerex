@@ -5,17 +5,16 @@
 #ifndef _MM_EX_EXPORT_H_
 #define _MM_EX_EXPORT_H_
 
-#include "mmcoredb.h"
 #include "mmOption.h"
 
 class mmExportBase
 {
 
 public:
-    mmExportBase(mmCoreDB* core): core_(core) {}
+    mmExportBase(){}
 
 protected:
-    const mmCoreDB* core_; // TODO
+    int m_transaction_id;
 };
 
 class mmExportTransaction : public mmExportBase
@@ -23,9 +22,9 @@ class mmExportTransaction : public mmExportBase
 
 public:
     ~mmExportTransaction();
-    mmExportTransaction(mmCoreDB* core);
-	mmExportTransaction(mmCoreDB* core , int accountID);
-    mmExportTransaction(mmCoreDB* core , mmBankTransaction* pBankTransaction);
+    mmExportTransaction();
+    mmExportTransaction(int accountID);
+    mmExportTransaction(int transactionID, int accountID);
 
     wxString getTransactionQIF(bool from = false);
     wxString getTransactionCSV(bool from = false);
@@ -34,8 +33,8 @@ public:
     wxString getCategoriesCSV();
 
 protected:
-    mmBankTransaction* pBankTransaction_;
-    int accountID_;
+    int m_account_id;
+    int m_transaction_id;
 };
 
 

@@ -23,7 +23,6 @@ public:
     mmQIFExportDialog() {}
 
     mmQIFExportDialog(
-        mmCoreDB* core,
         wxWindow* parent,
         wxWindowID id = SYMBOL_QIFDIALOG_IDNAME,
         const wxString& caption = SYMBOL_QIFDIALOG_TITLE,
