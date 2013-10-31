@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-29 15:19:18.567932.
+ *          AUTO GENERATED at 2013-10-31 23:20:37.910000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -24,9 +24,9 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 {
     struct Data;
     typedef DB_Table_CURRENCYFORMATS_V1 Self;
-    /** A List container to hold Data records for the table*/
+    /** A container to hold list of Data records for the table*/
     typedef std::vector<Self::Data> Data_Set;
-    /** A List container to hold Data record pointers for the table*/
+    /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     Cache cache_;
     ~DB_Table_CURRENCYFORMATS_V1() 
@@ -290,7 +290,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         query_ = "SELECT CURRENCYID, CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, UNIT_NAME, CENT_NAME, SCALE, BASECONVRATE, CURRENCY_SYMBOL FROM CURRENCYFORMATS_V1 ";
     }
 
-    /** Create a new data record*/
+    /** Create a new Data record and add to memory table (cache)*/
     Self::Data* create()
     {
         Self::Data* entity = new Self::Data(this);
@@ -298,7 +298,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return entity;
     }
     
-    /** Create a copy of the data record*/
+    /** Create a copy of the Data record and add to memory table (cache)*/
     Self::Data* clone(const Data* e)
     {
         Self::Data* entity = create();
@@ -307,7 +307,9 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return entity;
     }
 
-    /** Save the data record to the database, either create new or update the existing record*/
+    /** Saves the Data record to the database.
+      * Either create a new record or update the existing record.
+    */
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
         wxString sql = wxEmptyString;
@@ -351,6 +353,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return true;
     }
 
+    /** Remove the Data record from the database and the memory table (cashe)*/
     bool remove(int id, wxSQLite3Database* db)
     {
         try
@@ -383,6 +386,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return true;
     }
 
+    /** Remove the Data record from the database and the memory table (cashe)*/
     bool remove(Self::Data* entity, wxSQLite3Database* db)
     {
         if (remove(entity->id(), db))
@@ -395,6 +399,9 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     }
 
     
+    /** Search the memory table (Cache) for the data record.
+      * If not found in memory, search the database and update the cache.
+    */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
         if (id < 0) 
@@ -445,7 +452,9 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return entity;
     }
 
-    /** Return a list of all the records in the database*/
+    /** Return a list of Data records (Data_Set) derived directly from the database.
+      * The Data_Set is sorted based on the column number.
+    */
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
