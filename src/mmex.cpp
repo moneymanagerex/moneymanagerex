@@ -2879,7 +2879,7 @@ void mmGUIFrame::OnExportToQIF(wxCommandEvent& /*event*/)
 void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
 {
 
-    mmQIFImportDialog dlg(m_core.get(), this);
+    mmQIFImportDialog dlg(this);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
     refreshRequested_ = true;

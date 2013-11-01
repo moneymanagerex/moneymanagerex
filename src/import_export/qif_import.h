@@ -8,9 +8,9 @@
 #define SYMBOL_QIFIMPORT_SIZE wxSize(500, 300)
 #define SYMBOL_QIFIMPORT_POSITION wxDefaultPosition
 
-#include "mmcoredb.h"
 #include "defs.h"
 #include <wx/dataview.h>
+#include "model/Model_Checking.h"
 
 class wxDatePickerCtrl;
 
@@ -23,7 +23,6 @@ public:
     mmQIFImportDialog() {}
 
     mmQIFImportDialog(
-        mmCoreDB* core,
         wxWindow* parent,
         wxWindowID id = SYMBOL_QIFIMPORT_IDNAME,
         const wxString& caption = SYMBOL_QIFIMPORT_TITLE,
@@ -56,8 +55,7 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& /*event*/);
 
-    std::vector<mmBankTransaction> vQIF_trxs_;
-    mmCoreDB* core_; // TODO
+    std::vector<Model_Checking::Data*> vQIF_trxs_;
     wxWindow* parent_;
     wxString dateFormat_;
     wxArrayInt accounts_id_;

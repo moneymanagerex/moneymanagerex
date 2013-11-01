@@ -1505,7 +1505,7 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     // Use last date used as per user option.
     wxDateTime trx_date = wxDateTime::Now();
     if (mmIniOptions::instance().transDateDefault_ != 0)
-        trx_date = m_cp->core_->bTransactionList_.getLastDate(m_cp->m_AccountID);
+        trx_date = m_cp->core+->bTransactionList_.getLastDate(m_cp->m_AccountID);
 
     Model_Checking::Data *transaction = Model_Checking::instance().create();
     Model_Splittransaction::Data_Set split;
@@ -1570,9 +1570,9 @@ void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
     Model_Checking::instance().save(transaction);
 
     //TODO:
-    m_cp->core_->bTransactionList_.LoadTransactions();
+    m_cp->core+->bTransactionList_.LoadTransactions();
 
-    /*mmBankTransaction* pTransaction = m_cp->core_->bTransactionList_.getBankTransactionPtr(transaction->TRANSID);
+    /*mmBankTransaction* pTransaction = m_cp->core+->bTransactionList_.getBankTransactionPtr(transaction->TRANSID);
     pTransaction->accountID_ = transaction->ACCOUNTID;
     pTransaction->toAccountID_ = transaction->TOACCOUNTID;
     pTransaction->payeeID_ = transaction->PAYEEID;

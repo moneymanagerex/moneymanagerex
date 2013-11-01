@@ -116,13 +116,11 @@ BEGIN_EVENT_TABLE( mmQIFImportDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(
-    mmCoreDB* core
-    , wxWindow* parent, wxWindowID id
+      wxWindow* parent, wxWindowID id
     , const wxString& caption, const wxPoint& pos
     , const wxSize& size, long style
 ) :
-    core_(core)
-    , parent_(parent)
+      parent_(parent)
     , last_imported_acc_id_(-1)
 {
     Create(parent, id, caption, pos, size, style);
@@ -382,7 +380,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 
     Model_Payee::Data* payee = 0;
 
-    mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
+    //mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
 
     for (readLine = tFile.GetFirstLine(); !tFile.Eof(); readLine = tFile.GetNextLine())
     {
@@ -391,7 +389,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         {
             sSplitAmount.clear();
             sSplitCategs.clear();
-            mmSplit->entries_.clear();
+            //mmSplit->entries_.clear();
 
             sPayee.clear();
             type.clear();
@@ -634,13 +632,13 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             //
             if (type == TRANS_TYPE_WITHDRAWAL_STR)
                 dSplitAmount = -dSplitAmount;
-            //Add split entry
-            mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
+            //Add split entry //TODO:
+            /*mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
             pSplitEntry->splitAmount_  = dSplitAmount;
             pSplitEntry->categID_      = categID;
             pSplitEntry->subCategID_   = subCategID;
 
-            mmSplit->addSplit(pSplitEntry);
+            mmSplit->addSplit(pSplitEntry);*/
             continue;
         }
         //MemoSplit
@@ -756,12 +754,12 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 }
             }
 
-            if (!mmSplit->entries_.empty())
-            {
-                categID = -1;
-                sFullCateg = _("Split Category");
-            }
-            else
+            //if (!mmSplit->entries_.empty())
+            //{
+            //    categID = -1;
+            //    sFullCateg = _("Split Category");
+            //}
+            //else
             {
                 Model_Category::Data* category = Model_Category::instance().get(categID);
                 Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
@@ -796,7 +794,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 );
             logWindow->AppendText(sMsg);
 
-            for (size_t i = 0; i < mmSplit->entries_.size(); ++i)
+            /*for (size_t i = 0; i < mmSplit->entries_.size(); ++i)
             {
                 int c = mmSplit->entries_[i]->categID_;
                 int s = mmSplit->entries_[i]->subCategID_;
@@ -809,55 +807,52 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 double v = mmSplit->entries_[i]->splitAmount_;
                 sMsg = (cn << ":" << sn << " " << v << "\n");
                 logWindow->AppendText(sMsg);
-            }
+            }*/
             bTrxComplited = true;
             if (!bValid) continue;
 
-            mmBankTransaction transaction(core_);
-            transaction.date_ = dtdt;
-            transaction.accountID_ = from_account_id;
-            transaction.toAccountID_ = to_account_id;
-            transaction.payeeID_ = payeeID;
-            transaction.payeeStr_ = payee->PAYEENAME;
-            transaction.transType_ = type;
-            transaction.amt_ = val;
-            transaction.status_ = status;
-            transaction.transNum_ = transNum;
-            transaction.notes_ = notes;
-            transaction.toAmt_ = val;
-            if (mmSplit->numEntries()) categID = -1;
-            transaction.categID_ = categID;
-            transaction.subcategID_ = subCategID;
-            Model_Category::Data* category = Model_Category::instance().get(categID);
-            Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
-            transaction.fullCatStr_ = Model_Category::full_name(category, sub_category);
-            *transaction.splitEntries_ = *mmSplit;
+            Model_Checking::Data *transaction = Model_Checking::instance().create();
+            transaction->TRANSDATE = dtdt.FormatISODate();
+            transaction->ACCOUNTID = from_account_id;
+            transaction->TOACCOUNTID = to_account_id;
+            transaction->PAYEEID = payeeID;
+            transaction->TRANSCODE = type;
+            transaction->TRANSAMOUNT = val;
+            transaction->STATUS = status;
+            transaction->TRANSACTIONNUMBER = transNum;
+            transaction->NOTES = notes;
+            transaction->TOTRANSAMOUNT = val;
+            //if (mmSplit->numEntries()) categID = -1;
+            transaction->CATEGID = categID;
+            transaction->SUBCATEGID = subCategID;
+
+            //TODO: *transaction.splitEntries_ = *mmSplit;
 
             //For any transfer transaction always mirrored transaction present
             //Just take alternate amount and skip it
-            if (type == TRANS_TYPE_TRANSFER_STR)
+            if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
             {
                 for (auto& refTrans : vQIF_trxs_)
                 {
-                    if (refTrans.transType_ != TRANS_TYPE_TRANSFER_STR) continue;
-                    if (refTrans.status_ == "D") continue;
-                    if (refTrans.date_!= dtdt) continue;
-                    if (((refTrans.amt_ < 0) && (val < 0)) || ((refTrans.amt_ > 0) && (val >0))) continue;
-                    if (refTrans.accountID_!= from_account_id) continue;
-                    if (refTrans.transNum_ != transNum) continue;
-                    if (refTrans.notes_ != notes) continue;
+                    if (Model_Checking::type(refTrans) != Model_Checking::TRANSFER) continue;
+                    if (refTrans->STATUS == "D") continue; //TODO:
+                    if (Model_Checking::TRANSDATE(refTrans) != dtdt) continue;
+                    if (((refTrans->TRANSAMOUNT < 0) && (val < 0)) || ((refTrans->TRANSAMOUNT > 0) && (val >0))) continue;
+                    if (refTrans->ACCOUNTID!= from_account_id) continue;
+                    if (refTrans->TRANSACTIONNUMBER != transNum) continue;
+                    if (refTrans->NOTES != notes) continue;
 
                     if (val > 0.0)
-                        refTrans.toAmt_ = val;
+                        refTrans->TOTRANSAMOUNT = val;
                     else
-                        refTrans.amt_ = val;
-                    refTrans.status_ = "D";
+                        refTrans->TRANSAMOUNT = val;
+                    refTrans->TRANSCODE = "D";
 
-                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans.amt_
-                        , refTrans.toAmt_
-                        , (fabs(refTrans.amt_)/fabs(refTrans.toAmt_)<1)
-                            ? fabs(refTrans.toAmt_)/fabs(refTrans.amt_)
-                            : fabs(refTrans.amt_)/fabs(refTrans.toAmt_));
+                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->TRANSAMOUNT
+                        , refTrans->TOTRANSAMOUNT
+                        , (fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT)<1)
+                        ? fabs(refTrans->TOTRANSAMOUNT) / fabs(refTrans->TRANSAMOUNT)
+                        : fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT));
                     logWindow->AppendText(sMsg);
 
                     bValid = false;
@@ -878,19 +873,20 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     int num = 0;
     for (const auto& transaction : vQIF_trxs_)
     {
-        const Model_Account::Data* account = Model_Account::instance().get(transaction.accountID_);
+        const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
         wxVector<wxVariant> data;
         data.push_back(wxVariant(account->ACCOUNTNAME));
-        data.push_back(wxVariant(transaction.date_.FormatISODate()));
-        data.push_back(wxVariant(transaction.transNum_));
-        data.push_back(wxVariant(transaction.payeeStr_));
-        data.push_back(wxVariant(transaction.status_));
+        data.push_back(wxVariant(transaction->TRANSDATE));
+        data.push_back(wxVariant(transaction->TRANSACTIONNUMBER));
+        Model_Payee::Data *payee = Model_Payee::instance().get(transaction->PAYEEID);
+        wxString payee_name = "";
+        if (payee) payee_name = payee->PAYEENAME;
+        data.push_back(wxVariant(payee_name));
+        data.push_back(wxVariant(transaction->STATUS));
 
-        Model_Category::Data* category = Model_Category::instance().get(transaction.categID_);
-        Model_Subcategory::Data* sub_category = (transaction.subcategID_ != -1 ? Model_Subcategory::instance().get(transaction.subcategID_) : 0);
-        data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
-        data.push_back(wxVariant(wxString::Format("%.2f", transaction.value(-1))));
-        data.push_back(wxVariant(transaction.notes_));
+        data.push_back(wxVariant(Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID)));
+        data.push_back(wxVariant(wxString::Format("%.2f", Model_Checking::balance(transaction))));
+        data.push_back(wxVariant(transaction->NOTES));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
 
@@ -1054,22 +1050,18 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
                                         wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        core_->db_.get()->Begin();
 
         //TODO: Update transfer transactions toAmount
 
         for (auto& refTrans : vQIF_trxs_)
         {
-            refTrans.amt_ = fabs(refTrans.amt_);
-            refTrans.toAmt_ = fabs(refTrans.toAmt_);
+            refTrans->TRANSAMOUNT = fabs(refTrans->TRANSAMOUNT);
+            refTrans->TOTRANSAMOUNT = fabs(refTrans->TOTRANSAMOUNT);
 
-            core_->bTransactionList_.addTransaction(&refTrans);
-            last_imported_acc_id_ = refTrans.accountID_;
+            Model_Checking::instance().save(refTrans); //TODO:fix speed
+            last_imported_acc_id_ = refTrans->ACCOUNTID;
         }
 
-        core_->db_.get()->Commit();
-        //FIXME: Some bug here and all transactions after import reloaded
-        core_->bTransactionList_.LoadTransactions();
         sMsg = _("Import finished successfully");
         btnOK_->Enable(false);
     }
