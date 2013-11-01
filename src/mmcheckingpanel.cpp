@@ -190,7 +190,6 @@ void mmCheckingPanel::filterTable()
     std::sort(this->m_trans.begin(), this->m_trans.end());
     std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSDATE());
 
-
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = (Model_Checking::status(tran) != Model_Checking::VOID_) ? Model_Checking::balance(tran, m_AccountID) : 0;

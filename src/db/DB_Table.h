@@ -155,10 +155,7 @@ struct SorterByTRANSDATE
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        if (x.TRANSDATE != y.TRANSDATE)
-            return x.TRANSDATE < y.TRANSDATE;
-        else
-            return x.TRANSID < y.TRANSID;
+        return x.TRANSDATE < y.TRANSDATE;
     }
 };
 
