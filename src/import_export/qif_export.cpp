@@ -394,15 +394,16 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
-                    int index = transaction.ACCOUNTID == account_id ? transaction.ACCOUNTID : transaction.TOACCOUNTID;
+                    int index = transaction.ACCOUNTID == account_id ? transaction.TOACCOUNTID : transaction.ACCOUNTID;
                     if (selected_accounts_id_.Index(index) == wxNOT_FOUND)
                     {
                         //get second part of transfer transaction
+                        mmExportTransaction data2(transaction.TRANSID, index);
                         wxString second_part = "";
                         if (qif_csv)
-                            second_part = data.getTransactionQIF();
+                            second_part = data2.getTransactionQIF();
                         else
-                            second_part = data.getTransactionCSV();
+                            second_part = data2.getTransactionCSV();
                         transferTransactions[index] += second_part;
                     }
                 }
@@ -418,7 +419,6 @@ void mmQIFExportDialog::mmExportQIF()
                 buffer << header.getAccountHeaderQIF();
             }
             buffer << entry.second;
-            numRecords--;
         }
     }
 
