@@ -108,7 +108,9 @@ wxString mmExportTransaction::getTransactionCSV()
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        const Model_Account::Data* account = Model_Account::instance().get(out ? transaction->TOACCOUNTID : transaction->ACCOUNTID);
+        const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+        if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
+        account = Model_Account::instance().get(transaction->TOACCOUNTID);
         if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
     }
     else
@@ -132,7 +134,7 @@ wxString mmExportTransaction::getTransactionCSV()
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (out ? accountName : payee) + "]";
+        categ = "[" + (!out ? accountName : payee) + "]";
         payee = "";
 
         //Transaction number used to make transaction unique
