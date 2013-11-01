@@ -26,8 +26,8 @@ public:
     mmExportTransaction(int accountID);
     mmExportTransaction(int transactionID, int accountID);
 
-    wxString getTransactionQIF(bool from = false);
-    wxString getTransactionCSV(bool from = false);
+    wxString getTransactionQIF();
+    wxString getTransactionCSV();
     wxString getAccountHeaderQIF();
     wxString getCategoriesQIF();
     wxString getCategoriesCSV();

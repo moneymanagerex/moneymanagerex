@@ -8,6 +8,7 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "model/Model_Payee.h"
 
 mmExportTransaction::mmExportTransaction()
 {}
@@ -25,11 +26,24 @@ mmExportTransaction::mmExportTransaction(int transactionID, int accountID)
 mmExportTransaction::~mmExportTransaction()
 {}
 
-wxString mmExportTransaction::getTransactionQIF(bool from)
+wxString mmExportTransaction::getTransactionQIF()
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
     if (!transaction) return "";
     Model_Checking::Full_Data full_tran(*transaction);
+    bool out = transaction->ACCOUNTID == m_account_id;
+
+    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+    {
+        const Model_Account::Data* account = Model_Account::instance().get(out ? transaction->TOACCOUNTID : transaction->ACCOUNTID);
+        if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
+    }
+    else
+    {
+        const Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
+        if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+    }
+    full_tran.CATEGNAME = Model_Category::instance().full_name(transaction->CATEGID, transaction->SUBCATEGID);
 
     wxString buffer = "";
     int trans_id = transaction->TRANSID;
@@ -43,7 +57,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (from ? accountName : payee) + "]";
+        categ = "[" + (out ? accountName : payee) + "]";
         payee = "";
 
         //Transaction number used to make transaction unique
@@ -53,7 +67,7 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
     }
     
     buffer << "D" << full_tran.TRANSDATE << "\n";
-    buffer << "T" << Model_Checking::balance(*transaction, (!from ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << "\n";
+    buffer << "T" << Model_Checking::balance(*transaction, (out ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << "\n";
     if (!payee.IsEmpty())
         buffer << "P" << payee << "\n";
     if (!transNum.IsEmpty())
@@ -83,11 +97,24 @@ wxString mmExportTransaction::getTransactionQIF(bool from)
     return buffer;
 }
 
-wxString mmExportTransaction::getTransactionCSV(bool from)
+wxString mmExportTransaction::getTransactionCSV()
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
     if (!transaction) return "";
     Model_Checking::Full_Data full_tran(*transaction);
+    bool out = transaction->ACCOUNTID == m_account_id;
+
+    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+    {
+        const Model_Account::Data* account = Model_Account::instance().get(out ? transaction->TOACCOUNTID : transaction->ACCOUNTID);
+        if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
+    }
+    else
+    {
+        const Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
+        if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+    }
+    full_tran.CATEGNAME = Model_Category::instance().full_name(transaction->CATEGID, transaction->SUBCATEGID);
 
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
@@ -103,7 +130,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (from ? accountName : payee) + "]";
+        categ = "[" + (out ? accountName : payee) + "]";
         payee = "";
 
         //Transaction number used to make transaction unique
@@ -147,7 +174,7 @@ wxString mmExportTransaction::getTransactionCSV(bool from)
             << transaction->STATUS << delimit
             << transaction->TRANSCODE << delimit
             << inQuotes(categ, delimit) << delimit
-            << Model_Checking::balance(*transaction, (!from ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << delimit
+            << Model_Checking::balance(*transaction, (out ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << delimit
             << "" << delimit
             << inQuotes(notes, delimit)
             << "\n";        

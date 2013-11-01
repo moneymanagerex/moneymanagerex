@@ -104,8 +104,8 @@ void mmQIFExportDialog::CreateControls()
     tab1_sizer->Add(flex_sizer, flags.Left());
 
     // Categories -------------------------------------------------
-    cCategs_ = new wxCheckBox(main_tab, wxID_ANY,
-        _("Categories"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cCategs_ = new wxCheckBox(main_tab, wxID_ANY
+        , _("Categories"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     cCategs_->SetValue(FALSE);
     flex_sizer->Add(cCategs_, flags);
     flex_sizer->AddSpacer(1);
@@ -394,15 +394,15 @@ void mmQIFExportDialog::mmExportQIF()
 
                 if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
-                    int index = transaction.ACCOUNTID == account_id ? transaction.TOACCOUNTID : transaction.ACCOUNTID;
+                    int index = transaction.ACCOUNTID == account_id ? transaction.ACCOUNTID : transaction.TOACCOUNTID;
                     if (selected_accounts_id_.Index(index) == wxNOT_FOUND)
                     {
                         //get second part of transfer transaction
                         wxString second_part = "";
                         if (qif_csv)
-                            second_part = data.getTransactionQIF(true);
+                            second_part = data.getTransactionQIF();
                         else
-                            second_part = data.getTransactionCSV(true);
+                            second_part = data.getTransactionCSV();
                         transferTransactions[index] += second_part;
                     }
                 }
