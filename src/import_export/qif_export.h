@@ -10,7 +10,7 @@
 #define SYMBOL_QIFDIALOG_SIZE wxSize(500, 300)
 #define SYMBOL_QIFDIALOG_POSITION wxDefaultPosition
 
-#include "mmcoredb.h"
+#include "defs.h"
 
 class wxDatePickerCtrl;
 
@@ -50,7 +50,6 @@ private:
     void CreateControls();
     void fillControls();
 
-    mmCoreDB* core_; // TODO
     wxWindow* parent_;
     wxArrayInt accounts_id_;
     /* Selected accounts id */
@@ -72,7 +71,5 @@ private:
     wxRadioBox* m_radio_box_;
     wxString delimit_;
     wxArrayString accounts_name_;
-
-    void mmExportQIF(wxWindow* parent_, mmCoreDB* core);
 };
 #endif // 

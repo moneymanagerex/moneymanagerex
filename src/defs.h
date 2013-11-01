@@ -65,6 +65,7 @@
 #include <wx/app.h>
 #include <wx/choice.h>
 #include <wx/statline.h>
+#include <wx/dialog.h>
 
 #ifdef __VISUALC__
 #pragma warning (disable:4100)
