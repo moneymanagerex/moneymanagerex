@@ -5,11 +5,11 @@ Set Unix = New RegExp : Unix.Pattern = "[^\r]\n"
 For Each arg In WScript.Arguments
   file = fso.OpenTextFile(arg).ReadAll
   If Win.Test(file) Then
-    EOL = "=Win32"
+    EOL = " = Win32"
   ElseIf Unix.Test(file) Then
-    EOL = "=UNIX"
+    EOL = " = UNIX"
   Else
-    EOL = "=Unknown"
+    EOL = " = Unknown"
   End If
   WScript.Echo fso.GetFileName(arg) & EOL
 Next 'arg

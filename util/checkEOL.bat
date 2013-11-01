@@ -1,5 +1,6 @@
 @echo off
 call :treeProcess
+pause
 goto :eof
 
 :treeProcess
