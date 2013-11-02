@@ -39,7 +39,18 @@ public:
     {
     };
     ~Model_Billsdeposits() {};
-
+public:
+    struct Full_Data : Data
+    {
+        Full_Data(): Data(0)
+        {}
+        Full_Data(const Data& r): Data(r)
+        {}
+        wxString ACCOUNTNAME;
+        wxString PAYEENAME;
+        wxString CATEGNAME;
+    };
+    typedef std::vector<Full_Data> Full_Data_Set;
 public:
     static wxArrayString all_type()
     {

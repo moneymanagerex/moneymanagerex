@@ -86,7 +86,7 @@ public:
                  long style = wxTAB_TRAVERSAL | wxNO_BORDER,
                  const wxString& name = wxPanelNameStr);
     /* Helper Functions/data */
-    Model_Billsdeposits::Data_Set bills_;
+    Model_Billsdeposits::Full_Data_Set bills_;
     void updateBottomPanelData(int selIndex);
     /* updates the Repeating transactions panel data */
     int initVirtualListControl(int id = -1);
@@ -95,8 +95,6 @@ public:
     void RefreshList();
     int getColumnsNumber() { return ColName_.size(); }
 
-    static wxString GetPayee(const Model_Billsdeposits::Data& item);
-    static wxString GetAccount(const Model_Billsdeposits::Data& item);
     static wxString GetFrequency(const Model_Billsdeposits::Data& item);
     static wxString GetRemainingDays(const Model_Billsdeposits::Data& item);
 

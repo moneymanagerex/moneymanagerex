@@ -312,11 +312,38 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
             if (transFilterDlg_->getNotesCheckBox() && !data.NOTES.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()))
                 continue; // Skip
 
-            bills_.push_back(data);
+            Model_Billsdeposits::Full_Data r(data);
+
+            const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
+            if (payee) r.PAYEENAME = payee->PAYEENAME;
+            const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
+            if (account) 
+            {
+                r.ACCOUNTNAME = account->ACCOUNTNAME;
+                if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
+                    r.PAYEENAME = account->ACCOUNTNAME;
+            }
+
+            bills_.push_back(r);
         }
     }
     else
-        bills_ = Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE);
+        for (const auto& data: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+        {
+            Model_Billsdeposits::Full_Data r(data);
+
+            const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
+            if (payee) r.PAYEENAME = payee->PAYEENAME;
+            const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
+            if (account)
+            {
+                r.ACCOUNTNAME = account->ACCOUNTNAME;
+                if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
+                    r.PAYEENAME = account->ACCOUNTNAME;
+            }
+
+            bills_.push_back(r);
+        }
     sortTable();
 
     int cnt = 0, selected_item = -1;
@@ -386,67 +413,41 @@ void billsDepositsListCtrl::OnItemRightClick(wxListEvent& event)
 
 wxString mmBillsDepositsPanel::getItem(long item, long column)
 {
+    const Model_Billsdeposits::Full_Data& bill = this->bills_.at(item);
     wxString text = "";
     if (column == COL_PAYEE)
     {
-        text = GetPayee(bills_[item]);
+        text = bill.PAYEENAME;
     }
     else if (column == COL_ACCOUNT)
     {
-        text = GetAccount(bills_[item]);
+        text = bill.ACCOUNTNAME;
     }
     else if (column == COL_TYPE)
     {
-        text = wxGetTranslation(bills_[item].TRANSCODE);
+        text = wxGetTranslation(bill.TRANSCODE);
     }
     else if (column == COL_AMOUNT)
     {
-        text = Model_Account::toCurrency(bills_[item].TRANSAMOUNT, Model_Account::instance().get(bills_[item].ACCOUNTID));
+        text = Model_Account::toCurrency(bill.TRANSAMOUNT, Model_Account::instance().get(bill.ACCOUNTID));
     }
     else if (column == COL_DUE_DATE)
     {
-        text = mmGetDateForDisplay(Model_Billsdeposits::NEXTOCCURRENCEDATE(bills_[item]));
+        text = mmGetDateForDisplay(Model_Billsdeposits::NEXTOCCURRENCEDATE(bill));
     }
     else if (column == COL_FREQUENCY)
     {
-        text = GetFrequency(bills_[item]);
+        text = GetFrequency(bill);
     }
     else if (column == COL_DAYS)
     {
-        text = GetRemainingDays(bills_[item]);
+        text = GetRemainingDays(bill);
     }
     else if (column == COL_NOTES)
     {
-        text = bills_[item].NOTES;
+        text = bill.NOTES;
     }
 
-    return text;
-}
-
-wxString mmBillsDepositsPanel::GetPayee(const Model_Billsdeposits::Data& item)
-{
-    wxString text = "";
-    if (Model_Billsdeposits::type(item) == Model_Billsdeposits::TRANSFER)
-    {
-        const Model_Account::Data *account = Model_Account::instance().get(item.TOACCOUNTID);
-        if (account)
-            text = account->ACCOUNTNAME;
-    }
-    else
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(item.PAYEEID);
-        if (payee)
-            text = payee->PAYEENAME;
-    }
-    return text;
-}
-
-wxString mmBillsDepositsPanel::GetAccount(const Model_Billsdeposits::Data& item)
-{
-    wxString text = "";
-    const Model_Account::Data* account = Model_Account::instance().get(item.ACCOUNTID);
-    if (account)
-        text = account->ACCOUNTNAME;
     return text;
 }
 
@@ -694,22 +695,10 @@ void mmBillsDepositsPanel::sortTable()
     switch (listCtrlAccount_->m_selected_col)
     {
     case COL_PAYEE:
-        std::stable_sort(bills_.begin(), bills_.end()
-            , [](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
-        {
-            wxString x_text = mmBillsDepositsPanel::GetPayee(x);
-            wxString y_text = mmBillsDepositsPanel::GetPayee(y);
-            return x_text < y_text;
-        });
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByPAYEENAME());
         break;
     case COL_ACCOUNT:
-        std::stable_sort(bills_.begin(), bills_.end()
-            , [](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
-        {
-            wxString x_text = mmBillsDepositsPanel::GetAccount(x);
-            wxString y_text = mmBillsDepositsPanel::GetAccount(y);
-            return x_text < y_text;
-        });
+        std::stable_sort(bills_.begin(), bills_.end(), SorterByACCOUNTNAME());
         break;
     case COL_TYPE:
         std::stable_sort(bills_.begin(), bills_.end(), SorterByTRANSCODE());
