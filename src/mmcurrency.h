@@ -29,18 +29,6 @@ class mmCurrency
 {
 public:
     mmCurrency();
-    mmCurrency(const wxString& currencySymbol
-               , const wxString& currencyName
-               , const wxString& pfxSymbol
-               , const wxString& sfxSymbol
-               , const wxString& unit
-               , const wxString& cent
-               , double scaleDl
-               , double baseConv
-              );
-    mmCurrency(wxSQLite3ResultSet& q1);
-
-    void loadCurrencySettings();
 
     /* Data */
     int currencyID_;
