@@ -160,13 +160,11 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmCurrencyFormatter.o \
 	mmex_tests_mmOption.o \
 	mmex_tests_mmcheckingpanel.o \
-	mmex_tests_mmcoredb.o \
 	mmex_tests_mmcurrency.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmreportspanel.o \
-	mmex_tests_mmtransaction.o \
 	mmex_tests_newacctdialog.o \
 	mmex_tests_optionsdialog.o \
 	mmex_tests_paths.o \
@@ -713,9 +711,6 @@ mmex_tests_mmOption.o: ../../../src/mmOption.cpp
 mmex_tests_mmcheckingpanel.o: ../../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_mmcoredb.o: ../../../src/mmcoredb.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_mmcurrency.o: ../../../src/mmcurrency.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -729,9 +724,6 @@ mmex_tests_mmhomepagepanel.o: ../../../src/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmreportspanel.o: ../../../src/mmreportspanel.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_mmtransaction.o: ../../../src/mmtransaction.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_newacctdialog.o: ../../../src/newacctdialog.cpp

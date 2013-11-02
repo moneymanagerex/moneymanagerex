@@ -135,9 +135,6 @@
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\mmcoredb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\mmcurrency.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -163,9 +160,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\mmreportspanel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\mmtransaction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\newacctdialog.cpp">
@@ -458,9 +452,6 @@
     <ClInclude Include="..\..\src\mmcheckingpanel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\mmcoredb.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\mmcurrency.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -492,9 +483,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\mmtextctrl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\mmtransaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\newacctdialog.h">

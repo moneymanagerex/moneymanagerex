@@ -375,10 +375,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\mmcoredb.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmcurrency.cpp"
 				>
 			</File>
@@ -412,10 +408,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmreportspanel.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmtransaction.cpp"
 				>
 			</File>
 			<File
@@ -813,10 +805,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\mmcoredb.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmcurrency.h"
 				>
 			</File>
@@ -858,10 +846,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmtextctrl.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\mmtransaction.h"
 				>
 			</File>
 			<File

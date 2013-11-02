@@ -128,13 +128,11 @@ MMEX_OBJECTS =  \
 	mmex_mmCurrencyFormatter.o \
 	mmex_mmOption.o \
 	mmex_mmcheckingpanel.o \
-	mmex_mmcoredb.o \
 	mmex_mmcurrency.o \
 	mmex_mmex.o \
 	mmex_mmhelppanel.o \
 	mmex_mmhomepagepanel.o \
 	mmex_mmreportspanel.o \
-	mmex_mmtransaction.o \
 	mmex_newacctdialog.o \
 	mmex_optionsdialog.o \
 	mmex_paths.o \
@@ -575,9 +573,6 @@ mmex_mmOption.o: ../../src/mmOption.cpp
 mmex_mmcheckingpanel.o: ../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_mmcoredb.o: ../../src/mmcoredb.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_mmcurrency.o: ../../src/mmcurrency.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -591,9 +586,6 @@ mmex_mmhomepagepanel.o: ../../src/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmreportspanel.o: ../../src/mmreportspanel.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmtransaction.o: ../../src/mmtransaction.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_newacctdialog.o: ../../src/newacctdialog.cpp
