@@ -35,7 +35,6 @@
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
 //----------------------------------------------------------------------------
-class mmCoreDB;
 class mmPrintableBase;
 class mmPanelBase;
 class mmTreeItemData;
@@ -207,9 +206,6 @@ public:
     void menuPrintingEnable(bool enable);
 
 private:
-    /* handles to the DB Abstraction */
-    wxScopedPtr<mmCoreDB> m_core;
-
     /* handles to SQLite Database */
     wxSharedPtr<wxSQLite3Database> m_db;
 

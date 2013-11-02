@@ -18,20 +18,19 @@
 #ifndef _MM_EX_CUSTOMREPORTDISPLAY_H_
 #define _MM_EX_CUSTOMREPORTDISPLAY_H_
 
-#include "mmcoredb.h"
 #include "reports/reportbase.h"
 #include "reports/htmlbuilder.h"
 
 class mmCustomReport : public mmPrintableBase
 {
 public:
-    mmCustomReport(wxWindow* parent, mmCoreDB* core
+    mmCustomReport(wxWindow* parent, wxSQLite3Database* db
                    , const wxString& reportTitle, const wxString& sScript, const wxString& sScriptType);
 
     wxString getHTMLText();
 
 private:
-    const mmCoreDB* core_; // TODO
+    wxSQLite3Database* db_;
     wxString reportTitle_;
     wxString sScript_;
     wxString sScriptType_;

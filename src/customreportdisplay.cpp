@@ -20,10 +20,12 @@
 #include "lua_interface.h"
 #include "util.h"
 #include "mmCurrencyFormatter.h"
+#include "dbwrapper.h"
 
-mmCustomReport::mmCustomReport(wxWindow* parent, mmCoreDB* core
+mmCustomReport::mmCustomReport(wxWindow* parent, wxSQLite3Database* db
 , const wxString& reportTitle, const wxString& sScript, const wxString& sScriptType)
 : parent_(parent)
+, db_(db)
 , reportTitle_(reportTitle)
 , sScript_(sScript)
 , sScriptType_(sScriptType)
@@ -35,7 +37,7 @@ bool mmCustomReport::DisplaySQL_Results(mmHTMLBuilder& hb)
     hb.startTable();
 
     int rows = 0;
-    bool bSelect = mmDBWrapper::IsSelect(core_->db_.get(), sScript_, rows);
+    bool bSelect = mmDBWrapper::IsSelect(this->db_, sScript_, rows);
     if (!bSelect)
     {
         wxMessageDialog msgDlg(parent_, _("SQL Query will modify your Data. Proceed??"), _("Warning"), wxYES_NO|wxICON_WARNING);
@@ -51,7 +53,7 @@ bool mmCustomReport::DisplaySQL_Results(mmHTMLBuilder& hb)
     wxSQLite3ResultSet sqlQueryResult;
     try
     {
-        sqlQueryResult = core_->db_->ExecuteQuery(sScript_);
+        sqlQueryResult = this->db_->ExecuteQuery(sScript_);
     }
     catch(const wxSQLite3Exception& e)
     {

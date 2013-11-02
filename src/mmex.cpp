@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 #include "mmex.h"
+#include "dbwrapper.h"
 #include "aboutdialog.h"
 #include "appstartdialog.h"
 #include "assetspanel.h"
@@ -762,7 +763,6 @@ void mmGUIFrame::cleanup()
     /* Delete the GUI */
     cleanupHomePanel(false);
 
-    if (m_core)  m_core.reset();
     if (m_db)    m_db->Close();
 
     /// Update the database according to user requirements
@@ -1662,7 +1662,7 @@ void mmGUIFrame::CreateCustomReport(int index)
         wxString sScript;
         if (custRepIndex_->GetReportFileData(sScript) )
         {
-            mmCustomReport* csr = new mmCustomReport(this, m_core.get()
+            mmCustomReport* csr = new mmCustomReport(this, m_db.get()
                 , custRepIndex_->CurrentReportTitle()
                 , sScript
                 , custRepIndex_->CurrentReportFileType());
@@ -1834,7 +1834,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             return;
         }
 
-        if (!m_core || !m_db)
+        if (!m_db)
             return;
         //========================================================================
         int customReportID;      // Define before all the if...else statements
@@ -2535,8 +2535,6 @@ void mmGUIFrame::InitializeModelTables()
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
 {
-    if (m_core) m_core.reset();
-
     if (m_db)
     {
         m_db->Close();
@@ -2595,7 +2593,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         password_ = password;
-        m_core.reset(new mmCoreDB(m_db));
     }
     else if (openingNew) // New Database
     {
@@ -2606,8 +2603,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             m_db = mmDBWrapper::Open(fileName);
             password_ = password;
 			InitializeModelTables();
-
-            m_core.reset(new mmCoreDB(m_db));
         }
         else
         {
@@ -2616,7 +2611,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 			InitializeModelTables();
 			
             openDataBase(fileName);
-            m_core.reset(new mmCoreDB(m_db));
 
             mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
             wizard->CenterOnParent();
@@ -2842,7 +2836,6 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
     if (m_db) // database must be closed before copying its file
     {
-        m_core.reset();
         m_db->Close();
         m_db.reset();
     }
@@ -3779,7 +3772,7 @@ void mmGUIFrame::RunCustomSqlDialog(const wxString& customReportSelectedItem)
         {
             wxBeginBusyCursor(wxHOURGLASS_CURSOR);
             mmCustomReport* csr = new mmCustomReport(this,
-                m_core.get(), dlg.sReportTitle(), dlg.sScript(), dlg.sSctiptType());
+                m_db.get(), dlg.sReportTitle(), dlg.sScript(), dlg.sSctiptType());
             createReportsPage(csr, true);
             wxEndBusyCursor();
         }
