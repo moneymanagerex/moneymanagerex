@@ -22,121 +22,80 @@ htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
 wxString htmlWidgetBillsAndDeposits::getHTMLText()
 {
     mmHTMLBuilder hb;
-    std::vector<mmBDTransactionHolder> trans_;
 
+    std::map<int, std::pair<int, wxString>> bd_days;
     const wxDateTime &today = date_range_->today();
-    bool visibleEntries = false;
-    for (const auto& q1 : Model_Billsdeposits::instance().all())
+    for (const auto& q1 : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        mmBDTransactionHolder th;
+        wxTimeSpan ts = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1).Subtract(today);
+        int daysRemaining = ts.GetDays();
+        int minutesRemaining = ts.GetMinutes();
+        if (minutesRemaining > 0)
+            daysRemaining += 1;
 
-        th.id_             = q1.BDID;
-        th.nextOccurDate_  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
-        th.nextOccurStr_   = mmGetDateForDisplay(th.nextOccurDate_);
-        int numRepeats     = q1.NUMOCCURRENCES;
+        if (daysRemaining > 14)
+            break; // Done searching for all to include
 
         int repeats        = q1.REPEATS;
         // DeMultiplex the Auto Executable fields.
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
-
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-        wxTimeSpan ts = th.nextOccurDate_.Subtract(today);
-        th.daysRemaining_ = ts.GetDays();
-        int minutesRemaining_ = ts.GetMinutes();
-
-        if (minutesRemaining_ > 0)
-            th.daysRemaining_ += 1;
-
-        th.daysRemainingStr_ = wxString::Format("%d", th.daysRemaining_) + _(" days remaining");
-
-        if (th.daysRemaining_ == 0)
+        wxString daysRemainingStr = wxString::Format("%d", daysRemaining) + _(" days remaining");
+        if (daysRemaining == 0)
         {
-            if ( ((repeats > 10) && (repeats < 15)) && (numRepeats < 0) )
-                th.daysRemainingStr_ = _("Inactive");
+            if (((repeats > 10) && (repeats < 15)) && (q1.NUMOCCURRENCES < 0))
+                continue; // Inactive
+        }
+        if (daysRemaining < 0)
+        {
+            daysRemainingStr = wxString::Format("%d", abs(daysRemaining)) + _(" days overdue!");
+            if (((repeats > 10) && (repeats < 15)) && (q1.NUMOCCURRENCES < 0))
+                continue; // Inactive
         }
 
-        if (th.daysRemaining_ < 0)
-        {
-            th.daysRemainingStr_ = wxString::Format("%d", abs(th.daysRemaining_)) + _(" days overdue!");
-            if ( ((repeats > 10) && (repeats < 15)) && (numRepeats < 0) )
-                th.daysRemainingStr_ = _("Inactive");
-        }
-
-        th.payeeID_        = q1.PAYEEID;
-        th.transType_      = q1.TRANSCODE;
-        th.accountID_      = q1.ACCOUNTID;
-        th.toAccountID_    = q1.TOACCOUNTID;
-
-        th.amt_            = q1.TRANSAMOUNT;
-        th.toAmt_          = q1.TOTRANSAMOUNT;
-
-        th.transAmtString_ = CurrencyFormatter::float2String(th.amt_);
-        //for Withdrawal amount should be negative
-        if (th.transType_== TRANS_TYPE_WITHDRAWAL_STR)
-        {
-            th.transAmtString_= "-" + th.transAmtString_;
-            th.amt_ = -th.amt_;
-        }
-
-        th.transToAmtString_ = CurrencyFormatter::float2String(th.toAmt_);
-
-        if (th.transType_ == TRANS_TYPE_TRANSFER_STR)
-        {
-            Model_Account::Data *account = Model_Account::instance().get(th.toAccountID_);
-            if (account)
-                th.payeeStr_ = account->ACCOUNTNAME;
-        }
-        else
-        {
-            Model_Payee::Data* payee = Model_Payee::instance().get(th.payeeID_);
-            if (payee)
-                th.payeeStr_ = payee->PAYEENAME;
-        }
-
-        if (th.daysRemaining_ <= 14)
-            visibleEntries = true;
-
-        trans_.push_back(th);
+        bd_days[q1.BDID].first = daysRemaining;
+        bd_days[q1.BDID].second = daysRemainingStr;
     }
-    std::sort(trans_.begin(), trans_.end(),
-        [](const mmBDTransactionHolder& x, const mmBDTransactionHolder& y){ return x.daysRemaining_ < y.daysRemaining_; });
 
     ////////////////////////////////////
-    if ( visibleEntries )
+    if (bd_days.size() > 0)
     {
         wxString colorStr;
 
         hb.startTable("100%");
         hb.addTableHeaderRowLink("billsdeposits", title_, 3);
 
-        std::vector<wxString> data4;
-        for (size_t bdidx = 0; bdidx < trans_.size(); ++bdidx)
+        for (const auto& item : bd_days)
         {
-            data4.clear();
-            wxTimeSpan ts = trans_[bdidx].nextOccurDate_.Subtract(today);
-            //int hoursRemaining_ = ts.GetHours();
+            const Model_Billsdeposits::Data* data = Model_Billsdeposits::instance().get(item.first);
 
-            if (trans_[bdidx].daysRemaining_ <= 14)
+            wxString payeeStr = "";
+            if (Model_Billsdeposits::type(data) == Model_Billsdeposits::TRANSFER)
             {
-                wxString daysRemainingStr;
-                colorStr = "#9999FF";
-
-                daysRemainingStr = trans_[bdidx].daysRemainingStr_;
-                if (trans_[bdidx].daysRemaining_ < 0)
-                    colorStr = "#FF6600";
-
-                // TODO Load the currency for this BD
-
-                hb.startTableRow();
-                hb.addTableCell(trans_[bdidx].payeeStr_, false, true);
-                hb.addTableCell(CurrencyFormatter::float2Money(trans_[bdidx].amt_), true);
-                //Draw it as numeric that mean align right
-                hb.addTableCell(daysRemainingStr, true, false, false, colorStr);
-                hb.endTableRow();
+                const Model_Account::Data *account = Model_Account::instance().get(data->TOACCOUNTID);
+                if (account)
+                    payeeStr = account->ACCOUNTNAME;
             }
+            else
+            {
+                const Model_Payee::Data* payee = Model_Payee::instance().get(data->PAYEEID);
+                if (payee)
+                    payeeStr = payee->PAYEENAME;
+            }
+
+            colorStr = "#9999FF";
+            if (item.second.first < 0)
+                colorStr = "#FF6600";
+
+            hb.startTableRow();
+            hb.addTableCell(payeeStr, false, true);
+            hb.addTableCell(Model_Account::toCurrency(data->TRANSAMOUNT, Model_Account::instance().get(data->ACCOUNTID)), true);
+            //Draw it as numeric that mean align right
+            hb.addTableCell(item.second.second, true, false, false, colorStr);
+            hb.endTableRow();
         }
         hb.endTable();
     }

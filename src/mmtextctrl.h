@@ -41,7 +41,7 @@ public:
         if (!suffix.IsEmpty())
         {
             wxString removed;
-            if (val.EndsWith(prefix, &removed))
+            if (val.EndsWith(suffix, &removed))
                 val = removed;
         }
         // Base class handles the thousands seperator

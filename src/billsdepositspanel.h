@@ -22,6 +22,7 @@
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "util.h"
+#include "model/Model_Billsdeposits.h"
 #include <vector>
 
 class wxListEvent;
@@ -34,10 +35,8 @@ class billsDepositsListCtrl: public mmListCtrl
     DECLARE_EVENT_TABLE()
 
 public:
-    billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY)
-        : mmListCtrl(parent, winid)
-        , cp_(cp)
-    {}
+    billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow *parent, wxWindowID winid = wxID_ANY);
+    ~billsDepositsListCtrl();
 
     void OnNewBDSeries(wxCommandEvent& event);
     void OnEditBDSeries(wxCommandEvent& event);
@@ -59,48 +58,11 @@ private:
     void OnListItemSelected(wxListEvent& event);
     void OnListItemDeselected(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
+    void OnColClick(wxListEvent& event);
 
     void refreshVisualList(int selected_index = -1);
 
     mmBillsDepositsPanel* cp_;
-};
-
-/* Holds a single transaction */
-// TODO
-struct mmBDTransactionHolder: public mmHolderBase
-{
-    wxDateTime nextOccurDate_;
-    wxString nextOccurStr_;
-    wxString repeatsStr_;
-
-    int daysRemaining_;
-    wxString daysRemainingStr_;
-
-    int payeeID_;
-    wxString payeeStr_;
-
-    wxString sStatus_;
-
-    wxString transType_;
-    wxString transAmtString_;
-    double amt_;
-
-    wxString transToAmtString_;
-    double toAmt_;
-
-    int accountID_;
-    int toAccountID_;
-
-    wxString accountName_;
-    wxString sNumber_;
-    wxString notes_;
-    int categID_;
-    wxString categoryStr_;
-    int subcategID_;
-    wxString subcategoryStr_;
-
-    bool bd_repeat_user_;
-    bool bd_repeat_auto_;
 };
 
 class mmBillsDepositsPanel : public mmPanelBase
@@ -124,13 +86,19 @@ public:
                  long style = wxTAB_TRAVERSAL | wxNO_BORDER,
                  const wxString& name = wxPanelNameStr);
     /* Helper Functions/data */
-    std::vector<mmBDTransactionHolder> trans_;
+    Model_Billsdeposits::Data_Set bills_;
     void updateBottomPanelData(int selIndex);
     /* updates the Repeating transactions panel data */
     int initVirtualListControl(int id = -1);
     /* Getter for Virtual List Control */
     wxString getItem(long item, long column);
     void RefreshList();
+    int getColumnsNumber() { return ColName_.size(); }
+
+    static wxString GetPayee(const Model_Billsdeposits::Data& item);
+    static wxString GetAccount(const Model_Billsdeposits::Data& item);
+    static wxString GetFrequency(const Model_Billsdeposits::Data& item);
+    static wxString GetRemainingDays(const Model_Billsdeposits::Data& item);
 
 private:
     void CreateControls();
@@ -153,6 +121,20 @@ private:
 private:
     wxImageList* m_imageList;
     billsDepositsListCtrl* listCtrlAccount_;
+
+    enum EColumn
+    {
+        COL_PAYEE = 0,
+        COL_ACCOUNT,
+        COL_TYPE,
+        COL_AMOUNT,
+        COL_DUE_DATE,
+        COL_FREQUENCY,
+        COL_DAYS,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
+    std::map<int, wxString> ColName_;
 
     bool transFilterActive_;
     void OnFilterTransactions(wxMouseEvent& event);
