@@ -437,11 +437,11 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     }
     else if (column == COL_FREQUENCY)
     {
-        text = GetFrequency(bill);
+        text = GetFrequency(&bill);
     }
     else if (column == COL_DAYS)
     {
-        text = GetRemainingDays(bill);
+        text = GetRemainingDays(&bill);
     }
     else if (column == COL_NOTES)
     {
@@ -451,9 +451,9 @@ wxString mmBillsDepositsPanel::getItem(long item, long column)
     return text;
 }
 
-wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data& item)
+wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* item)
 {
-    int repeats = item.REPEATS;
+    int repeats = item->REPEATS;
     // DeMultiplex the Auto Executable fields.
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
@@ -462,13 +462,13 @@ wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data& ite
 
     wxString text = BILLSDEPOSITS_REPEATS[repeats];
     if (repeats > 10 && repeats < 15)
-        text = wxString::Format(text, (wxString() << item.NUMOCCURRENCES));
+        text = wxString::Format(text, (wxString() << item->NUMOCCURRENCES));
     return text;
 }
 
-wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data& item)
+wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data* item)
 {
-    int repeats = item.REPEATS;
+    int repeats = item->REPEATS;
     // DeMultiplex the Auto Executable fields.
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
@@ -487,14 +487,14 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data&
 
     if (daysRemaining == 0)
     {
-        if (((repeats > 10) && (repeats < 15)) && (item.NUMOCCURRENCES < 0))
+        if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
     }
 
     if (daysRemaining < 0)
     {
         text = wxString::Format("%d", abs(daysRemaining)) + _(" days overdue!");
-        if (((repeats > 10) && (repeats < 15)) && (item.NUMOCCURRENCES < 0))
+        if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
     }
     return text;
@@ -713,8 +713,8 @@ void mmBillsDepositsPanel::sortTable()
         std::stable_sort(bills_.begin(), bills_.end()
             , [](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
         {
-            wxString x_text = mmBillsDepositsPanel::GetFrequency(x);
-            wxString y_text = mmBillsDepositsPanel::GetFrequency(y);
+            wxString x_text = mmBillsDepositsPanel::GetFrequency(&x);
+            wxString y_text = mmBillsDepositsPanel::GetFrequency(&y);
             return x_text < y_text;
         });
         break;
@@ -723,7 +723,7 @@ void mmBillsDepositsPanel::sortTable()
             , [](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
         {
             bool x_useText = false;
-            wxString x_text = mmBillsDepositsPanel::GetRemainingDays(x);
+            wxString x_text = mmBillsDepositsPanel::GetRemainingDays(&x);
             long x_num = 0;
             if (isdigit(x_text[0]))
             {
@@ -736,7 +736,7 @@ void mmBillsDepositsPanel::sortTable()
                 x_useText = true;
             atoi(x_text);
             bool y_useText = false;
-            wxString y_text = mmBillsDepositsPanel::GetRemainingDays(y);
+            wxString y_text = mmBillsDepositsPanel::GetRemainingDays(&y);
             long y_num = 0;
             if (isdigit(y_text[0]))
             {

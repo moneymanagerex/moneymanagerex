@@ -95,8 +95,8 @@ public:
     void RefreshList();
     int getColumnsNumber() { return ColName_.size(); }
 
-    static wxString GetFrequency(const Model_Billsdeposits::Data& item);
-    static wxString GetRemainingDays(const Model_Billsdeposits::Data& item);
+    static wxString GetFrequency(const Model_Billsdeposits::Data* item);
+    static wxString GetRemainingDays(const Model_Billsdeposits::Data* item);
 
 private:
     void CreateControls();
