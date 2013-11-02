@@ -50,6 +50,10 @@ public:
     {
         this->db_->Commit();
     }
+    void Rollback()
+    {
+        this->db_->Rollback();
+    }
 protected:
     static wxDate to_date(const wxString& str_date)
     {
