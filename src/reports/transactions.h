@@ -33,7 +33,8 @@ public:
     ~mmReportTransactions();
 
     wxString getHTMLText();
-
+public:
+    enum SORT { DATE = 0, ACCOUNT, PAYEE, STATUS, CATEGORY, TYPE, AMOUNT, NUMBER, NOTE } sortby_;
 private:
     Model_Checking::Data_Set trans_;
     bool ignoreDate_;

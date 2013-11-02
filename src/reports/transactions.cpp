@@ -24,12 +24,11 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
-#include "mmtransaction.h"
 #include <algorithm>
 
 mmReportTransactions::mmReportTransactions(const Model_Checking::Data_Set trans,
     int refAccountID, mmFilterTransactionsDialog* transDialog)
-    : mmPrintableBase(mmBankTransaction::DATE)
+    : mmPrintableBase(DATE)
     , trans_(trans)
     , refAccountID_(refAccountID)
     , transDialog_(transDialog)
@@ -53,7 +52,7 @@ wxString addFilterDetailes(wxString sHeader, wxString sValue)
 wxString mmReportTransactions::getHTMLText()
 {
     //for (auto& transaction: trans_)
-    //    transaction->sortby_ = (mmBankTransaction::SORT)sortColumn_;
+    //    transaction->sortby_ = (SORT)sortColumn_;
     std::stable_sort (trans_.begin(), trans_.end());
 
     mmHTMLBuilder hb;
@@ -75,42 +74,42 @@ wxString mmReportTransactions::getHTMLText()
 
     // Display the data Headings
     hb.startTableRow();
-    if(mmBankTransaction::DATE == sortColumn_)
+    if(DATE == sortColumn_)
         hb.addTableHeaderCell(_("Date"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::DATE), _("Date"));
-    if(mmBankTransaction::ACCOUNT == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", DATE), _("Date"));
+    if(ACCOUNT == sortColumn_)
         hb.addTableHeaderCell(_("Account"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::ACCOUNT), _("Account"));
-    if(mmBankTransaction::PAYEE == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ACCOUNT), _("Account"));
+    if(PAYEE == sortColumn_)
         hb.addTableHeaderCell(_("Payee"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::PAYEE), _("Payee"));
-    if(mmBankTransaction::STATUS == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE), _("Payee"));
+    if(STATUS == sortColumn_)
         hb.addTableHeaderCell(_("Status"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::STATUS), _("Status"));
-    if(mmBankTransaction::CATEGORY == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STATUS), _("Status"));
+    if(CATEGORY == sortColumn_)
         hb.addTableHeaderCell(_("Category"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::CATEGORY), _("Category"));
-    if(mmBankTransaction::TYPE == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY), _("Category"));
+    if(TYPE == sortColumn_)
         hb.addTableHeaderCell(_("Type"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::TYPE), _("Type"));
-    if(mmBankTransaction::AMOUNT == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TYPE), _("Type"));
+    if(AMOUNT == sortColumn_)
         hb.addTableHeaderCell(_("Amount"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::AMOUNT), _("Amount"), true);
-    if(mmBankTransaction::NUMBER == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", AMOUNT), _("Amount"), true);
+    if(NUMBER == sortColumn_)
         hb.addTableHeaderCell(_("Number"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::NUMBER), _("Number"));
-    if(mmBankTransaction::NOTE == sortColumn_)
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", NUMBER), _("Number"));
+    if(NOTE == sortColumn_)
         hb.addTableHeaderCell(_("Notes"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", mmBankTransaction::NOTE), _("Notes"));
+        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", NOTE), _("Notes"));
     hb.endTableRow();
 
     // Display the data for each row

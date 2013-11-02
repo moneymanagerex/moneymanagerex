@@ -20,7 +20,6 @@
 #define _MM_EX_SPLITTRANSACTIONDIALOG_H_
 
 #include "guiid.h"
-#include "mmtransaction.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
 
