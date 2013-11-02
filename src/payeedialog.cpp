@@ -191,6 +191,7 @@ void mmPayeeDialog::DeletePayee()
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
+        m_payee_id_ = -1; //TODO: select previous
         fillControls();
     }
 }
