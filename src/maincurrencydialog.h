@@ -108,7 +108,7 @@ private:
     int selectedIndex_;
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
-    bool onlineUpdateCurRate(int curr_id = NULL);
+    bool onlineUpdateCurRate(int curr_id = -1);
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
 };

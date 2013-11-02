@@ -224,6 +224,8 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
                          , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
         {
             Model_Currency::instance().remove(currencyID_);
+            selectedIndex_--;
+            currencyID_ = -1; //TODO: Fix value if item deleted
             fillControls();
         }
     }
@@ -334,7 +336,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
         for (const auto &currency : currencies)
         {
             const wxString symbol = currency.CURRENCY_SYMBOL.Upper();
-            if (curr_id && currency.CURRENCYID != curr_id) continue;
+            if (curr_id > 0 && currency.CURRENCYID != curr_id) continue;
             if (!symbol.IsEmpty()) buffer << symbol << base_symbol << "=X+";
         }
         if (buffer.Right(1).Contains("+")) buffer.RemoveLast(1);
@@ -389,7 +391,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
                 }
                 else
                 {
-                    if (!curr_id)
+                    if (curr_id < 0)
                         msg << wxString::Format(_("%s\t: %s\n"), currency_symbol, _("Invalid Value "));
                 }
             }
