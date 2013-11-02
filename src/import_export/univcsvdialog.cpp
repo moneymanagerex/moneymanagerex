@@ -53,7 +53,6 @@ mmUnivCSVDialog::mmUnivCSVDialog()
 }
 
 mmUnivCSVDialog::mmUnivCSVDialog(
-    mmCoreDB* core,
     wxWindow* parent,
     bool is_importer,
     wxWindowID id,
@@ -62,7 +61,6 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     const wxSize& size,
     long style
 ) :
-    core_(core),
     is_importer_(is_importer),
     delimit_(","),
     importSuccessful_(false)

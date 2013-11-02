@@ -20,7 +20,9 @@
 #define _MM_EX_UNIVCSVDIALOG_H_
 
 #include "guiid.h"
-#include "mmcoredb.h"
+#include "defs.h"
+#include <vector>
+#include <map>
 
 #define ID_MYDIALOG8 10040
 #define SYMBOL_UNIVCSVDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
@@ -61,7 +63,7 @@ class mmUnivCSVDialog: public wxDialog
 public:
     /// Constructors
     mmUnivCSVDialog();
-    mmUnivCSVDialog(mmCoreDB* core, wxWindow* parent, bool is_importer = true,
+    mmUnivCSVDialog(wxWindow* parent, bool is_importer = true,
                     wxWindowID id = SYMBOL_UNIVCSVDIALOG_IDNAME,
                     const wxString& caption = SYMBOL_UNIVCSVDIALOG_TITLE,
                     const wxPoint& pos = SYMBOL_UNIVCSVDIALOG_POSITION,
@@ -93,7 +95,6 @@ private:
         UNIV_CSV_TOAMOUNT,
         UNIV_CSV_LAST
     };
-    mmCoreDB* core_;
     bool is_importer_;
     wxString delimit_;
 

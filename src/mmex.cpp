@@ -2865,7 +2865,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnExportToCSV(wxCommandEvent& /*event*/)
 {
-    mmUnivCSVDialog(m_core.get(), this, false).ShowModal();
+    mmUnivCSVDialog(this, false).ShowModal();
 }
 //----------------------------------------------------------------------------
 
@@ -2903,7 +2903,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
         return;
     }
 
-    mmUnivCSVDialog univCSVDialog(m_core.get(), this);
+    mmUnivCSVDialog univCSVDialog(this);
     univCSVDialog.ShowModal();
     if (univCSVDialog.InportCompletedSuccessfully())
     {
