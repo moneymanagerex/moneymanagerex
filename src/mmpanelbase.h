@@ -26,13 +26,6 @@
 class wxSQLite3Database;
 class wxListItemAttr;
 
-struct mmHolderBase
-{
-    int id_;
-    wxString valueStr_;
-    double value_;
-};
-
 class mmListCtrl: public wxListCtrl
 {
 public:
