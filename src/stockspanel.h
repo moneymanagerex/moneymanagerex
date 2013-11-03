@@ -139,7 +139,6 @@ private:
     bool DownloadIsRequired(void);
     bool onlineQuoteRefresh(wxString& sError);
 
-    wxToggleButton* TempProxyButton;
     wxString strLastUpdate_;
     bool StocksRefreshStatus_;
     wxDateTime LastRefreshDT_;

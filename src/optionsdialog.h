@@ -95,6 +95,8 @@ private:
     wxStaticText* sampleDateText_;
     wxSpinCtrl *scMax_files_;
 
+    wxSpinCtrl *scProxyPort_;
+
     bool restartRequired_;
     bool changesApplied_;
 

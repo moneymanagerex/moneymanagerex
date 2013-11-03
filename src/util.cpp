@@ -324,6 +324,16 @@ std::map<wxString,wxString> date_formats_map()
 
 int site_content(const wxString& sSite, wxString& sOutput)
  {
+    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
+    if (!proxyName.empty())
+    {
+        int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
+        wxString proxySettings = wxString::Format("%s:%d", proxyName, proxyPort);
+        wxURL::SetDefaultProxy(proxySettings);
+    }
+    else
+        wxURL::SetDefaultProxy(""); // Remove prior proxy
+
     wxURL url(sSite);
     int err_code = url.GetError();
     if (err_code == wxURL_NOERR)

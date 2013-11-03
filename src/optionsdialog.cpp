@@ -632,6 +632,32 @@ void mmOptionsDialog::CreateControls()
     flex_sizer2->Add(scMax_files_, flags);
     backupStaticBoxSizer->Add(flex_sizer2);
 
+    // Proxy Settings
+    othersPanelSizer->AddSpacer(15);
+
+    wxStaticBox* proxyStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("Proxy Settings"));
+    proxyStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* proxyStaticBoxSizer = new wxStaticBoxSizer(proxyStaticBox, wxVERTICAL);
+    othersPanelSizer->Add(proxyStaticBoxSizer, flagsExpand);
+
+    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
+    wxTextCtrl* proxyNameTextCtr = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY,
+        proxyName, wxDefaultPosition, wxSize(150, -1));
+    proxyNameTextCtr->SetToolTip(_("Specify the proxy IP address"));
+
+    int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
+    scProxyPort_ = new wxSpinCtrl(othersPanel, wxID_ANY,
+        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, proxyPort);
+    scProxyPort_->SetToolTip(_("Specify proxy port number"));
+
+    wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
+    flex_sizer3->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Proxy")), flags);
+    flex_sizer3->Add(proxyNameTextCtr, flags);
+    flex_sizer3->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Port")), flags);
+    flex_sizer3->Add(scProxyPort_, flags);
+
+    proxyStaticBoxSizer->Add(flex_sizer3, flags);
+
     othersPanel->SetSizer(othersPanelSizer);
 
     /*********************************************************************************************
@@ -1028,6 +1054,11 @@ void mmOptionsDialog::SaveOthersPanelSettings()
     Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue() );
 
     Model_Setting::instance().Set("MAX_BACKUP_FILES", scMax_files_->GetValue());
+
+    wxTextCtrl* proxy = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY);
+    wxString proxyName = proxy->GetValue();
+    Model_Setting::instance().Set("PROXYIP", proxyName);
+    Model_Setting::instance().Set("PROXYPORT", scProxyPort_->GetValue());
 }
 
 void mmOptionsDialog::SaveImportExportPanelSettings()
