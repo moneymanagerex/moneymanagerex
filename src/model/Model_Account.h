@@ -54,17 +54,17 @@ public:
     static wxArrayString all_status()
     {
         wxArrayString status;
-        status.Add(wxTRANSLATE("Open"));
-        status.Add(wxTRANSLATE("Closed"));
+        status.Add("Open");
+        status.Add("Closed");
 
         return status;
     }
     static wxArrayString all_type()
     {
         wxArrayString type;
-        type.Add(wxTRANSLATE("Checking"));
-        type.Add(wxTRANSLATE("Term"));
-        type.Add(wxTRANSLATE("Investment"));
+        type.Add("Checking");
+        type.Add("Term");
+        type.Add("Investment");
 
         return type;
     }
