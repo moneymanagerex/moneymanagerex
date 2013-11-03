@@ -182,6 +182,12 @@ bool OnInitImpl(mmGUIApp* app)
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
     Model_Setting::instance(app->m_setting_db);
 
+    /* Set MMEX language parameter if it has not been set. */
+    if (!Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER))
+    {
+        mmSelectLanguage(0, true);
+    }
+
     /* Load Colors from Database */
     mmLoadColorsFromDatabase();
 
@@ -204,8 +210,6 @@ bool OnInitImpl(mmGUIApp* app)
     //BUGFIX: #214 MMEX Window is "off screen" 
     if (valx >= sys_screen_x ) valx = sys_screen_x - valw;
     if (valy >= sys_screen_y ) valy = sys_screen_y - valh;
-
-    mmSelectLanguage(0, false);
 
     app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
     bool ok = app->m_frame->Show();
@@ -687,8 +691,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
         else
             dbpath = Model_Setting::instance().getLastDbPath();
     }
-
-    if (from_scratch && !dbpath.IsOk()) mmSelectLanguage(this, true);
 
     /* Create the Controls for the frame */
     createMenu();

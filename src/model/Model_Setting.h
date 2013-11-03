@@ -160,6 +160,17 @@ public:
 
         return path;
     }
+
+    /* Returns true if key setting found */
+    bool ContainsSetting(const wxString& key)
+    {
+        bool result = true;
+        if (this->find(SETTINGNAME(key)).empty())
+        {
+            result = false;
+        }
+        return result;
+    }
 };
 
 #endif // 
