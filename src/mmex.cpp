@@ -385,7 +385,6 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
     Model_Infotable::instance().Set("DATAVERSION", mmex::DATAVERSION);
     Model_Infotable::instance().Set("CREATEDATE", wxDateTime::Now());
     Model_Infotable::instance().Set("DATEFORMAT", mmex::DEFDATEFORMAT);
-    Model_Infotable::instance().Set("BASECURRENCYID", 1);
 
     return true;
 }
