@@ -807,13 +807,13 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                             buffer << inQuotes(trx_date.Format(date_format_), delimit);
                             break;
                         case UNIV_CSV_PAYEE:
-                            buffer << inQuotes(payee->PAYEENAME, delimit);
+                            buffer << inQuotes(payee ? payee->PAYEENAME : "", delimit);
                             break;
                         case UNIV_CSV_AMOUNT:
                             buffer << inQuotes(amount, delimit);
                             break;
                         case UNIV_CSV_CATEGORY:
-                            buffer << inQuotes(category->CATEGNAME, delimit);
+                            buffer << inQuotes(category ? category->CATEGNAME : "", delimit);
                             break;
                         case UNIV_CSV_SUBCATEGORY:
                             buffer << inQuotes(sub_category ? sub_category->SUBCATEGNAME : "" , delimit);
