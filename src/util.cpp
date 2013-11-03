@@ -194,32 +194,14 @@ bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDate
         sDateMask = mmOptions::instance().dateFormat_;
     wxString s = "/";
 
-    //For correct date parsing, adjust separator format to: %x/%x/%x
-    sDateMask.Replace("`", s);
-    sDateMask.Replace("' ", s);
-    sDateMask.Replace("/ ", s);
-    sDateMask.Replace("'", s);
-    sDateMask.Replace("-", s);
-    sDateMask.Replace(".", s);
-    sDateMask.Replace(",", s);
-    sDateMask.Replace(" ", s);
-
-    sDate.Replace("`", s);
-    sDate.Replace("' ", s);
-    sDate.Replace("/ ", s);
-    sDate.Replace("'", s);
-    sDate.Replace("-", s);
-    sDate.Replace(".", s);
-    sDate.Replace(",", s);
-    sDate.Replace(" ", s);
-
-    //Bad idea to change date mask here.
-    //some dates may be wrong parsed, for example:
-    // 1/1/2001 & 01/01/01
-    /*if (sDate.Len()<9)
-        sDateMask.Replace("%Y", "%y");
-    else
-        sDateMask.Replace("%y", "%Y");*/
+    //For correct date parsing, adjust separator format to: %x/%x/%
+    sDateMask.Replace("' ", "'");
+    sDate.Replace("' ", "'");
+    for (const auto& c : "`'/-., ")
+    {
+        sDateMask.Replace(c, s);
+        sDate.Replace(c, s);
+    }
 
     wxStringTokenizer token(sDate, s);
     double a,b,c;
@@ -342,7 +324,6 @@ std::map<wxString,wxString> date_formats_map()
 
 int site_content(const wxString& sSite, wxString& sOutput)
  {
-    // TODO - use wxURL::SetProxy or wxURL::SetDefaultProxy
     wxURL url(sSite);
     int err_code = url.GetError();
     if (err_code == wxURL_NOERR)
