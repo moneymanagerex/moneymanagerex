@@ -342,6 +342,7 @@ std::map<wxString,wxString> date_formats_map()
 
 int site_content(const wxString& sSite, wxString& sOutput)
  {
+    // TODO - use wxURL::SetProxy or wxURL::SetDefaultProxy
     wxURL url(sSite);
     int err_code = url.GetError();
     if (err_code == wxURL_NOERR)
