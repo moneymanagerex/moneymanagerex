@@ -187,7 +187,7 @@ public:
 
         return rows.size();
     }
-    /** Remove any splits associated with id*/
+    /** Remove the Data record including any splits associated with id*/
     bool remove(int id)
     {
         for (auto &item : Model_Billsdeposits::splittransaction(get(id)))

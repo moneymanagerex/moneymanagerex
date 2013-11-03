@@ -77,6 +77,8 @@ public:
 
         return rows.size();
     }
+
+    /** Remove the Data record from the database and the memory table (cashe)*/
     bool remove(int id)
     {
         return this->remove(id, this->db_);
