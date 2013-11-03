@@ -3142,7 +3142,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                     continue; // skip
             }
 
-            if (dlg->checkPayee(tran.PAYEEID))
+            if (!dlg->checkPayee(tran.PAYEEID))
             {
                     continue; // skip
             }
