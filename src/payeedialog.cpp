@@ -131,7 +131,11 @@ void mmPayeeDialog::fillControls()
             payeeListBox_->SelectRow(selectedIndex_);
         }
     }
-    //TODO: For long list make selected item visible
+
+    //Ensure that the selected item is visible. 
+    wxDataViewItem item(payeeListBox_->GetCurrentItem());
+    payeeListBox_->EnsureVisible(item);
+
 }
 
 void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)

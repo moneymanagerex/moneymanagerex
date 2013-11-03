@@ -51,15 +51,17 @@ class mmCurrencyDialog : public wxDialog
 public:
     mmCurrencyDialog();
     ~mmCurrencyDialog();
-    mmCurrencyDialog(Model_Currency::Data* currency, wxWindow* parent);
+    mmCurrencyDialog(wxWindow* parent, int currency_id = -1);
 
-    bool Create( wxWindow* parent, wxWindowID id,
-                 const wxString& caption,
-                 const wxPoint& pos,
-                 const wxSize& size,
-                 long style);
+    int getCurrencyID() { return m_currency_id; };
 
 private:
+    bool Create(wxWindow* parent, wxWindowID id,
+        const wxString& caption,
+        const wxPoint& pos,
+        const wxSize& size,
+        long style);
+
     void CreateControls();
 
     // utility functions
@@ -68,7 +70,7 @@ private:
     void fillControls();
     void onTextEntered(wxCommandEvent& event);
 
-    Model_Currency::Data* m_currency;
+    int m_currency_id;
     double convRate_;
     int scale_;
 

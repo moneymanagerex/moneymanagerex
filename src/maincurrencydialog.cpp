@@ -54,8 +54,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     const wxPoint& pos,
     const wxSize& size,
     long style
-) : currencyID_(-1),
-    currencyListBox_(),
+) : currencyListBox_(),
     bEnableSelect_(bEnableSelect)
 {
     ColName_[CURR_BASE]   = " ";
@@ -96,7 +95,7 @@ void mmMainCurrencyDialog::fillControls()
     currencyListBox_->DeleteAllItems();
     int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
-    for (const auto& currency: Model_Currency::instance().all())
+    for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
         int currencyID = currency.CURRENCYID;
 
@@ -106,7 +105,21 @@ void mmMainCurrencyDialog::fillControls()
         data.push_back(wxVariant(currency.CURRENCYNAME));
         data.push_back(wxVariant(wxString()<<currency.BASECONVRATE));
         currencyListBox_->AppendItem(data, (wxUIntPtr)currencyID);
+        if (selectedIndex_ == currencyListBox_->GetItemCount() - 1)
+        {
+            currencyListBox_->SelectRow(selectedIndex_);
+            currencyID_ = currencyID;
+        }
+        if (currencyID_ == currencyID)
+        {
+            selectedIndex_ = currencyListBox_->GetItemCount() - 1;
+            currencyListBox_->SelectRow(selectedIndex_);
+        }
     }
+
+    //Ensure that the selected item is visible.
+    wxDataViewItem item(currencyListBox_->GetCurrentItem());
+    currencyListBox_->EnsureVisible(item);
 }
 
 void mmMainCurrencyDialog::CreateControls()
@@ -186,8 +199,12 @@ void mmMainCurrencyDialog::CreateControls()
 
 void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
 {
-    mmCurrencyDialog dlg(0, this);
+    mmCurrencyDialog dlg(this);
     dlg.ShowModal();
+    currencyID_ = dlg.getCurrencyID();
+    if (currencyID_)
+        selectedIndex_++;
+
     fillControls();
 }
 
@@ -195,7 +212,7 @@ void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)
 {
     Model_Currency::Data *currency = Model_Currency::instance().get(currencyID_);
     if (currency)
-        mmCurrencyDialog(Model_Currency::instance().get(currencyID_), this).ShowModal();
+        mmCurrencyDialog(this, currencyID_).ShowModal();
     fillControls();
 }
 
@@ -225,7 +242,7 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
         {
             Model_Currency::instance().remove(currencyID_);
             selectedIndex_--;
-            currencyID_ = -1; //TODO: Fix value if item deleted
+            currencyID_ = -1;
             fillControls();
         }
     }
