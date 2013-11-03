@@ -34,6 +34,27 @@ class Model_Billsdeposits : public Model, public DB_Table_BILLSDEPOSITS_V1
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
+    enum REPEAT_TYPE {
+        REPEAT_INACTIVE = -1,
+        REPEAT_NONE,
+        REPEAT_WEEKLY,
+        REPEAT_BI_WEEKLY,      // FORTNIGHTLY
+        REPEAT_MONTHLY,
+        REPEAT_BI_MONTHLY,
+        REPEAT_QUARTERLY,      // TRI_MONTHLY
+        REPEAT_HALF_YEARLY,
+        REPEAT_YEARLY,
+        REPEAT_FOUR_MONTHLY,   // QUAD_MONTHLY
+        REPEAT_FOUR_WEEKLY,    // QUAD_WEEKLY
+        REPEAT_DAILY,
+        REPEAT_IN_X_DAYS,
+        REPEAT_IN_X_MONTHS,
+        REPEAT_EVERY_X_DAYS,
+        REPEAT_EVERY_X_MONTHS,
+        REPEAT_MONTHLY_LAST_DAY,
+        REPEAT_MONTHLY_LAST_BUSINESS_DAY
+    };
+
 public:
     Model_Billsdeposits(): Model(), DB_Table_BILLSDEPOSITS_V1() 
     {
@@ -56,9 +77,9 @@ public:
     {
         wxArrayString types;
         // keep the sequence with TYPE
-        types.Add(("Withdrawal"));
-        types.Add(("Deposit"));
-        types.Add(("Transfer"));
+        types.Add("Withdrawal");
+        types.Add("Deposit");
+        types.Add("Transfer");
 
         return types;
     }
@@ -66,11 +87,11 @@ public:
     {
         wxArrayString status;
         // keep the sequence with STATUS
-        status.Add(("None"));
-        status.Add(("Reconciled"));
-        status.Add(("Void"));
-        status.Add(("Follow up"));
-        status.Add(("Duplicate"));
+        status.Add("None");
+        status.Add("Reconciled");
+        status.Add("Void");
+        status.Add("Follow up");
+        status.Add("Duplicate");
 
         return status;
     }
@@ -82,10 +103,8 @@ public:
         return Singleton<Model_Billsdeposits>::instance();
     }
 
-    /**
-     * Initialize the global database table.
-     * Create the table if it does not exist.
-    */
+    /** Initialize the global database table.
+      * Create the table if it does not exist.*/
     static Model_Billsdeposits& instance(wxSQLite3Database* db)
     {
         Model_Billsdeposits& ins = Singleton<Model_Billsdeposits>::instance();
@@ -147,10 +166,14 @@ public:
     {
         return find_by(this, db_, false, args...);
     }
+
+    /** Return the Data record for the given ID*/
     Data* get(int id)
     {
         return this->get(id, this->db_);
     }
+
+    /** Create a new record or update the existing record in the database.*/
     int save(Data* r)
     {
         r->save(this->db_);
@@ -164,9 +187,9 @@ public:
 
         return rows.size();
     }
+    /** Remove any splits associated with id*/
     bool remove(int id)
     {
-        // Remove any splits associated with id
         for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
             Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
         return this->remove(id, db_);
@@ -183,6 +206,7 @@ public:
     {
         return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r.BDID));
     }
+
     void completeBDInSeries(int bdID)
     {
         Data* bill = get(bdID);
@@ -200,72 +224,73 @@ public:
                 repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
             int numRepeats = bill->NUMOCCURRENCES;
-            if (numRepeats != -1)
+            if (numRepeats != REPEAT_TYPE::REPEAT_INACTIVE)
             {
-                if ((repeats < 11) || (repeats > 14)) --numRepeats;
+                if ((repeats < REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats > REPEAT_TYPE::REPEAT_EVERY_X_MONTHS))
+                    --numRepeats;
             }
 
-            if (repeats == 0)
+            if (repeats == REPEAT_TYPE::REPEAT_NONE)
             {
                 numRepeats = 0;
             }
-            else if (repeats == 1)
+            else if (repeats == REPEAT_TYPE::REPEAT_WEEKLY)
             {
                 updateOccur = dtno.Add(wxTimeSpan::Week());
             }
-            else if (repeats == 2)
+            else if (repeats == REPEAT_TYPE::REPEAT_BI_WEEKLY)
             {
                 updateOccur = dtno.Add(wxTimeSpan::Weeks(2));
             }
-            else if (repeats == 3)
+            else if (repeats == REPEAT_TYPE::REPEAT_MONTHLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Month());
             }
-            else if (repeats == 4)
+            else if (repeats == REPEAT_TYPE::REPEAT_BI_MONTHLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Months(2));
             }
-            else if (repeats == 5)
+            else if (repeats == REPEAT_TYPE::REPEAT_QUARTERLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Months(3));
             }
-            else if (repeats == 6)
+            else if (repeats == REPEAT_TYPE::REPEAT_HALF_YEARLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Months(6));
             }
-            else if (repeats == 7)
+            else if (repeats == REPEAT_TYPE::REPEAT_YEARLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Year());
             }
-            else if (repeats == 8)
+            else if (repeats == REPEAT_TYPE::REPEAT_FOUR_MONTHLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Months(4));
             }
-            else if (repeats == 9)
+            else if (repeats == REPEAT_TYPE::REPEAT_FOUR_WEEKLY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Weeks(4));
             }
-            else if (repeats == 10)
+            else if (repeats == REPEAT_TYPE::REPEAT_DAILY)
             {
                 updateOccur = dtno.Add(wxDateSpan::Days(1));
             }
-            else if ((repeats == 11) || (repeats == 12))
+            else if ((repeats == REPEAT_TYPE::REPEAT_IN_X_DAYS) || (repeats == REPEAT_TYPE::REPEAT_IN_X_MONTHS))
             {
                 if (numRepeats != -1) numRepeats = -1;
             }
-            else if (repeats == 13)
+            else if (repeats == REPEAT_TYPE::REPEAT_EVERY_X_DAYS)
             {
                 if (numRepeats > 0) updateOccur = dtno.Add(wxDateSpan::Days(numRepeats));
             }
-            else if (repeats == 14)
+            else if (repeats == REPEAT_TYPE::REPEAT_EVERY_X_MONTHS)
             {
                 if (numRepeats > 0) updateOccur = dtno.Add(wxDateSpan::Months(numRepeats));
             }
-            else if ((repeats == 15) || (repeats == 16))
+            else if ((repeats == REPEAT_TYPE::REPEAT_MONTHLY_LAST_DAY) || (repeats == REPEAT_TYPE::REPEAT_MONTHLY_LAST_BUSINESS_DAY))
             {
                 updateOccur = dtno.Add(wxDateSpan::Month());
                 updateOccur = updateOccur.SetToLastMonthDay(updateOccur.GetMonth(), updateOccur.GetYear());
-                if (repeats == 16) // last weekday of month
+                if (repeats == REPEAT_TYPE::REPEAT_MONTHLY_LAST_BUSINESS_DAY) // last weekday of month
                 {
                     if (updateOccur.GetWeekDay() == wxDateTime::Sun || updateOccur.GetWeekDay() == wxDateTime::Sat)
                         updateOccur.SetToPrevWeekDay(wxDateTime::Fri);
@@ -276,7 +301,7 @@ public:
             bill->NUMOCCURRENCES = numRepeats;
             save(bill);
 
-            if (bill->NUMOCCURRENCES)
+            if (bill->NUMOCCURRENCES == 0)
                 remove(bdID);
 
             mmOptions::instance().databaseUpdated_ = true;

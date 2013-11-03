@@ -82,10 +82,14 @@ public:
         return status;
     }
 public:
+    /** Return the address of the global database table*/
     static Model_Checking& instance()
     {
         return Singleton<Model_Checking>::instance();
     }
+
+    /** Initialize the global database table.
+      * Create the table if it does not exist.*/
     static Model_Checking& instance(wxSQLite3Database* db)
     {
         Model_Checking& ins = Singleton<Model_Checking>::instance();
@@ -95,6 +99,7 @@ public:
         return ins;
     }
 public:
+    /** Return a list of Data records (Data_Set) directly from the database.*/
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
@@ -114,6 +119,8 @@ public:
     {
         return this->get(id, this->db_);
     }
+
+    /** Create a new record or update the existing record in the database.*/
     int save(Data* r)
     {
         r->save(this->db_);

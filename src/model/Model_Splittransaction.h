@@ -36,10 +36,14 @@ public:
     wxArrayString types_;
 
 public:
+    /** Return the address of the global database table*/
     static Model_Splittransaction& instance()
     {
         return Singleton<Model_Splittransaction>::instance();
     }
+
+    /** Initialize the global database table.
+    * Create the table if it does not exist.*/
     static Model_Splittransaction& instance(wxSQLite3Database* db)
     {
         Model_Splittransaction& ins = Singleton<Model_Splittransaction>::instance();
@@ -63,11 +67,15 @@ public:
     {
         return this->get(id, this->db_);
     }
+
+    /** Create a new record or update the existing record in the database.*/
     int save(Data* r)
     {
         r->save(this->db_);
         return r->id();
     }
+
+    /** Create new or update existing records in the database for the record list.*/
     int save(Data_Set& rows)
     {
         this->Begin();

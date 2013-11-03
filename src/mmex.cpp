@@ -915,7 +915,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
         if (autoExecuteManual && requireExecution)
         {
-            if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14) )
+            if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
             {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(q1.BDID ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
@@ -930,7 +930,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 
         if (autoExecuteSilent && requireExecution)
         {
-            if ( (repeats < 11) || (numRepeats > 0) || (repeats > 14))
+            if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
             {
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
