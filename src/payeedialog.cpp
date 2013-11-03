@@ -120,7 +120,18 @@ void mmPayeeDialog::fillControls()
         data.push_back(wxVariant(payee.PAYEENAME));
         data.push_back(wxVariant(full_category_name));
         payeeListBox_->AppendItem(data, (wxUIntPtr)payeeID);
+        if (selectedIndex_ == payeeListBox_->GetItemCount() - 1)
+        {
+            payeeListBox_->SelectRow(selectedIndex_);
+            m_payee_id_ = payeeID;
+        }
+        if (m_payee_id_ == payeeID)
+        {
+            selectedIndex_ = payeeListBox_->GetItemCount() - 1;
+            payeeListBox_->SelectRow(selectedIndex_);
+        }
     }
+    //TODO: For long list make selected item visible
 }
 
 void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
@@ -129,16 +140,25 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
     wxVariant var;
     payeeListBox_->GetValue(var, row, event.GetColumn());
     wxString value = var.GetString();
-    wxLogDebug(value);
 
     Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id_);
-    if (payee)
-    {
-        payee->PAYEENAME = value;
-        Model_Payee::instance().save(payee);
-    }
-    refreshRequested_ = true;
+    if (payee && value == payee->PAYEENAME) return;
 
+    Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(value));
+    if (payees.empty())
+    {
+        if (payee)
+        {
+            payee->PAYEENAME = value;
+            Model_Payee::instance().save(payee);
+            refreshRequested_ = true;
+        }
+    }
+    else
+    {
+        wxMessageBox(_("Payee with same name exists"), _("Organize Payees: Add Payee"), wxOK | wxICON_ERROR);
+    }
+    fillControls();
 }
 
 void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
@@ -153,27 +173,24 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
 
 void mmPayeeDialog::AddPayee()
 {
-    wxString text = wxGetTextFromUser(_("Enter the name for the new payee:")
+    const wxString name = wxGetTextFromUser(_("Enter the name for the new payee:")
         , _("Organize Payees: Add Payee"), "");
-    if (text.IsEmpty()) {
-        return;
-    }
+    if (name.IsEmpty()) return;
 
-    Model_Payee::Data* payee = Model_Payee::instance().get(text);
-    if (payee)
+    Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(name));
+    if (payees.empty())
     {
-        wxMessageBox(_("Payee with same name exists"), _("Organize Payees: Add Payee"), wxOK|wxICON_ERROR);
+        Model_Payee::Data *payee = Model_Payee::instance().create();
+        payee->PAYEENAME = name;
+        m_payee_id_ = Model_Payee::instance().save(payee);
+        selectedIndex_ = -1;
     }
     else
     {
-        payee = Model_Payee::instance().create();
-        payee->PAYEENAME = text;
-        int payeeID = Model_Payee::instance().save(payee);
-        if (payeeID < 0) return;
-        wxASSERT(payeeID > 0);
-
-        fillControls();
+        wxMessageBox(_("Payee with same name exists"), _("Organize Payees: Add Payee"), wxOK | wxICON_ERROR);
     }
+
+    fillControls();
 }
 
 void mmPayeeDialog::DeletePayee()
@@ -191,7 +208,8 @@ void mmPayeeDialog::DeletePayee()
             wxMessageBox(deletePayeeErrMsg, _("Organize Payees: Delete Error"), wxOK | wxICON_ERROR);
             return;
         }
-        m_payee_id_ = -1; //TODO: select previous
+        m_payee_id_ = -1;
+        selectedIndex_--;
         fillControls();
     }
 }
@@ -250,7 +268,6 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
         case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
         default: break;
     }
-
 }
 
 void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)

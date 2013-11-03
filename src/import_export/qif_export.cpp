@@ -50,8 +50,7 @@ void mmQIFExportDialog::fillControls()
     bSelectedAccounts_->SetLabel(_("All"));
     bSelectedAccounts_->SetToolTip(_("All"));
 
-    //TODO: Sort order needed
-    for (const auto& a: Model_Account::instance().all())
+    for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(a) == Model_Account::CHECKING || Model_Account::type(a) == Model_Account::TERM)
         {
