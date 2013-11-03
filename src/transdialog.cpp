@@ -156,8 +156,10 @@ void mmTransDialog::dataToControls()
         edit_currency_rate = transaction_->TOTRANSAMOUNT / transaction_->TRANSAMOUNT;
 
     //Account
+    cbAccount_->SetEvtHandlerEnabled(false);
+    cbAccount_->Clear();
     newAccountID_ = accountID_;
-    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     for (const auto &account : accounts)
     {
         cbAccount_->Append(account.ACCOUNTNAME);
@@ -166,7 +168,7 @@ void mmTransDialog::dataToControls()
     cbAccount_->AutoComplete(Model_Account::instance().all_account_names());
     cbAccount_->UnsetToolTip();
     accountID_ = transaction_->ACCOUNTID;
-    cbAccount_->SetEvtHandlerEnabled(false);
+    cbAccount_->SetEvtHandlerEnabled(true);
 
     //Payee or To Account
     cbPayee_->SetEvtHandlerEnabled(false);
@@ -211,7 +213,6 @@ void mmTransDialog::dataToControls()
 
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         account_label_->SetLabel(_("Account"));
-        //cbAccount_->Enable(!accounts.empty());
         transaction_->TOACCOUNTID = -1;
 
         for (const auto & entry : Model_Payee::instance().all_payee_names())
@@ -261,7 +262,6 @@ void mmTransDialog::dataToControls()
     }
 
     cbPayee_->SetEvtHandlerEnabled(true);
-    cbAccount_->SetEvtHandlerEnabled(true);
 
     //SetSplitState();
     bool has_split = !this->m_local_splits.empty();
