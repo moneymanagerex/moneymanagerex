@@ -22,12 +22,12 @@
 #include "reportbase.h"
 #include "mmDateRange.h"
 
-class mmReportIncomeExpenses : public mmPrintableBase
+class mmReportIncomeExpenses : public mmPrintableBaseSpecificAccounts
 {
 public:
     mmReportIncomeExpenses(mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpenses();
-    wxString getHTMLText();
+    virtual wxString getHTMLText();
 
 protected:
     mmDateRange* date_range_;
@@ -76,15 +76,68 @@ public:
     }
 };
 
+class mmReportIncomeExpensesSpecificAccounts : public mmReportIncomeExpenses
+{
+public:
+    mmReportIncomeExpensesSpecificAccounts(mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpenses(date_range)
+    {
+    }
+    virtual wxString getHTMLText()
+    {
+        getSpecificAccounts();
+        return mmReportIncomeExpenses::getHTMLText();
+    }
+};
+
+class mmReportIncomeExpensesAllTimeSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
+{
+public:
+    mmReportIncomeExpensesAllTimeSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmAllTime())
+    {
+    }
+};
+
+class mmReportIncomeExpensesCurrentMonthSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
+{
+public:
+    mmReportIncomeExpensesCurrentMonthSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmCurrentMonth())
+    {
+    }
+};
+
+class mmReportIncomeExpensesCurrentMonthToDateSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
+{
+public:
+    mmReportIncomeExpensesCurrentMonthToDateSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmCurrentMonthToDate())
+    {
+    }
+};
+
+class mmReportIncomeExpensesLastMonthSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
+{
+public:
+    mmReportIncomeExpensesLastMonthSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmLastMonth())
+    {
+    }
+};
+
+class mmReportIncomeExpensesLast30DaysSpecificAccounts : public mmReportIncomeExpensesSpecificAccounts
+{
+public:
+    mmReportIncomeExpensesLast30DaysSpecificAccounts() : mmReportIncomeExpensesSpecificAccounts(new mmLast30Days())
+    {
+    }
+};
+
 /////////////////////////////////////////////////////////////////////////////////////
-class mmReportIncomeExpensesMonthly: public mmPrintableBase
+class mmReportIncomeExpensesMonthly : public mmPrintableBaseSpecificAccounts
 {
 public:
     mmReportIncomeExpensesMonthly(int day_ = 1
                                          , int month_ = 1
                                                  , mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpensesMonthly();
-    wxString getHTMLText();
+    virtual wxString getHTMLText();
 protected:
 
     mmDateRange* date_range_;
@@ -127,6 +180,54 @@ class mmReportIncomeExpensesLastFinancialYear: public mmReportIncomeExpensesMont
 public:
     mmReportIncomeExpensesLastFinancialYear(const int day, const int month)
         : mmReportIncomeExpensesMonthly(day, month, new mmLastFinancialYear(day, month))
+    {
+    }
+};
+
+class mmReportIncomeExpensesMonthlySpecificAccounts : public mmReportIncomeExpensesMonthly
+{
+public:
+    mmReportIncomeExpensesMonthlySpecificAccounts(int day = 1, int month = 1
+        , mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpensesMonthly(day, month, date_range)
+    {
+    }
+    virtual wxString getHTMLText()
+    {
+        getSpecificAccounts();
+        return mmReportIncomeExpensesMonthly::getHTMLText();
+    }
+};
+
+class mmReportIncomeExpensesCurrentYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
+{
+public:
+    mmReportIncomeExpensesCurrentYearSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmCurrentYear())
+    {
+    }
+};
+
+class mmReportIncomeExpensesLastYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
+{
+public:
+    mmReportIncomeExpensesLastYearSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmLastYear())
+    {
+    }
+};
+
+class mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
+{
+public:
+    mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts(const int day, const int month)
+        : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmCurrentFinancialYear(day, month))
+    {
+    }
+};
+
+class mmReportIncomeExpensesLastFinancialYearSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
+{
+public:
+    mmReportIncomeExpensesLastFinancialYearSpecificAccounts(const int day, const int month)
+        : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmLastFinancialYear(day, month))
     {
     }
 };

@@ -22,6 +22,7 @@
 //----------------------------------------------------------------------------
 #include "mmOption.h"
 class wxString;
+class wxArrayString;
 //----------------------------------------------------------------------------
 
 class mmPrintableBase
@@ -38,5 +39,19 @@ public:
 protected:
 	int sortColumn_;
 };
+
+class mmPrintableBaseSpecificAccounts : public mmPrintableBase
+{
+public:
+    mmPrintableBaseSpecificAccounts(wxString report_name, int sort_column = 0);
+    virtual ~mmPrintableBaseSpecificAccounts();
+
+protected:
+    const wxArrayString* accountArray_;
+    wxString reportName_;
+
+    void getSpecificAccounts();
+};
+
 //----------------------------------------------------------------------------
 #endif // _MM_EX_REPORTBASE_H_

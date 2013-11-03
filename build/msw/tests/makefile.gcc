@@ -197,6 +197,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmgraphpie.o \
 	mmex_tests_mmgraphtopcategories.o \
 	mmex_tests_payee.o \
+	mmex_tests_reportbase.o \
 	mmex_tests_summary.o \
 	mmex_tests_summaryassets.o \
 	mmex_tests_summarystocks.o \
@@ -820,6 +821,9 @@ mmex_tests_mmgraphtopcategories.o: ../../../src/reports/mmgraphtopcategories.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_payee.o: ../../../src/reports/payee.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_reportbase.o: ../../../src/reports/reportbase.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_summary.o: ../../../src/reports/summary.cpp

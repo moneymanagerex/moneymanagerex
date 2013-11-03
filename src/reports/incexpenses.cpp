@@ -8,7 +8,8 @@
 #include "model/Model_Account.h"
 
 mmReportIncomeExpenses::mmReportIncomeExpenses(mmDateRange* date_range)
-    : date_range_(date_range)
+    : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
+    , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
 {
 }
@@ -30,6 +31,29 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.init();
     hb.addHeader(2, this->title());
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    wxString headerMsg = _("Accounts: ");
+    if (accountArray_ == NULL)
+    {
+        headerMsg << _("All Accounts");
+    }
+    else
+    {
+        int arrIdx = 0;
+        if ((int)accountArray_->size() == 0)
+            headerMsg << "?";
+
+        if (!accountArray_->empty())
+        {
+            headerMsg << accountArray_->Item(arrIdx);
+            arrIdx++;
+        }
+        while (arrIdx < (int)accountArray_->size())
+        {
+            headerMsg << ", " << accountArray_->Item(arrIdx);
+            arrIdx++;
+        }
+    }
+    hb.addHeader(1, headerMsg);
     hb.addLineBreak();
     hb.startCenter();
 
@@ -41,6 +65,10 @@ wxString mmReportIncomeExpenses::getHTMLText()
     {
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        if (accountArray_)
+        {
+            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
+        }
         double convRate = 1;
         if (account) convRate = Model_Account::currency(account)->BASECONVRATE;
 
@@ -88,7 +116,8 @@ wxString mmReportIncomeExpenses::getHTMLText()
 }
 
 mmReportIncomeExpensesMonthly::mmReportIncomeExpensesMonthly(int day, int month, mmDateRange* date_range)
-    : day_(day)
+    : mmPrintableBaseSpecificAccounts(_("Income vs Expenses"))
+    , day_(day)
     , month_(month)
     , date_range_(date_range)
     , title_(_("Income vs Expenses: %s"))
@@ -108,6 +137,30 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.init();
     hb.addHeader(2, this->title());
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
+    wxString headerMsg = _("Accounts: ");
+    if (accountArray_ == NULL)
+    {
+        headerMsg << _("All Accounts");
+    }
+    else
+    {
+        int arrIdx = 0;
+        if ((int)accountArray_->size() == 0)
+            headerMsg << "?";
+
+        if (!accountArray_->empty())
+        {
+            headerMsg << accountArray_->Item(arrIdx);
+            arrIdx++;
+        }
+        while (arrIdx < (int)accountArray_->size())
+        {
+            headerMsg << ", " << accountArray_->Item(arrIdx);
+            arrIdx++;
+        }
+    }
+    hb.addHeader(1, headerMsg);
+    hb.addLineBreak();
     hb.startCenter();
 
     hb.addHorizontalLine();
@@ -129,6 +182,10 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     {
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
+        if (accountArray_)
+        {
+            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) continue;
+        }
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
 
         int idx = (Model_Checking::TRANSDATE(transaction).GetYear() * 100

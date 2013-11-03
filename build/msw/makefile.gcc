@@ -165,6 +165,7 @@ MMEX_OBJECTS =  \
 	mmex_mmgraphpie.o \
 	mmex_mmgraphtopcategories.o \
 	mmex_payee.o \
+	mmex_reportbase.o \
 	mmex_summary.o \
 	mmex_summaryassets.o \
 	mmex_summarystocks.o \
@@ -682,6 +683,9 @@ mmex_mmgraphtopcategories.o: ../../src/reports/mmgraphtopcategories.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_payee.o: ../../src/reports/payee.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_reportbase.o: ../../src/reports/reportbase.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_summary.o: ../../src/reports/summary.cpp

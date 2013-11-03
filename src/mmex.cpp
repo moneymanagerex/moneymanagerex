@@ -1506,6 +1506,64 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
             , new mmReportIncomeExpensesCurrentFinancialYear(day, month)));
     }
 
+    ///////////////////////////////////////////////////////////////////
+
+    wxTreeItemId incexpOverTimeSpecificAccounts = navTreeCtrl_->AppendItem(reports, _("Income vs Expenses - Specific Accounts"), 4, 4);
+    navTreeCtrl_->SetItemData(incexpOverTimeSpecificAccounts, new mmTreeItemData("Income vs Expenses - Specific Accounts"
+        , new mmReportIncomeExpensesAllTimeSpecificAccounts()));
+
+    wxTreeItemId incexpOverTimeCalMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Last Calendar Month"), 4, 4);
+    navTreeCtrl_->SetItemData(incexpOverTimeCalMonthSpecificAccounts
+        , new mmTreeItemData("Income vs Expenses - Last Calendar Month - Specific Accounts"
+        , new mmReportIncomeExpensesLastMonthSpecificAccounts()));
+
+    if (ignoreFuture)
+    {
+        wxTreeItemId incexpOverTimeCurrentMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+            , _("Current Month to Date"), 4, 4);
+        navTreeCtrl_->SetItemData(incexpOverTimeCurrentMonthSpecificAccounts
+            , new mmTreeItemData("Income vs Expenses - Current Month to Date - Specific Accounts"
+            , new mmReportIncomeExpensesCurrentMonthToDateSpecificAccounts()));
+    }
+    else
+    {
+        wxTreeItemId incexpOverTimeCurrentMonthSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+            , _("Current Month"), 4, 4);
+        navTreeCtrl_->SetItemData(incexpOverTimeCurrentMonthSpecificAccounts
+            , new mmTreeItemData("Income vs Expenses - Current Month - Specific Accounts"
+            , new mmReportIncomeExpensesCurrentMonthSpecificAccounts()));
+    }
+
+    wxTreeItemId incexpOverTimeLast30SpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Last 30 Days"), 4, 4);
+    navTreeCtrl_->SetItemData(incexpOverTimeLast30SpecificAccounts
+        , new mmTreeItemData("Income vs Expenses - 30 Days - Specific Accounts"
+        , new mmReportIncomeExpensesLast30DaysSpecificAccounts()));
+
+    wxTreeItemId incexpOverTimeLastYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Last Year"), 4, 4);
+    navTreeCtrl_->SetItemData(incexpOverTimeLastYearSpecificAccounts
+        , new mmTreeItemData("Income vs Expenses - Last Year - Specific Accounts"
+        , new mmReportIncomeExpensesLastYearSpecificAccounts()));
+
+    wxTreeItemId incexpOverTimeCurrentYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts, _("Current Year"), 4, 4);
+    navTreeCtrl_->SetItemData(incexpOverTimeCurrentYearSpecificAccounts
+        , new mmTreeItemData("Income vs Expenses - Current Year - Specific Accounts"
+        , new mmReportIncomeExpensesCurrentYearSpecificAccounts()));
+
+    if (financialYearIsDifferent())
+    {
+        wxTreeItemId incexpOverTimeLastFinancialYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+            , _("Last Financial Year"), 4, 4);
+        navTreeCtrl_->SetItemData(incexpOverTimeLastFinancialYearSpecificAccounts
+            , new mmTreeItemData("Income vs Expenses - Last Financial Year - Specific Accounts"
+            , new mmReportIncomeExpensesLastFinancialYearSpecificAccounts(day, month)));
+
+        wxTreeItemId incexpOverTimeCurrentFinancialYearSpecificAccounts = navTreeCtrl_->AppendItem(incexpOverTimeSpecificAccounts
+            , _("Current Financial Year"), 4, 4);
+        navTreeCtrl_->SetItemData(incexpOverTimeCurrentFinancialYearSpecificAccounts
+            , new mmTreeItemData("Income vs Expenses - Current Financial Year - Specific Accounts"
+            , new mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts(day, month)));
+    }
+
     //////////////////////////////////////////////////////////////////
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 4, 4);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));

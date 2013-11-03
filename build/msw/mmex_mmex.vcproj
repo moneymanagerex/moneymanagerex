@@ -455,6 +455,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\reports\reportbase.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\splitdetailsdialog.cpp"
 				>
 			</File>

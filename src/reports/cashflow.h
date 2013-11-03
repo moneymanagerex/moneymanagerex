@@ -4,10 +4,7 @@
 #include "reportbase.h"
 #include <vector>
 
-class wxArrayString;
-class TTransactionBillEntry;
-
-class mmReportCashFlow : public mmPrintableBase
+class mmReportCashFlow : public mmPrintableBaseSpecificAccounts
 {
 public:
     mmReportCashFlow(int cashflowreporttype);
@@ -19,7 +16,6 @@ protected:
     wxString getHTMLText_i();
     void activateTermAccounts();
     void activateBankAccounts();
-    void getSpecificAccounts();
 
 protected:
     struct mmRepeatForecast
@@ -31,7 +27,6 @@ protected:
     typedef std::vector<mmRepeatForecast> forecastVec;
     std::vector<forecastVec> bdForecastVec;
 
-    const wxArrayString* accountArray_;
     bool activeTermAccounts_;
     bool activeBankAccounts_;
     int cashflowreporttype_;

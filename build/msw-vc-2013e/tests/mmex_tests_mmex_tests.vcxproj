@@ -175,7 +175,6 @@
     <ClCompile Include="..\..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\..\src\reports\mmRepeat.cpp" />
     <ClCompile Include="..\..\..\src\mmcheckingpanel.cpp" />
-    <ClCompile Include="..\..\..\src\mmcoredb.cpp" />
     <ClCompile Include="..\..\..\src\mmcurrency.cpp" />
     <ClCompile Include="..\..\..\src\mmex.cpp" />
     <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp" />
@@ -186,12 +185,12 @@
     <ClCompile Include="..\..\..\src\mmhelppanel.cpp" />
     <ClCompile Include="..\..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\..\src\mmreportspanel.cpp" />
-    <ClCompile Include="..\..\..\src\mmtransaction.cpp" />
     <ClCompile Include="..\..\..\src\newacctdialog.cpp" />
     <ClCompile Include="..\..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\..\src\paths.cpp" />
     <ClCompile Include="..\..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\..\src\payeedialog.cpp" />
+    <ClCompile Include="..\..\src\reports\reportbase.cpp" />
     <ClCompile Include="..\..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_import.cpp" />
@@ -287,7 +286,6 @@
     <ClInclude Include="..\..\..\src\mmOption.h" />
     <ClInclude Include="..\..\..\src\reports\mmRepeat.h" />
     <ClInclude Include="..\..\..\src\mmcheckingpanel.h" />
-    <ClInclude Include="..\..\..\src\mmcoredb.h" />
     <ClInclude Include="..\..\..\src\mmcurrency.h" />
     <ClInclude Include="..\..\..\src\mmex.h" />
     <ClInclude Include="..\..\..\src\reports\mmgraphgenerator.h" />
@@ -299,7 +297,6 @@
     <ClInclude Include="..\..\..\src\mmpanelbase.h" />
     <ClInclude Include="..\..\..\src\mmreportspanel.h" />
     <ClInclude Include="..\..\..\src\mmtextctrl.h" />
-    <ClInclude Include="..\..\..\src\mmtransaction.h" />
     <ClInclude Include="..\..\..\src\newacctdialog.h" />
     <ClInclude Include="..\..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\..\src\paths.h" />

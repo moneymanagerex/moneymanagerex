@@ -7,7 +7,7 @@
 #include "model/Model_Billsdeposits.h"
 
 mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
-: accountArray_(0)
+: mmPrintableBaseSpecificAccounts(_("Cash Flow"))
 , activeTermAccounts_(false)
 , activeBankAccounts_(false)
 , cashflowreporttype_(cashflowreporttype)
@@ -15,8 +15,6 @@ mmReportCashFlow::mmReportCashFlow(int cashflowreporttype)
 
 mmReportCashFlow::~mmReportCashFlow()
 {
-    if (accountArray_)
-        delete accountArray_;
 }
 
 void mmReportCashFlow::activateTermAccounts() 
@@ -27,26 +25,6 @@ void mmReportCashFlow::activateTermAccounts()
 void mmReportCashFlow::activateBankAccounts() 
 {
     activeBankAccounts_ = true;
-}
-
-void mmReportCashFlow::getSpecificAccounts()
-{
-    wxArrayString accountArray;
-    wxArrayString* selections = new wxArrayString();
-    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
-
-    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), _("Cash Flow"), accountArray);
-    if (mcd.ShowModal() == wxID_OK)
-    {
-        wxArrayInt arraySel = mcd.GetSelections();
-
-        for (size_t i = 0; i < arraySel.size(); ++i)
-        {
-            selections->Add(accountArray.Item(arraySel[i]));
-        }
-    }
-
-    this->accountArray_ = selections;
 }
 
 wxString mmReportCashFlow::getHTMLText()
