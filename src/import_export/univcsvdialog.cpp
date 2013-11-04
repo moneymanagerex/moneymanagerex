@@ -70,7 +70,7 @@ mmUnivCSVDialog::mmUnivCSVDialog(
     CSVFieldName_[UNIV_CSV_AMOUNT] = _("Amount(+/-)");
     CSVFieldName_[UNIV_CSV_CATEGORY] = _("Category");
     CSVFieldName_[UNIV_CSV_SUBCATEGORY] = _("SubCategory");
-    CSVFieldName_[UNIV_CSV_TRANSNUM] = _("#");
+    CSVFieldName_[UNIV_CSV_TRANSNUM] = _("Number");
     CSVFieldName_[UNIV_CSV_NOTES] = _("Notes");
     CSVFieldName_[UNIV_CSV_DONTCARE] = _("Don't Care");
     CSVFieldName_[UNIV_CSV_WITHDRAWAL] = _("Withdrawal");
