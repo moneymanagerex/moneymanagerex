@@ -364,6 +364,7 @@ struct DB_Table_%s : public DB_Table
     /** Remove the Data record from the database and the memory table (cashe)*/
     bool remove(int id, wxSQLite3Database* db)
     {
+        if (id < 0) return false;
         try
         {
             wxString sql = "DELETE FROM %s WHERE %s = ?";

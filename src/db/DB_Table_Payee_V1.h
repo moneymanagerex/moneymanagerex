@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-10-31 23:20:37.910000.
+ *          AUTO GENERATED at 2013-11-04 10:37:17.703101.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -272,6 +272,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     /** Remove the Data record from the database and the memory table (cashe)*/
     bool remove(int id, wxSQLite3Database* db)
     {
+        if (id < 0) return false;
         try
         {
             wxString sql = "DELETE FROM PAYEE_V1 WHERE PAYEEID = ?";
