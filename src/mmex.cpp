@@ -183,11 +183,7 @@ bool OnInitImpl(mmGUIApp* app)
     Model_Setting::instance(app->m_setting_db);
 
     /* Force setting MMEX language parameter if it has not been set. */
-    if (Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER))
-    {
-        mmSelectLanguage(0, false);
-    }
-    else mmSelectLanguage(0, true);
+    mmSelectLanguage(0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
     /* Load Colors from Database */
     mmLoadColorsFromDatabase();
