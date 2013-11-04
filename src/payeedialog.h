@@ -32,7 +32,7 @@ class mmPayeeDialog : public wxDialog
 public:
     mmPayeeDialog(wxWindow* parent);
 
-    int getPayeeId() const {return m_payee_id_;}
+    int getPayeeId() const {return m_payee_id;}
     bool getRefreshRequested() const {return refreshRequested_;}
 
 private:
@@ -53,14 +53,15 @@ private:
 
     wxDataViewListCtrl* payeeListBox_;
 
-    int m_payee_id_;
-    int selectedIndex_;
+    int m_payee_id;
+    int m_payee_rename;
+    int m_selected_index;
     bool refreshRequested_;
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_;
     wxButton* button_OK_;
 
-    mmPayeeDialog() : m_payee_id_(-1), refreshRequested_(false) {}
+    mmPayeeDialog() : m_payee_id(-1), refreshRequested_(false) {}
 
     void do_create(wxWindow* parent);
     void CreateControls();
@@ -74,6 +75,7 @@ private:
     void OnOk(wxCommandEvent& /*event*/);
 
     void OnListItemSelected(wxDataViewEvent& event);
+    void OnDataEditStart(wxDataViewEvent& event);
     void OnDataChanged(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
