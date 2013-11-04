@@ -43,9 +43,9 @@ public:
     {
         wxArrayString rates;
         //  keep the sequence with RATE
-        rates.Add("None");
-        rates.Add("Appreciates");
-        rates.Add("Depreciates");
+        rates.Add(wxTRANSLATE("None"));
+        rates.Add(wxTRANSLATE("Appreciates"));
+        rates.Add(wxTRANSLATE("Depreciates"));
 
         return rates;
     }
@@ -53,13 +53,13 @@ public:
     {
         wxArrayString types;
         // keep the sequence with TYPE
-        types.Add("Property");
-        types.Add("Automobile");
-        types.Add("Household Object");
-        types.Add("Art");
-        types.Add("Jewellery");
-        types.Add("Cash");
-        types.Add("Other");
+        types.Add(wxTRANSLATE("Property"));
+        types.Add(wxTRANSLATE("Automobile"));
+        types.Add(wxTRANSLATE("Household Object"));
+        types.Add(wxTRANSLATE("Art"));
+        types.Add(wxTRANSLATE("Jewellery"));
+        types.Add(wxTRANSLATE("Cash"));
+        types.Add(wxTRANSLATE("Other"));
 
         return types;
     }

@@ -77,9 +77,9 @@ public:
     {
         wxArrayString types;
         // keep the sequence with TYPE
-        types.Add("Withdrawal");
-        types.Add("Deposit");
-        types.Add("Transfer");
+        types.Add(wxTRANSLATE("Withdrawal"));
+        types.Add(wxTRANSLATE("Deposit"));
+        types.Add(wxTRANSLATE("Transfer"));
 
         return types;
     }
@@ -87,11 +87,11 @@ public:
     {
         wxArrayString status;
         // keep the sequence with STATUS
-        status.Add("None");
-        status.Add("Reconciled");
-        status.Add("Void");
-        status.Add("Follow up");
-        status.Add("Duplicate");
+        status.Add(wxTRANSLATE("None"));
+        status.Add(wxTRANSLATE("Reconciled"));
+        status.Add(wxTRANSLATE("Void"));
+        status.Add(wxTRANSLATE("Follow up"));
+        status.Add(wxTRANSLATE("Duplicate"));
 
         return status;
     }

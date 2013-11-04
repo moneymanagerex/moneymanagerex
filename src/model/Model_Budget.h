@@ -42,15 +42,15 @@ public:
     {
         wxArrayString period;
         // keep the sequence with PERIOD_ENUM
-        period.Add("None");
-        period.Add("Weekly");
-        period.Add("Bi-Weekly");
-        period.Add("Monthly");
-        period.Add("Bi-Monthly");
-        period.Add("Quarterly");
-        period.Add("Half-Yearly");
-        period.Add("Yearly");
-        period.Add("Daily");
+        period.Add(wxTRANSLATE("None"));
+        period.Add(wxTRANSLATE("Weekly"));
+        period.Add(wxTRANSLATE("Bi-Weekly"));
+        period.Add(wxTRANSLATE("Monthly"));
+        period.Add(wxTRANSLATE("Bi-Monthly"));
+        period.Add(wxTRANSLATE("Quarterly"));
+        period.Add(wxTRANSLATE("Half-Yearly"));
+        period.Add(wxTRANSLATE("Yearly"));
+        period.Add(wxTRANSLATE("Daily"));
         return period;
     }
     static PERIOD_ENUM period(const Data* r)
