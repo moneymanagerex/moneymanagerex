@@ -137,7 +137,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.addTableCell(category.CATEGNAME, false, true);
             hb.addTableCell(wxEmptyString, false, true);
             hb.addMoneyCell(amt, false);
-            hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.CATEGID][-1]], false, true);
+            hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.CATEGID][-1]]), false, true);
             hb.addMoneyCell(estimated, false);
             hb.addMoneyCell(actual, actualAmountColour(amt, actual, estimated));
             hb.endTableRow();
@@ -177,7 +177,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
                 hb.addTableCell(category.CATEGNAME, false, true);
                 hb.addTableCell(subcategory.SUBCATEGNAME, false, true);
                 hb.addMoneyCell(amt, false);
-                hb.addTableCell(Model_Budget::all_period()[budgetPeriod[category.CATEGID][subcategory.SUBCATEGID]], false, true);
+                hb.addTableCell(wxGetTranslation(Model_Budget::all_period()[budgetPeriod[category.CATEGID][subcategory.SUBCATEGID]]), false, true);
                 hb.addMoneyCell(estimated, false);
                 hb.addMoneyCell(actual, actualAmountColour(amt, actual, estimated));
                 hb.endTableRow();

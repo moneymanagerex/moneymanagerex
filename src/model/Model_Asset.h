@@ -131,19 +131,19 @@ public:
 
     static TYPE type(const Data* r) 
     {
-        if (r->ASSETTYPE.CmpNoCase("Property") == 0)
+        if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_PROPERTY]) == 0)
             return TYPE_PROPERTY;
-        else if (r->ASSETTYPE.CmpNoCase("Automobile") == 0)
+        else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_AUTO]) == 0)
             return TYPE_AUTO;
-        else if (r->ASSETTYPE.CmpNoCase("Household Object") == 0)
+        else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_HOUSE]) == 0)
             return TYPE_HOUSE;
-        else if (r->ASSETTYPE.CmpNoCase("Art") == 0)
+        else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_ART]) == 0)
             return TYPE_ART;
-        else if (r->ASSETTYPE.CmpNoCase("Jewellery") == 0)
+        else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_JEWELLERY]) == 0)
             return TYPE_JEWELLERY;
-        else if (r->ASSETTYPE.CmpNoCase("Cash") == 0)
+        else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_CASH]) == 0)
             return TYPE_CASH;
-        else if (r->ASSETTYPE.CmpNoCase("Other") == 0)
+        else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_OTHER]) == 0)
             return TYPE_OTHER;
 
         return TYPE(-1);
@@ -155,11 +155,11 @@ public:
 
     static RATE rate(const Data* r)
     {
-        if (r->VALUECHANGE.CmpNoCase("None") == 0)
+        if (r->VALUECHANGE.CmpNoCase(all_rate()[RATE_NONE]) == 0)
             return RATE_NONE;
-        else if (r->VALUECHANGE.CmpNoCase("Appreciates") == 0)
+        else if (r->VALUECHANGE.CmpNoCase(all_rate()[RATE_APPRECIATE]) == 0)
             return RATE_APPRECIATE;
-        else if (r->VALUECHANGE.CmpNoCase("Depreciates") == 0)
+        else if (r->VALUECHANGE.CmpNoCase(all_rate()[RATE_DEPRECIATE]) == 0)
             return RATE_DEPRECIATE;
 
         return RATE(-1);

@@ -55,23 +55,23 @@ public:
     }
     static PERIOD_ENUM period(const Data* r)
     {
-        if (r->PERIOD.CmpNoCase("None") == 0)
+        if (r->PERIOD.CmpNoCase(all_period()[NONE]) == 0)
             return NONE;
-        else if (r->PERIOD.CmpNoCase("Weekly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[WEEKLY]) == 0)
             return WEEKLY;
-        else if (r->PERIOD.CmpNoCase("Bi-Weekly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[BIWEEKLY]) == 0)
             return BIWEEKLY;
-        else if (r->PERIOD.CmpNoCase("Monthly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[MONTHLY]) == 0)
             return MONTHLY;
-        else if (r->PERIOD.CmpNoCase("Bi-Monthly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[BIMONTHLY]) == 0)
             return BIMONTHLY;
-        else if (r->PERIOD.CmpNoCase("Quarterly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[QUARTERLY]) == 0)
             return QUARTERLY;
-        else if (r->PERIOD.CmpNoCase("Half-Yearly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[HALFYEARLY]) == 0)
             return HALFYEARLY;
-        else if (r->PERIOD.CmpNoCase("Yearly") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[YEARLY]) == 0)
             return YEARLY;
-        else if (r->PERIOD.CmpNoCase("Daily") == 0)
+        else if (r->PERIOD.CmpNoCase(all_period()[DAILY]) == 0)
             return DAILY;
         else
             return NONE;

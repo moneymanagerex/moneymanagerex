@@ -118,9 +118,9 @@ public:
     static wxDate NEXTOCCURRENCEDATE(const Data& r) { return Model::to_date(r.NEXTOCCURRENCEDATE); }
     static TYPE type(const Data* r)
     {
-        if (r->TRANSCODE.CmpNoCase("Withdrawal") == 0)
+        if (r->TRANSCODE.CmpNoCase(all_type()[WITHDRAWAL]) == 0)
             return WITHDRAWAL;
-        else if (r->TRANSCODE.CmpNoCase("Deposit") == 0)
+        else if (r->TRANSCODE.CmpNoCase(all_type()[DEPOSIT]) == 0)
             return DEPOSIT;
         else
             return TRANSFER;
@@ -128,15 +128,15 @@ public:
     static TYPE type(const Data& r) { return type(&r); }
     static STATUS_ENUM status(const Data* r)
     {
-        if (r->STATUS.CmpNoCase("None") == 0)
+        if (r->STATUS.CmpNoCase(all_status()[NONE]) == 0)
             return NONE;
-        else if (r->STATUS.CmpNoCase("Reconciled") == 0 || r->STATUS.CmpNoCase("R") == 0)
+        else if (r->STATUS.CmpNoCase(all_status()[RECONCILED]) == 0 || r->STATUS.CmpNoCase("R") == 0)
             return RECONCILED;
-        else if (r->STATUS.CmpNoCase("Void") == 0 || r->STATUS.CmpNoCase("V") == 0)
+        else if (r->STATUS.CmpNoCase(all_status()[VOID_]) == 0 || r->STATUS.CmpNoCase("V") == 0)
             return VOID_;
-        else if (r->STATUS.CmpNoCase("Follow up") == 0 || r->STATUS.CmpNoCase("F") == 0)
+        else if (r->STATUS.CmpNoCase(all_status()[FOLLOWUP]) == 0 || r->STATUS.CmpNoCase("F") == 0)
             return FOLLOWUP;
-        else if (r->STATUS.CmpNoCase("Duplicate") == 0 || r->STATUS.CmpNoCase("D") == 0)
+        else if (r->STATUS.CmpNoCase(all_status()[DUPLICATE_]) == 0 || r->STATUS.CmpNoCase("D") == 0)
             return DUPLICATE_;
         else
             return NONE;

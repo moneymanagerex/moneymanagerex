@@ -971,7 +971,7 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 {
     if (local_splits_.empty() && categID_ > -1)
     {
-        bool bDeposit = transaction_type_->GetSelection() == Model_Billsdeposits::all_type()[Model_Billsdeposits::DEPOSIT];
+        bool bDeposit = transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT;
         double amount;
         wxString amountStr = textAmount_->GetValue().Trim();
         if (!amountStr.ToDouble(&amount))

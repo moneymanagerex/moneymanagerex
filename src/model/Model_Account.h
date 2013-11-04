@@ -180,7 +180,7 @@ public:
 public:
     static STATUS status(const Data* account)
     {
-        if (account->STATUS.CmpNoCase("Open") == 0)
+        if (account->STATUS.CmpNoCase(all_status()[OPEN]) == 0)
             return OPEN;
         return CLOSED;
     }
@@ -190,9 +190,9 @@ public:
     }
     static TYPE type(const Data* account)
     {
-        if (account->ACCOUNTTYPE.CmpNoCase("Checking") == 0)
+        if (account->ACCOUNTTYPE.CmpNoCase(all_type()[CHECKING]) == 0)
             return CHECKING;
-        else if (account->ACCOUNTTYPE.CmpNoCase("Term") == 0)
+        else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[TERM]) == 0)
             return TERM;
         else
             return INVESTMENT;
@@ -218,11 +218,11 @@ public:
     }
     static int checking_account_num()
     {
-        return Model_Account::instance().find(ACCOUNTTYPE("Checking")).size();
+        return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
     }
     static int investment_account_num()
     {
-        return Model_Account::instance().find(ACCOUNTTYPE("Investment")).size();
+        return Model_Account::instance().find(ACCOUNTTYPE(all_type()[INVESTMENT])).size();
     }
 };
 
