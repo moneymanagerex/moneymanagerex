@@ -51,6 +51,16 @@ public:
         }
         return accounts;
     }
+    wxArrayString all_checking_account_names()
+    {
+        wxSortedArrayString accounts;
+        for (const auto &account : this->all(COL_ACCOUNTNAME))
+        {
+            if (type(account) == INVESTMENT) continue;
+            accounts.Add(account.ACCOUNTNAME);
+        }
+        return accounts;
+    }
     static wxArrayString all_status()
     {
         wxArrayString status;

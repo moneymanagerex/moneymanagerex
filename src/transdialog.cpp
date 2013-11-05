@@ -162,10 +162,11 @@ void mmTransDialog::dataToControls()
     Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     for (const auto &account : accounts)
     {
+        if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
         cbAccount_->Append(account.ACCOUNTNAME);
         if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->SetStringSelection(account.ACCOUNTNAME);
     }
-    cbAccount_->AutoComplete(Model_Account::instance().all_account_names());
+    cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
     cbAccount_->UnsetToolTip();
     accountID_ = transaction_->ACCOUNTID;
     cbAccount_->SetEvtHandlerEnabled(true);
@@ -232,9 +233,9 @@ void mmTransDialog::dataToControls()
             //TODO: m_splits->erase();
         }
 
-        for (const auto & entry : Model_Account::instance().all_account_names())
+        for (const auto & entry : Model_Account::instance().all_checking_account_names())
             cbPayee_->Append(entry);
-        cbPayee_->AutoComplete(Model_Account::instance().all_account_names());
+        cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
 
         Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
         if (account)
