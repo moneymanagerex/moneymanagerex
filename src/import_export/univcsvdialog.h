@@ -93,6 +93,7 @@ private:
         UNIV_CSV_WITHDRAWAL,
         UNIV_CSV_DEPOSIT,
         UNIV_CSV_TOAMOUNT,
+        UNIV_CSV_BALANCE,
         UNIV_CSV_LAST
     };
     bool is_importer_;
