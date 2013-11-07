@@ -19,7 +19,6 @@
 #include "paths.h"
 #include "util.h"
 #include "mmCalculator.h"
-#include "mmCurrencyFormatter.h"
 #include "validators.h"
 #include "model/Model_Asset.h"
 #include <wx/valnum.h>
@@ -226,7 +225,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         return;
     }
     double value = 0;
-    if (! CurrencyFormatter::formatCurrencyToDouble(valueStr, value))
+    if (!valueStr.ToDouble(&value))
     {
         wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
         return;
