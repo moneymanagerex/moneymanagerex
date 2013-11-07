@@ -159,7 +159,6 @@ MMEX_OBJECTS =  \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
-	mmex_mmRepeat.o \
 	mmex_mmgraphgenerator.o \
 	mmex_mmgraphincexpensesmonth.o \
 	mmex_mmgraphpie.o \
@@ -170,7 +169,6 @@ MMEX_OBJECTS =  \
 	mmex_summaryassets.o \
 	mmex_summarystocks.o \
 	mmex_transactions.o \
-	mmex_trx_stats.o \
 	mmex_platfdep.o \
 	mmex_export.o \
 	mmex_qif_export.o \
@@ -667,9 +665,6 @@ mmex_incexpenses.o: ../../src/reports/incexpenses.cpp
 mmex_mmDateRange.o: ../../src/reports/mmDateRange.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_mmRepeat.o: ../../src/reports/mmRepeat.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_mmgraphgenerator.o: ../../src/reports/mmgraphgenerator.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -698,9 +693,6 @@ mmex_summarystocks.o: ../../src/reports/summarystocks.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_transactions.o: ../../src/reports/transactions.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_trx_stats.o: ../../src/reports/trx_stats.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_platfdep.o: ../../src/win/platfdep.cpp

@@ -163,7 +163,6 @@ MMEX_OBJECTS =  \
 	mmex_htmlbuilder.obj \
 	mmex_incexpenses.obj \
 	mmex_mmDateRange.obj \
-	mmex_mmRepeat.obj \
 	mmex_mmgraphgenerator.obj \
 	mmex_mmgraphincexpensesmonth.obj \
 	mmex_mmgraphpie.obj \
@@ -174,7 +173,6 @@ MMEX_OBJECTS =  \
 	mmex_summaryassets.obj \
 	mmex_summarystocks.obj \
 	mmex_transactions.obj \
-	mmex_trx_stats.obj \
 	mmex_platfdep.obj \
 	mmex_export.obj \
 	mmex_qif_export.obj \
@@ -802,9 +800,6 @@ mmex_incexpenses.obj: ..\..\src\reports\incexpenses.cpp
 mmex_mmDateRange.obj: ..\..\src\reports\mmDateRange.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmDateRange.cpp
 
-mmex_mmRepeat.obj: ..\..\src\reports\mmRepeat.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmRepeat.cpp
-
 mmex_mmgraphgenerator.obj: ..\..\src\reports\mmgraphgenerator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\mmgraphgenerator.cpp
 
@@ -834,9 +829,6 @@ mmex_summarystocks.obj: ..\..\src\reports\summarystocks.cpp
 
 mmex_transactions.obj: ..\..\src\reports\transactions.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\transactions.cpp
-
-mmex_trx_stats.obj: ..\..\src\reports\trx_stats.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\trx_stats.cpp
 
 mmex_platfdep.obj: ..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\win\platfdep.cpp

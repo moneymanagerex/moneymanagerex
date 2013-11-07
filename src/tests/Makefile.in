@@ -205,7 +205,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_htmlbuilder.o \
 	mmex_tests_incexpenses.o \
 	mmex_tests_mmDateRange.o \
-	mmex_tests_mmRepeat.o \
 	mmex_tests_mmgraphgenerator.o \
 	mmex_tests_mmgraphincexpensesmonth.o \
 	mmex_tests_mmgraphpie.o \
@@ -216,7 +215,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_summaryassets.o \
 	mmex_tests_summarystocks.o \
 	mmex_tests_transactions.o \
-	mmex_tests_trx_stats.o \
 	mmex_tests_platfdep.o \
 	mmex_tests_export.o \
 	mmex_tests_qif_export.o \
@@ -716,9 +714,6 @@ mmex_tests_incexpenses.o: $(srcdir)/../../src/reports/incexpenses.cpp
 mmex_tests_mmDateRange.o: $(srcdir)/../../src/reports/mmDateRange.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/mmDateRange.cpp
 
-mmex_tests_mmRepeat.o: $(srcdir)/../../src/reports/mmRepeat.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/mmRepeat.cpp
-
 mmex_tests_mmgraphgenerator.o: $(srcdir)/../../src/reports/mmgraphgenerator.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/mmgraphgenerator.cpp
 
@@ -748,9 +743,6 @@ mmex_tests_summarystocks.o: $(srcdir)/../../src/reports/summarystocks.cpp
 
 mmex_tests_transactions.o: $(srcdir)/../../src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/transactions.cpp
-
-mmex_tests_trx_stats.o: $(srcdir)/../../src/reports/trx_stats.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/trx_stats.cpp
 
 mmex_tests_platfdep.o: $(srcdir)/../../src/unix/platfdep.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/unix/platfdep.cpp

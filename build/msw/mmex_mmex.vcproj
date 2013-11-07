@@ -367,10 +367,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\reports\mmRepeat.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmcheckingpanel.cpp"
 				>
 			</File>
@@ -492,10 +488,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\transdialog.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\trx_stats.cpp"
 				>
 			</File>
 			<File
@@ -801,10 +793,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\reports\mmRepeat.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\mmcheckingpanel.h"
 				>
 			</File>
@@ -942,10 +930,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\transdialog.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\trx_stats.h"
 				>
 			</File>
 			<File

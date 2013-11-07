@@ -172,7 +172,6 @@
     <ClCompile Include="..\..\src\mmCurrencyFormatter.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
-    <ClCompile Include="..\..\src\reports\mmRepeat.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\src\mmcurrency.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
@@ -204,7 +203,6 @@
     <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\src\reports\transactions.cpp" />
     <ClCompile Include="..\..\src\transdialog.cpp" />
-    <ClCompile Include="..\..\src\reports\trx_stats.cpp" />
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\util.cpp" />
   </ItemGroup>
@@ -281,7 +279,6 @@
     <ClInclude Include="..\..\src\mmCurrencyFormatter.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\mmOption.h" />
-    <ClInclude Include="..\..\src\reports\mmRepeat.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
     <ClInclude Include="..\..\src\mmcurrency.h" />
     <ClInclude Include="..\..\src\mmex.h" />
@@ -317,7 +314,6 @@
     <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\src\reports\transactions.h" />
     <ClInclude Include="..\..\src\transdialog.h" />
-    <ClInclude Include="..\..\src\reports\trx_stats.h" />
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\src\util.h" />
     <ClInclude Include="..\..\src\validators.h" />

@@ -197,7 +197,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_htmlbuilder.obj \
 	mmex_tests_incexpenses.obj \
 	mmex_tests_mmDateRange.obj \
-	mmex_tests_mmRepeat.obj \
 	mmex_tests_mmgraphgenerator.obj \
 	mmex_tests_mmgraphincexpensesmonth.obj \
 	mmex_tests_mmgraphpie.obj \
@@ -208,7 +207,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_summaryassets.obj \
 	mmex_tests_summarystocks.obj \
 	mmex_tests_transactions.obj \
-	mmex_tests_trx_stats.obj \
 	mmex_tests_platfdep.obj \
 	mmex_tests_export.obj \
 	mmex_tests_qif_export.obj \
@@ -899,9 +897,6 @@ mmex_tests_incexpenses.obj: ..\..\..\src\reports\incexpenses.cpp
 mmex_tests_mmDateRange.obj: ..\..\..\src\reports\mmDateRange.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\mmDateRange.cpp
 
-mmex_tests_mmRepeat.obj: ..\..\..\src\reports\mmRepeat.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\mmRepeat.cpp
-
 mmex_tests_mmgraphgenerator.obj: ..\..\..\src\reports\mmgraphgenerator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\mmgraphgenerator.cpp
 
@@ -931,9 +926,6 @@ mmex_tests_summarystocks.obj: ..\..\..\src\reports\summarystocks.cpp
 
 mmex_tests_transactions.obj: ..\..\..\src\reports\transactions.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\transactions.cpp
-
-mmex_tests_trx_stats.obj: ..\..\..\src\reports\trx_stats.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\reports\trx_stats.cpp
 
 mmex_tests_platfdep.obj: ..\..\..\src\win\platfdep.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\win\platfdep.cpp
