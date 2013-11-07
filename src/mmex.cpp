@@ -1626,11 +1626,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     wxTreeItemId cashflowSpecificAccountsDaily = navTreeCtrl_->AppendItem(cashFlow, _("Daily Cash Flow - Specific Accounts"), 4, 4);
     navTreeCtrl_->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow - Specific Accounts", new mmReportDailyCashFlowSpecificAccounts()));
 
-    ///////////////////////////////////////////////////////
-    wxTreeItemId transactionStats = navTreeCtrl_->AppendItem(reports, _("Transaction Statistics"), 4, 4);
-    navTreeCtrl_->SetItemData(transactionStats, new mmTreeItemData("Transaction Statistics", new mmReportTransactionStats(wxDateTime::Now().GetYear())));
-
-     ///////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), 5, 5);
     navTreeCtrl_->SetItemData(help, new mmTreeItemData(NAVTREECTRL_HELP));
