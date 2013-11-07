@@ -18,7 +18,6 @@
 
 #include "constants.h"
 #include "mmcheckingpanel.h"
-#include "mmCurrencyFormatter.h"
 #include "mmex.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
@@ -847,7 +846,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
     if (search_string.IsEmpty()) return;
 
     double amount= 0, deposit = 0, withdrawal = 0;
-    bool valid_amount =  CurrencyFormatter::formatCurrencyToDouble(search_string, amount);
+    bool valid_amount = wxNumberFormatter::FromString(search_string, &amount);
     bool withdrawal_only = false;
     if (valid_amount && amount < 0)
     {
@@ -865,8 +864,8 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
     {
         m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
         const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES);
-        if (valid_amount)  CurrencyFormatter::formatCurrencyToDouble(getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT), deposit);
-        if (valid_amount)  CurrencyFormatter::formatCurrencyToDouble(getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL), withdrawal);
+        if (valid_amount)  wxNumberFormatter::FromString(getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT), &deposit);
+        if (valid_amount)  wxNumberFormatter::FromString(getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL), &withdrawal);
         if (t.Lower().Matches(search_string)
             || (valid_amount && amount == deposit && !withdrawal_only)
             || (valid_amount && amount == withdrawal))
