@@ -58,7 +58,6 @@
 #include "reports/summaryassets.h"
 #include "reports/summarystocks.h"
 #include "reports/transactions.h"
-#include "reports/trx_stats.h"
 #include "import_export/qif_export.h"
 #include "import_export/qif_import.h"
 #include "import_export/univcsvdialog.h"
