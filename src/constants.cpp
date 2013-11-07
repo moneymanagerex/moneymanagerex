@@ -77,7 +77,7 @@ wxString mmex::getProgramVersion()
 //----------------------------------------------------------------------------
 wxString mmex::getProgramCopyright()
 {
-    return "(c) 2005-2012 Madhan Kanagavel";
+    return "(c) 2005-2013 Madhan Kanagavel";
 }
 
 wxString mmex::getProgramWebSite()
