@@ -17,7 +17,6 @@
  ********************************************************/
 
 #include "summary.h"
-#include "mmex.h"
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "model/Model_Account.h"
@@ -137,7 +136,7 @@ wxString mmReportSummary::getHTMLText()
         hb.endTableRow();
     }
 
-    if (wxGetApp().m_frame->hasActiveTermAccounts() )
+    if (Model_Account::hasActiveTermAccount())
     {
         hb.startTableRow();
         hb.addTotalRow(_("Term Accounts Total:"), 2, tTBalance);

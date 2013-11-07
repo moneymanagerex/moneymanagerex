@@ -168,10 +168,6 @@ public:
     {
         return menuBar_->IsChecked(MENU_VIEW_STOCKACCOUNTS);
     }
-    bool hasActiveTermAccounts() const
-    {
-        return activeTermAccounts_;
-    }
     bool financialYearIsDifferent()
     {
         return (mmOptions::instance().financialYearStartDayString_   != "1" ||

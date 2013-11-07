@@ -103,7 +103,7 @@ void mmHomePagePanel::createFrames()
     get_account_stats(accountStats);
 
     leftFrame = displayAccounts(tBalance, accountStats);
-    if ( frame_->hasActiveTermAccounts())
+    if (Model_Account::hasActiveTermAccount())
     {
         leftFrame += displayAccounts(termBalance, accountStats, Model_Account::TERM);
         tBalance += termBalance;

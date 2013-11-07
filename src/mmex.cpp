@@ -1105,7 +1105,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemBold(accounts, true);
 
     wxTreeItemId termAccount;
-    if ( hasActiveTermAccounts() )
+    if ( Model_Account::hasActiveTermAccount() )
     {
     //  Positioning for new type of accounts: Term Accounts
         termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
@@ -1612,7 +1612,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     wxTreeItemId cashflowWithBankAccounts = navTreeCtrl_->AppendItem(cashFlow, _("Cash Flow - With Bank Accounts"), 4, 4);
     navTreeCtrl_->SetItemData(cashflowWithBankAccounts, new mmTreeItemData("Cash Flow - With Bank Accounts", new mmReportCashFlowBankAccounts()));
 
-    if ( hasActiveTermAccounts() )
+    if ( Model_Account::hasActiveTermAccount() )
     {
         wxTreeItemId cashflowWithTermAccounts = navTreeCtrl_->AppendItem(cashFlow, _("Cash Flow - With Term Accounts"), 4, 4);
         navTreeCtrl_->SetItemData(cashflowWithTermAccounts, new mmTreeItemData("Cash Flow - With Term Accounts", new mmReportCashFlowTermAccounts()));
@@ -1689,7 +1689,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     if (mmIniOptions::instance().expandBankTree_)
         navTreeCtrl_->Expand(accounts);
 
-    if ( hasActiveTermAccounts() )
+    if ( Model_Account::hasActiveTermAccount() )
     {
         menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(true);
         if (mmIniOptions::instance().expandTermTree_ || expandTermAccounts)
@@ -2973,7 +2973,7 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 
     if (wizard->acctID_ != -1)
     {
-        bool firstTermAccount = !hasActiveTermAccounts();
+        bool firstTermAccount = !Model_Account::hasActiveTermAccount();
         Model_Account::Data* account = Model_Account::instance().get(wizard->acctID_);
         mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
