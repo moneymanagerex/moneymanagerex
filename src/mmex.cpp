@@ -36,7 +36,7 @@
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"
-#include "newacctdialog.h"
+#include "accountdialog.h"
 #include "optionsdialog.h"
 #include "paths.h"
 #include "payeedialog.h"

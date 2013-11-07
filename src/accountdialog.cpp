@@ -17,7 +17,7 @@
  ********************************************************/
 
 #include "constants.h"
-#include "newacctdialog.h"
+#include "accountdialog.h"
 #include "maincurrencydialog.h"
 #include "util.h"
 #include "mmOption.h"

@@ -179,7 +179,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmreportspanel.o \
-	mmex_tests_newacctdialog.o \
+	mmex_tests_accountdialog.o \
 	mmex_tests_optionsdialog.o \
 	mmex_tests_paths.o \
 	mmex_tests_payeedialog.o \
@@ -636,8 +636,8 @@ mmex_tests_mmhomepagepanel.o: $(srcdir)/../../src/mmhomepagepanel.cpp
 mmex_tests_mmreportspanel.o: $(srcdir)/../../src/mmreportspanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmreportspanel.cpp
 
-mmex_tests_newacctdialog.o: $(srcdir)/../../src/newacctdialog.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/newacctdialog.cpp
+mmex_tests_accountdialog.o: $(srcdir)/../../src/accountdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/accountdialog.cpp
 
 mmex_tests_optionsdialog.o: $(srcdir)/../../src/optionsdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/optionsdialog.cpp

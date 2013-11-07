@@ -407,7 +407,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\newacctdialog.cpp"
+				RelativePath="..\..\src\accountdialog.cpp"
 				>
 			</File>
 			<File
@@ -841,7 +841,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\newacctdialog.h"
+				RelativePath="..\..\src\accountdialog.h"
 				>
 			</File>
 			<File

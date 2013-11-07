@@ -182,7 +182,7 @@
     <ClCompile Include="..\..\src\mmhelppanel.cpp" />
     <ClCompile Include="..\..\src\mmhomepagepanel.cpp" />
     <ClCompile Include="..\..\src\mmreportspanel.cpp" />
-    <ClCompile Include="..\..\src\newacctdialog.cpp" />
+    <ClCompile Include="..\..\src\accountdialog.cpp" />
     <ClCompile Include="..\..\src\optionsdialog.cpp" />
     <ClCompile Include="..\..\src\paths.cpp" />
     <ClCompile Include="..\..\src\reports\payee.cpp" />
@@ -291,7 +291,7 @@
     <ClInclude Include="..\..\src\mmpanelbase.h" />
     <ClInclude Include="..\..\src\mmreportspanel.h" />
     <ClInclude Include="..\..\src\mmtextctrl.h" />
-    <ClInclude Include="..\..\src\newacctdialog.h" />
+    <ClInclude Include="..\..\src\accountdialog.h" />
     <ClInclude Include="..\..\src\optionsdialog.h" />
     <ClInclude Include="..\..\src\paths.h" />
     <ClInclude Include="..\..\src\reports\payee.h" />

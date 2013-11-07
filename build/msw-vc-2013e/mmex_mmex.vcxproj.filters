@@ -162,7 +162,7 @@
     <ClCompile Include="..\..\src\mmreportspanel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\newacctdialog.cpp">
+    <ClCompile Include="..\..\src\accountdialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\optionsdialog.cpp">
@@ -488,7 +488,7 @@
     <ClInclude Include="..\..\src\mmtextctrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\newacctdialog.h">
+    <ClInclude Include="..\..\src\accountdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\optionsdialog.h">
