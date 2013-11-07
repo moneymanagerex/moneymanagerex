@@ -273,19 +273,6 @@ wxColour mmColors::userDefColor7 = wxColour(0,0,128);
 
 //*-------------------------------------------------------------------------*//
 
-wxString adjustedExportAmount(const wxString& amtSeparator, const wxString& strValue)
-{
-    // if number does not have a decimal point, add one to user requirements
-    wxString value = strValue;
-    int dp = value.Find(".");
-    if (dp < 0)
-        value<< amtSeparator << "0";
-    else
-        value.Replace(".",amtSeparator);
-
-    return value;
-}
-
 wxString Tips(wxString type)
 {
     return wxGetTranslation(TIPS[rand() % sizeof(TIPS)/sizeof(wxString)]);

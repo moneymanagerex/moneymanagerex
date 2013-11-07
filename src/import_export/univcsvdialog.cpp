@@ -20,7 +20,6 @@
 #include "util.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "mmCurrencyFormatter.h"
 #include <algorithm>
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
@@ -557,6 +556,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
     if (from_account)
     {
+        fromAccountID_ = from_account->ACCOUNTID;
         wxString fileName = m_text_ctrl_->GetValue();
         wxFileName csv_file(fileName);
         if (fileName.IsEmpty() || !csv_file.FileExists())
@@ -582,8 +582,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
             long countNumTotal = 0;
             long countImported = 0;
-
-            std::vector<int> CSV_transID;
 
             wxProgressDialog progressDlg(_("Universal CSV Import"),
                 _("Transactions imported from CSV: "), 100,
@@ -683,8 +681,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                pTransaction->TOTRANSAMOUNT = 0.0;
 
                Model_Checking::instance().save(pTransaction);
-               int transID = pTransaction->TRANSID;
-               CSV_transID.push_back(transID);
 
                countImported++;
                log << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << endl;
@@ -693,10 +689,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
             progressDlg.Destroy();
 
-            //FIXME: %ld
-            wxString msg = wxString::Format(_("Total Lines : %d"), countNumTotal);
+            wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
             msg << "\n";
-            msg << wxString::Format(_("Total Imported : %d"), countImported);
+            msg << wxString::Format(_("Total Imported : %ld"), countImported);
             msg << "\n\n";
             msg << wxString::Format(_("Log file written to : %s"), logFile.GetFullPath());
             msg << "\n\n";
@@ -726,8 +721,6 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             *log_field_ << msg;
 
             outputLog.Close();
-            //clear the vector to avoid memory leak - done at same level created.
-            CSV_transID.clear();
         }
     }
 
@@ -767,7 +760,6 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
             Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction.PAYEEID);
             int fAccountID = pBankTransaction.ACCOUNTID;
             int tAccountID = pBankTransaction.TOACCOUNTID;
-            const wxString& amtSeparator = currency->GROUP_SEPARATOR;
 
             double value = pBankTransaction.TRANSAMOUNT;
             double tovalue = 0;
@@ -787,18 +779,14 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                 } else if (fAccountID == fromAccountID) {
                     value = -value;
                 }
-                toamount = adjustedExportAmount(amtSeparator,wxString()<<tovalue);
-                CurrencyFormatter::formatCurrencyToDouble(toamount, tovalue);
-                toamount = CurrencyFormatter::float2String(tovalue);
+                toamount = Model_Currency::toString(tovalue, currency);
             }
             else if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL)
                 value = -value;
 
-            wxString amount = adjustedExportAmount(amtSeparator, wxString()<<value);
-            CurrencyFormatter::formatCurrencyToDouble(amount, value);
-            amount = CurrencyFormatter::float2String(value);
+            wxString amount = Model_Currency::toString(value, currency);
 
-            wxString amount_tmp = CurrencyFormatter::float2String(-value);
+            wxString amount_tmp = Model_Currency::toString(-value, currency);
 
             buffer = "";
             Model_Category::Data* category = Model_Category::instance().get(pBankTransaction.CATEGID);
@@ -812,7 +800,21 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                         buffer << inQuotes(trx_date.Format(date_format_), delimit);
                         break;
                     case UNIV_CSV_PAYEE:
-                        buffer << inQuotes(payee ? payee->PAYEENAME : "", delimit);
+                        if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
+                        {
+                            if (tAccountID == fromAccountID) {
+                                Model_Account::Data* account = Model_Account::instance().get(fAccountID);
+                                buffer << inQuotes(account ? account->ACCOUNTNAME : "", delimit);
+                            }
+                            else if (fAccountID == fromAccountID) {
+                                Model_Account::Data* account = Model_Account::instance().get(tAccountID);
+                                buffer << inQuotes(account ? account->ACCOUNTNAME : "", delimit);
+                            }
+                            else
+                                buffer << "";
+                        }
+                        else
+                            buffer << inQuotes(payee ? payee->PAYEENAME : "", delimit);
                         break;
                     case UNIV_CSV_AMOUNT:
                         buffer << inQuotes(amount, delimit);
@@ -839,7 +841,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
                         buffer << inQuotes(toamount, delimit);
                         break;
                     case UNIV_CSV_BALANCE:
-                        buffer << inQuotes(Model_Currency::toString(account_balance).Trim(), delimit);
+                        buffer << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
                         break;
                     case UNIV_CSV_DONTCARE:
                     default:
@@ -952,7 +954,6 @@ void mmUnivCSVDialog::update_preview()
                 Model_Payee::Data* payee = Model_Payee::instance().get(pBankTransaction.PAYEEID);
                 int fAccountID = pBankTransaction.ACCOUNTID;
                 int tAccountID = pBankTransaction.TOACCOUNTID;
-                const wxString amtSeparator = currency->GROUP_SEPARATOR;
 
                 double value = pBankTransaction.TRANSAMOUNT;
                 double tovalue = 0;
@@ -975,18 +976,14 @@ void mmUnivCSVDialog::update_preview()
                     } else if (fAccountID == fromAccountID) {
                         value = -value;
                     }
-                    toamount = adjustedExportAmount(amtSeparator,wxString()<<tovalue);
-                        CurrencyFormatter::formatCurrencyToDouble(toamount, tovalue);
-                        toamount = CurrencyFormatter::float2String(tovalue);
+                    toamount = Model_Currency::toString(tovalue, currency);
                 }
                 else if (Model_Checking::type(pBankTransaction) == Model_Checking::WITHDRAWAL)
                     value = -value;
 
-                wxString amount = adjustedExportAmount(amtSeparator, wxString()<<value);
-                CurrencyFormatter::formatCurrencyToDouble(amount, value);
-                amount = CurrencyFormatter::float2String(value);
+                wxString amount = Model_Currency::toString(value, currency);
 
-                wxString amount_tmp = CurrencyFormatter::float2String(-value);
+                wxString amount_tmp = Model_Currency::toString(-value, currency);
 
                 int col = 0;
                 wxString buf;
@@ -1007,7 +1004,21 @@ void mmUnivCSVDialog::update_preview()
                             text << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(pBankTransaction)), delimit);
                             break;
                         case UNIV_CSV_PAYEE:
-                            text << inQuotes( (Model_Checking::type(pBankTransaction) != Model_Checking::TRANSFER ? payee->PAYEENAME : "" ), delimit);
+                            if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
+                            {
+                                if (tAccountID == fromAccountID) {
+                                    Model_Account::Data* account = Model_Account::instance().get(fAccountID);
+                                    text << inQuotes(account ? account->ACCOUNTNAME : "", delimit);
+                                }
+                                else if (fAccountID == fromAccountID) {
+                                    Model_Account::Data* account = Model_Account::instance().get(tAccountID);
+                                    text << inQuotes(account ? account->ACCOUNTNAME : "", delimit);
+                                }
+                                else
+                                    text << "";
+                            }
+                            else
+                                text << inQuotes(payee->PAYEENAME, delimit);
                             break;
                         case UNIV_CSV_AMOUNT:
                             text << inQuotes(amount, delimit);
@@ -1034,7 +1045,7 @@ void mmUnivCSVDialog::update_preview()
                             text << inQuotes(toamount, delimit);
                             break;
                         case UNIV_CSV_BALANCE:
-                            text << inQuotes(Model_Currency::toString(account_balance).Trim(), delimit);
+                            text << inQuotes(Model_Currency::toString(account_balance, currency), delimit);
                             break;
                         case UNIV_CSV_DONTCARE:
                         default:
@@ -1235,7 +1246,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
         case UNIV_CSV_AMOUNT:
             token.Replace(" ", wxEmptyString);
 
-            if (! CurrencyFormatter::formatCurrencyToDouble(token, val_)) return;
+            if (!wxNumberFormatter::FromString(token, &val_)) return;
 
             if (val_ <= 0.0)
                 type_ = TRANS_TYPE_WITHDRAWAL_STR;
@@ -1286,7 +1297,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_DEPOSIT:
-            if (!token.ToDouble(&val_)) return;
+            if (!wxNumberFormatter::FromString(token, &val_)) return;
             if (val_ <= 0.0) return;
 
             type_ = TRANS_TYPE_DEPOSIT_STR;
@@ -1294,7 +1305,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_WITHDRAWAL:
-            if (!token.ToDouble(&val_)) return;
+            if (!wxNumberFormatter::FromString(token, &val_)) return;
             if (val_ <= 0.0) return;
 
             type_ = TRANS_TYPE_WITHDRAWAL_STR;

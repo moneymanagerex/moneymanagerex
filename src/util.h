@@ -113,7 +113,6 @@ wxString mmGetNiceDateSimpleString( const wxDateTime &dt );
 std::map<wxString,wxString> date_formats_map();
 
 wxString inQuotes(wxString label, wxString& delimiter);
-wxString adjustedExportAmount(const wxString& amtSeparator, const wxString& strValue);
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
