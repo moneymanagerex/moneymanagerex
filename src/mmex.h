@@ -250,7 +250,6 @@ private:
     wxString m_perspective;
 
     /* Homepage panel logic */
-    bool activeTermAccounts_;
 
     void cleanup();
     void cleanupNavTreeControl(wxTreeItemId& item);

@@ -655,7 +655,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 , toolBar_()
 , selectedItemData_()
 , helpFileIndex_(mmex::HTML_INDEX)
-, activeTermAccounts_(false)
 , expandedReportNavTree_(true)
 , expandedCustomSqlReportNavTree_(false)
 , expandedBudgetingNavTree_(true)
@@ -1081,13 +1080,6 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 {
-    activeTermAccounts_ = false;
-    // if no database is present yet, ignore testing for Term Accounts
-    if (m_db) // TODO has term account?
-    {
-        activeTermAccounts_ = true;
-    }
-
     navTreeCtrl_->SetEvtHandlerEnabled(false);
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
