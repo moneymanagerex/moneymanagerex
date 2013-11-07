@@ -20,7 +20,7 @@
 #include "lua_interface.h"
 #include "util.h"
 #include "dbwrapper.h"
-#include "model\Model_Currency.h"
+#include "model/Model_Currency.h"
 
 mmCustomReport::mmCustomReport(wxWindow* parent, wxSQLite3Database* db
 , const wxString& reportTitle, const wxString& sScript, const wxString& sScriptType)
