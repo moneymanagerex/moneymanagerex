@@ -20,7 +20,6 @@
 #include "transdialog.h"
 #include "mmtextctrl.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include "paths.h"
 #include "categdialog.h"
@@ -547,7 +546,7 @@ bool mmTransDialog::validateData()
     else
     {
         wxString amountStr = textAmount_->GetValue().Trim();
-        if (! CurrencyFormatter::formatCurrencyToDouble(amountStr, transaction_->TRANSAMOUNT) || (transaction_->TRANSAMOUNT < 0.0))
+        if (!amountStr.ToDouble(&transaction_->TRANSAMOUNT))
         {
             textAmount_->SetBackgroundColour("RED");
             mmShowErrorMessageInvalid(parent_, _("Amount"));
@@ -572,8 +571,7 @@ bool mmTransDialog::validateData()
         {
             wxString amountStr = toTextAmount_->GetValue().Trim();
             if (amountStr.IsEmpty()
-                || ! CurrencyFormatter::formatCurrencyToDouble(amountStr, transaction_->TOTRANSAMOUNT)
-                || (transaction_->TOTRANSAMOUNT < 0.0)
+                || !amountStr.ToDouble(&transaction_->TOTRANSAMOUNT)
             )
             {
                 toTextAmount_->SetBackgroundColour("RED");
@@ -678,7 +676,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     {
         Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
         wxString sAmount = textAmount_->GetValue();
-        if (! CurrencyFormatter::formatCurrencyToDouble(sAmount, transaction_->TRANSAMOUNT))
+        if (!sAmount.ToDouble(&transaction_->TRANSAMOUNT))
             transaction_->TRANSAMOUNT = 0;
         split->SPLITTRANSAMOUNT = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
         split->CATEGID = transaction_->CATEGID;
@@ -694,7 +692,8 @@ void mmTransDialog::activateSplitTransactionsDlg()
         double amount = Model_Splittransaction::instance().get_total(m_local_splits);
         if (transaction_type_->GetSelection() == DEF_TRANSFER && amount < 0)
             amount = - amount;
-        wxString dispAmount = CurrencyFormatter::float2String(amount);
+        Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
+        wxString dispAmount = Model_Currency::toString(amount, Model_Account::currency(account));
         textAmount_->SetValue(dispAmount);
         textAmount_->Enable(false);
     }
@@ -845,7 +844,7 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
             textAmount_->SetValue(amountStr);
         }
 
-        CurrencyFormatter::formatCurrencyToDouble(amountStr, transaction_->TRANSAMOUNT);
+        wxNumberFormatter::FromString(amountStr, &transaction_->TRANSAMOUNT);
 
         if (transaction_->TOACCOUNTID > 0)
         {
