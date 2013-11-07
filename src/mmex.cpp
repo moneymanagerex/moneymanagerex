@@ -33,7 +33,6 @@
 #include "filtertransdialog.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
-#include "mmCurrencyFormatter.h"
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"

@@ -25,7 +25,6 @@
 #include "reports/htmlbuilder.h"
 #include "billsdepositspanel.h"
 #include "reports/mmgraphincexpensesmonth.h"
-#include "mmCurrencyFormatter.h"
 #include <algorithm>
 
 #include "model/Model_Setting.h"

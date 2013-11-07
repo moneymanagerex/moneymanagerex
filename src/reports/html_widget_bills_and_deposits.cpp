@@ -1,7 +1,6 @@
 #include "billsdepositspanel.h"
 #include "htmlbuilder.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "html_widget_bills_and_deposits.h"
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Payee.h"
