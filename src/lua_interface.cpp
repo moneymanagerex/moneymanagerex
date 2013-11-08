@@ -18,8 +18,8 @@
 
 #include "lua_interface.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "mmOption.h"
+#include "model/Model_Currency.h"
 #include "dbwrapper.h"
 #include <wx/stdpaths.h>
 
@@ -496,11 +496,11 @@ void TLuaInterface::SetCurrencyFormat(lua_State* lua, double number, bool for_ed
 
     if (for_edit)
     {
-         number_string = CurrencyFormatter::float2String(number);
+        number_string = Model_Currency::toString(number);
     }
     else
     {
-        number_string = CurrencyFormatter::float2Money(number);
+        number_string = Model_Currency::toCurrency(number);
     }
 
     lua_pushstring(lua, number_string.ToUTF8());

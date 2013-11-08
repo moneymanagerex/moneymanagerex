@@ -18,7 +18,6 @@
 
 #include "htmlbuilder.h"
 #include "util.h"
-#include "mmCurrencyFormatter.h"
 #include "mmOption.h"
 #include "constants.h"
 #include "model/Model_Currency.h"
@@ -136,7 +135,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption
     this->endTableCell();
     html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
     double amount = 0;
-    if(CurrencyFormatter::formatCurrencyToDouble(value, amount))
+    if (wxNumberFormatter::FromString(value, &amount))
         this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
     else
         this->font_settings(font_size_);
@@ -148,7 +147,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols, double value, const bool color)
 {
-    this->addTotalRow(caption, cols, CurrencyFormatter::float2Money(value), color);
+    this->addTotalRow(caption, cols, Model_Currency::toCurrency(value), color);
 }
 
 void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
@@ -165,7 +164,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
         this->endTableCell();
         html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
         double amount = 0;
-        if(CurrencyFormatter::formatCurrencyToDouble(data[idx], amount))
+        if (wxNumberFormatter::FromString(data[idx], &amount))
             this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
         else
             this->font_settings(font_size_);
@@ -227,7 +226,7 @@ void mmHTMLBuilder::addMoneyCell(double amount, bool color)
 
 void mmHTMLBuilder::addMoneyCell(double amount, const wxString& color)
 {
-    wxString balance = CurrencyFormatter::float2Money(amount);
+    wxString balance = Model_Currency::toCurrency(amount);
     this->addTableCell(balance, true, true, true, color);
 }
 

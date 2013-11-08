@@ -18,7 +18,6 @@
 
 #include "maincurrencydialog.h"
 #include "currencydialog.h"
-#include "mmCurrencyFormatter.h"
 #include "constants.h"
 #include "util.h"
 #include "defs.h"
@@ -299,18 +298,18 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
     wxVariant var;
     currencyListBox_->GetValue(var, row, event.GetColumn());
     wxString value = var.GetString();
+    Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
 
     wxString calculated_mount = "";
     double conv_rate = curr_rate_;
     mmCalculator calc;
     if (calc.is_ok(value))
     {
-        calculated_mount = CurrencyFormatter::float2String(calc.get_result());
+        calculated_mount = Model_Currency::toString(calc.get_result(), currency);
         if (value != calculated_mount)
             currencyListBox_->SetValue(wxVariant(calculated_mount), row, BASE_RATE);
         calculated_mount.ToDouble(&conv_rate);
 
-        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
             currency->BASECONVRATE = conv_rate;
@@ -319,7 +318,7 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
     }
     else
     {
-        value = CurrencyFormatter::float2String(conv_rate);
+        value = Model_Currency::toString(conv_rate, currency);
         currencyListBox_->SetValue(wxVariant(value), row, BASE_RATE);
     }
 
