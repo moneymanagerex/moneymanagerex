@@ -219,6 +219,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\accountdialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\appstartdialog.cpp"
 				>
 			</File>
@@ -359,10 +363,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\mmCurrencyFormatter.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\reports\mmDateRange.cpp"
 				>
 			</File>
@@ -372,10 +372,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmcheckingpanel.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\mmcurrency.cpp"
 				>
 			</File>
 			<File
@@ -412,10 +408,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmreportspanel.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\newacctdialog.cpp"
 				>
 			</File>
 			<File
@@ -645,6 +637,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\accountdialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\appstartdialog.h"
 				>
 			</File>
@@ -793,10 +789,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\mmCurrencyFormatter.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\reports\mmDateRange.h"
 				>
 			</File>
@@ -806,10 +798,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmcheckingpanel.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\mmcurrency.h"
 				>
 			</File>
 			<File
@@ -850,10 +838,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmtextctrl.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\newacctdialog.h"
 				>
 			</File>
 			<File

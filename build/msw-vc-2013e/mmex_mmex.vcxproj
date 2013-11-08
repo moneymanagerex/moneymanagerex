@@ -169,11 +169,9 @@
     <ClCompile Include="..\..\src\lua_interface.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
     <ClCompile Include="..\..\src\mmCalculator.cpp" />
-    <ClCompile Include="..\..\src\mmCurrencyFormatter.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
     <ClCompile Include="..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\src\mmcheckingpanel.cpp" />
-    <ClCompile Include="..\..\src\mmcurrency.cpp" />
     <ClCompile Include="..\..\src\mmex.cpp" />
     <ClCompile Include="..\..\src\reports\mmgraphgenerator.cpp" />
     <ClCompile Include="..\..\src\reports\mmgraphincexpensesmonth.cpp" />
@@ -276,11 +274,9 @@
     <ClInclude Include="..\..\src\lua_interface.h" />
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
     <ClInclude Include="..\..\src\mmCalculator.h" />
-    <ClInclude Include="..\..\src\mmCurrencyFormatter.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
     <ClInclude Include="..\..\src\mmOption.h" />
     <ClInclude Include="..\..\src\mmcheckingpanel.h" />
-    <ClInclude Include="..\..\src\mmcurrency.h" />
     <ClInclude Include="..\..\src\mmex.h" />
     <ClInclude Include="..\..\src\reports\mmgraphgenerator.h" />
     <ClInclude Include="..\..\src\reports\mmgraphincexpensesmonth.h" />

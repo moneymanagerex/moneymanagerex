@@ -104,6 +104,7 @@ MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\src -DNOPCH $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.o \
+	mmex_accountdialog.o \
 	mmex_appstartdialog.o \
 	mmex_assetdialog.o \
 	mmex_assetspanel.o \
@@ -125,15 +126,12 @@ MMEX_OBJECTS =  \
 	mmex_lua_interface.o \
 	mmex_maincurrencydialog.o \
 	mmex_mmCalculator.o \
-	mmex_mmCurrencyFormatter.o \
 	mmex_mmOption.o \
 	mmex_mmcheckingpanel.o \
-	mmex_mmcurrency.o \
 	mmex_mmex.o \
 	mmex_mmhelppanel.o \
 	mmex_mmhomepagepanel.o \
 	mmex_mmreportspanel.o \
-	mmex_accountdialog.o \
 	mmex_optionsdialog.o \
 	mmex_paths.o \
 	mmex_payeedialog.o \
@@ -500,6 +498,9 @@ lua_strbuf.o: ../../lib/lua/src/strbuf.c
 mmex_aboutdialog.o: ../../src/aboutdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_accountdialog.o: ../../src/accountdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_appstartdialog.o: ../../src/appstartdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -563,16 +564,10 @@ mmex_maincurrencydialog.o: ../../src/maincurrencydialog.cpp
 mmex_mmCalculator.o: ../../src/mmCalculator.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_mmCurrencyFormatter.o: ../../src/mmCurrencyFormatter.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_mmOption.o: ../../src/mmOption.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmcheckingpanel.o: ../../src/mmcheckingpanel.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mmcurrency.o: ../../src/mmcurrency.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmex.o: ../../src/mmex.cpp
@@ -585,9 +580,6 @@ mmex_mmhomepagepanel.o: ../../src/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmreportspanel.o: ../../src/mmreportspanel.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_accountdialog.o: ../../src/accountdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_optionsdialog.o: ../../src/optionsdialog.cpp

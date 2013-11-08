@@ -157,10 +157,8 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_lua_interface.o \
 	mmex_tests_maincurrencydialog.o \
 	mmex_tests_mmCalculator.o \
-	mmex_tests_mmCurrencyFormatter.o \
 	mmex_tests_mmOption.o \
 	mmex_tests_mmcheckingpanel.o \
-	mmex_tests_mmcurrency.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
@@ -701,16 +699,10 @@ mmex_tests_maincurrencydialog.o: ../../../src/maincurrencydialog.cpp
 mmex_tests_mmCalculator.o: ../../../src/mmCalculator.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_mmCurrencyFormatter.o: ../../../src/mmCurrencyFormatter.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_mmOption.o: ../../../src/mmOption.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmcheckingpanel.o: ../../../src/mmcheckingpanel.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_mmcurrency.o: ../../../src/mmcurrency.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex.o: ../../../src/mmex.cpp
