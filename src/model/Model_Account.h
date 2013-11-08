@@ -121,10 +121,12 @@ public:
     }
     bool remove(int id)
     {
+        this->Begin();
         for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
             Model_Checking::instance().remove(r.TRANSID);
         for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
             Model_Billsdeposits::instance().remove(r.BDID);
+        this->Commit();
 
         return this->remove(id, db_);
     }

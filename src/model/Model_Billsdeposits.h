@@ -190,8 +190,10 @@ public:
     /** Remove the Data record including any splits associated with id*/
     bool remove(int id)
     {
+        this->Begin();
         for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
             Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
+        this->Commit();
         return this->remove(id, db_);
     }
 

@@ -136,6 +136,10 @@ public:
     }
     bool remove(int id)
     {
+        this->Begin();
+        for (const auto& r : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)))
+            Model_Splittransaction::instance().remove(r.SPLITTRANSID);
+        this->Commit();
         return this->remove(id, db_);
     }
 public:
