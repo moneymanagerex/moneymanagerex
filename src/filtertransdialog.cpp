@@ -279,10 +279,10 @@ void mmFilterTransactionsDialog::CreateControls()
                                           wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(amountRangeCheckBox_, flags);
 
-    amountMinEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, ""
+    amountMinEdit_ = new mmTextCtrl( itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmDoubleValidator() );
-    amountMaxEdit_ = new wxTextCtrl( itemPanel, wxID_ANY, ""
+    amountMaxEdit_ = new mmTextCtrl( itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmDoubleValidator() );
 
@@ -409,7 +409,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         if (!minamt.IsEmpty())
         {
             double amount;
-            if (!wxNumberFormatter::FromString(minamt, &amount) || (amount < 0.0))
+            if (!wxNumberFormatter::FromString(minamt, &amount))
             {
                 mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
                 return;
@@ -419,7 +419,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         if (!maxamt.IsEmpty())
         {
             double amount;
-            if (!wxNumberFormatter::FromString(maxamt, &amount) || (amount < 0.0))
+            if (!wxNumberFormatter::FromString(maxamt, &amount))
             {
                 mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
                 return;
@@ -591,7 +591,7 @@ wxString mmFilterTransactionsDialog::userStatusStr() const
 double mmFilterTransactionsDialog::getAmountMin()
 {
     double amount = 0;
-    if (!wxNumberFormatter::FromString(amountMinEdit_->GetValue(), &amount) || (amount < 0.0))
+    if (!wxNumberFormatter::FromString(amountMinEdit_->GetValue(), &amount))
         amount = 0;
 
     return amount;
@@ -600,7 +600,7 @@ double mmFilterTransactionsDialog::getAmountMin()
 double mmFilterTransactionsDialog::getAmountMax()
 {
     double amount = 0;
-    if (!wxNumberFormatter::FromString(amountMaxEdit_->GetValue(), &amount) || (amount < 0.0))
+    if (!wxNumberFormatter::FromString(amountMaxEdit_->GetValue(), &amount))
         amount = 0;
 
     return amount;

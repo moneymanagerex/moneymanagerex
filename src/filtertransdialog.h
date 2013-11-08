@@ -22,7 +22,7 @@
 #endif
 #include <wx/dialog.h>
 #include "defs.h"
-class mmDateRange;
+#include "mmtextctrl.h"
 
 class mmFilterTransactionsDialog: public wxDialog
 {
@@ -201,8 +201,8 @@ private:
     wxCheckBox* cbTypeDeposit_;
     wxCheckBox* cbTypeTransfer_;
     wxCheckBox* amountRangeCheckBox_;
-    wxTextCtrl* amountMinEdit_;
-    wxTextCtrl* amountMaxEdit_;
+    mmTextCtrl* amountMinEdit_;
+    mmTextCtrl* amountMaxEdit_;
     wxCheckBox* notesCheckBox_;
     wxTextCtrl* notesEdit_;
     wxRadioBox* m_radio_box_;
