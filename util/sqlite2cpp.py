@@ -505,8 +505,7 @@ struct DB_Table_%s : public DB_Table
         Data_Set result;
         try
         {
-            wxSQLite3ResultSet q = db->ExecuteQuery(this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC ")
-                + "," + PRIMARY::name());
+            wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
             wxLogDebug(q.GetSQL());
             while(q.NextRow())
