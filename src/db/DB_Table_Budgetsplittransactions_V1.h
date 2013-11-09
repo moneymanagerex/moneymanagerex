@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-09 10:04:32.192407.
+ *          AUTO GENERATED at 2013-11-09 12:52:32.249425.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -66,9 +66,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
     {
         try
         {
-
             db->ExecuteUpdate("CREATE INDEX IDX_BUDGETSPLITTRANSACTIONS_TRANSID ON BUDGETSPLITTRANSACTIONS_V1(TRANSID)");
-
         }
         catch(const wxSQLite3Exception &e) 
         { 

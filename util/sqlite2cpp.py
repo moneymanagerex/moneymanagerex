@@ -126,12 +126,10 @@ struct DB_Table_%s : public DB_Table
     bool ensure_index(wxSQLite3Database* db)
     {
         try
-        {
-'''
+        {'''
         for i in self._index:
             s += '''
-            db->ExecuteUpdate("%s");
-''' % (i.replace('\n', ''))
+            db->ExecuteUpdate("%s");''' % (i.replace('\n', ''))
 
         s += '''
         }
