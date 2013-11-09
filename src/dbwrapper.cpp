@@ -123,29 +123,16 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
 
     if (err==SQLITE_OK)
     {
-        //Try if db selectable
-        try
-        {
-            db->ExecuteScalar("select count(*) from  sqlite_master where type='table'");
-        }
-        catch (const wxSQLite3Exception &e)
-        {
-            err = e.GetExtendedErrorCode();
-            errStr = e.GetMessage();
-        }
 
-        if (err==SQLITE_OK)
-        {
-            //timeout 2 sec
-            db->SetBusyTimeout(2000);
+        //timeout 2 sec
+        db->SetBusyTimeout(2000);
 
-            //TODO oblolete code
-            if (err!=SQLITE_OK)
-            {
-                wxLogError(wxString::Format(_("Write error: %s"), errStr));
-            }
-            return (db);
+        //TODO oblolete code
+        if (err!=SQLITE_OK)
+        {
+            wxLogError(wxString::Format(_("Write error: %s"), errStr));
         }
+        return (db);
     }
     db->Close();
     db.reset();
