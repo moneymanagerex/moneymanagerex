@@ -44,7 +44,7 @@ public:
 public:
     wxArrayString all_account_names()
     {
-        wxSortedArrayString accounts;
+        wxArrayString accounts;
         for (const auto &account : this->all(COL_ACCOUNTNAME))
         {
             accounts.Add(account.ACCOUNTNAME);
@@ -53,7 +53,7 @@ public:
     }
     wxArrayString all_checking_account_names()
     {
-        wxSortedArrayString accounts;
+        wxArrayString accounts;
         for (const auto &account : this->all(COL_ACCOUNTNAME))
         {
             if (type(account) == INVESTMENT) continue;

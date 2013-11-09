@@ -1648,14 +1648,12 @@ int TransactionListCtrl::DestinationAccountID()
 {
     const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
     wxString source_name = source_account->ACCOUNTNAME;
-    wxString headerMsg = _("Moving Transaction from ") + source_name + _(" to...");
+    wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), source_name);
 
-    wxSortedArrayString accountArray;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        if (m_cp->m_AccountID != account.ACCOUNTID) accountArray.Add(account.ACCOUNTNAME);
-    }
-    wxSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accountArray);
+    wxSingleChoiceDialog scd(this
+        , _("Select the destination Account ")
+        , headerMsg 
+        , Model_Account::instance().all_checking_account_names());
 
     int dest_account_id = -1;
     if (scd.ShowModal() == wxID_OK)
@@ -1673,9 +1671,10 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     if (m_selectedIndex < 0) return;
 
     int toAccountID = DestinationAccountID();
-    if (toAccountID != -1)
+    if (toAccountID > 0)
     {
         Model_Checking::Full_Data& tran = m_cp->m_trans[m_selectedIndex];
+
         if (m_cp->m_AccountID == tran.ACCOUNTID)
             tran.ACCOUNTID = toAccountID;
         if (m_cp->m_AccountID == tran.TOACCOUNTID)

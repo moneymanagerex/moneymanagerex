@@ -530,10 +530,10 @@ void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
 {
-    wxSortedArrayString accountArray;
-    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
-
-    wxSingleChoiceDialog scd(this, _("Choose Bank Account or Term Account"), _("Select Account"), accountArray);
+    wxSingleChoiceDialog scd(this
+        , _("Choose Bank Account or Term Account")
+        , _("Select Account")
+        , Model_Account::instance().all_checking_account_names());
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
@@ -547,10 +547,8 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 {
     if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
-        wxSortedArrayString accountArray;
-        for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
-
-        wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), accountArray);
+        wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
+            , Model_Account::instance().all_checking_account_names());
         if (scd.ShowModal() == wxID_OK)
         {
             wxString acctName = scd.GetStringSelection();
