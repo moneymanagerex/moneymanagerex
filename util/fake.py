@@ -1,6 +1,7 @@
 import sys
 import random
 import sqlite3
+from datetime import date, timedelta
 
 conn = sqlite3.connect(sys.argv[1])
 curs = conn.cursor()
@@ -17,6 +18,8 @@ all_category = [(c[0], c[1]) for c in curs.fetchall()]
 all_type = ("Withdrawal", "Deposit", "Transfer")
 all_status = ("V", "R", "N", "F", "D")
 
+today = date.today()
+
 for x in range(1, 10000):
     account_id = all_account[random.randint(0, len(all_account) -1)]
     payee_id = all_payee[random.randint(0, len(all_payee) -1)]
@@ -24,9 +27,10 @@ for x in range(1, 10000):
     category = all_category[random.randint(0, len(all_category) -1)]
     amount = 1000 * random.random()
     type = all_status[random.randint(0, len(all_status) -1)]
+    transdate = today + timedelta(days = random.randint(-1000,10)) 
     
     sql = '''INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT)
-    VALUES(%d, -1, %d, "%s", %f, "%s", "0", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, type, category[0], category[1], "2013-10-11", amount)
+    VALUES(%d, -1, %d, "%s", %f, "%s", "0", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, type, category[0], category[1], transdate, amount)
     curs.execute(sql)
     
 conn.commit()
