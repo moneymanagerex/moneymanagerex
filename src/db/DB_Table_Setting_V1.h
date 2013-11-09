@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-09 14:56:02.079520.
+ *          AUTO GENERATED at 2013-11-09 18:16:34.495276.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -31,6 +31,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
     Cache cache_;
     ~DB_Table_SETTING_V1() 
     {
+        wxLogDebug("%s : (cache %ld, hit %ld, miss %ld, skip %ld)", this->name(), this->cache_.size(), this->hit_, this->miss_, this->skip_);
         destroy_cache();
     }
     

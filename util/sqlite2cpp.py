@@ -88,6 +88,7 @@ struct DB_Table_%s : public DB_Table
     Cache cache_;
     ~DB_Table_%s() 
     {
+        wxLogDebug("%%s : (cache %%ld, hit %%ld, miss %%ld, skip %%ld)", this->name(), this->cache_.size(), this->hit_, this->miss_, this->skip_);
         destroy_cache();
     }
     
