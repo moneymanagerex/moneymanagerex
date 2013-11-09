@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-09 19:52:29.764977.
+ *          AUTO GENERATED at 2013-11-09 20:37:43.250509.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -215,7 +215,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 
     DB_Table_SUBCATEGORY_V1() 
     {
-        query_ = "SELECT SUBCATEGID, SUBCATEGNAME, CATEGID FROM SUBCATEGORY_V1 ";
+        query_ = "SELECT * FROM SUBCATEGORY_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/

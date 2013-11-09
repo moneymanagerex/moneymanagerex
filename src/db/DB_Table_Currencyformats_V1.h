@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-09 19:52:29.764977.
+ *          AUTO GENERATED at 2013-11-09 20:37:43.250509.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -304,7 +304,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 
     DB_Table_CURRENCYFORMATS_V1() 
     {
-        query_ = "SELECT CURRENCYID, CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, UNIT_NAME, CENT_NAME, SCALE, BASECONVRATE, CURRENCY_SYMBOL FROM CURRENCYFORMATS_V1 ";
+        query_ = "SELECT * FROM CURRENCYFORMATS_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
