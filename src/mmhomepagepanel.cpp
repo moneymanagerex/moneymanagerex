@@ -46,6 +46,7 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent,
             long style,
             const wxString& name )
         : frame_(wxGetApp().m_frame)
+        , countFollowUp_(0)
 {
     Create(parent, winid, pos, size, style, name);
     frame_->setHomePageActive();
@@ -80,7 +81,6 @@ bool mmHomePagePanel::Create( wxWindow *parent,
     GetSizer()->SetSizeHints(this);
 
     createFrames();
-
 
     return TRUE;
 }
