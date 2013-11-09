@@ -96,6 +96,7 @@ mmCheckingPanel::mmCheckingPanel(
     , m_account(Model_Account::instance().get(accountID))
     , m_currency(Model_Account::currency(m_account))
 {
+    m_basecurrecyID = Model_Infotable::instance().GetBaseCurrencyId();
     Create(parent, winid, pos, size, style, name);
 }
 //----------------------------------------------------------------------------
@@ -561,9 +562,9 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     int toaccountId = tran.TOACCOUNTID;
     Model_Account::Data* account = Model_Account::instance().get(accountId);
     Model_Currency::Data* currency = Model_Account::currency(account);
-    int basecurrencyid = Model_Infotable::instance().GetBaseCurrencyId();
-    int currencyid = basecurrencyid;
-    int tocurrencyid = basecurrencyid;
+    
+    int currencyid = m_basecurrecyID;
+    int tocurrencyid = m_basecurrecyID;
 
     double amount = tran.TRANSAMOUNT;
     double convrate = 1.0, toconvrate = 1.0;
@@ -624,7 +625,7 @@ wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
     }
     else //For deposits and withdrawals calculates amount in base currency
     {
-        if (currencyid != basecurrencyid) //Show nothing if account currency is base
+        if (currencyid != m_basecurrecyID) //Show nothing if account currency is base
         {
             amountStr = wxString::Format( "%f4", amount);
             if (currency) amountStr = Model_Currency::toString(amount, currency);
@@ -1636,8 +1637,8 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
             topItemIndex_ = m_selectedIndex;
         EnsureVisible(topItemIndex_);
     }
-    //debuger
-    wxLogDebug("+trx id:%d | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
+    //debugger
+    //wxLogDebug("+trx id:%d | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
 
     m_cp->updateExtraTransactionData(m_selectedIndex);
 }

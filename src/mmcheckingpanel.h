@@ -218,6 +218,8 @@ private:
     mmFilterTransactionsDialog* transFilterDlg_;
 
     int currentView_;
+    int m_AccountID;
+    int m_basecurrecyID;
     wxDateTime quickFilterBeginDate_;
     wxDateTime quickFilterEndDate_;
     bool transFilterActive_;
@@ -226,7 +228,6 @@ private:
     double reconciled_balance_;
 
     TransactionListCtrl *m_listCtrlAccount;
-    int m_AccountID;
     Model_Account::Data* m_account;
     Model_Currency::Data* m_currency;
     wxScopedPtr<wxImageList> m_imageList;
