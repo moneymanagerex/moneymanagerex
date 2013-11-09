@@ -86,13 +86,15 @@ struct DB_Table_%s : public DB_Table
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     Cache cache_;
+
+    /** Destructor: clears any data records stored in memory */
     ~DB_Table_%s() 
     {
         wxLogDebug("%%s : (cache %%ld, hit %%ld, miss %%ld, skip %%ld)", this->name(), this->cache_.size(), this->hit_, this->miss_, this->skip_);
         destroy_cache();
     }
     
-    /** Removes all table data stored in memory*/ 
+    /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
@@ -105,7 +107,6 @@ struct DB_Table_%s : public DB_Table
     bool ensure(wxSQLite3Database* db)
     {
         if (exists(db)) return true;
-        destroy_cache();
 
         try
         {
@@ -202,10 +203,11 @@ struct DB_Table_%s : public DB_Table
     }
     '''
         s += '''
-    /** Contains the table record for the table*/
+    /** Data is a single record in the database table*/
     struct Data
     {
         friend struct DB_Table_%s;
+        /** This is a instance pointer to itself in memory. */
         Self* view_;
     ''' % self._table.upper()
         for field in self._fields:
@@ -286,6 +288,7 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
 
+        /** Save the record instance in memory to the database. */
         bool save(wxSQLite3Database* db)
         {
             if (!view_ || !db) 
@@ -297,6 +300,7 @@ struct DB_Table_%s : public DB_Table
             return view_->save(this, db);
         }
 
+        /** Remove the record instance from memory and the database. */
         bool remove(wxSQLite3Database* db)
         {
             if (!view_ || !db) 
@@ -351,8 +355,9 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s +='''
-    /** Saves the Data record to the database.
-      * Either create a new record or update the existing record.
+    /**
+    * Saves the Data record to the database table.
+    * Either create a new record or update the existing record.
     */
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
@@ -397,7 +402,7 @@ struct DB_Table_%s : public DB_Table
     }
 ''' % (len(self._fields), self._primay_key, self._table)
         s +='''
-    /** Remove the Data record from the database and the memory table (cashe)*/
+    /** Remove the Data record from the database and the memory table (cache) */
     bool remove(int id, wxSQLite3Database* db)
     {
         if (id < 0) return false;
@@ -431,7 +436,7 @@ struct DB_Table_%s : public DB_Table
         return true;
     }
 
-    /** Remove the Data record from the database and the memory table (cashe)*/
+    /** Remove the Data record from the database and the memory table (cache) */
     bool remove(Self::Data* entity, wxSQLite3Database* db)
     {
         if (remove(entity->id(), db))
@@ -446,8 +451,9 @@ struct DB_Table_%s : public DB_Table
         
         s +='''
     
-    /** Search the memory table (Cache) for the data record.
-      * If not found in memory, search the database and update the cache.
+    /**
+    * Search the memory table (Cache) for the data record.
+    * If not found in memory, search the database and update the cache.
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
@@ -497,8 +503,9 @@ struct DB_Table_%s : public DB_Table
     }
 '''
         s +='''
-    /** Return a list of Data records (Data_Set) derived directly from the database.
-      * The Data_Set is sorted based on the column number.
+    /**
+    * Return a list of Data records (Data_Set) derived directly from the database.
+    * The Data_Set is sorted based on the column number.
     */
     Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
