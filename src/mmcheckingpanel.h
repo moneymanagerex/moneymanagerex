@@ -142,8 +142,6 @@ private:
     /* Sort Columns */
     void OnColClick(wxListEvent& event);
 
-    // Called when moving a transaction to a new account.
-    int DestinationAccountID();
     //The topmost visible item
     long topItemIndex_;
 };

@@ -1081,7 +1081,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
     menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
-    if (hide_menu_item || (Model_Account::checking_account_num() < 2)
+    if (hide_menu_item || Model_Checking::type(tran) == Model_Checking::TRANSFER || (Model_Account::checking_account_num() < 2)
         || Model_Checking::type(&tran) == Model_Checking::TRANSFER)
         menu.Enable(MENU_TREEPOPUP_MOVE, false);
     menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
@@ -1643,16 +1643,17 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     m_cp->updateExtraTransactionData(m_selectedIndex);
 }
 
-//  Called when moving a transaction to a new account.
-int TransactionListCtrl::DestinationAccountID()
+void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
 {
+    if (m_selectedIndex < 0) return;
+
     const Model_Account::Data* source_account = Model_Account::instance().get(m_cp->m_AccountID);
     wxString source_name = source_account->ACCOUNTNAME;
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), source_name);
 
     wxSingleChoiceDialog scd(this
         , _("Select the destination Account ")
-        , headerMsg 
+        , headerMsg
         , Model_Account::instance().all_checking_account_names());
 
     int dest_account_id = -1;
@@ -1660,26 +1661,13 @@ int TransactionListCtrl::DestinationAccountID()
     {
         wxString dest_account_name = scd.GetStringSelection();
         Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
-        dest_account_id = dest_account->ACCOUNTID;
-    }
+        if (dest_account)
+            dest_account_id = dest_account->ACCOUNTID;
+        else
+            return;
 
-    return dest_account_id;
-}
-
-void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
-{
-    if (m_selectedIndex < 0) return;
-
-    int toAccountID = DestinationAccountID();
-    if (toAccountID > 0)
-    {
         Model_Checking::Full_Data& tran = m_cp->m_trans[m_selectedIndex];
-
-        if (m_cp->m_AccountID == tran.ACCOUNTID)
-            tran.ACCOUNTID = toAccountID;
-        if (m_cp->m_AccountID == tran.TOACCOUNTID)
-            tran.TOACCOUNTID = toAccountID;
-
+        tran.ACCOUNTID = dest_account_id;
         Model_Checking::instance().save(&tran);
         refreshVisualList();
     }
