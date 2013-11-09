@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-04 10:37:17.703101.
+ *          AUTO GENERATED at 2013-11-09 10:04:32.192407.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -50,6 +50,23 @@ struct DB_Table_STOCK_V1 : public DB_Table
         try
         {
             db->ExecuteUpdate("CREATE TABLE STOCK_V1(STOCKID integer primary key, HELDAT integer , PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("STOCK_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        this->ensure_index(db);
+
+        return true;
+    }
+
+    bool ensure_index(wxSQLite3Database* db)
+    {
+        try
+        {
+
         }
         catch(const wxSQLite3Exception &e) 
         { 

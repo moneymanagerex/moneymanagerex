@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-04 10:37:17.703101.
+ *          AUTO GENERATED at 2013-11-09 10:04:32.192407.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -50,6 +50,23 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         try
         {
             db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL, AMOUNT numeric NOT NULL)");
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("BUDGETTABLE_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        this->ensure_index(db);
+
+        return true;
+    }
+
+    bool ensure_index(wxSQLite3Database* db)
+    {
+        try
+        {
+
         }
         catch(const wxSQLite3Exception &e) 
         { 

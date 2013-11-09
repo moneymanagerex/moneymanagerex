@@ -30,6 +30,17 @@ def _table_info(cursor, name):
         'pk': field[5]     # undocumented
         } for field in cursor.fetchall()]
 
+def get_index_list(cursor, tbl_name):
+    "Returns a list of table names in the current database."
+    # Skip the sqlite_sequence system table used for autoincrement key
+    # generation.
+    cursor.execute("""
+        SELECT tbl_name, sql FROM sqlite_master
+        WHERE type='index' AND name NOT LIKE 'sqlite_autoindex_%%' AND tbl_name = '%s'
+        ORDER BY name""" % tbl_name)
+    return [row[1] for row in cursor.fetchall()]
+
+
 base_data_types_reverse = {
     'TEXT': 'wxString',
     'NUMERIC': 'double',
@@ -47,10 +58,11 @@ base_data_types_function = {
 }
 
 class DB_Table:
-    def __init__(self, table, fields):
+    def __init__(self, table, fields, index):
         self._table = table
         self._fields = fields
         self._primay_key = [field['name'] for field in self._fields if field['pk']][0]
+        self._index = index
 
     def generate_class(self, header, sql):
         fp = open('DB_Table_' + self._table.title() + '.h', 'w')
@@ -104,9 +116,34 @@ struct DB_Table_%s : public DB_Table
             return false;
         }
 
+        this->ensure_index(db);
+
         return true;
     }
 ''' % (sql.replace('\n', ''), self._table)
+
+        s += '''
+    bool ensure_index(wxSQLite3Database* db)
+    {
+        try
+        {
+'''
+        for i in self._index:
+            s += '''
+            db->ExecuteUpdate("%s");
+''' % (i.replace('\n', ''))
+
+        s += '''
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+            return false;
+        }
+
+        return true;
+    }
+''' % (self._table)
 
         for field in self._fields:
             s += '''
@@ -676,7 +713,8 @@ if __name__ == '__main__':
     all_fields = set()
     for table, sql in get_table_list(cur):
         fields = _table_info(cur, table)
-        view = DB_Table(table, fields)
+        index = get_index_list(cur, table)
+        view = DB_Table(table, fields, index)
         view.generate_class(header, sql)
         for field in fields:
             all_fields.add(field['name'])

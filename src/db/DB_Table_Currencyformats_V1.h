@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-04 10:37:17.703101.
+ *          AUTO GENERATED at 2013-11-09 10:04:32.192407.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -50,6 +50,23 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         try
         {
             db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS_V1(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE COLLATE NOCASE NOT NULL UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, UNIT_NAME TEXT COLLATE NOCASE, CENT_NAME TEXT COLLATE NOCASE, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT)");
+        }
+        catch(const wxSQLite3Exception &e) 
+        { 
+            wxLogError("CURRENCYFORMATS_V1: Exception %s", e.GetMessage().c_str());
+            return false;
+        }
+
+        this->ensure_index(db);
+
+        return true;
+    }
+
+    bool ensure_index(wxSQLite3Database* db)
+    {
+        try
+        {
+
         }
         catch(const wxSQLite3Exception &e) 
         { 
