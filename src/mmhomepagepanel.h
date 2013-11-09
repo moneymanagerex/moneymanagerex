@@ -94,6 +94,7 @@ private:
     wxString getStatWidget();
     wxString getCalendarWidget();
     wxString displayGrandTotals(double& tBalance);
+    int countFollowUp_, total_transactions_;
 };
 
 #endif

@@ -201,8 +201,10 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
     //TODO: mmIniOptions::instance().ignoreFutureTransactions_
 
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    this->total_transactions_ = transactions.size();
     for (const auto& trx : transactions)
     {
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) ++this->countFollowUp_;
         if (Model_Checking::status(trx) != Model_Checking::VOID_)
         {
             double amount = (Model_Checking::type(trx) == Model_Checking::DEPOSIT ? trx.TRANSAMOUNT : -trx.TRANSAMOUNT);
@@ -466,24 +468,21 @@ wxString mmHomePagePanel::getCalendarWidget()
 wxString mmHomePagePanel::getStatWidget()
 {
     mmHTMLBuilder hb;
-    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
-    int countFollowUp = 0, total_transactions = transactions.size();
-    for (const auto &trx : transactions) {if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) countFollowUp++;}
 
     hb.startTable("100%");
     hb.addTableHeaderRow(_("Transaction Statistics"), 2);
 
-    if (countFollowUp > 0)
+    if (this->countFollowUp_ > 0)
     {
         hb.startTableRow();
         hb.addTableCell(_("Follow Up On Transactions: "));
-        hb.addTableCell(wxString::Format("%d", countFollowUp), true, true, true);
+        hb.addTableCell(wxString::Format("%d", this->countFollowUp_), true, true, true);
         hb.endTableRow();
     }
 
     hb.startTableRow();
     hb.addTableCell( _("Total Transactions: "));
-    hb.addTableCell(wxString::Format("%d", total_transactions), true, true, true);
+    hb.addTableCell(wxString::Format("%d", this->total_transactions_), true, true, true);
     hb.endTableRow();
     hb.endTable();
 
