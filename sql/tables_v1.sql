@@ -162,6 +162,7 @@ STOCKID integer primary key
 , VALUE numeric
 , COMMISSION numeric
 );
+CREATE INDEX IDX_STOCK_HELDAT ON STOCK_V1(HELDAT);
 
 
 -- Describe SUBCATEGORY_V1
