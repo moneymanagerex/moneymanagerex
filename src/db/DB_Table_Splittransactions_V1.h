@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-09 12:52:32.249425.
+ *          AUTO GENERATED at 2013-11-09 14:56:02.079520.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -355,7 +355,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         if (id < 0) 
         {
             ++ skip_;
-            wxLogDebug("%s :%d SKIP (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
             return 0;
         }
         for(Cache::reverse_iterator it = cache_.rbegin(); it != cache_.rend(); ++ it)
@@ -364,13 +363,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             if (entity->id() == id) 
             {
                 ++ hit_;
-                wxLogDebug("%s :%d HIT (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
                 return entity;
             }
         }
         
         ++ miss_;
-        wxLogDebug("%s :%d MISS (hit %ld, miss %ld, skip %ld)", this->name(), id, this->hit_, this->miss_, this->skip_);
         Self::Data* entity = 0;
         wxString where = wxString::Format(" WHERE %s = ?", PRIMARY::name().c_str());
         try
