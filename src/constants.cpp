@@ -82,11 +82,11 @@ wxString mmex::getProgramCopyright()
 
 wxString mmex::getProgramWebSite()
 {
-    return "http://codelathe.com/mmex";
+    return "http://www.codelathe.com/mmex";
 }
 wxString mmex::getProgramForum()
 {
-    return "http://codelathe.com/forum";
+    return "http://www.codelathe.com/forum";
 }
 wxString mmex::getProgramFacebookSite()
 {
