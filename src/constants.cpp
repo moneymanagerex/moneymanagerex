@@ -109,6 +109,11 @@ wxString mmex::getProgramDescription()
                 << wxVERSION_STRING << "\n"
                 << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
                 << wxSQLITE3_VERSION_STRING << "\n"
-                << LUA_VERSION;
+                << LUA_VERSION << "\n";
+    #if defined(__clang__)
+        description << __VERSION__;
+    #elif defined(__GNUC__) || defined(__GNUG__)
+        description << __VERSION__;
+    #endif
     return description;
 }
