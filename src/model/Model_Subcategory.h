@@ -22,6 +22,8 @@
 #include "Model.h"
 #include "db/DB_Table_Subcategory_V1.h"
 #include "Model_Category.h"
+#include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
 
 class Model_Subcategory : public Model, public DB_Table_SUBCATEGORY_V1
 {
