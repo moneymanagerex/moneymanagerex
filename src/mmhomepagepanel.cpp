@@ -303,7 +303,7 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
     return hb.getHTMLinTableWraper();
 }
 
-//TODO: temporary solution, this code usefull for income/expences report
+// this code usefull for income/expences report
 void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
                                              , mmDateRange* date_range
                                              , int accountID
@@ -311,7 +311,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
                                              , bool group_by_month) const
 {
     //Initialization
-    //bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
     std::pair<double, double> incomeExpensesPair;
     incomeExpensesPair.first = 0;
     incomeExpensesPair.second = 0;
@@ -329,6 +329,11 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     {
         if (pBankTransaction.ACCOUNTID != accountID && pBankTransaction.TOACCOUNTID != accountID)
             continue; // skip
+        if (ignoreFuture)
+        {
+            if (Model_Checking::TRANSDATE(pBankTransaction).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+                continue; //skip future dated transactions
+        }
 
         // We got this far, get the currency conversion rate for this account
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
