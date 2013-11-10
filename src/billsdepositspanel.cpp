@@ -711,7 +711,7 @@ void mmBillsDepositsPanel::sortTable()
         break;
     case COL_FREQUENCY:
         std::stable_sort(bills_.begin(), bills_.end()
-            , [](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
+            , [](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
         {
             wxString x_text = mmBillsDepositsPanel::GetFrequency(&x);
             wxString y_text = mmBillsDepositsPanel::GetFrequency(&y);
@@ -720,7 +720,7 @@ void mmBillsDepositsPanel::sortTable()
         break;
     case COL_DAYS:
         std::stable_sort(bills_.begin(), bills_.end()
-            , [](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
+            , [](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
         {
             bool x_useText = false;
             wxString x_text = mmBillsDepositsPanel::GetRemainingDays(&x);
