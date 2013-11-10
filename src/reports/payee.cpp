@@ -202,30 +202,32 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 
-        if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
-            payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
-        else
-            payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
-
-        //TODO: some split transaction may be withdrawal some deposit for one transaction
-        /*if (trx.CATEGID > -1)
+        if (trx.CATEGID > -1)
         {
-            if (trx->value(-1) >= 0)
-                payeeStats[trx.PAYEEID].first += trx->value(-1) * convRate;
+            if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
+                payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
             else
-                payeeStats[trx.PAYEEID].second += trx->value(-1) * convRate;
+                payeeStats[trx.PAYEEID].second -= trx.TRANSAMOUNT * convRate;
         }
         else
         {
-            mmSplitTransactionEntries* splits = trx->splitEntries_;
-            trx->getSplitTransactions(splits);
-            for (const auto& entry : splits->entries_)
+            for (const auto& entry : Model_Checking::splittransaction(trx))
             {
-                if (trx->value(-1) * entry->splitAmount_ > 0)
-                    payeeStats[trx.PAYEEID].first -= entry->splitAmount_ * convRate;
+                if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
+                {
+                    if (entry.SPLITTRANSAMOUNT >= 0)
+                        payeeStats[trx.PAYEEID].first += entry.SPLITTRANSAMOUNT * convRate;
+                    else
+                        payeeStats[trx.PAYEEID].second += entry.SPLITTRANSAMOUNT * convRate;
+                }
                 else
-                    payeeStats[trx.PAYEEID].second -= entry->splitAmount_ * convRate;
+                {
+                    if (entry.SPLITTRANSAMOUNT < 0)
+                        payeeStats[trx.PAYEEID].first -= entry.SPLITTRANSAMOUNT * convRate;
+                    else
+                        payeeStats[trx.PAYEEID].second -= entry.SPLITTRANSAMOUNT * convRate;
+                }
             }
-        }*/
+        }
     }
 }
