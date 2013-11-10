@@ -129,7 +129,8 @@ public:
         r->save(this->db_);
         return r->id();
     }
-    int save(Data_Set& rows)
+    template<class DATA_SET>
+    int save(DATA_SET& rows)
     {
         this->Begin();
         for (auto& r : rows) this->save(&r);

@@ -1254,10 +1254,8 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     else
     {
         for (auto& tran: m_cp->m_trans)
-        {
             tran.STATUS = status;
-            Model_Checking::instance().save(&tran);
-        }
+        Model_Checking::instance().save(m_cp->m_trans);
     }
 
     refreshVisualList();
