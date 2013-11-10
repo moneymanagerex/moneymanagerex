@@ -198,13 +198,18 @@ wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, doubl
 
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
 {
-    //TODO: mmIniOptions::instance().ignoreFutureTransactions_
+    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
 
     Model_Checking::Data_Set transactions = Model_Checking::instance().all();
     this->total_transactions_ = transactions.size();
     for (const auto& trx : transactions)
     {
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) ++this->countFollowUp_;
+        if (ignoreFuture)
+        {
+            if (Model_Checking::TRANSDATE(trx).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+                continue; //skip future dated transactions
+        }
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)++this->countFollowUp_;
         if (Model_Checking::status(trx) != Model_Checking::VOID_)
         {
             double amount = (Model_Checking::type(trx) == Model_Checking::DEPOSIT ? trx.TRANSAMOUNT : -trx.TRANSAMOUNT);
