@@ -222,13 +222,13 @@ public:
         for (const auto& record : all_categoris)
         {
             Model_Category::Data* category = Model_Category::instance().create();
-            category->CATEGNAME = record.first;
+            category->CATEGNAME = wxGetTranslation(record.first);
             Model_Category::instance().save(category);
             for (const auto& sub_record : record.second)
             {
                 Model_Subcategory::Data* sub_category = Model_Subcategory::instance().create();
                 sub_category->CATEGID = category->CATEGID;
-                sub_category->SUBCATEGNAME = sub_record;
+                sub_category->SUBCATEGNAME = wxGetTranslation(sub_record);
                 Model_Subcategory::instance().save(sub_category);
             }
         }
