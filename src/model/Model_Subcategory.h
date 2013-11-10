@@ -99,10 +99,12 @@ public:
         return this->remove(id, db_);
     }
 public:
-    static bool is_used(int /* id */)
+    static bool is_used(int id)
     {
-        // TODO
-        return true;
+        int cat_id = instance().get(id)->CATEGID;
+        Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(cat_id), Model_Billsdeposits::SUBCATEGID(id));
+        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::CATEGID(cat_id), Model_Checking::SUBCATEGID(id));
+        return !deposits.empty() || !trans.empty();
     }
 };
 
