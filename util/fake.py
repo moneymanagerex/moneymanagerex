@@ -6,7 +6,7 @@ from datetime import date, timedelta
 conn = sqlite3.connect(sys.argv[1])
 curs = conn.cursor()
 
-curs.execute("select * from ACCOUNTLIST_V1")
+curs.execute("select * from ACCOUNTLIST_V1 where ACCOUNTTYPE != 'Investment'")
 all_account = [account[0] for account in curs.fetchall()]
 
 curs.execute("select * from PAYEE_V1")
