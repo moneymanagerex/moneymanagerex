@@ -779,9 +779,8 @@ void mmCheckingPanel::DeleteViewedTransactions()
 {
     for (const auto& tran: this->m_trans)
     {
+        // remove also removes any split transactions
         Model_Checking::instance().remove(tran.TRANSID);
-        // TODO remove split
-        // CHECK
         if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
 }
