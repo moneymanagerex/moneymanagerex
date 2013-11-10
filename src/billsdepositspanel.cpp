@@ -711,19 +711,19 @@ void mmBillsDepositsPanel::sortTable()
         break;
     case COL_FREQUENCY:
         std::stable_sort(bills_.begin(), bills_.end()
-            , [](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
+            , [&](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
         {
-            wxString x_text = mmBillsDepositsPanel::GetFrequency(&x);
-            wxString y_text = mmBillsDepositsPanel::GetFrequency(&y);
+            wxString x_text = this->GetFrequency(&x);
+            wxString y_text = this->GetFrequency(&y);
             return x_text < y_text;
         });
         break;
     case COL_DAYS:
         std::stable_sort(bills_.begin(), bills_.end()
-            , [](const Model_Billsdeposits::Full_Data& x, const Model_Billsdeposits::Full_Data& y)
+            , [&](const Model_Billsdeposits::Data& x, const Model_Billsdeposits::Data& y)
         {
             bool x_useText = false;
-            wxString x_text = mmBillsDepositsPanel::GetRemainingDays(&x);
+            wxString x_text = this->GetRemainingDays(&x);
             long x_num = 0;
             if (isdigit(x_text[0]))
             {
@@ -734,9 +734,9 @@ void mmBillsDepositsPanel::sortTable()
             }
             else
                 x_useText = true;
-            atoi(x_text);
+
             bool y_useText = false;
-            wxString y_text = mmBillsDepositsPanel::GetRemainingDays(&y);
+            wxString y_text = this->GetRemainingDays(&y);
             long y_num = 0;
             if (isdigit(y_text[0]))
             {
