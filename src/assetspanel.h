@@ -60,7 +60,6 @@ class mmAssetsPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
 public:
-// TODO
     enum EColumn
     {
         COL_NAME = 0,
