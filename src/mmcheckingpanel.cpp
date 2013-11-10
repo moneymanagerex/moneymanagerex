@@ -1133,7 +1133,6 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_MARKDELETE, _("Move to Trash"));
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKDELETE, false);
 
-    //TODO: how to set value???
     wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted") : _("Show Deleted");
     menu.AppendCheckItem(MENU_TREEPOPUP_SHOWTRASH, menu_item_label);
 
