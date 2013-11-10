@@ -2517,6 +2517,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             m_db = mmDBWrapper::Open(fileName, password);
             password_ = password;
 			InitializeModelTables();
+            // Populate category and curency tables with default values
+            Model_Category::instance().initialize();
+            Model_Currency::instance().initialize();
 			
             openDataBase(fileName);
 

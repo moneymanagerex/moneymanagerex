@@ -62,179 +62,177 @@ public:
     /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
-        if (!this->exists(this->db_))
-        {
-            this->ensure(this->db_);
-			Model_Subcategory::instance((this->db_));
-			std::vector < std::pair<wxString /*category*/, std::vector<wxString> > > all_categoris;
-			
-			//Bills
-			{
-				std::vector<wxString> sub_categoris;
-				sub_categoris.push_back(wxTRANSLATE("Telephone"));
-				sub_categoris.push_back(wxTRANSLATE("Electricity"));
-				sub_categoris.push_back(wxTRANSLATE("Gas"));
-				sub_categoris.push_back(wxTRANSLATE("Internet"));
-				sub_categoris.push_back(wxTRANSLATE("Rent"));
-				sub_categoris.push_back(wxTRANSLATE("Cable TV"));
-				sub_categoris.push_back(wxTRANSLATE("Water"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Bills"), sub_categoris));
-			}
-            
-            // Food
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Groceries"));
-                sub_categoris.push_back(wxTRANSLATE("Dining out"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Food"), sub_categoris));
-            }
-
-            // Leisure
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Movies"));
-                sub_categoris.push_back(wxTRANSLATE("Video Rental"));
-                sub_categoris.push_back(wxTRANSLATE("Magazines"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Leisure"), sub_categoris));
-            }
-
-            // Automobile
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Maintenance"));
-                sub_categoris.push_back(wxTRANSLATE("Gas"));
-                sub_categoris.push_back(wxTRANSLATE("Parking"));
-                sub_categoris.push_back(wxTRANSLATE("Registration"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Automobile"), sub_categoris));
-            }
-
-            // Education
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Books"));
-                sub_categoris.push_back(wxTRANSLATE("Tuition"));
-                sub_categoris.push_back(wxTRANSLATE("Others"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Education"), sub_categoris));
-            }
-
-            // Homeneeds 
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Clothing"));
-                sub_categoris.push_back(wxTRANSLATE("Furnishing"));
-                sub_categoris.push_back(wxTRANSLATE("Others"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Homeneeds"), sub_categoris));
-            }
-
-            // healthcare
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("health"));
-                sub_categoris.push_back(wxTRANSLATE("dental"));
-                sub_categoris.push_back(wxTRANSLATE("eyecare"));
-                sub_categoris.push_back(wxTRANSLATE("physician"));
-                sub_categoris.push_back(wxTRANSLATE("prescriptions"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("healthcare"), sub_categoris));
-            }
-
-            // Insurance 
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Auto"));
-                sub_categoris.push_back(wxTRANSLATE("Life"));
-                sub_categoris.push_back(wxTRANSLATE("Home"));
-                sub_categoris.push_back(wxTRANSLATE("Health"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Insurance"), sub_categoris));
-            }
-            
-            // Vacation 
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Travel"));
-                sub_categoris.push_back(wxTRANSLATE("Lodging"));
-                sub_categoris.push_back(wxTRANSLATE("Sightseeing"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Vacation"), sub_categoris));
-            }
-
-            // Taxes 
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Income Tax"));
-                sub_categoris.push_back(wxTRANSLATE("House Tax"));
-                sub_categoris.push_back(wxTRANSLATE("Water Tax"));
-                sub_categoris.push_back(wxTRANSLATE("Others"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Taxes"), sub_categoris));
-            }
-            
-            // Miscellaneous
-            {
-                std::vector<wxString> sub_categoris;
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Miscellaneous"), sub_categoris));
-            }
-
-            // Gifts
-            {
-                std::vector<wxString> sub_categoris;
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Gifts"), sub_categoris));
-            }
-
-            // Income
-            {
-                std::vector<wxString> sub_categoris;
-                sub_categoris.push_back(wxTRANSLATE("Salary"));
-                sub_categoris.push_back(wxTRANSLATE("Reimbursement/Refunds"));
-                sub_categoris.push_back(wxTRANSLATE("Investment Income"));
-
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Income"), sub_categoris));
-            }
-
-            // Other Income
-            {
-                std::vector<wxString> sub_categoris;
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Other Income"), sub_categoris));
-            }
-
-            // Other Expenses
-            {
-                std::vector<wxString> sub_categoris;
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Other Expenses"), sub_categoris));
-            }
-
-            // Transfer
-            {
-                std::vector<wxString> sub_categoris;
-                all_categoris.push_back(std::make_pair(wxTRANSLATE("Transfer"), sub_categoris));
-            }
-
-            this->Begin();
-            for (const auto& record : all_categoris)
-            {
-                Model_Category::Data* category = Model_Category::instance().create();
-                category->CATEGNAME = record.first;
-                Model_Category::instance().save(category);
-                for (const auto& sub_record : record.second)
-                {
-                    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().create();
-                    sub_category->CATEGID = category->CATEGID;
-                    sub_category->SUBCATEGNAME = sub_record;
-                    Model_Subcategory::instance().save(sub_category);
-                }
-            }
-            this->Commit();
-        }
         return all(db_, col, asc);
+    }
+    void initialize()
+    {
+        std::vector < std::pair<wxString /*category*/, std::vector<wxString> > > all_categoris;
+
+        //Bills
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Telephone"));
+            sub_categoris.push_back(wxTRANSLATE("Electricity"));
+            sub_categoris.push_back(wxTRANSLATE("Gas"));
+            sub_categoris.push_back(wxTRANSLATE("Internet"));
+            sub_categoris.push_back(wxTRANSLATE("Rent"));
+            sub_categoris.push_back(wxTRANSLATE("Cable TV"));
+            sub_categoris.push_back(wxTRANSLATE("Water"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Bills"), sub_categoris));
+        }
+
+        // Food
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Groceries"));
+            sub_categoris.push_back(wxTRANSLATE("Dining out"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Food"), sub_categoris));
+        }
+
+        // Leisure
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Movies"));
+            sub_categoris.push_back(wxTRANSLATE("Video Rental"));
+            sub_categoris.push_back(wxTRANSLATE("Magazines"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Leisure"), sub_categoris));
+        }
+
+        // Automobile
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Maintenance"));
+            sub_categoris.push_back(wxTRANSLATE("Gas"));
+            sub_categoris.push_back(wxTRANSLATE("Parking"));
+            sub_categoris.push_back(wxTRANSLATE("Registration"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Automobile"), sub_categoris));
+        }
+
+        // Education
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Books"));
+            sub_categoris.push_back(wxTRANSLATE("Tuition"));
+            sub_categoris.push_back(wxTRANSLATE("Others"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Education"), sub_categoris));
+        }
+
+        // Homeneeds 
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Clothing"));
+            sub_categoris.push_back(wxTRANSLATE("Furnishing"));
+            sub_categoris.push_back(wxTRANSLATE("Others"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Homeneeds"), sub_categoris));
+        }
+
+        // healthcare
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("health"));
+            sub_categoris.push_back(wxTRANSLATE("dental"));
+            sub_categoris.push_back(wxTRANSLATE("eyecare"));
+            sub_categoris.push_back(wxTRANSLATE("physician"));
+            sub_categoris.push_back(wxTRANSLATE("prescriptions"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("healthcare"), sub_categoris));
+        }
+
+        // Insurance 
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Auto"));
+            sub_categoris.push_back(wxTRANSLATE("Life"));
+            sub_categoris.push_back(wxTRANSLATE("Home"));
+            sub_categoris.push_back(wxTRANSLATE("Health"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Insurance"), sub_categoris));
+        }
+
+        // Vacation 
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Travel"));
+            sub_categoris.push_back(wxTRANSLATE("Lodging"));
+            sub_categoris.push_back(wxTRANSLATE("Sightseeing"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Vacation"), sub_categoris));
+        }
+
+        // Taxes 
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Income Tax"));
+            sub_categoris.push_back(wxTRANSLATE("House Tax"));
+            sub_categoris.push_back(wxTRANSLATE("Water Tax"));
+            sub_categoris.push_back(wxTRANSLATE("Others"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Taxes"), sub_categoris));
+        }
+
+        // Miscellaneous
+        {
+            std::vector<wxString> sub_categoris;
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Miscellaneous"), sub_categoris));
+        }
+
+        // Gifts
+        {
+            std::vector<wxString> sub_categoris;
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Gifts"), sub_categoris));
+        }
+
+        // Income
+        {
+            std::vector<wxString> sub_categoris;
+            sub_categoris.push_back(wxTRANSLATE("Salary"));
+            sub_categoris.push_back(wxTRANSLATE("Reimbursement/Refunds"));
+            sub_categoris.push_back(wxTRANSLATE("Investment Income"));
+
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Income"), sub_categoris));
+        }
+
+        // Other Income
+        {
+            std::vector<wxString> sub_categoris;
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Other Income"), sub_categoris));
+        }
+
+        // Other Expenses
+        {
+            std::vector<wxString> sub_categoris;
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Other Expenses"), sub_categoris));
+        }
+
+        // Transfer
+        {
+            std::vector<wxString> sub_categoris;
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Transfer"), sub_categoris));
+        }
+
+        this->Begin();
+        for (const auto& record : all_categoris)
+        {
+            Model_Category::Data* category = Model_Category::instance().create();
+            category->CATEGNAME = record.first;
+            Model_Category::instance().save(category);
+            for (const auto& sub_record : record.second)
+            {
+                Model_Subcategory::Data* sub_category = Model_Subcategory::instance().create();
+                sub_category->CATEGID = category->CATEGID;
+                sub_category->SUBCATEGNAME = sub_record;
+                Model_Subcategory::instance().save(sub_category);
+            }
+        }
+        this->Commit();
     }
     template<typename... Args>
     Data_Set find(const Args&... args)
