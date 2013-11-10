@@ -23,6 +23,10 @@ template <class T>
 class Singleton
 {
 public:
+    /**
+    * Returns the static instance for the given class.
+    * Creates the instance on first call.
+    */
     static inline T& instance()
     {
         static T _instance;

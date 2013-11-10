@@ -78,37 +78,55 @@ public:
     }
     static PERIOD_ENUM period(const Data& r) { return period(&r); }
     static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL) { return DB_Table_BUDGETTABLE_V1::PERIOD(all_period()[period], op); }
+
+public:
+    /** Return the static instance of Model_Budget table */
     static Model_Budget& instance()
     {
         return Singleton<Model_Budget>::instance();
     }
+
+    /**
+    * Initialize the global Model_Budget table.
+    * Reset the Model_Budget table or create the table if it does not exist.
+    */
     static Model_Budget& instance(wxSQLite3Database* db)
     {
         Model_Budget& ins = Singleton<Model_Budget>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
+
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return this->all(this->db_, col, asc);
     }
+
     template<typename... Args>
     Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);
     }
+
+    /** Return the Data record instance for the given ID*/
     Data* get(int id)
     {
         return this->get(id, this->db_);
     }
+
+    /** Save the Data record instance in memory to the database. */
     int save(Data* r)
     {
         r->save(this->db_);
         return r->id();
     }
+
+    /** Remove the Data record instance from memory and the database. */
     bool remove(int id)
     {
         return this->remove(id, db_);

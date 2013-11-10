@@ -34,18 +34,27 @@ public:
     };
 
 public:
+    /** Return the static instance of Model_Budgetyear table */
     static Model_Budgetyear& instance()
     {
         return Singleton<Model_Budgetyear>::instance();
     }
+
+    /**
+    * Initialize the global Model_Budgetyear table.
+    * Reset the Model_Budgetyear table or create the table if it does not exist.
+    */
     static Model_Budgetyear& instance(wxSQLite3Database* db)
     {
         Model_Budgetyear& ins = Singleton<Model_Budgetyear>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
+
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);

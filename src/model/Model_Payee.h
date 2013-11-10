@@ -36,16 +36,23 @@ public:
     ~Model_Payee() {};
 
 public:
+    /** Return the static instance of Model_Payee table */
     static Model_Payee& instance()
     {
         return Singleton<Model_Payee>::instance();
     }
+
+    /**
+    * Initialize the global Model_Payee table.
+    * Reset the Model_Payee table or create the table if it does not exist.
+    */
     static Model_Payee& instance(wxSQLite3Database* db)
     {
         Model_Payee& ins = Singleton<Model_Payee>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:

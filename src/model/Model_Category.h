@@ -39,19 +39,27 @@ public:
     ~Model_Category() {};
 
 public:
+    /** Return the static instance of Model_Category table */
     static Model_Category& instance()
     {
         return Singleton<Model_Category>::instance();
     }
+
+    /**
+    * Initialize the global Model_Category table.
+    * Reset the Model_Category table or create the table if it does not exist.
+    */
     static Model_Category& instance(wxSQLite3Database* db)
     {
         Model_Category& ins = Singleton<Model_Category>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         if (!this->exists(this->db_))

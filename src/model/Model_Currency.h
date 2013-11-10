@@ -35,20 +35,28 @@ public:
     ~Model_Currency() {};
 
 public:
+    /** Return the static instance of Model_Currency table */
     static Model_Currency& instance()
     {
         return Singleton<Model_Currency>::instance();
     }
+
+    /**
+    * Initialize the global Model_Currency table.
+    * Reset the Model_Currency table or create the table if it does not exist.
+    */
     static Model_Currency& instance(wxSQLite3Database* db)
     {
         Model_Currency& ins = Singleton<Model_Currency>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         if (!this->exists(this->db_))

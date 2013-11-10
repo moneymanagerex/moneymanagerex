@@ -38,34 +38,46 @@ public:
     wxArrayString types_;
 
 public:
+    /** Return the static instance of Model_Subcategory table */
     static Model_Subcategory& instance()
     {
         return Singleton<Model_Subcategory>::instance();
     }
+
+    /**
+    * Initialize the global Model_Subcategory table.
+    * Reset the Model_Subcategory table or create the table if it does not exist.
+    */
     static Model_Subcategory& instance(wxSQLite3Database* db)
     {
         Model_Subcategory& ins = Singleton<Model_Subcategory>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+
     template<typename... Args>
     Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);
     }
 
+    /** Return the Data record instance for the given ID*/
     Data* get(int id)
     {
         return this->get(id, this->db_);
     }
+
+    /** Return the Data record instance for the given category and subcategory ID */
     Data* get(const wxString& name, int category_id = -1)
     {
         Data* category = 0;
@@ -73,11 +85,15 @@ public:
         if (!items.empty()) category = this->get(items[0].SUBCATEGID, this->db_);
         return category;
     }
+
+    /** Save the Data record instance in memory to the database. */
     int save(Data* r)
     {
         r->save(this->db_);
         return r->id();
     }
+
+    /** Remove the Data record instance from memory and the database. */
     bool remove(int id)
     {
         return this->remove(id, db_);

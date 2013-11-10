@@ -376,10 +376,6 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
     }
     userName = itemUserName_->GetValue().Trim();
     Model_Infotable::instance().Set("USERNAME", userName);
-    Model_Infotable::instance().Set("MMEXVERSION", mmex::getProgramVersion());
-    Model_Infotable::instance().Set("DATAVERSION", mmex::DATAVERSION);
-    Model_Infotable::instance().Set("CREATEDATE", wxDateTime::Now());
-    Model_Infotable::instance().Set("DATEFORMAT", mmex::DEFDATEFORMAT);
 
     return true;
 }
@@ -2559,6 +2555,7 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
 
 void mmGUIFrame::InitializeModelTables()
 {
+    Model_Infotable::instance(m_db.get());
     Model_Asset::instance(m_db.get());
     Model_Stock::instance(m_db.get());
     Model_Account::instance(m_db.get());
@@ -2566,7 +2563,6 @@ void mmGUIFrame::InitializeModelTables()
     Model_Checking::instance(m_db.get());
     Model_Currency::instance(m_db.get());
     Model_Budgetyear::instance(m_db.get());
-    Model_Infotable::instance(m_db.get());
     Model_Category::instance(m_db.get());
     Model_Subcategory::instance(m_db.get());
     Model_Billsdeposits::instance(m_db.get());

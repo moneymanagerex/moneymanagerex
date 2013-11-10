@@ -37,33 +37,46 @@ public:
     wxArrayString types_;
 
 public:
+    /** Return the static instance of Model_Budgetsplittransaction table */
     static Model_Budgetsplittransaction& instance()
     {
         return Singleton<Model_Budgetsplittransaction>::instance();
     }
+
+    /**
+    * Initialize the global Model_Budgetsplittransaction table.
+    * Reset the Model_Budgetsplittransaction table or create the table if it does not exist.
+    */
     static Model_Budgetsplittransaction& instance(wxSQLite3Database* db)
     {
         Model_Budgetsplittransaction& ins = Singleton<Model_Budgetsplittransaction>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+
     template<typename... Args>
     Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);
     }
+
+    /** Return the Data record instance for the given ID*/
     Data* get(int id)
     {
         return this->get(id, this->db_);
     }
+
+    /** Save the Data record instance in memory to the database. */
     int save(Data* r)
     {
         r->save(this->db_);
@@ -78,7 +91,7 @@ public:
         return rows.size();
     }
 
-    /** Remove the Data record from the database and the memory table (cashe)*/
+    /** Remove the Data record instance from memory and the database. */
     bool remove(int id)
     {
         return this->remove(id, this->db_);

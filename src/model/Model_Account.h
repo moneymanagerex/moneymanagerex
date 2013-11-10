@@ -80,33 +80,46 @@ public:
     }
 
 public:
+    /** Return the static instance of Model_Account table */
     static Model_Account& instance()
     {
         return Singleton<Model_Account>::instance();
     }
+
+    /**
+    * Initialize the global Model_Account table.
+    * Reset the Model_Account table or create the table if it does not exist.
+    */
     static Model_Account& instance(wxSQLite3Database* db)
     {
         Model_Account& ins = Singleton<Model_Account>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+
     template<typename... Args>
     Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);
     }
+
+    /** Return the Data record instance for the given ID*/
     Data* get(int id)
     {
         return this->get(id, this->db_);
     }
+
+    /** Get the Data record instance in memory. */
     Data* get(const wxString& name)
     {
         Data* account = 0;
@@ -114,11 +127,15 @@ public:
         if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
         return account;
     }
+
+    /** Save the Data record instance in memory to the database. */
     int save(Data* r)
     {
         r->save(this->db_);
         return r->id();
     }
+
+    /** Remove the Data record instance from memory and the database. */
     bool remove(int id)
     {
         this->Begin();
@@ -135,7 +152,12 @@ public:
     {
         return Model_Currency::instance().get(r->CURRENCYID);
     }
-    static Model_Currency::Data* currency(const Data& r) { return currency(&r); }
+    
+    static Model_Currency::Data* currency(const Data& r)
+    {
+        return currency(&r);
+    }
+
 public:
     static Model_Checking::Data_Set transaction(const Data*r )
     {

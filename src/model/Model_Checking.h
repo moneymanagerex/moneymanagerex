@@ -82,20 +82,23 @@ public:
         return status;
     }
 public:
-    /** Return the address of the global database table*/
+    /** Return the static instance of Model_Checking table */
     static Model_Checking& instance()
     {
         return Singleton<Model_Checking>::instance();
     }
 
-    /** Initialize the global database table.
-      * Create the table if it does not exist.*/
+    /**
+    * Initialize the global Model_Checking table.
+    * Reset the Model_Checking table or create the table if it does not exist.
+    */
     static Model_Checking& instance(wxSQLite3Database* db)
     {
         Model_Checking& ins = Singleton<Model_Checking>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:

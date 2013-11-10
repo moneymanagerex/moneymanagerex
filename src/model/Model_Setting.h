@@ -32,24 +32,33 @@ public:
     ~Model_Setting() {};
 
 public:
+    /** Return the static instance of Model_Setting table. */
     static Model_Setting& instance()
     {
         return Singleton<Model_Setting>::instance();
     }
+
+    /**
+    * Initialize the global Model_Setting table.
+    * Reset the Model_Setting table or create the table if it does not exist.
+    */
     static Model_Setting& instance(wxSQLite3Database* db)
     {
         Model_Setting& ins = Singleton<Model_Setting>::instance();
         ins.db_ = db;
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return this->all(this->db_, col, asc);
     }
+
     template<typename... Args>
     Data_Set find(const Args&... args)
     {

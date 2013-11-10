@@ -36,20 +36,35 @@ public:
     };
 
 public:
+    /** Return the static instance of Model_Infotable */
     static Model_Infotable& instance()
     {
         return Singleton<Model_Infotable>::instance();
     }
+
+    /**
+    * Initialize the global Model_Infotable.
+    * Reset the Model_Infotable or create the table if it does not exist.
+    */
     static Model_Infotable& instance(wxSQLite3Database* db)
     {
         Model_Infotable& ins = Singleton<Model_Infotable>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+        if (!ins.KeyExists("MMEXVERSION"))
+        {
+            ins.Set("MMEXVERSION", mmex::getProgramVersion());
+            ins.Set("DATAVERSION", mmex::DATAVERSION);
+            ins.Set("CREATEDATE", wxDateTime::Now());
+            ins.Set("DATEFORMAT", mmex::DEFDATEFORMAT);
+        }
+
         return ins;
     }
 
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
@@ -127,14 +142,16 @@ public:
     {
         return this->GetIntInfo("BASECURRENCYID", -1);
     }
-    bool Exists(const wxString& key)
+
+    /* Returns true if key setting found */
+    bool KeyExists(const wxString& key)
     {
         return !this->find(INFONAME(key)).empty();
     }
 
     bool checkDBVersion()
     {
-        if (!this->Exists("DATAVERSION")) return false;
+        if (!this->KeyExists("DATAVERSION")) return false;
 
         return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
     }

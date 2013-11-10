@@ -36,23 +36,27 @@ public:
     wxArrayString types_;
 
 public:
-    /** Return the address of the global database table*/
+    /** Return the static instance of Model_Splittransaction table */
     static Model_Splittransaction& instance()
     {
         return Singleton<Model_Splittransaction>::instance();
     }
 
-    /** Initialize the global database table.
-    * Create the table if it does not exist.*/
+    /**
+    * Initialize the global Model_Splittransaction table.
+    * Reset the Model_Splittransaction table or create the table if it does not exist.
+    */
     static Model_Splittransaction& instance(wxSQLite3Database* db)
     {
         Model_Splittransaction& ins = Singleton<Model_Splittransaction>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);

@@ -97,20 +97,23 @@ public:
     }
 
 public:
-    /** Return the address of the global database table*/
+    /** Return the static instance of Model_Billsdeposits table */
     static Model_Billsdeposits& instance()
     {
         return Singleton<Model_Billsdeposits>::instance();
     }
 
-    /** Initialize the global database table.
-      * Create the table if it does not exist.*/
+    /**
+    * Initialize the global Model_Billsdeposits table.
+    * Reset the Model_Billsdeposits table or create the table if it does not exist.
+    */
     static Model_Billsdeposits& instance(wxSQLite3Database* db)
     {
         Model_Billsdeposits& ins = Singleton<Model_Billsdeposits>::instance();
         ins.db_ = db;
         ins.destroy_cache();
-        ins.all();
+        ins.ensure(db);
+
         return ins;
     }
 public:
@@ -150,12 +153,13 @@ public:
     }
 
 public:
-    /** Return a list of all the records in the database table*/
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
     Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
     }
+
     template<typename... Args>
     Data_Set find(const Args&... args)
     {
@@ -167,18 +171,23 @@ public:
         return find_by(this, db_, false, args...);
     }
 
-    /** Return the Data record for the given ID*/
+    /** Return the Data record instance for the given ID*/
     Data* get(int id)
     {
         return this->get(id, this->db_);
     }
 
-    /** Create a new record or update the existing record in the database.*/
+    /** Save the Data record instance in memory to the database. */
     int save(Data* r)
     {
         r->save(this->db_);
         return r->id();
     }
+
+    /**
+    * Save the all the Data record instances in memory to the database
+    * for the record list (Data_Set).
+    */
     int save(Data_Set& rows)
     {
         this->Begin();
@@ -187,7 +196,11 @@ public:
 
         return rows.size();
     }
-    /** Remove the Data record including any splits associated with id*/
+
+    /**
+    * Remove the Data record instance from memory and the database
+    * including any splits associated with the Data Record.
+    */
     bool remove(int id)
     {
         for (auto &item : Model_Billsdeposits::splittransaction(get(id)))
