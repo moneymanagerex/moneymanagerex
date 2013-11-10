@@ -3224,26 +3224,28 @@ bool mmGUIFrame::IsUpdateAvailable(const wxString& page)
     int numTokens = (int)tkz.CountTokens();
     if (numTokens != 4)
     {
-        wxString url = mmex::getProgramWebSite();
-        wxLaunchDefaultBrowser(url);
-        return false;
+        return true;
+
+        //wxString url = mmex::getProgramWebSite();
+        //wxLaunchDefaultBrowser(url);
+        //return false;
     }
 
-    wxString maj = tkz.GetNextToken();
-    wxString min = tkz.GetNextToken();
-    wxString cust = tkz.GetNextToken();
-    wxString build = tkz.GetNextToken();
+    int maj = wxAtoi(tkz.GetNextToken());
+    int min = wxAtoi(tkz.GetNextToken());
+    int cust = wxAtoi(tkz.GetNextToken());
+    int build = wxAtoi(tkz.GetNextToken());
 
     // get current version
     wxString currentV = mmex::getProgramVersion();
-    currentV = currentV.SubString(0, currentV.Find("DEV")-1).Trim();
+    currentV = currentV.SubString(0, currentV.Find("DEV") - 1).Trim();
+    wxStringTokenizer tkz1(currentV, ('.'), wxTOKEN_RET_EMPTY_ALL);
+    numTokens = (int)tkz1.CountTokens();
 
-    wxStringTokenizer tkz1(currentV, '.', wxTOKEN_RET_EMPTY_ALL);
-
-    wxString majC = tkz1.GetNextToken();
-    wxString minC = tkz1.GetNextToken();
-    wxString custC = tkz1.GetNextToken();
-    wxString buildC = tkz1.GetNextToken();
+    int majC = wxAtoi(tkz1.GetNextToken());
+    int minC = wxAtoi(tkz1.GetNextToken());
+    int custC = wxAtoi(tkz1.GetNextToken());
+    int buildC = wxAtoi(tkz1.GetNextToken());
 
     bool isUpdateAvailable = false;
     if (maj > majC)
@@ -3293,20 +3295,39 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     }
 
     /*************************************************************************
-        Expected format of the string from the internet. Version: 0.9.8.0
-        page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
-        string length = 53 characters
+    Note: To allow larger digit counters and maintain backward compatability,
+    the leading counters before the character [ is ignored by the version
+    checking routines.
+
+    Expected string format from the internet up to Version: 0.9.9.0
+    page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
+    string length = 53 characters
     **************************************************************************/
+    //  Included for future testing
+    //  Old format of counters
+    //  page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
+    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0";
+
+    //  New format to allow counters greater than 9
+    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.10.9.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
+    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
+    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 0.10.9.3";
+
+    wxStringTokenizer versionTokens(page,("["));
+    page = versionTokens.GetNextToken(); // ignore old counters
+    page = versionTokens.GetNextToken(); // substrtute new counters
+
     page = page.SubString(page.find(wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3)), 53);
-    page.Replace("-", ":");
+    wxString current_version = page;
     wxStringTokenizer mySysToken(page, ":");
-    page = mySysToken.GetNextToken().Trim(false).Trim();    // the version
+    mySysToken.GetNextToken().Trim(false).Trim();           // skip Operating System. Already accounted for.
+    page = mySysToken.GetNextToken().Trim(false).Trim();    // Get version for OS
 
     // set up display information.
     int style = wxOK|wxCANCEL;
     if (IsUpdateAvailable(page))
     {
-        versionDetails << _("New update available!");
+        versionDetails << _("New update available: ") << current_version;
         style = wxICON_EXCLAMATION|style;
     }
     else
