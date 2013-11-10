@@ -236,10 +236,6 @@ private:
     wxTreeItemId getTreeItemfor(wxTreeItemId itemID, const wxString& accountName) const;
     bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
 
-    /* Custom Reports */
-    CustomReportIndex* custRepIndex_;
-    wxString customSqlReportSelectedItem_;
-
     /* printing */
     wxScopedPtr<wxHtmlEasyPrinting> printer_;
     void restorePrinterValues();
@@ -347,12 +343,6 @@ private:
     void OnViewAllAccounts(wxCommandEvent& event);
     void OnViewFavoriteAccounts(wxCommandEvent& event);
     void OnViewOpenAccounts(wxCommandEvent& event);
-
-    /* Custom Report*/
-    bool IsCustomReportSelected(int& customSqlReportID, const mmTreeItemData* iData);
-    void CreateCustomReport(int index);
-    void RunCustomSqlDialog(const wxString& customSqlReportSelectedItem = "");
-    bool expandedCustomSqlReportNavTree_;
 
     bool expandedBudgetingNavTree_;
     bool expandedReportNavTree_;

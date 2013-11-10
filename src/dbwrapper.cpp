@@ -24,54 +24,6 @@
 #include "sqlite3.h"
 //----------------------------------------------------------------------------
 
-/*
-    wxSQLite3Database::ViewExists was removed.
-*/
-bool mmDBWrapper::ViewExists(wxSQLite3Database* db, const char *viewName)
-{
-    static const char sql[] =
-    "select 1 "
-    "from sqlite_master "
-    "where type = 'view' and name like ?";
-
-    wxASSERT(viewName);
-
-    bool exists = false;
-
-    wxSQLite3Statement st = db->PrepareStatement(sql);
-    st.Bind(1, viewName);
-
-    wxSQLite3ResultSet rs = st.ExecuteQuery();
-    exists = rs.NextRow();
-
-    st.Finalize();
-
-    return exists;
-}
-
-int mmDBWrapper::createAllDataView(wxSQLite3Database* db)
-{
-    int iError = 0;
-    try
-    {
-        static const char view_name[] = "ALLDATA";
-        bool exists = ViewExists(db, view_name);
-
-        if (!exists) {
-            db->ExecuteUpdate(CREATE_VIEW_ALLDATA);
-            exists = ViewExists(db, view_name);
-            wxASSERT(exists);
-        }
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        wxLogDebug("Database::createAllDataView: %s", e.GetMessage());
-        wxLogError("create AllData view. " + wxString::Format(_("Error: %s"), e.GetMessage()));
-        iError = e.GetErrorCode();
-    }
-    return iError;
-}
-
 bool mmDBWrapper::IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows)
 {
     wxString sql_script_exception;

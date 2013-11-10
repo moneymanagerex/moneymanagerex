@@ -27,9 +27,6 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "currencydialog.h"
-#include "customreportdialog.h"
-#include "customreportdisplay.h"
-#include "customreportindex.h"
 #include "filtertransdialog.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
@@ -616,9 +613,6 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
     EVT_MENU(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, mmGUIFrame::OnViewFavoriteAccounts)
     EVT_MENU(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, mmGUIFrame::OnViewOpenAccounts)
 
-    /* Custom Reports */
-    EVT_MENU(wxID_EDIT, mmGUIFrame::OnEditCustomSqlReport)
-
     /*Automatic processing of repeat transactions*/
     EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransactionsTimer)
 
@@ -652,7 +646,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 , selectedItemData_()
 , helpFileIndex_(mmex::HTML_INDEX)
 , expandedReportNavTree_(true)
-, expandedCustomSqlReportNavTree_(false)
 , expandedBudgetingNavTree_(true)
 {
     // tell wxAuiManager to manage this frame
@@ -666,8 +659,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
     printer_-> SetHeader( printHeaderBase + "(@PAGENUM@/@PAGESCNT@<hr>", wxPAGE_ALL);
 
     restorePrinterValues();
-
-    custRepIndex_ = new CustomReportIndex();
 
     // decide if we need to show app start dialog
     bool from_scratch = false;
@@ -743,7 +734,6 @@ void mmGUIFrame::cleanup()
 {
     printer_.reset();
     delete recentFiles_;
-    delete custRepIndex_;
     if(!fileName_.IsEmpty()) // Exiting before file is opened
         saveSettings();
 
@@ -1131,40 +1121,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), 4, 4);
     navTreeCtrl_->SetItemBold(reports, true);
     navTreeCtrl_->SetItemData(reports, new mmTreeItemData(NAVTREECTRL_REPORTS));
-
-    /* ================================================================================================= */
-    if (custRepIndex_->HasActiveReports())
-    {
-        wxTreeItemId customSqlReports = navTreeCtrl_->AppendItem(root, _("Custom Reports"), 8, 8);
-        navTreeCtrl_->SetItemBold(customSqlReports, true);
-        navTreeCtrl_->SetItemData(customSqlReports, new mmTreeItemData(NAVTREECTRL_CUSTOM_REPORTS));
-
-        int reportNumber = -1;
-        wxString reportNumberStr;
-        wxTreeItemId customSqlReportRootItem;
-        custRepIndex_->ResetReportsIndex();
-
-        wxString reportTitle = custRepIndex_->NextReportTitle();
-        while (custRepIndex_->ValidTitle())
-        {
-            wxTreeItemId customSqlReportItem;
-            if (custRepIndex_->ReportIsSubReport() && reportNumber >= 0 )
-            {
-                customSqlReportItem = navTreeCtrl_->AppendItem(customSqlReportRootItem,reportTitle, 8, 8);
-            }
-            else
-            {
-                customSqlReportItem = navTreeCtrl_->AppendItem(customSqlReports,reportTitle, 8, 8);
-                customSqlReportRootItem = customSqlReportItem;
-            }
-            reportNumberStr.Printf("Custom_Report_%d", ++reportNumber);
-            navTreeCtrl_->SetItemData(customSqlReportItem, new mmTreeItemData(reportNumberStr));
-            reportTitle = custRepIndex_->NextReportTitle();
-        }
-
-        if (expandedCustomSqlReportNavTree_)
-            navTreeCtrl_->Expand(customSqlReports);
-    }
 
     /* ================================================================================================= */
 
@@ -1689,47 +1645,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::CreateCustomReport(int index)
-{
-    this->SetEvtHandlerEnabled(false);
-    homePageAccountSelect_ = true; // prevent Navigation tree code execution.
-    wxBeginBusyCursor(wxHOURGLASS_CURSOR);
-
-    if (custRepIndex_->ReportFileName(index) != "")
-    {
-        wxString sScript;
-        if (custRepIndex_->GetReportFileData(sScript) )
-        {
-            mmCustomReport* csr = new mmCustomReport(this, m_db.get()
-                , custRepIndex_->CurrentReportTitle()
-                , sScript
-                , custRepIndex_->CurrentReportFileType());
-            createReportsPage(csr, true);
-        }
-    }
-    processPendingEvents();         // clear out pending events
-    this->SetEvtHandlerEnabled(true);
-    homePageAccountSelect_ = false; // restore Navigation tree code execution.
-    wxEndBusyCursor();
-}
-//----------------------------------------------------------------------------
-
-bool mmGUIFrame::IsCustomReportSelected( int& customSqlReportID, const mmTreeItemData* iData )
-{
-    customSqlReportID = 0;
-    bool result = false;
-    wxString sItemName = iData->getString();
-    if (sItemName.StartsWith("Custom_Report_"))
-    {
-        sItemName.Replace("Custom_Report_", "");
-        long index;
-        result = sItemName.ToLong(&index);
-        if (result) customSqlReportID = index;
-    }
-    return result;
-}
-//----------------------------------------------------------------------------
-
 void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 {
     wxTreeItemId id = event.GetItem();
@@ -1737,8 +1652,6 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 
     if (iData->getString() == NAVTREECTRL_REPORTS)
         expandedReportNavTree_ = true;
-    else if (iData->getString() == NAVTREECTRL_CUSTOM_REPORTS)
-        expandedCustomSqlReportNavTree_ = true;
     else if (iData->getString() == NAVTREECTRL_BUDGET)
         expandedBudgetingNavTree_ = true;
 }
@@ -1751,8 +1664,6 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 
     if (iData->getString() == NAVTREECTRL_REPORTS)
         expandedReportNavTree_ = false;
-    else if (iData->getString() == NAVTREECTRL_CUSTOM_REPORTS)
-        expandedCustomSqlReportNavTree_ = false;
     else if (iData->getString() == NAVTREECTRL_BUDGET)
         expandedBudgetingNavTree_ = false;
 }
@@ -1841,12 +1752,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             createHelpPage();
             return;
         }
-        else if (iData->getString() == NAVTREECTRL_CUSTOM_REPORTS)
-        {
-            helpFileIndex_ = mmex::HTML_CUSTOM_SQL;
-            createHelpPage();
-            return;
-        }
         else if (iData->getString() == NAVTREECTRL_INVESTMENT)
         {
             helpFileIndex_ = mmex::HTML_INVESTMENT;
@@ -1875,17 +1780,11 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         if (!m_db)
             return;
         //========================================================================
-        int customReportID;      // Define before all the if...else statements
-        //========================================================================
 
         wxString sData = iData->getString();
         wxString title = wxGetTranslation(sData);
 
-        if ( IsCustomReportSelected(customReportID, iData) )
-        {
-            CreateCustomReport(customReportID);
-        }
-        else if (sData == "Transaction Report")
+        if (sData == "Transaction Report")
         {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
             AddPendingEvent(evt);           // Events will be processed in due course.
@@ -2055,23 +1954,6 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
             viewAccounts->Append(MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE, _("Favorites"));
             menu.AppendSubMenu(viewAccounts, _("Accounts Visible"));
             PopupMenu(&menu, pt);
-        }
-        else
-        {
-            // Bring up popup menu to edit or delete the correct Custom Report
-            customSqlReportSelectedItem_ = iData->getString();
-            wxString field = customSqlReportSelectedItem_.Mid(6,8);
-            if (field == "_Report_")
-            {
-                wxMenu customReportMenu;
-                customReportMenu.Append(wxID_EDIT, _("Edit Custom Report"));
-                PopupMenu(&customReportMenu, pt);
-            }
-            else if (iData->getString() == "Budgeting")
-            {
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BUDGETSETUPDIALOG);
-                AddPendingEvent(evt);
-            }
         }
     }
 }
@@ -2417,16 +2299,6 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
-    // Create Item
-    wxMenuItem* menuItemCustomReportEdit = new wxMenuItem(menuTools
-        , wxID_EDIT, _("Custom Reports...")
-        , _("Create or modify reports for the Reports section"));
-    menuItemCustomReportEdit->SetBitmap(wxBitmap(customsql_xpm));
-    // Add menu to Tools menu
-    menuTools->Append(menuItemCustomReportEdit);
-
-    menuTools->AppendSeparator();
-
     wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES,
           _("&Options..."), _("Show the Options Dialog"));
     menuItemOptions->SetBitmap(wxBitmap(wrench_xpm));
@@ -2540,8 +2412,6 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
     toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), toolBarBitmaps[7], _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), toolBarBitmaps[8], _("Transaction Report Filter"));
-    toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_EDIT, _("Custom Reports Manager"), toolBarBitmaps[9], _("Create new Custom Reports"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), toolBarBitmaps[10], _("Show the Options Dialog"));
     toolBar_->AddSeparator();
@@ -3816,36 +3686,6 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
         refreshPanelData(false);
     }
     homePanel_->Layout();
-}
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::RunCustomSqlDialog(const wxString& customReportSelectedItem)
-{
-    this->SetEvtHandlerEnabled(false);
-    mmCustomSQLDialog dlg(custRepIndex_, customReportSelectedItem, this);
-
-    int dialogStatus = wxID_MORE;
-    while (dialogStatus == wxID_MORE)
-    {
-        if (dlg.sScript() != "")
-        {
-            wxBeginBusyCursor(wxHOURGLASS_CURSOR);
-            mmCustomReport* csr = new mmCustomReport(this,
-                m_db.get(), dlg.sReportTitle(), dlg.sScript(), dlg.sSctiptType());
-            createReportsPage(csr, true);
-            wxEndBusyCursor();
-        }
-        dialogStatus = dlg.ShowModal();
-    }
-    processPendingEvents();         // clear out pending events
-    if (dialogStatus == wxID_OK) updateNavTreeControl();
-    this->SetEvtHandlerEnabled(true);
-}
-
-//----------------------------------------------------------------------------
-void mmGUIFrame::OnEditCustomSqlReport(wxCommandEvent&)
-{
-    RunCustomSqlDialog(customSqlReportSelectedItem_);
 }
 //----------------------------------------------------------------------------
 
