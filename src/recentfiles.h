@@ -39,6 +39,7 @@ public:
     void updateRecentList(const wxString& currentFileName);
     void clearRecentList();
     wxString getRecentFile(int fileNum);
+    void removeRecentFile(int fileNum);
 
     // returns true if lastListedFileName is valid;
     bool validLastListedFile(wxString& lastListedFileName);

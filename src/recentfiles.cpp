@@ -151,7 +151,7 @@ void RecentDatabaseFiles::updateRecentList(const wxString& currentFileName)
     if (!sameFileDetected)
     {
         // move all entries down one
-        for (int index = 4; index > -1; --index)
+        for (int index = recentListSize_ - 1; index > -1; --index)
         {
             if (!recentFileList_[index].IsEmpty())
             {
@@ -180,6 +180,17 @@ void RecentDatabaseFiles::clearRecentList()
 wxString RecentDatabaseFiles::getRecentFile(int fileNum)
 {
     return recentFileList_[fileNum];
+}
+
+void RecentDatabaseFiles::removeRecentFile(int fileNum)
+{
+    // move entries up one
+    for (int index = fileNum; index < recentListSize_ - 1; ++index)
+    {
+        recentFileList_[index] = recentFileList_[index + 1];
+    }
+    recentFileList_[recentListSize_ - 1].Empty();
+    setMenuFileItems();
 }
 
 bool RecentDatabaseFiles::validLastListedFile(wxString& lastListedFileName)
