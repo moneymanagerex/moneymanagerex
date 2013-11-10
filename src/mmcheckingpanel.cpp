@@ -204,7 +204,32 @@ void mmCheckingPanel::filterTable()
                 )
             ) continue;
             if (Model_Checking::TRANSFER != Model_Checking::type(tran) && !transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
-            if (transFilterDlg_->getCategoryCheckBox() && !(transFilterDlg_->getCategoryID() == tran.CATEGID && transFilterDlg_->getSubCategoryID() == tran.SUBCATEGID)) continue;
+            if (transFilterDlg_->getCategoryCheckBox())
+            {
+                if (tran.CATEGID != -1)
+                {
+                    if (transFilterDlg_->getCategoryID() != tran.CATEGID)
+                        continue; // Skip
+                    if (transFilterDlg_->getSubCategoryID() != tran.SUBCATEGID)
+                        continue; // Skip
+                }
+                else
+                {
+                    bool bMatching = false;
+                    for (const Model_Splittransaction::Data split : Model_Checking::splittransaction(tran))
+                    {
+                        if (split.CATEGID != tran.CATEGID)
+                            continue;
+                        if (split.SUBCATEGID != tran.SUBCATEGID)
+                            continue;
+
+                        bMatching = true;
+                        break;
+                    }
+                    if (!bMatching)
+                        continue;
+                }
+            }
             if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
             if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
             if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;

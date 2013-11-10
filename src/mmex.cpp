@@ -3027,16 +3027,29 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
             if (dlg->getCategoryCheckBox())
             {
-                bool ignoreSubCateg = false;
-                int subcategID = dlg->getSubCategoryID();
-                int categID = dlg->getCategoryID();
-                if (subcategID == -1)
-                    ignoreSubCateg = dlg->getExpandStatus();
-                if (!tran.CATEGID != categID)
+                if (tran.CATEGID != -1)
                 {
-                    continue;
+                    if (dlg->getCategoryID() != tran.CATEGID)
+                        continue; // Skip
+                    if (dlg->getSubCategoryID() != tran.SUBCATEGID)
+                        continue; // Skip
                 }
-                //TODO: Check categories for split entries
+                else
+                {
+                    bool bMatching = false;
+                    for (const Model_Splittransaction::Data split : Model_Checking::splittransaction(tran))
+                    {
+                        if (split.CATEGID != tran.CATEGID)
+                            continue;
+                        if (split.SUBCATEGID != tran.SUBCATEGID)
+                            continue;
+
+                        bMatching = true;
+                        break;
+                    }
+                    if (!bMatching)
+                        continue;
+                }
             }
 
             trans.push_back(tran);
