@@ -791,9 +791,8 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
     {
         if (tran.STATUS == status)
         {
+            // remove also removes any split transactions
             Model_Checking::instance().remove(tran.TRANSID);
-            // TODO remove split
-            // CHECK
             if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
@@ -1493,8 +1492,8 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             long transID = i.TRANSID;
             if (m_cp->m_listCtrlAccount->GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
+                // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
-                // TODO remove split
                 if (x <= topItemIndex_) topItemIndex_--;
                 m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;
