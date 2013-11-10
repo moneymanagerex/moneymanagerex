@@ -767,9 +767,8 @@ wxString mmBillsDepositsPanel::tips()
 void billsDepositsListCtrl::refreshVisualList(int selected_index)
 {
 
-    //TODO:
     if (selected_index >= (long)cp_->bills_.size() || selected_index < 0)
-        selected_index = /*g_asc*/ true ? (long)cp_->bills_.size() - 1 : 0;
+        selected_index = - 1;
     if (!cp_->bills_.empty()) {
         RefreshItems(0, cp_->bills_.size() - 1);
     }
