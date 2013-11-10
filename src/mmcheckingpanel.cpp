@@ -1097,7 +1097,16 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     }
 
     bool hide_menu_item = (selectedIndex < 0);
-    const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
+    bool type_transfer = false;
+    bool have_category = false;
+    if (m_selectedIndex > -1)
+    {
+        const Model_Checking::Full_Data& tran = m_cp->m_trans.at(m_selectedIndex);
+        if (Model_Checking::type(tran) == Model_Checking::TRANSFER)
+            type_transfer = true;
+        if (tran.CATEGID > -1)
+            have_category = true;
+    }
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Transaction"));
     menu.AppendSeparator();
@@ -1108,8 +1117,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
     menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
-    if (hide_menu_item || Model_Checking::type(tran) == Model_Checking::TRANSFER || (Model_Account::checking_account_num() < 2)
-        || Model_Checking::type(&tran) == Model_Checking::TRANSFER)
+    if (hide_menu_item || type_transfer || (Model_Account::checking_account_num() < 2))
         menu.Enable(MENU_TREEPOPUP_MOVE, false);
     menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
     if (m_selectedForCopy < 0) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
@@ -1117,7 +1125,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.AppendSeparator();
 
     menu.Append(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, _("&View Split Categories"));
-    if (hide_menu_item || (tran.CATEGID > -1))
+    if (hide_menu_item || have_category)
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
     menu.AppendSeparator();
