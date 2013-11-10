@@ -24,8 +24,6 @@
 #include "paths.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
-#include "model/Model_Category.h"
-#include "model/Model_Checking.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 
@@ -106,23 +104,24 @@ void mmCategDialog::fillControls()
     cbShowAll_->SetValue(bResult);
 
     Model_Category::Data_Set categories = Model_Category::instance().all();
-    for (const auto& category: categories)
+    for (const Model_Category::Data& category : categories)
     {
         wxTreeItemId maincat;
         bool bShow = categShowStatus(category.CATEGID, -1);
         if (cbShowAll_->IsChecked() || bShow)
         {
             maincat = treeCtrl_->AppendItem(root_, category.CATEGNAME);
-            treeCtrl_->SetItemData(maincat, new mmTreeItemCateg(category.CATEGID, -1));
+            Model_Subcategory::Data subcat = 0;
+            treeCtrl_->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
             if (!bShow) treeCtrl_->SetItemTextColour(maincat, wxColour("GREY"));
 
-            for (const auto& sub_category: Model_Category::sub_category(category))
+            for (const Model_Subcategory::Data& sub_category : Model_Category::sub_category(category))
             {
                 bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
                 if (cbShowAll_->IsChecked() || bShow)
                 {
                     wxTreeItemId subcat = treeCtrl_->AppendItem(maincat, sub_category.SUBCATEGNAME);
-                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category.CATEGID, sub_category.SUBCATEGID));
+                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category, sub_category));
                     if (!bShow) treeCtrl_->SetItemTextColour(subcat, wxColour("GREY"));
 
                     if (categID_ == category.CATEGID && subcategID_ == sub_category.SUBCATEGID)
@@ -250,19 +249,17 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         Model_Category::instance().save(category);
 
         wxTreeItemId tid = treeCtrl_->AppendItem(selectedItemId_, text);
-        treeCtrl_->SetItemData(tid, new mmTreeItemCateg( category->CATEGID, -1));
+        Model_Subcategory::Data subcat = 0;
+        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
         treeCtrl_->Expand(selectedItemId_);
 
         return;
     }
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(treeCtrl_->GetItemData(selectedItemId_));
-    int categID = iData->getCategID();
-    int subcategID = iData->getSubCategID();
-    if (subcategID == -1) // not subcateg
+    if (!iData->getSubCategData()) // not subcateg
     {
-        Model_Category::Data *category = Model_Category::instance().get(categID);
-        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(iData->getCategData());
         for (const auto& subcategory : subcategories)
         {
             if (subcategory.SUBCATEGNAME == text)
@@ -274,11 +271,11 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         }
         Model_Subcategory::Data *subcategory = Model_Subcategory::instance().create();
         subcategory->SUBCATEGNAME = text;
-        subcategory->CATEGID = categID;
+        subcategory->CATEGID = iData->getCategData()->CATEGID;
         Model_Subcategory::instance().save(subcategory);
 
         wxTreeItemId tid = treeCtrl_->AppendItem(selectedItemId_, text);
-        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(categID, subcategory->SUBCATEGID));
+        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
         treeCtrl_->Expand(selectedItemId_);
         return;
     }
@@ -311,10 +308,10 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
     mmTreeItemCateg* iData
         = dynamic_cast<mmTreeItemCateg*>(treeCtrl_->GetItemData(selectedItemId_));
-    int categID = iData->getCategID();
-    int subcategID = iData->getSubCategID();
+    int categID = iData->getCategData()->CATEGID;
+    int subcategID = -1;
 
-    if (subcategID == -1)
+    if (!iData->getSubCategData())
     {
         if (Model_Category::is_used(categID))
         {
@@ -328,6 +325,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     }
     else
     {
+        subcategID = iData->getSubCategData()->SUBCATEGID;
         if (Model_Category::is_used(categID, subcategID))
         {
             showCategDialogDeleteError(_("Sub-Category in use."), false);
@@ -373,8 +371,8 @@ void mmCategDialog::OnDoubleClicked(wxTreeEvent& /*event*/)
     {
         mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
             (treeCtrl_->GetItemData(selectedItemId_));
-        categID_ = iData->getCategID();
-        subcategID_ = iData->getSubCategID();
+        categID_ = iData->getCategData()->CATEGID;
+        subcategID_ = iData->getSubCategData()->SUBCATEGID;
         EndModal(wxID_OK);
     }
     else
@@ -401,8 +399,8 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     subcategID_ = -1;
     if (iData)
     {
-        categID_ = iData->getCategID();
-        subcategID_ = iData->getSubCategID();
+        categID_ = iData->getCategData()->CATEGID;
+        subcategID_ = iData->getSubCategData()->SUBCATEGID;
     }
 
     if (selectedItemId_ == root_ || !selectedItemId_)
@@ -447,12 +445,8 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
         (treeCtrl_->GetItemData(selectedItemId_));
-    int categID = iData->getCategID();
-    int subcategID = iData->getSubCategID();
 
-    Model_Category::Data* category = Model_Category::instance().get(categID);
-    Model_Subcategory::Data* sub_category = (subcategID != -1 ? Model_Subcategory::instance().get(subcategID) : 0);
-    if (subcategID == -1)
+    if (!iData->getSubCategData())
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
         if (!categories.empty())
@@ -461,14 +455,13 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
             wxMessageBox(errMsg, _("Organise Categories: Editing Error"), wxOK|wxICON_ERROR);
             return;
         }
-        if (category)
-        {
-            category->CATEGNAME = text;
-            Model_Category::instance().save(category);
-        }
+        Model_Category::Data* category = iData->getCategData();
+        category->CATEGNAME = text;
+        Model_Category::instance().save(category);
     }
     else
     {
+        Model_Category::Data* category = iData->getCategData();
         Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
         for (const auto &entry : subcategories)
         {
@@ -479,24 +472,12 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
                 return;
             }
         }
-        if (sub_category)
-        {
-            wxLogDebug("%s", sub_category->to_json());
-            sub_category->SUBCATEGNAME = text;
-            Model_Subcategory::instance().save(sub_category);
-        }
+        Model_Subcategory::Data* sub_category = iData->getSubCategData();
+        sub_category->SUBCATEGNAME = text;
+        Model_Subcategory::instance().save(sub_category);
     }
 
     treeCtrl_->SetItemText(selectedItemId_, text);
-    wxString fullCatStr = Model_Category::full_name(categID, subcategID);
-    Model_Checking::Data_Set transactions = Model_Checking::instance().find(Model_Checking::CATEGID(categID)
-        , Model_Checking::SUBCATEGID(subcategID));
-    for (auto &trx : transactions)
-    {
-        trx.CATEGID = categID;
-        trx.SUBCATEGID = subcategID;
-    }
-    Model_Checking::instance().save(transactions);
 
     refreshRequested_ = true;
 }

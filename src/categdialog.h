@@ -27,20 +27,20 @@
 
 #include "guiid.h"
 #include "defs.h"
+#include "model/Model_Category.h"
 
-// TODO Model_Category, Model_Subcategory
 class mmTreeItemCateg : public wxTreeItemData
 {
 public:
-    mmTreeItemCateg(int categID, int subcategID)
-        : categID_(categID),
-          subcategID_(subcategID) { }
-    int getCategID() {return categID_;}
-    int getSubCategID() {return subcategID_;}
+    mmTreeItemCateg(const Model_Category::Data& categData, const Model_Subcategory::Data& subcategData)
+        : categData_(categData),
+          subcategData_(subcategData) { }
+    Model_Category::Data* getCategData() { return &categData_; }
+    Model_Subcategory::Data* getSubCategData() { return &subcategData_; }
 
 private:
-    int categID_;
-    int subcategID_;
+    Model_Category::Data categData_;
+    Model_Subcategory::Data subcategData_;
 };
 
 class mmCategDialog : public wxDialog
