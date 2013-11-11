@@ -154,13 +154,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categdialog.obj \
 	mmex_tests_constants.obj \
 	mmex_tests_currencydialog.obj \
-	mmex_tests_customreportdialog.obj \
-	mmex_tests_customreportdisplay.obj \
-	mmex_tests_customreportindex.obj \
 	mmex_tests_dbwrapper.obj \
 	mmex_tests_fileviewerdialog.obj \
 	mmex_tests_filtertransdialog.obj \
-	mmex_tests_lua_interface.obj \
 	mmex_tests_maincurrencydialog.obj \
 	mmex_tests_mmCalculator.obj \
 	mmex_tests_mmOption.obj \
@@ -766,15 +762,6 @@ mmex_tests_constants.obj: ..\..\..\src\constants.cpp
 mmex_tests_currencydialog.obj: ..\..\..\src\currencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\currencydialog.cpp
 
-mmex_tests_customreportdialog.obj: ..\..\..\src\customreportdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\customreportdialog.cpp
-
-mmex_tests_customreportdisplay.obj: ..\..\..\src\customreportdisplay.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\customreportdisplay.cpp
-
-mmex_tests_customreportindex.obj: ..\..\..\src\customreportindex.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\customreportindex.cpp
-
 mmex_tests_dbwrapper.obj: ..\..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\dbwrapper.cpp
 
@@ -783,9 +770,6 @@ mmex_tests_fileviewerdialog.obj: ..\..\..\src\fileviewerdialog.cpp
 
 mmex_tests_filtertransdialog.obj: ..\..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\filtertransdialog.cpp
-
-mmex_tests_lua_interface.obj: ..\..\..\src\lua_interface.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\lua_interface.cpp
 
 mmex_tests_maincurrencydialog.obj: ..\..\..\src\maincurrencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\maincurrencydialog.cpp

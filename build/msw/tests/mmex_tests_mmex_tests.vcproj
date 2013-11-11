@@ -303,18 +303,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\customreportdialog.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\customreportdisplay.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\customreportindex.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\dbwrapper.cpp"
 				>
 			</File>
@@ -348,10 +336,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\incexpenses.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\lua_interface.cpp"
 				>
 			</File>
 			<File
@@ -721,18 +705,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\customreportdialog.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\customreportdisplay.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\customreportindex.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\dbwrapper.h"
 				>
 			</File>
@@ -774,10 +746,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\incexpenses.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\lua_interface.h"
 				>
 			</File>
 			<File

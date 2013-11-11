@@ -154,9 +154,6 @@
     <ClCompile Include="..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
-    <ClCompile Include="..\..\src\customreportdialog.cpp" />
-    <ClCompile Include="..\..\src\customreportdisplay.cpp" />
-    <ClCompile Include="..\..\src\customreportindex.cpp" />
     <ClCompile Include="..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\src\fileviewerdialog.cpp" />
@@ -166,7 +163,6 @@
     <ClCompile Include="..\..\src\reports\html_widget_top_categories.cpp" />
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp" />
     <ClCompile Include="..\..\src\reports\incexpenses.cpp" />
-    <ClCompile Include="..\..\src\lua_interface.cpp" />
     <ClCompile Include="..\..\src\maincurrencydialog.cpp" />
     <ClCompile Include="..\..\src\mmCalculator.cpp" />
     <ClCompile Include="..\..\src\reports\mmDateRange.cpp" />
@@ -257,9 +253,6 @@
     <ClInclude Include="..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\src\constants.h" />
     <ClInclude Include="..\..\src\currencydialog.h" />
-    <ClInclude Include="..\..\src\customreportdialog.h" />
-    <ClInclude Include="..\..\src\customreportdisplay.h" />
-    <ClInclude Include="..\..\src\customreportindex.h" />
     <ClInclude Include="..\..\src\dbwrapper.h" />
     <ClInclude Include="..\..\src\defs.h" />
     <ClInclude Include="..\..\src\import_export\export.h" />
@@ -271,7 +264,6 @@
     <ClInclude Include="..\..\src\reports\html_widget_top_categories.h" />
     <ClInclude Include="..\..\src\reports\htmlbuilder.h" />
     <ClInclude Include="..\..\src\reports\incexpenses.h" />
-    <ClInclude Include="..\..\src\lua_interface.h" />
     <ClInclude Include="..\..\src\maincurrencydialog.h" />
     <ClInclude Include="..\..\src\mmCalculator.h" />
     <ClInclude Include="..\..\src\reports\mmDateRange.h" />
