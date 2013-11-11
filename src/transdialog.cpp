@@ -39,7 +39,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmTransDialog::OnCategs)
-    EVT_CHOICE(wxID_ANY, mmTransDialog::OnTransTypeChanged)
+    EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::changeFocus)
@@ -60,6 +60,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , edit_currency_rate(1.0)
     , skip_account_init_(false)
     , skip_payee_init_(false)
+    , skip_status_init_(false)
 
 {
     if (transaction_id_)
@@ -75,6 +76,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
         transaction_ = Model_Checking::instance().create();
 
+        transaction_->STATUS    = "";
         transaction_->ACCOUNTID = accountID_;
         transaction_->TRANSDATE = trx_date.FormatISODate();
         transaction_->TRANSCODE = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
@@ -133,7 +135,11 @@ void mmTransDialog::dataToControls()
     GetEventHandler()->ProcessEvent(dateEvent);
 
     //Status
-    choiceStatus_->SetSelection(Model_Checking::status(transaction_));
+    if (!skip_status_init_)
+    {
+        choiceStatus_->SetSelection(Model_Checking::status(transaction_));
+        skip_status_init_ = true;
+	}
 
     //Type
     transaction_type_->SetSelection(Model_Checking::type(transaction_));
@@ -357,7 +363,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(choiceStatus_, flags);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice(this, wxID_ANY,
+    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
         wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Checking::all_type())

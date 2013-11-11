@@ -128,6 +128,7 @@ private:
 
     bool skip_account_init_;
     bool skip_payee_init_;
+    bool skip_status_init_;
 
 };
 
