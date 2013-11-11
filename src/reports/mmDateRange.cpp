@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/intl.h>
 
 mmDateRange::mmDateRange()
-: today_(wxDateTime::Now().GetDateOnly())
+: today_(wxDateTime::Today())
 {
     start_date_ = today_;
     end_date_ = today_;

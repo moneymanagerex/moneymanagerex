@@ -36,7 +36,7 @@ mmHTMLBuilder::mmHTMLBuilder()
     // init font size from config
     font_size_ = mmIniOptions::instance().html_font_size_;
 
-    today_.date = wxDateTime::Now().GetDateOnly();
+    today_.date = wxDateTime::Today();
     today_.date_str = today_.date.FormatDate();
     today_.todays_date = wxString::Format(_("Today's Date: %s"), today_.date_str);
 }

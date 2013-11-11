@@ -293,7 +293,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     wxString sPayee, type, sAmount, transNum, notes, convDate, sToAccountName;
     wxString sFullCateg, sCateg, sSubCateg, sSplitCategs, sSplitAmount, sValid;
 
-    wxDateTime dtdt = wxDateTime::Now().GetDateOnly();
+    wxDateTime dtdt = wxDateTime::Today();
     int payeeID = -1, categID = -1, subCategID = -1, to_account_id = -1, from_account_id = -1;
     double val = 0.0, dSplitAmount = 0.0;
     bool bTrxComplited = true;

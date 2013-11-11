@@ -364,7 +364,7 @@ public:
         {
             if (ignoreFuture)
             {
-                if (Model_Checking::TRANSDATE(transaction).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+                if (Model_Checking::TRANSDATE(transaction).IsLaterThan(wxDateTime::Today()))
                     continue; //skip future dated transactions
             }
 

@@ -178,7 +178,7 @@ public:
         Model_Checking::Data_Set trans = Model_Account::transaction(r);
         if (!trans.empty()) return Model_Checking::TRANSDATE(trans.back());
         
-        return wxDateTime::Now().GetDateOnly();
+        return wxDateTime::Today();
     }
     static wxDate last_date(const Data& r) { return last_date(&r); }
     static double balance(const Data* r)
