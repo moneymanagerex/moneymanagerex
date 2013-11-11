@@ -19,7 +19,7 @@
 #include "summaryassets.h"
 #include "htmlbuilder.h"
 #include "model/Model_Asset.h"
-#include "mmex.h"
+#include "util.h"
 #include <algorithm>
 
 mmReportSummaryAssets::mmReportSummaryAssets()
@@ -29,7 +29,6 @@ mmReportSummaryAssets::mmReportSummaryAssets()
 
 wxString mmReportSummaryAssets::getHTMLText()
 {
-    wxGetApp().m_frame->SetStatusText(this->version());
     mmHTMLBuilder hb;
     hb.init();
     hb.addHeader(2, _("Summary of Assets"));
