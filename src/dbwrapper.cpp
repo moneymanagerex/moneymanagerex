@@ -23,32 +23,6 @@
 //----------------------------------------------------------------------------
 #include "sqlite3.h"
 //----------------------------------------------------------------------------
-
-bool mmDBWrapper::IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows)
-{
-    wxString sql_script_exception;
-    wxString sql_modify;
-    try
-    {
-        rows =db->ExecuteScalar("select count (*) from (\n" + sScript + "\n)");
-    }
-    catch(const wxSQLite3Exception& e)
-    {
-        sql_script_exception = e.GetMessage();
-    }
-
-    sql_modify = sql_script_exception.Lower();
-    if (sql_modify.Contains("update") ||
-        sql_modify.Contains("delete") ||
-        sql_modify.Contains("insert"))
-    {
-        return false;
-    }
-    return true;
-}
-
-//----------------------------------------------------------------------------
-
 /*
     SQLITE_OPEN_READWRITE
     The database is opened for reading and writing if possible, or reading

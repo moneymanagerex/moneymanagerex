@@ -31,8 +31,6 @@ namespace mmDBWrapper
 
 wxSharedPtr<wxSQLite3Database> Open(const wxString &dbpath, const wxString &key = "");
 
-bool IsSelect(wxSQLite3Database* db, const wxString& sScript, int &rows);
-
 } // namespace mmDBWrapper
 
 //----------------------------------------------------------------------------
