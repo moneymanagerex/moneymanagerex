@@ -24,5 +24,5 @@ class mmReportSummaryAssets : public mmPrintableBase
 public:
     mmReportSummaryAssets();
     wxString getHTMLText();
-    wxString version() { return "$Revision:$"; }
+    wxString version() { return "$Revision$"; }
 };
