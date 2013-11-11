@@ -120,7 +120,6 @@ private:
     wxString resetCategoryString();
 
     Model_Checking::Data * transaction_;
-    Model_Splittransaction::Data_Set* m_splits;
     Model_Splittransaction::Data_Set m_local_splits;
     int accountID_; //The transaction account ID
     int newAccountID_;
