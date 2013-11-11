@@ -125,6 +125,14 @@ public:
         r->save(this->db_);
         return r->id();
     }
+    int save(Data_Set& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->save(&r);
+        this->Commit();
+
+        return rows.size();
+    }
 
     /** Remove the Data record instance from memory and the database. */
     bool remove(int id)

@@ -23,6 +23,7 @@
 #include "wx/statline.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Budget.h"
 
 IMPLEMENT_DYNAMIC_CLASS( relocateCategoryDialog, wxDialog )
 
@@ -158,8 +159,6 @@ int relocateCategoryDialog::updatedCategoriesCount() const
 
 void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    //TODO: same changes for billsdeposits split transactions
-    //TODO: Budget categories should be replaced too
     if ((sourceCatID_ > 0) && (destCatID_ > 0) )
     {
         Model_Checking::Data_Set transactions = Model_Checking::instance()
@@ -171,9 +170,15 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance()
             .find(Model_Billsdeposits::CATEGID(sourceCatID_)
                 , Model_Billsdeposits::SUBCATEGID(sourceSubCatID_));
+        Model_Budgetsplittransaction::Data_Set budget_split = Model_Budgetsplittransaction::instance()
+            .find(Model_Budgetsplittransaction::CATEGID(sourceCatID_)
+            , Model_Budgetsplittransaction::SUBCATEGID(sourceSubCatID_));
         Model_Payee::Data_Set payees = Model_Payee::instance()
             .find(Model_Payee::CATEGID(sourceCatID_)
             ,Model_Payee::SUBCATEGID(sourceSubCatID_));
+        Model_Budget::Data_Set budget = Model_Budget::instance()
+            .find(Model_Budget::CATEGID(sourceCatID_)
+            ,Model_Budget::SUBCATEGID(sourceSubCatID_));
 
         wxString msgStr = wxString()
             <<_("Please Confirm:")
@@ -181,8 +186,9 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
             << wxString::Format(_("Records found in transactions: %i"), transactions.size()) << "\n"
             << wxString::Format(_("Records found in split transactions: %i"), checking_split.size()) << "\n"
             << wxString::Format(_("Records found in repeating transactions: %i"), billsdeposits.size()) << "\n"
-            << wxString::Format(_("Records found as Default Payee Category: %i"), payees.size()) << "\n\n"
-            //<< wxString::Format(_("Records found in budget: %i"), xxx.size()) << "\n\n"
+            << wxString::Format(_("Records found in repeating split transactions: %i"), budget_split.size()) << "\n"
+            << wxString::Format(_("Records found as Default Payee Category: %i"), payees.size()) << "\n"
+            << wxString::Format(_("Records found in budget: %i"), budget.size()) << "\n\n"
             << wxString::Format(_("Changing all categories of: \n%s to category: %s")
                 , sourceBtn_->GetLabelText(), destBtn_->GetLabelText());
 
@@ -210,12 +216,26 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
             }
             changedRecords_ += Model_Splittransaction::instance().save(checking_split);
 
+            for (auto &entry : budget_split)
+            {
+                entry.CATEGID = destCatID_;
+                entry.SUBCATEGID = destSubCatID_;
+            }
+            changedRecords_ += Model_Budgetsplittransaction::instance().save(budget_split);
+
             for (auto &entry : payees)
             {
                 entry.CATEGID = destCatID_;
                 entry.SUBCATEGID = destSubCatID_;
             }
             changedRecords_ += Model_Payee::instance().save(payees);
+
+            for (auto &entry : budget)
+            {
+                entry.CATEGID = destCatID_;
+                entry.SUBCATEGID = destSubCatID_;
+            }
+            changedRecords_ += Model_Budget::instance().save(budget);
 
             EndModal(wxID_OK);
         }
