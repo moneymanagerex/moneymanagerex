@@ -28,7 +28,7 @@ class mmReportSummaryStocks : public mmPrintableBase
 public:
     mmReportSummaryStocks();
     wxString getHTMLText();
-    wxString version() { return "$Revision$"; }
+    wxString version() { return "$Rev$"; }
 
 private:
     void display_header(mmHTMLBuilder& hb);

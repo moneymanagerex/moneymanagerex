@@ -26,6 +26,7 @@ class mmReportSummary : public mmPrintableBase
 public:
     mmReportSummary();
     wxString getHTMLText();
+    wxString version() { return "$Rev$"; }
 };
 
 #endif //_MM_EX_REPORTSUMMARY_H_

@@ -30,6 +30,7 @@ public:
     ~mmReportPayeeExpenses();
 
     wxString getHTMLText();
+    wxString version() { return "$Rev$"; }
 
 protected:
     mmDateRange* date_range_;
