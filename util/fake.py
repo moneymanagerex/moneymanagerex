@@ -30,7 +30,7 @@ for x in range(1, 10000):
     transdate = today + timedelta(days = random.randint(-1000,10)) 
     
     sql = '''INSERT INTO CHECKINGACCOUNT_V1(ACCOUNTID, TOACCOUNTID, PAYEEID, TRANSCODE, TRANSAMOUNT, STATUS, TRANSACTIONNUMBER, NOTES, CATEGID, SUBCATEGID, TRANSDATE, FOLLOWUPID, TOTRANSAMOUNT)
-    VALUES(%d, -1, %d, "%s", %f, "%s", "0", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, type, category[0], category[1], transdate, amount)
+    VALUES(%d, -1, %d, "%s", %f, "%s", "%d", "", %d, %d, "%s", -1, %f)''' % (account_id, payee_id, transcode, amount, type, x, category[0], category[1], transdate, amount)
     curs.execute(sql)
     
 conn.commit()
