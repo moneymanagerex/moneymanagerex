@@ -21,7 +21,6 @@
 #include "util.h"
 #include "reports/htmlbuilder.h"
 #include "mmex.h"
-#include "lua_interface.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
 
@@ -102,7 +101,6 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
     bool bIsTrxId = sInfo.StartsWith("TRXID:", &sData);
     bool isAcct = sInfo.StartsWith("ACCT:", &sData);
     bool isStock = sInfo.StartsWith("STOCK:", &sData);
-    bool bIsLuaScript = sInfo.StartsWith("LUA:", &sData);
 	bool bIsSort = sInfo.StartsWith("SORT:", &sData);
     mmGUIFrame* frame = wxGetApp().m_frame;
     if (sInfo == "billsdeposits")
@@ -154,20 +152,6 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
                 frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
-    }
-    else if (bIsLuaScript)
-    {
-        wxString lua_result;
-        wxFileName LuaFile = sData;
-        if (LuaFile.FileExists())
-        {
-            mmHTMLBuilder hb;
-            TLuaInterface lua_core(&hb);
-            lua_core.RunLuaFile(sData);
-            htmlWindow_->SetPage(hb.getHTMLText());
-        }
-        else
-            wxMessageBox(wxString::Format(_("File %s not found"), sData), "Lua Script", wxOK|wxICON_ERROR);
     }
 	else if (bIsSort)
 	{
