@@ -1554,7 +1554,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
 
 void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
 {
-    mmTransDialog dlg(this, m_cp->m_AccountID, NULL);
+    mmTransDialog dlg(this, m_cp->m_AccountID, 0);
     if (dlg.ShowModal() == wxID_OK)
     {
         refreshVisualList(dlg.getTransactionID());

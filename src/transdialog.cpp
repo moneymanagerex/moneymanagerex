@@ -75,8 +75,6 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
         transaction_->ACCOUNTID = accountID_;
         transaction_->TRANSDATE = trx_date.FormatISODate();
-
-        SetDialogTitle(_("New Transaction"));
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -116,6 +114,12 @@ bool mmTransDialog::Create( wxWindow* parent, wxWindowID id, const wxString& cap
 
 void mmTransDialog::dataToControls()
 {
+    //Dialog title
+    if (transaction_id_)
+        SetDialogTitle(_("Edit Transaction"));
+    else
+        SetDialogTitle(_("New Transaction"));
+
     bool transfer = Model_Checking::type(transaction_) == Model_Checking::TRANSFER;
 
     //Date
