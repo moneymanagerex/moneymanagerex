@@ -138,13 +138,13 @@ public:
         // healthcare
         {
             std::vector<wxString> sub_categoris;
-            sub_categoris.push_back(wxTRANSLATE("health"));
-            sub_categoris.push_back(wxTRANSLATE("dental"));
-            sub_categoris.push_back(wxTRANSLATE("eyecare"));
-            sub_categoris.push_back(wxTRANSLATE("physician"));
-            sub_categoris.push_back(wxTRANSLATE("prescriptions"));
+            sub_categoris.push_back(wxTRANSLATE("Health"));
+            sub_categoris.push_back(wxTRANSLATE("Dental"));
+            sub_categoris.push_back(wxTRANSLATE("Eyecare"));
+            sub_categoris.push_back(wxTRANSLATE("Physician"));
+            sub_categoris.push_back(wxTRANSLATE("Prescriptions"));
 
-            all_categoris.push_back(std::make_pair(wxTRANSLATE("healthcare"), sub_categoris));
+            all_categoris.push_back(std::make_pair(wxTRANSLATE("Healthcare"), sub_categoris));
         }
 
         // Insurance 
