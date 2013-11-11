@@ -41,23 +41,15 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
     }
     catch (const wxSQLite3Exception& e)
     {
-        //wxLogError("Database::open: %s: %s", e.GetMessage());
-        //wxLogDebug("Database::open: %s: %s", e.GetMessage());
         err = e.GetErrorCode();
         errStr << e.GetMessage();
     }
 
     if (err==SQLITE_OK)
     {
-
         //timeout 2 sec
         db->SetBusyTimeout(2000);
 
-        //TODO oblolete code
-        if (err!=SQLITE_OK)
-        {
-            wxLogError(wxString::Format(_("Write error: %s"), errStr));
-        }
         return (db);
     }
     db->Close();
