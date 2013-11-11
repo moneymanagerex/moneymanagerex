@@ -246,6 +246,8 @@ void mmCheckingPanel::filterTable()
             if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
         }
 
+        if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_) continue;
+
         Model_Checking::Full_Data full_tran(tran);
         full_tran.BALANCE = account_balance_;
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
@@ -1161,9 +1163,6 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    menu.Append(MENU_TREEPOPUP_MARKDELETE, _("Move to Trash"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_MARKDELETE, false);
-
     wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted") : _("Show Deleted");
     menu.AppendCheckItem(MENU_TREEPOPUP_SHOWTRASH, menu_item_label);
 
@@ -1231,15 +1230,18 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKVOID)               status = "V";
     else if (evt == MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP) status = "F";
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
-    else if (evt == MENU_TREEPOPUP_MARKDELETE)             status = "X";
     else wxASSERT(false);
 
-    m_cp->m_trans[m_selectedIndex].STATUS = status;
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
-    if (trx) Model_Checking::instance().save(trx);
+    if (trx)
+    {
+        m_cp->m_trans[m_selectedIndex].STATUS = status;
+        trx->STATUS = status;
+        Model_Checking::instance().save(trx);
+    }
 
     if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox())
-        || (status == "X" && !showDeletedTransactions_))
+        || (status == "V" && !showDeletedTransactions_))
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     else 
         RefreshItems(m_selectedIndex, m_selectedIndex);
@@ -1348,8 +1350,6 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
             res = ICON_RECONCILED;
         else if (status == "V")
             res = ICON_VOID;
-        else if (status == "X")
-            res = ICON_TRASH;
         else if (status == "D")
             res = ICON_DUPLICATE;
     }
@@ -1488,7 +1488,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if ((wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "X")
+    else if ((wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDELETE);
         OnMarkTransaction(evt);
@@ -1677,7 +1677,6 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 {
     m_cp->initVirtualListControl();
     m_cp->markSelectedTransaction(trans_id);
-
 
     if (topItemIndex_ >= (long)m_cp->m_trans.size())
         topItemIndex_ = g_asc ? (long)m_cp->m_trans.size() - 1 : 0;
