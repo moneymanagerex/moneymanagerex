@@ -268,7 +268,7 @@ void mmTransDialog::dataToControls()
     textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
 
     textNotes_->SetValue(transaction_->NOTES);
-    if (transaction_->NOTES.IsEmpty())
+    if (transaction_->NOTES.IsEmpty() && !transaction_id_)
     {
         notesColour_ = textNotes_->GetForegroundColour();
         textNotes_->SetForegroundColour(wxColour("GREY"));
