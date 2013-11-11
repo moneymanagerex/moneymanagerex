@@ -158,28 +158,14 @@ void mmCheckingPanel::sortTable()
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
         {
-            double trans_x = x.TRANSAMOUNT;
-            if ((Model_Checking::type(x) == Model_Checking::WITHDRAWAL) || (Model_Checking::type(x) == Model_Checking::TRANSFER && x.ACCOUNTID == this->m_AccountID))
-                trans_x = -trans_x;
-            double trans_y = y.TRANSAMOUNT;
-            if ((Model_Checking::type(y) == Model_Checking::WITHDRAWAL) || (Model_Checking::type(y) == Model_Checking::TRANSFER && y.ACCOUNTID == this->m_AccountID))
-                trans_y = -trans_y;
-
-            return trans_x > trans_y;
+            return Model_Checking::withdrawal(x, this->m_AccountID) < Model_Checking::withdrawal(y, this->m_AccountID);
         });
         break;
     case TransactionListCtrl::COL_DEPOSIT:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
         {
-            double trans_x = x.TRANSAMOUNT;
-            if ((Model_Checking::type(x) == Model_Checking::WITHDRAWAL) || (Model_Checking::type(x) == Model_Checking::TRANSFER && x.ACCOUNTID == this->m_AccountID))
-                trans_x = -trans_x;
-            double trans_y = y.TRANSAMOUNT;
-            if ((Model_Checking::type(y) == Model_Checking::WITHDRAWAL) || (Model_Checking::type(y) == Model_Checking::TRANSFER && y.ACCOUNTID == this->m_AccountID))
-                trans_y = -trans_y;
-
-            return trans_x < trans_y;
+            return Model_Checking::deposit(x, this->m_AccountID) < Model_Checking::deposit(y, this->m_AccountID);
         });
         break;
     case TransactionListCtrl::COL_BALANCE:
