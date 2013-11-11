@@ -229,7 +229,7 @@ void mmTransDialog::dataToControls()
         if (cSplit_->IsChecked())
         {
             cSplit_->SetValue(false);
-            //TODO: m_splits->erase();
+            m_local_splits.clear();
         }
 
         for (const auto & entry : Model_Account::instance().all_checking_account_names())
