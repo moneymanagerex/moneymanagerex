@@ -29,6 +29,7 @@ public:
     virtual ~mmReportCategoryExpenses();
 
     wxString getHTMLText();
+    wxString version() { return "$Rev$"; }
 
 public:
     enum TYPE { NONE = 0, GOES, COME, CATEGORY};

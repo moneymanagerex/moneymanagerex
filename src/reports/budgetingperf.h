@@ -28,6 +28,7 @@ public:
     mmReportBudgetingPerformance(int budgetYearID);
 
     wxString getHTMLText();
+    wxString version() { return "$Rev$"; }
 
 private:
     int budgetYearID_;
