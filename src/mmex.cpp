@@ -2433,8 +2433,8 @@ void mmGUIFrame::InitializeModelTables()
     Model_Checking::instance(m_db.get());
     Model_Currency::instance(m_db.get());
     Model_Budgetyear::instance(m_db.get());
+    Model_Subcategory::instance(m_db.get()); // subcategory must be initialized before category
     Model_Category::instance(m_db.get());
-    Model_Subcategory::instance(m_db.get());
     Model_Billsdeposits::instance(m_db.get());
     Model_Splittransaction::instance(m_db.get());
     Model_Budgetsplittransaction::instance(m_db.get());
@@ -2517,9 +2517,6 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             m_db = mmDBWrapper::Open(fileName, password);
             password_ = password;
 			InitializeModelTables();
-            // Populate category and curency tables with default values
-            Model_Category::instance().initialize();
-            Model_Currency::instance().initialize();
 			
             openDataBase(fileName);
 

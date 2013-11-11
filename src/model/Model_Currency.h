@@ -50,8 +50,10 @@ public:
         Model_Currency& ins = Singleton<Model_Currency>::instance();
         ins.db_ = db;
         ins.destroy_cache();
+        bool init_currencies = !ins.exists(db);
         ins.ensure(db);
-
+        if (init_currencies)
+            ins.initialize();
         return ins;
     }
 

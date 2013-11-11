@@ -54,7 +54,10 @@ public:
         Model_Category& ins = Singleton<Model_Category>::instance();
         ins.db_ = db;
         ins.destroy_cache();
+        bool init_categories = !ins.exists(db);
         ins.ensure(db);
+        if (init_categories)
+            ins.initialize();
 
         return ins;
     }
@@ -221,9 +224,9 @@ public:
         this->Begin();
         for (const auto& record : all_categoris)
         {
-            Model_Category::Data* category = Model_Category::instance().create();
+            Model_Category::Data* category = this->create();
             category->CATEGNAME = wxGetTranslation(record.first);
-            Model_Category::instance().save(category);
+            category->save(this->db_);
             for (const auto& sub_record : record.second)
             {
                 Model_Subcategory::Data* sub_category = Model_Subcategory::instance().create();
