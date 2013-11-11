@@ -262,6 +262,21 @@ public:
     {
         return !Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM]), DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[OPEN])).empty(); 
     }
+    static wxDateTime getLastDate(int accountID)
+    {
+        wxDateTime dt = wxDateTime::Now();
+        Model_Checking::Data_Set transactions = transaction(instance().get(accountID));
+        std::stable_sort(transactions.begin(), transactions.end(), SorterByTRANSDATE());
+        std::reverse(transactions.begin(), transactions.end());
+        for (const auto& tran : transactions)
+        {
+            if (Model_Checking::TRANSDATE(tran).IsLaterThan(dt))
+                continue; //skip future dated transactions
+            dt = Model_Checking::TRANSDATE(tran);
+            break;
+        }
+        return dt;
+    }
 };
 
 #endif // 
