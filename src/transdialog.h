@@ -126,6 +126,9 @@ private:
     int referenceAccountID_; // used for transfer transactions
     int transaction_id_; //The transaction ID. NULL if new transaction
 
+    bool skip_account_init_;
+    bool skip_payee_init_;
+
 };
 
 #endif

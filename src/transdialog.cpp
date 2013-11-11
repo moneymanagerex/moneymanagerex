@@ -39,7 +39,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmTransDialog::OnCategs)
-    EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
+    EVT_CHOICE(wxID_ANY, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::changeFocus)
@@ -58,6 +58,8 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , categUpdated_(false)
     , advancedToTransAmountSet_(false)
     , edit_currency_rate(1.0)
+    , skip_account_init_(false)
+    , skip_payee_init_(false)
 
 {
     if (transaction_id_)
@@ -75,6 +77,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
         transaction_->ACCOUNTID = accountID_;
         transaction_->TRANSDATE = trx_date.FormatISODate();
+        transaction_->TRANSCODE = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -156,97 +159,109 @@ void mmTransDialog::dataToControls()
         edit_currency_rate = transaction_->TOTRANSAMOUNT / transaction_->TRANSAMOUNT;
 
     //Account
-    cbAccount_->SetEvtHandlerEnabled(false);
-    cbAccount_->Clear();
-    newAccountID_ = accountID_;
-    Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
-    for (const auto &account : accounts)
+    if (!skip_account_init_)
     {
-        if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-        cbAccount_->Append(account.ACCOUNTNAME);
-        if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->SetStringSelection(account.ACCOUNTNAME);
+        cbAccount_->SetEvtHandlerEnabled(false);
+        cbAccount_->Clear();
+        newAccountID_ = accountID_;
+        Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+        for (const auto &account : accounts)
+        {
+            if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
+            cbAccount_->Append(account.ACCOUNTNAME);
+            if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->SetStringSelection(account.ACCOUNTNAME);
+        }
+        cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
+        accountID_ = transaction_->ACCOUNTID;
+        if (accounts.size() == 1) cbAccount_->Enable(false);
+        cbAccount_->SetEvtHandlerEnabled(true);
+        skip_account_init_ = true;
     }
-    cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
-    cbAccount_->UnsetToolTip();
-    accountID_ = transaction_->ACCOUNTID;
-    cbAccount_->SetEvtHandlerEnabled(true);
 
     //Payee or To Account
-    cbPayee_->SetEvtHandlerEnabled(false);
-
-    cbPayee_->Clear();
-    if (!transfer)
+    if (!skip_payee_init_)
     {
-        if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
+        cbPayee_->SetEvtHandlerEnabled(false);
+
+        cbPayee_->Clear();
+        cbAccount_->UnsetToolTip();
+        cbPayee_->UnsetToolTip();
+        wxString payee_tooltip = "";
+        if (!transfer)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
-            for (const auto &trx : transactions)
+            if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
             {
-                if (trx.ACCOUNTID != transaction_->ACCOUNTID) continue;
-                if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
-                transaction_->PAYEEID = trx.PAYEEID;
-                Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
-                if (payee)
+                Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
+                for (const auto &trx : transactions)
                 {
-                    transaction_->CATEGID = payee->CATEGID;
-                    transaction_->SUBCATEGID = payee->SUBCATEGID;
+                    if (trx.ACCOUNTID != transaction_->ACCOUNTID) continue;
+                    if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
+                    transaction_->PAYEEID = trx.PAYEEID;
+                    Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
+                    if (payee)
+                    {
+                        transaction_->CATEGID = payee->CATEGID;
+                        transaction_->SUBCATEGID = payee->SUBCATEGID;
+                    }
+                    break;
                 }
-                break;
             }
+            if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
+                bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
+            else
+                bCategory_->SetLabel(resetCategoryString());
+
+            textAmount_->SetToolTip(amountNormalTip_);
+
+            if (transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+            {
+                payee_tooltip = _("Specify to whom the transaction is going to");
+                payee_label_->SetLabel(_("Payee"));
+            }
+            else
+            {
+                payee_tooltip = _("Specify where the transaction is coming from");
+                payee_label_->SetLabel(_("From"));
+            }
+
+            cbAccount_->SetToolTip(_("Specify account for the transaction"));
+            account_label_->SetLabel(_("Account"));
+            transaction_->TOACCOUNTID = -1;
+
+            for (const auto & entry : Model_Payee::instance().all_payee_names())
+                cbPayee_->Append(entry);
+            cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+            Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
+            if (payee)
+                cbPayee_->SetStringSelection(payee->PAYEENAME);
         }
-        if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
-            bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
         else
-            bCategory_->SetLabel(resetCategoryString());
-
-        textAmount_->SetToolTip(amountNormalTip_);
-
-        if (transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
         {
-            cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
-            payee_label_->SetLabel(_("Payee"));
+            textAmount_->SetToolTip(amountTransferTip_);
+            toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
+            if (cSplit_->IsChecked())
+            {
+                cSplit_->SetValue(false);
+                m_local_splits.clear();
+            }
+
+            for (const auto & entry : Model_Account::instance().all_checking_account_names())
+                cbPayee_->Append(entry);
+            cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
+
+            Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
+            if (account)
+                cbPayee_->SetStringSelection(account->ACCOUNTNAME);
+
+            payee_label_->SetLabel(_("To"));
+            payee_tooltip = _("Specify which account the transfer is going to");
+            transaction_->PAYEEID = -1;
+            account_label_->SetLabel(_("From"));
+            cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
+            cbAccount_->Enable(true);
         }
-        else
-        {
-            cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
-            payee_label_->SetLabel(_("From"));
-        }
-
-        cbAccount_->SetToolTip(_("Specify account for the transaction"));
-        account_label_->SetLabel(_("Account"));
-        transaction_->TOACCOUNTID = -1;
-
-        for (const auto & entry : Model_Payee::instance().all_payee_names())
-            cbPayee_->Append(entry);
-        cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
-        Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
-        if (payee)
-            cbPayee_->SetStringSelection(payee->PAYEENAME);
-    }
-    else
-    {
-        textAmount_->SetToolTip(amountTransferTip_);
-        toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
-        if (cSplit_->IsChecked())
-        {
-            cSplit_->SetValue(false);
-            m_local_splits.clear();
-        }
-
-        for (const auto & entry : Model_Account::instance().all_checking_account_names())
-            cbPayee_->Append(entry);
-        cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
-
-        Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
-        if (account)
-            cbPayee_->SetStringSelection(account->ACCOUNTNAME);
-
-        payee_label_->SetLabel(_("To"));
-        cbPayee_->SetToolTip(_("Specify which account the transfer is going to"));
-        transaction_->PAYEEID = -1;
-        account_label_->SetLabel(_("From"));
-        cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
-        cbAccount_->Enable(true);
+        cbPayee_->SetToolTip(payee_tooltip);
+        skip_payee_init_ = true;
     }
 
     //Notes
@@ -342,11 +357,14 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(choiceStatus_, flags);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
+    transaction_type_ = new wxChoice(this, wxID_ANY,
         wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Checking::all_type())
-        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    {
+        if (i != Model_Checking::all_type()[Model_Checking::TRANSFER] || Model_Account::instance().all().size() > 1)
+            transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    }
 
     cAdvanced_ = new wxCheckBox(this,
         ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("Advanced"),
@@ -740,7 +758,10 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
     wxStringClientData *client_obj = (wxStringClientData *) event.GetClientObject();
     if (client_obj) transaction_->TRANSCODE = client_obj->GetData();
     if (old_type != transaction_->TRANSCODE)
+    {
+        skip_payee_init_ = false;
         dataToControls();
+    }
 }
 
 
