@@ -129,9 +129,6 @@ void mmTransDialog::dataToControls()
     choiceStatus_->SetSelection(Model_Checking::status(transaction_));
 
     //Type
-    transaction_type_->Clear();
-    for (const auto& i : Model_Checking::all_type())
-        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
     transaction_type_->SetSelection(Model_Checking::type(transaction_));
 
     //Advanced
@@ -343,6 +340,9 @@ void mmTransDialog::CreateControls()
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
         wxDefaultPosition, wxSize(110, -1));
+
+    for (const auto& i : Model_Checking::all_type())
+        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     cAdvanced_ = new wxCheckBox(this,
         ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("Advanced"),
