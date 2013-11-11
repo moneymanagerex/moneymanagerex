@@ -155,7 +155,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_constants.obj \
 	mmex_tests_currencydialog.obj \
 	mmex_tests_dbwrapper.obj \
-	mmex_tests_fileviewerdialog.obj \
 	mmex_tests_filtertransdialog.obj \
 	mmex_tests_maincurrencydialog.obj \
 	mmex_tests_mmCalculator.obj \
@@ -764,9 +763,6 @@ mmex_tests_currencydialog.obj: ..\..\..\src\currencydialog.cpp
 
 mmex_tests_dbwrapper.obj: ..\..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\dbwrapper.cpp
-
-mmex_tests_fileviewerdialog.obj: ..\..\..\src\fileviewerdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\fileviewerdialog.cpp
 
 mmex_tests_filtertransdialog.obj: ..\..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\filtertransdialog.cpp

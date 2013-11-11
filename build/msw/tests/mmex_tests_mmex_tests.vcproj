@@ -311,10 +311,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\fileviewerdialog.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\filtertransdialog.cpp"
 				>
 			</File>
@@ -714,10 +710,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\import_export\export.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\fileviewerdialog.h"
 				>
 			</File>
 			<File

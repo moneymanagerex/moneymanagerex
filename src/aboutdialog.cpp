@@ -17,8 +17,8 @@
  *******************************************************/
 #include "aboutdialog.h"
 #include "constants.h"
+#include "guiid.h"
 #include "reports/htmlbuilder.h"
-#include "fileviewerdialog.h"
 #include "paths.h"
 /*******************************************************/
 

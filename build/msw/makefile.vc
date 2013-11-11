@@ -122,7 +122,6 @@ MMEX_OBJECTS =  \
 	mmex_constants.obj \
 	mmex_currencydialog.obj \
 	mmex_dbwrapper.obj \
-	mmex_fileviewerdialog.obj \
 	mmex_filtertransdialog.obj \
 	mmex_maincurrencydialog.obj \
 	mmex_mmCalculator.obj \
@@ -670,9 +669,6 @@ mmex_currencydialog.obj: ..\..\src\currencydialog.cpp
 
 mmex_dbwrapper.obj: ..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\dbwrapper.cpp
-
-mmex_fileviewerdialog.obj: ..\..\src\fileviewerdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\fileviewerdialog.cpp
 
 mmex_filtertransdialog.obj: ..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\filtertransdialog.cpp

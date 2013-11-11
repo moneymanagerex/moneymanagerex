@@ -156,7 +156,6 @@
     <ClCompile Include="..\..\src\currencydialog.cpp" />
     <ClCompile Include="..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\src\import_export\export.cpp" />
-    <ClCompile Include="..\..\src\fileviewerdialog.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
     <ClCompile Include="..\..\src\reports\html_widget_bills_and_deposits.cpp" />
     <ClCompile Include="..\..\src\reports\html_widget_stocks.cpp" />
@@ -256,7 +255,6 @@
     <ClInclude Include="..\..\src\dbwrapper.h" />
     <ClInclude Include="..\..\src\defs.h" />
     <ClInclude Include="..\..\src\import_export\export.h" />
-    <ClInclude Include="..\..\src\fileviewerdialog.h" />
     <ClInclude Include="..\..\src\filtertransdialog.h" />
     <ClInclude Include="..\..\src\guiid.h" />
     <ClInclude Include="..\..\src\reports\html_widget_bills_and_deposits.h" />
