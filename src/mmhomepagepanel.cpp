@@ -206,7 +206,7 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
     {
         if (ignoreFuture)
         {
-            if (Model_Checking::TRANSDATE(trx).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+            if (Model_Checking::TRANSDATE(trx).IsLaterThan(wxDateTime::Now().GetDateOnly()))
                 continue; //skip future dated transactions
         }
         if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)++this->countFollowUp_;
@@ -331,7 +331,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
             continue; // skip
         if (ignoreFuture)
         {
-            if (Model_Checking::TRANSDATE(pBankTransaction).GetDateOnly().IsLaterThan(wxDateTime::Now().GetDateOnly()))
+            if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(wxDateTime::Now().GetDateOnly()))
                 continue; //skip future dated transactions
         }
 
