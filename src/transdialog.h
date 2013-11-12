@@ -117,7 +117,6 @@ private:
     wxColour notesColour_;
     int object_in_focus_;
     wxString resetPayeeString(/*bool normal = true*/);
-    wxString resetCategoryString();
 
     Model_Checking::Data * transaction_;
     Model_Splittransaction::Data_Set m_local_splits;
@@ -129,6 +128,7 @@ private:
     bool skip_account_init_;
     bool skip_payee_init_;
     bool skip_status_init_;
+    bool skip_notes_init_;
 
 };
 

@@ -61,6 +61,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_account_init_(false)
     , skip_payee_init_(false)
     , skip_status_init_(false)
+    , skip_notes_init_(false)
 
 {
     if (transaction_id_)
@@ -76,10 +77,13 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
         transaction_ = Model_Checking::instance().create();
 
-        transaction_->STATUS    = "";
+        transaction_->STATUS = mmIniOptions::instance().transStatusReconciled_ ? "" : "R";
         transaction_->ACCOUNTID = accountID_;
         transaction_->TRANSDATE = trx_date.FormatISODate();
         transaction_->TRANSCODE = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+        transaction_->CATEGID = -1;
+        transaction_->SUBCATEGID = -1;
+
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -195,7 +199,7 @@ void mmTransDialog::dataToControls()
         wxString payee_tooltip = "";
         if (!transfer)
         {
-            if (mmIniOptions::instance().transPayeeSelectionNone_ > 0)
+            if (mmIniOptions::instance().transPayeeSelectionNone_)
             {
                 Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
                 for (const auto &trx : transactions)
@@ -204,7 +208,8 @@ void mmTransDialog::dataToControls()
                     if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
                     transaction_->PAYEEID = trx.PAYEEID;
                     Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
-                    if (payee)
+
+                    if (payee && mmIniOptions::instance().transCategorySelectionNone_)
                     {
                         transaction_->CATEGID = payee->CATEGID;
                         transaction_->SUBCATEGID = payee->SUBCATEGID;
@@ -212,10 +217,8 @@ void mmTransDialog::dataToControls()
                     break;
                 }
             }
-            if (mmIniOptions::instance().transCategorySelectionNone_ != 0)
-                bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
-            else
-                bCategory_->SetLabel(resetCategoryString());
+
+            bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
 
             textAmount_->SetToolTip(amountNormalTip_);
 
@@ -268,22 +271,8 @@ void mmTransDialog::dataToControls()
         }
         cbPayee_->SetToolTip(payee_tooltip);
         skip_payee_init_ = true;
+        cbPayee_->SetEvtHandlerEnabled(true);
     }
-
-    //Notes
-    textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
-
-    textNotes_->SetValue(transaction_->NOTES);
-    if (transaction_->NOTES.IsEmpty() && !transaction_id_)
-    {
-        notesColour_ = textNotes_->GetForegroundColour();
-        textNotes_->SetForegroundColour(wxColour("GREY"));
-        textNotes_->SetValue(notesTip_);
-        int font_size = textNotes_->GetFont().GetPointSize();
-        textNotes_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, ""));
-    }
-
-    cbPayee_->SetEvtHandlerEnabled(true);
 
     //SetSplitState();
     bool has_split = !this->m_local_splits.empty();
@@ -293,8 +282,6 @@ void mmTransDialog::dataToControls()
         fullCategoryName = _("Split Category");
         double total = Model_Splittransaction::instance().get_total(m_local_splits);
         textAmount_->SetValue(total);
-        transaction_->CATEGID = -1;
-        transaction_->SUBCATEGID = -1;
     }
     else
     {
@@ -309,6 +296,23 @@ void mmTransDialog::dataToControls()
     cSplit_->SetValue(has_split);
     cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
 
+    //Transaction Number
+    textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
+
+    //Notes
+    if (!skip_notes_init_)
+    {
+        textNotes_->SetValue(transaction_->NOTES);
+        if (transaction_->NOTES.IsEmpty() && !transaction_id_)
+        {
+            notesColour_ = textNotes_->GetForegroundColour();
+            textNotes_->SetForegroundColour(wxColour("GREY"));
+            textNotes_->SetValue(notesTip_);
+            int font_size = textNotes_->GetFont().GetPointSize();
+            textNotes_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, ""));
+        }
+        skip_notes_init_ = true;
+    }
 }
 
 void mmTransDialog::CreateControls()
@@ -527,14 +531,6 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
     }
 
     return payeeStr;
-}
-
-wxString mmTransDialog::resetCategoryString()
-{
-    transaction_->CATEGID = -1;
-    transaction_->SUBCATEGID = -1;
-
-    return _("Select Category");
 }
 
 bool mmTransDialog::validateData()
@@ -824,11 +820,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     }
     else
     {
-        if (m_local_splits.size() != 1)
-        {
-            transaction_->TRANSAMOUNT = 0;
-        }
-        else
+        if (m_local_splits.size() == 1)
         {
             transaction_->CATEGID = m_local_splits.begin()->CATEGID;
             transaction_->SUBCATEGID = m_local_splits.begin()->SUBCATEGID;
@@ -837,10 +829,17 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
             if (transaction_->TRANSAMOUNT < 0)
             {
                 transaction_->TRANSAMOUNT = -transaction_->TRANSAMOUNT;
-                transaction_type_->SetStringSelection(wxGetTranslation(TRANS_TYPE_WITHDRAWAL_STR));
+                transaction_type_->SetSelection(Model_Checking::WITHDRAWAL);
             }
+            m_local_splits.clear();
         }
-        textAmount_->SetValue(transaction_->TRANSAMOUNT);
+        else if (m_local_splits.empty())
+        {
+            transaction_->TRANSAMOUNT = 0;
+        }
+        else
+            //Delete split items first (data protection)
+            cSplit_->SetValue(true);
     }
     dataToControls();
 }
@@ -968,7 +967,11 @@ void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
     transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
 
     if (!m_local_splits.empty())
+    {
         this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
+        this->transaction_->CATEGID = -1;
+        this->transaction_->SUBCATEGID = -1;
+    }
 
     transaction_id_ = Model_Checking::instance().save(transaction_);
     for (auto &item : m_local_splits) item.TRANSID = transaction_->TRANSID;
