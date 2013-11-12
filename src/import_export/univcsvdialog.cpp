@@ -1297,7 +1297,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_DEPOSIT:
-            if (!Model_Currency::fromString(token, val_), Model_Account::currency(Model_Account::instance().get(fromAccountID_))) return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
             if (val_ <= 0.0) return;
 
             type_ = TRANS_TYPE_DEPOSIT_STR;
@@ -1305,7 +1305,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_WITHDRAWAL:
-            if (!Model_Currency::fromString(token, val_), Model_Account::currency(Model_Account::instance().get(fromAccountID_))) return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
             if (val_ <= 0.0) return;
 
             type_ = TRANS_TYPE_WITHDRAWAL_STR;
