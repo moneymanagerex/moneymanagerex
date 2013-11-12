@@ -1443,13 +1443,20 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
     Model_Checking::Data* tran = Model_Checking::instance().get(m_selectedForCopy);
-    Model_Checking::Data* copy = Model_Checking::instance().clone(tran);
+    Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
     if (Model_Checking::type(copy) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
-    Model_Checking::instance().save(copy);
+    int transactionID = Model_Checking::instance().save(copy);
 
-    topItemIndex_ = m_selectedIndex;
-    refreshVisualList();
+    Model_Splittransaction::Data_Set copy_split = Model_Checking::splittransaction(tran);
+    for (auto& splt : Model_Checking::splittransaction(tran))
+    {
+        splt.TRANSID = transactionID;
+        copy_split.push_back(splt);
+    }
+    Model_Splittransaction::instance().save(copy_split);
+
+    refreshVisualList(transactionID);
 }
 //----------------------------------------------------------------------------
 
