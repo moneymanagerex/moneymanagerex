@@ -803,3 +803,29 @@ bool mmFilterTransactionsDialog::checkPayee(int payeeID)
     }
     return true;
 }
+
+bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
+{
+    if (categoryCheckBox_->IsChecked())
+    {
+        if (Model_Checking::splittransaction(tran).empty())
+        {
+            if (categID_ != tran.CATEGID) return false;
+            if (subcategID_ != tran.SUBCATEGID && bExpandStaus_) return false;
+        }
+        else
+        {
+            bool bMatching = false;
+            for (const auto &split : Model_Checking::splittransaction(tran))
+            {
+                if (split.CATEGID != categID_) continue;
+                if (split.SUBCATEGID != subcategID_ && bExpandStaus_) continue;
+
+                bMatching = true;
+                break;
+            }
+            if (!bMatching) return false;
+        }
+    }
+    return true;
+}

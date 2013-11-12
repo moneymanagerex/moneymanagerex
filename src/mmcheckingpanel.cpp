@@ -211,33 +211,8 @@ void mmCheckingPanel::filterTable()
                           , transFilterDlg_->getToDateControl().GetDateOnly()
                 )
             ) continue;
-            if (Model_Checking::TRANSFER != Model_Checking::type(tran) && !transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
-            if (transFilterDlg_->getCategoryCheckBox())
-            {
-                if (tran.CATEGID != -1)
-                {
-                    if (transFilterDlg_->getCategoryID() != tran.CATEGID)
-                        continue; // Skip
-                    if (transFilterDlg_->getSubCategoryID() != tran.SUBCATEGID)
-                        continue; // Skip
-                }
-                else
-                {
-                    bool bMatching = false;
-                    for (const Model_Splittransaction::Data split : Model_Checking::splittransaction(tran))
-                    {
-                        if (split.CATEGID != tran.CATEGID)
-                            continue;
-                        if (split.SUBCATEGID != tran.SUBCATEGID)
-                            continue;
-
-                        bMatching = true;
-                        break;
-                    }
-                    if (!bMatching)
-                        continue;
-                }
-            }
+            if (!transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
+            if (!transFilterDlg_->checkCategory(tran)) continue;
             if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
             if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
             if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;
@@ -252,15 +227,20 @@ void mmCheckingPanel::filterTable()
         full_tran.BALANCE = account_balance_;
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
         {
-            const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID == this->m_AccountID ? tran.TOACCOUNTID : tran.ACCOUNTID);
-            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
+            bool transfer_to = tran.ACCOUNTID == this->m_AccountID;
+            const Model_Account::Data* account = Model_Account::instance().get(transfer_to ? tran.TOACCOUNTID : tran.ACCOUNTID);
+            if (account) full_tran.PAYEENAME = wxString(account->ACCOUNTNAME).Prepend(transfer_to ? "> " : "< ");
         }
         else
         {
             const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
             if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
         }
-        full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
+        
+        if (Model_Checking::splittransaction(tran).empty())
+            full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
+        else
+            full_tran.CATEGNAME = "...";
 
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);

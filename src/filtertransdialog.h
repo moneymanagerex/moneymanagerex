@@ -94,6 +94,7 @@ public:
     double getAmountMin();
 
     bool checkPayee(int payeeID);
+    bool checkCategory(const Model_Checking::Data &tran);
 
     int getPayeeID() const;
 
