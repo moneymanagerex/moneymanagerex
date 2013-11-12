@@ -83,7 +83,24 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         transaction_->TRANSCODE = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
         transaction_->CATEGID = -1;
         transaction_->SUBCATEGID = -1;
+        if (mmIniOptions::instance().transPayeeSelectionNone_)
+        {
+            Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
+            for (const auto &trx : transactions)
+            {
+                if (trx.ACCOUNTID != transaction_->ACCOUNTID) continue;
+                if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
+                transaction_->PAYEEID = trx.PAYEEID;
+                Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
 
+                if (payee && mmIniOptions::instance().transCategorySelectionNone_)
+                {
+                    transaction_->CATEGID = payee->CATEGID;
+                    transaction_->SUBCATEGID = payee->SUBCATEGID;
+                }
+                break;
+            }
+        }
     }
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -199,27 +216,6 @@ void mmTransDialog::dataToControls()
         wxString payee_tooltip = "";
         if (!transfer)
         {
-            if (mmIniOptions::instance().transPayeeSelectionNone_)
-            {
-                Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
-                for (const auto &trx : transactions)
-                {
-                    if (trx.ACCOUNTID != transaction_->ACCOUNTID) continue;
-                    if (Model_Checking::type(trx) == Model_Checking::TRANSFER) continue;
-                    transaction_->PAYEEID = trx.PAYEEID;
-                    Model_Payee::Data * payee = Model_Payee::instance().get(trx.PAYEEID);
-
-                    if (payee && mmIniOptions::instance().transCategorySelectionNone_)
-                    {
-                        transaction_->CATEGID = payee->CATEGID;
-                        transaction_->SUBCATEGID = payee->SUBCATEGID;
-                    }
-                    break;
-                }
-            }
-
-            bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, transaction_->SUBCATEGID));
-
             textAmount_->SetToolTip(amountNormalTip_);
 
             if (transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
