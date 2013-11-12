@@ -1490,7 +1490,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     }
     else if ((wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
     {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDELETE);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
     else if (wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE))
@@ -1529,7 +1529,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
                 if (x <= topItemIndex_) topItemIndex_--;
-                m_selectedIndex--;
+                if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;
             }
             x++;
