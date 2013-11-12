@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-10 09:39:02.314000.
+ *          AUTO GENERATED at 2013-11-12 11:13:08.366302.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,6 +68,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate("CREATE INDEX IDX_PAYEE_INFONAME ON PAYEE_V1(PAYEENAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 

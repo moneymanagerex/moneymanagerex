@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-10 09:39:02.314000.
+ *          AUTO GENERATED at 2013-11-12 11:13:08.366302.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,6 +68,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     {
         try
         {
+            db->ExecuteUpdate("CREATE INDEX IDX_CURRENCYFORMATS_SYMBOL ON CURRENCYFORMATS_V1(CURRENCY_SYMBOL)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
