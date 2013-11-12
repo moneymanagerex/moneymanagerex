@@ -135,7 +135,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption
     this->endTableCell();
     html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
     double amount = 0;
-    if (wxNumberFormatter::FromString(value, &amount))
+    if (Model_Currency::fromString(value, amount, 0))
         this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
     else
         this->font_settings(font_size_);
@@ -164,7 +164,7 @@ void mmHTMLBuilder::addTotalRow(const wxString& caption, int cols
         this->endTableCell();
         html_+= wxString::Format(tags::TABLE_CELL_RIGHT);
         double amount = 0;
-        if (wxNumberFormatter::FromString(data[idx], &amount))
+        if (Model_Currency::fromString(data[idx], amount, 0))
             this->font_settings(font_size_, (amount < 0 && color) ? "RED": "");
         else
             this->font_settings(font_size_);

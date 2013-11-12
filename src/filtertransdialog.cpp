@@ -426,7 +426,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         if (!minamt.IsEmpty())
         {
             double amount;
-            if (!wxNumberFormatter::FromString(minamt, &amount))
+            if (!Model_Currency::fromString(minamt, amount, 0))
             {
                 mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
                 return;
@@ -436,7 +436,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         if (!maxamt.IsEmpty())
         {
             double amount;
-            if (!wxNumberFormatter::FromString(maxamt, &amount))
+            if (!Model_Currency::fromString(maxamt, amount, 0))
             {
                 mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
                 return;
@@ -608,7 +608,7 @@ wxString mmFilterTransactionsDialog::userStatusStr() const
 double mmFilterTransactionsDialog::getAmountMin()
 {
     double amount = 0;
-    if (!wxNumberFormatter::FromString(amountMinEdit_->GetValue(), &amount))
+    if (!Model_Currency::fromString(amountMinEdit_->GetValue(), amount, 0))
         amount = 0;
 
     return amount;
@@ -617,7 +617,7 @@ double mmFilterTransactionsDialog::getAmountMin()
 double mmFilterTransactionsDialog::getAmountMax()
 {
     double amount = 0;
-    if (!wxNumberFormatter::FromString(amountMaxEdit_->GetValue(), &amount))
+    if (!Model_Currency::fromString(amountMaxEdit_->GetValue(), amount, 0))
         amount = 0;
 
     return amount;

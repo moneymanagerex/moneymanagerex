@@ -907,7 +907,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
     if (search_string.IsEmpty()) return;
 
     double amount= 0, deposit = 0, withdrawal = 0;
-    bool valid_amount = wxNumberFormatter::FromString(search_string, &amount);
+    bool valid_amount = Model_Currency::fromString(search_string, amount, Model_Account::currency(Model_Account::instance().get(this->m_AccountID)));
     bool withdrawal_only = false;
     if (valid_amount && amount < 0)
     {
@@ -925,8 +925,8 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
     {
         m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
         const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES);
-        if (valid_amount)  wxNumberFormatter::FromString(getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT), &deposit);
-        if (valid_amount)  wxNumberFormatter::FromString(getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL), &withdrawal);
+        if (valid_amount)  Model_Currency::fromString(getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT), deposit, 0);
+        if (valid_amount)  Model_Currency::fromString(getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL), withdrawal, 0);
         if (t.Lower().Matches(search_string)
             || (valid_amount && amount == deposit && !withdrawal_only)
             || (valid_amount && amount == withdrawal))

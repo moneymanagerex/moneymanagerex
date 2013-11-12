@@ -352,7 +352,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxTextCtrl* textCtrlInit = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
     wxString bal = textCtrlInit->GetValue().Trim();
-    if (!wxNumberFormatter::FromString(bal, &m_account->INITIALBAL))
+    if (!Model_Currency::fromString(bal, m_account->INITIALBAL, 0))
         m_account->INITIALBAL = 0.0;
     
     m_account->ACCOUNTNUM = textCtrlAcctNumber->GetValue();

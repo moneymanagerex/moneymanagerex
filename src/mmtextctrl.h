@@ -46,23 +46,8 @@ public:
     wxString GetValue() const
     {
         // Remove prefix and suffix characters from value
-        wxString prefix = (currency_ ? currency_->PFX_SYMBOL : "");
-        wxString suffix = (currency_ ? currency_->SFX_SYMBOL : "");
-        wxString val = wxTextCtrl::GetValue();
-        if (!prefix.IsEmpty())
-        {
-            wxString removed;
-            if (val.StartsWith(prefix, &removed))
-                val = removed;
-        }
-        if (!suffix.IsEmpty())
-        {
-            wxString removed;
-            if (val.EndsWith(suffix, &removed))
-                val = removed;
-        }
         // Base class handles the thousands seperator
-        return val;
+        return Model_Currency::fromString(wxTextCtrl::GetValue(), currency_);
     }
 private:
     const Model_Currency::Data* currency_;

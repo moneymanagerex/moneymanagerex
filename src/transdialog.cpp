@@ -875,7 +875,7 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
             textAmount_->SetValue(amountStr);
         }
 
-        wxNumberFormatter::FromString(amountStr, &transaction_->TRANSAMOUNT);
+        Model_Currency::fromString(amountStr, transaction_->TRANSAMOUNT, 0);
 
         if (transaction_->TOACCOUNTID > 0)
         {

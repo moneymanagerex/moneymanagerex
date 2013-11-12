@@ -397,7 +397,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     else if (i == Balance)
                     {
                         sBalance = getLineData(readLine);
-                        if (!sBalance.ToDouble(&val) && !wxNumberFormatter::FromString(sBalance, &val))
+                        if (!sBalance.ToDouble(&val) && !Model_Currency::fromString(sBalance, val, Model_Account::currency(account)))
                             val = 0;
                         continue;
                     }
@@ -479,7 +479,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         {
             sAmount = getLineData(readLine);
 
-            if (!sAmount.ToDouble(&val) && !wxNumberFormatter::FromString(sAmount, &val))
+            if (!sAmount.ToDouble(&val) && !Model_Currency::fromString(sAmount, val, Model_Account::currency(account)))
             {
                 sMsg = wxString::Format(_("Line: %ld invalid amount, skipping."), numLines);
                 logWindow->AppendText(sMsg << "\n");
@@ -548,7 +548,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             sSplitAmount = getLineData(readLine);
 
             //get amount
-            if (!sSplitAmount.ToDouble(&dSplitAmount) && !wxNumberFormatter::FromString(sSplitAmount, &dSplitAmount))
+            if (!sSplitAmount.ToDouble(&dSplitAmount) && !Model_Currency::fromString(sSplitAmount, dSplitAmount, Model_Account::currency(account)))
                 dSplitAmount = 0; //wrong amount
             //
             if (type == TRANS_TYPE_WITHDRAWAL_STR)

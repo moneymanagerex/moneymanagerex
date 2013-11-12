@@ -291,6 +291,32 @@ public:
             d2s = wxNumberFormatter::ToString(value, 1);
         return d2s;
     }
+    static wxString fromString(wxString s, const Data* currency = GetBaseCurrency())
+    {
+        // Remove prefix and suffix characters from value
+        wxString prefix = (currency ? currency->PFX_SYMBOL : "");
+        wxString suffix = (currency ? currency->SFX_SYMBOL : "");
+        if (!prefix.IsEmpty())
+        {
+            wxString removed;
+            if (s.StartsWith(prefix, &removed))
+                s = removed;
+        }
+        if (!suffix.IsEmpty())
+        {
+            wxString removed;
+            if (s.EndsWith(suffix, &removed))
+                s = removed;
+        }
+        return s;
+    }
+    static bool fromString(wxString s, double& val, const Data* currency = GetBaseCurrency())
+    {
+        bool done = true;
+        if (!wxNumberFormatter::FromString(fromString(s, currency), &val))
+            done = false;
+        return done;
+    }
     static int precision(const Data* r)
     {
         return static_cast<int>(log10(static_cast<double>(r->SCALE)));
