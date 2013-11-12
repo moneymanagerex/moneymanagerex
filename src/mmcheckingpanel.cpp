@@ -1142,18 +1142,23 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     }
     wxMenu menu;
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Transaction"));
+
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Transaction"));
     if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT, false);
+
     menu.Append(MENU_ON_COPY_TRANSACTION, _("&Copy Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
+
+    menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
+    if (m_selectedForCopy < 0) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
+
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
+
     menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
     if (hide_menu_item || type_transfer || (Model_Account::checking_account_num() < 2))
         menu.Enable(MENU_TREEPOPUP_MOVE, false);
-    menu.Append(MENU_ON_PASTE_TRANSACTION, _("&Paste Transaction"));
-    if (m_selectedForCopy < 0) menu.Enable(MENU_ON_PASTE_TRANSACTION, false);
 
     menu.AppendSeparator();
 
@@ -1448,11 +1453,12 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     if (Model_Checking::type(copy) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
     int transactionID = Model_Checking::instance().save(copy);
 
-    Model_Splittransaction::Data_Set copy_split = Model_Checking::splittransaction(tran);
-    for (auto& splt : Model_Checking::splittransaction(tran))
+    Model_Splittransaction::Data_Set copy_split;
+    for (const auto& split_item : Model_Checking::splittransaction(tran))
     {
-        splt.TRANSID = transactionID;
-        copy_split.push_back(splt);
+        Model_Splittransaction::Data *copy_split_item = Model_Splittransaction::instance().clone(&split_item);
+        copy_split_item->TRANSID = transactionID;
+        copy_split.push_back(*copy_split_item);
     }
     Model_Splittransaction::instance().save(copy_split);
 

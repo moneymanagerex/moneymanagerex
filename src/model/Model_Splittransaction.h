@@ -88,9 +88,16 @@ public:
 
         return rows.size();
     }
+    bool remove(Data_Set& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->remove(r.SPLITTRANSID);
+        this->Commit();
+    }
     bool remove(int id)
     {
-        return true;//return this->remove(id, this->db_);
+        Data *entry = get(id);
+        return entry->remove(this->db_);
     }
 
 public:

@@ -140,6 +140,8 @@ public:
     }
     bool remove(int id)
     {
+        //TODO: remove all split at once
+        //Model_Splittransaction::instance().remove(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)));
         for (const auto& r : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(id)))
             Model_Splittransaction::instance().remove(r.SPLITTRANSID);
         return this->remove(id, db_);

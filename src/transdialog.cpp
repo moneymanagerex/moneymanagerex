@@ -275,7 +275,7 @@ void mmTransDialog::dataToControls()
     wxString fullCategoryName;
     if (has_split)
     {
-        fullCategoryName = _("Split Category");
+        fullCategoryName = _("Categories");
         double total = Model_Splittransaction::instance().get_total(m_local_splits);
         textAmount_->SetValue(total);
     }
