@@ -332,14 +332,14 @@ void mmCheckingPanel::CreateControls()
     this->SetSizer(itemBoxSizer9);
 
     /* ---------------------- */
-    wxPanel* headerPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
-        wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
+    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition,
+        wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
     itemBoxSizer9->Add(headerPanel, flags);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxGridSizer* itemBoxSizerVHeader2 = new wxGridSizer(0,1,5,20);
+    wxGridSizer* itemBoxSizerVHeader2 = new wxGridSizer(0, 1, 5, 20);
     itemBoxSizerVHeader->Add(itemBoxSizerVHeader2);
 
     header_text_ = new wxStaticText( headerPanel, wxID_STATIC, "");
@@ -348,13 +348,13 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerVHeader2->Add(header_text_, flags);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);
-    wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5,1,1);
+    wxFlexGridSizer* itemFlexGridSizerHHeader2 = new wxFlexGridSizer(5, 1, 1);
     itemBoxSizerVHeader2->Add(itemBoxSizerHHeader2);
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
     wxBitmap itemStaticBitmap(rightarrow_xpm);
-    bitmapMainFilter_ = new wxStaticBitmap( headerPanel, wxID_ANY,
-        itemStaticBitmap);
+    bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY
+        , itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, flags);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), NULL, this);
@@ -366,8 +366,8 @@ void mmCheckingPanel::CreateControls()
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
-    bitmapTransFilter_ = new wxStaticBitmap( headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
-        itemStaticBitmap);
+    bitmapTransFilter_ = new wxStaticBitmap( headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
+        , itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, flags);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
@@ -378,16 +378,16 @@ void mmCheckingPanel::CreateControls()
         _("Transaction Filter"));
     itemFlexGridSizerHHeader2->Add(statTextTransFilter_, flags);
 
-    wxStaticText* itemStaticText12 = new wxStaticText( headerPanel,
-            ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120,-1));
-    wxStaticText* itemStaticText14 = new wxStaticText( headerPanel,
-            ID_PANEL_CHECKING_STATIC_BALHEADER2, "$", wxDefaultPosition, wxSize(120,-1));
-    wxStaticText* itemStaticText16 = new wxStaticText( headerPanel,
-            ID_PANEL_CHECKING_STATIC_BALHEADER3, "$", wxDefaultPosition, wxSize(120,-1));
-    wxStaticText* itemStaticText17 = new wxStaticText( headerPanel,
-            ID_PANEL_CHECKING_STATIC_BALHEADER4, _("Displayed Bal: "));
-    wxStaticText* itemStaticText18 = new wxStaticText( headerPanel,
-            ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120,-1));
+    wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
+        , ID_PANEL_CHECKING_STATIC_BALHEADER1, "$", wxDefaultPosition, wxSize(120, -1));
+    wxStaticText* itemStaticText14 = new wxStaticText(headerPanel
+        , ID_PANEL_CHECKING_STATIC_BALHEADER2, "$", wxDefaultPosition, wxSize(120, -1));
+    wxStaticText* itemStaticText16 = new wxStaticText(headerPanel
+        , ID_PANEL_CHECKING_STATIC_BALHEADER3, "$", wxDefaultPosition, wxSize(120, -1));
+    wxStaticText* itemStaticText17 = new wxStaticText(headerPanel
+        , ID_PANEL_CHECKING_STATIC_BALHEADER4, _("Displayed Bal: "));
+    wxStaticText* itemStaticText18 = new wxStaticText(headerPanel
+        , ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120, -1));
 
     wxFlexGridSizer* balances_header = new wxFlexGridSizer(0,8,5,10);
     itemBoxSizerVHeader->Add(balances_header);
@@ -402,9 +402,9 @@ void mmCheckingPanel::CreateControls()
 
     /* ---------------------- */
 
-    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this
+    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
         , ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200)
-        , wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER );
+        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
@@ -417,9 +417,9 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(wxImage(duplicate_xpm).Scale(16, 16));
     m_imageList->Add(wxImage(trash_xpm).Scale(16, 16));
 
-    m_listCtrlAccount = new TransactionListCtrl( this, itemSplitterWindow10,
-        ID_PANEL_CHECKING_LISTCTRL_ACCT, wxDefaultPosition, wxDefaultSize,
-        wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL);
+    m_listCtrlAccount = new TransactionListCtrl( this, itemSplitterWindow10
+        , ID_PANEL_CHECKING_LISTCTRL_ACCT, wxDefaultPosition, wxDefaultSize
+        , wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL);
 
     m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
@@ -486,11 +486,11 @@ void mmCheckingPanel::CreateControls()
 
     //Infobar-mini
     info_panel_mini_ = new wxStaticText( itemPanel12, wxID_STATIC, "");
-    itemButtonsSizer->Add(info_panel_mini_, 1, wxGROW|wxTOP|wxLEFT, 5);
+    itemButtonsSizer->Add(info_panel_mini_, 1, wxGROW | wxTOP | wxLEFT, 5);
 
     //Infobar
-    info_panel_ = new wxStaticText( itemPanel12,
-        wxID_STATIC, "", wxDefaultPosition, wxSize(200,-1), wxTE_MULTILINE|wxTE_WORDWRAP);
+    info_panel_ = new wxStaticText(itemPanel12
+        , wxID_STATIC, "", wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
     itemBoxSizer4->Add(info_panel_, flagsExpand);
     //Show tips when no any transaction selected
     showTips();
@@ -570,87 +570,6 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
     }
 }
 //----------------------------------------------------------------------------
-wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
-{
-    const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
-    int accountId = tran.ACCOUNTID;
-    int toaccountId = tran.TOACCOUNTID;
-    Model_Account::Data* account = Model_Account::instance().get(accountId);
-    Model_Currency::Data* currency = Model_Account::currency(account);
-    
-    int currencyid = m_basecurrecyID;
-    int tocurrencyid = m_basecurrecyID;
-
-    double amount = tran.TRANSAMOUNT;
-    double convrate = 1.0, toconvrate = 1.0;
-    wxString amountStr, infoStr = "", intoaccStr = "";
-    wxString fromaccStr = "", one = "1.0";
-    if (account) fromaccStr = account->ACCOUNTNAME;
-
-    if (currency) 
-    {
-        currencyid = currency->CURRENCYID;
-        convrate = currency->BASECONVRATE;
-        one = Model_Currency::toString(1, currency);
-    }
-
-    if (Model_Checking::type(&tran) == Model_Checking::TRANSFER)
-    {
-        Model_Account::Data* to_account = Model_Account::instance().get(toaccountId);
-        if (to_account) intoaccStr = to_account->ACCOUNTNAME;
-        Model_Currency::Data* to_currency = Model_Account::currency(to_account);
-        if (!to_currency)
-        {
-            wxASSERT(false);
-            to_currency = Model_Currency::GetBaseCurrency();
-        }
-
-        toconvrate = to_currency->BASECONVRATE;
-        tocurrencyid = to_currency->CURRENCYID;
-
-        double toamount = tran.TOTRANSAMOUNT;
-        double convertion = 0.0;
-        if (toamount != 0.0 && amount != 0.0)
-            convertion = ( convrate < toconvrate ? amount/toamount : toamount/amount);
-        wxString toamountStr, convertionStr;
-
-        amountStr = Model_Currency::toString(amount, currency);
-        toamountStr = Model_Currency::toString(toamount, to_currency);
-        convertionStr = Model_Currency::toString(convertion, to_currency);
-
-        infoStr << amountStr << " ";
-        if (amount != toamount || tocurrencyid != currencyid)
-            infoStr << "-> "  << toamountStr << " ";
-        infoStr << wxString::Format(_("From %s to %s"), fromaccStr, intoaccStr);
-
-        if (tocurrencyid != currencyid)
-        {
-            one = Model_Currency::toString(1, currency);
-            infoStr << " ( ";
-            if (accountId == m_AccountID && convrate < toconvrate)
-                infoStr  << one << " = " << convertionStr << " ";
-            else if (accountId == m_AccountID && convrate > toconvrate)
-                infoStr << one << " = " << convertionStr << " ";
-            else if (accountId != m_AccountID && convrate < toconvrate)
-                infoStr << one << " = " << convertionStr << " ";
-            else
-                infoStr << one << " = " << convertionStr << " ";
-            infoStr << " )";
-        }
-    }
-    else //For deposits and withdrawals calculates amount in base currency
-    {
-        if (currencyid != m_basecurrecyID) //Show nothing if account currency is base
-        {
-            amountStr = wxString::Format( "%f4", amount);
-            if (currency) amountStr = Model_Currency::toString(amount, currency);
-            infoStr << amountStr
-                << " = " << Model_Currency::toString(amount*convrate);
-        }
-    }
-    return infoStr;
-}
-//---------------------------
 void mmCheckingPanel::showTips()
 {
     info_panel_->SetLabel(Tips(TIPS_BANKS));
@@ -1749,3 +1668,83 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 }
 
 //----------------------------------------------------------------------------
+wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
+{
+    const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
+    int accountId = tran.ACCOUNTID;
+    int toaccountId = tran.TOACCOUNTID;
+    Model_Account::Data* account = Model_Account::instance().get(accountId);
+    Model_Currency::Data* currency = Model_Account::currency(account);
+
+    int currencyid = m_basecurrecyID;
+    int tocurrencyid = m_basecurrecyID;
+
+    double amount = tran.TRANSAMOUNT;
+    double convrate = 1.0, toconvrate = 1.0;
+    wxString amountStr, infoStr = "", intoaccStr = "";
+    wxString fromaccStr = "", one = "1.0";
+    if (account) fromaccStr = account->ACCOUNTNAME;
+
+    if (currency)
+    {
+        currencyid = currency->CURRENCYID;
+        convrate = currency->BASECONVRATE;
+        one = Model_Currency::toString(1, currency);
+    }
+
+    if (Model_Checking::type(&tran) == Model_Checking::TRANSFER)
+    {
+        Model_Account::Data* to_account = Model_Account::instance().get(toaccountId);
+        if (to_account) intoaccStr = to_account->ACCOUNTNAME;
+        Model_Currency::Data* to_currency = Model_Account::currency(to_account);
+        if (!to_currency)
+        {
+            wxASSERT(false);
+            to_currency = Model_Currency::GetBaseCurrency();
+        }
+
+        toconvrate = to_currency->BASECONVRATE;
+        tocurrencyid = to_currency->CURRENCYID;
+
+        double toamount = tran.TOTRANSAMOUNT;
+        double convertion = 0.0;
+        if (toamount != 0.0 && amount != 0.0)
+            convertion = (convrate < toconvrate ? amount / toamount : toamount / amount);
+        wxString toamountStr, convertionStr;
+
+        amountStr = Model_Currency::toString(amount, currency);
+        toamountStr = Model_Currency::toString(toamount, to_currency);
+        convertionStr = Model_Currency::toString(convertion, to_currency);
+
+        infoStr << amountStr << " ";
+        if (amount != toamount || tocurrencyid != currencyid)
+            infoStr << "-> " << toamountStr << " ";
+        infoStr << wxString::Format(_("From %s to %s"), fromaccStr, intoaccStr);
+
+        if (tocurrencyid != currencyid)
+        {
+            one = Model_Currency::toString(1, currency);
+            infoStr << " ( ";
+            if (accountId == m_AccountID && convrate < toconvrate)
+                infoStr << one << " = " << convertionStr << " ";
+            else if (accountId == m_AccountID && convrate > toconvrate)
+                infoStr << one << " = " << convertionStr << " ";
+            else if (accountId != m_AccountID && convrate < toconvrate)
+                infoStr << one << " = " << convertionStr << " ";
+            else
+                infoStr << one << " = " << convertionStr << " ";
+            infoStr << " )";
+        }
+    }
+    else //For deposits and withdrawals calculates amount in base currency
+    {
+        if (currencyid != m_basecurrecyID) //Show nothing if account currency is base
+        {
+            amountStr = wxString::Format("%f4", amount);
+            if (currency) amountStr = Model_Currency::toString(amount, currency);
+            infoStr << amountStr
+                << " = " << Model_Currency::toString(amount*convrate);
+        }
+    }
+    return infoStr;
+}
