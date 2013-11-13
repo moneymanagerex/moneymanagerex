@@ -334,7 +334,6 @@ void mmTransDialog::CreateControls()
 
     dpc_ = new wxDatePickerCtrl( this, ID_DIALOG_TRANS_BUTTONDATE, wxDateTime::Now()
         , wxDefaultPosition, wxSize(110, -1), date_style);
-    dpc_->SetFocus();
 
     //Text field for day of the week
     itemStaticTextWeek_ = new wxStaticText(this, wxID_STATIC, "");
