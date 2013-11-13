@@ -92,8 +92,8 @@ public:
     /// Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
     long m_selectedIndex;
-    long m_selectedForCopy;
-    long m_selectedID;
+    long m_selectedForCopy; //The transaction ID if selected for copy
+    long m_selectedID; //Selected transaction ID
     void refreshVisualList(int trans_id = -1);
     bool showDeletedTransactions_;
 
@@ -138,6 +138,7 @@ private:
     int OnMarkTransactionDB(const wxString& status);
     void OnCopy(wxCommandEvent& WXUNUSED(event));
     void OnPaste(wxCommandEvent& WXUNUSED(event));
+    int OnPaste(Model_Checking::Data* tran);
 
     /* Sort Columns */
     void OnColClick(wxListEvent& event);

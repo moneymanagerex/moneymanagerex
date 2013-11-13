@@ -1338,15 +1338,28 @@ void TransactionListCtrl::OnCopy(wxCommandEvent& WXUNUSED(event))
 
     m_selectedForCopy = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
-//----------------------------------------------------------------------------
+
+void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& event)
+{
+    this->OnCopy(event);
+    this->OnPaste(event);
+    this->OnEditTransaction(event);
+}
 
 void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
 {
     if (m_selectedForCopy < 0) return;
-
+    Model_Checking::Data* tran = Model_Checking::instance().get(m_selectedForCopy);
+    if (tran)
+    {
+        int transactionID = OnPaste(tran);
+        refreshVisualList(transactionID);
+    }
+}
+int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
+{
     bool useOriginalDate = Model_Setting::instance().GetBoolSetting(INIDB_USE_ORG_DATE_COPYPASTE, false);
 
-    Model_Checking::Data* tran = Model_Checking::instance().get(m_selectedForCopy);
     Model_Checking::Data* copy = Model_Checking::instance().clone(tran); //TODO: this function can't clone split transactions
     if (!useOriginalDate) copy->TRANSDATE = wxDateTime::Now().FormatISODate();
     if (Model_Checking::type(copy) != Model_Checking::TRANSFER) copy->ACCOUNTID = m_cp->m_AccountID;
@@ -1361,8 +1374,9 @@ void TransactionListCtrl::OnPaste(wxCommandEvent& WXUNUSED(event))
     }
     Model_Splittransaction::instance().save(copy_split);
 
-    refreshVisualList(transactionID);
+    return transactionID;
 }
+
 //----------------------------------------------------------------------------
 
 void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
@@ -1474,72 +1488,6 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     }
 }
 //----------------------------------------------------------------------------
-
-void TransactionListCtrl::OnDuplicateTransaction(wxCommandEvent& /*event*/)
-{
-#if 0 //TODO: Under constraction
-    if (m_selectedIndex < 0) return;
-
-    int selected_transaction_id = m_cp->m_trans[m_selectedIndex]->transactionID();
-    Model_Checking::Data *source_transaction = Model_Checking::instance().get(selected_transaction_id);
-    Model_Splittransaction::Data_Set source_split = Model_Checking::splittransaction(source_transaction);
-
-    Model_Checking::Data *transaction = Model_Checking::instance().create();
-    Model_Checking::instance().save(transaction);
-
-    transaction->ACCOUNTID = m_cp->m_AccountID;
-    transaction->CATEGID = source_transaction->CATEGID;
-    transaction->FOLLOWUPID = source_transaction->FOLLOWUPID;
-    transaction->NOTES = source_transaction->NOTES;
-    transaction->PAYEEID = source_transaction->PAYEEID;
-    transaction->STATUS = source_transaction->STATUS;
-    transaction->SUBCATEGID = source_transaction->SUBCATEGID;
-    transaction->TOACCOUNTID = source_transaction->TOACCOUNTID;
-    transaction->TOTRANSAMOUNT = source_transaction->TOTRANSAMOUNT;
-    transaction->TRANSACTIONNUMBER = source_transaction->TRANSACTIONNUMBER;
-    transaction->TRANSAMOUNT = source_transaction->TRANSAMOUNT;
-    transaction->TRANSCODE = source_transaction->TRANSCODE;
-    transaction->TRANSDATE = wxDateTime::Now().FormatISODate();
-
-    for (const auto& entry: source_split)
-    {
-        wxLogDebug("%s", entry.to_json());
-        Model_Splittransaction::Data *new_split = Model_Splittransaction::instance().create();
-        new_split->CATEGID = entry.CATEGID;
-        new_split->SUBCATEGID = entry.SUBCATEGID;
-        new_split->SPLITTRANSAMOUNT = entry.SPLITTRANSAMOUNT;
-        new_split->TRANSID = transaction->TRANSID;
-        Model_Splittransaction::instance().save(new_split);
-    }
-
-    Model_Checking::instance().save(transaction);
-
-    //TODO:
-    m_cp->core+->bTransactionList_.LoadTransactions();
-
-    /*mmBankTransaction* pTransaction = m_cp->core+->bTransactionList_.getBankTransactionPtr(transaction->TRANSID);
-    pTransaction->accountID_ = transaction->ACCOUNTID;
-    pTransaction->toAccountID_ = transaction->TOACCOUNTID;
-    pTransaction->payeeID_ = transaction->PAYEEID;
-    Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
-    if (payee)
-        pTransaction->payeeStr_ = payee->PAYEENAME;
-    pTransaction->transType_ = transaction->TRANSCODE;
-    pTransaction->amt_ = transaction->TRANSAMOUNT;
-    pTransaction->status_ = transaction->STATUS;
-    pTransaction->transNum_ = transaction->TRANSACTIONNUMBER;
-    pTransaction->notes_ = transaction->NOTES;
-    pTransaction->categID_ = transaction->CATEGID;
-    pTransaction->subcategID_ = transaction->SUBCATEGID;
-    pTransaction->date_ = Model_Checking::TRANSDATE(transaction);
-    pTransaction->toAmt_ = transaction->TOTRANSAMOUNT;
-
-    m_cp->m_trans.push_back(pTransaction);*/
-
-    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-    refreshVisualList(transaction->TRANSID);
-#endif
-}
 
 void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 {
