@@ -1472,33 +1472,6 @@ void TransactionListCtrl::OnNewTransaction(wxCommandEvent& /*event*/)
     {
         refreshVisualList(dlg.getTransactionID());
     }
-
-#if 0
-    // Use last date used as per user option.
-    wxDateTime trx_date = wxDateTime::Now();
-    if (mmIniOptions::instance().transDateDefault_ != 0)
-        trx_date = m_cp->core+->bTransactionList_.getLastDate(m_cp->m_AccountID);
-
-    Model_Checking::Data *transaction = Model_Checking::instance().create();
-    Model_Splittransaction::Data_Set split;
-
-    transaction->ACCOUNTID = m_cp->m_AccountID;
-    transaction->TRANSDATE = trx_date.FormatISODate();
-
-    mmTransDialog dlg(transaction, &split, this);
-    dlg.SetDialogTitle(_("New/Edit Transaction"));
-
-    topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
-
-    if ( dlg.ShowModal() == wxID_OK )
-    {
-        Model_Checking::instance().save(transaction);
-        for (auto &item : split) item.TRANSID = transaction->TRANSID;
-        Model_Splittransaction::instance().save(split);
-        save_transaction_temp_function(transaction, split, true); //TODO: remove 
-        refreshVisualList(transaction->TRANSID);
-    }
-#endif
 }
 //----------------------------------------------------------------------------
 
@@ -1670,81 +1643,10 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 //----------------------------------------------------------------------------
 wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 {
+    //TODO: Some additional info may be helpfull
+    wxString infoStr = "";
     const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
-    int accountId = tran.ACCOUNTID;
-    int toaccountId = tran.TOACCOUNTID;
-    Model_Account::Data* account = Model_Account::instance().get(accountId);
-    Model_Currency::Data* currency = Model_Account::currency(account);
-
-    int currencyid = m_basecurrecyID;
-    int tocurrencyid = m_basecurrecyID;
-
-    double amount = tran.TRANSAMOUNT;
-    double convrate = 1.0, toconvrate = 1.0;
-    wxString amountStr, infoStr = "", intoaccStr = "";
-    wxString fromaccStr = "", one = "1.0";
-    if (account) fromaccStr = account->ACCOUNTNAME;
-
-    if (currency)
-    {
-        currencyid = currency->CURRENCYID;
-        convrate = currency->BASECONVRATE;
-        one = Model_Currency::toString(1, currency);
-    }
-
-    if (Model_Checking::type(&tran) == Model_Checking::TRANSFER)
-    {
-        Model_Account::Data* to_account = Model_Account::instance().get(toaccountId);
-        if (to_account) intoaccStr = to_account->ACCOUNTNAME;
-        Model_Currency::Data* to_currency = Model_Account::currency(to_account);
-        if (!to_currency)
-        {
-            wxASSERT(false);
-            to_currency = Model_Currency::GetBaseCurrency();
-        }
-
-        toconvrate = to_currency->BASECONVRATE;
-        tocurrencyid = to_currency->CURRENCYID;
-
-        double toamount = tran.TOTRANSAMOUNT;
-        double convertion = 0.0;
-        if (toamount != 0.0 && amount != 0.0)
-            convertion = (convrate < toconvrate ? amount / toamount : toamount / amount);
-        wxString toamountStr, convertionStr;
-
-        amountStr = Model_Currency::toString(amount, currency);
-        toamountStr = Model_Currency::toString(toamount, to_currency);
-        convertionStr = Model_Currency::toString(convertion, to_currency);
-
-        infoStr << amountStr << " ";
-        if (amount != toamount || tocurrencyid != currencyid)
-            infoStr << "-> " << toamountStr << " ";
-        infoStr << wxString::Format(_("From %s to %s"), fromaccStr, intoaccStr);
-
-        if (tocurrencyid != currencyid)
-        {
-            one = Model_Currency::toString(1, currency);
-            infoStr << " ( ";
-            if (accountId == m_AccountID && convrate < toconvrate)
-                infoStr << one << " = " << convertionStr << " ";
-            else if (accountId == m_AccountID && convrate > toconvrate)
-                infoStr << one << " = " << convertionStr << " ";
-            else if (accountId != m_AccountID && convrate < toconvrate)
-                infoStr << one << " = " << convertionStr << " ";
-            else
-                infoStr << one << " = " << convertionStr << " ";
-            infoStr << " )";
-        }
-    }
-    else //For deposits and withdrawals calculates amount in base currency
-    {
-        if (currencyid != m_basecurrecyID) //Show nothing if account currency is base
-        {
-            amountStr = wxString::Format("%f4", amount);
-            if (currency) amountStr = Model_Currency::toString(amount, currency);
-            infoStr << amountStr
-                << " = " << Model_Currency::toString(amount*convrate);
-        }
-    }
+    wxDateTime date = Model_Checking::TRANSDATE(tran);
+    infoStr = wxGetTranslation(date.GetWeekDayName(date.GetWeekDay()));
     return infoStr;
 }
