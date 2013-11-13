@@ -62,6 +62,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_payee_init_(false)
     , skip_status_init_(false)
     , skip_notes_init_(false)
+    , skip_category_init_(false)
 
 {
     if (transaction_id_)
@@ -271,33 +272,38 @@ void mmTransDialog::dataToControls()
     }
 
     //SetSplitState();
-    bool has_split = !this->m_local_splits.empty();
-    wxString fullCategoryName;
-    if (has_split)
+    if (!skip_category_init_)
     {
-        fullCategoryName = _("Categories");
-        double total = Model_Splittransaction::instance().get_total(m_local_splits);
-        textAmount_->SetValue(total);
+        bool has_split = !this->m_local_splits.empty();
+        wxString fullCategoryName;
+        bCategory_->UnsetToolTip();
+        if (has_split)
+        {
+            fullCategoryName = _("Categories");
+            bCategory_->SetToolTip(_("Specify categories for this transaction"));
+            double total = Model_Splittransaction::instance().get_total(m_local_splits);
+            textAmount_->SetValue(total);
+        }
+        else
+        {
+            Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
+            Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(transaction_->SUBCATEGID));
+            fullCategoryName = Model_Category::full_name(category, subcategory);
+            if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
+            bCategory_->SetToolTip(_("Specify the category for this transaction"));
+        }
+
+        bCategory_->SetLabel(fullCategoryName);
+        textAmount_->Enable(!has_split);
+        cSplit_->SetValue(has_split);
+        cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
+        skip_category_init_ = true;
     }
-    else
-    {
-        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(transaction_->SUBCATEGID));
-        fullCategoryName = Model_Category::full_name(category, subcategory);
-        if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
-    }
 
-    bCategory_->SetLabel(fullCategoryName);
-    textAmount_->Enable(!has_split);
-    cSplit_->SetValue(has_split);
-    cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
-
-    //Transaction Number
-    textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
-
-    //Notes
+    //Notes & Transaction Number
     if (!skip_notes_init_)
     {
+        textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
         textNotes_->SetValue(transaction_->NOTES);
         if (transaction_->NOTES.IsEmpty() && !transaction_id_)
         {
@@ -467,7 +473,6 @@ void mmTransDialog::CreateControls()
         cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
         textAmount_->SetToolTip(amountNormalTip_);
         cSplit_->SetToolTip(_("Use split Categories"));
-        bCategory_->SetToolTip(_("Specify the category for this transaction"));
         textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
         bAuto_->SetToolTip(_("Populate Transaction #"));
         textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
@@ -836,6 +841,7 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
             //Delete split items first (data protection)
             cSplit_->SetValue(true);
     }
+    skip_category_init_ = false;
     dataToControls();
 }
 

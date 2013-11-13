@@ -129,6 +129,7 @@ private:
     bool skip_payee_init_;
     bool skip_status_init_;
     bool skip_notes_init_;
+    bool skip_category_init_;
 
 };
 
