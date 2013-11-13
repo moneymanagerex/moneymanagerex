@@ -578,7 +578,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             //pSplitEntry->subCategID_   = subCategID;
             pSplitEntry->SUBCATEGID = subCategID;
             //mmSplit->addSplit(pSplitEntry);
-            //mmSplit.at.push_back(pSplitEntry); TODO: how to????
+            mmSplit.push_back(*pSplitEntry);
             continue;
         }
         //MemoSplit
@@ -734,7 +734,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 );
             logWindow->AppendText(sMsg);
 
-            //for (size_t i = 0; i < mmSplit->entries_.size(); ++i)
             for (const auto &split_entry : mmSplit)
             {
                 int c = split_entry.CATEGID; //mmSplit->entries_[i]->categID_;
@@ -767,8 +766,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             transaction->CATEGID = categID;
             transaction->SUBCATEGID = subCategID;
 
-            //TODO: *transaction.splitEntries_ = *mmSplit;
-
             //For any transfer transaction always mirrored transaction present
             //Just take alternate amount and skip it
             if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
@@ -800,6 +797,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     break;
                 }
             }
+
+            //TODO: *transaction.splitEntries_ = *mmSplit;
 
             if (bValid)
             {
