@@ -206,11 +206,6 @@ void mmQIFImportDialog::CreateControls()
 
 void mmQIFImportDialog::fillControls()
 {
-    for (const auto& account: Model_Account::instance().all())
-    {
-        if (Model_Account::type(account) != Model_Account::CHECKING && Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-        accounts_name_.Add(account.ACCOUNTNAME);
-    }
     bbFile_ ->SetBitmapLabel(wxBitmap(empty_xpm));
     bbFile_ ->Enable(false);
     bbFormat_->SetBitmapLabel(wxBitmap(empty_xpm));
@@ -267,8 +262,12 @@ bool mmQIFImportDialog::warning_message()
 int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 {
     Model_Account::Data* account = Model_Account::instance().get(last_imported_acc_id_);
-    wxString acctName = account->ACCOUNTNAME;
-    fromAccountID_ = account->ACCOUNTID;
+    wxString acctName;
+    if (account)
+    {
+        acctName = account->ACCOUNTNAME;
+        fromAccountID_ = account->ACCOUNTID;
+    }
     wxString sMsg;
 
     //Check date restrictions
@@ -418,6 +417,12 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
                     account->ACCOUNTNAME = acctName;
                     account->INITIALBAL = val;
+                    account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
+                    for (const auto& curr : Model_Currency::instance().all())
+                    {
+                        if (wxString(curr.CURRENCY_SYMBOL).Prepend("[").Append("]") == sDescription)
+                            account->CURRENCYID = curr.CURRENCYID;
+                    }
 
                     Model_Account::instance().save(account);
                     from_account_id = account->ACCOUNTID;
@@ -518,8 +523,15 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             if (sFullCateg.Contains("/"))
                 transNum.Prepend(wxString::Format("[%s] ", getFinancistoProject(sFullCateg)));
 
+            //core_->categoryList_.parseCategoryString(sFullCateg, sCateg, categID, sSubCateg, subCategID);
+            wxStringTokenizer cattkz(sFullCateg, ":");
+            sCateg = cattkz.GetNextToken();
+            sSubCateg = "";
+            if (cattkz.HasMoreTokens())
+                sSubCateg = cattkz.GetNextToken();
+
             Model_Category::Data* category = Model_Category::instance().get(sCateg);
-            if (!category) 
+            if (!category && !sCateg.IsEmpty())
             {
                 category = Model_Category::instance().create();
                 category->CATEGNAME = sCateg;
@@ -530,7 +542,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 logWindow->AppendText(sMsg << "\n");
             }
             Model_Subcategory::Data* sub_category = (!sSubCateg.IsEmpty() ? Model_Subcategory::instance().get(sSubCateg, categID) : 0);
-            if (!sub_category)
+            if (!sub_category && !sSubCateg.IsEmpty())
             {
                 sub_category = Model_Subcategory::instance().create();
                 sub_category->SUBCATEGNAME = sSubCateg;
@@ -710,10 +722,10 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 , vQIF_trxs_.size() + 1
                 , sValid
                 , convDate
-                , from_account->ACCOUNTNAME
-                , wxString((type == TRANS_TYPE_TRANSFER_STR ? "<->" : ""))
-                , to_account->ACCOUNTNAME
-                , payee->PAYEENAME
+                , from_account ? from_account->ACCOUNTNAME : ""
+                , wxString((type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : ""))
+                , to_account ? to_account->ACCOUNTNAME : ""
+                , payee ? payee->PAYEENAME : ""
                 , (wxString()<<val)
                 , sFullCateg
                 );
@@ -835,18 +847,23 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 		return; // user pressed cancel
     file_name_ctrl_->SetValue(sFileName_);
 
-    wxTextFile tFile(sFileName_);
+    wxTextFile tFile;
+    tFile.Open(sFileName_ /*, wxCSConv(wxFONTENCODING_CP1251)*/); //TODO: encoding convertion
     if (!tFile.Open())
     {
         wxMessageBox(_("Unable to open file."), _("QIF Import"), wxOK|wxICON_ERROR);
         return;
     }
-    wxString str;
-    for (str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
+
+    //Output file into log window
+    wxFileInputStream input(sFileName_);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
+    int count = 0;
+    while (input.IsOk() && !input.Eof())
     {
-        *log_field_ << wxString::Format(_("Line %i"), tFile.GetCurrentLine()+1)
-            << "\t"
-            << str << "\n";
+
+        *log_field_ << wxString::Format(_("Line %i "), ++count) << "\t"
+            << text.ReadLine() << "\n";
     }
 
     if (checkQIFFile(tFile))
@@ -863,11 +880,11 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
     bbAccounts_->SetBitmapLabel(wxBitmap(empty_xpm));
     btnOK_->Enable(false);
 
-    bool dateFormatIsOK = true;
-    wxString sAccountName, str;
-    for (str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
+    bool dateFormatIsOK = false;
+    wxString sAccountName; //Last parsed account name
+    for (wxString str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
     {
-        if (str.Length() == 0)
+        if (str.empty())
             continue;
 
         if (!isLineOK(str))
@@ -889,7 +906,7 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
                 if (accountInfoType(str) == Name)
                 {
                     sAccountName = getLineData(str);
-                    if (accounts_name_.Index(sAccountName) == wxNOT_FOUND)
+                    if (Model_Account::instance().all_checking_account_names().Index(sAccountName) == wxNOT_FOUND)
                     {
                         newAccounts_->Append(sAccountName);
                     }
@@ -904,8 +921,7 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
             wxDateTime dtdt;
             wxString sDate = getLineData(str);
 
-            if (!mmParseDisplayStringToDate(dtdt, sDate, dateFormat_))
-                dateFormatIsOK = false;
+            dateFormatIsOK = dateFormatIsOK || mmParseDisplayStringToDate(dtdt, sDate, dateFormat_);
             continue;
         }
     }
@@ -920,10 +936,8 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
 
     if (sAccountName.IsEmpty() && last_imported_acc_id_<0)
     {
-        wxSortedArrayString accountArray;
-        for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
         sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
-            , _("Account"), accountArray);
+            , _("Account"), Model_Account::instance().all_checking_account_names());
 
         const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
         last_imported_acc_id_ = account->ACCOUNTID;
@@ -957,6 +971,7 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) dateFormat_ = data->GetData();
     wxTextFile tFile(sFileName_);
+    if (sFileName_.IsEmpty()) return;
     if (!tFile.IsOpened())
         if (tFile.Open())
             checkQIFFile(tFile);
@@ -971,9 +986,9 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 {
     wxString sMsg;
-    wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?"),
-                                        _("Confirm Import"),
-                                        wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+    wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?")
+        , _("Confirm Import")
+        , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
 
