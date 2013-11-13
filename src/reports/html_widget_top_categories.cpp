@@ -57,7 +57,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     {
         hb.startTableRow();
         hb.addTableCell((i.first.IsEmpty() ? "..." : i.first), false, true);
-        hb.addMoneyCell(i.second);
+        hb.addCurrencyCell(i.second);
         hb.endTableRow();
     }
 
@@ -86,13 +86,14 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 
     for (const auto &trx : transactions)
     {
-        if (trx.CATEGID > -1)
+        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
+        if (Model_Checking::splittransaction(trx).empty())
         {
             std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
-            if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
-                stat[category] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
-            else
+            if (withdrawal)
                 stat[category] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+            else
+                stat[category] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
         }
         else
         {
@@ -100,9 +101,10 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
             for (const auto& entry : splits)
             {
                 std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
-                stat[category] += entry.SPLITTRANSAMOUNT
-                    * (acc_conv_rates[trx.ACCOUNTID]) 
-                    * (trx.TRANSAMOUNT< 0 ? -1 : 1);
+                double val = entry.SPLITTRANSAMOUNT
+                    * (acc_conv_rates[trx.ACCOUNTID])
+                    * (withdrawal ? -1 : 1);
+                stat[category] += val;
             }
         }
     }

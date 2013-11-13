@@ -404,18 +404,18 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
 
             hb.startTableRow();
             hb.addTableCell(_("Income:"), false, true);
-            hb.addMoneyCell(tIncome);
+            hb.addCurrencyCell(tIncome);
             hb.endTableRow();
 
             hb.startTableRow();
             hb.addTableCell(_("Expenses:"), false, true);
-            hb.addMoneyCell(tExpenses);
+            hb.addCurrencyCell(tExpenses);
             hb.endTableRow();
 
             hb.addRowSeparator(2);
             hb.startTableRow();
             hb.addTableCell(_("Difference:"), false, true, true);
-            hb.addMoneyCell(tIncome - tExpenses);
+            hb.addCurrencyCell(tIncome - tExpenses);
             hb.endTableRow();
 
             if (!show_all)
@@ -464,10 +464,11 @@ wxString mmHomePagePanel::getCalendarWidget()
 
         hb.endTableCell();
     }
-    hb.addTableCell(wxString::Format(_("Week#%d")
+    /*hb.addTableCell(wxString::Format(_("Week#%d")
         , today.GetWeekOfYear())
-        , false, true, false);
-    hb.addTableCell(wxString()<<wxDateTime::Now().GetYear(), false, false, true);
+        , false, true, false);*/
+    hb.addTableCell("");
+    hb.addTableCell(wxString() << wxDateTime::Now().GetYear(), false, false, true);
 
     hb.endTableRow();
     hb.endTable();
