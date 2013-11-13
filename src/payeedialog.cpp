@@ -179,7 +179,7 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
     m_selected_index = payeeListBox_->ItemToRow(item);
 
 
-    if (m_selected_index > 0)
+    if (m_selected_index >= 0)
         m_payee_id = (int)payeeListBox_->GetItemData(item);
 }
 
