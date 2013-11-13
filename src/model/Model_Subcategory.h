@@ -79,7 +79,7 @@ public:
         return this->get(id, this->db_);
     }
 
-    /** Return the Data record instance for the given category and subcategory ID */
+    /** Return the Data record instance for the given subcategory name and category ID */
     Data* get(const wxString& name, int category_id = -1)
     {
         Data* category = 0;

@@ -284,7 +284,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 
     wxTextCtrl*& logWindow = log_field_;
 
-    wxString readLine;
     int numLines = 0;
     int trxNumLine = 1;
 
@@ -302,8 +301,13 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     //mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
     Model_Splittransaction::Data_Set mmSplit;
 
-    for (readLine = tFile.GetFirstLine(); !tFile.Eof(); readLine = tFile.GetNextLine())
+    wxFileInputStream input(sFileName_);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
+
+    while (input.IsOk() && !input.Eof())
+    //for (readLine = tFile.GetFirstLine(); !tFile.Eof(); readLine = tFile.GetNextLine())
     {
+        wxString readLine = text.ReadLine();
         //Init variables for each transaction
         if (bTrxComplited)
         {
@@ -360,9 +364,9 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             if ( accountType == "Type:Cat" )
             {
                 bool reading = true;
-                while(!tFile.Eof() && reading )
+                while (input.IsOk() && !input.Eof() && reading)
                 {
-                    readLine = tFile.GetNextLine();
+                    readLine = text.ReadLine();
                     if (lineType(readLine) == AcctType  || tFile.Eof())
                     {
                         reading = false;
@@ -377,7 +381,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 wxString sBalance = "";
                 // account information
                 // Need to read till we get to end of account information
-                while( (readLine = tFile.GetNextLine() ) != "^")
+                while( (readLine = text.ReadLine() ) != "^")
                 {
                     numLines++;
 
@@ -536,22 +540,21 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 category = Model_Category::instance().create();
                 category->CATEGNAME = sCateg;
                 Model_Category::instance().save(category);
-                categID = category->CATEGID;
-
                 sMsg = wxString::Format(_("Added category: %s"), sCateg);
                 logWindow->AppendText(sMsg << "\n");
             }
-            Model_Subcategory::Data* sub_category = (!sSubCateg.IsEmpty() ? Model_Subcategory::instance().get(sSubCateg, categID) : 0);
+            if (category) categID = category->CATEGID;
+
+            Model_Subcategory::Data* sub_category = (Model_Subcategory::instance().get(sSubCateg, categID));
             if (!sub_category && !sSubCateg.IsEmpty())
             {
                 sub_category = Model_Subcategory::instance().create();
                 sub_category->SUBCATEGNAME = sSubCateg;
                 Model_Subcategory::instance().save(sub_category);
-                subCategID = sub_category->SUBCATEGID;
-
                 sMsg = wxString::Format(_("Added subcategory: %s"), sSubCateg);
                 logWindow->AppendText(sMsg << "\n");
             }
+            if (sub_category) subCategID = sub_category->SUBCATEGID;
 
             continue;
         }
@@ -601,7 +604,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 bValid = false;
             }
 
-            if (sFullCateg.Trim().IsEmpty() && type != TRANS_TYPE_TRANSFER_STR)
+            if (sFullCateg.Trim().IsEmpty() && type != Model_Checking::all_type()[Model_Checking::TRANSFER])
             {
                 sMsg = _("Category is missing");
                 logWindow->AppendText(sMsg << "\n");
@@ -658,7 +661,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     bValid = false;
                 }
             }
-            else
+            else //!=TRANSFER
             {
                 if (val > 0.0)
                     type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
@@ -691,7 +694,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 }
             }
 
-            if (mmSplit.empty())
+            if (!mmSplit.empty())
             {
                 categID = -1;
                 sFullCateg = _("Split Category");
@@ -699,7 +702,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             else
             {
                 Model_Category::Data* category = Model_Category::instance().get(categID);
-                Model_Subcategory::Data* sub_category = (subCategID != -1 ? Model_Subcategory::instance().get(subCategID) : 0);
+                Model_Subcategory::Data* sub_category = (Model_Subcategory::instance().get(subCategID));
                 sFullCateg = Model_Category::full_name(category, sub_category);
             }
 
@@ -784,7 +787,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                         refTrans->TOTRANSAMOUNT = val;
                     else
                         refTrans->TRANSAMOUNT = val;
-                    refTrans->TRANSCODE = "D";
+                    refTrans->STATUS = "D";
 
                     sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->TRANSAMOUNT
                         , refTrans->TOTRANSAMOUNT
@@ -816,14 +819,23 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         data.push_back(wxVariant(account->ACCOUNTNAME));
         data.push_back(wxVariant(transaction->TRANSDATE));
         data.push_back(wxVariant(transaction->TRANSACTIONNUMBER));
-        Model_Payee::Data *payee = Model_Payee::instance().get(transaction->PAYEEID);
         wxString payee_name = "";
-        if (payee) payee_name = payee->PAYEENAME;
+        if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+        {
+            account = Model_Account::instance().get(transaction->TOACCOUNTID);
+            if (account) payee_name = account->ACCOUNTNAME;
+            if (transaction->TRANSAMOUNT < 0) transaction->TRANSAMOUNT = -transaction->TRANSAMOUNT;
+        }
+        else
+        {
+            payee = Model_Payee::instance().get(transaction->PAYEEID);
+            if (payee) payee_name = payee->PAYEENAME;
+        }
         data.push_back(wxVariant(payee_name));
         data.push_back(wxVariant(transaction->STATUS));
 
         data.push_back(wxVariant(Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID)));
-        data.push_back(wxVariant(wxString::Format("%.2f", Model_Checking::balance(transaction))));
+        data.push_back(wxVariant(wxString::Format("%.2f", Model_Checking::balance(transaction, transaction->ACCOUNTID))));
         data.push_back(wxVariant(transaction->NOTES));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
@@ -861,7 +873,6 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     int count = 0;
     while (input.IsOk() && !input.Eof())
     {
-
         *log_field_ << wxString::Format(_("Line %i "), ++count) << "\t"
             << text.ReadLine() << "\n";
     }
