@@ -192,8 +192,8 @@ void mmQIFImportDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    btnOK_ = new wxButton( buttons_panel, wxID_OK, _("&OK"));
-    wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel"));
+    btnOK_ = new wxButton( buttons_panel, wxID_OK, _("&OK "));
+    wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
     btnOK_->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnOk), NULL, this);
 
@@ -770,8 +770,9 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             //Just take alternate amount and skip it
             if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
             {
-                for (auto& refTrans : vQIF_trxs_)
+                for (auto& refTransaction : vQIF_trxs_)
                 {
+                    auto *refTrans(refTransaction.first);
                     if (Model_Checking::type(refTrans) != Model_Checking::TRANSFER) continue;
                     if (refTrans->STATUS == "D") continue; //TODO:
                     if (Model_Checking::TRANSDATE(refTrans) != dtdt) continue;
@@ -798,11 +799,9 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 }
             }
 
-            //TODO: *transaction.splitEntries_ = *mmSplit;
-
             if (bValid)
-            {
-                vQIF_trxs_.push_back(transaction);
+            {   
+                vQIF_trxs_.push_back(std::make_pair(transaction, mmSplit));
             }
         }
     }
@@ -811,8 +810,9 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     logWindow->AppendText(sMsg << "\n");
 
     int num = 0;
-    for (const auto& transaction : vQIF_trxs_)
+    for (const auto& refTransaction : vQIF_trxs_)
     {
+        auto *transaction(refTransaction.first);
         const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
         wxVector<wxVariant> data;
         data.push_back(wxVariant(account->ACCOUNTNAME));
@@ -823,17 +823,23 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         {
             account = Model_Account::instance().get(transaction->TOACCOUNTID);
             if (account) payee_name = account->ACCOUNTNAME;
-            if (transaction->TRANSAMOUNT < 0) transaction->TRANSAMOUNT = -transaction->TRANSAMOUNT;
         }
         else
         {
             payee = Model_Payee::instance().get(transaction->PAYEEID);
             if (payee) payee_name = payee->PAYEENAME;
         }
+        if (Model_Checking::type(transaction) != Model_Checking::DEPOSIT)
+            transaction->TRANSAMOUNT = -transaction->TRANSAMOUNT;
         data.push_back(wxVariant(payee_name));
         data.push_back(wxVariant(transaction->STATUS));
 
-        data.push_back(wxVariant(Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID)));
+        wxString categs = Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID);
+        for (const auto&split_item : refTransaction.second) categs
+            << Model_Category::full_name(split_item.CATEGID, split_item.SUBCATEGID)
+            << "|";
+
+        data.push_back(wxVariant(categs));
         data.push_back(wxVariant(wxString::Format("%.2f", Model_Checking::balance(transaction, transaction->ACCOUNTID))));
         data.push_back(wxVariant(transaction->NOTES));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
@@ -1002,14 +1008,21 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES)
     {
 
-        //TODO: Update transfer transactions toAmount
-
-        for (auto& refTrans : vQIF_trxs_)
+        for (auto& refTransaction : vQIF_trxs_)
         {
+            auto *refTrans(refTransaction.first);
             refTrans->TRANSAMOUNT = fabs(refTrans->TRANSAMOUNT);
             refTrans->TOTRANSAMOUNT = fabs(refTrans->TOTRANSAMOUNT);
 
-            Model_Checking::instance().save(refTrans); //TODO:fix speed
+            int transID = Model_Checking::instance().save(refTrans); //TODO:fix speed
+            for (auto& split : refTransaction.second)
+            {
+                split.TRANSID = transID;
+                if (Model_Checking::type(refTrans) != Model_Checking::DEPOSIT)
+                    split.SPLITTRANSAMOUNT = -split.SPLITTRANSAMOUNT;
+                Model_Splittransaction::instance().save(&split); //TODO:fix speed
+            }
+
             last_imported_acc_id_ = refTrans->ACCOUNTID;
         }
 

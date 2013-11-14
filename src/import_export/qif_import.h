@@ -72,7 +72,7 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& /*event*/);
 
-    std::vector<Model_Checking::Data*> vQIF_trxs_;
+    std::vector< std::pair<Model_Checking::Data*, Model_Splittransaction::Data_Set> > vQIF_trxs_;
     wxWindow* parent_;
     wxString dateFormat_;
     wxArrayInt accounts_id_;
