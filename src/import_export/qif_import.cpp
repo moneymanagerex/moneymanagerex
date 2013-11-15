@@ -299,7 +299,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     Model_Payee::Data* payee = 0;
 
     //mmSplitTransactionEntries* mmSplit(new mmSplitTransactionEntries());
-    Model_Splittransaction::Data_Set mmSplit;
+    Model_Splittransaction::Cache mmSplit;
 
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
@@ -578,7 +578,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             //pSplitEntry->subCategID_   = subCategID;
             pSplitEntry->SUBCATEGID = subCategID;
             //mmSplit->addSplit(pSplitEntry);
-            mmSplit.push_back(*pSplitEntry);
+            mmSplit.push_back(pSplitEntry);
             continue;
         }
         //MemoSplit
@@ -736,15 +736,15 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 
             for (const auto &split_entry : mmSplit)
             {
-                int c = split_entry.CATEGID; //mmSplit->entries_[i]->categID_;
-                int s = split_entry.SUBCATEGID; //mmSplit->entries_[i]->subCategID_;
+                int c = split_entry->CATEGID; //mmSplit->entries_[i]->categID_;
+                int s = split_entry->SUBCATEGID; //mmSplit->entries_[i]->subCategID_;
 
                 Model_Category::Data* category = Model_Category::instance().get(c);
                 Model_Subcategory::Data* sub_category = (s != -1 ? Model_Subcategory::instance().get(s) : 0);
 
                 wxString cn = category->CATEGNAME;
                 wxString sn = (sub_category ? sub_category->SUBCATEGNAME : ""); 
-                double v = split_entry.SPLITTRANSAMOUNT; // mmSplit->entries_[i]->splitAmount_;
+                double v = split_entry->SPLITTRANSAMOUNT; // mmSplit->entries_[i]->splitAmount_;
                 sMsg = (cn << ":" << sn << " " << v << "\n");
                 logWindow->AppendText(sMsg);
             }
@@ -812,7 +812,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
     int num = 0;
     for (const auto& refTransaction : vQIF_trxs_)
     {
-        auto *transaction(refTransaction.first);
+        Model_Checking::Data* transaction = refTransaction.first;
         const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
         wxVector<wxVariant> data;
         data.push_back(wxVariant(account->ACCOUNTNAME));
@@ -835,9 +835,8 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         data.push_back(wxVariant(transaction->STATUS));
 
         wxString categs = Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID);
-        for (const auto&split_item : refTransaction.second) categs
-            << Model_Category::full_name(split_item.CATEGID, split_item.SUBCATEGID)
-            << "|";
+        for (const auto& split_item : refTransaction.second) 
+            categs << Model_Category::full_name(split_item->CATEGID, split_item->SUBCATEGID) << "|";
 
         data.push_back(wxVariant(categs));
         data.push_back(wxVariant(wxString::Format("%.2f", Model_Checking::balance(transaction, transaction->ACCOUNTID))));
@@ -1017,10 +1016,10 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             int transID = Model_Checking::instance().save(refTrans); //TODO:fix speed
             for (auto& split : refTransaction.second)
             {
-                split.TRANSID = transID;
+                split->TRANSID = transID;
                 if (Model_Checking::type(refTrans) != Model_Checking::DEPOSIT)
-                    split.SPLITTRANSAMOUNT = -split.SPLITTRANSAMOUNT;
-                Model_Splittransaction::instance().save(&split); //TODO:fix speed
+                    split->SPLITTRANSAMOUNT = -split->SPLITTRANSAMOUNT;
+                Model_Splittransaction::instance().save(split); //TODO:fix speed
             }
 
             last_imported_acc_id_ = refTrans->ACCOUNTID;
