@@ -87,10 +87,7 @@ private:
     wxString displayAssets(double& tBalance);
     wxString displayIncomeVsExpenses();
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-                                , mmDateRange* date_range
-                                , int accountID
-                                , bool group_by_account = false
-                                , bool group_by_month = false) const;
+                                , mmDateRange* date_range) const;
     wxString getStatWidget();
     wxString getCalendarWidget();
     wxString displayGrandTotals(double& tBalance);

@@ -304,18 +304,11 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
     return hb.getHTMLinTableWraper();
 }
 
-// this code usefull for income/expences report
 void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-                                             , mmDateRange* date_range
-                                             , int accountID
-                                             , bool group_by_account
-                                             , bool group_by_month) const
+                                             , mmDateRange* date_range)const
 {
     //Initialization
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
-    std::pair<double, double> incomeExpensesPair;
-    incomeExpensesPair.first = 0;
-    incomeExpensesPair.second = 0;
     wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
 
     //Calculations
@@ -328,8 +321,6 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 
     for (const auto& pBankTransaction : transactions)
     {
-        if (pBankTransaction.ACCOUNTID != accountID && pBankTransaction.TOACCOUNTID != accountID)
-            continue; // skip
         if (ignoreFuture)
         {
             if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(wxDateTime::Today()))
@@ -340,10 +331,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
         Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
         double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
 
-        int idx = group_by_account ? (1000000 * pBankTransaction.ACCOUNTID) : 0;
-        idx += group_by_month ? (Model_Checking::TRANSDATE(pBankTransaction).GetYear() * 100
-            + (int) Model_Checking::TRANSDATE(pBankTransaction).GetMonth()) : 0;
-
+        int idx = pBankTransaction.ACCOUNTID;
         if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
             incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
         else
@@ -354,13 +342,10 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 //* Income vs Expenses *//
 wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
-    bool group_by_account = true;
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats( incomeExpensesStats
         , date_range_
-        , -1
-        , group_by_account
     );
 
     bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
@@ -373,10 +358,9 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
             if (show_bank && Model_Account::type(account) != Model_Account::CHECKING) continue;
             if (frame_->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
         }
-        int idx = group_by_account ? (1000000 * account.ACCOUNTID) : 0;
+        int idx = account.ACCOUNTID;
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
-        if (!group_by_account) break;
     }
 
     mmHTMLBuilder hb;
