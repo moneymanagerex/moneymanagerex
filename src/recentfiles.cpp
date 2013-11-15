@@ -23,8 +23,8 @@
 RecentDatabaseFiles::RecentDatabaseFiles(wxMenu *menuRecentFiles)
 : menuRecentFiles_(menuRecentFiles)
 , recentListSize_(6)
+, dbIndexName_("RECENT_DB_")
 {
-    dbIndexName_ = "RECENT_DB_";
     recentFileList_.Add(Model_Setting::instance().getLastDbPath());
     for (int index = 1; index < recentListSize_; ++ index)
     {

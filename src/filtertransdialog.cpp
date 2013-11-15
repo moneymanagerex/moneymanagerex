@@ -748,6 +748,7 @@ void mmFilterTransactionsDialog::datePresetMenu( wxMouseEvent& event )
 
 void mmFilterTransactionsDialog::setPresettings(const wxString& view)
 {
+    if (date_range_) delete date_range_;
     date_range_ = new mmCurrentMonth;
     dateRangeCheckBox_->SetValue(true);
 

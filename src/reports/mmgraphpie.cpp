@@ -36,7 +36,6 @@ void mmGraphPie::init(std::vector<ValuePair>& valueList)
 {
     std::sort(valueList.begin(), valueList.end(), [](const ValuePair& x, const ValuePair& y){ return fabs(x.amount) > fabs(y.amount);});
     size_t cnt = std::min(valueList.size(), size_t(14));
-    int othersum=0;
     std::vector<ChartData> pieData;
     pieData.reserve(cnt);
 
@@ -44,6 +43,7 @@ void mmGraphPie::init(std::vector<ValuePair>& valueList)
         pieData.push_back(ChartData(valueList[i].label, valueList[i].amount));
     if (valueList.size()>14)
     {
+        int othersum=0;
         for (size_t j=14; j<valueList.size(); j++)
              othersum = othersum+valueList[j].amount;
         pieData.push_back(ChartData(_("All Others"), othersum));

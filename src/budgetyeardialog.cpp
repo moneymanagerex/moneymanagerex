@@ -32,6 +32,7 @@ BEGIN_EVENT_TABLE( mmBudgetYearDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmBudgetYearDialog::mmBudgetYearDialog( )
+: listBox_()
 {
     budgetYearID_ = -1;
 }

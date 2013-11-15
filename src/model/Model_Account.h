@@ -175,7 +175,7 @@ public:
     static Model_Billsdeposits::Data_Set billsdeposits(const Data& r) { return billsdeposits(&r); }
     static wxDate last_date(const Data* r)
     {
-        Model_Checking::Data_Set trans = Model_Account::transaction(r);
+        Model_Checking::Data_Set trans = transaction(r);
         if (!trans.empty()) return Model_Checking::TRANSDATE(trans.back());
         
         return wxDateTime::Today();

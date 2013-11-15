@@ -473,7 +473,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
 
         to_account_id = -1;
         from_account_id = fromAccountID_;
-        bool bValid = true;
 
         if (lineType(readLine) == Date) // 'D'
         {
@@ -589,6 +588,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         }
         else if (lineType(readLine) == EOTLT) // ^
         {
+            bool bValid = true;
             wxString status = "F";
 
             if (dt.Trim().IsEmpty())

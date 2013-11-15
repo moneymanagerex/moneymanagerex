@@ -41,11 +41,22 @@ BEGIN_EVENT_TABLE( mmCategDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog( )
+: treeCtrl_()
+, textCtrl_()
+, addButton_()
+, editButton_()
+, selectButton_()
+, deleteButton_()
+, btnCateg_relocate_()
+, cbExpand_()
+, cbShowAll_()
 {
     // Initialize fields in constructor
     categID_ = -1;
     subcategID_ = -1;
     selectedItemId_ = 0;
+    bEnableSelect_ = false;
+    bEnableRelocate_ = false;
     refreshRequested_ = false;
 }
 
@@ -568,14 +579,14 @@ void mmCategDialog::OnExpandChbClick(wxCommandEvent& /*event*/)
 
 void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
 {
-    if (cbShowAll_->IsChecked())
-    {
+//    if (cbShowAll_->IsChecked())
+//    {
         treeCtrl_->SelectItem(selectedItemId_);
-    }
-    else
-    {
-        treeCtrl_->SelectItem(selectedItemId_);
-    }
+//    }
+//    else
+//    {
+//        treeCtrl_->SelectItem(selectedItemId_);
+//    }
     Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", cbShowAll_->IsChecked());
     fillControls();
 }

@@ -924,7 +924,9 @@ TransactionListCtrl::TransactionListCtrl(
     m_asc(true),
     showDeletedTransactions_(false),
     g_sortcol(COL_DEF_SORT),
-    g_asc(true)
+    g_asc(true),
+    m_selectedID(-1),
+    topItemIndex_(-1)
 {
     wxASSERT(m_cp);
 
@@ -1552,9 +1554,9 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
         , headerMsg
         , Model_Account::instance().all_checking_account_names());
 
-    int dest_account_id = -1;
     if (scd.ShowModal() == wxID_OK)
     {
+        int dest_account_id = -1;
         wxString dest_account_name = scd.GetStringSelection();
         Model_Account::Data* dest_account = Model_Account::instance().get(dest_account_name);
         if (dest_account)
@@ -1592,9 +1594,8 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
 {
     //TODO: Some additional info may be helpfull
-    wxString infoStr = "";
     const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
     wxDateTime date = Model_Checking::TRANSDATE(tran);
-    infoStr = wxGetTranslation(date.GetWeekDayName(date.GetWeekDay()));
+    wxString infoStr = wxGetTranslation(date.GetWeekDayName(date.GetWeekDay()));
     return infoStr;
 }

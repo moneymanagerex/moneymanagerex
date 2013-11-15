@@ -29,6 +29,10 @@ BEGIN_EVENT_TABLE( relocatePayeeDialog, wxDialog )
 END_EVENT_TABLE()
 
 relocatePayeeDialog::relocatePayeeDialog( )
+: sourcePayeeID_(-1)
+, destPayeeID_(-1)
+, cbSourcePayee_()
+, cbDestPayee_()
 {
     changedRecords_  = 0;
 }

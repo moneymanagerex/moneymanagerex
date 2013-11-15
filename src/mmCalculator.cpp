@@ -104,19 +104,18 @@ const bool mmCalculator::calculate(const wxString& input)
 
 const bool mmCalculator::check_syntax(const wxString& input) const
 {
-    bool ok = false;
     wxString temp = input;
     int a = temp.Replace("(", "(");
     int b = temp.Replace(")", ")");
-    ok = (a == b);
+    bool ok = (a == b);
     if (ok && a > 0)
     {
         for (size_t i = 0; i < input.Len(); i++)
         {
             if (input[i] == '(') a += i;
             else if (input[i] == ')') b += i;
-            if (input[i] == '(' && i > 0) ok = (ok && (wxString("(+-*/").Contains(input[i-1])));
-            if (input[i] == ')' && i < input.Len()-1) ok = (ok && wxString(")+-*/").Contains(input[i+1]));
+            if (i > 0 && input[i] == '(') ok = (ok && (wxString("(+-*/").Contains(input[i-1])));
+            if (i < input.Len()-1 && input[i] == ')') ok = (ok && wxString(")+-*/").Contains(input[i+1]));
         }
         ok = (a < b);
     }

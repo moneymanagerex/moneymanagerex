@@ -28,7 +28,7 @@ class mmBankTransaction;
 class mmReportTransactions : public mmPrintableBase
 {
 public:
-    mmReportTransactions(const Model_Checking::Data_Set trans,
+    mmReportTransactions(const Model_Checking::Data_Set& trans,
                          int refAccountID, mmFilterTransactionsDialog* transDialog);
     ~mmReportTransactions();
 

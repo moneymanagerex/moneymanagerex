@@ -3104,8 +3104,7 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 bool mmGUIFrame::IsUpdateAvailable(const wxString& page)
 {
     wxStringTokenizer tkz(page, '.', wxTOKEN_RET_EMPTY_ALL);
-    int numTokens = (int)tkz.CountTokens();
-    if (numTokens != 4)
+    if (tkz.CountTokens() != 4)
     {
         return true;
 
@@ -3123,7 +3122,6 @@ bool mmGUIFrame::IsUpdateAvailable(const wxString& page)
     wxString currentV = mmex::getProgramVersion();
     currentV = currentV.SubString(0, currentV.Find("DEV") - 1).Trim();
     wxStringTokenizer tkz1(currentV, ('.'), wxTOKEN_RET_EMPTY_ALL);
-    numTokens = (int)tkz1.CountTokens();
 
     int majC = wxAtoi(tkz1.GetNextToken());
     int minC = wxAtoi(tkz1.GetNextToken());
@@ -3197,7 +3195,7 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 0.10.9.3";
 
     wxStringTokenizer versionTokens(page,("["));
-    page = versionTokens.GetNextToken(); // ignore old counters
+    versionTokens.GetNextToken(); // ignore old counters
     page = versionTokens.GetNextToken(); // substrtute new counters
 
     page = page.SubString(page.find(wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3)), 53);

@@ -572,7 +572,7 @@ wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
     }
 
     /* Returns the alternating background pattern */
-    return item % 2 ? (wxListItemAttr *)&attr2_ : (wxListItemAttr *)&attr1_;
+    return (item % 2) ? (wxListItemAttr *)&attr2_ : (wxListItemAttr *)&attr1_;
 }
 
 void budgetingListCtrl::OnListItemActivated(wxListEvent& event)

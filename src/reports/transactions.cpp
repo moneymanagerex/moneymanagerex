@@ -26,12 +26,14 @@
 #include "model/Model_Category.h"
 #include <algorithm>
 
-mmReportTransactions::mmReportTransactions(const Model_Checking::Data_Set trans,
+mmReportTransactions::mmReportTransactions(const Model_Checking::Data_Set& trans,
     int refAccountID, mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase(DATE)
     , trans_(trans)
     , refAccountID_(refAccountID)
     , transDialog_(transDialog)
+    , sortby_(DATE)
+    , ignoreDate_(false)
 {
 }
 
@@ -135,12 +137,10 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(Model_Category::full_name(transaction.CATEGID, transaction.SUBCATEGID), false, true);
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
         // Get the exchange rate for the selected account
-        double dbRate = 1;
         const Model_Currency::Data* currency = Model_Account::currency(account);
         if (currency)
         {
-            dbRate = currency->BASECONVRATE;
-            double amount = Model_Checking::balance(transaction) * dbRate;
+            double amount = Model_Checking::balance(transaction) * currency->BASECONVRATE;
             hb.addCurrencyCell(amount);
             total += amount;
         }

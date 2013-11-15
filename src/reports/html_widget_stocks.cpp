@@ -26,8 +26,8 @@
 #include <algorithm>
 
 htmlWidgetStocks::htmlWidgetStocks()
+: title_(_("Stocks"))
 {
-    title_ = _("Stocks");
     enable_details_ = true;
     grand_gain_lost_ = 0.0;
     grand_total_ = 0.0;

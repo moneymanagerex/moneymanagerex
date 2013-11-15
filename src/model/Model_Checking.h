@@ -217,20 +217,20 @@ public:
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
     static double withdrawal(const Data* r, int account_id = -1)
     {
-        double balance = Model_Checking::balance(r, account_id);
-        return balance < 0 ? -balance : 0;
+        double bal = balance(r, account_id);
+        return bal < 0 ? -bal : 0;
     }
     static double withdrawal(const Data& r, int account_id) { return withdrawal(&r, account_id); };
     static double deposit(const Data* r, int account_id)
     {
-        double balance = Model_Checking::balance(r, account_id);
-        return balance > 0 ? balance : 0;
+        double bal = balance(r, account_id);
+        return bal > 0 ? bal : 0;
     }
     static double deposit(const Data& r, int account_id) { return deposit(&r, account_id); }
     static double reconciled(const Data* r, int account_id) 
     {
-        double balance = Model_Checking::balance(r, account_id);
-        return Model_Checking::status(r) == Model_Checking::RECONCILED ? balance : 0;
+        double bal = balance(r, account_id);
+        return Model_Checking::status(r) == Model_Checking::RECONCILED ? bal : 0;
     }
     static double reconciled(const Data& r, int account_id) { return reconciled(&r, account_id); }
     static wxString toShortStatus(const wxString& fullStatus)

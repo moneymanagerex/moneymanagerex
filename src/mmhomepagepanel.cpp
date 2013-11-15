@@ -95,16 +95,17 @@ void mmHomePagePanel::createFrames()
 
     vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
 
-    double tBalance = 0.0, termBalance = 0.0;
-    wxString stocks="", assets="", grand_total="", top="", leftFrame="", rightFrame="";
+    double tBalance = 0.0;
+    wxString stocks="", assets="", grand_total="", top="", rightFrame="";
 
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
-    leftFrame = displayAccounts(tBalance, accountStats);
+    wxString leftFrame = displayAccounts(tBalance, accountStats);
     if (Model_Account::hasActiveTermAccount())
     {
+        double termBalance = 0.0;
         leftFrame += displayAccounts(termBalance, accountStats, Model_Account::TERM);
         tBalance += termBalance;
     }

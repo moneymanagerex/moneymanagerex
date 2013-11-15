@@ -78,7 +78,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     }
 
     ////////////////////////////////////
-    if (bd_days.size() > 0)
+    if (!bd_days.empty())
     {
         wxString colorStr;
 

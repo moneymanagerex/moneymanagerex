@@ -247,17 +247,17 @@ void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
 }
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
-    EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
-    EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
-    EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
-    EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
+EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
+EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
+EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
+EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
 END_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(wxWindow *parent)
 : m_filter_type(Model_Asset::TYPE(-1))
+,  tips_(_("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."))
 {
-    this->tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     Create(parent, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
 }
 

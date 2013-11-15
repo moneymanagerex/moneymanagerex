@@ -25,7 +25,7 @@ class mmExportBase
 {
 
 public:
-    mmExportBase(){}
+    mmExportBase() : m_transaction_id(0) {}
 
 protected:
     int m_transaction_id;
@@ -48,7 +48,6 @@ public:
 
 protected:
     int m_account_id;
-    int m_transaction_id;
 };
 
 

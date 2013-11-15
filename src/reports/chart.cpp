@@ -202,6 +202,9 @@ void AbstractChart::SetData( const std::vector<ChartData> &aData, const std::vec
 //----------------------------------------------------------------------------
 
 PieChart::PieChart( int aWidth, int aHeight ) : AbstractChart( aWidth, aHeight )
+, csize(0)
+, keymode(0)
+, mode(0)
 {
 }
 //----------------------------------------------------------------------------
@@ -341,6 +344,9 @@ bool PieChart::Render( const wxString& title )
 //----------------------------------------------------------------------------
 
 BarChart::BarChart( int aWidth, int aHeight ) : AbstractChart( aWidth, aHeight )
+, csize(0)
+, keymode(0)
+, mode(0)
 {
 }
 //----------------------------------------------------------------------------

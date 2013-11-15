@@ -732,10 +732,10 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
     wxString delimit = this->delimit_;
     wxString acctName = m_choice_account_->GetStringSelection();
     Model_Account::Data* from_account = Model_Account::instance().get(acctName);
-    int fromAccountID = from_account->ACCOUNTID;
 
     if(from_account)
     {
+        int fromAccountID = from_account->ACCOUNTID;
         wxString chooseExt;
         chooseExt << _("CSV Files") << " (*.csv)|*.csv;*.CSV";
         wxString fileName = wxFileSelector(_("Choose CSV data file to Export"),
@@ -762,7 +762,6 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
             int tAccountID = pBankTransaction.TOACCOUNTID;
 
             double value = pBankTransaction.TRANSAMOUNT;
-            double tovalue = 0;
             wxString toamount = "";
             double value_temp = value;
 
@@ -771,7 +770,7 @@ void mmUnivCSVDialog::OnExport(wxCommandEvent& /*event*/)
 
             if (Model_Checking::type(pBankTransaction) == Model_Checking::TRANSFER)
             {
-                tovalue = pBankTransaction.TOTRANSAMOUNT;
+                double tovalue = pBankTransaction.TOTRANSAMOUNT;
 
                 if (tAccountID == fromAccountID) {
                     value = tovalue;
@@ -937,10 +936,10 @@ void mmUnivCSVDialog::update_preview()
         wxString date_format = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
         wxString acctName = m_choice_account_->GetStringSelection();
         Model_Account::Data* from_account = Model_Account::instance().get(acctName);
-        int fromAccountID = from_account->ACCOUNTID;
 
         if (from_account)
         {
+            int fromAccountID = from_account->ACCOUNTID;
             size_t count = 0;
             int row = 0;
             wxString delimit = this->delimit_;
@@ -956,7 +955,6 @@ void mmUnivCSVDialog::update_preview()
                 int tAccountID = pBankTransaction.TOACCOUNTID;
 
                 double value = pBankTransaction.TRANSAMOUNT;
-                double tovalue = 0;
                 wxString toamount = "";
                 double value_temp = value;
 
@@ -968,7 +966,7 @@ void mmUnivCSVDialog::update_preview()
                     Model_Account::Data* to_account = Model_Account::instance().get(tAccountID);
                     const wxString fromAccount = from_account->ACCOUNTNAME;
                     const wxString toAccount = to_account->ACCOUNTNAME;
-                    tovalue = pBankTransaction.TOTRANSAMOUNT;
+                    double tovalue = pBankTransaction.TOTRANSAMOUNT;
 
                     if (tAccountID == fromAccountID) {
                         value = tovalue;

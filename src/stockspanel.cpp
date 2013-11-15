@@ -298,8 +298,8 @@ mmStocksPanel::mmStocksPanel(int accountID,
                              wxWindowID winid, const wxPoint& pos, const wxSize& size, long style,
                              const wxString& name)
 : accountID_(accountID)
+, tips_(_("Using MMEX it is possible to track stocks/mutual funds investments."))
 {
-    this->tips_ = _("Using MMEX it is possible to track stocks/mutual funds investments.");
     Create(parent, winid, pos, size, style, name);
 }
 
@@ -484,15 +484,18 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
 void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(accountID_);
-    header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), account->ACCOUNTNAME));
-
-    //Get Init Value of the account
-    double initVal = account->INITIALBAL;
+    double initVal = 0;
     // + Transfered from other accounts - Transfered to other accounts
 
     //Get Stock Investment Account Balance as Init Amount + sum (Value) - sum (Purchase Price)
     std::pair<double, double> investment_balance;
-    if (account) investment_balance = Model_Account::investment_balance(account);
+    if (account)
+    {
+        header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), account->ACCOUNTNAME));
+        //Get Init Value of the account
+        initVal = account->INITIALBAL;
+        investment_balance = Model_Account::investment_balance(account);
+    }
     double originalVal = investment_balance.second;
     double total = investment_balance.first; 
 
@@ -600,7 +603,6 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
     //--//
     wxString StockSymbolWithSuffix, sName;
-    bool updated = false;
     double dPrice = 0.0;
 
     wxStringTokenizer tkz(sOutput, "\r\n");
@@ -615,10 +617,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
             pattern.GetMatch(csvline, 2).ToDouble(&dPrice);
             sName = pattern.GetMatch(csvline, 3);
         }
-        else
-            updated = false;
 
-        updated = !StockSymbolWithSuffix.IsEmpty();
+        bool updated = !StockSymbolWithSuffix.IsEmpty();
 
         //**** HACK HACK HACK
         // Note:

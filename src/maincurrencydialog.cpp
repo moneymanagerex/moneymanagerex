@@ -329,14 +329,12 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
     wxString base_symbol = "";
     wxString msg = "";
     wxString site = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv";
-    int currencyID;
     bool ok = true;
 
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
     if (base_currency)
     {
         base_symbol = base_currency->CURRENCY_SYMBOL;
-        currencyID = base_currency->id();
     }
     else
     {

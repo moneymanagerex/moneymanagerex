@@ -43,10 +43,10 @@ mmBudgetEntryDialog::mmBudgetEntryDialog(Model_Budget::Data* entry,
                                          wxWindow* parent, 
                                          wxWindowID id, const wxString& caption, 
                                          const wxPoint& pos, const wxSize& size, long style )
+                                         : catEstimateAmountStr_(categoryEstimate)
+                                         , catActualAmountStr_(CategoryActual)
 {
     budgetEntry_ = entry;
-    catEstimateAmountStr_= categoryEstimate;
-    catActualAmountStr_  = CategoryActual;
     Create(parent, id, caption, pos, size, style);
 }
 

@@ -272,13 +272,14 @@ void mmBDDialog::CreateControls()
     itemAccountName_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
 
 // change properties depending on system parameters
-    wxSize spinCtrlSize = wxSize(16,-1);
     int spinCtrlDirection = wxSP_VERTICAL;
     int interval = 0;
 #ifdef __WXMSW__
-    spinCtrlSize = wxSize(18,22);
+    wxSize spinCtrlSize = wxSize(18, 22);
 //    spinCtrlDirection = wxSP_HORIZONTAL;
     interval = 4;
+#else
+    wxSize spinCtrlSize = wxSize(16,-1);
 #endif
 
     // Next Occur Date --------------------------------------------

@@ -42,6 +42,8 @@ END_EVENT_TABLE()
 
 mmAppStartDialog::mmAppStartDialog()
 : itemCheckBox()
+, itemButtonClose_()
+, itemButtonExit_()
 {}
 
 

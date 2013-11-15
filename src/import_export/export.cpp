@@ -28,14 +28,14 @@ mmExportTransaction::mmExportTransaction()
 {}
 
 mmExportTransaction::mmExportTransaction(int accountID)
-: m_transaction_id(0)
-, m_account_id(accountID)
+: m_account_id(accountID)
 {}
 
 mmExportTransaction::mmExportTransaction(int transactionID, int accountID)
-: m_transaction_id(transactionID)
-, m_account_id(accountID)
-{}
+: m_account_id(accountID)
+{
+    m_transaction_id = transactionID;
+}
 
 mmExportTransaction::~mmExportTransaction()
 {}
@@ -211,13 +211,13 @@ wxString mmExportTransaction::getAccountHeaderQIF()
     {
         account_name = account->ACCOUNTNAME;
         dInitBalance = account->INITIALBAL;
+        Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+        if (currency)
+        {
+            currency_symbol = currency->CURRENCY_SYMBOL;
+        }
     }
 
-    Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
-    if (currency)
-    {
-        currency_symbol = currency->CURRENCY_SYMBOL;
-    }
     wxString currency_code = "[" + currency_symbol + "]";
 
     const wxString sInitBalance = wxString::Format("%f", dInitBalance);
@@ -270,12 +270,12 @@ wxString mmExportTransaction::getCategoriesCSV()
     for (const auto& category: Model_Category::instance().all())
     {
         const wxString& categ_name = category.CATEGNAME;
-        bool bIncome = Model_Category::has_income(category.CATEGID);
+//        bool bIncome = Model_Category::has_income(category.CATEGID);
         buffer_csv << categ_name << delimit << "\n";
 
         for (const auto& sub_category: Model_Category::sub_category(category))
         {
-            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
+//            bIncome = Model_Category::has_income(category.CATEGID, sub_category.SUBCATEGID);
             wxString full_categ_name = wxString()
                 << categ_name << delimit
                 << sub_category.SUBCATEGNAME;
