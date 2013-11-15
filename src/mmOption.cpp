@@ -39,7 +39,7 @@ mmOptions& mmOptions::instance()
 }
 
 //----------------------------------------------------------------------------
-void mmOptions::loadOptions()
+void mmOptions::LoadInfotableOptions()
 {
     dateFormat_ = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
     userNameString_ = Model_Infotable::instance().GetStringInfo("USERNAME", "");
@@ -49,10 +49,10 @@ void mmOptions::loadOptions()
 }
 
 //----------------------------------------------------------------------------
-void mmOptions::saveOptions()
-{
-    Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
-}
+//void mmOptions::SaveInfotableOptions()
+//{
+//    Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
+//}
 
 // --------------------------------------------------------------------------
 //----------------------------------------------------------------------------

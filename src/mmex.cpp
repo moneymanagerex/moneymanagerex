@@ -2518,14 +2518,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             password_ = password;
 			InitializeModelTables();
 			
-            openDataBase(fileName);
+            SetDataBaseParameters(fileName);
 
             mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
             wizard->CenterOnParent();
             wizard->RunIt(true);
-
-            /* Load User Name and Other Settings */
-            mmOptions::instance().loadOptions();
 
             /* Jump to new account creation screen */
             wxCommandEvent evt;
@@ -2548,13 +2545,13 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         return false;
     }
 
-    openDataBase(fileName);
+    SetDataBaseParameters(fileName);
 
     return true;
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::openDataBase(const wxString& fileName)
+void mmGUIFrame::SetDataBaseParameters(const wxString& fileName)
 {
     wxString title = mmex::getProgramName() + " : " + fileName;
     if (mmex::isPortableMode())
@@ -2565,6 +2562,8 @@ void mmGUIFrame::openDataBase(const wxString& fileName)
     if (m_db)
     {
         fileName_ = fileName;
+        /* Set InfoTable Options into memory */
+        mmOptions::instance().LoadInfotableOptions();
     }
     else
     {

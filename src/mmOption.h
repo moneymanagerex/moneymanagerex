@@ -32,8 +32,8 @@ class mmOptions
 public:
     mmOptions();
     static mmOptions& instance();
-    void loadOptions();
-    void saveOptions();
+    void LoadInfotableOptions();
+//  void SaveInfotableOptions();
 
     wxString dateFormat_;
     wxString language_;
