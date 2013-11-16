@@ -150,7 +150,14 @@ public:
 
     static Model_Currency::Data* currency(const Data* r)
     {
-        return Model_Currency::instance().get(r->CURRENCYID);
+        Model_Currency::Data * currency = Model_Currency::instance().get(r->CURRENCYID);
+        if (currency)
+            return currency;
+        else
+        {
+            wxASSERT(false);
+            return Model_Currency::GetBaseCurrency();
+        }
     }
     
     static Model_Currency::Data* currency(const Data& r)

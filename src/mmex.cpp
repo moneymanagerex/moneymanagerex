@@ -385,9 +385,13 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
     if (mmMainCurrencyDialog::Execute(this, currencyID_) && currencyID_ != -1)
     {
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
-        wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
-        bn->SetLabel(currency->CURRENCYNAME);
-        Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
+        if (currency)
+        {
+            wxButton* bn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+            bn->SetLabel(currency->CURRENCYNAME);
+            Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
+            currencyID_ = currency->CURRENCYID;
+        }
     }
 }
 //----------------------------------------------------------------------------

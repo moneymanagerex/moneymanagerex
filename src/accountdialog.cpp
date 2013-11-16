@@ -117,14 +117,12 @@ void mmNewAcctDialog::fillControls()
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
     double initBal = m_account->INITIALBAL;
 
-    Model_Currency::Data* currency = Model_Currency::instance().get(m_account->CURRENCYID);
-    wxASSERT(currency);
-
+    Model_Account::currency(m_account);
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
-    bn->SetLabel(currency->CURRENCYNAME);
+    bn->SetLabel(Model_Account::currency(m_account)->CURRENCYNAME);
     currencyID_ = m_account->CURRENCYID;
 
-    textCtrl->SetValue(Model_Currency::toString(initBal, currency));
+    textCtrl->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
 
     int selectedImage = mmIniOptions::instance().account_image_id(m_account->ACCOUNTID);
     bitmaps_button_->SetBitmapLabel(imageList_->GetBitmap(selectedImage));
@@ -173,9 +171,9 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC
         , wxString::Format(_("Initial Balance: %s"),"")), flags);
 
-    wxTextCtrl* itemTextCtrl19 = new wxTextCtrl( this,
-        ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE,
-        "", wxDefaultPosition, wxDefaultSize, 0, wxFloatingPointValidator<double>());
+    wxTextCtrl* itemTextCtrl19 = new wxTextCtrl(this
+        , ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE
+        , "", wxDefaultPosition, wxDefaultSize, 0, wxFloatingPointValidator<double>());
     grid_sizer->Add(itemTextCtrl19, flagsExpand);
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), flags);
@@ -189,8 +187,9 @@ void mmNewAcctDialog::CreateControls()
         ID_DIALOG_NEWACCT_BUTTON_CURRENCY, currName );
     grid_sizer->Add(itemButton71, flagsExpand);
 
-    wxCheckBox* itemCheckBox10 = new wxCheckBox( this,
-        ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT, _("Favorite Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    wxCheckBox* itemCheckBox10 = new wxCheckBox( this
+        , ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT
+        , _("Favorite Account"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemCheckBox10->SetValue(TRUE);
     grid_sizer->AddSpacer(1);
     grid_sizer->Add(itemCheckBox10, flags);
