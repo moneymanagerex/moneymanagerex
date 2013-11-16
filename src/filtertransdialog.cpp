@@ -68,6 +68,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(
 , subcategID_(-1)
 , payeeID_(-1)
 , refAccountID_(-1)
+, date_range_(0)
 {
     Create(parent, id, caption, pos, size, style);
 }
