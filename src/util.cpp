@@ -108,9 +108,9 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
     {
         if (forced_show_dlg)
         {
-            wxString s = wxTRANSLATE("Directory of language files does not exist:\n\"");
-            s << langPath << '\"';
-            wxMessageDialog dlg(parent, wxGetTranslation(s), "Error", wxOK | wxICON_ERROR);
+            wxMessageDialog dlg(parent
+                , wxString::Format(_("Directory of language files does not exist:\n%s"), langPath)
+                , _("Error"), wxOK | wxICON_ERROR);
             dlg.ShowModal();
         }
 
