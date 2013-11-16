@@ -41,7 +41,7 @@ mmQIFImportDialog::mmQIFImportDialog(
     , const wxSize& size, long style
 ) :
       parent_(parent)
-    , last_imported_acc_id_(-1)
+      , m_firstReferencedAccountID(-1)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -151,13 +151,9 @@ void mmQIFImportDialog::CreateControls()
     //Log viewer
     wxBoxSizer* log_sizer = new wxBoxSizer(wxVERTICAL);
 
-    log_field_ = new wxTextCtrl( this, wxID_STATIC, "", wxDefaultPosition, wxSize(300, -1), wxTE_MULTILINE|wxHSCROLL );
+    log_field_ = new wxTextCtrl( this, wxID_STATIC, ""
+        , wxDefaultPosition, wxSize(500, -1), wxTE_MULTILINE|wxHSCROLL );
     log_sizer->Add(log_field_, 1, wxGROW|wxALL, 5);
-
-    wxButton* itemClearButton = new wxButton(this, wxID_CLEAR, _("Clear"));
-    log_sizer->Add(itemClearButton, 0, wxALIGN_CENTER|wxALL, 5);
-    itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmQIFImportDialog::OnButtonClear), NULL, this);
 
     //Data viewer
     wxPanel* data_panel = new wxPanel(this, wxID_ANY);
@@ -167,11 +163,11 @@ void mmQIFImportDialog::CreateControls()
     dataListBox_ = new wxDataViewListCtrl(data_panel
         , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
     dataListBox_->AppendTextColumn( ColName_[COL_ACCOUNT], wxDATAVIEW_CELL_INERT, 120);
-    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 100);
+    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 90);
     dataListBox_->AppendTextColumn( ColName_[COL_NUMBER], wxDATAVIEW_CELL_INERT, 80);
     dataListBox_->AppendTextColumn( ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120);
     dataListBox_->AppendTextColumn( ColName_[COL_STATUS], wxDATAVIEW_CELL_INERT, 60);
-    dataListBox_->AppendTextColumn( ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 120);
+    dataListBox_->AppendTextColumn( ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 140);
     dataListBox_->AppendTextColumn( ColName_[COL_VALUE], wxDATAVIEW_CELL_INERT, 100);
     dataListBox_->AppendTextColumn( ColName_[COL_NOTES], wxDATAVIEW_CELL_INERT, 300);
     data_sizer->Add(dataListBox_, flagsExpand);
@@ -181,7 +177,7 @@ void mmQIFImportDialog::CreateControls()
     main_sizer->Add(top_sizer, flagsExpand);
     top_sizer->Add(left_sizer, flags);
     top_sizer->Add(log_sizer, flagsExpand);
-    main_sizer->Add(data_panel, flagsExpand);
+    main_sizer->Add(data_panel, flagsExpand.Proportion(.75));
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -259,9 +255,9 @@ bool mmQIFImportDialog::warning_message()
     return true;
 }
 
-int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
+int mmQIFImportDialog::mmImportQIF()
 {
-    Model_Account::Data* account = Model_Account::instance().get(last_imported_acc_id_);
+    Model_Account::Data* account = Model_Account::instance().get(m_firstReferencedAccountID);
     wxString acctName;
     if (account)
     {
@@ -408,46 +404,16 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                     }
                 }
 
-                Model_Account::Data* account = Model_Account::instance().get(acctName);
-                if (!account)
-                {
-                    //TODO: Repeated code
-                    account = Model_Account::instance().create();
-
-                    account->FAVORITEACCT = "TRUE";
-                    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-                    account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
-                    account->ACCOUNTNAME = acctName;
-                    account->INITIALBAL = val;
-                    account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
-                    for (const auto& curr : Model_Currency::instance().all())
-                    {
-                        if (wxString(curr.CURRENCY_SYMBOL).Prepend("[").Append("]") == sDescription)
-                            account->CURRENCYID = curr.CURRENCYID;
-                    }
-
-                    Model_Account::instance().save(account);
-                    from_account_id = account->ACCOUNTID;
-                    accountArray.Add(account->ACCOUNTNAME);
-                    sMsg = wxString::Format(_("Added account '%s'"), acctName)
-                        << "\n" << wxString::Format(_("Initial Balance: %s"), (wxString()<<val));
-                    logWindow->AppendText(wxString()<< sMsg << "\n");
-                }
-
-                fromAccountID_ = account->ACCOUNTID;
-
-                sMsg = wxString::Format(_("Line: %ld"), numLines) << " : "
-                    << wxString::Format(_("Account name: %s"), acctName);
-                logWindow->AppendText(wxString()<< sMsg << "\n");
-
+                wxString currency_name = sDescription;
+                fromAccountID_ = getOrCreateAccount(acctName, val, currency_name);
                 continue;
             }
 
             // ignore these type of lines
             if ( accountType == "Option:AutoSwitch" )
             {
-                readLine = tFile.GetNextLine();
-                while(readLine != "^" || tFile.Eof())
+                readLine = text.ReadLine();
+                while(readLine != "^" || input.Eof())
                 {
                     // ignore all lines
                 }
@@ -465,7 +431,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             logWindow->AppendText(wxString()<< errLineMsgStr << "\n" << errMsgStr << "\n");
             wxMessageBox( errLineMsgStr + "\n\n" + errMsgStr, _("QIF Import"), wxICON_ERROR);
 
-            // exit: while(!input.Eof()) loop and allow to exit routine and allow user to save or abort
             break;
         }
 
@@ -524,7 +489,6 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             if (sFullCateg.Contains("/"))
                 transNum.Prepend(wxString::Format("[%s] ", getFinancistoProject(sFullCateg)));
 
-            //core_->categoryList_.parseCategoryString(sFullCateg, sCateg, categID, sSubCateg, subCategID);
             wxStringTokenizer cattkz(sFullCateg, ":");
             sCateg = cattkz.GetNextToken();
             sSubCateg = "";
@@ -567,15 +531,10 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             if (type == TRANS_TYPE_WITHDRAWAL_STR)
                 dSplitAmount = -dSplitAmount;
             //Add split entry
-            //mmSplitTransactionEntry* pSplitEntry(new mmSplitTransactionEntry);
             Model_Splittransaction::Data * pSplitEntry = Model_Splittransaction().instance().create();
-            //pSplitEntry->splitAmount_  = dSplitAmount;
             pSplitEntry->SPLITTRANSAMOUNT = dSplitAmount;
-            //pSplitEntry->categID_      = categID;
             pSplitEntry->CATEGID = categID;
-            //pSplitEntry->subCategID_   = subCategID;
             pSplitEntry->SUBCATEGID = subCategID;
-            //mmSplit->addSplit(pSplitEntry);
             mmSplit.push_back(pSplitEntry);
             continue;
         }
@@ -625,46 +584,15 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
             to_account_id = -1;
             if (type == Model_Checking::all_type()[Model_Checking::TRANSFER])
             {
-                Model_Account::Data* account = Model_Account::instance().get(sToAccountName);
-                if (!account)
-                {
-                    account = Model_Account::instance().create();
+                to_account_id = getOrCreateAccount(sToAccountName, 0, sDescription);
+                accountArray.Add(sToAccountName);
 
-                    account->FAVORITEACCT = "TRUE";
-                    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
-                    account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
-                    account->ACCOUNTNAME = sToAccountName;
-                    account->INITIALBAL = 0;
-                    account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
-                    for (const auto& curr : Model_Currency::instance().all())
-                    {
-                        if (wxString(curr.CURRENCY_SYMBOL).Prepend("[").Append("]") == sDescription)
-                            account->CURRENCYID = curr.CURRENCYID;
-                    }
-
-                    Model_Account::instance().save(account);
-                    from_account_id = account->ACCOUNTID;
-                    accountArray.Add(account->ACCOUNTNAME);
-
-                    to_account_id = account->ACCOUNTID;
-                    accountArray.Add(sToAccountName);
-
-                    sMsg = wxString::Format(_("Added account '%s'"), sToAccountName);
-                    logWindow->AppendText(wxString()<< sMsg << "\n");
-                }
-                to_account_id = account->ACCOUNTID;
                 if (val > 0.0)
                 {
                     from_account_id = to_account_id;
                     to_account_id = fromAccountID_;
                 }
                 payeeID = -1;
-                if (to_account_id == -1 || from_account_id == -1)
-                {
-                    sMsg = _("Account missing");
-                    logWindow->AppendText(sMsg << "\n");
-                    bValid = false;
-                }
             }
             else //!=TRANSFER
             {
@@ -779,7 +707,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
                 {
                     auto *refTrans(refTransaction.first);
                     if (Model_Checking::type(refTrans) != Model_Checking::TRANSFER) continue;
-                    if (refTrans->STATUS == "D") continue; //TODO:
+                    if (refTrans->STATUS == "D") continue;
                     if (Model_Checking::TRANSDATE(refTrans) != dtdt) continue;
                     if (((refTrans->TRANSAMOUNT < 0) && (val < 0)) || ((refTrans->TRANSAMOUNT > 0) && (val >0))) continue;
                     if (refTrans->ACCOUNTID!= from_account_id) continue;
@@ -811,7 +739,7 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         }
     }
 
-    sMsg = wxString::Format(_("Transactions imported from QIF: %ld"), vQIF_trxs_.size());
+    sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %ld"), vQIF_trxs_.size());
     logWindow->AppendText(sMsg << "\n");
 
     int num = 0;
@@ -840,12 +768,16 @@ int mmQIFImportDialog::mmImportQIF(wxTextFile& tFile)
         data.push_back(wxVariant(transaction->STATUS));
 
         wxString categs = Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID);
-        for (const auto& split_item : refTransaction.second) 
-            categs << Model_Category::full_name(split_item->CATEGID, split_item->SUBCATEGID) << "|";
+        size_t i = 0;
+        for (const auto& split_item : refTransaction.second)
+            categs << Model_Category::full_name(split_item->CATEGID, split_item->SUBCATEGID) 
+            << (refTransaction.second.size() > ++i ? "|" : "");
 
         data.push_back(wxVariant(categs));
         data.push_back(wxVariant(wxString::Format("%.2f", Model_Checking::balance(transaction, transaction->ACCOUNTID))));
-        data.push_back(wxVariant(transaction->NOTES));
+        wxString notes = transaction->NOTES;
+        notes.Replace("\n", " ");
+        data.push_back(wxVariant(notes));
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
 
@@ -887,11 +819,11 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
             << text.ReadLine() << "\n";
     }
 
-    if (checkQIFFile(tFile))
-        mmImportQIF(tFile);
+    if (checkQIFFile())
+        mmImportQIF();
 }
 
-bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
+bool mmQIFImportDialog::checkQIFFile()
 {
     bbFile_->Enable(false);
     bbFile_->SetBitmapLabel(wxBitmap(empty_xpm));
@@ -902,16 +834,22 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
     btnOK_->Enable(false);
 
     bool dateFormatIsOK = false;
-    wxString sAccountName; //Last parsed account name
-    for (wxString str = tFile.GetFirstLine(); !tFile.Eof(); str = tFile.GetNextLine())
+    wxString sAccountName;
+
+    wxFileInputStream input(sFileName_);
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
+
+    size_t line = 0;
+    while (input.IsOk() && !input.Eof())
     {
-        if (str.empty())
-            continue;
+        line++;
+        wxString str = text.ReadLine();
+        if (str.empty()) continue;
 
         if (!isLineOK(str))
         {
             wxString sError = wxString()
-                << wxString::Format(_("Line %i"), tFile.GetCurrentLine()+1)
+                << wxString::Format(_("Line %i"), line)
                 << "\n"
                 << str;
             mmShowErrorMessageInvalid(this, sError);
@@ -921,9 +859,9 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
         if ( lineType(str) == AcctType && getLineData(str) == "Account")
         {
             bool reading = true;
-            while(!tFile.Eof() && reading )
+            while (input.IsOk() && !input.Eof() && reading)
             {
-                str = tFile.GetNextLine();
+                str = text.ReadLine();
                 if (accountInfoType(str) == Name)
                 {
                     sAccountName = getLineData(str);
@@ -937,7 +875,7 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
             continue;
         }
 
-        if (lineType(str) == Date)
+        if (lineType(str) == Date && !dateFormatIsOK)
         {
             wxDateTime dtdt;
             wxString sDate = getLineData(str);
@@ -955,14 +893,16 @@ bool mmQIFImportDialog::checkQIFFile(wxTextFile& tFile)
     else
         return false;
 
-    if (sAccountName.IsEmpty() && last_imported_acc_id_<0)
+    if (sAccountName.IsEmpty() && m_firstReferencedAccountID < 0)
     {
         sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
             , _("Account"), Model_Account::instance().all_checking_account_names());
 
         const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
-        last_imported_acc_id_ = account->ACCOUNTID;
-        if (last_imported_acc_id_ < 0) return false;
+        if (account)
+            m_firstReferencedAccountID = account->ACCOUNTID;
+        else
+            return false;
     }
 
     if (newAccounts_->GetCount() > 0)
@@ -991,13 +931,10 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
 {
     wxStringClientData* data = (wxStringClientData*)(choiceDateFormat_->GetClientObject(choiceDateFormat_->GetSelection()));
     if (data) dateFormat_ = data->GetData();
-    wxTextFile tFile(sFileName_);
     if (sFileName_.IsEmpty())
         return;
-    if (!tFile.IsOpened())
-        tFile.Open();
-    if (checkQIFFile(tFile))
-        mmImportQIF(tFile);
+    if (checkQIFFile())
+        mmImportQIF();
 }
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
@@ -1020,6 +957,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             auto *refTrans(refTransaction.first);
             refTrans->TRANSAMOUNT = fabs(refTrans->TRANSAMOUNT);
             refTrans->TOTRANSAMOUNT = fabs(refTrans->TOTRANSAMOUNT);
+            refTrans->STATUS = "F";
 
             int transID = Model_Checking::instance().save(refTrans); //TODO:fix speed
             for (auto& split : refTransaction.second)
@@ -1030,7 +968,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
                 Model_Splittransaction::instance().save(split); //TODO:fix speed
             }
 
-            last_imported_acc_id_ = refTrans->ACCOUNTID;
+            if (m_firstReferencedAccountID < 0) m_firstReferencedAccountID = refTrans->ACCOUNTID;
         }
 
         sMsg = _("Import finished successfully");
@@ -1055,7 +993,33 @@ void mmQIFImportDialog::OnQuit(wxCloseEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmQIFImportDialog::OnButtonClear(wxCommandEvent& /*event*/)
+int mmQIFImportDialog::getOrCreateAccount(const wxString& name, double init_balance, const wxString& currency_name)
 {
-    log_field_->Clear();
+    int accountID = -1;
+    Model_Account::Data* account = Model_Account::instance().get(name);
+    if (!account)
+    {
+
+        Model_Account::Data *account = Model_Account::instance().create();
+
+        account->FAVORITEACCT = "TRUE";
+        account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+        account->ACCOUNTTYPE = Model_Account::all_type()[Model_Account::CHECKING];
+        account->ACCOUNTNAME = name;
+        account->INITIALBAL = init_balance;
+        account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
+        for (const auto& curr : Model_Currency::instance().all())
+        {
+            if (curr.CURRENCY_SYMBOL == currency_name)
+                account->CURRENCYID = curr.CURRENCYID;
+        }
+        accountID = Model_Account::instance().save(account);
+    }
+    else
+        accountID = account->ACCOUNTID;
+
+    wxString sMsg = wxString::Format(_("Account name: %s"), name);
+    log_field_->AppendText(wxString() << sMsg << "\n");
+
+    return accountID;
 }

@@ -54,23 +54,23 @@ public:
                  long style = SYMBOL_QIFIMPORT_STYLE );
     int get_last_imported_acc()
     {
-        return last_imported_acc_id_;
+        return m_firstReferencedAccountID;
     }
 
 private:
-    int mmImportQIF(wxTextFile& tFile);
+    int mmImportQIF();
 
     void CreateControls();
     void fillControls();
 
     void OnFileSearch(wxCommandEvent& event);
-    bool checkQIFFile(wxTextFile& tFile);
+    bool checkQIFFile();
     void OnCheckboxClick(wxCommandEvent& /*event*/);
     void OnDateMaskChange(wxCommandEvent& event);
-    void OnButtonClear(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& /*event*/);
+    int getOrCreateAccount(const wxString& name, double init_balance, const wxString& currency_name = "");
 
     std::vector< std::pair<Model_Checking::Data*, Model_Splittransaction::Cache> > vQIF_trxs_;
     wxWindow* parent_;
@@ -102,7 +102,7 @@ private:
     wxBitmapButton* bbFile_;
     wxBitmapButton* bbFormat_;
     wxBitmapButton* bbAccounts_;
-    int last_imported_acc_id_;
+    int m_firstReferencedAccountID; //The first available account in the QIF file
 
     enum EColumn
     {
