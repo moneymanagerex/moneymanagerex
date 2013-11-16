@@ -76,19 +76,6 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
         fileName << "." << ext;
 }
 
-// ---------------------------------------------------------------------------
-//void mmPlayTransactionSound(wxSQLite3Database* db_)
-//{
-//    wxString useSound = mmDBWrapper::getINISettingValue(db_, INIDB_USE_TRANSACTION_SOUND, "TRUE");
-//
-//    if (useSound == "TRUE")
-//    {
-//        wxSound registerSound(mmex::getPathResource(mmex::TRANS_SOUND));
-//        if (registerSound.IsOk())
-//            registerSound.Play(wxSOUND_ASYNC);
-//    }
-//}
-
 /*
     locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
     so I should use locale.IsLoaded(lang) also.
@@ -140,22 +127,6 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
     return lang;
 }
 
-wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
-{
-    wxString dateFmt = mmOptions::instance().dateFormat_;
-    dateFmt.Replace("%Y%m%d", "%Y %m %d");
-    dateFmt.Replace(".", " ");
-    dateFmt.Replace(",", " ");
-    dateFmt.Replace("/", " ");
-    dateFmt.Replace("-", " ");
-    dateFmt.Replace("%d", wxString::Format("%d", dt.GetDay()));
-    dateFmt.Replace("%Y", wxString::Format("%d", dt.GetYear()));
-    dateFmt.Replace("%y", wxString::Format("%d", dt.GetYear()).Mid(2,2));
-    dateFmt.Replace("%m", wxGetTranslation(wxDateTime::GetEnglishMonthName(dt.GetMonth())));
-
-    return dateFmt;
-}
-
 void mmShowErrorMessage(wxWindow *parent
     , const wxString &message, const wxString &messageheader)
 {
@@ -180,58 +151,6 @@ wxString inQuotes(wxString label, wxString& delimiter)
     label.Replace("\t","    ", true);
     label.Replace("\n"," ", true);
     return label;
-}
-
-wxString mmGetDateForDisplay(const wxDateTime &dt)
-{
-    return dt.Format(mmOptions::instance().dateFormat_);
-}
-
-bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDateMask)
-{
-    if (sDateMask.IsEmpty())
-        sDateMask = mmOptions::instance().dateFormat_;
-    wxString s = "/";
-
-    //For correct date parsing, adjust separator format to: %x/%x/%
-    sDateMask.Replace("' ", "'");
-    sDate.Replace("' ", "'");
-    for (const auto& c : "`'/-., ")
-    {
-        sDateMask.Replace(c, s);
-        sDate.Replace(c, s);
-    }
-
-    wxStringTokenizer token(sDate, s);
-    double a,b,c;
-    wxString t = token.GetNextToken().Trim();
-    t.ToDouble(&a);
-    t = token.GetNextToken().Trim();
-    t.ToDouble(&b);
-    t = token.GetNextToken().Trim();
-    t.ToDouble(&c);
-
-    bool bResult = true;
-
-    if (((a>999) || (b>999) || (c>999)) && (sDateMask.Contains("%y")))
-        return false;
-    if ((a<100) && (b<100) && (c<100) && (sDateMask.Contains("%Y")))
-        return false;
-
-    sDate = wxString()<<a<<s<<b<<s<<c;
-    if (!date.ParseFormat(sDate, sDateMask, wxDateTime::Now()))
-        bResult = false;
-    date = date.GetDateOnly();
-    return bResult;
-}
-
-wxDateTime mmGetStorageStringAsDate(const wxString& str)
-{
-    wxDateTime dt = wxDateTime::Now();
-    if (!str.IsEmpty()) dt.ParseDate(str);
-    if (!dt.IsValid()) dt = wxDateTime::Now();
-    if (dt.GetYear()<100) dt.Add(wxDateSpan::Years(2000));
-    return dt;
 }
 
 void mmLoadColorsFromDatabase()
@@ -275,35 +194,6 @@ wxColour mmColors::userDefColor7 = wxColour(0,0,128);
 wxString Tips(wxString type)
 {
     return wxGetTranslation(TIPS[rand() % sizeof(TIPS)/sizeof(wxString)]);
-}
-
-//*--------------------------------------------------------------------------*//
-std::map<wxString,wxString> date_formats_map()
-{
-    std::map<wxString, wxString> date_formats;
-    date_formats["%d/%m/%y"]="DD/MM/YY";
-    date_formats["%d/%m/%Y"]="DD/MM/YYYY";
-    date_formats["%d-%m-%y"]="DD-MM-YY";
-    date_formats["%d-%m-%Y"]="DD-MM-YYYY";
-    date_formats["%d.%m.%y"]="DD.MM.YY";
-    date_formats["%d.%m.%Y"]="DD.MM.YYYY";
-    date_formats["%d,%m,%y"]="DD,MM,YY";
-    date_formats["%d/%m'%Y"]="DD/MM'YYYY";
-    date_formats["%d/%m %Y"]="DD/MM YYYY";
-    date_formats["%m/%d/%y"]="MM/DD/YY";
-    date_formats["%m/%d/%Y"]="MM/DD/YYYY";
-    date_formats["%m-%d-%y"]="MM-DD-YY";
-    date_formats["%m-%d-%Y"]="MM-DD-YYYY";
-    date_formats["%m/%d'%y"]="MM/DD'YY";
-    date_formats["%m/%d'%Y"]="MM/DD'YYYY";
-    date_formats["%y/%m/%d"]="YY/MM/DD";
-    date_formats["%y-%m-%d"]="YY-MM-DD";
-    date_formats["%Y/%m/%d"]="YYYY/MM/DD";
-    date_formats["%Y-%m-%d"]="YYYY-MM-DD";
-    date_formats["%Y.%m.%d"]="YYYY.MM.DD";
-    date_formats["%Y%m%d"]="YYYYMMDD";
-
-    return date_formats;
 }
 
 //*--------------------------------------------------------------------------*//
@@ -397,6 +287,76 @@ wxSharedPtr<wxSQLite3Database> static_db_ptr()
     return db;
 }
 
+//* Date Functions----------------------------------------------------------*//
+
+wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
+{
+    wxString dateFmt = mmOptions::instance().dateFormat_;
+    dateFmt.Replace("%Y%m%d", "%Y %m %d");
+    dateFmt.Replace(".", " ");
+    dateFmt.Replace(",", " ");
+    dateFmt.Replace("/", " ");
+    dateFmt.Replace("-", " ");
+    dateFmt.Replace("%d", wxString::Format("%d", dt.GetDay()));
+    dateFmt.Replace("%Y", wxString::Format("%d", dt.GetYear()));
+    dateFmt.Replace("%y", wxString::Format("%d", dt.GetYear()).Mid(2,2));
+    dateFmt.Replace("%m", wxGetTranslation(wxDateTime::GetEnglishMonthName(dt.GetMonth())));
+
+    return dateFmt;
+}
+
+wxString mmGetDateForDisplay(const wxDateTime &dt)
+{
+    return dt.Format(mmOptions::instance().dateFormat_);
+}
+
+bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDateMask)
+{
+    if (sDateMask.IsEmpty())
+        sDateMask = mmOptions::instance().dateFormat_;
+    wxString s = "/";
+
+    //For correct date parsing, adjust separator format to: %x/%x/%
+    sDateMask.Replace("' ", "'");
+    sDate.Replace("' ", "'");
+    for (const auto& c : "`'/-., ")
+    {
+        sDateMask.Replace(c, s);
+        sDate.Replace(c, s);
+    }
+
+    wxStringTokenizer token(sDate, s);
+    double a,b,c;
+    wxString t = token.GetNextToken().Trim();
+    t.ToDouble(&a);
+    t = token.GetNextToken().Trim();
+    t.ToDouble(&b);
+    t = token.GetNextToken().Trim();
+    t.ToDouble(&c);
+
+    bool bResult = true;
+
+    if (((a>999) || (b>999) || (c>999)) && (sDateMask.Contains("%y")))
+        return false;
+    if ((a<100) && (b<100) && (c<100) && (sDateMask.Contains("%Y")))
+        return false;
+
+    sDate = wxString()<<a<<s<<b<<s<<c;
+    if (!date.ParseFormat(sDate, sDateMask, wxDateTime::Now()))
+        bResult = false;
+    date = date.GetDateOnly();
+    return bResult;
+}
+
+wxDateTime mmGetStorageStringAsDate(const wxString& str)
+{
+    wxDateTime dt = wxDateTime::Now();
+    if (!str.IsEmpty()) dt.ParseDate(str);
+    if (!dt.IsValid()) dt = wxDateTime::Now();
+    if (dt.GetYear()<100) dt.Add(wxDateSpan::Years(2000));
+    return dt;
+}
+
 wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 {
     long monthNum;
@@ -428,4 +388,32 @@ wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     if (prevDayRequired)
         financialYear.Subtract(wxDateSpan::Day());
     return financialYear;
+}
+
+std::map<wxString,wxString> date_formats_map()
+{
+    std::map<wxString, wxString> date_formats;
+    date_formats["%d/%m/%y"]="DD/MM/YY";
+    date_formats["%d/%m/%Y"]="DD/MM/YYYY";
+    date_formats["%d-%m-%y"]="DD-MM-YY";
+    date_formats["%d-%m-%Y"]="DD-MM-YYYY";
+    date_formats["%d.%m.%y"]="DD.MM.YY";
+    date_formats["%d.%m.%Y"]="DD.MM.YYYY";
+    date_formats["%d,%m,%y"]="DD,MM,YY";
+    date_formats["%d/%m'%Y"]="DD/MM'YYYY";
+    date_formats["%d/%m %Y"]="DD/MM YYYY";
+    date_formats["%m/%d/%y"]="MM/DD/YY";
+    date_formats["%m/%d/%Y"]="MM/DD/YYYY";
+    date_formats["%m-%d-%y"]="MM-DD-YY";
+    date_formats["%m-%d-%Y"]="MM-DD-YYYY";
+    date_formats["%m/%d'%y"]="MM/DD'YY";
+    date_formats["%m/%d'%Y"]="MM/DD'YYYY";
+    date_formats["%y/%m/%d"]="YY/MM/DD";
+    date_formats["%y-%m-%d"]="YY-MM-DD";
+    date_formats["%Y/%m/%d"]="YYYY/MM/DD";
+    date_formats["%Y-%m-%d"]="YYYY-MM-DD";
+    date_formats["%Y.%m.%d"]="YYYY.MM.DD";
+    date_formats["%Y%m%d"]="YYYYMMDD";
+
+    return date_formats;
 }
