@@ -254,9 +254,9 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     item.SetImage(listCtrlAccount_->m_asc ? 4 : 3);
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
+    bills_.clear();
     if (transFilterActive_)
     {
-        bills_.clear();
         for (const Model_Billsdeposits::Data& data : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
         {
             if (transFilterDlg_->getAccountCheckBox() && transFilterDlg_->getAccountID() != data.ACCOUNTID)
