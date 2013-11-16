@@ -34,7 +34,7 @@ const wxString MMEX_REVISION_ID = "$Rev$";
 //---------------------------------------------------------------------------
 const int mmex::MIN_DATAVERSION = 2;
 const wxString mmex::DATAVERSION = "2";
-const wxString mmex::DEFDATEFORMAT = "%m/%d/%y";
+const wxString mmex::DEFDATEFORMAT =  "%Y-%m-%d"; //ISO 8601
 const wxString mmex::DEFDELIMTER = ",";
 
 // Using google: To specify the exchange, use exch:code
