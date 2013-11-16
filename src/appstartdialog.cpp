@@ -50,7 +50,7 @@ mmAppStartDialog::mmAppStartDialog()
 mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
 : itemCheckBox()
 {
-    wxString caption = mmex::getProgramName() + _(" Start Page");
+    wxString caption = mmex::getProgramName() + "   " + mmex::getTitleProgramVersion();
     Create(parent, ID_DIALOG_APPSTART, caption, wxDefaultPosition, wxSize(400, 300), wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX);
 }
 

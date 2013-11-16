@@ -59,6 +59,11 @@ wxString mmex::getProgramName()
 }
 //----------------------------------------------------------------------------
 
+wxString mmex::getTitleProgramVersion()
+{
+    return _("Version: ") + mmex::getProgramVersion();
+}
+
 wxString mmex::getProgramVersion()
 {
     wxString revision(MMEX_REVISION_ID);
@@ -108,12 +113,17 @@ wxString mmex::getProgramDescription()
                 << "======================================\n"
                 << wxVERSION_STRING << "\n"
                 << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
-                << wxSQLITE3_VERSION_STRING << "\n"
-                << LUA_VERSION << "\n";
+                << wxSQLITE3_VERSION_STRING << "\n";
+//              << LUA_VERSION << "\n";
     #if defined(__clang__)
         description << __VERSION__;
     #elif defined(__GNUC__) || defined(__GNUG__)
         description << __VERSION__;
     #endif
+
+    #if defined(_MSC_VER)
+        description << "MS VC Version: " <<_MSC_VER;
+    #endif
+
     return description;
 }

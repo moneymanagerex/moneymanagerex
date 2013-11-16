@@ -151,7 +151,7 @@ void mmAboutDialog::CreateControls()
     this->SetSizer(itemBoxSizer);
 
     wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC,
-        wxString(_("Version: ")) + mmex::getProgramVersion());
+        mmex::getTitleProgramVersion());
     int font_size = this->GetFont().GetPointSize() + 2;
     versionStaticText->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, wxGetEmptyString()));
     itemBoxSizer->Add(versionStaticText, flags);

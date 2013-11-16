@@ -3158,7 +3158,7 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 {
     // Set up system information
     wxString versionDetails = wxString()
-        << _("Version: ")<< mmex::getProgramVersion() << "\n\n"
+        << mmex::getTitleProgramVersion() << "\n\n"
         << mmex::getProgramDescription() << "\n"
         << "\n";
 

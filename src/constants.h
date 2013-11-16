@@ -50,6 +50,7 @@ extern const wxString DEFSTOCKURL;
         Do not use mmex::GetAppName() for such things.
 */
 wxString getProgramName();
+wxString getTitleProgramVersion();
 wxString getProgramVersion();
 wxString getProgramCopyright();
 wxString getProgramWebSite();
