@@ -115,15 +115,14 @@ wxString mmex::getProgramDescription()
                 << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
                 << wxSQLITE3_VERSION_STRING << "\n";
 //              << LUA_VERSION << "\n";
-    #if defined(__clang__)
-        description << __VERSION__;
-    #elif defined(__GNUC__) || defined(__GNUG__)
-        description << __VERSION__;
+    #if defined(_MSC_VER)
+        description << "Microsoft Visual Studio " <<_MSC_VER;
+    #elif defined(__clang__)
+        description << "Clang/LLVM " <<__VERSION__;
+    #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
+        description << "GNU GCC/G++ " << __VERSION__;
     #endif
 
-    #if defined(_MSC_VER)
-        description << "MS VC Version: " <<_MSC_VER;
-    #endif
 
     return description;
 }
