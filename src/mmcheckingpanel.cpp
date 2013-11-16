@@ -220,6 +220,12 @@ void mmCheckingPanel::filterTable()
             if (transFilterDlg_->getNumberCheckBox() && transFilterDlg_->getNumber() != tran.TRANSACTIONNUMBER) continue;
             if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
         }
+        else
+        {
+			if (!Model_Checking::TRANSDATE(tran)
+                .IsBetween(quickFilterBeginDate_, quickFilterEndDate_)
+            ) continue;
+		}
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_) continue;
 
