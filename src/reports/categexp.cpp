@@ -89,7 +89,9 @@ wxString mmReportCategoryExpenses::getHTMLText()
             data.push_back(line);
         }
 
-        for (const auto& sub_category: Model_Category::sub_category(category))
+        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+        std::stable_sort(subcategories.begin(), subcategories.end(), SorterBySUBCATEGNAME());
+        for (const auto& sub_category : subcategories)
         {
             int subcategID = sub_category.SUBCATEGID;
 
@@ -142,6 +144,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
         }
     }
 
+    // Data is presorted by name
     if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
     {
         std::stable_sort(data.begin(), data.end()
@@ -149,16 +152,6 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 if (x.amount != y.amount) return x.amount < y.amount;
                 else return x.name < y.name;
-            }
-        );
-    }
-    else
-    {
-        sortColumn_ = CATEGORY_SORT_BY_NAME;
-        std::stable_sort(data.begin(), data.end()
-            , [] (const data_holder& x, const data_holder& y)
-            {
-                return x.name < y.name;
             }
         );
     }
