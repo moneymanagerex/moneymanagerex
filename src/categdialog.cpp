@@ -265,7 +265,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     }
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(treeCtrl_->GetItemData(selectedItemId_));
-    if (!iData->getSubCategData()) // not subcateg
+    if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(iData->getCategData());
         for (const auto& subcategory : subcategories)
