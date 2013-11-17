@@ -41,7 +41,8 @@ relocatePayeeDialog::relocatePayeeDialog(wxWindow* parent, int source_payee_id)
 {
     sourcePayeeID_  = source_payee_id;
     destPayeeID_    = -1;
-    long style = wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX;
+    changedRecords_ = 0;
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
     Create(parent, wxID_STATIC, _("Relocate Payee Dialog"), wxDefaultPosition, wxSize(500, 300), style);
 }
