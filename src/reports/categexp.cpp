@@ -168,11 +168,11 @@ wxString mmReportCategoryExpenses::getHTMLText()
     mmGraphPie ggtotal;
     hb.addImage(ggtotal.getOutputFileName());
     ggtotal.init(valueListTotals);
-    ggtotal.Generate(wxEmptyString);
+    ggtotal.Generate(_("Categories"));
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
     gg.init(valueList);
-    gg.Generate(wxEmptyString);
+    gg.Generate(_("Subcategories"));
 
     hb.startTable("60%");
     hb.startTableRow();
