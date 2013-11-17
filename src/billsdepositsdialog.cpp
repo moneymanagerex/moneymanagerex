@@ -197,6 +197,7 @@ void mmBDDialog::dataToControls()
         {
             Model_Account::Data* to_account = Model_Account::instance().get(toID_);
 
+            payeeID_ = account->ACCOUNTID;
             bPayee_->SetLabel(account->ACCOUNTNAME);
             bTo_->SetLabel(to_account->ACCOUNTNAME);
 
