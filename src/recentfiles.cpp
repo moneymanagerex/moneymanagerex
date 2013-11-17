@@ -151,7 +151,7 @@ void RecentDatabaseFiles::updateRecentList(const wxString& currentFileName)
     if (!sameFileDetected)
     {
         // move all entries down one
-        for (int index = recentListSize_ - 1; index > -1; --index)
+        for (int index = recentListSize_ - 2; index > -1; --index)
         {
             if (!recentFileList_[index].IsEmpty())
             {
