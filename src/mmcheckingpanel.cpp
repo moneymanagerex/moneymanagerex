@@ -664,12 +664,12 @@ void mmCheckingPanel::initFilterSettings()
     else if (currentView_ == MENU_VIEW_LAST12MONTHS)
     {
         delete date_range;
-        date_range = new mmCurrentYear;
+        date_range = new mmLast12Months;
     }
     else if (currentView_ == MENU_VIEW_CURRENTYEAR)
     {
         delete date_range;
-        date_range = new mmLast12Months;
+        date_range = new mmCurrentYear;
     }
     else
         wxASSERT(false);
