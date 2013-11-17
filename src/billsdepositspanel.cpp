@@ -727,7 +727,7 @@ void mmBillsDepositsPanel::sortTable()
             long x_num = 0;
             if (isdigit(x_text[0]))
             {
-                x_num = atoi(x_text);
+                x_num = wxAtoi(x_text);
                 wxString removed;
                 if (x_text.EndsWith(wxString("!"), &removed))
                     x_num = -x_num;
@@ -740,7 +740,7 @@ void mmBillsDepositsPanel::sortTable()
             long y_num = 0;
             if (isdigit(y_text[0]))
             {
-                y_num = atoi(y_text);
+                y_num = wxAtoi(y_text);
                 wxString removed;
                 if (y_text.EndsWith(wxString("!"), &removed))
                     y_num = -y_num;
