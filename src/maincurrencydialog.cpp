@@ -39,20 +39,20 @@ BEGIN_EVENT_TABLE( mmMainCurrencyDialog, wxDialog )
 
     EVT_MENU_RANGE(0, 1, mmMainCurrencyDialog::OnMenuSelected)
 
-    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY,   mmMainCurrencyDialog::OnListItemActivated)
-    EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY,    mmMainCurrencyDialog::OnListItemSelected)
-    EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY,    mmMainCurrencyDialog::OnValueChanged)
+    EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmMainCurrencyDialog::OnListItemActivated)
+    EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnListItemSelected)
+    EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnValueChanged)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmMainCurrencyDialog::OnItemRightClick)
 END_EVENT_TABLE()
 
 mmMainCurrencyDialog::mmMainCurrencyDialog(
-    wxWindow* parent,
-    bool bEnableSelect,
-    wxWindowID id,
-    const wxString& caption,
-    const wxPoint& pos,
-    const wxSize& size,
-    long style
+    wxWindow* parent
+    , bool bEnableSelect
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style
 ) : currencyListBox_(),
     bEnableSelect_(bEnableSelect)
 {
@@ -77,13 +77,8 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
     wxDialog::Create( parent, id, caption, pos, size, style );
 
     CreateControls();
-    //GetSizer()->Fit(this);
-    //GetSizer()->SetSizeHints(this);
-
     SetIcon(mmex::getProgramIcon());
-
     fillControls();
-
     Centre();
 
     return TRUE;
@@ -151,10 +146,10 @@ void mmMainCurrencyDialog::CreateControls()
     currencyListBox_ = new wxDataViewListCtrl( this
         , wxID_ANY, wxDefaultPosition, wxSize(-1, 200)/*, wxDV_HORIZ_RULES, mmDoubleValidator(4)*/);
 
-    currencyListBox_ ->AppendToggleColumn( ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30 );
-    currencyListBox_ ->AppendTextColumn( ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60);
-    currencyListBox_ ->AppendTextColumn( ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170);
-    currencyListBox_ ->AppendTextColumn( ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 60 );
+    currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60);
+    currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170);
+    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 60);
 
     itemBoxSizer3->Add(currencyListBox_, 1, wxGROW|wxALL, 1);
 
@@ -183,7 +178,7 @@ void mmMainCurrencyDialog::CreateControls()
     itemBoxSizer9->Add(itemButtonSelect,  4, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     //itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
 
-    if(bEnableSelect_ == false) {
+    if (bEnableSelect_ == false) {
         itemButtonSelect->Disable();
     }
 
