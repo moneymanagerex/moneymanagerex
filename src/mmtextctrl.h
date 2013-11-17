@@ -47,7 +47,7 @@ public:
     {
         // Remove prefix and suffix characters from value
         // Base class handles the thousands seperator
-        return Model_Currency::fromString(wxTextCtrl::GetValue(), currency_);
+        return /*Model_Currency::fromString(*/wxTextCtrl::GetValue()/*, currency_)*/;
     }
 private:
     const Model_Currency::Data* currency_;
