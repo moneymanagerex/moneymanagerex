@@ -65,7 +65,6 @@ public:
     bool enableVisitWebsite_;
     wxString logoName_;
     int html_font_size_;
-    bool enableCustomAboutDialog_;
 //    wxString aboutCompanyName_;
 
     bool expandBankHome_;
