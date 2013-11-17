@@ -59,7 +59,6 @@ void mmOptions::LoadInfotableOptions()
 mmIniOptions::mmIniOptions()
 : enableAssets_(true)
 , enableBudget_(true)
-, enableGraphs_(true)
 , enableRepeatingTransactions_(true)
 , enableCustomLogo_(false)
 , enableCheckForUpdates_(true)
@@ -93,7 +92,6 @@ void mmIniOptions::loadOptions()
     expandStocksHome_ = Model_Setting::instance().GetBoolSetting("ENABLESTOCKS", true);
     enableAssets_     = Model_Setting::instance().GetBoolSetting("ENABLEASSETS", true);
     enableBudget_     = Model_Setting::instance().GetBoolSetting("ENABLEBUDGET", true);
-    enableGraphs_     = Model_Setting::instance().GetBoolSetting("ENABLEGRAPHS", true);
 
     html_font_size_   = Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
 

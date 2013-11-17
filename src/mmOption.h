@@ -20,7 +20,6 @@
 #define _MM_EX_OPTION_H_
 
 #include "defs.h"
-#include <wx/sharedptr.h>
 
 /*
    mmOptions caches the options for MMEX
@@ -54,7 +53,6 @@ public:
 
     bool enableAssets_;
     bool enableBudget_;
-    bool enableGraphs_;
     bool enableRepeatingTransactions_;
     bool enableCustomLogo_;
     bool enableCheckForUpdates_;
