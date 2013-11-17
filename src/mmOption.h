@@ -68,8 +68,6 @@ public:
     bool enableCustomAboutDialog_;
 //    wxString aboutCompanyName_;
     bool disableCategoryModify_;
-    bool enableCustomTemplateDB_;
-    wxString customTemplateDB_;
 
     bool expandBankHome_;
     bool expandTermHome_;

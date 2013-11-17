@@ -2508,31 +2508,20 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     }
     else if (openingNew) // New Database
     {
-        if (mmIniOptions::instance().enableCustomTemplateDB_
-           && wxFileName::FileExists(mmIniOptions::instance().customTemplateDB_))
-        {
-            wxCopyFile(mmIniOptions::instance().customTemplateDB_, fileName, true);
-            m_db = mmDBWrapper::Open(fileName);
-            password_ = password;
-			InitializeModelTables();
-        }
-        else
-        {
-            m_db = mmDBWrapper::Open(fileName, password);
-            password_ = password;
-			InitializeModelTables();
-			
-            SetDataBaseParameters(fileName);
+        m_db = mmDBWrapper::Open(fileName, password);
+        password_ = password;
+        InitializeModelTables();
+        
+        SetDataBaseParameters(fileName);
 
-            mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
-            wizard->CenterOnParent();
-            wizard->RunIt(true);
+        mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
+        wizard->CenterOnParent();
+        wizard->RunIt(true);
 
-            /* Jump to new account creation screen */
-            wxCommandEvent evt;
-            OnNewAccount(evt);
-            return true;
-        }
+        /* Jump to new account creation screen */
+        wxCommandEvent evt;
+        OnNewAccount(evt);
+        return true;
     }
     else // open of existing database failed
     {
