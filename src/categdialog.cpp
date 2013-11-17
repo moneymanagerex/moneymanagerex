@@ -237,9 +237,6 @@ void mmCategDialog::CreateControls()
 
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
-    if (mmIniOptions::instance().disableCategoryModify_)
-        return;
-
     wxString text = wxGetTextFromUser(_("Enter the name for the new category:")
         , _("Add Category"), textCtrl_->GetValue());
     if (text.IsEmpty())
@@ -311,9 +308,6 @@ void mmCategDialog::showCategDialogDeleteError(wxString deleteCategoryErrMsg, bo
 
 void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 {
-    if (mmIniOptions::instance().disableCategoryModify_)
-        return;
-
     if (selectedItemId_ == root_ || !selectedItemId_ )
         return;
 
@@ -440,9 +434,6 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
 void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
 {
-    if (mmIniOptions::instance().disableCategoryModify_)
-        return;
-
     if (selectedItemId_ == root_ || !selectedItemId_ )
         return;
 

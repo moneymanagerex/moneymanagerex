@@ -67,7 +67,6 @@ public:
     int html_font_size_;
     bool enableCustomAboutDialog_;
 //    wxString aboutCompanyName_;
-    bool disableCategoryModify_;
 
     bool expandBankHome_;
     bool expandTermHome_;
