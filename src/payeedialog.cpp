@@ -205,6 +205,33 @@ void mmPayeeDialog::AddPayee()
     fillControls();
 }
 
+void mmPayeeDialog::EditPayee()
+{
+    Model_Payee::Data *payee = Model_Payee::instance().get(m_payee_id);
+    if (payee)
+    {
+        const wxString name = wxGetTextFromUser(_("Modify the name for the payee:")
+            , _("Organize Payees: Edit Payee"), payee->PAYEENAME);
+        if (name.IsEmpty()) return;
+
+        if (name == payee->PAYEENAME) return;
+
+        Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(name));
+        if (payees.empty())
+        {
+            payee->PAYEENAME = name;
+            m_payee_id = Model_Payee::instance().save(payee);
+            m_selected_index = -1;
+        }
+        else
+        {
+            wxMessageBox(_("Payee with same name exists"), _("Organize Payees: Edit Payee"), wxOK | wxICON_ERROR);
+        }
+
+        fillControls();
+    }
+}
+
 void mmPayeeDialog::DeletePayee()
 {
     Model_Payee::Data *payees = Model_Payee::instance().get(m_payee_id);
@@ -276,6 +303,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
     {
         case MENU_DEFINE_CATEGORY: DefineDefaultCategory() ; break;
         case NENU_NEW_PAYEE: AddPayee(); break;
+        case NENU_EDIT_PAYEE: EditPayee(); break;
         case MENU_DELETE_PAYEE: DeletePayee(); break;
         case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
         default: break;
@@ -295,6 +323,9 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->AppendSeparator();
 
     mainMenu->Append(new wxMenuItem(mainMenu, NENU_NEW_PAYEE, _("&Add ")));
+    mainMenu->AppendSeparator();
+
+    mainMenu->Append(new wxMenuItem(mainMenu, NENU_EDIT_PAYEE, _("&Edit ")));
     mainMenu->AppendSeparator();
 
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));

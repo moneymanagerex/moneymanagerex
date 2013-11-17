@@ -47,6 +47,7 @@ private:
     {
         MENU_DEFINE_CATEGORY = 0,
         NENU_NEW_PAYEE,
+        NENU_EDIT_PAYEE,
         MENU_DELETE_PAYEE,
         MENU_RELOCATE_PAYEE
     };
@@ -68,6 +69,7 @@ private:
     void fillControls();
 
     void AddPayee();
+    void EditPayee();
     void DeletePayee();
     void DefineDefaultCategory();
     void OnPayeeRelocate();
