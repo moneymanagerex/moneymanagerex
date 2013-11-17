@@ -37,7 +37,7 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
 {
     wxArrayString accountArray;
     wxArrayString* selections = new wxArrayString();
-    for (const auto& account : Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
+    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
 
     wxMultiChoiceDialog mcd(0, _("Choose Accounts"), reportName_, accountArray);
     if (mcd.ShowModal() == wxID_OK)
