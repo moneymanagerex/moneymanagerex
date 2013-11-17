@@ -66,11 +66,12 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     Create(parent, id, caption, pos, size, style);
 }
 
-bool mmMainCurrencyDialog::Create(  wxWindow* parent, wxWindowID id,
-                      const wxString& caption,
-                      const wxPoint& pos,
-                      const wxSize& size,
-                      long style )
+bool mmMainCurrencyDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -87,7 +88,6 @@ bool mmMainCurrencyDialog::Create(  wxWindow* parent, wxWindowID id,
 
     return TRUE;
 }
-
 
 void mmMainCurrencyDialog::fillControls()
 {
@@ -158,8 +158,8 @@ void mmMainCurrencyDialog::CreateControls()
 
     itemBoxSizer3->Add(currencyListBox_, 1, wxGROW|wxALL, 1);
 
-    wxPanel* itemPanel5 = new wxPanel( this, ID_PANEL10,
-        wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+    wxPanel* itemPanel5 = new wxPanel( this, ID_PANEL10
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
     itemBoxSizer2->Add(itemPanel5, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 1);
 
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
