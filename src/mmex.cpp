@@ -2913,17 +2913,20 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
 {
-    mmTransDialog dlg(this, gotoAccountID_, NULL);
-
-    if ( dlg.ShowModal() == wxID_OK )
+    if (m_db)
     {
-        gotoAccountID_ = dlg.getAccountID();
-        refreshRequested_ = true;
-        Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
-        if (account)
+        mmTransDialog dlg(this, gotoAccountID_, NULL);
+
+        if (dlg.ShowModal() == wxID_OK)
         {
-            setAccountNavTreeSection(account->ACCOUNTNAME);
-            createCheckingAccountPage(gotoAccountID_);
+            gotoAccountID_ = dlg.getAccountID();
+            refreshRequested_ = true;
+            Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
+            if (account)
+            {
+                setAccountNavTreeSection(account->ACCOUNTNAME);
+                createCheckingAccountPage(gotoAccountID_);
+            }
         }
     }
 }
