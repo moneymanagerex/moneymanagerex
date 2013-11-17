@@ -55,8 +55,6 @@ public:
     bool enableAssets_;
     bool enableBudget_;
     bool enableGraphs_;
-    bool enableAddAccount_;
-    bool enableDeleteAccount_;
     bool enableRepeatingTransactions_;
     bool enableCustomLogo_;
     bool enableCheckForUpdates_;

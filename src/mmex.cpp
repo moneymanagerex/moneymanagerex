@@ -998,12 +998,10 @@ void mmGUIFrame::menuEnableItems(bool enable)
 {
     menuBar_->FindItem(MENU_SAVE_AS)->Enable(enable);
     menuBar_->FindItem(MENU_EXPORT)->Enable(enable);
-    if (mmIniOptions::instance().enableAddAccount_)
-        menuBar_->FindItem(MENU_NEWACCT)->Enable(enable);
+    menuBar_->FindItem(MENU_NEWACCT)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTLIST)->Enable(enable);
     menuBar_->FindItem(MENU_ACCTEDIT)->Enable(enable);
-    if (mmIniOptions::instance().enableDeleteAccount_)
-        menuBar_->FindItem(MENU_ACCTDELETE)->Enable(enable);
+    menuBar_->FindItem(MENU_ACCTDELETE)->Enable(enable);
 
     menuBar_->FindItem(MENU_ORGCATEGS)->Enable(enable);
     menuBar_->FindItem(MENU_ORGPAYEE)->Enable(enable);
@@ -1024,8 +1022,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
         menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
 
-    if (mmIniOptions::instance().enableAddAccount_)
-        toolBar_->EnableTool(MENU_NEWACCT, enable);
+    toolBar_->EnableTool(MENU_NEWACCT, enable);
     toolBar_->EnableTool(MENU_ACCTLIST, enable);
     toolBar_->EnableTool(MENU_ORGPAYEE, enable);
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
@@ -2209,13 +2206,10 @@ void mmGUIFrame::createMenu()
 
     wxMenu *menuAccounts = new wxMenu;
 
-    if (mmIniOptions::instance().enableAddAccount_)
-    {
-        wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT,
-            _("New &Account"), _("New Account"));
-        menuItemNewAcct->SetBitmap(toolBarBitmaps[3]);
-        menuAccounts->Append(menuItemNewAcct);
-    }
+    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT,
+        _("New &Account"), _("New Account"));
+    menuItemNewAcct->SetBitmap(toolBarBitmaps[3]);
+    menuAccounts->Append(menuItemNewAcct);
 
     wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST,
         _("Account &List"), _("Show Account List"));
@@ -2225,13 +2219,10 @@ void mmGUIFrame::createMenu()
         _("&Edit Account"), _("Edit Account"));
     menuItemAcctEdit->SetBitmap(toolBarBitmaps[8]);
 
-    if (mmIniOptions::instance().enableDeleteAccount_)
-    {
-        wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE,
-            _("&Delete Account"), _("Delete Account from database"));
-        menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
-        menuAccounts->Append(menuItemAcctDelete);
-    }
+    wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE,
+        _("&Delete Account"), _("Delete Account from database"));
+    menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
+    menuAccounts->Append(menuItemAcctDelete);
 
     menuAccounts->Append(menuItemAcctList);
     menuAccounts->Append(menuItemAcctEdit);
@@ -2407,8 +2398,7 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
     toolBar_->AddTool(MENU_NEW, _("New"), toolBarBitmaps[0], _("New Database"));
     toolBar_->AddTool(MENU_OPEN, _("Open"), toolBarBitmaps[1], _("Open Database"));
     toolBar_->AddSeparator();
-    if (mmIniOptions::instance().enableAddAccount_)
-        toolBar_->AddTool(MENU_NEWACCT, _("New Account"), toolBarBitmaps[3], _("New Account"));
+    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), toolBarBitmaps[3], _("New Account"));
     toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), toolBarBitmaps[4], _("Show Account List"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), toolBarBitmaps[5], _("Show Organize Categories Dialog"));
