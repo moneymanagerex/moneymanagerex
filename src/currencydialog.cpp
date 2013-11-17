@@ -75,19 +75,6 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
 
 void mmCurrencyDialog::fillControls()
 {
-    wxSortedArrayString currency_names, currency_symbols;
-    for (const auto& currency : Model_Currency::instance().all())
-    {
-        currency_symbols.Add(currency.CURRENCY_SYMBOL);
-        currencySymbolCombo_->Append(currency.CURRENCY_SYMBOL);
-
-        currency_names.Add(currency.CURRENCYNAME);
-        currencyNameCombo_->Append(currency.CURRENCYNAME);
-    }
-    
-    currencyNameCombo_->AutoComplete(currency_names);
-    currencySymbolCombo_->AutoComplete(currency_symbols);
-
     Model_Currency::Data *currency = Model_Currency::instance().get(m_currency_id);
     if (currency)
     {
@@ -159,12 +146,15 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Name")), flags);
 
     currencyNameCombo_ = new wxComboBox( this, ID_DIALOG_CURRENCY_CHOICE
-        , "", wxDefaultPosition, wxSize(220, -1));
+        , "", wxDefaultPosition, wxSize(220, -1), Model_Currency::global_currency_names());
     itemFlexGridSizer3->Add(currencyNameCombo_, flags);
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Symbol")), flags);
+    currencyNameCombo_->AutoComplete(Model_Currency::global_currency_names());
 
-    currencySymbolCombo_ = new wxComboBox( this, wxID_ANY);
+    currencySymbolCombo_ = new wxComboBox(this, wxID_ANY
+        , "", wxDefaultPosition, wxSize(220, -1), Model_Currency::global_currency_symbols());
     itemFlexGridSizer3->Add(currencySymbolCombo_, flagsExpand);
+    currencySymbolCombo_->AutoComplete(Model_Currency::global_currency_symbols());
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Unit Name")), flags);
     unitTx_ = new wxTextCtrl( this, ID_DIALOG_CURRENCY_TEXT_UNIT, "");
