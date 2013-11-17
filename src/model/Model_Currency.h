@@ -287,12 +287,14 @@ public:
     }
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
-        wxString d2s = "";
-        if (currency) 
-            d2s = wxNumberFormatter::ToString(value, Model_Currency::precision(currency)); // Style_WithThousandsSep
-        else
-            d2s = wxNumberFormatter::ToString(value, 1);
-        return d2s;
+        int precision = 2;
+        int style = wxNumberFormatter::Style_None;
+        if (currency)
+        {
+            precision = Model_Currency::precision(currency);
+            if (!currency->GROUP_SEPARATOR.empty()) style = wxNumberFormatter::Style_WithThousandsSep;
+        }
+        return wxNumberFormatter::ToString(value, precision, style);
     }
     static wxString fromString(wxString s, const Data* currency)
     {
