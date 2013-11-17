@@ -168,25 +168,24 @@ wxString mmReportCashFlow::getHTMLText_i()
         int accountID = q1.ACCOUNTID;
         int toAccountID = q1.TOACCOUNTID;
 
+        bool isAccountFound = false;
         const Model_Account::Data* account = Model_Account::instance().get(accountID);
-        const Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
-
-        if (!account || !to_account) continue;
-
-        bool isAccountFound = true, isToAccountFound = true;
-        if (accountArray_ != NULL)
+        if (account)
         {
-            if (wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)) //linear search
-                isAccountFound = false;
+            isAccountFound = !(accountArray_ != NULL && wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)); //linear search
+        }
 
-            if (wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)) //linear search
-                isToAccountFound = false;
+        bool isToAccountFound = false;
+        const Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
+        if (to_account)
+        {
+            isToAccountFound = !(accountArray_ != NULL && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
         }
 
         if (!isAccountFound && !isToAccountFound) continue; // skip account
 
-        double convRate = Model_Account::currency(account)->BASECONVRATE;
-        double toConvRate = Model_Account::currency(to_account)->BASECONVRATE;
+        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1.0);
+        double toConvRate = (to_account ? Model_Account::currency(to_account)->BASECONVRATE : 1.0);
 
         // Process all possible repeating transactions for this BD
         while(1)
