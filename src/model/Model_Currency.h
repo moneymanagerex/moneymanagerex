@@ -296,7 +296,7 @@ public:
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
         int precision = 2;
-        int style = wxNumberFormatter::Style_None;
+        int style = wxNumberFormatter::Style_WithThousandsSep;
         wxString s = wxNumberFormatter::ToString(value, precision, style);
         if (currency)
         {
@@ -330,8 +330,16 @@ public:
                 if (s.EndsWith(currency->SFX_SYMBOL, &removed))
                     s = removed;
             }
-            if (!currency->GROUP_SEPARATOR.empty() && currency->GROUP_SEPARATOR != wxNumberFormatter::GetDecimalSeparator())
-                s.Replace(currency->GROUP_SEPARATOR, "");
+
+            wxString sys_thousand_separator;
+            wxChar sep = (wxChar)"";
+            if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
+                sys_thousand_separator = wxString::Format("%c", sep);
+            if (!currency->DECIMAL_POINT.empty()) s.Replace(currency->DECIMAL_POINT, "/");
+            if (!currency->GROUP_SEPARATOR.empty()) s.Replace(currency->GROUP_SEPARATOR, "|");
+            s.Replace("|", sys_thousand_separator);
+            s.Replace("/", wxNumberFormatter::GetDecimalSeparator());
+
         }
         return s;
     }
