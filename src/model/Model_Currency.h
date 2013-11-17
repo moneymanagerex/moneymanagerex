@@ -297,19 +297,12 @@ public:
     static wxString fromString(wxString s, const Data* currency = GetBaseCurrency())
     {
         // Remove prefix and suffix characters from value
-        wxString prefix = (currency ? currency->PFX_SYMBOL : "");
-        wxString suffix = (currency ? currency->SFX_SYMBOL : "");
-        if (!prefix.IsEmpty())
+        if (currency)
         {
-            wxString removed;
-            if (s.StartsWith(prefix, &removed))
-                s = removed;
-        }
-        if (!suffix.IsEmpty())
-        {
-            wxString removed;
-            if (s.EndsWith(suffix, &removed))
-                s = removed;
+            if (!currency->PFX_SYMBOL.empty()) s.StartsWith(currency->PFX_SYMBOL, &s);
+            if (!currency->SFX_SYMBOL.empty()) s.EndsWith(currency->PFX_SYMBOL, &s);
+            if (!currency->GROUP_SEPARATOR.empty() && currency->GROUP_SEPARATOR != wxNumberFormatter::GetDecimalSeparator())
+                s.Replace(currency->GROUP_SEPARATOR, "");
         }
         return s;
     }

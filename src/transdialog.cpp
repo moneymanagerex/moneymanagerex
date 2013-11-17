@@ -570,7 +570,8 @@ bool mmTransDialog::validateData()
     else
     {
         wxString amountStr = textAmount_->GetValue().Trim();
-        if (!amountStr.ToDouble(&transaction_->TRANSAMOUNT))
+        if (!Model_Currency::fromString(amountStr, transaction_->TRANSAMOUNT
+            , Model_Account::currency(account)))
         {
             textAmount_->SetBackgroundColour("RED");
             mmShowErrorMessageInvalid(parent_, _("Amount"));
