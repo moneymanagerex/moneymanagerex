@@ -213,7 +213,7 @@ void mmCheckingPanel::filterTable()
             ) continue;
             if (!transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
             if (!transFilterDlg_->checkCategory(tran)) continue;
-            if (transFilterDlg_->getStatusCheckBox() && transFilterDlg_->getStatus() != tran.STATUS) continue;
+            if (transFilterDlg_->getStatusCheckBox() && !transFilterDlg_->compareStatus(tran.STATUS)) continue;
             if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
             if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;
             if (transFilterDlg_->getAmountRangeCheckBoxMax() && transFilterDlg_->getAmountMax() < tran.TRANSAMOUNT) continue;
