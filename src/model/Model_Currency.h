@@ -294,13 +294,23 @@ public:
             d2s = wxNumberFormatter::ToString(value, 1);
         return d2s;
     }
-    static wxString fromString(wxString s, const Data* currency = GetBaseCurrency())
+    static wxString fromString(wxString s, const Data* currency)
     {
         // Remove prefix and suffix characters from value
         if (currency)
         {
-            if (!currency->PFX_SYMBOL.empty()) s.StartsWith(currency->PFX_SYMBOL, &s);
-            if (!currency->SFX_SYMBOL.empty()) s.EndsWith(currency->PFX_SYMBOL, &s);
+            if (!currency->PFX_SYMBOL.IsEmpty())
+            {
+                wxString removed;
+                if (s.StartsWith(currency->PFX_SYMBOL, &removed))
+                    s = removed;
+            }
+            if (!currency->SFX_SYMBOL.IsEmpty())
+            {
+                wxString removed;
+                if (s.EndsWith(currency->SFX_SYMBOL, &removed))
+                    s = removed;
+            }
             if (!currency->GROUP_SEPARATOR.empty() && currency->GROUP_SEPARATOR != wxNumberFormatter::GetDecimalSeparator())
                 s.Replace(currency->GROUP_SEPARATOR, "");
         }
