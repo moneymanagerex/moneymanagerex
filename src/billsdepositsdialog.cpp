@@ -128,7 +128,7 @@ void mmBDDialog::dataToControls()
 
         choiceStatus_->SetSelection(Model_Billsdeposits::status(bill));
 
-        if (bill->NUMOCCURRENCES)
+        if (bill->NUMOCCURRENCES > 0)
             textNumRepeats_->SetValue(wxString::Format("%d", bill->NUMOCCURRENCES));
 
         wxDateTime dtno = Model_Billsdeposits::NEXTOCCURRENCEDATE(bill);
