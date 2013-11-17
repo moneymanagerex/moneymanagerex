@@ -312,40 +312,18 @@ wxString mmGetDateForDisplay(const wxDateTime &dt)
 
 bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDateMask)
 {
-    if (sDateMask.IsEmpty())
-        sDateMask = mmOptions::instance().dateFormat_;
-    wxString s = "/";
+    if (sDateMask.IsEmpty()) return false;
 
-    //For correct date parsing, adjust separator format to: %x/%x/%
-    sDateMask.Replace("' ", "'");
-    sDate.Replace("' ", "'");
-    for (const auto& c : "`'/-., ")
-    {
-        sDateMask.Replace(c, s);
-        sDate.Replace(c, s);
-    }
-
-    wxStringTokenizer token(sDate, s);
-    double a,b,c;
-    wxString t = token.GetNextToken().Trim();
-    t.ToDouble(&a);
-    t = token.GetNextToken().Trim();
-    t.ToDouble(&b);
-    t = token.GetNextToken().Trim();
-    t.ToDouble(&c);
-
-    bool bResult = true;
-
-    if (((a>999) || (b>999) || (c>999)) && (sDateMask.Contains("%y")))
-        return false;
-    if ((a<100) && (b<100) && (c<100) && (sDateMask.Contains("%Y")))
+    sDateMask.Replace("%Y%m%d", "%Y %m %d");
+    if (!date.ParseFormat(sDate, sDateMask, wxDateTime::Today()))
         return false;
 
-    sDate = wxString()<<a<<s<<b<<s<<c;
-    if (!date.ParseFormat(sDate, sDateMask, wxDateTime::Now()))
-        bResult = false;
-    date = date.GetDateOnly();
-    return bResult;
+    if (date.GetYear()<100 && sDateMask.Contains("%Y"))
+        return false;
+    if (date.GetYear()>100 && sDateMask.Contains("%y"))
+        return false;
+
+    return true;
 }
 
 wxDateTime mmGetStorageStringAsDate(const wxString& str)

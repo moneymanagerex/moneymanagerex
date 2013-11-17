@@ -75,6 +75,7 @@ private:
     std::vector< std::pair<Model_Checking::Data*, Model_Splittransaction::Cache> > vQIF_trxs_;
     wxWindow* parent_;
     wxString dateFormat_;
+    bool m_userDefinedFormat;
     wxArrayInt accounts_id_;
     wxArrayInt items_index_;
     wxArrayString accounts_name_;

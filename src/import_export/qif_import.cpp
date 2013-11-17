@@ -42,6 +42,7 @@ mmQIFImportDialog::mmQIFImportDialog(
 ) :
       parent_(parent)
       , m_firstReferencedAccountID(-1)
+      , m_userDefinedFormat(false)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -291,9 +292,11 @@ int mmQIFImportDialog::mmImportQIF()
     int payeeID = -1, categID = -1, subCategID = -1, to_account_id = -1, from_account_id = -1;
     double val = 0.0, dSplitAmount = 0.0;
     bool bTrxComplited = true;
+    bool bValid = true;
+    vQIF_trxs_.clear();
+
 
     Model_Payee::Data* payee = 0;
-
     Model_Splittransaction::Cache mmSplit;
 
     wxFileInputStream input(sFileName_);
@@ -305,6 +308,7 @@ int mmQIFImportDialog::mmImportQIF()
         //Init variables for each transaction
         if (bTrxComplited)
         {
+            bValid = true;
             sDescription.clear();
             sSplitAmount.clear();
             sSplitCategs.clear();
@@ -441,7 +445,7 @@ int mmQIFImportDialog::mmImportQIF()
         {
             dt = getLineData(readLine);
 
-            mmParseDisplayStringToDate(dtdt, dt, dateFormat_);
+            bValid = mmParseDisplayStringToDate(dtdt, dt, dateFormat_);
             dtdt = dtdt.GetDateOnly();
             convDate = dtdt.FormatISODate();
             continue;
@@ -546,7 +550,6 @@ int mmQIFImportDialog::mmImportQIF()
         }
         else if (lineType(readLine) == EOTLT) // ^
         {
-            bool bValid = true;
             wxString status = "F";
 
             if (dt.Trim().IsEmpty())
@@ -743,6 +746,7 @@ int mmQIFImportDialog::mmImportQIF()
     logWindow->AppendText(sMsg << "\n");
 
     int num = 0;
+    dataListBox_->DeleteAllItems();
     for (const auto& refTransaction : vQIF_trxs_)
     {
         Model_Checking::Data* transaction = refTransaction.first;
@@ -809,6 +813,8 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     }
     tFile.Close();
 
+    m_userDefinedFormat = false;
+
     //Output file into log window
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
@@ -833,7 +839,7 @@ bool mmQIFImportDialog::checkQIFFile()
     bbAccounts_->SetBitmapLabel(wxBitmap(empty_xpm));
     btnOK_->Enable(false);
 
-    bool dateFormatIsOK = false;
+    std::map<wxString, int> date_parsing_stat;
     wxString sAccountName;
 
     wxFileInputStream input(sFileName_);
@@ -856,6 +862,20 @@ bool mmQIFImportDialog::checkQIFFile()
             return false;
         }
 
+        if (lineType(str) == Date)
+        {
+            const wxString sDate = getLineData(str);
+            for (const auto& date_mask : date_formats_map())
+            {
+                wxString mask = m_userDefinedFormat ? dateFormat_ : date_mask.first;
+                wxDateTime dtdt;
+                if (mmParseDisplayStringToDate(dtdt, sDate, mask))
+                    date_parsing_stat[mask] ++;
+                if (m_userDefinedFormat) break;
+            }
+            continue;
+        }
+
         if ( lineType(str) == AcctType && getLineData(str) == "Account")
         {
             bool reading = true;
@@ -874,22 +894,33 @@ bool mmQIFImportDialog::checkQIFFile()
             }
             continue;
         }
-
-        if (lineType(str) == Date && !dateFormatIsOK)
-        {
-            wxDateTime dtdt;
-            wxString sDate = getLineData(str);
-
-            dateFormatIsOK = dateFormatIsOK || mmParseDisplayStringToDate(dtdt, sDate, dateFormat_);
-            continue;
-        }
     }
 
+    //Check parsing results
     bbFile_->Enable(true);
     bbFile_->SetBitmapLabel(wxBitmap(flag_xpm));
-    bbFormat_->Enable(dateFormatIsOK);
-    if (dateFormatIsOK)
+
+    int i = 0;
+    for (const auto& d : date_parsing_stat)
+    {
+        if (d.second > i)
+        {
+            i = d.second;
+            if (!m_userDefinedFormat)
+            {
+                choiceDateFormat_->SetStringSelection(date_formats_map()[d.first]);
+                dateFormat_ = d.first;
+            }
+        }
+        wxLogDebug("%i \t%s \t%i", i++, date_formats_map()[d.first], d.second);
+    }
+
+    if (!date_parsing_stat.empty())
+    {
+        bbFormat_->Enable(true);
         bbFormat_->SetBitmapLabel(wxBitmap(flag_xpm));
+        btnOK_->Enable(true);
+    }
     else
         return false;
 
@@ -918,12 +949,6 @@ bool mmQIFImportDialog::checkQIFFile()
         bbAccounts_->SetBitmapLabel(wxBitmap(flag_xpm));
     }
 
-    if (dateFormatIsOK)
-    {
-        bbFormat_->SetBitmapLabel(wxBitmap(flag_xpm));
-        bbFormat_->Enable(dateFormatIsOK);
-        btnOK_->Enable(true);
-    }
     return true;
 }
 
@@ -933,8 +958,10 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
     if (data) dateFormat_ = data->GetData();
     if (sFileName_.IsEmpty())
         return;
-    if (checkQIFFile())
-        mmImportQIF();
+    m_userDefinedFormat = true;
+
+    checkQIFFile();
+    mmImportQIF();
 }
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
@@ -959,13 +986,13 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             refTrans->TOTRANSAMOUNT = fabs(refTrans->TOTRANSAMOUNT);
             refTrans->STATUS = "F";
 
-            int transID = Model_Checking::instance().save(refTrans); //TODO:fix speed
+            int transID = Model_Checking::instance().save(refTrans); //TODO: check for duplicate
             for (auto& split : refTransaction.second)
             {
                 split->TRANSID = transID;
                 if (Model_Checking::type(refTrans) != Model_Checking::DEPOSIT)
                     split->SPLITTRANSAMOUNT = -split->SPLITTRANSAMOUNT;
-                Model_Splittransaction::instance().save(split); //TODO:fix speed
+                Model_Splittransaction::instance().save(split);
             }
 
             if (m_firstReferencedAccountID < 0) m_firstReferencedAccountID = refTrans->ACCOUNTID;
@@ -1010,7 +1037,7 @@ int mmQIFImportDialog::getOrCreateAccount(const wxString& name, double init_bala
         account->CURRENCYID = Model_Currency::GetBaseCurrency()->CURRENCYID;
         for (const auto& curr : Model_Currency::instance().all())
         {
-            if (curr.CURRENCY_SYMBOL == currency_name)
+            if (wxString(curr.CURRENCY_SYMBOL).Prepend("[").Append("]") == currency_name)
                 account->CURRENCYID = curr.CURRENCYID;
         }
         accountID = Model_Account::instance().save(account);
