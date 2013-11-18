@@ -89,8 +89,8 @@ void mmMainCurrencyDialog::fillControls()
 {
     currencyListBox_->DeleteAllItems();
     int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
-    wxLogDebug("readed %i", Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
-    cbShowAll_->SetValue(Model_Infotable::instance().GetStringInfo("SHOW_HIDDEN_CURRENCIES", "TRUE") == "TRUE");
+
+    cbShowAll_->SetValue(Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
 
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
@@ -476,9 +476,7 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
 
 void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& event)
 {
-    Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked() ? "TRUE" : "FALSE");
-    event.GetClientData();
-    wxLogDebug("saved %i %s", cbShowAll_->IsChecked(), Model_Infotable::instance().GetStringInfo("SHOW_HIDDEN_CURRENCIES", "TRUE"));
+    Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked());
     fillControls();
 }
 

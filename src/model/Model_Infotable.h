@@ -119,8 +119,8 @@ public:
     bool GetBoolInfo(const wxString& key, bool default_value)
     {
         wxString value = this->GetStringInfo(key, "");
-        if (value == "TRUE") return true;
-        if (value == "FALSE") return false;
+        if (value == "1" || value.CmpNoCase("TRUE") == 0) return true;
+        if (value == "0" || value.CmpNoCase("FALSE") == 0) return false;
 
         return default_value; 
     }

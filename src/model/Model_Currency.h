@@ -359,7 +359,6 @@ private:
         all_currency.push_back(std::make_tuple("VND", "Vietnamese dong", L"₫", L"", L"", L"", 1, 1));
         all_currency.push_back(std::make_tuple("WST", "Samoan tala", L"WS$", L"", L"", L"", 100, 1));
         all_currency.push_back(std::make_tuple("YER", "Yemeni rial", L"", L"", L"", L"", 1, 1));
-        all_currency.push_back(std::make_tuple("ZMK", "Zambian kwacha", L"ZK", L"", L"", L"", 1, 1));
         return all_currency;
     }; 
 };
