@@ -1,4 +1,4 @@
-/*******************************************************
+﻿/*******************************************************
  Copyright (C) 2006 Madhan Kanagavel
 
  This program is free software; you can redistribute it and/or modify
@@ -228,8 +228,21 @@ void mmCurrencyDialog::CreateControls()
 void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 {
     Model_Currency::Data *currency = Model_Currency::instance().get(m_currency_id);
+    wxString name = currencyNameCombo_->GetValue();
+    Model_Currency::Data_Set currencies = Model_Currency::instance().find(Model_Currency::CURRENCYNAME(name));
+    if (!currencies.empty())
+    {
+        if (currency && currency->CURRENCYNAME != name)
+        {
+            wxMessageBox(_("Currency with same name exists"), _("Organize Currency: Add Currency"), wxOK | wxICON_ERROR);
+            return;
+        }
+    }
+
     if (!currency)
+    {
         currency = Model_Currency::instance().create();
+    }
 
     int scal = wxAtoi(scaleTx_->GetValue());
     baseConvRate_->GetValue().ToDouble(&convRate_);
@@ -245,27 +258,27 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
     currency->CURRENCY_SYMBOL = currencySymbolCombo_->GetValue();
     currency->CURRENCYNAME = currencyNameCombo_->GetValue();
 
-    Model_Currency::instance().save(currency);
+    m_currency_id = Model_Currency::instance().save(currency);
 
     fillControls();
 }
 
 void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 {
-    for (const auto& i: Model_Currency::instance().all())
+    for (const auto& i: Model_Currency::instance().all_currencies_template())
     {
-        if (i.CURRENCYNAME == currencyNameCombo_->GetValue())
+        if (std::get<1>(i) == currencyNameCombo_->GetValue())
         {
-            currencySymbolCombo_->SetValue(i.CURRENCY_SYMBOL);
-            pfxTx_->SetValue(i.PFX_SYMBOL);
-            sfxTx_->SetValue(i.SFX_SYMBOL);
-            decTx_->SetValue(i.DECIMAL_POINT);
-            grpTx_->SetValue(i.GROUP_SEPARATOR);
-            unitTx_->SetValue(i.UNIT_NAME);
-            centTx_->SetValue(i.CENT_NAME);
-            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double)i.SCALE))));
-            baseConvRate_->SetValue(wxString::Format("%.4f", i.BASECONVRATE));
-            currencySymbolCombo_->SetValue(i.CURRENCY_SYMBOL);
+            //std::make_tuple("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1);
+            currencySymbolCombo_->SetValue(std::get<0>(i));
+            pfxTx_->SetValue(std::get<2>(i));
+            sfxTx_->SetValue(std::get<3>(i));
+            decTx_->SetValue(".");
+            grpTx_->SetValue(",");
+            unitTx_->SetValue(std::get<4>(i));
+            centTx_->SetValue(std::get<5>(i));
+            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double) std::get<6>(i)))));
+            baseConvRate_->SetValue(wxString::Format("%.4f", (float)std::get<7>(i)));
             break;
         }
     }
