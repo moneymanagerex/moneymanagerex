@@ -67,14 +67,13 @@ wxString mmex::getTitleProgramVersion()
 wxString mmex::getProgramVersion()
 {
     wxString revision(MMEX_REVISION_ID);
-    revision.Replace("$", wxEmptyString);
 
 /**************************************************
  Refer to comments in the file: constants.h
  **************************************************/
-#ifndef _MM_EX_BUILD_TYPE_RELEASE
-    revision.Replace("Rev: ", "DEV:SVN-");
-#endif
+//#ifndef _MM_EX_BUILD_TYPE_RELEASE
+    revision.Replace("Rev: ", "beta: ");
+//#endif
 
     revision.Trim();
     return wxString::Format("1.0.0.0  %s", revision);
