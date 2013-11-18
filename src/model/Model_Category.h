@@ -383,7 +383,7 @@ public:
 
             if (categID > -1)
             {
-                if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR)
+                if (transaction.TRANSCODE != Model_Checking::all_type()[Model_Checking::TRANSFER])
                 {
                     categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
                 }

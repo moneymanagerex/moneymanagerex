@@ -79,7 +79,6 @@ const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
 const wxString NAVTREECTRL_REPORTS = "Reports";
 const wxString NAVTREECTRL_HELP = "Help";
-const wxString NAVTREECTRL_CUSTOM_REPORTS = "Custom_Reports";
 const wxString NAVTREECTRL_INVESTMENT = "Stocks";
 const wxString NAVTREECTRL_BUDGET = "Budgeting";
 
@@ -100,28 +99,6 @@ const wxString TIPS_BANKS  = "checkingpanel";
 const wxString TIPS_BILLS  = "billsdeposits";
 const wxString TIPS_STOCK  = "investment";
 
-const wxString BILLSDEPOSITS_REPEATS[] =
-{
-    wxTRANSLATE("None"),
-    wxTRANSLATE("Weekly"),
-    wxTRANSLATE("Bi-Weekly"),
-    wxTRANSLATE("Monthly"),
-    wxTRANSLATE("Bi-Monthly"),
-    wxTRANSLATE("Quarterly"),
-    wxTRANSLATE("Half-Yearly"),
-    wxTRANSLATE("Yearly"),
-    wxTRANSLATE("Four Months"),
-    wxTRANSLATE("Four Weeks"),
-    wxTRANSLATE("Daily"),
-    wxTRANSLATE("In %s Days"),
-    wxTRANSLATE("In %s Months"),
-    wxTRANSLATE("Every %s Days"),
-    wxTRANSLATE("Every %s Months"),
-    wxTRANSLATE("Monthly (last day)"),
-    wxTRANSLATE("Monthly (last business day)")
-
-};
-
 static const wxString DATE_PRESETTINGS[] =
 {
     VIEW_TRANS_ALL_STR,
@@ -133,17 +110,6 @@ static const wxString DATE_PRESETTINGS[] =
     VIEW_TRANS_LAST_3MONTHS_STR,
     VIEW_TRANS_LAST_12MONTHS_STR,
     VIEW_TRANS_CURRENT_YEAR_STR
-};
-
-static const wxString TRANSACTION_STATUSES[] =
-{
-    wxTRANSLATE("None"),
-    wxTRANSLATE("Reconciled"),
-    wxTRANSLATE("Void"),
-    wxTRANSLATE("Follow up"),
-    wxTRANSLATE("Duplicate"),
-    wxTRANSLATE("Un-Reconciled"),
-    wxTRANSLATE("All Except Reconciled")
 };
 
 static const wxString TIPS[] =
@@ -199,12 +165,6 @@ static const wxString gDaysInWeek[7] =
 //*----------------------------------------------------------------------------*//
 
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
-
-const wxString TRANS_TYPE_WITHDRAWAL_STR = "Withdrawal";
-const wxString TRANS_TYPE_DEPOSIT_STR    = "Deposit";
-const wxString TRANS_TYPE_TRANSFER_STR   = "Transfer";
-
-enum {DEF_WITHDRAWAL , DEF_DEPOSIT , DEF_TRANSFER};
 
 //----------------------------------------------------------------------------
 #endif // _MM_EX_CONSTANTS_H_

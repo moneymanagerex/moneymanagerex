@@ -484,7 +484,7 @@ int mmQIFImportDialog::mmImportQIF()
             {
                 sToAccountName = sFullCateg.substr(1, sFullCateg.Length()-2);
                 sFullCateg = _("Transfer");
-                type = TRANS_TYPE_TRANSFER_STR;
+                type = Model_Checking::all_type()[Model_Checking::TRANSFER];
             }
 
             /* //Trick  for cut non standart qif category usage in Financisto application
@@ -532,7 +532,7 @@ int mmQIFImportDialog::mmImportQIF()
             if (!sSplitAmount.ToDouble(&dSplitAmount) && !Model_Currency::fromString(sSplitAmount, dSplitAmount, Model_Account::currency(account)))
                 dSplitAmount = 0; //wrong amount
             //
-            if (type == TRANS_TYPE_WITHDRAWAL_STR)
+            if (type == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
                 dSplitAmount = -dSplitAmount;
             //Add split entry
             Model_Splittransaction::Data * pSplitEntry = Model_Splittransaction().instance().create();

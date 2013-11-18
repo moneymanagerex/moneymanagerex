@@ -58,19 +58,20 @@ SplitTransactionDialog::SplitTransactionDialog(
 
     transType_ = transType;
     selectedIndex_ = 0;
-    if (transType_ == DEF_TRANSFER)
-        transType_ = DEF_WITHDRAWAL;
+    if (transType_ == Model_Checking::TRANSFER)
+        transType_ = Model_Checking::WITHDRAWAL;
 
     long style = wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Split Transaction Dialog")
         , wxDefaultPosition, wxSize(400, 300), style);
 }
 
-bool SplitTransactionDialog::Create(wxWindow* parent, wxWindowID id,
-                                    const wxString& caption,
-                                    const wxPoint& pos,
-                                    const wxSize& size,
-                                    long style)
+bool SplitTransactionDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style)
 {
     lcSplit_ = NULL;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
@@ -124,12 +125,12 @@ void SplitTransactionDialog::CreateControls()
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
     wxString totalMessage = _("Total:");
-    if (transType_ == DEF_WITHDRAWAL)
+    if (transType_ == Model_Checking::WITHDRAWAL)
     {
         totalMessage.Prepend(" ");
         totalMessage.Prepend(_("Withdrawal"));
     }
-    if (transType_ == DEF_DEPOSIT)
+    if (transType_ == Model_Checking::DEPOSIT)
     {
         totalMessage.Prepend(" ");
         totalMessage.Prepend(_("Deposit"));

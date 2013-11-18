@@ -264,7 +264,14 @@ void mmFilterTransactionsDialog::CreateControls()
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
 
-    for(const auto& i : TRANSACTION_STATUSES)
+    for (const auto& i : (wxTRANSLATE("None"),
+        wxTRANSLATE("Reconciled"),
+        wxTRANSLATE("Void"),
+        wxTRANSLATE("Follow up"),
+        wxTRANSLATE("Duplicate"),
+        wxTRANSLATE("Un-Reconciled"),
+        wxTRANSLATE("All Except Reconciled"))
+        )
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     itemPanelSizer->Add(choiceStatus_, flagsExpand);
@@ -575,11 +582,11 @@ wxString mmFilterTransactionsDialog::getType() const
     wxString deposit = "";
     wxString transfer = "";
     if (cbTypeWithdrawal_->GetValue())
-        withdraval = TRANS_TYPE_WITHDRAWAL_STR;
+        withdraval = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
     if (cbTypeDeposit_->GetValue())
-        deposit = TRANS_TYPE_DEPOSIT_STR;
+        deposit = Model_Checking::all_type()[Model_Checking::DEPOSIT];
     if (cbTypeTransfer_->GetValue())
-        transfer = TRANS_TYPE_TRANSFER_STR;
+        transfer = Model_Checking::all_type()[Model_Checking::TRANSFER];
 
     return withdraval+";"+deposit+";"+transfer;
 }
@@ -590,11 +597,13 @@ wxString mmFilterTransactionsDialog::userTypeStr() const
     if (typeCheckBox_->IsChecked())
     {
         if (cbTypeWithdrawal_->GetValue())
-            transCode = wxGetTranslation(TRANS_TYPE_WITHDRAWAL_STR);
+            transCode = wxGetTranslation(Model_Checking::all_type()[Model_Checking::WITHDRAWAL]);
         if (cbTypeDeposit_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_DEPOSIT_STR);
+            transCode << (transCode.IsEmpty() ? "" : ", ") 
+            << wxGetTranslation(Model_Checking::all_type()[Model_Checking::DEPOSIT]);
         if (cbTypeTransfer_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_TRANSFER_STR);
+            transCode << (transCode.IsEmpty() ? "" : ", ") 
+            << wxGetTranslation(Model_Checking::all_type()[Model_Checking::TRANSFER ]);
     }
     return transCode;
 }
