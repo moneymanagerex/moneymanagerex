@@ -142,6 +142,7 @@ MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.obj \
+	mmex_tests_accountdialog.obj \
 	mmex_tests_appstartdialog.obj \
 	mmex_tests_assetdialog.obj \
 	mmex_tests_assetspanel.obj \
@@ -164,7 +165,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmhelppanel.obj \
 	mmex_tests_mmhomepagepanel.obj \
 	mmex_tests_mmreportspanel.obj \
-	mmex_tests_newacctdialog.obj \
 	mmex_tests_optionsdialog.obj \
 	mmex_tests_paths.obj \
 	mmex_tests_payeedialog.obj \
@@ -725,6 +725,9 @@ cppunit_DynamicLibraryManagerException.obj: ..\..\..\lib\cppunit\src\cppunit\Dyn
 mmex_tests_aboutdialog.obj: ..\..\..\src\aboutdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\aboutdialog.cpp
 
+mmex_tests_accountdialog.obj: ..\..\..\src\accountdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\accountdialog.cpp
+
 mmex_tests_appstartdialog.obj: ..\..\..\src\appstartdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\appstartdialog.cpp
 
@@ -790,9 +793,6 @@ mmex_tests_mmhomepagepanel.obj: ..\..\..\src\mmhomepagepanel.cpp
 
 mmex_tests_mmreportspanel.obj: ..\..\..\src\mmreportspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmreportspanel.cpp
-
-mmex_tests_newacctdialog.obj: ..\..\..\src\newacctdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\newacctdialog.cpp
 
 mmex_tests_optionsdialog.obj: ..\..\..\src\optionsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\optionsdialog.cpp

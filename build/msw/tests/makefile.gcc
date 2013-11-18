@@ -136,6 +136,7 @@ MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
+	mmex_tests_accountdialog.o \
 	mmex_tests_appstartdialog.o \
 	mmex_tests_assetdialog.o \
 	mmex_tests_assetspanel.o \
@@ -158,7 +159,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmreportspanel.o \
-	mmex_tests_newacctdialog.o \
 	mmex_tests_optionsdialog.o \
 	mmex_tests_paths.o \
 	mmex_tests_payeedialog.o \
@@ -631,6 +631,9 @@ cppunit_DynamicLibraryManagerException.o: ../../../lib/cppunit/src/cppunit/Dynam
 mmex_tests_aboutdialog.o: ../../../src/aboutdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_accountdialog.o: ../../../src/accountdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_appstartdialog.o: ../../../src/appstartdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -695,9 +698,6 @@ mmex_tests_mmhomepagepanel.o: ../../../src/mmhomepagepanel.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmreportspanel.o: ../../../src/mmreportspanel.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_tests_newacctdialog.o: ../../../src/newacctdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_optionsdialog.o: ../../../src/optionsdialog.cpp
