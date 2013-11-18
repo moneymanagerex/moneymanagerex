@@ -146,15 +146,15 @@ void mmCurrencyDialog::CreateControls()
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Name")), flags);
 
     currencyNameCombo_ = new wxComboBox( this, ID_DIALOG_CURRENCY_CHOICE
-        , "", wxDefaultPosition, wxSize(220, -1), Model_Currency::global_currency_names());
+        , "", wxDefaultPosition, wxSize(220, -1), Model_Currency::instance().all_currency_names());
     itemFlexGridSizer3->Add(currencyNameCombo_, flags);
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Symbol")), flags);
-    currencyNameCombo_->AutoComplete(Model_Currency::global_currency_names());
+    currencyNameCombo_->AutoComplete(Model_Currency::instance().all_currency_names());
 
     currencySymbolCombo_ = new wxComboBox(this, wxID_ANY
-        , "", wxDefaultPosition, wxSize(220, -1), Model_Currency::global_currency_symbols());
+        , "", wxDefaultPosition, wxSize(220, -1), Model_Currency::instance().all_currency_symbols());
     itemFlexGridSizer3->Add(currencySymbolCombo_, flagsExpand);
-    currencySymbolCombo_->AutoComplete(Model_Currency::global_currency_symbols());
+    currencySymbolCombo_->AutoComplete(Model_Currency::instance().all_currency_symbols());
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Unit Name")), flags);
     unitTx_ = new wxTextCtrl( this, ID_DIALOG_CURRENCY_TEXT_UNIT, "");
@@ -265,20 +265,20 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 
 void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& /*event*/)
 {
-    for (const auto& i: Model_Currency::instance().all_currencies_template())
+    for (const auto& i : Model_Currency::instance().all())
     {
-        if (std::get<1>(i) == currencyNameCombo_->GetValue())
+        if (i.CURRENCYNAME == currencyNameCombo_->GetValue())
         {
-            //std::make_tuple("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1);
-            currencySymbolCombo_->SetValue(std::get<0>(i));
-            pfxTx_->SetValue(std::get<2>(i));
-            sfxTx_->SetValue(std::get<3>(i));
-            decTx_->SetValue(".");
-            grpTx_->SetValue(",");
-            unitTx_->SetValue(std::get<4>(i));
-            centTx_->SetValue(std::get<5>(i));
-            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double) std::get<6>(i)))));
-            baseConvRate_->SetValue(wxString::Format("%.4f", (float)std::get<7>(i)));
+            currencySymbolCombo_->SetValue(i.CURRENCY_SYMBOL);
+            pfxTx_->SetValue(i.PFX_SYMBOL);
+            sfxTx_->SetValue(i.SFX_SYMBOL);
+            decTx_->SetValue(i.DECIMAL_POINT);
+            grpTx_->SetValue(i.GROUP_SEPARATOR);
+            unitTx_->SetValue(i.UNIT_NAME);
+            centTx_->SetValue(i.CENT_NAME);
+            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double) i.SCALE))));
+            baseConvRate_->SetValue(wxString::Format("%.4f", i.BASECONVRATE));
+            currencySymbolCombo_->SetValue(i.CURRENCY_SYMBOL);
             break;
         }
     }
