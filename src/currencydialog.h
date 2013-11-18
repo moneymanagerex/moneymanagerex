@@ -65,7 +65,6 @@ private:
 
     // utility functions
     void OnUpdate(wxCommandEvent& event);
-    void OnCurrencyNameSelected(wxCommandEvent& event);
     void fillControls();
     void onTextEntered(wxCommandEvent& event);
 
@@ -73,10 +72,10 @@ private:
     double convRate_;
     int scale_;
 
-    wxComboBox* currencyNameCombo_;
+    mmTextCtrl* m_currencyName;
     wxStaticText* baseRateSample_;
     wxStaticText* sampleText_;
-    wxComboBox* currencySymbolCombo_;
+    mmTextCtrl* m_currencySymbol;
     mmTextCtrl* baseConvRate_;
     wxTextCtrl* pfxTx_;
     wxTextCtrl* sfxTx_;
