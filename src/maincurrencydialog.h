@@ -74,15 +74,6 @@ private:
         BASE_RATE
     };
 
-    wxDataViewListCtrl* currencyListBox_;
-    std::map<int, wxString> ColName_;
-    bool bEnableSelect_;
-    double curr_rate_;
-    virtual bool ShowToolTips()
-    {
-        return TRUE;
-    }
-
     /// Creation
     bool Create( wxWindow* parent,
                  wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
@@ -101,16 +92,24 @@ private:
     void OnListItemSelected(wxDataViewEvent& event);
     void OnValueChanged(wxDataViewEvent& event);
     void fillControls();
-    wxButton* itemButtonEdit_;
-    wxButton* itemButtonDelete_;
-
-    int currencyID_;
-    int selectedIndex_;
+    void OnShowHiddenChbClick(wxCommandEvent& event);
+    virtual bool ShowToolTips() { return TRUE;}
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
     bool onlineUpdateCurRate(int curr_id = -1);
     void OnItemRightClick(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
+
+    wxDataViewListCtrl* currencyListBox_;
+    std::map<int, wxString> ColName_;
+    bool bEnableSelect_;
+    double curr_rate_;
+    wxButton* itemButtonEdit_;
+    wxButton* itemButtonDelete_;
+    wxCheckBox* cbShowAll_;
+
+    int currencyID_;
+    int selectedIndex_;
 };
 
 #endif // _MM_EX_MAINCURRENCY_DIALOG_H_

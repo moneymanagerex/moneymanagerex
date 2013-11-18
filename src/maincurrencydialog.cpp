@@ -24,9 +24,10 @@
 #include "paths.h"
 #include "mmCalculator.h"
 #include "validators.h"
-#include "model/Model_Infotable.h"
-#include "model/Model_Currency.h"
 #include "model/Model_Account.h"
+#include "model/Model_Currency.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
 
@@ -88,9 +89,12 @@ void mmMainCurrencyDialog::fillControls()
 {
     currencyListBox_->DeleteAllItems();
     int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    wxLogDebug("readed %i", Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
+    cbShowAll_->SetValue(Model_Infotable::instance().GetStringInfo("SHOW_HIDDEN_CURRENCIES", "TRUE") == "TRUE");
 
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
+        if (!cbShowAll_->IsChecked() && !Model_Account::is_used(currency)) continue;
         int currencyID = currency.CURRENCYID;
 
         wxVector<wxVariant> data;
@@ -134,10 +138,19 @@ void mmMainCurrencyDialog::CreateControls()
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), NULL, this);
     update_button->SetToolTip(_("Online update currency rate"));
-    itemBoxSizer22->AddSpacer(10);
+    itemBoxSizer22->AddSpacer(4);
 
     itemBoxSizer22->Add(new wxStaticText( this, wxID_STATIC
        , _("Online Update")), flags);
+
+    itemBoxSizer22->AddSpacer(15);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition,
+        wxDefaultSize, wxCHK_2STATE);
+    cbShowAll_->SetToolTip(_("Show all even the unused currencies"));
+    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
+        wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), NULL, this);
+
+    itemBoxSizer22->Add(cbShowAll_, flags);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW|wxALL, 5);
@@ -388,6 +401,8 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
 
         for (auto &currency : currencies)
         {
+            if (!cbShowAll_->IsChecked() && !Model_Account::is_used(currency)) continue;
+
             const wxString currency_symbol = currency.CURRENCY_SYMBOL.Upper();
             if (!currency_symbol.IsEmpty())
             {
@@ -457,6 +472,14 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     PopupMenu(mainMenu);
     delete mainMenu;
     event.Skip();
+}
+
+void mmMainCurrencyDialog::OnShowHiddenChbClick(wxCommandEvent& event)
+{
+    Model_Infotable::instance().Set("SHOW_HIDDEN_CURRENCIES", cbShowAll_->IsChecked() ? "TRUE" : "FALSE");
+    event.GetClientData();
+    wxLogDebug("saved %i %s", cbShowAll_->IsChecked(), Model_Infotable::instance().GetStringInfo("SHOW_HIDDEN_CURRENCIES", "TRUE"));
+    fillControls();
 }
 
 void mmMainCurrencyDialog::OnCancel(wxCommandEvent& /*event*/)
