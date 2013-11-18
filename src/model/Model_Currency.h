@@ -142,6 +142,14 @@ public:
         }
         return d2s;
     }
+    static wxString os_group_separator()
+    {
+        wxString sys_thousand_separator = "";
+        wxChar sep = ' ';
+        if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
+            sys_thousand_separator = wxString::Format("%c", sep);
+        return sys_thousand_separator;
+    }
     static wxString toString(double value, const Data* currency = GetBaseCurrency())
     {
         int precision = 2;
@@ -152,11 +160,7 @@ public:
             precision = Model_Currency::precision(currency);
             if (!currency->GROUP_SEPARATOR.empty()) style = wxNumberFormatter::Style_WithThousandsSep;
             s.Replace(wxNumberFormatter::GetDecimalSeparator(), "/");
-            wxString sys_thousand_separator;
-            wxChar sep = ' ';
-            if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
-                sys_thousand_separator = wxString::Format("%c", sep);
-            s.Replace(sys_thousand_separator, "|");
+            s.Replace(os_group_separator(), "|");
             s.Replace("|", currency->GROUP_SEPARATOR);
             s.Replace("/", currency->DECIMAL_POINT);
         }
@@ -204,7 +208,6 @@ public:
         return static_cast<int>(log10(static_cast<double>(r->SCALE)));
     }
     static int precision(const Data& r) { return precision(&r); }
-private:
     static std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int> > all_currencies_template()
     {
         std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int> > all_currency;

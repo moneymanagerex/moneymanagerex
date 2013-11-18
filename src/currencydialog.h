@@ -50,9 +50,9 @@ class mmCurrencyDialog : public wxDialog
 public:
     mmCurrencyDialog();
     ~mmCurrencyDialog();
-    mmCurrencyDialog(wxWindow* parent, int currency_id = -1);
+    mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency);
 
-    int getCurrencyID() { return m_currency_id; };
+    int getCurrencyID() { return m_currency->CURRENCYID; };
 
 private:
     bool Create(wxWindow* parent, wxWindowID id,
@@ -68,7 +68,7 @@ private:
     void fillControls();
     void onTextEntered(wxCommandEvent& event);
 
-    int m_currency_id;
+    Model_Currency::Data* m_currency;
     double convRate_;
     int scale_;
 

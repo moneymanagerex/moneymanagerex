@@ -206,7 +206,7 @@ void mmMainCurrencyDialog::CreateControls()
 
 void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
 {
-    mmCurrencyDialog dlg(this);
+    mmCurrencyDialog dlg(this, 0);
     dlg.ShowModal();
     currencyID_ = dlg.getCurrencyID();
     if (currencyID_)
@@ -219,7 +219,7 @@ void mmMainCurrencyDialog::OnBtnEdit(wxCommandEvent& /*event*/)
 {
     Model_Currency::Data *currency = Model_Currency::instance().get(currencyID_);
     if (currency)
-        mmCurrencyDialog(this, currencyID_).ShowModal();
+        mmCurrencyDialog(this, currency).ShowModal();
     fillControls();
 }
 

@@ -43,17 +43,17 @@ mmCurrencyDialog::~mmCurrencyDialog()
 {
 }
 
-mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, int currency_id)
-: m_currency_id(currency_id)
+mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency)
+: m_currency(currency)
   , scale_(1)
 {
     long style = wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX;
     Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
-bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
-                              const wxString& caption, const wxPoint& pos,
-                              const wxSize& size, long style )
+bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
+    , const wxString& caption, const wxPoint& pos
+    , const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -63,6 +63,34 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
     GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
+
+    if (!m_currency)
+    {
+        wxSortedArrayString c;
+        for (const auto&i : Model_Currency::all_currencies_template()) c.Add(std::get<1>(i));
+        wxSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), c);
+        if (select_currency_name.ShowModal() == wxID_OK)
+        {
+            wxString name = select_currency_name.GetStringSelection();
+            // fill currency data from template
+            for (const auto &data : Model_Currency::all_currencies_template())
+            {
+                if (std::get<1>(data) != name) continue;
+                // Sample : std::make_tuple("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1);
+                m_currency = Model_Currency::instance().create();
+                m_currency->CURRENCYNAME = name;
+                m_currency->CURRENCY_SYMBOL = std::get<0>(data);
+                m_currency->PFX_SYMBOL = std::get<2>(data);
+                m_currency->SFX_SYMBOL = std::get<3>(data);
+                m_currency->UNIT_NAME = std::get<4>(data);
+                m_currency->CENT_NAME = std::get<5>(data);
+                m_currency->SCALE = std::get<6>(data);
+                m_currency->BASECONVRATE = std::get<7>(data);
+                m_currency->DECIMAL_POINT = wxNumberFormatter::GetDecimalSeparator();
+                m_currency->GROUP_SEPARATOR = Model_Currency::os_group_separator();
+            }
+        }
+    }
 
     fillControls();
 
@@ -75,49 +103,35 @@ bool mmCurrencyDialog::Create( wxWindow* parent, wxWindowID id,
 
 void mmCurrencyDialog::fillControls()
 {
-    Model_Currency::Data *currency = Model_Currency::instance().get(m_currency_id);
-    if (currency)
-    {
-        m_currencyName->SetValue(currency->CURRENCYNAME);
-        m_currencySymbol->SetValue(currency->CURRENCY_SYMBOL);
-    }
+
+    m_currencyName->SetValue(m_currency->CURRENCYNAME);
+    m_currencySymbol->SetValue(m_currency->CURRENCY_SYMBOL);
 
     wxString dispAmount = "";
     double base_amount = 1000;
     double amount = base_amount;
 
-    if (currency)
-    {
-        if (currency->BASECONVRATE != 0.0)
-            amount = base_amount / currency->BASECONVRATE;
-        dispAmount = wxString::Format(_("%s Converted to: %s")
-            , Model_Currency::toCurrency(base_amount)
-            , Model_Currency::toCurrency(amount, currency));
-        baseRateSample_->SetLabel(dispAmount);
-        amount = 123456.78;
-        dispAmount = wxString::Format(_("%.2f Shown As: %s"), amount
-            , Model_Currency::toCurrency(amount, currency));
-        sampleText_->SetLabel(dispAmount);
+    if (m_currency->BASECONVRATE != 0.0)
+        amount = base_amount / m_currency->BASECONVRATE;
+    dispAmount = wxString::Format(_("%s Converted to: %s")
+        , Model_Currency::toCurrency(base_amount)
+        , Model_Currency::toCurrency(amount, m_currency));
+    baseRateSample_->SetLabel(dispAmount);
+    amount = 123456.78;
+    dispAmount = wxString::Format(_("%.2f Shown As: %s"), amount
+        , Model_Currency::toCurrency(amount, m_currency));
+    sampleText_->SetLabel(dispAmount);
 
-        pfxTx_->SetValue(currency->PFX_SYMBOL);
-        sfxTx_->SetValue(currency->SFX_SYMBOL);
-        decTx_->SetValue(currency->DECIMAL_POINT);
-        grpTx_->SetValue(currency->GROUP_SEPARATOR);
-        unitTx_->SetValue(currency->UNIT_NAME);
-        centTx_->SetValue(currency->CENT_NAME);
-        scale_ = Model_Currency::precision(currency);
-        wxString scale_value = wxString::Format("%i", scale_);
-        scaleTx_->SetValue(scale_value);
-        convRate_ = currency->BASECONVRATE;
-        baseConvRate_->SetValue(wxString::Format("%.4f", currency->BASECONVRATE));
-        m_currencySymbol->SetValue(currency->CURRENCY_SYMBOL);
-    }
-    else
-    {
-        convRate_ = 1;
-        scale_ = 1;
-        baseConvRate_->SetValue("1");
-    }
+    pfxTx_->SetValue(m_currency->PFX_SYMBOL);
+    sfxTx_->SetValue(m_currency->SFX_SYMBOL);
+    decTx_->SetValue(m_currency->DECIMAL_POINT);
+    grpTx_->SetValue(m_currency->GROUP_SEPARATOR);
+    unitTx_->SetValue(m_currency->UNIT_NAME);
+    centTx_->SetValue(m_currency->CENT_NAME);
+    wxString scale_value = wxString::Format("%i", scale_);
+    scaleTx_->SetValue(scale_value);
+    baseConvRate_->SetValue(wxString::Format("%.4f", m_currency->BASECONVRATE));
+    m_currencySymbol->SetValue(m_currency->CURRENCY_SYMBOL);
 
     // resize the dialog window
     Fit();
@@ -220,62 +234,35 @@ void mmCurrencyDialog::CreateControls()
 
 void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 {
-    Model_Currency::Data *currency = Model_Currency::instance().get(m_currency_id);
     wxString name = m_currencyName->GetValue();
+    if (name.empty()) return;
+    
     Model_Currency::Data_Set currencies = Model_Currency::instance().find(Model_Currency::CURRENCYNAME(name));
-    if (!currencies.empty())
+    if (!currencies.empty() && m_currency->CURRENCYID == -1)
     {
-        if (currency && currency->CURRENCYNAME != name)
-        {
-            wxMessageBox(_("Currency with same name exists"), _("Organize Currency: Add Currency"), wxOK | wxICON_ERROR);
-            return;
-        }
-    }
-
-    if (!currency)
-    {
-        currency = Model_Currency::instance().create();
+        wxMessageBox(_("Currency with same name exists"), _("Organize Currency: Add Currency"), wxOK | wxICON_ERROR);
+        return;
     }
 
     int scal = wxAtoi(scaleTx_->GetValue());
-    baseConvRate_->GetValue().ToDouble(&convRate_);
+    double convRate;
+    baseConvRate_->GetValue().ToDouble(&convRate); //TODO: 
 
-    currency->PFX_SYMBOL = pfxTx_->GetValue();
-    currency->SFX_SYMBOL = sfxTx_->GetValue();
-    currency->DECIMAL_POINT = decTx_->GetValue();
-    currency->GROUP_SEPARATOR =  grpTx_->GetValue();
-    currency->UNIT_NAME = unitTx_->GetValue();
-    currency->CENT_NAME = centTx_->GetValue();
-    currency->SCALE = static_cast<int>(pow(10,scal));
-    currency->BASECONVRATE = convRate_;
-    currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue();
-    currency->CURRENCYNAME = m_currencyName->GetValue();
+    m_currency->PFX_SYMBOL = pfxTx_->GetValue();
+    m_currency->SFX_SYMBOL = sfxTx_->GetValue();
+    m_currency->DECIMAL_POINT = decTx_->GetValue();
+    m_currency->GROUP_SEPARATOR =  grpTx_->GetValue();
+    m_currency->UNIT_NAME = unitTx_->GetValue();
+    m_currency->CENT_NAME = centTx_->GetValue();
+    m_currency->SCALE = static_cast<int>(pow(10,scal));
+    m_currency->BASECONVRATE = convRate;
+    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue();
+    m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
-    m_currency_id = Model_Currency::instance().save(currency);
+    Model_Currency::instance().save(m_currency);
 
     fillControls();
 }
-
-/*void mmCurrencyDialog::OnCurrencyNameSelected(wxCommandEvent& event)
-{
-    for (const auto& i : Model_Currency::instance().all())
-    {
-        if (i.CURRENCYNAME == m_currencyName->GetValue())
-        {
-            m_currencySymbol->SetValue(i.CURRENCY_SYMBOL);
-            pfxTx_->SetValue(i.PFX_SYMBOL);
-            sfxTx_->SetValue(i.SFX_SYMBOL);
-            decTx_->SetValue(i.DECIMAL_POINT);
-            grpTx_->SetValue(i.GROUP_SEPARATOR);
-            unitTx_->SetValue(i.UNIT_NAME);
-            centTx_->SetValue(i.CENT_NAME);
-            scaleTx_->SetValue(wxString::Format("%i", static_cast<int>(log10((double) i.SCALE))));
-            baseConvRate_->SetValue(wxString::Format("%.4f", i.BASECONVRATE));
-            m_currencySymbol->SetValue(i.CURRENCY_SYMBOL);
-            break;
-        }
-    }
-}*/
 
 void mmCurrencyDialog::onTextEntered(wxCommandEvent& event)
 {
