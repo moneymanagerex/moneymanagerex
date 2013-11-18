@@ -2,6 +2,7 @@
 Nikolay          [Nikolay]
 Lisheng          [guanlisheng]
 Stefano          [stef145g]
+James            [siena123]
 Pat              [omalleypat]
 =======================================
 ##Code Builds/Fixes/Patches
@@ -11,7 +12,6 @@ Greg Newton
 Ho Yin Kwok
 hykwok
 Igor
-James		 [siena123]
 jblough
 Jeancf
 Mike 		 [u4ear]
