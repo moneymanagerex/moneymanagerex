@@ -153,7 +153,7 @@ public:
             if (!currency->GROUP_SEPARATOR.empty()) style = wxNumberFormatter::Style_WithThousandsSep;
             s.Replace(wxNumberFormatter::GetDecimalSeparator(), "/");
             wxString sys_thousand_separator;
-            wxChar sep = (wxChar)"";
+            wxChar sep = ' ';
             if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
                 sys_thousand_separator = wxString::Format("%c", sep);
             s.Replace(sys_thousand_separator, "|");
@@ -181,7 +181,7 @@ public:
             }
 
             wxString sys_thousand_separator;
-            wxChar sep = (wxChar)"";
+            wxChar sep = ' ';
             if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
                 sys_thousand_separator = wxString::Format("%c", sep);
             if (!currency->DECIMAL_POINT.empty()) s.Replace(currency->DECIMAL_POINT, "/");
