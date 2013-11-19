@@ -265,7 +265,7 @@ void mmNewAcctDialog::CreateControls()
     itemBoxSizer28->Add(bitmaps_button_, flags);
     itemBoxSizer28->AddSpacer(20);
 
-    wxButton* itemButton29 = new wxButton( itemPanel27, wxID_OK);
+    wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
     itemBoxSizer28->Add(itemButton29, flags);
 
     wxButton* itemButton30 = new wxButton( itemPanel27, wxID_CANCEL);

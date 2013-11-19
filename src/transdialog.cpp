@@ -715,7 +715,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = Model_Splittransaction::instance().get_total(m_local_splits);
-        if (transaction_type_->GetSelection() == Model_Checking::TRANSFER && amount < 0)
+        if (transaction_type_->GetSelection() == DEF_TRANSFER && amount < 0)
             amount = - amount;
         Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
         wxString dispAmount = Model_Currency::toString(amount, Model_Account::currency(account));

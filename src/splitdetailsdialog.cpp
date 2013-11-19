@@ -60,10 +60,10 @@ SplitDetailDialog::SplitDetailDialog(
 
     if (split_->SPLITTRANSAMOUNT < 0.0)
     {
-        if (transType == Model_Checking::DEPOSIT)
-            localTransType_ = Model_Checking::WITHDRAWAL;
-        else if (transType == Model_Checking::WITHDRAWAL)
-            localTransType_ = Model_Checking::DEPOSIT;
+        if (transType == DEF_DEPOSIT)
+           localTransType_ = DEF_WITHDRAWAL;
+        else if (transType == DEF_WITHDRAWAL)
+           localTransType_ = DEF_DEPOSIT;
 
         split_->SPLITTRANSAMOUNT = abs(split_->SPLITTRANSAMOUNT);
     }

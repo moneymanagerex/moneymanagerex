@@ -312,7 +312,7 @@ void mmUnivCSVDialog::CreateControls()
         itemButton_Export -> SetToolTip (_("Export File"));
     }
 
-    wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, _("&Cancel"));
+    wxButton* itemCancelButton = new wxButton(itemPanel5, wxID_CANCEL, _("&Cancel "));
     itemBoxSizer6->Add(itemCancelButton, 0, wxALIGN_CENTER|wxALL, 5);
     itemCancelButton->SetFocus();
 
@@ -1244,13 +1244,12 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
         case UNIV_CSV_AMOUNT:
             token.Replace(" ", wxEmptyString);
 
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
-                return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
 
             if (val_ <= 0.0)
-                type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+                type_ = TRANS_TYPE_WITHDRAWAL_STR;
             else
-                type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                type_ = TRANS_TYPE_DEPOSIT_STR;
 
             val_ = fabs(val_);
             amount_ = token;
@@ -1296,20 +1295,18 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             break;
 
         case UNIV_CSV_DEPOSIT:
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
-                return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
             if (val_ <= 0.0) return;
 
-            type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+            type_ = TRANS_TYPE_DEPOSIT_STR;
             amount_ = token;
             break;
 
         case UNIV_CSV_WITHDRAWAL:
-            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_))))
-                return;
+            if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
             if (val_ <= 0.0) return;
 
-            type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+            type_ = TRANS_TYPE_WITHDRAWAL_STR;
             amount_ = token;
             break;
 

@@ -264,14 +264,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
 
-    for (const auto& i : (wxTRANSLATE("None"),
-        wxTRANSLATE("Reconciled"),
-        wxTRANSLATE("Void"),
-        wxTRANSLATE("Follow up"),
-        wxTRANSLATE("Duplicate"),
-        wxTRANSLATE("Un-Reconciled"),
-        wxTRANSLATE("All Except Reconciled"))
-        )
+    for(const auto& i : TRANSACTION_STATUSES)
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     itemPanelSizer->Add(choiceStatus_, flagsExpand);
@@ -359,12 +352,12 @@ void mmFilterTransactionsDialog::CreateControls()
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
 
-    wxButton* itemButtonOK = new wxButton( buttonPanel, wxID_OK);
+    wxButton* itemButtonOK = new wxButton( buttonPanel, wxID_OK, _("&OK "));
 
-    wxButton* itemButtonCancel = new wxButton( buttonPanel, wxID_CANCEL);
+    wxButton* itemButtonCancel = new wxButton( buttonPanel, wxID_CANCEL, _("&Cancel "));
     itemButtonCancel->SetFocus();
 
-    wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR);
+    wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR, _("&Clear "));
 
     wxBitmapButton* save_button = new wxBitmapButton( buttonPanel,
         wxID_SAVE, wxBitmap(save_xpm), wxDefaultPosition,
@@ -582,11 +575,11 @@ wxString mmFilterTransactionsDialog::getType() const
     wxString deposit = "";
     wxString transfer = "";
     if (cbTypeWithdrawal_->GetValue())
-        withdraval = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+        withdraval = TRANS_TYPE_WITHDRAWAL_STR;
     if (cbTypeDeposit_->GetValue())
-        deposit = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+        deposit = TRANS_TYPE_DEPOSIT_STR;
     if (cbTypeTransfer_->GetValue())
-        transfer = Model_Checking::all_type()[Model_Checking::TRANSFER];
+        transfer = TRANS_TYPE_TRANSFER_STR;
 
     return withdraval+";"+deposit+";"+transfer;
 }
@@ -597,13 +590,11 @@ wxString mmFilterTransactionsDialog::userTypeStr() const
     if (typeCheckBox_->IsChecked())
     {
         if (cbTypeWithdrawal_->GetValue())
-            transCode = wxGetTranslation(Model_Checking::all_type()[Model_Checking::WITHDRAWAL]);
+            transCode = wxGetTranslation(TRANS_TYPE_WITHDRAWAL_STR);
         if (cbTypeDeposit_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") 
-            << wxGetTranslation(Model_Checking::all_type()[Model_Checking::DEPOSIT]);
+            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_DEPOSIT_STR);
         if (cbTypeTransfer_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") 
-            << wxGetTranslation(Model_Checking::all_type()[Model_Checking::TRANSFER ]);
+            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_TRANSFER_STR);
     }
     return transCode;
 }

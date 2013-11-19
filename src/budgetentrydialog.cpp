@@ -201,7 +201,7 @@ void mmBudgetEntryDialog::CreateControls()
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer9, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5);
    
-    wxButton* itemButton7 = new wxButton( this, wxID_OK);
+    wxButton* itemButton7 = new wxButton(this, wxID_OK, _("&OK "));
     itemBoxSizer9->Add(itemButton7, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
     wxButton* itemButton8 = new wxButton( this, wxID_CANCEL);

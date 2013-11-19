@@ -184,10 +184,10 @@ void mmAssetDialog::CreateControls()
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
-    wxButton* itemButton29 = new wxButton( itemPanel27, wxID_OK);
+    wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
     itemBoxSizer28->Add(itemButton29, flags);
 
-    wxButton* itemButton30 = new wxButton( itemPanel27, wxID_CANCEL);
+    wxButton* itemButton30 = new wxButton( itemPanel27, wxID_CANCEL, _("&Cancel "));
     itemBoxSizer28->Add(itemButton30, flags);
     itemButton30->SetFocus();
 }

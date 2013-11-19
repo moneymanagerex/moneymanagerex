@@ -141,8 +141,8 @@ void mmAppStartDialog::CreateControls()
     wxStaticLine* line = new wxStaticLine (this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(line, 0, wxGROW|wxALL, 5);
 
-    itemButtonClose_ = new wxButton( this, wxID_OK);
-    itemButtonExit_ = new wxButton( this, wxID_EXIT);
+    itemButtonClose_ = new wxButton(this, wxID_OK, _("&OK "));
+    itemButtonExit_ = new wxButton(this, wxID_EXIT, _("&Exit "));
 
     itemButtonClose_->Show(true);
     itemButtonExit_->Show(false);

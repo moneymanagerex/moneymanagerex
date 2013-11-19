@@ -57,13 +57,15 @@ END_EVENT_TABLE()
 
 // Defines for Transaction Status and Type now located in dbWrapper.h
 
+const wxString REPEAT_TRANSACTIONS_MSGBOX_HEADING = _("Repeat Transaction - Auto Execution Checking");
+
 mmBDDialog::mmBDDialog( )
 {
 }
 
-mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur
-    , wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur,
+                       wxWindow* parent, wxWindowID id, const wxString& caption,
+                       const wxPoint& pos, const wxSize& size, long style )
     : bdID_(bdID), edit_(edit), enterOccur_(enterOccur)
     , categID_(-1), subcategID_(-1), payeeID_(-1), accountID_(-1), toID_(-1)
     , toTransAmount_(0), advancedToTransAmountSet_(false), payeeUnknown_(false)
@@ -175,7 +177,7 @@ void mmBDDialog::dataToControls()
         else
         {
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
-            const Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
+            const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
             bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
         }
 
@@ -286,8 +288,8 @@ void mmBDDialog::CreateControls()
                                    wxDefaultPosition, wxSize(110,-1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     dpcbd_->SetToolTip(_("Specify the date of the next bill or deposit"));
 
-    spinNextOccDate_ = new wxSpinButton(this, ID_DIALOG_BD_REPEAT_DATE_SPINNER
-        , wxDefaultPosition, spinCtrlSize, spinCtrlDirection | wxSP_ARROW_KEYS | wxSP_WRAP);
+    spinNextOccDate_ = new wxSpinButton( this, ID_DIALOG_BD_REPEAT_DATE_SPINNER,
+                                         wxDefaultPosition, spinCtrlSize,spinCtrlDirection|wxSP_ARROW_KEYS|wxSP_WRAP);
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence"));
 
     wxBoxSizer* nextOccurDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -325,8 +327,8 @@ void mmBDDialog::CreateControls()
     staticTimesRepeat_ = new wxStaticText( this, wxID_STATIC, _("Times Repeated") );
     itemFlexGridSizer5->Add(staticTimesRepeat_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
 
-    textNumRepeats_ = new wxTextCtrl( this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, ""
-        , wxDefaultPosition, wxSize(110, -1), 0, wxIntegerValidator<int>() );
+    textNumRepeats_ = new wxTextCtrl( this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, "",
+        wxDefaultPosition, wxSize(110, -1), 0, wxIntegerValidator<int>() );
     itemFlexGridSizer5->Add(textNumRepeats_, flags);
     textNumRepeats_->SetMaxLength(12);
     setRepeatDetails();
@@ -491,10 +493,10 @@ void mmBDDialog::CreateControls()
     wxBoxSizer* buttonsPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonsPanel->SetSizer(buttonsPanelSizer);
 
-    wxButton* okButton = new wxButton( buttonsPanel, wxID_OK);
+    wxButton* okButton = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
     buttonsPanelSizer->Add(okButton, flags);
 
-    wxButton* cancelButton = new wxButton( buttonsPanel, wxID_CANCEL);
+    wxButton* cancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
     buttonsPanelSizer->Add(cancelButton, flags);
     cancelButton->SetFocus();
 
@@ -1139,40 +1141,35 @@ void mmBDDialog::setRepeatDetails()
     {
         staticTextRepeats_->SetLabel( repeatLabelActivate );
         staticTimesRepeat_->SetLabel( timeLabelDays);
-        toolTipsStr << _("Specify period in Days to activate.")
-            << "\n" << _("Becomes blank when not active.");
+        toolTipsStr << _("Specify period in Days to activate.") << "\n" << _("Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 12)
     {
         staticTextRepeats_->SetLabel(repeatLabelActivate );
         staticTimesRepeat_->SetLabel(timeLabelMonths);
-        toolTipsStr << _("Specify period in Months to activate.")
-            << "\n" << _("Becomes blank when not active.");
+        toolTipsStr << _("Specify period in Months to activate.") << "\n" << _("Becomes blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 13)
     {
         staticTextRepeats_->SetLabel(repeatLabelRepeats);
         staticTimesRepeat_->SetLabel(timeLabelDays);
-        toolTipsStr << _("Specify period in Days to activate.")
-            << "\n" << _("Leave blank when not active.");
+        toolTipsStr << _("Specify period in Days to activate.") << "\n" << _("Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else if (repeats == 14)
     {
         staticTextRepeats_->SetLabel(repeatLabelRepeats);
         staticTimesRepeat_->SetLabel(timeLabelMonths);
-        toolTipsStr << _("Specify period in Months to activate.")
-            << "\n" << _("Leave blank when not active.");
+        toolTipsStr << _("Specify period in Months to activate.") << "\n" << _("Leave blank when not active.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
     else
     {
         staticTextRepeats_->SetLabel(repeatLabelRepeats);
         staticTimesRepeat_->SetLabel( _("Times Repeated") );
-        toolTipsStr << _("Specify the number of times this series repeats.")
-            << "\n" << _("Leave blank if this series continues forever.");
+        toolTipsStr << _("Specify the number of times this series repeats.") << "\n" << _("Leave blank if this series continues forever.");
         textNumRepeats_->SetToolTip(toolTipsStr);
     }
 }

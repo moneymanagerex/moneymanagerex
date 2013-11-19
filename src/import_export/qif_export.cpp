@@ -197,8 +197,8 @@ void mmQIFExportDialog::CreateControls()
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonOK = new wxButton( buttons_panel, wxID_OK, _("&OK"));
-    wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel"));
+    wxButton* itemButtonOK = new wxButton( buttons_panel, wxID_OK, _("&OK "));
+    wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
     itemButtonOK->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFExportDialog::OnOk), NULL, this);
 

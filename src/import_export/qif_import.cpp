@@ -178,7 +178,7 @@ void mmQIFImportDialog::CreateControls()
     main_sizer->Add(top_sizer, flagsExpand);
     top_sizer->Add(left_sizer, flags);
     top_sizer->Add(log_sizer, flagsExpand);
-    main_sizer->Add(data_panel, flagsExpand.Proportion(.75));
+    main_sizer->Add(data_panel, flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -484,7 +484,7 @@ int mmQIFImportDialog::mmImportQIF()
             {
                 sToAccountName = sFullCateg.substr(1, sFullCateg.Length()-2);
                 sFullCateg = _("Transfer");
-                type = Model_Checking::all_type()[Model_Checking::TRANSFER];
+                type = TRANS_TYPE_TRANSFER_STR;
             }
 
             /* //Trick  for cut non standart qif category usage in Financisto application
@@ -532,7 +532,7 @@ int mmQIFImportDialog::mmImportQIF()
             if (!sSplitAmount.ToDouble(&dSplitAmount) && !Model_Currency::fromString(sSplitAmount, dSplitAmount, Model_Account::currency(account)))
                 dSplitAmount = 0; //wrong amount
             //
-            if (type == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
+            if (type == TRANS_TYPE_WITHDRAWAL_STR)
                 dSplitAmount = -dSplitAmount;
             //Add split entry
             Model_Splittransaction::Data * pSplitEntry = Model_Splittransaction().instance().create();
