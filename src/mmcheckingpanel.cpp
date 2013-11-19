@@ -486,7 +486,7 @@ void mmCheckingPanel::CreateControls()
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, btnDuplicate_->GetSize().GetHeight())
-        , wxTE_PROCESS_ENTER|wxTE_PROCESS_TAB, wxDefaultValidator, _("Search"));
+        , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB, wxDefaultValidator, _("&Find "));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
     searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
 
