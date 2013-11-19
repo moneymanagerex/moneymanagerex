@@ -220,7 +220,7 @@ void mmAboutDialog::CreateControls()
 
     itemBoxSizer->Add(itemStaticText88, flags);
 
-    wxButton* button_OK = new wxButton(this, wxID_OK);
+    wxButton* button_OK = new wxButton(this, wxID_OK, _("&OK "));
     button_OK->SetDefault();
     button_OK->SetFocus();
     itemBoxSizer->Add(button_OK, flags);
