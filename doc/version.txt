@@ -1,6 +1,8 @@
 Version History of Money Manager Ex
 
 1.0.0.0 (TBA)
+ (includes 0.9.9.2 changes)
+
 - Remove custom reports
 - Account balance in CSV export (feature-request #136, partial implementation)
 - Proxy server settings (feature-request #181)
@@ -8,41 +10,45 @@ Version History of Money Manager Ex
 - Added 2nd graph (feature-request #239)
 - In place edit for assets
 - Fix crash when quitting from start page
+
 - Fix for currency separators (bug #224)
 - Fix to transaction dialog (bug #225)
 - Specify database to open on command line (feature-request #245)
 - Fix for translations (bug #222)
 - Fix account balance (bug #223)
 - Test project changed from UnitTest++ to cppunit (no tests currently written)
+
 - Fix cancel button (feature-request #255)
 - Added sorting in reports (feature-request #243, #250)
+
 - Fix crash on export to HTML (bug #215)
 - Updated to wxWidgets 3.0
 - Updated to wxSQLLite3 version 3.0.5 (SQLite3 version 3.8.0.2)
 - Fix memory leaks
 - Restructured code so database is accessed via data classes instead of raw SQL (feature-request #244)
+
 - Updated to use C++11
 - Fix quarterly budget estimate calculation.
 - Fix help info by including a status bar.
 - Improved Navigation panel Account switching to fix:
-  - Transaction Filter memory between accounts
-  - Copy/Paste across accounts.
+  * Transaction Filter memory between accounts
+  * Copy/Paste across accounts.
 - Updated icons
 - Fixed Search field for Checking accounts
 - Added sort order for Stocks and Assets panels (feature-request #247)
+
 - Updated Currency manager
 - Added set of user defined parameters for Transaction Report
 - Added user defined icons for accounts
 - New/Edit Transaction Dialogue updated
-  - Simple line calculator added for amount fields
-  - Split transactions improvements
+  * Simple line calculator added for amount fields
+  * Split transactions improvements
 - Payee Dialogue updated
 - Categories Dialogue Updated
 - Added Filter for Repeating Transactions panel
 - Remove progress bar from Checking panel as too fast to be useful.
 - Fix crash using Transaction Report using Vista / USB
-- Fix crash using Cash Flow Report when a Repeating Transaction
-    becomes inactive using frequency of: in/every x days/months
+- Fix crash using Cash Flow Report when a Repeating Transaction becomes inactive using frequency of: in/every x days/months
 - Added print and preview for Home Page
 - Duplicate Asset function added
 - QIF Export/Import updated
