@@ -241,7 +241,7 @@ wxString mmQIFImportDialog::getFinancistoProject(wxString& sSubCateg)
 
     sSubCateg = cattkz.GetNextToken();
     if (cattkz.HasMoreTokens())
-        sProject = cattkz.GetNextToken();
+        sProject = cattkz.GetNextToken().Trim();
     return sProject;
 }
 
