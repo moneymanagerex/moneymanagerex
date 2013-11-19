@@ -536,7 +536,7 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
 bool mmTransDialog::validateData()
 {
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
-    if (account)
+    if (account && Model_Account::type(account) != Model_Account::INVESTMENT)
         newAccountID_ = account->ACCOUNTID;
     else
     {
@@ -642,7 +642,8 @@ bool mmTransDialog::validateData()
     }
     else
     {
-        if (transaction_->TOACCOUNTID < 1 || transaction_->TOACCOUNTID == newAccountID_)
+        Model_Account::Data *to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
+        if (!account || transaction_->TOACCOUNTID == newAccountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
             mmShowErrorMessageInvalid(this, _("To Account"));
             cbPayee_->SetFocus();
