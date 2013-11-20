@@ -72,9 +72,12 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     }
     else
     {
-        wxDateTime trx_date = wxDateTime::Now();
+        wxDateTime trx_date = wxDateTime::Today();
         if (mmIniOptions::instance().transDateDefault_ != 0)
-            trx_date = Model_Account::last_date(Model_Account::instance().get(accountID_));
+        {
+            Model_Account::Data *account = Model_Account::instance().get(accountID_);
+            if (account) trx_date = Model_Account::last_date(Model_Account::instance().get(accountID_));
+        }
 
         transaction_ = Model_Checking::instance().create();
 
