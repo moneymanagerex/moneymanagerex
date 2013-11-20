@@ -123,6 +123,5 @@ wxString mmex::getProgramDescription()
         description << "GNU GCC/G++ " << __VERSION__;
     #endif
 
-
     return description;
 }

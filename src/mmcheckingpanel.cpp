@@ -625,52 +625,26 @@ void mmCheckingPanel::initViewTransactionsHeader()
 void mmCheckingPanel::initFilterSettings()
 {
     mmDateRange* date_range = new mmAllTime;
+    delete date_range;
 
     if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
-    {
-        delete date_range;
         date_range = new mmAllTime;
-    }
     else if (currentView_ == MENU_VIEW_TODAY)
-    {
-        delete date_range;
         date_range = new mmToday;
-    }
     else if (currentView_ == MENU_VIEW_CURRENTMONTH)
-    {
-        delete date_range;
         date_range = new mmCurrentMonth;
-    }
     else if (currentView_ == MENU_VIEW_LAST30)
-    {
-        delete date_range;
         date_range = new mmLast30Days;
-    }
     else if (currentView_ == MENU_VIEW_LAST90)
-    {
-        delete date_range;
         date_range = new mmLast90Days;
-    }
     else if (currentView_ == MENU_VIEW_LASTMONTH)
-    {
-        delete date_range;
         date_range = new mmLastMonth;
-    }
     else if (currentView_ == MENU_VIEW_LAST3MONTHS)
-    {
-        delete date_range;
         date_range = new mmLast3Months;
-    }
     else if (currentView_ == MENU_VIEW_LAST12MONTHS)
-    {
-        delete date_range;
         date_range = new mmLast12Months;
-    }
     else if (currentView_ == MENU_VIEW_CURRENTYEAR)
-    {
-        delete date_range;
         date_range = new mmCurrentYear;
-    }
     else
         wxASSERT(false);
 
