@@ -134,8 +134,8 @@ void mmHomePagePanel::createFrames()
 
     rightFrame << getStatWidget();
 
-    wxString pageHTML = prepareTemplate(leftFrame, rightFrame);
-    htmlWindow_->SetPage(pageHTML);
+    html_text_ = prepareTemplate(leftFrame, rightFrame);
+    htmlWindow_->SetPage(html_text_);
 }
 
 wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
