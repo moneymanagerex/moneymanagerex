@@ -13,7 +13,7 @@
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion StringChange(StringChange(StringChange("0.9.9.2 $Rev$", "$", ""), ":", ""), " ", "")
+#define MyAppVersion StringChange(StringChange(StringChange("1.0.0.0 $Rev$", "$", ""), ":", ""), " ", "")
 #define MyAppPublisher "CodeLathe, LLC"
 #define MyAppURL "http://www.codelathe.com/mmex"
 

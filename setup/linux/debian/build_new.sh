@@ -13,7 +13,7 @@
 ARCHITECTURE="i386"
 
 # Specify the build version of mmex
-MMEX_VERSION="0.9.9.2"
+MMEX_VERSION="1.0.0.0"
 
 EMAIL="vomikan@mail.ru"
 

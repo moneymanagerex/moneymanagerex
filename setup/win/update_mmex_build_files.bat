@@ -12,7 +12,7 @@ cls
 
 REM - When creating subsequent releases, rename the variable: mmex_release_version
 REM   to reflect the correct version location
-set mmex_release_version=mmex_0.9.9.2_win32_portable
+set mmex_release_version=mmex_1.0.0.0_win32_portable
 set mmex_release_type=release
 
 set mmex_release_destination=..\..\mmex_release\%mmex_release_version%
