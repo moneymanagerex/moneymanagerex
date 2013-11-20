@@ -39,7 +39,7 @@
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
     EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
-    EVT_BUTTON(wxID_DELETE,      mmCheckingPanel::OnDeleteTransaction)
+    EVT_BUTTON(wxID_REMOVE,      mmCheckingPanel::OnDeleteTransaction)
     EVT_BUTTON(wxID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
     EVT_MENU(wxID_ANY, mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
@@ -473,7 +473,7 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(btnEdit_, 0, wxRIGHT, 5);
     btnEdit_->Enable(false);
 
-    btnDelete_ = new wxButton(itemPanel12, wxID_DELETE, _("&Delete "));
+    btnDelete_ = new wxButton(itemPanel12, wxID_REMOVE, _("&Delete "));
     btnDelete_->SetToolTip(_("Delete selected transaction"));
     itemButtonsSizer->Add(btnDelete_, 0, wxRIGHT, 5);
     btnDelete_->Enable(false);
