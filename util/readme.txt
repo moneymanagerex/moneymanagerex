@@ -16,3 +16,9 @@ File    : checkEOL.bat
 Purpose : Check if a source files contains unix style line endings (LF)
           or windows style line endings (CR LF).
 ------------------------------------------------------------------------
+
+To compress mmex binary file use
+
+mpress http://www.matcode.com/mpress.htm
+or
+upx http://upx.sourceforge.net/
