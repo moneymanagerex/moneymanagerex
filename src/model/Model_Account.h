@@ -261,10 +261,6 @@ public:
     {
         return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
     }
-    static int investment_account_num()
-    {
-        return Model_Account::instance().find(ACCOUNTTYPE(all_type()[INVESTMENT])).size();
-    }
     static bool hasActiveTermAccount()
     {
         return !Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM]), DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[OPEN])).empty(); 

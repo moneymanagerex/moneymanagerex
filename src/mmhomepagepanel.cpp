@@ -112,7 +112,7 @@ void mmHomePagePanel::createFrames()
 
     htmlWidgetStocks stocks_widget;
     stocks_widget.enable_detailes(frame_->expandedStockAccounts());
-    if (Model_Account::investment_account_num())
+    if ( !Model_Stock::instance().all().empty())
     {
         stocks = stocks_widget.getHTMLText();
     }
