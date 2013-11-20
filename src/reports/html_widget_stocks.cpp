@@ -76,7 +76,7 @@ wxString htmlWidgetStocks::getHTMLText()
         hb.endTable();
     }
 
-    return hb.getHTMLinTableWraper(true);
+    return hb.getHTMLinTableWraper(false);
 }
 
 void htmlWidgetStocks::enable_detailes(bool enable)
