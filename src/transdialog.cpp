@@ -81,7 +81,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
         transaction_ = Model_Checking::instance().create();
 
-        transaction_->STATUS = mmIniOptions::instance().transStatusReconciled_ ? "" : "R";
+        transaction_->STATUS = Model_Checking::toShortStatus(Model_Checking::all_status()[mmIniOptions::instance().transStatusReconciled_]);
         transaction_->ACCOUNTID = accountID_;
         transaction_->TRANSDATE = trx_date.FormatISODate();
         transaction_->TRANSCODE = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
