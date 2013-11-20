@@ -204,7 +204,11 @@ void mmTransDialog::dataToControls()
         }
         cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
         accountID_ = transaction_->ACCOUNTID;
-        if (accounts.size() == 1) cbAccount_->Enable(false);
+        if (accounts.size() == 1)
+        {
+            cbAccount_->SetValue(accounts.begin()->ACCOUNTNAME);
+            cbAccount_->Enable(false);
+        }
         cbAccount_->SetEvtHandlerEnabled(true);
         skip_account_init_ = true;
     }
