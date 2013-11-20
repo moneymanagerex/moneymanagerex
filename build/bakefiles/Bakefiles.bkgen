@@ -55,6 +55,7 @@
     </add-flags>
     <add-flags files="mmex.bkl" formats="msvs2008prj">
         -o../msw/mmex.sln
+        -DMSVS_PLATFORMS=win32,win64
     </add-flags>
 
     <add-flags files="mmex_tests.bkl" formats="autoconf">
@@ -68,6 +69,7 @@
     </add-flags>
     <add-flags files="mmex_tests.bkl" formats="msvs2008prj">
         -o../msw/tests/mmex_tests.sln
+        -DMSVS_PLATFORMS=win32,win64
     </add-flags>
 
 

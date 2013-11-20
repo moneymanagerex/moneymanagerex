@@ -67,11 +67,13 @@
 
         <set var="COPY">
             <if cond="TOOLSET=='win32'">copy /Y</if>
+            <if cond="TOOLSET=='win64'">copy /Y</if>
             <if cond="TOOLSET=='unix'">cp</if>
         </set>
 
         <set var="MKDIR">
             <if cond="TOOLSET=='win32'">mkdir</if>
+            <if cond="TOOLSET=='win64'">mkdir</if>
             <if cond="TOOLSET=='unix'">mkdir -p</if>
         </set>
 

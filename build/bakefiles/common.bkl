@@ -10,7 +10,7 @@
 <makefile>
 
     <!-- check version of Bakefile -->
-    <requires version="0.2.6"/>
+    <requires version="0.2.9"/>
 
 
     <!-- define some var's for projects before calling presets -->
@@ -192,7 +192,8 @@
         <!-- relative to trunk/mmex -->
 
         <set var="PLATF_DIR">
-        <if cond="TOOLSET=='win32'">win</if>
+            <if cond="TOOLSET=='win32'">win</if>
+            <if cond="TOOLSET=='win64'">win</if>
             <if cond="TOOLSET=='unix'">unix</if>
             <if cond="1">/mac</if>
         </set>
