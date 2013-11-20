@@ -13,5 +13,3 @@ MS Windows: 95, 98, ME, 2000, NT, XP, 7.
 
 Unixes: almost any Unix workstation with GTK+ 2.0 and above.
 Mac: Mac OS 8.6/9.x (eg. Classic) or Mac OS X 10.x.
-
-Test Trunk
