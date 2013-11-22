@@ -161,7 +161,7 @@
 
             <!-- prepend valid lib-path to x64 libs (\lib\vc_amd64_lib) -->
 
-            <lib-path>
+            <lib-path prepend="1">
                 $(nativePaths(WX_DIR) + '\lib' + DIRSEP + COMPILER + CPU_SUF + LIB_SUF)
             </lib-path>
 
@@ -172,7 +172,7 @@
 
     <!-- common part of mmex and mmex_tests -->
 
-    <template id="mmex_common" template="lib_path_x64_hack,wx,compiler_common">
+    <template id="mmex_common" template="wx,lib_path_x64_hack,compiler_common">
 
         <cxx-exceptions>on</cxx-exceptions>
         <cxx-rtti>on</cxx-rtti>
@@ -193,7 +193,6 @@
 
         <set var="PLATF_DIR">
             <if cond="TOOLSET=='win32'">win</if>
-            <if cond="TOOLSET=='win64'">win</if>
             <if cond="TOOLSET=='unix'">unix</if>
             <if cond="1">/mac</if>
         </set>

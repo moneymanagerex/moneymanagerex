@@ -209,12 +209,6 @@ ifeq ($(WX_DEBUG),1)
 WX3RDPARTYLIBPOSTFIX = d
 endif
 ifeq ($(WX_SHARED),0)
-____mmex_tests_LIB_SUF_FILENAMES = _lib
-endif
-ifeq ($(WX_SHARED),1)
-____mmex_tests_LIB_SUF_FILENAMES = _dll
-endif
-ifeq ($(WX_SHARED),0)
 ____WX_SHARED_26_p_1 = 
 endif
 ifeq ($(WX_SHARED),1)
@@ -225,6 +219,12 @@ __WXUNICODE_DEFINE_p_2 = --define _UNICODE
 endif
 ifeq ($(WX_DEBUG),1)
 __WXDEBUG_DEFINE_p_2 = --define __WXDEBUG__
+endif
+ifeq ($(WX_SHARED),0)
+____mmex_tests_LIB_SUF_FILENAMES = _lib
+endif
+ifeq ($(WX_SHARED),1)
+____mmex_tests_LIB_SUF_FILENAMES = _dll
 endif
 ifeq ($(WX_DEBUG),0)
 __DEBUG_DEFINE_p_4 = --define NDEBUG
@@ -356,7 +356,7 @@ libcppunit.a: $(CPPUNIT_OBJECTS)
 	ranlib $@
 
 mmex_tests.exe: $(MMEX_TESTS_OBJECTS) libwxsqlite.a liblua.a libcppunit.a mmex_tests_mmex_tests_rc.o
-	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS)  -L$(WX_DIR)\lib\gcc$(____mmex_tests_LIB_SUF_FILENAMES) -mthreads -L$(WX_DIR)$(WXLIBPATH)  -mthreads $(__DEBUGINFO)  $(LDFLAGS)  libwxsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 libcppunit.a
+	$(CXX) -o $@ $(MMEX_TESTS_OBJECTS)  -mthreads -L$(WX_DIR)$(WXLIBPATH)  -L$(WX_DIR)\lib\gcc$(____mmex_tests_LIB_SUF_FILENAMES) -mthreads $(__DEBUGINFO)  $(LDFLAGS)  libwxsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32 libcppunit.a
 
 check: all
 	.\mmex_tests.exe
