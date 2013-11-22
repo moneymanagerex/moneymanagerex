@@ -47,10 +47,10 @@ wxString mmExportTransaction::getTransactionQIF()
     Model_Checking::Full_Data full_tran(*transaction);
     bool out = transaction->ACCOUNTID == m_account_id;
 
+    const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+    if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-        if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
         account = Model_Account::instance().get(transaction->TOACCOUNTID);
         if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
     }
@@ -120,10 +120,10 @@ wxString mmExportTransaction::getTransactionCSV()
     Model_Checking::Full_Data full_tran(*transaction);
     bool out = transaction->ACCOUNTID == m_account_id;
 
+    const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
+    if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-        if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
         account = Model_Account::instance().get(transaction->TOACCOUNTID);
         if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
     }
