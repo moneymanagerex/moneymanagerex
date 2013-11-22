@@ -408,28 +408,27 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
         subcategID_ = iData->getSubCategData()->SUBCATEGID;
     }
 
-    if (selectedItemId_ == root_ || !selectedItemId_)
+    if (selectedItemId_ == root_)
     {
         textCtrl_->SetValue("");
         selectButton_->Disable();
         deleteButton_->Disable();
-        editButton_->Disable();
-        addButton_->Enable();
     }
     else
     {
         selectButton_->Enable(bEnableSelect_);
         bool bUsed = Model_Category::is_used(categID_, subcategID_);
-        deleteButton_->Enable(!bUsed);
-        editButton_->Enable();
-        if (subcategID_ != -1)
+        if (subcategID_ == -1)
         {
-            // this is a sub categ, cannot add
-            addButton_->Disable();
+	        Model_Category::Data *category = Model_Category::instance().get(categID_);
+	        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+	        for (const auto& s : subcategories) bUsed = bUsed || Model_Category::is_used(categID_, s.SUBCATEGID);
         }
-        else
-            addButton_->Enable();
+
+        deleteButton_->Enable(!bUsed);
     }
+    addButton_->Enable(subcategID_ == -1);
+    editButton_->Enable(selectedItemId_ != root_);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
@@ -546,6 +545,7 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
         wxMessageBox(msgStr,_("Category Relocation Result"));
         mmOptions::instance().databaseUpdated_ = true;
         refreshRequested_ = true;
+        fillControls();
     }
 }
 
