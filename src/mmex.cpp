@@ -1907,6 +1907,12 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
     }
     else
     {
+        if (iData->getString() == NAVTREECTRL_BUDGET)
+        {
+            wxCommandEvent e;
+            OnBudgetSetupDialog(e);
+        }
+        else
         if (iData->getString() == "Bank Accounts" ||
             iData->getString() == "Term Accounts" ||
             iData->getString() == "Stocks")
