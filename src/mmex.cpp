@@ -237,6 +237,23 @@ bool mmGUIApp::OnInit()
 
 int mmGUIApp::OnExit()
 {
+    // Report database statistics
+    Model_Account::instance().show_statistics();
+    Model_Asset::instance().show_statistics();
+    Model_Billsdeposits::instance().show_statistics();
+    Model_Budgetsplittransaction::instance().show_statistics();
+    Model_Budget::instance().show_statistics();
+    Model_Budgetyear::instance().show_statistics();
+    Model_Category::instance().show_statistics();
+    Model_Checking::instance().show_statistics();
+    Model_Currency::instance().show_statistics();
+    Model_Infotable::instance().show_statistics();
+    Model_Payee::instance().show_statistics();
+    Model_Setting::instance().show_statistics();
+    Model_Splittransaction::instance().show_statistics();
+    Model_Stock::instance().show_statistics();
+    Model_Subcategory::instance().show_statistics();
+
     if (m_setting_db) delete m_setting_db;
 
     return 0;

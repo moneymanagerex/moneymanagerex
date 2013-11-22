@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-12 11:13:08.366302.
+ *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -33,10 +33,20 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_CHECKINGACCOUNT_V1() 
     {
-        wxLogDebug("%s : (cache %ld, hit %ld, miss %ld, skip %ld)", this->name(), this->cache_.size(), this->hit_, this->miss_, this->skip_);
         destroy_cache();
     }
     
+    /** Show table statistics*/
+	void show_statistics()
+	{
+		size_t cache_size = this->cache_.size();
+#ifdef _WIN64
+        wxLogDebug("%s : (cache %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
+#else
+        wxLogDebug("%s : (cache %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
+#endif
+	}
+	 
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()
     {
