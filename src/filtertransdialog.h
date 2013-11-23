@@ -167,6 +167,8 @@ public:
     void setAccountToolTip(const wxString& tip) const;
     void setPresettings(const wxString& view);
     void clearSettings();
+    void dataToControls();
+
 
 private:
     /// Creation
@@ -179,7 +181,6 @@ private:
 
     /// Creates the controls and sizers
     void CreateControls();
-    void dataToControls();
     wxString GetStoredSettings(int id);
     wxString GetCurrentSettings();
 

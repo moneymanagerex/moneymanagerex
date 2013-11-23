@@ -2931,6 +2931,8 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
     {
         refreshPanelData(false);
     }
+    createHomePage();
+    updateNavTreeControl();
 }
 //----------------------------------------------------------------------------
 

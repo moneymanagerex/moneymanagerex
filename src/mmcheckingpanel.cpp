@@ -1440,6 +1440,7 @@ void TransactionListCtrl::OnEditTransaction(wxCommandEvent& /*event*/)
     if (dlg.ShowModal() == wxID_OK)
     {
         refreshVisualList(transaction_id);
+        m_cp->transFilterDlg_->dataToControls();
     }
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 }

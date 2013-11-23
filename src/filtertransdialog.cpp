@@ -116,6 +116,12 @@ void mmFilterTransactionsDialog::dataToControls()
     cbPayee_ ->Enable(status);
     cbPayee_ ->SetValue(value);
     payeeCheckBox_->SetValue(status);
+    cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
+    cbPayee_->SetEvtHandlerEnabled(false);
+    cbPayee_->Clear();
+    for (const auto& item : Model_Payee::instance().all_payee_names())
+        cbPayee_->Append(item);
+    cbPayee_->SetEvtHandlerEnabled(true);
 
     status = get_next_value(tkz, value);
     categoryCheckBox_ ->SetValue(status);
@@ -233,13 +239,9 @@ void mmFilterTransactionsDialog::CreateControls()
                                     wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(payeeCheckBox_, flags);
 
-    cbPayee_ = new wxComboBox(itemPanel, wxID_ANY, "",
-        wxDefaultPosition, wxDefaultSize,
-        Model_Payee::instance().all_payee_names() /*, wxTE_PROCESS_ENTER*/);
+    cbPayee_ = new wxComboBox(itemPanel, wxID_ANY);
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
-
-    cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
 
     itemPanelSizer->Add(cbPayee_, flagsExpand);
     //--End of Row --------------------------------------------------------
