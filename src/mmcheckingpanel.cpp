@@ -95,6 +95,7 @@ mmCheckingPanel::mmCheckingPanel(
     , m_AccountID(accountID)
     , m_account(Model_Account::instance().get(accountID))
     , m_currency(Model_Account::currency(m_account))
+    , transFilterDlg_(0)
 {
     m_basecurrecyID = Model_Infotable::instance().GetBaseCurrencyId();
     Create(parent, winid, pos, size, style, name);
@@ -107,6 +108,7 @@ mmCheckingPanel::mmCheckingPanel(
 */
 mmCheckingPanel::~mmCheckingPanel()
 {
+    if (transFilterDlg_) delete transFilterDlg_;
     wxGetApp().m_frame->SetCheckingAccountPageInactive();
 }
 
