@@ -58,6 +58,9 @@ public:
         long style = SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE
     );
 
+    virtual int ShowModal();
+    void BuildPayeeList();
+
     bool somethingSelected();
     bool getAccountCheckBox()
     {

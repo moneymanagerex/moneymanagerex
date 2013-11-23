@@ -93,6 +93,27 @@ bool mmFilterTransactionsDialog::Create( wxWindow* parent, wxWindowID id,
     return true;
 }
 
+int mmFilterTransactionsDialog::ShowModal()
+{
+    // rebuild the payee list as it may have changed
+    BuildPayeeList();
+
+    return wxDialog::ShowModal();
+}
+
+void mmFilterTransactionsDialog::BuildPayeeList()
+{
+    wxArrayString all_payees = Model_Payee::instance().all_payee_names();
+    wxString selected = cbPayee_->GetValue();
+    cbPayee_->SetEvtHandlerEnabled(false);
+    cbPayee_->Clear();
+    for (const auto& payee : all_payees)
+        cbPayee_->Append(payee);
+    cbPayee_->AutoComplete(all_payees);
+    cbPayee_->SetValue(selected);
+    cbPayee_->SetEvtHandlerEnabled(true);
+}
+
 void mmFilterTransactionsDialog::dataToControls()
 {
     wxStringTokenizer tkz(settings_string_, ";", wxTOKEN_RET_EMPTY_ALL);
@@ -116,12 +137,7 @@ void mmFilterTransactionsDialog::dataToControls()
     cbPayee_ ->Enable(status);
     cbPayee_ ->SetValue(value);
     payeeCheckBox_->SetValue(status);
-    cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
-    cbPayee_->SetEvtHandlerEnabled(false);
-    cbPayee_->Clear();
-    for (const auto& item : Model_Payee::instance().all_payee_names())
-        cbPayee_->Append(item);
-    cbPayee_->SetEvtHandlerEnabled(true);
+    BuildPayeeList();
 
     status = get_next_value(tkz, value);
     categoryCheckBox_ ->SetValue(status);
