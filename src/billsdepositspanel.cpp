@@ -85,6 +85,7 @@ mmBillsDepositsPanel::mmBillsDepositsPanel(wxWindow *parent, wxWindowID winid,
     const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 : m_imageList()
 , listCtrlAccount_()
+, transFilterDlg_(0)
 {
     ColName_[COL_PAYEE] = _("Payee");
     ColName_[COL_ACCOUNT] = _("Account");
@@ -130,6 +131,8 @@ mmBillsDepositsPanel::~mmBillsDepositsPanel()
 {
    if (m_imageList)
         delete m_imageList;
+   if (transFilterDlg_)
+       delete transFilterDlg_;
 }
 
 void mmBillsDepositsPanel::CreateControls()
