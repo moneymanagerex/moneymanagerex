@@ -231,7 +231,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
             int index = entry;
             const wxString accounts_name = accounts_name_[index];
             const Model_Account::Data* account = Model_Account::instance().get(accounts_name);
-            selected_accounts_id_.Add(account->ACCOUNTID); // TODO store the id/name in wxMultiChoiceDialog
+            if (account) selected_accounts_id_.Add(account->ACCOUNTID);
             baloon += accounts_name + "\n";
         }
     }
