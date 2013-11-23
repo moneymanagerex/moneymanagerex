@@ -37,7 +37,7 @@ BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
-    EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmBDDialog::OnTransTypeChanged)
+    EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTransTypeChanged)
     EVT_SPIN_UP(ID_DIALOG_TRANS_DATE_SPINNER,mmBDDialog::OnTransDateForward)
     EVT_SPIN_DOWN(ID_DIALOG_TRANS_DATE_SPINNER,mmBDDialog::OnTransDateBack)
     EVT_SPIN_UP(ID_DIALOG_BD_REPEAT_DATE_SPINNER,mmBDDialog::OnNextOccurDateForward)
@@ -385,16 +385,16 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(choiceStatus_, flags);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice( transactionPanel, ID_DIALOG_TRANS_TYPE,
-                                 wxDefaultPosition, wxSize(110, -1));
+    transaction_type_ = new wxChoice(transactionPanel, wxID_VIEW_DETAILS
+        , wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Billsdeposits::all_type())
         transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
     transaction_type_->SetSelection(0);
     transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
-    cAdvanced_ = new wxCheckBox( transactionPanel, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("Advanced"),
-                                 wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cAdvanced_ = new wxCheckBox(transactionPanel, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("Advanced")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cAdvanced_->SetValue(false);
     cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
 

@@ -37,9 +37,9 @@ IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
 BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
+    EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_CLOSE(mmTransDialog::OnQuit)
-    EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmTransDialog::OnCategs)
-    EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
+    EVT_CHOICE(wxID_ANY, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::changeFocus)
@@ -375,7 +375,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(choiceStatus_, flags);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
+    transaction_type_ = new wxChoice(this, wxID_ANY,
         wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Checking::all_type())
@@ -440,7 +440,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(cSplit_, flags);
 
     // Category -------------------------------------------------
-    bCategory_ = new wxButton(this, ID_DIALOG_TRANS_BUTTONCATEGS, ""
+    bCategory_ = new wxButton(this, wxID_VIEW_DETAILS, ""
         , wxDefaultPosition, wxSize(230, -1));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Category")), flags);
@@ -960,7 +960,7 @@ void mmTransDialog::onTextEntered(wxCommandEvent& event)
     event.Skip();
 }
 
-void mmTransDialog::OnOk(wxCommandEvent& /*event*/)
+void mmTransDialog::OnOk(wxCommandEvent& event)
 {
     if (!validateData()) return;
 

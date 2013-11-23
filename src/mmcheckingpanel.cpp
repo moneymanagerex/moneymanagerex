@@ -201,31 +201,14 @@ void mmCheckingPanel::filterTable()
         reconciled_balance_ += (Model_Checking::status(tran) == Model_Checking::RECONCILED) ? transaction_amount : 0;
         if (transFilterActive_)
         {
-            if (transFilterDlg_->getAccountCheckBox()
-                && (transFilterDlg_->getAccountID() != tran.ACCOUNTID && transFilterDlg_->getAccountID() != tran.TOACCOUNTID)) continue;
-
-            //wxLogDebug("Check date? %i trx date:%s %s %s", transFilterDlg_->getDateRangeCheckBox(), tran.TRANSDATE, transFilterDlg_->getFromDateCtrl().GetDateOnly().FormatISODate(), transFilterDlg_->getToDateControl().GetDateOnly().FormatISODate());
-            if (transFilterDlg_->getDateRangeCheckBox()
-                && !Model_Checking::TRANSDATE(tran)
-                .IsBetween( transFilterDlg_->getFromDateCtrl().GetDateOnly()
-                          , transFilterDlg_->getToDateControl().GetDateOnly()
-                )
-            ) continue;
-            if (!transFilterDlg_->checkPayee(tran.PAYEEID)) continue;
-            if (!transFilterDlg_->checkCategory(tran)) continue;
-            if (transFilterDlg_->getStatusCheckBox() && !transFilterDlg_->compareStatus(tran.STATUS)) continue;
-            if (transFilterDlg_->getTypeCheckBox() && transFilterDlg_->getType() != tran.TRANSCODE) continue;
-            if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > tran.TRANSAMOUNT) continue;
-            if (transFilterDlg_->getAmountRangeCheckBoxMax() && transFilterDlg_->getAmountMax() < tran.TRANSAMOUNT) continue;
-            if (transFilterDlg_->getNumberCheckBox() && transFilterDlg_->getNumber() != tran.TRANSACTIONNUMBER) continue;
-            if (transFilterDlg_->getNotesCheckBox() && !tran.NOTES.Matches(transFilterDlg_->getNotes())) continue;
+            if (!transFilterDlg_->checkAll(tran)) continue;
         }
         else
         {
-			if (!Model_Checking::TRANSDATE(tran)
+            if (!Model_Checking::TRANSDATE(tran)
                 .IsBetween(quickFilterBeginDate_, quickFilterEndDate_)
             ) continue;
-		}
+        }
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_) continue;
 

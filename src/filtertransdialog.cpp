@@ -831,3 +831,25 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
     }
     return true;
 }
+
+bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran)
+{
+    bool ok = true;
+    //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
+    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
+    else if (getDateRangeCheckBox()
+        && !Model_Checking::TRANSDATE(tran)
+        .IsBetween(getFromDateCtrl().GetDateOnly()
+        , getToDateControl().GetDateOnly()
+        )
+        ) ok = false;
+    else if (!checkPayee(tran.PAYEEID)) ok = false;
+    else if (!checkCategory(tran)) ok = false;
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
+    else if (getTypeCheckBox() && getType() != tran.TRANSCODE) ok = false;
+    else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
+    else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
+    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Matches(getNotes())) ok = false;
+    return ok;
+}

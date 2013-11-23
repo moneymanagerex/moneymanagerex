@@ -95,6 +95,7 @@ public:
 
     bool checkPayee(int payeeID);
     bool checkCategory(const Model_Checking::Data &tran);
+    bool checkAll(const Model_Checking::Data &tran);
 
     int getPayeeID() const;
 
