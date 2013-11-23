@@ -245,7 +245,7 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     {
         int account_id = accounts_id_[selected_items[0]];
         const Model_Account::Data* account = Model_Account::instance().get(account_id);
-        bSelectedAccounts_->SetLabel(account->ACCOUNTNAME);
+        if (account) bSelectedAccounts_->SetLabel(account->ACCOUNTNAME);
     }
     else if (selected_accounts_id_.GetCount() > 1)
     {
