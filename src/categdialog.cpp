@@ -316,7 +316,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     int categID = iData->getCategData()->CATEGID;
     int subcategID = -1;
 
-    if (!iData->getSubCategData())
+    if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         if (Model_Category::is_used(categID))
         {
@@ -447,7 +447,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
         (treeCtrl_->GetItemData(selectedItemId_));
 
-    if (!iData->getSubCategData())
+    if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
         if (!categories.empty())
