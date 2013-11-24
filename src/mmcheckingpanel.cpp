@@ -933,7 +933,7 @@ void TransactionListCtrl::createColumns(wxListCtrl &lst)
 
     for (const auto& i : def_data)
     {
-        const wxString param_name = wxString::Format("CHECK_COL%i_WIDTH", std::get<2>(i));
+        const wxString param_name = wxString::Format("CHECK_COL%i_WIDTH", std::get<0>(i));
         int width = Model_Setting::instance().GetIntSetting(param_name, std::get<2>(i));
         int format = std::get<3>(i) ? wxLIST_FORMAT_LEFT : wxLIST_FORMAT_RIGHT;
         lst.InsertColumn(std::get<0>(i), std::get<1>(i), format, width);
