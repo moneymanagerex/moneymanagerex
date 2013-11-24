@@ -63,9 +63,9 @@ mmBDDialog::mmBDDialog( )
 {
 }
 
-mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur,
-                       wxWindow* parent, wxWindowID id, const wxString& caption,
-                       const wxPoint& pos, const wxSize& size, long style )
+mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur
+    , wxWindow* parent, wxWindowID id, const wxString& caption
+    , const wxPoint& pos, const wxSize& size, long style)
     : bdID_(bdID), edit_(edit), enterOccur_(enterOccur)
     , categID_(-1), subcategID_(-1), payeeID_(-1), accountID_(-1), toID_(-1)
     , toTransAmount_(0), advancedToTransAmountSet_(false), payeeUnknown_(false)
@@ -74,8 +74,8 @@ mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur,
     Create(parent, id, caption, pos, size, style);
 }
 
-bool mmBDDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,
-                           const wxPoint& pos, const wxSize& size, long style )
+bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -191,6 +191,7 @@ void mmBDDialog::dataToControls()
             transAmount = Model_Budgetsplittransaction::instance().get_total(local_splits_);
             textAmount_->Enable(false);
         }
+
         textAmount_->SetValue(transAmount, account);
 
         if (Model_Billsdeposits::type(bill) == Model_Billsdeposits::TRANSFER)
@@ -540,8 +541,11 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
     {
         wxString acctName = scd.GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
-        accountID_ = account->ACCOUNTID;
-        itemAccountName_->SetLabel(acctName);
+        if (account)
+        {
+            accountID_ = account->ACCOUNTID;
+            itemAccountName_->SetLabel(acctName);
+        }
     }
 }
 
@@ -973,8 +977,7 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     {
         bool bDeposit = transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT;
         double amount;
-        wxString amountStr = textAmount_->GetValue().Trim();
-        if (!amountStr.ToDouble(&amount))
+        if (!textAmount_->GetDouble(amount))
             amount = 0;
 
         Model_Budgetsplittransaction::Data *split = Model_Budgetsplittransaction::instance().create();
@@ -1224,7 +1227,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
         checking_splits.push_back(*split);
     }
 
-    SplitTransactionDialog dlg(&checking_splits, this, transaction_type_->GetSelection());
+    SplitTransactionDialog dlg(&checking_splits, this, transaction_type_->GetSelection(), accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = Model_Splittransaction::instance().get_total(checking_splits);

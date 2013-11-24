@@ -48,6 +48,7 @@ public:
         Model_Splittransaction::Data_Set* splits
         , wxWindow* parent
         , int transType
+        , int accountID
         );
 
     /// Creation
@@ -94,8 +95,7 @@ private:
     Model_Splittransaction::Data_Set* m_splits;
     Model_Splittransaction::Data_Set m_local_splits;
     int transType_;
-
-    //mmSplitTransactionEntries* splt_;
+    int accountID_;
 
     wxButton* itemButtonNew_;
     wxButton* itemButtonEdit_;

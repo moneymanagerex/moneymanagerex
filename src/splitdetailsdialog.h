@@ -43,6 +43,7 @@ public:
         wxWindow* parent
         , Model_Splittransaction::Data* split
         , int transType
+        , int accountID
     );
 
 private:
@@ -66,6 +67,7 @@ private:
     Model_Splittransaction::Data* split_;
 
     int transType_;
+    int accountID_;
     int localTransType_;
 
     wxChoice* choiceType_;

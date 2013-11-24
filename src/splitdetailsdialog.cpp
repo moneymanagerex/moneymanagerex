@@ -52,8 +52,10 @@ SplitDetailDialog::SplitDetailDialog()
 SplitDetailDialog::SplitDetailDialog( 
     wxWindow* parent
     , Model_Splittransaction::Data* split
-    , int transType)
+    , int transType
+    , int accountID)
     : split_(split)
+    , accountID_(accountID)
 {
     transType_ = transType;
     localTransType_ = transType;
@@ -172,14 +174,17 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
     DataToControls();
 }
 
-void SplitDetailDialog::onTextEntered(wxCommandEvent& event)
+void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
+    
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) currency = Model_Account::currency(account); 
     mmCalculator calc;
-    if (calc.is_ok(textAmount_->GetValue()))
-        textAmount_->SetValue(calc.get_result());
+    if (calc.is_ok(wxString() << Model_Currency::fromString(textAmount_->GetValue(), currency)))
+        textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
     textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
 
-    event.Skip();
     DataToControls();
 }
 
@@ -192,9 +197,8 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
         return;
     }
 
-    wxString amountStr = textAmount_->GetValue().Trim();
     double amount;
-    if (!amountStr.ToDouble(&amount))
+    if (!textAmount_->GetDouble(amount))
     {
         mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
         textAmount_->SetFocus();

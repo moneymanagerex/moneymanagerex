@@ -542,9 +542,19 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
 
 bool mmTransDialog::validateData()
 {
+    Model_Account::Data *initAccount = Model_Account::instance().get(accountID_);
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     if (account && Model_Account::type(account) != Model_Account::INVESTMENT)
+    {
         newAccountID_ = account->ACCOUNTID;
+        if (newAccountID_ != accountID_)
+        {
+            wxString value = textAmount_->GetValue();
+            value = Model_Currency::fromString(value, Model_Account::currency(initAccount));
+            textAmount_->SetValue(0, account);
+            textAmount_->SetValue(value);
+        }
+    }
     else
     {
         mmShowErrorMessageInvalid(this, _("Account"));
@@ -707,10 +717,10 @@ void mmTransDialog::activateSplitTransactionsDlg()
 
     if (transaction_->CATEGID > -1)
     {
-        Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
-        wxString sAmount = textAmount_->GetValue();
-        if (!sAmount.ToDouble(&transaction_->TRANSAMOUNT))
+        if (!textAmount_->GetDouble(transaction_->TRANSAMOUNT))
             transaction_->TRANSAMOUNT = 0;
+
+        Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
         split->SPLITTRANSAMOUNT = bDeposit ? transaction_->TRANSAMOUNT : transaction_->TRANSAMOUNT;
         split->CATEGID = transaction_->CATEGID;
         split->SUBCATEGID = transaction_->SUBCATEGID;
@@ -719,7 +729,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
     
-    SplitTransactionDialog dlg(&m_local_splits, this, transaction_type_->GetSelection());
+    SplitTransactionDialog dlg(&m_local_splits, this, transaction_type_->GetSelection(), newAccountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = Model_Splittransaction::instance().get_total(m_local_splits);

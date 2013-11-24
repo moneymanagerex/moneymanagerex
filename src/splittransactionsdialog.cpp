@@ -50,8 +50,10 @@ SplitTransactionDialog::SplitTransactionDialog( )
 SplitTransactionDialog::SplitTransactionDialog(
     Model_Splittransaction::Data_Set* splits 
     , wxWindow* parent
-    , int transType)
+    , int transType
+    , int accountID)
     : m_splits(splits)
+    , accountID_(accountID)
 {
     //std::copy(m_splits->begin(), m_splits->end(), m_local_splits.begin());
     for (const auto &item : *m_splits) m_local_splits.push_back(item);
@@ -88,6 +90,10 @@ bool SplitTransactionDialog::Create(wxWindow* parent, wxWindowID id,
 
 void SplitTransactionDialog::DataToControls()
 {
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) currency = Model_Account::currency(account);
+
     lcSplit_->DeleteAllItems();
     for (const auto & entry : this->m_local_splits)
     {
@@ -96,7 +102,7 @@ void SplitTransactionDialog::DataToControls()
 
         wxVector<wxVariant> data;
         data.push_back(wxVariant(Model_Category::full_name(category, sub_category)));
-        data.push_back(wxVariant(Model_Currency::toCurrency(entry.SPLITTRANSAMOUNT)));
+        data.push_back(wxVariant(Model_Currency::toString(entry.SPLITTRANSAMOUNT, currency)));
         lcSplit_->AppendItem(data, (wxUIntPtr)entry.SPLITTRANSID);
         if (lcSplit_->GetItemCount()-1 == selectedIndex_) lcSplit_->SelectRow(selectedIndex_);
     }
@@ -168,7 +174,7 @@ void SplitTransactionDialog::CreateControls()
 void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
 {
     Model_Splittransaction::Data *split = Model_Splittransaction::instance().create();
-    SplitDetailDialog sdd(this, split, transType_);
+    SplitDetailDialog sdd(this, split, transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
         this->m_local_splits.push_back(*split);
@@ -223,7 +229,7 @@ void SplitTransactionDialog::EditEntry(int index)
 {
     if (index < 0 || index >= (int)this->m_local_splits.size()) return;
     Model_Splittransaction::Data& split = this->m_local_splits[index];
-    SplitDetailDialog sdd(this, &split, transType_);
+    SplitDetailDialog sdd(this, &split, transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
         DataToControls();

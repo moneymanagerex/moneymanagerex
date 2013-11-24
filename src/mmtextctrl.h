@@ -35,7 +35,6 @@ public:
             {}
     void SetValue(double value)
     {
-        currency_ = Model_Currency::GetBaseCurrency();
         this->SetValue(Model_Currency::toString(value, currency_));
     }
     void SetValue(double value, const Model_Account::Data* account)
@@ -48,6 +47,11 @@ public:
         // Remove prefix and suffix characters from value
         // Base class handles the thousands seperator
         return /*Model_Currency::fromString(*/wxTextCtrl::GetValue()/*, currency_)*/;
+    }
+    bool GetDouble(double &amount) const
+    {
+        wxString amountStr = this->GetValue().Trim();
+        return !Model_Currency::fromString(amountStr, amount, currency_);
     }
 private:
     const Model_Currency::Data* currency_;
