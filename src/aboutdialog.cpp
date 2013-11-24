@@ -87,10 +87,18 @@ void mmAboutDialog::InitControls()
     hb.addLineBreak();
     hb.addTableCellLink( mmex::getProgramForum()
         , _("Visit MMEX Forum"));
+    //hb.addText(_("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
     hb.addLineBreak();
     hb.addTableCellLink( mmex::getProgramTwitterSite()
         , _("Visit MMEX Twitter"));
     hb.addLineBreak();
+    hb.addTableCellLink( "https://sourceforge.net/p/moneymanagerex/wiki/mmex/"
+        , _("wiki page"));
+    hb.addLineBreak();
+    hb.addTableCellLink( "https://sourceforge.net/p/moneymanagerex/bugs/"
+        , _("Bug reports"));
+    hb.addLineBreak();
+    //https://sourceforge.net/p/moneymanagerex/bugs/
     hb.addTableCellLink( mmex::getProgramDanateSite()
         , _("Donate"));
     hb.addLineBreak();
