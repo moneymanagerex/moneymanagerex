@@ -207,10 +207,11 @@ void mmMainCurrencyDialog::CreateControls()
 void mmMainCurrencyDialog::OnBtnAdd(wxCommandEvent& /*event*/)
 {
     mmCurrencyDialog dlg(this, 0);
-    dlg.ShowModal();
-    currencyID_ = dlg.getCurrencyID();
-    if (currencyID_)
-        selectedIndex_++;
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        currencyID_ = dlg.getCurrencyID();
+        selectedIndex_ = -1;
+    }
 
     fillControls();
 }
@@ -248,7 +249,7 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
                          , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
         {
             Model_Currency::instance().remove(currencyID_);
-            selectedIndex_--;
+            selectedIndex_ = -1;
             currencyID_ = -1;
             fillControls();
         }
