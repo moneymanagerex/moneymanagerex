@@ -52,8 +52,8 @@ public:
 
     enum EColumn
     {
-        COL_DATE_OR_TRANSACTION_ID = 0,
-        COL_TRANSACTION_NUMBER,
+        COL_DATE = 0,
+        COL_NUMBER,
         COL_PAYEE_STR,
         COL_STATUS,
         COL_CATEGORY,
@@ -62,7 +62,7 @@ public:
         COL_BALANCE,
         COL_NOTES,
         COL_MAX, // number of columns
-        COL_DEF_SORT = COL_DATE_OR_TRANSACTION_ID
+        COL_DEF_SORT = COL_DATE
     };
     EColumn toEColumn(long col)
     {

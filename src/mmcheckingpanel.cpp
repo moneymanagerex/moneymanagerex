@@ -144,7 +144,7 @@ void mmCheckingPanel::sortTable()
     std::sort(this->m_trans.begin(), this->m_trans.end());
     switch (m_listCtrlAccount->g_sortcol)
     {
-    case TransactionListCtrl::COL_TRANSACTION_NUMBER:
+    case TransactionListCtrl::COL_NUMBER:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSACTIONNUMBER());
         break;
     case TransactionListCtrl::COL_PAYEE_STR:
@@ -736,9 +736,9 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     const Model_Checking::Full_Data& tran = this->m_trans.at(item);
     switch (column)
     {
-    case TransactionListCtrl::COL_DATE_OR_TRANSACTION_ID:
+    case TransactionListCtrl::COL_DATE:
         return mmGetDateForDisplay(Model_Checking::TRANSDATE(tran));
-    case TransactionListCtrl::COL_TRANSACTION_NUMBER:
+    case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_PAYEE_STR:
         return tran.PAYEENAME;
@@ -918,32 +918,25 @@ TransactionListCtrl::TransactionListCtrl(
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(wxListCtrl &lst)
 {
-    const wxString def_data[3*COL_MAX] =
+    std::vector<std::tuple<int, wxString, int, bool> > def_data
     {
-        wxString(_("Date")).Prepend("      "), "80", "L",
-        _("Number"), "-2", "L",
-        wxString(_("Payee")).Prepend("   "), "150", "L",
-        _("Status"), "-2", "L",
-        _("Category"), "-2", "L",
-        _("Withdrawal"), "-2", "R",
-        _("Deposit"), "-2", "R",
-        _("Balance"), "-2", "R",
-        _("Notes"), "200", "L"
+        std::make_tuple(COL_DATE      , "      " + _("Date"), 112, false),
+        std::make_tuple(COL_NUMBER    ,          _("Number"),  70, false),
+        std::make_tuple(COL_PAYEE_STR ,   "   " + _("Payee"), 150, false),
+        std::make_tuple(COL_STATUS    ,          _("Status"),  -2, false),
+        std::make_tuple(COL_CATEGORY  ,        _("Category"), 150, false),
+        std::make_tuple(COL_WITHDRAWAL,      _("Withdrawal"),  -2,  true),
+        std::make_tuple(COL_DEPOSIT   ,         _("Deposit"),  -2,  true),
+        std::make_tuple(COL_BALANCE   ,         _("Balance"),  -2,  true),
+        std::make_tuple(COL_NOTES     ,           _("Notes"), 250, false)
     };
 
-    for (int i = 0; i < COL_MAX; ++i)
+    for (const auto& i : def_data)
     {
-        const wxString col_name = (def_data[3*i+0]);
-        const wxString def_width = def_data[3*i+1];
-        const wxString def_format = def_data[3*i+2];
-
-        wxString name = wxString::Format("CHECK_COL%d_WIDTH", i);
-        wxString val = Model_Setting::instance().GetStringSetting(name, def_width);
-        long width = -1;
-        int format = wxLIST_FORMAT_RIGHT;
-        if (def_format == "L") format = wxLIST_FORMAT_LEFT;
-        lst.InsertColumn((long)i, col_name, format);
-        if (val.ToLong(&width)) lst.SetColumnWidth(i, (int)width);
+        const wxString param_name = wxString::Format("CHECK_COL%i_WIDTH", std::get<2>(i));
+        int width = Model_Setting::instance().GetIntSetting(param_name, std::get<2>(i));
+        int format = std::get<3>(i) ? wxLIST_FORMAT_LEFT : wxLIST_FORMAT_RIGHT;
+        lst.InsertColumn(std::get<0>(i), std::get<1>(i), format, width);
     }
 }
 
@@ -1211,7 +1204,7 @@ int TransactionListCtrl::OnGetItemColumnImage(long item, long column) const
     if (m_cp->m_trans.empty()) return ICON_NONE;
 
     int res = -1;
-    if(column == COL_DATE_OR_TRANSACTION_ID)
+    if(column == COL_DATE)
     {
         res = ICON_NONE;
         wxString status = m_cp->getItem(item, COL_STATUS);
