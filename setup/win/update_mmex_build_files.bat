@@ -1,5 +1,5 @@
 REM --------------------------------------------------------------------------
-REM Author : Stefano Giorgio - Copyright (C) 2012 
+REM Author : Stefano Giorgio - Copyright (C) 2012, 2013
 REM Purpose: To allow the easy collection of support files required for
 REM          - testing in the msw-vc-2013e environment.
 REM          - providing a release version for others.
@@ -10,33 +10,31 @@ REM --------------------------------------------------------------------------
 @echo off
 cls
 
-REM - When creating subsequent releases, rename the variable: mmex_release_version
-REM   to reflect the correct version location
-set mmex_release_version=mmex_1.0.0.0_win32_portable
-set mmex_release_type=release
-
-set mmex_release_destination=..\..\mmex_release\%mmex_release_version%
+REM Rename the variable: mmex_release_version to reflect the correct version.
+set mmex_release_version=mmex_1.0.0.0
+set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
-set mmex_release_source=%mmex_build_location%\%mmex_release_type%
+set mmex_release_location=..\..\mmex_release
+
+REM mmex_win_system_type=x64   ... updated later in script.
+set mmex_win_system_type=win32
+set mmex_build_type=release
 
 @echo ------------------------------------------------------------------------
 @echo MMEX Support Files Updating Facility
 @echo.
-if exist %mmex_release_destination% goto continue_intro
-@echo To collect appropriate files for a System Release,
-@echo create the directorys:-
+
+set display_message=Update IDE Build Configurations.
+if exist %mmex_release_location% goto continue_intro
+
+@echo To collect appropriate files for a System Release, create the directory:
 @echo.
 @echo - trunk\mmex_release
-@echo - trunk\mmex_release\%mmex_release_version%
+goto display_config_continue
 
 :continue_intro
-@set display_message=Update IDE Build Configurations.
-if not exist %mmex_release_destination% goto display_config_continue
-@set display_message=Update IDE Build Configurations and MMEX Release Location.
-@echo.
-@echo MMEX Release Configuration Setup:
-@echo      Source: %mmex_release_source%
-@echo Destination: %mmex_release_destination%
+set display_message=Update IDE Build Configurations and MMEX Release Locations.
+
 :display_config_continue
 @echo.
 @echo %display_message%
@@ -44,13 +42,25 @@ if not exist %mmex_release_destination% goto display_config_continue
 pause
 cls
 
-REM Starts with Local release
-goto update_release
+REM Starts with Win32 Release
+goto start_update_process
 
+REM --------------------------------------------------------------------------  
 REM The routine: UpdateFiles
 REM will collect the files for all configurations to the specified location.
+REM --------------------------------------------------------------------------  
 :UpdateFiles
-set mmex_build_dir=%mmex_build_location%\%current_location%
+REM Initially set the location to the mmex_release location
+set mmex_build_dir=%mmex_release_location%\%mmex_release_version%_%mmex_win_system_type%_portable\%location%
+
+if %location%==%mmex_system_name% goto UpdateFiles_Continue
+
+rem Reset the build location to the IDE Build location
+set mmex_build_dir=%mmex_build_location%\%mmex_win_system_type%\%location%
+
+:UpdateFiles_Continue
+set current_location=%mmex_win_system_type%\%location%
+
 if not exist %mmex_build_dir% goto skip_this_location
 @echo ------------------------------------------------------------------------
 @echo Updating MMEX Files for: %mmex_build_dir%
@@ -100,8 +110,8 @@ copy "..\..\po\*.mo" "%mmex_build_dir%\po\en"
 @echo Copying Resources files for: %current_location%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\res mkdir %mmex_build_dir%\res
-copy "..\..\resources\kaching.wav"       "%mmex_build_dir%\res"
-copy "..\..\resources\mmex.ico"          "%mmex_build_dir%\res"
+copy "..\..\resources\kaching.wav"     "%mmex_build_dir%\res"
+copy "..\..\resources\mmex.ico"        "%mmex_build_dir%\res"
 @echo ------------------------------------------------------------------------
 @echo.
 @echo Updated Support Files for: %mmex_build_dir%
@@ -110,35 +120,46 @@ pause
 cls
 
 :skip_this_location
-REM Work out where to go next.
-if %location%==release              goto update_debug
-if %location%==debug                goto update_debug_tests
-if %location%==tests\debug          goto update_main_release
+REM Work out what to do next. Continue from already processed, win32\release
+if %current_location%==%mmex_win_system_type%\release       goto update_debug
+if %current_location%==%mmex_win_system_type%\debug         goto update_tests_debug
+if %current_location%==%mmex_win_system_type%\tests\debug   goto update_release
+if %current_location%==win32\%mmex_system_name%             goto system_change_x64
 goto ScriptEnd
 REM -------------------------------------------------------------------------- 
 
-REM Unicode Release
-:update_release
+REM x64 Release
+:system_change_x64
+set mmex_win_system_type=x64
 set location=release
-set current_location=%location%
 goto UpdateFiles
 
-REM Unicode Debug
+REM -------------------------------------------------------------------------- 
+REM win32 Release - Initial start.
+REM -------------------------------------------------------------------------- 
+:start_update_process
+set location=release
+goto UpdateFiles
+
+REM win32/x64 Debug
 :update_debug
 set location=debug
-set current_location=%location%
 goto UpdateFiles
 
-REM Unicode Debug Tests
-:update_debug_tests
+REM win32/x64 Tests\Debug
+:update_tests_debug
 set location=tests\debug
-set current_location=%location%
 goto UpdateFiles
 
 REM Update the release
-:update_main_release
+:update_release
 REM Update the exe files first
-if not exist %mmex_release_destination% goto ScriptEnd
+set location=%mmex_system_name%
+if not exist %mmex_release_location% goto skip_this_location
+
+set mmex_release_source=%mmex_build_location%\%mmex_win_system_type%\%mmex_build_type%
+set mmex_release_destination=%mmex_release_location%\%mmex_release_version%_%mmex_win_system_type%_portable
+if not exist %mmex_release_destination% mkdir %mmex_release_destination%
 @echo --------------------------------------------------------------------
 @echo Updating MMEX Release Location
 @echo.
@@ -156,21 +177,31 @@ cls
 @echo.
 @echo --------------------------------------------------------------------
 REM Set up the release location. Create locations if not exist
-set location=MoneyManagerEX
 set mmex_release_dir=%mmex_release_destination%\%location%
 if not exist %mmex_release_dir% mkdir %mmex_release_dir%
 
 set mmex_release_bin_dir=%mmex_release_dir%\bin
 if not exist %mmex_release_bin_dir% mkdir %mmex_release_bin_dir%
 
+if %mmex_win_system_type%==x64 goto get_x64_dll_files
+rem These are Win32 Files
 REM set up the executable files
+@echo Win32 Files
 copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
 copy "C:\Windows\sysWOW64\msvcp120.dll" %mmex_release_bin_dir%
 copy "C:\Windows\sysWOW64\msvcr120.dll" %mmex_release_bin_dir%
+goto update_release_continue
 
+:get_x64_dll_files
+rem These are x64 files
+REM set up the executable files
+@echo X64 Files
+copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
+copy "C:\Windows\system32\msvcp120.dll" %mmex_release_bin_dir%
+copy "C:\Windows\system32\msvcr120.dll" %mmex_release_bin_dir%
+
+:update_release_continue
 REM Set up the support files before ending process.
-set mmex_build_location=%mmex_release_destination%
-set current_location=%location%
 goto UpdateFiles
 
 :ScriptEnd
