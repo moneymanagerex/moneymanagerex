@@ -935,29 +935,33 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     }
 }
 
-void mmTransDialog::onTextEntered(wxCommandEvent& event)
+void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     wxString sAmount = "";
+
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) currency = Model_Account::currency(account);
 
     mmCalculator calc;
     if (object_in_focus_ == textAmount_->GetId())
     {
-        if (calc.is_ok(textAmount_->GetValue()))
-            textAmount_->SetValue(calc.get_result());
+        sAmount = wxString() << Model_Currency::fromString(textAmount_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
         textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        if (calc.is_ok(toTextAmount_->GetValue()))
-            toTextAmount_->SetValue(calc.get_result());
+        sAmount = wxString() << Model_Currency::fromString(toTextAmount_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            toTextAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
         toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
     }
     else if (object_in_focus_ == textNumber_->GetId())
     {
         textNotes_->SetFocus();
     }
-
-    event.Skip();
 }
 
 void mmTransDialog::OnOk(wxCommandEvent& event)
