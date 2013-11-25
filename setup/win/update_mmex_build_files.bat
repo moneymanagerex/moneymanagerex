@@ -35,12 +35,28 @@ goto display_config_continue
 :continue_intro
 set display_message=Update IDE Build Configurations and MMEX Release Locations.
 
+REM Create a compressed version of the output file for distribution
+if exist .\mpress.219\mpress.exe goto display_config_continue
+@echo.
+@echo To distribute compressed versions of: mmex.exe
+@echo include the package version of: mpress.219 with this batch file.
+@echo.
+@echo available from: http://www.matcode.com/mpress.htm
+
 :display_config_continue
 @echo.
 @echo %display_message%
 @echo ------------------------------------------------------------------------
 pause
 cls
+
+set nmake_command_location="C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"
+
+REM Starts with Win32 Release
+if not exist %nmake_command_location%\nmake.exe goto start_update_process
+
+rem update the language files if possible
+rem %nmake_command_location%\nmake ..\..\po\makefile.vc
 
 REM Starts with Win32 Release
 goto start_update_process
@@ -155,7 +171,7 @@ REM Update the release
 :update_release
 REM Update the exe files first
 set location=%mmex_system_name%
-if not exist %mmex_release_location% goto skip_this_location
+if not exist %mmex_release_location% goto UpdateFiles
 
 set mmex_release_source=%mmex_build_location%\%mmex_win_system_type%\%mmex_build_type%
 set mmex_release_destination=%mmex_release_location%\%mmex_release_version%_%mmex_win_system_type%_portable
@@ -183,24 +199,27 @@ if not exist %mmex_release_dir% mkdir %mmex_release_dir%
 set mmex_release_bin_dir=%mmex_release_dir%\bin
 if not exist %mmex_release_bin_dir% mkdir %mmex_release_bin_dir%
 
+REM Create a zero length file for portable version
+copy nul %mmex_release_dir%\mmexini.db3
+
 if %mmex_win_system_type%==x64 goto get_x64_dll_files
-rem These are Win32 Files
-REM set up the executable files
-@echo Win32 Files
+REM set up the executable files for Win32
 copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
 copy "C:\Windows\sysWOW64\msvcp120.dll" %mmex_release_bin_dir%
 copy "C:\Windows\sysWOW64\msvcr120.dll" %mmex_release_bin_dir%
 goto update_release_continue
 
 :get_x64_dll_files
-rem These are x64 files
-REM set up the executable files
-@echo X64 Files
+REM set up the executable files for x64
 copy %mmex_release_source%\mmex.exe %mmex_release_bin_dir%
 copy "C:\Windows\system32\msvcp120.dll" %mmex_release_bin_dir%
 copy "C:\Windows\system32\msvcr120.dll" %mmex_release_bin_dir%
 
 :update_release_continue
+REM Create a compressed version of the output file for distribution
+if not exist .\mpress.219\mpress.exe goto UpdateFiles
+.\mpress.219\mpress %mmex_release_bin_dir%\mmex.exe
+
 REM Set up the support files before ending process.
 goto UpdateFiles
 
