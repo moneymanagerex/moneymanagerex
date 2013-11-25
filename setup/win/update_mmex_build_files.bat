@@ -15,6 +15,7 @@ set mmex_release_version=mmex_1.0.0.0
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
 set mmex_release_location=..\..\mmex_release
+if NOT EXIST %mmex_release_location% md %mmex_release_location%
 
 REM mmex_win_system_type=x64   ... updated later in script.
 set mmex_win_system_type=win32
