@@ -612,9 +612,8 @@ bool mmTransDialog::validateData()
         if (advancedToTransAmountSet_)
         {
             wxString amountStr = toTextAmount_->GetValue().Trim();
-            if (amountStr.IsEmpty()
-                || !amountStr.ToDouble(&transaction_->TOTRANSAMOUNT)
-            )
+            if (!Model_Currency::fromString(amountStr, transaction_->TOTRANSAMOUNT
+                , Model_Account::currency(account)))
             {
                 toTextAmount_->SetBackgroundColour("RED");
                 mmShowErrorMessageInvalid(parent_, _("Advanced Amount"));
@@ -894,17 +893,16 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
             textAmount_->SetValue(amountStr);
         }
 
-        Model_Currency::fromString(amountStr, transaction_->TRANSAMOUNT, 0);
+        toTextAmount_->GetDouble(transaction_->TRANSAMOUNT);
 
-        if (transaction_->TOACCOUNTID > 0)
+        const Model_Account::Data* to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
+        if (to_account)
         {
             const Model_Account::Data* from_account = Model_Account::instance().get(accountID_);
-            const Model_Account::Data* to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
-
-            const Model_Currency::Data* from_currency = Model_Account::currency(from_account);
-            const Model_Currency::Data* to_currency = Model_Account::currency(to_account);
+            const Model_Currency::Data* from_currency = Model_Currency::GetBaseCurrency();
+            if (from_account) from_currency = Model_Account::currency(from_account);
             double rateFrom = from_currency->BASECONVRATE;
-            double rateTo = to_currency->BASECONVRATE;
+            double rateTo = Model_Account::currency(to_account)->BASECONVRATE;
             double convToBaseFrom = rateFrom * transaction_->TRANSAMOUNT;
             transaction_->TOTRANSAMOUNT = convToBaseFrom / rateTo;
         }
