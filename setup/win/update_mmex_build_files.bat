@@ -95,35 +95,19 @@ REM create the directories if they don't exist
 if not exist %mmex_build_dir%\help mkdir %mmex_build_dir%\help
 copy "..\..\doc\help\*.*"         "%mmex_build_dir%\help"
 @echo.
-if not exist %mmex_build_dir%\help\french mkdir %mmex_build_dir%\help\french
-copy "..\..\doc\help\french\*.*"  "%mmex_build_dir%\help\french"
-@echo.
-if not exist %mmex_build_dir%\help\german mkdir %mmex_build_dir%\help\german
-copy "..\..\doc\help\german\*.*"  "%mmex_build_dir%\help\german"
-@echo.
-if not exist %mmex_build_dir%\help\hungarian mkdir %mmex_build_dir%\help\hungarian
-copy "..\..\doc\help\hungarian\*.*"  "%mmex_build_dir%\help\hungarian"
-@echo.
-if not exist %mmex_build_dir%\help\italian mkdir %mmex_build_dir%\help\italian
-copy "..\..\doc\help\italian\*.*" "%mmex_build_dir%\help\italian"
-@echo.
-if not exist %mmex_build_dir%\help\polish mkdir %mmex_build_dir%\help\polish
-copy "..\..\doc\help\polish\*.*"  "%mmex_build_dir%\help\polish"
-@echo.
-if not exist %mmex_build_dir%\help\russian mkdir %mmex_build_dir%\help\russian
-copy "..\..\doc\help\russian\*.*" "%mmex_build_dir%\help\russian"
-@echo.
-if not exist %mmex_build_dir%\help\spanish mkdir %mmex_build_dir%\help\spanish
-copy "..\..\doc\help\spanish\*.*" "%mmex_build_dir%\help\spanish"
-@echo.
+for /f %%d IN ('dir /A:D /B ..\..\doc\help') do (
+    if not exist "%mmex_build_dir%\doc\help\%%d" mkdir "%mmex_build_dir%\help\%%d"
+    copy "..\..\doc\help\%%d\*.*"  "%mmex_build_dir%\help\%%d"
+)
 @echo ------------------------------------------------------------------------
 @echo Copying Language files for: %current_location%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\po mkdir %mmex_build_dir%\po
 if not exist %mmex_build_dir%\po\en mkdir %mmex_build_dir%\po\en
 copy "..\..\po\*.mo" "%mmex_build_dir%\po\en"
+copy "..\..\po\*.po" "%mmex_build_dir%\po"
 @echo.
-@echo ------------------------------------------------------------------------
+@echo------------------------------------------------------------------------
 @echo Copying Resources files for: %current_location%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\res mkdir %mmex_build_dir%\res
