@@ -107,7 +107,7 @@ if not exist %mmex_build_dir%\po\en mkdir %mmex_build_dir%\po\en
 copy "..\..\po\*.mo" "%mmex_build_dir%\po\en"
 copy "..\..\po\*.po" "%mmex_build_dir%\po"
 @echo.
-@echo------------------------------------------------------------------------
+@echo ------------------------------------------------------------------------
 @echo Copying Resources files for: %current_location%
 @echo ------------------------------------------------------------------------
 if not exist %mmex_build_dir%\res mkdir %mmex_build_dir%\res
