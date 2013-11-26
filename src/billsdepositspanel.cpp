@@ -486,7 +486,7 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
     if (minutesRemaining > 0)
         daysRemaining += 1;
 
-    wxString text = wxString::Format("%d", daysRemaining) + _(" days remaining");
+    wxString text = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)
     {
@@ -496,7 +496,7 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
 
     if (daysRemaining < 0)
     {
-        text = wxString::Format("%d", abs(daysRemaining)) + _(" days overdue!");
+        text = wxString::Format(_("%d days overdue!"), abs(daysRemaining));
         if (((repeats > 10) && (repeats < 15)) && (item->NUMOCCURRENCES < 0))
             text = _("Inactive");
     }
@@ -545,7 +545,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
     if (minutesRemaining > 0)
         daysRemaining += 1;
 
-    wxString daysRemainingStr = wxString::Format("%d", daysRemaining) + _(" days remaining");
+    wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)
     {
@@ -555,7 +555,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
 
     if (daysRemaining < 0)
     {
-        daysRemainingStr = wxString::Format("%d", abs(daysRemaining)) + _(" days overdue!");
+        daysRemainingStr = wxString::Format(_("%d days overdue!"), abs(daysRemaining));
         if (((repeats > 10) && (repeats < 15)) && (cp_->bills_[item].NUMOCCURRENCES < 0))
             daysRemainingStr = _("Inactive");
     }

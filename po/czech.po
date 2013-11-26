@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-26 11:52+0400\n"
-"PO-Revision-Date: 2013-11-26 11:52+0400\n"
+"POT-Creation-Date: 2013-11-26 19:10+0400\n"
+"PO-Revision-Date: 2013-11-26 19:10+0400\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: Geralt <geraltcz@centrum.cz>\n"
 "Language: cs_CZ\n"
@@ -345,7 +345,7 @@ msgstr "Zadejte poznámky, které se přiřadí tomuto majetku"
 #: src/assetdialog.cpp:190 src/billsdepositsdialog.cpp:500
 #: src/budgetyeardialog.cpp:120 src/budgetyearentrydialog.cpp:128
 #: src/categdialog.cpp:234 src/filtertransdialog.cpp:375
-#: src/maincurrencydialog.cpp:199 src/optionsdialog.cpp:746
+#: src/maincurrencydialog.cpp:203 src/optionsdialog.cpp:746
 #: src/payeedialog.cpp:103 src/relocatepayeedialog.cpp:125
 #: src/splitdetailsdialog.cpp:155 src/splittransactionsdialog.cpp:167
 #: src/transdialog.cpp:498 src/import_export/qif_export.cpp:201
@@ -361,7 +361,7 @@ msgid "Invalid Entry"
 msgstr "Neplatný záznam."
 
 #: src/assetdialog.cpp:230 src/assetdialog.cpp:249
-#: src/maincurrencydialog.cpp:420
+#: src/maincurrencydialog.cpp:424
 msgid "Invalid Value "
 msgstr "Neplatná hodnota"
 
@@ -731,7 +731,7 @@ msgstr "Položka Od a Komu nemůže být stejná."
 
 #: src/billsdepositsdialog.cpp:818 src/budgetentrydialog.cpp:243
 #: src/dbwrapper.cpp:72 src/dbwrapper.cpp:79 src/filtertransdialog.cpp:450
-#: src/filtertransdialog.cpp:460 src/maincurrencydialog.cpp:433
+#: src/filtertransdialog.cpp:460 src/maincurrencydialog.cpp:437
 #: src/mmex.cpp:3799 src/splitdetailsdialog.cpp:195
 #: src/splitdetailsdialog.cpp:203 src/stockdialog.cpp:259
 #: src/stockdialog.cpp:267 src/stockdialog.cpp:283 src/stockspanel.cpp:556
@@ -872,8 +872,9 @@ msgid "&Delete Bills && Deposit Series..."
 msgstr "O&dstranit sérii plateb && vkladů..."
 
 #: src/billsdepositspanel.cpp:489 src/billsdepositspanel.cpp:548
-#: src/reports/html_widget_bills_and_deposits.cpp:63
-msgid " days remaining"
+#: src/reports/html_widget_bills_and_deposits.cpp:64
+#, fuzzy, c-format
+msgid "%d days remaining"
 msgstr " dnů zbývá"
 
 #: src/billsdepositspanel.cpp:494 src/billsdepositspanel.cpp:501
@@ -883,8 +884,9 @@ msgid "Inactive"
 msgstr "Neaktivní"
 
 #: src/billsdepositspanel.cpp:499 src/billsdepositspanel.cpp:558
-#: src/reports/html_widget_bills_and_deposits.cpp:71
-msgid " days overdue!"
+#: src/reports/html_widget_bills_and_deposits.cpp:72
+#, fuzzy, c-format
+msgid "%d days overdue!"
 msgstr " dnů zpožděno!"
 
 #: src/billsdepositspanel.cpp:610
@@ -1150,7 +1152,7 @@ msgstr "Opětovné přiřazení kategorií do jiné kategorie"
 msgid "Expand"
 msgstr ""
 
-#: src/categdialog.cpp:183 src/maincurrencydialog.cpp:147
+#: src/categdialog.cpp:183 src/maincurrencydialog.cpp:151
 #, fuzzy
 msgid "Show All"
 msgstr "Zobrazit jako: "
@@ -1164,7 +1166,7 @@ msgstr "Zobrazit všechny kategorie rozpočtu"
 msgid "Enter the name of the category to add or edit here"
 msgstr "Zadejte název kategorie pro přidání nebo upravte název stávající"
 
-#: src/categdialog.cpp:213 src/maincurrencydialog.cpp:176
+#: src/categdialog.cpp:213 src/maincurrencydialog.cpp:180
 #: src/payeedialog.cpp:325 src/splittransactionsdialog.cpp:159
 #, fuzzy
 msgid "&Add "
@@ -1174,7 +1176,7 @@ msgstr "Přid&at rok "
 msgid "Add a new category"
 msgstr "Přidá novou kategorii"
 
-#: src/categdialog.cpp:217 src/maincurrencydialog.cpp:179
+#: src/categdialog.cpp:217 src/maincurrencydialog.cpp:183
 #: src/mmcheckingpanel.cpp:456 src/payeedialog.cpp:328
 #: src/splittransactionsdialog.cpp:160
 #, fuzzy
@@ -1198,7 +1200,7 @@ msgstr ""
 "Odstraní existující kategorii. Kategorii nebude možné použít v již "
 "existujícíh transakcích."
 
-#: src/categdialog.cpp:229 src/maincurrencydialog.cpp:190
+#: src/categdialog.cpp:229 src/maincurrencydialog.cpp:194
 msgid "&Select"
 msgstr "&Vybrat"
 
@@ -1520,26 +1522,26 @@ msgstr "Symbol"
 msgid "Base Rate"
 msgstr "Základní sazba"
 
-#: src/maincurrencydialog.cpp:140
+#: src/maincurrencydialog.cpp:144
 msgid "Online update currency rate"
 msgstr "Online aktualizace kurzu měny"
 
-#: src/maincurrencydialog.cpp:144
+#: src/maincurrencydialog.cpp:148
 #, fuzzy
 msgid "Online Update"
 msgstr "Ověřit aktualizace"
 
-#: src/maincurrencydialog.cpp:149
+#: src/maincurrencydialog.cpp:153
 msgid "Show all even the unused currencies"
 msgstr ""
 
-#: src/maincurrencydialog.cpp:183 src/payeedialog.cpp:331
+#: src/maincurrencydialog.cpp:187 src/payeedialog.cpp:331
 #: src/splittransactionsdialog.cpp:161
 #, fuzzy
 msgid "&Remove "
 msgstr "Odebrat"
 
-#: src/maincurrencydialog.cpp:242
+#: src/maincurrencydialog.cpp:246
 msgid ""
 "Attempt to delete a currency being used by an account\n"
 " or as the base currency."
@@ -1547,40 +1549,40 @@ msgstr ""
 "Pokus o odstranění měny, která je používána účtem\n"
 " nebo je nastavena jako základní."
 
-#: src/maincurrencydialog.cpp:243 src/maincurrencydialog.cpp:248
+#: src/maincurrencydialog.cpp:247 src/maincurrencydialog.cpp:252
 #: src/maincurrencydialog.h:29
 msgid "Currency Dialog"
 msgstr "Správce měny"
 
-#: src/maincurrencydialog.cpp:247
+#: src/maincurrencydialog.cpp:251
 #, fuzzy
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Opravdu si přejete odstranit vybrané  transakce?"
 
-#: src/maincurrencydialog.cpp:350
+#: src/maincurrencydialog.cpp:354
 msgid "Could not find base currency symbol!"
 msgstr "Nelze najít symbol pro měnu!"
 
-#: src/maincurrencydialog.cpp:400 src/maincurrencydialog.cpp:427
+#: src/maincurrencydialog.cpp:404 src/maincurrencydialog.cpp:431
 msgid "Currency rate updated"
 msgstr "Kurz měny byl aktualizován"
 
-#: src/maincurrencydialog.cpp:413
+#: src/maincurrencydialog.cpp:417
 #, c-format
 msgid "%s\t: %0.4f -> %0.4f\n"
 msgstr ""
 
-#: src/maincurrencydialog.cpp:420
+#: src/maincurrencydialog.cpp:424
 #, c-format
 msgid "%s\t: %s\n"
 msgstr ""
 
-#: src/maincurrencydialog.cpp:470
+#: src/maincurrencydialog.cpp:474
 #, fuzzy
 msgid "Set as Base Currency"
 msgstr "Základní měna"
 
-#: src/maincurrencydialog.cpp:471
+#: src/maincurrencydialog.cpp:475
 #, fuzzy
 msgid "Online Update Currency Rate"
 msgstr "Online akt&ualizace kurzu měny"
@@ -5082,6 +5084,12 @@ msgstr "Zpráva příjemců"
 #, fuzzy, c-format
 msgid "Payee report - %s"
 msgstr "Zpráva příjemců"
+
+#~ msgid " days remaining"
+#~ msgstr " dnů zbývá"
+
+#~ msgid " days overdue!"
+#~ msgstr " dnů zpožděno!"
 
 #~ msgid " Start Page"
 #~ msgstr " Úvodní stránka"

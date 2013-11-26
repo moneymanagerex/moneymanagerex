@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-26 11:52+0400\n"
-"PO-Revision-Date: 2013-11-26 11:52+0400\n"
+"POT-Creation-Date: 2013-11-26 19:11+0400\n"
+"PO-Revision-Date: 2013-11-26 19:11+0400\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
@@ -344,7 +344,7 @@ msgstr "Associer des remarques au bien"
 #: src/assetdialog.cpp:190 src/billsdepositsdialog.cpp:500
 #: src/budgetyeardialog.cpp:120 src/budgetyearentrydialog.cpp:128
 #: src/categdialog.cpp:234 src/filtertransdialog.cpp:375
-#: src/maincurrencydialog.cpp:199 src/optionsdialog.cpp:746
+#: src/maincurrencydialog.cpp:203 src/optionsdialog.cpp:746
 #: src/payeedialog.cpp:103 src/relocatepayeedialog.cpp:125
 #: src/splitdetailsdialog.cpp:155 src/splittransactionsdialog.cpp:167
 #: src/transdialog.cpp:498 src/import_export/qif_export.cpp:201
@@ -360,7 +360,7 @@ msgid "Invalid Entry"
 msgstr "Entrée non valable"
 
 #: src/assetdialog.cpp:230 src/assetdialog.cpp:249
-#: src/maincurrencydialog.cpp:420
+#: src/maincurrencydialog.cpp:424
 msgid "Invalid Value "
 msgstr "Valeur invalide "
 
@@ -732,7 +732,7 @@ msgstr "Les comptes ne peuvent être les mêmes."
 
 #: src/billsdepositsdialog.cpp:818 src/budgetentrydialog.cpp:243
 #: src/dbwrapper.cpp:72 src/dbwrapper.cpp:79 src/filtertransdialog.cpp:450
-#: src/filtertransdialog.cpp:460 src/maincurrencydialog.cpp:433
+#: src/filtertransdialog.cpp:460 src/maincurrencydialog.cpp:437
 #: src/mmex.cpp:3799 src/splitdetailsdialog.cpp:195
 #: src/splitdetailsdialog.cpp:203 src/stockdialog.cpp:259
 #: src/stockdialog.cpp:267 src/stockdialog.cpp:283 src/stockspanel.cpp:556
@@ -875,8 +875,9 @@ msgid "&Delete Bills && Deposit Series..."
 msgstr "Supprimer la série de factures / dépôts"
 
 #: src/billsdepositspanel.cpp:489 src/billsdepositspanel.cpp:548
-#: src/reports/html_widget_bills_and_deposits.cpp:63
-msgid " days remaining"
+#: src/reports/html_widget_bills_and_deposits.cpp:64
+#, fuzzy, c-format
+msgid "%d days remaining"
 msgstr " jours restants"
 
 #: src/billsdepositspanel.cpp:494 src/billsdepositspanel.cpp:501
@@ -886,8 +887,9 @@ msgid "Inactive"
 msgstr "Inactif"
 
 #: src/billsdepositspanel.cpp:499 src/billsdepositspanel.cpp:558
-#: src/reports/html_widget_bills_and_deposits.cpp:71
-msgid " days overdue!"
+#: src/reports/html_widget_bills_and_deposits.cpp:72
+#, fuzzy, c-format
+msgid "%d days overdue!"
 msgstr " jours de retards!"
 
 #: src/billsdepositspanel.cpp:610
@@ -1152,7 +1154,7 @@ msgstr "Réassignation de toute les catégorie en une autre catégorie."
 msgid "Expand"
 msgstr "Développer"
 
-#: src/categdialog.cpp:183 src/maincurrencydialog.cpp:147
+#: src/categdialog.cpp:183 src/maincurrencydialog.cpp:151
 msgid "Show All"
 msgstr "Tout afficher"
 
@@ -1164,7 +1166,7 @@ msgstr "Montrer toutes les catégories cachées"
 msgid "Enter the name of the category to add or edit here"
 msgstr "Introduire le nom de la catégorie à ajouter ou à éditer"
 
-#: src/categdialog.cpp:213 src/maincurrencydialog.cpp:176
+#: src/categdialog.cpp:213 src/maincurrencydialog.cpp:180
 #: src/payeedialog.cpp:325 src/splittransactionsdialog.cpp:159
 #, fuzzy
 msgid "&Add "
@@ -1174,7 +1176,7 @@ msgstr "Ajouter une année"
 msgid "Add a new category"
 msgstr "Ajouter une nouvelle catégorie"
 
-#: src/categdialog.cpp:217 src/maincurrencydialog.cpp:179
+#: src/categdialog.cpp:217 src/maincurrencydialog.cpp:183
 #: src/mmcheckingpanel.cpp:456 src/payeedialog.cpp:328
 #: src/splittransactionsdialog.cpp:160
 #, fuzzy
@@ -1198,7 +1200,7 @@ msgstr ""
 "Supprimer une catégorie existante. La catégorie ne peut être associée à une "
 "opération existante"
 
-#: src/categdialog.cpp:229 src/maincurrencydialog.cpp:190
+#: src/categdialog.cpp:229 src/maincurrencydialog.cpp:194
 msgid "&Select"
 msgstr "&Sélectionner"
 
@@ -1513,26 +1515,26 @@ msgstr "Symbole"
 msgid "Base Rate"
 msgstr "Taux de base"
 
-#: src/maincurrencydialog.cpp:140
+#: src/maincurrencydialog.cpp:144
 msgid "Online update currency rate"
 msgstr "Mise à jour en ligne des taux de change"
 
-#: src/maincurrencydialog.cpp:144
+#: src/maincurrencydialog.cpp:148
 #, fuzzy
 msgid "Online Update"
 msgstr "Mise à jour en ligne des taux de change"
 
-#: src/maincurrencydialog.cpp:149
+#: src/maincurrencydialog.cpp:153
 msgid "Show all even the unused currencies"
 msgstr ""
 
-#: src/maincurrencydialog.cpp:183 src/payeedialog.cpp:331
+#: src/maincurrencydialog.cpp:187 src/payeedialog.cpp:331
 #: src/splittransactionsdialog.cpp:161
 #, fuzzy
 msgid "&Remove "
 msgstr "Supprimer"
 
-#: src/maincurrencydialog.cpp:242
+#: src/maincurrencydialog.cpp:246
 msgid ""
 "Attempt to delete a currency being used by an account\n"
 " or as the base currency."
@@ -1540,38 +1542,38 @@ msgstr ""
 "Tentative d'effacement de la devise utilisée par un compte\n"
 "ou la devise de base."
 
-#: src/maincurrencydialog.cpp:243 src/maincurrencydialog.cpp:248
+#: src/maincurrencydialog.cpp:247 src/maincurrencydialog.cpp:252
 #: src/maincurrencydialog.h:29
 msgid "Currency Dialog"
 msgstr "Nom de la devise"
 
-#: src/maincurrencydialog.cpp:247
+#: src/maincurrencydialog.cpp:251
 msgid "Do you really want to delete the selected Currency?"
 msgstr "Voulez-vous vraiment supprimer la devise choisie ?"
 
-#: src/maincurrencydialog.cpp:350
+#: src/maincurrencydialog.cpp:354
 msgid "Could not find base currency symbol!"
 msgstr "Impossible de trouver le symbole monétaire!"
 
-#: src/maincurrencydialog.cpp:400 src/maincurrencydialog.cpp:427
+#: src/maincurrencydialog.cpp:404 src/maincurrencydialog.cpp:431
 msgid "Currency rate updated"
 msgstr "Taux de conversion mis à jour"
 
-#: src/maincurrencydialog.cpp:413
+#: src/maincurrencydialog.cpp:417
 #, fuzzy, c-format
 msgid "%s\t: %0.4f -> %0.4f\n"
 msgstr "%s\t: %s -> %s\n"
 
-#: src/maincurrencydialog.cpp:420
+#: src/maincurrencydialog.cpp:424
 #, fuzzy, c-format
 msgid "%s\t: %s\n"
 msgstr "%s\t: %s -> %s\n"
 
-#: src/maincurrencydialog.cpp:470
+#: src/maincurrencydialog.cpp:474
 msgid "Set as Base Currency"
 msgstr "Coànfigurer une monnaie de base"
 
-#: src/maincurrencydialog.cpp:471
+#: src/maincurrencydialog.cpp:475
 #, fuzzy
 msgid "Online Update Currency Rate"
 msgstr "Mise à jour en ligne des taux de change"
