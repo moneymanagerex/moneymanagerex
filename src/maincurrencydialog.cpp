@@ -250,7 +250,7 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
     {
         if (wxMessageBox(_("Do you really want to delete the selected Currency?")
                          , _("Currency Dialog")
-                         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION) == wxYES)
+                         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR) == wxYES)
         {
             Model_Currency::instance().remove(currencyID_);
             selectedIndex_ = -1;

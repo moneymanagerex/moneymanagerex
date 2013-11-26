@@ -1131,7 +1131,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
         wxMessageDialog msgDlg(this
             ,_("Do you really want to delete all the transactions shown?")
             , _("Confirm Transaction Deletion")
-            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+            , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
         if (msgDlg.ShowModal() == wxID_YES)
         {
             m_cp->DeleteViewedTransactions();
@@ -1403,7 +1403,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
     wxMessageDialog msgDlg(this
         , _("Do you really want to delete the selected transaction?")
         , _("Confirm Transaction Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES)
     {

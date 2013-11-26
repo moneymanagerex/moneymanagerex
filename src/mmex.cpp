@@ -1866,7 +1866,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             wxMessageDialog msgDlg(this
                 , _("Do you really want to delete the account?")
                 , _("Confirm Account Deletion")
-                , wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+                , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);

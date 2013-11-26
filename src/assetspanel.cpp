@@ -157,7 +157,7 @@ void mmAssetsListCtrl::OnDeleteAsset(wxCommandEvent& /*event*/)
     wxMessageDialog msgDlg(this
         , _("Do you really want to delete the Asset?")
         , _("Confirm Asset Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES)
     {

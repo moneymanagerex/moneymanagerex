@@ -177,7 +177,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 
     wxMessageDialog msgDlg(this, _("Do you really want to delete the stock investment?")
         , _("Confirm Stock Investment Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
         Model_Stock::instance().remove(m_stocks[m_selected_row].STOCKID);
