@@ -40,7 +40,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 {
     mmHTMLBuilder hb;
 
-    std::map<int, std::pair<int, wxString>> bd_days;
+    //                    days, payee, description, amount, account
+    std::vector< std::tuple<int, wxString, wxString, double, Model_Account::Data*> > bd_days;
     const wxDateTime &today = date_range_->today();
     for (const auto& q1 : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
@@ -60,7 +61,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-        wxString daysRemainingStr = wxString::Format("%d", daysRemaining) + _(" days remaining");
+        wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
         if (daysRemaining == 0)
         {
             if (((repeats > 10) && (repeats < 15)) && (q1.NUMOCCURRENCES < 0))
@@ -68,16 +69,30 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         }
         if (daysRemaining < 0)
         {
-            daysRemainingStr = wxString::Format("%d", abs(daysRemaining)) + _(" days overdue!");
+            daysRemainingStr = wxString::Format(_("%d days overdue!"), abs(daysRemaining));
             if (((repeats > 10) && (repeats < 15)) && (q1.NUMOCCURRENCES < 0))
                 continue; // Inactive
         }
 
-        bd_days[q1.BDID].first = daysRemaining;
-        bd_days[q1.BDID].second = daysRemainingStr;
+        wxString payeeStr = "";
+        if (Model_Billsdeposits::type(q1) == Model_Billsdeposits::TRANSFER)
+        {
+            const Model_Account::Data *account = Model_Account::instance().get(q1.TOACCOUNTID);
+            if (account) payeeStr = account->ACCOUNTNAME;
+        }
+        else
+        {
+            const Model_Payee::Data* payee = Model_Payee::instance().get(q1.PAYEEID);
+            if (payee) payeeStr = payee->PAYEENAME;
+        }
+        Model_Account::Data *account = Model_Account::instance().get(q1.ACCOUNTID);
+        bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, q1.TRANSAMOUNT, account));
     }
 
+    //std::sort(bd_days.begin(), bd_days.end());
+    //std::reverse(bd_days.begin(), bd_days.end());
     ////////////////////////////////////
+
     if (!bd_days.empty())
     {
         wxString colorStr;
@@ -87,31 +102,16 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         for (const auto& item : bd_days)
         {
-            const Model_Billsdeposits::Data* data = Model_Billsdeposits::instance().get(item.first);
-
-            wxString payeeStr = "";
-            if (Model_Billsdeposits::type(data) == Model_Billsdeposits::TRANSFER)
-            {
-                const Model_Account::Data *account = Model_Account::instance().get(data->TOACCOUNTID);
-                if (account)
-                    payeeStr = account->ACCOUNTNAME;
-            }
-            else
-            {
-                const Model_Payee::Data* payee = Model_Payee::instance().get(data->PAYEEID);
-                if (payee)
-                    payeeStr = payee->PAYEENAME;
-            }
-
             colorStr = "#9999FF";
-            if (item.second.first < 0)
+            if (std::get<0>(item) < 0)
                 colorStr = "#FF6600";
 
             hb.startTableRow();
-            hb.addTableCell(payeeStr, false, true);
-            hb.addTableCell(Model_Account::toCurrency(data->TRANSAMOUNT, Model_Account::instance().get(data->ACCOUNTID)), true);
+            hb.addTableCell(std::get<1>(item), false, true); //payee
+            hb.addTableCell(Model_Account::toCurrency(std::get<3>(item)
+                , std::get<4>(item)), true);
             //Draw it as numeric that mean align right
-            hb.addTableCell(item.second.second, true, false, false, colorStr);
+            hb.addTableCell(std::get<2>(item), true, false, false, colorStr);
             hb.endTableRow();
         }
         hb.endTable();
