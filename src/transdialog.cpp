@@ -550,7 +550,7 @@ bool mmTransDialog::validateData()
         if (newAccountID_ != accountID_)
         {
             wxString value = textAmount_->GetValue();
-            value = Model_Currency::fromString(value, Model_Account::currency(initAccount));
+            value = Model_Currency::fromString(value, Model_Account::currency(initAccount ? initAccount : account));
             textAmount_->SetValue(0, account);
             textAmount_->SetValue(value);
         }
