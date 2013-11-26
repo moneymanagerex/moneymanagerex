@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-16 15:38+0400\n"
-"PO-Revision-Date: 2013-07-16 15:38+0400\n"
+"PO-Revision-Date: 2013-11-26 11:00+0400\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: de\n"
@@ -27,15 +27,15 @@ msgstr "besuchen Sie uns auf Facebook"
 
 #: src/aboutdialog.cpp:89 src/mmex.cpp:2429
 msgid "Visit MMEX Forum"
-msgstr ""
+msgstr "besuchen Sie das MMEX Forum"
 
 #: src/aboutdialog.cpp:92
 msgid "Visit MMEX Twitter"
-msgstr ""
+msgstr "besuchen Sie MMEX Twitter"
 
 #: src/aboutdialog.cpp:95
 msgid "Donate"
-msgstr ""
+msgstr "Spenden"
 
 # Translator's note: Please pay attention that the translation is not 1 to 1. The appearance and the use of the interface are within the main focus! Have a look into the software before you edit!
 #: src/aboutdialog.cpp:154 src/mmex.cpp:3228
@@ -209,9 +209,8 @@ msgid "&New Asset"
 msgstr "&Neuer Vermögenswert"
 
 #: src/assetspanel.cpp:69
-#, fuzzy
 msgid "D&uplicate Asset"
-msgstr "D&uplizieren"
+msgstr "D&uplizieren Wert"
 
 #: src/assetspanel.cpp:71
 msgid "&Edit Asset"
@@ -1634,9 +1633,9 @@ msgid "Attempt to open a File that is not a database file"
 msgstr "kann File nicht öffnen (keine Datenbank)"
 
 #: src/dbwrapper.cpp:1254
-#, fuzzy, c-format
+#, c-format
 msgid "Database::open: %s"
-msgstr "keine Datenbank geöffnet"
+msgstr "Datenbank::öffnen: %s"
 
 #: src/dbwrapper.cpp:1256
 msgid "Continue ?"
@@ -1938,14 +1937,14 @@ msgid "Could not find base currency symbol!"
 msgstr "Konnte Währungssymbol nicht finden!"
 
 #: src/mmcurrency.cpp:363
-#, fuzzy, c-format
+#, c-format
 msgid "%s\t: %0.4f -> %0.4f\n"
-msgstr "%s\t: %s -> %s\n"
+msgstr "%s\t: %0.4f -> %0.4f\n"
 
 #: src/mmcurrency.cpp:370
-#, fuzzy, c-format
+#, c-format
 msgid "%s\t: %s\n"
-msgstr "%s\t: %s -> %s\n"
+msgstr "%s\t: %s\n"
 
 #: src/mmex.cpp:101
 msgid ""
@@ -2487,7 +2486,7 @@ msgstr "zeige/verstecke Term Kontis in der Total Übersicht"
 
 #: src/mmex.cpp:2240
 msgid "&Stock Accounts"
-msgstr "&Bankkonten"
+msgstr "&Wertschriftenkonten"
 
 #: src/mmex.cpp:2240
 msgid "Show/Hide Stock Accounts on Summary page"
@@ -2953,13 +2952,12 @@ msgid "Bank Account"
 msgstr "Bankkonto"
 
 #: src/mmhomepagepanel.cpp:200
-#, fuzzy
 msgid "Term account"
 msgstr "Term Konto"
 
 #: src/mmhomepagepanel.cpp:238 src/reports/summary.cpp:73
 msgid "Bank Accounts Total:"
-msgstr "Bankkonten:"
+msgstr "Total Bankkonten:"
 
 #: src/mmhomepagepanel.cpp:238 src/reports/summary.cpp:107
 msgid "Term Accounts Total:"
@@ -3015,7 +3013,7 @@ msgid "Upcoming Transactions"
 msgstr "Anstehende Buchungen"
 
 #: src/mmhomepagepanel.cpp:668
-#, fuzzy, c-format
+#, c-format
 msgid "Week#%d"
 msgstr "Woche&nbsp;#%d"
 
@@ -3932,16 +3930,16 @@ msgstr "Letzte Aktualisierung %s"
 
 #: src/stockspanel.cpp:565
 msgid "Nothing to update"
-msgstr ""
+msgstr "nicht zu verändern"
 
 #: src/stockspanel.cpp:593
 msgid "Connecting..."
 msgstr "anschliessen..."
 
 #: src/stockspanel.cpp:641
-#, fuzzy, c-format
+#, c-format
 msgid "%s\t -> %s\n"
-msgstr "%s\t: %s -> %s\n"
+msgstr "%s\t -> %s\n"
 
 #: src/stockspanel.cpp:699
 #, c-format
@@ -3953,17 +3951,14 @@ msgid "Symbol: "
 msgstr "Kürzel"
 
 #: src/transdialog.cpp:280
-#, fuzzy
 msgid "Specify which account the transfer is going from"
 msgstr "Konto wählen, von welchem die Buchung erfolgt"
 
 #: src/transdialog.cpp:288
-#, fuzzy
 msgid "Specify to whom the transaction is going to"
 msgstr "Wohin soll die Buchung ausgeführt werden"
 
 #: src/transdialog.cpp:294
-#, fuzzy
 msgid "Specify account for the transaction"
 msgstr "Betrag für diese Buchung"
 
@@ -4499,55 +4494,51 @@ msgstr "Gesamttotal: "
 #: src/reports/categexp.cpp:185 src/reports/categexp.cpp:191
 #: src/reports/categexp.cpp:198 src/reports/categexp.cpp:205
 #: src/reports/categexp.cpp:212
-#, fuzzy, c-format
+#, c-format
 msgid "Where the Money Goes - %s"
-msgstr "Wo das Geld hingeht"
+msgstr "Wo das Geld hingeht - %s"
 
 #: src/reports/categexp.cpp:171 src/reports/categexp.cpp:238
 #: src/reports/categexp.cpp:245 src/reports/categexp.cpp:305
 #: src/reports/mmDateRange.cpp:69 src/reports/payee.h:61
-#, fuzzy
 msgid "Last Month"
-msgstr "Zeige Letzten Monat"
+msgstr "letzter Monat"
 
 #: src/reports/categexp.cpp:198 src/reports/categexp.cpp:266
 #: src/reports/categexp.cpp:332 src/reports/mmDateRange.cpp:125
-#, fuzzy
 msgid "Current Year to Date"
-msgstr "laufender Monat "
+msgstr "laufendes Jahr "
 
 #: src/reports/categexp.cpp:224 src/reports/categexp.cpp:231
 #: src/reports/categexp.cpp:238 src/reports/categexp.cpp:245
 #: src/reports/categexp.cpp:252 src/reports/categexp.cpp:259
 #: src/reports/categexp.cpp:266 src/reports/categexp.cpp:273
 #: src/reports/categexp.cpp:280
-#, fuzzy, c-format
+#, c-format
 msgid "Where the Money Comes From - %s"
-msgstr "Wo das Geld herkommt"
+msgstr "Wo das Geld herkommt - %s"
 
 #: src/reports/categexp.cpp:292 src/reports/categexp.cpp:299
 #: src/reports/categexp.cpp:305 src/reports/categexp.cpp:312
 #: src/reports/categexp.cpp:318 src/reports/categexp.cpp:325
 #: src/reports/categexp.cpp:332 src/reports/categexp.cpp:339
 #: src/reports/categexp.cpp:346
-#, fuzzy, c-format
+#, c-format
 msgid "Categories - %s"
-msgstr "Kategorien -  der letzten 30 Tage"
+msgstr "Kategorien -  %s"
 
 #: src/reports/categovertimeperf.cpp:25 src/reports/payee.cpp:32
-#, fuzzy
 msgid "Incomes"
 msgstr "Einnahmen"
 
 #: src/reports/categovertimeperf.cpp:25 src/reports/payee.cpp:33
-#, fuzzy
 msgid "Expences"
 msgstr "Ausgaben"
 
 #: src/reports/categovertimeperf.cpp:33
-#, fuzzy, c-format
+#, c-format
 msgid "Category Income/Expenses: %s"
-msgstr "Kategorie Einnahmen/Ausgaben über die letzten %d Monate"
+msgstr "Kategorie Einnahmen/Ausgaben %s"
 
 #: src/reports/chart.cpp:229 src/reports/chart.cpp:426
 msgid "Legend:"
@@ -4560,13 +4551,13 @@ msgstr "Heutiges Datum: %s"
 
 #: src/reports/htmlbuilder.cpp:273 src/reports/mmDateRange.cpp:174
 msgid "Over Time"
-msgstr ""
+msgstr "über der Zeit"
 
 #: src/reports/html_widget_top_categories.cpp:24
 #: src/reports/html_widget_top_categories.h:10
-#, fuzzy, c-format
+#, c-format
 msgid "Top Withdrawals: %s"
-msgstr "Top Auszahlungen:"
+msgstr "Top Auszahlungen: %s"
 
 #: src/reports/incexpenses.cpp:104
 msgid "Year"
@@ -4581,24 +4572,20 @@ msgid "Expenses"
 msgstr "Ausgaben"
 
 #: src/reports/mmDateRange.cpp:53
-#, fuzzy
 msgid "Today"
-msgstr "Zeige heutige"
+msgstr "Heute"
 
 #: src/reports/mmDateRange.cpp:89
-#, fuzzy
 msgid "Last 90 Days"
-msgstr "Letzten 30 Tage"
+msgstr "Letzte 90 Tage"
 
 #: src/reports/mmDateRange.cpp:99
-#, fuzzy
 msgid "Last 3 Months"
-msgstr "Zeige letzte 3 Monate"
+msgstr "letzte 3 Monate"
 
 #: src/reports/mmDateRange.cpp:109
-#, fuzzy
 msgid "Last 12 Months"
-msgstr "Zeige letzte 3 Monate"
+msgstr "letzte 12 Monate"
 
 #: src/reports/mmgraphpie.cpp:31
 msgid "All Others"
@@ -4695,9 +4682,9 @@ msgid "Filtering Details: "
 msgstr "Filterung Details: "
 
 #: src/reports/trx_stats.cpp:17
-#, fuzzy, c-format
+#, c-format
 msgid "Transaction Statistics for %i - %i"
-msgstr "Anzahl Buchungen für "
+msgstr "Buchungsstatistik für %i - %i "
 
 #: src/billsdepositsdialog.h:24
 msgid "New/Edit Repeating Transaction"
@@ -4768,9 +4755,8 @@ msgid "View Last 3 Months"
 msgstr "Zeige letzte 3 Monate"
 
 #: src/constants.h:76
-#, fuzzy
 msgid "View Last 12 Months"
-msgstr "Zeige letzte 3 Monate"
+msgstr "Zeige letzte 12 Monate"
 
 #: src/constants.h:77
 msgid "View Current Year"
@@ -4825,14 +4811,12 @@ msgid "Duplicate"
 msgstr "Duplizieren"
 
 #: src/constants.h:155
-#, fuzzy
 msgid "Un-Reconciled"
-msgstr "Überprüft"
+msgstr "nicht überprüft"
 
 #: src/constants.h:156
-#, fuzzy
 msgid "All Except Reconciled"
-msgstr "Alle anzeigen, außer überprüfte Buchungen"
+msgstr "Alle anzeigen, ausser überprüfte Buchungen"
 
 #: src/constants.h:168
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -5193,9 +5177,9 @@ msgstr "Zahlungsempfänger Bericht"
 #: src/reports/payee.h:45 src/reports/payee.h:53 src/reports/payee.h:61
 #: src/reports/payee.h:69 src/reports/payee.h:77 src/reports/payee.h:85
 #: src/reports/payee.h:93 src/reports/payee.h:101
-#, fuzzy, c-format
+#, c-format
 msgid "Payee report - %s"
-msgstr "Zahlungsempfänger Bericht"
+msgstr "Zahlungsempfänger Bericht %s"
 
 #~ msgid "Scale should be greater than zero"
 #~ msgstr "Konvertierung auf Basiszinssatz muss grösser als 0.0 sein"
