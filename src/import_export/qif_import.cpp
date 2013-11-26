@@ -491,7 +491,7 @@ int mmQIFImportDialog::mmImportQIF()
             //Category field may contains additional information like Project
             //Format Category[:Subcategory][/Project] //*/
             if (sFullCateg.Contains("/"))
-                transNum.Prepend(wxString::Format("[%s] ", getFinancistoProject(sFullCateg)));
+                transNum.Prepend(wxString::Format("[%s]", getFinancistoProject(sFullCateg)));
 
             wxStringTokenizer cattkz(sFullCateg, ":");
             sCateg = cattkz.GetNextToken();
