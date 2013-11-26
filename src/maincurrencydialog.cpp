@@ -92,10 +92,14 @@ void mmMainCurrencyDialog::fillControls()
 
     cbShowAll_->SetValue(Model_Infotable::instance().GetBoolInfo("SHOW_HIDDEN_CURRENCIES", true));
 
+    bool skip_unused = !cbShowAll_->IsChecked();
     for (const auto& currency : Model_Currency::instance().all(Model_Currency::COL_CURRENCYNAME))
     {
-        if (!cbShowAll_->IsChecked() && !Model_Account::is_used(currency)) continue;
         int currencyID = currency.CURRENCYID;
+        bool currency_is_base = false;
+        if (Model_Currency::GetBaseCurrency()) currency_is_base = Model_Currency::GetBaseCurrency()->CURRENCYID == currencyID;
+
+        if (skip_unused && !(Model_Account::is_used(currency) || currency_is_base)) continue;
 
         wxVector<wxVariant> data;
         data.push_back(wxVariant(baseCurrencyID == currencyID));
