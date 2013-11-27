@@ -138,7 +138,7 @@ wxString mmExportTransaction::getTransactionCSV()
 
     wxString buffer = "";
     int trans_id = transaction->TRANSID;
-    wxString accountName = full_tran.ACCOUNTNAME;
+    wxString accountName = (!out ? full_tran.PAYEENAME : full_tran.ACCOUNTNAME);
     wxString categ = full_tran.CATEGNAME;
     wxString payee = full_tran.PAYEENAME;
     wxString transNum = full_tran.TRANSACTIONNUMBER;
@@ -148,7 +148,7 @@ wxString mmExportTransaction::getTransactionCSV()
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (!out ? accountName : payee) + "]";
+        categ = "[" + (!out ? full_tran.ACCOUNTNAME : payee) + "]";
         payee = "";
 
         //Transaction number used to make transaction unique
