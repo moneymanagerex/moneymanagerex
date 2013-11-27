@@ -572,7 +572,7 @@ int mmQIFImportDialog::mmImportQIF()
                 sFullCateg = _("Unknown");
 
                 Model_Category::Data* category = Model_Category::instance().get(sCateg);
-                if (!category) 
+                if (!category)
                 {
                     category = Model_Category::instance().create();
                     category->CATEGNAME = sCateg;
@@ -679,7 +679,7 @@ int mmQIFImportDialog::mmImportQIF()
                 Model_Subcategory::Data* sub_category = (s != -1 ? Model_Subcategory::instance().get(s) : 0);
 
                 wxString cn = category->CATEGNAME;
-                wxString sn = (sub_category ? sub_category->SUBCATEGNAME : ""); 
+                wxString sn = (sub_category ? sub_category->SUBCATEGNAME : "");
                 double v = split_entry->SPLITTRANSAMOUNT; // mmSplit->entries_[i]->splitAmount_;
                 sMsg = (cn << ":" << sn << " " << v << "\n");
                 logWindow->AppendText(sMsg);
@@ -736,7 +736,7 @@ int mmQIFImportDialog::mmImportQIF()
             }
 
             if (bValid)
-            {   
+            {
                 vQIF_trxs_.push_back(std::make_pair(transaction, mmSplit));
             }
         }
@@ -774,7 +774,7 @@ int mmQIFImportDialog::mmImportQIF()
         wxString categs = Model_Category::full_name(transaction->CATEGID, transaction->SUBCATEGID);
         size_t i = 0;
         for (const auto& split_item : refTransaction.second)
-            categs << Model_Category::full_name(split_item->CATEGID, split_item->SUBCATEGID) 
+            categs << Model_Category::full_name(split_item->CATEGID, split_item->SUBCATEGID)
             << (refTransaction.second.size() > ++i ? "|" : "");
 
         data.push_back(wxVariant(categs));
@@ -800,8 +800,8 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 
     if (!sFileName_.IsEmpty())
         correctEmptyFileExt( "qif", sFileName_);
-	else
-		return; // user pressed cancel
+    else
+        return; // user pressed cancel
     file_name_ctrl_->SetValue(sFileName_);
 
     wxTextFile tFile;
@@ -926,8 +926,12 @@ bool mmQIFImportDialog::checkQIFFile()
 
     if (sAccountName.IsEmpty() && m_firstReferencedAccountID < 0)
     {
-        sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
-            , _("Account"), Model_Account::instance().all_checking_account_names());
+
+        //TODO: if there are no accounts for import call warning message and return false
+        sAccountName = sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
+            , _("Account")
+            , Model_Account::instance().all_checking_account_names()
+            , this);
 
         const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
         if (account)
