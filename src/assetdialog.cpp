@@ -225,7 +225,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         return;
     }
     double value = 0;
-    if (!valueStr.ToDouble(&value))
+    if (!Model_Currency::fromString(valueStr, value))
     {
         wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
         return;
