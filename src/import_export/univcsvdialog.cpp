@@ -224,8 +224,12 @@ void mmUnivCSVDialog::CreateControls()
     itemBoxSizer8->Add(itemStaticText6, flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL));
     itemStaticText6->SetFont(staticBoxFontSetting);
 
-    wxSortedArrayString accountArray;
-    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
+    wxArrayString accountArray;
+    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    {
+        if (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::TERM)
+            accountArray.Add(account.ACCOUNTNAME);
+    }
 
     m_choice_account_ = new wxChoice(itemPanel7, wxID_ACCOUNT, wxDefaultPosition, wxSize(210, -1), accountArray, 0);
     m_choice_account_->SetSelection(0);
