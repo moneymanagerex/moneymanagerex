@@ -282,7 +282,6 @@ int mmQIFImportDialog::mmImportQIF()
     wxTextCtrl*& logWindow = log_field_;
 
     int numLines = 0;
-    int trxNumLine = 1;
 
     wxString dt = wxDateTime::Now().FormatISODate();
     wxString sPayee, type, sAmount, transNum, notes, convDate, sToAccountName;
@@ -305,6 +304,7 @@ int mmQIFImportDialog::mmImportQIF()
     while (input.IsOk() && !input.Eof())
     {
         wxString readLine = text.ReadLine();
+        numLines++;
         //Init variables for each transaction
         if (bTrxComplited)
         {
@@ -329,7 +329,6 @@ int mmQIFImportDialog::mmImportQIF()
             convDate = wxDateTime::Now().FormatISODate();
 
             bTrxComplited = false;
-            trxNumLine = numLines - 1;
             sMsg = "-------------------------------------------------------------------------------------------------------------------------\n";
             logWindow->AppendText(sMsg);
         }
@@ -366,6 +365,7 @@ int mmQIFImportDialog::mmImportQIF()
                 while (input.IsOk() && !input.Eof() && reading)
                 {
                     readLine = text.ReadLine();
+                    numLines++;
                     if (lineType(readLine) == AcctType)
                     {
                         reading = false;
@@ -417,6 +417,7 @@ int mmQIFImportDialog::mmImportQIF()
             if ( accountType == "Option:AutoSwitch" )
             {
                 readLine = text.ReadLine();
+                numLines++;
                 while(readLine != "^" || input.Eof())
                 {
                     // ignore all lines
@@ -429,7 +430,7 @@ int mmQIFImportDialog::mmImportQIF()
             }
             // we do not know how to process this type yet
             wxString errMsgStr = _("Cannot process these QIF Account Types yet.");
-            wxString errLineMsgStr = wxString::Format(_("Line: %ld"), numLines)
+            wxString errLineMsgStr = wxString::Format(_("Line: %i"), numLines)
                 << "\n" << readLine;
 
             logWindow->AppendText(wxString()<< errLineMsgStr << "\n" << errMsgStr << "\n");
@@ -456,7 +457,7 @@ int mmQIFImportDialog::mmImportQIF()
 
             if (!sAmount.ToDouble(&val) && !Model_Currency::fromString(sAmount, val, Model_Account::currency(account)))
             {
-                sMsg = wxString::Format(_("Line: %ld invalid amount, skipping."), numLines);
+                sMsg = wxString::Format(_("Line: %i invalid amount, skipping."), numLines);
                 logWindow->AppendText(sMsg << "\n");
             }
             continue;
@@ -656,15 +657,15 @@ int mmQIFImportDialog::mmImportQIF()
             const Model_Account::Data* to_account = Model_Account::instance().get(to_account_id);
 
             sMsg = wxString::Format(
-                "Line:%ld Trx:%ld %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
-                , trxNumLine
-                , vQIF_trxs_.size() + 1
+                "Line:%i Trx:%i %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
+                , numLines
+                , int(vQIF_trxs_.size() + 1)
                 , sValid
                 , convDate
-                , from_account ? from_account->ACCOUNTNAME : ""
-                , wxString((type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : ""))
-                , to_account ? to_account->ACCOUNTNAME : ""
-                , payee ? payee->PAYEENAME : ""
+                , wxString(from_account ? from_account->ACCOUNTNAME : "")
+                , wxString(type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : "")
+                , wxString(to_account ? to_account->ACCOUNTNAME : "")
+                , wxString(payee ? payee->PAYEENAME : "")
                 , (wxString()<<val)
                 , sFullCateg
                 );
@@ -742,7 +743,7 @@ int mmQIFImportDialog::mmImportQIF()
         }
     }
 
-    sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %ld"), vQIF_trxs_.size());
+    sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %i"), int(vQIF_trxs_.size()));
     logWindow->AppendText(sMsg << "\n");
 
     int num = 0;

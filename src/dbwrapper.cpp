@@ -29,6 +29,13 @@
     only if the file is write protected by the operating system.  In either
     case the database must already exist, otherwise an error is returned.
 */
+wxSharedPtr<wxSQLite3Database> static_db_ptr()
+{
+    static wxSharedPtr<wxSQLite3Database> db(new wxSQLite3Database);
+
+    return db;
+}
+
 wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const wxString &password)
 {
     wxSharedPtr<wxSQLite3Database> db = static_db_ptr();

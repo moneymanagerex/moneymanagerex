@@ -280,13 +280,6 @@ wxImageList* navtree_images_list_()
     return imageList_;
 }
 
-wxSharedPtr<wxSQLite3Database> static_db_ptr()
-{
-    static wxSharedPtr<wxSQLite3Database> db(new wxSQLite3Database);
-
-    return db;
-}
-
 //* Date Functions----------------------------------------------------------*//
 
 wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
@@ -310,12 +303,11 @@ wxString mmGetDateForDisplay(const wxDateTime &dt)
     return dt.Format(mmOptions::instance().dateFormat_);
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDateMask)
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, wxString &sDateMask)
 {
-    if (sDateMask.IsEmpty()) return false;
-
     sDateMask.Replace("%Y%m%d", "%Y %m %d");
-    
+    if (date_formats_regex().count(sDateMask) == 0) return false;
+
     wxString regex = date_formats_regex()[sDateMask];
     wxRegEx pattern(regex);
     //wxLogDebug("%s %s %i %s", sDate, sDateMask, pattern.Matches(sDate), regex);
@@ -325,7 +317,6 @@ bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDate
         //wxString one = pattern.GetMatch(sDate, 1);
         return true;
     }
-
     return false;
 }
 

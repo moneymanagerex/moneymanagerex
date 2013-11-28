@@ -101,15 +101,15 @@ private:
     mmPrintableBase* report_;
 };
 
-void mmShowErrorMessageInvalid( wxWindow *parent, const wxString &message );
-void mmShowErrorMessage( wxWindow *parent, const wxString &message, const wxString &messageheader );
+void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message);
+void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
 
 wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting = true);
 
-wxDateTime mmGetStorageStringAsDate( const wxString& str );
-wxString mmGetDateForDisplay( const wxDateTime &dt );
-bool mmParseDisplayStringToDate(wxDateTime& date, wxString sDate, wxString sDateMask );
-wxString mmGetNiceDateSimpleString( const wxDateTime &dt );
+wxDateTime mmGetStorageStringAsDate(const wxString& str);
+wxString mmGetDateForDisplay(const wxDateTime &dt);
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, wxString& sDateMask);
+wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 std::map<wxString,wxString> date_formats_map();
 std::map<wxString,wxString> date_formats_regex();
 
@@ -145,8 +145,6 @@ int site_content(const wxString& site, wxString& output);
 wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
 wxImageList* navtree_images_list_();
-
-wxSharedPtr<wxSQLite3Database> static_db_ptr();
 
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------
