@@ -609,8 +609,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
 //----------------------------------------------------------------------------
 void mmCheckingPanel::initFilterSettings()
 {
-    mmDateRange* date_range = new mmAllTime;
-    delete date_range;
+    mmDateRange* date_range = 0;
 
     if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
         date_range = new mmAllTime;
@@ -633,10 +632,13 @@ void mmCheckingPanel::initFilterSettings()
     else
         wxASSERT(false);
 
-    quickFilterBeginDate_ = date_range->start_date();
-    quickFilterEndDate_ = date_range->end_date();
+    if (date_range)
+    {
+        quickFilterBeginDate_ = date_range->start_date();
+        quickFilterEndDate_ = date_range->end_date();
 
-    delete date_range;
+        delete date_range;
+    }
 }
 void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
