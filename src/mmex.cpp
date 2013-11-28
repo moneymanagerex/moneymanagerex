@@ -84,7 +84,7 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
 {
     { wxCMD_LINE_PARAM,  NULL, NULL, _("database file"), wxCMD_LINE_VAL_STRING, wxCMD_LINE_PARAM_OPTIONAL },
     { wxCMD_LINE_NONE }
-}; 
+};
 
 //----------------------------------------------------------------------------
 
@@ -193,13 +193,13 @@ bool OnInitImpl(mmGUIApp* app)
     int sys_screen_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
     int sys_screen_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
 
-    /* Load Dimensions of Window */    
+    /* Load Dimensions of Window */
     int valx = Model_Setting::instance().GetIntSetting("ORIGINX", 50);
     int valy = Model_Setting::instance().GetIntSetting("ORIGINY", 50);
     int valw = Model_Setting::instance().GetIntSetting("SIZEW", sys_screen_x/4*3);
     int valh = Model_Setting::instance().GetIntSetting("SIZEH", sys_screen_y/4*3);
-    
-    //BUGFIX: #214 MMEX Window is "off screen" 
+
+    //BUGFIX: #214 MMEX Window is "off screen"
     if (valx >= sys_screen_x ) valx = sys_screen_x - valw;
     if (valy >= sys_screen_y ) valy = sys_screen_y - valh;
 
@@ -729,15 +729,15 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
         if (!openFile(dbpath.GetFullPath(), false))
             showBeginAppDialog(true);
     }
-    
+
     const wxAcceleratorEntry entries[] =
     {
         wxAcceleratorEntry(wxACCEL_NORMAL, WXK_F9, wxID_NEW),
     };
 
     wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
-    SetAcceleratorTable(tab); 
-   
+    SetAcceleratorTable(tab);
+
 }
 //----------------------------------------------------------------------------
 
@@ -936,7 +936,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             {
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();
-                
+
                 tran->ACCOUNTID         = q1.ACCOUNTID;
                 tran->TOACCOUNTID       = q1.TOACCOUNTID;
                 tran->PAYEEID           = q1.PAYEEID;
@@ -1536,7 +1536,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         size_t i = 0;
         for (const auto& e: Model_Budgetyear::instance().all())
         {
-            if (!i) 
+            if (!i)
             { // first loop only
                 budgetPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Performance"), 4, 4);
                 navTreeCtrl_->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
@@ -1635,7 +1635,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
             }
         }
         // Stock Accounts
-        else 
+        else
         {
             if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
                 (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
@@ -2057,7 +2057,7 @@ void mmGUIFrame::createHomePage()
 {
 # if defined (__WINDOWS__)
     /* On init for Windows system that function start twice. *
-     * First time it should be skiped                        */           
+     * First time it should be skiped                        */
     if (initHomePage_)
 #endif
     {
@@ -2404,7 +2404,7 @@ void mmGUIFrame::createMenu()
 wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &name)
 {
     toolBar_ = new wxToolBar(this, id, wxDefaultPosition, wxDefaultSize, style, name);
-    wxBitmap toolBarBitmaps[12];
+    wxBitmap toolBarBitmaps[14];
     toolBarBitmaps[0] = wxBitmap(new_xpm);
     toolBarBitmaps[1] = wxBitmap(open_xpm);
     toolBarBitmaps[2] = wxBitmap(save_xpm);
@@ -2417,6 +2417,8 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
     toolBarBitmaps[9] = wxBitmap(customsql_xpm);
     toolBarBitmaps[10] = wxBitmap(wrench_xpm);
     toolBarBitmaps[11] = wxBitmap(new_transaction_xpm);
+    toolBarBitmaps[12] = wxBitmap(about_xpm);
+    toolBarBitmaps[13] = wxBitmap(help_xpm);
 
     toolBar_->AddTool(MENU_NEW, _("New"), toolBarBitmaps[0], _("New Database"));
     toolBar_->AddTool(MENU_OPEN, _("Open"), toolBarBitmaps[1], _("Open Database"));
@@ -2433,6 +2435,9 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
     toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), toolBarBitmaps[10], _("Show the Options Dialog"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_NEW, _("New"), toolBarBitmaps[11], _("New Transaction"));
+    toolBar_->AddSeparator();
+    toolBar_->AddTool(wxID_ABOUT, _("&About..."), toolBarBitmaps[12], _("Show about dialog"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tCtrl-F1"), toolBarBitmaps[13], _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2524,7 +2529,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db = mmDBWrapper::Open(fileName, password);
         password_ = password;
         InitializeModelTables();
-        
+
         SetDataBaseParameters(fileName);
 
         mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
@@ -2941,7 +2946,7 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
     if (m_db)
     {
         if (Model_Account::instance().all_checking_account_names().empty()) return;
-        mmTransDialog dlg(this, gotoAccountID_, NULL);
+        mmTransDialog dlg(this, gotoAccountID_, 0);
 
         if (dlg.ShowModal() == wxID_OK)
         {
