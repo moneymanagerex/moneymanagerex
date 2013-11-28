@@ -280,10 +280,9 @@ int mmQIFImportDialog::mmImportQIF()
 
     int numLines = 0;
     vQIF_trxs_.clear();
-    wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
-
-    Model_Payee::Data* payee = 0;
+    Model_Payee::Data* payee;
     Model_Splittransaction::Cache mmSplit;
+    wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
@@ -296,13 +295,15 @@ int mmQIFImportDialog::mmImportQIF()
         //Init variables for each transaction
         if (m_data.trxComplited)
         {
+            m_data.trxComplited = false;
             m_data.valid = true;
             m_data.sDescription.clear();
             m_data.sSplitAmount.clear();
             m_data.sSplitCategs.clear();
             mmSplit.clear();
-
+            payee = 0;
             m_data.payeeString.clear();
+
             m_data.type.clear();
             m_data.sFullCateg.clear();
             m_data.sCateg.clear();
@@ -316,7 +317,6 @@ int mmQIFImportDialog::mmImportQIF()
             m_data.notes = "";
             m_data.convDate = wxDateTime::Today().FormatISODate();
             m_data.dt = m_data.convDate;
-            m_data.trxComplited = false;
             sMsg = "-------------------------------------------------------------------------------------------------------------------------\n";
             logWindow->AppendText(sMsg);
         }
