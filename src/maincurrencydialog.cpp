@@ -110,12 +110,14 @@ void mmMainCurrencyDialog::fillControls()
         if (selectedIndex_ == currencyListBox_->GetItemCount() - 1)
         {
             currencyListBox_->SelectRow(selectedIndex_);
+            itemButtonEdit_->Enable();
             currencyID_ = currencyID;
         }
         if (currencyID_ == currencyID)
         {
             selectedIndex_ = currencyListBox_->GetItemCount() - 1;
             currencyListBox_->SelectRow(selectedIndex_);
+            itemButtonEdit_->Enable();
         }
     }
 
