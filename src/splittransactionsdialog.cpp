@@ -192,6 +192,7 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
     // finally 
     this->m_splits->swap(this->m_local_splits);
+    //TODO: check total amount - should be positive 
     EndModal(wxID_OK);
 
 }
