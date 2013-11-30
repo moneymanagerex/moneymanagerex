@@ -57,7 +57,7 @@ bool relocateCategoryDialog::Create( wxWindow* parent, wxWindowID id,
                            const wxSize& size, long style )
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -76,8 +76,8 @@ void relocateCategoryDialog::CreateControls()
     flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand().Center();
     wxSize btnSize = wxSize(180,-1);
 
-    wxStaticText* headerText = new wxStaticText( this, wxID_STATIC,
-        _("Relocate all source categories to the destination category"));
+    wxStaticText* headerText = new wxStaticText( this, wxID_STATIC
+        , _("Relocate all source categories to the destination category"));
     wxStaticLine* lineTop = new wxStaticLine(this, wxID_STATIC);
 
     sourceBtn_ = new wxButton( this, wxID_CLEAR,_("Source Category"), wxDefaultPosition, wxSize(200, -1));
@@ -100,8 +100,8 @@ void relocateCategoryDialog::CreateControls()
     boxSizer->Add(headerText, flags);
     boxSizer->Add(lineTop, flagsExpand);
 
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("Relocate:")), flags);
-    request_sizer->Add(new wxStaticText( this, wxID_STATIC,_("to:")), flags);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Relocate:")), flags);
+    request_sizer->Add(new wxStaticText(this, wxID_STATIC, _("to:")), flags);
     request_sizer->Add(sourceBtn_, flags);
     request_sizer->Add(destBtn_, flags);
     boxSizer->Add(request_sizer);
@@ -183,12 +183,12 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
         wxString msgStr = wxString()
             <<_("Please Confirm:")
             << "\n\n"
-            << wxString::Format(_("Records found in transactions: %i"), transactions.size()) << "\n"
-            << wxString::Format(_("Records found in split transactions: %i"), checking_split.size()) << "\n"
-            << wxString::Format(_("Records found in repeating transactions: %i"), billsdeposits.size()) << "\n"
-            << wxString::Format(_("Records found in repeating split transactions: %i"), budget_split.size()) << "\n"
-            << wxString::Format(_("Records found as Default Payee Category: %i"), payees.size()) << "\n"
-            << wxString::Format(_("Records found in budget: %i"), budget.size()) << "\n\n"
+            << wxString::Format(_("Records found in transactions: %i"), int(transactions.size())) << "\n"
+            << wxString::Format(_("Records found in split transactions: %i"), int(checking_split.size())) << "\n"
+            << wxString::Format(_("Records found in repeating transactions: %i"), int(billsdeposits.size())) << "\n"
+            << wxString::Format(_("Records found in repeating split transactions: %i"), int(budget_split.size())) << "\n"
+            << wxString::Format(_("Records found as Default Payee Category: %i"), int(payees.size())) << "\n"
+            << wxString::Format(_("Records found in budget: %i"), int(budget.size())) << "\n\n"
             << wxString::Format(_("Changing all categories of: \n%s to category: %s")
                 , sourceBtn_->GetLabelText(), destBtn_->GetLabelText());
 
