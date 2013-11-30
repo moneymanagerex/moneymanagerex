@@ -190,11 +190,17 @@ void SplitTransactionDialog::OnButtonEditClick( wxCommandEvent& /*event*/ )
 
 void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 {
-    // finally 
-    this->m_splits->swap(this->m_local_splits);
-    //TODO: check total amount - should be positive 
-    EndModal(wxID_OK);
-
+    //Check total amount - should be positive
+    if (Model_Splittransaction::instance().get_total(this->m_local_splits) < 0) 
+    {
+        mmShowErrorMessage(this, _("Invalid Total Amount"), _("Error"));
+    }
+    else
+    {
+        // finally 
+        this->m_splits->swap(this->m_local_splits);
+        EndModal(wxID_OK);
+    }
 }
 
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )

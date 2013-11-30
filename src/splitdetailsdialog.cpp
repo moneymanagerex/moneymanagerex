@@ -58,18 +58,6 @@ SplitDetailDialog::SplitDetailDialog(
     , accountID_(accountID)
 {
     transType_ = transType;
-    localTransType_ = transType;
-
-    if (split_->SPLITTRANSAMOUNT < 0.0)
-    {
-        if (transType == DEF_DEPOSIT)
-           localTransType_ = DEF_WITHDRAWAL;
-        else if (transType == DEF_WITHDRAWAL)
-           localTransType_ = DEF_DEPOSIT;
-
-        split_->SPLITTRANSAMOUNT = abs(split_->SPLITTRANSAMOUNT);
-    }
-
     Create(parent);
 }
 
@@ -94,12 +82,10 @@ void SplitDetailDialog::DataToControls()
     const wxString category_name = Model_Category::full_name(category, sub_category);
 
     bCategory_->SetLabel(category_name);
-    choiceType_->SetSelection(localTransType_);
 
     if (split_->SPLITTRANSAMOUNT)
-        textAmount_->SetValue(split_->SPLITTRANSAMOUNT);
+        textAmount_->SetValue(abs(split_->SPLITTRANSAMOUNT));
     textAmount_->SetFocus();
-
 }
 
 void SplitDetailDialog::CreateControls()
@@ -125,9 +111,13 @@ void SplitDetailDialog::CreateControls()
         _("Withdrawal"),
         _("Deposit"),
     };
-    choiceType_ = new wxChoice(itemPanel7,ID_DIALOG_SPLTTRANS_TYPE,wxDefaultPosition,wxDefaultSize,2,itemChoiceStrings,0);
+    choiceType_ = new wxChoice(itemPanel7, ID_DIALOG_SPLTTRANS_TYPE
+        , wxDefaultPosition, wxDefaultSize
+        , 2
+        , itemChoiceStrings);
+    choiceType_->SetSelection(split_->SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
     choiceType_->SetToolTip(_("Specify the type of transactions to be created."));
-    controlSizer->Add(choiceType_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
+    controlSizer->Add(choiceType_, 0, wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
 
     wxStaticText* staticTextAmount = new wxStaticText( itemPanel7, wxID_STATIC, _("Amount"));
     controlSizer->Add(staticTextAmount, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
