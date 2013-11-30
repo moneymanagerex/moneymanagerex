@@ -84,7 +84,7 @@ void SplitDetailDialog::DataToControls()
     bCategory_->SetLabel(category_name);
 
     if (split_->SPLITTRANSAMOUNT)
-        textAmount_->SetValue(abs(split_->SPLITTRANSAMOUNT));
+        textAmount_->SetValue(fabs(split_->SPLITTRANSAMOUNT));
     textAmount_->SetFocus();
 }
 
