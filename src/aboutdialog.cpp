@@ -39,20 +39,20 @@ BEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmAboutDialog::OnLinkClicked)
 END_EVENT_TABLE()
 
-mmAboutDialog::mmAboutDialog( wxWindow* parent)
+mmAboutDialog::mmAboutDialog(wxWindow* parent)
 {
     wxString caption = wxString(_("About")) << " " << mmex::getProgramName();
     Create(parent, ID_DIALOG_ABOUT, caption, wxDefaultPosition,
         wxSize(500, 220), wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 }
 
-bool mmAboutDialog::Create(wxWindow* parent,
-                           wxWindowID id,
-                           const wxString& caption,
-                           const wxPoint& pos,
-                           const wxSize& size,
-                           long style
-                          )
+bool mmAboutDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style
+    )
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
 
@@ -82,30 +82,30 @@ void mmAboutDialog::InitControls()
     hb.addHeader(3, "Money Manager Ex");
     hb.addParaText(html);
     hb.addLineBreak();
-    hb.addTableCellLink( mmex::getProgramFacebookSite()
+    hb.addTableCellLink(mmex::getProgramFacebookSite()
         , _("Visit us on Facebook"));
     hb.addLineBreak();
-    hb.addTableCellLink( mmex::getProgramForum()
+    hb.addTableCellLink(mmex::getProgramForum()
         , _("Visit MMEX Forum"));
     //hb.addText(_("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
     hb.addLineBreak();
-    hb.addTableCellLink( mmex::getProgramTwitterSite()
+    hb.addTableCellLink(mmex::getProgramTwitterSite()
         , _("Visit MMEX Twitter"));
     hb.addLineBreak();
-    hb.addTableCellLink( "https://sourceforge.net/p/moneymanagerex/wiki/mmex/"
+    hb.addTableCellLink("https://sourceforge.net/p/moneymanagerex/wiki/mmex/"
         , _("wiki page"));
     hb.addLineBreak();
-    hb.addTableCellLink( "https://sourceforge.net/p/moneymanagerex/bugs/"
+    hb.addTableCellLink("https://sourceforge.net/p/moneymanagerex/bugs/"
         , _("Bug reports"));
     hb.addLineBreak();
     //https://sourceforge.net/p/moneymanagerex/bugs/
-    hb.addTableCellLink( mmex::getProgramDanateSite()
+    hb.addTableCellLink(mmex::getProgramDanateSite()
         , _("Donate"));
     hb.addLineBreak();
 
     hb.end();
     html = hb.getHTMLText();
-    about_text_ -> SetPage(html);
+    about_text_->SetPage(html);
 
     wxArrayString data;
     data.Add("");
@@ -144,10 +144,10 @@ void mmAboutDialog::InitControls()
             data[part] << line;
     }
 
-    developers_text_ -> SetPage(data[0]);
-    if (data.GetCount()>1) translators_text_ -> SetPage(data[1]);
-    if (data.GetCount()>2) artwork_text_ -> SetPage(data[2]);
-    if (data.GetCount()>3) sponsors_text_ -> SetPage(data[3]);
+    developers_text_->SetPage(data[0]);
+    if (data.GetCount() > 1) translators_text_->SetPage(data[1]);
+    if (data.GetCount() > 2) artwork_text_->SetPage(data[2]);
+    if (data.GetCount() > 3) sponsors_text_->SetPage(data[3]);
 
 }
 void mmAboutDialog::CreateControls()
@@ -158,18 +158,18 @@ void mmAboutDialog::CreateControls()
     wxBoxSizer* itemBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer);
 
-    wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC,
-        mmex::getTitleProgramVersion());
+    wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC
+        , mmex::getTitleProgramVersion());
     int font_size = this->GetFont().GetPointSize() + 2;
     versionStaticText->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, wxGetEmptyString()));
     itemBoxSizer->Add(versionStaticText, flags);
 
-    wxStaticText* itemStaticText88 = new wxStaticText(this,
-        wxID_STATIC, mmex::getProgramCopyright());
+    wxStaticText* itemStaticText88 = new wxStaticText(this
+        , wxID_STATIC, mmex::getProgramCopyright());
 
     //Create tabs
-    wxNotebook* about_notebook = new wxNotebook(this,
-        wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE );
+    wxNotebook* about_notebook = new wxNotebook(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE );
 
     wxPanel* about_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(about_tab, _("About"));
@@ -198,14 +198,14 @@ void mmAboutDialog::CreateControls()
 
     wxSize internal_size = wxSize(400, 400); //developers_tab_->GetBestVirtualSize();
 
-    about_text_ = new wxHtmlWindow( about_tab, wxID_ANY
+    about_text_ = new wxHtmlWindow(about_tab, wxID_ANY
         , wxDefaultPosition, wxDefaultSize
-        , wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
-    about_sizer->Add(about_text_, 1, wxGROW|wxALL, 1);
+        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
+    about_sizer->Add(about_text_, 1, wxGROW | wxALL, 1);
 
-    developers_text_ = new wxHtmlWindow( developers_tab
+    developers_text_ = new wxHtmlWindow(developers_tab
         , wxID_ANY, wxDefaultPosition, internal_size
-        , wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
+        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     developers_sizer->Add(developers_text_, 1, wxEXPAND);
 
     translators_text_ = new wxHtmlWindow( translators_tab
@@ -213,14 +213,14 @@ void mmAboutDialog::CreateControls()
         , wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
     translators_sizer->Add(translators_text_, 1, wxEXPAND);
 
-    artwork_text_ = new wxHtmlWindow( artwork_tab
+    artwork_text_ = new wxHtmlWindow(artwork_tab
         , wxID_ANY, wxDefaultPosition, internal_size
-        , wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
+        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     artwork_sizer->Add(artwork_text_, 1, wxEXPAND);
 
-    sponsors_text_ = new wxHtmlWindow( sponsors_tab
+    sponsors_text_ = new wxHtmlWindow(sponsors_tab
         , wxID_ANY, wxDefaultPosition, internal_size
-        , wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
+        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     sponsors_sizer->Add(sponsors_text_, 1, wxEXPAND);
 
     itemBoxSizer->Add(about_notebook, flags);
