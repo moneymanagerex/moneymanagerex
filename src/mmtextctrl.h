@@ -51,7 +51,7 @@ public:
     bool GetDouble(double &amount) const
     {
         wxString amountStr = this->GetValue().Trim();
-        return !Model_Currency::fromString(amountStr, amount, currency_);
+        return Model_Currency::fromString(amountStr, amount, currency_);
     }
 private:
     const Model_Currency::Data* currency_;

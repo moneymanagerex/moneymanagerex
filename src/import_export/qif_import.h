@@ -119,6 +119,23 @@ private:
     };
     std::map<int, wxString> ColName_;
 
+    struct m_data
+    {
+        wxDateTime dtdt;
+        bool valid;
+        bool trxComplited;
+        int payeeID;
+        int categID;
+        int subCategID;
+        int to_accountID;
+        int from_accountID;
+        wxString payeeString, type, amountString, transNum, notes;
+        wxString dt, convDate, accountName, dateString, sToAccountName;
+        wxString sFullCateg, sCateg, sSubCateg, sSplitCategs, sSplitAmount, sValid, sDescription;
+        double val = 0.0, dSplitAmount = 0.0;
+    } m_data;
+
+    //QIF specific data
     enum qifAccountInfoType
     {
         Name = 1, // N

@@ -125,4 +125,3 @@ wxString mmex::getProgramDescription()
 
     return description;
 }
-
