@@ -101,7 +101,7 @@ void mmBudgetYearDialog::CreateControls()
     itemBudgetMonth->SetToolTip(_("Add a new budget month"));
 
     wxButton* itemButtonDelete = new wxButton( this, ID_DIALOG_BUDGETYEAR_BUTTON_DELETE, 
-        _("&Delete"), wxDefaultPosition, wxDefaultSize, 0 );
+        _("&Delete "), wxDefaultPosition, wxDefaultSize, 0 );
     itemBoxSizer5->Add(itemButtonDelete, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5);
     itemButtonDelete->SetToolTip(_("Delete existing budget"));
 

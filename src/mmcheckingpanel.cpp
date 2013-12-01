@@ -1038,7 +1038,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, _("Delete all transactions in current view"));
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Trans."));
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete"), subGlobalOpMenuDelete);
+    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete "), subGlobalOpMenuDelete);
 
     menu.AppendSeparator();
 
