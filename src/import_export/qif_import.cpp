@@ -909,12 +909,19 @@ bool mmQIFImportDialog::checkQIFFile()
 
     if (sAccountName.IsEmpty() && m_firstReferencedAccountID < 0)
     {
-
-        //TODO: if there are no accounts for import call warning message and return false
-        sAccountName = sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
-            , _("Account")
-            , Model_Account::instance().all_checking_account_names()
-            , this);
+        wxArrayString accounts = Model_Account::instance().all_checking_account_names();
+        if (accounts.empty())
+        {
+            mmShowErrorMessage(this, _("There are no accounts available for import to"), _("QIF Import"));
+            return false;
+        }
+        else
+        {
+            sAccountName = wxGetSingleChoice(_("Choose Account to Import to")
+                , _("Account")
+                , Model_Account::instance().all_checking_account_names()
+                , this);
+        }
 
         const Model_Account::Data* account = Model_Account::instance().get(sAccountName);
         if (account)
