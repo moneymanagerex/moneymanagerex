@@ -280,7 +280,7 @@ int mmQIFImportDialog::mmImportQIF()
 
     int numLines = 0;
     vQIF_trxs_.clear();
-    Model_Payee::Data* payee;
+    Model_Payee::Data* payee = 0;
     Model_Splittransaction::Cache mmSplit;
     wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
