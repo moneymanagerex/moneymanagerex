@@ -587,7 +587,6 @@ bool mmTransDialog::validateData()
     else
     {
         wxString amountStr = textAmount_->GetValue().Trim();
-        //if (!amountStr.ToDouble(&transaction_->TRANSAMOUNT))
         if (!Model_Currency::fromString(amountStr, transaction_->TRANSAMOUNT
             , Model_Account::currency(account)))
         {
@@ -730,9 +729,16 @@ void mmTransDialog::activateSplitTransactionsDlg()
     transaction_->SUBCATEGID = -1;
     
     SplitTransactionDialog dlg(&m_local_splits, this, transaction_type_->GetSelection(), newAccountID_);
-    dlg.ShowModal();
-    transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
-    skip_category_init_ = false;
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        double amount = Model_Splittransaction::instance().get_total(m_local_splits);
+        if (transaction_type_->GetSelection() == DEF_TRANSFER && amount < 0)
+            amount = - amount;
+        Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
+        wxString dispAmount = Model_Currency::toString(amount, Model_Account::currency(account));
+        textAmount_->SetValue(dispAmount);
+        textAmount_->Enable(false);
+}
 }
 
 void mmTransDialog::SetDialogTitle(const wxString& title)

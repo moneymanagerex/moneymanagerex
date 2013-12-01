@@ -68,6 +68,7 @@ private:
 
     int transType_;
     int accountID_;
+    int localTransType_;
 
     wxChoice* choiceType_;
     mmTextCtrl* textAmount_;

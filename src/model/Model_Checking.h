@@ -211,7 +211,7 @@ public:
     static double amount(const Data&r, int account_id = -1) { return amount(&r, account_id); }
     static double balance(const Data* r, int account_id = -1)
     {
-        if (Model_Checking::status(r) == VOID_) return 0;
+        if (Model_Checking::status(r) == Model_Checking::VOID_) return 0;
         return amount(r, account_id);
     }
     static double balance(const Data& r, int account_id = -1) { return balance(&r, account_id); }
@@ -230,7 +230,7 @@ public:
     static double reconciled(const Data* r, int account_id) 
     {
         double bal = balance(r, account_id);
-        return status(r) == RECONCILED ? bal : 0;
+        return Model_Checking::status(r) == Model_Checking::RECONCILED ? bal : 0;
     }
     static double reconciled(const Data& r, int account_id) { return reconciled(&r, account_id); }
     static wxString toShortStatus(const wxString& fullStatus)
@@ -239,13 +239,6 @@ public:
         s.Replace("N", "");
         return s;
     }
-    static bool is_duplicate(const Data& r)
-    {
-        //TODO: [feature-request:#240] Check transaction dublicate
-        //Data_Set trx = instance().find(r.TRANSDATE /*, r.PAYEEID, r.CATEGID, r.SUBCATEGID, r.TRANSCODE, r.TRANSAMOUNT*/);
-        //return !trx.empty();
-        return false;
     };
-};
 
 #endif // 

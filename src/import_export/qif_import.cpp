@@ -163,13 +163,13 @@ void mmQIFImportDialog::CreateControls()
 
     dataListBox_ = new wxDataViewListCtrl(data_panel
         , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
-    dataListBox_->AppendTextColumn(ColName_[COL_ACCOUNT], wxDATAVIEW_CELL_INERT, 120, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 90, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[COL_NUMBER], wxDATAVIEW_CELL_INERT, 80, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[COL_STATUS], wxDATAVIEW_CELL_INERT, 60, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 140, wxALIGN_RIGHT);
-    dataListBox_->AppendTextColumn(ColName_[COL_VALUE], wxDATAVIEW_CELL_INERT, 100, wxALIGN_RIGHT);
+    dataListBox_->AppendTextColumn( ColName_[COL_ACCOUNT], wxDATAVIEW_CELL_INERT, 120);
+    dataListBox_->AppendTextColumn( ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 90);
+    dataListBox_->AppendTextColumn( ColName_[COL_NUMBER], wxDATAVIEW_CELL_INERT, 80);
+    dataListBox_->AppendTextColumn( ColName_[COL_PAYEE], wxDATAVIEW_CELL_INERT, 120);
+    dataListBox_->AppendTextColumn( ColName_[COL_STATUS], wxDATAVIEW_CELL_INERT, 60);
+    dataListBox_->AppendTextColumn( ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 140);
+    dataListBox_->AppendTextColumn( ColName_[COL_VALUE], wxDATAVIEW_CELL_INERT, 100);
     dataListBox_->AppendTextColumn(ColName_[COL_NOTES], wxDATAVIEW_CELL_INERT, 300);
     data_sizer->Add(dataListBox_, flagsExpand);
 
@@ -268,7 +268,7 @@ int mmQIFImportDialog::mmImportQIF()
     wxString sMsg;
 
     //Check date restrictions
-    wxDateTime fromDate = wxDateTime::Today(), toDate = wxDateTime::Today();
+    wxDateTime fromDate = wxDateTime::Now(), toDate = wxDateTime::Now();
     bool bFromDate = dateFromCheckBox_->IsChecked();
     bool bToDate = dateToCheckBox_->IsChecked();
     if (bFromDate)
@@ -276,47 +276,58 @@ int mmQIFImportDialog::mmImportQIF()
     if (bToDate)
         toDate = toDateCtrl_->GetValue().GetDateOnly();
 
+    wxSortedArrayString accountArray;
+    for (const auto& account: Model_Account::instance().all()) accountArray.Add(account.ACCOUNTNAME);
+
     wxTextCtrl*& logWindow = log_field_;
 
     int numLines = 0;
+    int trxNumLine = 1;
+
+    wxString dt = wxDateTime::Now().FormatISODate();
+    wxString sPayee, type, sAmount, transNum, notes, convDate, sToAccountName;
+    wxString sFullCateg, sCateg, sSubCateg, sSplitCategs, sSplitAmount, sValid, sDescription;
+
+    wxDateTime dtdt = wxDateTime::Today();
+    int payeeID = -1, categID = -1, subCategID = -1, to_account_id = -1, from_account_id = -1;
+    double val = 0.0, dSplitAmount = 0.0;
+    bool bTrxComplited = true;
+    bool bValid = true;
     vQIF_trxs_.clear();
     Model_Payee::Data* payee = 0;
     Model_Splittransaction::Cache mmSplit;
-    wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
-    m_data.trxComplited = true;
     while (input.IsOk() && !input.Eof())
     {
         wxString readLine = text.ReadLine();
-        numLines++;
         //Init variables for each transaction
-        if (m_data.trxComplited)
+        if (bTrxComplited)
         {
-            m_data.trxComplited = false;
-            m_data.valid = true;
-            m_data.sDescription.clear();
-            m_data.sSplitAmount.clear();
-            m_data.sSplitCategs.clear();
+            bValid = true;
+            sDescription.clear();
+            sSplitAmount.clear();
+            sSplitCategs.clear();
             mmSplit.clear();
-            payee = 0;
-            m_data.payeeString.clear();
 
-            m_data.type.clear();
-            m_data.sFullCateg.clear();
-            m_data.sCateg.clear();
-            m_data.sSubCateg.clear();
-            m_data.subCategID = -1;
-            m_data.categID = -1;
-            m_data.amountString.clear();
-            m_data.val = 0.0;
-            m_data.dSplitAmount = 0.0;
-            m_data.transNum = "";
-            m_data.notes = "";
-            m_data.convDate = wxDateTime::Today().FormatISODate();
-            m_data.dt = m_data.convDate;
+            sPayee.clear();
+            type.clear();
+            sFullCateg.clear();
+            sCateg.clear();
+            sSubCateg.clear();
+            subCategID = -1;
+            categID = -1;
+            sAmount.clear();
+            val = 0.0;
+            dSplitAmount = 0.0;
+            transNum = "";
+            notes = "";
+            convDate = wxDateTime::Now().FormatISODate();
+
+            bTrxComplited = false;
+            trxNumLine = numLines - 1;
             sMsg = "-------------------------------------------------------------------------------------------------------------------------\n";
             logWindow->AppendText(sMsg);
         }
@@ -343,7 +354,7 @@ int mmQIFImportDialog::mmImportQIF()
             {
                 sMsg = wxString::Format(_("Importing account type: %s"), accountType);
                 logWindow->AppendText(sMsg << "\n");
-                m_data.trxComplited = true;
+                bTrxComplited = true;
                 continue;
             }
 
@@ -353,7 +364,6 @@ int mmQIFImportDialog::mmImportQIF()
                 while (input.IsOk() && !input.Eof() && reading)
                 {
                     readLine = text.ReadLine();
-                    numLines++;
                     if (lineType(readLine) == AcctType)
                     {
                         reading = false;
@@ -380,14 +390,14 @@ int mmQIFImportDialog::mmImportQIF()
                     else if (i == Description)
                     {
                         //TODO: Get currency symbol if provided (huck)
-                        m_data.sDescription = getLineData(readLine);
+                        sDescription = getLineData(readLine);
                         continue;
                     }
                     else if (i == Balance)
                     {
                         sBalance = getLineData(readLine);
-                        if (!sBalance.ToDouble(&m_data.val) && !Model_Currency::fromString(sBalance, m_data.val, Model_Account::currency(account)))
-                            m_data.val = 0;
+                        if (!sBalance.ToDouble(&val) && !Model_Currency::fromString(sBalance, val, Model_Account::currency(account)))
+                            val = 0;
                         continue;
                     }
                     else if (i == AccountType || i == CreditLimit || i  == BalanceDate)
@@ -396,8 +406,8 @@ int mmQIFImportDialog::mmImportQIF()
                     }
                 }
 
-                wxString currency_name = m_data.sDescription;
-                fromAccountID_ = getOrCreateAccount(acctName, m_data.val, currency_name);
+                wxString currency_name = sDescription;
+                fromAccountID_ = getOrCreateAccount(acctName, val, currency_name);
                 continue;
             }
 
@@ -405,7 +415,6 @@ int mmQIFImportDialog::mmImportQIF()
             if ( accountType == "Option:AutoSwitch" )
             {
                 readLine = text.ReadLine();
-                numLines++;
                 while(readLine != "^" || input.Eof())
                 {
                     // ignore all lines
@@ -418,7 +427,7 @@ int mmQIFImportDialog::mmImportQIF()
             }
             // we do not know how to process this type yet
             wxString errMsgStr = _("Cannot process these QIF Account Types yet.");
-            wxString errLineMsgStr = wxString::Format(_("Line: %i"), numLines)
+            wxString errLineMsgStr = wxString::Format(_("Line: %ld"), numLines)
                 << "\n" << readLine;
 
             logWindow->AppendText(wxString()<< errLineMsgStr << "\n" << errMsgStr << "\n");
@@ -427,263 +436,269 @@ int mmQIFImportDialog::mmImportQIF()
             break;
         }
 
-        m_data.to_accountID = -1;
-        m_data.from_accountID = fromAccountID_;
+        to_account_id = -1;
+        from_account_id = fromAccountID_;
 
         if (lineType(readLine) == Date) // 'D'
         {
-            m_data.dt = getLineData(readLine);
+            dt = getLineData(readLine);
 
-            m_data.valid = mmParseDisplayStringToDate(m_data.dtdt, m_data.dt, dateFormat_);
-            m_data.dtdt = m_data.dtdt.GetDateOnly();
-            m_data.convDate = m_data.dtdt.FormatISODate();
+            bValid = mmParseDisplayStringToDate(dtdt, dt, dateFormat_);
+            dtdt = dtdt.GetDateOnly();
+            convDate = dtdt.FormatISODate();
             continue;
         }
         else if (lineType(readLine) == Amount) // 'T'
         {
-            m_data.amountString = getLineData(readLine);
+            sAmount = getLineData(readLine);
 
-            if (!m_data.amountString.ToDouble(&m_data.val) 
-                && !Model_Currency::fromString(m_data.amountString, m_data.val, Model_Account::currency(account)))
+            if (!sAmount.ToDouble(&val) && !Model_Currency::fromString(sAmount, val, Model_Account::currency(account)))
             {
-                sMsg = wxString::Format(_("Line: %i invalid amount, skipping."), numLines);
+                sMsg = wxString::Format(_("Line: %ld invalid amount, skipping."), numLines);
                 logWindow->AppendText(sMsg << "\n");
             }
             continue;
         }
         else if (lineType(readLine) == Payee) // 'P'
         {
-            m_data.payeeString = getLineData(readLine);
+            sPayee = getLineData(readLine);
             continue;
         }
         else if (lineType(readLine) == TransNumber) // 'N'
         {
-            m_data.transNum = getLineData(readLine);
+            transNum = getLineData(readLine);
             continue;
         }
         else if (lineType(readLine) == Memo || lineType(readLine) == MemoSplit ) // 'M' // 'E'
         {
-            m_data.notes << getLineData(readLine) << "\n";
+            notes << getLineData(readLine) << "\n";
             continue;
         }
         else if (lineType(readLine) == Category || lineType(readLine) == CategorySplit) // 'S' // 'L'
         {
-            m_data.sFullCateg = getLineData(readLine);
+            sFullCateg = getLineData(readLine);
 
-            if (m_data.sFullCateg.Left(1).Contains("[") && m_data.sFullCateg.Right(1).Contains("]"))
+            if (sFullCateg.Left(1).Contains("[") && sFullCateg.Right(1).Contains("]"))
             {
-                m_data.sToAccountName = m_data.sFullCateg.substr(1, m_data.sFullCateg.Length()-2);
-                m_data.sFullCateg = _("Transfer");
-                m_data.type = Model_Checking::all_type()[Model_Checking::TRANSFER];
+                sToAccountName = sFullCateg.substr(1, sFullCateg.Length()-2);
+                sFullCateg = _("Transfer");
+                type = TRANS_TYPE_TRANSFER_STR;
             }
 
             /* //Trick  for cut non standart qif category usage in Financisto application
             //Category field may contains additional information like Project
             //Format Category[:Subcategory][/Project] //*/
-            if (m_data.sFullCateg.Contains("/"))
-                m_data.transNum.Prepend(wxString::Format("[%s]", getFinancistoProject(m_data.sFullCateg)));
+            if (sFullCateg.Contains("/"))
+                transNum.Prepend(wxString::Format("[%s]", getFinancistoProject(sFullCateg)));
 
-            wxStringTokenizer cattkz(m_data.sFullCateg, ":");
-            m_data.sCateg = cattkz.GetNextToken();
-            m_data.sSubCateg = "";
+            wxStringTokenizer cattkz(sFullCateg, ":");
+            sCateg = cattkz.GetNextToken();
+            sSubCateg = "";
             if (cattkz.HasMoreTokens())
-                m_data.sSubCateg = cattkz.GetNextToken();
+                sSubCateg = cattkz.GetNextToken();
 
-            if (m_data.sCateg.IsEmpty()) m_data.sCateg = _("Unknown");
-            Model_Category::Data* category = Model_Category::instance().get(m_data.sCateg);
-            if (!category)
+            Model_Category::Data* category = Model_Category::instance().get(sCateg);
+            if (!category && !sCateg.IsEmpty())
             {
                 category = Model_Category::instance().create();
-                category->CATEGNAME = m_data.sCateg;
+                category->CATEGNAME = sCateg;
                 Model_Category::instance().save(category);
-                sMsg = wxString::Format(_("Added category: %s"), m_data.sCateg);
+                sMsg = wxString::Format(_("Added category: %s"), sCateg);
                 logWindow->AppendText(sMsg << "\n");
             }
-            if (category) m_data.categID = category->CATEGID;
+            if (category) categID = category->CATEGID;
 
-            Model_Subcategory::Data* sub_category = (Model_Subcategory::instance().get(m_data.sSubCateg, m_data.categID));
-            if (!sub_category && !m_data.sSubCateg.IsEmpty())
+            Model_Subcategory::Data* sub_category = (Model_Subcategory::instance().get(sSubCateg, categID));
+            if (!sub_category && !sSubCateg.IsEmpty())
             {
                 sub_category = Model_Subcategory::instance().create();
-                sub_category->CATEGID = m_data.categID;
-                sub_category->SUBCATEGNAME = m_data.sSubCateg;
+                sub_category->CATEGID = categID;
+                sub_category->SUBCATEGNAME = sSubCateg;
                 Model_Subcategory::instance().save(sub_category);
-                sMsg = wxString::Format(_("Added subcategory: %s"), m_data.sSubCateg);
+                sMsg = wxString::Format(_("Added subcategory: %s"), sSubCateg);
                 logWindow->AppendText(sMsg << "\n");
             }
-            if (sub_category) m_data.subCategID = sub_category->SUBCATEGID;
+            if (sub_category) subCategID = sub_category->SUBCATEGID;
 
             continue;
         }
         else if (lineType(readLine) == AmountSplit) // '$'
         {
-            m_data.sSplitAmount = getLineData(readLine);
+            sSplitAmount = getLineData(readLine);
 
             //get amount
-            if (!m_data.sSplitAmount.ToDouble(&m_data.dSplitAmount)
-                && !Model_Currency::fromString(m_data.sSplitAmount, m_data.dSplitAmount, Model_Account::currency(account)))
-                m_data.dSplitAmount = 0; //wrong amount
+            if (!sSplitAmount.ToDouble(&dSplitAmount) && !Model_Currency::fromString(sSplitAmount, dSplitAmount, Model_Account::currency(account)))
+                dSplitAmount = 0; //wrong amount
             //
-            if (m_data.type == Model_Checking::all_type()[Model_Checking::TRANSFER])
-                m_data.dSplitAmount = -m_data.dSplitAmount;
+            if (type == TRANS_TYPE_WITHDRAWAL_STR)
+                dSplitAmount = -dSplitAmount;
             //Add split entry
             Model_Splittransaction::Data * pSplitEntry = Model_Splittransaction().instance().create();
-            pSplitEntry->SPLITTRANSAMOUNT = m_data.dSplitAmount;
-            pSplitEntry->CATEGID = m_data.categID;
-            pSplitEntry->SUBCATEGID = m_data.subCategID;
+            pSplitEntry->SPLITTRANSAMOUNT = dSplitAmount;
+            pSplitEntry->CATEGID = categID;
+            pSplitEntry->SUBCATEGID = subCategID;
             mmSplit.push_back(pSplitEntry);
             continue;
         }
         //MemoSplit
         else if (lineType(readLine) == Address) // 'A'
         {
-            m_data.notes << getLineData(readLine) << "\n";
+            notes << getLineData(readLine) << "\n";
             continue;
         }
         else if (lineType(readLine) == EOTLT) // ^
         {
             wxString status = "F";
 
-            if (m_data.dt.Trim().IsEmpty())
+            if (dt.Trim().IsEmpty())
             {
                 sMsg = _("Date is missing");
                 logWindow->AppendText(wxString()<< sMsg << "\n");
-                m_data.valid = false;
+                bValid = false;
             }
-            if (m_data.amountString.Trim().IsEmpty())
+            if (sAmount.Trim().IsEmpty())
             {
                 sMsg = _("Amount is missing");
                 logWindow->AppendText(sMsg << "\n");
-                m_data.valid = false;
+                bValid = false;
             }
 
-            if (m_data.sFullCateg.Trim().IsEmpty() && m_data.type != Model_Checking::all_type()[Model_Checking::TRANSFER])
+            if (sFullCateg.Trim().IsEmpty() && type != Model_Checking::all_type()[Model_Checking::TRANSFER])
             {
                 sMsg = _("Category is missing");
                 logWindow->AppendText(sMsg << "\n");
-                m_data.sCateg = _("Unknown");
+                sFullCateg = _("Unknown");
 
-                Model_Category::Data* category = Model_Category::instance().get(m_data.sCateg);
+                Model_Category::Data* category = Model_Category::instance().get(sCateg);
                 if (!category)
                 {
                     category = Model_Category::instance().create();
-                    category->CATEGNAME = m_data.sCateg;
-                    m_data.categID = Model_Category::instance().save(category);
+                    category->CATEGNAME = sCateg;
+                    Model_Category::instance().save(category);
+                    categID = category->CATEGID;
 
-                    sMsg = wxString::Format(_("Added category: %s"), m_data.sCateg);
+                    sMsg = wxString::Format(_("Added category: %s"), sCateg);
                     logWindow->AppendText(sMsg << "\n");
                 }
-                if (category) m_data.categID = category->CATEGID;
             }
 
-            m_data.to_accountID = -1;
-            if (m_data.type == Model_Checking::all_type()[Model_Checking::TRANSFER])
+            to_account_id = -1;
+            if (type == Model_Checking::all_type()[Model_Checking::TRANSFER])
             {
-                m_data.to_accountID = getOrCreateAccount(m_data.sToAccountName, 0, m_data.sDescription);
-                accountArray.Add(m_data.sToAccountName);
+                to_account_id = getOrCreateAccount(sToAccountName, 0, sDescription);
+                accountArray.Add(sToAccountName);
 
-                if (m_data.val > 0.0)
+                if (val > 0.0)
                 {
-                    m_data.from_accountID = m_data.to_accountID;
-                    m_data.to_accountID = fromAccountID_;
+                    from_account_id = to_account_id;
+                    to_account_id = fromAccountID_;
                 }
-                m_data.payeeID = -1;
+                payeeID = -1;
             }
             else //!=TRANSFER
             {
-                if (m_data.val > 0.0)
-                    m_data.type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
-                else if (m_data.val < 0.0)
-                    m_data.type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
+                if (val > 0.0)
+                    type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
+                else if (val < 0.0)
+                    type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
                 else
-                    m_data.valid = false;
+                    bValid = false;
 
-                m_data.to_accountID = -1;
-                if (m_data.payeeString.IsEmpty())
+                to_account_id = -1;
+                if (sPayee.IsEmpty())
                 {
                     sMsg = _("Payee missing");
                     logWindow->AppendText(sMsg << "\n");
-                    m_data.payeeString = _("Unknown");
+                    sPayee = _("Unknown");
                 }
 
-                payee = Model_Payee::instance().get(m_data.payeeString);
+                payee = Model_Payee::instance().get(sPayee);
                 if (payee)
                 {
-                    m_data.payeeID = payee->PAYEEID;
+                    payeeID = payee->PAYEEID;
                 }
                 else
                 {
                     payee = Model_Payee::instance().create();
-                    payee->PAYEENAME = m_data.payeeString;
+                    payee->PAYEENAME = sPayee;
                     Model_Payee::instance().save(payee);
 
-                    m_data.payeeID = payee->PAYEEID;
-                    logWindow->AppendText(wxString::Format(_("Payee Added: %s"), m_data.payeeString) + "\n");
+                    payeeID = payee->PAYEEID;
+                    logWindow->AppendText(wxString::Format(_("Payee Added: %s"), sPayee) + "\n");
                 }
             }
 
             if (!mmSplit.empty())
             {
-                m_data.categID = m_data.subCategID = -1;
-                m_data.sFullCateg = _("Split Category");
+                categID = -1;
+                sFullCateg = _("Split Category");
             }
             else
             {
-                m_data.sFullCateg = Model_Category::full_name(m_data.categID, m_data.subCategID);
+                Model_Category::Data* category = Model_Category::instance().get(categID);
+                Model_Subcategory::Data* sub_category = (Model_Subcategory::instance().get(subCategID));
+                sFullCateg = Model_Category::full_name(category, sub_category);
             }
 
-            m_data.sValid = m_data.valid ? "OK" : "NO";
+            if (bValid)
+                sValid = "OK";
+            else
+                sValid = "NO";
 
-            if ((m_data.valid) && (bFromDate) && ((m_data.dtdt < fromDate) || (bToDate && (m_data.dtdt > toDate))))
+            if ((bValid) && (bFromDate) && ((dtdt < fromDate) || (bToDate && (dtdt > toDate))))
             {
-                m_data.sValid = "SKIP";
-                m_data.valid = false;
+                sValid = "SKIP";
+                bValid = false;
             }
-            const Model_Account::Data* from_account = Model_Account::instance().get(m_data.from_accountID);
-            const Model_Account::Data* to_account = Model_Account::instance().get(m_data.to_accountID);
+            const Model_Account::Data* from_account = Model_Account::instance().get(from_account_id);
+            const Model_Account::Data* to_account = Model_Account::instance().get(to_account_id);
 
             sMsg = wxString::Format(
-                "Line:%i Trx:%i %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
-                , numLines
-                , int(vQIF_trxs_.size() + 1)
-                , m_data.sValid
-                , m_data.convDate
-                , wxString(from_account ? from_account->ACCOUNTNAME : "")
-                , wxString(m_data.type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : "")
-                , wxString(to_account ? to_account->ACCOUNTNAME : "")
-                , wxString(payee ? payee->PAYEENAME : "")
-                , (wxString() << m_data.val)
-                , m_data.sFullCateg
+                "Line:%ld Trx:%ld %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
+                , trxNumLine
+                , vQIF_trxs_.size() + 1
+                , sValid
+                , convDate
+                , from_account ? from_account->ACCOUNTNAME : ""
+                , wxString((type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : ""))
+                , to_account ? to_account->ACCOUNTNAME : ""
+                , payee ? payee->PAYEENAME : ""
+                , (wxString()<<val)
+                , sFullCateg
             );
             logWindow->AppendText(sMsg);
 
             for (const auto &split_entry : mmSplit)
             {
-                int c = split_entry->CATEGID;
-                int s = split_entry->SUBCATEGID;
+                int c = split_entry->CATEGID; //mmSplit->entries_[i]->categID_;
+                int s = split_entry->SUBCATEGID; //mmSplit->entries_[i]->subCategID_;
 
                 Model_Category::Data* category = Model_Category::instance().get(c);
                 Model_Subcategory::Data* sub_category = (s != -1 ? Model_Subcategory::instance().get(s) : 0);
-                double v = split_entry->SPLITTRANSAMOUNT;
-                sMsg = (Model_Category::full_name(category, sub_category) << " " << v << "\n");
+
+                wxString cn = category->CATEGNAME;
+                wxString sn = (sub_category ? sub_category->SUBCATEGNAME : "");
+                double v = split_entry->SPLITTRANSAMOUNT; // mmSplit->entries_[i]->splitAmount_;
+                sMsg = (cn << ":" << sn << " " << v << "\n");
                 logWindow->AppendText(sMsg);
             }
-            m_data.trxComplited = true;
-            if (!m_data.valid) continue;
+            bTrxComplited = true;
+            if (!bValid) continue;
 
             Model_Checking::Data *transaction = Model_Checking::instance().create();
-            transaction->TRANSDATE = m_data.dtdt.FormatISODate();
-            transaction->ACCOUNTID = m_data.from_accountID;
-            transaction->TOACCOUNTID = m_data.to_accountID;
-            transaction->PAYEEID = m_data.payeeID;
-            transaction->TRANSCODE = m_data.type;
-            transaction->TRANSAMOUNT = m_data.val;
+            transaction->TRANSDATE = dtdt.FormatISODate();
+            transaction->ACCOUNTID = from_account_id;
+            transaction->TOACCOUNTID = to_account_id;
+            transaction->PAYEEID = payeeID;
+            transaction->TRANSCODE = type;
+            transaction->TRANSAMOUNT = val;
             transaction->STATUS = status;
-            transaction->TRANSACTIONNUMBER = m_data.transNum;
-            transaction->NOTES = m_data.notes;
-            transaction->TOTRANSAMOUNT = m_data.val;
-            transaction->CATEGID = m_data.categID;
-            transaction->SUBCATEGID = m_data.subCategID;
+            transaction->TRANSACTIONNUMBER = transNum;
+            transaction->NOTES = notes;
+            transaction->TOTRANSAMOUNT = val;
+            if (!mmSplit.empty()) categID = -1;
+            transaction->CATEGID = categID;
+            transaction->SUBCATEGID = subCategID;
 
             //For any transfer transaction always mirrored transaction present
             //Just take alternate amount and skip it
@@ -694,16 +709,16 @@ int mmQIFImportDialog::mmImportQIF()
                     auto *refTrans(refTransaction.first);
                     if (Model_Checking::type(refTrans) != Model_Checking::TRANSFER) continue;
                     if (refTrans->STATUS == "D") continue;
-                    if (Model_Checking::TRANSDATE(refTrans) != m_data.dtdt) continue;
-                    if (((refTrans->TRANSAMOUNT < 0) && (m_data.val < 0)) || ((refTrans->TRANSAMOUNT > 0) && (m_data.val >0))) continue;
-                    if (refTrans->ACCOUNTID != m_data.from_accountID) continue;
-                    if (refTrans->TRANSACTIONNUMBER != m_data.transNum) continue;
-                    if (refTrans->NOTES != m_data.notes) continue;
+                    if (Model_Checking::TRANSDATE(refTrans) != dtdt) continue;
+                    if (((refTrans->TRANSAMOUNT < 0) && (val < 0)) || ((refTrans->TRANSAMOUNT > 0) && (val >0))) continue;
+                    if (refTrans->ACCOUNTID!= from_account_id) continue;
+                    if (refTrans->TRANSACTIONNUMBER != transNum) continue;
+                    if (refTrans->NOTES != notes) continue;
 
-                    if (m_data.val > 0.0)
-                        refTrans->TOTRANSAMOUNT = m_data.val;
+                    if (val > 0.0)
+                        refTrans->TOTRANSAMOUNT = val;
                     else
-                        refTrans->TRANSAMOUNT = m_data.val;
+                        refTrans->TRANSAMOUNT = val;
                     refTrans->STATUS = "D";
 
                     sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->TRANSAMOUNT
@@ -713,19 +728,19 @@ int mmQIFImportDialog::mmImportQIF()
                         : fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT));
                     logWindow->AppendText(sMsg);
 
-                    m_data.valid = false;
+                    bValid = false;
                     break;
                 }
             }
 
-            if (m_data.valid)
+            if (bValid)
             {
                 vQIF_trxs_.push_back(std::make_pair(transaction, mmSplit));
             }
         }
     }
 
-    sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %i"), int(vQIF_trxs_.size()));
+    sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %ld"), vQIF_trxs_.size());
     logWindow->AppendText(sMsg << "\n");
 
     int num = 0;
