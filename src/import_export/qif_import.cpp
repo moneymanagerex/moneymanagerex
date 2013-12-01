@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Currency.h"
+#include <wx/progdlg.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmQIFImportDialog, wxDialog )
 
@@ -287,9 +288,15 @@ int mmQIFImportDialog::mmImportQIF()
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
+    wxProgressDialog progressDlg(_("Please wait"), _("Scanning")
+        , m_numLines, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
+
     m_data.trxComplited = true;
     while (input.IsOk() && !input.Eof())
     {
+        if (!progressDlg.Update(numLines, wxString::Format(_("Reading line %i of %i"), numLines, m_numLines))) // if cancel clicked
+            break; // abort processing
+
         wxString readLine = text.ReadLine();
         numLines++;
         //Init variables for each transaction
@@ -317,8 +324,6 @@ int mmQIFImportDialog::mmImportQIF()
             m_data.notes = "";
             m_data.convDate = wxDateTime::Today().FormatISODate();
             m_data.dt = m_data.convDate;
-            sMsg = "-------------------------------------------------------------------------------------------------------------------------\n";
-            logWindow->AppendText(sMsg);
         }
 
         if (readLine.Length() == 0)
@@ -327,7 +332,7 @@ int mmQIFImportDialog::mmImportQIF()
         bool isOK = isLineOK(readLine);
         if (!isOK)
         {
-            sMsg = wxString()<< _("Line: ") << numLines << "  " << _(" Unknown QIF line: ") << readLine;
+            sMsg = wxString::Format(_("Line: %i"), numLines) << "  " << _(" Unknown QIF line: ") << readLine;
             logWindow->AppendText(wxString() << sMsg << "\n");
             continue;
         }
@@ -593,7 +598,7 @@ int mmQIFImportDialog::mmImportQIF()
             {
                 if (m_data.val > 0.0)
                     m_data.type = Model_Checking::all_type()[Model_Checking::DEPOSIT];
-                else if (m_data.val < 0.0)
+                else if (m_data.val <= 0.0)
                     m_data.type = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
                 else
                     m_data.valid = false;
@@ -639,23 +644,9 @@ int mmQIFImportDialog::mmImportQIF()
                 m_data.sValid = "SKIP";
                 m_data.valid = false;
             }
+
             const Model_Account::Data* from_account = Model_Account::instance().get(m_data.from_accountID);
             const Model_Account::Data* to_account = Model_Account::instance().get(m_data.to_accountID);
-
-            sMsg = wxString::Format(
-                "Line:%i Trx:%i %s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
-                , numLines
-                , int(vQIF_trxs_.size() + 1)
-                , m_data.sValid
-                , m_data.convDate
-                , wxString(from_account ? from_account->ACCOUNTNAME : "")
-                , wxString(m_data.type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : "")
-                , wxString(to_account ? to_account->ACCOUNTNAME : "")
-                , wxString(payee ? payee->PAYEENAME : "")
-                , (wxString() << m_data.val)
-                , m_data.sFullCateg
-            );
-            logWindow->AppendText(sMsg);
 
             for (const auto &split_entry : mmSplit)
             {
@@ -669,7 +660,23 @@ int mmQIFImportDialog::mmImportQIF()
                 logWindow->AppendText(sMsg);
             }
             m_data.trxComplited = true;
-            if (!m_data.valid) continue;
+            if (!m_data.valid)
+            {
+                sMsg = wxString::Format(
+                    _("Line: %i") + " Valid:%s D:%s Acc:'%s' %s P:'%s%s' Amt:%s C:'%s' \n"
+                    , numLines
+                    , m_data.sValid
+                    , m_data.convDate
+                    , wxString(from_account ? from_account->ACCOUNTNAME : "")
+                    , wxString(m_data.type == Model_Checking::all_type()[Model_Checking::TRANSFER] ? "<->" : "")
+                    , wxString(to_account ? to_account->ACCOUNTNAME : "")
+                    , wxString(payee ? payee->PAYEENAME : "")
+                    , (wxString() << m_data.val)
+                    , m_data.sFullCateg
+                    );
+                logWindow->AppendText(sMsg);
+                continue;
+            }
 
             Model_Checking::Data *transaction = Model_Checking::instance().create();
             transaction->TRANSDATE = m_data.dtdt.FormatISODate();
@@ -706,12 +713,12 @@ int mmQIFImportDialog::mmImportQIF()
                         refTrans->TRANSAMOUNT = m_data.val;
                     refTrans->STATUS = "D";
 
-                    sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->TRANSAMOUNT
+                    /*sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->TRANSAMOUNT
                         , refTrans->TOTRANSAMOUNT
                         , (fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT)<1)
                         ? fabs(refTrans->TOTRANSAMOUNT) / fabs(refTrans->TRANSAMOUNT)
                         : fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT));
-                    logWindow->AppendText(sMsg);
+                    logWindow->AppendText(sMsg);*/
 
                     m_data.valid = false;
                     break;
@@ -725,6 +732,7 @@ int mmQIFImportDialog::mmImportQIF()
         }
     }
 
+    progressDlg.Destroy();
     sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %i"), int(vQIF_trxs_.size()));
     logWindow->AppendText(sMsg << "\n");
 
@@ -802,14 +810,23 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
     int count = 0;
-    while (input.IsOk() && !input.Eof())
+    while (input.IsOk() && !input.Eof() && count <= 100)
     {
         *log_field_ << wxString::Format(_("Line %i "), ++count) << "\t"
             << text.ReadLine() << "\n";
     }
+    if (count > 100) *log_field_ << "-------------------------------------- 8< --------------------------------------" << "\n";
+
+    *log_field_ << _("Checking of QIF file started. Please wait...") << "\n";
 
     if (checkQIFFile())
+    {
+        *log_field_ << _("Checking of QIF file finished successfully") << "\n";
         mmImportQIF();
+    }
+    else
+        * log_field_ << _("Checking of QIF file finished with no success") << "\n";
+
 }
 
 bool mmQIFImportDialog::checkQIFFile()
@@ -824,21 +841,22 @@ bool mmQIFImportDialog::checkQIFFile()
 
     std::map<wxString, int> date_parsing_stat;
     wxString sAccountName;
+    wxString lastDate = "";
 
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
-    size_t line = 0;
+    size_t numLines = 0;
     while (input.IsOk() && !input.Eof())
     {
-        line++;
+        numLines++;
         wxString str = text.ReadLine();
         if (str.empty()) continue;
 
         if (!isLineOK(str))
         {
             wxString sError = wxString()
-                << wxString::Format(_("Line %i"), line)
+                << wxString::Format(_("Line %i"), numLines)
                 << "\n"
                 << str;
             mmShowErrorMessageInvalid(this, sError);
@@ -848,6 +866,8 @@ bool mmQIFImportDialog::checkQIFFile()
         if (lineType(str) == Date)
         {
             const wxString sDate = getLineData(str);
+            if (sDate == lastDate || numLines > 1000) continue; //Speedup
+            lastDate = sDate;
             for (const auto& date_mask : date_formats_map())
             {
                 wxString mask = m_userDefinedFormat ? dateFormat_ : date_mask.first;
@@ -942,7 +962,8 @@ bool mmQIFImportDialog::checkQIFFile()
         newAccounts_->SetSelection(0);
         bbAccounts_->SetBitmapLabel(wxBitmap(flag_xpm));
     }
-
+    m_numLines = numLines;
+    *log_field_ << wxString::Format(_("Total number of lines: %i"), int(numLines)) << "\n";
     return true;
 }
 
@@ -1035,12 +1056,11 @@ int mmQIFImportDialog::getOrCreateAccount(const wxString& name, double init_bala
                 account->CURRENCYID = curr.CURRENCYID;
         }
         accountID = Model_Account::instance().save(account);
+        wxString sMsg = wxString::Format(_("Account name: %s"), name);
+        log_field_->AppendText(wxString() << sMsg << "\n");
     }
     else
         accountID = account->ACCOUNTID;
-
-    wxString sMsg = wxString::Format(_("Account name: %s"), name);
-    log_field_->AppendText(wxString() << sMsg << "\n");
 
     return accountID;
 }

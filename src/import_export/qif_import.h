@@ -104,20 +104,7 @@ private:
     wxBitmapButton* bbFormat_;
     wxBitmapButton* bbAccounts_;
     int m_firstReferencedAccountID; //The first available account in the QIF file
-
-    enum EColumn
-    {
-        COL_ACCOUNT = 0,
-        COL_DATE,
-        COL_NUMBER,
-        COL_PAYEE,
-        COL_STATUS,
-        COL_CATEGORY,
-        COL_VALUE,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
-    std::map<int, wxString> ColName_;
+    int m_numLines;
 
     struct m_data
     {
@@ -231,6 +218,20 @@ private:
             return UnknownType;
         }
     }
+
+    enum EColumn
+    {
+        COL_ACCOUNT = 0,
+        COL_DATE,
+        COL_NUMBER,
+        COL_PAYEE,
+        COL_STATUS,
+        COL_CATEGORY,
+        COL_VALUE,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
+    std::map<int, wxString> ColName_;
 
 };
 #endif // 
