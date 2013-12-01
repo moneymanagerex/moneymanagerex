@@ -382,6 +382,9 @@ void mmQIFExportDialog::mmExportQIF()
         /* Array with transfer transactions */
         std::map <int, wxString> transferTransactions;
 
+        wxProgressDialog progressDlg(_("Please wait"), _("Exporting")
+            , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
+
         for (const auto &account_id : selected_accounts_id_)
         {
             if (qif_csv)
@@ -400,6 +403,9 @@ void mmQIFExportDialog::mmExportQIF()
                     continue;
 
                 numRecords++;
+                if (!progressDlg.Update(numRecords%100
+                    , wxString::Format(_("Exporting transaction %i"), numRecords))) // if cancel clicked
+                    break; // abort processing
 
                 mmExportTransaction data(transaction.TRANSID, account_id);
                 if (qif_csv)
@@ -451,8 +457,10 @@ void mmQIFExportDialog::mmExportQIF()
     const wxString msg = wxString::Format(sErrorMsg, numRecords);
     wxMessageDialog msgDlg(parent_, wxGetTranslation(msg)
         , _("Export to QIF"), wxOK|wxICON_INFORMATION);
+    wxButton* ok = (wxButton*)FindWindow(wxID_OK);
+    ok->Disable();
 
-    //FIXME: Can't close this dialog
+    //FIXME: Can't close this dialog (Ubuntu 64x ???)
     msgDlg.ShowModal();
 
 }
