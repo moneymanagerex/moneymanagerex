@@ -93,11 +93,10 @@ wxString mmExportTransaction::getTransactionQIF()
     if (!notes.IsEmpty())
         buffer << "M" << notes << "\n";
 
-    //if categ id is empty that mean this is split transaction
-    if (transaction->CATEGID == -1)
+    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
+    if (!splits.empty())
     {
-
-        for (const auto &split_entry : Model_Checking::splittransaction(transaction))
+        for (const auto &split_entry : splits)
         {
             double value = split_entry.SPLITTRANSAMOUNT;
             if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
@@ -157,10 +156,10 @@ wxString mmExportTransaction::getTransactionCSV()
             transNum = wxString::Format("#%i", trans_id);
     }
 
-    //if categ id is empty that mean this is split transaction
-    if (transaction->CATEGID == -1)
+    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
+    if (!splits.empty())
     {
-        for (const auto &split_entry : Model_Checking::splittransaction(transaction))
+        for (const auto &split_entry : splits)
         {
             double value = split_entry.SPLITTRANSAMOUNT;
             if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)

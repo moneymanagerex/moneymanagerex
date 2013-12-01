@@ -202,7 +202,8 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
 
         double convRate = acc_conv_rates[trx.ACCOUNTID];
 
-        if (trx.CATEGID > -1)
+        Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(trx);
+        if (splits.empty())
         {
             if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
                 payeeStats[trx.PAYEEID].first += trx.TRANSAMOUNT * convRate;
@@ -211,7 +212,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         }
         else
         {
-            for (const auto& entry : Model_Checking::splittransaction(trx))
+            for (const auto& entry : splits)
             {
                 if (Model_Checking::type(trx) == Model_Checking::DEPOSIT)
                 {
