@@ -289,7 +289,7 @@ int mmQIFImportDialog::mmImportQIF()
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
     wxProgressDialog progressDlg(_("Please wait"), _("Scanning")
-        , m_numLines, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
+        , m_numLines, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
 
     m_data.trxComplited = true;
     while (input.IsOk() && !input.Eof())
@@ -346,8 +346,8 @@ int mmQIFImportDialog::mmImportQIF()
                     || (!accountType.CmpNoCase("Type:Oth L"))
                 )
             {
-                sMsg = wxString::Format(_("Importing account type: %s"), accountType);
-                logWindow->AppendText(sMsg << "\n");
+                /*sMsg = wxString::Format(_("Importing account type: %s"), accountType);
+                logWindow->AppendText(sMsg << "\n");*/
                 m_data.trxComplited = true;
                 continue;
             }
@@ -623,7 +623,7 @@ int mmQIFImportDialog::mmImportQIF()
                     Model_Payee::instance().save(payee);
 
                     m_data.payeeID = payee->PAYEEID;
-                    logWindow->AppendText(wxString::Format(_("Payee Added: %s"), m_data.payeeString) + "\n");
+                    logWindow->AppendText(wxString::Format(_("Added payee: %s"), m_data.payeeString) + "\n");
                 }
             }
 
@@ -648,7 +648,7 @@ int mmQIFImportDialog::mmImportQIF()
             const Model_Account::Data* from_account = Model_Account::instance().get(m_data.from_accountID);
             const Model_Account::Data* to_account = Model_Account::instance().get(m_data.to_accountID);
 
-            for (const auto &split_entry : mmSplit)
+            /*for (const auto &split_entry : mmSplit)
             {
                 int c = split_entry->CATEGID;
                 int s = split_entry->SUBCATEGID;
@@ -658,7 +658,7 @@ int mmQIFImportDialog::mmImportQIF()
                 double v = split_entry->SPLITTRANSAMOUNT;
                 sMsg = (Model_Category::full_name(category, sub_category) << " " << v << "\n");
                 logWindow->AppendText(sMsg);
-            }
+            }*/
             m_data.trxComplited = true;
             if (!m_data.valid)
             {
@@ -993,9 +993,17 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
     if (msgDlg.ShowModal() == wxID_YES)
     {
+        int numTransactions = vQIF_trxs_.size();
+        int count = 0;
+        wxProgressDialog progressDlg(_("Please wait"), _("Importing")
+            , numTransactions, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
 
         for (auto& refTransaction : vQIF_trxs_)
         {
+            
+            if (!progressDlg.Update(count++, wxString::Format(_("Importing transaction %i of %i"), count, numTransactions))) // if cancel clicked
+                break; // abort processing
+
             auto *refTrans(refTransaction.first);
             refTrans->TRANSAMOUNT = fabs(refTrans->TRANSAMOUNT);
             refTrans->TOTRANSAMOUNT = fabs(refTrans->TOTRANSAMOUNT);
@@ -1015,6 +1023,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 
         sMsg = _("Import finished successfully");
         btnOK_->Enable(false);
+        progressDlg.Destroy();
     }
     else
     {
@@ -1056,7 +1065,7 @@ int mmQIFImportDialog::getOrCreateAccount(const wxString& name, double init_bala
                 account->CURRENCYID = curr.CURRENCYID;
         }
         accountID = Model_Account::instance().save(account);
-        wxString sMsg = wxString::Format(_("Account name: %s"), name);
+        wxString sMsg = wxString::Format(_("Added account: %s"), name);
         log_field_->AppendText(wxString() << sMsg << "\n");
     }
     else
