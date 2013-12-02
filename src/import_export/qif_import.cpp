@@ -45,6 +45,9 @@ mmQIFImportDialog::mmQIFImportDialog(
       , m_firstReferencedAccountID(-1)
       , m_userDefinedFormat(false)
       , m_parsedOK(false)
+      , m_IsFileValid(false)
+      , m_IsDatesValid(false)
+      , m_IsAccountsOK(false)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -98,7 +101,8 @@ void mmQIFImportDialog::CreateControls()
     file_name_ctrl_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString,
         wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
 
-    bbFile_ = new wxBitmapButton(this, wxID_ANY, wxBitmap(flag_xpm));
+    bbFile_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition
+        , wxSize(file_name_ctrl_->GetSize().GetHeight(), file_name_ctrl_->GetSize().GetHeight()));
     flex_sizer->Add(file_name_label, flags);
     flex_sizer->Add(button_search_, flags);
     flex_sizer->Add(bbFile_, flags);
@@ -118,7 +122,8 @@ void mmQIFImportDialog::CreateControls()
     choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED,
         wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), NULL, this);
 
-    bbFormat_ = new wxBitmapButton(this, wxID_ANY, wxBitmap(flag_xpm));
+    bbFormat_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition
+        , wxSize(file_name_ctrl_->GetSize().GetHeight(), file_name_ctrl_->GetSize().GetHeight()));
     flex_sizer->Add(dateFormat, flags);
     flex_sizer->Add(choiceDateFormat_, flags);
     flex_sizer->Add(bbFormat_, flags);
@@ -126,7 +131,8 @@ void mmQIFImportDialog::CreateControls()
     // Accounts
     wxStaticText* newAccountsText = new wxStaticText(this, wxID_STATIC, _("Missing Accounts"));
     newAccounts_ = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(150,-1));
-    bbAccounts_ = new wxBitmapButton(this, wxID_ANY, wxBitmap(flag_xpm));
+    bbAccounts_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition
+        , wxSize(file_name_ctrl_->GetSize().GetHeight(), file_name_ctrl_->GetSize().GetHeight()));
     flex_sizer->Add(newAccountsText, flags);
     flex_sizer->Add(newAccounts_, flags);
     flex_sizer->Add(bbAccounts_, flags);
@@ -205,14 +211,16 @@ void mmQIFImportDialog::CreateControls()
 
 void mmQIFImportDialog::fillControls()
 {
-    bbFile_ ->SetBitmapLabel(wxBitmap(empty_xpm));
-    bbFile_ ->Enable(false);
-    bbFormat_->SetBitmapLabel(wxBitmap(empty_xpm));
-    bbFormat_->Enable(false);
-    bbAccounts_->SetBitmapLabel(wxBitmap(empty_xpm));
-    bbAccounts_->Enable(false);
-    newAccounts_->Enable(false);
-    btnOK_->Enable(false);
+    dataListBox_->DeleteAllItems();
+
+    bbFile_->SetBitmap(m_IsFileValid ? wxBitmap(reconciled_xpm) : wxBitmap(void_xpm));
+    bbFile_->Enable(m_IsFileValid);
+    bbFormat_->SetBitmap(m_IsDatesValid ? wxBitmap(reconciled_xpm) : wxBitmap(void_xpm));
+    bbFormat_->Enable(m_IsDatesValid);
+    bbAccounts_->SetBitmapLabel(m_IsAccountsOK ? wxBitmap(reconciled_xpm) : wxBitmap(void_xpm));
+    bbAccounts_->Enable(m_IsAccountsOK);
+    newAccounts_->Enable(newAccounts_->GetCount() > 0);
+    btnOK_->Enable(m_IsFileValid && m_IsDatesValid);
 }
 
 bool mmQIFImportDialog::isLineOK(const wxString& line)
@@ -284,11 +292,11 @@ bool mmQIFImportDialog::mmParseQIF()
     m_data.trxComplited = true;
     while (input.IsOk() && !input.Eof())
     {
-        if (!progressDlg.Update(numLines, wxString::Format(_("Reading line %i of %i"), numLines, m_numLines))) // if cancel clicked
+        if (!progressDlg.Update(++numLines, wxString::Format(_("Reading line %i of %i"), numLines, m_numLines))) // if cancel clicked
             break; // abort processing
 
         wxString readLine = text.ReadLine();
-        numLines++;
+
         //Init variables for each transaction
         if (m_data.trxComplited)
         {
@@ -762,12 +770,16 @@ bool mmQIFImportDialog::mmParseQIF()
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
 
+    sMsg = wxString::Format(_("Press OK Button to continue"));
+    logWindow->AppendText(sMsg << "\n");
+
     return true;
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
-    m_firstReferencedAccountID = -1;
+    m_IsFileValid = false;
+
     sFileName_ = file_name_ctrl_->GetValue();
 
     const wxString choose_ext = _("QIF Files");
@@ -793,6 +805,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     tFile.Close();
 
     m_userDefinedFormat = false;
+    m_firstReferencedAccountID = -1;
 
     //Output file into log window
     wxFileInputStream input(sFileName_);
@@ -815,18 +828,11 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
     else
         * log_field_ << _("Checking of QIF file finished with no success") << "\n";
 
+    fillControls();
 }
 
 bool mmQIFImportDialog::checkQIFFile()
 {
-    bbFile_->Enable(false);
-    bbFile_->SetBitmapLabel(wxBitmap(empty_xpm));
-    bbFormat_->Enable(false);
-    bbFormat_->SetBitmapLabel(wxBitmap(empty_xpm));
-    newAccounts_->Clear();
-    bbAccounts_->SetBitmapLabel(wxBitmap(empty_xpm));
-    btnOK_->Enable(false);
-
     std::map<wxString, int> date_parsing_stat;
     wxString sAccountName;
     wxString lastDate = "";
@@ -872,6 +878,7 @@ bool mmQIFImportDialog::checkQIFFile()
             bool reading = true;
             while (input.IsOk() && !input.Eof() && reading)
             {
+                numLines++;
                 str = text.ReadLine();
                 if (accountInfoType(str) == Name)
                 {
@@ -888,9 +895,6 @@ bool mmQIFImportDialog::checkQIFFile()
     }
 
     //Check parsing results
-    bbFile_->Enable(true);
-    bbFile_->SetBitmapLabel(wxBitmap(flag_xpm));
-
     int i = 0;
     for (const auto& d : date_parsing_stat)
     {
@@ -908,12 +912,14 @@ bool mmQIFImportDialog::checkQIFFile()
 
     if (!date_parsing_stat.empty())
     {
-        bbFormat_->Enable(true);
-        bbFormat_->SetBitmapLabel(wxBitmap(flag_xpm));
+        m_IsDatesValid = true;
         btnOK_->Enable(true);
     }
     else
+    {
+        m_IsDatesValid = false;
         return false;
+    }
 
     if (sAccountName.IsEmpty() && m_firstReferencedAccountID < 0)
     {
@@ -946,15 +952,13 @@ bool mmQIFImportDialog::checkQIFFile()
             mmShowErrorMessageInvalid(this, _("Base Currency Not Set"));
             return false;
         }
-        newAccounts_->Enable(true);
         newAccounts_->SetSelection(0);
-        bbAccounts_->Enable(false);
+        m_IsAccountsOK = false;
     }
     else
     {
-        bbAccounts_->Enable(true);
+        m_IsAccountsOK = true;
     }
-    if (m_firstReferencedAccountID > 0) bbAccounts_->SetBitmapLabel(wxBitmap(flag_xpm));
 
     m_numLines = numLines;
     *log_field_ << wxString::Format(_("Total number of lines: %i"), int(numLines)) << "\n";

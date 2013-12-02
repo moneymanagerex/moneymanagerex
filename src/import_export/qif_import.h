@@ -61,6 +61,8 @@ private:
     bool mmParseQIF();
     bool m_parsedOK;
     bool m_IsFileValid;
+    bool m_IsDatesValid;
+    bool m_IsAccountsOK;
 
     void CreateControls();
     void fillControls();
