@@ -402,9 +402,8 @@ void mmQIFExportDialog::mmExportQIF()
                 if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(transaction) > toDateCtrl_->GetValue())
                     continue;
 
-                numRecords++;
                 if (!progressDlg.Update(numRecords%100
-                    , wxString::Format(_("Exporting transaction %i"), numRecords))) // if cancel clicked
+                    , wxString::Format(_("Exporting transaction %i"), ++numRecords))) // if cancel clicked
                     break; // abort processing
 
                 mmExportTransaction data(transaction.TRANSID, account_id);
@@ -416,6 +415,7 @@ void mmQIFExportDialog::mmExportQIF()
                 if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
                     int index = transaction.ACCOUNTID == account_id ? transaction.TOACCOUNTID : transaction.ACCOUNTID;
+                    if (transaction.ACCOUNTID != account_id) numRecords--;
                     if (selected_accounts_id_.Index(index) == wxNOT_FOUND)
                     {
                         //get second part of transfer transaction
