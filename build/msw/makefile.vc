@@ -170,7 +170,8 @@ MMEX_OBJECTS =  \
 	mmex_export.obj \
 	mmex_qif_export.obj \
 	mmex_qif_import.obj \
-	mmex_univcsvdialog.obj
+	mmex_univcsvdialog.obj \
+	mmex_html_template.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
 
@@ -816,6 +817,9 @@ mmex_qif_import.obj: ..\..\src\import_export\qif_import.cpp
 
 mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\univcsvdialog.cpp
+
+mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\cgitemplate\html_template.cpp
 
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
 	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
