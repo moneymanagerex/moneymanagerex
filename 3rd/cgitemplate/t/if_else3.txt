@@ -1,0 +1,8 @@
+<div id="search_results">
+  
+    Oops, sorry, there were no results found for Jessica Simpson
+      <br><br>
+      Would you like to <a href="http://www.goaskalice.columbia.edu/0775.html">get a life?</a>
+  
+</div>
+

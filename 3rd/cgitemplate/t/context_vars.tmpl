@@ -1,0 +1,78 @@
+<TMPL_LOOP NAME="LOOP1">
+========================
+  <TMPL_IF NAME=__odd__>
+    Loop 1 row # <TMPL_VAR NAME="__count__"> is odd
+  </TMPL_IF>
+  
+  <TMPL_IF NAME=__even__>
+    Loop 1 row # <TMPL_VAR NAME="__count__"> is even
+  </TMPL_IF>
+
+  <TMPL_IF NAME=__first__>
+    first row of loop 1
+  </TMPL_IF>
+
+  <TMPL_IF NAME=__last__>
+    last row of loop 1
+  </TMPL_IF>
+
+  <TMPL_IF NAME=__inner__>
+    inner row of loop 1
+  <TMPL_ELSE>
+    NOT inner row of loop 1
+  </TMPL_IF>
+
+  <TMPL_LOOP NAME="LOOP2">
+  ------------------------
+    <TMPL_IF NAME=__odd__>
+      Loop 2 row # <TMPL_VAR NAME="__count__"> is odd
+    </TMPL_IF>
+  
+    <TMPL_IF NAME=__even__>
+      Loop 2 row # <TMPL_VAR NAME="__count__"> is even
+    </TMPL_IF>
+    
+    <TMPL_IF NAME=__first__>
+      first row of loop 2
+    </TMPL_IF>
+
+    <TMPL_IF NAME=__last__>
+      last row of loop 2
+    </TMPL_IF>
+
+    <TMPL_IF NAME=__inner__>
+      inner row of loop 2
+    <TMPL_ELSE>
+      NOT inner row of loop 2
+    </TMPL_IF>
+  ------------------------
+  </TMPL_LOOP>
+
+  <TMPL_LOOP NAME="LOOP3">
+  ------------------------
+    <TMPL_IF NAME=__odd__>
+      Loop 3 row # <TMPL_VAR NAME="__count__"> is odd
+    </TMPL_IF>
+  
+    <TMPL_IF NAME=__even__>
+      Loop 3 row # <TMPL_VAR NAME="__count__"> is even
+    </TMPL_IF>
+    
+    <TMPL_IF NAME=__first__>
+      first row of loop 3
+    </TMPL_IF>
+
+    <TMPL_IF NAME=__last__>
+      last row of loop 3
+    </TMPL_IF>
+
+    <TMPL_IF NAME=__inner__>
+      inner row of loop 3
+    <TMPL_ELSE>
+      NOT inner row of loop 3
+    </TMPL_IF>
+  ------------------------
+  </TMPL_LOOP>
+
+========================
+</TMPL_LOOP>

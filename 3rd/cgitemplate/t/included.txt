@@ -1,0 +1,1 @@
+I am an include | <TMPL_INCLUDE NAME="included2.txt">

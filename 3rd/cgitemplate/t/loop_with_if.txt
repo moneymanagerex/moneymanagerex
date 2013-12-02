@@ -1,0 +1,27 @@
+Column 1 value in global scope: I_MUST_BE_OVERWRITTEN_IN_LOOP 
+Column 2 value in global scope: (should be blank) 
+
+  Column 1 value in loop scope:TABLE 1 ROW 1 COLUMN 1
+  Column 2 value in loop scope:TABLE 1 ROW 1 COLUMN 2
+  Column 9 value in loop scope:No such column, dude!
+  
+    VARIABLE 1
+  
+
+
+  Column 1 value in loop scope:TABLE 1 ROW 2 COLUMN 1
+  Column 2 value in loop scope:TABLE 1 ROW 2 COLUMN 2
+  Column 9 value in loop scope:No such column, dude!
+  
+    VARIABLE 1
+  
+
+
+  Column 1 value in loop scope:TABLE 1 ROW 3 COLUMN 1
+  Column 2 value in loop scope:TABLE 1 ROW 3 COLUMN 2
+  Column 9 value in loop scope:No such column, dude!
+  
+    VARIABLE 1
+  
+
+

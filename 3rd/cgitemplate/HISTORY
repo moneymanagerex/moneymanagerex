@@ -1,0 +1,20 @@
+0.7.4
+  - Including cstring explicitly for tests to compile, after GCC changes as of 4.4.5
+
+0.7.1
+  - Small changes to docs. NO funcitionality updates.
+
+0.7.0
+  - First swipe at documentation
+ 
+  - Went all original and stuff and added the __TOTAL__ conext variable,
+    so it is possible to print out "X of Y" in a loop, as in
+    __COUNT__ of __TOTAL__.
+
+0.6.8
+  - Reworked parsing logic, to accomodate future, more complex syntax (ESCAPE,
+    for example)
+
+  - Includes will now be included either as an absolute path, or relative to the
+    parent include. In the past, the inlude paths had to be relative to the
+    binary using the library.
