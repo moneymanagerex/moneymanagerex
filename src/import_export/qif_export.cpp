@@ -402,8 +402,7 @@ void mmQIFExportDialog::mmExportQIF()
                 if (dateToCheckBox_->IsChecked() && Model_Checking::TRANSDATE(transaction) > toDateCtrl_->GetValue())
                     continue;
 
-                if (!progressDlg.Update(numRecords%100
-                    , wxString::Format(_("Exporting transaction %i"), ++numRecords))) // if cancel clicked
+                if (!progressDlg.Pulse(wxString::Format(_("Exporting transaction %i"), ++numRecords))) // if cancel clicked
                     break; // abort processing
 
                 mmExportTransaction data(transaction.TRANSID, account_id);
@@ -451,8 +450,9 @@ void mmQIFExportDialog::mmExportQIF()
         text << buffer;
         output.Close();
     }
+    else
+        *log_field_ << buffer;
 
-    *log_field_ << buffer;
     sErrorMsg << wxTRANSLATE("Number of transactions exported: %ld");
     const wxString msg = wxString::Format(sErrorMsg, numRecords);
     wxMessageDialog msgDlg(parent_, wxGetTranslation(msg)
