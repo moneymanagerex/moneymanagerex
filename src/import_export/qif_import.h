@@ -58,7 +58,9 @@ public:
     }
 
 private:
-    int mmImportQIF();
+    bool mmParseQIF();
+    bool m_parsedOK;
+    bool m_IsFileValid;
 
     void CreateControls();
     void fillControls();
@@ -85,7 +87,6 @@ private:
     wxString getLineData(const wxString& line);
     wxString getFileLine(wxTextInputStream& textFile, int& lineNumber);
     wxString getFinancistoProject(wxString& sSubCateg);
-    bool warning_message();
     wxString sFileName_;
 
     wxDataViewListCtrl* dataListBox_;

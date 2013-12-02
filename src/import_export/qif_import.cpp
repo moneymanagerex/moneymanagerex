@@ -44,6 +44,7 @@ mmQIFImportDialog::mmQIFImportDialog(
       parent_(parent)
       , m_firstReferencedAccountID(-1)
       , m_userDefinedFormat(false)
+      , m_parsedOK(false)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -246,18 +247,7 @@ wxString mmQIFImportDialog::getFinancistoProject(wxString& sSubCateg)
     return sProject;
 }
 
-bool mmQIFImportDialog::warning_message()
-{
-    wxString msgStr;
-    msgStr << _("To import QIF files correctly, the date format in the QIF file must match the date option set in MMEX.") << "\n\n"
-           << _("Are you are sure you want to proceed with the import?");
-    wxMessageDialog msgDlg(NULL, msgStr, _("QIF Import"), wxYES_NO|wxICON_QUESTION);
-    if (msgDlg.ShowModal() != wxID_YES)
-        return false;
-    return true;
-}
-
-int mmQIFImportDialog::mmImportQIF()
+bool mmQIFImportDialog::mmParseQIF()
 {
     Model_Account::Data* account = Model_Account::instance().get(m_firstReferencedAccountID);
     wxString acctName;
@@ -564,8 +554,6 @@ int mmQIFImportDialog::mmImportQIF()
 
             if (m_data.sFullCateg.Trim().IsEmpty() && m_data.type != Model_Checking::all_type()[Model_Checking::TRANSFER])
             {
-                sMsg = _("Category is missing");
-                logWindow->AppendText(sMsg << "\n");
                 m_data.sCateg = _("Unknown");
 
                 Model_Category::Data* category = Model_Category::instance().get(m_data.sCateg);
@@ -606,8 +594,6 @@ int mmQIFImportDialog::mmImportQIF()
                 m_data.to_accountID = -1;
                 if (m_data.payeeString.IsEmpty())
                 {
-                    sMsg = _("Payee missing");
-                    logWindow->AppendText(sMsg << "\n");
                     m_data.payeeString = _("Unknown");
                 }
 
@@ -776,11 +762,12 @@ int mmQIFImportDialog::mmImportQIF()
         dataListBox_->AppendItem(data, (wxUIntPtr)num++);
     }
 
-    return fromAccountID_;
+    return true;
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 {
+    m_firstReferencedAccountID = -1;
     sFileName_ = file_name_ctrl_->GetValue();
 
     const wxString choose_ext = _("QIF Files");
@@ -802,6 +789,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         wxMessageBox(_("Unable to open file."), _("QIF Import"), wxOK|wxICON_ERROR);
         return;
     }
+    *log_field_ << _("Reading data from file") << "\n";
     tFile.Close();
 
     m_userDefinedFormat = false;
@@ -819,11 +807,11 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 
     *log_field_ << _("Checking of QIF file started. Please wait...") << "\n";
 
-    if (checkQIFFile())
-    {
-        *log_field_ << _("Checking of QIF file finished successfully") << "\n";
-        mmImportQIF();
-    }
+    m_IsFileValid = checkQIFFile();
+    btnOK_->Enable(m_IsFileValid);
+    if (m_IsFileValid)
+        *log_field_ << _("Checking of QIF file finished successfully") << "\n"
+        << _("Press OK Button to continue") << "\n";
     else
         * log_field_ << _("Checking of QIF file finished with no success") << "\n";
 
@@ -960,8 +948,14 @@ bool mmQIFImportDialog::checkQIFFile()
         }
         newAccounts_->Enable(true);
         newAccounts_->SetSelection(0);
-        bbAccounts_->SetBitmapLabel(wxBitmap(flag_xpm));
+        bbAccounts_->Enable(false);
     }
+    else
+    {
+        bbAccounts_->Enable(true);
+    }
+    if (m_firstReferencedAccountID > 0) bbAccounts_->SetBitmapLabel(wxBitmap(flag_xpm));
+
     m_numLines = numLines;
     *log_field_ << wxString::Format(_("Total number of lines: %i"), int(numLines)) << "\n";
     return true;
@@ -975,8 +969,7 @@ void mmQIFImportDialog::OnDateMaskChange(wxCommandEvent& /*event*/)
         return;
     m_userDefinedFormat = true;
 
-    checkQIFFile();
-    mmImportQIF();
+    m_parsedOK = checkQIFFile();
 }
 
 void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
@@ -988,6 +981,21 @@ void mmQIFImportDialog::OnCheckboxClick( wxCommandEvent& /*event*/ )
 void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 {
     wxString sMsg;
+
+    if (!m_parsedOK)
+    {
+        wxMessageDialog msgDlg(this, _("Do you want to scan all transaction ?")
+            + "\n" + _("All missing account, payees and categories will be created.")
+            , _("Please Confirm:")
+            , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
+        if (msgDlg.ShowModal() == wxID_YES)
+        {
+            m_parsedOK = mmParseQIF();
+            btnOK_->Enable(m_parsedOK);
+        }
+        return;
+    }
+
     wxMessageDialog msgDlg(this, _("Do you want to import all transaction ?")
         , _("Confirm Import")
         , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
@@ -1027,7 +1035,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        sMsg = _("Imported transactions discarded by user!");
+        sMsg = _("Imported transactions discarded by user!"); //TODO: strange message may be _("Import has discarded by user!")
     }
     wxMessageDialog(parent_, sMsg, _("QIF Import"), wxOK|wxICON_WARNING).ShowModal();
     //clear the vector to avoid memory leak - done at same level created.
