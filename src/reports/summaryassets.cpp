@@ -86,3 +86,34 @@ wxString mmReportSummaryAssets::getHTMLText()
 
     return hb.getHTMLText();
 }
+
+mmReportSummaryAssetsNew::mmReportSummaryAssetsNew()
+: mmPrintableBase(Model_Asset::COL_ASSETNAME)
+{
+}
+
+wxString mmReportSummaryAssetsNew::getHTMLText()
+{
+    html_template summaryasset("summaryasset.html");
+    summaryasset("TITLE") = _("Summary of Assets");
+    summaryasset("TODAY") = wxDateTime::Today().FormatISODate();
+    summaryasset("USER") = mmOptions::instance().userNameString_;
+    
+    loop_t assets;
+    double balance = 0.0;
+    for (const auto& pEntry: Model_Asset::instance().all((Model_Asset::COLUMN)sortColumn_))
+    {
+        balance += pEntry.VALUE;
+        row_t row = pEntry.to_row_t();
+        row("STARTDATE") = mmGetDateForDisplay(Model_Asset::STARTDATE(pEntry));
+        row("ASSETTYPE") = wxGetTranslation(pEntry.ASSETTYPE);
+        row("VALUE") = Model_Currency::toString(Model_Asset::value(pEntry)); // TODO
+
+        assets += row;
+    }
+
+    summaryasset("ASSETS") = assets;
+    summaryasset("BALANCE") = Model_Currency::toCurrency(balance);
+
+    return summaryasset.Process();
+}
