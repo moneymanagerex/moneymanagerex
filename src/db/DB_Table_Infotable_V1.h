@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -188,6 +188,14 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
             o["INFONAME"] = json::String(this->INFONAME.ToStdString());
             o["INFOVALUE"] = json::String(this->INFOVALUE.ToStdString());
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("INFOID") = INFOID;
+            row("INFONAME") = INFONAME;
+            row("INFOVALUE") = INFOVALUE;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -27,6 +27,8 @@
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
+#include "html_template.h"
+using namespace tmpl;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };

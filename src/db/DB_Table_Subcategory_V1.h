@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -189,6 +189,14 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             o["SUBCATEGNAME"] = json::String(this->SUBCATEGNAME.ToStdString());
             o["CATEGID"] = json::Number(this->CATEGID);
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("SUBCATEGID") = SUBCATEGID;
+            row("SUBCATEGNAME") = SUBCATEGNAME;
+            row("CATEGID") = CATEGID;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

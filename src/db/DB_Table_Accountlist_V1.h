@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -300,6 +300,24 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             o["FAVORITEACCT"] = json::String(this->FAVORITEACCT.ToStdString());
             o["CURRENCYID"] = json::Number(this->CURRENCYID);
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("ACCOUNTID") = ACCOUNTID;
+            row("ACCOUNTNAME") = ACCOUNTNAME;
+            row("ACCOUNTTYPE") = ACCOUNTTYPE;
+            row("ACCOUNTNUM") = ACCOUNTNUM;
+            row("STATUS") = STATUS;
+            row("NOTES") = NOTES;
+            row("HELDAT") = HELDAT;
+            row("WEBSITE") = WEBSITE;
+            row("CONTACTINFO") = CONTACTINFO;
+            row("ACCESSINFO") = ACCESSINFO;
+            row("INITIALBAL") = INITIALBAL;
+            row("FAVORITEACCT") = FAVORITEACCT;
+            row("CURRENCYID") = CURRENCYID;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

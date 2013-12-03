@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -282,6 +282,22 @@ struct DB_Table_STOCK_V1 : public DB_Table
             o["VALUE"] = json::Number(this->VALUE);
             o["COMMISSION"] = json::Number(this->COMMISSION);
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("STOCKID") = STOCKID;
+            row("HELDAT") = HELDAT;
+            row("PURCHASEDATE") = PURCHASEDATE;
+            row("STOCKNAME") = STOCKNAME;
+            row("SYMBOL") = SYMBOL;
+            row("NUMSHARES") = NUMSHARES;
+            row("PURCHASEPRICE") = PURCHASEPRICE;
+            row("NOTES") = NOTES;
+            row("CURRENTPRICE") = CURRENTPRICE;
+            row("VALUE") = VALUE;
+            row("COMMISSION") = COMMISSION;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

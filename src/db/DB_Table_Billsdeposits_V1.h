@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -352,6 +352,28 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             o["NEXTOCCURRENCEDATE"] = json::String(this->NEXTOCCURRENCEDATE.ToStdString());
             o["NUMOCCURRENCES"] = json::Number(this->NUMOCCURRENCES);
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("BDID") = BDID;
+            row("ACCOUNTID") = ACCOUNTID;
+            row("TOACCOUNTID") = TOACCOUNTID;
+            row("PAYEEID") = PAYEEID;
+            row("TRANSCODE") = TRANSCODE;
+            row("TRANSAMOUNT") = TRANSAMOUNT;
+            row("STATUS") = STATUS;
+            row("TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
+            row("NOTES") = NOTES;
+            row("CATEGID") = CATEGID;
+            row("SUBCATEGID") = SUBCATEGID;
+            row("TRANSDATE") = TRANSDATE;
+            row("FOLLOWUPID") = FOLLOWUPID;
+            row("TOTRANSAMOUNT") = TOTRANSAMOUNT;
+            row("REPEATS") = REPEATS;
+            row("NEXTOCCURRENCEDATE") = NEXTOCCURRENCEDATE;
+            row("NUMOCCURRENCES") = NUMOCCURRENCES;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

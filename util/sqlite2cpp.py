@@ -296,6 +296,18 @@ struct DB_Table_%s : public DB_Table
             return 0;
         }'''
 
+        s +='''
+        row_t to_row_t() const
+        {
+            row_t row;'''
+        for field in self._fields:
+            s += '''
+            row("%s") = %s;'''%(field['name'], field['name'])
+
+        s+='''
+            return row;
+        }'''
+
         s += '''
 
         /** Save the record instance in memory to the database. */
@@ -563,6 +575,8 @@ def generate_base_class(header, fields=set):
 #include "cajun/json/elements.h"
 #include "cajun/json/reader.h"
 #include "cajun/json/writer.h"
+#include "html_template.h"
+using namespace tmpl;
 
 class wxString;
 enum OP { EQUAL = 0, GREATER, LESS, GREATER_OR_EQUAL, LESS_OR_EQUAL, NOT_EQUAL };

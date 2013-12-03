@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -201,6 +201,15 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             o["CATEGID"] = json::Number(this->CATEGID);
             o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("PAYEEID") = PAYEEID;
+            row("PAYEENAME") = PAYEENAME;
+            row("CATEGID") = CATEGID;
+            row("SUBCATEGID") = SUBCATEGID;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

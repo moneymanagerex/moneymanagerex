@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -214,6 +214,16 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             o["SUBCATEGID"] = json::Number(this->SUBCATEGID);
             o["SPLITTRANSAMOUNT"] = json::Number(this->SPLITTRANSAMOUNT);
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("SPLITTRANSID") = SPLITTRANSID;
+            row("TRANSID") = TRANSID;
+            row("CATEGID") = CATEGID;
+            row("SUBCATEGID") = SUBCATEGID;
+            row("SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-11-21 23:51:10.170000.
+ *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -278,6 +278,22 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             o["BASECONVRATE"] = json::Number(this->BASECONVRATE);
             o["CURRENCY_SYMBOL"] = json::String(this->CURRENCY_SYMBOL.ToStdString());
             return 0;
+        }
+        row_t to_row_t() const
+        {
+            row_t row;
+            row("CURRENCYID") = CURRENCYID;
+            row("CURRENCYNAME") = CURRENCYNAME;
+            row("PFX_SYMBOL") = PFX_SYMBOL;
+            row("SFX_SYMBOL") = SFX_SYMBOL;
+            row("DECIMAL_POINT") = DECIMAL_POINT;
+            row("GROUP_SEPARATOR") = GROUP_SEPARATOR;
+            row("UNIT_NAME") = UNIT_NAME;
+            row("CENT_NAME") = CENT_NAME;
+            row("SCALE") = SCALE;
+            row("BASECONVRATE") = BASECONVRATE;
+            row("CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
+            return row;
         }
 
         /** Save the record instance in memory to the database. */
