@@ -14,7 +14,7 @@
 
 
     <!-- define some var's for projects before calling presets -->
-    <if cond="FORMAT in ['msvc6prj','msevc4prj','msvs2003prj','msvs2005prj','msvs2008prj']">
+    <if cond="FORMAT in ['msvc6prj','msevc4prj','msvs2008prj']">
         <set var="WX_SHARED">0</set>
         <set var="WX_UNICODE">1</set>
         <set var="WX_MONOLITHIC">0</set>
@@ -45,19 +45,16 @@
 
         <if cond="FORMAT=='msvc'">
 
-            <set var="VSTUDIO_VER_DEFAULT" overwrite="0">2010</set>
+            <set var="VSTUDIO_VER_DEFAULT" overwrite="0">2013</set>
 
             <option name="VSTUDIO_VER">
-                <values>2010,2008,2005,2003</values>
+                <values>2013</values>
                 <default-value>$(VSTUDIO_VER_DEFAULT)</default-value>
                 <description>The version of Visual Studio</description>
             </option>
 
             <set var="CRT_VERSION">
-                <if cond="VSTUDIO_VER=='2010'">100</if>
-                <if cond="VSTUDIO_VER=='2008'">90</if>
-                <if cond="VSTUDIO_VER=='2005'">80</if>
-                <if cond="VSTUDIO_VER=='2003'">70</if>
+                <if cond="VSTUDIO_VER=='2013'">120</if>
             </set>
 
         </if>

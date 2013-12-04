@@ -29,8 +29,8 @@
         <!-- the formats for which FORMAT_SUPPORTS_MULTIPLE_ARCHITECTURES_VIA_MSVS_PLATFORMS==1 
              need special handling: see the docs of the MSVS_PLATFORMS variable in Bakefile docs.
          -->
-        <if cond="FORMAT in ['msvs2005prj','msvs2008prj']">1</if>
-        <if cond="FORMAT not in ['msvs2005prj','msvs2008prj']">0</if>
+        <if cond="FORMAT in ['msvs2008prj']">1</if>
+        <if cond="FORMAT not in ['msvs2008prj']">0</if>
     </set>
     <set var="FORMAT_SUPPORTS_MULTIPLE_ARCHITECTURES">
         <if cond="FORMAT_SUPPORTS_MULTIPLE_ARCHITECTURES_NORMAL=='1'">1</if>
