@@ -315,15 +315,15 @@ void mmMainCurrencyDialog::OnValueChanged(wxDataViewEvent& event)
     wxString value = var.GetString();
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
 
-    wxString calculated_mount = "";
+    wxString calculated_amount = "";
     double conv_rate = curr_rate_;
     mmCalculator calc;
     if (calc.is_ok(value))
     {
-        calculated_mount = Model_Currency::toString(calc.get_result(), currency);
-        if (value != calculated_mount)
-            currencyListBox_->SetValue(wxVariant(calculated_mount), row, BASE_RATE);
-        calculated_mount.ToDouble(&conv_rate);
+        calculated_amount = wxString::Format("%.4f", calc.get_result());
+        if (value != calculated_amount)
+            currencyListBox_->SetValue(wxVariant(calculated_amount), row, BASE_RATE);
+        calculated_amount.ToDouble(&conv_rate);
 
         if (currency)
         {
