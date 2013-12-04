@@ -93,12 +93,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -112,7 +112,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
@@ -132,12 +132,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -153,7 +153,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 %(AdditionalOptions)</AdditionalOptions>
@@ -174,12 +174,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -193,7 +193,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SAFESEH:NO /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF %(AdditionalOptions)</AdditionalOptions>
@@ -213,12 +213,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </Midl>
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -234,7 +234,7 @@
     <ResourceCompile>
       <PreprocessorDefinitions>_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Link>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
@@ -277,6 +277,7 @@
     <ClCompile Include="..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\src\filtertransdialog.cpp" />
+    <ClCompile Include="..\..\3rd\cgitemplate\html_template.cpp" />
     <ClCompile Include="..\..\src\reports\html_widget_bills_and_deposits.cpp" />
     <ClCompile Include="..\..\src\reports\html_widget_stocks.cpp" />
     <ClCompile Include="..\..\src\reports\html_widget_top_categories.cpp" />
@@ -377,6 +378,7 @@
     <ClInclude Include="..\..\src\import_export\export.h" />
     <ClInclude Include="..\..\src\filtertransdialog.h" />
     <ClInclude Include="..\..\src\guiid.h" />
+    <ClInclude Include="..\..\3rd\cgitemplate\html_template.h" />
     <ClInclude Include="..\..\src\reports\html_widget_bills_and_deposits.h" />
     <ClInclude Include="..\..\src\reports\html_widget_stocks.h" />
     <ClInclude Include="..\..\src\reports\html_widget_top_categories.h" />
