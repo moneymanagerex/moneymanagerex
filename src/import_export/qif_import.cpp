@@ -36,27 +36,23 @@ BEGIN_EVENT_TABLE( mmQIFImportDialog, wxDialog )
     EVT_CLOSE(mmQIFImportDialog::OnQuit)
 END_EVENT_TABLE()
 
-mmQIFImportDialog::mmQIFImportDialog(
-      wxWindow* parent, wxWindowID id
-    , const wxString& caption, const wxPoint& pos
-    , const wxSize& size, long style
-) :
-      parent_(parent)
-      , m_firstReferencedAccountID(-1)
+mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
+      : m_firstReferencedAccountID(-1)
       , m_userDefinedFormat(false)
       , m_parsedOK(false)
       , m_IsFileValid(false)
       , m_IsDatesValid(false)
       , m_IsAccountsOK(false)
 {
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
-bool mmQIFImportDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,
-                           const wxPoint& pos, const wxSize& size, long style )
+bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
+                           , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     ColName_[COL_ACCOUNT]  = _("Account");
     ColName_[COL_DATE]     = _("Date");

@@ -19,12 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef QIF_IMPORT_H
 #define QIF_IMPORT_H
 
-#define SYMBOL_QIFIMPORT_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_QIFIMPORT_TITLE _("QIF Import")
-#define SYMBOL_QIFIMPORT_IDNAME wxID_HIGHEST+1
-#define SYMBOL_QIFIMPORT_SIZE wxSize(500, 300)
-#define SYMBOL_QIFIMPORT_POSITION wxDefaultPosition
-
 #include "defs.h"
 #include <wx/dataview.h>
 #include "model/Model_Checking.h"
@@ -33,25 +27,18 @@ class wxDatePickerCtrl;
 
 class mmQIFImportDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmQIFImportDialog )
+    DECLARE_DYNAMIC_CLASS(mmQIFImportDialog)
     DECLARE_EVENT_TABLE()
 
 public:
     mmQIFImportDialog() {}
+    mmQIFImportDialog(wxWindow* parent);
 
-    mmQIFImportDialog(
-        wxWindow* parent,
-        wxWindowID id = SYMBOL_QIFIMPORT_IDNAME,
-        const wxString& caption = SYMBOL_QIFIMPORT_TITLE,
-        const wxPoint& pos = SYMBOL_QIFIMPORT_POSITION,
-        const wxSize& size = SYMBOL_QIFIMPORT_SIZE,
-        long style = SYMBOL_QIFIMPORT_STYLE );
-
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_QIFIMPORT_IDNAME,
-                 const wxString& caption = SYMBOL_QIFIMPORT_TITLE,
-                 const wxPoint& pos = SYMBOL_QIFIMPORT_POSITION,
-                 const wxSize& size = SYMBOL_QIFIMPORT_SIZE,
-                 long style = SYMBOL_QIFIMPORT_STYLE );
+    bool Create(wxWindow* parent, wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
     int get_last_imported_acc()
     {
         return m_firstReferencedAccountID;
@@ -77,7 +64,6 @@ private:
     int getOrCreateAccount(const wxString& name, double init_balance, const wxString& currency_name = "");
 
     std::vector< std::pair<Model_Checking::Data*, Model_Splittransaction::Cache> > vQIF_trxs_;
-    wxWindow* parent_;
     wxString dateFormat_;
     bool m_userDefinedFormat;
     wxArrayInt accounts_id_;
