@@ -175,6 +175,14 @@ public:
     {
         return !this->find(SETTINGNAME(key)).empty();
     }
+public:
+    static row_t to_row_t()
+    {
+        row_t row;
+        for (const auto &r: instance().all())
+            row(r.SETTINGNAME.ToStdString()) = r.SETTINGVALUE;
+        return row;
+    }
 };
 
 #endif // 

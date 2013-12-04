@@ -155,6 +155,14 @@ public:
 
         return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
     }
+public:
+    static row_t to_row_t()
+    {
+        row_t row;
+        for (const auto &r: instance().all())
+            row(r.INFONAME.ToStdString()) = r.INFOVALUE;
+        return row;
+    }
 };
 
 #endif // 
