@@ -1037,7 +1037,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
     {
         sMsg = _("Imported transactions discarded by user!"); //TODO: strange message may be _("Import has discarded by user!")
     }
-    wxMessageDialog(parent_, sMsg, _("QIF Import"), wxOK|wxICON_WARNING).ShowModal();
+    wxMessageDialog(this, sMsg, _("QIF Import"), wxOK | wxICON_WARNING).ShowModal();
     //clear the vector to avoid memory leak - done at same level created.
 
 }
