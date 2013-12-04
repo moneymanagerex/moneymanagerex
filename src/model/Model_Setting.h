@@ -183,6 +183,11 @@ public:
             row(r.SETTINGNAME.ToStdString()) = r.SETTINGVALUE;
         return row;
     }
+    static void to_loop_t(html_template& t)
+    {
+        for (const auto &r: instance().all())
+            t(r.SETTINGNAME.ToStdString()) = r.SETTINGVALUE;
+    }
 };
 
 #endif // 

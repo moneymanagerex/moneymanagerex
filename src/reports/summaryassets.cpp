@@ -20,6 +20,7 @@
 #include "htmlbuilder.h"
 #include "model/Model_Asset.h"
 #include "util.h"
+#include "model/Model_Infotable.h"
 #include <algorithm>
 
 mmReportSummaryAssets::mmReportSummaryAssets()
@@ -95,9 +96,9 @@ mmReportSummaryAssetsNew::mmReportSummaryAssetsNew()
 wxString mmReportSummaryAssetsNew::getHTMLText()
 {
     html_template summaryasset("summaryasset.html");
+    Model_Infotable::to_loop_t(summaryasset);
     summaryasset("TITLE") = _("Summary of Assets");
     summaryasset("TODAY") = wxDateTime::Today().FormatISODate();
-    summaryasset("USER") = mmOptions::instance().userNameString_;
     
     loop_t assets;
     double balance = 0.0;
@@ -114,6 +115,7 @@ wxString mmReportSummaryAssetsNew::getHTMLText()
 
     summaryasset("ASSETS") = assets;
     summaryasset("BALANCE") = Model_Currency::toCurrency(balance);
+    summaryasset("INFOTABLE") = Model_Infotable::to_loop_t();
 
     return summaryasset.Process();
 }

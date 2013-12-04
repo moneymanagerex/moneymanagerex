@@ -8,7 +8,7 @@
     <tr bgcolor="#FFFFFF" >
         <td width="40%" ><font size="4"><TMPL_VAR TITLE></font><br></td>
         <td width="30%" ><font size="3"><TMPL_VAR TODAY></font><br></td>
-        <td width="0" ><font size="4"><TMPL_VAR USER></font><br></td>
+        <td width="0" ><font size="4"><TMPL_VAR USERNAME></font><br></td>
     </tr>
 </table>
 <hr size="2">
@@ -46,6 +46,20 @@
         <td colspan="3" ><font size="3" color="">Total Assets: </font></td>
         <td nowrap align="right"><font size="3" color=""><TMPL_VAR BALANCE></font></td>
     </tr>
+</table>
+<tr> <b>Available built-in variables from INFOTABLE</b></tr>
+<hr size="3">
+<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="0">
+    <tr align="left">
+        <th>INFONAME</th>
+        <th>INFOVALUE</th>
+    </tr>
+    <TMPL_LOOP INFOTABLE>
+        <tr>
+            <td><TMPL_VAR INFONAME></td>
+            <td><TMPL_VAR INFOVALUE></td>
+        </tr>
+    </TMPL_LOOP>
 </table>
 </center>
 </body>
