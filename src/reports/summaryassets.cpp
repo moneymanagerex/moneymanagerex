@@ -95,10 +95,8 @@ mmReportSummaryAssetsNew::mmReportSummaryAssetsNew()
 
 wxString mmReportSummaryAssetsNew::getHTMLText()
 {
-    html_template summaryasset("summaryasset.html");
-    Model_Infotable::to_loop_t(summaryasset);
+    mm_html_template summaryasset("summaryasset.html");
     summaryasset("TITLE") = _("Summary of Assets");
-    summaryasset("TODAY") = wxDateTime::Today().FormatISODate();
     
     loop_t assets;
     double balance = 0.0;

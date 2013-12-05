@@ -21,6 +21,7 @@
 #include "mmOption.h"
 #include "constants.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Infotable.h"
 
 mmHTMLBuilder::mmHTMLBuilder()
 {
@@ -338,4 +339,16 @@ void mmHTMLBuilder::addTableRowBold(const wxString& label, double data)
     this->addTableCell(label, false, true, true);
     this->addMoneyCell(data);
     this->endTableRow();
+}
+
+mm_html_template::mm_html_template(const wxString& arg_file_name): html_template(arg_file_name.ToStdString())
+{
+    this->load_context();
+}
+
+void mm_html_template::load_context()
+{
+    (*this)("TODAY") = wxDateTime::Today().FormatISODate();
+    for (const auto &r: Model_Infotable::instance().all())
+        (*this)(r.INFONAME.ToStdString()) = r.INFOVALUE;
 }

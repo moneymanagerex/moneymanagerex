@@ -22,6 +22,7 @@
 #include "defs.h"
 #include <vector>
 #include "model/Model_Currency.h"
+#include "html_template.h"
 
 namespace tags
 {
@@ -253,6 +254,15 @@ private:
         wxString date_str;
         wxString todays_date;
     } today_;
+};
+
+class mm_html_template: public html_template
+{
+public:
+    mm_html_template(const wxString & arg_file_name);
+
+private:
+    void load_context();
 };
 
 #endif

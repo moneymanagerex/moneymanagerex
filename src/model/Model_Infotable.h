@@ -163,12 +163,6 @@ public:
             loop += r.to_row_t();
         return loop;
     }
-
-    static void to_loop_t(html_template & t)
-    {
-        for (const auto &r: instance().all())
-            t(r.INFONAME.ToStdString()) = r.INFOVALUE;
-    }
 };
 
 #endif // 
