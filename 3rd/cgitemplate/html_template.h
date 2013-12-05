@@ -710,6 +710,6 @@ class html_template
    const size_t Get_Tag_Type_Count(const tag_type_s & arg) const;
 };
 
-#endif
-
 } // end namespace
+
+#endif
