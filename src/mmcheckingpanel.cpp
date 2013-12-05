@@ -921,7 +921,7 @@ TransactionListCtrl::TransactionListCtrl(
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(wxListCtrl &lst)
 {
-    const std::vector<std::tuple<int, wxString, int, int> > def_data
+    const std::vector<std::tuple<int, wxString&, int, int> > def_data
     {
         std::make_tuple(COL_DATE      , "      " + _("Date"), 112, wxLIST_FORMAT_LEFT),
         std::make_tuple(COL_NUMBER    ,          _("Number"),  70, wxLIST_FORMAT_LEFT),
