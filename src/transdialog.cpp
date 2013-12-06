@@ -270,7 +270,7 @@ void mmTransDialog::dataToControls()
             payee_tooltip = _("Specify which account the transfer is going to");
             transaction_->PAYEEID = -1;
             account_label_->SetLabel(_("From"));
-            cbAccount_->SetToolTip(_("Specify which account the transfer is going from"));
+            cbAccount_->SetToolTip(_("Specify which account the transfer is coming from"));
             cbAccount_->Enable(true);
         }
         cbPayee_->SetToolTip(payee_tooltip);

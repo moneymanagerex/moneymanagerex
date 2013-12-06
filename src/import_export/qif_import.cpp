@@ -723,7 +723,7 @@ bool mmQIFImportDialog::mmParseQIF()
     }
 
     progressDlg.Destroy();
-    sMsg = wxString::Format(_("Number of transactions has readed from QIF file: %i"), int(vQIF_trxs_.size()));
+    sMsg = wxString::Format(_("Number of transactions read from QIF file: %i"), int(vQIF_trxs_.size()));
     logWindow->AppendText(sMsg << "\n");
 
     int num = 0;
@@ -822,7 +822,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         *log_field_ << _("Checking of QIF file finished successfully") << "\n"
         << _("Press OK Button to continue") << "\n";
     else
-        * log_field_ << _("Checking of QIF file finished with no success") << "\n";
+        * log_field_ << _("Checking of QIF file failed") << "\n";
 
     fillControls();
 }
