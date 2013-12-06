@@ -7,7 +7,7 @@ EXE := test
 # list of files tp delete when cleaning
 TO_CLEAN := *.o $(EXE)
 # override compiler flags to give us no break
-CFLAGS := -Wall -ansi -pedantic $(DEBUG)
+CFLAGS := -Wall -pedantic $(DEBUG)
 # compiler
 CC := g++
 
