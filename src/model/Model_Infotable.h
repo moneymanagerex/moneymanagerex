@@ -159,7 +159,7 @@ public:
     static loop_t to_loop_t()
     {
         loop_t loop;
-        for (const auto &r: instance().all())
+        for (const auto &r: instance().all(COL_INFONAME))
             loop += r.to_row_t();
         return loop;
     }
