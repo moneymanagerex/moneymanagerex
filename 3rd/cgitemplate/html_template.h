@@ -31,6 +31,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <assert.h>
+#include <cstddef>
 
 /*!\mainpage
   C++ port of Sam Tregar's Perl HTML::Template. This does NOT have
