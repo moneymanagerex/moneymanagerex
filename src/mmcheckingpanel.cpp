@@ -921,24 +921,25 @@ TransactionListCtrl::TransactionListCtrl(
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(wxListCtrl &lst)
 {
-    const std::vector<std::tuple<int, wxString&, int, int> > def_data
+    const std::vector<std::tuple<int, wxString*, int, int> > def_data
     {
-        std::make_tuple(COL_DATE      , "      " + _("Date"), 112, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_NUMBER    ,          _("Number"),  70, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_PAYEE_STR ,   "   " + _("Payee"), 150, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_STATUS    ,          _("Status"),  -2, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_CATEGORY  ,        _("Category"), 150, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_WITHDRAWAL,      _("Withdrawal"),  -2, wxLIST_FORMAT_RIGHT),
-        std::make_tuple(COL_DEPOSIT   ,         _("Deposit"),  -2, wxLIST_FORMAT_RIGHT),
-        std::make_tuple(COL_BALANCE   ,         _("Balance"),  -2, wxLIST_FORMAT_RIGHT),
-        std::make_tuple(COL_NOTES     ,           _("Notes"), 250, wxLIST_FORMAT_LEFT)
+        std::make_tuple(COL_DATE      , new wxString("      " + _("Date")), 112, wxLIST_FORMAT_LEFT),
+        std::make_tuple(COL_NUMBER    , new wxString(         _("Number")),  70, wxLIST_FORMAT_LEFT),
+        std::make_tuple(COL_PAYEE_STR , new wxString(  "   " + _("Payee")), 150, wxLIST_FORMAT_LEFT),
+        std::make_tuple(COL_STATUS    , new wxString(         _("Status")),  -2, wxLIST_FORMAT_LEFT),
+        std::make_tuple(COL_CATEGORY  , new wxString(       _("Category")), 150, wxLIST_FORMAT_LEFT),
+        std::make_tuple(COL_WITHDRAWAL, new wxString(     _("Withdrawal")),  -2, wxLIST_FORMAT_RIGHT),
+        std::make_tuple(COL_DEPOSIT   , new wxString(        _("Deposit")),  -2, wxLIST_FORMAT_RIGHT),
+        std::make_tuple(COL_BALANCE   , new wxString(        _("Balance")),  -2, wxLIST_FORMAT_RIGHT),
+        std::make_tuple(COL_NOTES     , new wxString(          _("Notes")), 250, wxLIST_FORMAT_LEFT)
     };
 
     for (const auto& i : def_data)
     {
         const wxString param_name = wxString::Format("CHECK_COL%i_WIDTH", std::get<0>(i));
         int width = Model_Setting::instance().GetIntSetting(param_name, std::get<2>(i));
-        lst.InsertColumn(std::get<0>(i), std::get<1>(i), std::get<3>(i), width);
+        lst.InsertColumn(std::get<0>(i), *std::get<1>(i), std::get<3>(i), width);
+        delete std::get<1>(i);
     }
 }
 
