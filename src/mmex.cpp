@@ -1155,11 +1155,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         wxTreeItemId reportsAssets = navTreeCtrl_->AppendItem(reportsSummary, _("Assets"), 4, 4);
         navTreeCtrl_->SetItemData(reportsAssets, new mmTreeItemData("Summary of Assets"
         , new mmReportSummaryAssets()));
-
-        wxTreeItemId reportsAssetsNew = navTreeCtrl_->AppendItem(reportsSummary, _("Assets New"), 4, 4);
-        navTreeCtrl_->SetItemData(reportsAssetsNew, new mmTreeItemData("Summary of Assets New"
-        , new mmReportSummaryAssetsNew()));
-
     }
 
     /* ================================================================================================= */
@@ -1530,6 +1525,9 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     //////////////////////////////////////////////////////////////////
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 4, 4);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
+
+    wxTreeItemId customreport = navTreeCtrl_->AppendItem(reports, _("Custom Report"), 4, 4);
+    navTreeCtrl_->SetItemData(customreport, new mmTreeItemData("Summary of Assets New", new mmReportSummaryAssetsNew()));
 
     ///////////////////////////////////////////////////////////////////
 

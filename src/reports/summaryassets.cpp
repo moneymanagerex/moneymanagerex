@@ -22,6 +22,7 @@
 #include "util.h"
 #include "model/Model_Infotable.h"
 #include <algorithm>
+#include "model/Model_Stock.h"
 
 mmReportSummaryAssets::mmReportSummaryAssets()
 : mmPrintableBase(Model_Asset::COL_ASSETNAME)
@@ -106,14 +107,22 @@ wxString mmReportSummaryAssetsNew::getHTMLText()
         row_t row = pEntry.to_row_t();
         row("STARTDATE") = mmGetDateForDisplay(Model_Asset::STARTDATE(pEntry));
         row("ASSETTYPE") = wxGetTranslation(pEntry.ASSETTYPE);
-        row("VALUE") = Model_Currency::toString(Model_Asset::value(pEntry)); // TODO
+        row("VALUE") = Model_Currency::toString(pEntry.VALUE);
+        row("CURRENT_VALUE") = Model_Currency::toString(Model_Asset::value(pEntry));
 
         assets += row;
     }
 
     summaryasset("ASSETS") = assets;
-    summaryasset("BALANCE") = Model_Currency::toCurrency(balance);
+    summaryasset("ASSET_BALANCE") = Model_Currency::toCurrency(balance);
     summaryasset("INFOTABLE") = Model_Infotable::to_loop_t();
+
+    loop_t stocks;
+    for (const auto& r: Model_Stock::instance().all())
+    {
+        stocks += r.to_row_t();
+    }
+    summaryasset("stocks") = stocks;
 
     return summaryasset.Process();
 }
