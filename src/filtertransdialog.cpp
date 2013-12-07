@@ -831,7 +831,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
         if (Model_Checking::splittransaction(tran).empty())
         {
             if (categID_ != tran.CATEGID) return false;
-            if (subcategID_ != tran.SUBCATEGID && bExpandStaus_) return false;
+            if (subcategID_ != tran.SUBCATEGID) return false;
         }
         else
         {
@@ -839,7 +839,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
             for (const auto &split : Model_Checking::splittransaction(tran))
             {
                 if (split.CATEGID != categID_) continue;
-                if (split.SUBCATEGID != subcategID_ && bExpandStaus_) continue;
+                if (split.SUBCATEGID != subcategID_) continue;
 
                 bMatching = true;
                 break;
