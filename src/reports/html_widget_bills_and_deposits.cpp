@@ -42,7 +42,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     //                    days, payee, description, amount, account
     std::vector< std::tuple<int, wxString, wxString, double, Model_Account::Data*> > bd_days;
-    const wxDateTime &today = date_range_->today();
+    const wxDateTime today = wxDateTime::Now();
     for (const auto& q1 : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
         wxTimeSpan ts = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1).Subtract(today);
