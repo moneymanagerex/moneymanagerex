@@ -1107,11 +1107,7 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
         Model_Checking::instance().save(trx);
     }
 
-    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox())
-        || (status == "V" && !showDeletedTransactions_))
-        refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
-    else 
-        RefreshItems(m_selectedIndex, m_selectedIndex);
+    refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
 }
 //----------------------------------------------------------------------------
 
