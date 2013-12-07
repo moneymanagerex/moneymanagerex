@@ -134,7 +134,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             line.categs = categs;
             data.push_back(line);
         }
-        else if (categs > 0)
+        else if (categs > 0 || amt != 0)
         {
             // Insert place holder to add a seperator
             line.name = "";
@@ -196,11 +196,13 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 if (entry.name != "")
                 {
-                    hb.addRowSeparator(0);
-                    hb.startTableRow();
-                    hb.addTableCell(entry.name, false, true, true, "GRAY");
-                    hb.addMoneyCell(entry.amount, "GRAY");
-                    hb.endTableRow();
+                    if (entry.amount != 0)
+                    {
+                        hb.startTableRow();
+                        hb.addTableCell(entry.name, false, true, true, "GRAY");
+                        hb.addMoneyCell(entry.amount, "GRAY");
+                        hb.endTableRow();
+                    }
                 }
                 hb.addRowSeparator(2);
                 endSeparator = true;
@@ -208,10 +210,18 @@ wxString mmReportCategoryExpenses::getHTMLText()
         }
         else
         {
-            hb.startTableRow();
-            hb.addTableCell(entry.name, false, true);
-            hb.addMoneyCell(entry.amount);
-            hb.endTableRow();
+            if (entry.amount != 0)
+            {
+                hb.startTableRow();
+                hb.addTableCell(entry.name, false, true);
+                hb.addMoneyCell(entry.amount);
+                hb.endTableRow();
+            }
+            else
+            {
+                hb.addRowSeparator(2);
+                endSeparator = true;
+            }
         }
     }
 
