@@ -1,8 +1,8 @@
 ##Active Developers
 Nikolay          [Nikolay]
 Lisheng          [guanlisheng]
-Stefano          [stef145g]
 James            [siena123]
+Stefano          [stef145g]
 Pat              [omalleypat]
 =======================================
 ##What's new
