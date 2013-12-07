@@ -135,7 +135,6 @@ private:
     void OnMarkAllTransactions(wxCommandEvent& event);
     void OnListKeyDown(wxListEvent& event);
     void OnChar(wxKeyEvent& event);
-    int OnMarkTransactionDB(const wxString& status);
     void OnCopy(wxCommandEvent& WXUNUSED(event));
     void OnPaste(wxCommandEvent& WXUNUSED(event));
     int OnPaste(Model_Checking::Data* tran);
