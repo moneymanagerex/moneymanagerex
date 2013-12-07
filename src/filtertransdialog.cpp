@@ -284,6 +284,7 @@ void mmFilterTransactionsDialog::CreateControls()
         wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), NULL, this);
     similarCategCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include Similar"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    similarCategCheckBox_->SetToolTip(_("Include all subcategories for the selected category."));
 
     categSizer->Add(btnCategory_, flagsExpand);
     categSizer->Add(similarCategCheckBox_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
