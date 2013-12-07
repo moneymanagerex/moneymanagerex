@@ -578,8 +578,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             wxTextOutputStream log(outputLog);
 
             /* date, payeename, amount(+/-), Number, status, category : subcategory, notes */
-            long countNumTotal = 0;
-            long countImported = 0;
+            
+            int countNumTotal = 0;
+            int countImported = 0;
 
             wxProgressDialog progressDlg(_("Universal CSV Import"),
                 _("Transactions imported from CSV: "), 100,
@@ -590,9 +591,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
             {
                 wxString progressMsg;
-                progressMsg << _("Transactions imported from CSV\nto account ") << acctName << ": " << countImported;
-                if (!progressDlg.Update(static_cast<int>((static_cast<double>(countImported)/100.0
-                    - countNumTotal/100) *99), progressMsg))
+                progressMsg << wxString::Format(_("Transactions imported from CSV\nto account %s : %i"), acctName, countImported);
+                if (!progressDlg.Pulse(progressMsg))
                 {
                     canceledbyuser = true;
                     break; // abort processing
@@ -621,9 +621,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 int numTokens = (int)tkz.CountTokens();
                 if (numTokens < (int)csvFieldOrder_.size())
                 {
-                    log << _("Line : ") << wxString::Format("%ld", countNumTotal)
+                    log << wxString::Format(_("Line: %i"), countNumTotal)
                         << _(" file contains insufficient number of tokens") << endl;
-                    *log_field_ << _("Line : ") << wxString::Format("%ld", countNumTotal)
+                    *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
                         << _(" file contains insufficient number of tokens") << "\n";
                     continue;
                 }
@@ -646,9 +646,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                 if (dt_.Trim().IsEmpty() || payeeID_ == -1 ||
                     amount_.Trim().IsEmpty() ||  type_.Trim().IsEmpty())
                 {
-                    log << _("Line : ") << wxString::Format("%ld", countNumTotal)
+                    log << wxString::Format(_("Line: %i"), countNumTotal)
                         << _(" One of the following fields: Date, Payee, Amount, Type is missing, skipping") << endl;
-                    *log_field_ << _("Line : ") << wxString::Format("%ld", countNumTotal)
+                    *log_field_ << wxString::Format(_("Line: %i"), countNumTotal)
                         << _(" One of the following fields: Date, Payee, Amount, Type is missing, skipping") << "\n";
                     continue;
                 }
@@ -681,13 +681,13 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                Model_Checking::instance().save(pTransaction);
 
                countImported++;
-               log << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << endl;
-               *log_field_ << wxString::Format(_("Line : %ld imported OK."), countNumTotal) << "\n";
+               log << wxString::Format(_("Line : %i imported OK."), countNumTotal) << endl;
+               *log_field_ << wxString::Format(_("Line : %i imported OK."), countNumTotal) << "\n";
             }
 
             progressDlg.Destroy();
 
-            wxString msg = wxString::Format(_("Total Lines : %ld"), countNumTotal);
+            wxString msg = wxString::Format(_("Total Lines : %i"), countNumTotal);
             msg << "\n";
             msg << wxString::Format(_("Total Imported : %ld"), countImported);
             msg << "\n\n";
@@ -695,7 +695,8 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             msg << "\n\n";
 
             wxString confirmMsg = msg + _("Please confirm saving...");
-            if (!canceledbyuser && wxMessageBox(confirmMsg, _("Importing CSV"), wxOK|wxCANCEL|wxICON_INFORMATION) == wxCANCEL)
+            if (!canceledbyuser && wxMessageBox(confirmMsg
+                , _("Importing CSV"), wxOK | wxCANCEL | wxICON_INFORMATION) == wxCANCEL)
                 canceledbyuser = true;
 
             if (countImported > 0)
