@@ -797,7 +797,7 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
         // Only for new transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
         if (transaction_->PAYEEID != -1 && mmIniOptions::instance().transCategorySelectionNone_ == 1
-            && !categUpdated_ && m_local_splits.empty())
+            && !categUpdated_ && m_local_splits.empty() && transaction_id_ == 0)
         {
             Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             // if payee has memory of last category used then display last category for payee
