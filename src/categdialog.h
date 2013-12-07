@@ -74,10 +74,6 @@ public:
     {
         return subcategID_;
     }
-    bool getExpandStatus()
-    {
-        return cbExpand_->IsChecked();
-    }
     bool getRefreshRequested()
     {
         return refreshRequested_;

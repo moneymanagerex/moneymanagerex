@@ -173,10 +173,12 @@ wxString mmReportTransactions::getHTMLText()
         filterDetails << addFilterDetailes(_("Payee:"), transDialog_->userPayeeStr());
 
     //Category
-    if ( transDialog_->getCategoryCheckBox())
-        filterDetails << "<b>" << _("Category:") << " </b>" <<transDialog_->userCategoryStr()
-        << (transDialog_->getExpandStatus() ? wxString(" <b> ") << _("Subcategory:") << " </b>" << _("Any"): "")
+    if (transDialog_->getCategoryCheckBox())
+    {
+        filterDetails << "<b>" << _("Category:") << " </b>" << transDialog_->userCategoryStr()
+        << (transDialog_->getSimilarCategoryStatus() ? wxString(" (") << _("Include Similar") << ")" : "")
         << "<br>";
+    }
     //Status
     if ( transDialog_->getStatusCheckBox())
         filterDetails << addFilterDetailes(_("Status:"), transDialog_->userStatusStr());

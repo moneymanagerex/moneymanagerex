@@ -277,7 +277,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                 {
                     if (transFilterDlg_->getCategoryID() != data.CATEGID)
                         continue; // Skip
-                    if (transFilterDlg_->getSubCategoryID() != data.SUBCATEGID)
+                    if (transFilterDlg_->getSubCategoryID() != data.SUBCATEGID && !transFilterDlg_->getSimilarCategoryStatus())
                         continue; // Skip
                 }
                 else
@@ -287,7 +287,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                     {
                         if (split.CATEGID != data.CATEGID)
                             continue;
-                        if (split.SUBCATEGID != data.SUBCATEGID)
+                        if (split.SUBCATEGID != data.SUBCATEGID && !transFilterDlg_->getSimilarCategoryStatus())
                             continue;
 
                         bMatching = true;

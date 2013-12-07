@@ -142,8 +142,10 @@ void mmFilterTransactionsDialog::dataToControls()
     status = get_next_value(tkz, value);
     categoryCheckBox_ ->SetValue(status);
     btnCategory_ ->Enable(status);
+    similarCategCheckBox_->Enable(status);
 
-    wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
+    wxStringTokenizer similar_categ_token(value, "|", wxTOKEN_RET_EMPTY_ALL);
+    wxStringTokenizer categ_token(similar_categ_token.GetNextToken(), ":", wxTOKEN_RET_EMPTY_ALL);
     Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
     if (category)
         categID_ = category->CATEGID;
@@ -156,7 +158,12 @@ void mmFilterTransactionsDialog::dataToControls()
             subcategID_ = sub_category->SUBCATEGID;
     }
     btnCategory_ ->SetLabel(Model_Category::full_name(categID_, subcategID_));
-    bExpandStaus_ = true;
+    wxString similarCategory = similar_categ_token.GetNextToken();
+    if (!similarCategory.IsEmpty())
+        bSimilarCategoryStatus_ = (wxAtoi(similarCategory) != 0);
+    else
+        bSimilarCategoryStatus_ = false;
+    similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
 
     status = get_next_value(tkz, value);
     statusCheckBox_ ->SetValue(status);
@@ -264,20 +271,27 @@ void mmFilterTransactionsDialog::CreateControls()
 
     categoryCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Category"),
                                        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    //categoryCheckBox_->SetValue(false);
+
+    wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
+    categSizer->AddGrowableCol(0, 1);
+
     itemPanelSizer->Add(categoryCheckBox_, flags);
+    itemPanelSizer->Add(categSizer, flagsExpand);
 
     btnCategory_ = new wxButton( itemPanel, wxID_ANY, "",
                                 wxDefaultPosition, wxDefaultSize);
     btnCategory_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), NULL, this);
+    similarCategCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include Similar"),
+        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
-    itemPanelSizer->Add(btnCategory_, flagsExpand);
+    categSizer->Add(btnCategory_, flagsExpand);
+    categSizer->Add(similarCategCheckBox_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
+    categSizer->AddSpacer(1);
     //--End of Row --------------------------------------------------------
 
     statusCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Status"),
                                      wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    statusCheckBox_->SetValue(false);
     itemPanelSizer->Add(statusCheckBox_, flags);
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
@@ -400,21 +414,30 @@ bool mmFilterTransactionsDialog::ShowToolTips()
 
 void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
 {
-    btnCategory_->Enable(categoryCheckBox_->IsChecked());
-    accountDropDown_->Enable(accountCheckBox_->IsChecked());
-    fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
-    toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
-    cbPayee_->Enable(payeeCheckBox_->IsChecked());
-    btnCategory_->Enable(categoryCheckBox_->IsChecked());
-    choiceStatus_->Enable(statusCheckBox_->IsChecked());
-    cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
-    cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-    cbTypeTransfer_->Enable(typeCheckBox_->IsChecked());
-    amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
-    amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
-    notesEdit_->Enable(notesCheckBox_->IsChecked());
-    transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-    accountDropDown_->Enable(accountCheckBox_->IsChecked());
+    if (event.GetId() == similarCategCheckBox_->GetId())
+    {
+        bSimilarCategoryStatus_ = similarCategCheckBox_->IsChecked();
+    }
+    else if (event.GetId() != cbTypeWithdrawal_->GetId() &&
+        event.GetId() != cbTypeDeposit_->GetId() &&
+        event.GetId() != cbTypeTransfer_->GetId())
+    {
+        accountDropDown_->Enable(accountCheckBox_->IsChecked());
+        fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
+        toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+        cbPayee_->Enable(payeeCheckBox_->IsChecked());
+        btnCategory_->Enable(categoryCheckBox_->IsChecked());
+        similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
+        choiceStatus_->Enable(statusCheckBox_->IsChecked());
+        cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
+        cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
+        cbTypeTransfer_->Enable(typeCheckBox_->IsChecked());
+        amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
+        amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
+        notesEdit_->Enable(notesCheckBox_->IsChecked());
+        transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
+        accountDropDown_->Enable(accountCheckBox_->IsChecked());
+    }
 
     event.Skip();
 }
@@ -487,7 +510,6 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
 
         btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
-        bExpandStaus_ = dlg.getExpandStatus();
     }
 }
 
@@ -714,6 +736,7 @@ wxString mmFilterTransactionsDialog::GetCurrentSettings()
 
     settings_string_ << categoryCheckBox_->GetValue() << ";";
     settings_string_ << btnCategory_ ->GetLabel() << ";";
+    settings_string_ << (bSimilarCategoryStatus_ ? "|1" : "|0");
 
     settings_string_ << statusCheckBox_->GetValue() << ";";
     settings_string_ << choiceStatus_ ->GetStringSelection() << ";";
@@ -831,7 +854,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
         if (Model_Checking::splittransaction(tran).empty())
         {
             if (categID_ != tran.CATEGID) return false;
-            if (subcategID_ != tran.SUBCATEGID) return false;
+            if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
         }
         else
         {
@@ -839,7 +862,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
             for (const auto &split : Model_Checking::splittransaction(tran))
             {
                 if (split.CATEGID != categID_) continue;
-                if (split.SUBCATEGID != subcategID_) continue;
+                if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
 
                 bMatching = true;
                 break;

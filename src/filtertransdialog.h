@@ -146,9 +146,9 @@ public:
     {
         return subcategID_;
     }
-    bool getExpandStatus()
+    bool getSimilarCategoryStatus()
     {
-        return bExpandStaus_;
+        return bSimilarCategoryStatus_;
     }
     bool checkPayeeCheckBox() { return payeeCheckBox_->IsChecked(); }
 
@@ -215,6 +215,7 @@ private:
     wxComboBox* cbPayee_;
     wxCheckBox* categoryCheckBox_;
     wxButton* btnCategory_;
+    wxCheckBox* similarCategCheckBox_;
     wxCheckBox* statusCheckBox_;
     wxChoice* choiceStatus_;
     wxCheckBox* typeCheckBox_;
@@ -233,7 +234,7 @@ private:
 
     int categID_;
     int subcategID_;
-    bool bExpandStaus_;
+    bool bSimilarCategoryStatus_;
     int payeeID_;
     wxString payeeStr_;
     int refAccountID_;
