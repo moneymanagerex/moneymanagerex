@@ -1,0 +1,95 @@
+LuaWrapper
+Copyright (c) 2010-2013 Alexander Ames
+Alexander.Ames@gmail.com
+
+LuaWrapper is a library designed to help bridge the gab between Lua and C++.
+It is designed to be small (a single header file), simple, fast, and typesafe.
+It has no external dependencies other than the lua library itself, and does not
+need to be precompiled; the header can simply be dropped into a project and
+used immediately. It even supports class inheritance to a certain degree.
+Objects can be created in either Lua or C++, and passed back and forth.
+
+Instructions on how to use the library follow, but a simple example project has
+been set up to see basic library usage and can be found at
+
+    https://bitbucket.org/alexames/luawrapperexample
+
+In Lua, the objects are userdata, but through tricky use of metatables, they
+can be treated almost identically to tables. Each userdata has a __index and
+__newindex function that maps to a table hidden storage table in the registry.
+
+The main functions of interest are the following:
+ luaW_is<T>
+ luaW_to<T>
+ luaW_check<T>
+ luaW_push<T>
+ luaW_register<T>
+ luaW_extend<T, U>
+ luaW_hold<T>
+ luaW_release<T>
+
+The first four functions allow you to manipulate arbitrary classes just like
+you would the primitive types (e.g. numbers or strings). luaW_is<T> allows you
+to check if the object is what you think it is, and will take the is-a
+relationship into account unless the optional strict argument is set.
+luaW_to<T> will return a pointer of type T to your object (unless it is of the
+wrong type, in which case it will return NULL). 
+
+Registering a class:
+
+Run luaW_register to create a table and metatable for your class. This creates
+a table with the name you specify filled with the function from the table
+argument in addition to the function new. This is generally for things you
+think of as static methods in C++. The metatable becomes a metatable for each
+object if your class. These can be thought of as member functions or methods.
+
+You may also supply constructors and destructors for classes that do not have a
+default constructor or that require special set up or tear down. You may
+specify NULL as the constructor, which means that you will not be able to call
+the new function on your class table. You will need to manually push objects
+from C++. By default, the default constructor is used to create objects and a
+simple call to delete is used to destroy them. When using the constructor, you
+do not have access to the userdata's storage table. If you want to add or
+adjust values to the storage table you can use the special post constructor
+metamethod ("__postctor" or LUAW_POSTCTOR_KEY).
+
+By default, LuaWrapper uses the address of C++ object to identify unique
+objects. In some cases this is not desired, such as in the case of shared_ptrs.
+Two shared_ptrs may themselves have unique locations in memory but still
+represent the same object. For cases like that, you may specify an identifier
+function which is responsible for pushing a key representing your object on to
+the stack.
+
+Extending a class:
+
+To extend a class use the function luaW_extend<T, U>, where T is a class that
+extends U. All functions in the base class will be available to the derived
+class (except when they share a function name, in which case the derived
+class's function wins).
+
+Pointer Ownership:
+
+Objects created from within Lua scripts (or that are created through luaW_new)
+are considered to be owned by Lua. Ownership merely means that when all
+references to it are removed, the garbage collector will delete the object. An
+object created in C++ and pushed to Lua is not considered owned unless
+luaW_hold is run on it. LuaWrapper uses a weak table to cache objects in order
+to prevent the __gc metamethod from deleting pointers to objects that are still
+in use. If an object is created in Lua and you do not want it to be owned by
+Lua, you may call luaW_release on it.
+
+Lua Wrapper Utilities:
+
+A second file, called LuaWrapperUtil.hpp includes a number of additional
+functions that may be useful, which build upon the core LuaWrapper API. The
+main features are some functions which automatically cast interger types to
+enum types and templated getters and setters for primitives an pointers to
+objects. All functions in LuaWrapperUtil.hpp are prefixed with luaU_.
+Documentation and some examples are provided in the comments of the file.
+
+Contributions:
+
+Thanks to Christopher Eykamp for the idea to use ephemeron tables to cache
+userdata to avoid unnecessary allocations as wells as various other feedback. 
+
+Thanks to qwer1304 for the addition of enum support in the utilities functions.
