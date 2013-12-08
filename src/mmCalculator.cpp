@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "mmCalculator.h"
 #include <wx/tokenzr.h>
+#include "LuaGlue/LuaGlue.h"
 
 mmCalculator::mmCalculator()
 {
@@ -27,7 +28,16 @@ mmCalculator::mmCalculator()
 const bool mmCalculator::is_ok(const wxString& input)
 {
     bool ok = check_syntax(input);
-    if (ok) ok = calculate(input);
+//    if (ok) ok = calculate(input);
+    LuaGlue state;
+    state.open().glue();
+    std::string lua_f = "function calc() return " + input.ToStdString() + "; end";
+    if(!state.doString(lua_f))
+    {
+        printf("err: %s\n", state.lastError().c_str());
+    }
+
+    this->output_ = state.invokeFunction<double>("calc");
     return ok;
 }
 
