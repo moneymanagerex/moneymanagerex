@@ -60,8 +60,8 @@ SplitTransactionDialog::SplitTransactionDialog(
 
     transType_ = transType;
     selectedIndex_ = 0;
-    if (transType_ == DEF_TRANSFER)
-        transType_ = DEF_WITHDRAWAL;
+    if (transType_ == Model_Checking::TRANSFER)
+        transType_ = Model_Checking::WITHDRAWAL;
 
     long style = wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Split Transaction Dialog")
@@ -130,12 +130,12 @@ void SplitTransactionDialog::CreateControls()
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
     wxString totalMessage = _("Total:");
-    if (transType_ == DEF_WITHDRAWAL)
+    if (transType_ == Model_Checking::WITHDRAWAL)
     {
         totalMessage.Prepend(" ");
         totalMessage.Prepend(_("Withdrawal"));
     }
-    if (transType_ == DEF_DEPOSIT)
+    if (transType_ == Model_Checking::DEPOSIT)
     {
         totalMessage.Prepend(" ");
         totalMessage.Prepend(_("Deposit"));
