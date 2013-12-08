@@ -890,7 +890,6 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr17(*wxYELLOW, mmColors::userDefColor7, wxNullFont),
     m_sortCol(COL_DEF_SORT),
     m_asc(true),
-    showDeletedTransactions_(false),
     g_sortcol(COL_DEF_SORT),
     g_asc(true),
     m_selectedID(-1),
@@ -916,6 +915,8 @@ TransactionListCtrl::TransactionListCtrl(
 
     wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
     SetAcceleratorTable(tab);
+
+    showDeletedTransactions_ = Model_Setting::instance().GetBoolSetting("SHOW_DELETED_TRANS", true);
 }
 
 //----------------------------------------------------------------------------
@@ -1069,6 +1070,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
 void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
 {
     showDeletedTransactions_ = !showDeletedTransactions_;
+    Model_Setting::instance().Set("SHOW_DELETED_TRANS", showDeletedTransactions_);
     refreshVisualList(m_selectedID);
 }
 
