@@ -25,6 +25,14 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 
+enum
+{
+    MENU_ITEM_HIDE = wxID_HIGHEST + 1,
+    MENU_ITEM_UNHIDE,
+    MENU_ITEM_CLEAR,
+    ID_DIALOG_CATEGORY
+};
+
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmCategDialog, wxDialog )
@@ -37,7 +45,7 @@ BEGIN_EVENT_TABLE( mmCategDialog, wxDialog )
     EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmCategDialog::OnSelChanged)
     EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmCategDialog::OnDoubleClicked)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmCategDialog::OnItemRightClick)
-    EVT_MENU_RANGE(0, 9, mmCategDialog::OnMenuSelected)
+    EVT_MENU_RANGE(MENU_ITEM_HIDE, MENU_ITEM_CLEAR, mmCategDialog::OnMenuSelected)
 END_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog( )
@@ -60,9 +68,8 @@ mmCategDialog::mmCategDialog( )
     refreshRequested_ = false;
 }
 
-mmCategDialog::mmCategDialog(wxWindow* parent, bool bEnableSelect, bool bEnableRelocate,
-                             wxWindowID id, const wxString& caption,
-                             const wxPoint& pos, const wxSize& size, long style )
+mmCategDialog::mmCategDialog(wxWindow* parent
+    , bool bEnableSelect, bool bEnableRelocate)
 {
     // Initialize fields in constructor
     categID_ = -1;
@@ -80,14 +87,15 @@ mmCategDialog::mmCategDialog(wxWindow* parent, bool bEnableSelect, bool bEnableR
     {
         hidden_categs_.Add( token.GetNextToken() );
     }
-    //
 
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX | wxRESIZE_BORDER;
+    Create(parent, ID_DIALOG_CATEGORY, _("Organize Categories")
+        , wxDefaultPosition, wxSize(500, 300), style);
 }
 
-bool mmCategDialog::Create( wxWindow* parent, wxWindowID id,
-                           const wxString& caption, const wxPoint& pos,
-                           const wxSize& size, long style )
+bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
+    , const wxString& caption, const wxPoint& pos
+    , const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -169,22 +177,22 @@ void mmCategDialog::CreateControls()
     wxBoxSizer* itemBoxSizer33 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer3->Add(itemBoxSizer33);
 
-    btnCateg_relocate_ = new wxBitmapButton(this,
-        wxID_STATIC, wxBitmap(relocate_categories_xpm));
-    btnCateg_relocate_->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), NULL, this);
+    btnCateg_relocate_ = new wxBitmapButton(this
+        , wxID_STATIC, wxBitmap(relocate_categories_xpm));
+    btnCateg_relocate_->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), NULL, this);
     btnCateg_relocate_->SetToolTip(_("Reassign all categories to another category"));
 
-    cbExpand_ = new wxCheckBox(this, wxID_STATIC, _("Expand"), wxDefaultPosition,
-        wxDefaultSize, wxCHK_2STATE);
+    cbExpand_ = new wxCheckBox(this, wxID_STATIC, _("Expand"), wxDefaultPosition
+        , wxDefaultSize, wxCHK_2STATE);
     cbExpand_->Connect(wxID_STATIC, wxEVT_COMMAND_CHECKBOX_CLICKED,
         wxCommandEventHandler(mmCategDialog::OnExpandChbClick), NULL, this);
 
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition,
-        wxDefaultSize, wxCHK_2STATE);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
+        , wxDefaultSize, wxCHK_2STATE);
     cbShowAll_->SetToolTip(_("Show all hidden categories"));
-    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
-        wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), NULL, this);
+    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
+        , wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), NULL, this);
 
     itemBoxSizer33->Add(btnCateg_relocate_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
     itemBoxSizer33->AddSpacer(10);
@@ -212,7 +220,7 @@ void mmCategDialog::CreateControls()
 
     addButton_ = new wxButton( this, wxID_ADD, _("&Add "));
     itemBoxSizer5->Add(addButton_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-     addButton_->SetToolTip(_("Add a new category"));
+    addButton_->SetToolTip(_("Add a new category"));
 
     editButton_ = new wxButton( this, wxID_EDIT, _("&Edit "));
     itemBoxSizer5->Add(editButton_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
@@ -585,46 +593,45 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     int id = event.GetId();
 
     wxString index = wxString::Format("*%i:%i*",categID_, subcategID_);
-    if (id == 0)
+    if (id == MENU_ITEM_HIDE)
     {
         treeCtrl_->SetItemTextColour(selectedItemId_, wxColour("GREY"));
         if (hidden_categs_.Index(index) == wxNOT_FOUND )
             hidden_categs_.Add(index);
     }
-    else if (id == 1)
+    else if (id == MENU_ITEM_UNHIDE)
     {
         treeCtrl_->SetItemTextColour(selectedItemId_, NormalColor_);
         hidden_categs_.Remove(index);
     }
-    else if (id == 2)
+    else if (id == MENU_ITEM_CLEAR)
     {
         hidden_categs_.Clear();
     }
 
     wxString sSettings = "";
-    for (size_t i = 0; i < hidden_categs_.GetCount(); i++)
+    for (const auto& item : hidden_categs_)
     {
-        sSettings.Append(hidden_categs_[i]).Append(";");
+        sSettings.Append(item + ";");
     }
     sSettings.RemoveLast(1);
 
     Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
 
-    if (!cbShowAll_->IsChecked() || id == 2) fillControls();
-    event.Skip();
+    if (!cbShowAll_->IsChecked() || id == MENU_ITEM_CLEAR) fillControls();
 }
 
 void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
 {
     wxMenu* mainMenu = new wxMenu;
-    mainMenu->Append(new wxMenuItem(mainMenu, 0, _("Hide Selected Category")));
-    mainMenu->Append(new wxMenuItem(mainMenu, 1, _("Unhide Selected Category")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_HIDE, _("Hide Selected Category")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_UNHIDE, _("Unhide Selected Category")));
     mainMenu->AppendSeparator();
-    mainMenu->Append(new wxMenuItem(mainMenu, 2, _("Clear Settings")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_CLEAR, _("Clear Settings")));
 
     bool bItemHidden = (treeCtrl_->GetItemTextColour(selectedItemId_) != NormalColor_);
-    mainMenu->Enable(0, !bItemHidden && (selectedItemId_ != root_));
-    mainMenu->Enable(1, bItemHidden && (selectedItemId_ != root_));
+    mainMenu->Enable(MENU_ITEM_HIDE, !bItemHidden && (selectedItemId_ != root_));
+    mainMenu->Enable(MENU_ITEM_UNHIDE, bItemHidden && (selectedItemId_ != root_));
 
     PopupMenu(mainMenu, event.GetPoint());
     delete mainMenu;

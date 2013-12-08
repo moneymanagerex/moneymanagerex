@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "../resources/save.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
@@ -397,9 +398,9 @@ void mmFilterTransactionsDialog::CreateControls()
 
     wxButton* itemButtonClear = new wxButton( buttonPanel, wxID_CLEAR, _("&Clear "));
 
-    wxBitmapButton* save_button = new wxBitmapButton( buttonPanel,
-        wxID_SAVE, wxBitmap(save_xpm), wxDefaultPosition,
-        wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
+    wxBitmapButton* save_button = new wxBitmapButton(buttonPanel
+        , wxID_SAVE, wxBitmap(save_xpm), wxDefaultPosition
+        , wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
 
     save_button->Show(true);
 

@@ -19,13 +19,7 @@
 #ifndef _MM_EX_CATEGDIALOG_H_
 #define _MM_EX_CATEGDIALOG_H_
 
-#define SYMBOL_CATEGDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxRESIZE_BORDER
-#define SYMBOL_CATEGDIALOG_TITLE _("Organize Categories")
-#define SYMBOL_CATEGDIALOG_IDNAME ID_DIALOG_CATEGORY
-#define SYMBOL_CATEGDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_CATEGDIALOG_POSITION wxDefaultPosition
 
-#include "guiid.h"
 #include "defs.h"
 #include "model/Model_Category.h"
 
@@ -33,8 +27,8 @@ class mmTreeItemCateg : public wxTreeItemData
 {
 public:
     mmTreeItemCateg(const Model_Category::Data& categData, const Model_Subcategory::Data& subcategData)
-        : categData_(categData),
-          subcategData_(subcategData) { }
+        : categData_(categData)
+        , subcategData_(subcategData) { }
     Model_Category::Data* getCategData() { return &categData_; }
     Model_Subcategory::Data* getSubCategData() { return &subcategData_; }
 
@@ -50,19 +44,16 @@ class mmCategDialog : public wxDialog
 
 public:
     mmCategDialog();
-    mmCategDialog(wxWindow* parent,
-                  bool bEnableSelect = true, bool bEnableRelocate = true,
-                  wxWindowID id = SYMBOL_CATEGDIALOG_IDNAME,
-                  const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
-                  const wxPoint& pos = SYMBOL_CATEGDIALOG_POSITION,
-                  const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
-                  long style = SYMBOL_CATEGDIALOG_STYLE );
+    mmCategDialog(wxWindow* parent
+        , bool bEnableSelect = true
+        , bool bEnableRelocate = true);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_CATEGDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_CATEGDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_CATEGDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_CATEGDIALOG_SIZE,
-                 long style = SYMBOL_CATEGDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     void setTreeSelection(const wxString& catName, const wxString& subCatName);
     void setTreeSelection(int &category_id, int &subcategory_id);
