@@ -3021,7 +3021,15 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
             if (dlg->getTypeCheckBox())
             {
-                if (!dlg->allowType(tran.TRANSCODE, tran.ACCOUNTID == tran.TOACCOUNTID)) continue;
+                // must have account to reference to in order to distinguish between to and from transfers
+                bool bSameAccount = true;
+                if (dlg->getAccountCheckBox())
+                {
+                    if (tran.ACCOUNTID != dlg->getAccountID())
+                        bSameAccount = false;
+                }
+
+                if (!dlg->allowType(tran.TRANSCODE, bSameAccount)) continue;
             }
 
             if (dlg->getNumberCheckBox())

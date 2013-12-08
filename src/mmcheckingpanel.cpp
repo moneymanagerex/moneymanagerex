@@ -203,7 +203,7 @@ void mmCheckingPanel::filterTable()
         reconciled_balance_ += (Model_Checking::status(tran) == Model_Checking::RECONCILED) ? transaction_amount : 0;
         if (transFilterActive_)
         {
-            if (!transFilterDlg_->checkAll(tran)) continue;
+            if (!transFilterDlg_->checkAll(tran, m_AccountID)) continue;
         }
         else
         {

@@ -98,7 +98,7 @@ public:
 
     bool checkPayee(int payeeID);
     bool checkCategory(const Model_Checking::Data &tran);
-    bool checkAll(const Model_Checking::Data &tran);
+    bool checkAll(const Model_Checking::Data &tran, const int accountID);
 
     int getPayeeID() const;
 
@@ -222,7 +222,8 @@ private:
     wxCheckBox* typeCheckBox_;
     wxCheckBox* cbTypeWithdrawal_;
     wxCheckBox* cbTypeDeposit_;
-    wxCheckBox* cbTypeTransfer_;
+    wxCheckBox* cbTypeTransferTo_;
+    wxCheckBox* cbTypeTransferFrom_;
     wxCheckBox* amountRangeCheckBox_;
     mmTextCtrl* amountMinEdit_;
     mmTextCtrl* amountMaxEdit_;

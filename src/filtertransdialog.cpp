@@ -176,8 +176,10 @@ void mmFilterTransactionsDialog::dataToControls()
     cbTypeWithdrawal_ ->Enable(status);
     cbTypeDeposit_ ->SetValue(value.Contains("D"));
     cbTypeDeposit_ ->Enable(status);
-    cbTypeTransfer_ ->SetValue(value.Contains("T"));
-    cbTypeTransfer_ ->Enable(status);
+    cbTypeTransferTo_ ->SetValue(value.Contains("T"));
+    cbTypeTransferTo_ ->Enable(status);
+    cbTypeTransferFrom_->SetValue(value.Contains("F"));
+    cbTypeTransferFrom_->Enable(status);
 
     status = get_next_value(tkz, value);
     amountRangeCheckBox_ ->SetValue(status);
@@ -314,15 +316,18 @@ void mmFilterTransactionsDialog::CreateControls()
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     cbTypeDeposit_ = new wxCheckBox( itemPanel, wxID_ANY, _("Deposit"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    cbTypeTransfer_ = new wxCheckBox( itemPanel, wxID_ANY, _("Transfer"),
+    cbTypeTransferTo_ = new wxCheckBox( itemPanel, wxID_ANY, _("Transfer To"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer From"),
+        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
     itemPanelSizer->Add(typeCheckBox_, flags);
     itemPanelSizer->Add(typeSizer, flagsExpand);
     typeSizer ->Add(cbTypeWithdrawal_, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 2);
     typeSizer ->Add(cbTypeDeposit_, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 2);
-    typeSizer ->Add(cbTypeTransfer_, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 2);
-    typeSizer ->AddSpacer(2);
+    typeSizer ->Add(cbTypeTransferTo_, 1, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 2);
+    typeSizer->Add(cbTypeTransferFrom_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
+    typeSizer->AddSpacer(2);
 
     //--End of Row --------------------------------------------------------
 
@@ -421,7 +426,8 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
     }
     else if (event.GetId() != cbTypeWithdrawal_->GetId() &&
         event.GetId() != cbTypeDeposit_->GetId() &&
-        event.GetId() != cbTypeTransfer_->GetId())
+        event.GetId() != cbTypeTransferTo_->GetId() &&
+        event.GetId() != cbTypeTransferFrom_->GetId())
     {
         accountDropDown_->Enable(accountCheckBox_->IsChecked());
         fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
@@ -432,7 +438,8 @@ void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
         choiceStatus_->Enable(statusCheckBox_->IsChecked());
         cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
         cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
-        cbTypeTransfer_->Enable(typeCheckBox_->IsChecked());
+        cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
+        cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
         amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
         amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
         notesEdit_->Enable(notesCheckBox_->IsChecked());
@@ -613,7 +620,11 @@ bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
 bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameAccount) const
 {
     bool result = false;
-    if (typeState == TRANS_TYPE_TRANSFER_STR && cbTypeTransfer_->GetValue())
+    if (typeState == TRANS_TYPE_TRANSFER_STR && cbTypeTransferTo_->GetValue() && sameAccount)
+    {
+        result = true;
+    }
+    else if (typeState == TRANS_TYPE_TRANSFER_STR && cbTypeTransferFrom_->GetValue() && !sameAccount)
     {
         result = true;
     }
@@ -638,8 +649,10 @@ wxString mmFilterTransactionsDialog::userTypeStr() const
             transCode = wxGetTranslation(TRANS_TYPE_WITHDRAWAL_STR);
         if (cbTypeDeposit_->GetValue())
             transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_DEPOSIT_STR);
-        if (cbTypeTransfer_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_TRANSFER_STR);
+        if (cbTypeTransferTo_->GetValue())
+            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation("Transfer To");
+        if (cbTypeTransferFrom_->GetValue())
+            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation("Transfer From");
     }
     return transCode;
 }
@@ -749,7 +762,8 @@ wxString mmFilterTransactionsDialog::GetCurrentSettings()
     settings_string_ << typeCheckBox_->GetValue() << ";"
     << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
     << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
-    << (cbTypeTransfer_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
+    << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
+    << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "")
     << ";";
 
     settings_string_ << amountRangeCheckBox_->GetValue() << ";";
@@ -878,7 +892,7 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
     return true;
 }
 
-bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran)
+bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, const int accountID)
 {
     bool ok = true;
     //wxLogDebug("Check date? %i trx date:%s %s %s", getDateRangeCheckBox(), tran.TRANSDATE, getFromDateCtrl().GetDateOnly().FormatISODate(), getToDateControl().GetDateOnly().FormatISODate());
@@ -892,7 +906,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran)
     else if (!checkPayee(tran.PAYEEID)) ok = false;
     else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, tran.ACCOUNTID == tran.TOACCOUNTID)) ok = false;
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
