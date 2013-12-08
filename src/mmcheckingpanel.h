@@ -30,14 +30,14 @@ class mmCheckingPanel;
 class mmFilterTransactionsDialog;
 //----------------------------------------------------------------------------
 
-class TransactionListCtrl : public wxListCtrl
+class TransactionListCtrl : public mmListCtrl
 {
 public:
 
     TransactionListCtrl(mmCheckingPanel *cp, wxWindow *parent
         , const wxWindowID id, const wxPoint& pos,const wxSize& size, long style);
 
-    void createColumns(wxListCtrl &lst);
+    void createColumns(mmListCtrl &lst);
     enum EIcons //m_imageList
     {
         ICON_RECONCILED,
@@ -175,7 +175,7 @@ public:
 private:
     enum menu
     {
-        MENU_VIEW_ALLTRANSACTIONS,
+        MENU_VIEW_ALLTRANSACTIONS = 1,
         MENU_VIEW_TODAY,
         MENU_VIEW_CURRENTMONTH,
         MENU_VIEW_LAST30,
