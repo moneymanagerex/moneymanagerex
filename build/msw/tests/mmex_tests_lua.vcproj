@@ -351,14 +351,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\lib\lua\src\dtoa.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\lib\lua\src\g_fmt.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\lib\lua\src\lapi.c"
 				>
 			</File>
@@ -479,10 +471,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\lib\lua\src\lua_cjson.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\lib\lua\src\luac.c"
 				>
 			</File>
@@ -498,24 +486,12 @@
 				RelativePath="..\..\..\lib\lua\src\lzio.c"
 				>
 			</File>
-			<File
-				RelativePath="..\..\..\lib\lua\src\strbuf.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="..\..\..\lib\lua\src\dtoa_config.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\lib\lua\src\fpconv.h"
-				>
-			</File>
 			<File
 				RelativePath="..\..\..\lib\lua\src\lapi.h"
 				>
@@ -610,10 +586,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\lib\lua\src\lzio.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\lib\lua\src\strbuf.h"
 				>
 			</File>
 		</Filter>

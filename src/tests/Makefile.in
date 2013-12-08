@@ -53,8 +53,6 @@ WXSQLITE_OBJECTS =  \
 	wxsqlite_sqlite3secure.o
 LUA_CFLAGS =     $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
-	lua_dtoa.o \
-	lua_g_fmt.o \
 	lua_lapi.o \
 	lua_lauxlib.o \
 	lua_lbaselib.o \
@@ -85,69 +83,16 @@ LUA_OBJECTS =  \
 	lua_ltablib.o \
 	lua_ltm.o \
 	lua_lua.o \
-	lua_lua_cjson.o \
 	lua_luac.o \
 	lua_lundump.o \
 	lua_lvm.o \
-	lua_lzio.o \
-	lua_strbuf.o
-CPPUNIT_CXXFLAGS = -I$(srcdir)/../../lib/cppunit/include $(PIC_FLAG) \
-	$(CPPFLAGS) $(CXXFLAGS)
-CPPUNIT_OBJECTS =  \
-	cppunit_AdditionalMessage.o \
-	cppunit_Asserter.o \
-	cppunit_BeOsDynamicLibraryManager.o \
-	cppunit_BriefTestProgressListener.o \
-	cppunit_CompilerOutputter.o \
-	cppunit_Exception.o \
-	cppunit_Message.o \
-	cppunit_PlugInManager.o \
-	cppunit_PlugInParameters.o \
-	cppunit_Protector.o \
-	cppunit_ProtectorChain.o \
-	cppunit_RepeatedTest.o \
-	cppunit_ShlDynamicLibraryManager.o \
-	cppunit_SourceLine.o \
-	cppunit_StringTools.o \
-	cppunit_SynchronizedObject.o \
-	cppunit_Test.o \
-	cppunit_TestAssert.o \
-	cppunit_TestCase.o \
-	cppunit_TestCaseDecorator.o \
-	cppunit_TestComposite.o \
-	cppunit_TestDecorator.o \
-	cppunit_TestFactoryRegistry.o \
-	cppunit_TestFailure.o \
-	cppunit_TestLeaf.o \
-	cppunit_TestNamer.o \
-	cppunit_TestPath.o \
-	cppunit_TestPlugInDefaultImpl.o \
-	cppunit_TestResult.o \
-	cppunit_TestResultCollector.o \
-	cppunit_TestRunner.o \
-	cppunit_TestSetUp.o \
-	cppunit_TestSuccessListener.o \
-	cppunit_TestSuite.o \
-	cppunit_TestSuiteBuilderContext.o \
-	cppunit_TextOutputter.o \
-	cppunit_TextTestProgressListener.o \
-	cppunit_TextTestResult.o \
-	cppunit_TextTestRunner.o \
-	cppunit_TypeInfoHelper.o \
-	cppunit_UnixDynamicLibraryManager.o \
-	cppunit_Win32DynamicLibraryManager.o \
-	cppunit_XmlDocument.o \
-	cppunit_XmlElement.o \
-	cppunit_XmlOutputter.o \
-	cppunit_XmlOutputterHook.o \
-	cppunit_DefaultProtector.o \
-	cppunit_DynamicLibraryManager.o \
-	cppunit_DynamicLibraryManagerException.o
+	lua_lzio.o
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
-	-I$(srcdir)/../../lib -I$(srcdir)/../../src -DNOPCH -I$(srcdir)/../../src \
-	-I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) $(PIC_FLAG) \
-	$(CPPFLAGS) $(CXXFLAGS)
+	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd/cgitemplate \
+	-I$(srcdir)/../../3rd/LuaGlue/include/ -I$(srcdir)/../../src -DNOPCH \
+	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) \
+	$(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -213,6 +158,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
+	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
 	$(__mmex_tests___win32rc)
@@ -259,9 +205,9 @@ $(LIBPREFIX)lua$(LIBEXT): $(LUA_OBJECTS)
 	$(AR) $(AROPTIONS) $@ $(LUA_OBJECTS)
 	$(RANLIB) $@
 
-$(LIBPREFIX)cppunit$(LIBEXT): $(CPPUNIT_OBJECTS)
+$(LIBPREFIX)cppunit$(LIBEXT): 
 	rm -f $@
-	$(AR) $(AROPTIONS) $@ $(CPPUNIT_OBJECTS)
+	$(AR) $(AROPTIONS) $@
 	$(RANLIB) $@
 
 mmex_tests$(EXEEXT): $(MMEX_TESTS_OBJECTS) $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) $(LIBPREFIX)cppunit$(LIBEXT) $(__mmex_tests___win32rc)
@@ -277,12 +223,6 @@ wxsqlite_wxsqlite3.o: $(srcdir)/../../lib/wxsqlite3/src/wxsqlite3.cpp
 
 wxsqlite_sqlite3secure.o: $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
 	$(CCC) -c -o $@ $(WXSQLITE_CFLAGS) $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
-
-lua_dtoa.o: $(srcdir)/../../lib/lua/src/dtoa.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/dtoa.c
-
-lua_g_fmt.o: $(srcdir)/../../lib/lua/src/g_fmt.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/g_fmt.c
 
 lua_lapi.o: $(srcdir)/../../lib/lua/src/lapi.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/lapi.c
@@ -374,9 +314,6 @@ lua_ltm.o: $(srcdir)/../../lib/lua/src/ltm.c
 lua_lua.o: $(srcdir)/../../lib/lua/src/lua.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/lua.c
 
-lua_lua_cjson.o: $(srcdir)/../../lib/lua/src/lua_cjson.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/lua_cjson.c
-
 lua_luac.o: $(srcdir)/../../lib/lua/src/luac.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/luac.c
 
@@ -388,156 +325,6 @@ lua_lvm.o: $(srcdir)/../../lib/lua/src/lvm.c
 
 lua_lzio.o: $(srcdir)/../../lib/lua/src/lzio.c
 	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/lzio.c
-
-lua_strbuf.o: $(srcdir)/../../lib/lua/src/strbuf.c
-	$(CCC) -c -o $@ $(LUA_CFLAGS) $(srcdir)/../../lib/lua/src/strbuf.c
-
-cppunit_AdditionalMessage.o: $(srcdir)/../../lib/cppunit/src/cppunit/AdditionalMessage.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/AdditionalMessage.cpp
-
-cppunit_Asserter.o: $(srcdir)/../../lib/cppunit/src/cppunit/Asserter.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/Asserter.cpp
-
-cppunit_BeOsDynamicLibraryManager.o: $(srcdir)/../../lib/cppunit/src/cppunit/BeOsDynamicLibraryManager.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/BeOsDynamicLibraryManager.cpp
-
-cppunit_BriefTestProgressListener.o: $(srcdir)/../../lib/cppunit/src/cppunit/BriefTestProgressListener.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/BriefTestProgressListener.cpp
-
-cppunit_CompilerOutputter.o: $(srcdir)/../../lib/cppunit/src/cppunit/CompilerOutputter.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/CompilerOutputter.cpp
-
-cppunit_Exception.o: $(srcdir)/../../lib/cppunit/src/cppunit/Exception.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/Exception.cpp
-
-cppunit_Message.o: $(srcdir)/../../lib/cppunit/src/cppunit/Message.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/Message.cpp
-
-cppunit_PlugInManager.o: $(srcdir)/../../lib/cppunit/src/cppunit/PlugInManager.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/PlugInManager.cpp
-
-cppunit_PlugInParameters.o: $(srcdir)/../../lib/cppunit/src/cppunit/PlugInParameters.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/PlugInParameters.cpp
-
-cppunit_Protector.o: $(srcdir)/../../lib/cppunit/src/cppunit/Protector.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/Protector.cpp
-
-cppunit_ProtectorChain.o: $(srcdir)/../../lib/cppunit/src/cppunit/ProtectorChain.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/ProtectorChain.cpp
-
-cppunit_RepeatedTest.o: $(srcdir)/../../lib/cppunit/src/cppunit/RepeatedTest.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/RepeatedTest.cpp
-
-cppunit_ShlDynamicLibraryManager.o: $(srcdir)/../../lib/cppunit/src/cppunit/ShlDynamicLibraryManager.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/ShlDynamicLibraryManager.cpp
-
-cppunit_SourceLine.o: $(srcdir)/../../lib/cppunit/src/cppunit/SourceLine.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/SourceLine.cpp
-
-cppunit_StringTools.o: $(srcdir)/../../lib/cppunit/src/cppunit/StringTools.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/StringTools.cpp
-
-cppunit_SynchronizedObject.o: $(srcdir)/../../lib/cppunit/src/cppunit/SynchronizedObject.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/SynchronizedObject.cpp
-
-cppunit_Test.o: $(srcdir)/../../lib/cppunit/src/cppunit/Test.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/Test.cpp
-
-cppunit_TestAssert.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestAssert.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestAssert.cpp
-
-cppunit_TestCase.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestCase.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestCase.cpp
-
-cppunit_TestCaseDecorator.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestCaseDecorator.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestCaseDecorator.cpp
-
-cppunit_TestComposite.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestComposite.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestComposite.cpp
-
-cppunit_TestDecorator.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestDecorator.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestDecorator.cpp
-
-cppunit_TestFactoryRegistry.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestFactoryRegistry.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestFactoryRegistry.cpp
-
-cppunit_TestFailure.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestFailure.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestFailure.cpp
-
-cppunit_TestLeaf.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestLeaf.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestLeaf.cpp
-
-cppunit_TestNamer.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestNamer.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestNamer.cpp
-
-cppunit_TestPath.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestPath.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestPath.cpp
-
-cppunit_TestPlugInDefaultImpl.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestPlugInDefaultImpl.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestPlugInDefaultImpl.cpp
-
-cppunit_TestResult.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestResult.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestResult.cpp
-
-cppunit_TestResultCollector.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestResultCollector.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestResultCollector.cpp
-
-cppunit_TestRunner.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestRunner.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestRunner.cpp
-
-cppunit_TestSetUp.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestSetUp.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestSetUp.cpp
-
-cppunit_TestSuccessListener.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestSuccessListener.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestSuccessListener.cpp
-
-cppunit_TestSuite.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestSuite.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestSuite.cpp
-
-cppunit_TestSuiteBuilderContext.o: $(srcdir)/../../lib/cppunit/src/cppunit/TestSuiteBuilderContext.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TestSuiteBuilderContext.cpp
-
-cppunit_TextOutputter.o: $(srcdir)/../../lib/cppunit/src/cppunit/TextOutputter.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TextOutputter.cpp
-
-cppunit_TextTestProgressListener.o: $(srcdir)/../../lib/cppunit/src/cppunit/TextTestProgressListener.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TextTestProgressListener.cpp
-
-cppunit_TextTestResult.o: $(srcdir)/../../lib/cppunit/src/cppunit/TextTestResult.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TextTestResult.cpp
-
-cppunit_TextTestRunner.o: $(srcdir)/../../lib/cppunit/src/cppunit/TextTestRunner.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TextTestRunner.cpp
-
-cppunit_TypeInfoHelper.o: $(srcdir)/../../lib/cppunit/src/cppunit/TypeInfoHelper.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/TypeInfoHelper.cpp
-
-cppunit_UnixDynamicLibraryManager.o: $(srcdir)/../../lib/cppunit/src/cppunit/UnixDynamicLibraryManager.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/UnixDynamicLibraryManager.cpp
-
-cppunit_Win32DynamicLibraryManager.o: $(srcdir)/../../lib/cppunit/src/cppunit/Win32DynamicLibraryManager.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/Win32DynamicLibraryManager.cpp
-
-cppunit_XmlDocument.o: $(srcdir)/../../lib/cppunit/src/cppunit/XmlDocument.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/XmlDocument.cpp
-
-cppunit_XmlElement.o: $(srcdir)/../../lib/cppunit/src/cppunit/XmlElement.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/XmlElement.cpp
-
-cppunit_XmlOutputter.o: $(srcdir)/../../lib/cppunit/src/cppunit/XmlOutputter.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/XmlOutputter.cpp
-
-cppunit_XmlOutputterHook.o: $(srcdir)/../../lib/cppunit/src/cppunit/XmlOutputterHook.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/XmlOutputterHook.cpp
-
-cppunit_DefaultProtector.o: $(srcdir)/../../lib/cppunit/src/cppunit/DefaultProtector.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/DefaultProtector.cpp
-
-cppunit_DynamicLibraryManager.o: $(srcdir)/../../lib/cppunit/src/cppunit/DynamicLibraryManager.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/DynamicLibraryManager.cpp
-
-cppunit_DynamicLibraryManagerException.o: $(srcdir)/../../lib/cppunit/src/cppunit/DynamicLibraryManagerException.cpp
-	$(CXXC) -c -o $@ $(CPPUNIT_CXXFLAGS) $(srcdir)/../../lib/cppunit/src/cppunit/DynamicLibraryManagerException.cpp
 
 mmex_tests_aboutdialog.o: $(srcdir)/../../src/aboutdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/aboutdialog.cpp
@@ -731,6 +518,9 @@ mmex_tests_qif_import.o: $(srcdir)/../../src/import_export/qif_import.cpp
 mmex_tests_univcsvdialog.o: $(srcdir)/../../src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/univcsvdialog.cpp
 
+mmex_tests_html_template.o: $(srcdir)/../../3rd/cgitemplate/html_template.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/cgitemplate/html_template.cpp
+
 mmex_tests_currency_test.o: $(srcdir)/../../src/tests/currency_test.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/currency_test.cpp
 
@@ -738,7 +528,7 @@ mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../3rd/LuaGlue/include/ --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
 
 
 # Include dependency info, if present:

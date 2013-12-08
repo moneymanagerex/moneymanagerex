@@ -48,13 +48,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS /Zi"
 				Optimization="2"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
@@ -72,7 +72,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -138,13 +138,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -164,7 +164,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -231,13 +231,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS /Zi"
 				Optimization="2"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
@@ -255,7 +255,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -321,13 +321,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -347,7 +347,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd\cgitemplate;..\..\..\3rd\LuaGlue\include\;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -498,6 +498,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\filtertransdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\cgitemplate\html_template.cpp"
 				>
 			</File>
 			<File
@@ -904,6 +908,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\guiid.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\cgitemplate\html_template.h"
 				>
 			</File>
 			<File
