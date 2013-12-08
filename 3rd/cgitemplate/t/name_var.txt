@@ -1,2 +1,0 @@
-# this should see the variable name of NAME, and not the optional name parameter
-NAME
