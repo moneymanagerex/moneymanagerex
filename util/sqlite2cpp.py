@@ -116,17 +116,18 @@ struct DB_Table_%s : public DB_Table
     /** Creates the database table if the table does not exist*/
     bool ensure(wxSQLite3Database* db)
     {
-        if (exists(db)) return true;
-
-        try
-        {
-            db->ExecuteUpdate("%s");
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("%s: Exception %%s", e.GetMessage().c_str());
-            return false;
-        }
+        if (!exists(db))
+		{
+			try
+			{
+				db->ExecuteUpdate("%s");
+			}
+			catch(const wxSQLite3Exception &e) 
+			{ 
+				wxLogError("%s: Exception %%s", e.GetMessage().c_str());
+				return false;
+			}
+		}
 
         this->ensure_index(db);
 
@@ -140,8 +141,13 @@ struct DB_Table_%s : public DB_Table
         try
         {'''
         for i in self._index:
+            mi = i.split()
+            mi.insert(2, 'IF')
+            mi.insert(3, 'NOT')
+            mi.insert(4, 'EXISTS')
+            ni = ' '.join(mi)
             s += '''
-            db->ExecuteUpdate("%s");''' % (i.replace('\n', ''))
+            db->ExecuteUpdate("%s");''' % (ni.replace('\n', ''))
 
         s += '''
         }

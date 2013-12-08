@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
+ *          AUTO GENERATED at 2013-12-07 19:53:24.600000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -57,17 +57,18 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     /** Creates the database table if the table does not exist*/
     bool ensure(wxSQLite3Database* db)
     {
-        if (exists(db)) return true;
-
-        try
-        {
-            db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL , ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
+        if (!exists(db))
+		{
+			try
+			{
+				db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL , ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
+			}
+			catch(const wxSQLite3Exception &e) 
+			{ 
+				wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+				return false;
+			}
+		}
 
         this->ensure_index(db);
 
@@ -78,7 +79,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IDX_ASSETS_ASSETTYPE ON ASSETS_V1(ASSETTYPE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ASSETS_ASSETTYPE ON ASSETS_V1(ASSETTYPE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 

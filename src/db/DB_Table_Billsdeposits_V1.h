@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
+ *          AUTO GENERATED at 2013-12-07 19:53:24.600000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -57,17 +57,18 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     /** Creates the database table if the table does not exist*/
     bool ensure(wxSQLite3Database* db)
     {
-        if (exists(db)) return true;
-
-        try
-        {
-            db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("BILLSDEPOSITS_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
+        if (!exists(db))
+		{
+			try
+			{
+				db->ExecuteUpdate("CREATE TABLE BILLSDEPOSITS_V1(BDID integer primary key, ACCOUNTID integer NOT NULL, TOACCOUNTID integer, PAYEEID integer NOT NULL, TRANSCODE TEXT NOT NULL, TRANSAMOUNT numeric NOT NULL, STATUS TEXT, TRANSACTIONNUMBER TEXT, NOTES TEXT, CATEGID integer, SUBCATEGID integer, TRANSDATE TEXT, FOLLOWUPID integer, TOTRANSAMOUNT numeric, REPEATS integer, NEXTOCCURRENCEDATE TEXT, NUMOCCURRENCES integer )");
+			}
+			catch(const wxSQLite3Exception &e) 
+			{ 
+				wxLogError("BILLSDEPOSITS_V1: Exception %s", e.GetMessage().c_str());
+				return false;
+			}
+		}
 
         this->ensure_index(db);
 
@@ -78,7 +79,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IDX_BILLSDEPOSITS_ACCOUNT ON BILLSDEPOSITS_V1 (ACCOUNTID, TOACCOUNTID)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_BILLSDEPOSITS_ACCOUNT ON BILLSDEPOSITS_V1 (ACCOUNTID, TOACCOUNTID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 

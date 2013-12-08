@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-03 13:19:43.107220.
+ *          AUTO GENERATED at 2013-12-07 19:53:24.600000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -57,17 +57,18 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     /** Creates the database table if the table does not exist*/
     bool ensure(wxSQLite3Database* db)
     {
-        if (exists(db)) return true;
-
-        try
-        {
-            db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
-        }
-        catch(const wxSQLite3Exception &e) 
-        { 
-            wxLogError("INFOTABLE_V1: Exception %s", e.GetMessage().c_str());
-            return false;
-        }
+        if (!exists(db))
+		{
+			try
+			{
+				db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
+			}
+			catch(const wxSQLite3Exception &e) 
+			{ 
+				wxLogError("INFOTABLE_V1: Exception %s", e.GetMessage().c_str());
+				return false;
+			}
+		}
 
         this->ensure_index(db);
 
@@ -78,7 +79,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IDX_INFOTABLE_INFONAME ON INFOTABLE_V1(INFONAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_INFOTABLE_INFONAME ON INFOTABLE_V1(INFONAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
