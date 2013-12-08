@@ -200,8 +200,10 @@ public:
             sum += r->TRANSAMOUNT;
             break;
         case TRANSFER:
-            if (account_id == r->ACCOUNTID)     sum -= r->TRANSAMOUNT;
-            if (account_id == r->TOACCOUNTID)   sum += r->TOTRANSAMOUNT;
+            if (account_id == r->ACCOUNTID)
+                sum -= r->TOTRANSAMOUNT;
+            else
+                sum += r->TOTRANSAMOUNT;
             break;
         default:
             break;

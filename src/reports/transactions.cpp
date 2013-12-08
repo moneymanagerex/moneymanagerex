@@ -140,7 +140,7 @@ wxString mmReportTransactions::getHTMLText()
         const Model_Currency::Data* currency = Model_Account::currency(account);
         if (currency)
         {
-            double amount = Model_Checking::balance(transaction) * currency->BASECONVRATE;
+            double amount = Model_Checking::balance(transaction, refAccountID_) * currency->BASECONVRATE;
             hb.addCurrencyCell(amount);
             total += amount;
         }
