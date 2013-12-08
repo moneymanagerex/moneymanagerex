@@ -27,6 +27,21 @@
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
 
+enum {
+    ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1,
+    ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNAME,
+    ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER,
+    ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT,
+    ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE,
+    ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT,
+    ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO,
+    ID_DIALOG_NEWACCT_TEXTCTRL_NOTES,
+    ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE,
+    ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS,
+    ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT,
+    ID_DIALOG_NEWACCT_COMBO_ACCTTYPE
+};
+
 IMPLEMENT_DYNAMIC_CLASS( mmNewAcctDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
@@ -67,7 +82,7 @@ bool mmNewAcctDialog::Create(wxWindow* parent
     , long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
     access_changed_ = false;
@@ -198,15 +213,15 @@ void mmNewAcctDialog::CreateControls()
 
     // Notes  ---------------------------------------------
 
-    wxNotebook* acc_notebook = new wxNotebook(this,
-        wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE );
+    wxNotebook* acc_notebook = new wxNotebook(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE );
     wxPanel* notes_tab = new wxPanel(acc_notebook, wxID_ANY);
     acc_notebook->AddPage(notes_tab, _("Notes"));
     wxBoxSizer *notes_sizer = new wxBoxSizer(wxVERTICAL);
     notes_tab->SetSizer(notes_sizer);
 
-    notesCtrl_ = new wxTextCtrl(notes_tab, ID_DIALOG_NEWACCT_TEXTCTRL_NOTES, "",
-        wxDefaultPosition, wxSize(270,180), wxTE_MULTILINE);
+    notesCtrl_ = new wxTextCtrl(notes_tab, ID_DIALOG_NEWACCT_TEXTCTRL_NOTES, ""
+        , wxDefaultPosition, wxSize(270,180), wxTE_MULTILINE);
     notes_sizer->Add(notesCtrl_, flagsExpand);
     //
 
@@ -222,31 +237,31 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC,
         _("Account Number:")), flags);
 
-    wxTextCtrl* itemTextCtrl6 = new wxTextCtrl(others_tab,
-        ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER, "", wxDefaultPosition, wxDefaultSize);
+    wxTextCtrl* itemTextCtrl6 = new wxTextCtrl(others_tab
+        , ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER, "", wxDefaultPosition, wxDefaultSize);
     grid_sizer2->Add(itemTextCtrl6, flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Held At:")), flags);
 
-    wxTextCtrl* itemTextCtrl8 = new wxTextCtrl(others_tab,
-        ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT, "" );
+    wxTextCtrl* itemTextCtrl8 = new wxTextCtrl(others_tab
+        , ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT, "" );
     grid_sizer2->Add(itemTextCtrl8, flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Website:")), flags);
-    wxTextCtrl* itemTextCtrl10 = new wxTextCtrl(others_tab,
-        ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE, "" );
+    wxTextCtrl* itemTextCtrl10 = new wxTextCtrl(others_tab
+        , ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE, "" );
     grid_sizer2->Add(itemTextCtrl10, flagsExpand);
 
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Contact:")),
-        flags);
-    wxTextCtrl* itemTextCtrl12 = new wxTextCtrl(others_tab,
-        ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT, "" );
+    grid_sizer2->Add(new wxStaticText(others_tab
+        , wxID_STATIC, _("Contact:")), flags);
+    wxTextCtrl* itemTextCtrl12 = new wxTextCtrl(others_tab
+        , ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT, "" );
     grid_sizer2->Add(itemTextCtrl12, flagsExpand);
 
-    grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Access Info:")),
-         flags);
-    wxTextCtrl* itemTextCtrl14 = new wxTextCtrl(others_tab,
-        ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO, "*********");
+    grid_sizer2->Add(new wxStaticText(others_tab
+        , wxID_STATIC, _("Access Info:")), flags);
+    wxTextCtrl* itemTextCtrl14 = new wxTextCtrl(others_tab
+        , ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO, "*********");
     grid_sizer2->Add(itemTextCtrl14, flagsExpand);
 
     itemBoxSizer3->Add(acc_notebook);

@@ -504,7 +504,7 @@ void mmHomePagePanel::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     htmlWindow_ = new mmHtmlWindow(this,
-        ID_PANEL_HOMEPAGE_HTMLWINDOW,
+        wxID_ANY,
         wxDefaultPosition, wxDefaultSize,
         wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 0);

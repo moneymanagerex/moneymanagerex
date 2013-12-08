@@ -29,16 +29,18 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 
-IMPLEMENT_DYNAMIC_CLASS( mmMainCurrencyDialog, wxDialog )
+#include "../resources/checkupdate.xpm"
 
-BEGIN_EVENT_TABLE( mmMainCurrencyDialog, wxDialog )
+IMPLEMENT_DYNAMIC_CLASS(mmMainCurrencyDialog, wxDialog)
+
+BEGIN_EVENT_TABLE(mmMainCurrencyDialog, wxDialog)
     EVT_BUTTON(wxID_ADD, mmMainCurrencyDialog::OnBtnAdd)
     EVT_BUTTON(wxID_EDIT, mmMainCurrencyDialog::OnBtnEdit)
     EVT_BUTTON(wxID_SELECTALL, mmMainCurrencyDialog::OnBtnSelect)
     EVT_BUTTON(wxID_REMOVE, mmMainCurrencyDialog::OnBtnDelete)
     EVT_BUTTON(wxID_CANCEL, mmMainCurrencyDialog::OnCancel)
 
-    EVT_MENU_RANGE(0, 1, mmMainCurrencyDialog::OnMenuSelected)
+    EVT_MENU_RANGE(MENU_ITEM1, MENU_ITEM2, mmMainCurrencyDialog::OnMenuSelected)
 
     EVT_DATAVIEW_ITEM_ACTIVATED(wxID_ANY, mmMainCurrencyDialog::OnListItemActivated)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmMainCurrencyDialog::OnListItemSelected)
@@ -49,11 +51,6 @@ END_EVENT_TABLE()
 mmMainCurrencyDialog::mmMainCurrencyDialog(
     wxWindow* parent
     , bool bEnableSelect
-    , wxWindowID id
-    , const wxString& caption
-    , const wxPoint& pos
-    , const wxSize& size
-    , long style
 ) : currencyListBox_(),
     bEnableSelect_(bEnableSelect)
 {
@@ -63,8 +60,8 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
     ColName_[BASE_RATE]   = _("Base Rate");
 
     currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
-
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("Currency Dialog"), wxDefaultPosition, wxSize(320, 350), style);
 }
 
 bool mmMainCurrencyDialog::Create(wxWindow* parent
@@ -138,11 +135,11 @@ void mmMainCurrencyDialog::CreateControls()
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer22, flagsExpand);
 
-    wxBitmapButton* update_button = new wxBitmapButton(this,
-        wxID_STATIC, wxBitmap(checkupdate_xpm));
+    wxBitmapButton* update_button = new wxBitmapButton(this
+        , wxID_STATIC, wxBitmap(checkupdate_xpm));
     itemBoxSizer22->Add(update_button, flags);
-    update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), NULL, this);
+    update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), NULL, this);
     update_button->SetToolTip(_("Online update currency rate"));
     itemBoxSizer22->AddSpacer(4);
 
@@ -172,8 +169,8 @@ void mmMainCurrencyDialog::CreateControls()
 
     itemBoxSizer3->Add(currencyListBox_, 1, wxGROW|wxALL, 1);
 
-    wxPanel* itemPanel5 = new wxPanel( this, ID_PANEL10
-        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+    wxPanel* itemPanel5 = new wxPanel(this, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel5, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 1);
 
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
@@ -451,7 +448,7 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
 {
     switch (event.GetId())
     {
-    case 0:
+    case MENU_ITEM1:
     {
               int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
               if (baseCurrencyID != currencyID_)
@@ -460,11 +457,10 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
                   fillControls();
               }
     }
-    case 1:
+    case MENU_ITEM2:
         onlineUpdateCurRate(currencyID_);
 
     }
-    event.Skip();
 }
 
 void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
@@ -473,8 +469,8 @@ void mmMainCurrencyDialog::OnItemRightClick(wxDataViewEvent& event)
     ev.SetEventObject( this );
 
     wxMenu* mainMenu = new wxMenu;
-    mainMenu->Append(new wxMenuItem(mainMenu, 0, _("Set as Base Currency")));
-    mainMenu->Append(new wxMenuItem(mainMenu, 1, _("Online Update Currency Rate")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM1, _("Set as Base Currency")));
+    mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM2, _("Online Update Currency Rate")));
 
     PopupMenu(mainMenu);
     delete mainMenu;

@@ -19,32 +19,9 @@
 #ifndef _MM_EX_MAINCURRENCY_DIALOG_H_
 #define _MM_EX_MAINCURRENCY_DIALOG_H_
 
-#include "guiid.h"
 #include "defs.h"
 #include <wx/dataview.h>
 #include <map>
-
-#define ID_MYDIALOG8 10040
-#define SYMBOL_MAINCURRENCYDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_MAINCURRENCYDIALOG_TITLE _("Currency Dialog")
-#define SYMBOL_MAINCURRENCYDIALOG_IDNAME ID_MYDIALOG8
-#define SYMBOL_MAINCURRENCYDIALOG_SIZE wxSize(320, 350)
-#define SYMBOL_MAINCURRENCYDIALOG_POSITION wxDefaultPosition
-#define ID_LISTBOX 10090
-#define ID_PANEL10 10091
-
-////@end control identifiers
-
-/*!
- * Compatibility
- */
-
-#ifndef wxCLOSE_BOX
-#define wxCLOSE_BOX 0x1000
-#endif
-#ifndef wxFIXED_MINSIZE
-#define wxFIXED_MINSIZE 0
-#endif
 
 class mmMainCurrencyDialog: public wxDialog
 {
@@ -56,12 +33,7 @@ public:
     mmMainCurrencyDialog( ) {}
 
     mmMainCurrencyDialog(wxWindow* parent,
-                          bool bEnableSelect = true,
-                          wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
-                          const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
-                          const wxPoint& pos = SYMBOL_MAINCURRENCYDIALOG_POSITION,
-                          const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
-                          long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
+                          bool bEnableSelect = true);
 
     static bool Execute(wxWindow* parent, int& currencyID);
 
@@ -71,17 +43,21 @@ private:
         CURR_BASE = 0,
         CURR_SYMBOL,
         CURR_NAME,
-        BASE_RATE
+        BASE_RATE,
+        ID_DIALOG = wxID_HIGHEST + 1,
+        MENU_ITEM1,
+        MENU_ITEM2
     };
 
-    /// Creation
-    bool Create( wxWindow* parent,
-                 wxWindowID id = SYMBOL_MAINCURRENCYDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_MAINCURRENCYDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_MAINCURRENCYDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_MAINCURRENCYDIALOG_SIZE,
-                 long style = SYMBOL_MAINCURRENCYDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
+
     /// Creates the controls and sizers
+
     void CreateControls();
     void OnBtnAdd(wxCommandEvent& event);
     void OnBtnEdit(wxCommandEvent& event);
