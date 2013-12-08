@@ -412,10 +412,11 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
             {
                 if (currency_data.find(currency_symbol) != currency_data.end())
                 {
-                    if (base_symbol == currency_symbol) currency.BASECONVRATE = 1;
                     msg << wxString::Format(_("%s\t: %0.4f -> %0.4f\n")
                         , currency_symbol, currency.BASECONVRATE, currency_data[currency_symbol].first);
                     currency.BASECONVRATE = currency_data[currency_symbol].first;
+                    if (base_symbol == currency_symbol)
+                        currency.BASECONVRATE = 1;
                 }
                 else
                 {
@@ -425,7 +426,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
             }
         }
 
-       Model_Currency::instance().save(currencies);
+        Model_Currency::instance().save(currencies);
 
         wxMessageDialog msgDlg(this, msg, _("Currency rate updated"));
         msgDlg.ShowModal();
@@ -450,12 +451,12 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
     {
     case MENU_ITEM1:
     {
-              int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
-              if (baseCurrencyID != currencyID_)
-              {
-                  Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
-                  fillControls();
-              }
+        int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
+        if (baseCurrencyID != currencyID_)
+        {
+            Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
+            fillControls();
+        }
     }
     case MENU_ITEM2:
         onlineUpdateCurRate(currencyID_);
