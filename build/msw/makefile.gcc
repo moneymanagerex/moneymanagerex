@@ -58,8 +58,6 @@ WXSQLITE_OBJECTS =  \
 LUA_CFLAGS = -mthreads -W -Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) \
 	$(__DEBUG_DEFINE_p) $(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
-	lua_dtoa.o \
-	lua_g_fmt.o \
 	lua_lapi.o \
 	lua_lauxlib.o \
 	lua_lbaselib.o \
@@ -90,12 +88,10 @@ LUA_OBJECTS =  \
 	lua_ltablib.o \
 	lua_ltm.o \
 	lua_lua.o \
-	lua_lua_cjson.o \
 	lua_luac.o \
 	lua_lundump.o \
 	lua_lvm.o \
-	lua_lzio.o \
-	lua_strbuf.o
+	lua_lzio.o
 MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
@@ -378,12 +374,6 @@ wxsqlite_wxsqlite3.o: ../../lib/wxsqlite3/src/wxsqlite3.cpp
 wxsqlite_sqlite3secure.o: ../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
 	$(CC) -c -o $@ $(WXSQLITE_CFLAGS) $(CPPDEPS) $<
 
-lua_dtoa.o: ../../lib/lua/src/dtoa.c
-	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
-
-lua_g_fmt.o: ../../lib/lua/src/g_fmt.c
-	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
-
 lua_lapi.o: ../../lib/lua/src/lapi.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
@@ -474,9 +464,6 @@ lua_ltm.o: ../../lib/lua/src/ltm.c
 lua_lua.o: ../../lib/lua/src/lua.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
-lua_lua_cjson.o: ../../lib/lua/src/lua_cjson.c
-	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
-
 lua_luac.o: ../../lib/lua/src/luac.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
@@ -487,9 +474,6 @@ lua_lvm.o: ../../lib/lua/src/lvm.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
 lua_lzio.o: ../../lib/lua/src/lzio.c
-	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
-
-lua_strbuf.o: ../../lib/lua/src/strbuf.c
 	$(CC) -c -o $@ $(LUA_CFLAGS) $(CPPDEPS) $<
 
 mmex_aboutdialog.o: ../../src/aboutdialog.cpp

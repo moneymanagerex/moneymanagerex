@@ -177,6 +177,6 @@ CPPUNIT_LIBS =
 # it if SHARED=1 unless you know what you are doing. [dynamic,static]
 RUNTIME_LIBS = dynamic
 
-# The version of Visual Studio [2010,2008,2005,2003]
-VSTUDIO_VER = 2010
+# The version of Visual Studio [2013]
+VSTUDIO_VER = 2013
 

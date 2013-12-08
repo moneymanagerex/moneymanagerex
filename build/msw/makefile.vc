@@ -60,8 +60,6 @@ LUA_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
 	/Fdlua.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	$(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
-	lua_dtoa.obj \
-	lua_g_fmt.obj \
 	lua_lapi.obj \
 	lua_lauxlib.obj \
 	lua_lbaselib.obj \
@@ -92,12 +90,10 @@ LUA_OBJECTS =  \
 	lua_ltablib.obj \
 	lua_ltm.obj \
 	lua_lua.obj \
-	lua_lua_cjson.obj \
 	lua_luac.obj \
 	lua_lundump.obj \
 	lua_lvm.obj \
-	lua_lzio.obj \
-	lua_strbuf.obj
+	lua_lzio.obj
 MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
@@ -192,19 +188,13 @@ WXLIBPATH = \lib\$(COMPILER_PREFIX)$(WXCPU)_lib
 !if "$(WX_SHARED)" == "1"
 WXLIBPATH = \lib\$(COMPILER_PREFIX)$(WXCPU)_dll
 !endif
-!if "$(VSTUDIO_VER)" == "2003"
-CRT_VERSION = 70
-!endif
-!if "$(VSTUDIO_VER)" == "2005"
-CRT_VERSION = 80
-!endif
-!if "$(VSTUDIO_VER)" == "2008"
-CRT_VERSION = 90
-!endif
-!if "$(VSTUDIO_VER)" == "2010"
-CRT_VERSION = 100
+!if "$(VSTUDIO_VER)" == "2013"
+CRT_VERSION = 120
 !endif
 !if "$(TARGET_CPU)" == ""
+CPU_ARCH = x86
+!endif
+!if "$(TARGET_CPU)" == "x86"
 CPU_ARCH = x86
 !endif
 !if "$(TARGET_CPU)" == "AMD64"
@@ -212,9 +202,6 @@ CPU_ARCH = x64
 !endif
 !if "$(TARGET_CPU)" == "IA64"
 CPU_ARCH = ia64
-!endif
-!if "$(TARGET_CPU)" == "x86"
-CPU_ARCH = x86
 !endif
 !if "$(WX_SHARED)" == "0"
 __WXLIBPATH_FILENAMES = \lib\$(COMPILER_PREFIX)$(WXCPU)_lib
@@ -512,12 +499,6 @@ wxsqlite_wxsqlite3.obj: ..\..\lib\wxsqlite3\src\wxsqlite3.cpp
 wxsqlite_sqlite3secure.obj: ..\..\lib\wxsqlite3\sqlite3\secure\src\sqlite3secure.c
 	$(CC) /c /nologo /TC /Fo$@ $(WXSQLITE_CFLAGS) ..\..\lib\wxsqlite3\sqlite3\secure\src\sqlite3secure.c
 
-lua_dtoa.obj: ..\..\lib\lua\src\dtoa.c
-	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\dtoa.c
-
-lua_g_fmt.obj: ..\..\lib\lua\src\g_fmt.c
-	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\g_fmt.c
-
 lua_lapi.obj: ..\..\lib\lua\src\lapi.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\lapi.c
 
@@ -608,9 +589,6 @@ lua_ltm.obj: ..\..\lib\lua\src\ltm.c
 lua_lua.obj: ..\..\lib\lua\src\lua.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\lua.c
 
-lua_lua_cjson.obj: ..\..\lib\lua\src\lua_cjson.c
-	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\lua_cjson.c
-
 lua_luac.obj: ..\..\lib\lua\src\luac.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\luac.c
 
@@ -622,9 +600,6 @@ lua_lvm.obj: ..\..\lib\lua\src\lvm.c
 
 lua_lzio.obj: ..\..\lib\lua\src\lzio.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\lzio.c
-
-lua_strbuf.obj: ..\..\lib\lua\src\strbuf.c
-	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\lib\lua\src\strbuf.c
 
 mmex_aboutdialog.obj: ..\..\src\aboutdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\aboutdialog.cpp
