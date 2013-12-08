@@ -218,7 +218,7 @@
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\luawrapper;..\..\3rd\LuaGlue\include;..\..\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
