@@ -39,7 +39,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
     EVT_CLOSE(mmTransDialog::OnQuit)
-    EVT_CHOICE(wxID_ANY, mmTransDialog::OnTransTypeChanged)
+    EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
     EVT_CHECKBOX(wxID_FORWARD, mmTransDialog::OnSplitChecked)
     EVT_CHILD_FOCUS(mmTransDialog::changeFocus)
@@ -375,7 +375,7 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(choiceStatus_, flags);
 
     // Type --------------------------------------------
-    transaction_type_ = new wxChoice(this, wxID_ANY,
+    transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
         wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Checking::all_type())
