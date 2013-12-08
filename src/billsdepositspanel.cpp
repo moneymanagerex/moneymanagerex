@@ -300,7 +300,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
             if (transFilterDlg_->getStatusCheckBox() && !transFilterDlg_->compareStatus(data.STATUS))
                 continue; // Skip
 
-            if (transFilterDlg_->getTypeCheckBox() && !transFilterDlg_->getType().Contains(data.TRANSCODE))
+            if (transFilterDlg_->getTypeCheckBox() && !transFilterDlg_->allowType(data.TRANSCODE, data.ACCOUNTID == data.TOACCOUNTID))
                 continue; // Skip
 
             if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > data.TRANSAMOUNT)

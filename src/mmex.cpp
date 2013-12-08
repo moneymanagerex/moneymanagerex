@@ -3021,7 +3021,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
             if (dlg->getTypeCheckBox())
             {
-                if (!dlg->getType().Contains(tran.TRANSCODE)) continue;
+                if (!dlg->allowType(tran.TRANSCODE, tran.ACCOUNTID == tran.TOACCOUNTID)) continue;
             }
 
             if (dlg->getNumberCheckBox())

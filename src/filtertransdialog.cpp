@@ -610,19 +610,23 @@ bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
     return false;
 }
 
-wxString mmFilterTransactionsDialog::getType() const
+bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameAccount) const
 {
-    wxString withdraval = "";
-    wxString deposit = "";
-    wxString transfer = "";
-    if (cbTypeWithdrawal_->GetValue())
-        withdraval = TRANS_TYPE_WITHDRAWAL_STR;
-    if (cbTypeDeposit_->GetValue())
-        deposit = TRANS_TYPE_DEPOSIT_STR;
-    if (cbTypeTransfer_->GetValue())
-        transfer = TRANS_TYPE_TRANSFER_STR;
+    bool result = false;
+    if (typeState == TRANS_TYPE_TRANSFER_STR && cbTypeTransfer_->GetValue())
+    {
+        result = true;
+    }
+    else if (typeState == TRANS_TYPE_WITHDRAWAL_STR && cbTypeWithdrawal_->GetValue())
+    {
+        result = true;
+    }
+    else if (typeState == TRANS_TYPE_DEPOSIT_STR && cbTypeDeposit_->GetValue())
+    {
+        result = true;
+    }
 
-    return withdraval+";"+deposit+";"+transfer;
+    return result;
 }
 
 wxString mmFilterTransactionsDialog::userTypeStr() const
@@ -888,7 +892,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran)
     else if (!checkPayee(tran.PAYEEID)) ok = false;
     else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    else if (getTypeCheckBox() && getType() != tran.TRANSCODE) ok = false;
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, tran.ACCOUNTID == tran.TOACCOUNTID)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;

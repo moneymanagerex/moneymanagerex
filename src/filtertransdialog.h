@@ -114,7 +114,8 @@ public:
     {
         return typeCheckBox_->GetValue();
     }
-    wxString getType() const;
+
+    bool allowType(const wxString& typeState, bool sameAccount) const;
 
     bool getNumberCheckBox()
     {
