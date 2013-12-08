@@ -95,7 +95,7 @@ public:
     }
 
 public:
-    double get_total(Data_Set& rows)
+    static double get_total(Data_Set& rows)
     {
         double total = 0.0;
         for (auto& r : rows) total += r.SPLITTRANSAMOUNT;

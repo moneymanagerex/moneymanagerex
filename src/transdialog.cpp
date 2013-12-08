@@ -278,7 +278,6 @@ void mmTransDialog::dataToControls()
         cbPayee_->SetEvtHandlerEnabled(true);
     }
 
-    //SetSplitState();
     if (!skip_category_init_)
     {
         bool has_split = !this->m_local_splits.empty();
@@ -301,11 +300,11 @@ void mmTransDialog::dataToControls()
         }
 
         bCategory_->SetLabel(fullCategoryName);
-        textAmount_->Enable(!has_split);
         cSplit_->SetValue(has_split);
-        cSplit_->Enable(Model_Checking::type(transaction_) != Model_Checking::TRANSFER);
         skip_category_init_ = true;
     }
+    textAmount_->Enable(m_local_splits.empty());
+    cSplit_->Enable(!transfer);
 
     //Notes & Transaction Number
     if (!skip_notes_init_)
@@ -589,7 +588,7 @@ bool mmTransDialog::validateData()
         wxString amountStr = textAmount_->GetValue().Trim();
         //if (!amountStr.ToDouble(&transaction_->TRANSAMOUNT))
         if (!Model_Currency::fromString(amountStr, transaction_->TRANSAMOUNT
-            , Model_Account::currency(account)))
+            , Model_Account::currency(account)) || transaction_->TRANSAMOUNT < 0)
         {
             textAmount_->SetBackgroundColour("RED");
             mmShowErrorMessageInvalid(parent_, _("Amount"));
@@ -614,7 +613,7 @@ bool mmTransDialog::validateData()
         {
             wxString amountStr = toTextAmount_->GetValue().Trim();
             if (!Model_Currency::fromString(amountStr, transaction_->TOTRANSAMOUNT
-                , Model_Account::currency(account)))
+                , Model_Account::currency(account)) || transaction_->TOTRANSAMOUNT < 0)
             {
                 toTextAmount_->SetBackgroundColour("RED");
                 mmShowErrorMessageInvalid(parent_, _("Advanced Amount"));
@@ -660,7 +659,7 @@ bool mmTransDialog::validateData()
     else
     {
         Model_Account::Data *to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
-        if (!account || transaction_->TOACCOUNTID == newAccountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
+        if (!to_account || transaction_->TOACCOUNTID == newAccountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
             mmShowErrorMessageInvalid(this, _("To Account"));
             cbPayee_->SetFocus();

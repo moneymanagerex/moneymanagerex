@@ -206,7 +206,6 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
     if (selectedIndex_ < 0 || selectedIndex_ >= (int)this->m_local_splits.size()) return;
-    Model_Splittransaction::instance().remove(this->m_local_splits[selectedIndex_].SPLITTRANSID);
     this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
     DataToControls();
 }
@@ -228,7 +227,7 @@ wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
 
 void SplitTransactionDialog::UpdateSplitTotal()
 {
-    double total = Model_Splittransaction::instance().get_total(this->m_local_splits);
+    double total = Model_Splittransaction::get_total(this->m_local_splits);
     transAmount_->SetLabel(Model_Currency::toCurrency(total));
 }
 
