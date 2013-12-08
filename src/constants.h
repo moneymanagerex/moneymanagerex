@@ -200,11 +200,10 @@ static const wxString gDaysInWeek[7] =
 
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
 
+// TODO remove these const variables
 const wxString TRANS_TYPE_WITHDRAWAL_STR = "Withdrawal";
 const wxString TRANS_TYPE_DEPOSIT_STR    = "Deposit";
 const wxString TRANS_TYPE_TRANSFER_STR   = "Transfer";
-
-enum {DEF_WITHDRAWAL , DEF_DEPOSIT , DEF_TRANSFER};
 
 //----------------------------------------------------------------------------
 #endif // _MM_EX_CONSTANTS_H_
