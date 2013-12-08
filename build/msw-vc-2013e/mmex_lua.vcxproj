@@ -203,8 +203,6 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\lua\src\dtoa.c" />
-    <ClCompile Include="..\..\lib\lua\src\g_fmt.c" />
     <ClCompile Include="..\..\lib\lua\src\lapi.c" />
     <ClCompile Include="..\..\lib\lua\src\lauxlib.c" />
     <ClCompile Include="..\..\lib\lua\src\lbaselib.c" />
@@ -235,12 +233,10 @@
     <ClCompile Include="..\..\lib\lua\src\ltablib.c" />
     <ClCompile Include="..\..\lib\lua\src\ltm.c" />
     <ClCompile Include="..\..\lib\lua\src\lua.c" />
-    <ClCompile Include="..\..\lib\lua\src\lua_cjson.c" />
     <ClCompile Include="..\..\lib\lua\src\luac.c" />
     <ClCompile Include="..\..\lib\lua\src\lundump.c" />
     <ClCompile Include="..\..\lib\lua\src\lvm.c" />
     <ClCompile Include="..\..\lib\lua\src\lzio.c" />
-    <ClCompile Include="..\..\lib\lua\src\strbuf.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lib\lua\src\dtoa_config.h" />

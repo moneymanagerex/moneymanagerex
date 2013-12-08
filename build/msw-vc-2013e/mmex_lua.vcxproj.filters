@@ -11,12 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\lua\src\dtoa.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\lua\src\g_fmt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lib\lua\src\lapi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -107,9 +101,6 @@
     <ClCompile Include="..\..\lib\lua\src\lua.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\lib\lua\src\lua_cjson.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lib\lua\src\luac.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -120,9 +111,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\lib\lua\src\lzio.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\lib\lua\src\strbuf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
