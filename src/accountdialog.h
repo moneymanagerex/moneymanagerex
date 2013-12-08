@@ -19,13 +19,6 @@
 #ifndef _MM_EX_NEWACCTDIALOG_H_
 #define _MM_EX_NEWACCTDIALOG_H_
 
-#define SYMBOL_NEWCHKGACCTDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_NEWCHKGACCTDIALOG_TITLE _("New Account")
-#define SYMBOL_NEWCHKGACCTDIALOG_IDNAME ID_DIALOG_NEWACCOUNT
-#define SYMBOL_NEWCHKGACCTDIALOG_SIZE wxSize(550, 300)
-#define SYMBOL_NEWCHKGACCTDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "model/Model_Account.h"
 
 class mmNewAcctDialog : public wxDialog
@@ -35,19 +28,15 @@ class mmNewAcctDialog : public wxDialog
 
 public:
     mmNewAcctDialog();
-    mmNewAcctDialog(Model_Account::Data* account,
-                    wxWindow* parent, wxWindowID id = SYMBOL_NEWCHKGACCTDIALOG_IDNAME,
-                    const wxString& caption = SYMBOL_NEWCHKGACCTDIALOG_TITLE,
-                    const wxPoint& pos = SYMBOL_NEWCHKGACCTDIALOG_POSITION,
-                    const wxSize& size = SYMBOL_NEWCHKGACCTDIALOG_SIZE,
-                    long style = SYMBOL_NEWCHKGACCTDIALOG_STYLE );
+    mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent);
     ~mmNewAcctDialog();
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_NEWCHKGACCTDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_NEWCHKGACCTDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_NEWCHKGACCTDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_NEWCHKGACCTDIALOG_SIZE,
-                 long style = SYMBOL_NEWCHKGACCTDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
     bool termAccountActivated();
 
 private:

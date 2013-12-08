@@ -33,22 +33,21 @@ BEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
-    EVT_MENU_RANGE(0, 99, mmNewAcctDialog::OnCustonImage)
+    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 99, mmNewAcctDialog::OnCustonImage)
 END_EVENT_TABLE()
 
 mmNewAcctDialog::mmNewAcctDialog( )
 {
 }
 
-mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account,
-                                 wxWindow* parent, wxWindowID id, const wxString& caption,
-                                 const wxPoint& pos, const wxSize& size, long style )
+mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     : m_account(account)
     , currencyID_(-1)
     , termAccount_(false)
 {
     imageList_ = navtree_images_list_();
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style);
 
     fillControls();
     this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::changeFocus), NULL, this);
@@ -60,9 +59,12 @@ mmNewAcctDialog::~mmNewAcctDialog()
         delete imageList_;
 }
 
-bool mmNewAcctDialog::Create( wxWindow* parent, wxWindowID id,
-                             const wxString& caption, const wxPoint& pos, const wxSize& size,
-                             long style )
+bool mmNewAcctDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -376,22 +378,25 @@ void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)
     //Skip all images before custom images
     int k = 18;
     wxMenu* mainMenu = new wxMenu;
-    mainMenu->Append(new wxMenuItem(mainMenu, 0, "-=======-"));
+    wxMenuItem* menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST, _("Default Image"));
+    menuItem->SetBitmap(imageList_->GetBitmap(mmIniOptions::instance().account_image_id(this->m_account->ACCOUNTID)));
+    mainMenu->Append(menuItem);
 
     for (int i = k; i < imageList_->GetImageCount(); ++i)
     {
-        wxMenuItem* menuItem = new wxMenuItem(mainMenu, i, wxString(_("Image #")) << i - k +1);
+        menuItem = new wxMenuItem(mainMenu, wxID_HIGHEST + i
+            , wxString::Format(_("Image #%i"), i - k + 1));
         menuItem->SetBitmap(imageList_->GetBitmap(i));
         mainMenu->Append(menuItem);
     }
-    //TODO: Provide wxMenu with pictures or spin buttons
+
     PopupMenu(mainMenu);
     delete mainMenu;
 }
 
 void mmNewAcctDialog::OnCustonImage(wxCommandEvent& event)
 {
-    int selectedImage = event.GetId();
+    int selectedImage = event.GetId() - wxID_HIGHEST;
 
     Model_Infotable::instance().Set(wxString::Format("ACC_IMAGE_ID_%i", this->m_account->ACCOUNTID), selectedImage);
     if (selectedImage == 0)
