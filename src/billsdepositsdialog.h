@@ -80,6 +80,7 @@ private:
     void OnAutoExecutionUserAckChecked(wxCommandEvent& event);
     void OnAutoExecutionSilentChecked(wxCommandEvent& event);
     void OnCalendarSelChanged(wxCalendarEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
     int transID_;
 
     wxTextCtrl *textNumber_;

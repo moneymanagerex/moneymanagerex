@@ -48,6 +48,7 @@ private:
     void OnCurrency(wxCommandEvent& event);
     void fillControls(void);
     void OnCustonImage(wxCommandEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
 
     wxBitmapButton* bitmaps_button_;
     void OnImageButton(wxCommandEvent& event);
@@ -58,6 +59,7 @@ private:
     int currencyID_;
     wxTextCtrl *textAccountName_;
     wxTextCtrl *notesCtrl_;
+    wxTextCtrl* itemInitValue_;
     bool termAccount_;
     wxString accessInfo_;
     bool access_changed_;

@@ -30,6 +30,8 @@ enum
 {
     IDC_COMBO_TYPE = wxID_HIGHEST + 1,
     IDC_NOTES,
+    IDC_VALUE,
+    IDC_RATE,
 };
 
 } // namespace
@@ -142,12 +144,12 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Value")), flags);
 
-    m_value = new mmTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString()
+    m_value = new mmTextCtrl(itemPanel5, IDC_VALUE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator() );
     m_value->SetToolTip(_("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, flags);
-    m_value->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
+    m_value->Connect(IDC_VALUE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), NULL, this);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Change in Value")), flags);
@@ -163,11 +165,13 @@ void mmAssetDialog::CreateControls()
     m_valueChangeRateLabel = new wxStaticText( itemPanel5, wxID_STATIC, _("% Rate"));
     itemFlexGridSizer6->Add(m_valueChangeRateLabel, flags);
 
-    m_valueChangeRate = new mmTextCtrl( itemPanel5, wxID_STATIC, wxGetEmptyString()
+    m_valueChangeRate = new mmTextCtrl(itemPanel5, IDC_RATE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator() );
+        , mmCalcValidator());
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in % per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, flags);
+    m_valueChangeRate->Connect(IDC_RATE, IDC_RATE
+        , wxCommandEventHandler(mmAssetDialog::onTextEntered), NULL, this);
     enableDisableRate(false);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), flags);
@@ -225,7 +229,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         return;
     }
     double value = 0;
-    if (!Model_Currency::fromString(valueStr, value))
+    if (!Model_Currency::fromString(valueStr, value) || value < 0)
     {
         wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
         return;
@@ -239,15 +243,14 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
         return;
     }
     double valueChangeRate = 0;
-    if(!valueChangeRateStr.ToDouble(&valueChangeRate))
+    if (!wxNumberFormatter::FromString(valueChangeRateStr, &valueChangeRate) || valueChangeRate < 0)
     {
+        if (valueChangeType != Model_Asset::RATE_NONE)
+        {
+            wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
+            return;
+        }
         valueChangeRate = 0;
-    }
-    //This should be unnecessary with hidden controls
-    if ((valueChangeType != Model_Asset::RATE_NONE) && (valueChangeRate < 0.0))
-    {
-        wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
-        return;
     }
 
     wxString asset_type = "";
@@ -287,10 +290,22 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
 {
     wxString sAmount = "";
 
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+
     mmCalculator calc;
-    if (calc.is_ok(m_value->GetValue()))
-        m_value->SetValue(calc.get_result());
-    m_value->SetInsertionPoint(m_value->GetValue().Len());
+    if (event.GetId() == m_value->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(m_value->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            m_value->SetValue(calc.get_result());
+        m_value->SetInsertionPoint(m_value->GetValue().Len());
+    }
+    else if (event.GetId() == m_valueChangeRate->GetId())
+    {
+        if (calc.is_ok(m_valueChangeRate->GetValue()))
+            m_valueChangeRate->SetValue(wxString::Format("%.3f", calc.get_result()));
+        m_valueChangeRate->SetInsertionPoint(m_valueChangeRate->GetValue().Len());
+    }
 
     event.Skip();
 }

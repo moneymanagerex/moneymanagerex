@@ -33,7 +33,7 @@ public:
     }
 
 };
-
+/*
 class mmDoubleValidator: public wxFloatingPointValidator<double>
 {
 public:
@@ -43,4 +43,4 @@ public:
         this->SetRange(0, max);
     }
 };
-
+*/

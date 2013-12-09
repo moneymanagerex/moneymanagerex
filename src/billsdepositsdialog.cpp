@@ -24,6 +24,7 @@
 #include "categdialog.h"
 #include "payeedialog.h"
 #include "splittransactionsdialog.h"
+#include "mmCalculator.h"
 #include "validators.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
@@ -414,13 +415,17 @@ void mmBDDialog::CreateControls()
 
     textAmount_ = new mmTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator() );
+        , mmCalcValidator());
     textAmount_->SetToolTip(amountNormalTip_);
+    textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmBDDialog::OnTextEntered), NULL, this);
 
-    toTextAmount_ = new mmTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTAMOUNT, ""
+    toTextAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator() );
+        , mmCalcValidator());
     toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
+    toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmBDDialog::OnTextEntered), NULL, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(textAmount_,   flags);
@@ -778,8 +783,12 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
+        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+        Model_Account::Data *account = Model_Account::instance().get(accountID_);
+        if (account) currency = Model_Account::currency(account);
+
         wxString amountStr = textAmount_->GetValue().Trim();
-        if (!amountStr.ToDouble(&amount))
+        if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
         {
             mmShowErrorMessageInvalid(this, _("Amount"));
             return;
@@ -788,8 +797,12 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 
     if (advancedToTransAmountSet_)
     {
+        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+        Model_Account::Data *account = Model_Account::instance().get(accountID_);
+        if (account) currency = Model_Account::currency(account);
+
         wxString amountStr = toTextAmount_->GetValue().Trim();
-        if (!amountStr.ToDouble(&toTransAmount_))
+        if (!Model_Currency::fromString(amountStr, toTransAmount_, currency) || toTransAmount_ < 0)
         {
             mmShowErrorMessageInvalid(this, _("Advanced Amount"));
             return;
@@ -1245,3 +1258,29 @@ void mmBDDialog::activateSplitTransactionsDlg()
         }
     }
 }
+
+void mmBDDialog::OnTextEntered(wxCommandEvent& event)
+{
+    wxString sAmount = "";
+
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) currency = Model_Account::currency(account);
+
+    mmCalculator calc;
+    if (event.GetId() == textAmount_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(textAmount_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
+    }
+    else if (event.GetId() == toTextAmount_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(toTextAmount_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            toTextAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
+    }
+}
+

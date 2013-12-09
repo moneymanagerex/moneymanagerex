@@ -22,6 +22,8 @@
 #include "util.h"
 #include "mmOption.h"
 #include "paths.h"
+#include "mmCalculator.h"
+#include "validators.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
@@ -131,15 +133,13 @@ void mmNewAcctDialog::fillControls()
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
     itemCheckBox->SetValue(m_account->FAVORITEACCT == "TRUE");
 
-    textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
-    double initBal = m_account->INITIALBAL;
-
     Model_Account::currency(m_account);
     wxButton* bn = (wxButton*)FindWindow(ID_DIALOG_NEWACCT_BUTTON_CURRENCY);
     bn->SetLabel(Model_Account::currency(m_account)->CURRENCYNAME);
     currencyID_ = m_account->CURRENCYID;
 
-    textCtrl->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
+    double initBal = m_account->INITIALBAL;
+    itemInitValue_->SetValue(Model_Currency::toString(initBal, Model_Account::currency(m_account)));
 
     int selectedImage = mmIniOptions::instance().account_image_id(m_account->ACCOUNTID);
     bitmaps_button_->SetBitmapLabel(imageList_->GetBitmap(selectedImage));
@@ -188,10 +188,12 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC
         , wxString::Format(_("Initial Balance: %s"),"")), flags);
 
-    wxTextCtrl* itemTextCtrl19 = new wxTextCtrl(this
+    itemInitValue_ = new wxTextCtrl(this
         , ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE
-        , "", wxDefaultPosition, wxDefaultSize, 0, wxFloatingPointValidator<double>());
-    grid_sizer->Add(itemTextCtrl19, flagsExpand);
+        , "", wxDefaultPosition, wxDefaultSize, 0, mmCalcValidator());
+    grid_sizer->Add(itemInitValue_, flagsExpand);
+    itemInitValue_->Connect(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmNewAcctDialog::OnTextEntered), NULL, this);
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), flags);
 
@@ -295,7 +297,7 @@ void mmNewAcctDialog::CreateControls()
         textAccountName_->SetToolTip(_("Enter the Name of the Account. This name can be renamed at any time."));
         itemChoice61->SetToolTip(_("Specify the type of account to be created."));
         itemChoice6->SetToolTip(_("Specify if this account has been closed. Closed accounts are inactive in most calculations, reporting etc."));
-        itemTextCtrl19->SetToolTip(_("Enter the initial balance in this account."));
+        itemInitValue_->SetToolTip(_("Enter the initial balance in this account."));
         itemButton71->SetToolTip(_("Specify the currency to be used by this account."));
         itemCheckBox10->SetToolTip(_("Select whether this is an account that is used often. This is used to filter accounts display view."));
         notesCtrl_->SetToolTip(_("Enter user notes and details about this account."));
@@ -366,9 +368,8 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT);
     m_account->FAVORITEACCT = itemCheckBox->IsChecked() ? "TRUE" : "FALSE";
 
-    wxTextCtrl* textCtrlInit = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE);
-    wxString bal = textCtrlInit->GetValue().Trim();
-    if (!Model_Currency::fromString(bal, m_account->INITIALBAL, 0))
+    wxString bal = itemInitValue_->GetValue().Trim();
+    if (!Model_Currency::fromString(bal, m_account->INITIALBAL, Model_Currency::instance().get(currencyID_)))
         m_account->INITIALBAL = 0.0;
     
     m_account->ACCOUNTNUM = textCtrlAcctNumber->GetValue();
@@ -437,5 +438,20 @@ void mmNewAcctDialog::changeFocus(wxChildFocusEvent& event)
     {
         notesCtrl_->SetValue("");
         notesCtrl_->SetForegroundColour(notesColour_);
+    }
+}
+
+void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)
+{
+    if (event.GetId() == itemInitValue_->GetId())
+    {
+        Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
+        if (currency) currency = Model_Currency::GetBaseCurrency();
+
+        mmCalculator calc;
+        wxString sAmount = wxString() << Model_Currency::fromString(itemInitValue_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            itemInitValue_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        itemInitValue_->SetInsertionPoint(itemInitValue_->GetValue().Len());
     }
 }

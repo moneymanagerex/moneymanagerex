@@ -198,6 +198,7 @@ private:
     void datePresetMenu( wxMouseEvent& event );
     void datePresetMenuSelected( wxCommandEvent& event );
     void OnPayeeUpdated(wxCommandEvent& event);
+    void OnTextEntered(wxCommandEvent& event);
     bool get_next_value(wxStringTokenizer& tkz, wxString& value);
 
     void OnCategs(wxCommandEvent& event);

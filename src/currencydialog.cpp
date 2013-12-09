@@ -242,6 +242,13 @@ void mmCurrencyDialog::CreateControls()
 
 void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 {
+    double convRate;
+    if (!wxNumberFormatter::FromString(baseConvRate_->GetValue(), &convRate) || convRate < 0)
+    {
+        wxMessageBox(_("Invalid Conversion Rate"), _("Invalid Entry"), wxOK | wxICON_ERROR);
+        return;
+    }
+
     wxString name = m_currencyName->GetValue();
     if (name.empty()) return;
 
@@ -260,8 +267,6 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
     }
 
     int scal = wxAtoi(scaleTx_->GetValue());
-    double convRate;
-    baseConvRate_->GetValue().ToDouble(&convRate); //TODO: 
 
     m_currency->PFX_SYMBOL = pfxTx_->GetValue();
     m_currency->SFX_SYMBOL = sfxTx_->GetValue();

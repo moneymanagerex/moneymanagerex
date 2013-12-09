@@ -59,6 +59,8 @@ public:
     void fillControls();
 
 private:
+    void OnTextEntered(wxCommandEvent& event);
+
     Model_Budget::Data* budgetEntry_;
     wxChoice* itemChoice_;
     mmTextCtrl* textAmount_;

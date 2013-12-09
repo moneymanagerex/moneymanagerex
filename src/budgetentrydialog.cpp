@@ -19,6 +19,7 @@
 #include "budgetentrydialog.h"
 #include "util.h"
 #include "model/Model_Category.h"
+#include "mmCalculator.h"
 #include "validators.h"
 #include "paths.h"
 #include <wx/valnum.h>
@@ -193,9 +194,11 @@ void mmBudgetEntryDialog::CreateControls()
         wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
 
     textAmount_ = new mmTextCtrl( itemPanel7, 
-        ID_DIALOG_BUDGETENTRY_TEXTCTRL_AMOUNT, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmDoubleValidator());
+        ID_DIALOG_BUDGETENTRY_TEXTCTRL_AMOUNT, "", wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemGridSizer2->Add(textAmount_);
     textAmount_->SetToolTip(_("Enter the amount budgeted for this category."));
+    textAmount_->Connect(ID_DIALOG_BUDGETENTRY_TEXTCTRL_AMOUNT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), NULL, this);
     textAmount_->SetFocus();
     
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
@@ -238,7 +241,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 
     wxString displayAmtString = textAmount_->GetValue().Trim();
     double amt = 0.0;
-    if (!displayAmtString.ToDouble(&amt))
+    if (!Model_Currency::fromString(displayAmtString, amt, Model_Currency::GetBaseCurrency()) || amt < 0)
     {
         mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
         return;
@@ -280,4 +283,16 @@ void mmBudgetEntryDialog::onChoiceChar(wxKeyEvent& event) {
     else 
         event.Skip();
 
+}
+
+void mmBudgetEntryDialog::OnTextEntered(wxCommandEvent& event)
+{
+    if (event.GetId() == textAmount_->GetId())
+    {
+        mmCalculator calc;
+        wxString sAmount = wxString() << Model_Currency::fromString(textAmount_->GetValue(), Model_Currency::GetBaseCurrency());
+        if (calc.is_ok(sAmount))
+            textAmount_->SetValue(Model_Currency::toString(calc.get_result()));
+        textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
+    }
 }

@@ -36,6 +36,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include "categdialog.h"
 #include "paths.h"
+#include "mmCalculator.h"
 #include "validators.h"
 #include <wx/valnum.h>
 #include "model/Model_Setting.h"
@@ -44,6 +45,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "../resources/save.xpm"
+
+#define ID_TEXTCTRL_MAX_AMT wxID_HIGHEST + 1
+#define ID_TEXTCTRL_MIN_AMT wxID_HIGHEST + 2
 
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
@@ -336,12 +340,16 @@ void mmFilterTransactionsDialog::CreateControls()
                                           wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
     itemPanelSizer->Add(amountRangeCheckBox_, flags);
 
-    amountMinEdit_ = new mmTextCtrl( itemPanel, wxID_ANY, ""
+    amountMinEdit_ = new mmTextCtrl(itemPanel, ID_TEXTCTRL_MIN_AMT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator() );
-    amountMaxEdit_ = new mmTextCtrl( itemPanel, wxID_ANY, ""
+        , mmCalcValidator());
+    amountMinEdit_->Connect(ID_TEXTCTRL_MIN_AMT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), NULL, this);
+    amountMaxEdit_ = new mmTextCtrl(itemPanel, ID_TEXTCTRL_MAX_AMT, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
-        , mmDoubleValidator() );
+        , mmCalcValidator());
+    amountMaxEdit_->Connect(ID_TEXTCTRL_MAX_AMT, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), NULL, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, flagsExpand);
@@ -472,12 +480,16 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
 
     if (amountRangeCheckBox_->IsChecked())
     {
-        wxString minamt = amountMinEdit_->GetValue();
-        wxString maxamt = amountMaxEdit_->GetValue();
+        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+        Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
+        if (account) currency = Model_Account::currency(account);
+
+        wxString minamt = amountMinEdit_->GetValue().Trim();
+        wxString maxamt = amountMaxEdit_->GetValue().Trim();
         if (!minamt.IsEmpty())
         {
             double amount;
-            if (!Model_Currency::fromString(minamt, amount, 0))
+            if (!Model_Currency::fromString(minamt, amount, currency) || amount < 0)
             {
                 mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
                 return;
@@ -487,7 +499,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
         if (!maxamt.IsEmpty())
         {
             double amount;
-            if (!Model_Currency::fromString(maxamt, amount, 0))
+            if (!Model_Currency::fromString(maxamt, amount, currency) || amount < 0)
             {
                 mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
                 return;
@@ -667,8 +679,13 @@ wxString mmFilterTransactionsDialog::userStatusStr() const
 
 double mmFilterTransactionsDialog::getAmountMin()
 {
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
+    if (account) currency = Model_Account::currency(account);
+
+    wxString amountStr = amountMinEdit_->GetValue().Trim();
     double amount = 0;
-    if (!Model_Currency::fromString(amountMinEdit_->GetValue(), amount, 0))
+    if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
         amount = 0;
 
     return amount;
@@ -676,8 +693,13 @@ double mmFilterTransactionsDialog::getAmountMin()
 
 double mmFilterTransactionsDialog::getAmountMax()
 {
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
+    if (account) currency = Model_Account::currency(account);
+
+    wxString amountStr = amountMaxEdit_->GetValue().Trim();
     double amount = 0;
-    if (!Model_Currency::fromString(amountMaxEdit_->GetValue(), amount, 0))
+    if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
         amount = 0;
 
     return amount;
@@ -914,3 +936,29 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
     else if (getNotesCheckBox() && !tran.NOTES.Matches(getNotes())) ok = false;
     return ok;
 }
+
+void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
+{
+    wxString sAmount = "";
+
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
+    if (account) currency = Model_Account::currency(account);
+
+    mmCalculator calc;
+    if (event.GetId() == amountMinEdit_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(amountMinEdit_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            amountMinEdit_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        amountMinEdit_->SetInsertionPoint(amountMinEdit_->GetValue().Len());
+    }
+    else if (event.GetId() == amountMaxEdit_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(amountMaxEdit_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            amountMaxEdit_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        amountMaxEdit_->SetInsertionPoint(amountMaxEdit_->GetValue().Len());
+    }
+}
+

@@ -65,6 +65,8 @@ public:
     Model_Stock::Data* m_stock;
 
 private:
+    void OnTextEntered(wxCommandEvent& event);
+
     int stockID_;
 
     mmTextCtrl* stockName_;

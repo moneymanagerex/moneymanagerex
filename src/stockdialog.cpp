@@ -21,6 +21,7 @@
 #include "constants.h"
 #include "paths.h"
 #include "util.h"
+#include "mmCalculator.h"
 #include "validators.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
@@ -144,30 +145,38 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Number of Shares")), flags);
 
     numShares_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_NUMBER_SHARES, "",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator(4) );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(numShares_, flags);
     numShares_->SetToolTip(_("Enter number of shares held"));
+    numShares_->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Purchase Price")), flags);
 
     purchasePrice_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_PP, "",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(purchasePrice_, flags);
     purchasePrice_->SetToolTip(_("Enter purchase price for each stock"));
+    purchasePrice_->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Current Price")), flags);
 
     currentPrice_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_CP, "",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(currentPrice_, flags);
     currentPrice_->SetToolTip(_("Enter current stock price"));
+    currentPrice_->Connect(ID_TEXTCTRL_STOCK_CP, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Commission")), flags);
 
     commission_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0",
-        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER , mmDoubleValidator() );
+        wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
     itemFlexGridSizer6->Add(commission_, flags);
     commission_->SetToolTip(_("Enter any commission paid"));
+    commission_->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER,
+        wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Value")), flags);
 
@@ -254,15 +263,17 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString numSharesStr = numShares_->GetValue().Trim();
     double numShares = 0;
-    if (!numSharesStr.ToDouble(&numShares))
+    if (!wxNumberFormatter::FromString(numSharesStr, &numShares) || numShares < 0)
     {
         mmShowErrorMessage(this, _("Invalid number of shares entered "), _("Error"));
         return;
     }
 
-    wxString pPriceStr    = purchasePrice_->GetValue().Trim();
+    Model_Currency::Data *currency = Model_Account::currency(account);
+
+    wxString pPriceStr = purchasePrice_->GetValue().Trim();
     double pPrice;
-    if (!pPriceStr.ToDouble(&pPrice))
+    if (!Model_Currency::fromString(pPriceStr, pPrice, currency) || pPrice < 0)
     {
         mmShowErrorMessage(this, _("Invalid purchase price entered "), _("Error"));
         return;
@@ -270,7 +281,7 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString currentPriceStr = currentPrice_->GetValue().Trim();
     double cPrice;
-    if (!currentPriceStr.ToDouble(&cPrice))
+    if (!Model_Currency::fromString(currentPriceStr, cPrice, currency) || cPrice < 0)
     {
         // we assume current price = purchase price
         cPrice = pPrice;
@@ -278,7 +289,7 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString commissionStr = commission_->GetValue().Trim();
     double commission;
-    if (!commissionStr.ToDouble(&commission))
+    if (!Model_Currency::fromString(commissionStr, commission, currency) || commission < 0)
     {
         mmShowErrorMessage(this, _("Invalid commission entered "), _("Error"));
         return;
@@ -308,4 +319,42 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
         transID_ = stockID_;
 
     EndModal(wxID_OK);
+}
+
+void mmStockDialog::OnTextEntered(wxCommandEvent& event)
+{
+    wxString sAmount = "";
+
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) currency = Model_Account::currency(account);
+
+    mmCalculator calc;
+    if (event.GetId() == numShares_->GetId())
+    {
+        if (calc.is_ok(numShares_->GetValue()))
+            numShares_->SetValue(wxString::Format("%.4f", calc.get_result()));
+        numShares_->SetInsertionPoint(numShares_->GetValue().Len());
+    }
+    else if (event.GetId() == purchasePrice_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(purchasePrice_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            purchasePrice_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        purchasePrice_->SetInsertionPoint(purchasePrice_->GetValue().Len());
+    }
+    else if (event.GetId() == currentPrice_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(currentPrice_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            currentPrice_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        currentPrice_->SetInsertionPoint(currentPrice_->GetValue().Len());
+    }
+    else if (event.GetId() == commission_->GetId())
+    {
+        sAmount = wxString() << Model_Currency::fromString(commission_->GetValue(), currency);
+        if (calc.is_ok(sAmount))
+            commission_->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        commission_->SetInsertionPoint(commission_->GetValue().Len());
+    }
 }
