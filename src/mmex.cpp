@@ -71,6 +71,7 @@
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Budget.h"
+#include "model/Model_Report.h"
 #include <wx/cmdline.h>
 
 //----------------------------------------------------------------------------
@@ -1528,7 +1529,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
     wxTreeItemId customreport = navTreeCtrl_->AppendItem(reports, _("Custom Report"), 4, 4);
-    navTreeCtrl_->SetItemData(customreport, new mmTreeItemData("Summary of Assets New", new mmReportSummaryAssetsNew()));
+    navTreeCtrl_->SetItemData(customreport, new mmTreeItemData("Summary of Assets New", new mmReportSummaryAssets()));
 
     ///////////////////////////////////////////////////////////////////
 
@@ -2465,6 +2466,7 @@ void mmGUIFrame::InitializeModelTables()
     Model_Splittransaction::instance(m_db.get());
     Model_Budgetsplittransaction::instance(m_db.get());
     Model_Budget::instance(m_db.get());
+    Model_Report::instance(m_db.get());
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
