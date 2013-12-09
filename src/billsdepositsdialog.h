@@ -121,6 +121,7 @@ private:
     int bdID_;
     double toTransAmount_;
     bool advancedToTransAmountSet_;
+    bool categUpdated_;
 
     wxString payeeDepositTip_;
     wxString payeeWithdrawalTip_;
@@ -134,6 +135,7 @@ private:
     void OnAdvanceChecked(wxCommandEvent& event);
     void SetTransferControls(bool transfers = false);
     void SetAdvancedTransferControls(bool advanced = false);
+    void SetSplitControls(bool split = false);
     void OnTransDateForward(wxSpinEvent& event);
     void OnTransDateBack(wxSpinEvent& event);
     void OnNextOccurDateForward(wxSpinEvent& event);

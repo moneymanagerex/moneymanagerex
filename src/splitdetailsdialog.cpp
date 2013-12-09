@@ -187,9 +187,13 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
         return;
     }
 
+    Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    if (account) currency = Model_Account::currency(account);
+
     wxString amountStr = textAmount_->GetValue().Trim();
     double amount;
-    if (!Model_Currency::fromString(amountStr, amount, Model_Account::currency(Model_Account::instance().get(accountID_))) || amount < 0)
+    if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
     {
         mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
         textAmount_->SetFocus();

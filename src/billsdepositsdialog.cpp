@@ -70,7 +70,7 @@ mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur
     : bdID_(bdID), edit_(edit), enterOccur_(enterOccur)
     , categID_(-1), subcategID_(-1), payeeID_(-1), accountID_(-1), toID_(-1)
     , toTransAmount_(0), advancedToTransAmountSet_(false), payeeUnknown_(false)
-    , autoExecuteUserAck_(false), autoExecuteSilent_(false)
+    , autoExecuteUserAck_(false), autoExecuteSilent_(false), categUpdated_(false)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -581,10 +581,10 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                 {
                     bPayee_->SetLabel(payee->PAYEENAME);
                     payeeUnknown_ = false;
-                    if (local_splits_.empty())
+                    // Only for new transactions: if user want to autofill last category used for payee.
+                    // If this is a Split Transaction, ignore displaying last category for payee
+                    if (payee->CATEGID == -1 && local_splits_.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && bdID_ == 0)
                     {
-                        if (payee->CATEGID == -1) return;
-
                         categID_ = payee->CATEGID;
                         subcategID_ = payee->SUBCATEGID;
 
@@ -636,6 +636,7 @@ void mmBDDialog::OnCategs(wxCommandEvent& /*event*/)
             const Model_Category::Data* category = Model_Category::instance().get(categID_);
             const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
             bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+            categUpdated_ = true;
         }
     }
 }
@@ -1004,7 +1005,12 @@ void mmBDDialog::OnSplitChecked(wxCommandEvent& /*event*/)
     subcategID_ = -1;
 
     bool state = cSplit_->GetValue();
-    if (state)
+    SetSplitControls(state);
+}
+
+void mmBDDialog::SetSplitControls(bool split)
+{
+    if (split)
     {
         bCategory_->SetLabel(_("Split Category"));
         textAmount_->Enable(false);
@@ -1073,6 +1079,9 @@ void mmBDDialog::SetTransferControls(bool transfers)
 {
     if (transfers)
     {
+        cSplit_->SetValue(FALSE);
+        SetSplitControls();
+        cSplit_->Disable();
         cAdvanced_->Enable();
         bTo_->Show();
     }
@@ -1081,6 +1090,8 @@ void mmBDDialog::SetTransferControls(bool transfers)
         bTo_->Hide();
         cAdvanced_->Disable();
         SetAdvancedTransferControls();
+        cSplit_->Enable();
+        SetSplitControls();
     }
 }
 

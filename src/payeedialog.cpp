@@ -102,8 +102,8 @@ void mmPayeeDialog::CreateControls()
     button_OK_ = new wxButton( buttons_panel, wxID_OK, _("&OK ") );
     btnCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
 
-    buttons_sizer->Add(btnCancel_,  flags);
     buttons_sizer->Add(button_OK_,  flags);
+    buttons_sizer->Add(btnCancel_,  flags);
     Center();
     this->SetSizer(itemBoxSizer2);
 }
