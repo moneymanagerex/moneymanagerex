@@ -346,7 +346,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
     if (base_currency)
     {
-        base_symbol = base_currency->CURRENCY_SYMBOL;
+        base_symbol = base_currency->CURRENCY_SYMBOL.Upper();
     }
     else
     {

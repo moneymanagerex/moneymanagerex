@@ -2529,6 +2529,10 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
     }
     else if (openingNew) // New Database
     {
+        // Remove file so we can replace it instead of opening it
+        if (wxFileName::FileExists(fileName))
+            wxRemoveFile(fileName);
+
         m_db = mmDBWrapper::Open(fileName, password);
         password_ = password;
         InitializeModelTables();
