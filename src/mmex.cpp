@@ -390,6 +390,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
     }
     userName = itemUserName_->GetValue().Trim();
     Model_Infotable::instance().Set("USERNAME", userName);
+    mmOptions::instance().userNameString_ = userName;
 
     return true;
 }
@@ -2600,6 +2601,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
 
         updateNavTreeControl();
+        initHomePage_ = true;
 
         if (!refreshRequested_)
         {
