@@ -409,8 +409,7 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(wxImage(trash_xpm).Scale(16, 16));
 
     m_listCtrlAccount = new TransactionListCtrl( this, itemSplitterWindow10
-        , ID_PANEL_CHECKING_LISTCTRL_ACCT, wxDefaultPosition, wxDefaultSize
-        , wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL);
+        , ID_PANEL_CHECKING_LISTCTRL_ACCT);
 
     m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
@@ -868,12 +867,9 @@ void mmCheckingPanel::SetSelectedTransaction(int transID)
 TransactionListCtrl::TransactionListCtrl(
     mmCheckingPanel *cp,
     wxWindow *parent,
-    const wxWindowID id,
-    const wxPoint& pos,
-    const wxSize& size,
-    long style
+    const wxWindowID id
 ) :
-    wxListCtrl(parent, id, pos, size, style | wxWANTS_CHARS),
+    mmListCtrl(parent, id),
     m_cp(cp),
     m_selectedIndex(-1),
     m_selectedForCopy(-1),
@@ -920,7 +916,7 @@ TransactionListCtrl::TransactionListCtrl(
 }
 
 //----------------------------------------------------------------------------
-void TransactionListCtrl::createColumns(wxListCtrl &lst)
+void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
     const std::vector<std::tuple<int, wxString*, int, int> > def_data
     {

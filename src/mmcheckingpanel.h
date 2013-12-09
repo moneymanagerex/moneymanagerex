@@ -35,7 +35,7 @@ class TransactionListCtrl : public mmListCtrl
 public:
 
     TransactionListCtrl(mmCheckingPanel *cp, wxWindow *parent
-        , const wxWindowID id, const wxPoint& pos,const wxSize& size, long style);
+        , const wxWindowID id);
 
     void createColumns(mmListCtrl &lst);
     enum EIcons //m_imageList
@@ -175,7 +175,7 @@ public:
 private:
     enum menu
     {
-        MENU_VIEW_ALLTRANSACTIONS = 1,
+        MENU_VIEW_ALLTRANSACTIONS = 0, //FIXME:
         MENU_VIEW_TODAY,
         MENU_VIEW_CURRENTMONTH,
         MENU_VIEW_LAST30,
