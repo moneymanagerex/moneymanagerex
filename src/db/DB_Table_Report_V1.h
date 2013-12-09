@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_CATEGORY_V1_H
-#define DB_TABLE_CATEGORY_V1_H
+#ifndef DB_TABLE_REPORT_V1_H
+#define DB_TABLE_REPORT_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_CATEGORY_V1 : public DB_Table
+struct DB_Table_REPORT_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CATEGORY_V1 Self;
+    typedef DB_Table_REPORT_V1 Self;
     /** A container to hold list of Data records for the table*/
     typedef std::vector<Self::Data> Data_Set;
     /** A container to hold a list of Data record pointers for the table in memory*/
@@ -31,7 +31,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     Cache cache_;
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CATEGORY_V1() 
+    ~DB_Table_REPORT_V1() 
     {
         destroy_cache();
     }
@@ -61,11 +61,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, CONTENTTYPE TEXT COLLATE NOCASE, CONTENT TEXT, TEMPLATEPATH TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
-				wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+				wxLogError("REPORT_V1: Exception %s", e.GetMessage().c_str());
 				return false;
 			}
 		}
@@ -79,32 +79,56 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY_V1(CATEGNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS INDEX_REPORT_NAME ON REPORT_V1(REPORTNAME)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("REPORT_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
 
-    struct CATEGID : public DB_Column<int>
+    struct REPORTID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGID"; } 
-        CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "REPORTID"; } 
+        REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct CATEGNAME : public DB_Column<wxString>
+    struct REPORTNAME : public DB_Column<wxString>
     { 
-        static wxString name() { return "CATEGNAME"; } 
-        CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "REPORTNAME"; } 
+        REPORTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    typedef CATEGID PRIMARY;
+    struct GROUPNAME : public DB_Column<wxString>
+    { 
+        static wxString name() { return "GROUPNAME"; } 
+        GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct CONTENTTYPE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "CONTENTTYPE"; } 
+        CONTENTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct CONTENT : public DB_Column<wxString>
+    { 
+        static wxString name() { return "CONTENT"; } 
+        CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct TEMPLATEPATH : public DB_Column<wxString>
+    { 
+        static wxString name() { return "TEMPLATEPATH"; } 
+        TEMPLATEPATH(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    typedef REPORTID PRIMARY;
     enum COLUMN
     {
-        COL_CATEGID = 0
-        , COL_CATEGNAME = 1
+        COL_REPORTID = 0
+        , COL_REPORTNAME = 1
+        , COL_GROUPNAME = 2
+        , COL_CONTENTTYPE = 3
+        , COL_CONTENT = 4
+        , COL_TEMPLATEPATH = 5
     };
 
     /** Returns the column name as a string*/
@@ -112,8 +136,12 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_CATEGID: return "CATEGID";
-            case COL_CATEGNAME: return "CATEGNAME";
+            case COL_REPORTID: return "REPORTID";
+            case COL_REPORTNAME: return "REPORTNAME";
+            case COL_GROUPNAME: return "GROUPNAME";
+            case COL_CONTENTTYPE: return "CONTENTTYPE";
+            case COL_CONTENT: return "CONTENT";
+            case COL_TEMPLATEPATH: return "TEMPLATEPATH";
             default: break;
         }
         
@@ -123,8 +151,12 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Returns the comumn number from the given column name*/
     COLUMN name_to_column(const wxString& name) const
     {
-        if ("CATEGID" == name) return COL_CATEGID;
-        else if ("CATEGNAME" == name) return COL_CATEGNAME;
+        if ("REPORTID" == name) return COL_REPORTID;
+        else if ("REPORTNAME" == name) return COL_REPORTNAME;
+        else if ("GROUPNAME" == name) return COL_GROUPNAME;
+        else if ("CONTENTTYPE" == name) return COL_CONTENTTYPE;
+        else if ("CONTENT" == name) return COL_CONTENT;
+        else if ("TEMPLATEPATH" == name) return COL_TEMPLATEPATH;
 
         return COLUMN(-1);
     }
@@ -132,14 +164,18 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CATEGORY_V1;
+        friend struct DB_Table_REPORT_V1;
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int CATEGID;//  primay key
-        wxString CATEGNAME;
-        int id() const { return CATEGID; }
-        void id(int id) { CATEGID = id; }
+        int REPORTID;//  primay key
+        wxString REPORTNAME;
+        wxString GROUPNAME;
+        wxString CONTENTTYPE;
+        wxString CONTENT;
+        wxString TEMPLATEPATH;
+        int id() const { return REPORTID; }
+        void id(int id) { REPORTID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -153,15 +189,19 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            CATEGID = -1;
+            REPORTID = -1;
         }
 
         Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         
-            CATEGID = q.GetInt("CATEGID");
-            CATEGNAME = q.GetString("CATEGNAME");
+            REPORTID = q.GetInt("REPORTID");
+            REPORTNAME = q.GetString("REPORTNAME");
+            GROUPNAME = q.GetString("GROUPNAME");
+            CONTENTTYPE = q.GetString("CONTENTTYPE");
+            CONTENT = q.GetString("CONTENT");
+            TEMPLATEPATH = q.GetString("TEMPLATEPATH");
         }
 
         wxString to_json() const
@@ -175,15 +215,23 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["CATEGNAME"] = json::String(this->CATEGNAME.ToStdString());
+            o["REPORTID"] = json::Number(this->REPORTID);
+            o["REPORTNAME"] = json::String(this->REPORTNAME.ToStdString());
+            o["GROUPNAME"] = json::String(this->GROUPNAME.ToStdString());
+            o["CONTENTTYPE"] = json::String(this->CONTENTTYPE.ToStdString());
+            o["CONTENT"] = json::String(this->CONTENT.ToStdString());
+            o["TEMPLATEPATH"] = json::String(this->TEMPLATEPATH.ToStdString());
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row("CATEGID") = CATEGID;
-            row("CATEGNAME") = CATEGNAME;
+            row("REPORTID") = REPORTID;
+            row("REPORTNAME") = REPORTNAME;
+            row("GROUPNAME") = GROUPNAME;
+            row("CONTENTTYPE") = CONTENTTYPE;
+            row("CONTENT") = CONTENT;
+            row("TEMPLATEPATH") = TEMPLATEPATH;
             return row;
         }
 
@@ -216,17 +264,17 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 6
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CATEGORY_V1"; }
+    wxString name() const { return "REPORT_V1"; }
 
-    DB_Table_CATEGORY_V1() 
+    DB_Table_REPORT_V1() 
     {
-        query_ = "SELECT * FROM CATEGORY_V1 ";
+        query_ = "SELECT * FROM REPORT_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -255,20 +303,24 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() < 0) //  new & insert
         {
-            sql = "INSERT INTO CATEGORY_V1(CATEGNAME) VALUES(?)";
+            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, CONTENTTYPE, CONTENT, TEMPLATEPATH) VALUES(?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CATEGORY_V1 SET CATEGNAME = ? WHERE CATEGID = ?";
+            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, GROUPNAME = ?, CONTENTTYPE = ?, CONTENT = ?, TEMPLATEPATH = ? WHERE REPORTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CATEGNAME);
+            stmt.Bind(1, entity->REPORTNAME);
+            stmt.Bind(2, entity->GROUPNAME);
+            stmt.Bind(3, entity->CONTENTTYPE);
+            stmt.Bind(4, entity->CONTENT);
+            stmt.Bind(5, entity->TEMPLATEPATH);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->CATEGID);
+                stmt.Bind(6, entity->REPORTID);
 
             wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
@@ -276,7 +328,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("REPORT_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -290,7 +342,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         if (id < 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CATEGORY_V1 WHERE CATEGID = ?";
+            wxString sql = "DELETE FROM REPORT_V1 WHERE REPORTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             wxLogDebug(stmt.GetSQL());
@@ -311,7 +363,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("REPORT_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

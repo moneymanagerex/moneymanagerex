@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-07 19:53:24.600000.
+ *          AUTO GENERATED at 2013-12-09 20:39:37.193577.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -269,6 +269,15 @@ struct SorterByWEBSITE
     }
 };
 
+struct SorterByREPORTNAME
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.REPORTNAME < y.REPORTNAME;
+    }
+};
+
 struct SorterByREPEATS
 { 
     template<class DATA>
@@ -332,6 +341,24 @@ struct SorterByVALUECHANGERATE
     }
 };
 
+struct SorterByCONTENT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CONTENT < y.CONTENT;
+    }
+};
+
+struct SorterByGROUPNAME
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.GROUPNAME < y.GROUPNAME;
+    }
+};
+
 struct SorterByAMOUNT
 { 
     template<class DATA>
@@ -347,6 +374,15 @@ struct SorterByBUDGETYEARID
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.BUDGETYEARID < y.BUDGETYEARID;
+    }
+};
+
+struct SorterByREPORTID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.REPORTID < y.REPORTID;
     }
 };
 
@@ -392,6 +428,15 @@ struct SorterBySTATUS
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.STATUS < y.STATUS;
+    }
+};
+
+struct SorterByCONTENTTYPE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.CONTENTTYPE < y.CONTENTTYPE;
     }
 };
 
@@ -494,15 +539,6 @@ struct SorterByUNIT_NAME
     }
 };
 
-struct SorterByNAME
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.NAME < y.NAME;
-    }
-};
-
 struct SorterByACCOUNTTYPE
 { 
     template<class DATA>
@@ -554,15 +590,6 @@ struct SorterByPAYEEID
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.PAYEEID < y.PAYEEID;
-    }
-};
-
-struct SorterByID
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.ID < y.ID;
     }
 };
 
@@ -734,15 +761,6 @@ struct SorterBySFX_SYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.SFX_SYMBOL < y.SFX_SYMBOL;
-    }
-};
-
-struct SorterByLUACONTENT
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.LUACONTENT < y.LUACONTENT;
     }
 };
 
