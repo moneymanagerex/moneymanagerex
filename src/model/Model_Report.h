@@ -21,13 +21,15 @@
 
 #include "Model.h"
 #include "db/DB_Table_Report_V1.h"
-#include "report/htmlbuilder.h"
+#include "reports/htmlbuilder.h"
 
-class Model_Report : public Model, public DB_Table_Report_V1
+class Model_Report : public Model, public DB_Table_REPORT_V1
 {
-    using DB_Table_Report_V1::all;
+    using DB_Table_REPORT_V1::all;
+    using DB_Table_REPORT_V1::get;
+    using DB_Table_REPORT_V1::remove;
 public:
-    Model_Report(): Model(), DB_Table_Report_V1() 
+    Model_Report(): Model(), DB_Table_REPORT_V1() 
     {
     };
     ~Model_Report() {};
@@ -94,7 +96,7 @@ public:
 public:
     wxString get_html(const Data* r)
     {
-        mm_html_template report(r->TEMPLATEPATH.toStdString());
+        mm_html_template report(r->TEMPLATEPATH);
         loop_t contents;
 
         if (r->CONTENTTYPE == "LUA")

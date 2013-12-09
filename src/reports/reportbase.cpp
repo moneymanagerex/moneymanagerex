@@ -20,6 +20,17 @@
 #include "mmex.h"
 #include "model/Model_Account.h"
 
+mmGeneralReport::mmGeneralReport(const Model_Report::Data* report)
+: mmPrintableBase()
+, m_report(report)
+{
+}
+
+wxString mmGeneralReport::getHTMLText()
+{
+    return Model_Report::instance().get_html(this->m_report);
+}
+
 mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(wxString report_name, int sort_column)
 : mmPrintableBase(sort_column)
 , accountArray_(0)

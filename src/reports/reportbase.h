@@ -21,6 +21,7 @@
 #define _MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
 #include "mmOption.h"
+#include "model/Model_Report.h"
 class wxString;
 class wxArrayString;
 //----------------------------------------------------------------------------
@@ -38,6 +39,18 @@ public:
 
 protected:
 	int sortColumn_;
+};
+
+class mmGeneralReport : public mmPrintableBase
+{
+public:
+    mmGeneralReport(const Model_Report::Data* report);
+
+public:
+    wxString getHTMLText();
+
+private:
+    const Model_Report::Data* m_report;
 };
 
 class mmPrintableBaseSpecificAccounts : public mmPrintableBase

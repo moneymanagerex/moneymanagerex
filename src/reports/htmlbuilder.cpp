@@ -351,4 +351,5 @@ void mm_html_template::load_context()
     (*this)("TODAY") = wxDateTime::Today().FormatISODate();
     for (const auto &r: Model_Infotable::instance().all())
         (*this)(r.INFONAME.ToStdString()) = r.INFOVALUE;
+    (*this)("INFOTABLE") = Model_Infotable::to_loop_t();
 }
