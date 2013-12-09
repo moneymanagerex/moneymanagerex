@@ -281,7 +281,7 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
         default:
         {
             wxMenu menu;
-            int id = MENU_VIEW_ALLTRANSACTIONS;
+            int id = wxID_HIGHEST + MENU_VIEW_ALLTRANSACTIONS;
             for (const auto& i : menu_labels())
             {
                 menu.Append(id++, wxGetTranslation(i));
@@ -659,7 +659,7 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 {
-    currentView_ = event.GetId();
+    currentView_ = event.GetId() - wxID_HIGHEST;
 
     if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
         transFilterActive_ = false;
