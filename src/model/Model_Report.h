@@ -97,6 +97,14 @@ public:
     wxString get_html(const Data* r)
     {
         mm_html_template report(r->TEMPLATEPATH);
+
+        report("REPORTID") = r->REPORTID;
+        report("REPORTNAME") = r->REPORTNAME;
+        report("GROUPNAME") = r->GROUPNAME;
+        report("CONTENTTYPE") = r->CONTENTTYPE;
+        report("CONTENT") = r->CONTENT;
+        report("TEMPLATEPATH") = r->TEMPLATEPATH;
+
         loop_t contents;
 
         if (r->CONTENTTYPE == "LUA")
@@ -119,7 +127,7 @@ public:
             }
         }
 
-        report("ASSETS") = contents;
+        report("CONTENTS") = contents;
 
         return wxString(report.Process());
     }

@@ -23,7 +23,7 @@
         <th align="right" valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Value</font></th>
         <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Notes</font></th>
     </tr>
-    <TMPL_LOOP NAME=ASSETS>
+    <TMPL_LOOP NAME=CONTENTS>
         <TMPL_IF NAME="__ODD__">
             <tr bgcolor="#FFFFFF" >
         <TMPL_ELSE>
@@ -49,45 +49,19 @@
     </tr>
 </table>
 
-<hr size="2">
-<center>
-<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="0">
-
-    <tr bgcolor="#FFFFFF" >
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">PURCHASEDATE</font></th>
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Name</font></th>
-        <th align="right" valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Value</font></th>
-        <th align="right" valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">NUMSHARES</font></th>
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Notes</font></th>
-    </tr>
-    <TMPL_LOOP NAME=STOCKS>
-        <TMPL_IF NAME="__ODD__">
-            <tr bgcolor="#FFFFFF" >
-        <TMPL_ELSE>
-            <tr bgcolor="#E1EDFB" >
-        </TMPL_IF>
-
-        <td width="0%" ><font size="3" color=""><TMPL_VAR PURCHASEDATE></font></td>
-        <td width="0%" ><font size="3" color=""><TMPL_VAR STOCKNAME></font></td>
-        <td width="0%" align="right" ><font size="3" color=""><TMPL_VAR VALUE></font></td>
-        <td width="0%" align="right" ><font size="3" color=""><TMPL_VAR NUMSHARES></font></td>
-        <td width="0%" ><font size="3" color=""><TMPL_VAR NOTES></font></td>
-    </tr>
-    </TMPL_LOOP>
-    <tr bgcolor="#FFFFFF" >
-        <td colspan="5" >
-            <table cellspacing="1" bgcolor="#FFFFFF" width="100%" valign="top" border="1"></table>
-        </td>
-    </tr>
-</table>
-
 <hr size="3">
-<tr> <b>Available built-in variables from INFOTABLE</b></tr>
+<tr> <b>Available built-in variables</b></tr>
 <table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
     <tr align="left">
-        <th>INFONAME</th>
-        <th>INFOVALUE</th>
+        <th>VAR</th>
+        <th>VALUE</th>
     </tr>
+    <tr><td>REPORTID</td><td><TMPL_VAR REPORTID></td></tr>
+    <tr><td>REPORTNAME</td><td><TMPL_VAR REPORTNAME></td></tr>
+    <tr><td>GROUPNAME</td><td><TMPL_VAR GROUPTNAME></td></tr>
+    <tr><td>CONTENTTYPE</td><td><TMPL_VAR CONTENTTYPE></td></tr>
+    <tr><td>CONTENT</td><td><TMPL_VAR CONTENT></td></tr>
+    <tr><td>TEMPLATEPATH</td><td><TMPL_VAR TEMPLATEPATH></td></tr>
     <TMPL_LOOP INFOTABLE>
         <tr>
             <td><TMPL_VAR INFONAME></td>
