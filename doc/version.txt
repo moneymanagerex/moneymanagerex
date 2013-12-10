@@ -1,48 +1,47 @@
 Version History of Money Manager Ex
 
-1.0.0.0 (TBA)
- (includes 0.9.9.2 changes)
+1.0.0.0 (TBA) (includes 0.9.9.2 changes)
 
-- Remove custom reports
-- Account balance in CSV export (feature-request #136, partial implementation)
-- Proxy server settings (feature-request #181)
-- Report added (feature-request #224)
-- Added 2nd graph (feature-request #239)
+- Custom Reports has been temporarily removed  (under construction). Will be introduced in next release.
+- Account balance in CSV export [feature-requests:#136] (partial implementation)
+- Proxy server settings [feature-requests:#181]
+- Report added [feature-requests:#224]
+- Added 2nd graph [feature-requests:#239]
 - In place edit for assets
 - Fix crash when quitting from start page
 
-- Fix for currency separators (bug #224)
-- Fix to transaction dialog (bug #225)
-- Specify database to open on command line (feature-request #245)
-- Fix for translations (bug #222)
-- Fix account balance (bug #223)
+- Fix for currency separators [bugs:#224]
+- Fix to transaction dialog [bugs:#225]
+- Specify database to open on command line [feature-requests:#245]
+- Fix for translations [bugs:#222]
+- Fix account balance [bugs:#223]
 - Test project changed from UnitTest++ to cppunit (no tests currently written)
 
-- Fix cancel button (feature-request #255)
-- Added sorting in reports (feature-request #243, #250)
+- Fix cancel button [feature-requests:#255]
+- Added sorting in reports [feature-requests:#243], [feature-requests:#250]
 
-- Fix crash on export to HTML (bug #215)
+- Fix crash on export to HTML [bugs:#215]
 - Updated to wxWidgets 3.0
 - Updated to wxSQLLite3 version 3.0.5 (SQLite3 version 3.8.0.2)
 - Fix memory leaks
-- Restructured code so database is accessed via data classes instead of raw SQL (feature-request #244)
+- Restructured code so database is accessed via data classes instead of raw SQL [feature-requests:#244)
 
 - Updated to use C++11
 - Fix quarterly budget estimate calculation.
 - Fix help info by including a status bar.
 - Improved Navigation panel Account switching to fix:
-  * Transaction Filter memory between accounts
-  * Copy/Paste across accounts.
+* Transaction Filter memory between accounts
+* Copy/Paste across accounts.
 - Updated icons
 - Fixed Search field for Checking accounts
-- Added sort order for Stocks and Assets panels (feature-request #247)
+- Added sort order for Stocks and Assets panels [feature-requests:#247]
 
 - Updated Currency manager
 - Added set of user defined parameters for Transaction Report
 - Added user defined icons for accounts
 - New/Edit Transaction Dialogue updated
-  * Simple line calculator added for amount fields
-  * Split transactions improvements
+* Simple line calculator added for amount fields
+* Split transactions improvements
 - Payee Dialogue updated
 - Categories Dialogue Updated
 - Added Filter for Repeating Transactions panel
