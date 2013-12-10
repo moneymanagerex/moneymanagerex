@@ -26,11 +26,3 @@ public:
     wxString getHTMLText();
     wxString version() { return "$Rev$"; }
 };
-
-class mmReportSummaryAssetsNew : public mmPrintableBase
-{
-public:
-    mmReportSummaryAssetsNew();
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
-};
