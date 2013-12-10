@@ -386,6 +386,7 @@ struct DB_Table_%s : public DB_Table
     /**
     * Saves the Data record to the database table.
     * Either create a new record or update the existing record.
+    * Remove old record from the memory table (cache)
     */
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
@@ -418,6 +419,21 @@ struct DB_Table_%s : public DB_Table
             wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
+
+            if (entity->id() > 0)
+            {
+                Cache c;
+                for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
+                {
+                    Self::Data* e = *it;
+                    if (e->id() == entity->id() && e != entity) 
+                        delete e;
+                    else 
+                        c.push_back(e);
+                }
+                cache_.clear();
+                cache_.swap(c);
+            }
         }
         catch(const wxSQLite3Exception &e) 
         { 
