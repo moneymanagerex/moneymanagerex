@@ -113,17 +113,37 @@ public:
         }
         else // (r->CONTENTTYPE == "SQL")
         {
-            wxSQLite3ResultSet sqlQueryResult = this->db_->ExecuteQuery(r->CONTENT);
-            int columnCount = sqlQueryResult.GetColumnCount();
-            while (sqlQueryResult.NextRow())
+            wxSQLite3Statement stmt = this->db_->PrepareStatement(r->CONTENT);
+            if (!stmt.IsReadOnly())
             {
-                row_t row;
+                report("ERROR") = r->CONTENT + " will modify database! aborted!";
+            }
+            else
+            {
+                wxSQLite3ResultSet sqlQueryResult = stmt.ExecuteQuery();
+                int columnCount = sqlQueryResult.GetColumnCount();
+
+                loop_t columns;
                 for (int i = 0; i < columnCount; ++ i)
                 {
-                    wxString column_name = sqlQueryResult.GetColumnName(i);
-                    row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
+                    row_t row;
+                    row("COLUMN") = sqlQueryResult.GetColumnName(i);
+
+                    columns += row;
                 }
-                contents += row;
+                report("COLUMNS") = columns;
+
+                while (sqlQueryResult.NextRow())
+                {
+                    row_t row;
+                    for (int i = 0; i < columnCount; ++ i)
+                    {
+                        wxString column_name = sqlQueryResult.GetColumnName(i);
+                        row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
+                    }
+                    contents += row;
+                }
+                sqlQueryResult.Finalize();
             }
         }
 

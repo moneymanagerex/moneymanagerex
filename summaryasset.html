@@ -50,6 +50,14 @@
 </table>
 
 <hr size="3">
+<tr> <b>Available TMPL_VAR in this report</b></tr>
+<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
+    <TMPL_LOOP COLUMNS>
+        <th><TMPL_VAR COLUMN></th>
+    </TMPL_LOOP>
+</table>
+
+<hr size="3">
 <tr> <b>Available built-in variables</b></tr>
 <table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
     <tr align="left">
