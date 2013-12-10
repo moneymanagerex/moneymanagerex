@@ -274,6 +274,14 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->Add(itemAccountName_, flags);
     itemAccountName_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
 
+    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    if (accounts.size() == 1)
+    {
+        accountID_ = accounts.begin()->ACCOUNTID;
+        itemAccountName_->SetLabel(accounts.begin()->ACCOUNTNAME);
+        itemAccountName_->Enable(false);
+    }
+
 // change properties depending on system parameters
     int spinCtrlDirection = wxSP_VERTICAL;
     int interval = 0;
@@ -391,7 +399,10 @@ void mmBDDialog::CreateControls()
         , wxDefaultPosition, wxSize(110, -1));
 
     for (const auto& i : Model_Billsdeposits::all_type())
-        transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    {
+        if (i != Model_Billsdeposits::all_type()[Model_Billsdeposits::TRANSFER] || Model_Account::instance().all().size() > 1)
+            transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
+    }
 
     transaction_type_->SetSelection(0);
     transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
@@ -442,7 +453,6 @@ void mmBDDialog::CreateControls()
     payeeWithdrawalTip_ = _("Specify where the transaction is going to");
     payeeDepositTip_    = _("Specify where the transaction is coming from");
     bPayee_->SetToolTip(payeeWithdrawalTip_);
-    resetPayeeString();
 
     transPanelSizer->Add(staticTextPayee, flags);
     transPanelSizer->Add(bPayee_, flags);
@@ -520,6 +530,7 @@ void mmBDDialog::CreateControls()
     /**********************************************************************************************
      Adjust controls according to function settings
     ***********************************************************************************************/
+    resetPayeeString();
     if (enterOccur_)
     {
         spinNextOccDate_->Disable();
@@ -583,7 +594,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
                     payeeUnknown_ = false;
                     // Only for new transactions: if user want to autofill last category used for payee.
                     // If this is a Split Transaction, ignore displaying last category for payee
-                    if (payee->CATEGID == -1 && local_splits_.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && bdID_ == 0)
+                    if (payee->CATEGID != -1 && local_splits_.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && bdID_ == 0)
                     {
                         categID_ = payee->CATEGID;
                         subcategID_ = payee->SUBCATEGID;
@@ -734,6 +745,18 @@ void mmBDDialog::resetPayeeString()
             payeeStr = filtd[0].PAYEENAME;
             payeeID_ = filtd[0].PAYEEID;
             payeeUnknown_ = false;
+
+            // Only for new transactions: if user want to autofill last category used for payee.
+            // If this is a Split Transaction, ignore displaying last category for payee
+            if (filtd[0].CATEGID != -1 && local_splits_.empty() && mmIniOptions::instance().transCategorySelectionNone_ == 1 && !categUpdated_ && bdID_ == 0)
+            {
+                categID_ = filtd[0].CATEGID;
+                subcategID_ = filtd[0].SUBCATEGID;
+
+                const Model_Category::Data* category = Model_Category::instance().get(categID_);
+                const Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
+                bCategory_->SetLabel(Model_Category::full_name(category, sub_category));
+            }
         }
     }
     bPayee_->SetLabel(payeeStr);
