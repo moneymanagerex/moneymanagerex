@@ -210,10 +210,10 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
             if (Model_Checking::TRANSDATE(trx).IsLaterThan(wxDateTime::Today()))
                 continue; //skip future dated transactions
         }
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP)++this->countFollowUp_;
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) ++this->countFollowUp_;
         if (Model_Checking::status(trx) != Model_Checking::VOID_)
         {
-            double amount = (Model_Checking::type(trx) == Model_Checking::DEPOSIT ? trx.TRANSAMOUNT : -trx.TRANSAMOUNT);
+            double amount = (Model_Checking::balance(trx, trx.ACCOUNTID));
             double reconciled_amount = (Model_Checking::status(trx) == Model_Checking::RECONCILED ? amount : 0);
 
             accountStats[trx.ACCOUNTID].first += reconciled_amount;
