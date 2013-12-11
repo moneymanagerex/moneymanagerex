@@ -24,6 +24,7 @@
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
 #include <wx/webview.h>
+#include <wx/webviewfshandler.h>
 
 BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
@@ -87,6 +88,7 @@ void mmReportsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
 /*
     htmlWindow_ = new wxWebView( this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize,
