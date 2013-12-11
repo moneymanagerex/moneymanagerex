@@ -23,6 +23,7 @@
 #include "mmex.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
+#include <wx/webview.h>
 
 BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
@@ -56,7 +57,7 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    htmlWindow_ -> SetPage(getReportText());
+    htmlWindow_ -> SetPage(getReportText(), "");
     return TRUE;
 }
 
@@ -85,9 +86,12 @@ void mmReportsPanel::CreateControls()
     itemStaticText9->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
-    htmlWindow_ = new wxHtmlWindow( this, wxID_ANY,
+    htmlWindow_ = wxWebView::New(this, wxID_ANY);
+/*
+    htmlWindow_ = new wxWebView( this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize,
         wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
+*/
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
 
@@ -160,7 +164,7 @@ void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
         long sortColumn = -1;
         sData.ToLong(&sortColumn);
 		rb_ -> setSortColumn(sortColumn);
-		htmlWindow_ -> SetPage(getReportText());
+		htmlWindow_ -> SetPage(getReportText(), "");
 	}
     else
         wxLaunchDefaultBrowser(sInfo);

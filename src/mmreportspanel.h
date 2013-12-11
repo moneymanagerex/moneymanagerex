@@ -22,7 +22,7 @@
 #include "mmpanelbase.h"
 #include "reports/reportbase.h"
 
-class wxHtmlWindow;
+class wxWebView;
 
 class mmReportsPanel : public mmPanelBase
 {
@@ -51,7 +51,7 @@ public:
     wxString getReportText();
 
 private:
-    wxHtmlWindow* htmlWindow_;
+    wxWebView * htmlWindow_;
     mmPrintableBase* rb_;
     bool cleanup_;
     void OnLinkClicked(wxHtmlLinkEvent& event);
