@@ -71,6 +71,7 @@ mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur
     , categID_(-1), subcategID_(-1), payeeID_(-1), accountID_(-1), toID_(-1)
     , toTransAmount_(0), advancedToTransAmountSet_(false), payeeUnknown_(false)
     , autoExecuteUserAck_(false), autoExecuteSilent_(false), categUpdated_(false)
+    , prevType_(-1)
 {
     Create(parent, id, caption, pos, size, style);
 }
@@ -502,6 +503,7 @@ void mmBDDialog::CreateControls()
     box_sizer1->Add(textNotes_, flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
+    prevType_ = Model_Billsdeposits::WITHDRAWAL;
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
@@ -616,8 +618,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
 {
     // This should only get called if we are in a transfer
-    wxArrayString accountArray;
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
+    wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
     wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), accountArray);
     if (scd.ShowModal() == wxID_OK)
@@ -693,6 +694,7 @@ void mmBDDialog::updateControlsForTransType()
             toID_ = -1;
             resetPayeeString();
         }
+        prevType_ = Model_Billsdeposits::WITHDRAWAL;
     }
     else if (transaction_type_->GetSelection() == Model_Billsdeposits::DEPOSIT)
     {
@@ -707,6 +709,7 @@ void mmBDDialog::updateControlsForTransType()
             toID_ = -1;
             resetPayeeString();
         }
+        prevType_ = Model_Billsdeposits::DEPOSIT;
     }
     else if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
@@ -730,6 +733,7 @@ void mmBDDialog::updateControlsForTransType()
         bTo_->SetLabel(_("Select To Account"));
         toID_ = -1;
         payeeUnknown_ = true;
+        prevType_ = Model_Billsdeposits::TRANSFER;
     }
 }
 
@@ -1102,19 +1106,28 @@ void mmBDDialog::SetTransferControls(bool transfers)
 {
     if (transfers)
     {
-        cSplit_->SetValue(FALSE);
-        SetSplitControls();
-        cSplit_->Disable();
-        cAdvanced_->Enable();
-        bTo_->Show();
+        if (prevType_ != Model_Billsdeposits::TRANSFER)
+        {
+            if (cSplit_->GetValue())
+            {
+                cSplit_->SetValue(FALSE);
+                SetSplitControls();
+            }
+            cSplit_->Disable();
+            cAdvanced_->Enable();
+            bTo_->Show();
+        }
     }
     else
     {
-        bTo_->Hide();
-        cAdvanced_->Disable();
-        SetAdvancedTransferControls();
-        cSplit_->Enable();
-        SetSplitControls();
+        if (!(prevType_ == Model_Billsdeposits::WITHDRAWAL || prevType_ == Model_Billsdeposits::DEPOSIT))
+        {
+            bTo_->Hide();
+            cAdvanced_->Disable();
+            SetAdvancedTransferControls();
+            cSplit_->Enable();
+            textAmount_->Enable();
+        }
     }
 }
 

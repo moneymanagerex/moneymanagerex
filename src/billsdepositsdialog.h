@@ -122,6 +122,7 @@ private:
     double toTransAmount_;
     bool advancedToTransAmountSet_;
     bool categUpdated_;
+    int prevType_;
 
     wxString payeeDepositTip_;
     wxString payeeWithdrawalTip_;
