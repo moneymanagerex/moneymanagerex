@@ -48,13 +48,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS /Zi"
 				Optimization="2"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
@@ -72,7 +72,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -80,7 +80,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxmsw30u_webview.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -138,13 +138,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -164,7 +164,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -172,7 +172,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxmsw30ud_webview.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -231,13 +231,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS /Zi"
 				Optimization="2"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
@@ -255,7 +255,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXMSW__;NDEBUG;NOPCH;_WINDOWS"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -263,7 +263,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxmsw30u_webview.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -321,13 +321,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -347,7 +347,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_WINDOWS"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\3rd\LuaGlue\include\;..\..\src"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include;..\..\lib\lua\src;..\..\lib;..\..\3rd\cgitemplate;..\..\src"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -355,7 +355,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxmsw30ud_webview.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -715,6 +715,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Report_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Setting_V1.h"
 				>
 			</File>
@@ -776,6 +780,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Payee.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_Report.h"
 				>
 			</File>
 			<File

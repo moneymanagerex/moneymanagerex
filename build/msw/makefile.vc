@@ -100,9 +100,8 @@ MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex.pdb \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
-	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd\cgitemplate \
-	/I..\..\3rd\LuaGlue\include\ /I..\..\src /DNOPCH /D_WINDOWS /EHsc /GR \
-	$(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
+	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd\cgitemplate /I..\..\src /DNOPCH \
+	/D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.obj \
 	mmex_accountdialog.obj \
@@ -310,6 +309,9 @@ __WXLIB_AUI_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_aui.lib
 __WXLIB_ADV_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_adv.lib
 !endif
 !if "$(WX_MONOLITHIC)" == "0"
+__WXLIB_WEBVIEW_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_webview.lib
+!endif
+!if "$(WX_MONOLITHIC)" == "0"
 __WXLIB_BASE_NAME_p = wxbase$(WX_VERSION)$(WXLIBPOSTFIX).lib
 !endif
 !if "$(WX_MONOLITHIC)" == "1"
@@ -468,7 +470,7 @@ lua.lib: $(LUA_OBJECTS)
 
 mmex.exe: $(MMEX_OBJECTS) wxsqlite.lib lua.lib mmex_resources_mmex.res
 	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG) /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_CPU_SUF_FILENAMES)$(____mmex_LIB_SUF_FILENAMES)  $(__DEBUGINFO_39) /pdb:"mmex.pdb" $(__DEBUGINFO_43) /SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 $(__mmex_LINK_FLAGS) /SUBSYSTEM:WINDOWS $(LDFLAGS) @<<
-	$(MMEX_OBJECTS) $(MMEX_RESOURCES)  wxsqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib
+	$(MMEX_OBJECTS) $(MMEX_RESOURCES)  wxsqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_WEBVIEW_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib
 <<
 	mt.exe -manifest ".\mmex.exe.manifest" -outputresource:".\mmex.exe";1
 
@@ -798,5 +800,5 @@ mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\cgitemplate\html_template.cpp
 
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd\cgitemplate /i ..\..\3rd\LuaGlue\include\ /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd\cgitemplate /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
 

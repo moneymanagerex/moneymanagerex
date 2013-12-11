@@ -90,9 +90,9 @@ LUA_OBJECTS =  \
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd/cgitemplate \
-	-I$(srcdir)/../../3rd/LuaGlue/include/ -I$(srcdir)/../../src -DNOPCH \
-	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) \
-	$(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
+	-I$(srcdir)/../../src -DNOPCH -I$(srcdir)/../../src \
+	-I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) $(PIC_FLAG) \
+	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -528,7 +528,7 @@ mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../3rd/LuaGlue/include/ --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
 
 
 # Include dependency info, if present:
