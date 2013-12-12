@@ -205,26 +205,18 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
     this->total_transactions_ = transactions.size();
     for (const auto& trx : transactions)
     {
-        if (ignoreFuture)
-        {
-            if (Model_Checking::TRANSDATE(trx).IsLaterThan(wxDateTime::Today()))
-                continue; //skip future dated transactions
-        }
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) ++this->countFollowUp_;
-        if (Model_Checking::status(trx) != Model_Checking::VOID_)
-        {
-            double amount = (Model_Checking::balance(trx, trx.ACCOUNTID));
-            double reconciled_amount = (Model_Checking::status(trx) == Model_Checking::RECONCILED ? amount : 0);
+        if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(wxDateTime::Today()))
+            continue; //skip future dated transactions
 
-            accountStats[trx.ACCOUNTID].first += reconciled_amount;
-            accountStats[trx.ACCOUNTID].second += amount;
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
-            if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
-            {
-                reconciled_amount = (Model_Checking::status(trx) == Model_Checking::RECONCILED ? trx.TOTRANSAMOUNT : 0);
-                accountStats[trx.TOACCOUNTID].first += reconciled_amount;
-                accountStats[trx.TOACCOUNTID].second += trx.TOTRANSAMOUNT;
-            }
+        accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].second += Model_Checking::amount(trx, trx.ACCOUNTID);
+
+        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        {
+            accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].second += Model_Checking::amount(trx, trx.TOACCOUNTID);
         }
     }
 }
