@@ -211,12 +211,12 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
         if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
 
         accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
-        accountStats[trx.ACCOUNTID].second += Model_Checking::amount(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
 
         if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
         {
             accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
-            accountStats[trx.TOACCOUNTID].second += Model_Checking::amount(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
         }
     }
 }

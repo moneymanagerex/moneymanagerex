@@ -41,6 +41,8 @@ public:
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
+        wxString DEPOSIT;
+        wxString WITHDRAWAL;
         double BALANCE;
     };
     typedef std::vector<Full_Data> Full_Data_Set;

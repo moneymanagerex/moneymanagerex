@@ -198,9 +198,10 @@ void mmCheckingPanel::filterTable()
 
     for (const auto& tran : Model_Account::transaction(this->m_account))
     {
-        double transaction_amount = (Model_Checking::status(tran) != Model_Checking::VOID_) ? Model_Checking::balance(tran, m_AccountID) : 0;
-        account_balance_ += transaction_amount;
-        reconciled_balance_ += (Model_Checking::status(tran) == Model_Checking::RECONCILED) ? transaction_amount : 0;
+        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
+        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+            account_balance_ += transaction_amount;
+        reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
         if (transFilterActive_)
         {
             if (!transFilterDlg_->checkAll(tran, m_AccountID)) continue;
@@ -209,13 +210,19 @@ void mmCheckingPanel::filterTable()
         {
             if (!Model_Checking::TRANSDATE(tran)
                 .IsBetween(quickFilterBeginDate_, quickFilterEndDate_)
-            ) continue;
+                ) continue;
         }
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_) continue;
 
         Model_Checking::Full_Data full_tran(tran);
         full_tran.BALANCE = account_balance_;
+
+        if (transaction_amount > 0)
+            full_tran.DEPOSIT = Model_Currency::toString(fabs(transaction_amount), this->m_currency);
+        else
+            full_tran.WITHDRAWAL = Model_Currency::toString(fabs(transaction_amount), this->m_currency);
+
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
         {
             bool transfer_to = tran.ACCOUNTID == this->m_AccountID;
@@ -748,15 +755,9 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_WITHDRAWAL:
-    {
-        double amount = Model_Checking::balance(tran, m_AccountID);
-        return amount <= 0 ? Model_Currency::toString(fabs(amount), this->m_currency) : "";
-    }
+        return tran.WITHDRAWAL;
     case TransactionListCtrl::COL_DEPOSIT:
-    {
-        double amount = Model_Checking::balance(tran, m_AccountID);
-        return amount > 0 ? Model_Currency::toString(amount, this->m_currency) : "";
-    }
+        return tran.DEPOSIT;
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:
