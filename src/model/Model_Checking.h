@@ -201,7 +201,7 @@ public:
             break;
         case TRANSFER:
             if (account_id == r->ACCOUNTID)
-                sum -= r->TOTRANSAMOUNT;
+                sum -= r->TRANSAMOUNT;
             else
                 sum += r->TOTRANSAMOUNT;
             break;
