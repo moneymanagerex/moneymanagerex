@@ -748,11 +748,15 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_CATEGORY:
         return tran.CATEGNAME;
     case TransactionListCtrl::COL_WITHDRAWAL:
-        return Model_Checking::balance(tran, m_AccountID) <= 0
-            ? Model_Currency::toString(tran.TRANSAMOUNT, this->m_currency) : "";
+    {
+        double amount = Model_Checking::balance(tran, m_AccountID);
+        return amount <= 0 ? Model_Currency::toString(fabs(amount), this->m_currency) : "";
+    }
     case TransactionListCtrl::COL_DEPOSIT:
-        return Model_Checking::balance(tran, m_AccountID) > 0
-            ? Model_Currency::toString(tran.TRANSAMOUNT, this->m_currency) : "";
+    {
+        double amount = Model_Checking::balance(tran, m_AccountID);
+        return amount > 0 ? Model_Currency::toString(amount, this->m_currency) : "";
+    }
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:
