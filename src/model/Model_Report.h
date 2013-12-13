@@ -139,7 +139,18 @@ public:
                     for (int i = 0; i < columnCount; ++ i)
                     {
                         wxString column_name = sqlQueryResult.GetColumnName(i);
-                        row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
+                        switch (sqlQueryResult.GetColumnType(i))
+                        {
+                        case WXSQLITE_INTEGER:
+                            row(column_name.ToStdString()) = sqlQueryResult.GetInt(i);
+                            break;
+                        case WXSQLITE_FLOAT:
+                            row(column_name.ToStdString()) = sqlQueryResult.GetDouble(i);
+                            break;
+                        default:
+                            row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
+                            break;
+                        }
                     }
                     contents += row;
                 }
