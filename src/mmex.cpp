@@ -3506,8 +3506,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
         wxSizer *sizer = cleanupHomePanel();
 
         checkingAccountPage_ = new mmCheckingPanel(
-                                   accountID, homePanel_, wxID_STATIC,
-                                   wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+                                   accountID, homePanel_);
         panelCurrent_ = checkingAccountPage_;
         activeCheckingAccountPage_ = true;
         if (gotoTransID_ > 0)

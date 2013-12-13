@@ -87,9 +87,7 @@ END_EVENT_TABLE();
 
 mmCheckingPanel::mmCheckingPanel(
     int accountID,
-    wxWindow *parent, wxWindowID winid,
-    const wxPoint& pos, const wxSize& size, long style, const wxString& name
-    )
+    wxWindow *parent)
     : filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
@@ -98,7 +96,8 @@ mmCheckingPanel::mmCheckingPanel(
     , transFilterDlg_(0)
 {
     m_basecurrecyID = Model_Infotable::instance().GetBaseCurrencyId();
-    Create(parent, winid, pos, size, style, name);
+    long style = wxTAB_TRAVERSAL | wxNO_BORDER;
+    Create(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, wxPanelNameStr);
 }
 //----------------------------------------------------------------------------
 
@@ -949,6 +948,7 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
 {
     m_selectedIndex = event.GetIndex();
     m_cp->updateExtraTransactionData(m_selectedIndex);
+    topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 
     if (m_cp->m_listCtrlAccount->GetSelectedItemCount()>1)
         m_cp->btnEdit_->Enable(false);
@@ -1333,8 +1333,6 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
         return;
     }
 
-    /* find the topmost visible item - this will be used to set
-       where to display the list again after refresh */
     topItemIndex_ = GetTopItem() + GetCountPerPage() -1;
 
     //Read status of the selected transaction
@@ -1454,6 +1452,7 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 
 void TransactionListCtrl::refreshVisualList(int trans_id)
 {
+    this->SetEvtHandlerEnabled(false);
     m_cp->initVirtualListControl();
     m_cp->markSelectedTransaction(trans_id);
 
@@ -1483,6 +1482,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     //wxLogDebug("+trx id:%d | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
 
     m_cp->updateExtraTransactionData(m_selectedIndex);
+    this->SetEvtHandlerEnabled(true);
 }
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)

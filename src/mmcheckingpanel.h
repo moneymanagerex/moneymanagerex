@@ -142,7 +142,8 @@ private:
     /* Sort Columns */
     void OnColClick(wxListEvent& event);
 
-    //The topmost visible item
+    /* The topmost visible item - this will be used to set
+    where to display the list again after refresh */
     long topItemIndex_;
 };
 
@@ -154,12 +155,7 @@ public:
 
     mmCheckingPanel(
         int accountID,
-        wxWindow *parent,
-        wxWindowID winid = wxID_ANY,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxDefaultSize,
-        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-        const wxString& name = wxPanelNameStr
+        wxWindow *parent
     );
 
     ~mmCheckingPanel();
