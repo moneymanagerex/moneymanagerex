@@ -90,7 +90,7 @@ public:
 public:
     static double value(const Data* r)
     {
-        return r->NUMSHARES * r->PURCHASEPRICE + r->COMMISSION;
+        return r->NUMSHARES * r->PURCHASEPRICE - r->COMMISSION;
     }
     static double value(const Data& r) { return value(&r); }
     static wxString NUMSHARES(const Data* stock)

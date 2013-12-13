@@ -1032,7 +1032,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
 
     menu.AppendSeparator();
 
-    wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted") : _("Show Deleted");
+    wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted (Void)") : _("Show Deleted (Void)");
     menu.AppendCheckItem(MENU_TREEPOPUP_SHOWTRASH, menu_item_label);
 
     wxMenu* subGlobalOpMenuDelete = new wxMenu();

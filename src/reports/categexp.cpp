@@ -320,7 +320,7 @@ mmReportCategoryExpensesComesLastMonth::mmReportCategoryExpensesComesLastMonth
 mmReportCategoryExpensesComesLast30Days::mmReportCategoryExpensesComesLast30Days
 ( )
 : mmReportCategoryExpensesComes(new mmLast30Days()
-, wxString::Format(_("Where the Money Comes From - %s"), _("Last Month")))
+, wxString::Format(_("Where the Money Comes From - %s"), _("Last 30 Days")))
 {}
 
 mmReportCategoryExpensesComesLastYear::mmReportCategoryExpensesComesLastYear
@@ -407,5 +407,5 @@ mmReportCategoryExpensesCategoriesLastFinancialYear::mmReportCategoryExpensesCat
 mmReportCategoryExpensesCategoriesCurrentFinancialYear::mmReportCategoryExpensesCategoriesCurrentFinancialYear
 ( int day, int month)
 : mmReportCategoryExpensesCategories(new mmCurrentFinancialYear(day, month)
-, wxString::Format(_("Categories - %s"), _("Last Financial Year")))
+, wxString::Format(_("Categories - %s"), _("Current Financial Year")))
 {}

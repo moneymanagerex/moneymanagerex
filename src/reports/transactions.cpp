@@ -53,9 +53,45 @@ wxString addFilterDetailes(wxString sHeader, wxString sValue)
 
 wxString mmReportTransactions::getHTMLText()
 {
-    //for (auto& transaction: trans_)
-    //    transaction->sortby_ = (SORT)sortColumn_;
-    std::stable_sort (trans_.begin(), trans_.end());
+    switch (sortColumn_)
+    {
+    case ACCOUNT:
+        std::stable_sort(trans_.begin(), trans_.end(), [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
+        {
+            return Model_Account::instance().get(x.ACCOUNTID)->ACCOUNTNAME < Model_Account::instance().get(y.ACCOUNTID)->ACCOUNTNAME;
+        });
+        break;
+    case PAYEE:
+        std::stable_sort(trans_.begin(), trans_.end(), [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
+        {
+            return Model_Payee::instance().get(x.PAYEEID)->PAYEENAME < Model_Payee::instance().get(y.PAYEEID)->PAYEENAME;
+        });
+        break;
+    case STATUS:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterBySTATUS());
+        break;
+    case CATEGORY:
+        std::stable_sort(trans_.begin(), trans_.end(), [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
+        {
+            return Model_Category::full_name(Model_Category::instance().get(x.CATEGID), Model_Subcategory::instance().get(x.SUBCATEGID))
+                < Model_Category::full_name(Model_Category::instance().get(y.CATEGID), Model_Subcategory::instance().get(y.SUBCATEGID));
+        });
+        break;
+    case TYPE:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
+        break;
+    case AMOUNT:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSAMOUNT());
+        break;
+    case NUMBER:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSACTIONNUMBER());
+        break;
+    case NOTE:
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByNOTES());
+        break;
+    default: // DATE
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSDATE());
+    }
 
     mmHTMLBuilder hb;
     hb.init();
@@ -134,15 +170,43 @@ wxString mmReportTransactions::getHTMLText()
             hb.addTableCell(account ? account->ACCOUNTNAME : "");
         }
         hb.addTableCell(transaction.STATUS);
-        hb.addTableCell(Model_Category::full_name(transaction.CATEGID, transaction.SUBCATEGID), false, true);
+        if (transaction.CATEGID == -1)
+            hb.addTableCell(_T("Split Category"), false, true);
+        else
+            hb.addTableCell(Model_Category::full_name(transaction.CATEGID, transaction.SUBCATEGID), false, true);
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
         // Get the exchange rate for the selected account
         const Model_Currency::Data* currency = Model_Account::currency(account);
         if (currency)
         {
-            double amount = Model_Checking::balance(transaction, refAccountID_) * currency->BASECONVRATE;
-            hb.addCurrencyCell(amount);
-            total += amount;
+            if (transDialog_->getCategoryCheckBox() && transaction.CATEGID == -1)
+            {
+                double split_total = 0;
+                for (const Model_Splittransaction::Data split : Model_Checking::splittransaction(transaction))
+                {
+                    if (transDialog_->getCategoryID() == split.CATEGID && transDialog_->getSubCategoryID() == split.SUBCATEGID)
+                    {
+                        split_total += split.SPLITTRANSAMOUNT;
+                    }
+                }
+                if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL && split_total >= 0)
+                {
+                    split_total = -split_total;
+                }
+                else if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT && split_total < 0)
+                {
+                    split_total = -split_total;
+                }
+                double amount = split_total * currency->BASECONVRATE;
+                hb.addCurrencyCell(amount);
+                total += amount;
+            }
+            else
+            {
+                double amount = Model_Checking::balance(transaction, refAccountID_) * currency->BASECONVRATE;
+                hb.addCurrencyCell(amount);
+                total += amount;
+            }
         }
         else
             hb.addTableCell("");

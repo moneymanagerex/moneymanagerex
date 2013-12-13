@@ -220,20 +220,25 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     //Summary of Estimated Vs Actual totals
     hb.addLineBreak();
     hb.startCenter();
-    hb.startTable("50%");
-//    hb.addRowSeparator(3);
+    hb.startTable("55%");
     hb.startTableRow();
-	hb.addMoneyCell(estIncome, false); 
-	hb.addMoneyCell(actIncome, false);
-	hb.addMoneyCell(difIncome, false);
+    hb.addTableCell(_T("Estimated Income:"), true, true);
+    hb.addMoneyCell(estIncome, false);
+    hb.addTableCell(_T("Actual Income:"), true, true);
+    hb.addMoneyCell(actIncome, false);
+    hb.addTableCell(_T("Difference Income:"), true, true);
+    hb.addMoneyCell(difIncome, false);
     hb.endTableRow();
 
     hb.startTableRow();
-	hb.addMoneyCell(estExpenses, false);
-	hb.addMoneyCell(actExpenses, false);
-	hb.addMoneyCell(difExpense, false);
+    hb.addTableCell(_T("Estimated Expenses:"), true, true);
+    hb.addMoneyCell(estExpenses, false);
+    hb.addTableCell(_T("Actual Expenses:"), true, true);
+    hb.addMoneyCell(actExpenses, false);
+    hb.addTableCell(_T("Difference Expenses:"), true, true);
+    hb.addMoneyCell(difExpense, false);
     hb.endTableRow();
-    hb.addRowSeparator(3);
+    hb.addRowSeparator(6);
     hb.endTable();
     hb.endCenter();
 

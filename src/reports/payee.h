@@ -90,7 +90,15 @@ public:
     {}
 };
 
-class mmReportPayeeExpensesLastFinancialYear: public mmReportPayeeExpenses
+class mmReportPayeeExpensesCurrentYearToDate : public mmReportPayeeExpenses
+{
+public:
+    mmReportPayeeExpensesCurrentYearToDate() : mmReportPayeeExpenses(
+        wxString::Format(_("Payee report - %s"), _("Current Year to Date")), new mmCurrentYearToDate())
+    {}
+};
+
+class mmReportPayeeExpensesLastFinancialYear : public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesLastFinancialYear(int day, int month): mmReportPayeeExpenses(

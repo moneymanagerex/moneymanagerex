@@ -159,7 +159,15 @@ public:
     }
 };
 
-class mmReportIncomeExpensesLastYear: public mmReportIncomeExpensesMonthly
+class mmReportIncomeExpensesCurrentYearToDate : public mmReportIncomeExpensesMonthly
+{
+public:
+    mmReportIncomeExpensesCurrentYearToDate() : mmReportIncomeExpensesMonthly(1, 1, new mmCurrentYearToDate())
+    {
+    }
+};
+
+class mmReportIncomeExpensesLastYear : public mmReportIncomeExpensesMonthly
 {
 public:
     mmReportIncomeExpensesLastYear(): mmReportIncomeExpensesMonthly(1, 1, new mmLastYear())
@@ -203,6 +211,14 @@ class mmReportIncomeExpensesCurrentYearSpecificAccounts : public mmReportIncomeE
 {
 public:
     mmReportIncomeExpensesCurrentYearSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmCurrentYear())
+    {
+    }
+};
+
+class mmReportIncomeExpensesCurrentYearToDateSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
+{
+public:
+    mmReportIncomeExpensesCurrentYearToDateSpecificAccounts() : mmReportIncomeExpensesMonthlySpecificAccounts(1, 1, new mmCurrentYearToDate())
     {
     }
 };

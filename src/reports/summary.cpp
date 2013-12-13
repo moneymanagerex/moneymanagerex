@@ -152,7 +152,7 @@ wxString mmReportSummary::getHTMLText()
     {
         if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
         Model_Currency::Data* currency = Model_Account::currency(account);
-        stockBalance += currency->BASECONVRATE * Model_Account::investment_balance(account).second;
+        stockBalance += currency->BASECONVRATE * Model_Account::investment_balance(account).first;
     }
 
     hb.startTableRow();

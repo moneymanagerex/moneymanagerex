@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define PAYEE_SORT_BY_DIFF      4
 
 mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange* date_range)
-    : mmPrintableBase(PAYEE_SORT_BY_DIFF)
+: mmPrintableBase(PAYEE_SORT_BY_NAME)
     , title_(title)
     , date_range_(date_range)
 {
