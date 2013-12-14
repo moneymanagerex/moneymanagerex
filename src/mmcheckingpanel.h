@@ -232,6 +232,7 @@ private:
     void setAccountSummary();
     void sortTable();
     void filterTable();
+    void updateTable();
     void markSelectedTransaction(int trans_id);
     void CreateControls();
 

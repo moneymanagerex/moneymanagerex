@@ -244,6 +244,37 @@ void mmCheckingPanel::filterTable()
     }
 }
 
+void mmCheckingPanel::updateTable()
+{
+    account_balance_ = 0.0;
+    reconciled_balance_ = 0.0;
+    if (m_account)
+    {
+        account_balance_ = m_account->INITIALBAL;
+        reconciled_balance_ = account_balance_;
+    }
+    for (const auto& tran : Model_Account::transaction(m_account))
+    {
+        double transaction_amount = Model_Checking::amount(tran, m_AccountID);
+        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+            account_balance_ += transaction_amount;
+        reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
+    }
+    filteredBalance_ = 0.0;
+    for (const auto & tran : m_trans)
+    {
+        filteredBalance_ += Model_Checking::amount(tran, m_AccountID);
+    }
+
+    setAccountSummary();
+
+    if (m_listCtrlAccount->g_sortcol == TransactionListCtrl::COL_STATUS)
+    {
+        sortTable();
+        m_listCtrlAccount->RefreshItems(0, m_trans.size() - 1);
+    }
+}
+
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
     long i = 0;
@@ -1094,7 +1125,16 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
         Model_Checking::instance().save(trx);
     }
 
-    refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
+    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox())
+        || (status == "V" && !showDeletedTransactions_))
+    {
+        refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
+    }
+    else
+    {
+        RefreshItems(m_selectedIndex, m_selectedIndex);
+        m_cp->updateTable();
+    }
 }
 //----------------------------------------------------------------------------
 
