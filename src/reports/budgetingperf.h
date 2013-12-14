@@ -27,8 +27,8 @@ class mmReportBudgetingPerformance : public mmReportBudget
 public:
     mmReportBudgetingPerformance(int budgetYearID);
 
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString getHTMLText();
+    virtual wxString version();
 
 private:
     int budgetYearID_;

@@ -29,7 +29,7 @@ public:
     ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString version();
 
 protected:
     wxString getHTMLText_i();

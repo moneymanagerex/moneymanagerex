@@ -28,7 +28,7 @@ public:
     mmReportIncomeExpenses(mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpenses();
     virtual wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString version();
 
 protected:
     mmDateRange* date_range_;

@@ -29,8 +29,8 @@ public:
     mmReportPayeeExpenses(const wxString& title = _("Payee Report"), mmDateRange* date_range = new mmAllTime());
     ~mmReportPayeeExpenses();
 
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString getHTMLText();
+    virtual wxString version();
 
 protected:
     mmDateRange* date_range_;

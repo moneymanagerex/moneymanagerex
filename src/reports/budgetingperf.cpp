@@ -55,6 +55,11 @@ void mmReportBudgetingPerformance::DisplayActualMonths(mmHTMLBuilder& hb, double
     }
 }
 
+wxString mmReportBudgetingPerformance::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportBudgetingPerformance::getHTMLText()
 {
     int startDay = 1;

@@ -42,6 +42,11 @@ mmReportSummaryStocks::mmReportSummaryStocks()
 {
 }
 
+wxString mmReportSummaryStocks::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportSummaryStocks::getHTMLText()
 {
     // structure for sorting of data

@@ -43,6 +43,11 @@ wxString mmReportIncomeExpenses::title() const
     return wxString::Format(this->title_, date_range_->title());
 }
 
+wxString mmReportIncomeExpenses::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportIncomeExpenses::getHTMLText()
 {
     mmHTMLBuilder hb;

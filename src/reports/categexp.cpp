@@ -45,6 +45,11 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
         delete date_range_;
 }
 
+wxString mmReportCategoryExpenses::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportCategoryExpenses::getHTMLText()
 {
     // structure for sorting of data

@@ -49,6 +49,11 @@ wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double
     return actAmtColStr;
 }
 
+wxString mmReportBudgetCategorySummary::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportBudgetCategorySummary::getHTMLText()
 {
     int startDay = 1;

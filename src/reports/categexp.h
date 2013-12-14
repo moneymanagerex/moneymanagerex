@@ -28,8 +28,8 @@ public:
     mmReportCategoryExpenses(mmDateRange* date_range, const wxString& title, int type);
     virtual ~mmReportCategoryExpenses();
 
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString getHTMLText();
+    virtual wxString version();
 
 public:
     enum TYPE { NONE = 0, GOES, COME, CATEGORY};

@@ -40,6 +40,11 @@ bool mmSummarySortBalance (const data_holder& x, const data_holder& y)
     else return x.name < y.name;
 }
 
+wxString mmReportSummary::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportSummary::getHTMLText()
 {
     data_holder line;

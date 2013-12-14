@@ -23,6 +23,6 @@ class mmReportSummaryAssets : public mmPrintableBase
 {
 public:
     mmReportSummaryAssets();
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString getHTMLText();
+    virtual wxString version();
 };

@@ -44,6 +44,11 @@ mmReportCategoryOverTimePerformance::~mmReportCategoryOverTimePerformance()
     if (date_range_) delete date_range_;
 }
 
+wxString mmReportCategoryOverTimePerformance::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportCategoryOverTimePerformance::getHTMLText()
 {
     const int MONTHS_IN_PERIOD = 12; // including current month

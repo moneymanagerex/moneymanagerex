@@ -29,6 +29,11 @@ mmReportSummaryAssets::mmReportSummaryAssets()
 {
 }
 
+wxString mmReportSummaryAssets::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportSummaryAssets::getHTMLText()
 {
     mmHTMLBuilder hb;

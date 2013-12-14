@@ -30,8 +30,8 @@ public:
     mmReportCategoryOverTimePerformance(mmDateRange* date_range = new mmLast12Months());
     ~mmReportCategoryOverTimePerformance();
 
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString getHTMLText();
+    virtual wxString version();
 
 protected:
     mmDateRange* date_range_;

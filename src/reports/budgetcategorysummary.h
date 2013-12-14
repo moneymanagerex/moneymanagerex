@@ -29,8 +29,8 @@ class mmReportBudgetCategorySummary : public mmReportBudget
 public:
     mmReportBudgetCategorySummary(int budgetYearID);
 
-    wxString getHTMLText();
-    wxString version() { return "$Rev$"; }
+    virtual wxString getHTMLText();
+    virtual wxString version();
 
 private:
     int budgetYearID_;

@@ -44,6 +44,11 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
     if (date_range_) delete date_range_;
 }
 
+wxString mmReportPayeeExpenses::version()
+{
+    return "$Rev$";
+}
+
 wxString mmReportPayeeExpenses::getHTMLText()
 {
     double positiveTotal = 0.0, negativeTotal = 0.0;
