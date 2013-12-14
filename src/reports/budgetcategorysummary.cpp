@@ -222,20 +222,20 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.startCenter();
     hb.startTable("55%");
     hb.startTableRow();
-    hb.addTableCell(_T("Estimated Income:"), true, true);
+    hb.addTableCell(_("Estimated Income:"), true, true);
     hb.addMoneyCell(estIncome, false);
-    hb.addTableCell(_T("Actual Income:"), true, true);
+    hb.addTableCell(_("Actual Income:"), true, true);
     hb.addMoneyCell(actIncome, false);
-    hb.addTableCell(_T("Difference Income:"), true, true);
+    hb.addTableCell(_("Difference Income:"), true, true);
     hb.addMoneyCell(difIncome, false);
     hb.endTableRow();
 
     hb.startTableRow();
-    hb.addTableCell(_T("Estimated Expenses:"), true, true);
+    hb.addTableCell(_("Estimated Expenses:"), true, true);
     hb.addMoneyCell(estExpenses, false);
-    hb.addTableCell(_T("Actual Expenses:"), true, true);
+    hb.addTableCell(_("Actual Expenses:"), true, true);
     hb.addMoneyCell(actExpenses, false);
-    hb.addTableCell(_T("Difference Expenses:"), true, true);
+    hb.addTableCell(_("Difference Expenses:"), true, true);
     hb.addMoneyCell(difExpense, false);
     hb.endTableRow();
     hb.addRowSeparator(6);
