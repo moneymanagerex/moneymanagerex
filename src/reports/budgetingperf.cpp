@@ -123,8 +123,12 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     hb.addTableHeaderCell(_("Category"));
     hb.addTableHeaderCell(_("Type"));
 
-    for (wxDateTime::Month m = wxDateTime::Jan; m <= wxDateTime::Dec; m = wxDateTime::Month(m + 1))
-        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(m, wxDateTime::Name_Abbr)));
+    for (int yidx = 0; yidx < 12; yidx++)
+    {
+        int m = startMonth + yidx;
+        if (m >= 12) m -= 12;
+        hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(wxDateTime::Month(m), wxDateTime::Name_Abbr)));
+    }
     hb.addTableHeaderCell(_("Overall"));
     hb.addTableHeaderCell(_("%"));
     hb.endTableRow();
