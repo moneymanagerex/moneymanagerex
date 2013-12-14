@@ -28,7 +28,7 @@ class mmBankTransaction;
 class mmReportTransactions : public mmPrintableBase
 {
 public:
-    mmReportTransactions(const Model_Checking::Data_Set& trans,
+    mmReportTransactions(const Model_Checking::Full_Data_Set& trans,
                          int refAccountID, mmFilterTransactionsDialog* transDialog);
     ~mmReportTransactions();
 
@@ -36,7 +36,7 @@ public:
 public:
     enum SORT { DATE = 0, ACCOUNT, PAYEE, STATUS, CATEGORY, TYPE, AMOUNT, NUMBER, NOTE } sortby_;
 private:
-    Model_Checking::Data_Set trans_;
+    Model_Checking::Full_Data_Set trans_;
     bool ignoreDate_;
     int refAccountID_;
     mmFilterTransactionsDialog* transDialog_;

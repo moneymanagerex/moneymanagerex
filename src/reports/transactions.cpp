@@ -26,7 +26,7 @@
 #include "model/Model_Category.h"
 #include <algorithm>
 
-mmReportTransactions::mmReportTransactions(const Model_Checking::Data_Set& trans,
+mmReportTransactions::mmReportTransactions(const Model_Checking::Full_Data_Set& trans,
     int refAccountID, mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase(DATE)
     , trans_(trans)

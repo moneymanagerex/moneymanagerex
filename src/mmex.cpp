@@ -3073,7 +3073,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
     if (Model_Account::instance().all().empty()) return;
 
-    Model_Checking::Data_Set trans;
+    Model_Checking::Full_Data_Set trans;
 
     mmFilterTransactionsDialog* dlg= new mmFilterTransactionsDialog(this);
     if (dlg->ShowModal() == wxID_OK)
