@@ -299,6 +299,12 @@ mmReportCategoryExpensesGoesCurrentFinancialYear::mmReportCategoryExpensesGoesCu
 , wxString::Format(_("Where the Money Goes - %s"), _("Current Financial Year")))
 {}
 
+mmReportCategoryExpensesGoesCurrentFinancialYearToDate::mmReportCategoryExpensesGoesCurrentFinancialYearToDate
+(const int day, const int month)
+: mmReportCategoryExpensesGoes(new mmCurrentFinancialYearToDate(day, month)
+, wxString::Format(_("Where the Money Goes - %s"), _("Current Financial Year to Date")))
+{}
+
 mmReportCategoryExpensesComes::mmReportCategoryExpensesComes
 (mmDateRange* date_range, const wxString& title)
 : mmReportCategoryExpenses(date_range, title, 1)
@@ -358,6 +364,12 @@ mmReportCategoryExpensesComesCurrentFinancialYear::mmReportCategoryExpensesComes
 , wxString::Format(_("Where the Money Comes From - %s"), _("Current Financial Year")))
 {}
 
+mmReportCategoryExpensesComesCurrentFinancialYearToDate::mmReportCategoryExpensesComesCurrentFinancialYearToDate
+(int day, int month)
+: mmReportCategoryExpensesComes(new mmCurrentFinancialYearToDate(day, month)
+, wxString::Format(_("Where the Money Comes From - %s"), _("Current Financial Year to Date")))
+{}
+
 mmReportCategoryExpensesCategories::mmReportCategoryExpensesCategories
 ( mmDateRange* date_range, const wxString& title)
 : mmReportCategoryExpenses(date_range, title, 0)
@@ -413,4 +425,10 @@ mmReportCategoryExpensesCategoriesCurrentFinancialYear::mmReportCategoryExpenses
 ( int day, int month)
 : mmReportCategoryExpensesCategories(new mmCurrentFinancialYear(day, month)
 , wxString::Format(_("Categories - %s"), _("Current Financial Year")))
+{}
+
+mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate::mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate
+(int day, int month)
+: mmReportCategoryExpensesCategories(new mmCurrentFinancialYearToDate(day, month)
+, wxString::Format(_("Categories - %s"), _("Current Financial Year to Date")))
 {}

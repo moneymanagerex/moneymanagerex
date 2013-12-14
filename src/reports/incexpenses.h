@@ -184,7 +184,16 @@ public:
     }
 };
 
-class mmReportIncomeExpensesLastFinancialYear: public mmReportIncomeExpensesMonthly
+class mmReportIncomeExpensesCurrentFinancialYearToDate : public mmReportIncomeExpensesMonthly
+{
+public:
+    mmReportIncomeExpensesCurrentFinancialYearToDate(const int day, const int month)
+        : mmReportIncomeExpensesMonthly(day, month, new mmCurrentFinancialYearToDate(day, month))
+    {
+    }
+};
+
+class mmReportIncomeExpensesLastFinancialYear : public mmReportIncomeExpensesMonthly
 {
 public:
     mmReportIncomeExpensesLastFinancialYear(const int day, const int month)
@@ -236,6 +245,15 @@ class mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts : public mmRepo
 public:
     mmReportIncomeExpensesCurrentFinancialYearSpecificAccounts(const int day, const int month)
         : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmCurrentFinancialYear(day, month))
+    {
+    }
+};
+
+class mmReportIncomeExpensesCurrentFinancialYearToDateSpecificAccounts : public mmReportIncomeExpensesMonthlySpecificAccounts
+{
+public:
+    mmReportIncomeExpensesCurrentFinancialYearToDateSpecificAccounts(const int day, const int month)
+        : mmReportIncomeExpensesMonthlySpecificAccounts(day, month, new mmCurrentFinancialYearToDate(day, month))
     {
     }
 };

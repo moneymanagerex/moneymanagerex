@@ -114,4 +114,12 @@ public:
     {}
 };
 
+class mmReportPayeeExpensesCurrentFinancialYearToDate : public mmReportPayeeExpenses
+{
+public:
+    mmReportPayeeExpensesCurrentFinancialYearToDate(int day, int month) : mmReportPayeeExpenses(
+        wxString::Format(_("Payee report - %s"), _("Current Financial Year to Date")), new mmCurrentFinancialYearToDate(day, month))
+    {}
+};
+
 #endif //_MM_EX_REPORTPAYEE_H_

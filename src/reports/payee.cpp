@@ -198,7 +198,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         wxDateTime trx_date = Model_Checking::TRANSDATE(trx);
         if (ignoreFuture)
         {
-            if (trx_date.IsLaterThan(wxDateTime::Now()))
+            if (trx_date.IsLaterThan(wxDateTime::Today()))
                 continue; //skip future dated transactions
         }
 

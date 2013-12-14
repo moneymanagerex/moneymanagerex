@@ -102,7 +102,13 @@ public:
     mmReportCategoryExpensesGoesCurrentFinancialYear(const int day, const int month);
 };
 
-class mmReportCategoryExpensesComes: public mmReportCategoryExpenses
+class mmReportCategoryExpensesGoesCurrentFinancialYearToDate : public mmReportCategoryExpensesGoes
+{
+public:
+    mmReportCategoryExpensesGoesCurrentFinancialYearToDate(const int day, const int month);
+};
+
+class mmReportCategoryExpensesComes : public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesComes(mmDateRange* date_range = new mmAllTime()
@@ -163,7 +169,13 @@ public:
     mmReportCategoryExpensesComesCurrentFinancialYear(int day, int month);
 };
 
-class mmReportCategoryExpensesCategories: public mmReportCategoryExpenses
+class mmReportCategoryExpensesComesCurrentFinancialYearToDate : public mmReportCategoryExpensesComes
+{
+public:
+    mmReportCategoryExpensesComesCurrentFinancialYearToDate(int day, int month);
+};
+
+class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
     mmReportCategoryExpensesCategories(mmDateRange* date_range = new mmAllTime()
@@ -222,6 +234,12 @@ class mmReportCategoryExpensesCategoriesCurrentFinancialYear: public mmReportCat
 {
 public:
     mmReportCategoryExpensesCategoriesCurrentFinancialYear(int day, int month);
+};
+
+class mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate : public mmReportCategoryExpensesCategories
+{
+public:
+    mmReportCategoryExpensesCategoriesCurrentFinancialYearToDate(int day, int month);
 };
 
 #endif // _MM_EX_REPORTCATEGEXP_H_

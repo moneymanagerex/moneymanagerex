@@ -164,6 +164,20 @@ mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
     this->title_ = _("Current Financial Year");
 }
 
+mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(const int day, const int month)
+: mmDateRange()
+{
+    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
+    this->start_date_.Add(wxDateSpan::Days(day - 1)).Add(wxDateSpan::Months(month - 1));
+    // no change to end_date_
+
+    if (today_ < start_date_)
+    {
+        start_date_.Subtract(wxDateSpan::Years(1));
+    }
+    this->title_ = _("Current Financial Year to Date");
+}
+
 mmLastFinancialYear::mmLastFinancialYear(const int day, const int month)
 : mmDateRange()
 {

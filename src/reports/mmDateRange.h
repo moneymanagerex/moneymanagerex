@@ -109,7 +109,13 @@ public:
     mmCurrentFinancialYear(const int day, const int month);
 };
 
-class mmLastFinancialYear: public mmDateRange
+class mmCurrentFinancialYearToDate : public mmDateRange
+{
+public:
+    mmCurrentFinancialYearToDate(const int day, const int month);
+};
+
+class mmLastFinancialYear : public mmDateRange
 {
 public:
     mmLastFinancialYear(const int day, const int month);
