@@ -25,19 +25,15 @@
 #include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 
-class Model_Subcategory : public Model, public DB_Table_SUBCATEGORY_V1
+class Model_Subcategory : public Model_Mix<DB_Table_SUBCATEGORY_V1>
 {
-    using DB_Table_SUBCATEGORY_V1::all;
-    using DB_Table_SUBCATEGORY_V1::get;
-    using DB_Table_SUBCATEGORY_V1::remove;
 public:
-    Model_Subcategory(): Model(), DB_Table_SUBCATEGORY_V1() 
+    using Model_Mix<DB_Table_SUBCATEGORY_V1>::get;
+public:
+    Model_Subcategory(): Model_Mix<DB_Table_SUBCATEGORY_V1>() 
     {
     };
     ~Model_Subcategory() {};
-
-public:
-    wxArrayString types_;
 
 public:
     /** Return the static instance of Model_Subcategory table */
@@ -60,25 +56,6 @@ public:
         return ins;
     }
 public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return all(db_, col, asc);
-    }
-
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
-
-    /** Return the Data record instance for the given ID*/
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
-
     /** Return the Data record instance for the given subcategory name and category ID */
     Data* get(const wxString& name, int category_id = -1)
     {
@@ -88,18 +65,6 @@ public:
         return category;
     }
 
-    /** Save the Data record instance in memory to the database. */
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-
-    /** Remove the Data record instance from memory and the database. */
-    bool remove(int id)
-    {
-        return this->remove(id, db_);
-    }
 public:
     static bool is_used(int id)
     {

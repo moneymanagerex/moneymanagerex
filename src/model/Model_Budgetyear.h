@@ -23,12 +23,12 @@
 #include "Model_Budget.h"
 #include "db/DB_Table_Budgetyear_V1.h"
 
-class Model_Budgetyear : public Model, public DB_Table_BUDGETYEAR_V1
+class Model_Budgetyear : public Model_Mix<DB_Table_BUDGETYEAR_V1>
 {
-    using DB_Table_BUDGETYEAR_V1::all;
-    using DB_Table_BUDGETYEAR_V1::remove;
 public:
-    Model_Budgetyear(): Model(), DB_Table_BUDGETYEAR_V1() {};
+    using Model_Mix<DB_Table_BUDGETYEAR_V1>::remove;
+public:
+    Model_Budgetyear(): Model_Mix<DB_Table_BUDGETYEAR_V1>() {};
     ~Model_Budgetyear() 
     {
     };
@@ -54,12 +54,6 @@ public:
         return ins;
     }
 
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return this->all(this->db_, col, asc);
-    }
     bool remove(int id)
     {
         for (Model_Budget::Data& d : Model_Budget::instance().find(Model_Budget::BUDGETYEARID(id)))

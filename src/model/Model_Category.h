@@ -27,13 +27,12 @@
 #include "Model_Billsdeposits.h"
 #include "reports/mmDateRange.h"
 
-class Model_Category : public Model, public DB_Table_CATEGORY_V1
+class Model_Category : public Model_Mix<DB_Table_CATEGORY_V1>
 {
-    using DB_Table_CATEGORY_V1::all;
-    using DB_Table_CATEGORY_V1::get;
-    using DB_Table_CATEGORY_V1::remove;
 public:
-    Model_Category(): Model(), DB_Table_CATEGORY_V1()
+    using Model_Mix<DB_Table_CATEGORY_V1>::get;
+public:
+    Model_Category(): Model_Mix<DB_Table_CATEGORY_V1>()
     {
     };
     ~Model_Category() {};
@@ -62,11 +61,6 @@ public:
         return ins;
     }
 public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        return all(db_, col, asc);
-    }
     void initialize()
     {
         std::vector < std::pair<wxString /*category*/, std::vector<wxString> > > all_categoris;
@@ -237,30 +231,12 @@ public:
         }
         this->Commit();
     }
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
     Data* get(const wxString& name)
     {
         Data* category = 0;
         Data_Set items = this->find(CATEGNAME(name));
         if (!items.empty()) category = this->get(items[0].CATEGID, this->db_);
         return category;
-    }
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-    bool remove(int id)
-    {
-        return this->remove(id, db_);
     }
 public:
     static Model_Subcategory::Data_Set sub_category(const Data* r)

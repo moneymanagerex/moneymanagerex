@@ -27,6 +27,7 @@
 #include <wx/sharedptr.h>
 #include <wx/log.h>
 #include <wx/string.h>
+#include "db/DB_Table.h"
 
 class wxString;
 class wxSQLite3Statement;
@@ -64,4 +65,64 @@ protected:
 protected:
     wxSQLite3Database* db_;
 };
+
+template<class DB_TABLE>
+class Model_Mix: public Model, public DB_TABLE
+{
+public:
+    using DB_TABLE::all;
+    using DB_TABLE::get;
+    using DB_TABLE::save;
+    using DB_TABLE::remove;
+    /** Return a list of Data records (Data_Set) derived directly from the database. */
+    typename DB_TABLE::Data_Set all(typename DB_TABLE::COLUMN col = typename DB_TABLE::COLUMN(0), bool asc = true)
+    {
+        this->ensure(this->db_);
+        return all(db_, col, asc);
+    }
+
+    template<typename... Args>
+    typename DB_TABLE::Data_Set find(const Args&... args)
+    {
+        return find_by(this, db_, true, args...);
+    }
+    template<typename... Args>
+    typename DB_TABLE::Data_Set find_or(const Args&... args)
+    {
+        return find_by(this, db_, false, args...);
+    }
+
+    /** Return the Data record instance for the given ID*/
+    typename DB_TABLE::Data* get(int id)
+    {
+        return this->get(id, this->db_);
+    }
+
+    /** Save the Data record instance in memory to the database. */
+    int save(typename DB_TABLE::Data* r)
+    {
+        r->save(this->db_);
+        return r->id();
+    }
+    /**
+    * Save the all the Data record instances in memory to the database
+    * for the record list (Data_Set).
+    */
+    template<class DATA_SET>
+    int save(DATA_SET& rows)
+    {
+        this->Begin();
+        for (auto& r : rows) this->save(&r);
+        this->Commit();
+
+        return rows.size();
+    }
+
+    /** Remove the Data record instance from memory and the database. */
+    bool remove(int id)
+    {
+        return this->remove(id, db_);
+    }
+};
+
 #endif // 

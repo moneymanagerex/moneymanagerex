@@ -24,11 +24,10 @@
 #include "defs.h"
 #include "paths.h"
 
-class Model_Setting : public Model, public DB_Table_SETTING_V1
+class Model_Setting : public Model_Mix<DB_Table_SETTING_V1>
 {
-    using DB_Table_SETTING_V1::all;
 public:
-    Model_Setting(): Model(), DB_Table_SETTING_V1() {};
+    Model_Setting(): Model_Mix<DB_Table_SETTING_V1>() {};
     ~Model_Setting() {};
 
 public:
@@ -49,20 +48,6 @@ public:
         ins.ensure(db);
 
         return ins;
-    }
-
-public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return this->all(this->db_, col, asc);
-    }
-
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
     }
 
 public:

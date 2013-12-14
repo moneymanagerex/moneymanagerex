@@ -23,17 +23,14 @@
 #include "db/DB_Table_Assets_V1.h"
 #include "Model_Currency.h" // detect base currency
 
-class Model_Asset : public Model, public DB_Table_ASSETS_V1
+class Model_Asset : public Model_Mix<DB_Table_ASSETS_V1>
 {
-    using DB_Table_ASSETS_V1::all;
-    using DB_Table_ASSETS_V1::get;
-    using DB_Table_ASSETS_V1::remove;
 public:
     enum RATE { RATE_NONE = 0, RATE_APPRECIATE, RATE_DEPRECIATE };
     enum TYPE { TYPE_PROPERTY = 0, TYPE_AUTO, TYPE_HOUSE, TYPE_ART, TYPE_JEWELLERY, TYPE_CASH, TYPE_OTHER };
 
 public:
-    Model_Asset(): Model(), DB_Table_ASSETS_V1() 
+    Model_Asset(): Model_Mix<DB_Table_ASSETS_V1>() 
     {
     };
     ~Model_Asset() {};
@@ -89,37 +86,6 @@ public:
         return "$Rev$";
     }
 public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return all(db_, col, asc);
-    }
-
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
-
-    /** Return the Data record instance for the given ID*/
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
-
-    /** Save the Data record instance in memory to the database. */
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-    /** Remove the Data record instance from memory and the database. */
-    bool remove(int id)
-    {
-        return this->remove(id, db_);
-    }
-
     double balance()
     {
         double balance = 0.0;

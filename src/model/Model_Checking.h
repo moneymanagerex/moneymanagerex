@@ -23,11 +23,10 @@
 #include "db/DB_Table_Checkingaccount_V1.h"
 #include "Model_Splittransaction.h"
 
-class Model_Checking : public Model, public DB_Table_CHECKINGACCOUNT_V1
+class Model_Checking : public Model_Mix<DB_Table_CHECKINGACCOUNT_V1>
 {
-    using DB_Table_CHECKINGACCOUNT_V1::all;
-    using DB_Table_CHECKINGACCOUNT_V1::get;
-    using DB_Table_CHECKINGACCOUNT_V1::remove;
+public:
+    using Model_Mix<DB_Table_CHECKINGACCOUNT_V1>::remove;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
@@ -55,7 +54,7 @@ public:
         }
     };
 public:
-    Model_Checking(): Model(), DB_Table_CHECKINGACCOUNT_V1() 
+    Model_Checking(): Model_Mix<DB_Table_CHECKINGACCOUNT_V1>()
     {
     };
     ~Model_Checking() {};
@@ -104,42 +103,6 @@ public:
         return ins;
     }
 public:
-    /** Return a list of Data records (Data_Set) directly from the database.*/
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return all(db_, col, asc);
-    }
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
-    template<typename... Args>
-    Data_Set find_or(const Args&... args)
-    {
-        return find_by(this, db_, false, args...);
-    }
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
-
-    /** Create a new record or update the existing record in the database.*/
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-    template<class DATA_SET>
-    int save(DATA_SET& rows)
-    {
-        this->Begin();
-        for (auto& r : rows) this->save(&r);
-        this->Commit();
-
-        return rows.size();
-    }
     bool remove(int id)
     {
         //TODO: remove all split at once

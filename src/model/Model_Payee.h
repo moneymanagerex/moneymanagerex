@@ -24,13 +24,12 @@
 #include "Model_Checking.h" // detect whether the payee is used or not
 #include "Model_Billsdeposits.h"
 
-class Model_Payee : public Model, public DB_Table_PAYEE_V1
+class Model_Payee : public Model_Mix<DB_Table_PAYEE_V1>
 {
-    using DB_Table_PAYEE_V1::all;
-    using DB_Table_PAYEE_V1::get;
-    using DB_Table_PAYEE_V1::remove;
 public:
-    Model_Payee(): Model(), DB_Table_PAYEE_V1() 
+    using Model_Mix<DB_Table_PAYEE_V1>::get;
+public:
+    Model_Payee(): Model_Mix<DB_Table_PAYEE_V1>() 
     {
     };
     ~Model_Payee() {};
@@ -56,16 +55,6 @@ public:
         return ins;
     }
 public:
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return all(db_, col, asc);
-    }
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
     Data_Set FilterPayees(const wxString& payee_pattern)
     {
         Data_Set payees;
@@ -76,10 +65,6 @@ public:
         }
         return payees;
     }
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
     Data* get(const wxString& name)
     {
         Data* payee = 0;
@@ -87,24 +72,11 @@ public:
         if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);
         return payee;
     }
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-    int save(Data_Set& rows)
-    {
-        this->Begin();
-        for (auto& r : rows) this->save(&r);
-        this->Commit();
-
-        return rows.size();
-    }
     bool remove(int id)
     {
         if (is_used(id)) return false;
 
-        return this->remove(id, db_);
+        return this->remove(id);
     }
 public:
     wxArrayString all_payee_names()

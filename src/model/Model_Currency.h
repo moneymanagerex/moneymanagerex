@@ -25,13 +25,10 @@
 #include <wx/numformatter.h>
 #include <tuple>
 
-class Model_Currency : public Model, public DB_Table_CURRENCYFORMATS_V1
+class Model_Currency : public Model_Mix<DB_Table_CURRENCYFORMATS_V1>
 {
-    using DB_Table_CURRENCYFORMATS_V1::all;
-    using DB_Table_CURRENCYFORMATS_V1::get;
-    using DB_Table_CURRENCYFORMATS_V1::remove;
 public:
-    Model_Currency(): Model(), DB_Table_CURRENCYFORMATS_V1() {};
+    Model_Currency(): Model_Mix<DB_Table_CURRENCYFORMATS_V1>() {};
     ~Model_Currency() {};
 
 public:
@@ -58,16 +55,6 @@ public:
     }
 
 public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        return all(db_, col, asc);
-    }
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
     wxArrayString all_currency_names()
     {
         wxArrayString c;
@@ -102,27 +89,6 @@ public:
             currency->save(this->db_);
         }
         this->Commit();
-    }
-    Data* get(int id)
-    {
-        return get(id, this->db_);
-    }
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-    int save(Data_Set& rows)
-    {
-        this->Begin();
-        for (auto& r : rows) this->save(&r);
-        this->Commit();
-
-        return rows.size();
-    }
-    bool remove(int id)
-    {
-        return this->remove(id, db_);
     }
 public:
     // Getter

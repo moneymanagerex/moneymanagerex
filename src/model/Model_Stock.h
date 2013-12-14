@@ -23,14 +23,10 @@
 #include "db/DB_Table_Stock_V1.h"
 #include "Model_Currency.h" // detect base currency
 
-class Model_Stock : public Model, public DB_Table_STOCK_V1
+class Model_Stock : public Model_Mix<DB_Table_STOCK_V1>
 {
-    using DB_Table_STOCK_V1::all;
-    using DB_Table_STOCK_V1::get;
-    using DB_Table_STOCK_V1::save;
-    using DB_Table_STOCK_V1::remove;
 public:
-    Model_Stock(): Model(), DB_Table_STOCK_V1() {};
+    Model_Stock(): Model_Mix<DB_Table_STOCK_V1>() {};
     ~Model_Stock() {};
 
 public:
@@ -53,37 +49,6 @@ public:
 
         return ins;
     }
-public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return all(db_, col, asc);
-    }
-
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
-
-    /** Return the Data record instance for the given ID*/
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
-    /** Save the Data record instance in memory to the database. */
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-    /** Remove the Data record instance from memory and the database. */
-    bool remove(int id)
-    {
-        return this->remove(id, db_);
-    }
-
 public:
     static wxDate PURCHASEDATE(const Data* stock) { return Model::to_date(stock->PURCHASEDATE); }
     static wxDate PURCHASEDATE(const Data& stock) { return Model::to_date(stock.PURCHASEDATE); }

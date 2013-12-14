@@ -22,18 +22,13 @@
 #include "Model.h"
 #include "db/DB_Table_Splittransactions_V1.h"
 
-class Model_Splittransaction : public Model, public DB_Table_SPLITTRANSACTIONS_V1
+class Model_Splittransaction : public Model_Mix<DB_Table_SPLITTRANSACTIONS_V1>
 {
-    using DB_Table_SPLITTRANSACTIONS_V1::all;
-    using DB_Table_SPLITTRANSACTIONS_V1::get;
 public:
-    Model_Splittransaction(): Model(), DB_Table_SPLITTRANSACTIONS_V1() 
+    Model_Splittransaction(): Model_Mix<DB_Table_SPLITTRANSACTIONS_V1>() 
     {
     };
     ~Model_Splittransaction() {};
-
-public:
-    wxArrayString types_;
 
 public:
     /** Return the static instance of Model_Splittransaction table */
@@ -56,46 +51,7 @@ public:
         return ins;
     }
 public:
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
-    Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
-    {
-        this->ensure(this->db_);
-        return all(db_, col, asc);
-    }
-    template<typename... Args>
-    Data_Set find(const Args&... args)
-    {
-        return find_by(this, db_, true, args...);
-    }
-    Data* get(int id)
-    {
-        return this->get(id, this->db_);
-    }
-
-    /** Create a new record or update the existing record in the database.*/
-    int save(Data* r)
-    {
-        r->save(this->db_);
-        return r->id();
-    }
-
-    /** Create new or update existing records in the database for the record list.*/
-    int save(Data_Set& rows)
-    {
-        this->Begin();
-        for (auto& r : rows) this->save(&r);
-        this->Commit();
-
-        return rows.size();
-    }
-    bool remove(int id)
-    {
-        Data *entry = get(id);
-        return entry->remove(this->db_);
-    }
-
-public:
-    static double get_total(Data_Set& rows)
+    static double get_total(const Data_Set& rows)
     {
         double total = 0.0;
         for (auto& r : rows) total += r.SPLITTRANSAMOUNT;
