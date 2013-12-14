@@ -1621,7 +1621,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         wxTreeItemId budgetSetupPerformance;
 
         size_t i = 0;
-        for (const auto& e: Model_Budgetyear::instance().all())
+        for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
         {
             if (!i)
             { // first loop only
