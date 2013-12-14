@@ -56,26 +56,16 @@ wxString mmReportTransactions::getHTMLText()
     switch (sortColumn_)
     {
     case ACCOUNT:
-        std::stable_sort(trans_.begin(), trans_.end(), [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
-        {
-            return Model_Account::instance().get(x.ACCOUNTID)->ACCOUNTNAME < Model_Account::instance().get(y.ACCOUNTID)->ACCOUNTNAME;
-        });
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByACCOUNTNAME());
         break;
     case PAYEE:
-        std::stable_sort(trans_.begin(), trans_.end(), [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
-        {
-            return Model_Payee::instance().get(x.PAYEEID)->PAYEENAME < Model_Payee::instance().get(y.PAYEEID)->PAYEENAME;
-        });
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByPAYEENAME());
         break;
     case STATUS:
         std::stable_sort(trans_.begin(), trans_.end(), SorterBySTATUS());
         break;
     case CATEGORY:
-        std::stable_sort(trans_.begin(), trans_.end(), [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
-        {
-            return Model_Category::full_name(Model_Category::instance().get(x.CATEGID), Model_Subcategory::instance().get(x.SUBCATEGID))
-                < Model_Category::full_name(Model_Category::instance().get(y.CATEGID), Model_Subcategory::instance().get(y.SUBCATEGID));
-        });
+        std::stable_sort(trans_.begin(), trans_.end(), SorterByCATEGNAME());
         break;
     case TYPE:
         std::stable_sort(trans_.begin(), trans_.end(), SorterByTRANSCODE());
