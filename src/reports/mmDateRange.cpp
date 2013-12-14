@@ -175,7 +175,7 @@ mmLastFinancialYear::mmLastFinancialYear(const int day, const int month)
         .SetDay(31).Add(wxDateSpan::Days(day-1))
         .Add(wxDateSpan::Months(month-1));
 
-    if (today_ >= start_date_)
+    if (today_ < start_date_)
     {
         this->start_date_.Subtract(wxDateSpan::Years(1));
         this->end_date_.Subtract(wxDateSpan::Years(1));
