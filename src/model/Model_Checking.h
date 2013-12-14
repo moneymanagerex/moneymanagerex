@@ -222,7 +222,7 @@ public:
     static double withdrawal(const Data* r, int account_id = -1)
     {
         double bal = balance(r, account_id);
-        return bal < 0 ? -bal : 0;
+        return bal <= 0 ? -bal : 0;
     }
     static double withdrawal(const Data& r, int account_id) { return withdrawal(&r, account_id); };
     static double deposit(const Data* r, int account_id)

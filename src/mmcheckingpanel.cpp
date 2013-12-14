@@ -159,14 +159,14 @@ void mmCheckingPanel::sortTable()
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
         {
-            return Model_Checking::withdrawal(x, this->m_AccountID) < Model_Checking::withdrawal(y, this->m_AccountID);
+            return Model_Checking::balance(x, this->m_AccountID) >= Model_Checking::balance(y, this->m_AccountID);
         });
         break;
     case TransactionListCtrl::COL_DEPOSIT:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end()
             , [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
         {
-            return Model_Checking::deposit(x, this->m_AccountID) < Model_Checking::deposit(y, this->m_AccountID);
+            return Model_Checking::balance(x, this->m_AccountID) < Model_Checking::balance(y, this->m_AccountID);
         });
         break;
     case TransactionListCtrl::COL_BALANCE:
