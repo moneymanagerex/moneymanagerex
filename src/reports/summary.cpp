@@ -29,12 +29,15 @@
 
 mmReportSummary::mmReportSummary()
 : mmPrintableBase(SUMMARY_SORT_BY_NAME)
+, tBalance_(0.0)
+, tTBalance_(0.0)
+, stockBalance_(0.0)
+, asset_balance_(0.0)
+, totalBalance_(0.0)
 {
 }
 
-// structure for sorting of data
-struct data_holder {wxString name; wxString link; double balance;};
-bool mmSummarySortBalance (const data_holder& x, const data_holder& y)
+bool mmSummarySortBalance(const summary_data_holder& x, const summary_data_holder& y)
 {
     if (x.balance != y.balance) return x.balance < y.balance;
     else return x.name < y.name;
@@ -45,13 +48,15 @@ wxString mmReportSummary::version()
     return "$Rev$";
 }
 
-wxString mmReportSummary::getHTMLText()
+void  mmReportSummary::RefreshData()
 {
-    data_holder line;
-    std::vector<data_holder> dataChecking, dataTerm;
+    dataChecking_.clear();
+    dataTerm_.clear();
+
+    summary_data_holder line;
 
     /* Checking */
-    double tBalance = 0.0;
+    tBalance_ = 0.0;
     for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) == Model_Account::CHECKING && Model_Account::status(account) == Model_Account::OPEN)
@@ -59,17 +64,17 @@ wxString mmReportSummary::getHTMLText()
             double bal = Model_Account::balance(account);
 
             Model_Currency::Data* currency = Model_Account::currency(account);
-            tBalance += bal * currency->BASECONVRATE;
+            tBalance_ += bal * currency->BASECONVRATE;
 
             line.name = account.ACCOUNTNAME;
             line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
             line.balance = bal;
-            dataChecking.push_back(line);
+            dataChecking_.push_back(line);
         }
     }
 
     /* Terms */
-    double tTBalance = 0.0;
+    tTBalance_ = 0.0;
     for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) == Model_Account::TERM && Model_Account::status(account) == Model_Account::OPEN)
@@ -77,24 +82,40 @@ wxString mmReportSummary::getHTMLText()
             double bal = Model_Account::balance(account);
 
             Model_Currency::Data* currency = Model_Account::currency(account);
-            tTBalance += bal * currency->BASECONVRATE;
+            tTBalance_ += bal * currency->BASECONVRATE;
 
             line.name = account.ACCOUNTNAME;
             line.link = wxString::Format("ACCT:%d", account.ACCOUNTID);
             line.balance = bal;
-            dataTerm.push_back(line);
+            dataTerm_.push_back(line);
         }
     }
 
+    /* Stocks */
+    stockBalance_ = 0.0;
+    for (const auto& account : Model_Account::instance().all())
+    {
+        if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        stockBalance_ += currency->BASECONVRATE * Model_Account::investment_balance(account).first;
+    }
+
+    /* Assets */
+    asset_balance_ = Model_Asset::instance().balance();
+
+    totalBalance_ = tBalance_ + tTBalance_ + stockBalance_ + asset_balance_;
+}
+
+wxString mmReportSummary::getHTMLText()
+{
+    std::vector<summary_data_holder> sortedDataChecking(dataChecking_);
+    std::vector<summary_data_holder> sortedDataTerm(dataTerm_);
+
+    // List is presorted by account name
     if (SUMMARY_SORT_BY_BALANCE == sortColumn_)
     {
-        std::stable_sort(dataChecking.begin(), dataChecking.end(), mmSummarySortBalance);
-        std::stable_sort(dataTerm.begin(), dataTerm.end(), mmSummarySortBalance);
-    }
-    else
-    {
-        // List is presorted by account name
-        sortColumn_ = SUMMARY_SORT_BY_NAME;
+        std::stable_sort(sortedDataChecking.begin(), sortedDataChecking.end(), mmSummarySortBalance);
+        std::stable_sort(sortedDataTerm.begin(), sortedDataTerm.end(), mmSummarySortBalance);
     }
 
     mmHTMLBuilder hb;
@@ -118,7 +139,7 @@ wxString mmReportSummary::getHTMLText()
     hb.endTableRow();
 
     /* Checking */
-    for (const auto& entry : dataChecking)
+    for (const auto& entry : sortedDataChecking)
     {
         hb.startTableRow();
         hb.addTableCellLink(entry.link, entry.name, false, true);
@@ -127,13 +148,13 @@ wxString mmReportSummary::getHTMLText()
     }
 
     hb.startTableRow();
-    hb.addTotalRow(_("Bank Accounts Total:"), 2, tBalance);
+    hb.addTotalRow(_("Bank Accounts Total:"), 2, tBalance_);
     hb.endTableRow();
 
     hb.addRowSeparator(2);
 
     /* Terms */
-    for (const auto& entry : dataTerm)
+    for (const auto& entry : sortedDataTerm)
     {
         hb.startTableRow();
         hb.addTableCellLink(entry.link, entry.name, false, true);
@@ -144,42 +165,25 @@ wxString mmReportSummary::getHTMLText()
     if (Model_Account::hasActiveTermAccount())
     {
         hb.startTableRow();
-        hb.addTotalRow(_("Term Accounts Total:"), 2, tTBalance);
+        hb.addTotalRow(_("Term Accounts Total:"), 2, tTBalance_);
         hb.endTableRow();
         hb.addRowSeparator(2);
     }
 
-    tBalance += tTBalance;
-
-    /* Stocks */
-    double stockBalance = 0.0;
-    for (const auto& account: Model_Account::instance().all())
-    {
-        if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-        Model_Currency::Data* currency = Model_Account::currency(account);
-        stockBalance += currency->BASECONVRATE * Model_Account::investment_balance(account).first;
-    }
-
     hb.startTableRow();
     hb.addTableCell(_("Stocks Total:"));
-    hb.addMoneyCell(stockBalance);
+    hb.addMoneyCell(stockBalance_);
     hb.endTableRow();
     hb.addRowSeparator(2);
-
-    /* Assets */
-    double asset_balance = Model_Asset::instance().balance();
 
     hb.startTableRow();
     hb.addTableCellLink("Assets", _("Assets"), false, true);
-    hb.addMoneyCell(asset_balance);
+    hb.addMoneyCell(asset_balance_);
     hb.endTableRow();
-
-    tBalance += stockBalance;
-    tBalance += asset_balance; 
 
     hb.addRowSeparator(2);
 
-    hb.addTotalRow(_("Total Balance on all Accounts"), 2, tBalance);
+    hb.addTotalRow(_("Total Balance on all Accounts"), 2, totalBalance_);
     hb.endTable();
 
     hb.endCenter();

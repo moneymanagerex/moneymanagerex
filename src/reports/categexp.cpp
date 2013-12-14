@@ -20,7 +20,6 @@
 #include "budget.h"
 
 #include "htmlbuilder.h"
-#include "util.h"
 #include "mmOption.h"
 #include "mmgraphpie.h"
 #include <algorithm>
@@ -30,13 +29,16 @@
 #define CATEGORY_SORT_BY_AMOUNT      2
 
 mmReportCategoryExpenses::mmReportCategoryExpenses
-( mmDateRange* date_range, const wxString& title, int type)
+(mmDateRange* date_range, const wxString& title, int type)
 : mmPrintableBase(CATEGORY_SORT_BY_NAME)
 , date_range_(date_range)
 , title_(title)
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
+, with_date_(false)
+, grandtotal_(0)
 {
+    with_date_ = date_range_->is_with_date();
 }
 
 mmReportCategoryExpenses::~mmReportCategoryExpenses()
@@ -50,25 +52,22 @@ wxString mmReportCategoryExpenses::version()
     return "$Rev$";
 }
 
-wxString mmReportCategoryExpenses::getHTMLText()
+void  mmReportCategoryExpenses::RefreshData()
 {
-    // structure for sorting of data
-    struct data_holder {wxString name; double amount; int categs;} line;
-    std::vector<data_holder> data;
+    data_.clear();
+    valueList_.clear();
+    valueListTotals_.clear();
+    grandtotal_ = 0.0;
 
-    bool with_date = date_range_->is_with_date();
-    double grandtotal = 0.0;
-
-    std::vector<ValuePair> valueList;
-    std::vector<ValuePair> valueListTotals;
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , date_range_
         , ignoreFutureDate_
         , false
-        , with_date);
+        , with_date_);
 
-    for (const auto& category: Model_Category::instance().all(Model_Category::COL_CATEGNAME))
+    data_holder line;
+    for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         int categs = 0;
         double categtotal = 0.0;
@@ -79,19 +78,19 @@ wxString mmReportCategoryExpenses::getHTMLText()
         if (type_ == COME && amt > 0.0) amt = 0;
 
         categtotal += amt;
-        grandtotal += amt;
+        grandtotal_ += amt;
 
         if (amt != 0)
         {
             ValuePair vp;
             vp.label = sCategName;
             vp.amount = amt;
-            valueList.push_back(vp);
+            valueList_.push_back(vp);
 
             line.name = sCategName;
             line.amount = amt;
             line.categs = 0;
-            data.push_back(line);
+            data_.push_back(line);
         }
 
         Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
@@ -107,7 +106,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             if (type_ == COME && amt > 0.0) amt = 0;
 
             categtotal += amt;
-            grandtotal += amt;
+            grandtotal_ += amt;
 
             if (amt != 0)
             {
@@ -115,12 +114,12 @@ wxString mmReportCategoryExpenses::getHTMLText()
                 ValuePair vp;
                 vp.label = sFullCategName;
                 vp.amount = amt;
-                valueList.push_back(vp);
+                valueList_.push_back(vp);
 
                 line.name = sFullCategName;
                 line.amount = amt;
                 line.categs = 0;
-                data.push_back(line);
+                data_.push_back(line);
             }
         }
 
@@ -129,7 +128,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             ValuePair vp_total;
             vp_total.label = category.CATEGNAME;
             vp_total.amount = categtotal;
-            valueListTotals.push_back(vp_total);
+            valueListTotals_.push_back(vp_total);
         }
 
         if (categs > 1)
@@ -137,7 +136,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
             line.name = _("Category Total: ");
             line.amount = categtotal;
             line.categs = categs;
-            data.push_back(line);
+            data_.push_back(line);
         }
         else if (categs > 0 || amt != 0)
         {
@@ -145,14 +144,18 @@ wxString mmReportCategoryExpenses::getHTMLText()
             line.name = "";
             line.amount = 0;
             line.categs = categs;
-            data.push_back(line);
+            data_.push_back(line);
         }
     }
+}
 
+wxString mmReportCategoryExpenses::getHTMLText()
+{
     // Data is presorted by name
+    std::vector<data_holder> sortedData(data_);
     if (CATEGORY_SORT_BY_AMOUNT == sortColumn_)
     {
-        std::stable_sort(data.begin(), data.end()
+        std::stable_sort(sortedData.begin(), sortedData.end()
             , [] (const data_holder& x, const data_holder& y)
             {
                 if (x.amount != y.amount) return x.amount < y.amount;
@@ -165,18 +168,18 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.init();
     hb.addHeader(2, title_);
 
-    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date);
+    hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date_);
 
     hb.startCenter();
 
     // Add the graph
     mmGraphPie ggtotal;
     hb.addImage(ggtotal.getOutputFileName());
-    ggtotal.init(valueListTotals);
+    ggtotal.init(valueListTotals_);
     ggtotal.Generate(_("Categories"));
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
-    gg.init(valueList);
+    gg.init(valueList_);
     gg.Generate(_("Subcategories"));
 
     hb.startTable("60%");
@@ -192,7 +195,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.endTableRow();
 
     bool endSeparator = false;
-    for (const auto& entry : data)
+    for (const auto& entry : sortedData)
     {
         endSeparator = false;
         if (entry.categs > 0)
@@ -232,7 +235,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     if (!endSeparator)
         hb.addRowSeparator(2);
-    hb.addTotalRow(_("Grand Total: "), 1, grandtotal);
+    hb.addTotalRow(_("Grand Total: "), 1, grandtotal_);
 
     hb.endTable();
     hb.endCenter();

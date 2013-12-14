@@ -2235,6 +2235,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     if (!rs) return;
     wxSizer *sizer = cleanupHomePanel();
 
+    rs->RefreshData();
     panelCurrent_ = new mmReportsPanel(rs, cleanup, homePanel_, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 

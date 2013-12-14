@@ -21,7 +21,9 @@
 
 #include "reportbase.h"
 #include "mmDateRange.h"
+#include "util.h"
 #include <map>
+#include <vector>
 
 class mmReportPayeeExpenses : public mmPrintableBase
 {
@@ -29,6 +31,7 @@ public:
     mmReportPayeeExpenses(const wxString& title = _("Payee Report"), mmDateRange* date_range = new mmAllTime());
     ~mmReportPayeeExpenses();
 
+    virtual void RefreshData();
     virtual wxString getHTMLText();
     virtual wxString version();
 
@@ -39,7 +42,14 @@ protected:
 
     wxString title_;
     enum TYPE {INCOME = 0, EXPENCES, MAX};
-    //static const wxString type_names[] = {_("Incomes"), _("Expences")};
+
+private:
+    // structure for sorting of data
+    struct data_holder { wxString name; double incomes; double expences; };
+    std::vector<data_holder> data_;
+    std::vector<ValuePair> valueList_;
+    double positiveTotal_;
+    double negativeTotal_;
 };
 
 class mmReportPayeeExpensesCurrentMonth: public mmReportPayeeExpenses

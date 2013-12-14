@@ -20,6 +20,7 @@
 #define _MM_EX_REPORTSUMMARYSTOCKS_H_
 
 #include "reportbase.h"
+#include <vector>
 
 class mmHTMLBuilder;
 
@@ -27,11 +28,18 @@ class mmReportSummaryStocks : public mmPrintableBase
 {
 public:
     mmReportSummaryStocks();
+    virtual void RefreshData();
     virtual wxString getHTMLText();
     virtual wxString version();
 
 private:
     void display_header(mmHTMLBuilder& hb);
+    // structure for sorting of data
+    struct data_holder { wxString name; wxString symbol; wxString date; double qty; double purchase; double current; double commission; double gainloss; double value; };
+    struct account_holder { wxString name; std::vector<data_holder> data; double gainloss; double total; };
+    std::vector<account_holder> stocks_;
+    double gain_loss_sum_total_;
+    double stockBalance_;
 };
 
 #endif // _MM_EX_REPORTSUMMARYSTOCKS_H_

@@ -32,6 +32,7 @@ public:
     virtual ~mmPrintableBase() {}
     virtual wxString getHTMLText() = 0;
 	void setSortColumn(const int sort_by) { sortColumn_ = sort_by; }
+    virtual void RefreshData() {}
 
 public:
     mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}

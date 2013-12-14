@@ -21,6 +21,8 @@
 
 #include "reportbase.h"
 #include "mmDateRange.h"
+#include "util.h"
+#include <vector>
 
 class mmReportCategoryExpenses : public mmPrintableBase
 {
@@ -28,6 +30,7 @@ public:
     mmReportCategoryExpenses(mmDateRange* date_range, const wxString& title, int type);
     virtual ~mmReportCategoryExpenses();
 
+    virtual void RefreshData();
     virtual wxString getHTMLText();
     virtual wxString version();
 
@@ -39,6 +42,15 @@ protected:
     bool ignoreFutureDate_;
     wxString title_;
     int type_;
+
+private:
+    // structure for sorting of data
+    struct data_holder { wxString name; double amount; int categs; };
+    std::vector<data_holder> data_;
+    std::vector<ValuePair> valueList_;
+    std::vector<ValuePair> valueListTotals_;
+    bool with_date_;
+    double grandtotal_;
 };
 
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses

@@ -39,6 +39,8 @@
 
 mmReportSummaryStocks::mmReportSummaryStocks()
 : mmPrintableBase(STOCK_SORT_BY_NAME)
+, gain_loss_sum_total_(0.0)
+, stockBalance_(0.0)
 {
 }
 
@@ -47,32 +49,30 @@ wxString mmReportSummaryStocks::version()
     return "$Rev$";
 }
 
-wxString mmReportSummaryStocks::getHTMLText()
+void  mmReportSummaryStocks::RefreshData()
 {
-    // structure for sorting of data
-    struct data_holder {wxString name; wxString symbol; wxString date; double qty; double purchase; double current; double commission; double gainloss; double value;} line;
-    struct account_holder {wxString name; std::vector<data_holder> data; double gainloss; double total;} account;
-    std::vector<account_holder> stocks;
+    stocks_.clear();
+    gain_loss_sum_total_ = 0.0;
+    stockBalance_ = 0.0;
 
-    double gain_loss_sum_total = 0.0;
-    double stockBalance = 0.0;
-
-    for (const auto& a: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    data_holder line;
+    account_holder account;
+    for (const auto& a : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(a) != Model_Account::INVESTMENT) continue;
         if (Model_Account::status(a) != Model_Account::OPEN) continue;
 
         account.name = a.ACCOUNTNAME;
         account.gainloss = 0.0;
-        account.total = Model_Account::investment_balance(a).second; 
+        account.total = Model_Account::investment_balance(a).second;
         account.data.clear();
 
-        for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(a.ACCOUNTID)))
+        for (const auto& stock : Model_Stock::instance().find(Model_Stock::HELDAT(a.ACCOUNTID)))
         {
             const Model_Currency::Data* currency = Model_Account::currency(a);
-            stockBalance += currency->BASECONVRATE * stock.VALUE;
+            stockBalance_ += currency->BASECONVRATE * stock.VALUE;
             account.gainloss += stock.VALUE - Model_Stock::value(stock);
-            gain_loss_sum_total += (stock.VALUE - Model_Stock::value(stock)) * currency->BASECONVRATE;
+            gain_loss_sum_total_ += (stock.VALUE - Model_Stock::value(stock)) * currency->BASECONVRATE;
 
             line.name = stock.STOCKNAME;
             line.symbol = stock.SYMBOL;
@@ -85,10 +85,13 @@ wxString mmReportSummaryStocks::getHTMLText()
             line.value = stock.VALUE;
             account.data.push_back(line);
         }
-        stocks.push_back(account);
+        stocks_.push_back(account);
     }
+}
 
-    for (auto& acct : stocks)
+wxString mmReportSummaryStocks::getHTMLText()
+{
+    for (auto& acct : stocks_)
     {
         switch (sortColumn_)
         {
@@ -181,7 +184,7 @@ wxString mmReportSummaryStocks::getHTMLText()
     hb.addDateNow();
 
     hb.startTable("95%");
-    for (const auto& acct : stocks)
+    for (const auto& acct : stocks_)
     {
         hb.addTotalRow("", 9, "");
         hb.addTotalRow(acct.name, 9, "");
@@ -209,8 +212,8 @@ wxString mmReportSummaryStocks::getHTMLText()
     }
 
     hb.addRowSeparator(9);
-    hb.addTotalRow(_("Grand Total:"), 8, gain_loss_sum_total);
-    hb.addMoneyCell(stockBalance);
+    hb.addTotalRow(_("Grand Total:"), 8, gain_loss_sum_total_);
+    hb.addMoneyCell(stockBalance_);
     hb.endTableRow();
     hb.endTable();
 

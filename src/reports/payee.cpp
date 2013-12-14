@@ -19,7 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "payee.h"
 
 #include "htmlbuilder.h"
-#include "util.h"
 #include "mmgraphpie.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Payee.h"
@@ -36,6 +35,8 @@ mmReportPayeeExpenses::mmReportPayeeExpenses(const wxString& title, mmDateRange*
 : mmPrintableBase(PAYEE_SORT_BY_NAME)
     , title_(title)
     , date_range_(date_range)
+    , positiveTotal_(0.0)
+    , negativeTotal_(0.0)
 {
 }
 
@@ -49,35 +50,46 @@ wxString mmReportPayeeExpenses::version()
     return "$Rev$";
 }
 
-wxString mmReportPayeeExpenses::getHTMLText()
+void  mmReportPayeeExpenses::RefreshData()
 {
-    double positiveTotal = 0.0, negativeTotal = 0.0;
-    std::vector<ValuePair> valueList;
-    valueList.clear();
-    struct data_holder {wxString name; double incomes; double expences;} line;
-    std::vector<data_holder> data;
+    data_.clear();
+    valueList_.clear();
+    positiveTotal_ = 0.0;
+    negativeTotal_ = 0.0;
 
     std::map<int, std::pair<double, double> > payeeStats;
     getPayeeStats(payeeStats, date_range_
-        , mmIniOptions::instance().ignoreFutureTransactions_ );
+        , mmIniOptions::instance().ignoreFutureTransactions_);
 
+    data_holder line;
     for (const auto& entry : payeeStats)
     {
-        positiveTotal += entry.second.first;
-        negativeTotal += entry.second.second;
+        positiveTotal_ += entry.second.first;
+        negativeTotal_ += entry.second.second;
 
         Model_Payee::Data* payee = Model_Payee::instance().get(entry.first);
         if (payee)
             line.name = payee->PAYEENAME;
         line.incomes = entry.second.first;
         line.expences = entry.second.second;
-        data.push_back(line);
-    }
+        data_.push_back(line);
 
+        if (line.incomes + line.expences < 0)
+        {
+            ValuePair vp;
+            vp.label = line.name;
+            vp.amount = line.incomes + line.expences;
+            valueList_.push_back(vp);
+        }
+    }
+}
+
+wxString mmReportPayeeExpenses::getHTMLText()
+{
     switch (sortColumn_)
     {
     case PAYEE_SORT_BY_NAME:
-        std::stable_sort(data.begin(), data.end()
+        std::stable_sort(data_.begin(), data_.end()
             , [] (const data_holder& x, const data_holder& y)
             {
                 return x.name < y.name;
@@ -85,7 +97,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         );
         break;
     case PAYEE_SORT_BY_INCOME:
-        std::stable_sort(data.begin(), data.end()
+        std::stable_sort(data_.begin(), data_.end()
             , [] (const data_holder& x, const data_holder& y)
             {
                 if (x.incomes != y.incomes) return x.incomes < y.incomes;
@@ -94,7 +106,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         );
         break;
     case PAYEE_SORT_BY_EXPENSE:
-        std::stable_sort(data.begin(), data.end()
+        std::stable_sort(data_.begin(), data_.end()
             , [] (const data_holder& x, const data_holder& y)
             {
                 if (x.expences != y.expences) return x.expences < y.expences;
@@ -104,7 +116,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         break;
     default:
         sortColumn_ = PAYEE_SORT_BY_DIFF;
-        std::stable_sort(data.begin(), data.end()
+        std::stable_sort(data_.begin(), data_.end()
             , [] (const data_holder& x, const data_holder& y)
             {
                 if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
@@ -143,7 +155,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
     hb.endTableRow();
 
-    for (const auto& entry : data)
+    for (const auto& entry : data_)
     {
         hb.startTableRow();
         hb.addTableCell(entry.name);
@@ -151,28 +163,20 @@ wxString mmReportPayeeExpenses::getHTMLText()
         hb.addMoneyCell(entry.expences);
         hb.addMoneyCell(entry.incomes + entry.expences);
         hb.endTableRow();
-
-        if (entry.incomes + entry.expences < 0)
-        {
-            ValuePair vp;
-            vp.label = entry.name;
-            vp.amount = entry.incomes + entry.expences;
-            valueList.push_back(vp);
-        }
     }
 
     hb.addRowSeparator(4);
     std::vector <double> totals;
-    totals.push_back(positiveTotal);
-    totals.push_back(negativeTotal);
-    totals.push_back(positiveTotal + negativeTotal);
+    totals.push_back(positiveTotal_);
+    totals.push_back(negativeTotal_);
+    totals.push_back(positiveTotal_ + negativeTotal_);
     hb.addTotalRow(_("Total:"), 3, totals);
 
     hb.endTable();
     hb.endCenter();
     hb.end();
 
-    gg.init(valueList);
+    gg.init(valueList_);
     gg.Generate(title_);
 
     return hb.getHTMLText();
