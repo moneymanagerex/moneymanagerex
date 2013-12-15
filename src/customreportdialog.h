@@ -78,5 +78,14 @@ private:
 
 };
 
+class MyTreeItemData : public wxTreeItemData
+{
+public:
+    MyTreeItemData(int report_id) : m_report_id(report_id) { }
+    int get_report_id() { return m_report_id; }
+private:
+    int m_report_id;
+};
+
 #endif
 

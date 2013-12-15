@@ -98,25 +98,26 @@ bool mmGeneralReportManager::Create( wxWindow* parent
 
 void mmGeneralReportManager::fillControls()
 {
-
+    treeCtrl_->SetEvtHandlerEnabled(false);
     treeCtrl_->DeleteAllItems();
     root_ = treeCtrl_->AddRoot(_("Custom Reports"));
     selectedItemId_ = root_;
     treeCtrl_->SetItemBold(root_, true);
     treeCtrl_->SetFocus();
     Model_Report::Data_Set reports = Model_Report::instance().all(Model_Report::COL_GROUPNAME);
-    wxTreeItemId maincat; //TODO:
+    wxTreeItemId group; //TODO:
     wxString group_name;
     for (const auto& report : reports)
     {
         if (group_name != report.GROUPNAME)
         {
-            maincat = treeCtrl_->AppendItem(root_, report.GROUPNAME);
+            group = treeCtrl_->AppendItem(root_, report.GROUPNAME);
             group_name = report.GROUPNAME;
         }
-        treeCtrl_->AppendItem(maincat, report.REPORTNAME, 1, 1);
+        treeCtrl_->AppendItem(group, report.REPORTNAME, -1, -1, new MyTreeItemData(report.REPORTID));
     }
     treeCtrl_->Expand(root_);
+    treeCtrl_->SetEvtHandlerEnabled(true);
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -142,19 +143,18 @@ void mmGeneralReportManager::CreateControls()
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //
 
-    flex_sizer->Add(new wxStaticText( this, wxID_ANY, _("Script type:")), flags);
+    flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Script type:")), flags);
     flex_sizer->AddSpacer(1);
 
-    reportTitleTxtCtrl_ = new wxTextCtrl( this, wxID_FILE, "",
-        wxDefaultPosition, wxSize(titleTextWidth,-1));
-    reportTitleTxtCtrl_->SetToolTip(_("Report Title is used as the file name of the SQL script."));
+    reportTitleTxtCtrl_ = new wxTextCtrl( this, wxID_PROPERTIES, ""
+        , wxDefaultPosition, wxSize(titleTextWidth,-1));
 
     long treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #if defined (__WXWIN__)
     treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
-    treeCtrl_ = new wxTreeCtrl( this, wxID_ANY,
-    wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags );
+    treeCtrl_ = new wxTreeCtrl(this, wxID_ANY
+        , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
     headingPanelSizerH2->Add(flex_sizer, flags);
     headingPanelSizerH2->Add(reportTitleTxtCtrl_, flags);
@@ -347,11 +347,16 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
-    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
 
-    wxStaticText* st = (wxStaticText*)FindWindow(wxID_PROPERTIES);
-    st->SetLabel(wxString::Format(_("Custom script:")));
+    int id = iData->get_report_id();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        reportTitleTxtCtrl_->SetLabel(report->CONTENTTYPE);
+        tcSourceTxtCtrl_->SetValue(report->CONTENT);
+    }
 
     //TODO:
 }
