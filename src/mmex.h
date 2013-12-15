@@ -254,7 +254,7 @@ private:
     void InitializeModelTables();
     bool createDataStore(const wxString& fileName, const wxString &passwd, bool openingNew);
     void createMenu();
-    wxToolBar* CreateToolBar(long style=wxTB_HORIZONTAL, wxWindowID id=wxID_ANY, const wxString &name=wxToolBarNameStr);
+    void CreateToolBar();
     void createHomePage();
     void createReportsPage(mmPrintableBase* rb, bool cleanup);
     void createHelpPage();

@@ -699,7 +699,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     /* Create the Controls for the frame */
     createMenu();
-    CreateToolBar(wxTB_FLAT | wxTB_NODIVIDER, wxID_ANY, "ToolBar");
+    CreateToolBar();
     createControls();
 #if wxUSE_STATUSBAR
     CreateStatusBar();
@@ -2264,7 +2264,7 @@ void mmGUIFrame::createHelpPage()
 
 void mmGUIFrame::createMenu()
 {
-    wxBitmap toolBarBitmaps[11];
+    wxBitmap toolBarBitmaps[10];
     toolBarBitmaps[0] = wxBitmap(new_xpm);
     toolBarBitmaps[1] = wxBitmap(open_xpm);
     toolBarBitmaps[2] = wxBitmap(save_xpm);
@@ -2385,21 +2385,21 @@ void mmGUIFrame::createMenu()
 
     wxMenu *menuAccounts = new wxMenu;
 
-    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT,
-        _("New &Account"), _("New Account"));
+    wxMenuItem* menuItemNewAcct = new wxMenuItem(menuAccounts, MENU_NEWACCT
+        , _("New &Account"), _("New Account"));
     menuItemNewAcct->SetBitmap(toolBarBitmaps[3]);
     menuAccounts->Append(menuItemNewAcct);
 
-    wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST,
-        _("Account &List"), _("Show Account List"));
+    wxMenuItem* menuItemAcctList = new wxMenuItem(menuAccounts, MENU_ACCTLIST
+        , _("Account &List"), _("Show Account List"));
     menuItemAcctList->SetBitmap(toolBarBitmaps[4]);
 
-    wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT,
-        _("&Edit Account"), _("Edit Account"));
+    wxMenuItem* menuItemAcctEdit = new wxMenuItem(menuAccounts, MENU_ACCTEDIT
+        , _("&Edit Account"), _("Edit Account"));
     menuItemAcctEdit->SetBitmap(toolBarBitmaps[8]);
 
-    wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE,
-        _("&Delete Account"), _("Delete Account from database"));
+    wxMenuItem* menuItemAcctDelete = new wxMenuItem(menuAccounts, MENU_ACCTDELETE
+        , _("&Delete Account"), _("Delete Account from database"));
     menuItemAcctDelete->SetBitmap(toolBarBitmaps[9]);
     menuAccounts->Append(menuItemAcctDelete);
 
@@ -2409,18 +2409,18 @@ void mmGUIFrame::createMenu()
     // Tools Menu
     wxMenu *menuTools = new wxMenu;
 
-    wxMenuItem* menuItemCateg = new wxMenuItem(menuTools,
-        MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
+    wxMenuItem* menuItemCateg = new wxMenuItem(menuTools
+        , MENU_ORGCATEGS, _("Organize &Categories..."), _("Organize Categories"));
     menuItemCateg->SetBitmap(wxBitmap(categoryedit_xpm));
     menuTools->Append(menuItemCateg);
 
-    wxMenuItem* menuItemPayee = new wxMenuItem(menuTools,
-        MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
+    wxMenuItem* menuItemPayee = new wxMenuItem(menuTools
+        , MENU_ORGPAYEE, _("Organize &Payees..."), _("Organize Payees"));
     menuItemPayee->SetBitmap(wxBitmap(user_edit_xpm));
     menuTools->Append(menuItemPayee);
 
-    wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY,
-        _("Organize Currency..."), _("Organize Currency"));
+    wxMenuItem* menuItemCurrency = new wxMenuItem(menuTools, MENU_CURRENCY
+        , _("Organize Currency..."), _("Organize Currency"));
     menuItemCurrency->SetBitmap(wxBitmap(money_dollar_xpm));
     menuTools->Append(menuItemCurrency);
 
@@ -2428,7 +2428,7 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemCategoryRelocation = new wxMenuItem(menuRelocation
         , MENU_CATEGORY_RELOCATION, _("&Categories...")
         , _("Reassign all categories to another category"));
-       menuItemCategoryRelocation->SetBitmap(wxBitmap(relocate_categories_xpm));
+    menuItemCategoryRelocation->SetBitmap(wxBitmap(relocate_categories_xpm));
     wxMenuItem* menuItemPayeeRelocation = new wxMenuItem(menuRelocation
         , MENU_PAYEE_RELOCATION, _("&Payees...")
         , _("Reassign all payees to another payee"));
@@ -2442,16 +2442,16 @@ void mmGUIFrame::createMenu()
 
     if (mmIniOptions::instance().enableBudget_)
     {
-        wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG,
-            _("&Budget Setup"), _("Budget Setup"));
+        wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
+            , _("&Budget Setup"), _("Budget Setup"));
         menuItemBudgeting->SetBitmap(wxBitmap(calendar_xpm));
         menuTools->Append(menuItemBudgeting);
     }
 
     if (mmIniOptions::instance().enableRepeatingTransactions_)
     {
-        wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS,
-            _("&Repeating Transactions"), _("Bills && Deposits"));
+        wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
+            , _("&Repeating Transactions"), _("Bills && Deposits"));
         menuItemBillsDeposits->SetBitmap(wxBitmap(clock_xpm));
         menuTools->Append(menuItemBillsDeposits);
     }
@@ -2466,23 +2466,23 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
-    wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT,
-        _("&Transaction Report Filter..."), _("Transaction Report Filter"));
+    wxMenuItem* menuItemTransactions = new wxMenuItem(menuTools, MENU_TRANSACTIONREPORT
+        , _("&Transaction Report Filter..."), _("Transaction Report Filter"));
     menuItemTransactions->SetBitmap(wxBitmap(filter_xpm));
     menuTools->Append(menuItemTransactions);
 
     menuTools->AppendSeparator();
 
-    wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES,
-          _("&Options..."), _("Show the Options Dialog"));
+    wxMenuItem* menuItemOptions = new wxMenuItem(menuTools, wxID_PREFERENCES
+        , _("&Options..."), _("Show the Options Dialog"));
     menuItemOptions->SetBitmap(wxBitmap(wrench_xpm));
     menuTools->Append(menuItemOptions);
 
     menuTools->AppendSeparator();
 
-    wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB,
-        _("Convert Encrypted &DB"),
-        _("Convert Encrypted DB to Non-Encrypted DB"));
+    wxMenuItem* menuItemConvertDB = new wxMenuItem(menuTools, MENU_CONVERT_ENC_DB
+        , _("Convert Encrypted &DB")
+        , _("Convert Encrypted DB to Non-Encrypted DB"));
     menuItemConvertDB->SetBitmap(wxBitmap(encrypt_db_xpm));
     menuTools->Append(menuItemConvertDB);
 
@@ -2494,8 +2494,8 @@ void mmGUIFrame::createMenu()
     menuItemHelp->SetBitmap(wxBitmap(help_xpm));
     menuHelp->Append(menuItemHelp);
 
-    wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART,
-         _("&Show App Start Dialog"), _("App Start Dialog"));
+    wxMenuItem* menuItemAppStart = new wxMenuItem(menuTools, MENU_SHOW_APPSTART
+        , _("&Show App Start Dialog"), _("App Start Dialog"));
     menuItemAppStart->SetBitmap(wxBitmap(appstart_xpm));
     menuHelp->Append(menuItemAppStart);
 
@@ -2503,37 +2503,37 @@ void mmGUIFrame::createMenu()
 
     if (mmIniOptions::instance().enableCheckForUpdates_)
     {
-       wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE,
-          _("Check for &Updates"), _("Check For Updates"));
-       menuItemCheck->SetBitmap(wxBitmap(checkupdate_xpm));
-       menuHelp->Append(menuItemCheck);
+        wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE
+            , _("Check for &Updates"), _("Check For Updates"));
+        menuItemCheck->SetBitmap(wxBitmap(checkupdate_xpm));
+        menuHelp->Append(menuItemCheck);
     }
 
     if (mmIniOptions::instance().enableReportIssues_)
     {
-       wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
-          , _("Visit MMEX Forum")
-          , _("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
-       menuItemReportIssues->SetBitmap(wxBitmap(issues_xpm));
-       menuHelp->Append(menuItemReportIssues);
+        wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
+            , _("Visit MMEX Forum")
+            , _("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
+        menuItemReportIssues->SetBitmap(wxBitmap(issues_xpm));
+        menuHelp->Append(menuItemReportIssues);
     }
 
     if (mmIniOptions::instance().enableBeNotifiedForNewReleases_)
     {
-       wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
-          ,_("Register/View Release &Notifications.")
-          , _("Sign up to Notification Mailing List or View existing announcements."));
-       menuItemNotify->SetBitmap(wxBitmap(notify_xpm));
-       menuHelp->Append(menuItemNotify);
+        wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
+            , _("Register/View Release &Notifications.")
+            , _("Sign up to Notification Mailing List or View existing announcements."));
+        menuItemNotify->SetBitmap(wxBitmap(notify_xpm));
+        menuHelp->Append(menuItemNotify);
     }
 
-    wxMenuItem* menuItemFacebook = new wxMenuItem(menuTools, MENU_FACEBOOK,
-        _("Visit us on Facebook"), _("Visit us on Facebook"));
+    wxMenuItem* menuItemFacebook = new wxMenuItem(menuTools, MENU_FACEBOOK
+        , _("Visit us on Facebook"), _("Visit us on Facebook"));
     menuItemFacebook->SetBitmap(wxBitmap(facebook_xpm));
     menuHelp->Append(menuItemFacebook);
 
-    wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT,
-       _("&About..."), _("Show about dialog"));
+    wxMenuItem* menuItemAbout = new wxMenuItem(menuTools, wxID_ABOUT
+        , _("&About..."), _("Show about dialog"));
     menuItemAbout->SetBitmap(wxBitmap(about_xpm));
     menuHelp->Append(menuItemAbout);
 
@@ -2557,49 +2557,33 @@ void mmGUIFrame::createMenu()
 }
 //----------------------------------------------------------------------------
 
-wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &name)
+void mmGUIFrame::CreateToolBar()
 {
-    toolBar_ = new wxToolBar(this, id, wxDefaultPosition, wxDefaultSize, style, name);
-    wxBitmap toolBarBitmaps[15];
-    toolBarBitmaps[0] = wxBitmap(new_xpm);
-    toolBarBitmaps[1] = wxBitmap(open_xpm);
-    toolBarBitmaps[2] = wxBitmap(save_xpm);
-    toolBarBitmaps[3] = wxBitmap(newacct_xpm);
-    toolBarBitmaps[4] = wxBitmap(house_xpm);
-    toolBarBitmaps[5] = wxBitmap(categoryedit_xpm);
-    toolBarBitmaps[6] = wxBitmap(user_edit_xpm);
-    toolBarBitmaps[7] = wxBitmap(money_dollar_xpm);
-    toolBarBitmaps[8] = wxBitmap(filter_xpm);
-    toolBarBitmaps[9] = wxBitmap(customsql_xpm);
-    toolBarBitmaps[10] = wxBitmap(wrench_xpm);
-    toolBarBitmaps[11] = wxBitmap(new_transaction_xpm);
-    toolBarBitmaps[12] = wxBitmap(about_xpm);
-    toolBarBitmaps[13] = wxBitmap(help_xpm);
-    toolBarBitmaps[14] = wxBitmap(customsql_xpm);
+    long style = wxTB_FLAT | wxTB_NODIVIDER;
+    toolBar_ = new wxToolBar(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, style, "ToolBar");
 
-    toolBar_->AddTool(MENU_NEW, _("New"), toolBarBitmaps[0], _("New Database"));
-    toolBar_->AddTool(MENU_OPEN, _("Open"), toolBarBitmaps[1], _("Open Database"));
+    toolBar_->AddTool(MENU_NEW, _("New"), wxBitmap(new_xpm), _("New Database"));
+    toolBar_->AddTool(MENU_OPEN, _("Open"), wxBitmap(open_xpm), _("Open Database"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), toolBarBitmaps[3], _("New Account"));
-    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), toolBarBitmaps[4], _("Show Account List"));
+    toolBar_->AddTool(MENU_NEWACCT, _("New Account"), wxBitmap(newacct_xpm), _("New Account"));
+    toolBar_->AddTool(MENU_ACCTLIST, _("Account List"), wxBitmap(house_xpm), _("Show Account List"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), toolBarBitmaps[5], _("Show Organize Categories Dialog"));
-    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), toolBarBitmaps[6], _("Show Organize Payees Dialog"));
-    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), toolBarBitmaps[7], _("Show Organize Currency Dialog"));
+    toolBar_->AddTool(MENU_ORGCATEGS, _("Organize Categories"), wxBitmap(categoryedit_xpm), _("Show Organize Categories Dialog"));
+    toolBar_->AddTool(MENU_ORGPAYEE, _("Organize Payees"), wxBitmap(user_edit_xpm), _("Show Organize Payees Dialog"));
+    toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), wxBitmap(money_dollar_xpm), _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), toolBarBitmaps[8], _("Transaction Report Filter"));
-    toolBar_->AddTool(wxID_VIEW_LIST, _("Custom Reports Manager"), toolBarBitmaps[14], _("Custom Reports Manager"));
+    toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), wxBitmap(filter_xpm), _("Transaction Report Filter"));
+    toolBar_->AddTool(wxID_VIEW_LIST, _("General Report Manager"), wxBitmap(customsql_xpm), _("General Report Manager"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), toolBarBitmaps[10], _("Show the Options Dialog"));
+    toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), wxBitmap(wrench_xpm), _("Show the Options Dialog"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_NEW, _("New"), toolBarBitmaps[11], _("New Transaction"));
+    toolBar_->AddTool(wxID_NEW, _("New"), wxBitmap(new_transaction_xpm), _("New Transaction"));
     toolBar_->AddSeparator();
-    toolBar_->AddTool(wxID_ABOUT, _("&About..."), toolBarBitmaps[12], _("Show about dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tCtrl-F1"), toolBarBitmaps[13], _("Show the Help file"));
+    toolBar_->AddTool(wxID_ABOUT, _("&About..."), wxBitmap(about_xpm), _("Show about dialog"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tCtrl-F1"), wxBitmap(help_xpm), _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
-    return toolBar_;
 }
 //----------------------------------------------------------------------------
 
