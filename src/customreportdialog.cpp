@@ -48,26 +48,25 @@ BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
     EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
     //EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmGeneralReportManager::OnDoubleClicked)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
-    EVT_TIMER(wxID_ANY, mmGeneralReportManager::ShowCursorCoordinates)
 END_EVENT_TABLE()
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 : tcSourceTxtCtrl_()
-, navCtrlUpdateRequired_(false)
-, newFileCreated_(true)
-, parent_(parent)
-, edit_(false)
-, newload_(false)
+, button_Open_()
+, button_Save_()
+, button_Run_()
+, button_Clear_()
+, reportTitleTxtCtrl_()
+, treeCtrl_()
+
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent_, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(500, 400), style);
+    Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(640, 480), style);
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
 {
-    timer_->Stop();
 }
-
 
 bool mmGeneralReportManager::Create( wxWindow* parent
     , wxWindowID id
@@ -92,9 +91,6 @@ bool mmGeneralReportManager::Create( wxWindow* parent
 
     SetIcon(mmex::getProgramIcon());
     Centre();
-
-    timer_ = new wxTimer(this, wxID_ANY);
-    timer_->Start(INTERVAL);
 
     fillControls();
     return TRUE;
@@ -121,8 +117,6 @@ void mmGeneralReportManager::fillControls()
         treeCtrl_->AppendItem(maincat, report.REPORTNAME, 1, 1);
     }
     treeCtrl_->Expand(root_);
-
-
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -147,20 +141,8 @@ void mmGeneralReportManager::CreateControls()
     headingPanelSizerH->Add(headingPanelSizerH2, 0, wxEXPAND);
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //
+
     flex_sizer->Add(new wxStaticText( this, wxID_ANY, _("Script type:")), flags);
-    wxString choices[] = { _("SQL"), _("Lua")};
-    int num = sizeof(choices) / sizeof(wxString);
-    m_radio_box_ = new wxRadioBox(this, wxID_STATIC, ""
-        , wxDefaultPosition, wxDefaultSize, num, choices, 2, wxRA_SPECIFY_COLS);
-    flex_sizer->Add(m_radio_box_, flags.Center());
-
-    headingOnlyCheckBox_ = new wxCheckBox(this, HEADING_ONLY, _("Heading"));
-    flex_sizer->Add(headingOnlyCheckBox_, flags);
-
-    subMenuCheckBox_ = new wxCheckBox( this, SUB_REPORT, _("Sub-Menu"));
-    flex_sizer->Add(subMenuCheckBox_, flags);
-
-    flex_sizer->Add(new wxStaticText( this, wxID_ANY, _("Report Title:")), flags);
     flex_sizer->AddSpacer(1);
 
     reportTitleTxtCtrl_ = new wxTextCtrl( this, wxID_FILE, "",
@@ -186,26 +168,42 @@ void mmGeneralReportManager::CreateControls()
     wxBoxSizer* headingPanelSizerH4 = new wxBoxSizer(wxHORIZONTAL);
     headingPanelSizerH->Add(headingPanelSizerV3, flagsExpand);
 
-    headingPanelSizerV3->Add(new wxStaticText( this, wxID_PROPERTIES, _("Custom script:")), flags);
-    tcSourceTxtCtrl_ = new wxTextCtrl( this, wxID_VIEW_DETAILS, "",
-        wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxHSCROLL|wxTE_NOHIDESEL );
-    tcSourceTxtCtrl_->Connect(wxID_ANY, wxEVT_CHAR,
-        wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
+    wxNotebook* editors_notebook = new wxNotebook(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+    wxPanel* script_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->AddPage(script_tab, _("Script"));
+    wxBoxSizer *script_sizer = new wxBoxSizer(wxVERTICAL);
+    script_tab->SetSizer(script_sizer);
+    headingPanelSizerV3->Add(editors_notebook, flagsExpand);
+
+    tcSourceTxtCtrl_ = new wxTextCtrl(script_tab, wxID_VIEW_DETAILS, ""
+        , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_NOHIDESEL);
+    tcSourceTxtCtrl_->Connect(wxID_ANY, wxEVT_CHAR
+        , wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
     int font_size = this->GetFont().GetPointSize();
     wxFont teletype( font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
     tcSourceTxtCtrl_->SetFont(teletype);
-    headingPanelSizerV3->Add(tcSourceTxtCtrl_, flagsExpand);
-    headingPanelSizerV3->Add(headingPanelSizerH4, flags.Center());
+    script_sizer->Add(tcSourceTxtCtrl_, flagsExpand);
+    script_sizer->Add(headingPanelSizerH4, flags.Center());
 
-    button_Open_ = new wxButton( this, wxID_OPEN);
+    wxPanel* html_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->AddPage(html_tab, _("html"));
+    wxBoxSizer *html_sizer = new wxBoxSizer(wxVERTICAL);
+    html_tab->SetSizer(html_sizer);
+    html_text_ = new wxTextCtrl(html_tab, wxID_ANY, ""
+        , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_NOHIDESEL);
+    html_sizer->Add(html_text_, flagsExpand);
+
+
+    button_Open_ = new wxButton(script_tab, wxID_OPEN);
     headingPanelSizerH4->Add(button_Open_, flags);
     button_Open_->SetToolTip(_("Locate and load a script file into the script area."));
 
-    button_Save_ = new wxButton( this, wxID_SAVE);
+    button_Save_ = new wxButton(script_tab, wxID_SAVE);
     headingPanelSizerH4->Add(button_Save_, flags);
     button_Save_->SetToolTip(_("Save the script to file name set by the Report Title."));
 
-    button_Clear_ = new wxButton( this, wxID_CLEAR);
+    button_Clear_ = new wxButton(script_tab, wxID_CLEAR);
     headingPanelSizerH4->Add(button_Clear_, flags);
     button_Clear_->SetToolTip(_("Clear the Source script area"));
 
@@ -228,36 +226,15 @@ void mmGeneralReportManager::CreateControls()
 
 }
 
-wxString mmGeneralReportManager::sScript()
-{
-    return sQuery_;
-}
-
-wxString mmGeneralReportManager::sReportTitle()
-{
-    return reportTitleTxtCtrl_->GetValue();
-}
-
-wxString mmGeneralReportManager::sSctiptType()
-{
-    int i = m_radio_box_->GetSelection();
-    if (i == 0)
-        return "SQL";
-    else
-        return "LUA";
-}
-
 void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
 {
-    wxString sScriptFileName = wxFileSelector( sSctiptType()=="SQL" ?
-        _("Load Custom SQL file:") : _("Load Custom Lua file:"),
-        mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString,
-        sSctiptType()=="SQL" ? "SQL File(*.sql)|*.sql" : "Lua File(*.lua)|*.lua"
+    wxString sScriptFileName = wxFileSelector( _("Load file:")
+        , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
+        , "File(*.*)|*.*" 
         , wxFD_FILE_MUST_EXIST);
     if ( !sScriptFileName.empty() )
     {
         wxFileName selectedFileName(sScriptFileName);
-        loadedFileName_ = selectedFileName.GetFullName();
         wxString reportText;
 
         wxTextFile reportFile(sScriptFileName);
@@ -275,10 +252,8 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
                 }
             }
             tcSourceTxtCtrl_->SetValue(reportText);
-            newFileCreated_ = false;
             reportFile.Close();
             reportTitleTxtCtrl_->SetLabel(selectedFileName.GetName());
-            newload_ = true;
         }
         else
         {
@@ -290,8 +265,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
 {
-    if (SaveCustomReport() && navCtrlUpdateRequired_)
-        fillControls();
+    fillControls();
 }
 
 bool mmGeneralReportManager::SaveCustomReport()
@@ -310,9 +284,8 @@ bool mmGeneralReportManager::SaveCustomReport()
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
-   if (tcSourceTxtCtrl_->IsEmpty()) return;
-   sQuery_ = tcSourceTxtCtrl_->GetValue();
-   EndModal(wxID_MORE);
+    //TODO:
+    //EndModal(wxID_MORE);
 }
 
 void mmGeneralReportManager::OnClear(wxCommandEvent& /*event*/)
@@ -320,49 +293,35 @@ void mmGeneralReportManager::OnClear(wxCommandEvent& /*event*/)
     tcSourceTxtCtrl_->Clear();
     button_Save_->Disable();
     button_Run_->Disable();
-    if (! headingOnlyCheckBox_->GetValue())
-        button_Open_->Enable();
+    button_Open_->Enable();
     tcSourceTxtCtrl_->SetFocus();
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
 {
-    if (navCtrlUpdateRequired_ && !button_Save_->IsEnabled())
-        EndModal(wxID_OK);
-    else
-        EndModal(wxID_CANCEL);
+    EndModal(wxID_CANCEL);
 }
 
 void mmGeneralReportManager::SetDialogBoxForHeadings(bool bHeading)
 {
-    headingOnlyCheckBox_->Enable(tcSourceTxtCtrl_->IsEmpty());
-    headingOnlyCheckBox_->SetValue(bHeading && tcSourceTxtCtrl_->IsEmpty());
-    subMenuCheckBox_->Enable( !headingOnlyCheckBox_->GetValue());
-    tcSourceTxtCtrl_->Enable(!headingOnlyCheckBox_->GetValue());
-    button_Open_->Enable(!headingOnlyCheckBox_->GetValue() && tcSourceTxtCtrl_->IsEmpty());
-    button_Run_->Enable(!headingOnlyCheckBox_->GetValue() && !tcSourceTxtCtrl_->IsEmpty());
-    button_Clear_->Enable(!headingOnlyCheckBox_->GetValue() && !tcSourceTxtCtrl_->IsEmpty());
+    button_Open_->Enable(tcSourceTxtCtrl_->IsEmpty());
+    button_Run_->Enable(!tcSourceTxtCtrl_->IsEmpty());
+    button_Clear_->Enable(!tcSourceTxtCtrl_->IsEmpty());
 }
 
 void mmGeneralReportManager::OnCheckedHeading(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable(!reportTitleTxtCtrl_->IsEmpty());
-
-    SetDialogBoxForHeadings(headingOnlyCheckBox_->IsChecked());
 }
 
 void mmGeneralReportManager::OnCheckedSubReport(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable();
-    headingOnlyCheckBox_->Enable(!subMenuCheckBox_->GetValue());
-    navCtrlUpdateRequired_ = true;
 }
 
 void mmGeneralReportManager::OnTextChangeHeading(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable();
-    edit_ = false;          // Allow saving as a new file name.
-    navCtrlUpdateRequired_ = !edit_;
 }
 
 void mmGeneralReportManager::OnTextChangeSubReport(wxCommandEvent& /*event*/)
@@ -370,7 +329,6 @@ void mmGeneralReportManager::OnTextChangeSubReport(wxCommandEvent& /*event*/)
     button_Save_->Enable(!reportTitleTxtCtrl_->IsEmpty());
     button_Run_->Enable(!tcSourceTxtCtrl_->IsEmpty());
     button_Open_->Enable(tcSourceTxtCtrl_->IsEmpty());
-    navCtrlUpdateRequired_ = !edit_;
 }
 
 void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
@@ -400,7 +358,6 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
 void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
 {
-    edit_ = true;
     //TODO:
 }
 
@@ -424,24 +381,16 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     {
         reportTitleTxtCtrl_->SetValue(_("New SQL Custom Report"));
         tcSourceTxtCtrl_->ChangeValue("select 'Hello World'");
-        loadedFileName_.Clear();
-        m_radio_box_->SetSelection(0);
-        navCtrlUpdateRequired_ = SaveCustomReport();
     }
     if (id == 2)
     {
         reportTitleTxtCtrl_->SetValue(_("New Lua Custom Report"));
         tcSourceTxtCtrl_->ChangeValue("return \"Hello World\"");
-        loadedFileName_.Clear();
-        m_radio_box_->SetSelection(1);
-        navCtrlUpdateRequired_ = SaveCustomReport();
     }
     else if (id == wxID_DELETE)
     {
-        navCtrlUpdateRequired_ = DeleteCustomSqlReport();
         //if (navCtrlUpdateRequired_) iSelectedId_--;
     }
-    if (navCtrlUpdateRequired_) fillControls();
 }
 
 void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
@@ -449,16 +398,4 @@ void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
     if (wxGetKeyState(wxKeyCode('A')) && wxGetKeyState(WXK_CONTROL))
         tcSourceTxtCtrl_->SetSelection(-1, -1); //select all
     event.Skip();
-}
-
-void mmGeneralReportManager::ShowCursorCoordinates(wxTimerEvent& /*event*/)
-{
-    wxWindow *w = FindFocus();
-    if (w && w->GetId() != wxID_VIEW_DETAILS) return;
-
-    long lCursorPosition = tcSourceTxtCtrl_->GetInsertionPoint();
-    wxStaticText* st = (wxStaticText*)FindWindow(wxID_PROPERTIES);
-    long x = 0, y = 0;
-    tcSourceTxtCtrl_->PositionToXY(lCursorPosition, &x, &y);
-    st->SetLabel(wxString::Format(_("Line: %ld position: %ld"), y+1, x+1));
 }

@@ -36,10 +36,6 @@ public:
 
     mmGeneralReportManager(wxWindow* parent);
 
-    wxString sScript();
-    wxString sReportTitle();
-    wxString sSctiptType();
-
 private:
     bool Create(wxWindow* parent
         , wxWindowID id
@@ -67,32 +63,18 @@ private:
     bool DeleteCustomSqlReport();
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
-    void ShowCursorCoordinates(wxTimerEvent& /*event*/);
 
-    wxWindow* parent_;
     wxTextCtrl* tcSourceTxtCtrl_;
+    wxTextCtrl* html_text_;
 
-    wxString sQuery_;
-    bool newFileCreated_;
-    wxString loadedFileName_;
-    wxString customSqlReportSelectedItem_;
-    bool edit_;
-    bool newload_;
-    bool navCtrlUpdateRequired_;
     wxButton* button_Open_;
     wxButton* button_Save_;
     wxButton* button_Run_;
     wxButton* button_Clear_;
     wxTextCtrl* reportTitleTxtCtrl_;
-    wxCheckBox* headingOnlyCheckBox_;
-    wxCheckBox* subMenuCheckBox_;
-    wxRadioBox* m_radio_box_;
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;
-
-    wxTimer* timer_;
-    static const int INTERVAL = 250;
 
 };
 
