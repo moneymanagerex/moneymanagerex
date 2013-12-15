@@ -169,7 +169,7 @@ AC_DEFUN([AM_PATH_WXCONFIG],
     if test -n "$wx_ver_ok"; then
 
       AC_MSG_RESULT(yes (version $WX_VERSION))
-      WX_LIBS=`$WX_CONFIG_WITH_ARGS --libs std, aui`
+      WX_LIBS=`$WX_CONFIG_WITH_ARGS --libs std, aui, stc`
 
       dnl is this even still appropriate?  --static is a real option now
       dnl and WX_CONFIG_WITH_ARGS is likely to contain it if that is
