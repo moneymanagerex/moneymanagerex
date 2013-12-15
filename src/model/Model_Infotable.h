@@ -131,6 +131,14 @@ public:
 
         return this->GetIntInfo("DATAVERSION", 0) >= mmex::MIN_DATAVERSION;
     }
+public:
+    static loop_t to_loop_t()
+    {
+        loop_t loop;
+        for (const auto &r: instance().all())
+            loop += r.to_row_t();
+        return loop;
+    }
 };
 
 #endif // 
