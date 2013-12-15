@@ -2,6 +2,8 @@
 /////////////////////////////////////////////////////////////////////////////
 // Minimal editor added by Troels K 2008-04-08
 // Thanks to geralds for SetLexerXml() - http://wxforum.shadonet.com/viewtopic.php?t=7155
+#include <wx/stc/stc.h>
+#include "defs.h"
 
 class MinimalEditor : public wxStyledTextCtrl
 {
