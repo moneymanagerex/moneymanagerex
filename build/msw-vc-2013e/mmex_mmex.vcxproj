@@ -260,6 +260,7 @@
     <ClCompile Include="..\..\src\assetspanel.cpp" />
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
+    <ClCompile Include="..\..\src\customreportdialog.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\src\reports\budgetcategorysummary.cpp" />
     <ClCompile Include="..\..\src\budgetentrydialog.cpp" />
@@ -320,6 +321,7 @@
     <ClCompile Include="..\..\src\util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\customreportdialog.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />

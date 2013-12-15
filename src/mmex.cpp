@@ -27,6 +27,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "currencydialog.h"
+#include "customreportdialog.h"
 #include "filtertransdialog.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
@@ -595,6 +596,7 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
     EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
     EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
     EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
+    EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnCustomReport)
     EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
     EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
     EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
@@ -2558,7 +2560,7 @@ void mmGUIFrame::createMenu()
 wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &name)
 {
     toolBar_ = new wxToolBar(this, id, wxDefaultPosition, wxDefaultSize, style, name);
-    wxBitmap toolBarBitmaps[14];
+    wxBitmap toolBarBitmaps[15];
     toolBarBitmaps[0] = wxBitmap(new_xpm);
     toolBarBitmaps[1] = wxBitmap(open_xpm);
     toolBarBitmaps[2] = wxBitmap(save_xpm);
@@ -2573,6 +2575,7 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
     toolBarBitmaps[11] = wxBitmap(new_transaction_xpm);
     toolBarBitmaps[12] = wxBitmap(about_xpm);
     toolBarBitmaps[13] = wxBitmap(help_xpm);
+    toolBarBitmaps[14] = wxBitmap(customsql_xpm);
 
     toolBar_->AddTool(MENU_NEW, _("New"), toolBarBitmaps[0], _("New Database"));
     toolBar_->AddTool(MENU_OPEN, _("Open"), toolBarBitmaps[1], _("Open Database"));
@@ -2585,6 +2588,7 @@ wxToolBar* mmGUIFrame::CreateToolBar(long style, wxWindowID id, const wxString &
     toolBar_->AddTool(MENU_CURRENCY, _("Organize Currency"), toolBarBitmaps[7], _("Show Organize Currency Dialog"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(MENU_TRANSACTIONREPORT, _("Transaction Report Filter"), toolBarBitmaps[8], _("Transaction Report Filter"));
+    toolBar_->AddTool(wxID_VIEW_LIST, _("Custom Reports Manager"), toolBarBitmaps[14], _("Custom Reports Manager"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_PREFERENCES, _("&Options..."), toolBarBitmaps[10], _("Show the Options Dialog"));
     toolBar_->AddSeparator();
@@ -3255,6 +3259,17 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
         mmReportTransactions* rs = new mmReportTransactions(trans, dlg->getAccountID(), dlg);
         createReportsPage(rs, true);
+    }
+}
+
+void mmGUIFrame::OnCustomReport(wxCommandEvent& /*event*/)
+{
+    if (!m_db) return;
+
+    mmCustomReportsDialog* dlg = new mmCustomReportsDialog(this);
+    if (dlg->ShowModal() == wxID_OK)
+    {
+        //TODO:
     }
 }
 
