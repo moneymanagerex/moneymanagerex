@@ -25,11 +25,23 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  Revision of last commit: $Revision$
  Author of last commit:   $Author$
 
- When creating a build:
- Update the MMEX_REVISION_ID string to the latest SVN Revision first,
- OR
- Commit a change to the SVN repository, then create the build.
+ The definition: #define _MM_EX_BUILD_TYPE_RELEASE
+ is used to control the release type.
+
+ Development Build:
+ Remove the definition: _MM_EX_BUILD_TYPE_RELEASE
+
+ Release Build:
+ Include the definition: _MM_EX_BUILD_TYPE_RELEASE
+
+ Revision ID: MMEX_REVISION_ID
+ Update the revision counter to the latest SVN Revision by either
+ making a change to the file and commit the changes, or
+ update the counter manually. A manual change is not saved to SVN,
+ but will appear on the revision heading of the build.
  *************************************************************************/
+//#define _MM_EX_BUILD_TYPE_RELEASE
+
 const wxString MMEX_REVISION_ID = "$Rev$";
 //---------------------------------------------------------------------------
 const int mmex::MIN_DATAVERSION = 2;
