@@ -48,15 +48,9 @@ private:
     void fillControls();
     void OnOpen(wxCommandEvent& event);
     void OnSave(wxCommandEvent& event);
-    bool SaveCustomReport();
     void OnRun(wxCommandEvent& event);
     void OnClear(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
-    void OnCheckedHeading(wxCommandEvent& event);
-    void OnCheckedSubReport(wxCommandEvent& event);
-    void OnTextChangeHeading(wxCommandEvent& event);
-    void OnTextChangeSubReport(wxCommandEvent& event);
-    void SetDialogBoxForHeadings(bool bHeading);
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     void OnLabelChanged(wxTreeEvent& event);
@@ -75,16 +69,20 @@ private:
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;
+    wxString m_selectedGroup;
 
 };
 
 class MyTreeItemData : public wxTreeItemData
 {
 public:
-    MyTreeItemData(int report_id) : m_report_id(report_id) { }
+    MyTreeItemData(int report_id, wxString selectedGroup) : m_report_id(report_id)
+    , m_selectedGroup(selectedGroup) { }
     int get_report_id() { return m_report_id; }
+    wxString get_group_name() { return m_selectedGroup; }
 private:
     int m_report_id;
+    wxString m_selectedGroup;
 };
 
 #endif

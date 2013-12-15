@@ -27,7 +27,10 @@ int sourceTextHeight = 200; // Determines height of Source Textbox.
 enum
 {
     HEADING_ONLY = wxID_HIGHEST + 1,
-    SUB_REPORT
+    SUB_REPORT,
+    ID_NEW1,
+    ID_NEW2,
+    ID_DELETE
 };
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
@@ -38,10 +41,6 @@ BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
     EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLEAR, mmGeneralReportManager::OnClear)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
-    EVT_CHECKBOX(HEADING_ONLY, mmGeneralReportManager::OnCheckedHeading)
-    EVT_CHECKBOX(SUB_REPORT,   mmGeneralReportManager::OnCheckedSubReport)
-    EVT_TEXT( wxID_FILE, mmGeneralReportManager::OnTextChangeHeading)
-    EVT_TEXT( wxID_VIEW_DETAILS,       mmGeneralReportManager::OnTextChangeSubReport)
     //EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
@@ -105,8 +104,8 @@ void mmGeneralReportManager::fillControls()
     treeCtrl_->SetItemBold(root_, true);
     treeCtrl_->SetFocus();
     Model_Report::Data_Set reports = Model_Report::instance().all(Model_Report::COL_GROUPNAME);
-    wxTreeItemId group; //TODO:
-    wxString group_name;
+    wxTreeItemId group;
+    wxString group_name = "\x05";
     for (const auto& report : reports)
     {
         if (group_name != report.GROUPNAME)
@@ -114,9 +113,10 @@ void mmGeneralReportManager::fillControls()
             group = treeCtrl_->AppendItem(root_, report.GROUPNAME);
             group_name = report.GROUPNAME;
         }
-        treeCtrl_->AppendItem(group, report.REPORTNAME, -1, -1, new MyTreeItemData(report.REPORTID));
+        treeCtrl_->AppendItem(group, report.REPORTNAME, -1, -1
+            , new MyTreeItemData(report.REPORTID, report.GROUPNAME));
     }
-    treeCtrl_->Expand(root_);
+    treeCtrl_->ExpandAll();
     treeCtrl_->SetEvtHandlerEnabled(true);
 }
 
@@ -230,7 +230,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
 {
     wxString sScriptFileName = wxFileSelector( _("Load file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "File(*.*)|*.*" 
+        , "File(*.*)|*.*"
         , wxFD_FILE_MUST_EXIST);
     if ( !sScriptFileName.empty() )
     {
@@ -268,20 +268,6 @@ void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
     fillControls();
 }
 
-bool mmGeneralReportManager::SaveCustomReport()
-{
-    wxString reportfileName = reportTitleTxtCtrl_->GetValue();
-
-    if (reportfileName.IsEmpty())
-    {
-        wxMessageBox(_("Please supply the Report Title before saving"),
-            "Under Constraction", wxOK|wxICON_WARNING);
-        return false;
-    }
-    //TODO:
-    return true;
-}
-
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
     //TODO:
@@ -302,55 +288,29 @@ void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
     EndModal(wxID_CANCEL);
 }
 
-void mmGeneralReportManager::SetDialogBoxForHeadings(bool bHeading)
-{
-    button_Open_->Enable(tcSourceTxtCtrl_->IsEmpty());
-    button_Run_->Enable(!tcSourceTxtCtrl_->IsEmpty());
-    button_Clear_->Enable(!tcSourceTxtCtrl_->IsEmpty());
-}
-
-void mmGeneralReportManager::OnCheckedHeading(wxCommandEvent& /*event*/)
-{
-    button_Save_->Enable(!reportTitleTxtCtrl_->IsEmpty());
-}
-
-void mmGeneralReportManager::OnCheckedSubReport(wxCommandEvent& /*event*/)
-{
-    button_Save_->Enable();
-}
-
-void mmGeneralReportManager::OnTextChangeHeading(wxCommandEvent& /*event*/)
-{
-    button_Save_->Enable();
-}
-
-void mmGeneralReportManager::OnTextChangeSubReport(wxCommandEvent& /*event*/)
-{
-    button_Save_->Enable(!reportTitleTxtCtrl_->IsEmpty());
-    button_Run_->Enable(!tcSourceTxtCtrl_->IsEmpty());
-    button_Open_->Enable(tcSourceTxtCtrl_->IsEmpty());
-}
-
 void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId id = event.GetItem();
     treeCtrl_ ->SelectItem(id);
 
     wxMenu* customReportMenu = new wxMenu;
-    customReportMenu->Append(1, _("New SQL Custom Report"));
-    customReportMenu->Append(2, _("New Lua Custom Report"));
+    customReportMenu->Append(ID_NEW1, _("New SQL Custom Report"));
+    customReportMenu->Append(ID_NEW2, _("New Lua Custom Report"));
     customReportMenu->AppendSeparator();
-    customReportMenu->Append(wxID_DELETE, _("Delete Custom Report"));
+    customReportMenu->Append(ID_DELETE, _("Delete Custom Report"));
     PopupMenu(customReportMenu);
     delete customReportMenu;
 }
 
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
+    selectedItemId_ = event.GetItem();
+    m_selectedGroup = "";
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
 
     int id = iData->get_report_id();
+    m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
@@ -382,20 +342,39 @@ bool mmGeneralReportManager::DeleteCustomSqlReport()
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
-    if (id == 1)
+    if (id == ID_NEW1)
     {
-        reportTitleTxtCtrl_->SetValue(_("New SQL Custom Report"));
-        tcSourceTxtCtrl_->ChangeValue("select 'Hello World'");
+		wxString group_name;
+        if (selectedItemId_ == root_)
+        {
+			group_name = wxGetTextFromUser(_("Enter the name for the new report group")
+		        , _("Add Report Group"), "");
+		    if (group_name.IsEmpty())
+		        return;
+        }
+        else
+        {
+			//group_name = selectedItemId_.GetClientData()->get_group_name();
+		}        
+		int i = Model_Report::instance().all().size();
+		Model_Report::Data* report = Model_Report::instance().create();
+		report->GROUPNAME = group_name;
+		report->REPORTNAME = wxString::Format(_("New SQL Report %i"), i);
+		report->CONTENTTYPE = "SQL";
+		report->CONTENT = "select 'Hello World'";
+		report->TEMPLATEPATH = "sample.html";
+		Model_Report::instance().save(report);
     }
-    if (id == 2)
+    else if (id == ID_NEW2)
     {
-        reportTitleTxtCtrl_->SetValue(_("New Lua Custom Report"));
+        reportTitleTxtCtrl_->SetValue(_("Lua"));
         tcSourceTxtCtrl_->ChangeValue("return \"Hello World\"");
     }
-    else if (id == wxID_DELETE)
+    else if (id == ID_DELETE)
     {
         //if (navCtrlUpdateRequired_) iSelectedId_--;
     }
+    fillControls();
 }
 
 void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
