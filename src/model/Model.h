@@ -124,6 +124,14 @@ public:
     {
         return this->remove(id, db_);
     }
+public:
+    static loop_t to_loop_t()
+    {
+        loop_t loop;
+        for (const auto &r: DB_TABLE::instance().all())
+            loop += r.to_row_t();
+        return loop;
+    }
 };
 
 #endif // 
