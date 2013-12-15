@@ -46,7 +46,7 @@ AX_CXX_COMPILE_STDCXX_11([noext],[mandatory])
 AM_OPTIONS_WXCONFIG
 AM_OPTIONS_WXPRESETS
 
-AM_WXPRESETS_FULL([2.9.4], [html, net, aui, adv, qa, webview])
+AM_WXPRESETS_FULL([2.9.4], [html, net, aui, adv, qa, webview, stc])
 
 ##########################################################################
 
