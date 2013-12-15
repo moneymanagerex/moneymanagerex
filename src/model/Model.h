@@ -74,8 +74,9 @@ public:
     using DB_TABLE::get;
     using DB_TABLE::save;
     using DB_TABLE::remove;
+    typedef typename DB_TABLE::COLUMN COLUMN;
     /** Return a list of Data records (Data_Set) derived directly from the database. */
-    typename DB_TABLE::Data_Set all(typename DB_TABLE::COLUMN col = typename DB_TABLE::COLUMN(0), bool asc = true)
+    typename DB_TABLE::Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return all(db_, col, asc);
