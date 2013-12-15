@@ -953,26 +953,24 @@ TransactionListCtrl::TransactionListCtrl(
 //----------------------------------------------------------------------------
 void TransactionListCtrl::createColumns(mmListCtrl &lst)
 {
-    const std::vector<std::tuple<int, wxString*, int, int> > def_data
-    {
-        std::make_tuple(COL_DATE      , new wxString("      " + _("Date")), 112, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_NUMBER    , new wxString(         _("Number")),  70, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_PAYEE_STR , new wxString(  "   " + _("Payee")), 150, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_STATUS    , new wxString(         _("Status")),  -2, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_CATEGORY  , new wxString(       _("Category")), 150, wxLIST_FORMAT_LEFT),
-        std::make_tuple(COL_WITHDRAWAL, new wxString(     _("Withdrawal")),  -2, wxLIST_FORMAT_RIGHT),
-        std::make_tuple(COL_DEPOSIT   , new wxString(        _("Deposit")),  -2, wxLIST_FORMAT_RIGHT),
-        std::make_tuple(COL_BALANCE   , new wxString(        _("Balance")),  -2, wxLIST_FORMAT_RIGHT),
-        std::make_tuple(COL_NOTES     , new wxString(          _("Notes")), 250, wxLIST_FORMAT_LEFT)
-    };
-
-    for (const auto& i : def_data)
-    {
-        const wxString param_name = wxString::Format("CHECK_COL%i_WIDTH", std::get<0>(i));
-        int width = Model_Setting::instance().GetIntSetting(param_name, std::get<2>(i));
-        lst.InsertColumn(std::get<0>(i), *std::get<1>(i), std::get<3>(i), width);
-        delete std::get<1>(i);
-    }
+    lst.InsertColumn(COL_DATE, "      " + _("Date"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_DATE), 112));
+    lst.InsertColumn(COL_NUMBER, _("Number"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_NUMBER), 70));
+    lst.InsertColumn(COL_PAYEE_STR, "   " + _("Payee"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_PAYEE_STR), 150));
+    lst.InsertColumn(COL_STATUS, _("Status"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_STATUS), -2));
+    lst.InsertColumn(COL_CATEGORY, _("Category"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_CATEGORY), 150));
+    lst.InsertColumn(COL_WITHDRAWAL, _("Withdrawal"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_WITHDRAWAL), -2));
+    lst.InsertColumn(COL_DEPOSIT, _("Deposit"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_DEPOSIT), -2));
+    lst.InsertColumn(COL_BALANCE, _("Balance"), wxLIST_FORMAT_RIGHT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_BALANCE), -2));
+    lst.InsertColumn(COL_NOTES, _("Notes"), wxLIST_FORMAT_LEFT
+        , Model_Setting::instance().GetIntSetting(wxString::Format("CHECK_COL%i_WIDTH", COL_NOTES), 250));
 }
 
 void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
