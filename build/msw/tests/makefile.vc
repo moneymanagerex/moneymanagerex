@@ -97,9 +97,11 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categdialog.obj \
 	mmex_tests_constants.obj \
 	mmex_tests_currencydialog.obj \
+	mmex_tests_customreportdialog.obj \
 	mmex_tests_dbwrapper.obj \
 	mmex_tests_filtertransdialog.obj \
 	mmex_tests_maincurrencydialog.obj \
+	mmex_tests_minimaleditor.obj \
 	mmex_tests_mmCalculator.obj \
 	mmex_tests_mmOption.obj \
 	mmex_tests_mmcheckingpanel.obj \
@@ -276,6 +278,9 @@ __WXLIB_AUI_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_aui.lib
 __WXLIB_ADV_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_adv.lib
 !endif
 !if "$(WX_MONOLITHIC)" == "0"
+__WXLIB_STC_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_stc.lib
+!endif
+!if "$(WX_MONOLITHIC)" == "0"
 __WXLIB_WEBVIEW_NAME_p = wxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_webview.lib
 !endif
 !if "$(WX_MONOLITHIC)" == "0"
@@ -394,7 +399,7 @@ cppunit.lib:
 
 mmex_tests.exe: $(MMEX_TESTS_OBJECTS) wxsqlite.lib lua.lib cppunit.lib mmex_tests_mmex_tests.res
 	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG) /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_tests_CPU_SUF_FILENAMES)$(____mmex_tests_LIB_SUF_FILENAMES)  $(__DEBUGINFO_54) /pdb:"mmex_tests.pdb" $(__DEBUGINFO_58) /SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 $(__mmex_tests_LINK_FLAGS) /SUBSYSTEM:CONSOLE $(LDFLAGS) @<<
-	$(MMEX_TESTS_OBJECTS) $(MMEX_TESTS_RESOURCES)  wxsqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_WEBVIEW_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib cppunit.lib
+	$(MMEX_TESTS_OBJECTS) $(MMEX_TESTS_RESOURCES)  wxsqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_STC_NAME_p) wxscintilla$(WX3RDPARTYLIBPOSTFIX).lib $(__WXLIB_WEBVIEW_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib cppunit.lib
 <<
 	mt.exe -manifest ".\mmex_tests.exe.manifest" -outputresource:".\mmex_tests.exe";1
 
@@ -551,6 +556,9 @@ mmex_tests_constants.obj: ..\..\..\src\constants.cpp
 mmex_tests_currencydialog.obj: ..\..\..\src\currencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\currencydialog.cpp
 
+mmex_tests_customreportdialog.obj: ..\..\..\src\customreportdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\customreportdialog.cpp
+
 mmex_tests_dbwrapper.obj: ..\..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\dbwrapper.cpp
 
@@ -559,6 +567,9 @@ mmex_tests_filtertransdialog.obj: ..\..\..\src\filtertransdialog.cpp
 
 mmex_tests_maincurrencydialog.obj: ..\..\..\src\maincurrencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\maincurrencydialog.cpp
+
+mmex_tests_minimaleditor.obj: ..\..\..\src\minimaleditor.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\minimaleditor.cpp
 
 mmex_tests_mmCalculator.obj: ..\..\..\src\mmCalculator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmCalculator.cpp

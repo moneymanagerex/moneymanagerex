@@ -248,6 +248,7 @@
         <wx-lib>xml</wx-lib>
         <wx-lib>aui</wx-lib>
         <wx-lib>adv</wx-lib>
+        <wx-lib>stc</wx-lib>
         <wx-lib>webview</wx-lib>
         <wx-lib>base</wx-lib>
 

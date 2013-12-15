@@ -80,7 +80,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxmsw30u_webview.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxmsw30u_stc.lib wxscintilla.lib wxmsw30u_webview.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex_tests.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -172,7 +172,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxmsw30ud_webview.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxmsw30ud_stc.lib wxscintillad.lib wxmsw30ud_webview.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex_tests.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -263,7 +263,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 /DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxmsw30u_webview.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30u_core.lib wxmsw30u_qa.lib wxbase30u_net.lib wxmsw30u_html.lib wxbase30u_xml.lib wxmsw30u_aui.lib wxmsw30u_adv.lib wxmsw30u_stc.lib wxscintilla.lib wxmsw30u_webview.lib wxbase30u.lib wxtiff.lib wxjpeg.lib wxpng.lib wxzlib.lib wxregexu.lib wxexpat.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex_tests.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -355,7 +355,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1"
-				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxmsw30ud_webview.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
+				AdditionalDependencies="$(PlatformName)\$(ConfigurationName)\wxsqlite.lib $(PlatformName)\$(ConfigurationName)\lua.lib wxmsw30ud_core.lib wxmsw30ud_qa.lib wxbase30ud_net.lib wxmsw30ud_html.lib wxbase30ud_xml.lib wxmsw30ud_aui.lib wxmsw30ud_adv.lib wxmsw30ud_stc.lib wxscintillad.lib wxmsw30ud_webview.lib wxbase30ud.lib wxtiffd.lib wxjpegd.lib wxpngd.lib wxzlibd.lib wxregexud.lib wxexpatd.lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib $(PlatformName)\$(ConfigurationName)\cppunit.lib"
 				OutputFile="$(PlatformName)\$(ConfigurationName)\mmex_tests.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -489,6 +489,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\customreportdialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\dbwrapper.cpp"
 				>
 			</File>
@@ -526,6 +530,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\maincurrencydialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\minimaleditor.cpp"
 				>
 			</File>
 			<File
@@ -899,6 +907,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\customreportdialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\dbwrapper.h"
 				>
 			</File>
@@ -944,6 +956,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\maincurrencydialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\minimaleditor.h"
 				>
 			</File>
 			<File

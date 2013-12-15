@@ -114,9 +114,11 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.o \
 	mmex_constants.o \
 	mmex_currencydialog.o \
+	mmex_customreportdialog.o \
 	mmex_dbwrapper.o \
 	mmex_filtertransdialog.o \
 	mmex_maincurrencydialog.o \
+	mmex_minimaleditor.o \
 	mmex_mmCalculator.o \
 	mmex_mmOption.o \
 	mmex_mmcheckingpanel.o \
@@ -216,6 +218,9 @@ __WXLIB_AUI_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_aui
 endif
 ifeq ($(WX_MONOLITHIC),0)
 __WXLIB_ADV_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_adv
+endif
+ifeq ($(WX_MONOLITHIC),0)
+__WXLIB_STC_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_stc
 endif
 ifeq ($(WX_MONOLITHIC),0)
 __WXLIB_WEBVIEW_NAME_p = -lwxmsw$(WX_VERSION)$(WXLIBPOSTFIX)_webview
@@ -353,7 +358,7 @@ liblua.a: $(LUA_OBJECTS)
 	ranlib $@
 
 mmex.exe: $(MMEX_OBJECTS) libwxsqlite.a liblua.a mmex_resources_mmex_rc.o
-	$(CXX) -o $@ $(MMEX_OBJECTS)  -mthreads -L$(WX_DIR)$(WXLIBPATH)  -L$(WX_DIR)\lib\gcc$(____mmex_LIB_SUF_FILENAMES) -mthreads $(__DEBUGINFO) -Wl,--subsystem,windows -mwindows $(LDFLAGS)  libwxsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_WEBVIEW_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32
+	$(CXX) -o $@ $(MMEX_OBJECTS)  -mthreads -L$(WX_DIR)$(WXLIBPATH)  -L$(WX_DIR)\lib\gcc$(____mmex_LIB_SUF_FILENAMES) -mthreads $(__DEBUGINFO) -Wl,--subsystem,windows -mwindows $(LDFLAGS)  libwxsqlite.a liblua.a $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_STC_NAME_p) -lwxscintilla$(WX3RDPARTYLIBPOSTFIX) $(__WXLIB_WEBVIEW_NAME_p) $(__WXLIB_BASE_NAME_p) -lwxtiff$(WX3RDPARTYLIBPOSTFIX) -lwxjpeg$(WX3RDPARTYLIBPOSTFIX) -lwxpng$(WX3RDPARTYLIBPOSTFIX) -lwxzlib$(WX3RDPARTYLIBPOSTFIX) -lwxregex$(WXLIBPOSTFIX) -lwxexpat$(WX3RDPARTYLIBPOSTFIX) -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinspool -lwinmm -lshell32 -lcomctl32 -lole32 -loleaut32 -luuid -lrpcrt4 -ladvapi32 -lwsock32
 
 install_mmex: mmex.exe
 	-mkdir $(PREFIX)\mmex\bin
@@ -521,6 +526,9 @@ mmex_constants.o: ../../src/constants.cpp
 mmex_currencydialog.o: ../../src/currencydialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_customreportdialog.o: ../../src/customreportdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_dbwrapper.o: ../../src/dbwrapper.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -528,6 +536,9 @@ mmex_filtertransdialog.o: ../../src/filtertransdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_maincurrencydialog.o: ../../src/maincurrencydialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_minimaleditor.o: ../../src/minimaleditor.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmCalculator.o: ../../src/mmCalculator.cpp
