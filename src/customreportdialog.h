@@ -22,18 +22,19 @@
 
 #include "defs.h"
 #include <wx/timer.h>
+//#include "minimaleditor.h"
 
-class mmCustomReportsDialog: public wxDialog
+class mmGeneralReportManager: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmCustomReportsDialog )
+    DECLARE_DYNAMIC_CLASS( mmGeneralReportManager )
     DECLARE_EVENT_TABLE()
 
 public:
     /// Constructors
-    mmCustomReportsDialog( ) {}
-    virtual ~mmCustomReportsDialog();
+    mmGeneralReportManager( ) {}
+    virtual ~mmGeneralReportManager();
 
-    mmCustomReportsDialog(wxWindow* parent);
+    mmGeneralReportManager(wxWindow* parent);
 
     wxString sScript();
     wxString sReportTitle();
@@ -70,6 +71,7 @@ private:
 
     wxWindow* parent_;
     wxTextCtrl* tcSourceTxtCtrl_;
+
     wxString sQuery_;
     bool newFileCreated_;
     wxString loadedFileName_;
@@ -86,7 +88,9 @@ private:
     wxCheckBox* subMenuCheckBox_;
     wxRadioBox* m_radio_box_;
     wxTreeCtrl* treeCtrl_;
-    int iSelectedId_;
+    wxTreeItemId root_;
+    wxTreeItemId selectedItemId_;
+
     wxTimer* timer_;
     static const int INTERVAL = 250;
 

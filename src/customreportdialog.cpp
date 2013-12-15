@@ -19,6 +19,8 @@
 #include "customreportdialog.h"
 #include "paths.h"
 #include "util.h"
+#include "model/Model_Infotable.h"
+#include "model/Model_Report.h"
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
@@ -28,28 +30,28 @@ enum
     SUB_REPORT
 };
 
-IMPLEMENT_DYNAMIC_CLASS( mmCustomReportsDialog, wxDialog )
+IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
-BEGIN_EVENT_TABLE( mmCustomReportsDialog, wxDialog )
-    EVT_BUTTON(wxID_OPEN,  mmCustomReportsDialog::OnOpen)
-    EVT_BUTTON(wxID_SAVE,  mmCustomReportsDialog::OnSave)
-    EVT_BUTTON(wxID_REFRESH, mmCustomReportsDialog::OnRun)
-    EVT_BUTTON(wxID_CLEAR, mmCustomReportsDialog::OnClear)
-    EVT_BUTTON(wxID_CLOSE, mmCustomReportsDialog::OnClose)
-    EVT_CHECKBOX(HEADING_ONLY, mmCustomReportsDialog::OnCheckedHeading)
-    EVT_CHECKBOX(SUB_REPORT,   mmCustomReportsDialog::OnCheckedSubReport)
-    EVT_TEXT( wxID_FILE, mmCustomReportsDialog::OnTextChangeHeading)
-    EVT_TEXT( wxID_VIEW_DETAILS,       mmCustomReportsDialog::OnTextChangeSubReport)
-    //EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmCustomReportsDialog::OnItemRightClick)
-    EVT_TREE_SEL_CHANGED(wxID_ANY, mmCustomReportsDialog::OnSelChanged)
-    EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmCustomReportsDialog::OnLabelChanged)
-    EVT_TREE_ITEM_MENU(wxID_ANY, mmCustomReportsDialog::OnItemRightClick)
-    //EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmCustomReportsDialog::OnDoubleClicked)
-    EVT_MENU(wxID_ANY, mmCustomReportsDialog::OnMenuSelected)
-    EVT_TIMER(wxID_ANY, mmCustomReportsDialog::ShowCursorCoordinates)
+BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
+    EVT_BUTTON(wxID_OPEN,  mmGeneralReportManager::OnOpen)
+    EVT_BUTTON(wxID_SAVE,  mmGeneralReportManager::OnSave)
+    EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnRun)
+    EVT_BUTTON(wxID_CLEAR, mmGeneralReportManager::OnClear)
+    EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
+    EVT_CHECKBOX(HEADING_ONLY, mmGeneralReportManager::OnCheckedHeading)
+    EVT_CHECKBOX(SUB_REPORT,   mmGeneralReportManager::OnCheckedSubReport)
+    EVT_TEXT( wxID_FILE, mmGeneralReportManager::OnTextChangeHeading)
+    EVT_TEXT( wxID_VIEW_DETAILS,       mmGeneralReportManager::OnTextChangeSubReport)
+    //EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
+    EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
+    EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
+    EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
+    //EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmGeneralReportManager::OnDoubleClicked)
+    EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
+    EVT_TIMER(wxID_ANY, mmGeneralReportManager::ShowCursorCoordinates)
 END_EVENT_TABLE()
 
-mmCustomReportsDialog::mmCustomReportsDialog(wxWindow* parent)
+mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 : tcSourceTxtCtrl_()
 , navCtrlUpdateRequired_(false)
 , newFileCreated_(true)
@@ -61,24 +63,28 @@ mmCustomReportsDialog::mmCustomReportsDialog(wxWindow* parent)
     Create(parent_, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(500, 400), style);
 }
 
-mmCustomReportsDialog::~mmCustomReportsDialog()
+mmGeneralReportManager::~mmGeneralReportManager()
 {
     timer_->Stop();
 }
 
 
-bool mmCustomReportsDialog::Create( wxWindow* parent, wxWindowID id,
-                        const wxString& caption, const wxPoint& pos, const wxSize& size, long style )
+bool mmGeneralReportManager::Create( wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style )
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     wxAcceleratorEntry entries[1];
     entries[0].Set(wxACCEL_NORMAL, WXK_F9, wxID_REFRESH);
     wxAcceleratorTable accel(1, entries);
     SetAcceleratorTable(accel);
 
-    Connect(wxID_REFRESH, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmCustomReportsDialog::OnRun));
+    Connect(wxID_REFRESH, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun));
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -87,7 +93,6 @@ bool mmCustomReportsDialog::Create( wxWindow* parent, wxWindowID id,
     SetIcon(mmex::getProgramIcon());
     Centre();
 
-
     timer_ = new wxTimer(this, wxID_ANY);
     timer_->Start(INTERVAL);
 
@@ -95,45 +100,32 @@ bool mmCustomReportsDialog::Create( wxWindow* parent, wxWindowID id,
     return TRUE;
 }
 
-void mmCustomReportsDialog::fillControls()
+void mmGeneralReportManager::fillControls()
 {
-    button_Save_->Disable(); // Will be activated when changes detected.
-
-    if (edit_)
-    {
-        m_radio_box_->SetSelection(0);
-        reportTitleTxtCtrl_->ChangeValue("Under Constraction");
-        if (false) //TODO:
-        {
-            headingOnlyCheckBox_->SetValue(true);
-            SetDialogBoxForHeadings(true);
-        }
-        else
-        {
-            //loadedFileName_ = reportIndex_->CurrentReportFileName(false);
-            //subMenuCheckBox_->SetValue(reportIndex_->ReportIsSubReport());
-
-            /*if (wxFileExists(reportIndex_->CurrentReportFileName()))
-            {
-                wxString sSQLData;
-                reportIndex_->GetReportFileData(sSQLData);
-                tcSourceTxtCtrl_->ChangeValue(sSQLData);
-            }*/
-        }
-        button_Open_->Disable();
-    }
-    else
-    {
-        button_Run_->Disable();
-        iSelectedId_ = -1;
-    }
 
     treeCtrl_->DeleteAllItems();
-    wxTreeItemId root_ = treeCtrl_->AddRoot(_("Custom Reports"));
+    root_ = treeCtrl_->AddRoot(_("Custom Reports"));
+    selectedItemId_ = root_;
+    treeCtrl_->SetItemBold(root_, true);
+    treeCtrl_->SetFocus();
+    Model_Report::Data_Set reports = Model_Report::instance().all(Model_Report::COL_GROUPNAME);
+    wxTreeItemId maincat; //TODO:
+    wxString group_name;
+    for (const auto& report : reports)
+    {
+        if (group_name != report.GROUPNAME)
+        {
+            maincat = treeCtrl_->AppendItem(root_, report.GROUPNAME);
+            group_name = report.GROUPNAME;
+        }
+        treeCtrl_->AppendItem(maincat, report.REPORTNAME, 1, 1);
+    }
+    treeCtrl_->Expand(root_);
+
 
 }
 
-void mmCustomReportsDialog::CreateControls()
+void mmGeneralReportManager::CreateControls()
 {
     wxSizerFlags flags, flagsExpand;
     flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
@@ -198,7 +190,7 @@ void mmCustomReportsDialog::CreateControls()
     tcSourceTxtCtrl_ = new wxTextCtrl( this, wxID_VIEW_DETAILS, "",
         wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE|wxHSCROLL|wxTE_NOHIDESEL );
     tcSourceTxtCtrl_->Connect(wxID_ANY, wxEVT_CHAR,
-        wxKeyEventHandler(mmCustomReportsDialog::OnSourceTxtChar), NULL, this);
+        wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
     int font_size = this->GetFont().GetPointSize();
     wxFont teletype( font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
     tcSourceTxtCtrl_->SetFont(teletype);
@@ -236,17 +228,17 @@ void mmCustomReportsDialog::CreateControls()
 
 }
 
-wxString mmCustomReportsDialog::sScript()
+wxString mmGeneralReportManager::sScript()
 {
     return sQuery_;
 }
 
-wxString mmCustomReportsDialog::sReportTitle()
+wxString mmGeneralReportManager::sReportTitle()
 {
     return reportTitleTxtCtrl_->GetValue();
 }
 
-wxString mmCustomReportsDialog::sSctiptType()
+wxString mmGeneralReportManager::sSctiptType()
 {
     int i = m_radio_box_->GetSelection();
     if (i == 0)
@@ -255,7 +247,7 @@ wxString mmCustomReportsDialog::sSctiptType()
         return "LUA";
 }
 
-void mmCustomReportsDialog::OnOpen(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
 {
     wxString sScriptFileName = wxFileSelector( sSctiptType()=="SQL" ?
         _("Load Custom SQL file:") : _("Load Custom Lua file:"),
@@ -296,13 +288,13 @@ void mmCustomReportsDialog::OnOpen(wxCommandEvent& /*event*/)
     }
 }
 
-void mmCustomReportsDialog::OnSave(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
 {
     if (SaveCustomReport() && navCtrlUpdateRequired_)
         fillControls();
 }
 
-bool mmCustomReportsDialog::SaveCustomReport()
+bool mmGeneralReportManager::SaveCustomReport()
 {
     wxString reportfileName = reportTitleTxtCtrl_->GetValue();
 
@@ -316,14 +308,14 @@ bool mmCustomReportsDialog::SaveCustomReport()
     return true;
 }
 
-void mmCustomReportsDialog::OnRun(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
    if (tcSourceTxtCtrl_->IsEmpty()) return;
    sQuery_ = tcSourceTxtCtrl_->GetValue();
    EndModal(wxID_MORE);
 }
 
-void mmCustomReportsDialog::OnClear(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnClear(wxCommandEvent& /*event*/)
 {
     tcSourceTxtCtrl_->Clear();
     button_Save_->Disable();
@@ -333,7 +325,7 @@ void mmCustomReportsDialog::OnClear(wxCommandEvent& /*event*/)
     tcSourceTxtCtrl_->SetFocus();
 }
 
-void mmCustomReportsDialog::OnClose(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
 {
     if (navCtrlUpdateRequired_ && !button_Save_->IsEnabled())
         EndModal(wxID_OK);
@@ -341,7 +333,7 @@ void mmCustomReportsDialog::OnClose(wxCommandEvent& /*event*/)
         EndModal(wxID_CANCEL);
 }
 
-void mmCustomReportsDialog::SetDialogBoxForHeadings(bool bHeading)
+void mmGeneralReportManager::SetDialogBoxForHeadings(bool bHeading)
 {
     headingOnlyCheckBox_->Enable(tcSourceTxtCtrl_->IsEmpty());
     headingOnlyCheckBox_->SetValue(bHeading && tcSourceTxtCtrl_->IsEmpty());
@@ -352,28 +344,28 @@ void mmCustomReportsDialog::SetDialogBoxForHeadings(bool bHeading)
     button_Clear_->Enable(!headingOnlyCheckBox_->GetValue() && !tcSourceTxtCtrl_->IsEmpty());
 }
 
-void mmCustomReportsDialog::OnCheckedHeading(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnCheckedHeading(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable(!reportTitleTxtCtrl_->IsEmpty());
 
     SetDialogBoxForHeadings(headingOnlyCheckBox_->IsChecked());
 }
 
-void mmCustomReportsDialog::OnCheckedSubReport(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnCheckedSubReport(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable();
     headingOnlyCheckBox_->Enable(!subMenuCheckBox_->GetValue());
     navCtrlUpdateRequired_ = true;
 }
 
-void mmCustomReportsDialog::OnTextChangeHeading(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnTextChangeHeading(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable();
     edit_ = false;          // Allow saving as a new file name.
     navCtrlUpdateRequired_ = !edit_;
 }
 
-void mmCustomReportsDialog::OnTextChangeSubReport(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnTextChangeSubReport(wxCommandEvent& /*event*/)
 {
     button_Save_->Enable(!reportTitleTxtCtrl_->IsEmpty());
     button_Run_->Enable(!tcSourceTxtCtrl_->IsEmpty());
@@ -381,7 +373,7 @@ void mmCustomReportsDialog::OnTextChangeSubReport(wxCommandEvent& /*event*/)
     navCtrlUpdateRequired_ = !edit_;
 }
 
-void mmCustomReportsDialog::OnItemRightClick(wxTreeEvent& event)
+void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId id = event.GetItem();
     treeCtrl_ ->SelectItem(id);
@@ -395,7 +387,7 @@ void mmCustomReportsDialog::OnItemRightClick(wxTreeEvent& event)
     delete customReportMenu;
 }
 
-void mmCustomReportsDialog::OnSelChanged(wxTreeEvent& event)
+void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
@@ -406,13 +398,13 @@ void mmCustomReportsDialog::OnSelChanged(wxTreeEvent& event)
     //TODO:
 }
 
-void mmCustomReportsDialog::OnLabelChanged(wxTreeEvent& event)
+void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
 {
     edit_ = true;
     //TODO:
 }
 
-bool mmCustomReportsDialog::DeleteCustomSqlReport()
+bool mmGeneralReportManager::DeleteCustomSqlReport()
 {
     wxString msg = wxString() << _("Delete the Custom Report Title:")
                               << "\n\n"
@@ -425,7 +417,7 @@ bool mmCustomReportsDialog::DeleteCustomSqlReport()
     return (iError == wxYES);
 }
 
-void mmCustomReportsDialog::OnMenuSelected(wxCommandEvent& event)
+void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
     if (id == 1)
@@ -447,19 +439,19 @@ void mmCustomReportsDialog::OnMenuSelected(wxCommandEvent& event)
     else if (id == wxID_DELETE)
     {
         navCtrlUpdateRequired_ = DeleteCustomSqlReport();
-        if (navCtrlUpdateRequired_) iSelectedId_--;
+        //if (navCtrlUpdateRequired_) iSelectedId_--;
     }
     if (navCtrlUpdateRequired_) fillControls();
 }
 
-void mmCustomReportsDialog::OnSourceTxtChar(wxKeyEvent& event)
+void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
 {
     if (wxGetKeyState(wxKeyCode('A')) && wxGetKeyState(WXK_CONTROL))
         tcSourceTxtCtrl_->SetSelection(-1, -1); //select all
     event.Skip();
 }
 
-void mmCustomReportsDialog::ShowCursorCoordinates(wxTimerEvent& /*event*/)
+void mmGeneralReportManager::ShowCursorCoordinates(wxTimerEvent& /*event*/)
 {
     wxWindow *w = FindFocus();
     if (w && w->GetId() != wxID_VIEW_DETAILS) return;

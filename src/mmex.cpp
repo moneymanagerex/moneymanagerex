@@ -596,7 +596,7 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
     EVT_MENU(MENU_ASSETS, mmGUIFrame::OnAssets)
     EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
     EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
-    EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnCustomReport)
+    EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
     EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
     EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
     EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
@@ -3262,11 +3262,11 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     }
 }
 
-void mmGUIFrame::OnCustomReport(wxCommandEvent& /*event*/)
+void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
 {
     if (!m_db) return;
 
-    mmCustomReportsDialog* dlg = new mmCustomReportsDialog(this);
+    mmGeneralReportManager* dlg = new mmGeneralReportManager(this);
     if (dlg->ShowModal() == wxID_OK)
     {
         //TODO:
