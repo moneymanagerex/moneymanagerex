@@ -325,7 +325,11 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
             {
                 r.ACCOUNTNAME = account->ACCOUNTNAME;
                 if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
-                    r.PAYEENAME = account->ACCOUNTNAME;
+                {
+                    Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
+                    if (to_account)
+                        r.PAYEENAME = to_account->ACCOUNTNAME;
+                }
             }
 
             bills_.push_back(r);
@@ -343,7 +347,11 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
             {
                 r.ACCOUNTNAME = account->ACCOUNTNAME;
                 if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
-                    r.PAYEENAME = account->ACCOUNTNAME;
+                {
+                    Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
+                    if (to_account)
+                        r.PAYEENAME = to_account->ACCOUNTNAME;
+                }
             }
 
             bills_.push_back(r);
