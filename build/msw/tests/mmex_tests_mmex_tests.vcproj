@@ -533,10 +533,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\minimaleditor.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\mmCalculator.cpp"
 				>
 			</File>

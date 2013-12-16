@@ -21,7 +21,6 @@
 #define _MM_EX_CUSTOMREPORTDIALOG_H_
 
 #include "defs.h"
-//#include "minimaleditor.h"
 
 class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog

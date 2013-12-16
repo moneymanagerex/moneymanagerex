@@ -112,7 +112,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_dbwrapper.o \
 	mmex_tests_filtertransdialog.o \
 	mmex_tests_maincurrencydialog.o \
-	mmex_tests_minimaleditor.o \
 	mmex_tests_mmCalculator.o \
 	mmex_tests_mmOption.o \
 	mmex_tests_mmcheckingpanel.o \
@@ -381,9 +380,6 @@ mmex_tests_filtertransdialog.o: $(srcdir)/../../src/filtertransdialog.cpp
 
 mmex_tests_maincurrencydialog.o: $(srcdir)/../../src/maincurrencydialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/maincurrencydialog.cpp
-
-mmex_tests_minimaleditor.o: $(srcdir)/../../src/minimaleditor.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/minimaleditor.cpp
 
 mmex_tests_mmCalculator.o: $(srcdir)/../../src/mmCalculator.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmCalculator.cpp
