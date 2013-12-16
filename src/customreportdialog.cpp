@@ -353,8 +353,9 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
     m_reportType->ChangeValue("");
+    tcSourceTxtCtrl_->ChangeValue("");
     file_name_ctrl_->ChangeValue("");
-    tcSourceTxtCtrl_->ChangeValue("\n");
+    html_text_->ChangeValue("");
     wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);
     button_Run_->Enable(false);
@@ -374,7 +375,6 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         tcSourceTxtCtrl_->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
         tcSourceTxtCtrl_->SetKeyWords(0, "select from where and or");
         file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
-        button_Run_->Enable(true);
 
         wxTextFile tFile;
         tFile.Open(report->TEMPLATEPATH);
@@ -390,6 +390,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
             {
                 html_text_->AddText(text.ReadLine() + "\n");
             }
+            button_Run_->Enable(true);
         }
     }
 
