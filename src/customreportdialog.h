@@ -58,9 +58,9 @@ private:
     void OnSourceTxtChar(wxKeyEvent& event);
 
     wxStyledTextCtrl* tcSourceTxtCtrl_;
-    wxTextCtrl* html_text_;
+    wxStyledTextCtrl* html_text_;
     wxTextCtrl* file_name_ctrl_;
-    wxHtmlWindow* out_html_; 
+    wxHtmlWindow* out_html_;
 
     wxButton* button_Open_;
     wxButton* button_Save_;

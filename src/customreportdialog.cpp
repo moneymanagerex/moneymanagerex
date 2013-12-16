@@ -27,7 +27,8 @@ int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
 enum
 {
-    ID_TAB1,
+    MARGIN_LINE_NUMBERS,
+    ID_TAB1 = 0,
     ID_TAB2,
     ID_TAB3,
     HEADING_ONLY = wxID_HIGHEST + 1,
@@ -47,11 +48,9 @@ BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
     EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLEAR, mmGeneralReportManager::OnClear)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
-    //EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
-    //EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmGeneralReportManager::OnDoubleClicked)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
 END_EVENT_TABLE()
 
@@ -109,7 +108,7 @@ void mmGeneralReportManager::fillControls()
     selectedItemId_ = root_;
     treeCtrl_->SetItemBold(root_, true);
     treeCtrl_->SetFocus();
-    Model_Report::Data_Set reports = Model_Report::instance().all(Model_Report::COL_GROUPNAME);
+    Model_Report::Data_Set reports = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name = "\x05";
     for (const auto& report : reports)
@@ -184,6 +183,10 @@ void mmGeneralReportManager::CreateControls()
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
     tcSourceTxtCtrl_ = new wxStyledTextCtrl(script_tab, wxID_VIEW_DETAILS);
+    tcSourceTxtCtrl_->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
+    tcSourceTxtCtrl_->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
+    tcSourceTxtCtrl_->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
+    tcSourceTxtCtrl_->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
     tcSourceTxtCtrl_->Connect(wxID_ANY, wxEVT_CHAR
         , wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
     int font_size = this->GetFont().GetPointSize();
@@ -205,8 +208,23 @@ void mmGeneralReportManager::CreateControls()
     file_sizer->Add(new wxStaticText(html_tab, wxID_STATIC, _("File Name:")), flags);
     file_sizer->Add(file_name_ctrl_, flagsExpand);
 
-    html_text_ = new wxTextCtrl(html_tab, wxID_ANY, ""
-        , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_NOHIDESEL);
+    html_text_ = new wxStyledTextCtrl(html_tab, wxID_ANY);
+    html_text_->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
+    html_text_->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
+    html_text_->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
+    html_text_->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
+    html_text_->SetWrapMode (wxSTC_WRAP_WORD);
+    html_text_->StyleClearAll();
+    html_text_->SetLexer(wxSTC_LEX_HTML);
+    html_text_->StyleSetForeground (wxSTC_H_DOUBLESTRING,     wxColour(255,0,0));
+    html_text_->StyleSetForeground (wxSTC_H_SINGLESTRING,     wxColour(255,0,0));
+    html_text_->StyleSetForeground (wxSTC_H_ENTITY,           wxColour(255,0,0));
+    html_text_->StyleSetForeground (wxSTC_H_TAG,              wxColour(0,150,0));
+    html_text_->StyleSetForeground (wxSTC_H_TAGUNKNOWN,       wxColour(0,150,0));
+    html_text_->StyleSetForeground (wxSTC_H_ATTRIBUTE,        wxColour(0,0,150));
+    html_text_->StyleSetForeground (wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0,0,150));
+    html_text_->StyleSetForeground (wxSTC_H_COMMENT,          wxColour(150,150,150));
+
     html_sizer->Add(file_sizer);
     html_sizer->Add(html_text_, flagsExpand);
 
@@ -357,6 +375,22 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         tcSourceTxtCtrl_->SetKeyWords(0, "select from where and or");
         file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
         button_Run_->Enable(true);
+
+        wxTextFile tFile;
+        tFile.Open(report->TEMPLATEPATH);
+        if (!tFile.Open())
+        {
+            wxMessageBox(_("Unable to open file."), _("Custom Reports Manager"), wxOK|wxICON_ERROR);
+        }
+        else
+        {
+            wxFileInputStream input(report->TEMPLATEPATH);
+            wxTextInputStream text(input, "\x09", wxConvUTF8);
+            while (input.IsOk() && !input.Eof())
+            {
+                html_text_->AddText(text.ReadLine() + "\n");
+            }
+        }
     }
 
     //TODO:
