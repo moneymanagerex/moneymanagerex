@@ -318,6 +318,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         tcSourceTxtCtrl_->SetText(report->CONTENT);
         tcSourceTxtCtrl_->StyleClearAll();
         tcSourceTxtCtrl_->SetLexer(wxSTC_LEX_SQL);
+        tcSourceTxtCtrl_->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
+        tcSourceTxtCtrl_->SetKeyWords(0, "select from where and or");
     }
 
     //TODO:
