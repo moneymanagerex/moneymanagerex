@@ -21,9 +21,9 @@
 #define _MM_EX_CUSTOMREPORTDIALOG_H_
 
 #include "defs.h"
-#include <wx/timer.h>
 //#include "minimaleditor.h"
 
+class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmGeneralReportManager )
@@ -58,7 +58,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
 
-    wxTextCtrl* tcSourceTxtCtrl_;
+    wxStyledTextCtrl* tcSourceTxtCtrl_;
     wxTextCtrl* html_text_;
 
     wxButton* button_Open_;

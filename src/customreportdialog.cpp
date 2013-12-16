@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/stc/stc.h>
 #include "customreportdialog.h"
 #include "paths.h"
 #include "util.h"
@@ -176,8 +177,7 @@ void mmGeneralReportManager::CreateControls()
     script_tab->SetSizer(script_sizer);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
-    tcSourceTxtCtrl_ = new wxTextCtrl(script_tab, wxID_VIEW_DETAILS, ""
-        , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_NOHIDESEL);
+    tcSourceTxtCtrl_ = new wxStyledTextCtrl(script_tab, wxID_VIEW_DETAILS);
     tcSourceTxtCtrl_->Connect(wxID_ANY, wxEVT_CHAR
         , wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
     int font_size = this->GetFont().GetPointSize();
@@ -315,7 +315,9 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     if (report)
     {
         reportTitleTxtCtrl_->SetLabel(report->CONTENTTYPE);
-        tcSourceTxtCtrl_->SetValue(report->CONTENT);
+        tcSourceTxtCtrl_->SetText(report->CONTENT);
+        tcSourceTxtCtrl_->StyleClearAll();
+        tcSourceTxtCtrl_->SetLexer(wxSTC_LEX_SQL);
     }
 
     //TODO:
