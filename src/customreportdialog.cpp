@@ -27,6 +27,9 @@ int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
 enum
 {
+    ID_TAB1,
+    ID_TAB2,
+    ID_TAB3,
     HEADING_ONLY = wxID_HIGHEST + 1,
     SUB_REPORT,
     ID_NEW1,
@@ -175,7 +178,7 @@ void mmGeneralReportManager::CreateControls()
     wxNotebook* editors_notebook = new wxNotebook(this
         , ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
     wxPanel* script_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->AddPage(script_tab, _("Script"));
+    editors_notebook->InsertPage(ID_TAB1, script_tab, _("Script"));
     wxBoxSizer *script_sizer = new wxBoxSizer(wxVERTICAL);
     script_tab->SetSizer(script_sizer);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
@@ -189,16 +192,27 @@ void mmGeneralReportManager::CreateControls()
     script_sizer->Add(tcSourceTxtCtrl_, flagsExpand);
     script_sizer->Add(headingPanelSizerH4, flags.Center());
 
+
+    //Template
     wxPanel* html_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->AddPage(html_tab, _("Template"));
+    editors_notebook->InsertPage(ID_TAB2, html_tab, _("Template"));
     wxBoxSizer *html_sizer = new wxBoxSizer(wxVERTICAL);
     html_tab->SetSizer(html_sizer);
+
+    wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
+    file_name_ctrl_ = new wxTextCtrl(html_tab, wxID_FILE, wxEmptyString
+        , wxDefaultPosition, wxSize(200, -1), wxTE_READONLY);
+    file_sizer->Add(new wxStaticText(html_tab, wxID_STATIC, _("File Name:")), flags);
+    file_sizer->Add(file_name_ctrl_, flagsExpand);
+
     html_text_ = new wxTextCtrl(html_tab, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_NOHIDESEL);
+    html_sizer->Add(file_sizer);
     html_sizer->Add(html_text_, flagsExpand);
 
+    //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->AddPage(out_tab, _("Output"));
+    editors_notebook->InsertPage(ID_TAB3, out_tab, _("Output"));
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
     out_html_ = new wxHtmlWindow(out_tab, ID_OUTPUT_WIN
@@ -281,8 +295,8 @@ void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
-    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);  
-    n->SetSelection(2);
+    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
+    n->SetSelection(ID_TAB3);
 
     //TODO:
     //EndModal(wxID_MORE);
@@ -321,9 +335,11 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
     m_reportType->ChangeValue("");
+    file_name_ctrl_->ChangeValue("");
     tcSourceTxtCtrl_->ChangeValue("\n");
-    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);  
+    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);
+    button_Run_->Enable(false);
 
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
@@ -333,12 +349,14 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        m_reportType->SetValue(report->CONTENTTYPE);
+        m_reportType->ChangeValue(report->CONTENTTYPE);
         tcSourceTxtCtrl_->SetText(report->CONTENT);
         tcSourceTxtCtrl_->StyleClearAll();
         tcSourceTxtCtrl_->SetLexer(wxSTC_LEX_SQL);
         tcSourceTxtCtrl_->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
         tcSourceTxtCtrl_->SetKeyWords(0, "select from where and or");
+        file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
+        button_Run_->Enable(true);
     }
 
     //TODO:

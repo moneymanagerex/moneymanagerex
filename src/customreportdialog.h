@@ -59,6 +59,7 @@ private:
 
     wxStyledTextCtrl* tcSourceTxtCtrl_;
     wxTextCtrl* html_text_;
+    wxTextCtrl* file_name_ctrl_;
     wxHtmlWindow* out_html_; 
 
     wxButton* button_Open_;
