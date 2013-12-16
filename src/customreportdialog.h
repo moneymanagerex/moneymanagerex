@@ -59,12 +59,13 @@ private:
 
     wxStyledTextCtrl* tcSourceTxtCtrl_;
     wxTextCtrl* html_text_;
+    wxHtmlWindow* out_html_; 
 
     wxButton* button_Open_;
     wxButton* button_Save_;
     wxButton* button_Run_;
     wxButton* button_Clear_;
-    wxTextCtrl* reportTitleTxtCtrl_;
+    wxTextCtrl* m_reportType;
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;

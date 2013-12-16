@@ -31,7 +31,9 @@ enum
     SUB_REPORT,
     ID_NEW1,
     ID_NEW2,
-    ID_DELETE
+    ID_DELETE,
+    ID_OUTPUT_WIN,
+    ID_NOTEBOOK
 };
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
@@ -56,7 +58,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 , button_Save_()
 , button_Run_()
 , button_Clear_()
-, reportTitleTxtCtrl_()
+, m_reportType()
 , treeCtrl_()
 
 {
@@ -148,7 +150,7 @@ void mmGeneralReportManager::CreateControls()
     flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Script type:")), flags);
     flex_sizer->AddSpacer(1);
 
-    reportTitleTxtCtrl_ = new wxTextCtrl( this, wxID_PROPERTIES, ""
+    m_reportType = new wxTextCtrl( this, wxID_PROPERTIES, ""
         , wxDefaultPosition, wxSize(titleTextWidth,-1));
 
     long treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS;
@@ -159,7 +161,7 @@ void mmGeneralReportManager::CreateControls()
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
     headingPanelSizerH2->Add(flex_sizer, flags);
-    headingPanelSizerH2->Add(reportTitleTxtCtrl_, flags);
+    headingPanelSizerH2->Add(m_reportType, flags);
     headingPanelSizerH2->Add(treeCtrl_, flagsExpand);
 
     /****************************************
@@ -171,7 +173,7 @@ void mmGeneralReportManager::CreateControls()
     headingPanelSizerH->Add(headingPanelSizerV3, flagsExpand);
 
     wxNotebook* editors_notebook = new wxNotebook(this
-        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+        , ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
     wxPanel* script_tab = new wxPanel(editors_notebook, wxID_ANY);
     editors_notebook->AddPage(script_tab, _("Script"));
     wxBoxSizer *script_sizer = new wxBoxSizer(wxVERTICAL);
@@ -188,13 +190,21 @@ void mmGeneralReportManager::CreateControls()
     script_sizer->Add(headingPanelSizerH4, flags.Center());
 
     wxPanel* html_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->AddPage(html_tab, _("html"));
+    editors_notebook->AddPage(html_tab, _("Template"));
     wxBoxSizer *html_sizer = new wxBoxSizer(wxVERTICAL);
     html_tab->SetSizer(html_sizer);
     html_text_ = new wxTextCtrl(html_tab, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE | wxHSCROLL | wxTE_NOHIDESEL);
     html_sizer->Add(html_text_, flagsExpand);
 
+    wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->AddPage(out_tab, _("Output"));
+    wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
+    out_tab->SetSizer(out_sizer);
+    out_html_ = new wxHtmlWindow(out_tab, ID_OUTPUT_WIN
+        , wxDefaultPosition, wxDefaultSize
+        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
+   out_sizer->Add(out_html_, flagsExpand);
 
     button_Open_ = new wxButton(script_tab, wxID_OPEN);
     headingPanelSizerH4->Add(button_Open_, flags);
@@ -254,7 +264,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
             }
             tcSourceTxtCtrl_->SetValue(reportText);
             reportFile.Close();
-            reportTitleTxtCtrl_->SetLabel(selectedFileName.GetName());
+            m_reportType->SetLabel(selectedFileName.GetName());
         }
         else
         {
@@ -271,6 +281,9 @@ void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
+    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);  
+    n->SetSelection(2);
+
     //TODO:
     //EndModal(wxID_MORE);
 }
@@ -307,6 +320,11 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
+    m_reportType->ChangeValue("");
+    tcSourceTxtCtrl_->ChangeValue("\n");
+    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);  
+    n->SetSelection(0);
+
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
 
@@ -315,7 +333,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        reportTitleTxtCtrl_->SetLabel(report->CONTENTTYPE);
+        m_reportType->SetValue(report->CONTENTTYPE);
         tcSourceTxtCtrl_->SetText(report->CONTENT);
         tcSourceTxtCtrl_->StyleClearAll();
         tcSourceTxtCtrl_->SetLexer(wxSTC_LEX_SQL);
@@ -349,30 +367,30 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     int id = event.GetId();
     if (id == ID_NEW1)
     {
-		wxString group_name;
+        wxString group_name;
         if (selectedItemId_ == root_)
         {
-			group_name = wxGetTextFromUser(_("Enter the name for the new report group")
-		        , _("Add Report Group"), "");
-		    if (group_name.IsEmpty())
-		        return;
+            group_name = wxGetTextFromUser(_("Enter the name for the new report group")
+                , _("Add Report Group"), "");
+            if (group_name.IsEmpty())
+                return;
         }
         else
         {
-			//group_name = selectedItemId_.GetClientData()->get_group_name();
-		}        
-		int i = Model_Report::instance().all().size();
-		Model_Report::Data* report = Model_Report::instance().create();
-		report->GROUPNAME = group_name;
-		report->REPORTNAME = wxString::Format(_("New SQL Report %i"), i);
-		report->CONTENTTYPE = "SQL";
-		report->CONTENT = "select 'Hello World'";
-		report->TEMPLATEPATH = "sample.html";
-		Model_Report::instance().save(report);
+            //group_name = selectedItemId_.GetClientData()->get_group_name();
+        }
+        int i = Model_Report::instance().all().size();
+        Model_Report::Data* report = Model_Report::instance().create();
+        report->GROUPNAME = group_name;
+        report->REPORTNAME = wxString::Format(_("New SQL Report %i"), i);
+        report->CONTENTTYPE = "SQL";
+        report->CONTENT = "select 'Hello World'";
+        report->TEMPLATEPATH = "sample.html";
+        Model_Report::instance().save(report);
     }
     else if (id == ID_NEW2)
     {
-        reportTitleTxtCtrl_->SetValue(_("Lua"));
+        m_reportType->SetValue(_("Lua"));
         tcSourceTxtCtrl_->ChangeValue("return \"Hello World\"");
     }
     else if (id == ID_DELETE)
