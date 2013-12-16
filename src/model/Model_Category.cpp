@@ -19,6 +19,7 @@
 #include <tuple>
 #include "Model_Category.h"
 #include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
 #include "Model_Account.h"
 #include "reports/mmDateRange.h"
 
