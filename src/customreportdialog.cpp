@@ -109,12 +109,13 @@ void mmGeneralReportManager::fillControls()
     wxString group_name = "\x05";
     for (const auto& report : reports)
     {
-        if (group_name != report.GROUPNAME)
+        bool no_group = report.GROUPNAME.empty();
+        if (group_name != report.GROUPNAME && !no_group)
         {
             group = treeCtrl_->AppendItem(root_, report.GROUPNAME);
             group_name = report.GROUPNAME;
         }
-        treeCtrl_->AppendItem(group, report.REPORTNAME, -1, -1
+        treeCtrl_->AppendItem(no_group ? root_ : group, report.REPORTNAME, -1, -1
             , new MyTreeItemData(report.REPORTID, report.GROUPNAME));
     }
     treeCtrl_->ExpandAll();
