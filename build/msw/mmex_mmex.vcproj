@@ -401,6 +401,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\src\model\Model_Checking.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Report.cpp"
 				>
 			</File>
@@ -944,10 +948,6 @@
 			</File>
 			<File
 				RelativePath="..\..\src\maincurrencydialog.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\minimaleditor.h"
 				>
 			</File>
 			<File

@@ -21,11 +21,11 @@
 
 Model_Report::Model_Report(): Model_Mix<DB_Table_REPORT_V1>()
 {
-};
+}
 
 Model_Report::~Model_Report() 
 {
-};
+}
 
 /** Return the static instance of Model_Report table */
 Model_Report& Model_Report::instance()

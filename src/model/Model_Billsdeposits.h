@@ -60,7 +60,7 @@ public:
     };
     ~Model_Billsdeposits() {};
 public:
-    struct Full_Data : Data
+    struct Full_Data : public Data
     {
         Full_Data(): Data(0)
         {}

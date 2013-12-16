@@ -31,12 +31,12 @@ public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 public:
-    struct Full_Data: Data
+    struct Full_Data: public Data
     {
-        Full_Data(): Data(0), BALANCE(0) {}
-        Full_Data(const Data& r): Data(r), BALANCE(0) {}
+        Full_Data();
+        Full_Data(const Data& r);
 
-        ~Full_Data(){}
+        ~Full_Data();
         wxString ACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
@@ -54,54 +54,23 @@ public:
         }
     };
 public:
-    Model_Checking(): Model_Mix<DB_Table_CHECKINGACCOUNT_V1>()
-    {
-    };
-    ~Model_Checking() {};
+    Model_Checking();
+    ~Model_Checking();
 
 public:
-    static wxArrayString all_type()
-    {
-        wxArrayString types;
-        // keep the sequence with TYPE
-        types.Add(wxTRANSLATE("Withdrawal"));
-        types.Add(wxTRANSLATE("Deposit"));
-        types.Add(wxTRANSLATE("Transfer"));
+    static wxArrayString all_type();
+    static wxArrayString all_status();
 
-        return types;
-    }
-    static wxArrayString all_status()
-    {
-        wxArrayString status;
-        // keep the sequence with STATUS
-        status.Add(wxTRANSLATE("None"));
-        status.Add(wxTRANSLATE("Reconciled"));
-        status.Add(wxTRANSLATE("Void"));
-        status.Add(wxTRANSLATE("Follow up"));
-        status.Add(wxTRANSLATE("Duplicate"));
-
-        return status;
-    }
 public:
     /** Return the static instance of Model_Checking table */
-    static Model_Checking& instance()
-    {
-        return Singleton<Model_Checking>::instance();
-    }
-
+    static Model_Checking& instance();
+    
     /**
     * Initialize the global Model_Checking table.
     * Reset the Model_Checking table or create the table if it does not exist.
     */
-    static Model_Checking& instance(wxSQLite3Database* db)
-    {
-        Model_Checking& ins = Singleton<Model_Checking>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Checking& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
 public:
     bool remove(int id)
     {
