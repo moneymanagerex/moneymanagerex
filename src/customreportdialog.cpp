@@ -312,7 +312,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
 {
-    fillControls();
+    //fillControls();
 }
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
@@ -320,17 +320,22 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
     n->SetSelection(ID_TAB3);
 
-    //TODO:
-    //EndModal(wxID_MORE);
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    if (!iData) return;
+    
+    int id = iData->get_report_id();
+    m_selectedGroup = iData->get_group_name();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        mmGeneralReport *gr = new mmGeneralReport(report);
+        out_html_->SetPage(gr->getHTMLText());
+    }
 }
 
 void mmGeneralReportManager::OnClear(wxCommandEvent& /*event*/)
 {
-    tcSourceTxtCtrl_->Clear();
-    button_Save_->Disable();
-    button_Run_->Disable();
-    button_Open_->Enable();
-    tcSourceTxtCtrl_->SetFocus();
+
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
@@ -343,7 +348,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     wxTreeItemId id = event.GetItem();
     treeCtrl_ ->SelectItem(id);
     int report_id = -1;
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(id));
     if (iData) report_id = iData->get_report_id();
 
 
@@ -464,7 +469,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
         report->GROUPNAME = group_name;
         report->REPORTNAME = wxString::Format(_("New SQL Report %i"), i);
         report->CONTENTTYPE = "SQL";
-        report->CONTENT = "select 'Hello World'";
+        report->CONTENT = "select 'Hello World' as COLUMN1";
         report->TEMPLATEPATH = "sample.html";
         Model_Report::instance().save(report);
     }

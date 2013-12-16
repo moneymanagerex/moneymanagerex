@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "paths.h"
 #include "Model_Report.h"
 #include "reports/htmlbuilder.h"
 
@@ -49,7 +50,7 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    mm_html_template report(r->TEMPLATEPATH);
+    mm_html_template report(mmex::getPathUser(mmex::DIRECTORY) + r->TEMPLATEPATH);
 
     report("REPORTID") = r->REPORTID;
     report("REPORTNAME") = r->REPORTNAME;
