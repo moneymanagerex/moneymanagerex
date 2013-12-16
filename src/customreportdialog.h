@@ -21,6 +21,7 @@
 #define _MM_EX_CUSTOMREPORTDIALOG_H_
 
 #include "defs.h"
+#include <wx/stc/stc.h>
 
 class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog
@@ -53,12 +54,12 @@ private:
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     void OnLabelChanged(wxTreeEvent& event);
-    bool DeleteCustomSqlReport();
+    bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
 
-    wxStyledTextCtrl* tcSourceTxtCtrl_;
-    wxStyledTextCtrl* html_text_;
+    wxTextCtrl* tcSourceTxtCtrl_;
+    wxTextCtrl* html_text_;
     wxTextCtrl* file_name_ctrl_;
     wxHtmlWindow* out_html_;
 

@@ -16,10 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include <wx/stc/stc.h>
 #include "customreportdialog.h"
-#include "paths.h"
 #include "util.h"
+#include "paths.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
 
@@ -44,7 +43,7 @@ IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
 BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
     EVT_BUTTON(wxID_OPEN,  mmGeneralReportManager::OnOpen)
-    EVT_BUTTON(wxID_SAVE,  mmGeneralReportManager::OnSave)
+    EVT_BUTTON(wxID_SAVEAS,  mmGeneralReportManager::OnSave)
     EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLEAR, mmGeneralReportManager::OnClear)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
@@ -117,10 +116,11 @@ void mmGeneralReportManager::fillControls()
         if (group_name != report.GROUPNAME && !no_group)
         {
             group = treeCtrl_->AppendItem(root_, report.GROUPNAME);
+            treeCtrl_->SetItemData(group, new MyTreeItemData(-1, report.GROUPNAME));
             group_name = report.GROUPNAME;
         }
-        treeCtrl_->AppendItem(no_group ? root_ : group, report.REPORTNAME, -1, -1
-            , new MyTreeItemData(report.REPORTID, report.GROUPNAME));
+        wxTreeItemId item = treeCtrl_->AppendItem(no_group ? root_ : group, report.REPORTNAME);
+        treeCtrl_->SetItemData(item, new MyTreeItemData(report.REPORTID, report.GROUPNAME));
     }
     treeCtrl_->ExpandAll();
     treeCtrl_->SetEvtHandlerEnabled(true);
@@ -182,7 +182,9 @@ void mmGeneralReportManager::CreateControls()
     script_tab->SetSizer(script_sizer);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
-    tcSourceTxtCtrl_ = new wxStyledTextCtrl(script_tab, wxID_VIEW_DETAILS);
+    tcSourceTxtCtrl_ = new wxTextCtrl(script_tab, wxID_VIEW_DETAILS
+        , "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+#if 0
     tcSourceTxtCtrl_->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
     tcSourceTxtCtrl_->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
     tcSourceTxtCtrl_->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
@@ -192,9 +194,8 @@ void mmGeneralReportManager::CreateControls()
     int font_size = this->GetFont().GetPointSize();
     wxFont teletype( font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
     tcSourceTxtCtrl_->SetFont(teletype);
+#endif
     script_sizer->Add(tcSourceTxtCtrl_, flagsExpand);
-    script_sizer->Add(headingPanelSizerH4, flags.Center());
-
 
     //Template
     wxPanel* html_tab = new wxPanel(editors_notebook, wxID_ANY);
@@ -208,7 +209,10 @@ void mmGeneralReportManager::CreateControls()
     file_sizer->Add(new wxStaticText(html_tab, wxID_STATIC, _("File Name:")), flags);
     file_sizer->Add(file_name_ctrl_, flagsExpand);
 
-    html_text_ = new wxStyledTextCtrl(html_tab, wxID_ANY);
+    html_text_ = new wxTextCtrl(html_tab, wxID_ANY
+        , "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+
+#if 0
     html_text_->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
     html_text_->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
     html_text_->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
@@ -224,9 +228,22 @@ void mmGeneralReportManager::CreateControls()
     html_text_->StyleSetForeground (wxSTC_H_ATTRIBUTE,        wxColour(0,0,150));
     html_text_->StyleSetForeground (wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0,0,150));
     html_text_->StyleSetForeground (wxSTC_H_COMMENT,          wxColour(150,150,150));
-
+#endif
     html_sizer->Add(file_sizer);
     html_sizer->Add(html_text_, flagsExpand);
+    html_sizer->Add(headingPanelSizerH4, flags.Center());
+
+    button_Open_ = new wxButton(html_tab, wxID_OPEN, _("Open"));
+    headingPanelSizerH4->Add(button_Open_, flags);
+    button_Open_->SetToolTip(_("Locate and load a script file into the script area."));
+
+    button_Save_ = new wxButton(html_tab, wxID_SAVEAS, _("Save As..."));
+    headingPanelSizerH4->Add(button_Save_, flags);
+    button_Save_->SetToolTip(_("Save the script to file name set by the Report Title."));
+
+    button_Clear_ = new wxButton(html_tab, wxID_CLEAR);
+    headingPanelSizerH4->Add(button_Clear_, flags);
+    button_Clear_->SetToolTip(_("Clear the Source script area"));
 
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
@@ -236,19 +253,7 @@ void mmGeneralReportManager::CreateControls()
     out_html_ = new wxHtmlWindow(out_tab, ID_OUTPUT_WIN
         , wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-   out_sizer->Add(out_html_, flagsExpand);
-
-    button_Open_ = new wxButton(script_tab, wxID_OPEN);
-    headingPanelSizerH4->Add(button_Open_, flags);
-    button_Open_->SetToolTip(_("Locate and load a script file into the script area."));
-
-    button_Save_ = new wxButton(script_tab, wxID_SAVE);
-    headingPanelSizerH4->Add(button_Save_, flags);
-    button_Save_->SetToolTip(_("Save the script to file name set by the Report Title."));
-
-    button_Clear_ = new wxButton(script_tab, wxID_CLEAR);
-    headingPanelSizerH4->Add(button_Clear_, flags);
-    button_Clear_->SetToolTip(_("Clear the Source script area"));
+    out_sizer->Add(out_html_, flagsExpand);
 
     /****************************************
      Bottom Panel
@@ -259,7 +264,7 @@ void mmGeneralReportManager::CreateControls()
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
 
-    button_Run_ = new wxButton( buttonPanel, wxID_REFRESH, _("&Run"));
+    button_Run_ = new wxButton(buttonPanel, wxID_REFRESH, _("&Run"));
     buttonPanelSizer->Add(button_Run_, flags);
     button_Run_->SetToolTip(_("Test script. Save before running."));
 
@@ -273,7 +278,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
 {
     wxString sScriptFileName = wxFileSelector( _("Load file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "File(*.*)|*.*"
+        , "File(*.html)|*.html"
         , wxFD_FILE_MUST_EXIST);
     if ( !sScriptFileName.empty() )
     {
@@ -294,9 +299,8 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
                     reportText << "\n";
                 }
             }
-            tcSourceTxtCtrl_->SetValue(reportText);
+            html_text_->SetValue(reportText);
             reportFile.Close();
-            m_reportType->SetLabel(selectedFileName.GetName());
         }
         else
         {
@@ -338,12 +342,17 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId id = event.GetItem();
     treeCtrl_ ->SelectItem(id);
+    int report_id = -1;
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
+    if (iData) report_id = iData->get_report_id();
+
 
     wxMenu* customReportMenu = new wxMenu;
     customReportMenu->Append(ID_NEW1, _("New SQL Custom Report"));
     customReportMenu->Append(ID_NEW2, _("New Lua Custom Report"));
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_DELETE, _("Delete Custom Report"));
+    customReportMenu->Enable(ID_DELETE, report_id > 0);
     PopupMenu(customReportMenu);
     delete customReportMenu;
 }
@@ -369,26 +378,30 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     if (report)
     {
         m_reportType->ChangeValue(report->CONTENTTYPE);
-        tcSourceTxtCtrl_->SetText(report->CONTENT);
+        file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
+        tcSourceTxtCtrl_->ChangeValue(report->CONTENT);
+#if 0
         tcSourceTxtCtrl_->StyleClearAll();
         tcSourceTxtCtrl_->SetLexer(wxSTC_LEX_SQL);
         tcSourceTxtCtrl_->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
         tcSourceTxtCtrl_->SetKeyWords(0, "select from where and or");
-        file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
+#endif
 
+        wxString full_path = mmex::getPathUser(mmex::DIRECTORY) + report->TEMPLATEPATH;
         wxTextFile tFile;
-        tFile.Open(report->TEMPLATEPATH);
+        tFile.Open(full_path);
         if (!tFile.Open())
         {
-            wxMessageBox(_("Unable to open file."), _("Custom Reports Manager"), wxOK|wxICON_ERROR);
+            wxMessageBox(wxString::Format(_("Unable to open file %s"), full_path)
+                , _("General Reports Manager"), wxOK|wxICON_ERROR);
         }
         else
         {
-            wxFileInputStream input(report->TEMPLATEPATH);
+            wxFileInputStream input(full_path);
             wxTextInputStream text(input, "\x09", wxConvUTF8);
             while (input.IsOk() && !input.Eof())
             {
-                html_text_->AddText(text.ReadLine() + "\n");
+                *html_text_ << text.ReadLine() << "\n";
             }
             button_Run_->Enable(true);
         }
@@ -399,20 +412,34 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
 void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
 {
-    //TODO:
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
+    if (!iData) return;
+
+    int id = iData->get_report_id();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        report->REPORTNAME = event.GetLabel();
+        Model_Report::instance().save(report);
+    }
 }
 
-bool mmGeneralReportManager::DeleteCustomSqlReport()
+bool mmGeneralReportManager::DeleteReport(int id)
 {
-    wxString msg = wxString() << _("Delete the Custom Report Title:")
-                              << "\n\n"
-                              << "Under Constraction";
-    int iError = wxMessageBox(msg, "Under Constraction", wxYES_NO | wxICON_QUESTION);
-    if ( iError == wxYES )
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
     {
-        //TODO:
+        wxString msg = wxString() << _("Delete the Custom Report Title:")
+            << "\n\n"
+            << report->REPORTNAME;
+        int iError = wxMessageBox(msg, "General Reports Manager", wxYES_NO | wxICON_ERROR);
+        if (iError == wxYES)
+        {
+            Model_Report::instance().remove(id);
+            return true;
+        }
     }
-    return (iError == wxYES);
+    return false;
 }
 
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
@@ -430,7 +457,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
         }
         else
         {
-            //group_name = selectedItemId_.GetClientData()->get_group_name();
+            group_name = m_selectedGroup;
         }
         int i = Model_Report::instance().all().size();
         Model_Report::Data* report = Model_Report::instance().create();
@@ -448,7 +475,12 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     }
     else if (id == ID_DELETE)
     {
-        //if (navCtrlUpdateRequired_) iSelectedId_--;
+        MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+        if (iData)
+        {
+            int report_id = iData->get_report_id();
+            this->DeleteReport(report_id);
+        }
     }
     fillControls();
 }
