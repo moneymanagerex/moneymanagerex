@@ -22,6 +22,7 @@
 #include "mmOption.h"
 #include "mmex.h"
 #include "reports/budget.h"
+#include "reports/mmDateRange.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Budgetyear.h"

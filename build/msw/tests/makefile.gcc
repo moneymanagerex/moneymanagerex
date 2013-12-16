@@ -144,6 +144,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
+	mmex_tests_Model_Category.o \
 	mmex_tests_Model_Checking.o \
 	mmex_tests_Model_Report.o \
 	mmex_tests_html_template.o \
@@ -616,6 +617,9 @@ mmex_tests_qif_import.o: ../../../src/import_export/qif_import.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_univcsvdialog.o: ../../../src/import_export/univcsvdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_Model_Category.o: ../../../src/model/Model_Category.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_Model_Checking.o: ../../../src/model/Model_Checking.cpp

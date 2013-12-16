@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include "reports/mmDateRange.h"
 
 mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
 : budgetYearID_(budgetYearID)

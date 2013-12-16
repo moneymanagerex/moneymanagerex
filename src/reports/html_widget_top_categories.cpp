@@ -21,6 +21,7 @@
 #include "htmlbuilder.h"
 #include "util.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
 #include "model/Model_Splittransaction.h"

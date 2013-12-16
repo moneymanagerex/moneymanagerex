@@ -26,6 +26,7 @@
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include "reports/mmDateRange.h"
 
 mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(int budgetYearID)
 : budgetYearID_(budgetYearID)
