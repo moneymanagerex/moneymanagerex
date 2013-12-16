@@ -21,8 +21,6 @@
 
 #include "Model.h"
 #include "db/DB_Table_Subcategory_V1.h"
-#include "Model_Category.h"
-#include "Model_Checking.h"
 #include "Model_Billsdeposits.h"
 
 class Model_Subcategory : public Model_Mix<DB_Table_SUBCATEGORY_V1>
@@ -66,13 +64,7 @@ public:
     }
 
 public:
-    static bool is_used(int id)
-    {
-        int cat_id = instance().get(id)->CATEGID;
-        Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(cat_id), Model_Billsdeposits::SUBCATEGID(id));
-        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::CATEGID(cat_id), Model_Checking::SUBCATEGID(id));
-        return !deposits.empty() || !trans.empty();
-    }
+    static bool is_used(int id);
 };
 
 #endif // 
