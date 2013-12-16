@@ -168,6 +168,7 @@ MMEX_OBJECTS =  \
 	mmex_qif_export.obj \
 	mmex_qif_import.obj \
 	mmex_univcsvdialog.obj \
+	mmex_Model_Report.obj \
 	mmex_html_template.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
@@ -802,6 +803,9 @@ mmex_qif_import.obj: ..\..\src\import_export\qif_import.cpp
 
 mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\univcsvdialog.cpp
+
+mmex_Model_Report.obj: ..\..\src\model\Model_Report.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Report.cpp
 
 mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\cgitemplate\html_template.cpp

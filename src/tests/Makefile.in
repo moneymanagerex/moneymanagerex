@@ -159,6 +159,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
+	mmex_tests_Model_Report.o \
 	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
@@ -521,6 +522,9 @@ mmex_tests_qif_import.o: $(srcdir)/../../src/import_export/qif_import.cpp
 
 mmex_tests_univcsvdialog.o: $(srcdir)/../../src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/univcsvdialog.cpp
+
+mmex_tests_Model_Report.o: $(srcdir)/../../src/model/Model_Report.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Report.cpp
 
 mmex_tests_html_template.o: $(srcdir)/../../3rd/cgitemplate/html_template.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/cgitemplate/html_template.cpp

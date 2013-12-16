@@ -196,7 +196,7 @@
         </set>
 
         <headers>$(fileList( [ 'src/*.h', 'src/reports/*.h', 'src/db/*.h', 'src/import_export/*.h', 'src/model/*.h' ] ))</headers>
-        <sources>$(fileList( [ 'src/*.cpp', 'src/reports/*.cpp', 'src/db/*.cpp', 'src/' + PLATF_DIR + '/*.cpp', 'src/import_export/*.cpp' ] ))</sources>
+        <sources>$(fileList( [ 'src/*.cpp', 'src/reports/*.cpp', 'src/db/*.cpp', 'src/' + PLATF_DIR + '/*.cpp', 'src/import_export/*.cpp', 'src/model/*.cpp' ] ))</sources>
         <headers>$(fileList( [ '3rd/cgitemplate/html_template.h'] ))</headers>
         <sources>$(fileList( [ '3rd/cgitemplate/html_template.cpp'] ))</sources>
 

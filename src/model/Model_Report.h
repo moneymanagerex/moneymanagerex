@@ -21,106 +21,25 @@
 
 #include "Model.h"
 #include "db/DB_Table_Report_V1.h"
-#include "reports/htmlbuilder.h"
 
 class Model_Report : public Model_Mix<DB_Table_REPORT_V1>
 {
 public:
-    Model_Report(): Model_Mix<DB_Table_REPORT_V1>()
-    {
-    };
-    ~Model_Report() {};
+    Model_Report(); 
+    ~Model_Report();
 
 public:
     /** Return the static instance of Model_Report table */
-    static Model_Report& instance()
-    {
-        return Singleton<Model_Report>::instance();
-    }
+    static Model_Report& instance();
 
     /**
     * Initialize the global Model_Report table.
     * Reset the Model_Report table or create the table if it does not exist.
     */
-    static Model_Report& instance(wxSQLite3Database* db)
-    {
-        Model_Report& ins = Singleton<Model_Report>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
-
-        return ins;
-    }
+    static Model_Report& instance(wxSQLite3Database* db);
 public:
-    wxString get_html(const Data* r)
-    {
-        mm_html_template report(r->TEMPLATEPATH);
-
-        report("REPORTID") = r->REPORTID;
-        report("REPORTNAME") = r->REPORTNAME;
-        report("GROUPNAME") = r->GROUPNAME;
-        report("CONTENTTYPE") = r->CONTENTTYPE;
-        report("CONTENT") = r->CONTENT;
-        report("TEMPLATEPATH") = r->TEMPLATEPATH;
-
-        loop_t contents;
-
-        if (r->CONTENTTYPE == "LUA")
-        {
-            // TODO
-        }
-        else // (r->CONTENTTYPE == "SQL")
-        {
-            wxSQLite3Statement stmt = this->db_->PrepareStatement(r->CONTENT);
-            if (!stmt.IsReadOnly())
-            {
-                report("ERROR") = r->CONTENT + " will modify database! aborted!";
-            }
-            else
-            {
-                wxSQLite3ResultSet sqlQueryResult = stmt.ExecuteQuery();
-                int columnCount = sqlQueryResult.GetColumnCount();
-
-                loop_t columns;
-                for (int i = 0; i < columnCount; ++ i)
-                {
-                    row_t row;
-                    row("COLUMN") = sqlQueryResult.GetColumnName(i);
-
-                    columns += row;
-                }
-                report("COLUMNS") = columns;
-
-                while (sqlQueryResult.NextRow())
-                {
-                    row_t row;
-                    for (int i = 0; i < columnCount; ++ i)
-                    {
-                        wxString column_name = sqlQueryResult.GetColumnName(i);
-                        switch (sqlQueryResult.GetColumnType(i))
-                        {
-                        case WXSQLITE_INTEGER:
-                            row(column_name.ToStdString()) = sqlQueryResult.GetInt(i);
-                            break;
-                        case WXSQLITE_FLOAT:
-                            row(column_name.ToStdString()) = sqlQueryResult.GetDouble(i);
-                            break;
-                        default:
-                            row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
-                            break;
-                        }
-                    }
-                    contents += row;
-                }
-                sqlQueryResult.Finalize();
-            }
-        }
-
-        report("CONTENTS") = contents;
-
-        return wxString(report.Process());
-    }
-    wxString get_html(const Data& r) { return get_html(&r); }
+    wxString get_html(const Data* r);
+    wxString get_html(const Data& r);
 };
 
 #endif // 
