@@ -167,6 +167,7 @@ MMEX_OBJECTS =  \
 	mmex_univcsvdialog.o \
 	mmex_Model_Category.o \
 	mmex_Model_Checking.o \
+	mmex_Model_Currency.o \
 	mmex_Model_Report.o \
 	mmex_html_template.o \
 	mmex_resources_mmex_rc.o
@@ -685,6 +686,9 @@ mmex_Model_Category.o: ../../src/model/Model_Category.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Checking.o: ../../src/model/Model_Checking.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_Currency.o: ../../src/model/Model_Currency.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Report.o: ../../src/model/Model_Report.cpp

@@ -409,6 +409,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Currency.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Report.cpp"
 				>
 			</File>

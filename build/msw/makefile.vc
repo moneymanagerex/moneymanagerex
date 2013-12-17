@@ -170,6 +170,7 @@ MMEX_OBJECTS =  \
 	mmex_univcsvdialog.obj \
 	mmex_Model_Category.obj \
 	mmex_Model_Checking.obj \
+	mmex_Model_Currency.obj \
 	mmex_Model_Report.obj \
 	mmex_html_template.obj
 MMEX_RESOURCES =  \
@@ -811,6 +812,9 @@ mmex_Model_Category.obj: ..\..\src\model\Model_Category.cpp
 
 mmex_Model_Checking.obj: ..\..\src\model\Model_Checking.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Checking.cpp
+
+mmex_Model_Currency.obj: ..\..\src\model\Model_Currency.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Currency.cpp
 
 mmex_Model_Report.obj: ..\..\src\model\Model_Report.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Report.cpp

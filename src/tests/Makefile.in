@@ -161,6 +161,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_univcsvdialog.o \
 	mmex_tests_Model_Category.o \
 	mmex_tests_Model_Checking.o \
+	mmex_tests_Model_Currency.o \
 	mmex_tests_Model_Report.o \
 	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
@@ -530,6 +531,9 @@ mmex_tests_Model_Category.o: $(srcdir)/../../src/model/Model_Category.cpp
 
 mmex_tests_Model_Checking.o: $(srcdir)/../../src/model/Model_Checking.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Checking.cpp
+
+mmex_tests_Model_Currency.o: $(srcdir)/../../src/model/Model_Currency.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Currency.cpp
 
 mmex_tests_Model_Report.o: $(srcdir)/../../src/model/Model_Report.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Report.cpp
