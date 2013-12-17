@@ -261,6 +261,8 @@
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
     <ClCompile Include="..\..\src\customreportdialog.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Category.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Checking.cpp" />
     <ClCompile Include="..\..\src\model\Model_Report.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\src\reports\budgetcategorysummary.cpp" />
