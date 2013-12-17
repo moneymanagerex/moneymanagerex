@@ -126,20 +126,6 @@ void MinimalEditor::OnText(wxStyledTextEvent& event)
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
-enum
-{
-    MARGIN_LINE_NUMBERS,
-    ID_TAB1 = 0,
-    ID_TAB2,
-    ID_TAB3,
-    HEADING_ONLY = wxID_HIGHEST + 1,
-    SUB_REPORT,
-    ID_NEW1,
-    ID_NEW2,
-    ID_DELETE,
-    ID_OUTPUT_WIN,
-    ID_NOTEBOOK
-};
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
@@ -147,7 +133,6 @@ BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
     EVT_BUTTON(wxID_OPEN,  mmGeneralReportManager::OnOpen)
     EVT_BUTTON(wxID_SAVEAS,  mmGeneralReportManager::OnSave)
     EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnRun)
-    EVT_BUTTON(wxID_CLEAR, mmGeneralReportManager::OnClear)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
@@ -156,7 +141,7 @@ BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
 END_EVENT_TABLE()
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
-: tcSourceTxtCtrl_()
+: m_scriptText()
 , button_Open_()
 , button_Save_()
 , button_Run_()
@@ -284,66 +269,63 @@ void mmGeneralReportManager::CreateControls()
     script_tab->SetSizer(script_sizer);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
-    tcSourceTxtCtrl_ = new wxTextCtrl(script_tab, wxID_VIEW_DETAILS
-        , "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
-#if 0
-    tcSourceTxtCtrl_->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
-    tcSourceTxtCtrl_->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
-    tcSourceTxtCtrl_->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
-    tcSourceTxtCtrl_->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
-    tcSourceTxtCtrl_->Connect(wxID_ANY, wxEVT_CHAR
+    m_scriptText = new wxStyledTextCtrl(script_tab, wxID_VIEW_DETAILS);
+
+    m_scriptText->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
+    m_scriptText->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
+    m_scriptText->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
+    m_scriptText->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
+    m_scriptText->Connect(wxID_ANY, wxEVT_CHAR
         , wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
     int font_size = this->GetFont().GetPointSize();
     wxFont teletype( font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
-    tcSourceTxtCtrl_->SetFont(teletype);
-#endif
-    script_sizer->Add(tcSourceTxtCtrl_, flagsExpand);
+    m_scriptText->SetFont(teletype);
+
+    script_sizer->Add(m_scriptText, flagsExpand);
 
     //Template
-    wxPanel* html_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB2, html_tab, _("Template"));
+    wxPanel* template_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(ID_TAB2, template_tab, _("Template"));
     wxBoxSizer *html_sizer = new wxBoxSizer(wxVERTICAL);
-    html_tab->SetSizer(html_sizer);
+    template_tab->SetSizer(html_sizer);
 
     wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
-    file_name_ctrl_ = new wxTextCtrl(html_tab, wxID_FILE, wxEmptyString
+    file_name_ctrl_ = new wxTextCtrl(template_tab, wxID_FILE, wxEmptyString
         , wxDefaultPosition, wxSize(200, -1), wxTE_READONLY);
-    file_sizer->Add(new wxStaticText(html_tab, wxID_STATIC, _("File Name:")), flags);
+    file_sizer->Add(new wxStaticText(template_tab, wxID_STATIC, _("File Name:")), flags);
     file_sizer->Add(file_name_ctrl_, flagsExpand);
 
-    html_text_ = new wxTextCtrl(html_tab, wxID_ANY
-        , "", wxDefaultPosition, wxDefaultSize, wxTE_MULTILINE);
+    m_templateText = new wxStyledTextCtrl(template_tab, wxID_ANY);
 
-#if 0
-    html_text_->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
-    html_text_->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
-    html_text_->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
-    html_text_->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
-    html_text_->SetWrapMode (wxSTC_WRAP_WORD);
-    html_text_->StyleClearAll();
-    html_text_->SetLexer(wxSTC_LEX_HTML);
-    html_text_->StyleSetForeground (wxSTC_H_DOUBLESTRING,     wxColour(255,0,0));
-    html_text_->StyleSetForeground (wxSTC_H_SINGLESTRING,     wxColour(255,0,0));
-    html_text_->StyleSetForeground (wxSTC_H_ENTITY,           wxColour(255,0,0));
-    html_text_->StyleSetForeground (wxSTC_H_TAG,              wxColour(0,150,0));
-    html_text_->StyleSetForeground (wxSTC_H_TAGUNKNOWN,       wxColour(0,150,0));
-    html_text_->StyleSetForeground (wxSTC_H_ATTRIBUTE,        wxColour(0,0,150));
-    html_text_->StyleSetForeground (wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0,0,150));
-    html_text_->StyleSetForeground (wxSTC_H_COMMENT,          wxColour(150,150,150));
-#endif
+    m_templateText->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
+    m_templateText->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
+    m_templateText->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
+    m_templateText->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
+    m_templateText->SetWrapMode (wxSTC_WRAP_WORD);
+    m_templateText->StyleClearAll();
+    m_templateText->SetLexer(wxSTC_LEX_HTML);
+    m_templateText->StyleSetForeground (wxSTC_H_DOUBLESTRING,     wxColour(255,0,0));
+    m_templateText->StyleSetForeground (wxSTC_H_SINGLESTRING,     wxColour(255,0,0));
+    m_templateText->StyleSetForeground (wxSTC_H_ENTITY,           wxColour(255,0,0));
+    m_templateText->StyleSetForeground (wxSTC_H_TAG,              wxColour(0,150,0));
+    m_templateText->StyleSetForeground (wxSTC_H_TAGUNKNOWN,       wxColour(0,150,0));
+    m_templateText->StyleSetForeground (wxSTC_H_ATTRIBUTE,        wxColour(0,0,150));
+    m_templateText->StyleSetForeground (wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0,0,150));
+    m_templateText->StyleSetForeground (wxSTC_H_COMMENT,          wxColour(150,150,150));
+
     html_sizer->Add(file_sizer);
-    html_sizer->Add(html_text_, flagsExpand);
+    html_sizer->Add(m_templateText, flagsExpand);
     html_sizer->Add(headingPanelSizerH4, flags.Center());
 
-    button_Open_ = new wxButton(html_tab, wxID_OPEN, _("Open"));
+    button_Open_ = new wxButton(template_tab, wxID_OPEN, _("Open"));
     headingPanelSizerH4->Add(button_Open_, flags);
     button_Open_->SetToolTip(_("Locate and load a script file into the script area."));
 
-    button_Save_ = new wxButton(html_tab, wxID_SAVEAS, _("Save As..."));
+    button_Save_ = new wxButton(template_tab, wxID_SAVEAS, _("Save As..."));
     headingPanelSizerH4->Add(button_Save_, flags);
     button_Save_->SetToolTip(_("Save the script to file name set by the Report Title."));
 
-    button_Clear_ = new wxButton(html_tab, wxID_CLEAR);
+    button_Clear_ = new wxButton(template_tab, wxID_CLEAR);
     headingPanelSizerH4->Add(button_Clear_, flags);
     button_Clear_->SetToolTip(_("Clear the Source script area"));
 
@@ -352,10 +334,10 @@ void mmGeneralReportManager::CreateControls()
     editors_notebook->InsertPage(ID_TAB3, out_tab, _("Output"));
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
-    out_html_ = new wxHtmlWindow(out_tab, ID_OUTPUT_WIN
+    m_outputHTML = new wxHtmlWindow(out_tab, ID_OUTPUT_WIN
         , wxDefaultPosition, wxDefaultSize
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
-    out_sizer->Add(out_html_, flagsExpand);
+    out_sizer->Add(m_outputHTML, flagsExpand);
 
     /****************************************
      Bottom Panel
@@ -401,7 +383,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
                     reportText << "\n";
                 }
             }
-            html_text_->SetValue(reportText);
+            m_templateText->SetValue(reportText);
             reportFile.Close();
         }
         else
@@ -431,13 +413,8 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     if (report)
     {
         mmGeneralReport *gr = new mmGeneralReport(report);
-        out_html_->SetPage(gr->getHTMLText());
+        m_outputHTML->SetPage(gr->getHTMLText());
     }
-}
-
-void mmGeneralReportManager::OnClear(wxCommandEvent& /*event*/)
-{
-
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
@@ -469,9 +446,9 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
     m_reportType->ChangeValue("");
-    tcSourceTxtCtrl_->ChangeValue("");
+    m_scriptText->ChangeValue("");
     file_name_ctrl_->ChangeValue("");
-    html_text_->ChangeValue("");
+    m_templateText->ChangeValue("");
     wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);
     button_Run_->Enable(false);
@@ -486,12 +463,12 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     {
         m_reportType->ChangeValue(report->CONTENTTYPE);
         file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
-        tcSourceTxtCtrl_->ChangeValue(report->CONTENT);
+        m_scriptText->ChangeValue(report->CONTENT);
 #if 0
-        tcSourceTxtCtrl_->StyleClearAll();
-        tcSourceTxtCtrl_->SetLexer(wxSTC_LEX_SQL);
-        tcSourceTxtCtrl_->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
-        tcSourceTxtCtrl_->SetKeyWords(0, "select from where and or");
+        m_scriptText->StyleClearAll();
+        m_scriptText->SetLexer(wxSTC_LEX_SQL);
+        m_scriptText->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
+        m_scriptText->SetKeyWords(0, "select from where and or");
 #endif
 
         wxString full_path = mmex::getPathUser(mmex::DIRECTORY) + report->TEMPLATEPATH;
@@ -508,7 +485,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
             wxTextInputStream text(input, "\x09", wxConvUTF8);
             while (input.IsOk() && !input.Eof())
             {
-                *html_text_ << text.ReadLine() << "\n";
+                m_templateText->AppendText(text.ReadLine() + "\n");
             }
             button_Run_->Enable(true);
         }
@@ -578,7 +555,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     else if (id == ID_NEW2)
     {
         m_reportType->SetValue(_("Lua"));
-        tcSourceTxtCtrl_->ChangeValue("return \"Hello World\"");
+        m_scriptText->ChangeValue("return \"Hello World\"");
     }
     else if (id == ID_DELETE)
     {
@@ -595,6 +572,6 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
 {
     if (wxGetKeyState(wxKeyCode('A')) && wxGetKeyState(WXK_CONTROL))
-        tcSourceTxtCtrl_->SetSelection(-1, -1); //select all
+        m_scriptText->SetSelection(-1, -1); //select all
     event.Skip();
 }

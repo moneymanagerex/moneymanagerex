@@ -75,7 +75,7 @@ private:
     void sortTable();
     void createFrames();
     wxString prepareTemplate(const wxString& left, const wxString& right);
-    wxString html_text_;
+    wxString m_templateText;
     wxString vAccts_;
 
     wxString displaySummaryHeader(const wxString& summaryTitle );

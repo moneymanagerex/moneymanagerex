@@ -37,6 +37,21 @@ public:
     mmGeneralReportManager(wxWindow* parent);
 
 private:
+    enum
+    {
+        MARGIN_LINE_NUMBERS,
+        ID_TAB1 = 0,
+        ID_TAB2,
+        ID_TAB3,
+        HEADING_ONLY = wxID_HIGHEST + 1,
+        SUB_REPORT,
+        ID_NEW1,
+        ID_NEW2,
+        ID_DELETE,
+        ID_OUTPUT_WIN,
+        ID_NOTEBOOK
+    };
+
     bool Create(wxWindow* parent
         , wxWindowID id
         , const wxString& caption
@@ -49,7 +64,6 @@ private:
     void OnOpen(wxCommandEvent& event);
     void OnSave(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
-    void OnClear(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
@@ -58,16 +72,16 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
 
-    wxTextCtrl* tcSourceTxtCtrl_;
-    wxTextCtrl* html_text_;
+    wxStyledTextCtrl* m_scriptText;
+    wxTextCtrl* m_reportType;
+    wxStyledTextCtrl* m_templateText;
     wxTextCtrl* file_name_ctrl_;
-    wxHtmlWindow* out_html_;
+    wxHtmlWindow* m_outputHTML;
 
     wxButton* button_Open_;
     wxButton* button_Save_;
     wxButton* button_Run_;
     wxButton* button_Clear_;
-    wxTextCtrl* m_reportType;
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;

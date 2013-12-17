@@ -63,7 +63,7 @@ mmHomePagePanel::~mmHomePagePanel()
 
 wxString mmHomePagePanel::GetHomePageText()
 {
-    return html_text_;
+    return m_templateText;
 }
 
 bool mmHomePagePanel::Create( wxWindow *parent,
@@ -134,8 +134,8 @@ void mmHomePagePanel::createFrames()
 
     rightFrame << getStatWidget();
 
-    html_text_ = prepareTemplate(leftFrame, rightFrame);
-    htmlWindow_->SetPage(html_text_);
+    m_templateText = prepareTemplate(leftFrame, rightFrame);
+    htmlWindow_->SetPage(m_templateText);
 }
 
 wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
