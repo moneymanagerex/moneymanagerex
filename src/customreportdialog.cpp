@@ -295,8 +295,9 @@ void mmGeneralReportManager::CreateControls()
     file_sizer->Add(new wxStaticText(template_tab, wxID_STATIC, _("File Name:")), flags);
     file_sizer->Add(file_name_ctrl_, flagsExpand);
 
-    m_templateText = new wxStyledTextCtrl(template_tab, wxID_ANY);
-
+    MinimalEditor* m_templateText = new MinimalEditor(template_tab, ID_TEMPLATE);
+    m_templateText->SetLexerXml();
+# if 0
     m_templateText->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
     m_templateText->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
     m_templateText->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
@@ -312,7 +313,7 @@ void mmGeneralReportManager::CreateControls()
     m_templateText->StyleSetForeground (wxSTC_H_ATTRIBUTE,        wxColour(0,0,150));
     m_templateText->StyleSetForeground (wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0,0,150));
     m_templateText->StyleSetForeground (wxSTC_H_COMMENT,          wxColour(150,150,150));
-
+#endif
     html_sizer->Add(file_sizer);
     html_sizer->Add(m_templateText, flagsExpand);
     html_sizer->Add(headingPanelSizerH4, flags.Center());
@@ -383,6 +384,7 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
                     reportText << "\n";
                 }
             }
+            MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
             m_templateText->SetValue(reportText);
             reportFile.Close();
         }
@@ -448,6 +450,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     m_reportType->ChangeValue("");
     m_scriptText->ChangeValue("");
     file_name_ctrl_->ChangeValue("");
+    MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
     m_templateText->ChangeValue("");
     wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);

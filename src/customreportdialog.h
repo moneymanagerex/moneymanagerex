@@ -49,7 +49,8 @@ private:
         ID_NEW2,
         ID_DELETE,
         ID_OUTPUT_WIN,
-        ID_NOTEBOOK
+        ID_NOTEBOOK,
+        ID_TEMPLATE
     };
 
     bool Create(wxWindow* parent
@@ -74,7 +75,7 @@ private:
 
     wxStyledTextCtrl* m_scriptText;
     wxTextCtrl* m_reportType;
-    wxStyledTextCtrl* m_templateText;
+    //wxStyledTextCtrl* m_templateText;
     wxTextCtrl* file_name_ctrl_;
     wxHtmlWindow* m_outputHTML;
 
