@@ -167,9 +167,11 @@ int sourceTextHeight = 200; // Determines height of Source Textbox.
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
 BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
-    EVT_BUTTON(wxID_OPEN,  mmGeneralReportManager::OnOpen)
-    EVT_BUTTON(wxID_SAVEAS,  mmGeneralReportManager::OnSave)
-    EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnRun)
+    EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnOpenTemplate)
+    EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnSaveTemplate)
+    EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnSaveTemplateAs)
+    EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
+    EVT_BUTTON(wxID_REFRESH, mmGeneralReportManager::OnUpdateScript)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
@@ -194,14 +196,14 @@ mmGeneralReportManager::~mmGeneralReportManager()
 {
 }
 
-bool mmGeneralReportManager::Create( wxWindow* parent
+bool mmGeneralReportManager::Create(wxWindow* parent
     , wxWindowID id
     , const wxString& caption
     , const wxPoint& pos
     , const wxSize& size
-    , long style )
+    , long style)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     wxAcceleratorEntry entries[1];
@@ -294,7 +296,6 @@ void mmGeneralReportManager::CreateControls()
      ***************************************/
     // ListBox for source code
     wxBoxSizer* headingPanelSizerV3 = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer* headingPanelSizerH4 = new wxBoxSizer(wxHORIZONTAL);
     headingPanelSizerH->Add(headingPanelSizerV3, flagsExpand);
 
     wxNotebook* editors_notebook = new wxNotebook(this
@@ -314,7 +315,17 @@ void mmGeneralReportManager::CreateControls()
     m_scriptText->Connect(wxID_ANY, wxEVT_CHAR
         , wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
 
+    button_Update_ = new wxButton(script_tab, wxID_REFRESH, _("&Update"));
+    wxBoxSizer* headingPanelSizerH3 = new wxBoxSizer(wxHORIZONTAL);
+    headingPanelSizerH3->Add(button_Update_, flags);
+    button_Update_->SetToolTip(_("Update the scrit data into DB."));
+
+    button_Clear_ = new wxButton(script_tab, wxID_CLEAR);
+    headingPanelSizerH3->Add(button_Clear_, flags);
+    button_Clear_->SetToolTip(_("Clear the Source script area"));
+
     script_sizer->Add(m_scriptText, flagsExpand);
+    script_sizer->Add(headingPanelSizerH3, flags.Center());
 
     //Template
     wxPanel* template_tab = new wxPanel(editors_notebook, wxID_ANY);
@@ -333,19 +344,20 @@ void mmGeneralReportManager::CreateControls()
 
     html_sizer->Add(file_sizer);
     html_sizer->Add(m_templateText, flagsExpand);
+    wxBoxSizer* headingPanelSizerH4 = new wxBoxSizer(wxHORIZONTAL);
     html_sizer->Add(headingPanelSizerH4, flags.Center());
 
     button_Open_ = new wxButton(template_tab, wxID_OPEN, _("Open"));
     headingPanelSizerH4->Add(button_Open_, flags);
     button_Open_->SetToolTip(_("Locate and load a template file into the template area."));
 
+    button_Save_ = new wxButton(template_tab, wxID_SAVE, _("Save"));
+    headingPanelSizerH4->Add(button_Save_, flags);
+    button_Save_->SetToolTip(_("Save the template to file."));
+
     button_Save_ = new wxButton(template_tab, wxID_SAVEAS, _("Save As..."));
     headingPanelSizerH4->Add(button_Save_, flags);
-    button_Save_->SetToolTip(_("Save the template to file and assign it with the script."));
-
-    button_Clear_ = new wxButton(template_tab, wxID_CLEAR);
-    headingPanelSizerH4->Add(button_Clear_, flags);
-    button_Clear_->SetToolTip(_("Clear the Source script area"));
+    button_Save_->SetToolTip(_("Save the template to a new file and assign it with the script."));
 
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
@@ -366,17 +378,17 @@ void mmGeneralReportManager::CreateControls()
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
 
-    button_Run_ = new wxButton(buttonPanel, wxID_REFRESH, _("&Run"));
+    button_Run_ = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
     buttonPanelSizer->Add(button_Run_, flags);
-    button_Run_->SetToolTip(_("Test script. Save before running."));
+    button_Run_->SetToolTip(_("Test script."));
 
     wxButton* button_Close = new wxButton( buttonPanel, wxID_CLOSE);
     buttonPanelSizer->Add(button_Close, flags);
-    button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
+    //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
 
 }
 
-void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnOpenTemplate(wxCommandEvent& /*event*/)
 {
     wxString sScriptFileName = wxFileSelector( _("Load file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
@@ -413,9 +425,30 @@ void mmGeneralReportManager::OnOpen(wxCommandEvent& /*event*/)
     }
 }
 
-void mmGeneralReportManager::OnSave(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnSaveTemplate(wxCommandEvent& /*event*/)
 {
-    //fillControls();
+    //TODO:
+}
+
+void mmGeneralReportManager::OnSaveTemplateAs(wxCommandEvent& /*event*/)
+{
+    //TODO:
+}
+
+void mmGeneralReportManager::OnUpdateScript(wxCommandEvent& /*event*/)
+{
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    if (!iData) return;
+
+    int id = iData->get_report_id();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        MinimalEditor* m_scriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
+        report->CONTENT = m_scriptText->GetValue();
+        m_scriptText->ChangeValue(report->CONTENT);
+        Model_Report::instance().save(report);
+    }
 }
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
@@ -431,14 +464,10 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        m_outputHTML->ClearBackground();
         mmGeneralReport *gr = new mmGeneralReport(report);
         m_outputHTML->SetPage(gr->getHTMLText());
     }
-}
-
-void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
-{
-    EndModal(wxID_CANCEL);
 }
 
 void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
@@ -473,6 +502,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);
     button_Run_->Enable(false);
+    button_Update_->Enable(false);
+    button_Clear_->Enable(false);
 
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
@@ -504,6 +535,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
                 m_templateText->AppendText(text.ReadLine() + "\n");
             }
             button_Run_->Enable(true);
+            button_Update_->Enable(true);
+            button_Clear_->Enable(true);
         }
     }
 
@@ -515,12 +548,22 @@ void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
 
+    wxString label = event.GetLabel();
     int id = iData->get_report_id();
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        report->REPORTNAME = event.GetLabel();
+        report->REPORTNAME = label;
         Model_Report::instance().save(report);
+    }
+    else if (event.GetItem() != root_)
+    {
+        Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::GROUPNAME(m_selectedGroup));
+        for (auto & record : reports)
+        {
+            record.GROUPNAME = label;
+        }
+        Model_Report::instance().save(reports);
     }
 }
 
@@ -585,4 +628,9 @@ void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
     if (wxGetKeyState(wxKeyCode('A')) && wxGetKeyState(WXK_CONTROL))
         m_scriptText->SetSelection(-1, -1); //select all
     event.Skip();
+}
+
+void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
+{
+    EndModal(wxID_CANCEL);
 }

@@ -61,8 +61,10 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void fillControls();
-    void OnOpen(wxCommandEvent& event);
-    void OnSave(wxCommandEvent& event);
+    void OnOpenTemplate(wxCommandEvent& event);
+    void OnSaveTemplate(wxCommandEvent& event);
+    void OnSaveTemplateAs(wxCommandEvent& event);
+    void OnUpdateScript(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
@@ -82,6 +84,7 @@ private:
     wxButton* button_Save_;
     wxButton* button_Run_;
     wxButton* button_Clear_;
+    wxButton* button_Update_;
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;
