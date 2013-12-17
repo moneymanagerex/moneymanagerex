@@ -39,7 +39,6 @@ public:
 private:
     enum
     {
-        MARGIN_LINE_NUMBERS,
         ID_TAB1 = 0,
         ID_TAB2,
         ID_TAB3,
@@ -73,7 +72,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
 
-    wxStyledTextCtrl* m_scriptText;
+    //wxStyledTextCtrl* m_scriptText;
     wxTextCtrl* m_reportType;
     //wxStyledTextCtrl* m_templateText;
     wxTextCtrl* file_name_ctrl_;

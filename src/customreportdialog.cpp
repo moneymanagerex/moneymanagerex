@@ -94,6 +94,43 @@ public:
         StyleSetForeground(wxSTC_H_XMLEND, *wxBLUE);
         StyleSetForeground(wxSTC_H_CDATA, *wxRED);
     }
+    void SetLexerSql()
+    {
+        StyleSetForeground(wxSTC_STYLE_LINENUMBER, wxColour(75, 75, 75));
+        StyleSetBackground(wxSTC_STYLE_LINENUMBER, wxColour(220, 220, 220));
+        SetMarginType(margin_id_lineno, wxSTC_MARGIN_NUMBER);
+        SetMarginWidth(margin_id_lineno, 32);
+        StyleClearAll();
+        SetLexer(wxSTC_LEX_SQL);
+        StyleSetForeground(wxSTC_SQL_WORD, wxColour(0, 150, 0));
+        SetKeyWords(0, "select from where and or as union");
+    }
+    void SetLexerLua()
+    {
+        SetLexer(wxSTC_LEX_LUA);
+        wxString luawords =
+            "function end if then do else for in return break while local repeat elseif and or not false true nil require";
+        SetKeyWords(0, luawords);
+        //TODO: https://code.google.com/p/wxamcl/source/browse/trunk/scriptedit.cpp?r=63
+    }
+    void SetLexerHtml()
+    {
+        SetLexer(wxSTC_LEX_HTML);
+        SetMarginWidth(margin_id_lineno, 32);
+        StyleSetForeground(wxSTC_STYLE_LINENUMBER, wxColour(75, 75, 75));
+        StyleSetBackground(wxSTC_STYLE_LINENUMBER, wxColour(220, 220, 220));
+        SetMarginType(margin_id_lineno, wxSTC_MARGIN_NUMBER);
+        SetWrapMode(wxSTC_WRAP_WORD);
+        StyleClearAll();
+        StyleSetForeground(wxSTC_H_DOUBLESTRING, *wxRED);
+        StyleSetForeground(wxSTC_H_SINGLESTRING, *wxRED);
+        StyleSetForeground(wxSTC_H_ENTITY, *wxRED);
+        StyleSetForeground(wxSTC_H_TAG, wxColour(0, 150, 0));
+        StyleSetForeground(wxSTC_H_TAGUNKNOWN, wxColour(0, 150, 0));
+        StyleSetForeground(wxSTC_H_ATTRIBUTE, wxColour(0, 0, 150));
+        StyleSetForeground(wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0, 0, 150));
+        StyleSetForeground(wxSTC_H_COMMENT, wxColour(150, 150, 150));
+    }
 protected:
     void OnMarginClick(wxStyledTextEvent&);
     void OnText(wxStyledTextEvent&);
@@ -141,8 +178,7 @@ BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
 END_EVENT_TABLE()
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
-: m_scriptText()
-, button_Open_()
+: button_Open_()
 , button_Save_()
 , button_Run_()
 , button_Clear_()
@@ -269,17 +305,14 @@ void mmGeneralReportManager::CreateControls()
     script_tab->SetSizer(script_sizer);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
-    m_scriptText = new wxStyledTextCtrl(script_tab, wxID_VIEW_DETAILS);
+    MinimalEditor* m_scriptText = new MinimalEditor(script_tab, wxID_VIEW_DETAILS);
+    m_scriptText->SetLexerSql();
+    int font_size = this->GetFont().GetPointSize();
+    wxFont teletype(font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+    m_scriptText->SetFont(teletype);
 
-    m_scriptText->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
-    m_scriptText->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
-    m_scriptText->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
-    m_scriptText->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
     m_scriptText->Connect(wxID_ANY, wxEVT_CHAR
         , wxKeyEventHandler(mmGeneralReportManager::OnSourceTxtChar), NULL, this);
-    int font_size = this->GetFont().GetPointSize();
-    wxFont teletype( font_size, wxFONTFAMILY_TELETYPE, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL );
-    m_scriptText->SetFont(teletype);
 
     script_sizer->Add(m_scriptText, flagsExpand);
 
@@ -296,35 +329,19 @@ void mmGeneralReportManager::CreateControls()
     file_sizer->Add(file_name_ctrl_, flagsExpand);
 
     MinimalEditor* m_templateText = new MinimalEditor(template_tab, ID_TEMPLATE);
-    m_templateText->SetLexerXml();
-# if 0
-    m_templateText->SetMarginWidth (MARGIN_LINE_NUMBERS, 50);
-    m_templateText->StyleSetForeground (wxSTC_STYLE_LINENUMBER, wxColour (75, 75, 75) );
-    m_templateText->StyleSetBackground (wxSTC_STYLE_LINENUMBER, wxColour (220, 220, 220));
-    m_templateText->SetMarginType (MARGIN_LINE_NUMBERS, wxSTC_MARGIN_NUMBER);
-    m_templateText->SetWrapMode (wxSTC_WRAP_WORD);
-    m_templateText->StyleClearAll();
-    m_templateText->SetLexer(wxSTC_LEX_HTML);
-    m_templateText->StyleSetForeground (wxSTC_H_DOUBLESTRING,     wxColour(255,0,0));
-    m_templateText->StyleSetForeground (wxSTC_H_SINGLESTRING,     wxColour(255,0,0));
-    m_templateText->StyleSetForeground (wxSTC_H_ENTITY,           wxColour(255,0,0));
-    m_templateText->StyleSetForeground (wxSTC_H_TAG,              wxColour(0,150,0));
-    m_templateText->StyleSetForeground (wxSTC_H_TAGUNKNOWN,       wxColour(0,150,0));
-    m_templateText->StyleSetForeground (wxSTC_H_ATTRIBUTE,        wxColour(0,0,150));
-    m_templateText->StyleSetForeground (wxSTC_H_ATTRIBUTEUNKNOWN, wxColour(0,0,150));
-    m_templateText->StyleSetForeground (wxSTC_H_COMMENT,          wxColour(150,150,150));
-#endif
+    m_templateText->SetLexerHtml();
+
     html_sizer->Add(file_sizer);
     html_sizer->Add(m_templateText, flagsExpand);
     html_sizer->Add(headingPanelSizerH4, flags.Center());
 
     button_Open_ = new wxButton(template_tab, wxID_OPEN, _("Open"));
     headingPanelSizerH4->Add(button_Open_, flags);
-    button_Open_->SetToolTip(_("Locate and load a script file into the script area."));
+    button_Open_->SetToolTip(_("Locate and load a template file into the template area."));
 
     button_Save_ = new wxButton(template_tab, wxID_SAVEAS, _("Save As..."));
     headingPanelSizerH4->Add(button_Save_, flags);
-    button_Save_->SetToolTip(_("Save the script to file name set by the Report Title."));
+    button_Save_->SetToolTip(_("Save the template to file and assign it with the script."));
 
     button_Clear_ = new wxButton(template_tab, wxID_CLEAR);
     headingPanelSizerH4->Add(button_Clear_, flags);
@@ -448,6 +465,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
     m_reportType->ChangeValue("");
+    MinimalEditor* m_scriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
     m_scriptText->ChangeValue("");
     file_name_ctrl_->ChangeValue("");
     MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
@@ -467,12 +485,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         m_reportType->ChangeValue(report->CONTENTTYPE);
         file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
         m_scriptText->ChangeValue(report->CONTENT);
-#if 0
-        m_scriptText->StyleClearAll();
-        m_scriptText->SetLexer(wxSTC_LEX_SQL);
-        m_scriptText->StyleSetForeground (wxSTC_SQL_WORD,     wxColour(0,150,0));
-        m_scriptText->SetKeyWords(0, "select from where and or");
-#endif
+        m_scriptText->SetLexerSql();
 
         wxString full_path = mmex::getPathUser(mmex::DIRECTORY) + report->TEMPLATEPATH;
         wxTextFile tFile;
@@ -532,15 +545,14 @@ bool mmGeneralReportManager::DeleteReport(int id)
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
-    if (id == ID_NEW1)
+    if (id == ID_NEW1 || id == ID_NEW2)
     {
+        bool sql = id == ID_NEW1;
         wxString group_name;
         if (selectedItemId_ == root_)
         {
             group_name = wxGetTextFromUser(_("Enter the name for the new report group")
                 , _("Add Report Group"), "");
-            if (group_name.IsEmpty())
-                return;
         }
         else
         {
@@ -549,16 +561,11 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
         int i = Model_Report::instance().all().size();
         Model_Report::Data* report = Model_Report::instance().create();
         report->GROUPNAME = group_name;
-        report->REPORTNAME = wxString::Format(_("New SQL Report %i"), i);
-        report->CONTENTTYPE = "SQL";
-        report->CONTENT = "select 'Hello World' as COLUMN1";
+        report->REPORTNAME = wxString::Format(id == ID_NEW1 ? _("New SQL Report %i") : _("New Lua Report %i"), i);
+        report->CONTENTTYPE = sql ? "SQL" : "Lua";
+        report->CONTENT = sql ? "select 'Hello World' as COLUMN1" : "return \"Hello World\"";
         report->TEMPLATEPATH = "sample.html";
         Model_Report::instance().save(report);
-    }
-    else if (id == ID_NEW2)
-    {
-        m_reportType->SetValue(_("Lua"));
-        m_scriptText->ChangeValue("return \"Hello World\"");
     }
     else if (id == ID_DELETE)
     {
@@ -574,6 +581,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 
 void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
 {
+    MinimalEditor* m_scriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
     if (wxGetKeyState(wxKeyCode('A')) && wxGetKeyState(WXK_CONTROL))
         m_scriptText->SetSelection(-1, -1); //select all
     event.Skip();
