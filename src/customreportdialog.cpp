@@ -200,6 +200,8 @@ mmGeneralReportManager::~mmGeneralReportManager()
     if (me) delete me;
     me = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
     if (me) delete me;
+    wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+    if (n) delete n;
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
@@ -213,11 +215,11 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     wxDialog::Create(parent, id, caption, pos, size, style);
 
     wxAcceleratorEntry entries[1];
-    entries[0].Set(wxACCEL_NORMAL, WXK_F9, wxID_REFRESH);
+    entries[0].Set(wxACCEL_NORMAL, WXK_F9, wxID_EXECUTE);
     wxAcceleratorTable accel(1, entries);
     SetAcceleratorTable(accel);
 
-    Connect(wxID_REFRESH, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun));
+    Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), NULL, this);
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -448,9 +450,6 @@ void mmGeneralReportManager::OnUpdateScript(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
-    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
-    n->SetSelection(ID_TAB3);
-
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
     if (!iData) return;
     
@@ -459,6 +458,8 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+        n->SetSelection(ID_TAB3);
         m_outputHTML->ClearBackground();
         mmGeneralReport *gr = new mmGeneralReport(report);
         m_outputHTML->SetPage(gr->getHTMLText());
