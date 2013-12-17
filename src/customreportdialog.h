@@ -42,14 +42,13 @@ private:
         ID_TAB1 = 0,
         ID_TAB2,
         ID_TAB3,
-        HEADING_ONLY = wxID_HIGHEST + 1,
-        SUB_REPORT,
-        ID_NEW1,
+        ID_NEW1 = wxID_HIGHEST + 1,
         ID_NEW2,
         ID_DELETE,
         ID_OUTPUT_WIN,
         ID_NOTEBOOK,
-        ID_TEMPLATE
+        ID_TEMPLATE,
+        ID_TYPELABEL
     };
 
     bool Create(wxWindow* parent
@@ -75,13 +74,13 @@ private:
     void OnSourceTxtChar(wxKeyEvent& event);
 
     //wxStyledTextCtrl* m_scriptText;
-    wxTextCtrl* m_reportType;
     //wxStyledTextCtrl* m_templateText;
-    wxTextCtrl* file_name_ctrl_;
+    wxTextCtrl* m_fileNameCtrl;
     wxHtmlWindow* m_outputHTML;
 
     wxButton* button_Open_;
     wxButton* button_Save_;
+    wxButton* button_SaveAs_;
     wxButton* button_Run_;
     wxButton* button_Clear_;
     wxButton* button_Update_;
@@ -89,14 +88,13 @@ private:
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;
     wxString m_selectedGroup;
-
 };
 
 class MyTreeItemData : public wxTreeItemData
 {
 public:
     MyTreeItemData(int report_id, wxString selectedGroup) : m_report_id(report_id)
-    , m_selectedGroup(selectedGroup) { }
+        , m_selectedGroup(selectedGroup) { }
     int get_report_id() { return m_report_id; }
     wxString get_group_name() { return m_selectedGroup; }
 private:

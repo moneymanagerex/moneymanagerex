@@ -182,11 +182,13 @@ END_EVENT_TABLE()
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 : button_Open_()
 , button_Save_()
+, button_SaveAs_()
 , button_Run_()
 , button_Clear_()
-, m_reportType()
+, button_Update_()
 , treeCtrl_()
-
+, m_fileNameCtrl()
+, m_outputHTML()
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(640, 480), style);
@@ -194,6 +196,10 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 
 mmGeneralReportManager::~mmGeneralReportManager()
 {
+    MinimalEditor* me = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+    if (me) delete me;
+    me = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
+    if (me) delete me;
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
@@ -274,11 +280,11 @@ void mmGeneralReportManager::CreateControls()
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //
 
-    flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Script type:")), flags);
+    wxStaticText* type_label = new wxStaticText(this, ID_TYPELABEL
+        , wxString::Format(_("Script type: %s"), "")
+        , wxDefaultPosition, wxSize(titleTextWidth, -1));
+    flex_sizer->Add(type_label, flags);
     flex_sizer->AddSpacer(1);
-
-    m_reportType = new wxTextCtrl( this, wxID_PROPERTIES, ""
-        , wxDefaultPosition, wxSize(titleTextWidth,-1));
 
     long treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #if defined (__WXWIN__)
@@ -288,7 +294,6 @@ void mmGeneralReportManager::CreateControls()
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
     headingPanelSizerH2->Add(flex_sizer, flags);
-    headingPanelSizerH2->Add(m_reportType, flags);
     headingPanelSizerH2->Add(treeCtrl_, flagsExpand);
 
     /****************************************
@@ -334,10 +339,10 @@ void mmGeneralReportManager::CreateControls()
     template_tab->SetSizer(html_sizer);
 
     wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
-    file_name_ctrl_ = new wxTextCtrl(template_tab, wxID_FILE, wxEmptyString
+    m_fileNameCtrl = new wxTextCtrl(template_tab, wxID_FILE, wxEmptyString
         , wxDefaultPosition, wxSize(200, -1), wxTE_READONLY);
     file_sizer->Add(new wxStaticText(template_tab, wxID_STATIC, _("File Name:")), flags);
-    file_sizer->Add(file_name_ctrl_, flagsExpand);
+    file_sizer->Add(m_fileNameCtrl, flagsExpand);
 
     MinimalEditor* m_templateText = new MinimalEditor(template_tab, ID_TEMPLATE);
     m_templateText->SetLexerHtml();
@@ -355,9 +360,9 @@ void mmGeneralReportManager::CreateControls()
     headingPanelSizerH4->Add(button_Save_, flags);
     button_Save_->SetToolTip(_("Save the template to file."));
 
-    button_Save_ = new wxButton(template_tab, wxID_SAVEAS, _("Save As..."));
-    headingPanelSizerH4->Add(button_Save_, flags);
-    button_Save_->SetToolTip(_("Save the template to a new file and assign it with the script."));
+    button_SaveAs_ = new wxButton(template_tab, wxID_SAVEAS, _("Save As..."));
+    headingPanelSizerH4->Add(button_SaveAs_, flags);
+    button_SaveAs_->SetToolTip(_("Save the template to a new file and assign it with the script."));
 
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
@@ -396,32 +401,22 @@ void mmGeneralReportManager::OnOpenTemplate(wxCommandEvent& /*event*/)
         , wxFD_FILE_MUST_EXIST);
     if ( !sScriptFileName.empty() )
     {
-        wxFileName selectedFileName(sScriptFileName);
-        wxString reportText;
-
+        MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+        m_templateText->SetEvtHandlerEnabled(false);
         wxTextFile reportFile(sScriptFileName);
         if (reportFile.Open())
         {
-            reportText << reportFile.GetFirstLine() << "\n";
-            size_t currentline = 1;
             while (! reportFile.Eof())
-            {
-                reportText << reportFile.GetNextLine();
-                currentline ++;
-                if (currentline < reportFile.GetLineCount())
-                {
-                    reportText << "\n";
-                }
-            }
-            MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-            m_templateText->SetValue(reportText);
+                m_templateText->AppendText(reportFile.GetNextLine() + "\n");
+            
             reportFile.Close();
         }
         else
         {
             wxString msg = wxString() << _("Unable to open file.") << sScriptFileName << "\n\n";
-            wxMessageBox(msg, "Under Constraction", wxOK | wxICON_ERROR);
+            wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
         }
+        m_templateText->SetEvtHandlerEnabled(true);
     }
 }
 
@@ -478,7 +473,6 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(id));
     if (iData) report_id = iData->get_report_id();
 
-
     wxMenu* customReportMenu = new wxMenu;
     customReportMenu->Append(ID_NEW1, _("New SQL Custom Report"));
     customReportMenu->Append(ID_NEW2, _("New Lua Custom Report"));
@@ -493,13 +487,14 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
-    m_reportType->ChangeValue("");
+    wxStaticText* script_label = (wxStaticText*) FindWindow(ID_TYPELABEL);
     MinimalEditor* m_scriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
-    m_scriptText->ChangeValue("");
-    file_name_ctrl_->ChangeValue("");
     MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+    m_scriptText->ChangeValue("");
+    m_fileNameCtrl->ChangeValue("");
     m_templateText->ChangeValue("");
-    wxNotebook* n = (wxNotebook*)  FindWindow(ID_NOTEBOOK);
+    script_label->SetLabel("");
+    wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);
     button_Run_->Enable(false);
     button_Update_->Enable(false);
@@ -513,8 +508,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        m_reportType->ChangeValue(report->CONTENTTYPE);
-        file_name_ctrl_->ChangeValue(report->TEMPLATEPATH);
+        script_label->SetLabel(wxString::Format(_("Script Type: %s"), report->CONTENTTYPE));
+        m_fileNameCtrl->ChangeValue(report->TEMPLATEPATH);
         m_scriptText->ChangeValue(report->CONTENT);
         m_scriptText->SetLexerSql();
 
@@ -524,7 +519,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         if (!tFile.Open())
         {
             wxMessageBox(wxString::Format(_("Unable to open file %s"), full_path)
-                , _("General Reports Manager"), wxOK|wxICON_ERROR);
+                , _("General Reports Manager"), wxOK | wxICON_ERROR);
         }
         else
         {
@@ -539,8 +534,6 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
             button_Clear_->Enable(true);
         }
     }
-
-    //TODO:
 }
 
 void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
