@@ -26,6 +26,31 @@
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 
+class WebViewHandlerStatic : public wxWebViewHandler
+{
+public:
+    WebViewHandlerStatic(const wxString& protocol)
+        : wxWebViewHandler(protocol)
+    {
+        m_fs = new wxFileSystem();
+    }
+
+    virtual ~WebViewHandlerStatic()
+    {
+    //    wxDELETE(m_fs);
+    }
+
+    virtual wxFSFile* GetFile (const wxString &uri)
+    {
+        wxString content = uri.substr(9, uri.length()).BeforeLast('/');
+
+        return m_fs->OpenFile(content);
+    }   
+
+private:
+    wxFileSystem* m_fs;
+};
+
 BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
     EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
 END_EVENT_TABLE()
@@ -89,6 +114,7 @@ void mmReportsPanel::CreateControls()
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(".")));
 /*
     htmlWindow_ = new wxWebView( this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize,
