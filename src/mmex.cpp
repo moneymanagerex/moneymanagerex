@@ -1660,20 +1660,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 4, 4);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
 
-    // TODO
-    if (Model_Report::instance().all().empty())
-    {
-        Model_Report::Data* r = Model_Report::instance().create();
-        r->REPORTNAME = "TEST GENERAL REPORT";
-        r->CONTENTTYPE = "SQL";
-        r->CONTENT = "SELECT * FROM ASSETS_V1";
-        r->TEMPLATEPATH = "summaryasset.html";
-
-        wxLogDebug(r->to_json());
-
-        Model_Report::instance().save(r);
-    }
-
     for (const auto& record: Model_Report::instance().all())
     {
         Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
