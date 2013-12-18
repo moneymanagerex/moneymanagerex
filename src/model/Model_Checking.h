@@ -37,12 +37,16 @@ public:
         Full_Data(const Data& r);
 
         ~Full_Data();
-        wxString ACCOUNTNAME;
+        wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
         wxString DEPOSIT;
         wxString WITHDRAWAL;
         double BALANCE;
+        Model_Splittransaction::Data_Set m_splits;
+        
+        wxString real_payee_name(int account_id) const;
+        bool has_split() const;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
     struct SorterByBALANCE
@@ -175,6 +179,6 @@ public:
         s.Replace("N", "");
         return s;
     }
-    };
+};
 
 #endif // 

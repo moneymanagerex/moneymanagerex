@@ -79,18 +79,15 @@ Model_Checking::Full_Data::Full_Data(): Data(0), BALANCE(0)
 }
 
 Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
+ , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
-    this->ACCOUNTNAME = Model_Account::instance().get(r.ACCOUNTID)->ACCOUNTNAME;
+    const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
+    const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
+    if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
+    if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
 
-    if (Model_Checking::TRANSFER == Model_Checking::type(r))
-    {
-        this->PAYEENAME = this->ACCOUNTNAME;
-    }
-    else
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-        if (payee) this->PAYEENAME = payee->PAYEENAME;
-    }
+    const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
+    if (payee) this->PAYEENAME = payee->PAYEENAME;
     
     if (Model_Checking::splittransaction(r).empty())
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
@@ -100,4 +97,21 @@ Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
 
 Model_Checking::Full_Data::~Full_Data()
 {
+}
+
+wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
+{
+    if (Model_Checking::TRANSFER == Model_Checking::type(this))
+    {
+        return this->ACCOUNTID == account_id ? this->TOACCOUNTNAME : this->ACCOUNTNAME;
+    }
+    else
+    {
+        return this->PAYEENAME;
+    }
+}
+
+bool Model_Checking::Full_Data::has_split() const
+{
+    return !this->m_splits.empty();
 }

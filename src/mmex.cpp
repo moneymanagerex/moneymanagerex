@@ -3221,23 +3221,6 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                 }
             }
             Model_Checking::Full_Data full_tran(tran);
-            full_tran.ACCOUNTNAME = Model_Account::instance().get(tran.ACCOUNTID)->ACCOUNTNAME;
-
-            if (Model_Checking::TRANSFER == Model_Checking::type(tran))
-            {
-                full_tran.PAYEENAME = full_tran.ACCOUNTNAME;
-            }
-            else
-            {
-                const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-                if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
-            }
-            
-            if (Model_Checking::splittransaction(tran).empty())
-                full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
-            else
-                full_tran.CATEGNAME = "...";
-
             trans.push_back(full_tran);
         }
 
