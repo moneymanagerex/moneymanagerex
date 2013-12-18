@@ -50,7 +50,7 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    mm_html_template report(mmex::getPathUser(mmex::DIRECTORY) + r->TEMPLATEPATH);
+    mm_html_template report(r->TEMPLATEPATH);
 
     report("REPORTID") = r->REPORTID;
     report("REPORTNAME") = r->REPORTNAME;
