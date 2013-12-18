@@ -21,6 +21,7 @@
 #include "paths.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
+#include <wx/stc/stc.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // Minimal editor added by Troels K 2008-04-08
