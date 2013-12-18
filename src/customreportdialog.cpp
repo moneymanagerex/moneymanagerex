@@ -462,8 +462,8 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
         n->SetSelection(ID_TAB3);
         m_outputHTML->ClearBackground();
-        mmGeneralReport *gr = new mmGeneralReport(report);
-        m_outputHTML->SetPage(gr->getHTMLText());
+        mmGeneralReport gr(report);
+        m_outputHTML->SetPage(gr.getHTMLText());
     }
 }
 
