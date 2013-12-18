@@ -1657,15 +1657,9 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     }
 
     //////////////////////////////////////////////////////////////////
+
     wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 4, 4);
     navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
-
-    for (const auto& record: Model_Report::instance().all())
-    {
-        Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
-        wxTreeItemId report = navTreeCtrl_->AppendItem(reports, wxGetTranslation(r->REPORTNAME), 4, 4);
-        navTreeCtrl_->SetItemData(report, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
-    }
 
     ///////////////////////////////////////////////////////////////////
 
@@ -1727,6 +1721,26 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     wxTreeItemId cashflowSpecificAccountsDaily = navTreeCtrl_->AppendItem(cashFlow, _("Daily Cash Flow - Specific Accounts"), 4, 4);
     navTreeCtrl_->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow - Specific Accounts", new mmReportDailyCashFlowSpecificAccounts()));
+
+    ///////////////////////////////////////////////////////////////////
+    //TODO: Test reports
+    Model_Report::Data_Set records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
+    wxTreeItemId group;
+    wxString group_name = "\x05";
+    for (const auto& record : records)
+    {
+        bool no_group = record.GROUPNAME.empty();
+        if (group_name != record.GROUPNAME && !no_group)
+        {
+            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
+            navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, 0));
+            group_name = record.GROUPNAME;
+        }
+        Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
+        wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
+            , wxGetTranslation(record.REPORTNAME), 4, 4);
+        navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
+    }
 
     ///////////////////////////////////////////////////////////////////
 
@@ -1806,8 +1820,9 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
 void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 {
-    wxTreeItemId id = event.GetItem();
-    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(id));
+    mmTreeItemData* iData =
+        dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
+    if (!iData) return;
 
     if (iData->getString() == NAVTREECTRL_REPORTS)
         expandedReportNavTree_ = true;
@@ -1818,8 +1833,9 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
 
 void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 {
-    wxTreeItemId id = event.GetItem();
-    mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(id));
+    mmTreeItemData* iData =
+        dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
+    if (!iData) return;
 
     if (iData->getString() == NAVTREECTRL_REPORTS)
         expandedReportNavTree_ = false;

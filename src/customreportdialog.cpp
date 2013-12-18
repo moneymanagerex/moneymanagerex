@@ -236,20 +236,20 @@ void mmGeneralReportManager::fillControls()
     selectedItemId_ = root_;
     treeCtrl_->SetItemBold(root_, true);
     treeCtrl_->SetFocus();
-    Model_Report::Data_Set reports = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
+    Model_Report::Data_Set records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name = "\x05";
-    for (const auto& report : reports)
+    for (const auto& record : records)
     {
-        bool no_group = report.GROUPNAME.empty();
-        if (group_name != report.GROUPNAME && !no_group)
+        bool no_group = record.GROUPNAME.empty();
+        if (group_name != record.GROUPNAME && !no_group)
         {
-            group = treeCtrl_->AppendItem(root_, report.GROUPNAME);
-            treeCtrl_->SetItemData(group, new MyTreeItemData(-1, report.GROUPNAME));
-            group_name = report.GROUPNAME;
+            group = treeCtrl_->AppendItem(root_, record.GROUPNAME);
+            treeCtrl_->SetItemData(group, new MyTreeItemData(-1, record.GROUPNAME));
+            group_name = record.GROUPNAME;
         }
-        wxTreeItemId item = treeCtrl_->AppendItem(no_group ? root_ : group, report.REPORTNAME);
-        treeCtrl_->SetItemData(item, new MyTreeItemData(report.REPORTID, report.GROUPNAME));
+        wxTreeItemId item = treeCtrl_->AppendItem(no_group ? root_ : group, record.REPORTNAME);
+        treeCtrl_->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
     }
     treeCtrl_->ExpandAll();
     treeCtrl_->SetEvtHandlerEnabled(true);
