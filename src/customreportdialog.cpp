@@ -38,8 +38,6 @@ class MinimalEditor : public wxStyledTextCtrl
 public:
     MinimalEditor(wxWindow* parent, wxWindowID id = wxID_ANY) : wxStyledTextCtrl(parent, id)
     {
-        SetLexerXml();
-
         SetProperty(wxT("fold"), wxT("1"));
         SetProperty(wxT("fold.comment"), wxT("1"));
         SetProperty(wxT("fold.compact"), wxT("1"));
@@ -49,6 +47,7 @@ public:
 
         SetMarginType(margin_id_lineno, wxSTC_MARGIN_NUMBER);
         SetMarginWidth(margin_id_lineno, 32);
+        SetMarginWidth(margin_id_fold, 5);
 
         MarkerDefine(wxSTC_MARKNUM_FOLDER,        wxSTC_MARK_BOXPLUS, wxT("WHITE"), wxT("BLACK"));
         MarkerDefine(wxSTC_MARKNUM_FOLDEROPEN,    wxSTC_MARK_BOXMINUS,  wxT("WHITE"), wxT("BLACK"));
@@ -57,12 +56,6 @@ public:
         MarkerDefine(wxSTC_MARKNUM_FOLDEROPENMID, wxSTC_MARK_BOXMINUSCONNECTED, wxT("WHITE"), wxT("BLACK"));
         MarkerDefine(wxSTC_MARKNUM_FOLDERMIDTAIL, wxSTC_MARK_TCORNER,     wxT("WHITE"), wxT("BLACK"));
         MarkerDefine(wxSTC_MARKNUM_FOLDERTAIL,    wxSTC_MARK_LCORNER,     wxT("WHITE"), wxT("BLACK"));
-
-        SetMarginMask(margin_id_fold, wxSTC_MASK_FOLDERS);
-        SetMarginWidth(margin_id_fold, 32);
-        SetMarginSensitive(margin_id_fold, true);
-
-        SetFoldFlags(wxSTC_FOLDFLAG_LINEBEFORE_CONTRACTED | wxSTC_FOLDFLAG_LINEAFTER_CONTRACTED);
 
         SetTabWidth(4);
         SetUseTabs(false);
@@ -74,6 +67,7 @@ public:
         StyleSetFont(wxSTC_STYLE_DEFAULT, (wxFont&)font);
         return wxStyledTextCtrl::SetFont(font);
     }
+#if 0
     void SetLexerXml()
     {
         SetLexer(wxSTC_LEX_XML);
@@ -95,21 +89,23 @@ public:
         StyleSetForeground(wxSTC_H_XMLEND, *wxBLUE);
         StyleSetForeground(wxSTC_H_CDATA, *wxRED);
     }
+#endif
     void SetLexerSql()
     {
         StyleSetForeground(wxSTC_STYLE_LINENUMBER, wxColour(75, 75, 75));
         StyleSetBackground(wxSTC_STYLE_LINENUMBER, wxColour(220, 220, 220));
-        SetMarginType(margin_id_lineno, wxSTC_MARGIN_NUMBER);
         SetMarginWidth(margin_id_lineno, 32);
         StyleClearAll();
         SetLexer(wxSTC_LEX_SQL);
         StyleSetForeground(wxSTC_SQL_WORD, wxColour(0, 150, 0));
-        SetKeyWords(0, "select from where and or as union");
+        const wxString sqlwords =
+            "asc by delete desc from group having insert into order select set update values where";
+        SetKeyWords(0, sqlwords);
     }
     void SetLexerLua()
     {
         SetLexer(wxSTC_LEX_LUA);
-        wxString luawords =
+        const wxString luawords =
             "function end if then do else for in return break while local repeat elseif and or not false true nil require";
         SetKeyWords(0, luawords);
         //TODO: https://code.google.com/p/wxamcl/source/browse/trunk/scriptedit.cpp?r=63
@@ -120,7 +116,6 @@ public:
         SetMarginWidth(margin_id_lineno, 32);
         StyleSetForeground(wxSTC_STYLE_LINENUMBER, wxColour(75, 75, 75));
         StyleSetBackground(wxSTC_STYLE_LINENUMBER, wxColour(220, 220, 220));
-        SetMarginType(margin_id_lineno, wxSTC_MARGIN_NUMBER);
         SetWrapMode(wxSTC_WRAP_WORD);
         StyleClearAll();
         StyleSetForeground(wxSTC_H_DOUBLESTRING, *wxRED);

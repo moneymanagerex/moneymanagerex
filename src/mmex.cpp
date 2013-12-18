@@ -3219,11 +3219,9 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
 {
     if (!m_db) return;
 
-    mmGeneralReportManager* dlg = new mmGeneralReportManager(this);
-    if (dlg->ShowModal() == wxID_OK)
-    {
-        //TODO:
-    }
+    mmGeneralReportManager dlg(this);
+    dlg.ShowModal();
+    updateNavTreeControl();
 }
 
 //----------------------------------------------------------------------------
