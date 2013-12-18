@@ -477,7 +477,8 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 
     wxMenu* customReportMenu = new wxMenu;
     customReportMenu->Append(ID_NEW1, _("New SQL Custom Report"));
-    customReportMenu->Append(ID_NEW2, _("New Lua Custom Report"));
+    //TODO: Hided till release the workload
+    //customReportMenu->Append(ID_NEW2, _("New Lua Custom Report"));
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_DELETE, _("Delete Custom Report"));
     customReportMenu->Enable(ID_DELETE, report_id > 0);
@@ -515,7 +516,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         m_scriptText->ChangeValue(report->CONTENT);
         m_scriptText->SetLexerSql();
 
-        wxString full_path = mmex::getPathUser(mmex::DIRECTORY) + report->TEMPLATEPATH;
+        wxString full_path = report->TEMPLATEPATH;
         wxTextFile tFile;
         tFile.Open(full_path);
         if (!tFile.Open())
