@@ -59,7 +59,8 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void fillControls();
-    void OnOpenTemplate(wxCommandEvent& event);
+    void OnOpenTemplateEvt(wxCommandEvent& event);
+    void openTemplate(int id = -1);
     void OnSaveTemplate(wxCommandEvent& event);
     void OnSaveTemplateAs(wxCommandEvent& event);
     void OnUpdateScript(wxCommandEvent& event);
@@ -71,6 +72,7 @@ private:
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
+    void newReport(const wxString type);
 
     //wxStyledTextCtrl* m_scriptText;
     //wxStyledTextCtrl* m_templateText;

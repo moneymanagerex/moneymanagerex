@@ -162,8 +162,8 @@ int sourceTextHeight = 200; // Determines height of Source Textbox.
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
-BEGIN_EVENT_TABLE( mmGeneralReportManager, wxDialog )
-    EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnOpenTemplate)
+BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
+    EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnOpenTemplateEvt)
     EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnSaveTemplate)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnSaveTemplateAs)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
@@ -338,9 +338,9 @@ void mmGeneralReportManager::CreateControls()
 
     wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_fileNameCtrl = new wxTextCtrl(template_tab, wxID_FILE, wxEmptyString
-        , wxDefaultPosition, wxSize(200, -1), wxTE_READONLY);
-    file_sizer->Add(new wxStaticText(template_tab, wxID_STATIC, _("File Name:")), flags);
-    file_sizer->Add(m_fileNameCtrl, flagsExpand);
+        , wxDefaultPosition, wxSize(480, -1), wxTE_READONLY);
+    file_sizer->Add(new wxStaticText(template_tab, wxID_STATIC, _("File Name:")), flagsExpand.Proportion(0));
+    file_sizer->Add(m_fileNameCtrl, flagsExpand.Proportion(1));
 
     MinimalEditor* m_templateText = new MinimalEditor(template_tab, ID_TEMPLATE);
     m_templateText->SetLexerHtml();
@@ -391,7 +391,12 @@ void mmGeneralReportManager::CreateControls()
 
 }
 
-void mmGeneralReportManager::OnOpenTemplate(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnOpenTemplateEvt(wxCommandEvent& /*event*/)
+{
+    openTemplate();
+}
+
+void mmGeneralReportManager::openTemplate(int id)
 {
     wxString sScriptFileName = wxFileSelector( _("Load file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
@@ -408,6 +413,21 @@ void mmGeneralReportManager::OnOpenTemplate(wxCommandEvent& /*event*/)
                 m_templateText->AppendText(reportFile.GetNextLine() + "\n");
             
             reportFile.Close();
+
+            if (id == -1)
+            {
+                MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+                if (!iData) return;
+                id = iData->get_report_id();
+            }
+            
+            Model_Report::Data * report = Model_Report::instance().get(id);
+            if (report)
+            {
+                report->TEMPLATEPATH = sScriptFileName;
+                Model_Report::instance().save(report);
+                m_fileNameCtrl->ChangeValue(sScriptFileName);
+            }
         }
         else
         {
@@ -544,8 +564,13 @@ void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        report->REPORTNAME = label;
-        Model_Report::instance().save(report);
+        if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty())
+        {
+            report->REPORTNAME = label;
+            Model_Report::instance().save(report);
+        }
+        else
+            event.Veto();
     }
     else if (event.GetItem() != root_)
     {
@@ -581,25 +606,11 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     int id = event.GetId();
     if (id == ID_NEW1 || id == ID_NEW2)
     {
-        bool sql = id == ID_NEW1;
-        wxString group_name;
-        if (selectedItemId_ == root_)
-        {
-            group_name = wxGetTextFromUser(_("Enter the name for the new report group")
-                , _("Add Report Group"), "");
-        }
-        else
-        {
-            group_name = m_selectedGroup;
-        }
-        int i = Model_Report::instance().all().size();
-        Model_Report::Data* report = Model_Report::instance().create();
-        report->GROUPNAME = group_name;
-        report->REPORTNAME = wxString::Format(id == ID_NEW1 ? _("New SQL Report %i") : _("New Lua Report %i"), i);
-        report->CONTENTTYPE = sql ? "SQL" : "Lua";
-        report->CONTENT = sql ? "select 'Hello World' as COLUMN1" : "return \"Hello World\"";
-        report->TEMPLATEPATH = "sample.html";
-        Model_Report::instance().save(report);
+        newReport("SQL");
+    }
+    if (id == ID_NEW2)
+    {
+        newReport("Lua");
     }
     else if (id == ID_DELETE)
     {
@@ -611,6 +622,33 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
         }
     }
     fillControls();
+}
+
+void mmGeneralReportManager::newReport(const wxString type)
+{
+    wxString group_name;
+    if (selectedItemId_ == root_)
+    {
+        group_name = wxGetTextFromUser(_("Enter the name for the new report group")
+            , _("Add Report Group"), "");
+    }
+    else
+    {
+        group_name = m_selectedGroup;
+    }
+
+    Model_Report::Data* report = Model_Report::instance().create();
+    report->GROUPNAME = group_name;
+    int i = Model_Report::instance().all().size();
+    wxString report_name = _("New SQL Report");
+    while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
+        report_name = wxString::Format(_("New SQL Report %i"), ++i);
+    report->REPORTNAME = report_name;
+    report->CONTENTTYPE = type;
+    report->CONTENT = "select 'Hello World' as COLUMN1" ;
+    report->TEMPLATEPATH = "sample.html";
+    Model_Report::instance().save(report);
+    openTemplate(report->REPORTID);
 }
 
 void mmGeneralReportManager::OnSourceTxtChar(wxKeyEvent& event)
