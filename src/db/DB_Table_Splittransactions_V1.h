@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-19 14:33:06.350605.
+ *          AUTO GENERATED at 2013-12-19 14:43:31.114225.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -468,6 +468,5 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
 
         return result;
     }
-
 };
 #endif //

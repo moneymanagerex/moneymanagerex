@@ -575,9 +575,7 @@ struct DB_Table_%s : public DB_Table
         return result;
     }
 '''
-
-        s += '''
-};
+        s += '''};
 #endif //
 ''' 
         return s
