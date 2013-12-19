@@ -1726,7 +1726,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     //TODO: Test reports
     Model_Report::Data_Set records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
-    wxString group_name = "\x05";
+    wxString group_name;
     for (const auto& record : records)
     {
         bool no_group = record.GROUPNAME.empty();
