@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-10 06:46:17.359000.
+ *          AUTO GENERATED at 2013-12-19 14:33:06.350605.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -61,7 +61,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, CONTENTTYPE TEXT COLLATE NOCASE, CONTENT TEXT, TEMPLATEPATH TEXT)");
+				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, STATUS TEXT COLLATE NOCASE NOT NULL, GROUPNAME TEXT COLLATE NOCASE, CONTENTTYPE TEXT COLLATE NOCASE, CONTENT TEXT, TEMPLATEPATH TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,6 +100,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
         static wxString name() { return "REPORTNAME"; } 
         REPORTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
+    struct STATUS : public DB_Column<wxString>
+    { 
+        static wxString name() { return "STATUS"; } 
+        STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
     struct GROUPNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "GROUPNAME"; } 
@@ -125,10 +130,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
     {
         COL_REPORTID = 0
         , COL_REPORTNAME = 1
-        , COL_GROUPNAME = 2
-        , COL_CONTENTTYPE = 3
-        , COL_CONTENT = 4
-        , COL_TEMPLATEPATH = 5
+        , COL_STATUS = 2
+        , COL_GROUPNAME = 3
+        , COL_CONTENTTYPE = 4
+        , COL_CONTENT = 5
+        , COL_TEMPLATEPATH = 6
     };
 
     /** Returns the column name as a string*/
@@ -138,6 +144,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             case COL_REPORTID: return "REPORTID";
             case COL_REPORTNAME: return "REPORTNAME";
+            case COL_STATUS: return "STATUS";
             case COL_GROUPNAME: return "GROUPNAME";
             case COL_CONTENTTYPE: return "CONTENTTYPE";
             case COL_CONTENT: return "CONTENT";
@@ -153,6 +160,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     {
         if ("REPORTID" == name) return COL_REPORTID;
         else if ("REPORTNAME" == name) return COL_REPORTNAME;
+        else if ("STATUS" == name) return COL_STATUS;
         else if ("GROUPNAME" == name) return COL_GROUPNAME;
         else if ("CONTENTTYPE" == name) return COL_CONTENTTYPE;
         else if ("CONTENT" == name) return COL_CONTENT;
@@ -170,6 +178,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     
         int REPORTID;//  primay key
         wxString REPORTNAME;
+        wxString STATUS;
         wxString GROUPNAME;
         wxString CONTENTTYPE;
         wxString CONTENT;
@@ -198,6 +207,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         
             REPORTID = q.GetInt("REPORTID");
             REPORTNAME = q.GetString("REPORTNAME");
+            STATUS = q.GetString("STATUS");
             GROUPNAME = q.GetString("GROUPNAME");
             CONTENTTYPE = q.GetString("CONTENTTYPE");
             CONTENT = q.GetString("CONTENT");
@@ -217,6 +227,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             o["REPORTID"] = json::Number(this->REPORTID);
             o["REPORTNAME"] = json::String(this->REPORTNAME.ToStdString());
+            o["STATUS"] = json::String(this->STATUS.ToStdString());
             o["GROUPNAME"] = json::String(this->GROUPNAME.ToStdString());
             o["CONTENTTYPE"] = json::String(this->CONTENTTYPE.ToStdString());
             o["CONTENT"] = json::String(this->CONTENT.ToStdString());
@@ -228,6 +239,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             row_t row;
             row("REPORTID") = REPORTID;
             row("REPORTNAME") = REPORTNAME;
+            row("STATUS") = STATUS;
             row("GROUPNAME") = GROUPNAME;
             row("CONTENTTYPE") = CONTENTTYPE;
             row("CONTENT") = CONTENT;
@@ -264,7 +276,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 6
+        NUM_COLUMNS = 7
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
@@ -304,11 +316,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() < 0) //  new & insert
         {
-            sql = "INSERT INTO REPORT_V1(REPORTNAME, GROUPNAME, CONTENTTYPE, CONTENT, TEMPLATEPATH) VALUES(?, ?, ?, ?, ?)";
+            sql = "INSERT INTO REPORT_V1(REPORTNAME, STATUS, GROUPNAME, CONTENTTYPE, CONTENT, TEMPLATEPATH) VALUES(?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, GROUPNAME = ?, CONTENTTYPE = ?, CONTENT = ?, TEMPLATEPATH = ? WHERE REPORTID = ?";
+            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, STATUS = ?, GROUPNAME = ?, CONTENTTYPE = ?, CONTENT = ?, TEMPLATEPATH = ? WHERE REPORTID = ?";
         }
 
         try
@@ -316,12 +328,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
             stmt.Bind(1, entity->REPORTNAME);
-            stmt.Bind(2, entity->GROUPNAME);
-            stmt.Bind(3, entity->CONTENTTYPE);
-            stmt.Bind(4, entity->CONTENT);
-            stmt.Bind(5, entity->TEMPLATEPATH);
+            stmt.Bind(2, entity->STATUS);
+            stmt.Bind(3, entity->GROUPNAME);
+            stmt.Bind(4, entity->CONTENTTYPE);
+            stmt.Bind(5, entity->CONTENT);
+            stmt.Bind(6, entity->TEMPLATEPATH);
             if (entity->id() > 0)
-                stmt.Bind(6, entity->REPORTID);
+                stmt.Bind(7, entity->REPORTID);
 
             wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
