@@ -24,10 +24,10 @@
 #include "defs.h"
 #include "paths.h"
 
-class Model_Setting : public Model_Mix<DB_Table_SETTING_V1>
+class Model_Setting : public Model<DB_Table_SETTING_V1>
 {
 public:
-    Model_Setting(): Model_Mix<DB_Table_SETTING_V1>() {};
+    Model_Setting(): Model<DB_Table_SETTING_V1>() {};
     ~Model_Setting() {};
 
 public:

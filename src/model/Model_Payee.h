@@ -24,12 +24,12 @@
 #include "Model_Checking.h" // detect whether the payee is used or not
 #include "Model_Billsdeposits.h"
 
-class Model_Payee : public Model_Mix<DB_Table_PAYEE_V1>
+class Model_Payee : public Model<DB_Table_PAYEE_V1>
 {
 public:
-    using Model_Mix<DB_Table_PAYEE_V1>::get;
+    using Model<DB_Table_PAYEE_V1>::get;
 public:
-    Model_Payee(): Model_Mix<DB_Table_PAYEE_V1>() 
+    Model_Payee(): Model<DB_Table_PAYEE_V1>() 
     {
     };
     ~Model_Payee() {};

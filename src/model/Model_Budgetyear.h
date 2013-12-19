@@ -23,12 +23,12 @@
 #include "Model_Budget.h"
 #include "db/DB_Table_Budgetyear_V1.h"
 
-class Model_Budgetyear : public Model_Mix<DB_Table_BUDGETYEAR_V1>
+class Model_Budgetyear : public Model<DB_Table_BUDGETYEAR_V1>
 {
 public:
-    using Model_Mix<DB_Table_BUDGETYEAR_V1>::remove;
+    using Model<DB_Table_BUDGETYEAR_V1>::remove;
 public:
-    Model_Budgetyear(): Model_Mix<DB_Table_BUDGETYEAR_V1>() {};
+    Model_Budgetyear(): Model<DB_Table_BUDGETYEAR_V1>() {};
     ~Model_Budgetyear() 
     {
     };

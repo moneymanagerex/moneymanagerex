@@ -25,10 +25,10 @@
 #include <wx/numformatter.h>
 #include <tuple>
 
-class Model_Currency : public Model_Mix<DB_Table_CURRENCYFORMATS_V1>
+class Model_Currency : public Model<DB_Table_CURRENCYFORMATS_V1>
 {
 public:
-    Model_Currency(): Model_Mix<DB_Table_CURRENCYFORMATS_V1>() {};
+    Model_Currency(): Model<DB_Table_CURRENCYFORMATS_V1>() {};
     ~Model_Currency() {};
 
 public:

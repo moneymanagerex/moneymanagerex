@@ -36,11 +36,11 @@ class wxSQLite3ResultSet;
 
 typedef wxDateTime wxDate;
 
-class Model
+class ModelBase
 {
 public:
-    Model():db_(0) {};
-    virtual ~Model() {};
+    ModelBase():db_(0) {};
+    virtual ~ModelBase() {};
 
 public:
     void Begin()
@@ -67,7 +67,7 @@ protected:
 };
 
 template<class DB_TABLE>
-class Model_Mix: public Model, public DB_TABLE
+class Model: public ModelBase, public DB_TABLE
 {
 public:
     using DB_TABLE::all;

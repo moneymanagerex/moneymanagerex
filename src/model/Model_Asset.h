@@ -23,14 +23,14 @@
 #include "db/DB_Table_Assets_V1.h"
 #include "Model_Currency.h" // detect base currency
 
-class Model_Asset : public Model_Mix<DB_Table_ASSETS_V1>
+class Model_Asset : public Model<DB_Table_ASSETS_V1>
 {
 public:
     enum RATE { RATE_NONE = 0, RATE_APPRECIATE, RATE_DEPRECIATE };
     enum TYPE { TYPE_PROPERTY = 0, TYPE_AUTO, TYPE_HOUSE, TYPE_ART, TYPE_JEWELLERY, TYPE_CASH, TYPE_OTHER };
 
 public:
-    Model_Asset(): Model_Mix<DB_Table_ASSETS_V1>() 
+    Model_Asset(): Model<DB_Table_ASSETS_V1>() 
     {
     };
     ~Model_Asset() {};

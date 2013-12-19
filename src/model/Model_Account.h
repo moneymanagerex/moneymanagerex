@@ -26,16 +26,16 @@
 #include "Model_Billsdeposits.h"
 #include "Model_Stock.h"
 
-class Model_Account : public Model_Mix<DB_Table_ACCOUNTLIST_V1>
+class Model_Account : public Model<DB_Table_ACCOUNTLIST_V1>
 {
 public:
-    using Model_Mix<DB_Table_ACCOUNTLIST_V1>::remove;
-    using Model_Mix<DB_Table_ACCOUNTLIST_V1>::get;
+    using Model<DB_Table_ACCOUNTLIST_V1>::remove;
+    using Model<DB_Table_ACCOUNTLIST_V1>::get;
 public:
     enum STATUS { OPEN = 0, CLOSED };
     enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
 public:
-    Model_Account(): Model_Mix<DB_Table_ACCOUNTLIST_V1>() 
+    Model_Account(): Model<DB_Table_ACCOUNTLIST_V1>() 
     {
     };
     ~Model_Account() {};

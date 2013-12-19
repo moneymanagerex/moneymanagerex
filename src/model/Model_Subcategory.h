@@ -22,12 +22,12 @@
 #include "Model.h"
 #include "db/DB_Table_Subcategory_V1.h"
 
-class Model_Subcategory : public Model_Mix<DB_Table_SUBCATEGORY_V1>
+class Model_Subcategory : public Model<DB_Table_SUBCATEGORY_V1>
 {
 public:
-    using Model_Mix<DB_Table_SUBCATEGORY_V1>::get;
+    using Model<DB_Table_SUBCATEGORY_V1>::get;
 public:
-    Model_Subcategory(): Model_Mix<DB_Table_SUBCATEGORY_V1>() 
+    Model_Subcategory(): Model<DB_Table_SUBCATEGORY_V1>() 
     {
     };
     ~Model_Subcategory() {};

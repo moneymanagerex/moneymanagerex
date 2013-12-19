@@ -31,7 +31,7 @@ bool Model_Subcategory::is_used(int id)
     return !deposits.empty() || !trans.empty();
 }
 
-Model_Category::Model_Category(): Model_Mix<DB_Table_CATEGORY_V1>()
+Model_Category::Model_Category(): Model<DB_Table_CATEGORY_V1>()
 {
 }
 

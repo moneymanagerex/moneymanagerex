@@ -24,10 +24,10 @@
 #include "defs.h"
 #include "constants.h"
 
-class Model_Infotable : public Model_Mix<DB_Table_INFOTABLE_V1>
+class Model_Infotable : public Model<DB_Table_INFOTABLE_V1>
 {
 public:
-    Model_Infotable(): Model_Mix<DB_Table_INFOTABLE_V1>() {};
+    Model_Infotable(): Model<DB_Table_INFOTABLE_V1>() {};
     ~Model_Infotable() 
     {
     };

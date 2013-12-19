@@ -22,7 +22,7 @@
 #include "Model_Category.h"
 
 
-Model_Checking::Model_Checking(): Model_Mix<DB_Table_CHECKINGACCOUNT_V1>()
+Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
 }
 

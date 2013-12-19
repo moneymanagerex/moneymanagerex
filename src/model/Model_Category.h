@@ -24,10 +24,10 @@
 #include "Model_Subcategory.h"
 
 class mmDateRange;
-class Model_Category : public Model_Mix<DB_Table_CATEGORY_V1>
+class Model_Category : public Model<DB_Table_CATEGORY_V1>
 {
 public:
-    using Model_Mix<DB_Table_CATEGORY_V1>::get;
+    using Model<DB_Table_CATEGORY_V1>::get;
 public:
     Model_Category();
     ~Model_Category();

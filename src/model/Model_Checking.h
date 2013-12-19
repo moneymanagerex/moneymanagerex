@@ -23,10 +23,10 @@
 #include "db/DB_Table_Checkingaccount_V1.h"
 #include "Model_Splittransaction.h"
 
-class Model_Checking : public Model_Mix<DB_Table_CHECKINGACCOUNT_V1>
+class Model_Checking : public Model<DB_Table_CHECKINGACCOUNT_V1>
 {
 public:
-    using Model_Mix<DB_Table_CHECKINGACCOUNT_V1>::remove;
+    using Model<DB_Table_CHECKINGACCOUNT_V1>::remove;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };

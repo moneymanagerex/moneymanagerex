@@ -20,7 +20,7 @@
 #include "Model_Report.h"
 #include "reports/htmlbuilder.h"
 
-Model_Report::Model_Report(): Model_Mix<DB_Table_REPORT_V1>()
+Model_Report::Model_Report(): Model<DB_Table_REPORT_V1>()
 {
 }
 

@@ -22,10 +22,10 @@
 #include "Model.h"
 #include "db/DB_Table_Splittransactions_V1.h"
 
-class Model_Splittransaction : public Model_Mix<DB_Table_SPLITTRANSACTIONS_V1>
+class Model_Splittransaction : public Model<DB_Table_SPLITTRANSACTIONS_V1>
 {
 public:
-    Model_Splittransaction(): Model_Mix<DB_Table_SPLITTRANSACTIONS_V1>() 
+    Model_Splittransaction(): Model<DB_Table_SPLITTRANSACTIONS_V1>() 
     {
     };
     ~Model_Splittransaction() {};

@@ -26,10 +26,10 @@
 
 const int BD_REPEATS_MULTIPLEX_BASE = 100;
 
-class Model_Billsdeposits : public Model_Mix<DB_Table_BILLSDEPOSITS_V1>
+class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
 {
 public:
-    using Model_Mix<DB_Table_BILLSDEPOSITS_V1>::remove;
+    using Model<DB_Table_BILLSDEPOSITS_V1>::remove;
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
@@ -55,7 +55,7 @@ public:
     };
 
 public:
-    Model_Billsdeposits(): Model_Mix<DB_Table_BILLSDEPOSITS_V1>() 
+    Model_Billsdeposits(): Model<DB_Table_BILLSDEPOSITS_V1>() 
     {
     };
     ~Model_Billsdeposits() {};

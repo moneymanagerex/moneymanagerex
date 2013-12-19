@@ -24,10 +24,10 @@
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
 
-class Model_Budget : public Model_Mix<DB_Table_BUDGETTABLE_V1>
+class Model_Budget : public Model<DB_Table_BUDGETTABLE_V1>
 {
 public:
-    Model_Budget(): Model_Mix<DB_Table_BUDGETTABLE_V1>() {};
+    Model_Budget(): Model<DB_Table_BUDGETTABLE_V1>() {};
     ~Model_Budget() 
     {
     };

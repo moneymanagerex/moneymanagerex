@@ -22,7 +22,7 @@
 #include "Model.h"
 #include "db/DB_Table_Report_V1.h"
 
-class Model_Report : public Model_Mix<DB_Table_REPORT_V1>
+class Model_Report : public Model<DB_Table_REPORT_V1>
 {
 public:
     Model_Report(); 
