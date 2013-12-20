@@ -149,57 +149,46 @@ wxString mmReportTransactions::getHTMLText()
         Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
         hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.TRANSID), (account ? account->ACCOUNTNAME : ""));
         
-        if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
+        Model_Checking::Full_Data full_tran(transaction);
+
+        if (Model_Checking::TRANSFER == Model_Checking::type(transaction))
         {
-            Model_Payee::Data* payee = Model_Payee::instance().get(transaction.PAYEEID);
-            hb.addTableCell(payee ? payee->PAYEENAME : "");
+            bool transfer_to = (refAccountID_ < 0 || transaction.TOACCOUNTID == refAccountID_);
+            const Model_Account::Data* account = Model_Account::instance().get(transfer_to
+                ? transaction.TOACCOUNTID : transaction.ACCOUNTID);
+            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
         }
         else
         {
-            Model_Account::Data *account = Model_Account::instance().get(transaction.ACCOUNTID);
-            hb.addTableCell(account ? account->ACCOUNTNAME : "");
+            const Model_Payee::Data* payee = Model_Payee::instance().get(transaction.PAYEEID);
+            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
         }
+        hb.addTableCell(full_tran.PAYEENAME);
+
         hb.addTableCell(transaction.STATUS);
-        if (transaction.CATEGID == -1)
-            hb.addTableCell(_T("Split Category"), false, true);
-        else
-            hb.addTableCell(Model_Category::full_name(transaction.CATEGID, transaction.SUBCATEGID), false, true);
+
+        if (!Model_Checking::splittransaction(transaction).empty())
+        {
+            full_tran.CATEGNAME = "";
+            for (const auto& entry : Model_Checking::splittransaction(transaction))
+                full_tran.CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
+                + " = "
+                + Model_Currency::toString(entry.SPLITTRANSAMOUNT) + "<br>";
+        }
+        hb.addTableCell(full_tran.CATEGNAME, false, true);
+
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
         // Get the exchange rate for the selected account
         const Model_Currency::Data* currency = Model_Account::currency(account);
         if (currency)
         {
-            if (transDialog_->getCategoryCheckBox() && transaction.CATEGID == -1)
-            {
-                double split_total = 0;
-                for (const Model_Splittransaction::Data split : Model_Checking::splittransaction(transaction))
-                {
-                    if (transDialog_->getCategoryID() == split.CATEGID && transDialog_->getSubCategoryID() == split.SUBCATEGID)
-                    {
-                        split_total += split.SPLITTRANSAMOUNT;
-                    }
-                }
-                if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL && split_total >= 0)
-                {
-                    split_total = -split_total;
-                }
-                else if (Model_Checking::type(transaction) == Model_Checking::DEPOSIT && split_total < 0)
-                {
-                    split_total = -split_total;
-                }
-                double amount = split_total * currency->BASECONVRATE;
-                hb.addCurrencyCell(amount);
-                total += amount;
-            }
-            else
-            {
-                double amount = Model_Checking::balance(transaction, refAccountID_) * currency->BASECONVRATE;
-                hb.addCurrencyCell(amount);
-                total += amount;
-            }
+            double amount = Model_Checking::balance(transaction, account->ACCOUNTID) * currency->BASECONVRATE;
+            hb.addCurrencyCell(amount);
+            total += amount;
         }
         else
             hb.addTableCell("");
+
         hb.addTableCell(transaction.TRANSACTIONNUMBER);
         hb.addTableCell(transaction.NOTES, false, true);
         hb.endTableRow();
