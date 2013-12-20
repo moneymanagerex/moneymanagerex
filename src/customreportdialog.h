@@ -72,7 +72,7 @@ private:
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
     void OnSourceTxtChar(wxKeyEvent& event);
-    void newReport(const wxString type);
+    void newReport();
 
     //wxStyledTextCtrl* m_scriptText;
     //wxStyledTextCtrl* m_templateText;

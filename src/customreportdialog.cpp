@@ -278,12 +278,6 @@ void mmGeneralReportManager::CreateControls()
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //
 
-    wxStaticText* type_label = new wxStaticText(this, ID_TYPELABEL
-        , wxString::Format(_("Script type: %s"), "")
-        , wxDefaultPosition, wxSize(titleTextWidth, -1));
-    flex_sizer->Add(type_label, flags);
-    flex_sizer->AddSpacer(1);
-
     long treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #if defined (__WXWIN__)
     treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
@@ -458,8 +452,8 @@ void mmGeneralReportManager::OnUpdateScript(wxCommandEvent& /*event*/)
     if (report)
     {
         MinimalEditor* m_scriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
-        report->CONTENT = m_scriptText->GetValue();
-        m_scriptText->ChangeValue(report->CONTENT);
+        report->SQLCONTENT = m_scriptText->GetValue();
+        m_scriptText->ChangeValue(report->SQLCONTENT);
         Model_Report::instance().save(report);
     }
 }
@@ -491,7 +485,7 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     if (iData) report_id = iData->get_report_id();
 
     wxMenu* customReportMenu = new wxMenu;
-    customReportMenu->Append(ID_NEW1, _("New SQL Custom Report"));
+    customReportMenu->Append(ID_NEW1, _("New Custom Report"));
     //TODO: Hided till release the workload
     //customReportMenu->Append(ID_NEW2, _("New Lua Custom Report"));
     customReportMenu->AppendSeparator();
@@ -505,13 +499,11 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     selectedItemId_ = event.GetItem();
     m_selectedGroup = "";
-    wxStaticText* script_label = (wxStaticText*) FindWindow(ID_TYPELABEL);
     MinimalEditor* m_scriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
     MinimalEditor* m_templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
     m_scriptText->ChangeValue("");
     m_fileNameCtrl->ChangeValue("");
     m_templateText->ChangeValue("");
-    script_label->SetLabel("");
     wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     n->SetSelection(0);
     button_Run_->Enable(false);
@@ -526,9 +518,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        script_label->SetLabel(wxString::Format(_("Script Type: %s"), report->CONTENTTYPE));
         m_fileNameCtrl->ChangeValue(report->TEMPLATEPATH);
-        m_scriptText->ChangeValue(report->CONTENT);
+        m_scriptText->ChangeValue(report->SQLCONTENT);
         m_scriptText->SetLexerSql();
 
         wxString full_path = report->TEMPLATEPATH;
@@ -606,11 +597,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     int id = event.GetId();
     if (id == ID_NEW1 || id == ID_NEW2)
     {
-        newReport("SQL");
-    }
-    if (id == ID_NEW2)
-    {
-        newReport("Lua");
+        newReport();
     }
     else if (id == ID_DELETE)
     {
@@ -624,7 +611,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     fillControls();
 }
 
-void mmGeneralReportManager::newReport(const wxString type)
+void mmGeneralReportManager::newReport()
 {
     wxString group_name;
     if (selectedItemId_ == root_)
@@ -640,12 +627,11 @@ void mmGeneralReportManager::newReport(const wxString type)
     Model_Report::Data* report = Model_Report::instance().create();
     report->GROUPNAME = group_name;
     int i = Model_Report::instance().all().size();
-    wxString report_name = _("New SQL Report");
+    wxString report_name = _("New Report");
     while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
-        report_name = wxString::Format(_("New SQL Report %i"), ++i);
+        report_name = wxString::Format(_("New Report %i"), ++i);
     report->REPORTNAME = report_name;
-    report->CONTENTTYPE = type;
-    report->CONTENT = "select 'Hello World' as COLUMN1" ;
+    report->SQLCONTENT = "select 'Hello World' as COLUMN1" ;
     report->TEMPLATEPATH = "sample.html";
     Model_Report::instance().save(report);
     openTemplate(report->REPORTID);

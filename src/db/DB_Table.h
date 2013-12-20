@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-19 14:43:31.114225.
+ *          AUTO GENERATED at 2013-12-20 20:07:33.623031.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -341,15 +341,6 @@ struct SorterByVALUECHANGERATE
     }
 };
 
-struct SorterByCONTENT
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.CONTENT < y.CONTENT;
-    }
-};
-
 struct SorterByGROUPNAME
 { 
     template<class DATA>
@@ -431,15 +422,6 @@ struct SorterBySTATUS
     }
 };
 
-struct SorterByCONTENTTYPE
-{ 
-    template<class DATA>
-    bool operator()(const DATA& x, const DATA& y)
-    {
-        return x.CONTENTTYPE < y.CONTENTTYPE;
-    }
-};
-
 struct SorterBySETTINGVALUE
 { 
     template<class DATA>
@@ -455,6 +437,15 @@ struct SorterBySUBCATEGNAME
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.SUBCATEGNAME < y.SUBCATEGNAME;
+    }
+};
+
+struct SorterBySQLCONTENT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.SQLCONTENT < y.SQLCONTENT;
     }
 };
 
@@ -761,6 +752,15 @@ struct SorterBySFX_SYMBOL
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.SFX_SYMBOL < y.SFX_SYMBOL;
+    }
+};
+
+struct SorterByLUACONTENT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.LUACONTENT < y.LUACONTENT;
     }
 };
 

@@ -61,62 +61,55 @@ wxString Model_Report::get_html(const Data* r)
     report("REPORTID") = r->REPORTID;
     report("REPORTNAME") = r->REPORTNAME;
     report("GROUPNAME") = r->GROUPNAME;
-    report("CONTENTTYPE") = r->CONTENTTYPE;
-    report("CONTENT") = r->CONTENT;
+    report("SQLCONTENTTYPE") = r->SQLCONTENT;
+    report("LUACONTENT") = r->LUACONTENT;
     report("TEMPLATEPATH") = r->TEMPLATEPATH;
 
     loop_t contents;
 
-    if (r->CONTENTTYPE == "LUA")
+    wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
+    wxLogDebug(stmt.GetSQL());
+    if (!stmt.IsReadOnly())
     {
-        // TODO
+        report("ERROR") = r->SQLCONTENT + " will modify database! aborted!";
     }
-    else // (r->CONTENTTYPE == "SQL")
+    else
     {
-        wxSQLite3Statement stmt = this->db_->PrepareStatement(r->CONTENT);
-        wxLogDebug(stmt.GetSQL());
-        if (!stmt.IsReadOnly())
-        {
-            report("ERROR") = r->CONTENT + " will modify database! aborted!";
-        }
-        else
-        {
-            wxSQLite3ResultSet sqlQueryResult = stmt.ExecuteQuery();
-            int columnCount = sqlQueryResult.GetColumnCount();
+        wxSQLite3ResultSet sqlQueryResult = stmt.ExecuteQuery();
+        int columnCount = sqlQueryResult.GetColumnCount();
 
-            loop_t columns;
+        loop_t columns;
+        for (int i = 0; i < columnCount; ++ i)
+        {
+            row_t row;
+            row("COLUMN") = sqlQueryResult.GetColumnName(i);
+
+            columns += row;
+        }
+        report("COLUMNS") = columns;
+
+        while (sqlQueryResult.NextRow())
+        {
+            row_t row;
             for (int i = 0; i < columnCount; ++ i)
             {
-                row_t row;
-                row("COLUMN") = sqlQueryResult.GetColumnName(i);
-
-                columns += row;
-            }
-            report("COLUMNS") = columns;
-
-            while (sqlQueryResult.NextRow())
-            {
-                row_t row;
-                for (int i = 0; i < columnCount; ++ i)
+                wxString column_name = sqlQueryResult.GetColumnName(i);
+                switch (sqlQueryResult.GetColumnType(i))
                 {
-                    wxString column_name = sqlQueryResult.GetColumnName(i);
-                    switch (sqlQueryResult.GetColumnType(i))
-                    {
-                    case WXSQLITE_INTEGER:
-                        row(column_name.ToStdString()) = sqlQueryResult.GetInt(i);
-                        break;
-                    case WXSQLITE_FLOAT:
-                        row(column_name.ToStdString()) = sqlQueryResult.GetDouble(i);
-                        break;
-                    default:
-                        row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
-                        break;
-                    }
+                case WXSQLITE_INTEGER:
+                    row(column_name.ToStdString()) = sqlQueryResult.GetInt(i);
+                    break;
+                case WXSQLITE_FLOAT:
+                    row(column_name.ToStdString()) = sqlQueryResult.GetDouble(i);
+                    break;
+                default:
+                    row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
+                    break;
                 }
-                contents += row;
             }
-            sqlQueryResult.Finalize();
+            contents += row;
         }
+        sqlQueryResult.Finalize();
     }
 
     report("CONTENTS") = contents;

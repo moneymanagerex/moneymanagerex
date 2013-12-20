@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-19 14:43:31.114225.
+ *          AUTO GENERATED at 2013-12-20 20:07:33.623031.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -61,7 +61,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, STATUS TEXT COLLATE NOCASE NOT NULL, GROUPNAME TEXT COLLATE NOCASE, CONTENTTYPE TEXT COLLATE NOCASE, CONTENT TEXT, TEMPLATEPATH TEXT)");
+				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, STATUS TEXT COLLATE NOCASE NOT NULL, GROUPNAME TEXT COLLATE NOCASE, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATEPATH TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -110,15 +110,15 @@ struct DB_Table_REPORT_V1 : public DB_Table
         static wxString name() { return "GROUPNAME"; } 
         GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    struct CONTENTTYPE : public DB_Column<wxString>
+    struct SQLCONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "CONTENTTYPE"; } 
-        CONTENTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "SQLCONTENT"; } 
+        SQLCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    struct CONTENT : public DB_Column<wxString>
+    struct LUACONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "CONTENT"; } 
-        CONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "LUACONTENT"; } 
+        LUACONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct TEMPLATEPATH : public DB_Column<wxString>
     { 
@@ -132,8 +132,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
         , COL_REPORTNAME = 1
         , COL_STATUS = 2
         , COL_GROUPNAME = 3
-        , COL_CONTENTTYPE = 4
-        , COL_CONTENT = 5
+        , COL_SQLCONTENT = 4
+        , COL_LUACONTENT = 5
         , COL_TEMPLATEPATH = 6
     };
 
@@ -146,8 +146,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
             case COL_REPORTNAME: return "REPORTNAME";
             case COL_STATUS: return "STATUS";
             case COL_GROUPNAME: return "GROUPNAME";
-            case COL_CONTENTTYPE: return "CONTENTTYPE";
-            case COL_CONTENT: return "CONTENT";
+            case COL_SQLCONTENT: return "SQLCONTENT";
+            case COL_LUACONTENT: return "LUACONTENT";
             case COL_TEMPLATEPATH: return "TEMPLATEPATH";
             default: break;
         }
@@ -162,8 +162,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
         else if ("REPORTNAME" == name) return COL_REPORTNAME;
         else if ("STATUS" == name) return COL_STATUS;
         else if ("GROUPNAME" == name) return COL_GROUPNAME;
-        else if ("CONTENTTYPE" == name) return COL_CONTENTTYPE;
-        else if ("CONTENT" == name) return COL_CONTENT;
+        else if ("SQLCONTENT" == name) return COL_SQLCONTENT;
+        else if ("LUACONTENT" == name) return COL_LUACONTENT;
         else if ("TEMPLATEPATH" == name) return COL_TEMPLATEPATH;
 
         return COLUMN(-1);
@@ -180,8 +180,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
         wxString REPORTNAME;
         wxString STATUS;
         wxString GROUPNAME;
-        wxString CONTENTTYPE;
-        wxString CONTENT;
+        wxString SQLCONTENT;
+        wxString LUACONTENT;
         wxString TEMPLATEPATH;
         int id() const { return REPORTID; }
         void id(int id) { REPORTID = id; }
@@ -209,8 +209,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
             REPORTNAME = q.GetString("REPORTNAME");
             STATUS = q.GetString("STATUS");
             GROUPNAME = q.GetString("GROUPNAME");
-            CONTENTTYPE = q.GetString("CONTENTTYPE");
-            CONTENT = q.GetString("CONTENT");
+            SQLCONTENT = q.GetString("SQLCONTENT");
+            LUACONTENT = q.GetString("LUACONTENT");
             TEMPLATEPATH = q.GetString("TEMPLATEPATH");
         }
 
@@ -229,8 +229,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
             o["REPORTNAME"] = json::String(this->REPORTNAME.ToStdString());
             o["STATUS"] = json::String(this->STATUS.ToStdString());
             o["GROUPNAME"] = json::String(this->GROUPNAME.ToStdString());
-            o["CONTENTTYPE"] = json::String(this->CONTENTTYPE.ToStdString());
-            o["CONTENT"] = json::String(this->CONTENT.ToStdString());
+            o["SQLCONTENT"] = json::String(this->SQLCONTENT.ToStdString());
+            o["LUACONTENT"] = json::String(this->LUACONTENT.ToStdString());
             o["TEMPLATEPATH"] = json::String(this->TEMPLATEPATH.ToStdString());
             return 0;
         }
@@ -241,8 +241,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
             row("REPORTNAME") = REPORTNAME;
             row("STATUS") = STATUS;
             row("GROUPNAME") = GROUPNAME;
-            row("CONTENTTYPE") = CONTENTTYPE;
-            row("CONTENT") = CONTENT;
+            row("SQLCONTENT") = SQLCONTENT;
+            row("LUACONTENT") = LUACONTENT;
             row("TEMPLATEPATH") = TEMPLATEPATH;
             return row;
         }
@@ -316,11 +316,11 @@ struct DB_Table_REPORT_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() < 0) //  new & insert
         {
-            sql = "INSERT INTO REPORT_V1(REPORTNAME, STATUS, GROUPNAME, CONTENTTYPE, CONTENT, TEMPLATEPATH) VALUES(?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO REPORT_V1(REPORTNAME, STATUS, GROUPNAME, SQLCONTENT, LUACONTENT, TEMPLATEPATH) VALUES(?, ?, ?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, STATUS = ?, GROUPNAME = ?, CONTENTTYPE = ?, CONTENT = ?, TEMPLATEPATH = ? WHERE REPORTID = ?";
+            sql = "UPDATE REPORT_V1 SET REPORTNAME = ?, STATUS = ?, GROUPNAME = ?, SQLCONTENT = ?, LUACONTENT = ?, TEMPLATEPATH = ? WHERE REPORTID = ?";
         }
 
         try
@@ -330,8 +330,8 @@ struct DB_Table_REPORT_V1 : public DB_Table
             stmt.Bind(1, entity->REPORTNAME);
             stmt.Bind(2, entity->STATUS);
             stmt.Bind(3, entity->GROUPNAME);
-            stmt.Bind(4, entity->CONTENTTYPE);
-            stmt.Bind(5, entity->CONTENT);
+            stmt.Bind(4, entity->SQLCONTENT);
+            stmt.Bind(5, entity->LUACONTENT);
             stmt.Bind(6, entity->TEMPLATEPATH);
             if (entity->id() > 0)
                 stmt.Bind(7, entity->REPORTID);
