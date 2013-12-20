@@ -20,6 +20,12 @@
 #include "Model_Report.h"
 #include "reports/htmlbuilder.h"
 
+const std::vector<std::pair<Model_Report::STATUS, wxString> > Model_Report::STATUS_CHOICES = 
+{
+    std::make_pair(Model_Report::ACTIVE, wxTRANSLATE("ACTIVE"))
+    , std::make_pair(Model_Report::INACTIVE, wxTRANSLATE("INACTIVE"))
+};
+
 Model_Report::Model_Report(): Model<DB_Table_REPORT_V1>()
 {
 }

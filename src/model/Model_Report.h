@@ -25,6 +25,10 @@
 class Model_Report : public Model<DB_Table_REPORT_V1>
 {
 public:
+    enum STATUS { ACTIVE = 0, INACTIVE };
+public:
+    static const std::vector<std::pair<STATUS, wxString> > STATUS_CHOICES;
+public:
     Model_Report(); 
     ~Model_Report();
 

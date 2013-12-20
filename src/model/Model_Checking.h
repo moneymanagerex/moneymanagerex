@@ -31,6 +31,8 @@ public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
 public:
+    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
+public:
     struct Full_Data: public Data
     {
         Full_Data();
@@ -102,12 +104,9 @@ public:
     static wxDate TRANSDATE(const Data& r) { return Model::to_date(r.TRANSDATE); }
     static TYPE type(const Data* r)
     {
-        if (r->TRANSCODE == all_type()[DEPOSIT])
-            return DEPOSIT;
-        else if (r->TRANSCODE == all_type()[TRANSFER])
-            return TRANSFER;
-        else
-            return WITHDRAWAL;
+        for (const auto& t: TYPE_CHOICES) if (r->TRANSCODE.CmpNoCase(t.second) == 0) return t.first;
+
+        return WITHDRAWAL;
     }
     static TYPE type(const Data& r) { return type(&r); }
     static STATUS_ENUM status(const Data* r)

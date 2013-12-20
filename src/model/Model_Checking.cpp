@@ -21,6 +21,12 @@
 #include "Model_Payee.h"
 #include "Model_Category.h"
 
+const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TYPE_CHOICES = 
+{
+    std::make_pair(Model_Checking::WITHDRAWAL, wxTRANSLATE("Withdrawal"))
+    , std::make_pair(Model_Checking::DEPOSIT, wxTRANSLATE("Deposit"))
+    , std::make_pair(Model_Checking::TRANSFER, wxTRANSLATE("Transfer"))
+};
 
 Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
@@ -34,9 +40,7 @@ wxArrayString Model_Checking::all_type()
 {
     wxArrayString types;
     // keep the sequence with TYPE
-    types.Add(wxTRANSLATE("Withdrawal"));
-    types.Add(wxTRANSLATE("Deposit"));
-    types.Add(wxTRANSLATE("Transfer"));
+    for (const auto& r : TYPE_CHOICES) types.Add(r.second);
 
     return types;
 }
