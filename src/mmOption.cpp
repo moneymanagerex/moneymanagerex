@@ -49,13 +49,6 @@ void mmOptions::LoadInfotableOptions()
 }
 
 //----------------------------------------------------------------------------
-//void mmOptions::SaveInfotableOptions()
-//{
-//    Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
-//}
-
-// --------------------------------------------------------------------------
-//----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
 : enableAssets_(true)
 , enableBudget_(true)

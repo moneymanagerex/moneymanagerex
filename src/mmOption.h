@@ -32,7 +32,6 @@ public:
     mmOptions();
     static mmOptions& instance();
     void LoadInfotableOptions();
-//  void SaveInfotableOptions();
 
     wxString dateFormat_;
     wxString language_;
