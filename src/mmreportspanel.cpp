@@ -37,7 +37,7 @@ public:
 
     virtual ~WebViewHandlerStatic()
     {
-    //    wxDELETE(m_fs);
+        wxDELETE(m_fs);
     }
 
     virtual wxFSFile* GetFile (const wxString &uri)
@@ -114,12 +114,8 @@ void mmReportsPanel::CreateControls()
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(".")));
-/*
-    htmlWindow_ = new wxWebView( this, wxID_ANY,
-        wxDefaultPosition, wxDefaultSize,
-        wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
-*/
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("")));
+
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
 
