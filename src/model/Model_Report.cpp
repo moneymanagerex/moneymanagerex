@@ -19,6 +19,7 @@
 #include "paths.h"
 #include "Model_Report.h"
 #include "reports/htmlbuilder.h"
+#include "LuaGlue/LuaGlue.h"
 
 const std::vector<std::pair<Model_Report::STATUS, wxString> > Model_Report::STATUS_CHOICES = 
 {
