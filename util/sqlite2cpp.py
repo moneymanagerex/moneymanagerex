@@ -626,7 +626,7 @@ struct DB_Table
 };
 
 template<typename Arg1>
-void condition(wxString& out, bool op_and, const Arg1& arg1)
+void condition(wxString& out, bool /*op_and*/, const Arg1& arg1)
 {
     out += Arg1::name();
     switch (arg1.op_)
