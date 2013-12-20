@@ -938,8 +938,6 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    wxString sAmount = "";
-
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
@@ -947,15 +945,13 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
     mmCalculator calc;
     if (object_in_focus_ == textAmount_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(textAmount_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
+        if (calc.is_ok(textAmount_->GetValue()))
             textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
         textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(toTextAmount_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
+        if (calc.is_ok(toTextAmount_->GetValue()))
             toTextAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
         toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
     }

@@ -33,7 +33,6 @@ protected:
 private:
     double output_;
     const virtual bool check_syntax(const wxString& input) const;
-    const virtual bool calculate(const wxString& input);
 };
 
 #endif 
