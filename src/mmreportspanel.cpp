@@ -114,7 +114,6 @@ void mmReportsPanel::CreateControls()
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("")));
 
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
