@@ -20,113 +20,38 @@
 #define MODEL_BUDGETYEAR_H
 
 #include "Model.h"
-#include "Model_Budget.h"
 #include "db/DB_Table_Budgetyear_V1.h"
 
 class Model_Budgetyear : public Model<DB_Table_BUDGETYEAR_V1>
 {
 public:
     using Model<DB_Table_BUDGETYEAR_V1>::remove;
-public:
-    Model_Budgetyear(): Model<DB_Table_BUDGETYEAR_V1>() {};
-    ~Model_Budgetyear() 
-    {
-    };
 
 public:
-    /** Return the static instance of Model_Budgetyear table */
-    static Model_Budgetyear& instance()
-    {
-        return Singleton<Model_Budgetyear>::instance();
-    }
+    Model_Budgetyear();
+    ~Model_Budgetyear();
 
+public:
     /**
     * Initialize the global Model_Budgetyear table.
     * Reset the Model_Budgetyear table or create the table if it does not exist.
     */
-    static Model_Budgetyear& instance(wxSQLite3Database* db)
-    {
-        Model_Budgetyear& ins = Singleton<Model_Budgetyear>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Budgetyear& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
+    /** Return the static instance of Model_Budgetyear table */
+    static Model_Budgetyear& instance();
 
-    bool remove(int id)
-    {
-        for (Model_Budget::Data& d : Model_Budget::instance().find(Model_Budget::BUDGETYEARID(id)))
-            Model_Budget::instance().remove(d.BUDGETENTRYID);
-        return this->remove(id, db_);
-    }
+    bool remove(int id);
 
 public:
-    // Setter
-    void Set(int year_id, const wxString& value)
-    {
-        Data* info = this->get(year_id, this->db_);
-        if (info)
-        {
-            info->BUDGETYEARNAME = value;
-            info->save(this->db_);
-        }
-        else
-        {
-            info = this->create();
-            info->BUDGETYEARID = year_id;
-            info->BUDGETYEARNAME = value;
-            info->save(this->db_);
-        }
-    }
+    void Set(int year_id, const wxString& value);
+    int Add(const wxString& value);
 
-    int Add(const wxString& value)
-    {
-        int year_id = this->Get(value);
-        if (year_id < 0)
-        {
-            Data* e = this->create();
-            e->BUDGETYEARNAME = value;
-            e->save(this->db_);
-            year_id = e->id();
-        }
-        return year_id;
-    }
-public:
-    // Getter
-    wxString Get(int year_id)
-    {
-        Data* e = this->get(year_id, this->db_);
-        if (e) return e->BUDGETYEARNAME;
+    wxString Get(int year_id);
+    int Get(const wxString& year_name);
 
-        return "";
-    }
-    int Get(const wxString& year_name)
-    {
-        for (const auto& record: this->all())
-        {
-            if (record.BUDGETYEARNAME == year_name)
-                return record.BUDGETYEARID;
-        }
-
-        return -1;
-    }
-    bool Exists(int year_id)
-    {
-        Data* e = this->get(year_id, this->db_);
-        if (e) return true;
-
-        return false;
-    }
-    bool Exists(const wxString& year_name)
-    {
-        for (const auto& record: this->all())
-        {
-            if (record.BUDGETYEARNAME == year_name) 
-                return true;
-        }
-        return false;
-    }
+    bool Exists(int year_id);
+    bool Exists(const wxString& year_name);
 };
 
 #endif // 

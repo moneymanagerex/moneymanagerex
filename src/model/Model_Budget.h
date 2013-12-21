@@ -21,191 +21,37 @@
 
 #include "Model.h"
 #include "db/DB_Table_Budgettable_V1.h"
-#include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
 
 class Model_Budget : public Model<DB_Table_BUDGETTABLE_V1>
 {
 public:
-    Model_Budget(): Model<DB_Table_BUDGETTABLE_V1>() {};
-    ~Model_Budget() 
-    {
-    };
+    Model_Budget();
+    ~Model_Budget();
 
 public:
-    enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY };
-    static wxArrayString all_period()
-    {
-        wxArrayString period;
-        // keep the sequence with PERIOD_ENUM
-        period.Add(wxTRANSLATE("None"));
-        period.Add(wxTRANSLATE("Weekly"));
-        period.Add(wxTRANSLATE("Bi-Weekly"));
-        period.Add(wxTRANSLATE("Monthly"));
-        period.Add(wxTRANSLATE("Bi-Monthly"));
-        period.Add(wxTRANSLATE("Quarterly"));
-        period.Add(wxTRANSLATE("Half-Yearly"));
-        period.Add(wxTRANSLATE("Yearly"));
-        period.Add(wxTRANSLATE("Daily"));
-        return period;
-    }
-    static PERIOD_ENUM period(const Data* r)
-    {
-        if (r->PERIOD.CmpNoCase(all_period()[NONE]) == 0)
-            return NONE;
-        else if (r->PERIOD.CmpNoCase(all_period()[WEEKLY]) == 0)
-            return WEEKLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[BIWEEKLY]) == 0)
-            return BIWEEKLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[MONTHLY]) == 0)
-            return MONTHLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[BIMONTHLY]) == 0)
-            return BIMONTHLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[QUARTERLY]) == 0)
-            return QUARTERLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[HALFYEARLY]) == 0)
-            return HALFYEARLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[YEARLY]) == 0)
-            return YEARLY;
-        else if (r->PERIOD.CmpNoCase(all_period()[DAILY]) == 0)
-            return DAILY;
-        else
-            return NONE;
-    }
-    static PERIOD_ENUM period(const Data& r) { return period(&r); }
-    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL) { return DB_Table_BUDGETTABLE_V1::PERIOD(all_period()[period], op); }
-
-public:
-    /** Return the static instance of Model_Budget table */
-    static Model_Budget& instance()
-    {
-        return Singleton<Model_Budget>::instance();
-    }
-
     /**
     * Initialize the global Model_Budget table.
     * Reset the Model_Budget table or create the table if it does not exist.
     */
-    static Model_Budget& instance(wxSQLite3Database* db)
-    {
-        Model_Budget& ins = Singleton<Model_Budget>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Budget& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
+    /** Return the static instance of Model_Budget table */
+    static Model_Budget& instance();
 
-    static void getBudgetEntry(int budgetYearID, std::map<int, std::map<int, PERIOD_ENUM> > &budgetPeriod,
-        std::map<int, std::map<int, double> > &budgetAmt)
-    {
-        const Model_Category::Data_Set allCategories = Model_Category::instance().all();
-        const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all();
-        //Set std::map with zerros
-        double value = 0;
-        for (const auto& category : allCategories)
-        {
-            budgetPeriod[category.CATEGID][-1] = NONE;
-            budgetAmt[category.CATEGID][-1] = value;
-            for (const auto & sub_category : allSubcategories)
-            {
-                if (sub_category.CATEGID == category.CATEGID)
-                {
-                    budgetPeriod[category.CATEGID][sub_category.SUBCATEGID] = NONE;
-                    budgetAmt[category.CATEGID][sub_category.SUBCATEGID] = value;
-                }
-            }
-        }
-        for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
-        {
-            budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
-            budgetAmt[budget.CATEGID][budget.SUBCATEGID] = budget.AMOUNT;
-        }
-    }
-    static void copyBudgetYear(int newYearID, int baseYearID)
-    {
-        for (const Data& data : instance().find(BUDGETYEARID(baseYearID)))
-        {
-            Data* budgetEntry = instance().clone(&data);
-            budgetEntry->BUDGETYEARID = newYearID;
-            instance().save(budgetEntry);
-        }
-    }
-    static double getMonthlyEstimate(const PERIOD_ENUM period, const double amount)
-    {
-        double estimated = 0;
-        int ndays = 365;
-        if (period == MONTHLY) {
-            estimated = amount;
+public:
+    enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY };
 
-        }
-        else if (period == YEARLY) {
-            estimated = amount / 12;
+    static wxArrayString all_period();
+    static PERIOD_ENUM period(const Data* r);
+    static PERIOD_ENUM period(const Data& r);
+    static DB_Table_BUDGETTABLE_V1::PERIOD PERIOD(PERIOD_ENUM period, OP op = EQUAL);
 
-        }
-        else if (period == WEEKLY) {
-            estimated = ((amount / 7) * ndays) / 12;
-
-        }
-        else if (period == BIWEEKLY) {
-            estimated = ((amount / 14) * ndays) / 12;
-
-        }
-        else if (period == BIMONTHLY) {
-            estimated = amount / 2;
-
-        }
-        else if (period == QUARTERLY) {
-            estimated = amount / 3;
-
-        }
-        else if (period == HALFYEARLY) {
-            estimated = (amount / 6);
-
-        }
-        else if (period == DAILY) {
-            estimated = (amount * ndays) / 12;
-
-        }
-        return estimated;
-    }
-    static double getYearlyEstimate(const PERIOD_ENUM period, const double amount)
-    {
-        double estimated = 0;
-        if (period == MONTHLY) {
-            estimated = amount * 12;
-
-        }
-        else if (period == YEARLY) {
-            estimated = amount;
-
-        }
-        else if (period == WEEKLY) {
-            estimated = amount * 52;
-
-        }
-        else if (period == BIWEEKLY) {
-            estimated = amount * 26;
-
-        }
-        else if (period == BIMONTHLY) {
-            estimated = amount * 6;
-
-        }
-        else if (period == QUARTERLY) {
-            estimated = amount * 4;
-
-        }
-        else if (period == HALFYEARLY) {
-            estimated = amount * 2;
-
-        }
-        else if (period== DAILY) {
-            estimated = amount * 365;
-
-        }
-        return estimated;
-    }
+    static void getBudgetEntry(int budgetYearID, std::map<int,
+        std::map<int, PERIOD_ENUM> > &budgetPeriod,
+        std::map<int, std::map<int, double> > &budgetAmt);
+    static void copyBudgetYear(int newYearID, int baseYearID);
+    static double getMonthlyEstimate(const PERIOD_ENUM period, const double amount);
+    static double getYearlyEstimate(const PERIOD_ENUM period, const double amount);
 };
 
 #endif // 
