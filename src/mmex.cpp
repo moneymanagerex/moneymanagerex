@@ -3138,6 +3138,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
     {
         for (const auto& tran: Model_Checking::instance().all())
         {
+            int fromAccountID = -1;
             if (dlg->getAmountRangeCheckBoxMin() && tran.TRANSAMOUNT < dlg->getAmountMin())
                     continue; // skip
             if (dlg->getAmountRangeCheckBoxMax() && tran.TRANSAMOUNT > dlg->getAmountMax())
@@ -3145,7 +3146,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
 
             if (dlg->getAccountCheckBox())
             {
-                int fromAccountID = dlg->getAccountID();
+                fromAccountID = dlg->getAccountID();
 
                 if ((tran.ACCOUNTID != fromAccountID) && (tran.TOACCOUNTID != fromAccountID))
                     continue; // skip
@@ -3223,7 +3224,33 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
                         continue;
                 }
             }
+
             Model_Checking::Full_Data full_tran(tran);
+            Model_Account::Data *account = Model_Account::instance().get(full_tran.ACCOUNTID);
+            if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
+            if (Model_Checking::TRANSFER == Model_Checking::type(tran))
+            {
+                bool transfer_to = (fromAccountID < 0 || full_tran.TOACCOUNTID == fromAccountID);
+                account = Model_Account::instance().get(transfer_to
+                    ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID);
+                if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
+            }
+            else
+            {
+                const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+                if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+            }
+
+            if (Model_Checking::splittransaction(tran).empty())
+                full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
+            else
+            {
+                for (const auto& entry : Model_Checking::splittransaction(full_tran))
+                    full_tran.CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
+                    + " = "
+                    + Model_Currency::toString(entry.SPLITTRANSAMOUNT) + "<br>";
+            }
+
             trans.push_back(full_tran);
         }
 

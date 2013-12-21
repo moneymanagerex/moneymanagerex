@@ -21,9 +21,6 @@
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
 #include <algorithm>
 
 mmReportTransactions::mmReportTransactions(const Model_Checking::Full_Data_Set& trans,
@@ -142,47 +139,26 @@ wxString mmReportTransactions::getHTMLText()
 
     // Display the data for each row
     double total = 0;
-    for (auto& transaction: trans_)
+    for (auto& transaction : trans_)
     {
         hb.startTableRow();
         hb.addTableCell(transaction.TRANSDATE);
-        Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
-        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.TRANSID), (account ? account->ACCOUNTNAME : ""));
-        
-        Model_Checking::Full_Data full_tran(transaction);
 
-        if (Model_Checking::TRANSFER == Model_Checking::type(transaction))
-        {
-            bool transfer_to = (refAccountID_ < 0 || transaction.TOACCOUNTID == refAccountID_);
-            const Model_Account::Data* account = Model_Account::instance().get(transfer_to
-                ? transaction.TOACCOUNTID : transaction.ACCOUNTID);
-            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
-        }
-        else
-        {
-            const Model_Payee::Data* payee = Model_Payee::instance().get(transaction.PAYEEID);
-            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
-        }
-        hb.addTableCell(full_tran.PAYEENAME);
+        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.TRANSID), transaction.ACCOUNTNAME);
+
+        hb.addTableCell(transaction.PAYEENAME);
 
         hb.addTableCell(transaction.STATUS);
 
-        if (!Model_Checking::splittransaction(transaction).empty())
-        {
-            full_tran.CATEGNAME = "";
-            for (const auto& entry : Model_Checking::splittransaction(transaction))
-                full_tran.CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
-                + " = "
-                + Model_Currency::toString(entry.SPLITTRANSAMOUNT) + "<br>";
-        }
-        hb.addTableCell(full_tran.CATEGNAME, false, true);
+        hb.addTableCell(transaction.CATEGNAME, false, true);
 
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
-        // Get the exchange rate for the selected account
+        // Get the exchange rate for the account
+        Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
         const Model_Currency::Data* currency = Model_Account::currency(account);
         if (currency)
         {
-            double amount = Model_Checking::balance(transaction, account->ACCOUNTID) * currency->BASECONVRATE;
+            double amount = Model_Checking::balance(transaction, transaction.ACCOUNTID) * currency->BASECONVRATE;
             hb.addCurrencyCell(amount);
             total += amount;
         }
