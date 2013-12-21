@@ -405,6 +405,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Asset.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Category.cpp"
 				>
 			</File>
@@ -418,6 +422,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\model\Model_Report.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Stock.cpp"
 				>
 			</File>
 			<File

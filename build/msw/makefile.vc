@@ -170,10 +170,12 @@ MMEX_OBJECTS =  \
 	mmex_qif_import.obj \
 	mmex_univcsvdialog.obj \
 	mmex_Model_Account.obj \
+	mmex_Model_Asset.obj \
 	mmex_Model_Category.obj \
 	mmex_Model_Checking.obj \
 	mmex_Model_Currency.obj \
 	mmex_Model_Report.obj \
+	mmex_Model_Stock.obj \
 	mmex_html_template.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
@@ -812,6 +814,9 @@ mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
 mmex_Model_Account.obj: ..\..\src\model\Model_Account.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Account.cpp
 
+mmex_Model_Asset.obj: ..\..\src\model\Model_Asset.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Asset.cpp
+
 mmex_Model_Category.obj: ..\..\src\model\Model_Category.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Category.cpp
 
@@ -823,6 +828,9 @@ mmex_Model_Currency.obj: ..\..\src\model\Model_Currency.cpp
 
 mmex_Model_Report.obj: ..\..\src\model\Model_Report.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Report.cpp
+
+mmex_Model_Stock.obj: ..\..\src\model\Model_Stock.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Stock.cpp
 
 mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\cgitemplate\html_template.cpp

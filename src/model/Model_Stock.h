@@ -21,7 +21,6 @@
 
 #include "Model.h"
 #include "db/DB_Table_Stock_V1.h"
-#include "Model_Currency.h" // detect base currency
 
 class Model_Stock : public Model<DB_Table_STOCK_V1>
 {

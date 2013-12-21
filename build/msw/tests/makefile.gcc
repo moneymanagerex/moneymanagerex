@@ -146,10 +146,12 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_qif_import.o \
 	mmex_tests_univcsvdialog.o \
 	mmex_tests_Model_Account.o \
+	mmex_tests_Model_Asset.o \
 	mmex_tests_Model_Category.o \
 	mmex_tests_Model_Checking.o \
 	mmex_tests_Model_Currency.o \
 	mmex_tests_Model_Report.o \
+	mmex_tests_Model_Stock.o \
 	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
@@ -625,6 +627,9 @@ mmex_tests_univcsvdialog.o: ../../../src/import_export/univcsvdialog.cpp
 mmex_tests_Model_Account.o: ../../../src/model/Model_Account.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_Model_Asset.o: ../../../src/model/Model_Asset.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_Model_Category.o: ../../../src/model/Model_Category.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -635,6 +640,9 @@ mmex_tests_Model_Currency.o: ../../../src/model/Model_Currency.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_Model_Report.o: ../../../src/model/Model_Report.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_Model_Stock.o: ../../../src/model/Model_Stock.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_html_template.o: ../../../3rd/cgitemplate/html_template.cpp
