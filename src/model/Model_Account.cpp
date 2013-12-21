@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Account.h"
+#include "Model_Stock.h"
 
 Model_Account::Model_Account()
 : Model<DB_Table_ACCOUNTLIST_V1>()
