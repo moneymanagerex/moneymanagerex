@@ -179,6 +179,7 @@
         <include>$(SRCDIR)/lib/lua/src</include>
         <include>$(SRCDIR)/lib</include>
         <include>$(SRCDIR)/3rd</include>
+        <include>$(SRCDIR)/3rd/LuaGlue/include</include>
         <include>$(SRCDIR)/3rd/cgitemplate</include>
         <include>$(SRCDIR)/src</include>
 

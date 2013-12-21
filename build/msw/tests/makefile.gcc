@@ -76,8 +76,9 @@ MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
 	-I..\..\..\lib\wxsqlite3\include -I..\..\..\lib\lua\src -I..\..\..\lib \
-	-I..\..\..\3rd -I..\..\..\3rd\cgitemplate -I..\..\..\src -DNOPCH \
-	-I..\..\..\src -I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\..\3rd -I..\..\..\3rd\LuaGlue\include -I..\..\..\3rd\cgitemplate \
+	-I..\..\..\src -DNOPCH -I..\..\..\src -I..\..\..\lib\cppunit\include \
+	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -642,7 +643,7 @@ mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../../lib/wxsqlite3/include --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../3rd --include-dir ../../../3rd/cgitemplate --include-dir ../../../src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/cppunit/include
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../../lib/wxsqlite3/include --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../3rd --include-dir ../../../3rd/LuaGlue/include --include-dir ../../../3rd/cgitemplate --include-dir ../../../src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/cppunit/include
 
 .PHONY: all install uninstall clean check
 
