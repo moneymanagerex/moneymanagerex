@@ -30,6 +30,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
 
 

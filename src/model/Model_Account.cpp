@@ -251,7 +251,6 @@ bool Model_Account::is_used(const Model_Currency::Data* c)
 {
     Data_Set accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
     return !accounts.empty();
-       
 }
 
 bool Model_Account::is_used(const Model_Currency::Data& c)
