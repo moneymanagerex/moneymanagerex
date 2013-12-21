@@ -76,41 +76,43 @@ wxString Model_Report::get_html(const Data* r)
     }
     else
     {
-        wxSQLite3ResultSet sqlQueryResult = stmt.ExecuteQuery();
-        int columnCount = sqlQueryResult.GetColumnCount();
+        wxSQLite3ResultSet q = stmt.ExecuteQuery();
+        int columnCount = q.GetColumnCount();
 
         loop_t columns;
         for (int i = 0; i < columnCount; ++ i)
         {
             row_t row;
-            row("COLUMN") = sqlQueryResult.GetColumnName(i);
+            row("COLUMN") = q.GetColumnName(i);
 
             columns += row;
         }
         report("COLUMNS") = columns;
 
-        while (sqlQueryResult.NextRow())
+        while (q.NextRow())
         {
             row_t row;
             for (int i = 0; i < columnCount; ++ i)
             {
-                wxString column_name = sqlQueryResult.GetColumnName(i);
-                switch (sqlQueryResult.GetColumnType(i))
+                wxString column_name = q.GetColumnName(i);
+                switch (q.GetColumnType(i))
                 {
                 case WXSQLITE_INTEGER:
-                    row(column_name.ToStdString()) = sqlQueryResult.GetInt(i);
+                    row(column_name.ToStdString()) = q.GetInt(i);
                     break;
                 case WXSQLITE_FLOAT:
-                    row(column_name.ToStdString()) = sqlQueryResult.GetDouble(i);
+                    row(column_name.ToStdString()) = q.GetDouble(i);
                     break;
                 default:
-                    row(column_name.ToStdString()) = sqlQueryResult.GetAsString(i);
+                    row(column_name.ToStdString()) = q.GetAsString(i);
                     break;
                 }
             }
             contents += row;
+            // TODO call Lua function for every record, e.g. accumulate balance
         }
-        sqlQueryResult.Finalize();
+        q.Finalize();
+        // TODO call lua function to populate some metrics, e.g. total balance
     }
 
     report("CONTENTS") = contents;
