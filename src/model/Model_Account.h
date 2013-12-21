@@ -31,213 +31,74 @@ class Model_Account : public Model<DB_Table_ACCOUNTLIST_V1>
 public:
     using Model<DB_Table_ACCOUNTLIST_V1>::remove;
     using Model<DB_Table_ACCOUNTLIST_V1>::get;
-public:
+
     enum STATUS { OPEN = 0, CLOSED };
     enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
-public:
-    Model_Account(): Model<DB_Table_ACCOUNTLIST_V1>() 
-    {
-    };
-    ~Model_Account() {};
 
 public:
-    wxArrayString all_account_names()
-    {
-        wxArrayString accounts;
-        for (const auto &account : this->all(COL_ACCOUNTNAME))
-        {
-            accounts.Add(account.ACCOUNTNAME);
-        }
-        return accounts;
-    }
-    wxArrayString all_checking_account_names()
-    {
-        wxArrayString accounts;
-        for (const auto &account : this->all(COL_ACCOUNTNAME))
-        {
-            if (type(account) == INVESTMENT) continue;
-            accounts.Add(account.ACCOUNTNAME);
-        }
-        return accounts;
-    }
-    static wxArrayString all_status()
-    {
-        wxArrayString status;
-        status.Add(wxTRANSLATE("Open"));
-        status.Add(wxTRANSLATE("Closed"));
-
-        return status;
-    }
-    static wxArrayString all_type()
-    {
-        wxArrayString type;
-        type.Add(wxTRANSLATE("Checking"));
-        type.Add(wxTRANSLATE("Term"));
-        type.Add(wxTRANSLATE("Investment"));
-
-        return type;
-    }
+    Model_Account();
+    ~Model_Account();
 
 public:
-    /** Return the static instance of Model_Account table */
-    static Model_Account& instance()
-    {
-        return Singleton<Model_Account>::instance();
-    }
-
     /**
     * Initialize the global Model_Account table.
     * Reset the Model_Account table or create the table if it does not exist.
     */
-    static Model_Account& instance(wxSQLite3Database* db)
-    {
-        Model_Account& ins = Singleton<Model_Account>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Account& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
+    /** Return the static instance of Model_Account table */
+    static Model_Account& instance();
+
 public:
     /** Get the Data record instance in memory. */
-    Data* get(const wxString& name)
-    {
-        Data* account = 0;
-        Data_Set items = this->find(ACCOUNTNAME(name));
-        if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
-        return account;
-    }
+    Data* get(const wxString& name);
     
     /** Remove the Data record instance from memory and the database. */
-    bool remove(int id)
-    {
-        this->Begin();
-        for (const auto& r: Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(id), Model_Checking::TOACCOUNTID(id)))
-            Model_Checking::instance().remove(r.TRANSID);
-        for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
-            Model_Billsdeposits::instance().remove(r.BDID);
-        this->Commit();
-
-        return this->remove(id, db_);
-    }
-
-    static Model_Currency::Data* currency(const Data* r)
-    {
-        Model_Currency::Data * currency = Model_Currency::instance().get(r->CURRENCYID);
-        if (currency)
-            return currency;
-        else
-        {
-            wxASSERT(false);
-            return Model_Currency::GetBaseCurrency();
-        }
-    }
-    
-    static Model_Currency::Data* currency(const Data& r)
-    {
-        return currency(&r);
-    }
+    bool remove(int id);
 
 public:
-    static Model_Checking::Data_Set transaction(const Data*r )
-    {
-        Model_Checking::Data_Set trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
-        std::sort(trans.begin(), trans.end());
-        std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
+    wxArrayString all_account_names();
+    wxArrayString all_checking_account_names();
 
-        return trans;
-	}
-    static Model_Checking::Data_Set transaction(const Data& r) { return transaction(&r); }
-    static Model_Billsdeposits::Data_Set billsdeposits(const Data* r)
-    {
-		return Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(r->ACCOUNTID), Model_Billsdeposits::TOACCOUNTID(r->ACCOUNTID));
-	}
-    static Model_Billsdeposits::Data_Set billsdeposits(const Data& r) { return billsdeposits(&r); }
-    static wxDate last_date(const Data* r)
-    {
-        Model_Checking::Data_Set trans = transaction(r);
-        if (!trans.empty()) return Model_Checking::TRANSDATE(trans.back());
-        
-        return wxDateTime::Today();
-    }
-    static wxDate last_date(const Data& r) { return last_date(&r); }
-    static double balance(const Data* r)
-    {
-        double sum = r->INITIALBAL;
-        for (const auto& tran: transaction(r))
-        {
-           sum += Model_Checking::balance(tran, r->ACCOUNTID); 
-        }
-        return sum;
-    }
-    static double balance(const Data& r) { return balance(&r); }
-    static std::pair<double, double> investment_balance(const Data* r)
-    {
-        std::pair<double /*origianl input value*/, double /**/> sum;
-        for (const auto& stock: Model_Stock::instance().find(Model_Stock::HELDAT(r->ACCOUNTID)))
-        {
-            sum.first += stock.VALUE;
-            sum.second += Model_Stock::value(stock);
-        }
-        return sum;
-    }
-    static std::pair<double, double> investment_balance(const Data& r) { return investment_balance(&r); }
-    static wxString toCurrency(double value, const Data* r)
-    {
-        return Model_Currency::toCurrency(value, currency(r));
-    }    
-    static wxString toString(double value, const Data* r)
-    {
-        return Model_Currency::toString(value, currency(r));
-    }
-    static wxString toString(double value, const Data& r) { return toString(value, &r); }
-public:
-    static STATUS status(const Data* account)
-    {
-        if (account->STATUS.CmpNoCase(all_status()[OPEN]) == 0)
-            return OPEN;
-        return CLOSED;
-    }
-    static STATUS status(const Data& account)
-    {
-        return status(&account);
-    }
-    static TYPE type(const Data* account)
-    {
-        if (account->ACCOUNTTYPE.CmpNoCase(all_type()[CHECKING]) == 0)
-            return CHECKING;
-        else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[TERM]) == 0)
-            return TERM;
-        else
-            return INVESTMENT;
-    }
-    static TYPE type(const Data& account)
-    {
-        return type(&account);
-    }
-    static bool FAVORITEACCT(const Data* r)
-    {
-        return r->FAVORITEACCT.CmpNoCase("TRUE") == 0;
-    }
-    static bool FAVORITEACCT(const Data& r) { return FAVORITEACCT(&r); }
-    static bool is_used(const Model_Currency::Data* c)
-    {
-        Data_Set accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
-        return !accounts.empty();
-       
-    }
-    static bool is_used(const Model_Currency::Data& c)
-    {
-        return is_used(&c);
-    }
-    static int checking_account_num()
-    {
-        return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
-    }
-    static bool hasActiveTermAccount()
-    {
-        return !Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM]), DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[OPEN])).empty(); 
-    }
+    static wxArrayString all_status();
+    static wxArrayString all_type();
+
+    static Model_Currency::Data* currency(const Data* r);
+    static Model_Currency::Data* currency(const Data& r);
+
+    static Model_Checking::Data_Set transaction(const Data* r);
+    static Model_Checking::Data_Set transaction(const Data& r);
+
+    static Model_Billsdeposits::Data_Set billsdeposits(const Data* r);
+    static Model_Billsdeposits::Data_Set billsdeposits(const Data& r);
+
+    static wxDate last_date(const Data* r);
+    static wxDate last_date(const Data& r);
+
+    static double balance(const Data* r);
+    static double balance(const Data& r);
+
+    static std::pair<double, double> investment_balance(const Data* r);
+    static std::pair<double, double> investment_balance(const Data& r);
+    static wxString toCurrency(double value, const Data* r);
+
+    static wxString toString(double value, const Data* r);
+    static wxString toString(double value, const Data& r);
+
+    static STATUS status(const Data* account);
+    static STATUS status(const Data& account);
+
+    static TYPE type(const Data* account);
+    static TYPE type(const Data& account);
+
+    static bool FAVORITEACCT(const Data* r);
+    static bool FAVORITEACCT(const Data& r);
+
+    static bool is_used(const Model_Currency::Data* c);
+    static bool is_used(const Model_Currency::Data& c);
+
+    static int checking_account_num();
+    static bool hasActiveTermAccount();
 };
 
 #endif // 

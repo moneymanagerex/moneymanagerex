@@ -261,6 +261,7 @@
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
     <ClCompile Include="..\..\src\customreportdialog.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Category.cpp" />
     <ClCompile Include="..\..\src\model\Model_Checking.cpp" />
     <ClCompile Include="..\..\src\model\Model_Currency.cpp" />
@@ -354,6 +355,7 @@
     <ClInclude Include="..\..\src\model\Model_Currency.h" />
     <ClInclude Include="..\..\src\model\Model_Infotable.h" />
     <ClInclude Include="..\..\src\model\Model_Payee.h" />
+    <ClInclude Include="..\..\src\model\Model_Report.h" />
     <ClInclude Include="..\..\src\model\Model_Setting.h" />
     <ClInclude Include="..\..\src\model\Model_Splittransaction.h" />
     <ClInclude Include="..\..\src\model\Model_Stock.h" />
