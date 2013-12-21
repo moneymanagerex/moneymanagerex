@@ -26,49 +26,28 @@
 class Model_Stock : public Model<DB_Table_STOCK_V1>
 {
 public:
-    Model_Stock(): Model<DB_Table_STOCK_V1>() {};
-    ~Model_Stock() {};
+    Model_Stock();
+    ~Model_Stock();
 
 public:
-    /** Return the static instance of Model_Stock table */
-    static Model_Stock& instance()
-    {
-        return Singleton<Model_Stock>::instance();
-    }
-
     /**
     * Initialize the global Model_Stock table.
     * Reset the Model_Stock table or create the table if it does not exist.
     */
-    static Model_Stock& instance(wxSQLite3Database* db)
-    {
-        Model_Stock& ins = Singleton<Model_Stock>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Stock& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
+    /** Return the static instance of Model_Stock table */
+    static Model_Stock& instance();
+
 public:
-    static wxDate PURCHASEDATE(const Data* stock) { return Model::to_date(stock->PURCHASEDATE); }
-    static wxDate PURCHASEDATE(const Data& stock) { return Model::to_date(stock.PURCHASEDATE); }
-public:
-    static double value(const Data* r)
-    {
-        return r->NUMSHARES * r->PURCHASEPRICE - r->COMMISSION;
-    }
-    static double value(const Data& r) { return value(&r); }
-    static wxString NUMSHARES(const Data* stock)
-    {
-        wxString numSharesStr;
-        double numShares = stock->NUMSHARES;
-        if ((numShares - static_cast<long>(numShares)) != 0.0)
-            numSharesStr = wxString::Format("%.4f", numShares);
-        else
-            numSharesStr << static_cast<long>(numShares);
-        return numSharesStr;
-    }
-    static wxString NUMSHARES(const Data& stock) { return NUMSHARES(&stock); }
+    static wxDate PURCHASEDATE(const Data* stock);
+    static wxDate PURCHASEDATE(const Data& stock);
+
+    static double value(const Data* r);
+    static double value(const Data& r);
+
+    static wxString NUMSHARES(const Data* stock);
+    static wxString NUMSHARES(const Data& stock);
 };
 
 #endif // 
