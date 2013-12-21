@@ -67,7 +67,7 @@
 #include <wx/statline.h>
 #include <wx/dialog.h>
 
-#ifdef __VISUALC__
+#ifdef _MSC_VER
 #pragma warning (disable:4100)
 #endif
 

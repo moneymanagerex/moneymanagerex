@@ -19,6 +19,10 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#ifdef _MSC_VER
+#pragma warning (disable:4100)
+#endif
+
 #include <vector>
 #include <map>
 #include <algorithm>
