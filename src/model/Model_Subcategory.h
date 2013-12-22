@@ -26,41 +26,24 @@ class Model_Subcategory : public Model<DB_Table_SUBCATEGORY_V1>
 {
 public:
     using Model<DB_Table_SUBCATEGORY_V1>::get;
-public:
-    Model_Subcategory(): Model<DB_Table_SUBCATEGORY_V1>() 
-    {
-    };
-    ~Model_Subcategory() {};
 
 public:
-    /** Return the static instance of Model_Subcategory table */
-    static Model_Subcategory& instance()
-    {
-        return Singleton<Model_Subcategory>::instance();
-    }
+    Model_Subcategory();
+    ~Model_Subcategory();
 
+public:
     /**
     * Initialize the global Model_Subcategory table.
     * Reset the Model_Subcategory table or create the table if it does not exist.
     */
-    static Model_Subcategory& instance(wxSQLite3Database* db)
-    {
-        Model_Subcategory& ins = Singleton<Model_Subcategory>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Subcategory& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
+    /** Return the static instance of Model_Subcategory table */
+    static Model_Subcategory& instance();
+
 public:
     /** Return the Data record instance for the given subcategory name and category ID */
-    Data* get(const wxString& name, int category_id = -1)
-    {
-        Data* category = 0;
-        Data_Set items = this->find(SUBCATEGNAME(name), CATEGID(category_id));
-        if (!items.empty()) category = this->get(items[0].SUBCATEGID, this->db_);
-        return category;
-    }
+    Data* get(const wxString& name, int category_id = -1);
 
 public:
     static bool is_used(int id);

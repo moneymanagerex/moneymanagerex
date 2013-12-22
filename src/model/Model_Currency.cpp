@@ -18,6 +18,167 @@
 
 #include "Model_Currency.h"
 
+Model_Currency::Model_Currency()
+: Model<DB_Table_CURRENCYFORMATS_V1>()
+{
+}
+
+Model_Currency::~Model_Currency()
+{
+}
+
+/**
+* Initialize the global Model_Currency table.
+* Reset the Model_Currency table or create the table if it does not exist.
+*/
+Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
+{
+    Model_Currency& ins = Singleton<Model_Currency>::instance();
+    ins.db_ = db;
+    ins.destroy_cache();
+    bool init_currencies = !ins.exists(db);
+    ins.ensure(db);
+    if (init_currencies)
+        ins.initialize();
+    return ins;
+}
+
+/** Return the static instance of Model_Currency table */
+Model_Currency& Model_Currency::instance()
+{
+    return Singleton<Model_Currency>::instance();
+}
+
+wxArrayString Model_Currency::all_currency_names()
+{
+    wxArrayString c;
+    for (const auto&i : all(COL_CURRENCYNAME)) c.Add(i.CURRENCYNAME);
+    return c;
+}
+
+wxArrayString Model_Currency::all_currency_symbols()
+{
+    wxSortedArrayString c;
+    for (const auto&i : all(COL_CURRENCY_SYMBOL)) c.Add(i.CURRENCY_SYMBOL);
+    return c;
+}
+
+void Model_Currency::initialize()
+{
+    this->Begin();
+    for (const auto& i : all_currencies_template())
+    {
+        Data *currency = this->create();
+
+        currency->CURRENCY_SYMBOL = std::get<0>(i);
+        currency->CURRENCYNAME = std::get<1>(i);
+        currency->PFX_SYMBOL = std::get<2>(i);
+        currency->SFX_SYMBOL = std::get<3>(i);
+        currency->UNIT_NAME = std::get<4>(i);
+        currency->CENT_NAME = std::get<5>(i);
+        currency->SCALE = std::get<6>(i);
+        currency->BASECONVRATE = std::get<7>(i);
+        currency->DECIMAL_POINT = ".";
+        currency->GROUP_SEPARATOR = ",";
+
+        currency->save(this->db_);
+    }
+    this->Commit();
+}
+
+// Getter
+Model_Currency::Data* Model_Currency::GetBaseCurrency()
+{
+    int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
+    return Model_Currency::instance().get(currency_id);
+}
+
+wxString Model_Currency::toCurrency(double value, const Data* currency)
+{
+    wxString d2s = toString(value, currency);
+    if (currency)
+    {
+        d2s.Prepend(currency->PFX_SYMBOL);
+        d2s.Append(currency->SFX_SYMBOL);
+    }
+    return d2s;
+}
+
+wxString Model_Currency::os_group_separator()
+{
+    wxString sys_thousand_separator = "";
+    wxChar sep = ' ';
+    if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
+        sys_thousand_separator = wxString::Format("%c", sep);
+    return sys_thousand_separator;
+}
+
+wxString Model_Currency::toString(double value, const Data* currency)
+{
+    int precision = 2;
+    int style = wxNumberFormatter::Style_WithThousandsSep;
+    wxString s = wxNumberFormatter::ToString(value, precision, style);
+    if (currency)
+    {
+        precision = Model_Currency::precision(currency);
+        if (!currency->GROUP_SEPARATOR.empty()) style = wxNumberFormatter::Style_WithThousandsSep;
+        s.Replace(wxNumberFormatter::GetDecimalSeparator(), "/");
+        s.Replace(os_group_separator(), "|");
+        s.Replace("|", currency->GROUP_SEPARATOR);
+        s.Replace("/", currency->DECIMAL_POINT);
+    }
+    return s;
+}
+
+wxString Model_Currency::fromString(wxString s, const Data* currency)
+{
+    // Remove prefix and suffix characters from value
+    if (currency)
+    {
+        if (!currency->PFX_SYMBOL.IsEmpty())
+        {
+            wxString removed;
+            if (s.StartsWith(currency->PFX_SYMBOL, &removed))
+                s = removed;
+        }
+        if (!currency->SFX_SYMBOL.IsEmpty())
+        {
+            wxString removed;
+            if (s.EndsWith(currency->SFX_SYMBOL, &removed))
+                s = removed;
+        }
+
+        wxString sys_thousand_separator;
+        wxChar sep = ' ';
+        if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
+            sys_thousand_separator = wxString::Format("%c", sep);
+        if (!currency->DECIMAL_POINT.empty()) s.Replace(currency->DECIMAL_POINT, "/");
+        if (!currency->GROUP_SEPARATOR.empty()) s.Replace(currency->GROUP_SEPARATOR, "|");
+        s.Replace("|", sys_thousand_separator);
+        s.Replace("/", wxNumberFormatter::GetDecimalSeparator());
+
+    }
+    return s;
+}
+
+bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
+{
+    bool done = true;
+    if (!wxNumberFormatter::FromString(fromString(s, currency), &val))
+        done = false;
+    return done;
+}
+
+int Model_Currency::precision(const Data* r)
+{
+    return static_cast<int>(log10(static_cast<double>(r->SCALE)));
+}
+
+int Model_Currency::precision(const Data& r)
+{
+    return precision(&r);
+}
+
 std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int> > Model_Currency::all_currencies_template()
 {
     std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int> > all_currency;

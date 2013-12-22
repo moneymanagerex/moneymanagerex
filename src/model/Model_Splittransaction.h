@@ -25,38 +25,21 @@
 class Model_Splittransaction : public Model<DB_Table_SPLITTRANSACTIONS_V1>
 {
 public:
-    Model_Splittransaction(): Model<DB_Table_SPLITTRANSACTIONS_V1>() 
-    {
-    };
-    ~Model_Splittransaction() {};
+    Model_Splittransaction();
+    ~Model_Splittransaction();
 
 public:
-    /** Return the static instance of Model_Splittransaction table */
-    static Model_Splittransaction& instance()
-    {
-        return Singleton<Model_Splittransaction>::instance();
-    }
-
     /**
     * Initialize the global Model_Splittransaction table.
     * Reset the Model_Splittransaction table or create the table if it does not exist.
     */
-    static Model_Splittransaction& instance(wxSQLite3Database* db)
-    {
-        Model_Splittransaction& ins = Singleton<Model_Splittransaction>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Splittransaction& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
+    /** Return the static instance of Model_Splittransaction table */
+    static Model_Splittransaction& instance();
+
 public:
-    static double get_total(const Data_Set& rows)
-    {
-        double total = 0.0;
-        for (auto& r : rows) total += r.SPLITTRANSAMOUNT;
-        return total;
-    }
+    static double get_total(const Data_Set& rows);
 };
 
 #endif // 

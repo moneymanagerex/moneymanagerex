@@ -28,81 +28,31 @@ class Model_Payee : public Model<DB_Table_PAYEE_V1>
 {
 public:
     using Model<DB_Table_PAYEE_V1>::get;
-public:
-    Model_Payee(): Model<DB_Table_PAYEE_V1>() 
-    {
-    };
-    ~Model_Payee() {};
 
 public:
-    /** Return the static instance of Model_Payee table */
-    static Model_Payee& instance()
-    {
-        return Singleton<Model_Payee>::instance();
-    }
+    Model_Payee();
+    ~Model_Payee();
 
+public:
     /**
     * Initialize the global Model_Payee table.
     * Reset the Model_Payee table or create the table if it does not exist.
     */
-    static Model_Payee& instance(wxSQLite3Database* db)
-    {
-        Model_Payee& ins = Singleton<Model_Payee>::instance();
-        ins.db_ = db;
-        ins.destroy_cache();
-        ins.ensure(db);
+    static Model_Payee& instance(wxSQLite3Database* db);
 
-        return ins;
-    }
-public:
-    Data_Set FilterPayees(const wxString& payee_pattern)
-    {
-        Data_Set payees;
-        for (auto &payee: this->all())
-        {
-            if (payee.PAYEENAME.Lower().Matches(payee_pattern.Lower().Append("*")))
-                payees.push_back(payee);
-        }
-        return payees;
-    }
-    Data* get(const wxString& name)
-    {
-        Data* payee = 0;
-        Data_Set items = this->find(PAYEENAME(name));
-        if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);
-        return payee;
-    }
-    bool remove(int id)
-    {
-        if (is_used(id)) return false;
+    /** Return the static instance of Model_Payee table */
+    static Model_Payee& instance();
 
-        return this->remove(id);
-    }
 public:
-    wxArrayString all_payee_names()
-    {
-        wxArrayString payees;
-        for (const auto &payee: this->all(COL_PAYEENAME))
-        {
-            payees.Add(payee.PAYEENAME);
-        }
-        return payees;
-    }
-public:
-    static bool is_used(int id)
-    {
-        Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
-        Model_Billsdeposits::Data_Set bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
-        return !trans.empty() || !bills.empty();
-    }
-    static bool is_used(const Data* record)
-    {
-        return is_used(record->PAYEEID);
-    }
-    static bool is_used(const Data& record)
-    {
-        return is_used(&record);
-    }
+    Data_Set FilterPayees(const wxString& payee_pattern);
+    Data* get(const wxString& name);
+    bool remove(int id);
+
+    wxArrayString all_payee_names();
+
+    static bool is_used(int id);
+    static bool is_used(const Data* record);
+    static bool is_used(const Data& record);
 };
 
 #endif // 
