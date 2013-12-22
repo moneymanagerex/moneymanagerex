@@ -30,11 +30,74 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 
+#include "../resources/reconciled.xpm"
+#include "../resources/unreconciled.xpm"
+#include "../resources/duplicate.xpm"
+#include "../resources/flag.xpm"
+#include "../resources/void.xpm"
+#include "../resources/rightarrow.xpm"
+#include "../resources/uparrow.xpm"
+
+
 //----------------------------------------------------------------------------
 
 #include <wx/srchctrl.h>
 #include <algorithm>
 //----------------------------------------------------------------------------
+enum
+{
+    ID_PANEL_CHECKING_STATIC_BALHEADER1,
+    ID_PANEL_CHECKING_STATIC_BALHEADER2,
+    ID_PANEL_CHECKING_STATIC_BALHEADER3,
+    ID_PANEL_CHECKING_STATIC_BALHEADER4,
+    ID_PANEL_CHECKING_STATIC_BALHEADER5,
+    ID_PANEL_CHECKING_LISTCTRL_ACCT,
+    ID_PANEL_CHECKING_STATIC_DETAILS,
+    ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
+    ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
+    /* Checking Panel */
+
+    MENU_TREEPOPUP_SHOWTRASH,
+
+    MENU_TREEPOPUP_MARKRECONCILED,
+    MENU_TREEPOPUP_MARKUNRECONCILED,
+    MENU_TREEPOPUP_MARKVOID,
+    MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP,
+    MENU_TREEPOPUP_MARKDUPLICATE,
+    MENU_TREEPOPUP_MARKDELETE,
+
+    MENU_TREEPOPUP_MARKRECONCILED_ALL,
+    MENU_TREEPOPUP_MARKUNRECONCILED_ALL,
+    MENU_TREEPOPUP_MARKVOID_ALL,
+    MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL,
+    MENU_TREEPOPUP_MARKDUPLICATE_ALL,
+    MENU_TREEPOPUP_DELETE_VIEWED,
+    MENU_TREEPOPUP_DELETE_FLAGGED,
+
+    MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
+    MENU_SUBMENU_MARK_ALL,
+
+    MENU_VIEW_,
+    MENU_VIEW_DELETE_TRANS,
+    MENU_VIEW_DELETE_FLAGGED,
+
+    MENU_ON_COPY_TRANSACTION,
+    MENU_ON_PASTE_TRANSACTION,
+    MENU_ON_NEW_TRANSACTION,
+    MENU_ON_DUPLICATE_TRANSACTION,
+
+    MENU_ON_SET_UDC0, //Default colour
+    MENU_ON_SET_UDC1, //User defined colour 1
+    MENU_ON_SET_UDC2, //User defined colour 2
+    MENU_ON_SET_UDC3, //User defined colour 3
+    MENU_ON_SET_UDC4, //User defined colour 4
+    MENU_ON_SET_UDC5, //User defined colour 5
+    MENU_ON_SET_UDC6, //User defined colour 6
+    MENU_ON_SET_UDC7, //User defined colour 7
+
+    ID_SPLITTERWINDOW,
+    ID_LISTCTRL,
+};
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
@@ -470,7 +533,7 @@ void mmCheckingPanel::CreateControls()
     m_listCtrlAccount->setColumnImage(m_listCtrlAccount->getSortColumn()
         , m_listCtrlAccount->getSortOrder() ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC); // asc\desc sort mark (arrow)
 
-    wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, ID_PANEL1
+    wxPanel *itemPanel12 = new wxPanel(itemSplitterWindow10, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
 
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAccount, itemPanel12);

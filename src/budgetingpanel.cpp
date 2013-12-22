@@ -28,6 +28,31 @@
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Category.h"
 
+#include "../resources/rightarrow.xpm"
+#include "../resources/void.xpm"
+#include "../resources/flag.xpm"
+#include "../resources/empty.xpm"
+#include "../resources/reconciled.xpm"
+
+
+enum
+{
+    ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST = wxID_HIGHEST + 1,
+    MENU_VIEW_ALLBUDGETENTRIES,
+    MENU_VIEW_NONZEROBUDGETENTRIES,
+    MENU_VIEW_INCOMEBUDGETENTRIES,
+    MENU_VIEW_SUMMARYBUDGETENTRIES,
+    MENU_VIEW_EXPENSEBUDGETENTRIES,
+    ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW,
+    ID_PANEL_CHECKING_STATIC_PANELVIEW,
+    ID_PANEL_REPORTS_HEADER_PANEL,
+    ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_ACT,
+    ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF,
+    ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST,
+    ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT,
+    ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF,
+};
+
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
     EVT_LEFT_DOWN( mmBudgetingPanel::OnMouseLeftDown )

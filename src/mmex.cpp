@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 #include "mmex.h"
+//#include "guiid.h"
 #include "dbwrapper.h"
 #include "aboutdialog.h"
 #include "appstartdialog.h"
@@ -327,7 +328,7 @@ void mmNewDatabaseWizard::RunIt(bool modal)
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizardPage, wxWizardPageSimple)
-    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmNewDatabaseWizardPage::OnCurrency)
+    EVT_BUTTON(ID_BUTTON_CURRENCY, mmNewDatabaseWizardPage::OnCurrency)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -407,7 +408,7 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
-            wxButton* bn = (wxButton*) FindWindow(ID_DIALOG_OPTIONS_BUTTON_CURRENCY);
+            wxButton* bn = (wxButton*) FindWindow(ID_BUTTON_CURRENCY);
             bn->SetLabel(currency->CURRENCYNAME);
             Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
             currencyID_ = currency->CURRENCYID;
@@ -1073,7 +1074,7 @@ void mmGUIFrame::createControls()
 
     navTreeCtrl_->AssignImageList(navtree_images_list_());
 
-    homePanel_ = new wxPanel( this, ID_PANEL,
+    homePanel_ = new wxPanel( this, ID_PANEL_HOME,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
 
     m_mgr.AddPane(navTreeCtrl_, wxAuiPaneInfo().

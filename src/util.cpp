@@ -25,6 +25,9 @@
 #include "constants.h"
 #include "singleton.h"
 #include "model/Model_Setting.h"
+
+#include "../resources/flag.xpm"
+
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)

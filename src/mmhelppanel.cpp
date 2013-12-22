@@ -51,7 +51,7 @@ void mmHelpPanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    wxPanel* itemPanel3 = new wxPanel( this, ID_PANEL_REPORTS_HEADER_PANEL, 
+    wxPanel* itemPanel3 = new wxPanel( this, wxID_ANY, 
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
     itemBoxSizer2->Add(itemPanel3, 0, wxGROW|wxALL, 5);
 
@@ -62,7 +62,7 @@ void mmHelpPanel::CreateControls()
     wxButton* buttonFordward = new wxButton(itemPanel3, wxID_FORWARD, _("&Forward") );
 
     wxString helpHeader = mmex::getProgramName() + _(" Help");
-    wxStaticText* itemStaticText9 = new wxStaticText( itemPanel3, ID_PANEL_REPORTS_STATIC_HEADER, 
+    wxStaticText* itemStaticText9 = new wxStaticText( itemPanel3, wxID_ANY, 
         helpHeader, wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText9->SetFont(wxFont(12, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
 
@@ -70,7 +70,7 @@ void mmHelpPanel::CreateControls()
     itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT|wxRIGHT, 5);
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT|wxTOP, 5);
 
-    htmlWindow_ = new wxHtmlWindow( this, ID_PANEL_REPORTS_HTMLWINDOW, 
+    htmlWindow_ = new wxHtmlWindow( this, wxID_ANY, 
         wxDefaultPosition, wxDefaultSize, 
         wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);

@@ -51,6 +51,16 @@ private:
     void OnButtonAppstartLastDatabaseClick( wxCommandEvent& event );
     void OnQuit(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
+
+    enum
+    {
+        ID_BUTTON_APPSTART_NEW_DATABASE,
+        ID_BUTTON_APPSTART_OPEN_DATABASE,
+        ID_BUTTON_APPSTART_HELP,
+        ID_BUTTON_APPSTART_WEBSITE,
+        ID_CHECKBOX_APPSTART_SHOWAPPSTART,
+        ID_BUTTON_APPSTART_LAST_DATABASE,
+    };
 };
 #endif // _MM_EX_APPSTARTDIALOG_H_
 
