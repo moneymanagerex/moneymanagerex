@@ -73,8 +73,8 @@ bool relocateCategoryDialog::Create( wxWindow* parent, wxWindowID id,
 void relocateCategoryDialog::CreateControls()
 {
     wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand().Center();
+    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Center();
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand().Center();
     wxSize btnSize = wxSize(180,-1);
 
     wxStaticText* headerText = new wxStaticText( this, wxID_STATIC

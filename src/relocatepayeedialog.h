@@ -20,26 +20,26 @@
 #ifndef _MM_EX_RELOCATEPAYEEDIALOG_H_
 #define _MM_EX_RELOCATEPAYEEDIALOG_H_
 
-#include "guiid.h"
 #include "defs.h"
 
 class relocatePayeeDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( relocatePayeeDialog )
+    DECLARE_DYNAMIC_CLASS(relocatePayeeDialog)
     DECLARE_EVENT_TABLE()
 
 public:
     relocatePayeeDialog();
-    relocatePayeeDialog( wxWindow* parent, int source_payee_id = -1);
+    relocatePayeeDialog(wxWindow* parent, int source_payee_id = -1);
 
     int updatedPayeesCount();
 
 private:
-    bool Create( wxWindow* parent, wxWindowID id,
-                 const wxString& caption,
-                 const wxPoint& pos,
-                 const wxSize& size,
-                 long style );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     void CreateControls();
     void OnOk(wxCommandEvent& event);
@@ -56,4 +56,3 @@ private:
 };
 
 #endif
-
