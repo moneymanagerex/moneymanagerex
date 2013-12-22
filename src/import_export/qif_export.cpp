@@ -33,21 +33,17 @@ BEGIN_EVENT_TABLE( mmQIFExportDialog, wxDialog )
     EVT_CLOSE(mmQIFExportDialog::OnQuit)
 END_EVENT_TABLE()
 
-mmQIFExportDialog::mmQIFExportDialog(
-    wxWindow* parent, wxWindowID id,
-    const wxString& caption, const wxPoint& pos,
-    const wxSize& size, long style
-) :
-    parent_(parent)
+mmQIFExportDialog::mmQIFExportDialog(wxWindow* parent)
 {
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("QIF Export"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
-bool mmQIFExportDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,
-                           const wxPoint& pos, const wxSize& size, long style )
+bool mmQIFExportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
+    , const wxPoint& pos, const wxSize& size, long style)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -453,14 +449,12 @@ void mmQIFExportDialog::mmExportQIF()
     else
         *log_field_ << buffer;
 
-    sErrorMsg << wxTRANSLATE("Number of transactions exported: %ld");
-    const wxString msg = wxString::Format(sErrorMsg, numRecords);
-    wxMessageDialog msgDlg(parent_, wxGetTranslation(msg)
-        , _("Export to QIF"), wxOK|wxICON_INFORMATION);
-    wxButton* ok = (wxButton*)FindWindow(wxID_OK);
-    ok->Disable();
+    wxMessageDialog msgDlg(this
+        , wxString::Format(_("Number of transactions exported: %ld"), numRecords)
+        , _("Export to QIF"), wxOK | wxICON_INFORMATION);
 
-    //FIXME: Can't close this dialog (Ubuntu 64x ???)
+    (wxButton*)FindWindow(wxID_OK)->Disable();
+
     msgDlg.ShowModal();
 
 }

@@ -19,12 +19,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #ifndef QIF_EXPORT_H
 #define QIF_EXPORT_H
 
-#define SYMBOL_QIFDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_QIFDIALOG_TITLE _("QIF Export")
-#define SYMBOL_QIFDIALOG_IDNAME wxID_HIGHEST+1
-#define SYMBOL_QIFDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_QIFDIALOG_POSITION wxDefaultPosition
-
 #include "defs.h"
 
 class wxDatePickerCtrl;
@@ -37,19 +31,14 @@ class mmQIFExportDialog : public wxDialog
 public:
     mmQIFExportDialog() {}
 
-    mmQIFExportDialog(
-        wxWindow* parent,
-        wxWindowID id = SYMBOL_QIFDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_QIFDIALOG_TITLE,
-        const wxPoint& pos = SYMBOL_QIFDIALOG_POSITION,
-        const wxSize& size = SYMBOL_QIFDIALOG_SIZE,
-        long style = SYMBOL_QIFDIALOG_STYLE );
+    mmQIFExportDialog(wxWindow* parent);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_QIFDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_QIFDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_QIFDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_QIFDIALOG_SIZE,
-                 long style = SYMBOL_QIFDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString&
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
 private:
     void OnQuit(wxCloseEvent& event);
@@ -65,7 +54,6 @@ private:
     void CreateControls();
     void fillControls();
 
-    wxWindow* parent_;
     wxArrayInt accounts_id_;
     /* Selected accounts id */
     wxArrayInt selected_accounts_id_;
