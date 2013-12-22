@@ -17,6 +17,8 @@
  ********************************************************/
 
 #include "Model_Subcategory.h"
+#include "Model_Checking.h"
+#include "Model_Billsdeposits.h"
 
 Model_Subcategory::Model_Subcategory()
 : Model<DB_Table_SUBCATEGORY_V1>()
@@ -56,6 +58,11 @@ Model_Subcategory::Data* Model_Subcategory::get(const wxString& name, int catego
     return category;
 }
 
-// Not sure how this works ??? this method discovered in Model_Category.
-//static bool is_used(int id);
+bool Model_Subcategory::is_used(int id)
+{
+    int cat_id = instance().get(id)->CATEGID;
+    Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(cat_id), Model_Billsdeposits::SUBCATEGID(id));
+    Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::CATEGID(cat_id), Model_Checking::SUBCATEGID(id));
+    return !deposits.empty() || !trans.empty();
+}
 
