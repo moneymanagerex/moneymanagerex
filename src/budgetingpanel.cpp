@@ -35,9 +35,9 @@ BEGIN_EVENT_TABLE(mmBudgetingPanel, wxPanel)
 END_EVENT_TABLE()
 /*******************************************************/
 BEGIN_EVENT_TABLE(budgetingListCtrl, wxListCtrl)
-    EVT_LIST_ITEM_SELECTED(ID_PANEL_CHECKING_LISTCTRL_ACCT, budgetingListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_ACTIVATED(ID_PANEL_CHECKING_LISTCTRL_ACCT, budgetingListCtrl::OnListItemActivated)
-    EVT_LIST_COL_END_DRAG(ID_PANEL_CHECKING_LISTCTRL_ACCT, budgetingListCtrl::OnItemResize)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, budgetingListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, budgetingListCtrl::OnListItemActivated)
+    EVT_LIST_COL_END_DRAG(wxID_ANY, budgetingListCtrl::OnItemResize)
 END_EVENT_TABLE()
 /*******************************************************/
 mmBudgetingPanel::mmBudgetingPanel(int budgetYearID,
@@ -247,7 +247,7 @@ void mmBudgetingPanel::CreateControls()
     m_imageList->Add(wxBitmap(empty_xpm));
 
     listCtrlBudget_ = new budgetingListCtrl( this, this,
-        ID_PANEL_CHECKING_LISTCTRL_ACCT, wxDefaultPosition, wxDefaultSize,
+        wxID_ANY, wxDefaultPosition, wxDefaultSize,
         wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL  );
 
     listCtrlBudget_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
