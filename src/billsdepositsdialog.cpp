@@ -1299,7 +1299,7 @@ void mmBDDialog::activateSplitTransactionsDlg()
         checking_splits.push_back(*split);
     }
 
-    SplitTransactionDialog dlg(&checking_splits, this, transaction_type_->GetSelection(), accountID_);
+    SplitTransactionDialog dlg(this, &checking_splits, transaction_type_->GetSelection(), accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         double amount = Model_Splittransaction::instance().get_total(checking_splits);

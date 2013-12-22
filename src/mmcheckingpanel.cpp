@@ -850,12 +850,11 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
 
     Model_Checking::Data *transaction = Model_Checking::instance().get(transID);
     Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
-    SplitTransactionDialog splitTransDialog(
-        &splits
-        , this
+    SplitTransactionDialog splitTransDialog(this
+        , &splits
         , transType
-        , m_AccountID
-    );
+        , m_AccountID);
+
     splitTransDialog.SetDisplaySplitCategories();
     splitTransDialog.ShowModal();
 }

@@ -47,15 +47,13 @@ SplitTransactionDialog::SplitTransactionDialog( )
 {
 }
 
-SplitTransactionDialog::SplitTransactionDialog(
-    Model_Splittransaction::Data_Set* splits 
-    , wxWindow* parent
+SplitTransactionDialog::SplitTransactionDialog( wxWindow* parent
+    , Model_Splittransaction::Data_Set* splits 
     , int transType
     , int accountID)
     : m_splits(splits)
     , accountID_(accountID)
 {
-    //std::copy(m_splits->begin(), m_splits->end(), m_local_splits.begin());
     for (const auto &item : *m_splits) m_local_splits.push_back(item);
 
     transType_ = transType;
@@ -63,16 +61,17 @@ SplitTransactionDialog::SplitTransactionDialog(
     if (transType_ == Model_Checking::TRANSFER)
         transType_ = Model_Checking::WITHDRAWAL;
 
-    long style = wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX;
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Split Transaction Dialog")
         , wxDefaultPosition, wxSize(400, 300), style);
 }
 
-bool SplitTransactionDialog::Create(wxWindow* parent, wxWindowID id,
-                                    const wxString& caption,
-                                    const wxPoint& pos,
-                                    const wxSize& size,
-                                    long style)
+bool SplitTransactionDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style)
 {
     lcSplit_ = NULL;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);

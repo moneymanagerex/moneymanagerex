@@ -19,7 +19,6 @@
 #ifndef _MM_EX_SPLITTRANSACTIONDIALOG_H_
 #define _MM_EX_SPLITTRANSACTIONDIALOG_H_
 
-#include "guiid.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
 
@@ -44,12 +43,10 @@ class SplitTransactionDialog: public wxDialog
 public:
     /// Constructors
     SplitTransactionDialog();
-    SplitTransactionDialog(
-        Model_Splittransaction::Data_Set* splits
-        , wxWindow* parent
+    SplitTransactionDialog(wxWindow* parent
+        , Model_Splittransaction::Data_Set* splits
         , int transType
-        , int accountID
-        );
+        , int accountID);
 
     /// Creation
     bool Create(

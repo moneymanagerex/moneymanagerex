@@ -20,6 +20,7 @@
 #ifndef _MM_EX_BDDIALOG_H_
 #define _MM_EX_BDDIALOG_H_
 
+#include "guiid.h"
 #include "defs.h"
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>

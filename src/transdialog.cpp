@@ -728,7 +728,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
     
-    SplitTransactionDialog dlg(&m_local_splits, this, transaction_type_->GetSelection(), newAccountID_);
+    SplitTransactionDialog dlg(this, &m_local_splits, transaction_type_->GetSelection(), newAccountID_);
     dlg.ShowModal();
     transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
     skip_category_init_ = false;
