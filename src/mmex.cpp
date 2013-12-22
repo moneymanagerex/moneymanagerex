@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 #include "mmex.h"
-//#include "guiid.h"
+#include "guiid.h"
 #include "dbwrapper.h"
 #include "aboutdialog.h"
 #include "appstartdialog.h"

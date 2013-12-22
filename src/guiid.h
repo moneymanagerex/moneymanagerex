@@ -20,6 +20,7 @@
 #define _MM_EX_GUIID_H_
 //----------------------------------------------------------------------------
 #include <wx/defs.h>
+#include "mmex.h"
 //----------------------------------------------------------------------------
 /* Include XPM Support */
 #include "../resources/about.xpm"
@@ -73,7 +74,7 @@
 enum
 {
     /* Main Menu  */
-    MENU_NEW = wxID_HIGHEST + 1,
+    MENU_NEW = ID_MMEX_MAX +1,
     MENU_OPEN,
     MENU_SAVE,
     MENU_SAVE_AS,
@@ -86,7 +87,6 @@ enum
     MENU_ORGCATEGS,
     MENU_ORGPAYEE,
     MENU_BUDGETSETUPDIALOG,
-    MENU_BILLSDEPOSITS,
     MENU_CHECKUPDATE,
     MENU_IMPORT,
     MENU_IMPORT_UNIVCSV,
@@ -102,12 +102,9 @@ enum
     MENU_PRINT_PREVIEW_REPORT,
     MENU_SHOW_APPSTART,
     MENU_EXPORT_HTML,
-    MENU_STOCKS,
     MENU_CURRENCY,
     MENU_TREEPOPUP_LAUNCHWEBSITE,
     MENU_IMPORT_MMNETCSV,
-    MENU_ASSETS,
-    MENU_GOTOACCOUNT,
     MENU_IMPORT_QIF,
     MENU_ACCTEDIT,
     MENU_ACCTDELETE,

@@ -26,9 +26,25 @@
 #include <wx/debugrpt.h>
 #include <wx/toolbar.h>
 
+enum
+{
+    MENU_BILLSDEPOSITS = wxID_HIGHEST +1,
+    MENU_STOCKS,
+    MENU_GOTOACCOUNT,
+    MENU_ASSETS,
+
+    MENU_VIEW_BANKACCOUNTS,
+    MENU_VIEW_TERMACCOUNTS,
+    MENU_VIEW_STOCKACCOUNTS,
+    MENU_VIEW_BUDGET_FINANCIAL_YEARS,
+    MENU_VIEW_BUDGET_SETUP_SUMMARY,
+    MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
+    MENU_VIEW_BUDGET_TRANSFER_TOTAL,
+    ID_MMEX_MAX,
+};
 //----------------------------------------------------------------------------
+
 #include <wx/sharedptr.h>
-#include "guiid.h"
 #include "util.h"
 #include "mmOption.h"
 //----------------------------------------------------------------------------
@@ -369,17 +385,6 @@ private:
 
     // any class wishing to process wxWindows events must use this macro
     DECLARE_EVENT_TABLE()
-
-    enum
-    {
-        MENU_VIEW_BANKACCOUNTS = wxID_HIGHEST + 1234, //TODO: magic number
-        MENU_VIEW_TERMACCOUNTS,
-        MENU_VIEW_STOCKACCOUNTS,
-        MENU_VIEW_BUDGET_FINANCIAL_YEARS,
-        MENU_VIEW_BUDGET_SETUP_SUMMARY,
-        MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
-        MENU_VIEW_BUDGET_TRANSFER_TOTAL,
-    };
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_MMEX_H_
