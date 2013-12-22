@@ -26,6 +26,7 @@
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
+#include"../resources/update_currency.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )
 
@@ -39,16 +40,15 @@ mmStockDialog::mmStockDialog( )
 {
 }
 
-mmStockDialog::mmStockDialog(Model_Stock::Data* stock
-    , bool edit, int accountID
-    , wxWindow* parent, wxWindowID id
-    ,const wxString& caption, const wxPoint& pos
-    ,const wxSize& size, long style )
+mmStockDialog::mmStockDialog(wxWindow* parent
+    , Model_Stock::Data* stock
+    , bool edit, int accountID)
     : m_stock(stock)
     , edit_(edit)
     , accountID_(accountID)
 {
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("New/Edit Stock Investment"), wxDefaultPosition, wxSize(400, 300), style);
 }
 
 bool mmStockDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,

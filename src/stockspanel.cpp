@@ -27,13 +27,13 @@
 enum {IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1};
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(ID_PANEL_STOCKS_LISTCTRL,   StocksListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_RIGHT_CLICK(ID_PANEL_STOCKS_LISTCTRL, StocksListCtrl::OnItemRightClick)
-    EVT_LIST_ITEM_SELECTED(ID_PANEL_STOCKS_LISTCTRL,    StocksListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(ID_PANEL_STOCKS_LISTCTRL,  StocksListCtrl::OnListItemDeselected)
-    EVT_LIST_COL_END_DRAG(ID_PANEL_STOCKS_LISTCTRL,     StocksListCtrl::OnItemResize)
-    EVT_LIST_COL_CLICK(ID_PANEL_STOCKS_LISTCTRL,        StocksListCtrl::OnColClick)
-    EVT_LIST_KEY_DOWN(ID_PANEL_STOCKS_LISTCTRL,         StocksListCtrl::OnListKeyDown)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   StocksListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, StocksListCtrl::OnItemRightClick)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,    StocksListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(wxID_ANY,  StocksListCtrl::OnListItemDeselected)
+    EVT_LIST_COL_END_DRAG(wxID_ANY,     StocksListCtrl::OnItemResize)
+    EVT_LIST_COL_CLICK(wxID_ANY,        StocksListCtrl::OnColClick)
+    EVT_LIST_KEY_DOWN(wxID_ANY,         StocksListCtrl::OnListKeyDown)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,     StocksListCtrl::OnNewStocks)
     EVT_MENU(MENU_TREEPOPUP_EDIT,    StocksListCtrl::OnEditStocks)
@@ -164,7 +164,7 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
 
 void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
 {
-    mmStockDialog dlg(0, false, stock_panel_->accountID_, this);
+    mmStockDialog dlg(this, 0, false, stock_panel_->accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.transID_);
@@ -228,7 +228,7 @@ void StocksListCtrl::OnEditStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0) return;
 
-    wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, ID_PANEL_STOCKS_LISTCTRL);
+    wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, wxID_ANY);
     AddPendingEvent(evt);
 }
 
@@ -368,10 +368,10 @@ void mmStocksPanel::CreateControls()
             ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200),
             wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-    listCtrlAccount_ = new StocksListCtrl(this, itemSplitterWindow10, ID_PANEL_STOCKS_LISTCTRL);
+    listCtrlAccount_ = new StocksListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
-    wxPanel* BottomPanel = new wxPanel(itemSplitterWindow10, wxID_ANY,
-                                        wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
+    wxPanel* BottomPanel = new wxPanel(itemSplitterWindow10, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     itemSplitterWindow10->SplitHorizontally(listCtrlAccount_, BottomPanel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
@@ -759,7 +759,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
-    mmStockDialog dlg(stock, true, accountID_, this);
+    mmStockDialog dlg(this, stock, true, accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         listCtrlAccount_->doRefreshItems(dlg.transID_);

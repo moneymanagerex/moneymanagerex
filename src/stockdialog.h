@@ -20,14 +20,7 @@
 #define _MM_EX_STOCKDIALOG_H_
 
 #include "defs.h"
-#include "guiid.h"
 #include "model/Model_Stock.h"
-
-#define SYMBOL_STOCKDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_STOCKDIALOG_TITLE _("New/Edit Stock Investment")
-#define SYMBOL_STOCKDIALOG_IDNAME ID_DIALOG_STOCKS
-#define SYMBOL_STOCKDIALOG_SIZE wxSize(400, 300)
-#define SYMBOL_STOCKDIALOG_POSITION wxDefaultPosition
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
@@ -39,19 +32,15 @@ class mmStockDialog : public wxDialog
 
 public:
     mmStockDialog();
-    mmStockDialog(Model_Stock::Data* stock
-                  , bool edit, int accountID, wxWindow* parent
-                  , wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME
-                  , const wxString& caption = SYMBOL_STOCKDIALOG_TITLE
-                  , const wxPoint& pos = SYMBOL_STOCKDIALOG_POSITION
-                  , const wxSize& size = SYMBOL_STOCKDIALOG_SIZE
-                  , long style = SYMBOL_STOCKDIALOG_STYLE );
+    mmStockDialog(wxWindow* parent
+        , Model_Stock::Data* stock
+        , bool edit, int accountID);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_STOCKDIALOG_IDNAME
-                 , const wxString& caption = SYMBOL_STOCKDIALOG_TITLE
-                 , const wxPoint& pos = SYMBOL_STOCKDIALOG_POSITION
-                 , const wxSize& size = SYMBOL_STOCKDIALOG_SIZE
-                 , long style = SYMBOL_STOCKDIALOG_STYLE );
+    bool Create(wxWindow* parent, wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     void CreateControls();
 
@@ -81,6 +70,19 @@ private:
 
     bool edit_;
     int accountID_;
+
+    enum
+    {
+        ID_DPC_STOCK_PDATE = wxID_HIGHEST + 1,
+        ID_TEXTCTRL_STOCKNAME,
+        ID_TEXTCTRL_STOCK_SYMBOL,
+        ID_TEXTCTRL_NUMBER_SHARES,
+        ID_TEXTCTRL_STOCK_PP,
+        ID_TEXTCTRL_STOCK_CP,
+        ID_STATIC_STOCK_VALUE,
+        ID_TEXTCTRL_STOCK_COMMISSION,
+        ID_DIALOG_STOCKS,
+    };
 };
 
 #endif
