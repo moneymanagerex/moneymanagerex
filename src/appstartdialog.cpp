@@ -18,12 +18,13 @@
 
 #include "defs.h"
 #include "appstartdialog.h"
-#include "guiid.h"
 #include "paths.h"
 #include "constants.h"
 #include "util.h"
 #include "mmOption.h"
 #include "model/Model_Setting.h"
+
+#include "../resources/money.xpm"
 
 /*******************************************************/
 
@@ -51,14 +52,15 @@ mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
 : itemCheckBox()
 {
     wxString caption = mmex::getProgramName() + "   " + mmex::getTitleProgramVersion();
-    Create(parent, ID_DIALOG_APPSTART, caption, wxDefaultPosition, wxSize(400, 300), wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX);
+    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300)
+        , wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 }
 
-bool mmAppStartDialog::Create( wxWindow* parent, wxWindowID id, const wxString& caption,
-                              const wxPoint& pos, const wxSize& size, long style )
+bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    bool ok = wxDialog::Create( parent, id, caption, pos, size, style );
+    bool ok = wxDialog::Create(parent, id, caption, pos, size, style);
 
     if (ok) {
         SetIcon(mmex::getProgramIcon());

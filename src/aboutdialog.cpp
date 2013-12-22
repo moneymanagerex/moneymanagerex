@@ -17,7 +17,6 @@
  *******************************************************/
 #include "aboutdialog.h"
 #include "constants.h"
-#include "guiid.h"
 #include "reports/htmlbuilder.h"
 #include "paths.h"
 /*******************************************************/
@@ -42,7 +41,7 @@ END_EVENT_TABLE()
 mmAboutDialog::mmAboutDialog(wxWindow* parent)
 {
     wxString caption = wxString(_("About")) << " " << mmex::getProgramName();
-    Create(parent, ID_DIALOG_ABOUT, caption, wxDefaultPosition,
+    Create(parent, wxID_ANY, caption, wxDefaultPosition,
         wxSize(500, 220), wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 }
 

@@ -19,7 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "paths.h"
 #include "platfdep.h"
-#include "guiid.h"
+#include "../resources/mmexico.xpm"
 //----------------------------------------------------------------------------
 #include <wx/filename.h>
 #include <wx/stdpaths.h>

@@ -61,7 +61,6 @@
 #include "../resources/issues.xpm"
 #include "../resources/leds.xpm"
 #include "../resources/main-setup.xpm"
-#include "../resources/mmexico.xpm"
 #include "../resources/money_dollar.xpm"
 #include "../resources/money_euro.xpm"
 #include "../resources/money.xpm"

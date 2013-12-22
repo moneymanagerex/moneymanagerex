@@ -17,7 +17,6 @@
  *************************************************************************/
 
 #include "recentfiles.h"
-#include "guiid.h"
 #include "model/Model_Setting.h"
 
 RecentDatabaseFiles::RecentDatabaseFiles(wxMenu *menuRecentFiles)
@@ -63,8 +62,8 @@ void RecentDatabaseFiles::setMenuFileItems()
     if (!menuRecentFiles_)
         return;
 
-    if (menuRecentFiles_->FindItem(MENU_RECENT_FILES_0))
-        menuRecentFiles_->Delete(MENU_RECENT_FILES_0);
+    if (menuRecentFiles_->FindItem(wxID_FILE))
+        menuRecentFiles_->Delete(wxID_FILE);
 
     if (menuRecentFiles_->FindItem(wxID_FILE1))
         menuRecentFiles_->Delete(wxID_FILE1);
@@ -83,12 +82,12 @@ void RecentDatabaseFiles::setMenuFileItems()
 
     if (recentFileList_[0].IsEmpty())
     {
-        menuRecentFiles_->Append(MENU_RECENT_FILES_0, _("Empty"));
-        menuRecentFiles_->Enable(MENU_RECENT_FILES_0, false);
+        menuRecentFiles_->Append(wxID_FILE, _("Empty"));
+        menuRecentFiles_->Enable(wxID_FILE, false);
     }
     else
     {
-        menuRecentFiles_->Append(MENU_RECENT_FILES_0, recentFileList_[0]);
+        menuRecentFiles_->Append(wxID_FILE, recentFileList_[0]);
     }
     
     if (! recentFileList_[1].IsEmpty()) 
