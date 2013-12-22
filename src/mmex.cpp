@@ -924,7 +924,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
             {
                 continueExecution = true;
-                mmBDDialog repeatTransactionsDlg(q1.BDID ,false ,true , this, SYMBOL_BDDIALOG_IDNAME , _(" Auto Repeat Transactions"));
+                mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
+                //TODO: repeatTransactionsDlg.SetDialogHeader(_(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
                 {
                     if (activeHomePage_) createHomePage();

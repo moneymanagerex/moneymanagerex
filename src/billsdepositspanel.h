@@ -19,6 +19,7 @@
 #ifndef _MM_EX_BILLSDEPOSITSPANEL_H_
 #define _MM_EX_BILLSDEPOSITSPANEL_H_
 
+#include "guiid.h"
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
 #include "util.h"

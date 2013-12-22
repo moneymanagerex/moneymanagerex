@@ -20,13 +20,6 @@
 #ifndef _MM_EX_BDDIALOG_H_
 #define _MM_EX_BDDIALOG_H_
 
-#define SYMBOL_BDDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_BDDIALOG_TITLE _("New/Edit Repeating Transaction")
-#define SYMBOL_BDDIALOG_IDNAME ID_DIALOG_BD
-#define SYMBOL_BDDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_BDDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "defs.h"
 #include <wx/spinbutt.h>
 #include <wx/dialog.h>
@@ -43,23 +36,18 @@ class mmBDDialog : public wxDialog
 
 public:
     mmBDDialog();
-    mmBDDialog( int bdD, bool edit, bool enterOccur, wxWindow* parent,
-                wxWindowID id = SYMBOL_BDDIALOG_IDNAME,
-                const wxString& caption = SYMBOL_BDDIALOG_TITLE,
-                const wxPoint& pos = SYMBOL_BDDIALOG_POSITION,
-                const wxSize& size = SYMBOL_BDDIALOG_SIZE,
-                long style = SYMBOL_BDDIALOG_STYLE );
+    mmBDDialog(wxWindow* parent, int bdD, bool edit, bool enterOccur);
     int GetTransID()
     {
         return transID_;
     }
 
 private:
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_BDDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_BDDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_BDDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_BDDIALOG_SIZE,
-                 long style = SYMBOL_BDDIALOG_STYLE );
+    bool Create(wxWindow* parent, wxWindowID id,
+        const wxString& caption,
+        const wxPoint& pos,
+        const wxSize& size,
+        long style);
 
     void CreateControls();
 

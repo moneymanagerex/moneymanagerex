@@ -65,16 +65,27 @@ mmBDDialog::mmBDDialog( )
 {
 }
 
-mmBDDialog::mmBDDialog(int bdID, bool edit, bool enterOccur
-    , wxWindow* parent, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
-    : bdID_(bdID), edit_(edit), enterOccur_(enterOccur)
-    , categID_(-1), subcategID_(-1), payeeID_(-1), accountID_(-1), toID_(-1)
-    , toTransAmount_(0), advancedToTransAmountSet_(false), payeeUnknown_(false)
-    , autoExecuteUserAck_(false), autoExecuteSilent_(false), categUpdated_(false)
+mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
+    : bdID_(bdID)
+    , edit_(edit)
+    , enterOccur_(enterOccur)
+    , categID_(-1)
+    , subcategID_(-1)
+    , payeeID_(-1)
+    , accountID_(-1)
+    , toID_(-1)
+    , toTransAmount_(0)
+    , advancedToTransAmountSet_(false)
+    , payeeUnknown_(false)
+    , autoExecuteUserAck_(false)
+    , autoExecuteSilent_(false)
+    , categUpdated_(false)
     , prevType_(-1)
 {
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY
+        , _("New/Edit Repeating Transaction")
+        , wxDefaultPosition, wxSize(500, 300), style);
 }
 
 bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
