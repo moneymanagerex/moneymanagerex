@@ -20,15 +20,8 @@
 #ifndef _MM_EX_OPTIONSDIALOG_H_
 #define _MM_EX_OPTIONSDIALOG_H_
 
-#include "guiid.h"
 #include "defs.h"
 #include <wx/spinctrl.h>
-
-#define SYMBOL_MMOPTIONSDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_MMOPTIONSDIALOG_TITLE _("New MMEX Options")
-#define SYMBOL_MMOPTIONSDIALOG_IDNAME ID_DIALOG_OPTIONS
-#define SYMBOL_MMOPTIONSDIALOG_SIZE wxSize(500, 400)
-#define SYMBOL_MMOPTIONSDIALOG_POSITION wxDefaultPosition
 
 class mmOptionsDialog: public wxDialog
 {
@@ -37,11 +30,7 @@ class mmOptionsDialog: public wxDialog
 
 public:
     mmOptionsDialog( );
-    mmOptionsDialog(wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
-                    const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
-                    const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
-                    const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
-                    long style = SYMBOL_MMOPTIONSDIALOG_STYLE );
+    mmOptionsDialog(wxWindow* parent);
     ~mmOptionsDialog( );
 
     /// Saves the updated System Options to the appropriate databases.
@@ -57,6 +46,47 @@ public:
     }
 
 private:
+    /// Dialog Creation - Used by constructor
+    bool Create(wxWindow* parent, wxWindowID id,
+        const wxString& caption,
+        const wxPoint& pos,
+        const wxSize& size,
+        long style);
+
+    void CreateControls();
+
+    void OnCurrency(wxCommandEvent& event);
+    void OnDateFormatChanged(wxCommandEvent& event);
+    void OnLanguageChanged(wxCommandEvent& event);
+
+    /// Colour Changing events
+    void OnNavTreeColorChanged(wxCommandEvent& event);
+    void OnAlt0Changed(wxCommandEvent& event);
+    void OnAlt1Changed(wxCommandEvent& event);
+    void OnListBackgroundChanged(wxCommandEvent& event);
+    void OnListBorderChanged(wxCommandEvent& event);
+    void OnListDetailsColors(wxCommandEvent& event);
+    void OnListFutureDates(wxCommandEvent& event);
+    void OnRestoreDefaultColors(wxCommandEvent& event);
+
+    bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
+
+    void OnDelimiterSelectedU(wxCommandEvent& event);
+    void OnDelimiterSelectedC(wxCommandEvent& event);
+    void OnDelimiterSelectedS(wxCommandEvent& event);
+    void OnDelimiterSelectedT(wxCommandEvent& event);
+
+    void SaveViewAccountOptions();
+    void SaveViewTransactionOptions();
+    void SaveFinancialYearStart();
+    void SaveStocksUrl();
+
+    void SaveGeneralPanelSettings();
+    void SaveViewPanelSettings();
+    void SaveColourPanelSettings();
+    void SaveOthersPanelSettings();
+    void SaveImportExportPanelSettings();
+    void OnOk(wxCommandEvent& /*event*/);
 
     /// Dialog specific controls
     wxImageList* m_imageList;
@@ -107,47 +137,62 @@ private:
     wxArrayString viewAccountStrings(bool translated, const wxString& get_string_id);
     wxArrayString viewAccountStrings(bool translated, const wxString& input_string, int& row_id);
 
-    /// Dialog Creation - Used by constructor
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_MMOPTIONSDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_MMOPTIONSDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_MMOPTIONSDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_MMOPTIONSDIALOG_SIZE,
-                 long style = SYMBOL_MMOPTIONSDIALOG_STYLE );
+    enum
+    {
+        ID_BOOK_PANEL_EXP_IMP = wxID_HIGHEST + 1,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4,
+        ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4,
+        ID_DIALOG_OPTIONS_BUTTON_CURRENCY,
+        ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
+        ID_DIALOG_OPTIONS_LISTBOOK,
+        ID_BOOK_PANELGENERAL,
+        ID_BOOK_PANELVIEWS,
+        ID_BOOK_PANELCOLORS,
+        ID_DIALOG_OPTIONS,
+        ID_DIALOG_OPTIONS_PANEL1,
+        ID_DIALOG_OPTIONS_PANEL2,
+        ID_DIALOG_OPTIONS_DATE_FORMAT,
+        ID_DIALOG_OPTIONS_VIEW_ACCOUNTS,
+        ID_DIALOG_OPTIONS_STATIC_SAMPLE_DATE,
+        ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB,
+        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_NAVTREE,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_ALT0,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_ALT1,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_LISTBACK,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_LISTBORDER,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_RESTOREDEFAULT,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_LISTDETAILS,
+        ID_BOOK_PANELMISC,
+        ID_DIALOG_OPTIONS_CHK_BACKUP,
+        ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE,
+        ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL,
+        ID_DIALOG_OPTIONS_VIEW_TRANS,
+        ID_DIALOG_OPTIONS_FONT_SIZE,
+        ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME,
+        ID_DIALOG_OPTIONS_BUTTON_COLOR_FUTUREDATES,
+        ID_DIALOG_OPTIONS_BUTTON_DATEFORMAT,
+        ID_DIALOG_OPTIONS_EXPAND_BANK_HOME,
+        ID_DIALOG_OPTIONS_EXPAND_TERM_HOME,
+        ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME,
+        ID_DIALOG_OPTIONS_EXPAND_BANK_TREE,
+        ID_DIALOG_OPTIONS_EXPAND_TERM_TREE,
+        ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
+        ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS,
+        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE,
+        ID_DIALOG_OPTIONS_TEXTCTRL_PROXY,
+    };
 
-    void CreateControls();
 
-    void OnCurrency(wxCommandEvent& event);
-    void OnDateFormatChanged(wxCommandEvent& event);
-    void OnLanguageChanged(wxCommandEvent& event);
-
-    /// Colour Changing events
-    void OnNavTreeColorChanged(wxCommandEvent& event);
-    void OnAlt0Changed(wxCommandEvent& event);
-    void OnAlt1Changed(wxCommandEvent& event);
-    void OnListBackgroundChanged(wxCommandEvent& event);
-    void OnListBorderChanged(wxCommandEvent& event);
-    void OnListDetailsColors(wxCommandEvent& event);
-    void OnListFutureDates(wxCommandEvent& event);
-    void OnRestoreDefaultColors(wxCommandEvent& event);
-
-    bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
-
-    void OnDelimiterSelectedU(wxCommandEvent& event);
-    void OnDelimiterSelectedC(wxCommandEvent& event);
-    void OnDelimiterSelectedS(wxCommandEvent& event);
-    void OnDelimiterSelectedT(wxCommandEvent& event);
-
-    void SaveViewAccountOptions();
-    void SaveViewTransactionOptions();
-    void SaveFinancialYearStart();
-    void SaveStocksUrl();
-
-    void SaveGeneralPanelSettings();
-    void SaveViewPanelSettings();
-    void SaveColourPanelSettings();
-    void SaveOthersPanelSettings();
-    void SaveImportExportPanelSettings();
-    void OnOk(wxCommandEvent& /*event*/);
 };
 
 #endif

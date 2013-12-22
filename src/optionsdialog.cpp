@@ -28,15 +28,12 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Checking.h"
 
-enum
-{
-    ID_BOOK_PANEL_EXP_IMP = wxID_HIGHEST + 1,
-    ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4,
-    ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4,
-    ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4,
-    ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4,
-    ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4,
-};
+#include "../resources/view.xpm"
+#include "../resources/preferences-color.xpm"
+//#include "../resources/preferences-other.xpm"
+#include "../resources/main-setup.xpm"
+#include "../resources/preferences-other.xpm"
+#include "../resources/export-import.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmOptionsDialog, wxDialog )
 
@@ -61,13 +58,12 @@ mmOptionsDialog::~mmOptionsDialog( )
     delete m_imageList;
 }
 
-mmOptionsDialog::mmOptionsDialog(
-    wxWindow* parent, wxWindowID id,
-    const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
+mmOptionsDialog::mmOptionsDialog(wxWindow* parent)
 : restartRequired_(false)
 , changesApplied_(false)
 {
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("New MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
 }
 
 bool mmOptionsDialog::Create(

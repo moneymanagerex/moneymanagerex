@@ -43,7 +43,7 @@ BEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
     EVT_CHOICE(wxID_ACCOUNT, mmUnivCSVDialog::OnAccountChange)
     EVT_LISTBOX(ID_LISTBOX, mmUnivCSVDialog::OnListBox)
     EVT_RADIOBOX(wxID_RADIO_BOX, mmUnivCSVDialog::OnCheckOrRadioBox)
-    EVT_CHOICE(ID_DIALOG_OPTIONS_DATE_FORMAT, mmUnivCSVDialog::OnDateFormatChanged)
+    EVT_CHOICE(wxID_ANY, mmUnivCSVDialog::OnDateFormatChanged)
 END_EVENT_TABLE()
 
 //----------------------------------------------------------------------------
@@ -239,7 +239,7 @@ void mmUnivCSVDialog::CreateControls()
     //itemStaticText66->Enable(!this->is_importer_);
 
     date_format_ = mmOptions::instance().dateFormat_;
-    choiceDateFormat_ = new wxChoice(itemPanel7, ID_DIALOG_OPTIONS_DATE_FORMAT);
+    choiceDateFormat_ = new wxChoice(itemPanel7, wxID_ANY);
     for (const auto& i : date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
