@@ -33,10 +33,9 @@ mmBudgetYearEntryDialog::mmBudgetYearEntryDialog()
 {
 }
 
-mmBudgetYearEntryDialog::mmBudgetYearEntryDialog(
-    wxWindow* parent,
-	bool withMonth, wxWindowID id, const wxString& caption, 
-	const wxPoint& pos, const wxSize& size, long style ) 
+mmBudgetYearEntryDialog::mmBudgetYearEntryDialog(wxWindow* parent
+    , bool withMonth, wxWindowID id, const wxString& caption
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     withMonth_ = withMonth;
     Create(parent, id, caption, pos, size, style);
@@ -44,9 +43,9 @@ mmBudgetYearEntryDialog::mmBudgetYearEntryDialog(
         this->SetTitle(_("Budget Month Entry"));
 }
 
-bool mmBudgetYearEntryDialog::Create( wxWindow* parent, wxWindowID id, 
-                           const wxString& caption, const wxPoint& pos, 
-                           const wxSize& size, long style )
+bool mmBudgetYearEntryDialog::Create(wxWindow* parent, wxWindowID id
+    , const wxString& caption, const wxPoint& pos
+    , const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
@@ -70,40 +69,41 @@ void mmBudgetYearEntryDialog::CreateControls()
     itemBoxSizer2->Add(itemGridSizer2, 0, wxALL, 5);
     
     wxStaticText* itemStaticText3 = new wxStaticText( this, wxID_STATIC, _("Budget Year:"));
-    itemGridSizer2->Add(itemStaticText3, 0, wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemGridSizer2->Add(itemStaticText3, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 5);
 
     wxDateTime today(wxDateTime::Now()); 
     int year = today.GetYear();
-    textYear_ = new wxSpinCtrl( this, ID_DIALOG_BUDGETYEARENTRY_TEXTCTRL_YEAR,
-        wxEmptyString, wxDefaultPosition, wxSize(100,-1), wxSP_ARROW_KEYS, 1900, 3000, year);
+    textYear_ = new wxSpinCtrl( this, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxSize(100,-1), wxSP_ARROW_KEYS, 1900, 3000, year);
     textYear_->SetToolTip(_("Specify the required year.\nUse Spin buttons to increase or decrease the year."));
-    itemGridSizer2->Add(textYear_, 0, wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemGridSizer2->Add(textYear_, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     if (withMonth_)
     {
-        wxStaticText* itemStaticTextMonth = new wxStaticText( this, 
-            wxID_STATIC, _("Budget Month:"), wxDefaultPosition, wxDefaultSize, 0 );
-        itemGridSizer2->Add(itemStaticTextMonth, 0, 
-            wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+        wxStaticText* itemStaticTextMonth = new wxStaticText(this
+            , wxID_STATIC, _("Budget Month:"), wxDefaultPosition, wxDefaultSize, 0);
+        itemGridSizer2->Add(itemStaticTextMonth, 0
+            , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 5);
 
         int month = today.GetMonth() + 1; // we require months(1..12)
-        textMonth_ = new wxSpinCtrl( this, ID_DIALOG_BUDGETYEARENTRY_TEXTCTRL_MONTH,
-            wxEmptyString, wxDefaultPosition, wxSize(textYear_->GetSize()), wxSP_ARROW_KEYS, 1, 12, month);
+        textMonth_ = new wxSpinCtrl(this, wxID_ANY
+            , wxEmptyString, wxDefaultPosition, wxSize(textYear_->GetSize())
+            , wxSP_ARROW_KEYS, 1, 12, month);
         textMonth_->SetToolTip(_("Specify the required month.\nUse Spin buttons to increase or decrease the month."));
  
         itemGridSizer2->Add(textMonth_, 0, wxALIGN_LEFT |wxALIGN_CENTER_VERTICAL|wxALL, 5);
     }
 
-    wxStaticText* itemStaticText51 = new wxStaticText( this, wxID_STATIC, _("Base Budget On:"),
-        wxDefaultPosition, wxDefaultSize, 0 );
-    itemGridSizer2->Add(itemStaticText51, 0, 
-        wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    wxStaticText* itemStaticText51 = new wxStaticText(this
+        , wxID_STATIC, _("Base Budget On:"));
+    itemGridSizer2->Add(itemStaticText51, 0
+        , wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 5);
 
     wxArrayString itemYearStrings;
     itemYearStrings.Add("None");
     
-    itemChoice_ = new wxChoice( this, ID_DIALOG_BUDGETYEARENTRY_COMBO_YEARS, 
-        wxDefaultPosition, wxSize(textYear_->GetSize()), itemYearStrings );
+    itemChoice_ = new wxChoice( this, wxID_ANY 
+        , wxDefaultPosition, wxSize(textYear_->GetSize()), itemYearStrings );
     itemGridSizer2->Add(itemChoice_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
     itemChoice_->SetToolTip(_("Specify year to base budget on."));
 

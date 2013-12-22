@@ -20,12 +20,6 @@
 #ifndef _MM_EX_TRANSDIALOG_H_
 #define _MM_EX_TRANSDIALOG_H_
 
-#define SYMBOL_TRANSDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_TRANSDIALOG_IDNAME ID_DIALOG_TRANS
-#define SYMBOL_TRANSDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_TRANSDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "defs.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
@@ -131,6 +125,28 @@ private:
     bool skip_notes_init_;
     bool skip_category_init_;
 
+    enum
+    {
+        /* Transaction Dialog */
+        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST +1,
+        ID_DIALOG_TRANS_TEXTNUMBER,
+        ID_DIALOG_TRANS_BUTTONDATE,
+        ID_DIALOG_TRANS_TEXTNOTES,
+        ID_DIALOG_TRANS_TEXTAMOUNT,
+        ID_DIALOG_TRANS_TOTEXTAMOUNT,
+        ID_DIALOG_TRANS_STATIC_PAYEE,
+        ID_DIALOG_TRANS_BUTTONPAYEE,
+        ID_DIALOG_TRANS_BUTTONTO,
+        ID_DIALOG_TRANS_STATUS,
+        ID_DIALOG_TRANS_ADVANCED_CHECKBOX,
+        ID_DIALOG_TRANS_ADVANCED_FROM,
+        ID_DIALOG_TRANS_ADVANCED_TO,
+        ID_DIALOG_TRANS_SPLITCHECKBOX,
+        ID_DIALOG_TRANS_BUTTONTRANSNUM,
+        ID_DIALOG_TRANS_PAYEECOMBO,
+        ID_DIALOG_TRANS_BUTTON_FREQENTNOTES,
+        ID_DIALOG_TRANS_DATE_SPINNER,
+    };
 };
 
 #endif
