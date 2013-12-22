@@ -16,7 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "Model_BudgetYear.h"
+#include "Model_Budgetyear.h"
 #include "Model_Budget.h"
 
 Model_Budgetyear::Model_Budgetyear()
