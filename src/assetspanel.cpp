@@ -15,17 +15,32 @@
  ********************************************************/
 
 #include "assetspanel.h"
-#include "guiid.h"
 #include "assetdialog.h"
 #include "constants.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Currency.h"
 
+#include "../resources/rightarrow.xpm"
+#include "../resources/house.xpm"
+#include "../resources/car.xpm"
+#include "../resources/clock.xpm"
+#include "../resources/art.xpm"
+#include "../resources/assets.xpm"
+#include "../resources/coin.xpm"
+#include "../resources/rubik_cube.xpm"
+#include "../resources/uparrow.xpm"
+#include "../resources/downarrow.xpm"
 
-enum {IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1
-    , IDC_PANEL_ASSET_STATIC_DETAILS
-    , IDC_PANEL_ASSET_STATIC_DETAILS_MINI
+enum {
+    IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1,
+    IDC_PANEL_ASSET_STATIC_DETAILS,
+    IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
+    MENU_TREEPOPUP_NEW,
+    MENU_TREEPOPUP_EDIT,
+    MENU_TREEPOPUP_DELETE,
+    MENU_ON_DUPLICATE_TRANSACTION,
+
 };
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)

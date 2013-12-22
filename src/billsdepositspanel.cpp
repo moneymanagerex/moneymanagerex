@@ -25,6 +25,25 @@
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 
+#include "../resources/tipicon.xpm"
+#include "../resources/rt_exec_user.xpm"
+#include "../resources/rt_exec_auto.xpm"
+#include "../resources/rightarrow.xpm"
+#include "../resources/uparrow.xpm"
+#include "../resources/downarrow.xpm"
+#include "../resources/error.xpm"
+
+enum
+{
+    MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1,
+    MENU_TREEPOPUP_EDIT,
+    MENU_TREEPOPUP_DELETE,
+    MENU_POPUP_BD_ENTER_OCCUR,
+    MENU_POPUP_BD_SKIP_OCCUR,
+    ID_PANEL_BD_STATIC_MINI,
+    ID_PANEL_BD_STATIC_DETAILS
+};
+
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmBillsDepositsPanel::OnNewBDSeries)
@@ -172,7 +191,7 @@ void mmBillsDepositsPanel::CreateControls()
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow( this,
-        ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200),
+        wxID_ANY, wxDefaultPosition, wxSize(200, 200),
         wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER );
 
     wxSize imageSize(16, 16);
@@ -197,7 +216,7 @@ void mmBillsDepositsPanel::CreateControls()
         listCtrlAccount_->SetColumnWidth(column.first, col_x);
     }
 
-    wxPanel* itemPanel12 = new wxPanel( itemSplitterWindowBillsDeposit, ID_PANEL1,
+    wxPanel* itemPanel12 = new wxPanel( itemSplitterWindowBillsDeposit, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
 
     itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, itemPanel12);
