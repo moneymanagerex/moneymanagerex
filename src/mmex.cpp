@@ -30,6 +30,7 @@
 #include "currencydialog.h"
 #include "customreportdialog.h"
 #include "filtertransdialog.h"
+#include "images_list.h"
 #include "maincurrencydialog.h"
 #include "mmcheckingpanel.h"
 #include "mmhelppanel.h"
@@ -1076,7 +1077,7 @@ void mmGUIFrame::createControls()
         wxDefaultPosition, wxSize(100, 100), wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES );
 #endif
 
-    navTreeCtrl_->AssignImageList(navtree_images_list_());
+    navTreeCtrl_->AssignImageList(navtree_images_list());
 
     homePanel_ = new wxPanel( this, ID_PANEL_HOME,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);

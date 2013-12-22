@@ -270,6 +270,9 @@
     <ClCompile Include="..\..\src\model\Model_Setting.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\images_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -589,6 +592,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_Report.h">
       <Filter>Header Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\images_list.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

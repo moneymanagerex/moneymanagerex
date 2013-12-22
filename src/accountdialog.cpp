@@ -19,6 +19,7 @@
 #include "constants.h"
 #include "accountdialog.h"
 #include "maincurrencydialog.h"
+#include "images_list.h"
 #include "util.h"
 #include "mmOption.h"
 #include "paths.h"
@@ -62,7 +63,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     , currencyID_(-1)
     , termAccount_(false)
 {
-    imageList_ = navtree_images_list_();
+    imageList_ = navtree_images_list();
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style);
 

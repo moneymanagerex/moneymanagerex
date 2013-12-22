@@ -26,22 +26,6 @@
 #include "singleton.h"
 #include "model/Model_Setting.h"
 
-#include "../resources/flag.xpm"
-#include "../resources/yandex_money.xpm"
-#include "../resources/work.xpm"
-#include "../resources/money_dollar.xpm"
-#include "../resources/money_euro.xpm"
-#include "../resources/money.xpm"
-#include "../resources/web_money.xpm"
-#include "../resources/trees.xpm"
-#include "../resources/rubik_cube.xpm"
-#include "../resources/dog.xpm"
-#include "../resources/coin.xpm"
-#include "../resources/cat.xpm"
-#include "../resources/car.xpm"
-#include "../resources/house.xpm"
-#include "../resources/hourglass.xpm"
-
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)
@@ -255,46 +239,6 @@ int site_content(const wxString& sSite, wxString& sOutput)
         else sOutput = _("Unknown error");
     }
     return err_code;
-}
-
-wxImageList* navtree_images_list_()
-{
-    wxImageList* imageList_ = new wxImageList(16, 16);
-
-    imageList_->Add(wxBitmap(wxImage(house_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(moneyaccount_xpm).Scale(16, 16)));  //TODO: remove
-    imageList_->Add(wxBitmap(wxImage(schedule_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(calendar_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(chartpiereport_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(help_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(stock_curve_xpm).Scale(16, 16))); //TODO: remove
-    imageList_->Add(wxBitmap(wxImage(car_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(customsql_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(moneyaccount_xpm).Scale(16, 16))); // used for: savings_account
-    imageList_->Add(wxBitmap(wxImage(savings_acc_favorite_xpm).Scale(16, 16))); //10
-    imageList_->Add(wxBitmap(wxImage(savings_acc_closed_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(termaccount_xpm).Scale(16, 16))); // used for: term_account
-    imageList_->Add(wxBitmap(wxImage(term_acc_favorite_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(term_acc_closed_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(stock_acc_xpm).Scale(16, 16))); // used for: invest_account
-    imageList_->Add(wxBitmap(wxImage(stock_acc_favorite_xpm).Scale(16, 16))); //TODO: more icons
-    imageList_->Add(wxBitmap(wxImage(stock_acc_closed_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(money_dollar_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(money_euro_xpm).Scale(16, 16))); //custom icons
-    imageList_->Add(wxBitmap(wxImage(flag_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(accounttree_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(about_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(clock_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(cat_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(dog_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(trees_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(hourglass_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(work_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(yandex_money_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(web_money_xpm).Scale(16, 16)));
-    imageList_->Add(wxBitmap(wxImage(rubik_cube_xpm).Scale(16, 16)));
-
-    return imageList_;
 }
 
 //* Date Functions----------------------------------------------------------*//

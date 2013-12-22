@@ -144,7 +144,5 @@ int site_content(const wxString& site, wxString& output);
 
 wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
-wxImageList* navtree_images_list_();
-
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------
