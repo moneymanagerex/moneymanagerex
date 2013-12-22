@@ -20,7 +20,6 @@
 #define _MM_EX_STOCKSPANEL_H_
 
 #include "mmpanelbase.h"
-#include "guiid.h"
 #include <wx/tglbtn.h>
 #include "model/Model_Stock.h"
 

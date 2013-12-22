@@ -24,7 +24,18 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 
-enum {IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1};
+#include "../resources/uparrow.xpm"
+#include "../resources/downarrow_red.xpm"
+#include "../resources/downarrow.xpm"
+#include "../resources/leds.xpm"
+
+enum {
+    IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1,
+    MENU_TREEPOPUP_EDIT,
+    MENU_TREEPOPUP_DELETE,
+    MENU_TREEPOPUP_NEW,
+
+};
 /*******************************************************/
 BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   StocksListCtrl::OnListItemActivated)
@@ -364,9 +375,9 @@ void mmStocksPanel::CreateControls()
     itemBoxSizerVHeader->Add(header_total_, 1, wxALIGN_CENTER_VERTICAL|wxALL, 1);
 
     /* ---------------------- */
-    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this,
-            ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200),
-            wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
+    wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
+        , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
+        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     listCtrlAccount_ = new StocksListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
