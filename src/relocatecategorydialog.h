@@ -20,34 +20,23 @@
 #ifndef _MM_EX_RELOCATECATEGORYDIALOG_H_
 #define _MM_EX_RELOCATECATEGORYDIALOG_H_
 
-#define SYMBOL_RELOCATECATEGORYDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_RELOCATECATEGORYDIALOG_TITLE _("Relocate Category Dialog")
-#define SYMBOL_RELOCATECATEGORYDIALOG_IDNAME ID_DIALOG_BUDGETENTRY
-#define SYMBOL_RELOCATECATEGORYDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_RELOCATECATEGORYDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "defs.h"
 
 class relocateCategoryDialog : public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( relocateCategoryDialog )
+    DECLARE_DYNAMIC_CLASS(relocateCategoryDialog)
     DECLARE_EVENT_TABLE()
 
 public:
     relocateCategoryDialog();
-    relocateCategoryDialog( wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1,
-                            wxWindowID id = SYMBOL_RELOCATECATEGORYDIALOG_IDNAME,
-                            const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
-                            const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
-                            const wxSize& size = SYMBOL_RELOCATECATEGORYDIALOG_SIZE,
-                            long style = SYMBOL_RELOCATECATEGORYDIALOG_STYLE );
+    relocateCategoryDialog(wxWindow* parent, int sourceCatID = -1, int sourceSubCatID = -1);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_RELOCATECATEGORYDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_RELOCATECATEGORYDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_RELOCATECATEGORYDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_RELOCATECATEGORYDIALOG_SIZE,
-                 long style = SYMBOL_RELOCATECATEGORYDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     void CreateControls();
 

@@ -19,13 +19,6 @@
 #ifndef _MM_EX_BUDGETYEARDIALOG_H_
 #define _MM_EX_BUDGETYEARDIALOG_H_
 
-#define SYMBOL_BUDGETYEARDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_BUDGETYEARDIALOG_TITLE _("Budget Editor")
-#define SYMBOL_BUDGETYEARDIALOG_IDNAME ID_DIALOG_BUDGETYEAR
-#define SYMBOL_BUDGETYEARDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_BUDGETYEARDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "defs.h"
 
 class mmBudgetYearDialog : public wxDialog
@@ -35,18 +28,14 @@ class mmBudgetYearDialog : public wxDialog
 
 public:
     mmBudgetYearDialog();
-    mmBudgetYearDialog(wxWindow* parent, wxWindowID id = SYMBOL_BUDGETYEARDIALOG_IDNAME,
-                       const wxString& caption = SYMBOL_BUDGETYEARDIALOG_TITLE,
-                       const wxPoint& pos = SYMBOL_BUDGETYEARDIALOG_POSITION,
-                       const wxSize& size = SYMBOL_BUDGETYEARDIALOG_SIZE,
-                       long style = SYMBOL_BUDGETYEARDIALOG_STYLE );
+    mmBudgetYearDialog(wxWindow* parent);
 
 private:
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_BUDGETYEARDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_BUDGETYEARDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_BUDGETYEARDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_BUDGETYEARDIALOG_SIZE,
-                 long style = SYMBOL_BUDGETYEARDIALOG_STYLE );
+    bool Create(wxWindow* parent, wxWindowID id,
+        const wxString& caption,
+        const wxPoint& pos,
+        const wxSize& size,
+        long style);
 
     void CreateControls();
 
@@ -57,13 +46,12 @@ private:
     void OnDelete(wxCommandEvent& event);
     void OnBSelect(wxCommandEvent& event);
     void OnEdit(wxCommandEvent& event);
-
     void fillControls();
     void OnDoubleClicked(wxCommandEvent& event);
 
     wxListBox* listBox_;
-
     int budgetYearID_;
+    enum { ID_ADD_MONTH = wxID_HIGHEST + 1};
 };
 
 #endif

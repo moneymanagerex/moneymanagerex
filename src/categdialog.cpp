@@ -24,6 +24,7 @@
 #include "paths.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
+#include "../resources/relocate_categories.xpm"
 
 enum
 {

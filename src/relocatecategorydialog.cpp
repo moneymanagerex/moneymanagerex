@@ -38,10 +38,8 @@ END_EVENT_TABLE()
 relocateCategoryDialog::relocateCategoryDialog( )
 {}
 
-relocateCategoryDialog::relocateCategoryDialog(
-    wxWindow* parent, int sourceCatID, int sourceSubCatID,
-    wxWindowID id, const wxString& caption,
-    const wxPoint& pos, const wxSize& size, long style )
+relocateCategoryDialog::relocateCategoryDialog(wxWindow* parent
+    , int sourceCatID, int sourceSubCatID)
 {
 
     sourceCatID_    = sourceCatID;
@@ -51,7 +49,8 @@ relocateCategoryDialog::relocateCategoryDialog(
     destSubCatID_   = -1;
     changedRecords_ =  0;
 
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("Relocate Category Dialog"), wxDefaultPosition, wxSize(500, 300), style);
 }
 
 bool relocateCategoryDialog::Create( wxWindow* parent, wxWindowID id,
