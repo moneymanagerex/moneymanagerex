@@ -34,11 +34,11 @@ mmBudgetYearEntryDialog::mmBudgetYearEntryDialog()
 }
 
 mmBudgetYearEntryDialog::mmBudgetYearEntryDialog(wxWindow* parent
-    , bool withMonth, wxWindowID id, const wxString& caption
-    , const wxPoint& pos, const wxSize& size, long style)
+    , bool withMonth)
 {
     withMonth_ = withMonth;
-    Create(parent, id, caption, pos, size, style);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, _("Budget Entry Details"), wxDefaultPosition, wxSize(500, 300), style);
     if (withMonth_)
         this->SetTitle(_("Budget Month Entry"));
 }
@@ -144,7 +144,8 @@ void mmBudgetYearEntryDialog::OnOk(wxCommandEvent& /*event*/)
 
     if (Model_Budgetyear::instance().Get(currYearText) != -1)
     {   
-        wxMessageBox(_("Budget Year already exists"), SYMBOL_BUDGETYEARENTRYDIALOG_TITLE, wxICON_WARNING);
+        wxMessageBox(_("Budget Year already exists")
+            , _("Budget Entry Details"), wxICON_WARNING);
         return;
     }
     else

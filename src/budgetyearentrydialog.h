@@ -19,12 +19,6 @@
 #ifndef _MM_EX_BUDGETYEARENTRYDIALOG_H_
 #define _MM_EX_BUDGETYEARENTRYDIALOG_H_
 
-#define SYMBOL_BUDGETYEARENTRYDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_BUDGETYEARENTRYDIALOG_TITLE _("Budget Year Entry")
-#define SYMBOL_BUDGETYEARENTRYDIALOG_IDNAME wxID_ANY
-#define SYMBOL_BUDGETYEARENTRYDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_BUDGETYEARENTRYDIALOG_POSITION wxDefaultPosition
-
 #include "defs.h"
 
 class wxSpinCtrl;
@@ -37,33 +31,29 @@ class mmBudgetYearEntryDialog : public wxDialog
 public:
     mmBudgetYearEntryDialog();
     mmBudgetYearEntryDialog(wxWindow* parent,
-                            bool withMonth = false,
-                            wxWindowID id = SYMBOL_BUDGETYEARENTRYDIALOG_IDNAME,
-                            const wxString& caption = SYMBOL_BUDGETYEARENTRYDIALOG_TITLE,
-                            const wxPoint& pos = SYMBOL_BUDGETYEARENTRYDIALOG_POSITION,
-                            const wxSize& size = SYMBOL_BUDGETYEARENTRYDIALOG_SIZE,
-                            long style = SYMBOL_BUDGETYEARENTRYDIALOG_STYLE );
+                            bool withMonth = false);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_BUDGETYEARENTRYDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_BUDGETYEARENTRYDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_BUDGETYEARENTRYDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_BUDGETYEARENTRYDIALOG_SIZE,
-                 long style = SYMBOL_BUDGETYEARENTRYDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     void CreateControls();
 
     // utility functions
     void OnOk(wxCommandEvent& event);
 
+public:
+    wxString budgetYear_;
+    wxString yearToCopy_;
+
 private:
     wxChoice* itemChoice_;
     wxSpinCtrl* textYear_;
     bool withMonth_;
     wxSpinCtrl* textMonth_;
-
-public:
-    wxString budgetYear_;
-    wxString yearToCopy_;
 };
 
 #endif

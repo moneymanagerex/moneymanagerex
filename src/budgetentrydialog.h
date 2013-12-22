@@ -19,13 +19,6 @@
 #ifndef _MM_EX_BUDGETENTRYDIALOG_H_
 #define _MM_EX_BUDGETENTRYDIALOG_H_
 
-#define SYMBOL_BUDGETENTRYDIALOG_STYLE wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_BUDGETENTRYDIALOG_TITLE _("Budget Entry Details")
-#define SYMBOL_BUDGETENTRYDIALOG_IDNAME ID_DIALOG_BUDGETENTRY
-#define SYMBOL_BUDGETENTRYDIALOG_SIZE wxSize(500, 300)
-#define SYMBOL_BUDGETENTRYDIALOG_POSITION wxDefaultPosition
-
-#include "guiid.h"
 #include "defs.h"
 #include "mmtextctrl.h"
 #include "model/Model_Budget.h"
@@ -37,19 +30,15 @@ class mmBudgetEntryDialog : public wxDialog
 
 public:
     mmBudgetEntryDialog();
-    mmBudgetEntryDialog(Model_Budget::Data* entry,
-                        const wxString& categoryEstimate, const wxString& CategoryActual,
-                        wxWindow* parent, wxWindowID id = SYMBOL_BUDGETENTRYDIALOG_IDNAME,
-                        const wxString& caption = SYMBOL_BUDGETENTRYDIALOG_TITLE,
-                        const wxPoint& pos = SYMBOL_BUDGETENTRYDIALOG_POSITION,
-                        const wxSize& size = SYMBOL_BUDGETENTRYDIALOG_SIZE,
-                        long style = SYMBOL_BUDGETENTRYDIALOG_STYLE );
+    mmBudgetEntryDialog(wxWindow* parent
+        , Model_Budget::Data* entry
+        , const wxString& categoryEstimate, const wxString& CategoryActual);
 
-    bool Create( wxWindow* parent, wxWindowID id = SYMBOL_BUDGETENTRYDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_BUDGETENTRYDIALOG_TITLE,
-                 const wxPoint& pos = SYMBOL_BUDGETENTRYDIALOG_POSITION,
-                 const wxSize& size = SYMBOL_BUDGETENTRYDIALOG_SIZE,
-                 long style = SYMBOL_BUDGETENTRYDIALOG_STYLE );
+    bool Create(wxWindow* parent, wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     void CreateControls();
     void onChoiceChar(wxKeyEvent& event);

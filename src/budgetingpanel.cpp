@@ -609,7 +609,7 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     double estimated = getEstimate(budget_[selectedIndex].first, budget_[selectedIndex].second);
     double actual = categoryStats_[budget_[selectedIndex].first][budget_[selectedIndex].second][0];
 
-    mmBudgetEntryDialog dlg(entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual), this);
+    mmBudgetEntryDialog dlg(this, entry, Model_Currency::toCurrency(estimated), Model_Currency::toCurrency(actual));
     if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();
