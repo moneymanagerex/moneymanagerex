@@ -76,6 +76,10 @@
 #include "model/Model_Report.h"
 #include <wx/cmdline.h>
 
+#include "../resources/house.xpm"
+#include "../resources/money_dollar.xpm"
+#include "../resources/car.xpm"
+
 //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds

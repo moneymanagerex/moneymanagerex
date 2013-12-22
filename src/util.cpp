@@ -27,6 +27,20 @@
 #include "model/Model_Setting.h"
 
 #include "../resources/flag.xpm"
+#include "../resources/yandex_money.xpm"
+#include "../resources/work.xpm"
+#include "../resources/money_dollar.xpm"
+#include "../resources/money_euro.xpm"
+#include "../resources/money.xpm"
+#include "../resources/web_money.xpm"
+#include "../resources/trees.xpm"
+#include "../resources/rubik_cube.xpm"
+#include "../resources/dog.xpm"
+#include "../resources/coin.xpm"
+#include "../resources/cat.xpm"
+#include "../resources/car.xpm"
+#include "../resources/house.xpm"
+#include "../resources/hourglass.xpm"
 
 //----------------------------------------------------------------------------
 

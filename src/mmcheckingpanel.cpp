@@ -37,6 +37,9 @@
 #include "../resources/void.xpm"
 #include "../resources/rightarrow.xpm"
 #include "../resources/uparrow.xpm"
+#include "../resources/downarrow.xpm"
+#include "../resources/tipicon.xpm"
+#include "../resources/trash.xpm"
 
 
 //----------------------------------------------------------------------------
@@ -97,6 +100,11 @@ enum
 
     ID_SPLITTERWINDOW,
     ID_LISTCTRL,
+
+    MENU_TREEPOPUP_NEW2,
+    MENU_TREEPOPUP_EDIT2,
+    MENU_TREEPOPUP_MOVE2,
+    MENU_TREEPOPUP_DELETE2,
 };
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
@@ -129,10 +137,10 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
         ,MENU_TREEPOPUP_DELETE_FLAGGED,         TransactionListCtrl::OnMarkAllTransactions)
     EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,          TransactionListCtrl::OnShowChbClick)
 
-    EVT_MENU(MENU_TREEPOPUP_NEW,                TransactionListCtrl::OnNewTransaction)
-    EVT_MENU(MENU_TREEPOPUP_DELETE,             TransactionListCtrl::OnDeleteTransaction)
-    EVT_MENU(MENU_TREEPOPUP_EDIT,               TransactionListCtrl::OnEditTransaction)
-    EVT_MENU(MENU_TREEPOPUP_MOVE,               TransactionListCtrl::OnMoveTransaction)
+    EVT_MENU(MENU_TREEPOPUP_NEW2,                TransactionListCtrl::OnNewTransaction)
+    EVT_MENU(MENU_TREEPOPUP_DELETE2,             TransactionListCtrl::OnDeleteTransaction)
+    EVT_MENU(MENU_TREEPOPUP_EDIT2,               TransactionListCtrl::OnEditTransaction)
+    EVT_MENU(MENU_TREEPOPUP_MOVE2,               TransactionListCtrl::OnMoveTransaction)
 
     EVT_MENU(MENU_ON_COPY_TRANSACTION,      TransactionListCtrl::OnCopy)
     EVT_MENU(MENU_ON_PASTE_TRANSACTION,     TransactionListCtrl::OnPaste)
@@ -1096,11 +1104,11 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
             have_category = true;
     }
     wxMenu menu;
-    menu.Append(MENU_TREEPOPUP_NEW, _("&New Transaction"));
+    menu.Append(MENU_TREEPOPUP_NEW2, _("&New Transaction"));
 
     menu.AppendSeparator();
-    menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Transaction"));
-    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT, false);
+    menu.Append(MENU_TREEPOPUP_EDIT2, _("&Edit Transaction"));
+    if (hide_menu_item) menu.Enable(MENU_TREEPOPUP_EDIT2, false);
 
     menu.Append(MENU_ON_COPY_TRANSACTION, _("&Copy Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_COPY_TRANSACTION, false);
@@ -1111,9 +1119,9 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.Append(MENU_ON_DUPLICATE_TRANSACTION, _("D&uplicate Transaction"));
     if (hide_menu_item) menu.Enable(MENU_ON_DUPLICATE_TRANSACTION, false);
 
-    menu.Append(MENU_TREEPOPUP_MOVE, _("&Move Transaction"));
+    menu.Append(MENU_TREEPOPUP_MOVE2, _("&Move Transaction"));
     if (hide_menu_item || type_transfer || (Model_Account::checking_account_num() < 2))
-        menu.Enable(MENU_TREEPOPUP_MOVE, false);
+        menu.Enable(MENU_TREEPOPUP_MOVE2, false);
 
     menu.AppendSeparator();
 
@@ -1127,12 +1135,12 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     menu.AppendCheckItem(MENU_TREEPOPUP_SHOWTRASH, menu_item_label);
 
     wxMenu* subGlobalOpMenuDelete = new wxMenu();
-    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE, _("&Delete Transaction"));
-    if (hide_menu_item) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE, false);
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE2, _("&Delete Transaction"));
+    if (hide_menu_item) subGlobalOpMenuDelete->Enable(MENU_TREEPOPUP_DELETE2, false);
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, _("Delete all transactions in current view"));
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Trans."));
-    menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete "), subGlobalOpMenuDelete);
+    menu.Append(MENU_TREEPOPUP_DELETE2, _("&Delete "), subGlobalOpMenuDelete);
 
     menu.AppendSeparator();
 
@@ -1465,7 +1473,7 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     }
     else if (wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE))
     {
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
         OnDeleteTransaction(evt);
     }
     else {
@@ -1630,7 +1638,7 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 {
     if (m_selectedIndex < 0) return;
 
-    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_EDIT);
+    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_EDIT2);
     AddPendingEvent(evt);
 }
 

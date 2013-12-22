@@ -33,6 +33,13 @@
 #include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
 
+enum
+{
+    MENU_BILLSDEPOSITS2 = MENU_BILLSDEPOSITS,
+    MENU_ASSETS2 = MENU_ASSETS,
+    MENU_GOTOACCOUNT2 = MENU_GOTOACCOUNT,
+    MENU_STOCKS2 = MENU_STOCKS
+};
 
 BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
 END_EVENT_TABLE()
@@ -517,13 +524,13 @@ void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
     if (href == "billsdeposits")
     {
         frame->setNavTreeSection(_("Repeating Transactions"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS2);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (href == "Assets")
     {
         frame->setNavTreeSection(_("Assets"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS2);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (isAcct)
@@ -533,7 +540,7 @@ void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
         frame->setGotoAccountID(id);
         Model_Account::Data* account = Model_Account::instance().get(id);
         frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT2);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
     else if (isStock)
@@ -543,7 +550,7 @@ void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
         frame->setGotoAccountID(id);
         Model_Account::Data* account = Model_Account::instance().get(id);
         frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS2);
         frame->GetEventHandler()->AddPendingEvent(evt);
     }
 }
