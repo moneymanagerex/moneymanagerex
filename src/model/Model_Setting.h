@@ -22,7 +22,6 @@
 #include "Model.h"
 #include "db/DB_Table_Setting_V1.h"
 #include "defs.h"
-#include "paths.h"
 
 class Model_Setting : public Model<DB_Table_SETTING_V1>
 {

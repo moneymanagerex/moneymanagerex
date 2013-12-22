@@ -366,7 +366,7 @@ void Model_Category::getCategoryStats(
 
         if (categID > -1)
         {
-            if (transaction.TRANSCODE != TRANS_TYPE_TRANSFER_STR)
+            if (Model_Checking::type(transaction) != Model_Checking::TRANSFER)
             {
                 categoryStats[categID][transaction.SUBCATEGID][idx] += Model_Checking::balance(transaction) * convRate;
             }

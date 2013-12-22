@@ -22,7 +22,6 @@
 #include "Model.h"
 #include "db/DB_Table_Infotable_V1.h"
 #include "defs.h"
-#include "constants.h"
 
 class Model_Infotable : public Model<DB_Table_INFOTABLE_V1>
 {

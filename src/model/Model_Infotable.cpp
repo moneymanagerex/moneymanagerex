@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Infotable.h"
+#include "constants.h"
 
 Model_Infotable::Model_Infotable()
 : Model<DB_Table_INFOTABLE_V1>()

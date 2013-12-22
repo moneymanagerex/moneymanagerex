@@ -39,7 +39,7 @@ public:
     static Model_Budgetsplittransaction& instance();
 
 public:
-    double get_total(Data_Set& rows);
+    double get_total(const Data_Set& rows);
 };
 
 #endif // 

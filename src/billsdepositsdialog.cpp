@@ -29,6 +29,7 @@
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "constants.h"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )

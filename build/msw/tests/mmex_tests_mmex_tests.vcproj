@@ -409,6 +409,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Billsdeposits.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Budget.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Budgetsplittransaction.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Budgetyear.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Category.cpp"
 				>
 			</File>
@@ -421,11 +437,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Infotable.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Payee.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Report.cpp"
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\model\Model_Setting.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Splittransaction.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\model\Model_Stock.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\model\Model_Subcategory.cpp"
 				>
 			</File>
 			<File

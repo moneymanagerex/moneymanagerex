@@ -24,6 +24,8 @@
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Budget.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Checking.h"
 
 IMPLEMENT_DYNAMIC_CLASS( relocateCategoryDialog, wxDialog )
 

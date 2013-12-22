@@ -162,11 +162,20 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_univcsvdialog.o \
 	mmex_tests_Model_Account.o \
 	mmex_tests_Model_Asset.o \
+	mmex_tests_Model_Billsdeposits.o \
+	mmex_tests_Model_Budget.o \
+	mmex_tests_Model_Budgetsplittransaction.o \
+	mmex_tests_Model_Budgetyear.o \
 	mmex_tests_Model_Category.o \
 	mmex_tests_Model_Checking.o \
 	mmex_tests_Model_Currency.o \
+	mmex_tests_Model_Infotable.o \
+	mmex_tests_Model_Payee.o \
 	mmex_tests_Model_Report.o \
+	mmex_tests_Model_Setting.o \
+	mmex_tests_Model_Splittransaction.o \
 	mmex_tests_Model_Stock.o \
+	mmex_tests_Model_Subcategory.o \
 	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
@@ -536,6 +545,18 @@ mmex_tests_Model_Account.o: $(srcdir)/../../src/model/Model_Account.cpp
 mmex_tests_Model_Asset.o: $(srcdir)/../../src/model/Model_Asset.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Asset.cpp
 
+mmex_tests_Model_Billsdeposits.o: $(srcdir)/../../src/model/Model_Billsdeposits.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Billsdeposits.cpp
+
+mmex_tests_Model_Budget.o: $(srcdir)/../../src/model/Model_Budget.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Budget.cpp
+
+mmex_tests_Model_Budgetsplittransaction.o: $(srcdir)/../../src/model/Model_Budgetsplittransaction.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Budgetsplittransaction.cpp
+
+mmex_tests_Model_Budgetyear.o: $(srcdir)/../../src/model/Model_Budgetyear.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Budgetyear.cpp
+
 mmex_tests_Model_Category.o: $(srcdir)/../../src/model/Model_Category.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Category.cpp
 
@@ -545,11 +566,26 @@ mmex_tests_Model_Checking.o: $(srcdir)/../../src/model/Model_Checking.cpp
 mmex_tests_Model_Currency.o: $(srcdir)/../../src/model/Model_Currency.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Currency.cpp
 
+mmex_tests_Model_Infotable.o: $(srcdir)/../../src/model/Model_Infotable.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Infotable.cpp
+
+mmex_tests_Model_Payee.o: $(srcdir)/../../src/model/Model_Payee.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Payee.cpp
+
 mmex_tests_Model_Report.o: $(srcdir)/../../src/model/Model_Report.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Report.cpp
 
+mmex_tests_Model_Setting.o: $(srcdir)/../../src/model/Model_Setting.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Setting.cpp
+
+mmex_tests_Model_Splittransaction.o: $(srcdir)/../../src/model/Model_Splittransaction.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Splittransaction.cpp
+
 mmex_tests_Model_Stock.o: $(srcdir)/../../src/model/Model_Stock.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Stock.cpp
+
+mmex_tests_Model_Subcategory.o: $(srcdir)/../../src/model/Model_Subcategory.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Subcategory.cpp
 
 mmex_tests_html_template.o: $(srcdir)/../../3rd/cgitemplate/html_template.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/cgitemplate/html_template.cpp

@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "Model_Setting.h"
+#include "paths.h"
 
 Model_Setting::Model_Setting()
 : Model<DB_Table_SETTING_V1>()

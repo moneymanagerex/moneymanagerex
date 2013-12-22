@@ -21,8 +21,6 @@
 
 #include "Model.h"
 #include "db/DB_Table_Payee_V1.h"
-#include "Model_Checking.h" // detect whether the payee is used or not
-#include "Model_Billsdeposits.h"
 
 class Model_Payee : public Model<DB_Table_PAYEE_V1>
 {

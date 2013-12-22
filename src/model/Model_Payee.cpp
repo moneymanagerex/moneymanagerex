@@ -17,6 +17,8 @@
  ********************************************************/
 
 #include "Model_Payee.h"
+#include "Model_Checking.h" // detect whether the payee is used or not
+#include "Model_Billsdeposits.h"
 
 Model_Payee::Model_Payee()
 : Model<DB_Table_PAYEE_V1>()

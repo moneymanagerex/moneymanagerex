@@ -47,7 +47,7 @@ Model_Budgetsplittransaction& Model_Budgetsplittransaction::instance()
     return Singleton<Model_Budgetsplittransaction>::instance();
 }
 
-double Model_Budgetsplittransaction::get_total(Data_Set& rows)
+double Model_Budgetsplittransaction::get_total(const Data_Set& rows)
 {
     double total = 0.0;
     for (auto& r : rows) total += r.SPLITTRANSAMOUNT;

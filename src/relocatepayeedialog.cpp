@@ -21,6 +21,8 @@
 #include "model/Model_Payee.h"
 #include "paths.h"
 #include "wx/statline.h"
+#include "model/Model_Billsdeposits.h"
+#include "model/Model_Checking.h"
 
 IMPLEMENT_DYNAMIC_CLASS( relocatePayeeDialog, wxDialog )
 

@@ -151,11 +151,20 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_univcsvdialog.obj \
 	mmex_tests_Model_Account.obj \
 	mmex_tests_Model_Asset.obj \
+	mmex_tests_Model_Billsdeposits.obj \
+	mmex_tests_Model_Budget.obj \
+	mmex_tests_Model_Budgetsplittransaction.obj \
+	mmex_tests_Model_Budgetyear.obj \
 	mmex_tests_Model_Category.obj \
 	mmex_tests_Model_Checking.obj \
 	mmex_tests_Model_Currency.obj \
+	mmex_tests_Model_Infotable.obj \
+	mmex_tests_Model_Payee.obj \
 	mmex_tests_Model_Report.obj \
+	mmex_tests_Model_Setting.obj \
+	mmex_tests_Model_Splittransaction.obj \
 	mmex_tests_Model_Stock.obj \
+	mmex_tests_Model_Subcategory.obj \
 	mmex_tests_html_template.obj \
 	mmex_tests_currency_test.obj \
 	mmex_tests_mmex_tests.obj
@@ -722,6 +731,18 @@ mmex_tests_Model_Account.obj: ..\..\..\src\model\Model_Account.cpp
 mmex_tests_Model_Asset.obj: ..\..\..\src\model\Model_Asset.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Asset.cpp
 
+mmex_tests_Model_Billsdeposits.obj: ..\..\..\src\model\Model_Billsdeposits.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Billsdeposits.cpp
+
+mmex_tests_Model_Budget.obj: ..\..\..\src\model\Model_Budget.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Budget.cpp
+
+mmex_tests_Model_Budgetsplittransaction.obj: ..\..\..\src\model\Model_Budgetsplittransaction.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Budgetsplittransaction.cpp
+
+mmex_tests_Model_Budgetyear.obj: ..\..\..\src\model\Model_Budgetyear.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Budgetyear.cpp
+
 mmex_tests_Model_Category.obj: ..\..\..\src\model\Model_Category.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Category.cpp
 
@@ -731,11 +752,26 @@ mmex_tests_Model_Checking.obj: ..\..\..\src\model\Model_Checking.cpp
 mmex_tests_Model_Currency.obj: ..\..\..\src\model\Model_Currency.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Currency.cpp
 
+mmex_tests_Model_Infotable.obj: ..\..\..\src\model\Model_Infotable.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Infotable.cpp
+
+mmex_tests_Model_Payee.obj: ..\..\..\src\model\Model_Payee.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Payee.cpp
+
 mmex_tests_Model_Report.obj: ..\..\..\src\model\Model_Report.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Report.cpp
 
+mmex_tests_Model_Setting.obj: ..\..\..\src\model\Model_Setting.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Setting.cpp
+
+mmex_tests_Model_Splittransaction.obj: ..\..\..\src\model\Model_Splittransaction.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Splittransaction.cpp
+
 mmex_tests_Model_Stock.obj: ..\..\..\src\model\Model_Stock.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Stock.cpp
+
+mmex_tests_Model_Subcategory.obj: ..\..\..\src\model\Model_Subcategory.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Subcategory.cpp
 
 mmex_tests_html_template.obj: ..\..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\3rd\cgitemplate\html_template.cpp
