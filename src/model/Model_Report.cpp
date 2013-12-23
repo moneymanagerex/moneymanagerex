@@ -21,6 +21,15 @@
 #include "reports/htmlbuilder.h"
 #include "LuaGlue/LuaGlue.h"
 
+class Record : public std::map<std::string, std::string>
+{
+public:
+    Record(){}
+    ~Record(){}
+    std::string get(const char* index) { return (*this)[std::string(index)]; }
+    void set(const char* index, const char * val) { (*this)[std::string(index)] = std::string(val); }
+};
+
 const std::vector<std::pair<Model_Report::STATUS, wxString> > Model_Report::STATUS_CHOICES = 
 {
     std::make_pair(Model_Report::ACTIVE, wxTRANSLATE("ACTIVE"))
@@ -89,30 +98,40 @@ wxString Model_Report::get_html(const Data* r)
         }
         report("COLUMNS") = columns;
 
+        LuaGlue state;
+        state.
+            Class<Record>("Record").
+            ctor("new").
+            method("get", &Record::get).
+            method("set", &Record::set).
+            end().open().glue();
+
+        // state.doString(r->LUACONTENT);
+        if (!state.doFile("summaryasset.lua"))
+        {
+            printf("failed to dofile\n");
+            printf("err: %s\n", state.lastError().c_str());
+        }
+
         while (q.NextRow())
         {
-            row_t row;
+            Record r;
             for (int i = 0; i < columnCount; ++ i)
             {
                 wxString column_name = q.GetColumnName(i);
-                switch (q.GetColumnType(i))
-                {
-                case WXSQLITE_INTEGER:
-                    row(column_name.ToStdString()) = q.GetInt(i);
-                    break;
-                case WXSQLITE_FLOAT:
-                    row(column_name.ToStdString()) = q.GetDouble(i);
-                    break;
-                default:
-                    row(column_name.ToStdString()) = q.GetAsString(i);
-                    break;
-                }
+                r[column_name.ToStdString()] = q.GetAsString(i);
             }
+
+            state.invokeVoidFunction("handle_record", &r);
+
+            row_t row;
+            for (const auto& item: r) row(item.first) = item.second;
             contents += row;
-            // TODO call Lua function for every record, e.g. accumulate balance
         }
         q.Finalize();
-        // TODO call lua function to populate some metrics, e.g. total balance
+        Record result;
+        state.invokeVoidFunction("complete", &result);
+        for (const auto& item: result) report(item.first) = item.second;
     }
 
     report("CONTENTS") = contents;
