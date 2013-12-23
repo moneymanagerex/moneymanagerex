@@ -993,18 +993,22 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-    if (object_in_focus_ == bCategory_->GetId()) EndModal(wxID_CANCEL);
-    if (object_in_focus_ == textNotes_->GetId()) EndModal(wxID_CANCEL);
+#if defined (__WXMAC__)
+    Modal(wxID_CANCEL);
+#endif
+
+    if (object_in_focus_ == bCategory_->GetId()) return;
+    if (object_in_focus_ == textNotes_->GetId()) return;
 
     if (object_in_focus_ == cbPayee_->GetId())
     {
         if (!cbPayee_->GetValue().IsEmpty()) {
             cbPayee_->SetValue("");
-            EndModal(wxID_CANCEL);
+            return;
         }
         else {
             itemButtonCancel_->SetFocus();
-            EndModal(wxID_CANCEL);
+            return;
         }
     }
 
@@ -1012,11 +1016,11 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
     {
         if (!textAmount_->IsEmpty()) {
             textAmount_->SetValue("");
-            EndModal(wxID_CANCEL);
+            return;
         }
         else {
             itemButtonCancel_->SetFocus();
-            EndModal(wxID_CANCEL);
+            return;
         }
     }
 
@@ -1024,11 +1028,11 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
     {
         if (!toTextAmount_->IsEmpty()) {
             toTextAmount_->SetValue("");
-            EndModal(wxID_CANCEL);
+            return;
         }
         else {
             itemButtonCancel_->SetFocus();
-            EndModal(wxID_CANCEL);
+            return;
         }
     }
 
@@ -1038,7 +1042,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
             textNumber_->SetValue("");
         else
             itemButtonCancel_->SetFocus();
-        EndModal(wxID_CANCEL);
+        return;
     }
 
     EndModal(wxID_CANCEL);
