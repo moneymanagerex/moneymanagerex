@@ -10,6 +10,7 @@
 ; Copyright (C) 2006 Madhan Kanagavel
 ; Copyright (C) 2009 VaDiM
 ; Copyright (C) 2011-2012 Stefano Giorgio
+; Copyright (C) 2013 James Higley
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
@@ -24,9 +25,9 @@
 ;===============================================================================
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
-#define my_output_root "..\..\..\mmex_release"
-#define my_output_path "\mmex_0.9.9.2_win32_portable\MoneyManagerEx"
-#define my_output_filename "mmex_0.9.9.2_win32_setup"
+#define my_output_root "..\..\mmex_release"
+#define my_output_path "\mmex_1.0.0.0_win32_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.0.0.0_win32_setup"
 
 ;===============================================================================
 
@@ -58,12 +59,10 @@ OutputBaseFilename={#my_output_filename}
 SetupIconFile={#my_svn_path}\resources\mmex.ico
 Compression=lzma/Max
 SolidCompression=true
-ShowUndisplayableLanguages=true
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl; 
 Name: russian; MessagesFile: compiler:Languages\Russian.isl; InfoBeforeFile: {#my_svn_path}\README.RU; 
-Name: basque; MessagesFile: compiler:Languages\Basque.isl; 
 Name: brazilianportuguese; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; 
 Name: catalan; MessagesFile: compiler:Languages\Catalan.isl; 
 Name: czech; MessagesFile: compiler:Languages\Czech.isl; 
@@ -72,6 +71,7 @@ Name: dutch; MessagesFile: compiler:Languages\Dutch.isl;
 Name: finnish; MessagesFile: compiler:Languages\Finnish.isl; 
 Name: french; MessagesFile: compiler:Languages\French.isl; 
 Name: german; MessagesFile: compiler:Languages\German.isl; 
+Name: greek; MessagesFile: compiler:Languages\Greek.isl; 
 Name: hebrew; MessagesFile: compiler:Languages\Hebrew.isl; 
 Name: hungarian; MessagesFile: compiler:Languages\Hungarian.isl; 
 Name: italian; MessagesFile: compiler:Languages\Italian.isl; 
@@ -79,9 +79,11 @@ Name: japanese; MessagesFile: compiler:Languages\Japanese.isl;
 Name: norwegian; MessagesFile: compiler:Languages\Norwegian.isl; 
 Name: polish; MessagesFile: compiler:Languages\Polish.isl; 
 Name: portuguese; MessagesFile: compiler:Languages\Portuguese.isl; 
-Name: slovak; MessagesFile: compiler:Languages\Slovak.isl; 
+Name: serbiancyrillic; MessagesFile: compiler:Languages\SerbianCyrillic.isl; 
+Name: serbianlatin; MessagesFile: compiler:Languages\SerbianLatin.isl; 
 Name: slovenian; MessagesFile: compiler:Languages\Slovenian.isl; 
 Name: spanish; MessagesFile: compiler:Languages\Spanish.isl; 
+Name: ukrainian; MessagesFile: compiler:Languages\Ukrainian.isl; 
 
 
 [Types]
@@ -91,6 +93,7 @@ Name: custom;  Description: "Custom Installation"; Flags: IsCustom;
 
 [Components]
 Name: program; Description: "Program Files"; Types: full minimal custom; Flags: fixed; 
+Name: local; Description: "Make portable: Include mmexini.db3 file in MMEX directory"; Flags: checkablealone;
 
 ; Add language component here then add language file in files section
 Name: help; Description: "Help files"; Types: full minimal; 
@@ -141,13 +144,16 @@ Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription
 
 ; MMEX Executable files 
 Source: {#my_output_root}{#my_output_path}\bin\mmex.exe; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
-Source: {#my_output_root}{#my_output_path}\bin\msvcp100.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
-Source: {#my_output_root}{#my_output_path}\bin\msvcr100.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\bin\msvcp120.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
+Source: {#my_output_root}{#my_output_path}\bin\msvcr120.dll; DestDir: {app}\bin; Flags: ignoreversion; Components: program; 
 
 ; MMEX Root files
 Source: {#my_svn_path}\doc\contrib.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
 Source: {#my_svn_path}\doc\license.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
 Source: {#my_svn_path}\doc\version.txt; DestDir: {app}; Flags: ignoreversion; Components: program; 
+
+; Include in directory if user requires a local setup
+Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: ignoreversion; Components: local;
 
 ; MMEX Resource files
 Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
@@ -220,6 +226,7 @@ Filename: {app}\bin\{#MyAppExeName}; Description: {cm:LaunchProgram,{#MyAppName}
 ; For the Development Version,
 ; Do not delete setup files in the Systems User Application Directory
 [UninstallDelete]
+Type: files; Name: "{userappdata}\{#MyAppName}\mmexini.db3"
 Type: files; Name: "{userappdata}\{#MyAppName}\Stocks\*.*"
 Type: dirifempty; Name: "{userappdata}\{#MyAppName}\Stocks"
 Type: dirifempty; Name: "{userappdata}\{#MyAppName}"

@@ -8,7 +8,7 @@ and user-friendliness - something one can use everyday.
 
 Supported platforms:
 
-MS Windows: 95, 98, ME, 2000, NT, XP, 7.
+MS Windows: XP, Vista, 7, 8, 8.1.
         ANSI and Unicode builds; x86, x64, ia64 versions available.
 
 Unixes: almost any Unix workstation with GTK+ 2.0 and above.

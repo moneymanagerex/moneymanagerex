@@ -17,8 +17,9 @@ The support forum links are located in the MMEX Help menu.
 ======================================================================
                       GNU GENERAL PUBLIC LICENSE
 ======================================================================
-Copyright (C) 2012-2013 Nikolay,
-                        Lisheng [guanlisheng]
+Copyright (C) 2013 Nikolay,
+                        Lisheng [guanlisheng],
+                        James [siena123]
 Copyright (C) 2010-2012 Stefano [stef145g],
                         Nikolay,
                         Lisheng [guanlisheng]
