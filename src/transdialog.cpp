@@ -464,17 +464,17 @@ void mmTransDialog::CreateControls()
         , ID_DIALOG_TRANS_TEXTNUMBER, "", wxDefaultPosition
         , wxDefaultSize, wxTE_PROCESS_ENTER);
 
-    bAuto_ = new wxButton(this
+    wxButton* bAuto = new wxButton(this
         , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
         , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
-    bAuto_ -> Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
+    bAuto -> Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), flags);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(number_sizer, flagsExpand.Border(wxALL, 0));
     number_sizer->Add(textNumber_, flagsExpand.Border(wxALL, border));
-    number_sizer->Add(bAuto_, flags);
+    number_sizer->Add(bAuto, flags);
 
     notesTip_ = _("Notes");
     textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
@@ -494,7 +494,7 @@ void mmTransDialog::CreateControls()
         textAmount_->SetToolTip(amountNormalTip_);
         cSplit_->SetToolTip(_("Use split Categories"));
         textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
-        bAuto_->SetToolTip(_("Populate Transaction #"));
+        bAuto->SetToolTip(_("Populate Transaction #"));
         textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
     }
 
@@ -512,6 +512,8 @@ void mmTransDialog::CreateControls()
 
     buttons_sizer->Add(itemButtonOK, flags.Border(wxBOTTOM|wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, flags);
+
+    itemButtonCancel_->SetFocus();
 
     buttons_sizer->Realize();
     Center();
@@ -646,6 +648,11 @@ bool mmTransDialog::validateData()
             mmShowErrorMessageInvalid(this, _("Payee"));
             return false;
         }
+
+        // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
+        int payee_loc = cbPayee_->FindString(payee_name);
+        if (payee_loc != wxNOT_FOUND)
+            payee_name = cbPayee_->GetString(payee_loc);
 
         Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
         if (!payee)
@@ -801,10 +808,16 @@ void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
+    // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
+    wxString payee_str = cbPayee_->GetValue();
+    int payee_loc = cbPayee_->FindString(payee_str);
+    if (payee_loc != wxNOT_FOUND)
+        payee_str = cbPayee_->GetString(payee_loc);
+
     bool transfer_transaction = transaction_type_->GetSelection() == Model_Checking::TRANSFER;
     if (!transfer_transaction)
     {
-        const Model_Payee::Data *payee = Model_Payee::instance().get(cbPayee_->GetValue());
+        const Model_Payee::Data *payee = Model_Payee::instance().get(payee_str);
         if (payee) transaction_->PAYEEID = payee->PAYEEID;
 
         // Only for new transactions: if user want to autofill last category used for payee.
@@ -830,7 +843,7 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
     }
     else
     {
-        const Model_Account::Data* account = Model_Account::instance().get(cbPayee_->GetValue());
+        const Model_Account::Data* account = Model_Account::instance().get(payee_str);
         if (account) transaction_->TOACCOUNTID = account->ACCOUNTID;
     }
 

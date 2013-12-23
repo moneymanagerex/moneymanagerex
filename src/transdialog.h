@@ -83,7 +83,6 @@ private:
     mmTextCtrl *textAmount_;
     mmTextCtrl *toTextAmount_;
     mmTextCtrl *textNotes_;
-    mmTextCtrl* textCategory_;
     wxButton* bCategory_;
 #if !defined (__WXMAC__)
     wxComboBox* cbAccount_;
@@ -94,7 +93,6 @@ private:
 #endif
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
-    wxButton* bAuto_;
     wxButton* itemButtonCancel_;
     wxChoice* choiceStatus_;
     wxChoice* transaction_type_;
