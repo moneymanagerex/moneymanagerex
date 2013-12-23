@@ -589,6 +589,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\images_list.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\reports\incexpenses.cpp"
 				>
 			</File>
@@ -1008,6 +1012,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\reports\htmlbuilder.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\images_list.h"
 				>
 			</File>
 			<File

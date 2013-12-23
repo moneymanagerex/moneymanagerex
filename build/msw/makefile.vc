@@ -121,6 +121,7 @@ MMEX_OBJECTS =  \
 	mmex_customreportdialog.obj \
 	mmex_dbwrapper.obj \
 	mmex_filtertransdialog.obj \
+	mmex_images_list.obj \
 	mmex_maincurrencydialog.obj \
 	mmex_mmCalculator.obj \
 	mmex_mmOption.obj \
@@ -675,6 +676,9 @@ mmex_dbwrapper.obj: ..\..\src\dbwrapper.cpp
 
 mmex_filtertransdialog.obj: ..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\filtertransdialog.cpp
+
+mmex_images_list.obj: ..\..\src\images_list.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\images_list.cpp
 
 mmex_maincurrencydialog.obj: ..\..\src\maincurrencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\maincurrencydialog.cpp
