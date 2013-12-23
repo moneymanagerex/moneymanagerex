@@ -350,7 +350,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
         currName = base_currency->CURRENCYNAME;
     }
 
-    itemButtonCurrency_ = new wxButton( this, ID_DIALOG_OPTIONS_BUTTON_CURRENCY, currName, wxDefaultPosition, wxSize(130,-1), 0 );
+    itemButtonCurrency_ = new wxButton( this, wxID_ANY, currName, wxDefaultPosition, wxSize(130,-1), 0 );
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -375,7 +375,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
     wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_STATIC, _("User Name"));
     itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
 
-    itemUserName_ = new wxTextCtrl(this, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME);
+    itemUserName_ = new wxTextCtrl(this, wxID_ANY);
     itemBoxSizer5->Add(itemUserName_, 1, wxALIGN_CENTER_VERTICAL|wxGROW|wxALL, 5);
 
     helpMsg.Empty();
@@ -592,7 +592,7 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
     EVT_MENU(MENU_ANNOUNCEMENTMAILING,  mmGUIFrame::OnBeNotified)
     EVT_MENU(MENU_FACEBOOK,  mmGUIFrame::OnFacebook)
     EVT_MENU(wxID_ABOUT, mmGUIFrame::OnAbout)
-    EVT_MENU(MENU_PRINT_PAGE_SETUP, mmGUIFrame::OnPrintPageSetup)
+    EVT_MENU(wxID_PAGE_SETUP, mmGUIFrame::OnPrintPageSetup)
     EVT_MENU(MENU_PRINT_REPORT, mmGUIFrame::OnPrintPageReport)
     EVT_MENU(MENU_PRINT_PREVIEW_REPORT, mmGUIFrame::OnPrintPagePreview)
     EVT_MENU(MENU_SHOW_APPSTART, mmGUIFrame::OnShowAppStartDialog)
@@ -1038,8 +1038,8 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_CONVERT_ENC_DB)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
-    menuBar_->FindItem(MENU_PRINT_PREVIEW)->Enable(enable);
-    menuBar_->FindItem(MENU_PRINT)->Enable(enable);
+    menuBar_->FindItem(wxID_PREVIEW)->Enable(enable);
+    menuBar_->FindItem(wxID_PRINT)->Enable(enable);
     menuBar_->FindItem(wxID_PREFERENCES)->Enable(enable);
     if (mmIniOptions::instance().enableRepeatingTransactions_)
         menuBar_->FindItem(MENU_BILLSDEPOSITS)->Enable(enable);
@@ -1060,8 +1060,8 @@ void mmGUIFrame::menuEnableItems(bool enable)
 
 void mmGUIFrame::menuPrintingEnable(bool enable)
 {
-    menuBar_->FindItem(MENU_PRINT_PREVIEW)->Enable(enable);
-    menuBar_->FindItem(MENU_PRINT)->Enable(enable);
+    menuBar_->FindItem(wxID_PREVIEW)->Enable(enable);
+    menuBar_->FindItem(wxID_PRINT)->Enable(enable);
     menuBar_->FindItem(MENU_EXPORT_HTML)->Enable(enable);
 }
 //----------------------------------------------------------------------------
@@ -1079,7 +1079,7 @@ void mmGUIFrame::createControls()
 
     navTreeCtrl_->AssignImageList(navtree_images_list());
 
-    homePanel_ = new wxPanel( this, ID_PANEL_HOME,
+    homePanel_ = new wxPanel( this, wxID_ANY,
         wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxTR_SINGLE | wxNO_BORDER);
 
     m_mgr.AddPane(navTreeCtrl_, wxAuiPaneInfo().
@@ -2320,7 +2320,7 @@ void mmGUIFrame::createMenu()
 
     menu_file->AppendSeparator();
 
-    wxMenuItem* menuItemPrintSetup = new wxMenuItem(menu_file, MENU_PRINT_PAGE_SETUP,
+    wxMenuItem* menuItemPrintSetup = new wxMenuItem(menu_file, wxID_PAGE_SETUP,
         _("Page Set&up..."), _("Setup page printing options"));
     menuItemPrintSetup->SetBitmap(toolBarBitmaps[7]);
     menu_file->Append(menuItemPrintSetup);
@@ -2329,14 +2329,14 @@ void mmGUIFrame::createMenu()
     printPreviewMenu->Append(MENU_PRINT_PREVIEW_REPORT,
         _("Current &View"), _("Preview current report"));
 
-    menu_file->Append(MENU_PRINT_PREVIEW, _("Print Pre&view..."), printPreviewMenu);
+    menu_file->Append(wxID_PREVIEW, _("Print Pre&view..."), printPreviewMenu);
 
     wxMenu* printMenu = new wxMenu;
     wxMenuItem* menuItemPrintView = new wxMenuItem(printMenu, MENU_PRINT_REPORT,
         _("Current &View"), _("Print current report"));
     printMenu->Append(menuItemPrintView);
 
-    menu_file->Append( MENU_PRINT, _("&Print..."),  printMenu);
+    menu_file->Append(wxID_PRINT, _("&Print..."), printMenu);
 
     menu_file->AppendSeparator();
 
