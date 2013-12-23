@@ -195,11 +195,14 @@ void mmTransDialog::dataToControls()
         cbAccount_->Clear();
         newAccountID_ = accountID_;
         Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+
         for (const auto &account : accounts)
         {
             if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
+#if !defined (__WXMAC__)
             cbAccount_->Append(account.ACCOUNTNAME);
-            if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->SetStringSelection(account.ACCOUNTNAME);
+#endif
+            if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->ChangeValue(account.ACCOUNTNAME);
         }
         cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
         accountID_ = transaction_->ACCOUNTID;
@@ -239,13 +242,14 @@ void mmTransDialog::dataToControls()
             cbAccount_->SetToolTip(_("Specify account for the transaction"));
             account_label_->SetLabel(_("Account"));
             transaction_->TOACCOUNTID = -1;
-
+#if !defined (__WXMAC__)
             for (const auto & entry : Model_Payee::instance().all_payee_names())
                 cbPayee_->Append(entry);
+#endif
             cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
             Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             if (payee)
-                cbPayee_->SetStringSelection(payee->PAYEENAME);
+                cbPayee_->ChangeValue(payee->PAYEENAME);
         }
         else
         {
@@ -256,14 +260,15 @@ void mmTransDialog::dataToControls()
                 cSplit_->SetValue(false);
                 m_local_splits.clear();
             }
-
+#if !defined (__WXMAC__)
             for (const auto & entry : Model_Account::instance().all_checking_account_names())
                 cbPayee_->Append(entry);
-            cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
-
+#endif
             Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
             if (account)
-                cbPayee_->SetStringSelection(account->ACCOUNTNAME);
+                cbPayee_->ChangeValue(account->ACCOUNTNAME);
+
+            cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
 
             payee_label_->SetLabel(_("To"));
             payee_tooltip = _("Specify which account the transfer is going to");
@@ -410,8 +415,13 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
+#if !defined (__WXMAC__)
     cbAccount_ = new wxComboBox(this, wxID_ANY, "",
         wxDefaultPosition, wxSize(230, -1));
+#else
+    cbAccount_ = new wxTextCtrl(this, wxID_ANY, "",
+        wxDefaultPosition, wxSize(230, -1));
+#endif
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     flex_sizer->Add(account_label_, flags);
@@ -423,8 +433,13 @@ void mmTransDialog::CreateControls()
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
+#if !defined (__WXMAC__)
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
         , wxDefaultPosition, wxSize(230, -1));
+#else
+    cbPayee_ = new wxTextCtrl(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
+        , wxDefaultPosition, wxSize(230, -1));
+#endif
 
     flex_sizer->Add(payee_label_, flags);
     flex_sizer->Add(cbPayee_, flags);
