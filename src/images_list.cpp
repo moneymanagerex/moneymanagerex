@@ -1,5 +1,7 @@
 
 #include "images_list.h"
+#include <wx/image.h>
+#include <wx/bitmap.h>
 
 #include "../resources/flag.xpm"
 #include "../resources/moneyaccount.xpm"
