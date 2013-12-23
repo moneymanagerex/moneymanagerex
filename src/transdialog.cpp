@@ -51,8 +51,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , int account_id
     , int transaction_id
 ) :
-      parent_(parent)
-    , accountID_(account_id)
+      accountID_(account_id)
     , referenceAccountID_(account_id)
     , transaction_id_(transaction_id)
     , categUpdated_(false)
@@ -109,7 +108,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
 
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
 
-    Create(parent_
+    Create(parent
         , wxID_ANY
         , ""
         , wxDefaultPosition
@@ -572,7 +571,7 @@ bool mmTransDialog::validateData()
                 if (transaction_->TRANSAMOUNT < 0)
                     transaction_->TRANSAMOUNT = - transaction_->TRANSAMOUNT;
             } else {
-                mmShowErrorMessageInvalid(parent_, _("Amount"));
+                mmShowErrorMessageInvalid(this, _("Amount"));
                 return false;
             }
         }
@@ -591,7 +590,7 @@ bool mmTransDialog::validateData()
             , Model_Account::currency(account)) || transaction_->TRANSAMOUNT < 0)
         {
             textAmount_->SetBackgroundColour("RED");
-            mmShowErrorMessageInvalid(parent_, _("Amount"));
+            mmShowErrorMessageInvalid(this, _("Amount"));
             textAmount_->SetBackgroundColour(wxNullColour);
             textAmount_->SetFocus();
             return false;
@@ -616,7 +615,7 @@ bool mmTransDialog::validateData()
                 , Model_Account::currency(account)) || transaction_->TOTRANSAMOUNT < 0)
             {
                 toTextAmount_->SetBackgroundColour("RED");
-                mmShowErrorMessageInvalid(parent_, _("Advanced Amount"));
+                mmShowErrorMessageInvalid(this, _("Advanced Amount"));
                 toTextAmount_->SetBackgroundColour(wxNullColour);
                 toTextAmount_->SetFocus();
                 return false;
@@ -924,7 +923,7 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     }
     else
     {
-        mmCategDialog dlg(parent_, true, false);
+        mmCategDialog dlg(this, true, false);
         dlg.setTreeSelection(transaction_->CATEGID, transaction_->SUBCATEGID);
         if (dlg.ShowModal() == wxID_OK)
         {

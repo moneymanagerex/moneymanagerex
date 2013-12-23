@@ -79,7 +79,6 @@ private:
     void OnAdvanceChecked(wxCommandEvent& event);
     void activateSplitTransactionsDlg();
 
-    wxWindow* parent_;
     mmTextCtrl *textNumber_;
     mmTextCtrl *textAmount_;
     mmTextCtrl *toTextAmount_;
