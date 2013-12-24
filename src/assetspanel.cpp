@@ -404,11 +404,11 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 3);
 
-    wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW);
+    wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Asset"));
     itemBoxSizer5->Add(itemButton6, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
 
-    wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT);
+    wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Asset"));
     itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     itemButton81->Enable(false);
