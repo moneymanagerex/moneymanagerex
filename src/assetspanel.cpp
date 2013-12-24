@@ -413,7 +413,7 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     itemButton81->Enable(false);
 
-    wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE);
+    wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Asset"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     itemButton7->Enable(false);
