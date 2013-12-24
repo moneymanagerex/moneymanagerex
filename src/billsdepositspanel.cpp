@@ -230,16 +230,16 @@ void mmBillsDepositsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 5);
 
-    wxButton* itemButton6 = new wxButton( itemPanel12, wxID_NEW);
+    wxButton* itemButton6 = new wxButton( itemPanel12, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Bills & Deposit Series"));
     itemBoxSizer5->Add(itemButton6, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
 
-    wxButton* itemButton81 = new wxButton( itemPanel12, wxID_EDIT);
+    wxButton* itemButton81 = new wxButton( itemPanel12, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Bills & Deposit Series"));
     itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     itemButton81->Enable(false);
 
-    wxButton* itemButton7 = new wxButton( itemPanel12, wxID_DELETE);
+    wxButton* itemButton7 = new wxButton( itemPanel12, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Bills & Deposit Series"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     itemButton7->Enable(false);
