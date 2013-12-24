@@ -106,12 +106,8 @@ wxString Model_Report::get_html(const Data* r)
             method("set", &Record::set).
             end().open().glue();
 
-        // state.doString(r->LUACONTENT);
-        if (!state.doFile("summaryasset.lua"))
-        {
-            printf("failed to dofile\n");
-            printf("err: %s\n", state.lastError().c_str());
-        }
+        const std::string lua_content = r->LUACONTENT.mb_str();
+        bool lua_status = !lua_content.empty() && state.doString(lua_content);
 
         while (q.NextRow())
         {
@@ -122,16 +118,16 @@ wxString Model_Report::get_html(const Data* r)
                 r[column_name.ToStdString()] = q.GetAsString(i);
             }
 
-            state.invokeVoidFunction("handle_record", &r);
-
+            if (lua_status) state.invokeVoidFunction("handle_record", &r);
             row_t row;
-            for (const auto& item: r) row(item.first) = item.second;
+            for (const auto& item : r) row(item.first) = item.second;
             contents += row;
         }
         q.Finalize();
+
         Record result;
-        state.invokeVoidFunction("complete", &result);
-        for (const auto& item: result) report(item.first) = item.second;
+        if (lua_status) state.invokeVoidFunction("complete", &result);
+        for (const auto& item : result) report(item.first) = item.second;
     }
 
     report("CONTENTS") = contents;

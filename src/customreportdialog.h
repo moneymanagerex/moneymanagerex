@@ -41,13 +41,15 @@ private:
         ID_TAB1 = 0,
         ID_TAB2,
         ID_TAB3,
+        ID_TAB4,
         ID_NEW1 = wxID_HIGHEST + 500,
         ID_NEW2,
         ID_DELETE,
         ID_OUTPUT_WIN,
         ID_NOTEBOOK,
         ID_TEMPLATE,
-        ID_TYPELABEL
+        ID_TYPELABEL,
+        ID_LUACONTENT
     };
 
     bool Create(wxWindow* parent
@@ -59,11 +61,10 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void fillControls();
-    void OnOpenTemplateEvt(wxCommandEvent& event);
-    void openTemplate(int id = -1);
-    void OnSaveTemplate(wxCommandEvent& event);
-    void OnSaveTemplateAs(wxCommandEvent& event);
-    void OnUpdateScript(wxCommandEvent& event);
+    void OnOpenReportEvt(wxCommandEvent& event);
+    void openReport(int id = -1);
+    void OnSaveReport(wxCommandEvent& event);
+    void OnSaveReportAs(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
@@ -71,11 +72,8 @@ private:
     void OnLabelChanged(wxTreeEvent& event);
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
-    void OnSourceTxtChar(wxKeyEvent& event);
     void newReport();
 
-    //wxStyledTextCtrl* m_scriptText;
-    //wxStyledTextCtrl* m_templateText;
     wxTextCtrl* m_fileNameCtrl;
     wxHtmlWindow* m_outputHTML;
 
@@ -83,8 +81,6 @@ private:
     wxButton* button_Save_;
     wxButton* button_SaveAs_;
     wxButton* button_Run_;
-    wxButton* button_Clear_;
-    wxButton* button_Update_;
     wxTreeCtrl* treeCtrl_;
     wxTreeItemId root_;
     wxTreeItemId selectedItemId_;
