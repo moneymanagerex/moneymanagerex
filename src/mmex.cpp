@@ -337,10 +337,10 @@ BEGIN_EVENT_TABLE(mmNewDatabaseWizardPage, wxWizardPageSimple)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
-    wxWizardPageSimple(parent),
-    parent_(parent),
-    currencyID_(-1)
+mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
+    : wxWizardPageSimple(parent)
+    , parent_(parent)
+    , currencyID_(-1)
 {
     wxString currName = _("Set Currency");
     const auto base_currency = Model_Currency::instance().GetBaseCurrency();
@@ -350,12 +350,12 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
         currName = base_currency->CURRENCYNAME;
     }
 
-    itemButtonCurrency_ = new wxButton( this, wxID_ANY, currName, wxDefaultPosition, wxSize(130,-1), 0 );
+    itemButtonCurrency_ = new wxButton(this, ID_BUTTON_CURRENCY, currName, wxDefaultPosition, wxSize(130, -1), 0);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    mainSizer->Add( new wxStaticText(this, wxID_ANY, _("Base Currency for account")), 0, wxALL, 5 );
-    mainSizer->Add( itemButtonCurrency_, 0 /* No stretching */, wxALL, 5 /* Border size */ );
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Base Currency for account")), 0, wxALL, 5);
+    mainSizer->Add(itemButtonCurrency_, 0 /* No stretching */, wxALL, 5 /* Border size */);
 
     wxString helpMsg;
 /**************************Message to be displayed *************
@@ -373,15 +373,15 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent) :
     mainSizer->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 5);
 
     wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_STATIC, _("User Name"));
-    itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 5);
+    itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 5);
 
     itemUserName_ = new wxTextCtrl(this, wxID_ANY);
-    itemBoxSizer5->Add(itemUserName_, 1, wxALIGN_CENTER_VERTICAL|wxGROW|wxALL, 5);
+    itemBoxSizer5->Add(itemUserName_, 1, wxALIGN_CENTER_VERTICAL | wxGROW | wxALL, 5);
 
     helpMsg.Empty();
     helpMsg << _("(Optional) Specify a title or your name.") << "\n"
             << _("Used as a database title for displayed and printed reports.");
-    mainSizer->Add( new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg), 0, wxALL, 5);
 
     SetSizer(mainSizer);
     mainSizer->Fit(this);
