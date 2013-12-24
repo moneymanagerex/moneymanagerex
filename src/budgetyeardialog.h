@@ -51,7 +51,7 @@ private:
 
     wxListBox* listBox_;
     int budgetYearID_;
-    enum { ID_ADD_MONTH = wxID_HIGHEST + 1};
+    enum { ID_ADD_MONTH = wxID_HIGHEST + 300 };
 };
 
 #endif

@@ -130,7 +130,7 @@ private:
     enum
     {
         /* Transaction Dialog */
-        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST +1,
+        ID_DIALOG_TRANS_TYPE = wxID_HIGHEST + 900,
         ID_DIALOG_TRANS_TEXTNUMBER,
         ID_DIALOG_TRANS_BUTTONDATE,
         ID_DIALOG_TRANS_TEXTNOTES,

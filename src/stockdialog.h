@@ -73,7 +73,7 @@ private:
 
     enum
     {
-        ID_DPC_STOCK_PDATE = wxID_HIGHEST + 1,
+        ID_DPC_STOCK_PDATE = wxID_HIGHEST + 800,
         ID_TEXTCTRL_STOCKNAME,
         ID_TEXTCTRL_STOCK_SYMBOL,
         ID_TEXTCTRL_NUMBER_SHARES,

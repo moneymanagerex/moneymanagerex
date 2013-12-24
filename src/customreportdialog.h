@@ -41,7 +41,7 @@ private:
         ID_TAB1 = 0,
         ID_TAB2,
         ID_TAB3,
-        ID_NEW1 = wxID_HIGHEST + 1,
+        ID_NEW1 = wxID_HIGHEST + 500,
         ID_NEW2,
         ID_DELETE,
         ID_OUTPUT_WIN,

@@ -392,8 +392,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
 {
     if ( currencyID_ == -1)
     {
-        wxMessageBox(_("Base Currency Not Set"), _("New Database"), wxOK|wxICON_WARNING, this);
-
+        wxMessageBox(_("Base Currency Not Set"), _("New Database"), wxOK | wxICON_WARNING, this);
         return false;
     }
     userName = itemUserName_->GetValue().Trim();
@@ -430,8 +429,8 @@ mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame) :
     // a wizard page may be either an object of predefined class
     page1 = new wxWizardPageSimple(this);
 
-    wxString noteString = mmex::getProgramName() +
-    _(" models all transactions as belonging to accounts.\n\nThe next pages will help you create a new account.\n\nTo help you get started, begin by making a list of all\nfinancial institutions where you hold an account.");
+    wxString noteString = mmex::getProgramName()
+        + _(" models all transactions as belonging to accounts.\n\nThe next pages will help you create a new account.\n\nTo help you get started, begin by making a list of all\nfinancial institutions where you hold an account.");
 
     new wxStaticText(page1, wxID_ANY, noteString);
 
@@ -3282,7 +3281,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     if (!m_db.get()) return;
 
     mmOptionsDialog systemOptions(this);
-    if (systemOptions.ShowModal() == wxOK && systemOptions.AppliedChanges())
+    if (systemOptions.ShowModal() == wxID_OK && systemOptions.AppliedChanges())
     {
         systemOptions.SaveNewSystemSettings();
 

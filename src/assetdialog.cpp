@@ -28,7 +28,7 @@ namespace
 
 enum
 {
-    IDC_COMBO_TYPE = wxID_HIGHEST + 1,
+    IDC_COMBO_TYPE = wxID_HIGHEST + 1100,
     IDC_NOTES,
     IDC_VALUE,
     IDC_RATE,

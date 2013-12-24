@@ -44,7 +44,7 @@ private:
         CURR_SYMBOL,
         CURR_NAME,
         BASE_RATE,
-        ID_DIALOG = wxID_HIGHEST + 1,
+        ID_DIALOG = wxID_HIGHEST + 600,
         MENU_ITEM1,
         MENU_ITEM2
     };

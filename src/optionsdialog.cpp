@@ -606,21 +606,21 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* backupStaticBoxSizer = new wxStaticBoxSizer(backupStaticBox, wxVERTICAL);
     othersPanelSizer->Add(backupStaticBoxSizer, flagsExpand);
 
-    wxCheckBox* backupCheckBox = new wxCheckBox(othersPanel, ID_DIALOG_OPTIONS_CHK_BACKUP,
-        _("Create a new backup when MMEX Start"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* backupCheckBox = new wxCheckBox(othersPanel, ID_DIALOG_OPTIONS_CHK_BACKUP
+        , _("Create a new backup when MMEX Start"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     backupCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB",false));
     backupCheckBox->SetToolTip(_("When MMEX Starts,\ncreates the backup database: dbFile_start_YYYY-MM-DD.ext."));
     backupStaticBoxSizer->Add(backupCheckBox, flags);
 
-    wxCheckBox* backupUpdateCheckBox = new wxCheckBox(othersPanel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE,
-        _("Backup database on exit."), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* backupUpdateCheckBox = new wxCheckBox(othersPanel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
+        , _("Backup database on exit."), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     backupUpdateCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB_UPDATE",false));
     backupUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\ncreates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
     backupStaticBoxSizer->Add(backupUpdateCheckBox, flags);
 
-    int max =  Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
-    scMax_files_ = new wxSpinCtrl(othersPanel, wxID_ANY,
-        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
+    int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
+    scMax_files_ = new wxSpinCtrl(othersPanel, wxID_ANY
+        , wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 999, max);
     scMax_files_->SetToolTip(_("Specify max number of backup files"));
 
     wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0,2,0,0);
@@ -1044,10 +1044,10 @@ void mmOptionsDialog::SaveOthersPanelSettings()
     Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
 
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
-    Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue() );
+    Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());
 
     wxCheckBox* itemCheckBoxUpdate = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE);
-    Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue() );
+    Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue());
 
     Model_Setting::instance().Set("MAX_BACKUP_FILES", scMax_files_->GetValue());
 
@@ -1067,5 +1067,5 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
 {
     changesApplied_ = true;
-    EndModal(wxOK);
+    EndModal(wxID_OK);
 }
