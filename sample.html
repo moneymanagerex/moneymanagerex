@@ -11,27 +11,41 @@
         <td width="0" ><font size="5"><TMPL_VAR USERNAME></font></td>
     </tr>
 </table>
-
+<hr size="2">
 <center>
 <table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="0">
-    <tr bgcolor="#FFFFFF" >
-    <TMPL_LOOP COLUMNS>
-        <th bgcolor="#d5d6de"><TMPL_VAR COLUMN></th>
-    </TMPL_LOOP>
-    </tr>
 
     <tr bgcolor="#FFFFFF" >
-    <TMPL_LOOP CONTENTS>
+        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Date</font></th>
+        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Name</font></th>
+        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Type</font></th>
+        <th align="right" valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Value</font></th>
+        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Notes</font></th>
+    </tr>
+    <TMPL_LOOP NAME=CONTENTS>
         <TMPL_IF NAME="__ODD__">
             <tr bgcolor="#FFFFFF" >
         <TMPL_ELSE>
             <tr bgcolor="#E1EDFB" >
         </TMPL_IF>
 
-        <td width="0%" ><font size="3" color=""><TMPL_VAR COLUMN1 ></font></td>
+        <td width="0%" ><font size="3" color=""><TMPL_VAR STARTDATE></font></td>
+        <td width="0%" ><font size="3" color=""><TMPL_VAR ASSETNAME></font></td>
+        <td width="0%" ><font size="3" color=""><TMPL_VAR ASSETTYPE></font></td>
+        <td width="0%" align="right" ><font size="3" color=""><TMPL_VAR VALUE></font></td>
+        <td width="0%" ><font size="3" color=""><TMPL_VAR NOTES></font></td>
     </tr>
     </TMPL_LOOP>
+    <tr bgcolor="#FFFFFF" >
+        <td colspan="5" >
+            <table cellspacing="1" bgcolor="#FFFFFF" width="100%" valign="top" border="1"></table>
+        </td>
+    </tr>
 
+    <tr bgcolor="#FFFFFF" >
+        <td colspan="3" ><font size="3" color="">Total Assets: </font></td>
+        <td nowrap align="right"><font size="3" color=""><TMPL_VAR ASSET_BALANCE></font></td>
+    </tr>
 </table>
 </center>
 </body>
