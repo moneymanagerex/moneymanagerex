@@ -18,6 +18,24 @@
 
 #include "Model_Asset.h"
 
+const std::vector<std::pair<Model_Asset::RATE, wxString> > Model_Asset::RATE_CHOICES = 
+{
+    std::make_pair(Model_Asset::RATE_NONE, wxTRANSLATE("None"))
+    , std::make_pair(Model_Asset::RATE_APPRECIATE, wxTRANSLATE("Appreciates"))
+    , std::make_pair(Model_Asset::RATE_DEPRECIATE, wxTRANSLATE("Depreciates"))
+};
+
+const std::vector<std::pair<Model_Asset::TYPE, wxString> > Model_Asset::TYPE_CHOICES = 
+{
+    std::make_pair(Model_Asset::TYPE_PROPERTY, wxTRANSLATE("Property"))
+    , std::make_pair(Model_Asset::TYPE_AUTO, wxTRANSLATE("Automobile"))
+    , std::make_pair(Model_Asset::TYPE_HOUSE, wxTRANSLATE("Household Object"))
+    , std::make_pair(Model_Asset::TYPE_ART, wxTRANSLATE("Art"))
+    , std::make_pair(Model_Asset::TYPE_JEWELLERY, wxTRANSLATE("Jewellery"))
+    , std::make_pair(Model_Asset::TYPE_CASH, wxTRANSLATE("Cash"))
+    , std::make_pair(Model_Asset::TYPE_OTHER, wxTRANSLATE("Other"))
+};
+
 Model_Asset::Model_Asset()
 : Model<DB_Table_ASSETS_V1>()
 {
@@ -55,26 +73,14 @@ wxString Model_Asset::version()
 wxArrayString Model_Asset::all_rate()
 {
     wxArrayString rates;
-    //  keep the sequence with RATE
-    rates.Add(wxTRANSLATE("None"));
-    rates.Add(wxTRANSLATE("Appreciates"));
-    rates.Add(wxTRANSLATE("Depreciates"));
-
+    for (const auto& item: RATE_CHOICES) rates.Add(item.second);
     return rates;
 }
 
 wxArrayString Model_Asset::all_type()
 {
     wxArrayString types;
-    // keep the sequence with TYPE
-    types.Add(wxTRANSLATE("Property"));
-    types.Add(wxTRANSLATE("Automobile"));
-    types.Add(wxTRANSLATE("Household Object"));
-    types.Add(wxTRANSLATE("Art"));
-    types.Add(wxTRANSLATE("Jewellery"));
-    types.Add(wxTRANSLATE("Cash"));
-    types.Add(wxTRANSLATE("Other"));
-
+    for (const auto& item: TYPE_CHOICES) types.Add(item.second);
     return types;
 }
 
@@ -110,20 +116,7 @@ wxDate Model_Asset::STARTDATE(const Data& r)
 
 Model_Asset::TYPE Model_Asset::type(const Data* r)
 {
-    if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_PROPERTY]) == 0)
-        return TYPE_PROPERTY;
-    else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_AUTO]) == 0)
-        return TYPE_AUTO;
-    else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_HOUSE]) == 0)
-        return TYPE_HOUSE;
-    else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_ART]) == 0)
-        return TYPE_ART;
-    else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_JEWELLERY]) == 0)
-        return TYPE_JEWELLERY;
-    else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_CASH]) == 0)
-        return TYPE_CASH;
-    else if (r->ASSETTYPE.CmpNoCase(all_type()[TYPE_OTHER]) == 0)
-        return TYPE_OTHER;
+    for (const auto& item : TYPE_CHOICES) if (item.second.CmpNoCase(r->ASSETTYPE) == 0) return item.first;
 
     return TYPE(-1);
 }
@@ -135,13 +128,7 @@ Model_Asset::TYPE Model_Asset::type(const Data& r)
 
 Model_Asset::RATE Model_Asset::rate(const Data* r)
 {
-    if (r->VALUECHANGE.CmpNoCase(all_rate()[RATE_NONE]) == 0)
-        return RATE_NONE;
-    else if (r->VALUECHANGE.CmpNoCase(all_rate()[RATE_APPRECIATE]) == 0)
-        return RATE_APPRECIATE;
-    else if (r->VALUECHANGE.CmpNoCase(all_rate()[RATE_DEPRECIATE]) == 0)
-        return RATE_DEPRECIATE;
-
+    for (const auto & item : RATE_CHOICES) if (item.second.CmpNoCase(r->VALUECHANGE) == 0) return item.first;
     return RATE(-1);
 }
 

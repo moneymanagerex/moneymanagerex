@@ -30,6 +30,10 @@ public:
     enum TYPE { TYPE_PROPERTY = 0, TYPE_AUTO, TYPE_HOUSE, TYPE_ART, TYPE_JEWELLERY, TYPE_CASH, TYPE_OTHER };
 
 public:
+    static const std::vector<std::pair<RATE, wxString> > RATE_CHOICES;
+    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
+
+public:
     Model_Asset();
     ~Model_Asset();
     static wxString version();
