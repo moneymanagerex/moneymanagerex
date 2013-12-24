@@ -650,9 +650,11 @@ bool mmTransDialog::validateData()
         }
 
         // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
+#if !defined (__WXMAC__)
         int payee_loc = cbPayee_->FindString(payee_name);
         if (payee_loc != wxNOT_FOUND)
             payee_name = cbPayee_->GetString(payee_loc);
+#endif
 
         Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
         if (!payee)
@@ -810,9 +812,11 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
     // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
     wxString payee_str = cbPayee_->GetValue();
+#if !defined (__WXMAC__)
     int payee_loc = cbPayee_->FindString(payee_str);
     if (payee_loc != wxNOT_FOUND)
         payee_str = cbPayee_->GetString(payee_loc);
+#endif
 
     bool transfer_transaction = transaction_type_->GetSelection() == Model_Checking::TRANSFER;
     if (!transfer_transaction)
@@ -1022,7 +1026,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
 #if defined (__WXMAC__)
-    Modal(wxID_CANCEL);
+    EndModal(wxID_CANCEL);
 #endif
 
     if (object_in_focus_ == bCategory_->GetId()) return;
