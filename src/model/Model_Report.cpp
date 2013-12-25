@@ -106,7 +106,7 @@ wxString Model_Report::get_html(const Data* r)
             method("set", &Record::set).
             end().open().glue();
 
-        const std::string lua_content = r->LUACONTENT.mb_str();
+        const std::string lua_content = r->LUACONTENT.ToStdString();
         bool lua_status = !lua_content.empty() && state.doString(lua_content);
 
         while (q.NextRow())
