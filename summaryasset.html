@@ -57,6 +57,21 @@
 </table>
 
 <hr size="3">
+<tr> <b>Errors during the report build</b></tr>
+<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
+    <tr>
+        <th>ERROR</th>
+    </tr>
+    <TMPL_LOOP ERRORS>
+        <tr>
+            <td><TMPL_VAR ERROR></td>
+        </tr>
+    </TMPL_LOOP>
+</table>
+
+
+
+<hr size="3">
 <tr> <b>Available built-in variables</b></tr>
 <table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
     <tr align="left">
