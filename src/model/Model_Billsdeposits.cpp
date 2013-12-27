@@ -162,6 +162,70 @@ Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(con
     return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r.BDID));
 }
 
+void Model_Billsdeposits::decode_fields(const Data& q1)
+{
+    m_autoExecuteManual = false; // Used when decoding: REPEATS
+    m_autoExecuteSilent = false;
+    m_requireExecution = false;
+    m_allowExecution = false;
+
+    // DeMultiplex the Auto Executable fields from the db entry: REPEATS
+    int repeats = q1.REPEATS;
+    int numRepeats = q1.NUMOCCURRENCES;
+
+    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+    {
+        m_autoExecuteManual = true;
+        repeats -= BD_REPEATS_MULTIPLEX_BASE;
+    }
+
+    if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+    {
+        m_autoExecuteManual = false;               // Can only be manual or auto. Not both
+        m_autoExecuteSilent = true;
+        repeats -= BD_REPEATS_MULTIPLEX_BASE;
+    }
+
+    if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
+    {
+        m_allowExecution = true;
+    }
+
+    wxDate nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
+    wxDateTime today = wxDateTime::Now();
+    wxTimeSpan ts = nextOccurDate.Subtract(today);
+    int daysRemaining = ts.GetDays();
+    int minutesRemaining = ts.GetMinutes();
+
+    if (minutesRemaining > 0)
+        daysRemaining += 1;
+
+    if (daysRemaining < 1)
+    {
+        m_requireExecution = true;
+    }
+}
+
+bool Model_Billsdeposits::autoExecuteManual()
+{
+    return m_autoExecuteManual;
+}
+
+bool Model_Billsdeposits::autoExecuteSilent()
+{
+    return m_autoExecuteSilent;
+}
+
+bool Model_Billsdeposits::requireExecution()
+{
+    return m_requireExecution;
+}
+
+bool Model_Billsdeposits::allowExecution()
+{
+    return m_allowExecution;
+}
+
 void Model_Billsdeposits::completeBDInSeries(int bdID)
 {
     Data* bill = get(bdID);

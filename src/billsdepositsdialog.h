@@ -42,6 +42,8 @@ public:
         return transID_;
     }
 
+    void SetDialogHeader(const wxString& header);
+
 private:
     bool Create(wxWindow* parent, wxWindowID id,
         const wxString& caption,

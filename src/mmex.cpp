@@ -592,50 +592,18 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
     bool continueExecution = false;
 
-    for (const auto& q1: Model_Billsdeposits::instance().all())
+    Model_Billsdeposits& bills = Model_Billsdeposits::instance();
+    for (const auto& q1 : bills.all())
     {
-        bool autoExecuteManual = false; // Used when decoding: REPEATS
-        bool autoExecuteSilent = false;
-        bool requireExecution  = false;
+        bills.decode_fields(q1);
 
-        // DeMultiplex the Auto Executable fields from the db entry: REPEATS
-        int repeats        = q1.REPEATS;
-        int numRepeats     = q1.NUMOCCURRENCES;
-
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+        if (bills.autoExecuteManual() && bills.requireExecution())
         {
-            autoExecuteManual = true;
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
-        }
-
-        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
-        {
-            autoExecuteManual = false;               // Can only be manual or auto. Not both
-            autoExecuteSilent = true;
-            repeats -= BD_REPEATS_MULTIPLEX_BASE;
-        }
-
-        wxDate nextOccurDate  = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
-        wxDateTime today = wxDateTime::Now();
-        wxTimeSpan ts = nextOccurDate.Subtract(today);
-        int daysRemaining = ts.GetDays();
-        int minutesRemaining = ts.GetMinutes();
-
-        if (minutesRemaining > 0)
-            daysRemaining += 1;
-
-        if (daysRemaining < 1)
-        {
-            requireExecution = true;
-        }
-
-        if (autoExecuteManual && requireExecution)
-        {
-            if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
+            if (bills.allowExecution())
             {
                 continueExecution = true;
                 mmBDDialog repeatTransactionsDlg(this, q1.BDID, false, true);
-                //TODO: repeatTransactionsDlg.SetDialogHeader(_(" Auto Repeat Transactions"));
+                repeatTransactionsDlg.SetDialogHeader(_(" Auto Repeat Transactions"));
                 if ( repeatTransactionsDlg.ShowModal() == wxID_OK )
                 {
                     if (activeHomePage_) createHomePage();
@@ -645,9 +613,9 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
             }
         }
 
-        if (autoExecuteSilent && requireExecution)
+        if (bills.autoExecuteSilent() && bills.requireExecution())
         {
-            if ((repeats < Model_Billsdeposits::REPEAT_IN_X_DAYS) || (numRepeats > Model_Billsdeposits::REPEAT_NONE) || (repeats > Model_Billsdeposits::REPEAT_EVERY_X_MONTHS))
+            if (bills.allowExecution())
             {
                 continueExecution = true;
                 Model_Checking::Data* tran = Model_Checking::instance().create();

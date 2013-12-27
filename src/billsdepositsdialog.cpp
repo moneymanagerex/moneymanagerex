@@ -232,6 +232,11 @@ void mmBDDialog::dataToControls()
     }
 }
 
+void mmBDDialog::SetDialogHeader(const wxString& header)
+{
+    this->SetTitle(header);
+}
+
 void mmBDDialog::CreateControls()
 {
     int border = 5;

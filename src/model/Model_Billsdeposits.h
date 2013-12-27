@@ -97,6 +97,22 @@ public:
     static STATUS_ENUM status(const Data& r);
     static wxString toShortStatus(const wxString& fullStatus);
 
+    /**
+    * Decodes the internal fields and sets the condition of the following parameters:
+    * autoExecuteManual(), autoExecuteSilent(), requireExecution(), allowExecution();
+    */
+    void decode_fields(const Data& r);
+    bool autoExecuteManual();
+    bool autoExecuteSilent();
+    bool requireExecution();
+    bool allowExecution();
+
+private:
+    bool m_autoExecuteManual;
+    bool m_autoExecuteSilent;
+    bool m_requireExecution;
+    bool m_allowExecution;
+
 public:
     /**
     * Remove the Data record instance from memory and the database
