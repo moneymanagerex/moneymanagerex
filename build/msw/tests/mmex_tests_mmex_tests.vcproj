@@ -740,6 +740,14 @@
 				RelativePath="..\..\..\src\util.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\src\wizard_newaccount.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\wizard_newdb.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1184,6 +1192,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\validators.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\wizard_newaccount.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\wizard_newdb.h"
 				>
 			</File>
 		</Filter>

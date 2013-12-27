@@ -336,6 +336,8 @@
     <ClCompile Include="..\..\src\transdialog.cpp" />
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp" />
     <ClCompile Include="..\..\src\util.cpp" />
+    <ClCompile Include="..\..\src\wizard_newaccount.cpp" />
+    <ClCompile Include="..\..\src\wizard_newdb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\customreportdialog.h" />
@@ -445,6 +447,8 @@
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\src\util.h" />
     <ClInclude Include="..\..\src\validators.h" />
+    <ClInclude Include="..\..\src\wizard_newaccount.h" />
+    <ClInclude Include="..\..\src\wizard_newdb.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc" />

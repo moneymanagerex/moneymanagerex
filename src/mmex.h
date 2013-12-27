@@ -22,7 +22,6 @@
 //----------------------------------------------------------------------------
 #include <wx/app.h>
 #include <wx/aui/aui.h>
-#include <wx/wizard.h>
 #include <wx/debugrpt.h>
 #include <wx/toolbar.h>
 
@@ -44,7 +43,6 @@ enum
 };
 //----------------------------------------------------------------------------
 
-#include <wx/sharedptr.h>
 #include "util.h"
 #include "mmOption.h"
 //----------------------------------------------------------------------------
@@ -87,87 +85,11 @@ private:
 DECLARE_APP(mmGUIApp)
 //----------------------------------------------------------------------------
 
-class mmNewDatabaseWizard : public wxWizard
-{
-public:
-    mmNewDatabaseWizard(wxFrame *frame);
-    void RunIt(bool modal);
-
-private:
-    wxWizardPageSimple* page1;
-
-    DECLARE_EVENT_TABLE()
-};
-//----------------------------------------------------------------------------
-
-class mmNewDatabaseWizardPage : public wxWizardPageSimple
-{
-public:
-    mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent);
-
-    void OnCurrency(wxCommandEvent& /*event*/);
-    virtual bool TransferDataFromWindow();
-
-private:
-    mmNewDatabaseWizard* parent_;
-    wxButton* itemButtonCurrency_;
-    wxTextCtrl* itemUserName_;
-    int currencyID_;
-
-    wxString userName;
-
-    DECLARE_EVENT_TABLE()
-};
-//----------------------------------------------------------------------------
-
-class mmAddAccountWizard : public wxWizard
-{
-public:
-    mmAddAccountWizard(wxFrame *frame);
-    void RunIt(bool modal);
-    wxString accountName_;
-
-    int acctID_;
-
-private:
-    wxWizardPageSimple* page1;
-};
-//----------------------------------------------------------------------------
-
-class mmAddAccountPage1 : public wxWizardPageSimple
-{
-public:
-    mmAddAccountPage1(mmAddAccountWizard* parent);
-    virtual bool TransferDataFromWindow();
-
-private:
-    mmAddAccountWizard* parent_;
-    wxTextCtrl* textAccountName_;
-};
-//----------------------------------------------------------------------------
-
-class mmAddAccountPage2 : public wxWizardPageSimple
-{
-public:
-    mmAddAccountPage2(mmAddAccountWizard *parent);
-    virtual bool TransferDataFromWindow();
-
-private:
-    wxChoice* itemChoiceType_;
-    mmAddAccountWizard* parent_;
-};
-
-//----------------------------------------------------------------------------
 class mmGUIFrame : public wxFrame
 {
 public:
-    mmGUIFrame(const wxString& title,
-               const wxPoint& pos,
-               const wxSize& size);
-
+    mmGUIFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
     ~mmGUIFrame();
-
-    void OnWizardCancel(wxWizardEvent& event);
 
     void setGotoAccountID(int account_id, long transID = -1);
     void setHomePageActive(bool active = true);

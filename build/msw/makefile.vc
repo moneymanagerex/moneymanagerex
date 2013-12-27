@@ -142,6 +142,8 @@ MMEX_OBJECTS =  \
 	mmex_stockspanel.obj \
 	mmex_transdialog.obj \
 	mmex_util.obj \
+	mmex_wizard_newaccount.obj \
+	mmex_wizard_newdb.obj \
 	mmex_budget.obj \
 	mmex_budgetcategorysummary.obj \
 	mmex_budgetingperf.obj \
@@ -739,6 +741,12 @@ mmex_transdialog.obj: ..\..\src\transdialog.cpp
 
 mmex_util.obj: ..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\util.cpp
+
+mmex_wizard_newaccount.obj: ..\..\src\wizard_newaccount.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\wizard_newaccount.cpp
+
+mmex_wizard_newdb.obj: ..\..\src\wizard_newdb.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\wizard_newdb.cpp
 
 mmex_budget.obj: ..\..\src\reports\budget.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\budget.cpp

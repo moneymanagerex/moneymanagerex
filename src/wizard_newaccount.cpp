@@ -1,0 +1,161 @@
+/*******************************************************
+ Copyright (C) 2006 Madhan Kanagavel
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ ********************************************************/
+
+#include "wizard_newaccount.h"
+#include "guiid.h"
+#include "mmhomepagepanel.h"
+//----------------------------------------------------------------------------
+
+mmAddAccountWizard::mmAddAccountWizard(wxFrame *frame)
+    : wxWizard(frame,wxID_ANY,_("Add Account Wizard")
+    , wxBitmap(addacctwiz_xpm),wxDefaultPosition
+    , wxDEFAULT_DIALOG_STYLE), acctID_(-1)
+{
+    // a wizard page may be either an object of predefined class
+    page1 = new wxWizardPageSimple(this);
+
+    wxString noteString = mmex::getProgramName()
+        + _(" models all transactions as belonging to accounts.\n\nThe next pages will help you create a new account.\n\nTo help you get started, begin by making a list of all\nfinancial institutions where you hold an account.");
+
+    new wxStaticText(page1, wxID_ANY, noteString);
+
+    mmAddAccountPage1* page2 = new mmAddAccountPage1(this);
+    mmAddAccountPage2* page3 = new mmAddAccountPage2(this);
+
+    // set the page order using a convenience function - could also use
+    // SetNext/Prev directly as below
+    wxWizardPageSimple::Chain(page1, page2);
+    wxWizardPageSimple::Chain(page2, page3);
+
+    // allow the wizard to size itself around the pages
+    GetPageAreaSizer()->Add(page1);
+    this->CentreOnParent();
+}
+
+void mmAddAccountWizard::RunIt(bool modal)
+{
+    if (modal) {
+        if (RunWizard(page1)) {
+            // Success
+        }
+        Destroy();
+    } else {
+        FinishLayout();
+        ShowPage(page1);
+        Show(true);
+    }
+}
+
+bool mmAddAccountPage1::TransferDataFromWindow()
+{
+    bool result = true;
+    const wxString account_name = textAccountName_->GetValue().Trim();
+    if ( account_name.IsEmpty())
+    {
+        wxMessageBox(_("Account Name Invalid"), _("New Account"), wxOK|wxICON_ERROR, this);
+        result = false;
+    }
+    else
+    {
+        if (Model_Account::instance().get(account_name))
+        {
+            wxMessageBox(_("Account Name already exists"), _("New Account"), wxOK|wxICON_ERROR, this);
+            result = false;
+        }
+    }
+    parent_->accountName_ = account_name;
+    return result;
+}
+
+mmAddAccountPage1::mmAddAccountPage1(mmAddAccountWizard* parent)
+    : wxWizardPageSimple(parent), parent_(parent)
+{
+    textAccountName_ = new wxTextCtrl(this, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxSize(130,-1), 0 );
+
+    wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, _("Name of the Account")), 0, wxALL, 5 );
+    mainSizer->Add( textAccountName_, 0 /* No stretching */, wxALL, 5 /* Border Size */);
+
+    wxString helpMsg;
+    helpMsg  << "\n" << _("Specify a descriptive name for the account.") << "\n"
+            << _("This is generally the name of a financial institution\nwhere the account is held. For example: 'ABC Bank'.");
+    mainSizer->Add(new wxStaticText(this, wxID_ANY, helpMsg ), 0, wxALL, 5);
+
+    SetSizer(mainSizer);
+    mainSizer->Fit(this);
+}
+
+mmAddAccountPage2::mmAddAccountPage2(mmAddAccountWizard *parent)
+    : wxWizardPageSimple(parent)
+    , parent_(parent)
+{
+    itemChoiceType_ = new wxChoice(this, wxID_ANY);
+    for (const auto& type: Model_Account::all_type())
+        itemChoiceType_->Append(wxGetTranslation(type), new wxStringClientData(type));
+    itemChoiceType_->SetToolTip(_("Specify the type of account to be created."));
+    itemChoiceType_->SetSelection(Model_Account::CHECKING);
+
+    wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
+
+    mainSizer->Add( new wxStaticText(this, wxID_ANY, _("Type of Account")), 0, wxALL, 5 );
+    mainSizer->Add( itemChoiceType_, 0 /* No stretching*/, wxALL, 5 /* Border Size */);
+
+    wxString textMsg;
+    textMsg << "\n"
+            << _("Select the type of account you want to create:") << "\n\n"
+            << _("General bank accounts cover a wide variety of account\ntypes like Checking, Savings and Credit card type accounts.");
+    mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
+
+    textMsg = "\n";
+    textMsg << _("Investment accounts are specialized accounts that only\nhave stock/mutual fund investments associated with them.");
+    mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
+
+    textMsg = "\n";
+    textMsg << _("Term accounts are specialized bank accounts. Intended for asset\ntype accounts such as Term Deposits and Bonds. These accounts\ncan have regular money coming in and out, being outside the\ngeneral income stream.");
+    mainSizer->Add( new wxStaticText(this, wxID_ANY,textMsg), 0, wxALL, 5);
+
+    SetSizer(mainSizer);
+    mainSizer->Fit(this);
+}
+
+bool mmAddAccountPage2::TransferDataFromWindow()
+{
+    int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    if (currencyID == -1)
+    {
+        wxString errorMsg;
+        errorMsg << _("Base Account Currency Not set.") << "\n"
+                 << _("Set that first using Tools->Options menu and then add a new account.");
+        wxMessageBox( errorMsg, _("New Account"), wxOK|wxICON_WARNING, this);
+        return false;
+    }
+
+    Model_Account::Data* account = Model_Account::instance().create();
+
+    account->FAVORITEACCT = "TRUE";
+    account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
+    account->ACCOUNTTYPE = Model_Account::all_type()[itemChoiceType_->GetSelection()];
+    account->ACCOUNTNAME = parent_->accountName_;
+    account->INITIALBAL = 0;
+    account->CURRENCYID = currencyID;
+
+    Model_Account::instance().save(account);
+    parent_->acctID_ = account->ACCOUNTID;
+
+    return true;
+}

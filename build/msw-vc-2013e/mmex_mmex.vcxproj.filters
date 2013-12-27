@@ -273,6 +273,12 @@
     <ClCompile Include="..\..\src\images_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\wizard_newdb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\wizard_newaccount.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -594,6 +600,12 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\images_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wizard_newdb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\wizard_newaccount.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
