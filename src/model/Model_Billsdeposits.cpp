@@ -19,6 +19,22 @@
 #include "Model_Billsdeposits.h"
 #include "mmOption.h"
 
+const std::vector<std::pair<Model_Billsdeposits::TYPE, wxString> > Model_Billsdeposits::TYPE_CHOICES =
+{
+    std::make_pair(Model_Billsdeposits::WITHDRAWAL, wxTRANSLATE("Withdrawal"))
+    , std::make_pair(Model_Billsdeposits::DEPOSIT, wxTRANSLATE("Deposit"))
+    , std::make_pair(Model_Billsdeposits::TRANSFER, wxTRANSLATE("Transfer"))
+};
+
+const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_Billsdeposits::STATUS_ENUM_CHOICES =
+{
+    std::make_pair(Model_Billsdeposits::NONE, wxTRANSLATE("None"))
+    , std::make_pair(Model_Billsdeposits::RECONCILED, wxTRANSLATE("Reconciled"))
+    , std::make_pair(Model_Billsdeposits::VOID_, wxTRANSLATE("Void"))
+    , std::make_pair(Model_Billsdeposits::FOLLOWUP, wxTRANSLATE("Follow up"))
+    , std::make_pair(Model_Billsdeposits::DUPLICATE_, wxTRANSLATE("Duplicate"))
+};
+
 Model_Billsdeposits::Model_Billsdeposits()
 : Model<DB_Table_BILLSDEPOSITS_V1>()
 {
@@ -31,24 +47,14 @@ Model_Billsdeposits::~Model_Billsdeposits()
 wxArrayString Model_Billsdeposits::all_type()
 {
     wxArrayString types;
-    // keep the sequence with TYPE
-    types.Add(wxTRANSLATE("Withdrawal"));
-    types.Add(wxTRANSLATE("Deposit"));
-    types.Add(wxTRANSLATE("Transfer"));
-
+    for (const auto& item : TYPE_CHOICES) types.Add(item.second);
     return types;
 }
 
 wxArrayString Model_Billsdeposits::all_status()
 {
     wxArrayString status;
-    // keep the sequence with STATUS
-    status.Add(wxTRANSLATE("None"));
-    status.Add(wxTRANSLATE("Reconciled"));
-    status.Add(wxTRANSLATE("Void"));
-    status.Add(wxTRANSLATE("Follow up"));
-    status.Add(wxTRANSLATE("Duplicate"));
-
+    for (const auto& item : STATUS_ENUM_CHOICES) status.Add(item.second);
     return status;
 }
 

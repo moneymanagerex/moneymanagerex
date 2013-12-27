@@ -40,6 +40,7 @@ public:
 
 public:
     enum PERIOD_ENUM { NONE = 0, WEEKLY, BIWEEKLY, MONTHLY, BIMONTHLY, QUARTERLY, HALFYEARLY, YEARLY, DAILY };
+    static const std::vector<std::pair<PERIOD_ENUM, wxString> > PERIOD_ENUM_CHOICES;
 
     static wxArrayString all_period();
     static PERIOD_ENUM period(const Data* r);

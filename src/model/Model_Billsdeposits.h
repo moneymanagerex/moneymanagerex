@@ -29,6 +29,7 @@ class Model_Billsdeposits : public Model<DB_Table_BILLSDEPOSITS_V1>
 {
 public:
     using Model<DB_Table_BILLSDEPOSITS_V1>::remove;
+
 public:
     enum TYPE { WITHDRAWAL = 0, DEPOSIT, TRANSFER };
     enum STATUS_ENUM { NONE = 0, RECONCILED, VOID_, FOLLOWUP, DUPLICATE_ };
@@ -52,6 +53,9 @@ public:
         REPEAT_MONTHLY_LAST_DAY,
         REPEAT_MONTHLY_LAST_BUSINESS_DAY
     };
+
+    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
+    static const std::vector<std::pair<STATUS_ENUM, wxString> > STATUS_ENUM_CHOICES;
 
 public:
     Model_Billsdeposits();

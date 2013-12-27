@@ -49,19 +49,23 @@ Model_Budget& Model_Budget::instance()
     return Singleton<Model_Budget>::instance();
 }
 
+const std::vector<std::pair<Model_Budget::PERIOD_ENUM, wxString> > Model_Budget::PERIOD_ENUM_CHOICES =
+{
+    std::make_pair(Model_Budget::NONE, wxTRANSLATE("None"))
+    , std::make_pair(Model_Budget::WEEKLY, wxTRANSLATE("Weekly"))
+    , std::make_pair(Model_Budget::BIWEEKLY, wxTRANSLATE("Bi-Weekly"))
+    , std::make_pair(Model_Budget::MONTHLY, wxTRANSLATE("Monthly"))
+    , std::make_pair(Model_Budget::BIMONTHLY, wxTRANSLATE("Bi-Monthly"))
+    , std::make_pair(Model_Budget::QUARTERLY, wxTRANSLATE("Quarterly"))
+    , std::make_pair(Model_Budget::HALFYEARLY, wxTRANSLATE("Half-Yearly"))
+    , std::make_pair(Model_Budget::YEARLY, wxTRANSLATE("Yearly"))
+    , std::make_pair(Model_Budget::DAILY, wxTRANSLATE("Daily"))
+};
+
 wxArrayString Model_Budget::all_period()
 {
     wxArrayString period;
-    // keep the sequence with PERIOD_ENUM
-    period.Add(wxTRANSLATE("None"));
-    period.Add(wxTRANSLATE("Weekly"));
-    period.Add(wxTRANSLATE("Bi-Weekly"));
-    period.Add(wxTRANSLATE("Monthly"));
-    period.Add(wxTRANSLATE("Bi-Monthly"));
-    period.Add(wxTRANSLATE("Quarterly"));
-    period.Add(wxTRANSLATE("Half-Yearly"));
-    period.Add(wxTRANSLATE("Yearly"));
-    period.Add(wxTRANSLATE("Daily"));
+    for (const auto& item : PERIOD_ENUM_CHOICES) period.Add(item.second);
     return period;
 }
 

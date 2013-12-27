@@ -32,7 +32,10 @@ public:
     using Model<DB_Table_ACCOUNTLIST_V1>::get;
 
     enum STATUS { OPEN = 0, CLOSED };
-    enum TYPE  { CHECKING = 0, TERM, INVESTMENT };
+    enum TYPE { CHECKING = 0, TERM, INVESTMENT };
+
+    static const std::vector<std::pair<STATUS, wxString> > STATUS_CHOICES;
+    static const std::vector<std::pair<TYPE, wxString> > TYPE_CHOICES;
 
 public:
     Model_Account();

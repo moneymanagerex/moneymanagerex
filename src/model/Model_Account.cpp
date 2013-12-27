@@ -19,6 +19,19 @@
 #include "Model_Account.h"
 #include "Model_Stock.h"
 
+const std::vector<std::pair<Model_Account::STATUS, wxString> > Model_Account::STATUS_CHOICES =
+{
+    std::make_pair(Model_Account::OPEN, wxTRANSLATE("Open")),
+    std::make_pair(Model_Account::CLOSED, wxTRANSLATE("Closed"))
+};
+
+const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE_CHOICES =
+{
+    std::make_pair(Model_Account::CHECKING, wxTRANSLATE("Checking")),
+    std::make_pair(Model_Account::TERM, wxTRANSLATE("Term")),
+    std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE("Investment"))
+};
+
 Model_Account::Model_Account()
 : Model<DB_Table_ACCOUNTLIST_V1>()
 {
@@ -72,19 +85,14 @@ wxArrayString Model_Account::all_checking_account_names()
 wxArrayString Model_Account::all_status()
 {
     wxArrayString status;
-    status.Add(wxTRANSLATE("Open"));
-    status.Add(wxTRANSLATE("Closed"));
-
+    for (const auto& item : STATUS_CHOICES) status.Add(item.second);
     return status;
 }
 
 wxArrayString Model_Account::all_type()
 {
     wxArrayString type;
-    type.Add(wxTRANSLATE("Checking"));
-    type.Add(wxTRANSLATE("Term"));
-    type.Add(wxTRANSLATE("Investment"));
-
+    for (const auto& item : TYPE_CHOICES) type.Add(item.second);
     return type;
 }
 
