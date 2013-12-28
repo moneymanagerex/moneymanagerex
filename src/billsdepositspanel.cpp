@@ -507,14 +507,7 @@ wxString mmBillsDepositsPanel::GetRemainingDays(const Model_Billsdeposits::Data*
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-    wxDateTime today = wxDateTime::Now();
-    wxTimeSpan ts = Model_Billsdeposits::NEXTOCCURRENCEDATE(item).Subtract(today);
-    int daysRemaining = ts.GetDays();
-    int minutesRemaining = ts.GetMinutes();
-
-    if (minutesRemaining > 0)
-        daysRemaining += 1;
-
+    int daysRemaining = Model_Billsdeposits::instance().daysRemaining(item);
     wxString text = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)
@@ -566,14 +559,7 @@ int billsDepositsListCtrl::OnGetItemImage(long item) const
         bd_repeat_auto = true;
     }
 
-    wxDateTime today = wxDateTime::Now();
-    wxTimeSpan ts = Model_Billsdeposits::NEXTOCCURRENCEDATE(cp_->bills_[item]).Subtract(today);
-    int daysRemaining = ts.GetDays();
-    int minutesRemaining = ts.GetMinutes();
-
-    if (minutesRemaining > 0)
-        daysRemaining += 1;
-
+    int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&cp_->bills_[item]);
     wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
 
     if (daysRemaining == 0)

@@ -42,15 +42,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     //                    days, payee, description, amount, account
     std::vector< std::tuple<int, wxString, wxString, double, Model_Account::Data*> > bd_days;
-    const wxDateTime today = wxDateTime::Now();
     for (const auto& q1 : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        wxTimeSpan ts = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1).Subtract(today);
-        int daysRemaining = ts.GetDays();
-        int minutesRemaining = ts.GetMinutes();
-        if (minutesRemaining > 0)
-            daysRemaining += 1;
-
+        int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&q1);
         if (daysRemaining > 14)
             break; // Done searching for all to include
 

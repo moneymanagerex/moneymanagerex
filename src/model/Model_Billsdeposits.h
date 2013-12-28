@@ -107,6 +107,8 @@ public:
     bool requireExecution();
     bool allowExecution();
 
+    int daysRemaining(const Data* r);
+
 private:
     bool m_autoExecuteManual;
     bool m_autoExecuteSilent;

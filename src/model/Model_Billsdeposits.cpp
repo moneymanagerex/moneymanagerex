@@ -191,16 +191,7 @@ void Model_Billsdeposits::decode_fields(const Data& q1)
         m_allowExecution = true;
     }
 
-    wxDate nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(q1);
-    wxDateTime today = wxDateTime::Now();
-    wxTimeSpan ts = nextOccurDate.Subtract(today);
-    int daysRemaining = ts.GetDays();
-    int minutesRemaining = ts.GetMinutes();
-
-    if (minutesRemaining > 0)
-        daysRemaining += 1;
-
-    if (daysRemaining < 1)
+    if (this->daysRemaining(&q1) < 1)
     {
         m_requireExecution = true;
     }
@@ -224,6 +215,19 @@ bool Model_Billsdeposits::requireExecution()
 bool Model_Billsdeposits::allowExecution()
 {
     return m_allowExecution;
+}
+
+int Model_Billsdeposits::daysRemaining(const Data* r)
+{
+    wxDate nextOccurDate = Model_Billsdeposits::NEXTOCCURRENCEDATE(r);
+    wxTimeSpan ts = nextOccurDate.Subtract(wxDateTime::Now());
+    int daysRemaining = ts.GetDays();
+    int minutesRemaining = ts.GetMinutes();
+
+    if (minutesRemaining > 0)
+        daysRemaining += 1;
+
+    return daysRemaining;
 }
 
 void Model_Billsdeposits::completeBDInSeries(int bdID)
