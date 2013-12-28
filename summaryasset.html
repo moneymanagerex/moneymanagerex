@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MoneyManagerEx - Report</title>
     <style type="text/css">
+    body {background-color:yellow;}
     table
     {
         width:100%;
@@ -13,14 +14,27 @@
         color:white;
         text-align:center;
     }
+    tr.one{background-color:yellow;}
+    tr.two{background-color:#FBFF97;}
+    td.normal
+    {
+        color:black;
+        text-align:left;
+    }    
+    td.value
+    {
+        color:black;
+        text-align:right;
+    }    
+    .total { text-align:right;font-style:bold; color:gray;}
     </style>
 </head>
-<body bgcolor="#FFFFFF" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000">
+<body>
 <table>
     <tr bgcolor="#FFFFFF" >
         <td width="16" ><img src="assets.jpg" /></td>
         <td width="40%" ><font size="5"><TMPL_VAR TITLE></font></td>
-        <td width="30%" ><font size="3"><TMPL_VAR TODAY></font></td>
+        <td width="30%" ><TMPL_VAR TODAY></td>
         <td width="0" ><font size="5"><TMPL_VAR USERNAME></font></td>
     </tr>
 </table>
@@ -28,7 +42,7 @@
 <center>
 <table>
 
-    <tr bgcolor="#FFFFFF" >
+    <tr>
         <th>Date</th>
         <th>Name</th>
         <th>Type</th>
@@ -37,27 +51,27 @@
     </tr>
     <TMPL_LOOP NAME=CONTENTS>
         <TMPL_IF NAME="__ODD__">
-            <tr bgcolor="#FFFFFF" >
+            <tr class="one">
         <TMPL_ELSE>
-            <tr bgcolor="#E1EDFB" >
+            <tr class="two">
         </TMPL_IF>
 
-        <td width="0%" ><font size="3" color=""><TMPL_VAR STARTDATE></font></td>
-        <td width="0%" ><font size="3" color=""><TMPL_VAR ASSETNAME></font></td>
-        <td width="0%" ><font size="3" color=""><TMPL_VAR ASSETTYPE></font></td>
-        <td width="0%" align="right" ><font size="3" color=""><TMPL_VAR VALUE></font></td>
-        <td width="0%" ><font size="3" color=""><TMPL_VAR NOTES></font></td>
+        <td class="normal"><TMPL_VAR STARTDATE></td>
+        <td class="normal"><TMPL_VAR ASSETNAME></td>
+        <td class="normal"><TMPL_VAR ASSETTYPE></td>
+        <td class="value"><TMPL_VAR VALUE></td>
+        <td class="normal"><TMPL_VAR NOTES></td>
     </tr>
     </TMPL_LOOP>
-    <tr bgcolor="#FFFFFF" >
+    <tr>
         <td colspan="5" >
             <table cellspacing="1" bgcolor="#FFFFFF" width="100%" valign="top" border="1"></table>
         </td>
     </tr>
 
-    <tr bgcolor="#FFFFFF" >
+    <tr>
         <td colspan="3" ><font size="3" color="">Total Assets: </font></td>
-        <td nowrap align="right"><font size="3" color=""><TMPL_VAR ASSET_BALANCE></font></td>
+        <td><div class="total"><TMPL_VAR ASSET_BALANCE></div></td>
     </tr>
 </table>
 
@@ -104,6 +118,7 @@
         </tr>
     </TMPL_LOOP>
 </table>
+
 </center>
 </body>
 </html>
