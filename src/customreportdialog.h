@@ -17,8 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_CUSTOMREPORTDIALOG_H_
-#define _MM_EX_CUSTOMREPORTDIALOG_H_
+#pragma once
 
 #include "defs.h"
 #include <wx/webview.h>
@@ -64,7 +63,7 @@ private:
     /// Creates the controls and sizers
     void CreateControls();
     void fillControls();
-    void OnOpenReportEvt(wxCommandEvent& event);
+    void OnImportReportEvt(wxCommandEvent& event);
     void openReport(int id = -1);
     void OnSaveReport(wxCommandEvent& event);
     void OnSaveReportAs(wxCommandEvent& event);
@@ -72,9 +71,11 @@ private:
     void OnClose(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
+    void viewControls(bool enable);
     void OnLabelChanged(wxTreeEvent& event);
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
+    bool openFile(const wxString &reportFileName);
     void newReport();
 
     wxTextCtrl* m_fileNameCtrl;
@@ -101,6 +102,4 @@ private:
     int m_report_id;
     wxString m_selectedGroup;
 };
-
-#endif
 

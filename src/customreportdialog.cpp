@@ -22,6 +22,8 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
 #include <wx/stc/stc.h>
+#include <wx/zipstrm.h>
+#include <wx/fs_mem.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // Minimal editor added by Troels K 2008-04-08
@@ -163,7 +165,7 @@ int sourceTextHeight = 200; // Determines height of Source Textbox.
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
 BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
-    EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnOpenReportEvt)
+    EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnImportReportEvt)
     EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnSaveReport)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnSaveReportAs)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
@@ -183,6 +185,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 , m_fileNameCtrl()
 , m_outputHTML()
 {
+    wxFileSystem::AddHandler(new wxMemoryFSHandler);
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(640, 480), style);
 }
@@ -350,21 +353,21 @@ void mmGeneralReportManager::CreateControls()
     buttonPanel->SetSizer(buttonPanelSizer);
 
     //
-    button_Open_ = new wxButton(buttonPanel, wxID_OPEN, _("Open"));
+    button_Open_ = new wxButton(buttonPanel, wxID_OPEN, _("&Import"));
     buttonPanelSizer->Add(button_Open_, flags);
     button_Open_->SetToolTip(_("Locate and load a report file."));
 
-    button_Save_ = new wxButton(buttonPanel, wxID_SAVE, _("Save"));
-    buttonPanelSizer->Add(button_Save_, flags);
-    button_Save_->SetToolTip(_("Save the report to file."));
-
-    button_SaveAs_ = new wxButton(buttonPanel, wxID_SAVEAS, _("Save As..."));
+    button_SaveAs_ = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
     buttonPanelSizer->Add(button_SaveAs_, flags);
-    button_SaveAs_->SetToolTip(_("Save the report to a new file."));
+    button_SaveAs_->SetToolTip(_("Export the report to a new file."));
+
+    button_Save_ = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
+    buttonPanelSizer->Add(button_Save_, flags);
+    button_Save_->SetToolTip(_("Save changes."));
 
     button_Run_ = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
     buttonPanelSizer->Add(button_Run_, flags);
-    button_Run_->SetToolTip(_("Run report."));
+    button_Run_->SetToolTip(_("Run selected report."));
 
     wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE);
     buttonPanelSizer->Add(button_Close, flags);
@@ -372,53 +375,66 @@ void mmGeneralReportManager::CreateControls()
 
 }
 
-void mmGeneralReportManager::OnOpenReportEvt(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
 {
     openReport();
 }
 
 void mmGeneralReportManager::openReport(int id)
 {
-    wxString sScriptFileName = wxFileSelector(_("Load file:")
+    wxString reportFileName = wxFileSelector(_("Load report file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "File(*.html)|*.html"
+        , "File(*.grm)|*.grm"
         , wxFD_FILE_MUST_EXIST);
-    if ( !sScriptFileName.empty() )
+    openFile(reportFileName);
+    //TODO:
+}
+
+bool mmGeneralReportManager::openFile(const wxString &reportFileName)
+{
+    if (!reportFileName.empty())
     {
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        templateText->SetEvtHandlerEnabled(false);
-        wxTextFile reportFile(sScriptFileName);
+        wxTextFile reportFile(reportFileName);
         if (reportFile.Open())
         {
-            while (! reportFile.Eof())
-                templateText->AppendText(reportFile.GetNextLine() + "\n");
-            
-            reportFile.Close();
+            std::auto_ptr<wxZipEntry> entry;
+            wxFFileInputStream in(reportFileName);
+            wxZipInputStream zip(in);
+            while (entry.reset(zip.GetNextEntry()), entry.get() != NULL)
+            {
+                // access meta-data
+                const wxString f = entry->GetName();
+                // read 'zip' to access the entry's data
+                wxLogDebug("%s", f);
+                
+                zip.OpenEntry(*entry.get());
+                if (!zip.CanRead())
+                {
+                    wxLogError("Can not read zip entry '" + f + "'.");
+                    return false;
+                }
 
-            if (id == -1)
-            {
-                MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
-                if (!iData) return;
-                id = iData->get_report_id();
-            }
-            
-            Model_Report::Data * report = Model_Report::instance().get(id);
-            if (report)
-            {
-                report->TEMPLATEPATH = sScriptFileName;
-                Model_Report::instance().save(report);
-                m_fileNameCtrl->ChangeValue(sScriptFileName);
+                wxString textdata;
+                wxStringOutputStream out_stream(&textdata);
+                zip.Read(out_stream);
+  
+                wxLogDebug("%s", textdata);
+                wxMemoryFSHandler* MFSH = new wxMemoryFSHandler;
+                wxFileSystem::AddHandler(MFSH);
+                wxString FileToDelete = MFSH->FindFirst(f);
+                if (!FileToDelete.empty()) wxMemoryFSHandler::RemoveFile(f);
+                wxMemoryFSHandler::AddFileWithMimeType(f, textdata, "text");
             }
         }
         else
         {
-            wxString msg = wxString() << _("Unable to open file.") << sScriptFileName << "\n\n";
+            wxString msg = wxString::Format(_("Unable to open file:\n%s\n\n"), reportFileName);
             wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
+            return false;
         }
-        templateText->SetEvtHandlerEnabled(true);
     }
+    return true;
 }
-
 void mmGeneralReportManager::OnSaveReport(wxCommandEvent& /*event*/)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
@@ -433,14 +449,50 @@ void mmGeneralReportManager::OnSaveReport(wxCommandEvent& /*event*/)
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
         Model_Report::instance().save(report);
-    }
 
-    //TODO: save template
+        wxFileOutputStream output(report->TEMPLATEPATH);
+        wxTextOutputStream text(output);
+        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+        text << templateText->GetValue();
+        output.Close();
+    }
 }
 
 void mmGeneralReportManager::OnSaveReportAs(wxCommandEvent& /*event*/)
 {
-    //TODO:
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    if (!iData) return;
+
+    int id = iData->get_report_id();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
+    {
+        wxString file_name = report->REPORTNAME + ".grm";
+        wxFileDialog dlg(this
+            , _("Choose file to Save As Report")
+            , wxEmptyString
+            , file_name
+            , "GRM File(*.grm)|*.grm"
+            , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+            );
+
+        if (dlg.ShowModal() != wxID_OK)
+            return;
+
+        file_name = dlg.GetPath();
+
+        wxFFileOutputStream out(file_name);
+        wxZipOutputStream zip(out);
+        wxTextOutputStream txt(zip);
+        zip.PutNextEntry("sqlcontent.sql");
+        txt << report->SQLCONTENT;
+        zip.PutNextEntry("luacontent.lua");
+        txt << report->LUACONTENT;
+        zip.PutNextEntry("template.html");
+        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+        txt << templateText->GetValue();
+        //TODO: save all files from VFS handler???
+    }
 }
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
@@ -478,22 +530,27 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     delete customReportMenu;
 }
 
-void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
+void mmGeneralReportManager::viewControls(bool enable)
 {
-    selectedItemId_ = event.GetItem();
-    m_selectedGroup = "";
     MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
     MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUACONTENT);
     MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-    SqlScriptText->ChangeValue("");
-    LuaScriptText->ChangeValue("");
-    m_fileNameCtrl->ChangeValue("");
-    templateText->ChangeValue("");
-    wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-    n->SetSelection(0);
-    button_Run_->Enable(false);
-    button_Save_->Enable(false);
-    button_SaveAs_->Enable(false);
+    button_Run_->Enable(enable);
+    button_Save_->Enable(enable);
+    button_SaveAs_->Enable(enable);
+    if (!enable)
+    {
+        m_selectedGroup = "";
+        SqlScriptText->ChangeValue("");
+        LuaScriptText->ChangeValue("");
+        m_fileNameCtrl->ChangeValue("");
+        templateText->ChangeValue("");
+    }
+}
+void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
+{
+    selectedItemId_ = event.GetItem();
+    viewControls(false);
 
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
@@ -503,6 +560,10 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
+        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUACONTENT);
+        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+
         m_fileNameCtrl->ChangeValue(report->TEMPLATEPATH);
         SqlScriptText->ChangeValue(report->SQLCONTENT);
         SqlScriptText->SetLexerSql();
@@ -525,9 +586,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
             {
                 templateText->AppendText(text.ReadLine() + "\n");
             }
-            button_Run_->Enable(true);
-            button_Save_->Enable(true);
-            button_SaveAs_->Enable(true);
+            viewControls(true);
         }
     }
 }
