@@ -3,6 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MoneyManagerEx - Report</title>
     <style type="text/css">
+    table
+    {
+        width:100%;
+    }
     th
     {
         background-color:green;
@@ -12,7 +16,7 @@
     </style>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000">
-<table cellspacing="1" bgcolor="#FFFFFF" width="100%" valign="left" border="0">
+<table>
     <tr bgcolor="#FFFFFF" >
         <td width="16" ><img src="assets.jpg" /></td>
         <td width="40%" ><font size="5"><TMPL_VAR TITLE></font></td>
@@ -22,7 +26,7 @@
 </table>
 <hr size="2">
 <center>
-<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="0">
+<table>
 
     <tr bgcolor="#FFFFFF" >
         <th>Date</th>
@@ -59,7 +63,7 @@
 
 <hr size="3">
 <tr> <b>Available TMPL_VAR in this report</b></tr>
-<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
+<table>
     <TMPL_LOOP COLUMNS>
         <th><TMPL_VAR COLUMN></th>
     </TMPL_LOOP>
