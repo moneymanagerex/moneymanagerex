@@ -337,9 +337,7 @@ void mmGeneralReportManager::CreateControls()
     editors_notebook->InsertPage(ID_TAB4, out_tab, _("Output"));
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
-    m_outputHTML = new wxHtmlWindow(out_tab, ID_OUTPUT_WIN
-        , wxDefaultPosition, wxDefaultSize
-        , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
+    m_outputHTML = wxWebView::New(out_tab, ID_WEB);
     out_sizer->Add(m_outputHTML, flagsExpand);
 
     /****************************************
@@ -459,7 +457,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         n->SetSelection(ID_TAB4);
         m_outputHTML->ClearBackground();
         mmGeneralReport gr(report);
-        m_outputHTML->SetPage(gr.getHTMLText());
+        m_outputHTML->SetPage(gr.getHTMLText(),"");
     }
 }
 

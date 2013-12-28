@@ -21,6 +21,8 @@
 #define _MM_EX_CUSTOMREPORTDIALOG_H_
 
 #include "defs.h"
+#include <wx/webview.h>
+#include <wx/webviewfshandler.h>
 
 class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog
@@ -48,6 +50,7 @@ private:
         ID_OUTPUT_WIN,
         ID_NOTEBOOK,
         ID_TEMPLATE,
+        ID_WEB,
         ID_TYPELABEL,
         ID_LUACONTENT
     };
@@ -75,7 +78,7 @@ private:
     void newReport();
 
     wxTextCtrl* m_fileNameCtrl;
-    wxHtmlWindow* m_outputHTML;
+    wxWebView* m_outputHTML;
 
     wxButton* button_Open_;
     wxButton* button_Save_;
