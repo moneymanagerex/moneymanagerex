@@ -3,19 +3,17 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MoneyManagerEx - Report</title>
     <style type="text/css">
-    body {background-color:yellow;}
-    table
-    {
-        width:100%;
-    }
+    body {background-color:white;}
+    table {width:95%;background-color:#FFFFFF;}
+    table.hr {width:100%; border:1px solid gray;}
     th
     {
-        background-color:green;
+        background-color:#40BA40;
         color:white;
         text-align:center;
     }
-    tr.one{background-color:yellow;}
-    tr.two{background-color:#FBFF97;}
+    tr{background-color:white;}
+    tr.odd{background-color:#CBF1CB;}
     td.normal
     {
         color:black;
@@ -26,12 +24,13 @@
         color:black;
         text-align:right;
     }    
-    .total { text-align:right;font-style:bold; color:gray;}
+    .total { text-align:right; color:black; }
     </style>
 </head>
 <body>
+<center>
 <table>
-    <tr bgcolor="#FFFFFF" >
+    <tr>
         <td width="16" ><img src="assets.jpg" /></td>
         <td width="40%" ><font size="5"><TMPL_VAR TITLE></font></td>
         <td width="30%" ><TMPL_VAR TODAY></td>
@@ -39,10 +38,9 @@
     </tr>
 </table>
 <hr size="2">
-<center>
-<table>
 
-    <tr>
+<table>
+    <tr class="one">
         <th>Date</th>
         <th>Name</th>
         <th>Type</th>
@@ -50,10 +48,10 @@
         <th>Notes</th>
     </tr>
     <TMPL_LOOP NAME=CONTENTS>
-        <TMPL_IF NAME="__ODD__">
-            <tr class="one">
+        <TMPL_IF __ODD__>
+            <tr>
         <TMPL_ELSE>
-            <tr class="two">
+            <tr class="odd">
         </TMPL_IF>
 
         <td class="normal"><TMPL_VAR STARTDATE></td>
@@ -65,7 +63,7 @@
     </TMPL_LOOP>
     <tr>
         <td colspan="5" >
-            <table cellspacing="1" bgcolor="#FFFFFF" width="100%" valign="top" border="1"></table>
+            <table class="hr"></table>
         </td>
     </tr>
 
@@ -85,7 +83,7 @@
 
 <hr size="3">
 <tr> <b>Errors during the report build</b></tr>
-<table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="1">
+<table>
     <tr>
         <th>ERROR</th>
     </tr>
