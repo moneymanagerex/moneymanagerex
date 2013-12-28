@@ -116,7 +116,7 @@ void StocksListCtrl::OnItemRightClick(wxListEvent& event)
 
 wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
-    if (column == COL_DATE)         return m_stocks[item].PURCHASEDATE;
+    if (column == COL_DATE)         return mmGetDateForDisplay(mmGetStorageStringAsDate(m_stocks[item].PURCHASEDATE));
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
     if (column == COL_NUMBER)       return Model_Stock::NUMSHARES(m_stocks[item]);
     if (column == COL_GAIN_LOSS)    return Model_Currency::toCurrency(getGainLoss(item));
