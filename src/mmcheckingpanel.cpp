@@ -1185,16 +1185,20 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
     else wxASSERT(false);
 
+    bool bVoidTransaction = false;
+    if (status == "V")
+        bVoidTransaction = true;
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
     if (trx)
     {
+        if (trx->STATUS == "V")
+            bVoidTransaction = true;
         m_cp->m_trans[m_selectedIndex].STATUS = status;
         trx->STATUS = status;
         Model_Checking::instance().save(trx);
     }
 
-    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox())
-        || (status == "V" && !showDeletedTransactions_))
+    if ((m_cp->transFilterActive_ && m_cp->transFilterDlg_->getStatusCheckBox()) || bVoidTransaction)
     {
         refreshVisualList(m_cp->m_trans[m_selectedIndex].TRANSID);
     }
