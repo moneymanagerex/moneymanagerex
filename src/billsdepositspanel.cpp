@@ -75,8 +75,9 @@ billsDepositsListCtrl::billsDepositsListCtrl(mmBillsDepositsPanel* cp, wxWindow 
 : mmListCtrl(parent, winid)
 , cp_(cp)
 {
-    m_selected_col = 4;
-    m_asc = true;
+    // load the global variables
+    m_selected_col = Model_Setting::instance().GetIntSetting("BD_SORT_COL", 4);
+    m_asc = Model_Setting::instance().GetBoolSetting("BD_ASC", true);
 }
 
 billsDepositsListCtrl::~billsDepositsListCtrl()
@@ -95,6 +96,9 @@ void billsDepositsListCtrl::OnColClick(wxListEvent& event)
     SetColumn(m_selected_col, item);
 
     m_selected_col = event.GetColumn();
+
+    Model_Setting::instance().Set("BD_ASC", m_asc);
+    Model_Setting::instance().Set("BD_SORT_COL", m_selected_col);
 
     int id = -1;
     if (m_selected_row >= 0) id = cp_->bills_[m_selected_row].BDID;

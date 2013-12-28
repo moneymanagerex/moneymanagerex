@@ -1270,7 +1270,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     g_sortcol = m_sortCol;
 
     setColumnImage(m_sortCol, m_asc ? ICON_ASC : ICON_DESC);
-    Model_Setting::instance().Set("CHECK_ASC", g_asc);
+    Model_Setting::instance().Set("CHECK_ASC", (g_asc ? 1 : 0));
     Model_Setting::instance().Set("CHECK_SORT_COL", g_sortcol);
 
     m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID);

@@ -90,7 +90,11 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
         SetColumnWidth(column.first, col_x);
     }
 
-    initVirtualListControl();
+    // load the global variables
+    m_selected_col = Model_Setting::instance().GetIntSetting("STOCKS_SORT_COL", 0);
+    m_asc = Model_Setting::instance().GetBoolSetting("STOCKS_ASC", true);
+
+    initVirtualListControl(-1, m_selected_col, m_asc);
     if (!m_stocks.empty())
         EnsureVisible(m_stocks.size() - 1);
 
@@ -265,6 +269,9 @@ void StocksListCtrl::OnColClick(wxListEvent& event)
     SetColumn(m_selected_col, item);
 
     m_selected_col = event.GetColumn();
+
+    Model_Setting::instance().Set("STOCKS_ASC", m_asc);
+    Model_Setting::instance().Set("STOCKS_SORT_COL", m_selected_col);
 
     int trx_id = -1;
     if (m_selected_row>=0) trx_id = m_stocks[m_selected_row].STOCKID;

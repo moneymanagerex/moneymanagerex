@@ -65,7 +65,11 @@ END_EVENT_TABLE()
 mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindowID winid)
     : mmListCtrl(parent, winid)
     , cp_(cp)
-{}
+{
+    // load the global variables
+    m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", 0);
+    m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);
+}
 
 void mmAssetsListCtrl::OnItemResize(wxListEvent& event)
 {
@@ -246,6 +250,9 @@ void mmAssetsListCtrl::OnColClick(wxListEvent& event)
     item.SetImage(m_asc ? 8 : 7);
     SetColumn(m_selected_col, item);
 
+    Model_Setting::instance().Set("ASSETS_ASC", m_asc);
+    Model_Setting::instance().Set("ASSETS_SORT_COL", m_selected_col);
+
     int trx_id = -1;
     if (m_selected_row>=0) trx_id = cp_->m_assets[m_selected_row].ASSETID;
 
@@ -288,7 +295,7 @@ bool mmAssetsPanel::Create(wxWindow *parent, wxWindowID winid, const wxPoint &po
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    initVirtualListControl();
+    initVirtualListControl(-1, m_listCtrlAssets->m_selected_col, m_listCtrlAssets->m_asc);
     if (!this->m_assets.empty())
         m_listCtrlAssets->EnsureVisible(this->m_assets.size() - 1);
 
