@@ -48,8 +48,8 @@ void CurrencyTest::formatDoubleToCurrency()
 	double value = 0.0099;
 
     wxString s = Model_Currency::toString(value, 0);
-    CPPUNIT_ASSERT(s == wxT("0.0"));
+    CPPUNIT_ASSERT(s == wxT("0.01"));
 
     s = Model_Currency::toString(-value, 0);
-    CPPUNIT_ASSERT(s == wxT("-0.0"));
+    CPPUNIT_ASSERT(s == wxT("-0.01"));
 }
