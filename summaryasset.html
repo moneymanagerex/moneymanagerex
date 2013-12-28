@@ -1,11 +1,20 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MoneyManagerEx - Report</title>
+    <style type="text/css">
+    th
+    {
+        background-color:green;
+        color:white;
+        text-align:center;
+    }
+    </style>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" link="#0000cc" vlink="#551a8b" alink="#ff0000">
 <table cellspacing="1" bgcolor="#FFFFFF" width="100%" valign="left" border="0">
     <tr bgcolor="#FFFFFF" >
+        <td width="16" ><img src="assets.jpg" /></td>
         <td width="40%" ><font size="5"><TMPL_VAR TITLE></font></td>
         <td width="30%" ><font size="3"><TMPL_VAR TODAY></font></td>
         <td width="0" ><font size="5"><TMPL_VAR USERNAME></font></td>
@@ -16,11 +25,11 @@
 <table cellspacing="1" bgcolor="#FFFFFF" width="95%" valign="left" border="0">
 
     <tr bgcolor="#FFFFFF" >
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Date</font></th>
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Name</font></th>
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Type</font></th>
-        <th align="right" valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Value</font></th>
-        <th align="left"  valign="center" bgcolor="#d5d6de" colspan="0"><font size="3" color="">Notes</font></th>
+        <th>Date</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Value</th>
+        <th>Notes</th>
     </tr>
     <TMPL_LOOP NAME=CONTENTS>
         <TMPL_IF NAME="__ODD__">
