@@ -44,7 +44,6 @@ private:
         ID_TAB3,
         ID_TAB4,
         ID_NEW1 = wxID_HIGHEST + 500,
-        ID_NEW2,
         ID_DELETE,
         ID_OUTPUT_WIN,
         ID_NOTEBOOK,
@@ -64,9 +63,11 @@ private:
     void CreateControls();
     void fillControls();
     void OnImportReportEvt(wxCommandEvent& event);
-    void openReport(int id = -1);
-    void OnSaveReport(wxCommandEvent& event);
-    void OnSaveReportAs(wxCommandEvent& event);
+    void openReport();
+    bool openZipFile(const wxString &reportFileName);
+    void OnUpdateReport(wxCommandEvent& event);
+    wxString openTemplate();
+    void OnExportReport(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
@@ -75,7 +76,6 @@ private:
     void OnLabelChanged(wxTreeEvent& event);
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
-    bool openFile(const wxString &reportFileName);
     void newReport();
 
     wxTextCtrl* m_fileNameCtrl;

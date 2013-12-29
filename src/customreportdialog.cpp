@@ -166,8 +166,8 @@ IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
 BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_OPEN, mmGeneralReportManager::OnImportReportEvt)
-    EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnSaveReport)
-    EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnSaveReportAs)
+    EVT_BUTTON(wxID_SAVE, mmGeneralReportManager::OnUpdateReport)
+    EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnExportReport)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
@@ -380,17 +380,17 @@ void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
     openReport();
 }
 
-void mmGeneralReportManager::openReport(int id)
+void mmGeneralReportManager::openReport()
 {
     wxString reportFileName = wxFileSelector(_("Load report file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
         , "File(*.grm)|*.grm"
         , wxFD_FILE_MUST_EXIST);
-    openFile(reportFileName);
-    //TODO:
+    openZipFile(reportFileName);
+    //TODO: 
 }
 
-bool mmGeneralReportManager::openFile(const wxString &reportFileName)
+bool mmGeneralReportManager::openZipFile(const wxString &reportFileName)
 {
     if (!reportFileName.empty())
     {
@@ -435,7 +435,7 @@ bool mmGeneralReportManager::openFile(const wxString &reportFileName)
     }
     return true;
 }
-void mmGeneralReportManager::OnSaveReport(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
     if (!iData) return;
@@ -448,17 +448,18 @@ void mmGeneralReportManager::OnSaveReport(wxCommandEvent& /*event*/)
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUACONTENT);
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
-        Model_Report::instance().save(report);
 
         wxFileOutputStream output(report->TEMPLATEPATH);
         wxTextOutputStream text(output);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
         text << templateText->GetValue();
         output.Close();
+
+        Model_Report::instance().save(report);
     }
 }
 
-void mmGeneralReportManager::OnSaveReportAs(wxCommandEvent& /*event*/)
+void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
     if (!iData) return;
@@ -586,8 +587,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
             {
                 templateText->AppendText(text.ReadLine() + "\n");
             }
-            viewControls(true);
         }
+        viewControls(true);
     }
 }
 
@@ -641,7 +642,7 @@ bool mmGeneralReportManager::DeleteReport(int id)
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
-    if (id == ID_NEW1 || id == ID_NEW2)
+    if (id == ID_NEW1)
     {
         newReport();
     }
@@ -687,9 +688,38 @@ void mmGeneralReportManager::newReport()
         "function complete(result)\n"
             "\tresult:set('ASSET_BALANCE', total_balance);\n"
         "end\n";
-    report->TEMPLATEPATH = "summaryasset.html";
-    Model_Report::instance().save(report);
-    openReport(report->REPORTID);
+    report->TEMPLATEPATH = openTemplate();
+    if (!report->TEMPLATEPATH.empty())
+        Model_Report::instance().save(report);
+}
+
+wxString mmGeneralReportManager::openTemplate()
+{
+    wxString sScriptFileName = wxFileSelector(_("Load file:")
+        , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
+        , "File(*.html)|*.html"
+        , wxFD_FILE_MUST_EXIST);
+    if (!sScriptFileName.empty())
+    {
+        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+        templateText->SetEvtHandlerEnabled(false);
+        wxTextFile reportFile(sScriptFileName);
+        if (reportFile.Open())
+        {
+            while (!reportFile.Eof())
+                templateText->AppendText(reportFile.GetNextLine() + "\n");
+
+            reportFile.Close();
+            m_fileNameCtrl->ChangeValue(sScriptFileName);
+        }
+        else
+        {
+            wxString msg = wxString() << _("Unable to open file.") << sScriptFileName << "\n\n";
+            wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
+        }
+        templateText->SetEvtHandlerEnabled(true);
+    }
+    return sScriptFileName;
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
