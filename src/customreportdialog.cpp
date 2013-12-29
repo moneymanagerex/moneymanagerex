@@ -24,6 +24,7 @@
 #include <wx/stc/stc.h>
 #include <wx/zipstrm.h>
 #include <wx/fs_mem.h>
+#include <memory>
 
 /////////////////////////////////////////////////////////////////////////////
 // Minimal editor added by Troels K 2008-04-08
