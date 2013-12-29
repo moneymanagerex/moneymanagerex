@@ -390,9 +390,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title,
 
     /* Setup Printer */
     printer_.reset(new wxHtmlEasyPrinting(mmex::getProgramName(), this));
-    wxString printHeaderBase = mmex::getProgramName();
-    printer_-> SetHeader( printHeaderBase + "(@PAGENUM@/@PAGESCNT@<hr>", wxPAGE_ALL);
-
+    printer_->SetFooter("<center>@PAGENUM@/@PAGESCNT@</center>", wxPAGE_ALL);
     restorePrinterValues();
 
     // decide if we need to show app start dialog
@@ -3149,9 +3147,9 @@ void mmGUIFrame::restorePrinterValues()
 {
     // Startup Default Settings
     int leftMargin      = Model_Setting::instance().GetIntSetting("PRINTER_LEFT_MARGIN", 20);
-    int rightMargin     = Model_Setting::instance().GetIntSetting("PRINTER_RIGHT_MARGIN", 20);
-    int topMargin       = Model_Setting::instance().GetIntSetting("PRINTER_TOP_MARGIN", 20);
-    int bottomMargin    = Model_Setting::instance().GetIntSetting("PRINTER_BOTTOM_MARGIN", 20);
+    int rightMargin     = Model_Setting::instance().GetIntSetting("PRINTER_RIGHT_MARGIN", 10);
+    int topMargin       = Model_Setting::instance().GetIntSetting("PRINTER_TOP_MARGIN", 10);
+    int bottomMargin    = Model_Setting::instance().GetIntSetting("PRINTER_BOTTOM_MARGIN", 10);
     int pageOrientation = Model_Setting::instance().GetIntSetting("PRINTER_PAGE_ORIENTATION", wxPORTRAIT);
     int paperID         = Model_Setting::instance().GetIntSetting("PRINTER_PAGE_ID", wxPAPER_A4);
 
@@ -3165,7 +3163,7 @@ void mmGUIFrame::restorePrinterValues()
     wxPrintData* printerData = printer_->GetPrintData();
     printerData->SetOrientation((wxPrintOrientation)pageOrientation);
 
-    printerData->SetPaperId( (wxPaperSize)paperID );
+    printerData->SetPaperId((wxPaperSize) paperID);
 }
 
 void mmGUIFrame::OnPrintPageSetup(wxCommandEvent& WXUNUSED(event))
