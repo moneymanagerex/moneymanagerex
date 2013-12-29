@@ -279,6 +279,9 @@
     <ClCompile Include="..\..\src\wizard_newaccount.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\minimal_editor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -606,6 +609,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\wizard_newaccount.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\minimal_editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
