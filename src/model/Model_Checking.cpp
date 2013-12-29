@@ -28,6 +28,15 @@ const std::vector<std::pair<Model_Checking::TYPE, wxString> > Model_Checking::TY
     , std::make_pair(Model_Checking::TRANSFER, wxTRANSLATE("Transfer"))
 };
 
+const std::vector<std::pair<Model_Checking::STATUS_ENUM, wxString> > Model_Checking::STATUS_ENUM_CHOICES =
+{
+    std::make_pair(Model_Checking::NONE, wxTRANSLATE("None"))
+    , std::make_pair(Model_Checking::RECONCILED, wxTRANSLATE("Reconciled"))
+    , std::make_pair(Model_Checking::VOID_, wxTRANSLATE("Void"))
+    , std::make_pair(Model_Checking::FOLLOWUP, wxTRANSLATE("Follow up"))
+    , std::make_pair(Model_Checking::DUPLICATE_, wxTRANSLATE("Duplicate"))
+};
+
 Model_Checking::Model_Checking(): Model<DB_Table_CHECKINGACCOUNT_V1>()
 {
 }
@@ -39,7 +48,6 @@ Model_Checking::~Model_Checking()
 wxArrayString Model_Checking::all_type()
 {
     wxArrayString types;
-    // keep the sequence with TYPE
     for (const auto& r : TYPE_CHOICES) types.Add(r.second);
 
     return types;
@@ -48,12 +56,7 @@ wxArrayString Model_Checking::all_type()
 wxArrayString Model_Checking::all_status()
 {
     wxArrayString status;
-    // keep the sequence with STATUS
-    status.Add(wxTRANSLATE("None"));
-    status.Add(wxTRANSLATE("Reconciled"));
-    status.Add(wxTRANSLATE("Void"));
-    status.Add(wxTRANSLATE("Follow up"));
-    status.Add(wxTRANSLATE("Duplicate"));
+    for (const auto& r : STATUS_ENUM_CHOICES) status.Add(r.second);
 
     return status;
 }
