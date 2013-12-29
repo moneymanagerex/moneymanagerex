@@ -496,7 +496,7 @@ wxString mmBillsDepositsPanel::GetFrequency(const Model_Billsdeposits::Data* ite
     if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
         repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-    wxString text = BILLSDEPOSITS_REPEATS[repeats];
+    wxString text = wxGetTranslation(BILLSDEPOSITS_REPEATS[repeats]);
     if (repeats > 10 && repeats < 15)
         text = wxString::Format(text, (wxString() << item->NUMOCCURRENCES));
     return text;
