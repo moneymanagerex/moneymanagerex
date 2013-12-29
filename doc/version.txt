@@ -1,7 +1,10 @@
 Version History of Money Manager Ex
 
-1.0.0.0 (TBA) (includes 0.9.9.2 changes)
+1.0.1.0 (TBA)
 
+- Reports
+
+1.0.0.0 (December 28, 2013) (includes 0.9.9.2 changes)
 - Custom Reports has been temporarily removed  (under construction). Will be introduced in next release.
 - Account balance in CSV export [feature-requests:#136] (partial implementation)
 - Proxy server settings [feature-requests:#181]

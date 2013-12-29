@@ -89,7 +89,7 @@ wxString mmex::getProgramVersion()
 #endif
 
     revision.Trim();
-    return wxString::Format("1.0.0.0  %s", revision);
+    return wxString::Format("1.0.1.0  %s", revision);
 }
 //----------------------------------------------------------------------------
 wxString mmex::getProgramCopyright()
