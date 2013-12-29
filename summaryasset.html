@@ -26,12 +26,20 @@
     }    
     .total { text-align:right; color:black; }
     </style>
+    <SCRIPT>
+        function convertDate(str) {
+            var date = new Date(str);
+            return ('0' + date.getDate()).slice(-2) + '.' +
+                ('0' + (date.getMonth() + 1)).slice(-2) + '.' + 
+                date.getFullYear()
+        }
+    </SCRIPT>
 </head>
 <body>
 <center>
 <table>
     <tr>
-        <td width="16" ><img src="assets.jpg" /></td>
+        <td width="16" ></td>
         <td width="40%" ><font size="5"><TMPL_VAR TITLE></font></td>
         <td width="30%" ><TMPL_VAR TODAY></td>
         <td width="0" ><font size="5"><TMPL_VAR USERNAME></font></td>
@@ -54,7 +62,9 @@
             <tr class="odd">
         </TMPL_IF>
 
-        <td class="normal"><TMPL_VAR STARTDATE></td>
+        <td class="normal">
+            <SCRIPT>document.write(convertDate("<TMPL_VAR STARTDATE>"));</SCRIPT>
+        </td>
         <td class="normal"><TMPL_VAR ASSETNAME></td>
         <td class="normal"><TMPL_VAR ASSETTYPE></td>
         <td class="value"><TMPL_VAR VALUE></td>
@@ -120,3 +130,4 @@
 </center>
 </body>
 </html>
+
