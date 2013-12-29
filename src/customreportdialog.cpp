@@ -256,42 +256,52 @@ void mmGeneralReportManager::openReport()
 
     if (reportFileName.empty()) return;
 
-    wxString sql, lua, html;
-    openZipFile(reportFileName, sql, lua, html);
+    wxString sql, lua, htt, readme;
+    openZipFile(reportFileName, sql, lua, htt, readme);
     Model_Report::Data* report = 0;
     Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(reportFileName));
     if (reports.empty())
     {
-        wxString file_name = reportFileName + ".html";
+        wxFileName fn(reportFileName);
+        reportFileName = fn.FileName(reportFileName).GetName();
         wxFileDialog dlg(this
             , _("Choose file to Save As HTML Template")
             , wxEmptyString
-            , file_name
-            , "HTML File(*.html)|*.html"
+            , reportFileName + ".htt"
+            , "HTML File(*.htt)|*.htt"
             , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
             );
 
         if (dlg.ShowModal() != wxID_OK)
             return;
 
-        file_name = dlg.GetPath();
-        wxFileOutputStream output(file_name);
+        wxString file_path = dlg.GetPath();
+        wxFileOutputStream output(file_path);
         wxTextOutputStream text(output);
-        text << html;
+        text << htt;
         output.Close();
 
         report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
-        report->REPORTNAME = dlg.GetFilename();
+        report->REPORTNAME = reportFileName;
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
-        report->TEMPLATEPATH = file_name;
+        report->TEMPLATEPATH = file_path;
         if (!report->TEMPLATEPATH.empty()) Model_Report::instance().save(report);
+    }
+
+    if (!readme.empty())
+    {
+        wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+        n->SetSelection(ID_TAB4);
+        m_outputHTML->ClearBackground();
+        m_outputHTML->SetPage(readme, "readme");
     }
     fillControls();
 }
 
-bool mmGeneralReportManager::openZipFile(const wxString &reportFileName, wxString &sql, wxString &lua, wxString &html)
+bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
+    , wxString &sql, wxString &lua, wxString &htt, wxString &readme)
 {
     if (!reportFileName.empty())
     {
@@ -325,8 +335,10 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName, wxStrin
                     sql = textdata;
                 else if (f.EndsWith(".lua"))
                     lua = textdata;
-                else if (f.EndsWith(".html"))
-                    html = textdata;
+                else if (f.EndsWith(".htt"))
+                    htt = textdata;
+                else if (f.StartsWith("readme"))
+                    readme << textdata;
                 else
                     wxASSERT(false);
                 wxMemoryFSHandler* MFSH = new wxMemoryFSHandler;
