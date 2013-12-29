@@ -386,11 +386,45 @@ void mmGeneralReportManager::openReport()
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
         , "File(*.grm)|*.grm"
         , wxFD_FILE_MUST_EXIST);
-    openZipFile(reportFileName);
-    //TODO: 
+
+    if (reportFileName.empty()) return;
+
+    wxString sql, lua, html;
+    openZipFile(reportFileName, sql, lua, html);
+    Model_Report::Data* report = 0;
+    Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(reportFileName));
+    if (reports.empty())
+    {
+        wxString file_name = reportFileName + ".html";
+        wxFileDialog dlg(this
+            , _("Choose file to Save As HTML Template")
+            , wxEmptyString
+            , file_name
+            , "HTML File(*.html)|*.html"
+            , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+            );
+
+        if (dlg.ShowModal() != wxID_OK)
+            return;
+
+        file_name = dlg.GetPath();
+        wxFileOutputStream output(file_name);
+        wxTextOutputStream text(output);
+        text << html;
+        output.Close();
+
+        report = Model_Report::instance().create();
+        report->GROUPNAME = m_selectedGroup;
+        report->REPORTNAME = dlg.GetFilename();
+        report->SQLCONTENT = sql;
+        report->LUACONTENT = lua;
+        report->TEMPLATEPATH = file_name;
+        if (!report->TEMPLATEPATH.empty()) Model_Report::instance().save(report);
+    }
+    fillControls();
 }
 
-bool mmGeneralReportManager::openZipFile(const wxString &reportFileName)
+bool mmGeneralReportManager::openZipFile(const wxString &reportFileName, wxString &sql, wxString &lua, wxString &html)
 {
     if (!reportFileName.empty())
     {
@@ -406,7 +440,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName)
                 const wxString f = entry->GetName();
                 // read 'zip' to access the entry's data
                 wxLogDebug("%s", f);
-                
+
                 zip.OpenEntry(*entry.get());
                 if (!zip.CanRead())
                 {
@@ -417,8 +451,17 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName)
                 wxString textdata;
                 wxStringOutputStream out_stream(&textdata);
                 zip.Read(out_stream);
-  
+
                 wxLogDebug("%s", textdata);
+
+                if (f.EndsWith(".sql"))
+                    sql = textdata;
+                else if (f.EndsWith(".lua"))
+                    lua = textdata;
+                else if (f.EndsWith(".html"))
+                    html = textdata;
+                else
+                    wxASSERT(false);
                 wxMemoryFSHandler* MFSH = new wxMemoryFSHandler;
                 wxFileSystem::AddHandler(MFSH);
                 wxString FileToDelete = MFSH->FindFirst(f);

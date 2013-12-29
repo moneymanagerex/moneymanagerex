@@ -64,7 +64,7 @@ private:
     void fillControls();
     void OnImportReportEvt(wxCommandEvent& event);
     void openReport();
-    bool openZipFile(const wxString &reportFileName);
+    bool openZipFile(const wxString &reportFileName, wxString &sql, wxString &lua, wxString &html);
     void OnUpdateReport(wxCommandEvent& event);
     wxString openTemplate();
     void OnExportReport(wxCommandEvent& event);
