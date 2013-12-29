@@ -33,7 +33,7 @@
 enum {
     ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1000,
     ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNAME,
-    ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER,
+    ID_ACCTNUMBER,
     ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT,
     ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE,
     ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT,
@@ -108,9 +108,8 @@ void mmNewAcctDialog::fillControls()
 
     textAccountName_->SetValue(m_account->ACCOUNTNAME);
 
-    wxTextCtrl* textCtrl;
-    textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER);
-    textCtrl->SetValue(m_account->ACCOUNTNAME);
+    wxTextCtrl* textCtrl = (wxTextCtrl*)FindWindow(ID_ACCTNUMBER);
+    textCtrl->SetValue(m_account->ACCOUNTNUM);
 
     textCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
     textCtrl->SetValue(m_account->HELDAT);
@@ -241,7 +240,7 @@ void mmNewAcctDialog::CreateControls()
         _("Account Number:")), flags);
 
     wxTextCtrl* itemTextCtrl6 = new wxTextCtrl(others_tab
-        , ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER, "", wxDefaultPosition, wxDefaultSize);
+        , ID_ACCTNUMBER, "", wxDefaultPosition, wxDefaultSize);
     grid_sizer2->Add(itemTextCtrl6, flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC, _("Held At:")), flags);
@@ -357,7 +356,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     if (acctType == Model_Account::TERM)
         this->termAccount_ = true;
 
-    wxTextCtrl* textCtrlAcctNumber = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNUMBER);
+    wxTextCtrl* textCtrlAcctNumber = (wxTextCtrl*)FindWindow(ID_ACCTNUMBER);
     wxTextCtrl* textCtrlHeldAt = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT);
     wxTextCtrl* textCtrlWebsite = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE);
     wxTextCtrl* textCtrlContact = (wxTextCtrl*)FindWindow(ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT);
