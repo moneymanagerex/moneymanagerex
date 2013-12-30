@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>MoneyManagerEx - Report</title>
+    <style type="text/css">
+    body {background-color:white;}
+    table {width:95%;background-color:#FFFFFF;}
+    table.hr {width:100%; border:1px solid gray;}
+    th
+    {
+        background-color:#40BA40;
+        color:white;
+        text-align:center;
+    }
+
+    tr{background-color:white;}
+    tr.odd{background-color:#CBF1CB;}
+    td.normal
+    {
+        color:black;
+        text-align:left;
+    }    
+    td.value
+    {
+        color:black;
+        text-align:right;
+    }    
+    .total { text-align:right; color:black; }
+    </style>
+    <SCRIPT>
+        function convertDate(str) {
+            var date = new Date(str.replace("-", "/"));
+            return ('0' + date.getDate()).slice(-2) + '.' +
+                ('0' + (date.getMonth() + 1)).slice(-2) + '.' + 
+                date.getFullYear();
+        };
+        function printDate() {
+            var currentdate = new Date(); 
+            var datetime = ('0'+currentdate.getDate()).slice(-2) + "/"
+                + ('0'+(currentdate.getMonth()+1)).slice(-2)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                +  ('0'+currentdate.getHours()).slice(-2) + ":"  
+                +  ('0'+currentdate.getMinutes()).slice(-2) + ":" 
+                +  ('0'+currentdate.getSeconds()).slice(-2)
+            return datetime;
+        }
+    </SCRIPT>
+
+</head>
+<body>
+<center>
+<table>
+    <tr>
+        <td width="20%" ><TMPL_VAR USERNAME></td>
+        <td width="60%" ><font size="5">Assets</font></td>
+        <td width="20%" ><SCRIPT>document.write(printDate());</SCRIPT></td>
+    </tr>
+</table>
+
+<hr size="2">
+<table>
+    <tr class="one">
+        <th>Date</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Value</th>
+        <th>Notes</th>
+    </tr>
+    <TMPL_LOOP NAME=CONTENTS>
+        <TMPL_IF __ODD__>
+            <tr>
+        <TMPL_ELSE>
+            <tr class="odd">
+        </TMPL_IF>
+
+        <td class="normal">
+            <SCRIPT>document.write(convertDate("<TMPL_VAR STARTDATE>"));</SCRIPT>
+        </td>
+        <td class="normal"><TMPL_VAR ASSETNAME></td>
+        <td class="normal"><TMPL_VAR ASSETTYPE></td>
+        <td class="value"><TMPL_VAR VALUE></td>
+        <td class="normal"><TMPL_VAR NOTES></td>
+    </tr>
+    </TMPL_LOOP>
+    <tr>
+        <td colspan="5" >
+            <table class="hr"></table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" ><font size="3" color="">Total Assets: </font></td>
+        <td><div class="total"><TMPL_VAR ASSET_BALANCE></div></td>
+    </tr>
+
+</table>
+</center>
+</body>
+</html>
