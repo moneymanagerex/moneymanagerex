@@ -25,6 +25,9 @@
 
     <exe id="mmex" template="mmex_common">
 
+        <if cond="FORMAT in ['msvc', 'msvs2005prj','msvs2008prj']">
+            <ldflags>/SUBSYSTEM:WINDOWS,5.1</ldflags>
+        </if>
         <app-type>gui</app-type>
         <win32-res>resources/mmex.rc</win32-res>
 

@@ -123,6 +123,7 @@ MMEX_OBJECTS =  \
 	mmex_filtertransdialog.obj \
 	mmex_images_list.obj \
 	mmex_maincurrencydialog.obj \
+	mmex_minimal_editor.obj \
 	mmex_mmCalculator.obj \
 	mmex_mmOption.obj \
 	mmex_mmcheckingpanel.obj \
@@ -493,7 +494,7 @@ lua.lib: $(LUA_OBJECTS)
 <<
 
 mmex.exe: $(MMEX_OBJECTS) wxsqlite.lib lua.lib mmex_resources_mmex.res
-	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG) /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_CPU_SUF_FILENAMES)$(____mmex_LIB_SUF_FILENAMES)  $(__DEBUGINFO_39) /pdb:"mmex.pdb" $(__DEBUGINFO_43) /SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1 $(__mmex_LINK_FLAGS) /SUBSYSTEM:WINDOWS $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  /LIBPATH:$(WX_DIR)$(__WXLIBPATH_FILENAMES_3) $(WXMACHINE_FLAG) /LIBPATH:$(WX_DIR)\lib\vc$(____mmex_CPU_SUF_FILENAMES)$(____mmex_LIB_SUF_FILENAMES)  $(__DEBUGINFO_39) /pdb:"mmex.pdb" $(__DEBUGINFO_43) /SAFESEH:NO $(__mmex_LINK_FLAGS) /SUBSYSTEM:WINDOWS,5.1 /SUBSYSTEM:WINDOWS $(LDFLAGS) @<<
 	$(MMEX_OBJECTS) $(MMEX_RESOURCES)  wxsqlite.lib lua.lib $(__WXLIB_CORE_NAME_p) $(__WXLIB_QA_NAME_p) $(__WXLIB_NET_NAME_p) $(__WXLIB_HTML_NAME_p) $(__WXLIB_XML_NAME_p) $(__WXLIB_AUI_NAME_p) $(__WXLIB_ADV_NAME_p) $(__WXLIB_STC_NAME_p) wxscintilla$(WX3RDPARTYLIBPOSTFIX).lib $(__WXLIB_WEBVIEW_NAME_p) $(__WXLIB_BASE_NAME_p) wxtiff$(WX3RDPARTYLIBPOSTFIX).lib wxjpeg$(WX3RDPARTYLIBPOSTFIX).lib wxpng$(WX3RDPARTYLIBPOSTFIX).lib wxzlib$(WX3RDPARTYLIBPOSTFIX).lib wxregex$(WXLIBPOSTFIX).lib wxexpat$(WX3RDPARTYLIBPOSTFIX).lib kernel32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib winmm.lib shell32.lib comctl32.lib ole32.lib oleaut32.lib uuid.lib rpcrt4.lib advapi32.lib wsock32.lib oleacc.lib
 <<
 	mt.exe -manifest ".\mmex.exe.manifest" -outputresource:".\mmex.exe";1
@@ -684,6 +685,9 @@ mmex_images_list.obj: ..\..\src\images_list.cpp
 
 mmex_maincurrencydialog.obj: ..\..\src\maincurrencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\maincurrencydialog.cpp
+
+mmex_minimal_editor.obj: ..\..\src\minimal_editor.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\minimal_editor.cpp
 
 mmex_mmCalculator.obj: ..\..\src\mmCalculator.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmCalculator.cpp

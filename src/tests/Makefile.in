@@ -166,6 +166,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_filtertransdialog.o \
 	mmex_tests_images_list.o \
 	mmex_tests_maincurrencydialog.o \
+	mmex_tests_minimal_editor.o \
 	mmex_tests_mmCalculator.o \
 	mmex_tests_mmOption.o \
 	mmex_tests_mmcheckingpanel.o \
@@ -234,6 +235,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
+	mmex_tests_test_model_currency.o \
 	$(__mmex_tests___win32rc)
 
 ### Conditionally set variables: ###
@@ -603,6 +605,9 @@ mmex_tests_images_list.o: $(srcdir)/../../src/images_list.cpp
 mmex_tests_maincurrencydialog.o: $(srcdir)/../../src/maincurrencydialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/maincurrencydialog.cpp
 
+mmex_tests_minimal_editor.o: $(srcdir)/../../src/minimal_editor.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/minimal_editor.cpp
+
 mmex_tests_mmCalculator.o: $(srcdir)/../../src/mmCalculator.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/mmCalculator.cpp
 
@@ -806,6 +811,9 @@ mmex_tests_currency_test.o: $(srcdir)/../../src/tests/currency_test.cpp
 
 mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
+
+mmex_tests_test_model_currency.o: $(srcdir)/../../src/tests/test_model_currency.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_model_currency.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
 	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd --include-dir $(srcdir)/../../3rd/LuaGlue/include --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include

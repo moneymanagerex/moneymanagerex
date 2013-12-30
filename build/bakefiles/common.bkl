@@ -126,7 +126,7 @@
 
         <if cond="FORMAT in ['msvc', 'msvs2005prj','msvs2008prj']">
           <cppflags>/D_CRT_SECURE_NO_WARNINGS</cppflags>
-          <ldflags>/SAFESEH:NO /SUBSYSTEM:WINDOWS,5.1</ldflags>
+          <ldflags>/SAFESEH:NO</ldflags>
         </if>
 
     </template>

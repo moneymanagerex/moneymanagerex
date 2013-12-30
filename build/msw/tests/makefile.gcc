@@ -151,6 +151,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_filtertransdialog.o \
 	mmex_tests_images_list.o \
 	mmex_tests_maincurrencydialog.o \
+	mmex_tests_minimal_editor.o \
 	mmex_tests_mmCalculator.o \
 	mmex_tests_mmOption.o \
 	mmex_tests_mmcheckingpanel.o \
@@ -219,6 +220,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_html_template.o \
 	mmex_tests_currency_test.o \
 	mmex_tests_mmex_tests.o \
+	mmex_tests_test_model_currency.o \
 	mmex_tests_mmex_tests_rc.o
 
 ### Conditionally set variables: ###
@@ -697,6 +699,9 @@ mmex_tests_images_list.o: ../../../src/images_list.cpp
 mmex_tests_maincurrencydialog.o: ../../../src/maincurrencydialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_minimal_editor.o: ../../../src/minimal_editor.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_mmCalculator.o: ../../../src/mmCalculator.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -899,6 +904,9 @@ mmex_tests_currency_test.o: ../../../src/tests/currency_test.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_model_currency.o: ../../../src/tests/test_model_currency.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
