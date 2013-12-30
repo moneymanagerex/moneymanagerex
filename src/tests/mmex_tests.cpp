@@ -1,5 +1,6 @@
 /*******************************************************
 Copyright (C) 2009 VaDiM
+Copyright (C) 2013 James Higley
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -57,7 +58,11 @@ int main(int /*argc*/, char const* /*argv*/[])
 
 		// Print test in a compiler compatible format.
 		CPPUNIT_NS::CompilerOutputter outputter( &result, CPPUNIT_NS::stdCOut() );
-		outputter.write(); 
+		outputter.write();
+
+        // Pause command window. Allow user to review results from Windows and/or IDE
+        std::cout << "\nPress ENTER to continue... ";
+        std::cin.get();
 	}
 	catch ( std::invalid_argument &e )  // Test path not resolved
 	{

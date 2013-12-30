@@ -113,9 +113,8 @@ wxString Model_Currency::os_group_separator()
     return sys_thousand_separator;
 }
 
-wxString Model_Currency::toString(double value, const Data* currency)
+wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    int precision = 2;
     int style = wxNumberFormatter::Style_WithThousandsSep;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
     if (currency)
