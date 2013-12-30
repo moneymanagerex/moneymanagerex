@@ -5,7 +5,6 @@
     <style type="text/css">
     body {background-color:white;}
     table {width:95%;background-color:#FFFFFF;}
-    table.hr {width:100%; border:1px solid gray;}
     th
     {
         background-color:#40BA40;
@@ -84,7 +83,7 @@
     </TMPL_LOOP>
     <tr>
         <td colspan="5" >
-            <table class="hr"></table>
+            <hr>
         </td>
     </tr>
 
