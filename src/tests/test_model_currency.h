@@ -52,4 +52,5 @@ private:
 
     wxString test_db_filename;
     wxSharedPtr<wxSQLite3Database> m_test_db;
+    wxLocale locale_;
 };

@@ -95,7 +95,10 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
 
 wxString Model_Currency::toCurrency(double value, const Data* currency)
 {
-    wxString d2s = toString(value, currency);
+    int precision = 2;
+    if (currency)
+        precision = Model_Currency::precision(currency);
+    wxString d2s = toString(value, currency, precision);
     if (currency)
     {
         d2s.Prepend(currency->PFX_SYMBOL);
@@ -119,10 +122,11 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     wxString s = wxNumberFormatter::ToString(value, precision, style);
     if (currency)
     {
-        precision = Model_Currency::precision(currency);
         if (!currency->GROUP_SEPARATOR.empty()) style = wxNumberFormatter::Style_WithThousandsSep;
         s.Replace(wxNumberFormatter::GetDecimalSeparator(), "/");
-        s.Replace(os_group_separator(), "|");
+        wxString group_seperator = os_group_separator();
+        if (!group_seperator.IsEmpty())
+            s.Replace(group_seperator, "|");
         s.Replace("|", currency->GROUP_SEPARATOR);
         s.Replace("/", currency->DECIMAL_POINT);
     }

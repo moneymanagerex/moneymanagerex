@@ -33,6 +33,7 @@ Test_Model_Currency::Test_Model_Currency()
 {
     instance_count++;
     test_db_filename = "cppunit_test_database.mmb";
+    locale_.Init(wxLANGUAGE_ENGLISH);
 }
 
 Test_Model_Currency::~Test_Model_Currency()
@@ -92,6 +93,7 @@ void Test_Model_Currency::test_Currency_AUD()
     CPPUNIT_ASSERT(value == "10,003.14");
 
     au_record.PFX_SYMBOL = "$";
+    au_record.SCALE = 100;
     au_record.save(m_test_db.get());
 
     value = currency.fromString("$1,003.1416", &au_record);
@@ -102,6 +104,9 @@ void Test_Model_Currency::test_Currency_AUD()
 
     value = currency.toCurrency(1003.14, &au_record);
     CPPUNIT_ASSERT(value == "AU $1,003.14");
+
+    au_record.SCALE = 10000;
+    au_record.save(m_test_db.get());
 
     value = currency.toCurrency(1003.1416, &au_record);
     CPPUNIT_ASSERT(value == "AU $1,003.1416");
