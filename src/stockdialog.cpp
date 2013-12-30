@@ -323,8 +323,6 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnTextEntered(wxCommandEvent& event)
 {
-    wxString sAmount = "";
-
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
@@ -338,23 +336,14 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     }
     else if (event.GetId() == purchasePrice_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(purchasePrice_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            purchasePrice_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        purchasePrice_->SetInsertionPoint(purchasePrice_->GetValue().Len());
+        purchasePrice_->Calculate(currency);
     }
     else if (event.GetId() == currentPrice_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(currentPrice_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            currentPrice_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        currentPrice_->SetInsertionPoint(currentPrice_->GetValue().Len());
+        currentPrice_->Calculate(currency);
     }
     else if (event.GetId() == commission_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(commission_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            commission_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        commission_->SetInsertionPoint(commission_->GetValue().Len());
+        commission_->Calculate(currency);
     }
 }

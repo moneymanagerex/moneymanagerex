@@ -166,14 +166,10 @@ void SplitDetailDialog::OnButtonCategoryClick( wxCommandEvent& /*event*/ )
 
 void SplitDetailDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
-    
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account); 
-    mmCalculator calc;
-    if (calc.is_ok(wxString() << Model_Currency::fromString(textAmount_->GetValue(), currency)))
-        textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-    textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
+    textAmount_->Calculate(currency);
 
     DataToControls();
 }

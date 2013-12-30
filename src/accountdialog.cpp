@@ -188,7 +188,7 @@ void mmNewAcctDialog::CreateControls()
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC
         , wxString::Format(_("Initial Balance: %s"),"")), flags);
 
-    itemInitValue_ = new wxTextCtrl(this
+    itemInitValue_ = new mmTextCtrl(this
         , ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE
         , "", wxDefaultPosition, wxDefaultSize, 0, mmCalcValidator());
     grid_sizer->Add(itemInitValue_, flagsExpand);
@@ -446,12 +446,8 @@ void mmNewAcctDialog::OnTextEntered(wxCommandEvent& event)
     if (event.GetId() == itemInitValue_->GetId())
     {
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
-        if (currency) currency = Model_Currency::GetBaseCurrency();
-
-        mmCalculator calc;
-        wxString sAmount = wxString() << Model_Currency::fromString(itemInitValue_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            itemInitValue_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        itemInitValue_->SetInsertionPoint(itemInitValue_->GetValue().Len());
+        if (!currency)
+            currency = Model_Currency::GetBaseCurrency();
+        itemInitValue_->Calculate(currency);
     }
 }

@@ -286,10 +286,6 @@ void mmBudgetEntryDialog::OnTextEntered(wxCommandEvent& event)
 {
     if (event.GetId() == textAmount_->GetId())
     {
-        mmCalculator calc;
-        wxString sAmount = wxString() << Model_Currency::fromString(textAmount_->GetValue(), Model_Currency::GetBaseCurrency());
-        if (calc.is_ok(sAmount))
-            textAmount_->SetValue(Model_Currency::toString(calc.get_result()));
-        textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
+        textAmount_->Calculate(Model_Currency::GetBaseCurrency());
     }
 }

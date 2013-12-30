@@ -938,26 +938,17 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
 
 void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 {
-    wxString sAmount = "";
-
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(refAccountID_);
     if (account) currency = Model_Account::currency(account);
 
-    mmCalculator calc;
     if (event.GetId() == amountMinEdit_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(amountMinEdit_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            amountMinEdit_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        amountMinEdit_->SetInsertionPoint(amountMinEdit_->GetValue().Len());
+        amountMinEdit_->Calculate(currency);
     }
     else if (event.GetId() == amountMaxEdit_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(amountMaxEdit_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            amountMaxEdit_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        amountMaxEdit_->SetInsertionPoint(amountMaxEdit_->GetValue().Len());
+        amountMaxEdit_->Calculate(currency);
     }
 }
 

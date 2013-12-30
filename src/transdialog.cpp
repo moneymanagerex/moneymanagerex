@@ -973,18 +973,13 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
 
-    mmCalculator calc;
     if (object_in_focus_ == textAmount_->GetId())
     {
-        if (calc.is_ok(textAmount_->GetValue()))
-            textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
+        textAmount_->Calculate(currency);
     }
     else if (object_in_focus_ == toTextAmount_->GetId())
     {
-        if (calc.is_ok(toTextAmount_->GetValue()))
-            toTextAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
+        toTextAmount_->Calculate(currency);
     }
     else if (object_in_focus_ == textNumber_->GetId())
     {

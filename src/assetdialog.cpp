@@ -288,21 +288,15 @@ void mmAssetDialog::changeFocus(wxChildFocusEvent& event)
 
 void mmAssetDialog::onTextEntered(wxCommandEvent& event)
 {
-    wxString sAmount = "";
-
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-
-    mmCalculator calc;
     if (event.GetId() == m_value->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(m_value->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            m_value->SetValue(calc.get_result());
-        m_value->SetInsertionPoint(m_value->GetValue().Len());
+            m_value->Calculate(currency);
     }
     else if (event.GetId() == m_valueChangeRate->GetId())
     {
-        if (calc.is_ok(m_valueChangeRate->GetValue()))
+        mmCalculator calc;
+        if (calc.is_ok(Model_Currency::fromString(m_valueChangeRate->GetValue(), currency)))
             m_valueChangeRate->SetValue(wxString::Format("%.3f", calc.get_result()));
         m_valueChangeRate->SetInsertionPoint(m_valueChangeRate->GetValue().Len());
     }

@@ -20,6 +20,7 @@
 #define _MM_EX_NEWACCTDIALOG_H_
 
 #include "model/Model_Account.h"
+#include "mmtextctrl.h"
 
 class mmNewAcctDialog : public wxDialog
 {
@@ -59,7 +60,7 @@ private:
     int currencyID_;
     wxTextCtrl *textAccountName_;
     wxTextCtrl *notesCtrl_;
-    wxTextCtrl* itemInitValue_;
+    mmTextCtrl* itemInitValue_;
     bool termAccount_;
     wxString accessInfo_;
     bool access_changed_;

@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma once
 #include <wx/textctrl.h>
 #include <wx/string.h>
+#include "mmCalculator.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Account.h"
 
@@ -41,6 +42,13 @@ public:
     {
         currency_ = Model_Currency::instance().get(account->CURRENCYID);
         this->SetValue(Model_Account::toString(value, account));
+    }
+    void Calculate(const Model_Currency::Data* currency)
+    {
+        mmCalculator calc;
+        if (calc.is_ok(Model_Currency::fromString(this->GetValue(), currency)))
+            this->SetValue(Model_Currency::toString(calc.get_result(), currency));
+        this->SetInsertionPoint(this->GetValue().Len());
     }
     wxString GetValue() const
     {

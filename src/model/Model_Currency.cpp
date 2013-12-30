@@ -118,17 +118,15 @@ wxString Model_Currency::os_group_separator()
 
 wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
+    precision = currency ? log10(currency->SCALE) : 2;
     int style = wxNumberFormatter::Style_WithThousandsSep;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
     if (currency)
     {
-        if (!currency->GROUP_SEPARATOR.empty()) style = wxNumberFormatter::Style_WithThousandsSep;
-        s.Replace(wxNumberFormatter::GetDecimalSeparator(), "/");
-        wxString group_seperator = os_group_separator();
-        if (!group_seperator.IsEmpty())
-            s.Replace(group_seperator, "|");
-        s.Replace("|", currency->GROUP_SEPARATOR);
-        s.Replace("/", currency->DECIMAL_POINT);
+        s.Replace(os_group_separator(), "\t");
+        s.Replace("\t", currency->GROUP_SEPARATOR);
+        s.Replace(wxNumberFormatter::GetDecimalSeparator(), "\x05");
+        s.Replace("\x05", currency->DECIMAL_POINT);
     }
     return s;
 }
@@ -155,11 +153,10 @@ wxString Model_Currency::fromString(wxString s, const Data* currency)
         wxChar sep = ' ';
         if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
             sys_thousand_separator = wxString::Format("%c", sep);
-        if (!currency->DECIMAL_POINT.empty()) s.Replace(currency->DECIMAL_POINT, "/");
-        if (!currency->GROUP_SEPARATOR.empty()) s.Replace(currency->GROUP_SEPARATOR, "|");
-        s.Replace("|", sys_thousand_separator);
-        s.Replace("/", wxNumberFormatter::GetDecimalSeparator());
-
+        if (!currency->DECIMAL_POINT.empty()) s.Replace(currency->DECIMAL_POINT, "\x05");
+        if (!currency->GROUP_SEPARATOR.empty()) s.Replace(currency->GROUP_SEPARATOR, "\t");
+        s.Replace("\t", sys_thousand_separator);
+        s.Replace("\x05", wxNumberFormatter::GetDecimalSeparator());
     }
     return s;
 }

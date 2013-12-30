@@ -1325,26 +1325,17 @@ void mmBDDialog::activateSplitTransactionsDlg()
 
 void mmBDDialog::OnTextEntered(wxCommandEvent& event)
 {
-    wxString sAmount = "";
-
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
 
-    mmCalculator calc;
     if (event.GetId() == textAmount_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(textAmount_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            textAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        textAmount_->SetInsertionPoint(textAmount_->GetValue().Len());
+        textAmount_->Calculate(currency);
     }
     else if (event.GetId() == toTextAmount_->GetId())
     {
-        sAmount = wxString() << Model_Currency::fromString(toTextAmount_->GetValue(), currency);
-        if (calc.is_ok(sAmount))
-            toTextAmount_->SetValue(Model_Currency::toString(calc.get_result(), currency));
-        toTextAmount_->SetInsertionPoint(toTextAmount_->GetValue().Len());
+        toTextAmount_->Calculate(currency);
     }
 }
 
