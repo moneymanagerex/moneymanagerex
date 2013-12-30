@@ -117,8 +117,7 @@ void mmHTMLBuilder::addRowSeparator(int cols)
     {
         startTableRow();
         html_+= wxString::Format(tags::TABLE_CELL_SPAN, cols);
-        startTable("100%", "top", "1");
-        endTable();
+        addText("<hr>");
         endTableCell();
         endTableRow();
         color_.bgswitch = true;

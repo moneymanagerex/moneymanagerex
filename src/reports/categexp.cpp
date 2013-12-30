@@ -99,7 +99,7 @@ void  mmReportCategoryExpenses::RefreshData()
         {
             int subcategID = sub_category.SUBCATEGID;
 
-            wxString sFullCategName = category.CATEGNAME + " : " + sub_category.SUBCATEGNAME;
+            wxString sFullCategName = Model_Category::full_name(categID, subcategID);
             amt = categoryStats[categID][subcategID][0];
 
             if (type_ == GOES && amt < 0.0) amt = 0;
@@ -188,10 +188,13 @@ wxString mmReportCategoryExpenses::getHTMLText()
         hb.addTableHeaderCell(_("Category"));
     else
         hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_NAME), _("Category"));
+
     if(CATEGORY_SORT_BY_AMOUNT == sortColumn_)
         hb.addTableHeaderCell(_("Amount"), true);
     else
         hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
+
+    hb.addTableHeaderCell(_("Total"), true);
     hb.endTableRow();
 
     bool endSeparator = false;
@@ -208,11 +211,12 @@ wxString mmReportCategoryExpenses::getHTMLText()
                     {
                         hb.startTableRow();
                         hb.addTableCell(entry.name, false, true, true, "GRAY");
+                        hb.addTableCell("");
                         hb.addMoneyCell(entry.amount, "GRAY");
                         hb.endTableRow();
                     }
                 }
-                hb.addRowSeparator(2);
+                hb.addRowSeparator(3);
                 endSeparator = true;
             }
         }
@@ -222,20 +226,21 @@ wxString mmReportCategoryExpenses::getHTMLText()
             {
                 hb.startTableRow();
                 hb.addTableCell(entry.name, false, true);
-                hb.addMoneyCell(entry.amount);
+                hb.addMoneyCell(entry.amount); //TODO: shift single categ amount to next row
+                hb.addTableCell("");
                 hb.endTableRow();
             }
             else
             {
-                hb.addRowSeparator(2);
+                hb.addRowSeparator(3);
                 endSeparator = true;
             }
         }
     }
 
     if (!endSeparator)
-        hb.addRowSeparator(2);
-    hb.addTotalRow(_("Grand Total: "), 1, grandtotal_);
+        hb.addRowSeparator(3);
+    hb.addTotalRow(_("Grand Total: "), 3, grandtotal_);
 
     hb.endTable();
     hb.endCenter();
