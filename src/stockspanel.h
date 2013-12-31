@@ -22,6 +22,7 @@
 #include "mmpanelbase.h"
 #include <wx/tglbtn.h>
 #include "model/Model_Stock.h"
+#include "model/Model_Currency.h"
 
 class wxListEvent;
 class mmStocksPanel;
@@ -121,6 +122,7 @@ public:
     //void OnViewPopupSelected(wxCommandEvent& event);
 
     int accountID_;
+    Model_Currency::Data * m_currency;
     StocksListCtrl* listCtrlAccount_;
     void updateExtraStocksData(int selIndex);
     wxStaticText* stock_details_short_;

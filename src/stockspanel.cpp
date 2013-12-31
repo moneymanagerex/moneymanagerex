@@ -122,7 +122,11 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
 {
     if (column == COL_DATE)         return mmGetDateForDisplay(mmGetStorageStringAsDate(m_stocks[item].PURCHASEDATE));
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
-    if (column == COL_NUMBER)       return Model_Stock::NUMSHARES(m_stocks[item]);
+    if (column == COL_NUMBER)
+    {
+        int precision = Model_Stock::NUMSHARES(m_stocks[item]) == floor(Model_Stock::NUMSHARES(m_stocks[item])) ? 0 : 4;
+        return Model_Currency::toString(Model_Stock::NUMSHARES(m_stocks[item]), stock_panel_->m_currency, precision);
+    }
     if (column == COL_GAIN_LOSS)    return Model_Currency::toCurrency(getGainLoss(item));
     if (column == COL_VALUE)        return Model_Currency::toCurrency(m_stocks[item].VALUE);
     if (column == COL_CURRENT)      return Model_Currency::toCurrency(m_stocks[item].CURRENTPRICE);
@@ -316,6 +320,7 @@ mmStocksPanel::mmStocksPanel(int accountID,
                              wxWindowID winid, const wxPoint& pos, const wxSize& size, long style,
                              const wxString& name)
 : accountID_(accountID)
+, m_currency()
 , tips_(_("Using MMEX it is possible to track stocks/mutual funds investments."))
 {
     Create(parent, winid, pos, size, style, name);
@@ -330,6 +335,9 @@ bool mmStocksPanel::Create(wxWindow *parent,
 
     strLastUpdate_ = Model_Infotable::instance().GetStringInfo("STOCKS_LAST_REFRESH_DATETIME", "");
     this->windowsFreezeThaw();
+
+    Model_Account::Data *account = Model_Account::instance().get(accountID_);
+    m_currency = Model_Account::currency(account);
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -715,7 +723,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     }
     stockavgPurchasePrice /= stocktotalnumShares;
 
-    wxString sNumShares = Model_Stock::NUMSHARES(m_stocks[selectedIndex]);
+    double sNumShares = Model_Stock::NUMSHARES(m_stocks[selectedIndex]);
     wxString sTotalNumShares;
     if ((stocktotalnumShares - static_cast<long>(stocktotalnumShares)) != 0.0)
         sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);

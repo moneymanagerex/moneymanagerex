@@ -45,8 +45,8 @@ public:
     static double value(const Data* r);
     static double value(const Data& r);
 
-    static wxString NUMSHARES(const Data* stock);
-    static wxString NUMSHARES(const Data& stock);
+    static double NUMSHARES(const Data* stock);
+    static double NUMSHARES(const Data& stock);
 };
 
 #endif // 

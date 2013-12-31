@@ -38,10 +38,19 @@ public:
     {
         this->SetValue(Model_Currency::toString(value, currency_));
     }
+    void SetValue(double value, int precision)
+    {
+        this->SetValue(Model_Currency::toString(value, currency_, precision));
+    }
     void SetValue(double value, const Model_Account::Data* account)
     {
         currency_ = Model_Currency::instance().get(account->CURRENCYID);
         this->SetValue(Model_Account::toString(value, account));
+    }
+    void SetValue(double value, const Model_Account::Data* account, int precision)
+    {
+        currency_ = Model_Currency::instance().get(account->CURRENCYID);
+        this->SetValue(value, precision);
     }
     void Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
     {

@@ -67,18 +67,13 @@ double Model_Stock::value(const Data& r)
     return value(&r);
 }
 
-wxString Model_Stock::NUMSHARES(const Data* stock)
+double Model_Stock::NUMSHARES(const Data* stock)
 {
-    wxString numSharesStr;
     double numShares = stock->NUMSHARES;
-    if ((numShares - static_cast<long>(numShares)) != 0.0)
-        numSharesStr = wxString::Format("%.4f", numShares);
-    else
-        numSharesStr << static_cast<long>(numShares);
-    return numSharesStr;
+    return numShares;
 }
 
-wxString Model_Stock::NUMSHARES(const Data& stock)
+double Model_Stock::NUMSHARES(const Data& stock)
 {
     return NUMSHARES(&stock);
 }
