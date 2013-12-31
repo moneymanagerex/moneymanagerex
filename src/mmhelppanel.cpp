@@ -1,6 +1,6 @@
 /*************************************************************************
  Copyright (C) 2006 Madhan Kanagavel
- Copyright (C) 2011, 2012 Nikolay & Stefano Giorgio
+ Copyright (C) 2011, 2013 Nikolay & Stefano Giorgio
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@ BEGIN_EVENT_TABLE(mmHelpPanel, wxPanel)
     EVT_BUTTON(wxID_FORWARD, mmHelpPanel::OnHelpPageForward)
 END_EVENT_TABLE()
 
-mmHelpPanel::mmHelpPanel(wxWindow *parent, wxWindowID winid,
-    const wxPoint& pos, const wxSize& size, long style, const wxString& name)
+mmHelpPanel::mmHelpPanel(wxWindow *parent, wxWindowID winid
+    , const wxPoint& pos, const wxSize& size, long style, const wxString& name)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -51,9 +51,9 @@ void mmHelpPanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    wxPanel* itemPanel3 = new wxPanel( this, wxID_ANY, 
-        wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-    itemBoxSizer2->Add(itemPanel3, 0, wxGROW|wxALL, 5);
+    wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    itemBoxSizer2->Add(itemPanel3, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizerHeader = new wxBoxSizer(wxHORIZONTAL);
     itemPanel3->SetSizer(itemBoxSizerHeader);
@@ -62,18 +62,16 @@ void mmHelpPanel::CreateControls()
     wxButton* buttonFordward = new wxButton(itemPanel3, wxID_FORWARD, _("&Forward") );
 
     wxString helpHeader = mmex::getProgramName() + _(" Help");
-    wxStaticText* itemStaticText9 = new wxStaticText( itemPanel3, wxID_ANY, 
-        helpHeader, wxDefaultPosition, wxDefaultSize, 0 );
+    wxStaticText* itemStaticText9 = new wxStaticText( itemPanel3, wxID_ANY
+        , helpHeader, wxDefaultPosition, wxDefaultSize, 0 );
     itemStaticText9->SetFont(wxFont(12, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
 
     itemBoxSizerHeader->Add(buttonBack, 0, wxLEFT, 5);
-    itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT|wxRIGHT, 5);
-    itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT|wxTOP, 5);
+    itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT | wxRIGHT, 5);
+    itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT | wxTOP, 5);
 
-    htmlWindow_ = new wxHtmlWindow( this, wxID_ANY, 
-        wxDefaultPosition, wxDefaultSize, 
-        wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
-    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
+    htmlWindow_ = wxWebView::New(this, wxID_ANY);
+    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW | wxALL, 1);
     
     /**************************************************************************
     Allows help files for a specific language.
@@ -91,35 +89,31 @@ void mmHelpPanel::CreateControls()
     wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex));
     if (mmOptions::instance().language_ != "english") helpIndexFile.AppendDir(mmOptions::instance().language_);
 
+    wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)helpFileIndex);
     if (helpIndexFile.FileExists()) // Load the help file for the given language 
-    {
-        htmlWindow_->LoadPage(helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName());
-    }
-    else // load the default help file
-    {
-        htmlWindow_ ->LoadPage(mmex::getPathDoc((mmex::EDocFile)helpFileIndex));
-    }
+        url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
+    htmlWindow_->LoadURL(url);
+    wxLogDebug("%s", url);
 }
 
 void mmHelpPanel::sortTable()
 {
-
 }
 
 void mmHelpPanel::OnHelpPageBack(wxCommandEvent& /*event*/)
 {
-    if (htmlWindow_->HistoryCanBack() )
+    if (htmlWindow_->CanGoBack())
     {
-        htmlWindow_->HistoryBack();
+        htmlWindow_->GoBack();
         htmlWindow_->SetFocus();
     }
 }
 
 void mmHelpPanel::OnHelpPageForward(wxCommandEvent& /*event*/)
 {
-    if (htmlWindow_->HistoryCanForward() )
+    if (htmlWindow_->CanGoForward() )
     {
-        htmlWindow_->HistoryForward();
+        htmlWindow_->GoForward();
         htmlWindow_->SetFocus();
     }
 }

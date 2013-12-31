@@ -1931,8 +1931,8 @@ void mmGUIFrame::createHelpPage()
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmHelpPanel(homePanel_, wxID_STATIC,
-        wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL);
+    panelCurrent_ = new mmHelpPanel(homePanel_, wxID_STATIC
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW|wxALL, 1);
 

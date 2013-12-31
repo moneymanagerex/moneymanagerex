@@ -55,7 +55,7 @@ public:
     void Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
     {
         mmCalculator calc;
-        int precision = alt_precision > 0 ? alt_precision : log10(currency->SCALE);
+        int precision = alt_precision >= 0 ? alt_precision : log10(currency->SCALE);
         if (calc.is_ok(Model_Currency::fromString(this->GetValue(), currency)))
             this->SetValue(Model_Currency::toString(calc.get_result(), currency, precision));
         this->SetInsertionPoint(this->GetValue().Len());

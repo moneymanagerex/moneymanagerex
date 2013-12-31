@@ -21,6 +21,7 @@
 #define _MM_EX_HELPPANEL_H_
 
 #include "mmpanelbase.h"
+#include <wx/webview.h>
 
 class wxHtmlWindow;
 
@@ -37,13 +38,13 @@ public:
                  const wxString& name = wxPanelNameStr );
 
 private:
-    wxHtmlWindow* htmlWindow_;
+    wxWebView* htmlWindow_;
 
-    bool Create( wxWindow *parent, wxWindowID winid,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr);
+    bool Create(wxWindow *parent, wxWindowID winid
+        , const wxPoint& pos = wxDefaultPosition
+        , const wxSize& size = wxDefaultSize
+        , long style = wxTAB_TRAVERSAL | wxNO_BORDER
+        , const wxString& name = wxPanelNameStr);
 
     void CreateControls();
     virtual void sortTable();
