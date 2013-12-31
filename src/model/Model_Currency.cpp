@@ -17,6 +17,8 @@
  ********************************************************/
 
 #include "Model_Currency.h"
+#include <wx/numformatter.h>
+
 
 Model_Currency::Model_Currency()
 : Model<DB_Table_CURRENCYFORMATS_V1>()
