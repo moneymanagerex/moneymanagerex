@@ -117,6 +117,11 @@ int Model_Infotable::GetBaseCurrencyId()
     return this->GetIntInfo("BASECURRENCYID", -1);
 }
 
+void Model_Infotable::SetBaseCurrencyID(int currency_id)
+{
+    Model_Infotable::instance().Set("BASECURRENCYID", currency_id);
+}
+
 /* Returns true if key setting found */
 bool Model_Infotable::KeyExists(const wxString& key)
 {

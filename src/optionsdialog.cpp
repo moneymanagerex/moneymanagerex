@@ -934,7 +934,7 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
     mmSelectLanguage(this, false);
 
-    Model_Infotable::instance().Set("BASECURRENCYID", currencyId_);
+    Model_Infotable::instance().SetBaseCurrencyID(currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
     SaveFinancialYearStart();
 }

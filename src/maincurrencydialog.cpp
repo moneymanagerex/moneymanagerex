@@ -236,7 +236,7 @@ void mmMainCurrencyDialog::OnBtnDelete(wxCommandEvent& /*event*/)
 {
     if (selectedIndex_ < 0) return;
 
-    int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", 1);
+    int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
 
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
     if (!currency) return;
@@ -451,10 +451,10 @@ void mmMainCurrencyDialog::OnMenuSelected(wxCommandEvent& event)
     {
     case MENU_ITEM1:
     {
-        int baseCurrencyID = Model_Infotable::instance().GetIntInfo("BASECURRENCYID", -1);
+        int baseCurrencyID = Model_Infotable::instance().GetBaseCurrencyId();
         if (baseCurrencyID != currencyID_)
         {
-            Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
+            Model_Infotable::instance().SetBaseCurrencyID(currencyID_);
             fillControls();
         }
     }

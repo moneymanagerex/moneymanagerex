@@ -52,6 +52,7 @@ public:
     wxString GetStringInfo(const wxString& key, const wxString& default_value);
 
     int GetBaseCurrencyId();
+    void SetBaseCurrencyID(int currency_id);
 
     /* Returns true if key setting found */
     bool KeyExists(const wxString& key);

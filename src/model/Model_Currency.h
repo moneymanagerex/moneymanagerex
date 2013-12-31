@@ -41,13 +41,18 @@ public:
     /** Return the static instance of Model_Currency table */
     static Model_Currency& instance();
 
+private:
+    void initialize();
+
 public:
     wxArrayString all_currency_names();
     wxArrayString all_currency_symbols();
 
-    void initialize();
-
+    /* Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
+    /* Set the ID of the Data record as the base currency.*/
+    static void SetBaseCurrency(Data* r);
+
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency());
     static wxString os_group_separator();
     /** convert value to a currency formatted string with required precision */

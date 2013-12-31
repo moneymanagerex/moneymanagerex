@@ -150,7 +150,7 @@ bool mmNewDatabaseWizardPage::TransferDataFromWindow()
         wxMessageBox(_("Base Currency Not Set"), _("New Database"), wxOK | wxICON_WARNING, this);
         return false;
     }
-    userName = itemUserName_->GetValue().Trim();
+    wxString userName = itemUserName_->GetValue().Trim();
     Model_Infotable::instance().Set("USERNAME", userName);
     mmOptions::instance().userNameString_ = userName;
 
@@ -166,9 +166,8 @@ void mmNewDatabaseWizardPage::OnCurrency(wxCommandEvent& /*event*/)
         Model_Currency::Data* currency = Model_Currency::instance().get(currencyID_);
         if (currency)
         {
-            wxButton* bn = (wxButton*) FindWindow(ID_BUTTON_CURRENCY);
-            bn->SetLabel(currency->CURRENCYNAME);
-            Model_Infotable::instance().Set("BASECURRENCYID", currencyID_);
+            itemButtonCurrency_->SetLabel(currency->CURRENCYNAME);
+            Model_Currency::instance().SetBaseCurrency(currency);
             currencyID_ = currency->CURRENCYID;
         }
     }

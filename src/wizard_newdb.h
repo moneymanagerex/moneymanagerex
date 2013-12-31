@@ -51,8 +51,6 @@ private:
     wxTextCtrl* itemUserName_;
     int currencyID_;
 
-    wxString userName;
-
     DECLARE_EVENT_TABLE()
 };
 

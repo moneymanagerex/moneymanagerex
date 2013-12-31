@@ -93,6 +93,11 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     return Model_Currency::instance().get(currency_id);
 }
 
+void Model_Currency::SetBaseCurrency(Data* r)
+{
+    Model_Infotable::instance().SetBaseCurrencyID(r->CURRENCYID);
+}
+
 wxString Model_Currency::toCurrency(double value, const Data* currency)
 {
     int precision = 2;
