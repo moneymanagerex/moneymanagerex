@@ -23,7 +23,6 @@
 #include "util.h"
 #include "mmOption.h"
 #include "paths.h"
-#include "mmCalculator.h"
 #include "validators.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"

@@ -24,7 +24,6 @@
 #include "paths.h"
 #include "categdialog.h"
 #include "splittransactionsdialog.h"
-#include "mmCalculator.h"
 #include "validators.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"

@@ -19,7 +19,6 @@
 #include "budgetentrydialog.h"
 #include "util.h"
 #include "model/Model_Category.h"
-#include "mmCalculator.h"
 #include "validators.h"
 #include "paths.h"
 #include <wx/valnum.h>

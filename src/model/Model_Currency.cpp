@@ -123,7 +123,7 @@ wxString Model_Currency::os_group_separator()
 
 wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
-    precision = currency ? log10(currency->SCALE) : 2;
+    precision = precision > 0 ? precision : (currency ? log10(currency->SCALE) : 2);
     int style = wxNumberFormatter::Style_WithThousandsSep;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
     if (currency)

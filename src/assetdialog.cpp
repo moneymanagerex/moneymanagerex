@@ -18,7 +18,6 @@
 #include "mmtextctrl.h"
 #include "paths.h"
 #include "util.h"
-#include "mmCalculator.h"
 #include "validators.h"
 #include "model/Model_Asset.h"
 #include <wx/valnum.h>

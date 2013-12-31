@@ -21,7 +21,6 @@
 #include "constants.h"
 #include "paths.h"
 #include "util.h"
-#include "mmCalculator.h"
 #include "validators.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
@@ -327,23 +326,20 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
     if (account) currency = Model_Account::currency(account);
 
-    mmCalculator calc;
     if (event.GetId() == numShares_->GetId())
     {
-        if (calc.is_ok(numShares_->GetValue()))
-            numShares_->SetValue(wxString::Format("%.4f", calc.get_result()));
-        numShares_->SetInsertionPoint(numShares_->GetValue().Len());
+        numShares_->Calculate(currency, 4);
     }
     else if (event.GetId() == purchasePrice_->GetId())
     {
-        purchasePrice_->Calculate(currency);
+        purchasePrice_->Calculate(currency, 4);
     }
     else if (event.GetId() == currentPrice_->GetId())
     {
-        currentPrice_->Calculate(currency);
+        currentPrice_->Calculate(currency, 4);
     }
     else if (event.GetId() == commission_->GetId())
     {
-        commission_->Calculate(currency);
+        commission_->Calculate(currency, 4);
     }
 }

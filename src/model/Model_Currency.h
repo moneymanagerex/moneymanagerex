@@ -56,7 +56,7 @@ public:
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency());
     static wxString os_group_separator();
     /** convert value to a currency formatted string with required precision */
-    static wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = 2);
+    static wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
     /** Remove prefix and suffix characters from string value */
     static wxString fromString(wxString s, const Data* currency);
     static bool fromString(wxString s, double& val, const Data* currency = GetBaseCurrency());

@@ -19,7 +19,6 @@
 #include "currencydialog.h"
 #include "constants.h"
 #include "util.h"
-#include "mmCalculator.h"
 #include "model/Model_Currency.h"
 #include "defs.h"
 #include "paths.h"
@@ -288,9 +287,6 @@ void mmCurrencyDialog::onTextEntered(wxCommandEvent& event)
 {
     if (event.GetId() == baseConvRate_->GetId())
     {
-        mmCalculator calc;
-        if (calc.is_ok(baseConvRate_->GetValue()))
-            baseConvRate_->SetValue(wxString::Format("%.4f", calc.get_result()));
-        baseConvRate_->SetInsertionPoint(baseConvRate_->GetValue().Len());
+        baseConvRate_->Calculate(m_currency, 4);
     }
 }
