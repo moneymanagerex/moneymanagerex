@@ -127,9 +127,9 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
         int precision = Model_Stock::NUMSHARES(m_stocks[item]) == floor(Model_Stock::NUMSHARES(m_stocks[item])) ? 0 : 4;
         return Model_Currency::toString(Model_Stock::NUMSHARES(m_stocks[item]), stock_panel_->m_currency, precision);
     }
-    if (column == COL_GAIN_LOSS)    return Model_Currency::toCurrency(getGainLoss(item));
-    if (column == COL_VALUE)        return Model_Currency::toCurrency(m_stocks[item].VALUE);
-    if (column == COL_CURRENT)      return Model_Currency::toCurrency(m_stocks[item].CURRENTPRICE);
+    if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
+    if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
+    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency);
     if (column == COL_NOTES)        return m_stocks[item].NOTES;
 
     return "";
@@ -525,9 +525,9 @@ void mmStocksPanel::updateHeader()
     double originalVal = investment_balance.second;
     double total = investment_balance.first; 
 
-    wxString balance = Model_Currency::toCurrency(total + initVal);
-    wxString original = Model_Currency::toCurrency(originalVal);
-    wxString diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total);
+    wxString balance = Model_Currency::toCurrency(total + initVal, m_currency);
+    wxString original = Model_Currency::toCurrency(originalVal, m_currency);
+    wxString diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
 
     wxString lbl;
     lbl << _("Total: ") << balance << "     " << _("Invested: ") << original;
