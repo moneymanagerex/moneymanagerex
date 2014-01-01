@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "constants.h"
+#include "util.h"
 #include "mmcheckingpanel.h"
 #include "mmex.h"
 #include "splittransactionsdialog.h"
@@ -683,6 +684,7 @@ void mmCheckingPanel::OnDeleteTransaction(wxCommandEvent& event)
 void mmCheckingPanel::OnNewTransaction(wxCommandEvent& event)
 {
    m_listCtrlAccount->OnNewTransaction(event);
+   mmPlayTransactionSound();
 }
 //----------------------------------------------------------------------------
 
