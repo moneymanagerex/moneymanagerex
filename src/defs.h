@@ -35,9 +35,6 @@
 #include <wx/listctrl.h>
 #include <wx/fileconf.h>
 #include <wx/filename.h>
-#include <wx/splitter.h>
-#include <wx/treectrl.h>
-#include <wx/listctrl.h>
 #include <wx/gdicmn.h>
 #include <wx/string.h>
 #include <wx/datectrl.h>
@@ -66,6 +63,7 @@
 #include <wx/choice.h>
 #include <wx/statline.h>
 #include <wx/dialog.h>
+#include <wx/numformatter.h>
 
 #ifdef _MSC_VER
 #pragma warning (disable:4100)
