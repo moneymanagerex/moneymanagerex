@@ -26,24 +26,25 @@
     }    
     .total { text-align:right; color:black; }
     </style>
-    <SCRIPT>
-        function convertDate(str) {
-            var date = new Date(str.replace("-", "/"));
-            return ('0' + date.getDate()).slice(-2) + '.' +
-                ('0' + (date.getMonth() + 1)).slice(-2) + '.' + 
-                date.getFullYear();
-        };
-        function printDate() {
-            var currentdate = new Date(); 
-            var datetime = ('0'+currentdate.getDate()).slice(-2) + "/"
-                + ('0'+(currentdate.getMonth()+1)).slice(-2)  + "/" 
-                + currentdate.getFullYear() + " @ "  
-                +  ('0'+currentdate.getHours()).slice(-2) + ":"  
-                +  ('0'+currentdate.getMinutes()).slice(-2) + ":" 
-                +  ('0'+currentdate.getSeconds()).slice(-2)
-            return datetime;
-        }
-    </SCRIPT>
+<SCRIPT>
+function convertDate(str, format) {
+    var date= new Date(str.replace("-", "/")); 
+    var f = {Y : date.getFullYear(), y : date.getYear(), m : date.getMonth() + 1, d : date.getDate()}
+    for(k in f)
+        format = format.replace(('%' + k), ('0'+f[k]).slice(k=='Y' ? -4 : -2)); 
+    return format;
+};
+function printDate() {
+    var currentdate = new Date(); 
+    var datetime = ('0'+currentdate.getDate()).slice(-2) + "/"
+        + ('0'+(currentdate.getMonth()+1)).slice(-2)  + "/" 
+        + currentdate.getFullYear() + " @ "  
+        +  ('0'+currentdate.getHours()).slice(-2) + ":"  
+        +  ('0'+currentdate.getMinutes()).slice(-2) + ":" 
+        +  ('0'+currentdate.getSeconds()).slice(-2)
+    return datetime;
+}
+</SCRIPT>
 
 </head>
 <body>
@@ -73,7 +74,7 @@
         </TMPL_IF>
 
         <td class="normal">
-            <SCRIPT>document.write(convertDate("<TMPL_VAR STARTDATE>"));</SCRIPT>
+            <SCRIPT>document.write(convertDate("<TMPL_VAR STARTDATE>", "<TMPL_VAR DATEFORMAT>"));</SCRIPT>
         </td>
         <td class="normal"><TMPL_VAR ASSETNAME></td>
         <td class="normal"><TMPL_VAR ASSETTYPE></td>

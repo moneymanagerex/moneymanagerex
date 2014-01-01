@@ -46,7 +46,21 @@
         <td colspan="3" ><font size="3" color="">Total Assets: </font></td>
         <td nowrap align="right"><font size="3" color=""><TMPL_VAR ASSET_BALANCE></font></td>
     </tr>
-</table>
+</table>
+<hr size="3">
+<tr> <b>Errors during the report build</b></tr>
+<table>
+    <tr>
+        <th>ERROR</th>
+    </tr>
+    <TMPL_LOOP ERRORS>
+        <tr>
+            <td><TMPL_VAR ERROR></td>
+        </tr>
+    </TMPL_LOOP>
+</table>
+
 </center>
 </body>
 </html>
+
