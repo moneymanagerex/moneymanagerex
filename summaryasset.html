@@ -30,7 +30,7 @@
 function convertDate(str, format) {
     var date= new Date(str.replace("-", "/")); 
     var f = {Y : date.getFullYear(), y : date.getYear(), m : date.getMonth() + 1, d : date.getDate()}
-    for(k in f)
+    for(var k in f)
         format = format.replace(('%' + k), ('0'+f[k]).slice(k=='Y' ? -4 : -2)); 
     return format;
 };
