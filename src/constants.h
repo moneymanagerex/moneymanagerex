@@ -149,7 +149,6 @@ static const wxString TIPS[] =
 
     wxTRANSLATE("Organize Categories Dialog Tip: Pressing the h key will cycle through all categories starting with the letter h"),
     wxTRANSLATE("Organize Categories Dialog Tip: Pressing 2 key combination will cycle through all categories starting with that key combination. Example: Pressing ho will select Homeneeds, Home, House Tax, etc..."),
-    wxTRANSLATE("Organize Payees Dialog Tip: Using the * key as a wildcard when using the filter. Example: *c shows Chemist and Doctor, *c*m shows Chemist only."),
 
     wxTRANSLATE("Tip to get out of debt: Pay yourself 10% first. Put this into an account that is hard to touch. Make sure it is a chore to get the money out (you have to drive to the bank), so you will only tap it consciously and for major expenses."),
     wxTRANSLATE("Tip to get out of debt: Establish an emergency fund."),
