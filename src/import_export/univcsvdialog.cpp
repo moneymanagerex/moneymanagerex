@@ -281,15 +281,15 @@ void mmUnivCSVDialog::CreateControls()
     importExportStaticBoxSizer->Add(textDelimiter4, 0, wxALIGN_BOTTOM|wxALL, 8);
 
     // Preview
-    wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this, wxID_STATIC, _("&Preview")), wxVERTICAL);
+    wxStaticBoxSizer* m_staticbox = new wxStaticBoxSizer(new wxStaticBox(this, wxID_STATIC, _("Preview")), wxVERTICAL);
 
     m_list_ctrl_ = new wxListCtrl(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT);
-    m_staticbox->Add(m_list_ctrl_, 1, wxGROW|wxALL, 5);
-    itemBoxSizer0->Add(m_staticbox, 3, wxALL|wxEXPAND, 5);
+    m_staticbox->Add(m_list_ctrl_, 1, wxGROW | wxALL, 5);
+    itemBoxSizer0->Add(m_staticbox, 3, wxALL | wxEXPAND, 5);
 
     //Import File button
-    wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10,
-    wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* itemPanel5 = new wxPanel(this, ID_PANEL10
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer0->Add(itemPanel5, 0, wxALIGN_RIGHT|wxALL, 1);
 
     wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
