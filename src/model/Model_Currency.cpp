@@ -129,8 +129,8 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     if (currency)
     {
         s.Replace(os_group_separator(), "\t");
-        s.Replace("\t", currency->GROUP_SEPARATOR);
         s.Replace(wxNumberFormatter::GetDecimalSeparator(), "\x05");
+        s.Replace("\t", currency->GROUP_SEPARATOR);
         s.Replace("\x05", currency->DECIMAL_POINT);
     }
     return s;
