@@ -109,8 +109,8 @@ void relocateCategoryDialog::CreateControls()
 
     boxSizer->Add(lineBottom, flagsExpand);
 
-    wxButton* okButton = new wxButton(this, wxID_OK);
-    wxButton* cancelButton = new wxButton(this, wxID_CANCEL);
+    wxButton* okButton = new wxButton(this, wxID_OK, _("&OK "));
+    wxButton* cancelButton = new wxButton(this, wxID_CANCEL, _("&Cancel "));
     cancelButton-> SetFocus();
     wxBoxSizer* buttonBoxSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonBoxSizer->Add(okButton, flags);

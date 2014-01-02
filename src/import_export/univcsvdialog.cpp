@@ -143,11 +143,11 @@ void mmUnivCSVDialog::CreateControls()
     itemPanel_AddRemove->SetSizer(itemBoxSizer_AddRemove);
 
     //Add button
-    m_button_add_= new wxButton(itemPanel_AddRemove, wxID_ADD);
+    m_button_add_= new wxButton(itemPanel_AddRemove, wxID_ADD, _("&Add "));
     itemBoxSizer_AddRemove->Add(m_button_add_, flags);
 
     //Remove button
-    m_button_remove_ = new wxButton(itemPanel_AddRemove, wxID_REMOVE);
+    m_button_remove_ = new wxButton(itemPanel_AddRemove, wxID_REMOVE, _("&Remove "));
     itemBoxSizer_AddRemove->Add(m_button_remove_, flags);
 
     //Standard MMEX CSV
