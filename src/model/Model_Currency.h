@@ -52,7 +52,9 @@ public:
     /* Set the ID of the Data record as the base currency.*/
     static void SetBaseCurrency(Data* r);
 
-    static wxString toCurrency(double value, const Data* currency = GetBaseCurrency());
+    /** Add prefix and suffix characters to string value */
+    static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
+ 
     static wxString os_group_separator();
     /** convert value to a currency formatted string with required precision */
     static wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);

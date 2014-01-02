@@ -21,8 +21,6 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include <cppunit/config/SourcePrefix.h>
 
 #include "test_model_currency.h"
-#include "dbwrapper.h"
-#include "model/Model_Currency.h"
 
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
@@ -32,8 +30,8 @@ static int instance_count = 0;
 Test_Model_Currency::Test_Model_Currency()
 {
     instance_count++;
-    test_db_filename = "cppunit_test_database.mmb";
-    locale_.Init(wxLANGUAGE_ENGLISH);
+    m_test_db_filename = "cppunit_test_database.mmb";
+    m_locale.Init(wxLANGUAGE_ENGLISH);
 }
 
 Test_Model_Currency::~Test_Model_Currency()
@@ -42,72 +40,168 @@ Test_Model_Currency::~Test_Model_Currency()
 
 void Test_Model_Currency::setUp()
 {
-    m_test_db = mmDBWrapper::Open(test_db_filename);
+    std::cout << "\n";
+    m_test_db.Open(m_test_db_filename);
 
-    // Using separate initialisation for debugging purposes.
-    int shared_ptr_useage_count = m_test_db.use_count();
-    if (shared_ptr_useage_count == 2)
-    {
-        // initialize the model. Once only
-        Model_Currency currency = Model_Currency::instance(m_test_db.get());
-    }
+    Test_Hooks* test_callback = new Test_Hooks();
+
+    m_test_db.SetCommitHook(test_callback);
+
+    m_test_db.SetRollbackHook(test_callback);
+
+    m_test_db.SetUpdateHook(test_callback);
+
+    Model_Currency currency = Model_Currency::instance(&m_test_db);
+    Model_Infotable::instance(&m_test_db);
 }
 
 void Test_Model_Currency::tearDown()
 {
-//    m_test_db->Close();
+    m_test_db.Close();
+}
+
+Model_Currency::Data Test_Model_Currency::get_currency_record(const wxString& currency_symbol)
+{
+    Model_Currency::Data record;
+    for (const auto& currency_record : Model_Currency::instance().all())
+    {
+        if (currency_record.CURRENCY_SYMBOL == currency_symbol)
+        {
+            record = currency_record;
+        }
+    }
+    return record;
 }
 
 void Test_Model_Currency::test_TwoDigitPrecision()
 {
+    wxString value;
+    int precision;
     Model_Currency currency = Model_Currency::instance();
-    wxString value = currency.toString(3.1415926, 0, 2);
-    CPPUNIT_ASSERT(value == "3.14");
+
+    Model_Currency::Data au_record = get_currency_record("AUD");
+    precision = currency.precision(au_record);
+    CPPUNIT_ASSERT(precision == 2);
+
+    std::cout << "* ";
+    currency.SetBaseCurrency(&au_record);
+
+    //----------------------------------------------
+
+    value = currency.toCurrency(12345.12345);
+    CPPUNIT_ASSERT(value == "$12,345.12");
+
+    value = currency.fromString("$12,345.1234", &au_record);
+    CPPUNIT_ASSERT(value == "12,345.1234");
+
+    // Test precision regardless of currency to 2 digits
+    value = currency.toString(12345.12345);
+    CPPUNIT_ASSERT(value == "12,345.12");
+    //----------------------------------------------
+
+    Model_Currency::Data taiwan_record = get_currency_record("TWD");
+    precision = currency.precision(taiwan_record);
+    CPPUNIT_ASSERT(precision == 2);
+
+    std::cout << "* ";
+    currency.SetBaseCurrency(&taiwan_record);
+    //----------------------------------------------
+
+    value = currency.toCurrency(12345.12345);
+    CPPUNIT_ASSERT(value == "NT$12,345.12");
+
+    value = currency.fromString("NT$12,345.1234", &taiwan_record);
+    CPPUNIT_ASSERT(value == "12,345.1234");
+
+    value = currency.toString(12345.12345);
+    CPPUNIT_ASSERT(value == "12,345.12");
+    //----------------------------------------------
+
+    value = currency.fromString("$12,345.12", &au_record);
+    CPPUNIT_ASSERT(value == "12,345.12");
+
+    value = currency.toCurrency(12345.12345, &au_record);
+    CPPUNIT_ASSERT(value == "$12,345.12");
+
+    std::cout << "* ";
+    currency.SetBaseCurrency(&au_record);
 }
 
 void Test_Model_Currency::test_FourDigitPrecision()
 {
     Model_Currency currency = Model_Currency::instance();
-    wxString value = currency.toString(3.1415926, 0, 4);
-    CPPUNIT_ASSERT(value == "3.1416");
+    Model_Currency::Data au_record = get_currency_record("AUD");
+
+    // check precision of currency
+    int precision = currency.precision(au_record);
+    CPPUNIT_ASSERT(precision == 2);
+
+    wxString value;
+
+    // Test precision regardless of currency to 4 digits
+    value = currency.toString(12345.12345, 0, 4);
+    CPPUNIT_ASSERT(value == "12,345.1234");
+
+    Model_Currency::Data taiwan_record = get_currency_record("TWD");
+    precision = currency.precision(taiwan_record);
+    CPPUNIT_ASSERT(precision == 2);
+
+    // Test precision using currency of currency to 4 digits
+    value = currency.toString(12345.12345, &taiwan_record, 4);
+    CPPUNIT_ASSERT(value == "12,345.1234");
+
+    value = currency.toCurrency(12345.12345, &taiwan_record, 4);
+    CPPUNIT_ASSERT(value == "NT$12,345.1234");
 }
 
-void Test_Model_Currency::test_Currency_AUD()
+//--------------------------------------------------------------------------
+Test_Hooks::Test_Hooks()
 {
-    Model_Currency currency = Model_Currency::instance();
+    msg_header = "Test_Model_Currency Testing?";
+    wxSQLite3Hook::wxSQLite3Hook();
+}
 
-    // Locate the AU record
-    Model_Currency::Data au_record;
-    for (const auto& currency_record : currency.all())
+bool Test_Hooks::CommitCallback()
+{
+    wxMessageBox("COMMIT callback.", msg_header, wxOK, wxTheApp->GetTopWindow());
+
+    return false;
+}
+
+void Test_Hooks::RollbackCallback()
+{
+    wxMessageBox("ROLLBACK callback", msg_header, wxOK, wxTheApp->GetTopWindow());
+}
+
+void Test_Hooks::UpdateCallback(wxUpdateType type, const wxString& database,
+    const wxString& table, wxLongLong rowid)
+{
+    const char* strType;
+    std::cout << "Here is the UPDATE callback: " << "\n";
+
+    switch (type)
     {
-        if (currency_record.CURRENCY_SYMBOL == "AUD")
-        {
-            au_record = currency_record;
-        }
+    case SQLITE_DELETE:
+        strType = "DELETE row ";
+        break;
+
+    case SQLITE_INSERT:
+        strType = "INSERT row ";
+        break;
+
+    case SQLITE_UPDATE:
+        strType = "UPDATE row ";
+        break;
+
+    default:
+        strType = "Unknown change row ";
+        break;
     }
 
-    wxString value = currency.toString(10003.1415926, &au_record, 4);
-    CPPUNIT_ASSERT(value == "10,003.1416");
-        
-    value = currency.toString(10003.1415926, &au_record, 2);
-    CPPUNIT_ASSERT(value == "10,003.14");
-
-    au_record.PFX_SYMBOL = "$";
-    au_record.SCALE = 100;
-    au_record.save(m_test_db.get());
-
-    value = currency.fromString("$1,003.1416", &au_record);
-    CPPUNIT_ASSERT(value == "1,003.1416");
-
-    au_record.PFX_SYMBOL = "AU $";
-    au_record.save(m_test_db.get());
-
-    value = currency.toCurrency(1003.14, &au_record);
-    CPPUNIT_ASSERT(value == "AU $1,003.14");
-
-    au_record.SCALE = 10000;
-    au_record.save(m_test_db.get());
-
-    value = currency.toCurrency(1003.1416, &au_record);
-    CPPUNIT_ASSERT(value == "AU $1,003.1416");
+    std::cout << strType << (const char*) rowid.ToString().mb_str()
+        << " in table " << (const char*) table.mb_str()
+        << " of database " << (const char*) database.mb_str()
+        << "\n\n";
 }
+
+//--------------------------------------------------------------------------

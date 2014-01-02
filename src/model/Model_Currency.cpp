@@ -100,11 +100,9 @@ void Model_Currency::SetBaseCurrency(Data* r)
     Model_Infotable::instance().SetBaseCurrencyID(r->CURRENCYID);
 }
 
-wxString Model_Currency::toCurrency(double value, const Data* currency)
+wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)
 {
-    int precision = 2;
-    if (currency)
-        precision = Model_Currency::precision(currency);
+    precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);
     wxString d2s = toString(value, currency, precision);
     if (currency)
     {
