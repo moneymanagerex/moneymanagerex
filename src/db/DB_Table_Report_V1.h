@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-20 20:07:33.623031.
+ *          AUTO GENERATED at 2014-01-02 10:04:41.532000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -336,7 +336,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(7, entity->REPORTID);
 
-            wxLogDebug(stmt.GetSQL());
+            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -374,7 +374,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             wxString sql = "DELETE FROM REPORT_V1 WHERE REPORTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            wxLogDebug(stmt.GetSQL());
+            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -441,7 +441,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            wxLogDebug(stmt.GetSQL());
+            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -474,7 +474,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            wxLogDebug(q.GetSQL());
+            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

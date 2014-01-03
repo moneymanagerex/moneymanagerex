@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2013-12-20 20:07:33.623031.
+ *          AUTO GENERATED at 2014-01-02 10:04:41.532000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -58,7 +58,7 @@ struct DB_Table
 };
 
 template<typename Arg1>
-void condition(wxString& out, bool/* op_and*/, const Arg1& arg1)
+void condition(wxString& out, bool /*op_and*/, const Arg1& arg1)
 {
     out += Arg1::name();
     switch (arg1.op_)
@@ -115,7 +115,7 @@ typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_an
         wxSQLite3Statement stmt = db->PrepareStatement(query);
         bind(stmt, 1, args...);
 
-        wxLogDebug(stmt.GetSQL());
+        //wxLogDebug(stmt.GetSQL());
         wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
         while(q.NextRow())

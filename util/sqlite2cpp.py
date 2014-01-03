@@ -416,7 +416,7 @@ struct DB_Table_%s : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(%d, entity->%s);
 
-            wxLogDebug(stmt.GetSQL());
+            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -455,7 +455,7 @@ struct DB_Table_%s : public DB_Table
             wxString sql = "DELETE FROM %s WHERE %s = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            wxLogDebug(stmt.GetSQL());
+            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -524,7 +524,7 @@ struct DB_Table_%s : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            wxLogDebug(stmt.GetSQL());
+            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -558,7 +558,7 @@ struct DB_Table_%s : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            wxLogDebug(q.GetSQL());
+            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
@@ -683,7 +683,7 @@ typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_an
         wxSQLite3Statement stmt = db->PrepareStatement(query);
         bind(stmt, 1, args...);
 
-        wxLogDebug(stmt.GetSQL());
+        //wxLogDebug(stmt.GetSQL());
         wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
         while(q.NextRow())
