@@ -186,7 +186,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     for (const auto& print_totals : totals)
     {
         hb.startTableRow();
-        hb.addTableCell(type_names[print_totals.first]);
+        hb.addTableCell(totalLabels[print_totals.first]);
         double overall = 0;
         for (const auto& range : totals[print_totals.first])
         {
