@@ -326,7 +326,5 @@ void Model_Billsdeposits::completeBDInSeries(int bdID)
 
         if (bill->NUMOCCURRENCES == 0)
             remove(bdID);
-
-        mmOptions::instance().databaseUpdated_ = true;
     }
 }

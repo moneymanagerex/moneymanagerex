@@ -290,7 +290,6 @@ void mmPayeeDialog::OnPayeeRelocate()
                 , dlg.updatedPayeesCount())
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
-        mmOptions::instance().databaseUpdated_ = true;
         refreshRequested_ = true;
     }
 }

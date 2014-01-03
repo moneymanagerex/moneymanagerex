@@ -476,13 +476,22 @@ void mmGUIFrame::cleanup()
 
     /* Delete the GUI */
     cleanupHomePanel(false);
-
-    if (m_db)    m_db->Close();
-
+    ShutdownDatabase();
     /// Update the database according to user requirements
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
     {
         BackupDatabase(fileName_, true);
+    }
+}
+
+void mmGUIFrame::ShutdownDatabase()
+{
+    if (m_db)
+    {
+        m_db->SetCommitHook(NULL);
+        m_db->Close();
+        delete m_commit_callback_hook;
+        m_db.reset();
     }
 }
 
@@ -2290,9 +2299,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 {
     if (m_db)
     {
-        m_db->Close();
-        m_db.reset();
-
+        ShutdownDatabase();
         /// Update the database according to user requirements
         if (mmOptions::instance().databaseUpdated_ &&
             Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
@@ -2327,6 +2334,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         m_db = mmDBWrapper::Open(fileName, password);
+        m_commit_callback_hook = new CommitCallbackHook();
+        m_db->SetCommitHook(m_commit_callback_hook);
+
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
         InitializeModelTables();
@@ -2340,8 +2350,7 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
                         , dialogErrorMessageHeading
                         , wxOK|wxICON_EXCLAMATION);
 
-            m_db->Close();
-            m_db.reset();
+            ShutdownDatabase();
             return false;
         }
 
@@ -2354,6 +2363,9 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
             wxRemoveFile(fileName);
 
         m_db = mmDBWrapper::Open(fileName, password);
+        m_commit_callback_hook = new CommitCallbackHook();
+        m_db->SetCommitHook(m_commit_callback_hook);
+
         password_ = password;
         InitializeModelTables();
 
@@ -2579,12 +2591,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     }
 
     // copying db
-
-    if (m_db) // database must be closed before copying its file
-    {
-        m_db->Close();
-        m_db.reset();
-    }
+    ShutdownDatabase(); // database must be closed before copying its file
 
     if (!wxCopyFile(oldFileName.GetFullPath(), newFileName.GetFullPath(), true))  // true -> overwrite if file exists
         return;
@@ -3554,7 +3561,6 @@ void mmGUIFrame::OnCategoryRelocation(wxCommandEvent& /*event*/)
                << wxString::Format( _("Records have been updated in the database: %i"),
                     dlg.updatedCategoriesCount());
         wxMessageBox(msgStr,_("Category Relocation Result"));
-        mmOptions::instance().databaseUpdated_ = true;
         refreshPanelData();
     }
     homePanel_->Layout();
@@ -3572,7 +3578,6 @@ void mmGUIFrame::OnPayeeRelocation(wxCommandEvent& /*event*/)
                 dlg.updatedPayeesCount())
             << "\n\n";
         wxMessageBox(msgStr, _("Payee Relocation Result"));
-        mmOptions::instance().databaseUpdated_ = true;
         refreshPanelData(false);
     }
     homePanel_->Layout();

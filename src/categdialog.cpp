@@ -552,7 +552,6 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
                << wxString::Format( _("Records have been updated in the database: %i"),
                     dlg.updatedCategoriesCount());
         wxMessageBox(msgStr,_("Category Relocation Result"));
-        mmOptions::instance().databaseUpdated_ = true;
         refreshRequested_ = true;
         fillControls();
     }

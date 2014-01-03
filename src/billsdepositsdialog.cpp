@@ -1024,7 +1024,6 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         }
         Model_Billsdeposits::instance().completeBDInSeries(bdID_);
     }
-    mmOptions::instance().databaseUpdated_ = true;
     EndModal(wxID_OK);
 }
 

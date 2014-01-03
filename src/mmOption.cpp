@@ -145,3 +145,10 @@ int mmIniOptions::account_image_id(int account_id)
     return selectedImage;
 }
 
+bool CommitCallbackHook::CommitCallback()
+{
+    wxLogDebug("COMMIT Callback: Activated. Database changed.");
+    mmOptions::instance().databaseUpdated_ = true;
+
+    return false;
+}
