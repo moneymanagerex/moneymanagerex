@@ -51,6 +51,11 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
 
     wxMultiChoiceDialog mcd(0, _("Choose Accounts"), reportName_, accountArray);
+    wxButton* ok = (wxButton*) mcd.FindWindow(wxID_OK);
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = (wxButton*) mcd.FindWindow(wxID_CANCEL);
+    if (ca) ca->SetLabel(_("&Cancel "));
+
     if (mcd.ShowModal() == wxID_OK)
     {
         wxArrayInt arraySel = mcd.GetSelections();

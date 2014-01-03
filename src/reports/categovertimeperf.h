@@ -36,6 +36,8 @@ public:
 protected:
     mmDateRange* date_range_;
     wxString title_;
+
+    enum TYPE { INCOME = 0, EXPENCES, TOTAL, MAX };
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_REPORTCATEGOVERTIME_H_

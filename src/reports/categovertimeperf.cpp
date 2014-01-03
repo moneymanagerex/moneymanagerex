@@ -22,13 +22,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 #include <algorithm>
 #include "model/Model_Category.h"
+#include <map>
 
 #define CATEGORY_SORT_BY_NAME       1
 #define CATEGORY_SORT_BY_OVERALL    2
 #define CATEGORY_SORT_BY_PERIOD     3 // must be last sort value
-
-enum TYPE {INCOME = 0, EXPENCES, TOTAL, MAX};
-static const wxString type_names[] = {_("Incomes"), _("Expences"), _("Total")};
 
 //----------------------------------------------------------------------------
 
@@ -181,6 +179,10 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     }
     hb.addRowSeparator(MONTHS_IN_PERIOD+2);
     //Totals
+    std::map<int, wxString> totalLabels;
+    totalLabels[INCOME] = _("Incomes");
+    totalLabels[EXPENCES] = _("Expences");
+    totalLabels[TOTAL] = _("Total");
     for (const auto& print_totals : totals)
     {
         hb.startTableRow();

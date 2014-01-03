@@ -216,6 +216,10 @@ void mmQIFExportDialog::OnAccountsButton(wxCommandEvent& /*event*/)
     bSelectedAccounts_->UnsetToolTip();
     wxMultiChoiceDialog s_acc(this, _("Choose Account to Export from:")
         , _("QIF Export"), accounts_name_);
+    wxButton* ok = (wxButton*) s_acc.FindWindow(wxID_OK);
+    if (ok) ok->SetLabel(_("&OK "));
+    wxButton* ca = (wxButton*) s_acc.FindWindow(wxID_CANCEL);
+    if (ca) ca->SetLabel(_("&Cancel "));
 
     wxString baloon = "";
     wxArrayInt selected_items;
