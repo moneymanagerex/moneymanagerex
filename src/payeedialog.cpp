@@ -45,7 +45,7 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     , debug_(WXDEBUG)
     , refreshRequested_(false)
 {
-    if (debug_) ColName_[PAYEE_ID]   = _("#");
+    if (debug_) ColName_[PAYEE_ID] = _("#");
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_CATEGORY]   = _("Default Category");
 
