@@ -20,7 +20,6 @@
 #include "appstartdialog.h"
 #include "paths.h"
 #include "constants.h"
-#include "util.h"
 #include "mmOption.h"
 #include "model/Model_Setting.h"
 
@@ -28,32 +27,26 @@
 
 /*******************************************************/
 
-IMPLEMENT_DYNAMIC_CLASS( mmAppStartDialog, wxDialog )
+IMPLEMENT_DYNAMIC_CLASS(mmAppStartDialog, wxDialog)
 
-BEGIN_EVENT_TABLE( mmAppStartDialog, wxDialog )
-    EVT_BUTTON( wxID_NEW, mmAppStartDialog::OnButtonAppstartNewDatabaseClick )
-    EVT_BUTTON( wxID_OPEN, mmAppStartDialog::OnButtonAppstartOpenDatabaseClick )
-    EVT_BUTTON( wxID_HELP, mmAppStartDialog::OnButtonAppstartHelpClick )
-    EVT_BUTTON( wxID_INDEX, mmAppStartDialog::OnButtonAppstartWebsiteClick )
-    EVT_BUTTON( wxID_FILE1, mmAppStartDialog::OnButtonAppstartLastDatabaseClick )
-    EVT_BUTTON( wxID_EXIT, mmAppStartDialog::OnQuit )
-    EVT_CLOSE ( mmAppStartDialog::OnClose )
+BEGIN_EVENT_TABLE(mmAppStartDialog, wxDialog)
+    EVT_BUTTON(wxID_NEW, mmAppStartDialog::OnButtonAppstartNewDatabaseClick)
+    EVT_BUTTON(wxID_OPEN, mmAppStartDialog::OnButtonAppstartOpenDatabaseClick)
+    EVT_BUTTON(wxID_HELP, mmAppStartDialog::OnButtonAppstartHelpClick)
+    EVT_BUTTON(wxID_INDEX, mmAppStartDialog::OnButtonAppstartWebsiteClick)
+    EVT_BUTTON(wxID_FILE1, mmAppStartDialog::OnButtonAppstartLastDatabaseClick)
+    EVT_BUTTON(wxID_EXIT, mmAppStartDialog::OnQuit)
+    EVT_CLOSE(mmAppStartDialog::OnClose)
 END_EVENT_TABLE()
 
-
-mmAppStartDialog::mmAppStartDialog()
-: itemCheckBox()
-, itemButtonClose_()
-, itemButtonExit_()
-{}
-
-
 mmAppStartDialog::mmAppStartDialog(wxWindow* parent)
-: itemCheckBox()
+    : itemCheckBox()
+    , m_buttonExit()
+    , m_buttonClose()
 {
     wxString caption = mmex::getProgramName() + "   " + mmex::getTitleProgramVersion();
-    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300)
-        , wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
+    Create(parent, wxID_ANY, caption, wxDefaultPosition, wxSize(400, 300), style);
 }
 
 bool mmAppStartDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
@@ -92,89 +85,82 @@ void mmAppStartDialog::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
     wxBitmap itemStaticBitmap4Bitmap(money_xpm);
-    wxStaticBitmap* itemStaticBitmap4 = new wxStaticBitmap( this, wxID_STATIC, wxBitmap(money_xpm));
+    wxStaticBitmap* itemStaticBitmap4 = new wxStaticBitmap(this, wxID_STATIC, wxBitmap(money_xpm));
 
-    itemBoxSizer3->Add(itemStaticBitmap4, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemBoxSizer3->Add(itemStaticBitmap4, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5);
+    itemBoxSizer3->Add(itemBoxSizer5, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
 
-    wxButton* itemButton61 = new wxButton( this, wxID_FILE1, _("Open Last Opened Database"));
-    itemBoxSizer5->Add(itemButton61, 0, wxGROW|wxALL, 5);
+    wxButton* itemButton61 = new wxButton(this, wxID_FILE1, _("Open Last Opened Database"));
+    itemBoxSizer5->Add(itemButton61, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton6 = new wxButton( this, wxID_NEW, _("Create a New Database"));
+    wxButton* itemButton6 = new wxButton(this, wxID_NEW, _("Create a New Database"));
     itemButton6->SetToolTip(_("Create a new database file to get started"));
-    itemBoxSizer5->Add(itemButton6, 0, wxGROW|wxALL, 5);
+    itemBoxSizer5->Add(itemButton6, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton7 = new wxButton( this, wxID_OPEN, _("Open Existing Database"));
+    wxButton* itemButton7 = new wxButton(this, wxID_OPEN, _("Open Existing Database"));
     itemButton7->SetToolTip(_("Open an already created database file with extension (*.mmb)"));
-    itemBoxSizer5->Add(itemButton7, 0, wxGROW|wxALL, 5);
+    itemBoxSizer5->Add(itemButton7, 0, wxGROW | wxALL, 5);
 
-    wxButton* itemButton8 = new wxButton( this, wxID_HELP, _("Read Documentation"));
+    wxButton* itemButton8 = new wxButton(this, wxID_HELP, _("Read Documentation"));
     itemButton8->SetToolTip(_("Read the user manual"));
-    itemBoxSizer5->Add(itemButton8, 0, wxGROW|wxALL, 5);
+    itemBoxSizer5->Add(itemButton8, 0, wxGROW | wxALL, 5);
 
     if (mmIniOptions::instance().enableVisitWebsite_)
     {
-        wxButton* itemButton9 = new wxButton( this, wxID_INDEX, _("Visit Website for more information"));
+        wxButton* itemButton9 = new wxButton(this, wxID_INDEX, _("Visit Website for more information"));
         wxString s = _("Open the %s website for latest news, updates etc");
         s = wxString::Format(s, mmex::getProgramName());
 
         itemButton9->SetToolTip(s);
-        itemBoxSizer5->Add(itemButton9, 0, wxGROW|wxALL, 5);
+        itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
     }
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT|wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);
 
     wxString showAppStartString = _("Show this window next time %s starts");
     showAppStartString = wxString::Format(showAppStartString, mmex::getProgramName());
 
-    itemCheckBox = new wxCheckBox( this, wxID_STATIC, showAppStartString, wxDefaultPosition,
-        wxDefaultSize, wxCHK_2STATE );
+    itemCheckBox = new wxCheckBox(this, wxID_STATIC, showAppStartString, wxDefaultPosition,
+        wxDefaultSize, wxCHK_2STATE);
     bool showBeginApp = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
     if (showBeginApp) itemCheckBox->SetValue(true);
     else              itemCheckBox->SetValue(false);
-    itemBoxSizer10->Add(itemCheckBox, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemBoxSizer10->Add(itemCheckBox, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
-    wxStaticLine* line = new wxStaticLine (this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
-    itemBoxSizer2->Add(line, 0, wxGROW|wxALL, 5);
+    wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+    itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
 
-    itemButtonClose_ = new wxButton(this, wxID_OK, _("&OK "));
-    itemButtonExit_ = new wxButton(this, wxID_EXIT, _("&Exit "));
+    m_buttonClose = new wxButton(this, wxID_OK, _("&OK "));
+    m_buttonExit = new wxButton(this, wxID_EXIT, _("&Exit "));
 
-    itemButtonClose_->Show(true);
-    itemButtonExit_->Show(false);
+    m_buttonClose->Show(true);
+    m_buttonExit->Show(false);
 
-    itemBoxSizer2->Add(itemButtonClose_, 0, wxALIGN_RIGHT|wxALL, 10);
-    itemBoxSizer2->Add(itemButtonExit_, 0, wxALIGN_RIGHT|wxALL, 10);
+    itemBoxSizer2->Add(m_buttonClose, 0, wxALIGN_RIGHT | wxALL, 10);
+    itemBoxSizer2->Add(m_buttonExit, 0, wxALIGN_RIGHT | wxALL, 10);
 
-    if (true) // FIXME
+    wxString val = Model_Setting::instance().getLastDbPath();
+    wxFileName lastfile(val);
+    if (!lastfile.FileExists())
     {
-        wxString val = Model_Setting::instance().getLastDbPath();
-        wxFileName lastfile(val);
-        if (!lastfile.FileExists())
-        {
-            itemButton61->Disable();
-        }
-        else
-        {
-            itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database : %s"), val));
-        }
+        itemButton61->Disable();
     }
     else
     {
-        itemButton61->Disable();
+        itemButton61->SetToolTip(wxString::Format(_("Open the previously opened database : %s"), val));
     }
 }
 
 void mmAppStartDialog::SetCloseButtonToExit()
 {
-    itemButtonClose_->Show(false);
-    itemButtonExit_->Show(true);
+    m_buttonClose->Show(false);
+    m_buttonExit->Show(true);
 }
 
 void mmAppStartDialog::OnButtonAppstartHelpClick( wxCommandEvent& /*event*/ )
@@ -219,7 +205,7 @@ void mmAppStartDialog::OnQuit(wxCommandEvent& /*event*/)
 
 void mmAppStartDialog::OnClose(wxCloseEvent& /*event*/)
 {
-    if (itemButtonExit_->IsShown())
+    if (m_buttonExit->IsShown())
         EndModal(wxID_EXIT);
     else
         EndModal(wxID_OK);

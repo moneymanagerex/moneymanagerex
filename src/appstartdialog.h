@@ -22,8 +22,6 @@
 #include <wx/dialog.h>
 
 class wxCheckBox;
-class wxSQLite3Database;
-
 
 class mmAppStartDialog: public wxDialog
 {
@@ -31,18 +29,22 @@ class mmAppStartDialog: public wxDialog
     DECLARE_EVENT_TABLE()
 
 public:
-    mmAppStartDialog();
     mmAppStartDialog(wxWindow* parent);
     ~mmAppStartDialog();
-
     void SetCloseButtonToExit();
 
 private:
+    mmAppStartDialog(){};
     wxCheckBox* itemCheckBox;
-    wxButton* itemButtonClose_;
-    wxButton* itemButtonExit_;
+    wxButton* m_buttonClose;
+    wxButton* m_buttonExit;
 
-    bool Create( wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style);
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
     void CreateControls();
     void OnButtonAppstartOpenDatabaseClick( wxCommandEvent& event );
     void OnButtonAppstartNewDatabaseClick( wxCommandEvent& event );
@@ -52,15 +54,6 @@ private:
     void OnQuit(wxCommandEvent& event);
     void OnClose(wxCloseEvent& event);
 
-    enum
-    {
-        ID_BUTTON_APPSTART_NEW_DATABASE,
-        ID_BUTTON_APPSTART_OPEN_DATABASE,
-        ID_BUTTON_APPSTART_HELP,
-        ID_BUTTON_APPSTART_WEBSITE,
-        ID_CHECKBOX_APPSTART_SHOWAPPSTART,
-        ID_BUTTON_APPSTART_LAST_DATABASE,
-    };
 };
 #endif // _MM_EX_APPSTARTDIALOG_H_
 
