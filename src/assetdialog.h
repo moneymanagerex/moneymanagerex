@@ -28,11 +28,26 @@ class mmAssetDialog : public wxDialog
     DECLARE_EVENT_TABLE()
 
 public:
-    mmAssetDialog();
+    mmAssetDialog(){};
     mmAssetDialog(wxWindow *parent, Model_Asset::Data* asset);
-public:
+
     Model_Asset::Data* m_asset;
 private:
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
+    void CreateControls();
+    void OnOk(wxCommandEvent& event);
+    void OnCancel(wxCommandEvent& event);
+    void OnChangeAppreciationType(wxCommandEvent& event);
+    void enableDisableRate(bool en);
+    void onTextEntered(wxCommandEvent& event);
+    void dataToControls();
+    void changeFocus(wxChildFocusEvent& event);
+
     bool assetRichText;
 
     mmTextCtrl* m_assetName;
@@ -40,21 +55,15 @@ private:
     mmTextCtrl* m_notes;
     mmTextCtrl* m_value;
     mmTextCtrl* m_valueChangeRate;
-
     wxChoice*  m_assetType;
     wxChoice*  m_valueChange;
-
     wxStaticText* m_valueChangeRateLabel;
 
-    bool Create(wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style);
-    void CreateControls();
-
-    void OnOk(wxCommandEvent& event);
-    void OnCancel(wxCommandEvent& event);
-    void OnChangeAppreciationType(wxCommandEvent& event);
-    void enableDisableRate(bool en);
-    void onTextEntered(wxCommandEvent& event);
-
-    void dataToControls();
-    void changeFocus(wxChildFocusEvent& event);
+    enum
+    {
+        IDC_COMBO_TYPE = wxID_HIGHEST + 1100,
+        IDC_NOTES,
+        IDC_VALUE,
+        IDC_RATE,
+    };
 };

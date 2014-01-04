@@ -17,24 +17,9 @@
 #include "assetdialog.h"
 #include "mmtextctrl.h"
 #include "paths.h"
-#include "util.h"
 #include "validators.h"
 #include "model/Model_Asset.h"
 #include <wx/valnum.h>
-
-namespace
-{
-
-enum
-{
-    IDC_COMBO_TYPE = wxID_HIGHEST + 1100,
-    IDC_NOTES,
-    IDC_VALUE,
-    IDC_RATE,
-};
-
-} // namespace
-
 
 IMPLEMENT_DYNAMIC_CLASS( mmAssetDialog, wxDialog )
 
@@ -45,18 +30,27 @@ BEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_CHILD_FOCUS(mmAssetDialog::changeFocus)
 END_EVENT_TABLE()
 
-mmAssetDialog::mmAssetDialog()
-{}
-
 mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     : m_asset(asset)
+    , m_assetName()
+    , m_dpc()
+    , m_notes()
+    , m_value()
+    , m_valueChangeRate()
+    , m_assetType()
+    , m_valueChange()
+    , m_valueChangeRateLabel()
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
-
     Create(parent, wxID_ANY, _("New/Edit Asset"), wxDefaultPosition, wxSize(400, 300), style);
 }
 
-bool mmAssetDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
+bool mmAssetDialog::Create(wxWindow* parent
+    , wxWindowID id
+    , const wxString& caption
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
 
@@ -103,15 +97,15 @@ void mmAssetDialog::CreateControls()
     this->SetSizer(itemBoxSizer2);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer3, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Asset Details"));
-    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static,
-        wxVERTICAL);
+    wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static
+        , wxVERTICAL);
     itemBoxSizer3->Add(itemStaticBoxSizer4, flags);
 
-    wxPanel* itemPanel5 = new wxPanel( this, wxID_STATIC, wxDefaultPosition,
-        wxDefaultSize, wxTAB_TRAVERSAL );
+    wxPanel* itemPanel5 = new wxPanel( this, wxID_STATIC, wxDefaultPosition
+        , wxDefaultSize, wxTAB_TRAVERSAL );
     itemStaticBoxSizer4->Add(itemPanel5, flags);
 
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
@@ -119,20 +113,20 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Name")), flags);
 
-    m_assetName = new mmTextCtrl( itemPanel5, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, 0 );
+    m_assetName = new mmTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, 0);
     m_assetName->SetToolTip(_("Enter the name of the asset"));
     itemFlexGridSizer6->Add(m_assetName, flagsExpand);
 
-    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Date")), flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Date")), flags);
 
     m_dpc = new wxDatePickerCtrl( itemPanel5, wxID_ANY, wxDefaultDateTime,
               wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN|wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(m_dpc, flags);
     m_dpc->SetToolTip(_("Specify the date of purchase of asset"));
 
-    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Asset Type")), flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Asset Type")), flags);
 
-    m_assetType = new wxChoice( itemPanel5, wxID_STATIC, wxDefaultPosition, wxSize(150,-1));
+    m_assetType = new wxChoice(itemPanel5, wxID_STATIC, wxDefaultPosition, wxSize(150, -1));
     for (const auto& a : Model_Asset::all_type())
         m_assetType->Append(wxGetTranslation(a), new wxStringClientData(a));
 
@@ -141,7 +135,7 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(m_assetType, 0,
         wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Value")), flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Value")), flags);
 
     m_value = new mmTextCtrl(itemPanel5, IDC_VALUE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
@@ -151,9 +145,9 @@ void mmAssetDialog::CreateControls()
     m_value->Connect(IDC_VALUE, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmAssetDialog::onTextEntered), NULL, this);
 
-    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Change in Value")), flags);
+    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Change in Value")), flags);
 
-    m_valueChange = new wxChoice( itemPanel5, IDC_COMBO_TYPE, wxDefaultPosition, wxSize(150,-1));
+    m_valueChange = new wxChoice(itemPanel5, IDC_COMBO_TYPE, wxDefaultPosition, wxSize(150, -1));
     for(const auto& a : Model_Asset::all_rate())
         m_valueChange->Append(wxGetTranslation(a));
 
@@ -177,9 +171,9 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->AddSpacer(1);
 
-    m_notes = new mmTextCtrl( this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE );
+    m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
-    itemStaticBoxSizer4->Add(m_notes, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxLEFT|wxRIGHT|wxBOTTOM, 10);
+    itemStaticBoxSizer4->Add(m_notes, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxLEFT | wxRIGHT | wxBOTTOM, 10);
 
     wxPanel* itemPanel27 = new wxPanel( this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
     itemBoxSizer3->Add(itemPanel27, flags.Right());
@@ -190,7 +184,7 @@ void mmAssetDialog::CreateControls()
     wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
     itemBoxSizer28->Add(itemButton29, flags);
 
-    wxButton* itemButton30 = new wxButton( itemPanel27, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, _("&Cancel "));
     itemBoxSizer28->Add(itemButton30, flags);
     itemButton30->SetFocus();
 }
@@ -224,13 +218,13 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     wxString valueStr = m_value->GetValue().Trim();
     if (valueStr.IsEmpty())
     {
-        wxMessageBox(_("Value"), _("Invalid Entry"), wxOK|wxICON_ERROR);
+        wxMessageBox(_("Value"), _("Invalid Entry"), wxOK | wxICON_ERROR);
         return;
     }
     double value = 0;
     if (!Model_Currency::fromString(valueStr, value) || value < 0)
     {
-        wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
+        wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK | wxICON_ERROR);
         return;
     }
 
@@ -238,7 +232,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     wxString valueChangeRateStr = m_valueChangeRate->GetValue().Trim();
     if (valueChangeRateStr.IsEmpty() && valueChangeType != Model_Asset::RATE_NONE)
     {
-        wxMessageBox(_("Rate of Change in Value"), _("Invalid Entry"), wxOK|wxICON_ERROR);
+        wxMessageBox(_("Rate of Change in Value"), _("Invalid Entry"), wxOK | wxICON_ERROR);
         return;
     }
     double valueChangeRate = 0;
@@ -246,7 +240,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     {
         if (valueChangeType != Model_Asset::RATE_NONE)
         {
-            wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK|wxICON_ERROR);
+            wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK | wxICON_ERROR);
             return;
         }
         valueChangeRate = 0;
@@ -282,7 +276,7 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmAssetDialog::changeFocus(wxChildFocusEvent& event)
 {
     wxWindow *w = event.GetWindow();
-    if ( w ) assetRichText = (w->GetId() == IDC_NOTES ? true : false);
+    if (w) assetRichText = (w->GetId() == IDC_NOTES ? true : false);
 }
 
 void mmAssetDialog::onTextEntered(wxCommandEvent& event)
