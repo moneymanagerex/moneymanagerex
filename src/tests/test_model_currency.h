@@ -24,6 +24,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "model/Model_Currency.h"
 
+class Test_Hooks : public wxSQLite3Hook
+{
+private:
+    wxString msg_header;
+
+public:
+    Test_Hooks();
+
+    virtual bool CommitCallback();
+    virtual void RollbackCallback();
+    virtual void UpdateCallback(wxUpdateType type, const wxString& database, const wxString& table, wxLongLong rowid);
+};
+
 class Test_Model_Currency : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_Model_Currency);
@@ -51,23 +64,7 @@ private:
 
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
-    wxLocale m_locale;
+    Test_Hooks* m_test_callback;
 
     Model_Currency::Data get_currency_record(const wxString& currency_symbol);
-};
-
-
-class Test_Hooks : public wxSQLite3Hook
-{
-private:
-    wxString msg_header;
-
-public:
-    Test_Hooks();
-
-    virtual bool CommitCallback();
-
-    virtual void RollbackCallback();
-
-    virtual void UpdateCallback(wxUpdateType type, const wxString& database, const wxString& table, wxLongLong rowid);
 };

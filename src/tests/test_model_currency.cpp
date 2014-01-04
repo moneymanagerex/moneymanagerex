@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_model_currency.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
 
 static int instance_count = 0;
 
@@ -31,7 +31,6 @@ Test_Model_Currency::Test_Model_Currency()
 {
     instance_count++;
     m_test_db_filename = "cppunit_test_database.mmb";
-    m_locale.Init(wxLANGUAGE_ENGLISH);
 }
 
 Test_Model_Currency::~Test_Model_Currency()
@@ -43,13 +42,12 @@ void Test_Model_Currency::setUp()
     std::cout << "\n";
     m_test_db.Open(m_test_db_filename);
 
-    Test_Hooks* test_callback = new Test_Hooks();
+    m_test_callback = new Test_Hooks();
 
-    m_test_db.SetCommitHook(test_callback);
-
-    m_test_db.SetRollbackHook(test_callback);
-
-    m_test_db.SetUpdateHook(test_callback);
+    // The test hooks area actually passed to SQLite3 by wxSQLite3
+    m_test_db.SetCommitHook(m_test_callback);
+    m_test_db.SetRollbackHook(m_test_callback);
+    m_test_db.SetUpdateHook(m_test_callback);
 
     Model_Currency currency = Model_Currency::instance(&m_test_db);
     Model_Infotable::instance(&m_test_db);
@@ -57,7 +55,12 @@ void Test_Model_Currency::setUp()
 
 void Test_Model_Currency::tearDown()
 {
+    // need to reset the hooks before deleting them
+    m_test_db.SetCommitHook(0);
+    m_test_db.SetRollbackHook(0);
+    m_test_db.SetUpdateHook(0);
     m_test_db.Close();
+    delete m_test_callback;
 }
 
 Model_Currency::Data Test_Model_Currency::get_currency_record(const wxString& currency_symbol)
@@ -153,11 +156,11 @@ void Test_Model_Currency::test_FourDigitPrecision()
     value = currency.toCurrency(12345.12345, &taiwan_record, 4);
     CPPUNIT_ASSERT(value == "NT$12,345.1234");
 }
-
 //--------------------------------------------------------------------------
+
 Test_Hooks::Test_Hooks()
 {
-    msg_header = "Test_Model_Currency Testing?";
+    msg_header = "Test Result: Test_Model_Currency ";
     wxSQLite3Hook::wxSQLite3Hook();
 }
 
@@ -203,5 +206,4 @@ void Test_Hooks::UpdateCallback(wxUpdateType type, const wxString& database,
         << " of database " << (const char*) database.mb_str()
         << "\n\n";
 }
-
 //--------------------------------------------------------------------------

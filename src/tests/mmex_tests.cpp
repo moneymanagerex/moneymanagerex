@@ -34,8 +34,12 @@ int main(int /*argc*/, char const* /*argv*/[])
     *************************************************************************/
     wxApp::CheckBuildOptions(WX_BUILD_OPTIONS_SIGNATURE, "CPPUNIT Based: MMEX Tests");
     wxInitializer initializer;
-
-    if (!initializer.IsOk())
+    wxLocale locale;
+    if (initializer.IsOk())
+    {
+        locale.Init(wxLANGUAGE_ENGLISH);
+    }
+    else
     {
         std::cout << "Failed to initialize the wxWidgets library, aborting.";
         std::cout << "\n\nPress ENTER to continue... ";

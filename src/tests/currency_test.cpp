@@ -36,7 +36,6 @@ CurrencyTest::~CurrencyTest()
 
 void CurrencyTest::setUp()
 {
-	locale_.Init(wxLANGUAGE_ENGLISH);
 }
 
 void CurrencyTest::tearDown()

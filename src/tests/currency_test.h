@@ -29,9 +29,6 @@ class CurrencyTest : public CPPUNIT_NS::TestFixture
 	CPPUNIT_TEST( formatDoubleToCurrency );
 	CPPUNIT_TEST_SUITE_END();
 
-protected:
-	wxLocale locale_;
-
 public:
 	CurrencyTest();
 	virtual ~CurrencyTest();
