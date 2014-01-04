@@ -17,7 +17,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "../platfdep.h" // GetAppName
 #include <wx/app.h>
 #include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/CompilerOutputter.h>
@@ -27,16 +26,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <cppunit/TestRunner.h>
 //----------------------------------------------------------------------------
 
-/*
-        I must create an instance of application because some 
-        classes require one (for example, wxStandardPaths).
-*/
 int main(int /*argc*/, char const* /*argv*/[])
 {
-    wxAppInitializerFunction f = wxAppConsole::GetInitializerFunction();
-    f(); // creates instance of application
+    /*************************************************************************
+     Create an instance of the wxWidgets Console application because some
+     classes require this. (for example, wxStandardPaths).
+    *************************************************************************/
+    wxApp::CheckBuildOptions(WX_BUILD_OPTIONS_SIGNATURE, "CPPUNIT Based: MMEX Tests");
+    wxInitializer initializer;
 
-    wxApp::GetInstance()->SetAppName(mmex::GetAppName());
+    if (!initializer.IsOk())
+    {
+        std::cout << "Failed to initialize the wxWidgets library, aborting.";
+        std::cout << "\n\nPress ENTER to continue... ";
+        std::cin.get();
+        return -1;
+    }
 
 	// Create the event manager and test controller
 	CPPUNIT_NS::TestResult controller;
@@ -63,7 +68,7 @@ int main(int /*argc*/, char const* /*argv*/[])
         // Pause command window. Allow user to review results from Windows and/or IDE
         std::cout << "\nPress ENTER to continue... ";
         std::cin.get();
-	}
+    }
 	catch ( std::invalid_argument &e )  // Test path not resolved
 	{
 		CPPUNIT_NS::stdCOut()	<<  "\n"  
