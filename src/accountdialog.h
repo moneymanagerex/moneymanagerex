@@ -51,22 +51,37 @@ private:
     void OnCustonImage(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
 
-    wxBitmapButton* bitmaps_button_;
     void OnImageButton(wxCommandEvent& event);
-
     void changeFocus(wxChildFocusEvent& event);
+
 private:
     Model_Account::Data* m_account;
-    int currencyID_;
-    wxTextCtrl *textAccountName_;
-    wxTextCtrl *notesCtrl_;
-    mmTextCtrl* itemInitValue_;
-    bool termAccount_;
-    wxString accessInfo_;
-    bool access_changed_;
-    wxString notesLabel_;
-    wxColour notesColour_;
-    wxImageList* imageList_;
+    wxTextCtrl* m_textAccountName;
+    wxTextCtrl* m_notesCtrl;
+    mmTextCtrl* m_itemInitValue;
+    wxImageList* m_imageList;
+    wxBitmapButton* m_bitmapButtons;
+    wxString m_accessInfo;
+    wxString m_notesLabel;
+    int m_currencyID;
+    bool m_termAccount;
+    bool m_accessChanged;
+
+    enum {
+        ID_DIALOG_NEWACCT_BUTTON_CURRENCY = wxID_HIGHEST + 1000,
+        ID_DIALOG_NEWACCT_TEXTCTRL_ACCTNAME,
+        ID_ACCTNUMBER,
+        ID_DIALOG_NEWACCT_TEXTCTRL_HELDAT,
+        ID_DIALOG_NEWACCT_TEXTCTRL_WEBSITE,
+        ID_DIALOG_NEWACCT_TEXTCTRL_CONTACT,
+        ID_DIALOG_NEWACCT_TEXTCTRL_ACCESSINFO,
+        ID_DIALOG_NEWACCT_TEXTCTRL_NOTES,
+        ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE,
+        ID_DIALOG_NEWACCT_COMBO_ACCTSTATUS,
+        ID_DIALOG_NEWACCT_CHKBOX_FAVACCOUNT,
+        ID_DIALOG_NEWACCT_COMBO_ACCTTYPE
+    };
+
 };
 
 #endif
