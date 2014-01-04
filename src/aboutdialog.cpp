@@ -25,13 +25,6 @@
 #include <wx/wxsqlite3.h>
 #include <wx/statline.h>
 
-
-enum
-{
-    IDC_DIALOG_BUTTON_ABOUT_VERSION_HISTORY = wxID_HIGHEST + 700,
-    IDC_DIALOG_BUTTON_ABOUT_CONTRIBUTERS
-};
-
 IMPLEMENT_DYNAMIC_CLASS(mmAboutDialog, wxDialog)
 
 BEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
@@ -39,10 +32,15 @@ BEGIN_EVENT_TABLE(mmAboutDialog, wxDialog)
 END_EVENT_TABLE()
 
 mmAboutDialog::mmAboutDialog(wxWindow* parent)
+: about_text_()
+, developers_text_()
+, translators_text_()
+, artwork_text_()
+, sponsors_text_()
 {
     wxString caption = wxString(_("About")) << " " << mmex::getProgramName();
-    Create(parent, wxID_ANY, caption, wxDefaultPosition,
-        wxSize(500, 220), wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
+    Create(parent, wxID_ANY, caption, wxDefaultPosition
+        , wxSize(500, 220), wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX);
 }
 
 bool mmAboutDialog::Create(wxWindow* parent
