@@ -54,22 +54,18 @@ private:
     void OnEndLabelEdit(wxListEvent& event);
     void OnItemResize(wxListEvent& event);
     bool EditAsset(Model_Asset::Data* pEntry);
+
+    enum {
+        MENU_TREEPOPUP_NEW = wxID_HIGHEST + 1200,
+        MENU_TREEPOPUP_EDIT,
+        MENU_TREEPOPUP_DELETE,
+        MENU_ON_DUPLICATE_TRANSACTION,
+    };
 };
 
 class mmAssetsPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
-public:
-    enum EColumn
-    {
-        COL_NAME = 0,
-        COL_DATE,
-        COL_TYPE,
-        COL_VALUE_INITIAL,
-        COL_VALUE_CURRENT,
-        COL_NOTES,
-        COL_MAX, // number of columns
-    };
 
 public:
     mmAssetsPanel(wxWindow *parent);
@@ -80,6 +76,8 @@ public:
 
     Model_Asset::Data_Set m_assets;
     Model_Asset::TYPE m_filter_type;
+    int col_max() { return COL_MAX; }
+
 private:
     void enableEditDeleteButtons(bool enable);
     mmAssetsListCtrl* m_listCtrlAssets;
@@ -89,7 +87,12 @@ private:
 
     wxScopedPtr<wxImageList> m_imageList;
 
-    bool Create(wxWindow *parent, wxWindowID winid, const wxPoint& pos, const wxSize& size, long style, const wxString &name);
+    bool Create(wxWindow *parent
+        , wxWindowID winid
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style
+        , const wxString &name);
     void CreateControls();
 
     /* Event handlers for Buttons */
@@ -103,4 +106,18 @@ private:
 
 private:
     wxString tips_;
+    enum {
+        IDC_PANEL_ASSET_STATIC_DETAILS = wxID_HIGHEST + 1220,
+        IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
+    };
+    enum EColumn
+    {
+        COL_NAME = 0,
+        COL_DATE,
+        COL_TYPE,
+        COL_VALUE_INITIAL,
+        COL_VALUE_CURRENT,
+        COL_NOTES,
+        COL_MAX, // number of columns
+    };
 };

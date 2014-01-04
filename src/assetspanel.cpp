@@ -32,26 +32,17 @@
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow.xpm"
 
-enum {
-    IDC_PANEL_ASSETS_LISTCTRL = wxID_HIGHEST + 1200,
-    IDC_PANEL_ASSET_STATIC_DETAILS,
-    IDC_PANEL_ASSET_STATIC_DETAILS_MINI,
-    MENU_TREEPOPUP_NEW,
-    MENU_TREEPOPUP_EDIT,
-    MENU_TREEPOPUP_DELETE,
-    MENU_ON_DUPLICATE_TRANSACTION,
-
-};
 /*******************************************************/
+
 BEGIN_EVENT_TABLE(mmAssetsListCtrl, mmListCtrl)
-    EVT_LIST_ITEM_ACTIVATED(IDC_PANEL_ASSETS_LISTCTRL,   mmAssetsListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   mmAssetsListCtrl::OnListItemActivated)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY,    mmAssetsListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(wxID_ANY,  mmAssetsListCtrl::OnListItemDeselected)
+    EVT_LIST_COL_END_DRAG(wxID_ANY,     mmAssetsListCtrl::OnItemResize)
+    EVT_LIST_COL_CLICK(wxID_ANY,        mmAssetsListCtrl::OnColClick)
+    EVT_LIST_END_LABEL_EDIT(wxID_ANY,   mmAssetsListCtrl::OnEndLabelEdit)
     EVT_RIGHT_DOWN(mmAssetsListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(mmAssetsListCtrl::OnMouseLeftClick)
-    EVT_LIST_ITEM_SELECTED(IDC_PANEL_ASSETS_LISTCTRL,    mmAssetsListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(IDC_PANEL_ASSETS_LISTCTRL,  mmAssetsListCtrl::OnListItemDeselected)
-    EVT_LIST_COL_END_DRAG(IDC_PANEL_ASSETS_LISTCTRL,     mmAssetsListCtrl::OnItemResize)
-    EVT_LIST_COL_CLICK(IDC_PANEL_ASSETS_LISTCTRL,        mmAssetsListCtrl::OnColClick)
-    EVT_LIST_END_LABEL_EDIT(IDC_PANEL_ASSETS_LISTCTRL,   mmAssetsListCtrl::OnEndLabelEdit)
 
     EVT_MENU(MENU_TREEPOPUP_NEW,    mmAssetsListCtrl::OnNewAsset)
     EVT_MENU(MENU_TREEPOPUP_EDIT,   mmAssetsListCtrl::OnEditAsset)
@@ -139,7 +130,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 {
-    mmAssetDialog dlg(this, 0);
+    mmAssetDialog dlg(this, (Model_Asset::Data*)NULL);
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.m_asset->ASSETID);
@@ -193,7 +184,7 @@ void mmAssetsListCtrl::OnEditAsset(wxCommandEvent& /*event*/)
 {
     if (m_selected_row < 0)     return;
 
-    wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, IDC_PANEL_ASSETS_LISTCTRL);
+    wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, wxID_ANY);
     AddPendingEvent(evt);
 }
 
@@ -236,7 +227,7 @@ bool mmAssetsListCtrl::EditAsset(Model_Asset::Data* pEntry)
 
 void mmAssetsListCtrl::OnColClick(wxListEvent& event)
 {
-    if(0 > event.GetColumn() || event.GetColumn() >= mmAssetsPanel::COL_MAX) return;
+    if (0 > event.GetColumn() || event.GetColumn() >= cp_->col_max()) return;
 
     if (m_selected_col == event.GetColumn()) m_asc = !m_asc;
 
@@ -269,21 +260,29 @@ void mmAssetsListCtrl::OnEndLabelEdit(wxListEvent& event)
 }
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
-EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
-EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
-EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
-EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
+    EVT_BUTTON(wxID_NEW, mmAssetsPanel::OnNewAsset)
+    EVT_BUTTON(wxID_EDIT, mmAssetsPanel::OnEditAsset)
+    EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
+    EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
 END_EVENT_TABLE()
 /*******************************************************/
 
 mmAssetsPanel::mmAssetsPanel(wxWindow *parent)
-: m_filter_type(Model_Asset::TYPE(-1))
-,  tips_(_("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth."))
+    : m_filter_type(Model_Asset::TYPE(-1))
+    , m_listCtrlAssets()
+    , itemStaticTextMainFilter_()
+    , header_text_()
 {
-    Create(parent, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
+    tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
+    Create(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
 }
 
-bool mmAssetsPanel::Create(wxWindow *parent, wxWindowID winid, const wxPoint &pos, const wxSize &size, long style, const wxString &name)
+bool mmAssetsPanel::Create(wxWindow *parent
+    , wxWindowID winid
+    , const wxPoint &pos
+    , const wxSize &size
+    , long style
+    , const wxString &name)
 {
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
 
@@ -309,7 +308,6 @@ void mmAssetsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
 
-    /* ---------------------- */
     wxPanel* headerPanel = new wxPanel( this, wxID_ANY, wxDefaultPosition,
         wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
     itemBoxSizer9->Add(headerPanel, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);
@@ -343,7 +341,7 @@ void mmAssetsPanel::CreateControls()
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow( this, wxID_STATIC,
         wxDefaultPosition, wxSize(200, 200), wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER);
 
-    m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, IDC_PANEL_ASSETS_LISTCTRL);
+    m_listCtrlAssets = new mmAssetsListCtrl(this, itemSplitterWindow10, wxID_ANY);
 
     wxSize imageSize(16, 16);
     m_imageList.reset(new wxImageList(imageSize.GetWidth(), imageSize.GetHeight()));
@@ -388,51 +386,52 @@ void mmAssetsPanel::CreateControls()
     int col1 = Model_Setting::instance().GetIntSetting("ASSETS_COL1_WIDTH", -2);
     int col2 = Model_Setting::instance().GetIntSetting("ASSETS_COL2_WIDTH", -2);
     int col3 = Model_Setting::instance().GetIntSetting("ASSETS_COL3_WIDTH", -2);
-    int col4 = Model_Setting::instance().GetIntSetting("ASSETS_COL4_WIDTH", 450);
+    int col4 = Model_Setting::instance().GetIntSetting("ASSETS_COL4_WIDTH", -2);
+    int col5 = Model_Setting::instance().GetIntSetting("ASSETS_COL5_WIDTH", 450);
 
     m_listCtrlAssets->SetColumnWidth(COL_NAME, col0);
     m_listCtrlAssets->SetColumnWidth(COL_DATE, col1);
     m_listCtrlAssets->SetColumnWidth(COL_TYPE, col2);
     m_listCtrlAssets->SetColumnWidth(COL_VALUE_INITIAL, col3);
-    m_listCtrlAssets->SetColumnWidth(COL_VALUE_CURRENT, col3);
-    m_listCtrlAssets->SetColumnWidth(COL_NOTES, col4);
+    m_listCtrlAssets->SetColumnWidth(COL_VALUE_CURRENT, col4);
+    m_listCtrlAssets->SetColumnWidth(COL_NOTES, col5);
 
-    wxPanel* assets_panel = new wxPanel( itemSplitterWindow10, wxID_ANY,
-        wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
+    wxPanel* assets_panel = new wxPanel(itemSplitterWindow10, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     itemSplitterWindow10->SplitHorizontally(m_listCtrlAssets, assets_panel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
-    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW|wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW | wxALL, 1);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
     assets_panel->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 3);
+    itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT | wxALL, 3);
 
     wxButton* itemButton6 = new wxButton( assets_panel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Asset"));
-    itemBoxSizer5->Add(itemButton6, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton6, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
 
     wxButton* itemButton81 = new wxButton( assets_panel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Asset"));
-    itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton( assets_panel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Asset"));
-    itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
     itemButton7->Enable(false);
 
     //Infobar-mini
-    wxStaticText* itemStaticText44 = new wxStaticText( assets_panel, IDC_PANEL_ASSET_STATIC_DETAILS_MINI, "");
-    itemBoxSizer5->Add(itemStaticText44, 1, wxGROW|wxTOP, 12);
+    wxStaticText* itemStaticText44 = new wxStaticText(assets_panel, IDC_PANEL_ASSET_STATIC_DETAILS_MINI, "");
+    itemBoxSizer5->Add(itemStaticText44, 1, wxGROW | wxTOP, 12);
 
     //Infobar
-    wxStaticText* itemStaticText33 = new wxStaticText( assets_panel,
-        IDC_PANEL_ASSET_STATIC_DETAILS, "", wxDefaultPosition, wxSize(200,-1), wxTE_MULTILINE|wxTE_WORDWRAP);
-    itemBoxSizer4->Add(itemStaticText33, 1, wxGROW|wxLEFT|wxRIGHT, 14);
+    wxStaticText* itemStaticText33 = new wxStaticText(assets_panel
+        , IDC_PANEL_ASSET_STATIC_DETAILS, "", wxDefaultPosition, wxSize(200, -1), wxTE_MULTILINE | wxTE_WORDWRAP);
+    itemBoxSizer4->Add(itemStaticText33, 1, wxGROW | wxLEFT | wxRIGHT, 14);
 
     updateExtraAssetData(-1);
 }
