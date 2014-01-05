@@ -51,12 +51,16 @@ private:
     void OnTextEntered(wxCommandEvent& event);
 
     Model_Budget::Data* budgetEntry_;
-    wxChoice* itemChoice_;
-    mmTextCtrl* textAmount_;
-    wxChoice* type_;
+    wxChoice* m_choiceItem;
+    mmTextCtrl* m_textAmount;
+    wxChoice* m_choiceType;
 
     wxString catEstimateAmountStr_;
     wxString catActualAmountStr_;
+
+    enum { DEF_TYPE_EXPENSE, DEF_TYPE_INCOME };
+    enum { DEF_FREQ_NONE, DEF_FREQ_WEEKLY, DEF_FREQ_BIWEEKLY, DEF_FREQ_MONTHLY, DEF_FREQ_BIMONTHLY, DEF_FREQ_QUARTERLY, DEF_FREQ_HALFYEARLY, DEF_FREQ_YEARLY, DEF_FREQ_DAILY };
+
 };
 
 #endif
