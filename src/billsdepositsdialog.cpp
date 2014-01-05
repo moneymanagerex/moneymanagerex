@@ -20,6 +20,7 @@
 #include "billsdepositsdialog.h"
 #include "util.h"
 #include "mmOption.h"
+#include "mmsinglechoicedialog.h"
 #include "paths.h"
 #include "categdialog.h"
 #include "payeedialog.h"
@@ -567,7 +568,7 @@ void mmBDDialog::OnCancel(wxCommandEvent& /*event*/)
 
 void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
 {
-    wxSingleChoiceDialog scd(this
+    mmSingleChoiceDialog scd(this
         , _("Choose Bank Account or Term Account")
         , _("Select Account")
         , Model_Account::instance().all_checking_account_names());
@@ -587,7 +588,7 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 {
     if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
     {
-        wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
+        mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
             , Model_Account::instance().all_checking_account_names());
         if (scd.ShowModal() == wxID_OK)
         {
@@ -634,9 +635,9 @@ void mmBDDialog::OnPayee(wxCommandEvent& /*event*/)
 void mmBDDialog::OnTo(wxCommandEvent& /*event*/)
 {
     // This should only get called if we are in a transfer
-    wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
-    wxSingleChoiceDialog scd(this, _("Account name"), _("Select Account"), accountArray);
+    mmSingleChoiceDialog scd(this, _("Account name"), _("Select Account")
+        , Model_Account::instance().all_checking_account_names());
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();

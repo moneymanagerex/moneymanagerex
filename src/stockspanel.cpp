@@ -20,6 +20,7 @@
 #include "stockdialog.h"
 #include "constants.h"
 #include "util.h"
+#include "mmsinglechoicedialog.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
@@ -210,16 +211,17 @@ void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
     if (m_selected_row == -1) return;
 
     wxArrayString accounts_name;
-    for (const auto& account: Model_Account::instance().all())
+    for (const auto& account : Model_Account::instance()
+        .find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT])))
     {
-        if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+        //if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
         accounts_name.Add(account.ACCOUNTNAME);
     }
     if (accounts_name.Count() < 1) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(stock_panel_->accountID_);
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), from_account->ACCOUNTNAME);
-    wxSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts_name);
+    mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts_name);
 
     int toAccountID = -1;
     int error_code = scd.ShowModal();

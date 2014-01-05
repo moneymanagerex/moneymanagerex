@@ -21,6 +21,7 @@
 #include "guiid.h"
 #include "dbwrapper.h"
 #include "aboutdialog.h"
+#include "accountdialog.h"
 #include "appstartdialog.h"
 #include "assetspanel.h"
 #include "billsdepositsdialog.h"
@@ -38,7 +39,7 @@
 #include "mmhelppanel.h"
 #include "mmhomepagepanel.h"
 #include "mmreportspanel.h"
-#include "accountdialog.h"
+#include "mmsinglechoicedialog.h"
 #include "optionsdialog.h"
 #include "paths.h"
 #include "payeedialog.h"
@@ -3285,7 +3286,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         arrAcctID.Add(account.ACCOUNTID);
     }
 
-    wxSingleChoiceDialog scd(this, _("Choose Account to Edit"), _("Accounts"), as);
+    mmSingleChoiceDialog scd(this, _("Choose Account to Edit"), _("Accounts"), as);
     if (scd.ShowModal() == wxID_OK)
     {
         int choice = scd.GetSelection();
@@ -3323,7 +3324,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         arrAcctID.Add(account.ACCOUNTID);
     }
 
-    wxSingleChoiceDialog scd (this, _("Choose Account to Delete"), _("Accounts"), as);
+    mmSingleChoiceDialog scd (this, _("Choose Account to Delete"), _("Accounts"), as);
     if (scd.ShowModal() == wxID_OK)
     {
         int acctID = arrAcctID[scd.GetSelection()];

@@ -20,6 +20,7 @@
 #include "util.h"
 #include "mmcheckingpanel.h"
 #include "mmex.h"
+#include "mmsinglechoicedialog.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
 #include "validators.h"
@@ -1605,7 +1606,7 @@ void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
     wxString source_name = source_account->ACCOUNTNAME;
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), source_name);
 
-    wxSingleChoiceDialog scd(this
+    mmSingleChoiceDialog scd(this
         , _("Select the destination Account ")
         , headerMsg
         , Model_Account::instance().all_checking_account_names());
