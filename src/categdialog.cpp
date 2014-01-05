@@ -26,14 +26,6 @@
 #include "model/Model_Infotable.h"
 #include "../resources/relocate_categories.xpm"
 
-enum
-{
-    MENU_ITEM_HIDE = wxID_HIGHEST + 1500,
-    MENU_ITEM_UNHIDE,
-    MENU_ITEM_CLEAR,
-    ID_DIALOG_CATEGORY
-};
-
 IMPLEMENT_DYNAMIC_CLASS( mmCategDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmCategDialog, wxDialog )
@@ -46,19 +38,19 @@ BEGIN_EVENT_TABLE( mmCategDialog, wxDialog )
     EVT_TREE_ITEM_RIGHT_CLICK(wxID_ANY, mmCategDialog::OnSelChanged)
     EVT_TREE_ITEM_ACTIVATED(wxID_ANY,  mmCategDialog::OnDoubleClicked)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmCategDialog::OnItemRightClick)
-    EVT_MENU_RANGE(MENU_ITEM_HIDE, MENU_ITEM_CLEAR, mmCategDialog::OnMenuSelected)
+    EVT_MENU(wxID_ANY, mmCategDialog::OnMenuSelected)
 END_EVENT_TABLE()
 
 mmCategDialog::mmCategDialog( )
-: treeCtrl_()
-, textCtrl_()
-, addButton_()
-, editButton_()
-, selectButton_()
-, deleteButton_()
-, btnCateg_relocate_()
-, cbExpand_()
-, cbShowAll_()
+: m_treeCtrl()
+, m_textCtrl()
+, m_buttonAdd()
+, m_buttonEdit()
+, m_buttonSelect()
+, m_buttonDelete()
+, m_buttonRelocate()
+, m_cbExpand()
+, m_cbShowAll()
 {
     // Initialize fields in constructor
     categID_ = -1;
@@ -114,58 +106,58 @@ bool mmCategDialog::Create(wxWindow* parent, wxWindowID id
 
 void mmCategDialog::fillControls()
 {
-    treeCtrl_->DeleteAllItems();
-    root_ = treeCtrl_->AddRoot(_("Categories"));
+    m_treeCtrl->DeleteAllItems();
+    root_ = m_treeCtrl->AddRoot(_("Categories"));
     selectedItemId_ = root_;
-    treeCtrl_->SetItemBold(root_, true);
-    treeCtrl_->SetFocus ();
-    NormalColor_ = treeCtrl_->GetItemTextColour(root_);
+    m_treeCtrl->SetItemBold(root_, true);
+    m_treeCtrl->SetFocus ();
+    NormalColor_ = m_treeCtrl->GetItemTextColour(root_);
     bool bResult = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
-    cbShowAll_->SetValue(bResult);
+    m_cbShowAll->SetValue(bResult);
 
     Model_Category::Data_Set categories = Model_Category::instance().all();
     for (const Model_Category::Data& category : categories)
     {
         wxTreeItemId maincat;
         bool bShow = categShowStatus(category.CATEGID, -1);
-        if (cbShowAll_->IsChecked() || bShow)
+        if (m_cbShowAll->IsChecked() || bShow)
         {
-            maincat = treeCtrl_->AppendItem(root_, category.CATEGNAME);
+            maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
             Model_Subcategory::Data subcat = 0;
-            treeCtrl_->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
-            if (!bShow) treeCtrl_->SetItemTextColour(maincat, wxColour("GREY"));
+            m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
+            if (!bShow) m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
 
             for (const Model_Subcategory::Data& sub_category : Model_Category::sub_category(category))
             {
                 bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
-                if (cbShowAll_->IsChecked() || bShow)
+                if (m_cbShowAll->IsChecked() || bShow)
                 {
-                    wxTreeItemId subcat = treeCtrl_->AppendItem(maincat, sub_category.SUBCATEGNAME);
-                    treeCtrl_->SetItemData(subcat, new mmTreeItemCateg(category, sub_category));
-                    if (!bShow) treeCtrl_->SetItemTextColour(subcat, wxColour("GREY"));
+                    wxTreeItemId subcat = m_treeCtrl->AppendItem(maincat, sub_category.SUBCATEGNAME);
+                    m_treeCtrl->SetItemData(subcat, new mmTreeItemCateg(category, sub_category));
+                    if (!bShow) m_treeCtrl->SetItemTextColour(subcat, wxColour("GREY"));
 
                     if (categID_ == category.CATEGID && subcategID_ == sub_category.SUBCATEGID)
                         selectedItemId_ = subcat;
                 }
             }
-            treeCtrl_->SortChildren(maincat);
+            m_treeCtrl->SortChildren(maincat);
         }
     }
-    treeCtrl_->Expand(root_);
+    m_treeCtrl->Expand(root_);
     bResult = Model_Setting::instance().GetBoolSetting("EXPAND_CATEGS_TREE", false);
-    if (bResult) treeCtrl_->ExpandAll();
-    cbExpand_->SetValue(bResult);
+    if (bResult) m_treeCtrl->ExpandAll();
+    m_cbExpand->SetValue(bResult);
 
-    treeCtrl_->SortChildren(root_);
-    treeCtrl_->SelectItem(selectedItemId_);
-    treeCtrl_->EnsureVisible(selectedItemId_);
+    m_treeCtrl->SortChildren(root_);
+    m_treeCtrl->SelectItem(selectedItemId_);
+    m_treeCtrl->EnsureVisible(selectedItemId_);
 
-    textCtrl_->SetValue("");
-    selectButton_->Disable();
-    deleteButton_->Disable();
-    editButton_->Disable();
-    addButton_->Enable();
-    btnCateg_relocate_->Enable(bEnableRelocate_);
+    m_textCtrl->SetValue("");
+    m_buttonSelect->Disable();
+    m_buttonDelete->Disable();
+    m_buttonEdit->Disable();
+    m_buttonAdd->Enable();
+    m_buttonRelocate->Enable(bEnableRelocate_);
 }
 
 void mmCategDialog::CreateControls()
@@ -178,76 +170,76 @@ void mmCategDialog::CreateControls()
     wxBoxSizer* itemBoxSizer33 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer3->Add(itemBoxSizer33);
 
-    btnCateg_relocate_ = new wxBitmapButton(this
-        , wxID_STATIC, wxBitmap(relocate_categories_xpm));
-    btnCateg_relocate_->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
+    m_buttonRelocate = new wxBitmapButton(this
+        , wxID_ANY, wxBitmap(relocate_categories_xpm));
+    m_buttonRelocate->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), NULL, this);
-    btnCateg_relocate_->SetToolTip(_("Reassign all categories to another category"));
+    m_buttonRelocate->SetToolTip(_("Reassign all categories to another category"));
 
-    cbExpand_ = new wxCheckBox(this, wxID_STATIC, _("Expand"), wxDefaultPosition
+    m_cbExpand = new wxCheckBox(this, wxID_ANY, _("Expand"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
-    cbExpand_->Connect(wxID_STATIC, wxEVT_COMMAND_CHECKBOX_CLICKED,
+    m_cbExpand->Connect(wxID_ANY, wxEVT_COMMAND_CHECKBOX_CLICKED,
         wxCommandEventHandler(mmCategDialog::OnExpandChbClick), NULL, this);
 
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
+    m_cbShowAll = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
-    cbShowAll_->SetToolTip(_("Show all hidden categories"));
-    cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
+    m_cbShowAll->SetToolTip(_("Show all hidden categories"));
+    m_cbShowAll->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), NULL, this);
 
-    itemBoxSizer33->Add(btnCateg_relocate_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+    itemBoxSizer33->Add(m_buttonRelocate, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
     itemBoxSizer33->AddSpacer(10);
-    itemBoxSizer33->Add(cbExpand_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+    itemBoxSizer33->Add(m_cbExpand, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
     itemBoxSizer33->AddSpacer(10);
-    itemBoxSizer33->Add(cbShowAll_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+    itemBoxSizer33->Add(m_cbShowAll, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
 
 #if defined (__WXGTK__) || defined (__WXMAC__)
-    treeCtrl_ = new wxTreeCtrl( this, wxID_ANY,
+    m_treeCtrl = new wxTreeCtrl( this, wxID_ANY,
         wxDefaultPosition, wxSize(200, 380));
 #else
-    treeCtrl_ = new wxTreeCtrl( this, wxID_ANY,
+    m_treeCtrl = new wxTreeCtrl( this, wxID_ANY,
         wxDefaultPosition, wxSize(200, 380), wxTR_SINGLE
         | wxTR_HAS_BUTTONS
         | wxTR_ROW_LINES );
 #endif
-    itemBoxSizer3->Add(treeCtrl_, 1, wxGROW|wxALL, 1);
+    itemBoxSizer3->Add(m_treeCtrl, 1, wxGROW|wxALL, 1);
 
-    textCtrl_ = new wxTextCtrl( this, wxID_STATIC, "");
-    itemBoxSizer2->Add(textCtrl_, 0, wxGROW|wxALIGN_CENTER_VERTICAL|wxALL, 1);
-    textCtrl_->SetToolTip(_("Enter the name of the category to add or edit here"));
+    m_textCtrl = new wxTextCtrl(this, wxID_ANY, "");
+    itemBoxSizer2->Add(m_textCtrl, 0, wxGROW | wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_textCtrl->SetToolTip(_("Enter the name of the category to add or edit here"));
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer5, 0, wxGROW|wxALL, 5);
 
-    addButton_ = new wxButton( this, wxID_ADD, _("&Add "));
-    itemBoxSizer5->Add(addButton_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-    addButton_->SetToolTip(_("Add a new category"));
+    m_buttonAdd = new wxButton(this, wxID_ADD, _("&Add "));
+    itemBoxSizer5->Add(m_buttonAdd, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_buttonAdd->SetToolTip(_("Add a new category"));
 
-    editButton_ = new wxButton( this, wxID_EDIT, _("&Edit "));
-    itemBoxSizer5->Add(editButton_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-    editButton_->SetToolTip(_("Edit the name of an existing category"));
+    m_buttonEdit = new wxButton(this, wxID_EDIT, _("&Edit "));
+    itemBoxSizer5->Add(m_buttonEdit, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_buttonEdit->SetToolTip(_("Edit the name of an existing category"));
 
-    deleteButton_ = new wxButton( this, wxID_REMOVE, _("&Delete "));
-    itemBoxSizer5->Add(deleteButton_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-    deleteButton_->SetToolTip(_("Delete an existing category. The category cannot be used by existing transactions."));
+    m_buttonDelete = new wxButton(this, wxID_REMOVE, _("&Delete "));
+    itemBoxSizer5->Add(m_buttonDelete, 0, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_buttonDelete->SetToolTip(_("Delete an existing category. The category cannot be used by existing transactions."));
 
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer9, 0, wxGROW|wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer9, 0, wxGROW | wxALL, 5);
 
-    selectButton_ = new wxButton( this, wxID_OK,
-        _("&Select"));
-    itemBoxSizer9->Add(selectButton_, 1, wxALIGN_CENTER_VERTICAL|wxALL, 1);
-    selectButton_->SetToolTip(_("Select the currently selected category as the selected category for the transaction"));
+    m_buttonSelect = new wxButton(this, wxID_OK
+        , _("&Select"));
+    itemBoxSizer9->Add(m_buttonSelect, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
+    m_buttonSelect->SetToolTip(_("Select the currently selected category as the selected category for the transaction"));
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton( this, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemCancelButton = new wxButton(this, wxID_CANCEL, _("&Cancel "));
     itemBoxSizer9->Add(itemCancelButton);
 }
 
 void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 {
     wxString text = wxGetTextFromUser(_("Enter the name for the new category:")
-        , _("Add Category"), textCtrl_->GetValue());
+        , _("Add Category"), m_textCtrl->GetValue());
     if (text.IsEmpty())
         return;
 
@@ -265,15 +257,15 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         category->CATEGNAME = text;
         Model_Category::instance().save(category);
 
-        wxTreeItemId tid = treeCtrl_->AppendItem(selectedItemId_, text);
+        wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);
         Model_Subcategory::Data subcat = 0;
-        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
-        treeCtrl_->Expand(selectedItemId_);
+        m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
+        m_treeCtrl->Expand(selectedItemId_);
 
         return;
     }
 
-    mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(treeCtrl_->GetItemData(selectedItemId_));
+    mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
     if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
         Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(iData->getCategData());
@@ -281,8 +273,8 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         {
             if (subcategory.SUBCATEGNAME == text)
             {
-                wxMessageBox(_("Sub Category with same name exists"),
-                    _("Organise Categories: Adding Error"), wxOK|wxICON_ERROR);
+                wxMessageBox(_("Sub Category with same name exists")
+                    , _("Organise Categories: Adding Error"), wxOK | wxICON_ERROR);
                 return;
             }
         }
@@ -291,14 +283,14 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         subcategory->CATEGID = iData->getCategData()->CATEGID;
         Model_Subcategory::instance().save(subcategory);
 
-        wxTreeItemId tid = treeCtrl_->AppendItem(selectedItemId_, text);
-        treeCtrl_->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
-        treeCtrl_->Expand(selectedItemId_);
+        wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);
+        m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
+        m_treeCtrl->Expand(selectedItemId_);
         return;
     }
 
-    wxMessageBox(_("Invalid Parent Category. Choose Root or Main Category node."),
-        _("Organise Categories: Adding Error"),wxOK|wxICON_ERROR);
+    wxMessageBox(_("Invalid Parent Category. Choose Root or Main Category node.")
+        , _("Organise Categories: Adding Error"),wxOK|wxICON_ERROR);
 
  }
 
@@ -321,7 +313,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         return;
 
     mmTreeItemCateg* iData
-        = dynamic_cast<mmTreeItemCateg*>(treeCtrl_->GetItemData(selectedItemId_));
+        = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
     int categID = iData->getCategData()->CATEGID;
     int subcategID = -1;
 
@@ -351,7 +343,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         }
     }
 
-    treeCtrl_->Delete(selectedItemId_);
+    m_treeCtrl->Delete(selectedItemId_);
 
     wxString sIndex = wxString::Format("*%i:%i*",categID, subcategID);
     wxString sSettings = "";
@@ -371,12 +363,12 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 
 void mmCategDialog::OnBSelect(wxCommandEvent& /*event*/)
 {
-    if (selectedItemId_ == root_ || !selectedItemId_ )
+    if (selectedItemId_ != root_ && selectedItemId_ )
     {
-        return;
+        EndModal(wxID_OK); 
     }
-
-    EndModal(wxID_OK);
+    else
+        return;
 }
 
 void mmCategDialog::OnDoubleClicked(wxTreeEvent& /*event*/)
@@ -384,7 +376,7 @@ void mmCategDialog::OnDoubleClicked(wxTreeEvent& /*event*/)
     if (selectedItemId_ != root_ && selectedItemId_ && bEnableSelect_)
     {
         mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
-            (treeCtrl_->GetItemData(selectedItemId_));
+            (m_treeCtrl->GetItemData(selectedItemId_));
         categID_ = iData->getCategData()->CATEGID;
         subcategID_ = iData->getSubCategData()->SUBCATEGID;
         EndModal(wxID_OK);
@@ -403,12 +395,12 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
     wxTreeItemId selectedItemId = selectedItemId_;
     selectedItemId_ = event.GetItem();
     if (!selectedItemId_) return;
-    if (selectedItemId != selectedItemId_) treeCtrl_->SelectItem(selectedItemId_);
+    if (selectedItemId != selectedItemId_) m_treeCtrl->SelectItem(selectedItemId_);
 
-    textCtrl_->SetValue(treeCtrl_->GetItemText(selectedItemId_));
+    m_textCtrl->SetValue(m_treeCtrl->GetItemText(selectedItemId_));
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
-        (treeCtrl_->GetItemData(selectedItemId_));
+        (m_treeCtrl->GetItemData(selectedItemId_));
     categID_ = -1;
     subcategID_ = -1;
     if (iData)
@@ -419,13 +411,13 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
     if (selectedItemId_ == root_)
     {
-        textCtrl_->SetValue("");
-        selectButton_->Disable();
-        deleteButton_->Disable();
+        m_textCtrl->SetValue("");
+        m_buttonSelect->Disable();
+        m_buttonDelete->Disable();
     }
     else
     {
-        selectButton_->Enable(bEnableSelect_);
+        m_buttonSelect->Enable(bEnableSelect_);
         bool bUsed = Model_Category::is_used(categID_, subcategID_);
         if (subcategID_ == -1)
         {
@@ -434,10 +426,10 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 	        for (const auto& s : subcategories) bUsed = bUsed || Model_Category::is_used(categID_, s.SUBCATEGID);
         }
 
-        deleteButton_->Enable(!bUsed);
+        m_buttonDelete->Enable(!bUsed);
     }
-    addButton_->Enable(subcategID_ == -1);
-    editButton_->Enable(selectedItemId_ != root_);
+    m_buttonAdd->Enable(subcategID_ == -1);
+    m_buttonEdit->Enable(selectedItemId_ != root_);
 }
 
 void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
@@ -445,16 +437,16 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     if (selectedItemId_ == root_ || !selectedItemId_ )
         return;
 
-    wxString old_name = treeCtrl_->GetItemText(selectedItemId_);
+    wxString old_name = m_treeCtrl->GetItemText(selectedItemId_);
     wxString msg = wxString::Format(_("Enter a new name for %s"), old_name);
     wxString text = wxGetTextFromUser(msg
-        , _("Edit Category"), textCtrl_->GetValue());
+        , _("Edit Category"), m_textCtrl->GetValue());
     if (text.IsEmpty())
         return;
-    textCtrl_->SetValue(text);
+    m_textCtrl->SetValue(text);
 
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
-        (treeCtrl_->GetItemData(selectedItemId_));
+        (m_treeCtrl->GetItemData(selectedItemId_));
 
     if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
@@ -487,7 +479,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
         Model_Subcategory::instance().save(sub_category);
     }
 
-    treeCtrl_->SetItemText(selectedItemId_, text);
+    m_treeCtrl->SetItemText(selectedItemId_, text);
 
     refreshRequested_ = true;
 }
@@ -497,13 +489,13 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& 
     wxTreeItemIdValue treeDummyValue;
 
     bool searching = true;
-    wxTreeItemId catID = treeCtrl_->GetFirstChild(itemID, treeDummyValue);
+    wxTreeItemId catID = m_treeCtrl->GetFirstChild(itemID, treeDummyValue);
     while (catID.IsOk() && searching)
     {
-        if ( itemText == treeCtrl_->GetItemText(catID))
+        if ( itemText == m_treeCtrl->GetItemText(catID))
             searching = false;
         else
-            catID = treeCtrl_->GetNextChild(itemID, treeDummyValue);
+            catID = m_treeCtrl->GetNextChild(itemID, treeDummyValue);
     }
     return catID;
 }
@@ -526,18 +518,18 @@ void mmCategDialog::setTreeSelection(const wxString& catName, const wxString& su
 {
     if ( !catName.IsEmpty() )
     {
-        wxTreeItemId catID = getTreeItemFor(treeCtrl_->GetRootItem(), catName);
-        if (catID.IsOk() && treeCtrl_->ItemHasChildren(catID))
+        wxTreeItemId catID = getTreeItemFor(m_treeCtrl->GetRootItem(), catName);
+        if (catID.IsOk() && m_treeCtrl->ItemHasChildren(catID))
         {
             if (subCatName.IsEmpty()) {
-                treeCtrl_->SelectItem(catID);
+                m_treeCtrl->SelectItem(catID);
             } else {
-                treeCtrl_->ExpandAllChildren(catID);
+                m_treeCtrl->ExpandAllChildren(catID);
                 wxTreeItemId subCatID = getTreeItemFor(catID, subCatName);
-                treeCtrl_->SelectItem(subCatID);
+                m_treeCtrl->SelectItem(subCatID);
             }
         } else {
-            treeCtrl_->SelectItem(catID);
+            m_treeCtrl->SelectItem(catID);
         }
     }
 }
@@ -559,32 +551,24 @@ void mmCategDialog::OnCategoryRelocation(wxCommandEvent& /*event*/)
 
 void mmCategDialog::OnExpandChbClick(wxCommandEvent& /*event*/)
 {
-    if (cbExpand_->IsChecked())
+    if (m_cbExpand->IsChecked())
     {
-        treeCtrl_->ExpandAll();
-        treeCtrl_->SelectItem(selectedItemId_);
+        m_treeCtrl->ExpandAll();
+        m_treeCtrl->SelectItem(selectedItemId_);
     }
     else
     {
-        treeCtrl_->CollapseAll();
-        treeCtrl_->Expand(root_);
-        treeCtrl_->SelectItem(selectedItemId_);
+        m_treeCtrl->CollapseAll();
+        m_treeCtrl->Expand(root_);
+        m_treeCtrl->SelectItem(selectedItemId_);
     }
-    treeCtrl_->EnsureVisible(selectedItemId_);
-    Model_Setting::instance().Set("EXPAND_CATEGS_TREE", cbExpand_->IsChecked());
+    m_treeCtrl->EnsureVisible(selectedItemId_);
+    Model_Setting::instance().Set("EXPAND_CATEGS_TREE", m_cbExpand->IsChecked());
 }
 
 void mmCategDialog::OnShowHiddenChbClick(wxCommandEvent& /*event*/)
 {
-//    if (cbShowAll_->IsChecked())
-//    {
-        treeCtrl_->SelectItem(selectedItemId_);
-//    }
-//    else
-//    {
-//        treeCtrl_->SelectItem(selectedItemId_);
-//    }
-    Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", cbShowAll_->IsChecked());
+    Model_Setting::instance().Set("SHOW_HIDDEN_CATEGS", m_cbShowAll->IsChecked());
     fillControls();
 }
 
@@ -595,13 +579,13 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
     wxString index = wxString::Format("*%i:%i*",categID_, subcategID_);
     if (id == MENU_ITEM_HIDE)
     {
-        treeCtrl_->SetItemTextColour(selectedItemId_, wxColour("GREY"));
+        m_treeCtrl->SetItemTextColour(selectedItemId_, wxColour("GREY"));
         if (hidden_categs_.Index(index) == wxNOT_FOUND )
             hidden_categs_.Add(index);
     }
     else if (id == MENU_ITEM_UNHIDE)
     {
-        treeCtrl_->SetItemTextColour(selectedItemId_, NormalColor_);
+        m_treeCtrl->SetItemTextColour(selectedItemId_, NormalColor_);
         hidden_categs_.Remove(index);
     }
     else if (id == MENU_ITEM_CLEAR)
@@ -618,7 +602,7 @@ void mmCategDialog::OnMenuSelected(wxCommandEvent& event)
 
     Model_Infotable::instance().Set("HIDDEN_CATEGS_ID", sSettings);
 
-    if (!cbShowAll_->IsChecked() || id == MENU_ITEM_CLEAR) fillControls();
+    if (!m_cbShowAll->IsChecked() || id == MENU_ITEM_CLEAR) fillControls();
 }
 
 void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
@@ -629,7 +613,7 @@ void mmCategDialog::OnItemRightClick(wxTreeEvent& event)
     mainMenu->AppendSeparator();
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_ITEM_CLEAR, _("Clear Settings")));
 
-    bool bItemHidden = (treeCtrl_->GetItemTextColour(selectedItemId_) != NormalColor_);
+    bool bItemHidden = (m_treeCtrl->GetItemTextColour(selectedItemId_) != NormalColor_);
     mainMenu->Enable(MENU_ITEM_HIDE, !bItemHidden && (selectedItemId_ != root_));
     mainMenu->Enable(MENU_ITEM_UNHIDE, bItemHidden && (selectedItemId_ != root_));
 

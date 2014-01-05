@@ -28,7 +28,8 @@ class mmTreeItemCateg : public wxTreeItemData
 public:
     mmTreeItemCateg(const Model_Category::Data& categData, const Model_Subcategory::Data& subcategData)
         : categData_(categData)
-        , subcategData_(subcategData) { }
+        , subcategData_(subcategData)
+    {}
     Model_Category::Data* getCategData() { return &categData_; }
     Model_Subcategory::Data* getSubCategData() { return &subcategData_; }
 
@@ -73,40 +74,36 @@ public:
 
 private:
     void CreateControls();
+    void fillControls();
 
-    // utility functions
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnAdd(wxCommandEvent& event);
     void OnDelete(wxCommandEvent& event);
     void OnBSelect(wxCommandEvent& event);
     void OnEdit(wxCommandEvent& event);
-
-    void fillControls();
     void OnSelChanged(wxTreeEvent& event);
     void OnDoubleClicked(wxTreeEvent& event);
-
-    wxTreeCtrl* treeCtrl_;
-    wxTreeItemId selectedItemId_;
-    wxTextCtrl* textCtrl_;
-    wxTreeItemId root_;
-    wxTreeItemId getTreeItemFor(wxTreeItemId itemID, const wxString& itemText);
-    wxButton* addButton_;
-    wxButton* editButton_;
-    wxButton* selectButton_;
-    wxButton* deleteButton_;
-    wxBitmapButton* btnCateg_relocate_;
-    wxCheckBox* cbExpand_;
-    wxCheckBox* cbShowAll_;
-
     void showCategDialogDeleteError(wxString deleteCategoryErrMsg, bool category = true);
     void OnCategoryRelocation(wxCommandEvent& /*event*/);
     void OnExpandChbClick(wxCommandEvent& /*event*/);
-    void OnShowHiddenChbClick (wxCommandEvent& /*event*/);
+    void OnShowHiddenChbClick(wxCommandEvent& /*event*/);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     bool categShowStatus(int categId, int subCategId);
 
+    wxTreeCtrl* m_treeCtrl;
+    wxTextCtrl* m_textCtrl;
+    wxButton* m_buttonAdd;
+    wxButton* m_buttonEdit;
+    wxButton* m_buttonSelect;
+    wxButton* m_buttonDelete;
+    wxBitmapButton* m_buttonRelocate;
+    wxCheckBox* m_cbExpand;
+    wxCheckBox* m_cbShowAll;
+    wxTreeItemId selectedItemId_;
+    wxTreeItemId root_;
+    wxTreeItemId getTreeItemFor(wxTreeItemId itemID, const wxString& itemText);
     bool bEnableSelect_;
     bool bEnableRelocate_;
     int categID_;
@@ -114,6 +111,14 @@ private:
     wxColour NormalColor_;
     wxArrayString hidden_categs_;
     bool refreshRequested_;
+
+    enum
+    {
+        MENU_ITEM_HIDE = wxID_HIGHEST + 1500,
+        MENU_ITEM_UNHIDE,
+        MENU_ITEM_CLEAR,
+        ID_DIALOG_CATEGORY
+    };
 };
 
 #endif
