@@ -28,14 +28,14 @@ class mmBankTransaction;
 class mmReportTransactions : public mmPrintableBase
 {
 public:
-    mmReportTransactions(const Model_Checking::Full_Data_Set& trans,
-                         int refAccountID, mmFilterTransactionsDialog* transDialog);
     ~mmReportTransactions();
+    mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog);
 
     wxString getHTMLText();
 public:
     enum SORT { DATE = 0, ACCOUNT, PAYEE, STATUS, CATEGORY, TYPE, AMOUNT, NUMBER, NOTE } sortby_;
 private:
+    void Run(mmFilterTransactionsDialog* transDialog);
     Model_Checking::Full_Data_Set trans_;
     bool ignoreDate_;
     int refAccountID_;

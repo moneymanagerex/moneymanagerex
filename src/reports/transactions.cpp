@@ -21,17 +21,19 @@
 #include "constants.h"
 #include "htmlbuilder.h"
 #include "util.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Category.h"
 #include <algorithm>
 
-mmReportTransactions::mmReportTransactions(const Model_Checking::Full_Data_Set& trans,
-    int refAccountID, mmFilterTransactionsDialog* transDialog)
+mmReportTransactions::mmReportTransactions(int refAccountID, mmFilterTransactionsDialog* transDialog)
     : mmPrintableBase(DATE)
-    , trans_(trans)
     , refAccountID_(refAccountID)
     , transDialog_(transDialog)
     , sortby_(DATE)
     , ignoreDate_(false)
+    , trans_()
 {
+    Run(transDialog_);
 }
 
 mmReportTransactions::~mmReportTransactions()
@@ -227,4 +229,40 @@ wxString mmReportTransactions::getHTMLText()
     hb.end();
 
     return hb.getHTMLText();
+}
+
+void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
+{
+    for (const auto& tran : Model_Checking::instance().all())
+    {
+        if (!dlg->checkAll(tran, refAccountID_)) continue;
+
+        Model_Checking::Full_Data full_tran(tran);
+        Model_Account::Data *account = Model_Account::instance().get(full_tran.ACCOUNTID);
+        if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
+        if (Model_Checking::TRANSFER == Model_Checking::type(tran))
+        {
+            bool transfer_to = (refAccountID_ < 0 || full_tran.TOACCOUNTID == refAccountID_);
+            account = Model_Account::instance().get(transfer_to
+                ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID);
+            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
+        }
+        else
+        {
+            const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+        }
+
+        if (Model_Checking::splittransaction(tran).empty())
+            full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
+        else
+        {
+            for (const auto& entry : Model_Checking::splittransaction(full_tran))
+                full_tran.CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
+                + " = "
+                + Model_Currency::toString(entry.SPLITTRANSAMOUNT) + "<br>";
+        }
+
+        trans_.push_back(full_tran);
+    }
 }
