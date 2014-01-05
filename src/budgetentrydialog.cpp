@@ -172,7 +172,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 {
     int typeSelection = m_choiceType->GetSelection();
     
-    wxString period = Model_Budget::all_period()[m_choiceItem->GetSelection()];
+    wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_choiceItem->GetSelection()].second;
 
     wxString displayAmtString = m_textAmount->GetValue().Trim(); //TODO: simplification needed
     double amt = 0.0;
