@@ -358,10 +358,11 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmGUIFrame::mmGUIFrame(const wxString& title,
-                       const wxPoint& pos,
-                       const wxSize& size)
+mmGUIFrame::mmGUIFrame(const wxString& title
+    , const wxPoint& pos
+    , const wxSize& size)
 : wxFrame(0, -1, title, pos, size)
+, m_commit_callback_hook()
 , gotoAccountID_(-1)
 , gotoTransID_(-1)
 , homePageAccountSelect_(false)
@@ -2334,11 +2335,11 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         }
 
         m_db = mmDBWrapper::Open(fileName, password);
-        m_commit_callback_hook = new CommitCallbackHook();
-        m_db->SetCommitHook(m_commit_callback_hook);
-
         // if the database pointer has been reset, the password is possibly incorrect
         if (!m_db) return false;
+
+        m_commit_callback_hook = new CommitCallbackHook();
+        m_db->SetCommitHook(m_commit_callback_hook);
         InitializeModelTables();
 
         // we need to check the db whether it is the right version
