@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/choicdlg.h>
 #include <wx/button.h>
+#include "model/Model_Account.h"
 
 class mmSingleChoiceDialog : public wxSingleChoiceDialog
 {
@@ -33,14 +34,27 @@ public:
         , const wxArrayString& choices)
     {
         wxSingleChoiceDialog::Create(parent, message, caption, choices);
+        fix_translation();
+    }
+    mmSingleChoiceDialog(wxWindow *parent
+        , Model_Account::Data_Set accounts)
+    {
+        wxArrayString choices;
+        for (const auto& acc : accounts) choices.Add(acc.ACCOUNTNAME);
+        wxSingleChoiceDialog::Create(parent, _("Account name"), _("Select Account"), choices);
+        fix_translation();
+    }
+    int ShowModal()
+    {
+        return wxSingleChoiceDialog::ShowModal();
+    }
+private:
+    void fix_translation()
+    {
         wxButton* ok = (wxButton*) FindWindow(wxID_OK);
         if (ok) ok->SetLabel(_("&OK "));
         wxButton* ca = (wxButton*) FindWindow(wxID_CANCEL);
         if (ca) ca->SetLabel(_("&Cancel "));
-    }
-    int ShowModal() 
-    {
-        return wxSingleChoiceDialog::ShowModal();
     }
 };
 
