@@ -75,7 +75,6 @@ Model_Budget::PERIOD_ENUM Model_Budget::period(const Data* r)
     {
         if (r->PERIOD.CmpNoCase(entry.second) == 0) return entry.first;
     }
-    wxASSERT(false);
     return NONE;
 }
 
