@@ -24,6 +24,7 @@
 #include "paths.h"
 #include "validators.h"
 #include "mmtextctrl.h"
+#include "mmsinglechoicedialog.h"
 
 #include <wx/combobox.h>
 #include <wx/valnum.h>
@@ -67,7 +68,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     {
         wxSortedArrayString c;
         for (const auto&i : Model_Currency::all_currencies_template()) c.Add(std::get<1>(i));
-        wxSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), c);
+        mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), c);
         if (select_currency_name.ShowModal() == wxID_OK)
         {
             wxString name = select_currency_name.GetStringSelection();
