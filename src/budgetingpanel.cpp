@@ -519,7 +519,7 @@ wxString mmBudgetingPanel::getItem(long item, long column)
     if (column == 2)
     {
         if (budget_[item].first >= 0)
-            text = wxGetTranslation(Model_Budget::all_period()[budgetPeriod_[budget_[item].first][budget_[item].second]]);
+            text = Model_Budget::all_period()[budgetPeriod_[budget_[item].first][budget_[item].second]];
     }
     if (column == 3)
     {
