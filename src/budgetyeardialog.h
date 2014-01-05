@@ -49,7 +49,7 @@ private:
     void fillControls();
     void OnDoubleClicked(wxCommandEvent& event);
 
-    wxListBox* listBox_;
+    wxListBox* m_listBox;
     int budgetYearID_;
     enum { ID_ADD_MONTH = wxID_HIGHEST + 300 };
 };

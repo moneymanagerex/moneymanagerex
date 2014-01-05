@@ -32,7 +32,7 @@ BEGIN_EVENT_TABLE( mmBudgetYearDialog, wxDialog )
 END_EVENT_TABLE()
 
 mmBudgetYearDialog::mmBudgetYearDialog( )
-: listBox_()
+: m_listBox()
 {
     budgetYearID_ = -1;
 }
@@ -71,7 +71,7 @@ void mmBudgetYearDialog::fillControls()
     {
         const wxString& payeeString = e.BUDGETYEARNAME;
         int budgetYearID = e.BUDGETYEARID;
-        listBox_->Insert(payeeString, index++, new mmListBoxItem(budgetYearID, payeeString));
+        m_listBox->Insert(payeeString, index++, new mmListBoxItem(budgetYearID, payeeString));
     }
 }
 
@@ -83,39 +83,39 @@ void mmBudgetYearDialog::CreateControls()
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer3, 0, wxGROW | wxALL, 5);
 
-    listBox_ = new wxListBox(this, wxID_ANY
+    m_listBox = new wxListBox(this, wxID_ANY
         , wxDefaultPosition, wxSize(100, 200));
-    itemBoxSizer3->Add(listBox_, 1, wxGROW | wxALL, 1);
+    itemBoxSizer3->Add(m_listBox, 1, wxGROW | wxALL, 1);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer5, 1, wxGROW|wxALL, 5);
 
-    wxButton* itemButton7 = new wxButton( this, wxID_ADD
-        , _("&Add Year"), wxDefaultPosition, wxDefaultSize, 0 );
+    wxButton* itemButton7 = new wxButton(this, wxID_ADD
+        , _("&Add Year"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL);
     itemButton7->SetToolTip(_("Add a new budget year"));
 
-    wxButton* itemBudgetMonth = new wxButton( this, ID_ADD_MONTH
-        , _("&Add Month"), wxDefaultPosition, wxDefaultSize, 0 );
-    itemBoxSizer5->Add(itemBudgetMonth, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5);
+    wxButton* itemBudgetMonth = new wxButton(this, ID_ADD_MONTH
+        , _("&Add Month"));
+    itemBoxSizer5->Add(itemBudgetMonth, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
     itemBudgetMonth->SetToolTip(_("Add a new budget month"));
 
-    wxButton* itemButtonDelete = new wxButton( this, wxID_DELETE 
-        , _("&Delete "), wxDefaultPosition, wxDefaultSize, 0 );
-    itemBoxSizer5->Add(itemButtonDelete, 0, wxALIGN_CENTER_VERTICAL|wxLEFT, 5);
+    wxButton* itemButtonDelete = new wxButton(this, wxID_DELETE
+        , _("&Delete "));
+    itemBoxSizer5->Add(itemButtonDelete, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, 5);
     itemButtonDelete->SetToolTip(_("Delete existing budget"));
 
     wxStaticLine* line = new wxStaticLine(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
     itemBoxSizer2->Add(line, 0, wxGROW | wxALL, 5);
-    
-    wxPanel* itemPanel25 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+
+    wxPanel* itemPanel25 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel25, 0, wxALIGN_RIGHT, 5);
 
     wxBoxSizer* itemButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     itemPanel25->SetSizer(itemButtonSizer);
 
     wxButton* itemButtonOK = new wxButton(itemPanel25, wxID_OK, _("&OK "));
-    itemButtonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT|wxBOTTOM, 5);
+    itemButtonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxBOTTOM, 5);
 
     wxButton* itemButtonCancel = new wxButton(itemPanel25, wxID_CANCEL, _("&Cancel "));
     itemButtonSizer->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL | wxRIGHT | wxBOTTOM, 5);
@@ -127,7 +127,7 @@ void mmBudgetYearDialog::OnAdd(wxCommandEvent& /*event*/)
     mmBudgetYearEntryDialog dlg(this); 
     if ( dlg.ShowModal() == wxID_OK )
     {
-        listBox_->Clear();
+        m_listBox->Clear();
         fillControls();
     }
 }
@@ -137,17 +137,17 @@ void mmBudgetYearDialog::OnAddMonth(wxCommandEvent& /*event*/)
     mmBudgetYearEntryDialog dlg(this, true); 
     if ( dlg.ShowModal() == wxID_OK )
     {
-        listBox_->Clear();
+        m_listBox->Clear();
         fillControls();
     }
 }
 
 void mmBudgetYearDialog::OnDelete(wxCommandEvent& /*event*/)
 {
-    wxString budgetYearString = listBox_->GetStringSelection();
+    wxString budgetYearString = m_listBox->GetStringSelection();
     int budgetYearID = Model_Budgetyear::instance().Get(budgetYearString);
     Model_Budgetyear::instance().remove(budgetYearID);
-    listBox_->Clear();
+    m_listBox->Clear();
     fillControls();
 }
  
