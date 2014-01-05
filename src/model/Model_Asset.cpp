@@ -152,10 +152,12 @@ double Model_Asset::value(const Data* r)
     case RATE_NONE:
         break;
     case RATE_APPRECIATE:
-        sum += ((r->VALUE * (r->VALUECHANGERATE/100))/365.25) * diff_days;
+        // Note: using 365.26 while not perfect, does work reasonbly well to account for leap year and leap century
+        sum *= pow(1.0 + (r->VALUECHANGERATE / 100), diff_days / 365.26);
         break;
     case RATE_DEPRECIATE:
-        sum -= ((r->VALUE * (r->VALUECHANGERATE/100))/365.25) * diff_days;
+        // Note: using 365.26 while not perfect, does work reasonbly well to account for leap year and leap century
+        sum *= pow(1.0 - (r->VALUECHANGERATE / 100), diff_days / 365.26);
         break;
     default:
         break;
