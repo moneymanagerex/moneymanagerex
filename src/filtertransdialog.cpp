@@ -968,13 +968,13 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
     else if (getDateRangeCheckBox()
         && !Model_Billsdeposits::TRANSDATE(tran)
         .IsBetween(getFromDateCtrl().GetDateOnly()
-        , getToDateControl().GetDateOnly()
+            , getToDateControl().GetDateOnly()
         )
-        ) ok = false;
+    ) ok = false;
     else if (!checkPayee(tran.PAYEEID)) ok = false;
     else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    //else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false; //TODO:
+    else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
