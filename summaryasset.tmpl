@@ -1,0 +1,45 @@
+<style type="text/css">
+    body {background-color:white;}
+    table {width:95%;background-color:#FFFFFF;}
+    table.hr {width:100%; border:1px solid gray;}
+    th
+    {
+        background-color:#40BA40;
+        color:white;
+        text-align:center;
+    }
+
+    tr{background-color:white;}
+    tr.odd{background-color:#CBF1CB;}
+    td.normal
+    {
+        color:black;
+        text-align:left;
+    }    
+    td.value
+    {
+        color:black;
+        text-align:right;
+    }    
+    .total { text-align:right; color:black; }
+</style>
+<SCRIPT>
+function convertDate(str, format) {
+	var	date= new Date(str.replace("-", "/")); 
+	var f = {Y : date.getFullYear(), y : date.getYear(), m : date.getMonth() + 1, d : date.getDate()}
+	for(var k in f)
+	    format = format.replace(('%' + k), ('0'+f[k]).slice(k=='Y' ? -4 : -2));	
+	return format;
+};
+function printDate(format) {
+            var currentdate = new Date(); 
+            var datetime = ('0'+currentdate.getDate()).slice(-2) + "/"
+                + ('0'+(currentdate.getMonth()+1)).slice(-2)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                +  ('0'+currentdate.getHours()).slice(-2) + ":"  
+                +  ('0'+currentdate.getMinutes()).slice(-2) + ":" 
+                +  ('0'+currentdate.getSeconds()).slice(-2)
+            return datetime;
+        }
+</SCRIPT>
+
