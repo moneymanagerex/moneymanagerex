@@ -914,6 +914,32 @@ bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
     return true;
 }
 
+bool mmFilterTransactionsDialog::checkCategory(const Model_Billsdeposits::Data &tran)
+{
+    if (categoryCheckBox_->IsChecked())
+    {
+        if (Model_Billsdeposits::splittransaction(tran).empty())
+        {
+            if (categID_ != tran.CATEGID) return false;
+            if (subcategID_ != tran.SUBCATEGID && !bSimilarCategoryStatus_) return false;
+        }
+        else
+        {
+            bool bMatching = false;
+            for (const auto &split : Model_Billsdeposits::splittransaction(tran))
+            {
+                if (split.CATEGID != categID_) continue;
+                if (split.SUBCATEGID != subcategID_ && !bSimilarCategoryStatus_) continue;
+
+                bMatching = true;
+                break;
+            }
+            if (!bMatching) return false;
+        }
+    }
+    return true;
+}
+
 bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, const int accountID)
 {
     bool ok = true;
@@ -946,9 +972,9 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
         )
         ) ok = false;
     else if (!checkPayee(tran.PAYEEID)) ok = false;
-    //else if (!checkCategory(tran)) ok = false; //TODO:
+    else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
-    //else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
+    //else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false; //TODO:
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;

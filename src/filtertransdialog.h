@@ -111,6 +111,7 @@ private:
 
     bool checkPayee(int payeeID);
     bool checkCategory(const Model_Checking::Data &tran);
+    bool checkCategory(const Model_Billsdeposits::Data &tran);
 
     int getPayeeID() const;
     wxString getStatus() const;
