@@ -43,6 +43,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
+#include "model\Model_Billsdeposits.h"
 #include "../resources/save.xpm"
 
 #define ID_TEXTCTRL_MAX_AMT wxID_HIGHEST + 1
@@ -934,6 +935,26 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
     else if (getNotesCheckBox() && !tran.NOTES.Matches(getNotes())) ok = false;
     return ok;
 }
+bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
+{
+    bool ok = true;
+    if (getAccountCheckBox() && (getAccountID() != tran.ACCOUNTID && getAccountID() != tran.TOACCOUNTID)) ok = false;
+    else if (getDateRangeCheckBox()
+        && !Model_Billsdeposits::TRANSDATE(tran)
+        .IsBetween(getFromDateCtrl().GetDateOnly()
+        , getToDateControl().GetDateOnly()
+        )
+        ) ok = false;
+    else if (!checkPayee(tran.PAYEEID)) ok = false;
+    //else if (!checkCategory(tran)) ok = false; //TODO:
+    else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
+    //else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
+    else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
+    else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
+    else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Matches(getNotes())) ok = false;
+    return ok;
+}
 
 void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 {
@@ -951,3 +972,57 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
     }
 }
 
+wxString addFilterDetailes(wxString sHeader, wxString sValue)
+{
+    wxString sData;
+    sData << "<b>" << sHeader << " </b>" << sValue << "<br>";
+    return sData;
+}
+
+void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
+{
+    // Extract the parameters from the transaction dialog and add them to the report.
+    wxString filterDetails;
+
+    if (getAccountCheckBox())
+        filterDetails << addFilterDetailes(_("Account:"), getAccountName());
+
+    //Date range
+    if (getDateRangeCheckBox())
+        filterDetails << addFilterDetailes(_("Date Range:"), userDateRangeStr());
+
+    //Payees
+    if (checkPayeeCheckBox())
+        filterDetails << addFilterDetailes(_("Payee:"), userPayeeStr());
+
+    //Category
+    if (getCategoryCheckBox())
+    {
+        filterDetails << "<b>" << _("Category:") << " </b>" << userCategoryStr()
+            << (getSimilarCategoryStatus() ? wxString(" (") << _("Include Similar") << ")" : "")
+            << "<br>";
+    }
+    //Status
+    if (getStatusCheckBox())
+        filterDetails << addFilterDetailes(_("Status:"), userStatusStr());
+    //Type
+    if (getTypeCheckBox())
+        filterDetails << addFilterDetailes(_("Type:"), userTypeStr());
+    //Amount Range
+    if (getAmountRangeCheckBoxMin() || getAmountRangeCheckBoxMax())
+        filterDetails << addFilterDetailes(_("Amount Range:"), userAmountRangeStr());
+    //Number
+    if (getNumberCheckBox())
+        filterDetails << addFilterDetailes(_("Number:"), getNumber());
+    //Notes
+    if (getNotesCheckBox())
+        filterDetails << addFilterDetailes(_("Notes:"), getNotes());
+
+    if (!filterDetails.IsEmpty())
+    {
+        hb.addHorizontalLine();
+        filterDetails.Prepend(wxString() << "<b>" << _("Filtering Details: ") << "</b><br>");
+        hb.addParaText(filterDetails);
+    }
+
+}

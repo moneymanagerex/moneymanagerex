@@ -40,6 +40,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include "mmtextctrl.h"
 
+#include "reports/htmlbuilder.h"
+
 class mmFilterTransactionsDialog: public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmFilterTransactionsDialog )
@@ -59,9 +61,16 @@ public:
     );
 
     virtual int ShowModal();
-    void BuildPayeeList();
 
+    bool checkAll(const Model_Checking::Data &tran, const int accountID);
+    bool checkAll(const Model_Billsdeposits::Data &tran);
+    void getDescription(mmHTMLBuilder &hb);
     bool somethingSelected();
+    void setAccountToolTip(const wxString& tip) const;
+    bool getStatusCheckBox()
+    {
+        return statusCheckBox_->IsChecked();
+    }
     bool getAccountCheckBox()
     {
         return accountCheckBox_->GetValue();
@@ -70,6 +79,10 @@ public:
     {
         return refAccountID_;
     }
+
+private:
+    void BuildPayeeList();
+
     wxString getAccountName();
 
     bool getDateRangeCheckBox()
@@ -98,60 +111,9 @@ public:
 
     bool checkPayee(int payeeID);
     bool checkCategory(const Model_Checking::Data &tran);
-    bool checkAll(const Model_Checking::Data &tran, const int accountID);
 
     int getPayeeID() const;
-
-    bool getStatusCheckBox()
-    {
-        return statusCheckBox_->GetValue();
-    }
     wxString getStatus() const;
-    /// Returns true if Status string matches.
-    bool compareStatus(const wxString& itemStatus) const;
-
-    bool getTypeCheckBox()
-    {
-        return typeCheckBox_->GetValue();
-    }
-
-    bool allowType(const wxString& typeState, bool sameAccount) const;
-
-    bool getNumberCheckBox()
-    {
-        return transNumberCheckBox_->GetValue();
-    }
-    wxString getNumber()
-    {
-        return transNumberEdit_->GetValue();
-    }
-
-    bool getNotesCheckBox()
-    {
-        return notesCheckBox_->GetValue();
-    }
-    wxString getNotes()
-    {
-        return notesEdit_->GetValue();
-    }
-
-    bool getCategoryCheckBox()
-    {
-        return categoryCheckBox_->GetValue();
-    }
-    int getCategoryID()
-    {
-        return categID_;
-    }
-    int getSubCategoryID()
-    {
-        return subcategID_;
-    }
-    bool getSimilarCategoryStatus()
-    {
-        return bSimilarCategoryStatus_;
-    }
-    bool checkPayeeCheckBox() { return payeeCheckBox_->IsChecked(); }
 
     /// Returns the payee string, when Payee is selected.
     wxString userPayeeStr() const;
@@ -168,11 +130,57 @@ public:
     /// Returns true with valid dates, when the dialog date range is selected.
     bool getDateRange(wxDateTime& startDate, wxDateTime& endDate) const;
 
-    void setAccountToolTip(const wxString& tip) const;
+    wxString getNumber()
+    {
+        return transNumberEdit_->GetValue();
+    }
+    wxString getNotes()
+    {
+        return notesEdit_->GetValue();
+    }
+
+private:
+    /// Returns true if Status string matches.
+    bool compareStatus(const wxString& itemStatus) const;
+
+    bool getTypeCheckBox()
+    {
+        return typeCheckBox_->IsChecked();
+    }
+
+    bool allowType(const wxString& typeState, bool sameAccount) const;
+
+    bool getNumberCheckBox()
+    {
+        return transNumberCheckBox_->IsChecked();
+    }
+
+    bool getNotesCheckBox()
+    {
+        return notesCheckBox_->IsChecked();
+    }
+
+    bool getCategoryCheckBox()
+    {
+        return categoryCheckBox_->IsChecked();
+    }
+    int getCategoryID()
+    {
+        return categID_;
+    }
+    int getSubCategoryID()
+    {
+        return subcategID_;
+    }
+    bool getSimilarCategoryStatus()
+    {
+        return bSimilarCategoryStatus_;
+    }
+    bool checkPayeeCheckBox() { return payeeCheckBox_->IsChecked(); }
+
     void setPresettings(const wxString& view);
     void clearSettings();
 
-private:
     /// Creation
     bool Create( wxWindow* parent,
                  wxWindowID id = SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME,
@@ -190,13 +198,13 @@ private:
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
 
-    void OnButtonokClick( wxCommandEvent& event );
-    void OnButtoncancelClick( wxCommandEvent& event );
-    void OnButtonSaveClick( wxCommandEvent& event );
-    void OnButtonClearClick( wxCommandEvent& event );
-    void OnSettingsSelected( wxCommandEvent& event );
-    void datePresetMenu( wxMouseEvent& event );
-    void datePresetMenuSelected( wxCommandEvent& event );
+    void OnButtonokClick(wxCommandEvent& event);
+    void OnButtoncancelClick(wxCommandEvent& event);
+    void OnButtonSaveClick(wxCommandEvent& event);
+    void OnButtonClearClick(wxCommandEvent& event);
+    void OnSettingsSelected(wxCommandEvent& event);
+    void datePresetMenu(wxMouseEvent& event);
+    void datePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
     bool get_next_value(wxStringTokenizer& tkz, wxString& value);

@@ -89,6 +89,7 @@ public:
     static Model_Billsdeposits& instance();
 
 public:
+    static wxDate TRANSDATE(const Data& r);
     static wxDate NEXTOCCURRENCEDATE(const Data* r);
     static wxDate NEXTOCCURRENCEDATE(const Data& r);
     static TYPE type(const Data* r);

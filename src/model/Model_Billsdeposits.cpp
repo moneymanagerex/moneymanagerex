@@ -78,6 +78,11 @@ Model_Billsdeposits& Model_Billsdeposits::instance(wxSQLite3Database* db)
     return ins;
 }
 
+wxDate Model_Billsdeposits::TRANSDATE(const Data& r)
+{
+    return Model::to_date(r.TRANSDATE);
+}
+
 wxDate Model_Billsdeposits::NEXTOCCURRENCEDATE(const Data* r)
 {
     return Model::to_date(r->NEXTOCCURRENCEDATE);

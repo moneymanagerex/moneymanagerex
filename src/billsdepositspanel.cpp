@@ -286,7 +286,7 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     {
         for (const Model_Billsdeposits::Data& data : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
         {
-            if (transFilterDlg_->getAccountCheckBox() && transFilterDlg_->getAccountID() != data.ACCOUNTID)
+            /*if (transFilterDlg_->getAccountCheckBox() && transFilterDlg_->getAccountID() != data.ACCOUNTID)
                 continue; // Skip
 
             if (transFilterDlg_->getDateRangeCheckBox() && !Model_Billsdeposits::NEXTOCCURRENCEDATE(data).IsBetween(transFilterDlg_->getFromDateCtrl(), transFilterDlg_->getToDateControl()))
@@ -338,7 +338,8 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                 continue; // Skip
 
             if (transFilterDlg_->getNotesCheckBox() && !data.NOTES.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()))
-                continue; // Skip
+                continue; // Skip*/
+            if (!transFilterDlg_->checkAll(data)) continue;
 
             Model_Billsdeposits::Full_Data r(data);
 

@@ -43,13 +43,6 @@ mmReportTransactions::~mmReportTransactions()
     transDialog_->Destroy();
 }
 
-wxString addFilterDetailes(wxString sHeader, wxString sValue)
-{
-    wxString sData;
-    sData << "<b>" << sHeader << " </b>" << sValue << "<br>";
-    return sData;
-}
-
 wxString mmReportTransactions::getHTMLText()
 {
     switch (sortColumn_)
@@ -182,49 +175,7 @@ wxString mmReportTransactions::getHTMLText()
     hb.endTable();
     hb.endCenter();
 
-    // Extract the parameters from the transaction dialog and add them to the report.
-    wxString filterDetails;
-
-    if ( transDialog_->getAccountCheckBox())
-        filterDetails << addFilterDetailes(_("Account:"), transDialog_->getAccountName());
-
-    //Date range
-    if ( transDialog_->getDateRangeCheckBox())
-        filterDetails << addFilterDetailes(_("Date Range:"), transDialog_->userDateRangeStr());
-
-    //Payees
-    if ( transDialog_->checkPayeeCheckBox())
-        filterDetails << addFilterDetailes(_("Payee:"), transDialog_->userPayeeStr());
-
-    //Category
-    if (transDialog_->getCategoryCheckBox())
-    {
-        filterDetails << "<b>" << _("Category:") << " </b>" << transDialog_->userCategoryStr()
-        << (transDialog_->getSimilarCategoryStatus() ? wxString(" (") << _("Include Similar") << ")" : "")
-        << "<br>";
-    }
-    //Status
-    if ( transDialog_->getStatusCheckBox())
-        filterDetails << addFilterDetailes(_("Status:"), transDialog_->userStatusStr());
-    //Type
-    if ( transDialog_->getTypeCheckBox() )
-        filterDetails << addFilterDetailes(_("Type:"), transDialog_->userTypeStr());
-    //Amount Range
-    if ( transDialog_->getAmountRangeCheckBoxMin() || transDialog_->getAmountRangeCheckBoxMax())
-        filterDetails << addFilterDetailes(_("Amount Range:"), transDialog_->userAmountRangeStr());
-    //Number
-    if ( transDialog_->getNumberCheckBox())
-        filterDetails << addFilterDetailes(_("Number:"), transDialog_->getNumber());
-    //Notes
-    if ( transDialog_->getNotesCheckBox())
-        filterDetails << addFilterDetailes(_("Notes:"), transDialog_->getNotes());
-
-    if ( !filterDetails.IsEmpty())
-    {
-        hb.addHorizontalLine();
-        filterDetails.Prepend( wxString()<< "<b>" << _("Filtering Details: ") << "</b><br>");
-        hb.addParaText(filterDetails );
-    }
+    transDialog_->getDescription(hb);
 
     hb.end();
 
