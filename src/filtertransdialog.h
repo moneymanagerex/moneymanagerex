@@ -24,41 +24,22 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #endif
 
 #include "reports/mmDateRange.h"
+#include "reports/htmlbuilder.h"
 
-#define ID_MYDIALOG9 10095
-#define SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE wxCAPTION|wxRESIZE_BORDER|wxSYSTEM_MENU|wxCLOSE_BOX
-#define SYMBOL_MMFILTERTRANSACTIONSDIALOG_TITLE _("Transaction Filter")
-#define SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME ID_MYDIALOG9
-
-#ifndef wxCLOSE_BOX
-#define wxCLOSE_BOX 0x1000
-#endif
-#ifndef wxFIXED_MINSIZE
-#define wxFIXED_MINSIZE 0
-#endif
 #include <wx/dialog.h>
 #include "defs.h"
 #include "mmtextctrl.h"
 
-#include "reports/htmlbuilder.h"
 
 class mmFilterTransactionsDialog: public wxDialog
 {
-    DECLARE_DYNAMIC_CLASS( mmFilterTransactionsDialog )
+    DECLARE_DYNAMIC_CLASS(mmFilterTransactionsDialog)
     DECLARE_EVENT_TABLE()
 
 public:
     /// Constructors
-    mmFilterTransactionsDialog( );
-    mmFilterTransactionsDialog
-    (
-        wxWindow* parent,
-        wxWindowID id = SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME,
-        const wxString& caption = SYMBOL_MMFILTERTRANSACTIONSDIALOG_TITLE,
-        const wxPoint& pos = wxDefaultPosition,
-        const wxSize& size = wxSize(400, 300),
-        long style = SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE
-    );
+    mmFilterTransactionsDialog();
+    mmFilterTransactionsDialog(wxWindow* parent);
 
     virtual int ShowModal();
 
@@ -183,12 +164,12 @@ private:
     void clearSettings();
 
     /// Creation
-    bool Create( wxWindow* parent,
-                 wxWindowID id = SYMBOL_MMFILTERTRANSACTIONSDIALOG_IDNAME,
-                 const wxString& caption = SYMBOL_MMFILTERTRANSACTIONSDIALOG_TITLE,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxSize(400, 300),
-                 long style = SYMBOL_MMFILTERTRANSACTIONSDIALOG_STYLE );
+    bool Create(wxWindow* parent
+        , wxWindowID id
+        , const wxString& caption
+        , const wxPoint& pos
+        , const wxSize& size
+        , long style);
 
     /// Creates the controls and sizers
     void CreateControls();
