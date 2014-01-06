@@ -73,6 +73,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(
 , subcategID_(-1)
 , payeeID_(-1)
 , refAccountID_(-1)
+, refAccountStr_("")
 , date_range_(0)
 {
     Create(parent, id, caption, pos, size, style);
@@ -464,7 +465,7 @@ void mmFilterTransactionsDialog::OnButtonokClick( wxCommandEvent& /*event*/ )
     {
         refAccountStr_ = accountDropDown_->GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(refAccountStr_);
-        refAccountID_ = account->ACCOUNTID;
+        if (account) refAccountID_ = account->ACCOUNTID;
     }
 
     if (payeeCheckBox_->IsChecked())
@@ -536,16 +537,16 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
 bool mmFilterTransactionsDialog::somethingSelected()
 {
     return
-    getAccountCheckBox()
-    || getDateRangeCheckBox()
-    || payeeCheckBox_->IsChecked()
-    || getCategoryCheckBox()
-    || getStatusCheckBox()
-    || getTypeCheckBox()
-    || getAmountRangeCheckBoxMin()
-    || getAmountRangeCheckBoxMax()
-    || getNumberCheckBox()
-    || getNotesCheckBox();
+        getAccountCheckBox()
+        || getDateRangeCheckBox()
+        || payeeCheckBox_->IsChecked()
+        || getCategoryCheckBox()
+        || getStatusCheckBox()
+        || getTypeCheckBox()
+        || getAmountRangeCheckBoxMin()
+        || getAmountRangeCheckBoxMax()
+        || getNumberCheckBox()
+        || getNotesCheckBox();
 }
 
 wxString mmFilterTransactionsDialog::getAccountName()
