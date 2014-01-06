@@ -321,7 +321,10 @@
     <ClCompile Include="..\..\..\src\paths.cpp" />
     <ClCompile Include="..\..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\..\src\payeedialog.cpp" />
+    <ClCompile Include="..\..\..\src\tests\test_assets.cpp" />
+    <ClCompile Include="..\..\..\src\tests\test_model_checking.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_model_currency.cpp" />
+    <ClCompile Include="..\..\..\src\tests\test_stocks.cpp" />
     <ClCompile Include="..\..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_import.cpp" />
@@ -451,7 +454,10 @@
     <ClInclude Include="..\..\..\src\reports\summaryassets.h" />
     <ClInclude Include="..\..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\..\src\reports\transactions.h" />
+    <ClInclude Include="..\..\..\src\tests\test_assets.h" />
+    <ClInclude Include="..\..\..\src\tests\test_model_checking.h" />
     <ClInclude Include="..\..\..\src\tests\test_model_currency.h" />
+    <ClInclude Include="..\..\..\src\tests\test_stocks.h" />
     <ClInclude Include="..\..\..\src\transdialog.h" />
     <ClInclude Include="..\..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\..\src\util.h" />

@@ -300,6 +300,15 @@
     <ClCompile Include="..\..\..\src\tests\test_model_currency.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_model_checking.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_stocks.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_assets.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -642,6 +651,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_model_currency.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_model_checking.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_assets.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_stocks.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
   </ItemGroup>
