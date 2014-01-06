@@ -20,7 +20,9 @@
 #define _MM_EX_WIZARD_NEWACCOUNT_H_
 
 #include <wx/wizard.h>
-#include "mmex.h"
+#include <wx/frame.h>
+#include <wx/textctrl.h>
+#include <wx/choice.h>
 //----------------------------------------------------------------------------
 
 class mmAddAccountWizard : public wxWizard

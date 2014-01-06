@@ -20,7 +20,11 @@
 #define _MM_EX_WIZARD_NEWDB_H_
 
 #include <wx/wizard.h>
-#include "mmex.h"
+#include <wx/frame.h>
+#include <wx/textctrl.h>
+#include <wx/button.h>
+#include "mmOption.h"
+
 //----------------------------------------------------------------------------
 
 class mmNewDatabaseWizard : public wxWizard

@@ -24,7 +24,7 @@
 #include <wx/aui/aui.h>
 #include <wx/debugrpt.h>
 #include <wx/toolbar.h>
-
+#include "mmOption.h"
 enum
 {
     MENU_BILLSDEPOSITS = wxID_HIGHEST +1,
@@ -41,10 +41,7 @@ enum
     MENU_VIEW_BUDGET_TRANSFER_TOTAL,
     ID_MMEX_MAX,
 };
-//----------------------------------------------------------------------------
 
-#include "util.h"
-#include "mmOption.h"
 //----------------------------------------------------------------------------
 class wxSQLite3Database;
 //----------------------------------------------------------------------------
@@ -66,15 +63,13 @@ public:
     wxLocale& getLocale();
     virtual void OnInitCmdLine(wxCmdLineParser& parser);
     virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
-public:
     mmGUIFrame* m_frame;
     wxSQLite3Database* m_setting_db;
     wxString m_optParam;
+
 private:
     void reportFatalException(wxDebugReport::Context);
-private:
     wxLocale m_locale; // locale we'll be using
-
     bool OnInit();
     int OnExit();
     void OnFatalException(); // called when a crash occurs in this application
@@ -311,6 +306,73 @@ private:
 
     // any class wishing to process wxWindows events must use this macro
     DECLARE_EVENT_TABLE()
+    enum
+    {
+        /* Main Menu  */
+        MENU_NEW = ID_MMEX_MAX + 1,
+        MENU_OPEN,
+        MENU_SAVE,
+        MENU_SAVE_AS,
+        MENU_RECENT_FILES,
+        MENU_RECENT_FILES_0,
+        MENU_RECENT_FILES_CLEAR,
+        MENU_EXPORT,
+        MENU_NEWACCT,
+        MENU_ACCTLIST,
+        MENU_ORGCATEGS,
+        MENU_ORGPAYEE,
+        MENU_BUDGETSETUPDIALOG,
+        MENU_CHECKUPDATE,
+        MENU_IMPORT,
+        MENU_IMPORT_UNIVCSV,
+        MENU_REPORTISSUES,
+        MENU_ANNOUNCEMENTMAILING,
+        MENU_FACEBOOK,
+        MENU_EXPORT_CSV,
+        MENU_EXPORT_QIF,
+        MENU_PRINT_REPORT,
+        MENU_PRINT_PREVIEW_REPORT,
+        MENU_SHOW_APPSTART,
+        MENU_EXPORT_HTML,
+        MENU_CURRENCY,
+        MENU_TREEPOPUP_LAUNCHWEBSITE,
+        MENU_IMPORT_MMNETCSV,
+        MENU_IMPORT_QIF,
+        MENU_ACCTEDIT,
+        MENU_ACCTDELETE,
+        MENU_TRANSACTIONREPORT,
+        MENU_VIEW_TOOLBAR,
+        MENU_VIEW_LINKS,
+        MENU_CATEGORY_RELOCATION,
+        MENU_PAYEE_RELOCATION,
+        MENU_CONVERT_ENC_DB,
+        MENU_ONLINE_UPD_CURRENCY_RATE,
+        MENU_IGNORE_FUTURE_TRANSACTIONS,
+
+        //
+        MENU_TREEPOPUP_NEW,
+        MENU_TREEPOPUP_EDIT,
+        MENU_TREEPOPUP_MOVE,
+        MENU_TREEPOPUP_DELETE,
+
+        ID_NAVTREECTRL,
+
+        //
+        MENU_TREEPOPUP_ACCOUNT_NEW,
+        MENU_TREEPOPUP_ACCOUNT_DELETE,
+        MENU_TREEPOPUP_ACCOUNT_EDIT,
+        MENU_TREEPOPUP_ACCOUNT_LIST,
+        MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV,
+        MENU_TREEPOPUP_ACCOUNT_EXPORT2QIF,
+        MENU_TREEPOPUP_ACCOUNT_IMPORTCSV,
+        MENU_TREEPOPUP_ACCOUNT_IMPORTQIF,
+        MENU_TREEPOPUP_ACCOUNT_IMPORTUNIVCSV,
+        MENU_TREEPOPUP_ACCOUNT_VIEWALL,
+        MENU_TREEPOPUP_ACCOUNT_VIEWFAVORITE,
+        MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
+        AUTO_REPEAT_TRANSACTIONS_TIMER_ID,
+    };
+
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_MMEX_H_

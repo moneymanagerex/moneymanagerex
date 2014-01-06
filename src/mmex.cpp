@@ -18,7 +18,6 @@
 #include <wx/cmdline.h>
 
 #include "mmex.h"
-#include "guiid.h"
 #include "dbwrapper.h"
 #include "aboutdialog.h"
 #include "accountdialog.h"
@@ -81,9 +80,57 @@
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
 
+#include <wx/defs.h>
+//----------------------------------------------------------------------------
+/* Include XPM Support */
 #include "../resources/house.xpm"
 #include "../resources/money_dollar.xpm"
 #include "../resources/car.xpm"
+
+#include "../resources/about.xpm"
+#include "../resources/accounttree.xpm"
+#include "../resources/appstart.xpm"
+#include "../resources/calendar.xpm"
+#include "../resources/categoryedit.xpm"
+#include "../resources/chartpiereport.xpm"
+#include "../resources/checkupdate.xpm"
+#include "../resources/clearlist.xpm"
+#include "../resources/clock.xpm"
+#include "../resources/customsql.xpm"
+#include "../resources/delete_account.xpm"
+#include "../resources/delete_custom_sql.xpm"
+#include "../resources/edit_account.xpm"
+#include "../resources/edit_custom_sql.xpm"
+#include "../resources/encrypt_db.xpm"
+#include "../resources/exit.xpm"
+#include "../resources/export-import.xpm"
+#include "../resources/facebook.xpm"
+#include "../resources/filter.xpm"
+#include "../resources/help.xpm"
+#include "../resources/issues.xpm"
+#include "../resources/main-setup.xpm"
+#include "../resources/moneyaccount.xpm"
+#include "../resources/new_custom_sql.xpm"
+#include "../resources/new.xpm"
+#include "../resources/newacct.xpm"
+#include "../resources/new_transaction.xpm"
+#include "../resources/notify.xpm"
+#include "../resources/open.xpm"
+#include "../resources/preferences-color.xpm"
+#include "../resources/preferences-other.xpm"
+#include "../resources/print.xpm"
+#include "../resources/printsetup.xpm"
+#include "../resources/printpreview.xpm"
+#include "../resources/relocate_categories.xpm"
+#include "../resources/relocate_payees.xpm"
+#include "../resources/rt_exec_auto.xpm"
+#include "../resources/rt_exec_user.xpm"
+#include "../resources/save.xpm"
+#include "../resources/saveas.xpm"
+#include "../resources/schedule.xpm"
+#include "../resources/user_edit.xpm"
+#include "../resources/view.xpm"
+#include "../resources/wrench.xpm"
 
 //----------------------------------------------------------------------------
 
@@ -2376,6 +2423,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         mmNewDatabaseWizard* wizard = new mmNewDatabaseWizard(this);
         wizard->CenterOnParent();
         wizard->RunIt(true);
+        wxButton* next = (wxButton*) wizard->FindWindow(wxID_FORWARD); //FIXME: 
+        if (next) next->SetLabel(_("&Next ->"));
 
         /* Jump to new account creation screen */
         wxCommandEvent evt;

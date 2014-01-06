@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "cashflow.h"
 #include "mmex.h"
+#include "util.h"
 #include "htmlbuilder.h"
 #include "model/Model_Account.h"
 #include "model/Model_Billsdeposits.h"

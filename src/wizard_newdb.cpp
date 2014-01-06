@@ -17,13 +17,13 @@
  ********************************************************/
 
 #include "wizard_newdb.h"
-#include "guiid.h"
 #include "maincurrencydialog.h"
 #include "model/Model_Account.h"
+#include "../resources/addacctwiz.xpm"
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizard, wxWizard)
-EVT_WIZARD_CANCEL(wxID_ANY, mmNewDatabaseWizard::OnWizardCancel)
+    EVT_WIZARD_CANCEL(wxID_ANY, mmNewDatabaseWizard::OnWizardCancel)
 END_EVENT_TABLE()
 
 mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
@@ -51,7 +51,7 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
                << _("Your database file is stored with an extension of .mmb.")<< "\n\n"
                << _("As this file contains important financial information,\nwe recommended creating daily backups with the Options\nsetting: 'Backup before opening', and store your backups\nin a separate location.")<< "\n\n"
                << _("The database can later be encrypted if required, by\nusing the option: 'Save database as' and changing the\nfile type before saving.");
-    new wxStaticText(page1, wxID_ANY,displayMsg);
+    new wxStaticText(page1, wxID_ANY, displayMsg);
 
     mmNewDatabaseWizardPage* page2 = new mmNewDatabaseWizardPage(this);
 
@@ -61,13 +61,20 @@ mmNewDatabaseWizard::mmNewDatabaseWizard(wxFrame *frame)
 
     // allow the wizard to size itself around the pages
     GetPageAreaSizer()->Add(page1);
+
+    /*wxButton* back = (wxButton*) FindWindow(wxID_BACKWARD);
+    if (back) back->SetLabel(_("<- &Back"));
+    wxButton* next = (wxButton*) FindWindow(wxID_FORWARD); //FIXME: 
+    if (next) next->SetLabel(_("&Next ->"));
+    wxButton* ca = (wxButton*) FindWindow(wxID_CANCEL);
+    if (ca) ca->SetLabel(_("&Cancel "));*/
 }
 
 void mmNewDatabaseWizard::RunIt(bool modal)
 {
-    if ( modal )
+    if (modal)
     {
-        if ( RunWizard(page1) )
+        if (RunWizard(page1))
         {
             // Success
         }
@@ -90,7 +97,7 @@ void mmNewDatabaseWizard::OnWizardCancel(wxWizardEvent& event)
 //----------------------------------------------------------------------------
 
 BEGIN_EVENT_TABLE(mmNewDatabaseWizardPage, wxWizardPageSimple)
-    EVT_BUTTON(ID_BUTTON_CURRENCY, mmNewDatabaseWizardPage::OnCurrency)
+    EVT_BUTTON(wxID_ANY, mmNewDatabaseWizardPage::OnCurrency)
 END_EVENT_TABLE()
 
 mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
@@ -106,7 +113,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
         currName = base_currency->CURRENCYNAME;
     }
 
-    itemButtonCurrency_ = new wxButton(this, ID_BUTTON_CURRENCY, currName, wxDefaultPosition, wxSize(130, -1), 0);
+    itemButtonCurrency_ = new wxButton(this, wxID_ANY, currName, wxDefaultPosition, wxSize(220, -1), 0);
 
     wxBoxSizer *mainSizer = new wxBoxSizer(wxVERTICAL);
 
