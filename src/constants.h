@@ -64,12 +64,6 @@ const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months")
 const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
 const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
 
-const wxString NAVTREECTRL_REPORTS = "Reports";
-const wxString NAVTREECTRL_HELP = "Help";
-const wxString NAVTREECTRL_CUSTOM_REPORTS = "Custom_Reports";
-const wxString NAVTREECTRL_INVESTMENT = "Stocks";
-const wxString NAVTREECTRL_BUDGET = "Budgeting";
-
 const wxString  VIEW_ACCOUNTS_ALL_STR       = "ALL";
 const wxString  VIEW_ACCOUNTS_OPEN_STR      = "Open";
 const wxString  VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";

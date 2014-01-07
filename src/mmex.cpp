@@ -132,6 +132,12 @@
 #include "../resources/view.xpm"
 #include "../resources/wrench.xpm"
 
+const wxString NAVTREECTRL_REPORTS = "Reports";
+const wxString NAVTREECTRL_HELP = "Help";
+const wxString NAVTREECTRL_CUSTOM_REPORTS = "Custom_Reports";
+const wxString NAVTREECTRL_INVESTMENT = "Stocks";
+const wxString NAVTREECTRL_BUDGET = "Budgeting";
+
 //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
