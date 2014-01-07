@@ -251,6 +251,9 @@
       <OutputFile>$(Platform)\$(Configuration)\mmex_mmex.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>copy_files.bat $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\aboutdialog.cpp" />
