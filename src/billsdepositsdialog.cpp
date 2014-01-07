@@ -239,6 +239,28 @@ void mmBDDialog::SetDialogHeader(const wxString& header)
 
 void mmBDDialog::CreateControls()
 {
+    const wxString BILLSDEPOSITS_REPEATS[] =
+    {
+        wxTRANSLATE("None"),
+        wxTRANSLATE("Weekly"),
+        wxTRANSLATE("Bi-Weekly"),
+        wxTRANSLATE("Monthly"),
+        wxTRANSLATE("Bi-Monthly"),
+        wxTRANSLATE("Quarterly"),
+        wxTRANSLATE("Half-Yearly"),
+        wxTRANSLATE("Yearly"),
+        wxTRANSLATE("Four Months"),
+        wxTRANSLATE("Four Weeks"),
+        wxTRANSLATE("Daily"),
+        wxTRANSLATE("In %s Days"),
+        wxTRANSLATE("In %s Months"),
+        wxTRANSLATE("Every %s Days"),
+        wxTRANSLATE("Every %s Months"),
+        wxTRANSLATE("Monthly (last day)"),
+        wxTRANSLATE("Monthly (last business day)")
+
+    };
+
     int border = 5;
     wxSizerFlags flags, flagsExpand;
     flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border);

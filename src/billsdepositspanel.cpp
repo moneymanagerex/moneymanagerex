@@ -44,6 +44,28 @@ enum
     ID_PANEL_BD_STATIC_DETAILS
 };
 
+const wxString BILLSDEPOSITS_REPEATS[] =
+{
+    wxTRANSLATE("None"),
+    wxTRANSLATE("Weekly"),
+    wxTRANSLATE("Bi-Weekly"),
+    wxTRANSLATE("Monthly"),
+    wxTRANSLATE("Bi-Monthly"),
+    wxTRANSLATE("Quarterly"),
+    wxTRANSLATE("Half-Yearly"),
+    wxTRANSLATE("Yearly"),
+    wxTRANSLATE("Four Months"),
+    wxTRANSLATE("Four Weeks"),
+    wxTRANSLATE("Daily"),
+    wxTRANSLATE("In %s Days"),
+    wxTRANSLATE("In %s Months"),
+    wxTRANSLATE("Every %s Days"),
+    wxTRANSLATE("Every %s Months"),
+    wxTRANSLATE("Monthly (last day)"),
+    wxTRANSLATE("Monthly (last business day)")
+
+};
+
 /*******************************************************/
 BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmBillsDepositsPanel::OnNewBDSeries)

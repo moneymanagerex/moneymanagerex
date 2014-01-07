@@ -68,7 +68,8 @@ const wxString  VIEW_ACCOUNTS_ALL_STR       = "ALL";
 const wxString  VIEW_ACCOUNTS_OPEN_STR      = "Open";
 const wxString  VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
 
-const wxString INIDB_USE_TRANSACTION_SOUND  = "USETRANSSOUND";
+const wxString LANGUAGE_PARAMETER = "LANGUAGE";
+const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
 const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
 
 const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
@@ -80,52 +81,6 @@ const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS   = "IGNORE_FUTURE_TRANSACTIONS"
 const wxString TIPS_BANKS  = "checkingpanel";
 const wxString TIPS_BILLS  = "billsdeposits";
 const wxString TIPS_STOCK  = "investment";
-
-const wxString BILLSDEPOSITS_REPEATS[] =
-{
-    wxTRANSLATE("None"),
-    wxTRANSLATE("Weekly"),
-    wxTRANSLATE("Bi-Weekly"),
-    wxTRANSLATE("Monthly"),
-    wxTRANSLATE("Bi-Monthly"),
-    wxTRANSLATE("Quarterly"),
-    wxTRANSLATE("Half-Yearly"),
-    wxTRANSLATE("Yearly"),
-    wxTRANSLATE("Four Months"),
-    wxTRANSLATE("Four Weeks"),
-    wxTRANSLATE("Daily"),
-    wxTRANSLATE("In %s Days"),
-    wxTRANSLATE("In %s Months"),
-    wxTRANSLATE("Every %s Days"),
-    wxTRANSLATE("Every %s Months"),
-    wxTRANSLATE("Monthly (last day)"),
-    wxTRANSLATE("Monthly (last business day)")
-
-};
-
-static const wxString DATE_PRESETTINGS[] =
-{
-    VIEW_TRANS_ALL_STR,
-    VIEW_TRANS_TODAY_STR,
-    VIEW_TRANS_CURRENT_MONTH_STR,
-    VIEW_TRANS_LAST_30_DAYS_STR,
-    VIEW_TRANS_LAST_90_DAYS_STR,
-    VIEW_TRANS_LAST_MONTH_STR ,
-    VIEW_TRANS_LAST_3MONTHS_STR,
-    VIEW_TRANS_LAST_12MONTHS_STR,
-    VIEW_TRANS_CURRENT_YEAR_STR
-};
-
-static const wxString TRANSACTION_STATUSES[] =
-{
-    wxTRANSLATE("None"),
-    wxTRANSLATE("Reconciled"),
-    wxTRANSLATE("Void"),
-    wxTRANSLATE("Follow up"),
-    wxTRANSLATE("Duplicate"),
-    wxTRANSLATE("Un-Reconciled"),
-    wxTRANSLATE("All Except Reconciled")
-};
 
 static const wxString TIPS[] =
 {
@@ -176,15 +131,6 @@ static const wxString gDaysInWeek[7] =
     , wxTRANSLATE("Saturday")
 };
 
-//*----------------------------------------------------------------------------*//
 
-const wxString LANGUAGE_PARAMETER = "LANGUAGE";
-
-// TODO remove these const variables
-const wxString TRANS_TYPE_WITHDRAWAL_STR = "Withdrawal";
-const wxString TRANS_TYPE_DEPOSIT_STR    = "Deposit";
-const wxString TRANS_TYPE_TRANSFER_STR   = "Transfer";
-
-//----------------------------------------------------------------------------
 #endif // _MM_EX_CONSTANTS_H_
 //----------------------------------------------------------------------------

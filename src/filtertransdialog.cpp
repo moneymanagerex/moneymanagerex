@@ -41,6 +41,31 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model\Model_Billsdeposits.h"
 #include "../resources/save.xpm"
 
+
+static const wxString TRANSACTION_STATUSES[] =
+{
+    wxTRANSLATE("None"),
+    wxTRANSLATE("Reconciled"),
+    wxTRANSLATE("Void"),
+    wxTRANSLATE("Follow up"),
+    wxTRANSLATE("Duplicate"),
+    wxTRANSLATE("Un-Reconciled"),
+    wxTRANSLATE("All Except Reconciled")
+};
+
+static const wxString DATE_PRESETTINGS[] =
+{
+    VIEW_TRANS_ALL_STR,
+    VIEW_TRANS_TODAY_STR,
+    VIEW_TRANS_CURRENT_MONTH_STR,
+    VIEW_TRANS_LAST_30_DAYS_STR,
+    VIEW_TRANS_LAST_90_DAYS_STR,
+    VIEW_TRANS_LAST_MONTH_STR,
+    VIEW_TRANS_LAST_3MONTHS_STR,
+    VIEW_TRANS_LAST_12MONTHS_STR,
+    VIEW_TRANS_CURRENT_YEAR_STR
+};
+
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
@@ -627,19 +652,21 @@ bool mmFilterTransactionsDialog::compareStatus(const wxString& itemStatus) const
 bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameAccount) const
 {
     bool result = false;
-    if (typeState == TRANS_TYPE_TRANSFER_STR && cbTypeTransferTo_->GetValue() && sameAccount)
+    if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER]
+        && cbTypeTransferTo_->GetValue() && sameAccount)
     {
         result = true;
     }
-    else if (typeState == TRANS_TYPE_TRANSFER_STR && cbTypeTransferFrom_->GetValue() && !sameAccount)
+    else if (typeState == Model_Checking::all_type()[Model_Checking::TRANSFER]
+        && cbTypeTransferFrom_->GetValue() && !sameAccount)
     {
         result = true;
     }
-    else if (typeState == TRANS_TYPE_WITHDRAWAL_STR && cbTypeWithdrawal_->GetValue())
+    else if (typeState == Model_Checking::all_type()[Model_Checking::WITHDRAWAL] && cbTypeWithdrawal_->GetValue())
     {
         result = true;
     }
-    else if (typeState == TRANS_TYPE_DEPOSIT_STR && cbTypeDeposit_->GetValue())
+    else if (typeState == Model_Checking::all_type()[Model_Checking::DEPOSIT] && cbTypeDeposit_->GetValue())
     {
         result = true;
     }
@@ -653,9 +680,9 @@ wxString mmFilterTransactionsDialog::userTypeStr() const
     if (typeCheckBox_->IsChecked())
     {
         if (cbTypeWithdrawal_->GetValue())
-            transCode = wxGetTranslation(TRANS_TYPE_WITHDRAWAL_STR);
+            transCode = wxGetTranslation(Model_Checking::all_type()[Model_Checking::WITHDRAWAL]);
         if (cbTypeDeposit_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(TRANS_TYPE_DEPOSIT_STR);
+            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(Model_Checking::all_type()[Model_Checking::DEPOSIT]);
         if (cbTypeTransferTo_->GetValue())
             transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation("Transfer To");
         if (cbTypeTransferFrom_->GetValue())
