@@ -41,17 +41,20 @@ private:
     enum
     {
         ID_TAB_OUT = 0,
-        ID_TAB1,
-        ID_TAB2,
-        ID_TAB3,
+        ID_TAB_HTT,
+        ID_TAB_SQL,
+        ID_TAB_LUA,
         ID_NEW1 = wxID_HIGHEST + 500,
         ID_DELETE,
         ID_OUTPUT_WIN,
         ID_NOTEBOOK,
-        ID_TEMPLATE,
         ID_WEB,
         ID_TYPELABEL,
-        ID_LUACONTENT
+        ID_TEMPLATE,
+        ID_SQL_CONTENT,
+        ID_LUA_CONTENT,
+        ID_CSS_CONTENT,
+        ID_JS_CONTENT,
     };
 
     bool Create(wxWindow* parent
@@ -78,6 +81,7 @@ private:
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport();
+    void createTab(wxNotebook* notebook, int type);
 
     wxTextCtrl* m_fileNameCtrl;
     wxWebView* m_outputHTML;

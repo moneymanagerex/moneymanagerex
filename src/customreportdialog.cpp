@@ -45,13 +45,13 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
 END_EVENT_TABLE()
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
-: button_Open_()
-, button_Save_()
-, button_SaveAs_()
-, button_Run_()
-, treeCtrl_()
-, m_fileNameCtrl()
-, m_outputHTML()
+    : button_Open_()
+    , button_Save_()
+    , button_SaveAs_()
+    , button_Run_()
+    , treeCtrl_()
+    , m_fileNameCtrl() 
+    , m_outputHTML()
 {
     wxFileSystem::AddHandler(new wxMemoryFSHandler);
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -60,12 +60,6 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 
 mmGeneralReportManager::~mmGeneralReportManager()
 {
-    MinimalEditor* me = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-    if (me) delete me;
-    me = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
-    if (me) delete me;
-    wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-    if (n) delete n;
 }
 
 bool mmGeneralReportManager::Create(wxWindow* parent
@@ -176,41 +170,16 @@ void mmGeneralReportManager::CreateControls()
     m_outputHTML = wxWebView::New(out_tab, ID_WEB);
     out_sizer->Add(m_outputHTML, flagsExpand);
 
-    //Template
-    wxPanel* template_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB1, template_tab, _("Template"));
-    wxBoxSizer *html_sizer = new wxBoxSizer(wxVERTICAL);
-    template_tab->SetSizer(html_sizer);
+    createTab(editors_notebook, ID_TEMPLATE);
+    createTab(editors_notebook, ID_SQL_CONTENT);
+    createTab(editors_notebook, ID_LUA_CONTENT);
 
     wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
-    m_fileNameCtrl = new wxTextCtrl(template_tab, wxID_FILE, wxEmptyString
+    m_fileNameCtrl = new wxTextCtrl(this, wxID_FILE, wxEmptyString
         , wxDefaultPosition, wxSize(480, -1), wxTE_READONLY);
-    file_sizer->Add(new wxStaticText(template_tab, wxID_STATIC, _("File Name:")), flagsExpand.Proportion(0));
+    file_sizer->Add(new wxStaticText(this, wxID_STATIC, _("File Name:")), flagsExpand.Proportion(0));
     file_sizer->Add(m_fileNameCtrl, flagsExpand.Proportion(1));
-
-    MinimalEditor* templateText = new MinimalEditor(template_tab, ID_TEMPLATE);
-    templateText->SetLexerHtml();
-
-    html_sizer->Add(file_sizer);
-    html_sizer->Add(templateText, flagsExpand);
-
-    //SQL
-    wxPanel* script_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB2, script_tab, _("SQL"));
-    wxBoxSizer *script_sizer = new wxBoxSizer(wxVERTICAL);
-    script_tab->SetSizer(script_sizer);
-    MinimalEditor* SqlScriptText = new MinimalEditor(script_tab, wxID_VIEW_DETAILS);
-    SqlScriptText->SetLexerSql();
-    script_sizer->Add(SqlScriptText, flagsExpand);
-
-    //Lua
-    wxPanel* lua_script_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB3, lua_script_tab, _("Lua"));
-    wxBoxSizer *lua_script_sizer = new wxBoxSizer(wxVERTICAL);
-    lua_script_tab->SetSizer(lua_script_sizer);
-    MinimalEditor* LuaScriptText = new MinimalEditor(lua_script_tab, ID_LUACONTENT);
-    LuaScriptText->SetLexerLua();
-    lua_script_sizer->Add(LuaScriptText, flagsExpand);
+    headingPanelSizerV3->Add(file_sizer);
 
     /****************************************
      Bottom Panel
@@ -229,6 +198,7 @@ void mmGeneralReportManager::CreateControls()
     button_SaveAs_ = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
     buttonPanelSizer->Add(button_SaveAs_, flags);
     button_SaveAs_->SetToolTip(_("Export the report to a new file."));
+    buttonPanelSizer->AddSpacer(50);
 
     button_Save_ = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
     buttonPanelSizer->Add(button_Save_, flags);
@@ -242,6 +212,31 @@ void mmGeneralReportManager::CreateControls()
     buttonPanelSizer->Add(button_Close, flags);
     //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
 
+}
+
+void mmGeneralReportManager::createTab(wxNotebook* editors_notebook, int type)
+{
+    wxSizerFlags flagsExpand;
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
+    wxString label;
+    int editorID;
+
+    switch (type) {
+    case ID_SQL_CONTENT: label = _("SQL"); editorID = ID_SQL_CONTENT; break;
+    case ID_LUA_CONTENT: label = _("Lua"); editorID = ID_LUA_CONTENT;  break;
+    case ID_TEMPLATE: label = _("htt"); editorID = ID_TEMPLATE;  break;
+    //default: ;
+    }
+
+    int tabID = editors_notebook->GetRowCount();
+    wxPanel* template_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(tabID, template_tab, label);
+    wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
+    template_tab->SetSizer(sizer);
+
+    MinimalEditor* templateText = new MinimalEditor(template_tab, editorID);
+    templateText->SetLexerHtml();
+    sizer->Add(templateText, flagsExpand);
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
@@ -368,8 +363,8 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
-        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUACONTENT);
+        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
+        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
 
@@ -457,8 +452,8 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 
 void mmGeneralReportManager::viewControls(bool enable)
 {
-    MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
-    MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUACONTENT);
+    MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
+    MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
     MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
     button_Run_->Enable(enable);
     button_Save_->Enable(enable);
@@ -485,8 +480,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(wxID_VIEW_DETAILS);
-        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUACONTENT);
+        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
+        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
 
         m_fileNameCtrl->ChangeValue(report->TEMPLATEPATH);
