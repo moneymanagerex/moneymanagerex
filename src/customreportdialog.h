@@ -1,6 +1,7 @@
 /*******************************************************
  Copyright (C) 2007 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2014 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -39,10 +40,10 @@ public:
 private:
     enum
     {
-        ID_TAB1 = 0,
+        ID_TAB_OUT = 0,
+        ID_TAB1,
         ID_TAB2,
         ID_TAB3,
-        ID_TAB4,
         ID_NEW1 = wxID_HIGHEST + 500,
         ID_DELETE,
         ID_OUTPUT_WIN,

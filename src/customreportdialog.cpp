@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2011 Stefano Giorgio
+ Copyright (C) 2014 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -99,11 +100,12 @@ void mmGeneralReportManager::fillControls()
 {
     treeCtrl_->SetEvtHandlerEnabled(false);
     treeCtrl_->DeleteAllItems();
-    root_ = treeCtrl_->AddRoot(_("Custom Reports"));
+    root_ = treeCtrl_->AddRoot(_("Reports"));
     selectedItemId_ = root_;
     treeCtrl_->SetItemBold(root_, true);
     treeCtrl_->SetFocus();
-    Model_Report::Data_Set records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
+    Model_Report::Data_Set records 
+        = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)
@@ -125,8 +127,8 @@ void mmGeneralReportManager::fillControls()
 void mmGeneralReportManager::CreateControls()
 {
     wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxEXPAND).Border(wxALL, 5).Proportion(1);
+    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
 
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizer);
@@ -136,7 +138,7 @@ void mmGeneralReportManager::CreateControls()
      ***************************************/
 
     wxBoxSizer* headingPanelSizerH = new wxBoxSizer(wxHORIZONTAL);
-    mainBoxSizer->Add(headingPanelSizerH, 5, wxGROW|wxALL, 5);
+    mainBoxSizer->Add(headingPanelSizerH, 5, wxGROW | wxALL, 5);
 
     wxBoxSizer* headingPanelSizerH2 = new wxBoxSizer(wxVERTICAL);
     headingPanelSizerH2->AddSpacer(15);
@@ -166,27 +168,17 @@ void mmGeneralReportManager::CreateControls()
         , ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
-    //SQL
-    wxPanel* script_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB1, script_tab, _("SQL"));
-    wxBoxSizer *script_sizer = new wxBoxSizer(wxVERTICAL);
-    script_tab->SetSizer(script_sizer);
-    MinimalEditor* SqlScriptText = new MinimalEditor(script_tab, wxID_VIEW_DETAILS);
-    SqlScriptText->SetLexerSql();
-    script_sizer->Add(SqlScriptText, flagsExpand);
-
-    //Lua
-    wxPanel* lua_script_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB2, lua_script_tab, _("Lua"));
-    wxBoxSizer *lua_script_sizer = new wxBoxSizer(wxVERTICAL);
-    lua_script_tab->SetSizer(lua_script_sizer);
-    MinimalEditor* LuaScriptText = new MinimalEditor(lua_script_tab, ID_LUACONTENT);
-    LuaScriptText->SetLexerLua();
-    lua_script_sizer->Add(LuaScriptText, flagsExpand);
+    //Output
+    wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(ID_TAB_OUT, out_tab, _("Output"));
+    wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
+    out_tab->SetSizer(out_sizer);
+    m_outputHTML = wxWebView::New(out_tab, ID_WEB);
+    out_sizer->Add(m_outputHTML, flagsExpand);
 
     //Template
     wxPanel* template_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB3, template_tab, _("Template"));
+    editors_notebook->InsertPage(ID_TAB1, template_tab, _("Template"));
     wxBoxSizer *html_sizer = new wxBoxSizer(wxVERTICAL);
     template_tab->SetSizer(html_sizer);
 
@@ -202,18 +194,28 @@ void mmGeneralReportManager::CreateControls()
     html_sizer->Add(file_sizer);
     html_sizer->Add(templateText, flagsExpand);
 
-    //Output
-    wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB4, out_tab, _("Output"));
-    wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
-    out_tab->SetSizer(out_sizer);
-    m_outputHTML = wxWebView::New(out_tab, ID_WEB);
-    out_sizer->Add(m_outputHTML, flagsExpand);
+    //SQL
+    wxPanel* script_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(ID_TAB2, script_tab, _("SQL"));
+    wxBoxSizer *script_sizer = new wxBoxSizer(wxVERTICAL);
+    script_tab->SetSizer(script_sizer);
+    MinimalEditor* SqlScriptText = new MinimalEditor(script_tab, wxID_VIEW_DETAILS);
+    SqlScriptText->SetLexerSql();
+    script_sizer->Add(SqlScriptText, flagsExpand);
+
+    //Lua
+    wxPanel* lua_script_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(ID_TAB3, lua_script_tab, _("Lua"));
+    wxBoxSizer *lua_script_sizer = new wxBoxSizer(wxVERTICAL);
+    lua_script_tab->SetSizer(lua_script_sizer);
+    MinimalEditor* LuaScriptText = new MinimalEditor(lua_script_tab, ID_LUACONTENT);
+    LuaScriptText->SetLexerLua();
+    lua_script_sizer->Add(LuaScriptText, flagsExpand);
 
     /****************************************
      Bottom Panel
      ***************************************/
-    wxPanel* buttonPanel = new wxPanel( this, wxID_STATIC,  wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+    wxPanel* buttonPanel = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     mainBoxSizer->Add(buttonPanel, flags.Center());
 
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -293,7 +295,7 @@ void mmGeneralReportManager::openReport()
     if (!readme.empty())
     {
         wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-        n->SetSelection(ID_TAB4);
+        n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
         m_outputHTML->SetPage(readme, "readme");
     }
@@ -429,7 +431,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
     if (report)
     {
         wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-        n->SetSelection(ID_TAB4);
+        n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
         mmGeneralReport gr(report);
         m_outputHTML->SetPage(gr.getHTMLText(),"");
