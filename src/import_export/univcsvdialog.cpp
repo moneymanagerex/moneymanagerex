@@ -1246,9 +1246,9 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
 
             if (val_ <= 0.0)
-                type_ = TRANS_TYPE_WITHDRAWAL_STR;
+                type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
             else
-                type_ = TRANS_TYPE_DEPOSIT_STR;
+                type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
 
             val_ = fabs(val_);
             amount_ = token;
@@ -1297,7 +1297,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
             if (val_ <= 0.0) return;
 
-            type_ = TRANS_TYPE_DEPOSIT_STR;
+            type_ = Model_Checking::all_type()[Model_Checking::DEPOSIT];
             amount_ = token;
             break;
 
@@ -1305,7 +1305,7 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
             if (!Model_Currency::fromString(token, val_, Model_Account::currency(Model_Account::instance().get(fromAccountID_)))) return;
             if (val_ <= 0.0) return;
 
-            type_ = TRANS_TYPE_WITHDRAWAL_STR;
+            type_ = Model_Checking::all_type()[Model_Checking::WITHDRAWAL];
             amount_ = token;
             break;
 
