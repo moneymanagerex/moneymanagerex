@@ -31,7 +31,7 @@ static int instance_count = 0;
 Test_Model_Checking::Test_Model_Checking()
 {
     instance_count++;
-    m_test_db_filename = "model_checking_test_database.mmb";
+    m_test_db_filename = "test_db_model_checking.mmb";
 }
 
 Test_Model_Checking::~Test_Model_Checking()

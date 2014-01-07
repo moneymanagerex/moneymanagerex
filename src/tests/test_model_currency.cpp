@@ -19,22 +19,27 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
-
+//----------------------------------------------------------------------------
 #include "test_model_currency.h"
 
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
 
 static int instance_count = 0;
-
+//----------------------------------------------------------------------------
 Test_Model_Currency::Test_Model_Currency()
 {
     instance_count++;
-    m_test_db_filename = "cppunit_test_database.mmb";
+    m_test_db_filename = "test_db_model_currency.mmb";
 }
 
 Test_Model_Currency::~Test_Model_Currency()
 {
+    instance_count--;
+    if (instance_count < 1)
+    {
+        wxRemoveFile(m_test_db_filename);
+    }
 }
 
 void Test_Model_Currency::setUp()
@@ -47,9 +52,9 @@ void Test_Model_Currency::setUp()
     // The test hooks area actually passed to SQLite3 by wxSQLite3
     m_test_db.SetCommitHook(m_test_callback);
     m_test_db.SetRollbackHook(m_test_callback);
-    m_test_db.SetUpdateHook(m_test_callback);
+//    m_test_db.SetUpdateHook(m_test_callback);
 
-    Model_Currency currency = Model_Currency::instance(&m_test_db);
+    Model_Currency::instance(&m_test_db);
     Model_Infotable::instance(&m_test_db);
 }
 
@@ -58,7 +63,7 @@ void Test_Model_Currency::tearDown()
     // need to reset the hooks before deleting them
     m_test_db.SetCommitHook(0);
     m_test_db.SetRollbackHook(0);
-    m_test_db.SetUpdateHook(0);
+//    m_test_db.SetUpdateHook(0);
     m_test_db.Close();
     delete m_test_callback;
 }

@@ -31,7 +31,7 @@ static int instance_count = 0;
 Test_Stock::Test_Stock()
 {
     instance_count++;
-    m_test_db_filename = "model_stock_test_database.mmb";
+    m_test_db_filename = "test_db_model_stock.mmb";
 }
 
 Test_Stock::~Test_Stock()

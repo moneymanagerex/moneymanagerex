@@ -37,11 +37,13 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
 {
     Model_Currency& ins = Singleton<Model_Currency>::instance();
     ins.db_ = db;
-    ins.destroy_cache();
     bool init_currencies = !ins.exists(db);
     ins.ensure(db);
     if (init_currencies)
-        ins.initialize();
+    {
+        ins.initialize();   // Initialises currency data in database.
+    }
+    ins.destroy_cache();
     return ins;
 }
 

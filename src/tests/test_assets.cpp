@@ -31,7 +31,7 @@ static int instance_count = 0;
 Test_Asset::Test_Asset()
 {
     instance_count++;
-    m_test_db_filename = "model_asset_test_database.mmb";
+    m_test_db_filename = "test_db_model_asset.mmb";
 }
 
 Test_Asset::~Test_Asset()
