@@ -193,13 +193,6 @@ wxColour mmColors::userDefColor7 = wxColour(0,0,128);
 
 //*-------------------------------------------------------------------------*//
 
-wxString Tips(wxString type)
-{
-    return wxGetTranslation(TIPS[rand() % sizeof(TIPS)/sizeof(wxString)]);
-}
-
-//*--------------------------------------------------------------------------*//
-
 int site_content(const wxString& sSite, wxString& sOutput)
  {
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");

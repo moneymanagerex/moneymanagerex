@@ -140,7 +140,6 @@ public:
 };
 //----------------------------------------------------------------------------
 
-wxString Tips(wxString type);
 int site_content(const wxString& site, wxString& output);
 
 wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);

@@ -20,6 +20,7 @@
 #include "util.h"
 #include "mmcheckingpanel.h"
 #include "mmex.h"
+#include "mmTips.h"
 #include "mmsinglechoicedialog.h"
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
@@ -667,13 +668,13 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
     {
         info_panel_mini_->SetLabel("");
         enableEditDeleteButtons(false);
-        showTips() ;
+        showTips();
     }
 }
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    info_panel_->SetLabel(Tips(TIPS_BANKS));
+    info_panel_->SetLabel(getRandomTip());
 }
 //----------------------------------------------------------------------------
 
