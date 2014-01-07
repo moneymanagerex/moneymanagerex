@@ -49,14 +49,14 @@ public:
 
 private:
 
-    int sourceCatID_;
-    int sourceSubCatID_;
-    wxButton* sourceBtn_;
+    int m_sourceCatID;
+    int m_sourceSubCatID;
+    wxButton* m_buttonSource;
 
-    int destCatID_;
-    int destSubCatID_;
-    wxButton* destBtn_;
-    int changedRecords_;
+    int m_destCatID;
+    int m_destSubCatID;
+    wxButton* m_buttonDest;
+    int m_changedRecords;
 };
 
 #endif
