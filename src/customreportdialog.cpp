@@ -117,6 +117,8 @@ void mmGeneralReportManager::fillControls()
     }
     treeCtrl_->ExpandAll();
     treeCtrl_->SetEvtHandlerEnabled(true);
+    wxListEvent evt(wxEVT_TREE_SEL_CHANGED, wxID_ANY);
+    AddPendingEvent(evt);
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -219,7 +221,7 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     out_tab->SetSizerAndFit(out_sizer);
 }
 
-void mmGeneralReportManager::createTab(wxNotebook* editors_notebook, int type)
+void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int type)
 {
     wxSizerFlags flagsExpand;
     flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
@@ -450,6 +452,9 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     wxMenu* customReportMenu = new wxMenu;
     customReportMenu->Append(ID_NEW1, _("New Custom Report"));
     customReportMenu->AppendSeparator();
+    customReportMenu->Append(ID_GROUP, _("Change Group"));
+    customReportMenu->Enable(ID_GROUP, report_id > 0);
+    customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_DELETE, _("Delete Custom Report"));
     customReportMenu->Enable(ID_DELETE, report_id > 0);
     PopupMenu(customReportMenu);
@@ -483,9 +488,9 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        createTab(editors_notebook, ID_TEMPLATE);
-        createTab(editors_notebook, ID_SQL_CONTENT);
-        createTab(editors_notebook, ID_LUA_CONTENT);
+        createEditorTab(editors_notebook, ID_TEMPLATE);
+        createEditorTab(editors_notebook, ID_SQL_CONTENT);
+        createEditorTab(editors_notebook, ID_LUA_CONTENT);
 
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
@@ -508,10 +513,12 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         else
         {
             wxFileInputStream input(full_path);
-            wxTextInputStream text(input, "\x09", wxConvUTF8);
+            wxTextInputStream text(input);
             while (input.IsOk() && !input.Eof())
             {
-                templateText->AppendText(text.ReadLine() + "\n");
+                const wxString line = text.ReadLine();
+                if (!line.IsEmpty())
+                    templateText->AppendText(line + "\n");
             }
         }
         viewControls(true);
@@ -559,6 +566,7 @@ bool mmGeneralReportManager::DeleteReport(int id)
         if (iError == wxYES)
         {
             Model_Report::instance().remove(id);
+            fillControls();
             return true;
         }
     }
@@ -567,18 +575,26 @@ bool mmGeneralReportManager::DeleteReport(int id)
 
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
     int id = event.GetId();
     if (id == ID_NEW1)
     {
         newReport();
     }
-    else if (id == ID_DELETE)
+    else if (iData && id == ID_DELETE)
     {
-        MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
-        if (iData)
-        {
             int report_id = iData->get_report_id();
             this->DeleteReport(report_id);
+    }
+    else if (iData && id == ID_GROUP)
+    {
+        int report_id = iData->get_report_id();
+        Model_Report::Data * report = Model_Report::instance().get(report_id);
+        if (report)
+        {
+            report->GROUPNAME = wxGetTextFromUser(_("Enter the name for the new report group")
+                , _("General Report Manager"), "");
+            Model_Report::instance().save(report);
         }
     }
     fillControls();

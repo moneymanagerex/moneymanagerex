@@ -46,6 +46,7 @@ private:
         ID_TAB_LUA,
         ID_NEW1 = wxID_HIGHEST + 500,
         ID_DELETE,
+        ID_GROUP, 
         ID_NOTEBOOK,
         ID_WEB,
         ID_TYPELABEL,
@@ -80,7 +81,7 @@ private:
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport();
-    void createTab(wxNotebook* notebook, int type);
+    void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
 
     wxTextCtrl* m_fileNameCtrl;
