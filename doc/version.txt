@@ -4,6 +4,16 @@ Version History of Money Manager Ex
 
 - Reports
 
+1.0.0.1 (TBA)
+- Fix account number not saved (bug #259)
+- Fix translation items (bug #257)
+- Fix stock currency format (bug #262)
+- fix sound (bug #256)
+- fix asset value (bug #271)
+- fix transaction report crash (bug #273)
+- fix home page repeating transaction value (bug #274)
+- fix summary asset total (bug #275)
+
 1.0.0.0 (December 28, 2013) (includes 0.9.9.2 changes)
 - Custom Reports has been temporarily removed  (under construction). Will be introduced in next release.
 - Account balance in CSV export [feature-requests:#136] (partial implementation)
@@ -54,6 +64,14 @@ Version History of Money Manager Ex
 - Added print and preview for Home Page
 - Duplicate Asset function added
 - QIF Export/Import updated
+
+- Fix transaction status (bug #234)
+- Fix exchange rates (bug #244)
+- Fix transaction not shown (bug #245)
+- Fix reconciled balance (bug #246)
+- Fix validators (bug #247)
+- Fix payee name (bug #249)
+- Fix sorting direction not remembered (bug #251)
 
 0.9.9.0 (May 1, 2012)
 - Externals updated to wxSQLite3 V: 3.0.0 (sqlite3 V: 3.7.10.0)
