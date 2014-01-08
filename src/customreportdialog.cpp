@@ -539,19 +539,13 @@ void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
         {
             report->REPORTNAME = label;
             Model_Report::instance().save(report);
+            fillControls();
         }
         else
             event.Veto();
     }
-    else if (event.GetItem() != root_)
-    {
-        Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::GROUPNAME(m_selectedGroup));
-        for (auto & record : reports)
-        {
-            record.GROUPNAME = label;
-        }
-        Model_Report::instance().save(reports);
-    }
+    else
+        event.Veto();
 }
 
 bool mmGeneralReportManager::DeleteReport(int id)
