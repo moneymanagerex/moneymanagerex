@@ -198,9 +198,7 @@ void mmTransDialog::dataToControls()
         for (const auto &account : accounts)
         {
             if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
-#if !defined (__WXMAC__)
             cbAccount_->Append(account.ACCOUNTNAME);
-#endif
             if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->ChangeValue(account.ACCOUNTNAME);
         }
         cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
@@ -241,10 +239,8 @@ void mmTransDialog::dataToControls()
             cbAccount_->SetToolTip(_("Specify account for the transaction"));
             account_label_->SetLabel(_("Account"));
             transaction_->TOACCOUNTID = -1;
-#if !defined (__WXMAC__)
             for (const auto & entry : Model_Payee::instance().all_payee_names())
                 cbPayee_->Append(entry);
-#endif
             cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
             Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             if (payee)
@@ -259,10 +255,8 @@ void mmTransDialog::dataToControls()
                 cSplit_->SetValue(false);
                 m_local_splits.clear();
             }
-#if !defined (__WXMAC__)
             for (const auto & entry : Model_Account::instance().all_checking_account_names())
                 cbPayee_->Append(entry);
-#endif
             Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
             if (account)
                 cbPayee_->ChangeValue(account->ACCOUNTNAME);
@@ -414,13 +408,8 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
-#if !defined (__WXMAC__)
     cbAccount_ = new wxComboBox(this, wxID_ANY, "",
         wxDefaultPosition, wxSize(230, -1));
-#else
-    cbAccount_ = new wxTextCtrl(this, wxID_ANY, "",
-        wxDefaultPosition, wxSize(230, -1));
-#endif
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
     flex_sizer->Add(account_label_, flags);
@@ -432,13 +421,8 @@ void mmTransDialog::CreateControls()
     /*Note: If you want to use EVT_TEXT_ENTER(id,func) to receive wxEVT_COMMAND_TEXT_ENTER events,
       you have to add the wxTE_PROCESS_ENTER window style flag.
       If you create a wxComboBox with the flag wxTE_PROCESS_ENTER, the tab key won't jump to the next control anymore.*/
-#if !defined (__WXMAC__)
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
         , wxDefaultPosition, wxSize(230, -1));
-#else
-    cbPayee_ = new wxTextCtrl(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
-        , wxDefaultPosition, wxSize(230, -1));
-#endif
 
     flex_sizer->Add(payee_label_, flags);
     flex_sizer->Add(cbPayee_, flags);
@@ -649,11 +633,9 @@ bool mmTransDialog::validateData()
         }
 
         // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
-#if !defined (__WXMAC__)
         int payee_loc = cbPayee_->FindString(payee_name);
         if (payee_loc != wxNOT_FOUND)
             payee_name = cbPayee_->GetString(payee_loc);
-#endif
 
         Model_Payee::Data* payee = Model_Payee::instance().get(payee_name);
         if (!payee)
@@ -811,11 +793,9 @@ void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
 {
     // Get payee string from populated list to address issues with case compare differences between autocomplete and payee list
     wxString payee_str = cbPayee_->GetValue();
-#if !defined (__WXMAC__)
     int payee_loc = cbPayee_->FindString(payee_str);
     if (payee_loc != wxNOT_FOUND)
         payee_str = cbPayee_->GetString(payee_loc);
-#endif
 
     bool transfer_transaction = transaction_type_->GetSelection() == Model_Checking::TRANSFER;
     if (!transfer_transaction)
@@ -1019,10 +999,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
-#if defined (__WXMAC__)
-    EndModal(wxID_CANCEL);
-#endif
-
+#ifndef __WXMAC__
     if (object_in_focus_ == bCategory_->GetId()) return;
     if (object_in_focus_ == textNotes_->GetId()) return;
 
@@ -1070,6 +1047,7 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
             itemButtonCancel_->SetFocus();
         return;
     }
+#endif
 
     EndModal(wxID_CANCEL);
 }

@@ -84,13 +84,8 @@ private:
     mmTextCtrl *toTextAmount_;
     mmTextCtrl *textNotes_;
     wxButton* bCategory_;
-#if !defined (__WXMAC__)
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
-#else
-    wxTextCtrl* cbAccount_;
-    wxTextCtrl* cbPayee_;
-#endif
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     wxButton* itemButtonCancel_;
