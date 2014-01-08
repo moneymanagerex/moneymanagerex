@@ -80,7 +80,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
             if (payee) payeeStr = payee->PAYEENAME;
         }
         Model_Account::Data *account = Model_Account::instance().get(q1.ACCOUNTID);
-        bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, q1.TRANSAMOUNT, account));
+        double amount = (Model_Billsdeposits::type(q1) == Model_Billsdeposits::DEPOSIT ? q1.TRANSAMOUNT : -q1.TRANSAMOUNT);
+        bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, amount, account));
     }
 
     //std::sort(bd_days.begin(), bd_days.end());
@@ -102,8 +103,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
             hb.startTableRow();
             hb.addTableCell(std::get<1>(item), false, true); //payee
-            hb.addTableCell(Model_Account::toCurrency(std::get<3>(item)
-                , std::get<4>(item)), true);
+            hb.addCurrencyCell(std::get<3>(item), Model_Account::currency(std::get<4>(item)));
             //Draw it as numeric that mean align right
             hb.addTableCell(std::get<2>(item), true, false, false, colorStr);
             hb.endTableRow();
