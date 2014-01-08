@@ -21,6 +21,7 @@
 #include "minimal_editor.h"
 #include "util.h"
 #include "paths.h"
+#include "mmpanelbase.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
 #include <wx/zipstrm.h>
@@ -162,24 +163,14 @@ void mmGeneralReportManager::CreateControls()
         , ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
     headingPanelSizerV3->Add(editors_notebook, flagsExpand);
 
-    //Output
-    wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(ID_TAB_OUT, out_tab, _("Output"));
-    wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
-    out_tab->SetSizer(out_sizer);
-    m_outputHTML = wxWebView::New(out_tab, ID_WEB);
-    out_sizer->Add(m_outputHTML, flagsExpand);
-
-    createTab(editors_notebook, ID_TEMPLATE);
-    createTab(editors_notebook, ID_SQL_CONTENT);
-    createTab(editors_notebook, ID_LUA_CONTENT);
+    createOutputTab(editors_notebook, ID_TAB_OUT);
 
     wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
     m_fileNameCtrl = new wxTextCtrl(this, wxID_FILE, wxEmptyString
         , wxDefaultPosition, wxSize(480, -1), wxTE_READONLY);
-    file_sizer->Add(new wxStaticText(this, wxID_STATIC, _("File Name:")), flagsExpand.Proportion(0));
-    file_sizer->Add(m_fileNameCtrl, flagsExpand.Proportion(1));
-    headingPanelSizerV3->Add(file_sizer);
+    file_sizer->Add(new wxStaticText(this, wxID_STATIC, _("File Name:")), flags);
+    file_sizer->Add(m_fileNameCtrl, flagsExpand);
+    headingPanelSizerV3->Add(file_sizer, flagsExpand.Proportion(0));
 
     /****************************************
      Bottom Panel
@@ -214,12 +205,26 @@ void mmGeneralReportManager::CreateControls()
 
 }
 
+void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int type)
+{
+    wxSizerFlags flagsExpand;
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
+    //Output
+    wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(ID_TAB_OUT, out_tab, _("Output"));
+    wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
+    out_tab->SetSizer(out_sizer);
+    m_outputHTML = wxWebView::New(out_tab, ID_WEB);
+    out_sizer->Add(m_outputHTML, flagsExpand);
+    out_tab->SetSizerAndFit(out_sizer);
+}
+
 void mmGeneralReportManager::createTab(wxNotebook* editors_notebook, int type)
 {
     wxSizerFlags flagsExpand;
     flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
     wxString label;
-    int editorID;
+    int editorID = 0;
 
     switch (type) {
     case ID_SQL_CONTENT: label = _("SQL"); editorID = ID_SQL_CONTENT; break;
@@ -229,14 +234,15 @@ void mmGeneralReportManager::createTab(wxNotebook* editors_notebook, int type)
     }
 
     int tabID = editors_notebook->GetRowCount();
-    wxPanel* template_tab = new wxPanel(editors_notebook, wxID_ANY);
-    editors_notebook->InsertPage(tabID, template_tab, label);
+    wxPanel* panel = new wxPanel(editors_notebook, wxID_ANY);
+    editors_notebook->InsertPage(tabID, panel, label);
     wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
-    template_tab->SetSizer(sizer);
+    panel->SetSizer(sizer);
 
-    MinimalEditor* templateText = new MinimalEditor(template_tab, editorID);
+    MinimalEditor* templateText = new MinimalEditor(panel, editorID);
     templateText->SetLexerHtml();
     sizer->Add(templateText, flagsExpand);
+    panel->SetSizerAndFit(sizer);
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
@@ -452,25 +458,22 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 
 void mmGeneralReportManager::viewControls(bool enable)
 {
-    MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
-    MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
-    MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
     button_Run_->Enable(enable);
     button_Save_->Enable(enable);
     button_SaveAs_->Enable(enable);
     if (!enable)
     {
         m_selectedGroup = "";
-        SqlScriptText->ChangeValue("");
-        LuaScriptText->ChangeValue("");
         m_fileNameCtrl->ChangeValue("");
-        templateText->ChangeValue("");
     }
 }
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     selectedItemId_ = event.GetItem();
     viewControls(false);
+    wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+    editors_notebook->DeleteAllPages();
+    createOutputTab(editors_notebook, ID_TAB_OUT);
 
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
@@ -480,6 +483,10 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        createTab(editors_notebook, ID_TEMPLATE);
+        createTab(editors_notebook, ID_SQL_CONTENT);
+        createTab(editors_notebook, ID_LUA_CONTENT);
+
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
@@ -633,7 +640,7 @@ wxString mmGeneralReportManager::openTemplate()
         }
         else
         {
-            wxString msg = wxString() << _("Unable to open file.") << sScriptFileName << "\n\n";
+            wxString msg = wxString::Format( _("Unable to open file \n%s\n\n"), sScriptFileName);
             wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
         }
         templateText->SetEvtHandlerEnabled(true);

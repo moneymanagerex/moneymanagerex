@@ -46,7 +46,6 @@ private:
         ID_TAB_LUA,
         ID_NEW1 = wxID_HIGHEST + 500,
         ID_DELETE,
-        ID_OUTPUT_WIN,
         ID_NOTEBOOK,
         ID_WEB,
         ID_TYPELABEL,
@@ -82,6 +81,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void newReport();
     void createTab(wxNotebook* notebook, int type);
+    void createOutputTab(wxNotebook* notebook, int type);
 
     wxTextCtrl* m_fileNameCtrl;
     wxWebView* m_outputHTML;
