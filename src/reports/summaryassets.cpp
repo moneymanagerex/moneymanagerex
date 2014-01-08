@@ -70,13 +70,14 @@ wxString mmReportSummaryAssets::getHTMLText()
     double balance = 0.0;
     for (const auto& pEntry: Model_Asset::instance().all((Model_Asset::COLUMN)sortColumn_))
     {
-        balance += pEntry.VALUE;
+        double current_value = Model_Asset::value(pEntry);
+        balance += current_value;
 
         hb.startTableRow();
         hb.addTableCell(mmGetDateForDisplay(Model_Asset::STARTDATE(pEntry)), false, true);
         hb.addTableCell(pEntry.ASSETNAME, false, true);
         hb.addTableCell(wxGetTranslation(pEntry.ASSETTYPE));
-        hb.addMoneyCell(Model_Asset::value(pEntry));
+        hb.addMoneyCell(current_value);
         hb.addTableCell(pEntry.NOTES);
         hb.endTableRow();
     }
