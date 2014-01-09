@@ -474,13 +474,14 @@ void mmGeneralReportManager::viewControls(bool enable)
 }
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
-    selectedItemId_ = event.GetItem();
     viewControls(false);
+    selectedItemId_ = event.GetItem();
+    if (!selectedItemId_) return;
+
     wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-    wxLogDebug("%s", wxString() << editors_notebook->GetPageCount());
     for (size_t n = editors_notebook->GetPageCount()-1; n >= 1; n--) editors_notebook->DeletePage(n);
 
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
     if (!iData) return;
 
     int id = iData->get_report_id();
