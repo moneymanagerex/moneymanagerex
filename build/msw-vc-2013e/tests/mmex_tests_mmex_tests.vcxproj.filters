@@ -237,9 +237,6 @@
     <ClCompile Include="..\..\..\src\wizard_newdb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\currency_test.cpp">
-      <Filter>Test Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\model\Model_Account.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -307,6 +304,12 @@
       <Filter>Test Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\tests\test_assets.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\framebase_tests.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_dialog_about.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -539,9 +542,6 @@
     <ClInclude Include="..\..\..\src\wizard_newdb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\tests\currency_test.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\db\DB_Table.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
@@ -660,6 +660,12 @@
       <Filter>Test Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_stocks.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\framebase_tests.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_dialog_about.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
   </ItemGroup>

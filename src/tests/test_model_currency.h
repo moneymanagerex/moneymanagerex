@@ -42,6 +42,7 @@ class Test_Model_Currency : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST_SUITE(Test_Model_Currency);
     CPPUNIT_TEST(test_TwoDigitPrecision);
     CPPUNIT_TEST(test_FourDigitPrecision);
+    CPPUNIT_TEST(test_FormatDoubleToCurrency);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -54,6 +55,7 @@ public:
 
     void test_TwoDigitPrecision();
     void test_FourDigitPrecision();
+    void test_FormatDoubleToCurrency();
 
 private:
     /// Prevents the use of the copy constructor.

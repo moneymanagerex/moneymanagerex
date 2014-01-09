@@ -161,6 +161,17 @@ void Test_Model_Currency::test_FourDigitPrecision()
     value = currency.toCurrency(12345.12345, &taiwan_record, 4);
     CPPUNIT_ASSERT(value == "NT$12,345.1234");
 }
+
+void Test_Model_Currency::test_FormatDoubleToCurrency()
+{
+    double value = 0.0099;
+
+    wxString s = Model_Currency::toString(value, 0);
+    CPPUNIT_ASSERT(s == wxT("0.01"));
+
+    s = Model_Currency::toString(-value, 0);
+    CPPUNIT_ASSERT(s == wxT("-0.01"));
+}
 //--------------------------------------------------------------------------
 
 Test_Hooks::Test_Hooks()
@@ -171,7 +182,8 @@ Test_Hooks::Test_Hooks()
 
 bool Test_Hooks::CommitCallback()
 {
-    wxMessageBox("COMMIT callback.", msg_header, wxOK, wxTheApp->GetTopWindow());
+    //wxMessageBox("COMMIT callback.", msg_header, wxOK, wxTheApp->GetTopWindow());
+    std::cout << "COMMIT callback activated.\n";
 
     return false;
 }

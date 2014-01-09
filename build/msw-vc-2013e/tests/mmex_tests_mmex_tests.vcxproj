@@ -290,7 +290,6 @@
     <ClCompile Include="..\..\..\src\reports\categovertimeperf.cpp" />
     <ClCompile Include="..\..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\..\src\constants.cpp" />
-    <ClCompile Include="..\..\..\src\tests\currency_test.cpp" />
     <ClCompile Include="..\..\..\src\currencydialog.cpp" />
     <ClCompile Include="..\..\..\src\customreportdialog.cpp" />
     <ClCompile Include="..\..\..\src\dbwrapper.cpp" />
@@ -309,6 +308,7 @@
     <ClCompile Include="..\..\..\src\mmOption.cpp" />
     <ClCompile Include="..\..\..\src\mmcheckingpanel.cpp" />
     <ClCompile Include="..\..\..\src\mmex.cpp" />
+    <ClCompile Include="..\..\..\src\tests\framebase_tests.cpp" />
     <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp" />
     <ClCompile Include="..\..\..\src\reports\mmgraphgenerator.cpp" />
     <ClCompile Include="..\..\..\src\reports\mmgraphincexpensesmonth.cpp" />
@@ -322,6 +322,7 @@
     <ClCompile Include="..\..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_assets.cpp" />
+    <ClCompile Include="..\..\..\src\tests\test_dialog_about.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_model_checking.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_model_currency.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_stocks.cpp" />
@@ -402,7 +403,6 @@
     <ClInclude Include="..\..\..\src\reports\categovertimeperf.h" />
     <ClInclude Include="..\..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\..\src\constants.h" />
-    <ClInclude Include="..\..\..\src\tests\currency_test.h" />
     <ClInclude Include="..\..\..\src\currencydialog.h" />
     <ClInclude Include="..\..\..\src\customreportdialog.h" />
     <ClInclude Include="..\..\..\src\dbwrapper.h" />
@@ -444,6 +444,7 @@
     <ClInclude Include="..\..\..\src\relocatepayeedialog.h" />
     <ClInclude Include="..\..\..\src\reports\reportbase.h" />
     <ClInclude Include="..\..\..\src\resource.h" />
+    <ClInclude Include="..\..\..\src\tests\framebase_tests.h" />
     <ClInclude Include="..\..\..\src\tests\resource.h" />
     <ClInclude Include="..\..\..\src\singleton.h" />
     <ClInclude Include="..\..\..\src\splitdetailsdialog.h" />
@@ -455,6 +456,7 @@
     <ClInclude Include="..\..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\..\src\reports\transactions.h" />
     <ClInclude Include="..\..\..\src\tests\test_assets.h" />
+    <ClInclude Include="..\..\..\src\tests\test_dialog_about.h" />
     <ClInclude Include="..\..\..\src\tests\test_model_checking.h" />
     <ClInclude Include="..\..\..\src\tests\test_model_currency.h" />
     <ClInclude Include="..\..\..\src\tests\test_stocks.h" />
