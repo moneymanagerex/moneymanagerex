@@ -25,7 +25,7 @@
 </style>
 <SCRIPT>
 function convertDate(str, format) {
-    if (window.navigator.userAgent.indexOf("Windows") != -1) str.replace("-", "/")
+    if (window.navigator.userAgent.indexOf("Windows") != -1) str = str.replace("-", "/")
     var date= new Date(str);
     var f = {Y : date.getFullYear(), y : date.getYear(), m : date.getMonth() + 1, d : date.getDate()}
     for(var k in f)
