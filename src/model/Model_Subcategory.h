@@ -43,7 +43,7 @@ public:
 
 public:
     /** Return the Data record instance for the given subcategory name and category ID */
-    Data* get(const wxString& name, int category_id = -1);
+    Data* get(const wxString& name, int category_id);
 
 public:
     static bool is_used(int id);

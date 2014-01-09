@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_model_currency.h"
 
 // Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
+//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------

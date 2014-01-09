@@ -39,11 +39,11 @@ Model_Category& Model_Category::instance(wxSQLite3Database* db)
 {
     Model_Category& ins = Singleton<Model_Category>::instance();
     ins.db_ = db;
-    ins.destroy_cache();
     bool init_categories = !ins.exists(db);
     ins.ensure(db);
     if (init_categories)
         ins.initialize();
+    ins.destroy_cache();
 
     return ins;
 }

@@ -322,6 +322,7 @@
     <ClCompile Include="..\..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_assets.cpp" />
+    <ClCompile Include="..\..\..\src\tests\test_billsdeposits.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_dialog_about.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_model_checking.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_model_currency.cpp" />
@@ -456,6 +457,7 @@
     <ClInclude Include="..\..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\..\src\reports\transactions.h" />
     <ClInclude Include="..\..\..\src\tests\test_assets.h" />
+    <ClInclude Include="..\..\..\src\tests\test_billsdeposits.h" />
     <ClInclude Include="..\..\..\src\tests\test_dialog_about.h" />
     <ClInclude Include="..\..\..\src\tests\test_model_checking.h" />
     <ClInclude Include="..\..\..\src\tests\test_model_currency.h" />
