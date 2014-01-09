@@ -34,7 +34,7 @@ public:
     mmStockDialog();
     mmStockDialog(wxWindow* parent
         , Model_Stock::Data* stock
-        , bool edit, int accountID);
+        , int accountID);
 
     bool Create(wxWindow* parent, wxWindowID id
         , const wxString& caption

@@ -47,10 +47,13 @@ public:
     wxArrayString all_currency_names();
     wxArrayString all_currency_symbols();
 
-    /* Return the Data record of the base currency.*/
+    /** Return the Data record of the base currency.*/
     static Data* GetBaseCurrency();
-    /* Set the ID of the Data record as the base currency.*/
+    /** Set the ID of the Data record as the base currency.*/
     static void SetBaseCurrency(Data* r);
+
+    /** Return the currency Data record for the given symbol */
+    Model_Currency::Data GetCurrencyRecord(const wxString& currency_symbol);
 
     /** Add prefix and suffix characters to string value */
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);

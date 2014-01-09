@@ -184,7 +184,7 @@ void StocksListCtrl::OnListKeyDown(wxListEvent& event)
 
 void StocksListCtrl::OnNewStocks(wxCommandEvent& /*event*/)
 {
-    mmStockDialog dlg(this, 0, false, stock_panel_->accountID_);
+    mmStockDialog dlg(this, 0, stock_panel_->accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.transID_);
@@ -787,7 +787,7 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
 void mmStocksPanel::call_dialog(int selectedIndex)
 {
     Model_Stock::Data* stock = &listCtrlAccount_->m_stocks[selectedIndex];
-    mmStockDialog dlg(this, stock, true, accountID_);
+    mmStockDialog dlg(this, stock, accountID_);
     if (dlg.ShowModal() == wxID_OK)
     {
         listCtrlAccount_->doRefreshItems(dlg.transID_);

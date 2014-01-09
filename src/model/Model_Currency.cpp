@@ -102,6 +102,20 @@ void Model_Currency::SetBaseCurrency(Data* r)
     Model_Infotable::instance().SetBaseCurrencyID(r->CURRENCYID);
 }
 
+Model_Currency::Data Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)
+{
+    Model_Currency::Data record;
+    for (const auto& currency_record : Model_Currency::instance().all())
+    {
+        if (currency_record.CURRENCY_SYMBOL == currency_symbol)
+        {
+            record = currency_record;
+        }
+    }
+
+    return record;
+}
+
 wxString Model_Currency::toCurrency(double value, const Data* currency, int precision)
 {
     precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);

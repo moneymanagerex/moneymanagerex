@@ -41,9 +41,9 @@ mmStockDialog::mmStockDialog( )
 
 mmStockDialog::mmStockDialog(wxWindow* parent
     , Model_Stock::Data* stock
-    , bool edit, int accountID)
+    , int accountID)
     : m_stock(stock)
-    , edit_(edit)
+    , edit_(stock ? true: false)
     , accountID_(accountID)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;

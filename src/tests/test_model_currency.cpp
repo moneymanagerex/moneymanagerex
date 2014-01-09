@@ -68,26 +68,13 @@ void Test_Model_Currency::tearDown()
     delete m_test_callback;
 }
 
-Model_Currency::Data Test_Model_Currency::get_currency_record(const wxString& currency_symbol)
-{
-    Model_Currency::Data record;
-    for (const auto& currency_record : Model_Currency::instance().all())
-    {
-        if (currency_record.CURRENCY_SYMBOL == currency_symbol)
-        {
-            record = currency_record;
-        }
-    }
-    return record;
-}
-
 void Test_Model_Currency::test_TwoDigitPrecision()
 {
     wxString value;
     int precision;
     Model_Currency currency = Model_Currency::instance();
 
-    Model_Currency::Data au_record = get_currency_record("AUD");
+    Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
     precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
 
@@ -107,7 +94,7 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     CPPUNIT_ASSERT(value == "12,345.12");
     //----------------------------------------------
 
-    Model_Currency::Data taiwan_record = get_currency_record("TWD");
+    Model_Currency::Data taiwan_record = currency.GetCurrencyRecord("TWD");
     precision = currency.precision(taiwan_record);
     CPPUNIT_ASSERT(precision == 2);
 
@@ -138,7 +125,7 @@ void Test_Model_Currency::test_TwoDigitPrecision()
 void Test_Model_Currency::test_FourDigitPrecision()
 {
     Model_Currency currency = Model_Currency::instance();
-    Model_Currency::Data au_record = get_currency_record("AUD");
+    Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
 
     // check precision of currency
     int precision = currency.precision(au_record);
@@ -150,7 +137,7 @@ void Test_Model_Currency::test_FourDigitPrecision()
     value = currency.toString(12345.12345, 0, 4);
     CPPUNIT_ASSERT(value == "12,345.1234");
 
-    Model_Currency::Data taiwan_record = get_currency_record("TWD");
+    Model_Currency::Data taiwan_record = currency.GetCurrencyRecord("TWD");
     precision = currency.precision(taiwan_record);
     CPPUNIT_ASSERT(precision == 2);
 

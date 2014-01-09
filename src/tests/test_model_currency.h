@@ -47,7 +47,6 @@ class Test_Model_Currency : public CPPUNIT_NS::TestFixture
 
 public:
     Test_Model_Currency();
-
     virtual ~Test_Model_Currency();
 
     void setUp();
@@ -67,6 +66,4 @@ private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
     Test_Hooks* m_test_callback;
-
-    Model_Currency::Data get_currency_record(const wxString& currency_symbol);
 };
