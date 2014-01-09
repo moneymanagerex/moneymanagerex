@@ -142,6 +142,7 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);
     int style = wxNumberFormatter::Style_WithThousandsSep;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
+    s.Replace("-0.0", "0.0");
     if (currency)
     {
         s.Replace(os_group_separator(), "\t");
