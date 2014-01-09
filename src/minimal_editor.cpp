@@ -3,6 +3,7 @@
 // Thanks to geralds for SetLexerXml() - http://wxforum.shadonet.com/viewtopic.php?t=7155
 
 #include "minimal_editor.h"
+#include "mmex.h"
 
 enum
 {
@@ -20,29 +21,8 @@ END_EVENT_TABLE()
 MinimalEditor::MinimalEditor(wxWindow* parent, wxWindowID id)
     : wxStyledTextCtrl(parent, id)
     {
-        SetProperty(wxT("fold"), wxT("1"));
-        SetProperty(wxT("fold.comment"), wxT("1"));
-        SetProperty(wxT("fold.compact"), wxT("1"));
-        SetProperty(wxT("fold.preprocessor"), wxT("1"));
-        SetProperty(wxT("fold.html"), wxT("1"));
-        SetProperty(wxT("fold.html.preprocessor"), wxT("1"));
-
-        SetMarginType(margin_id_lineno, wxSTC_MARGIN_NUMBER);
-        SetMarginWidth(margin_id_lineno, 32);
-        SetMarginWidth(margin_id_fold, 5);
-
-        MarkerDefine(wxSTC_MARKNUM_FOLDER, wxSTC_MARK_BOXPLUS, wxT("WHITE"), wxT("BLACK"));
-        MarkerDefine(wxSTC_MARKNUM_FOLDEROPEN, wxSTC_MARK_BOXMINUS, wxT("WHITE"), wxT("BLACK"));
-        MarkerDefine(wxSTC_MARKNUM_FOLDERSUB, wxSTC_MARK_VLINE, wxT("WHITE"), wxT("BLACK"));
-        MarkerDefine(wxSTC_MARKNUM_FOLDEREND, wxSTC_MARK_BOXPLUSCONNECTED, wxT("WHITE"), wxT("BLACK"));
-        MarkerDefine(wxSTC_MARKNUM_FOLDEROPENMID, wxSTC_MARK_BOXMINUSCONNECTED, wxT("WHITE"), wxT("BLACK"));
-        MarkerDefine(wxSTC_MARKNUM_FOLDERMIDTAIL, wxSTC_MARK_TCORNER, wxT("WHITE"), wxT("BLACK"));
-        MarkerDefine(wxSTC_MARKNUM_FOLDERTAIL, wxSTC_MARK_LCORNER, wxT("WHITE"), wxT("BLACK"));
-
-        SetTabWidth(4);
-        SetUseTabs(false);
-        SetWrapMode(wxSTC_WRAP_WORD);
-        SetWrapVisualFlags(wxSTC_WRAPVISUALFLAG_END);
+		int font_size = this->GetFont().GetPointSize();
+        m_font = wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, "");
     }
 bool MinimalEditor::SetFont(const wxFont& font)
     {
@@ -132,10 +112,7 @@ void MinimalEditor::SetLexerLua() //https://code.google.com/p/wxamcl/source/brow
     SetFoldFlags(wxSTC_FOLDFLAG_LINEBEFORE_CONTRACTED |
         wxSTC_FOLDFLAG_LINEAFTER_CONTRACTED);
 
-    StyleSetFont(wxSTC_STYLE_DEFAULT, m_font);
-    StyleSetForeground(wxSTC_STYLE_DEFAULT, *wxBLACK);
-    StyleSetBackground(wxSTC_STYLE_DEFAULT, *wxWHITE);
-    //StyleSetBold(wxSTC_STYLE_DEFAULT, true);
+
     StyleSetForeground(wxSTC_STYLE_INDENTGUIDE, wxColour("DARK GREY"));
 
     // set spaces and indention
@@ -145,9 +122,9 @@ void MinimalEditor::SetLexerLua() //https://code.google.com/p/wxamcl/source/brow
     SetBackSpaceUnIndents(true);
     //Set Lua styles
 
-    StyleSetFont(wxSTC_LUA_DEFAULT, m_font);
+    StyleSetFont(wxSTC_LUA_DEFAULT, m_font); //TODO;
     StyleSetForeground(wxSTC_LUA_DEFAULT, *wxBLACK);
-    //StyleSetBackground (wxSTC_LUA_DEFAULT, *wxWHITE);
+    StyleSetBackground (wxSTC_LUA_DEFAULT, *wxWHITE);
     StyleSetForeground(wxSTC_LUA_COMMENTLINE, wxColour("FOREST GREEN"));
     StyleSetForeground(wxSTC_LUA_COMMENT, wxColour("FOREST GREEN"));
     StyleSetForeground(wxSTC_LUA_COMMENTDOC, wxColour("FOREST GREEN"));

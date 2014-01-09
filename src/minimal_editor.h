@@ -16,4 +16,5 @@ public:
 protected:
     void OnMarginClick(wxStyledTextEvent&);
     void OnText(wxStyledTextEvent&);
+    wxFont m_font;
 };
