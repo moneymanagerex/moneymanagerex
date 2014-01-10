@@ -45,7 +45,7 @@ mmCurrencyDialog::~mmCurrencyDialog()
 
 mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency)
 : m_currency(currency)
-  , scale_(1)
+  , scale_(2)
 {
     long style = wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX;
     Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxSize(500, 300), style);
@@ -129,6 +129,7 @@ void mmCurrencyDialog::fillControls()
         grpTx_->SetValue(m_currency->GROUP_SEPARATOR);
         unitTx_->SetValue(m_currency->UNIT_NAME);
         centTx_->SetValue(m_currency->CENT_NAME);
+        scale_ = log10(m_currency->SCALE);
         wxString scale_value = wxString::Format("%i", scale_);
         scaleTx_->SetValue(scale_value);
         baseConvRate_->SetValue(wxString::Format("%.4f", m_currency->BASECONVRATE));
