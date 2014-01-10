@@ -1009,7 +1009,11 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         for (auto& item : Model_Billsdeposits::splittransaction(bill))
             Model_Budgetsplittransaction::instance().remove(item.SPLITTRANSID);
 
-        for (auto &item : local_splits_) item.TRANSID = transID_;
+        for (auto &item : local_splits_)
+        {
+            item.SPLITTRANSID = -1;
+            item.TRANSID = transID_;
+        }
         Model_Budgetsplittransaction::instance().save(local_splits_);
     }
     else if (enterOccur_)
