@@ -57,9 +57,7 @@ BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_TEXT(ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,mmBDDialog::OnPeriodChange)
 END_EVENT_TABLE()
 
-// Defines for Transaction Status and Type now located in dbWrapper.h
-
-const wxString REPEAT_TRANSACTIONS_MSGBOX_HEADING = _("Repeat Transaction - Auto Execution Checking");
+//const wxString REPEAT_TRANSACTIONS_MSGBOX_HEADING = _("Repeat Transaction - Auto Execution Checking");
 
 mmBDDialog::mmBDDialog( )
 {
@@ -84,7 +82,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY
-        , _("New/Edit Repeating Transaction")
+        , _("New Repeating Transaction")
         , wxDefaultPosition, wxSize(500, 300), style);
 }
 
@@ -108,10 +106,12 @@ bool mmBDDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
         dataToControls();
         if (! enterOccur_)
         {
+            SetDialogHeader(_(" Edit Repeating Transaction"));
             dpc_->Disable();
         }
         else
         {
+            SetDialogHeader(_(" Enter Repeating Transaction"));
             transaction_type_->Disable();
             dpcbd_->Disable();
             itemRepeats_->Disable();

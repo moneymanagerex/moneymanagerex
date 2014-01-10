@@ -30,18 +30,19 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_BillsDeposits);
 
-static int instance_count = 0;
+static int s_instance_count = 0;
 //----------------------------------------------------------------------------
 Test_BillsDeposits::Test_BillsDeposits()
 {
-    instance_count++;
+    s_instance_count++;
+    m_this_instance = s_instance_count;
     m_test_db_filename = "test_db_model_billsdeposits.mmb";
 }
 
 Test_BillsDeposits::~Test_BillsDeposits()
 {
-    instance_count--;
-    if (instance_count < 1)
+    s_instance_count--;
+    if (s_instance_count < 1)
     {
         wxRemoveFile(m_test_db_filename);
     }
@@ -49,8 +50,8 @@ Test_BillsDeposits::~Test_BillsDeposits()
 
 void Test_BillsDeposits::setUp()
 {
-    frame = new TestFrameBase(instance_count);
-    frame->Show(true);
+    m_frame = new TestFrameBase(m_this_instance);
+    m_frame->Show(true);
    
     m_test_db.Open(m_test_db_filename);
 
@@ -77,7 +78,13 @@ void Test_BillsDeposits::setUp()
 void Test_BillsDeposits::tearDown()
 {
     m_test_db.Close();
-    delete frame;
+    delete m_frame;
+}
+
+void Test_BillsDeposits::ShowMessage(wxString msg)
+{
+    msg = msg << "   # " << m_this_instance;
+    wxMessageBox(msg, "MMEX Bill Deposits Dialog Test", wxOK, wxTheApp->GetTopWindow());
 }
 
 void Test_BillsDeposits::test_dialog_add()
@@ -114,18 +121,71 @@ void Test_BillsDeposits::test_dialog_add()
     payee->CATEGID = Model_Category::instance().get("Food")->id();
     payee->SUBCATEGID = Model_Subcategory::instance().get("Groceries", payee->CATEGID)->id();
     Model_Payee::instance().save(payee);
+
+    // Perform all tests using same instance.
     //------------------------------------------------------------------------
     // create a new entry using the dialog.
-    mmBDDialog* dlg = new mmBDDialog(frame, 0, false, false);
+    ShowMessage("New Entry: Perform test using new instance.");
+    {
+        mmBDDialog* dlg = new mmBDDialog(m_frame, 0, false, false);
 
-    int id = dlg->ShowModal();
-    if (id == wxID_CANCEL)
-    {
-        wxMessageBox("Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        int id = dlg->ShowModal();
+        if (id == wxID_CANCEL)
+        {
+            ShowMessage("New Entry: Cancel");
+        }
+        if (id == wxID_OK)
+        {
+            ShowMessage("New Entry: OK");
+        }
     }
-    if (id == wxID_OK)
+
+    //----------------------------------------------------------------------------------------
+    // Edit existing entry using the dialog.
+    ShowMessage("Edit Entry: Perform test using same instance.");
     {
-        wxMessageBox("Dialog Successful", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        if (Model_Billsdeposits::instance().all().size() < 1)
+        {
+            CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("If cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
+        }
+
+        // create a new entry using the dialog.
+        mmBDDialog* dlg = new mmBDDialog(m_frame, 1, true, false);
+
+        int id = dlg->ShowModal();
+        if (id == wxID_CANCEL)
+        {
+            ShowMessage("Edit Entry: Cancel");
+        }
+        if (id == wxID_OK)
+        {
+            ShowMessage("Edit Entry: OK");
+        }
+        //TODO: Test output
+    }
+
+    //----------------------------------------------------------------------------------------
+    // Enter the existing entry using the dialog.
+    ShowMessage("Enter Entry: Perform test using same instance.");
+    {
+        if (Model_Billsdeposits::instance().all().size() < 1)
+        {
+            CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("Cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
+        }
+
+        // create a new entry using the dialog.
+        mmBDDialog* dlg = new mmBDDialog(m_frame, 1, false, true);
+
+        int id = dlg->ShowModal();
+        if (id == wxID_CANCEL)
+        {
+            ShowMessage("Enter Entry: Cancel");
+        }
+        if (id == wxID_OK)
+        {
+            ShowMessage("Enter Entry: OK");
+        }
+        //TODO: Test output
     }
 }
 
@@ -133,48 +193,47 @@ void Test_BillsDeposits::test_dialog_edit()
 {
     if (Model_Billsdeposits::instance().all().size() < 1)
     {
-        CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("If cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
+        CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("Cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
     }
 
-    // create a new entry using the dialog.
-    mmBDDialog* dlg = new mmBDDialog(frame, 1, true, false);
+    ShowMessage("Edit Entry: Perform test using new instance.");
+    mmBDDialog* dlg = new mmBDDialog(m_frame, 1, true, false);
 
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
     {
-        wxMessageBox("Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        ShowMessage("Edit Entry: Cancel");
     }
     if (id == wxID_OK)
     {
-        wxMessageBox("Dialog Successful", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        ShowMessage("Edit Entry: OK");
     }
 
     //TODO: Test output
-
 }
 
 void Test_BillsDeposits::test_dialog_enter()
 {
     if (Model_Billsdeposits::instance().all().size() < 1)
     {
-        CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("If cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
+        CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("Cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
     }
 
     // create a new entry using the dialog.
-    mmBDDialog* dlg = new mmBDDialog(frame, 1, true, true);
+    ShowMessage("Enter Entry: Perform test using new instance.");
+    mmBDDialog* dlg = new mmBDDialog(m_frame, 1, false, true);
 
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
     {
-        wxMessageBox("Dialog Canclled", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        ShowMessage("Enter Entry: Cancel");
     }
     if (id == wxID_OK)
     {
-        wxMessageBox("Dialog Successful", "MMEX Dialog Test", wxOK, wxTheApp->GetTopWindow());
+        ShowMessage("Enter Entry: OK");
     }
 
     //TODO: Test output
-
 }
 
 //--------------------------------------------------------------------------
