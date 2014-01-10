@@ -1576,6 +1576,8 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     if (topItemIndex_ >= (long)m_cp->m_trans.size())
         topItemIndex_ = g_asc ? (long)m_cp->m_trans.size() - 1 : 0;
 
+    if (m_selectedIndex > (long)m_cp->m_trans.size() - 1) m_selectedIndex = -1;
+
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
     if (!m_cp->m_trans.empty()) {
