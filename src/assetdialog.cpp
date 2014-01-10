@@ -215,16 +215,9 @@ void mmAssetDialog::enableDisableRate(bool en)
 
 void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    wxString valueStr = m_value->GetValue().Trim();
-    if (valueStr.IsEmpty())
+    double value;
+    if (!m_value->checkValue(value))
     {
-        wxMessageBox(_("Value"), _("Invalid Entry"), wxOK | wxICON_ERROR);
-        return;
-    }
-    double value = 0;
-    if (!Model_Currency::fromString(valueStr, value) || value < 0)
-    {
-        wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK | wxICON_ERROR);
         return;
     }
 
