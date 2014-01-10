@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmCalculator.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Account.h"
+#include "util.h"
 
 class mmTextCtrl : public wxTextCtrl
 {
@@ -70,6 +71,18 @@ public:
     {
         wxString amountStr = this->GetValue().Trim();
         return Model_Currency::fromString(amountStr, amount, currency_);
+    }
+    bool checkValue(double &amount)
+    {
+        if (!GetDouble(amount) || amount < 0)
+        {
+            SetBackgroundColour("RED");
+            mmShowErrorMessageInvalid(this, _("Amount"));
+            SetBackgroundColour(wxNullColour);
+            SetFocus();
+            return false;
+        }
+        return true;
     }
 private:
     const Model_Currency::Data* currency_;

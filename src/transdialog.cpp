@@ -545,13 +545,13 @@ bool mmTransDialog::validateData()
     if (account && Model_Account::type(account) != Model_Account::INVESTMENT)
     {
         newAccountID_ = account->ACCOUNTID;
-        if (newAccountID_ != accountID_)
+        /*if (newAccountID_ != accountID_)
         {
             wxString value = textAmount_->GetValue();
             value = Model_Currency::fromString(value, Model_Account::currency(initAccount ? initAccount : account));
             textAmount_->SetValue(0, account);
             textAmount_->SetValue(value);
-        }
+        }*/
     }
     else
     {
@@ -584,15 +584,8 @@ bool mmTransDialog::validateData()
     }
     else
     {
-        wxString amountStr = textAmount_->GetValue().Trim();
-        //if (!amountStr.ToDouble(&transaction_->TRANSAMOUNT))
-        if (!Model_Currency::fromString(amountStr, transaction_->TRANSAMOUNT
-            , Model_Account::currency(account)) || transaction_->TRANSAMOUNT < 0)
+        if (!textAmount_->checkValue(transaction_->TRANSAMOUNT))
         {
-            textAmount_->SetBackgroundColour("RED");
-            mmShowErrorMessageInvalid(this, _("Amount"));
-            textAmount_->SetBackgroundColour(wxNullColour);
-            textAmount_->SetFocus();
             return false;
         }
 
@@ -610,14 +603,8 @@ bool mmTransDialog::validateData()
     {
         if (advancedToTransAmountSet_)
         {
-            wxString amountStr = toTextAmount_->GetValue().Trim();
-            if (!Model_Currency::fromString(amountStr, transaction_->TOTRANSAMOUNT
-                , Model_Account::currency(account)) || transaction_->TOTRANSAMOUNT < 0)
+            if (!toTextAmount_->checkValue(transaction_->TRANSAMOUNT))
             {
-                toTextAmount_->SetBackgroundColour("RED");
-                mmShowErrorMessageInvalid(this, _("Advanced Amount"));
-                toTextAmount_->SetBackgroundColour(wxNullColour);
-                toTextAmount_->SetFocus();
                 return false;
             }
         }
