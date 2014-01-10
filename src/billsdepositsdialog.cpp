@@ -37,6 +37,7 @@ IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )
 BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmBDDialog::OnOk)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONCATEGS, mmBDDialog::OnCategs)
+    EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTransTypeChanged)
@@ -45,7 +46,6 @@ BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_SPIN_UP(ID_DIALOG_BD_REPEAT_DATE_SPINNER,mmBDDialog::OnNextOccurDateForward)
     EVT_SPIN_DOWN(ID_DIALOG_BD_REPEAT_DATE_SPINNER,mmBDDialog::OnNextOccurDateBack)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmBDDialog::OnAdvanceChecked)
-    EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
     EVT_CHECKBOX(ID_DIALOG_TRANS_SPLITCHECKBOX, mmBDDialog::OnSplitChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK, mmBDDialog::OnAutoExecutionUserAckChecked)
     EVT_CHECKBOX(ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_SILENT, mmBDDialog::OnAutoExecutionSilentChecked)
@@ -594,14 +594,25 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
         , _("Choose Bank Account or Term Account")
         , _("Select Account")
         , Model_Account::instance().all_checking_account_names());
+
     if (scd.ShowModal() == wxID_OK)
     {
         wxString acctName = scd.GetStringSelection();
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         if (account)
         {
+            double amount;
+            textAmount_->GetDouble(amount);
+            textAmount_->SetValue(amount, account);
+            if (advancedToTransAmountSet_)
+            {
+                double toAmount;
+                toTextAmount_->GetDouble(toAmount);
+                toTextAmount_->SetValue(amount, account);
+            }
             accountID_ = account->ACCOUNTID;
             itemAccountName_->SetLabel(acctName);
+            if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER) bPayee_->SetLabel(acctName);
         }
     }
 }
@@ -850,31 +861,20 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
     }
     else
     {
-        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-        Model_Account::Data *account = Model_Account::instance().get(accountID_);
-        if (account) currency = Model_Account::currency(account);
-
-        wxString amountStr = textAmount_->GetValue().Trim();
-        if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
+        if (!textAmount_->checkValue(amount))
         {
-            mmShowErrorMessageInvalid(this, _("Amount"));
             return;
         }
     }
 
     if (advancedToTransAmountSet_)
     {
-        Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
-        Model_Account::Data *account = Model_Account::instance().get(accountID_);
-        if (account) currency = Model_Account::currency(account);
-
-        wxString amountStr = toTextAmount_->GetValue().Trim();
-        if (!Model_Currency::fromString(amountStr, toTransAmount_, currency) || toTransAmount_ < 0)
+        if (!toTextAmount_->checkValue(amount))
         {
-            mmShowErrorMessageInvalid(this, _("Advanced Amount"));
             return;
         }
-    } else
+    }
+    else
         toTransAmount_ = amount;
 
     if ((transaction_type_->GetSelection() != Model_Billsdeposits::TRANSFER) && (accountID_ == -1))
