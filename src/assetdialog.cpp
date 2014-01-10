@@ -289,7 +289,7 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
     else if (event.GetId() == m_valueChangeRate->GetId())
     {
         mmCalculator calc;
-        if (calc.is_ok(Model_Currency::fromString(m_valueChangeRate->GetValue(), currency)))
+        if (calc.is_ok(Model_Currency::fromString2Default(m_valueChangeRate->GetValue(), currency)))
             m_valueChangeRate->SetValue(wxString::Format("%.3f", calc.get_result()));
         m_valueChangeRate->SetInsertionPoint(m_valueChangeRate->GetValue().Len());
     }

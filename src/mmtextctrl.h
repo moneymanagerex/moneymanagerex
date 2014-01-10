@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmCalculator.h"
 #include "model/Model_Currency.h"
 #include "model/Model_Account.h"
-#include "util.h"
+#include <wx/richtooltip.h>
 
 class mmTextCtrl : public wxTextCtrl
 {
@@ -57,7 +57,7 @@ public:
     {
         mmCalculator calc;
         int precision = alt_precision >= 0 ? alt_precision : log10(currency->SCALE);
-        if (calc.is_ok(Model_Currency::fromString(this->GetValue(), currency)))
+        if (calc.is_ok(Model_Currency::fromString2Default(this->GetValue(), currency)))
             this->SetValue(Model_Currency::toString(calc.get_result(), currency, precision));
         this->SetInsertionPoint(this->GetValue().Len());
     }
@@ -76,9 +76,14 @@ public:
     {
         if (!GetDouble(amount) || amount < 0)
         {
-            SetBackgroundColour("RED");
-            mmShowErrorMessageInvalid(this, _("Amount"));
-            SetBackgroundColour(wxNullColour);
+            wxRichToolTip tip(_("Invalid Amount Entered "),
+                _("You might have made an error in the amount entered.")
+                + "\n"
+                + _("Value should be positive and proper formated.")
+                + "\n\n"
+                + _("Tip: Enter some amount or math expression like '2+2'\nthen press Enter for proper format"));
+            tip.SetIcon(wxICON_WARNING);
+            tip.ShowFor(this);
             SetFocus();
             return false;
         }

@@ -83,7 +83,7 @@ void Model_Currency::initialize()
         currency->SCALE = std::get<6>(i);
         currency->BASECONVRATE = std::get<7>(i);
         currency->DECIMAL_POINT = ".";
-        currency->GROUP_SEPARATOR = ",";
+        currency->GROUP_SEPARATOR = " ";
 
         currency->save(this->db_);
     }
@@ -130,7 +130,7 @@ wxString Model_Currency::toCurrency(double value, const Data* currency, int prec
 
 wxString Model_Currency::os_group_separator()
 {
-    wxString sys_thousand_separator = "";
+    wxString sys_thousand_separator = " ";
     wxChar sep = ' ';
     if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
         sys_thousand_separator = wxString::Format("%c", sep);
@@ -153,31 +153,14 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     return s;
 }
 
-wxString Model_Currency::fromString(wxString s, const Data* currency)
+wxString Model_Currency::fromString2Default(wxString s, const Data* currency)
 {
     // Remove prefix and suffix characters from value
     if (currency)
     {
-        if (!currency->PFX_SYMBOL.IsEmpty())
-        {
-            wxString removed;
-            if (s.StartsWith(currency->PFX_SYMBOL, &removed))
-                s = removed;
-        }
-        if (!currency->SFX_SYMBOL.IsEmpty())
-        {
-            wxString removed;
-            if (s.EndsWith(currency->SFX_SYMBOL, &removed))
-                s = removed;
-        }
-
-        wxString sys_thousand_separator;
-        wxChar sep = ' ';
-        if (wxNumberFormatter::GetThousandsSeparatorIfUsed(&sep))
-            sys_thousand_separator = wxString::Format("%c", sep);
         if (!currency->DECIMAL_POINT.empty()) s.Replace(currency->DECIMAL_POINT, "\x05");
         if (!currency->GROUP_SEPARATOR.empty()) s.Replace(currency->GROUP_SEPARATOR, "\t");
-        s.Replace("\t", sys_thousand_separator);
+        s.Replace("\t", os_group_separator());
         s.Replace("\x05", wxNumberFormatter::GetDecimalSeparator());
     }
     return s;
@@ -186,7 +169,7 @@ wxString Model_Currency::fromString(wxString s, const Data* currency)
 bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
 {
     bool done = true;
-    if (!wxNumberFormatter::FromString(fromString(s, currency), &val))
+    if (!wxNumberFormatter::FromString(fromString2Default(s, currency), &val))
         done = false;
     return done;
 }

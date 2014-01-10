@@ -540,18 +540,10 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
 
 bool mmTransDialog::validateData()
 {
-    Model_Account::Data *initAccount = Model_Account::instance().get(accountID_);
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     if (account && Model_Account::type(account) != Model_Account::INVESTMENT)
     {
         newAccountID_ = account->ACCOUNTID;
-        /*if (newAccountID_ != accountID_)
-        {
-            wxString value = textAmount_->GetValue();
-            value = Model_Currency::fromString(value, Model_Account::currency(initAccount ? initAccount : account));
-            textAmount_->SetValue(0, account);
-            textAmount_->SetValue(value);
-        }*/
     }
     else
     {
