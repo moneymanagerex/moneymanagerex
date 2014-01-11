@@ -146,18 +146,38 @@ double Model_Asset::value(const Data* r)
 {
     double sum = r->VALUE;
     wxDate start_date = STARTDATE(r);
-    int diff_days = abs(start_date.Subtract(wxDateTime::Now()).GetDays());
+    wxDate today = wxDate::Today();
+    double diff_time_in_years = 0;
+    if (today.GetYear() == start_date.GetYear())
+    {
+        wxDate::wxDateTime_t diff_days = today.GetDayOfYear() - start_date.GetDayOfYear();
+        diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
+    }
+    else
+    {
+        int diff_years = today.GetYear() - start_date.GetYear();
+        if (today.GetDayOfYear() < start_date.GetDayOfYear())
+        {
+            diff_years--;
+            wxDate::wxDateTime_t diff_days = (start_date.GetNumberOfDays(start_date.GetYear()) - start_date.GetDayOfYear()) + today.GetDayOfYear();
+            diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
+        }
+        else
+        {
+            wxDate::wxDateTime_t diff_days = today.GetDayOfYear() - start_date.GetDayOfYear();
+            diff_time_in_years = static_cast<double>(diff_days) / static_cast<double>(today.GetNumberOfDays(today.GetYear()));
+        }
+        diff_time_in_years += static_cast<double>(diff_years);
+    }
     switch (rate(r))
     {
     case RATE_NONE:
         break;
     case RATE_APPRECIATE:
-        // Note: using 365.2564 while not perfect, does work reasonbly well to account for leap year and leap century
-        sum *= pow(1.0 + (r->VALUECHANGERATE / 100), diff_days / 365.2564);
+        sum *= pow(1.0 + (r->VALUECHANGERATE / 100), diff_time_in_years);
         break;
     case RATE_DEPRECIATE:
-        // Note: using 365.2564 while not perfect, does work reasonbly well to account for leap year and leap century
-        sum *= pow(1.0 - (r->VALUECHANGERATE / 100), diff_days / 365.2564);
+        sum *= pow(1.0 - (r->VALUECHANGERATE / 100), diff_time_in_years);
         break;
     default:
         break;
