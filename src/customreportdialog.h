@@ -23,6 +23,7 @@
 #include "defs.h"
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
+#include <vector>
 
 class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog
@@ -68,7 +69,10 @@ private:
     void fillControls();
     void OnImportReportEvt(wxCommandEvent& event);
     void openReport();
-    bool openZipFile(const wxString &reportFileName, wxString &sql, wxString &lua, wxString &htt, wxString &readme);
+    bool openZipFile(const wxString &reportFileName
+        , const wxString &httFileName
+        , const wxString directoryToExtract
+        , wxString &sql, wxString &lua, wxString &readme);
     void OnUpdateReport(wxCommandEvent& event);
     wxString openTemplate();
     void OnExportReport(wxCommandEvent& event);

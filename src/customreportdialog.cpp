@@ -25,7 +25,6 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
 #include <wx/zipstrm.h>
-#include <wx/fs_mem.h>
 #include <memory>
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
@@ -54,7 +53,6 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_fileNameCtrl() 
     , m_outputHTML()
 {
-    wxFileSystem::AddHandler(new wxMemoryFSHandler);
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(640, 480), style);
 }
@@ -261,37 +259,39 @@ void mmGeneralReportManager::openReport()
 
     if (reportFileName.empty()) return;
 
+    wxFileName fn(reportFileName);
+    wxString clearFileName = fn.FileName(reportFileName).GetName();
+    wxFileDialog dlg(this
+        , _("Choose file to Save As HTML Template")
+        , wxEmptyString
+        , clearFileName + ".htt"
+        , "HTML File(*.htt)|*.htt"
+        , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+        );
+
+    if (dlg.ShowModal() != wxID_OK)
+        return;
+
+    const wxString directory = dlg.GetDirectory() + wxFileName::GetPathSeparator();
+    const wxString httFileName = dlg.GetFilename();
+    const wxString httFullFileName = directory + httFileName;
     wxString sql, lua, htt, readme;
-    openZipFile(reportFileName, sql, lua, htt, readme);
-    Model_Report::Data* report = 0;
-    Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(reportFileName));
-    if (reports.empty())
+    Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(clearFileName));
+    if (!reports.empty())
     {
-        wxFileName fn(reportFileName);
-        reportFileName = fn.FileName(reportFileName).GetName();
-        wxFileDialog dlg(this
-            , _("Choose file to Save As HTML Template")
-            , wxEmptyString
-            , reportFileName + ".htt"
-            , "HTML File(*.htt)|*.htt"
-            , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
-            );
-
-        if (dlg.ShowModal() != wxID_OK)
-            return;
-
-        wxString file_path = dlg.GetPath();
-        wxFileOutputStream output(file_path);
-        wxTextOutputStream text(output);
-        text << htt;
-        output.Close();
-
+        mmShowErrorMessage(this, _("Report with same name exists"), _("General Report Manager"));
+        return;
+    }
+    else
+    {
+        openZipFile(reportFileName, httFileName, directory, sql, lua, readme);
+        Model_Report::Data *report = 0;
         report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
-        report->REPORTNAME = reportFileName;
+        report->REPORTNAME = clearFileName;
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
-        report->TEMPLATEPATH = file_path;
+        report->TEMPLATEPATH = httFullFileName;
         if (!report->TEMPLATEPATH.empty()) Model_Report::instance().save(report);
     }
 
@@ -306,7 +306,9 @@ void mmGeneralReportManager::openReport()
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
-    , wxString &sql, wxString &lua, wxString &htt, wxString &readme)
+    , const wxString &httFileName
+    , const wxString directoryToExtract
+    , wxString &sql, wxString &lua, wxString &readme)
 {
     if (!reportFileName.empty())
     {
@@ -321,8 +323,6 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
                 // access meta-data
                 const wxString f = entry->GetName();
                 // read 'zip' to access the entry's data
-                wxLogDebug("%s", f);
-
                 zip.OpenEntry(*entry.get());
                 if (!zip.CanRead())
                 {
@@ -334,23 +334,22 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
                 wxStringOutputStream out_stream(&textdata);
                 zip.Read(out_stream);
 
-                wxLogDebug("%s", textdata);
-
                 if (f.EndsWith(".sql"))
                     sql = textdata;
                 else if (f.EndsWith(".lua"))
                     lua = textdata;
-                else if (f.EndsWith(".htt"))
-                    htt = textdata;
                 else if (f.StartsWith("readme"))
                     readme << textdata;
                 else
-                    wxASSERT(false);
-                wxMemoryFSHandler* MFSH = new wxMemoryFSHandler;
-                wxFileSystem::AddHandler(MFSH);
-                wxString FileToDelete = MFSH->FindFirst(f);
-                if (!FileToDelete.empty()) wxMemoryFSHandler::RemoveFile(f);
-                wxMemoryFSHandler::AddFileWithMimeType(f, textdata, "text");
+                {
+                    wxString file = f;
+                    if (f.EndsWith(".htt")) file = httFileName;
+                    wxLogDebug("copy %s to %s", f, directoryToExtract + file);
+                    wxFileOutputStream output(directoryToExtract + file);
+                    wxTextOutputStream text(output);
+                    text << textdata;
+                    output.Close();
+                }
             }
         }
         else
