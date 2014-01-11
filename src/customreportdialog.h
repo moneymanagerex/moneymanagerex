@@ -91,13 +91,14 @@ private:
     wxTextCtrl* m_fileNameCtrl;
     wxWebView* m_outputHTML;
 
-    wxButton* button_Open_;
-    wxButton* button_Save_;
-    wxButton* button_SaveAs_;
-    wxButton* button_Run_;
-    wxTreeCtrl* treeCtrl_;
-    wxTreeItemId root_;
-    wxTreeItemId selectedItemId_;
+    wxButton* m_buttonOpen;
+    wxButton* m_buttonSave;
+    wxButton* m_buttonSaveAs;
+    wxButton* m_buttonRun;
+    wxTreeCtrl* m_treeCtrl;
+    wxTreeItemId m_rootItem;
+    wxTreeItemId m_selectedItemID;
+    int m_selectedReportID;
     wxString m_selectedGroup;
 };
 

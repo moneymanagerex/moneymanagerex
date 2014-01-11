@@ -45,13 +45,14 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
 END_EVENT_TABLE()
 
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
-    : button_Open_()
-    , button_Save_()
-    , button_SaveAs_()
-    , button_Run_()
-    , treeCtrl_()
+    : m_buttonOpen()
+    , m_buttonSave()
+    , m_buttonSaveAs()
+    , m_buttonRun()
+    , m_treeCtrl()
     , m_fileNameCtrl() 
     , m_outputHTML()
+    , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(640, 480), style);
@@ -91,12 +92,12 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 
 void mmGeneralReportManager::fillControls()
 {
-    treeCtrl_->SetEvtHandlerEnabled(false);
-    treeCtrl_->DeleteAllItems();
-    root_ = treeCtrl_->AddRoot(_("Reports"));
-    selectedItemId_ = root_;
-    treeCtrl_->SetItemBold(root_, true);
-    treeCtrl_->SetFocus();
+    m_treeCtrl->SetEvtHandlerEnabled(false);
+    m_treeCtrl->DeleteAllItems();
+    m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
+    m_selectedItemID = m_rootItem;
+    m_treeCtrl->SetItemBold(m_rootItem, true);
+    m_treeCtrl->SetFocus();
     Model_Report::Data_Set records 
         = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
@@ -106,17 +107,21 @@ void mmGeneralReportManager::fillControls()
         bool no_group = record.GROUPNAME.empty();
         if (group_name != record.GROUPNAME && !no_group)
         {
-            group = treeCtrl_->AppendItem(root_, record.GROUPNAME);
-            treeCtrl_->SetItemData(group, new MyTreeItemData(-1, record.GROUPNAME));
+            group = m_treeCtrl->AppendItem(m_rootItem, record.GROUPNAME);
+            m_treeCtrl->SetItemData(group, new MyTreeItemData(-1, record.GROUPNAME));
             group_name = record.GROUPNAME;
         }
-        wxTreeItemId item = treeCtrl_->AppendItem(no_group ? root_ : group, record.REPORTNAME);
-        treeCtrl_->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
+        wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group, record.REPORTNAME);
+        m_treeCtrl->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
+
+        if (m_selectedReportID == record.REPORTID)
+        {
+            m_selectedItemID = item;
+            m_treeCtrl->SelectItem(m_selectedItemID);
+        }
     }
-    treeCtrl_->ExpandAll();
-    treeCtrl_->SetEvtHandlerEnabled(true);
-    wxListEvent evt(wxEVT_TREE_SEL_CHANGED, wxID_ANY);
-    AddPendingEvent(evt);
+    m_treeCtrl->ExpandAll();
+    m_treeCtrl->SetEvtHandlerEnabled(true);
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -146,11 +151,11 @@ void mmGeneralReportManager::CreateControls()
 #if defined (__WXWIN__)
     treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
-    treeCtrl_ = new wxTreeCtrl(this, wxID_ANY
+    m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
     headingPanelSizerH2->Add(flex_sizer, flags);
-    headingPanelSizerH2->Add(treeCtrl_, flagsExpand);
+    headingPanelSizerH2->Add(m_treeCtrl, flagsExpand);
 
     /****************************************
      Script Area
@@ -182,22 +187,22 @@ void mmGeneralReportManager::CreateControls()
     buttonPanel->SetSizer(buttonPanelSizer);
 
     //
-    button_Open_ = new wxButton(buttonPanel, wxID_OPEN, _("&Import"));
-    buttonPanelSizer->Add(button_Open_, flags);
-    button_Open_->SetToolTip(_("Locate and load a report file."));
+    m_buttonOpen = new wxButton(buttonPanel, wxID_OPEN, _("&Import"));
+    buttonPanelSizer->Add(m_buttonOpen, flags);
+    m_buttonOpen->SetToolTip(_("Locate and load a report file."));
 
-    button_SaveAs_ = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
-    buttonPanelSizer->Add(button_SaveAs_, flags);
-    button_SaveAs_->SetToolTip(_("Export the report to a new file."));
+    m_buttonSaveAs = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
+    buttonPanelSizer->Add(m_buttonSaveAs, flags);
+    m_buttonSaveAs->SetToolTip(_("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
-    button_Save_ = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
-    buttonPanelSizer->Add(button_Save_, flags);
-    button_Save_->SetToolTip(_("Save changes."));
+    m_buttonSave = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
+    buttonPanelSizer->Add(m_buttonSave, flags);
+    m_buttonSave->SetToolTip(_("Save changes."));
 
-    button_Run_ = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
-    buttonPanelSizer->Add(button_Run_, flags);
-    button_Run_->SetToolTip(_("Run selected report."));
+    m_buttonRun = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
+    buttonPanelSizer->Add(m_buttonRun, flags);
+    m_buttonRun->SetToolTip(_("Run selected report."));
 
     wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE);
     buttonPanelSizer->Add(button_Close, flags);
@@ -292,7 +297,8 @@ void mmGeneralReportManager::openReport()
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
         report->TEMPLATEPATH = httFullFileName;
-        if (!report->TEMPLATEPATH.empty()) Model_Report::instance().save(report);
+        if (!report->TEMPLATEPATH.empty())
+            m_selectedReportID = Model_Report::instance().save(report);
     }
 
     if (!readme.empty())
@@ -363,7 +369,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
 }
 void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
 
     int id = iData->get_report_id();
@@ -387,7 +393,7 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
 
     int id = iData->get_report_id();
@@ -424,7 +430,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
     
     int id = iData->get_report_id();
@@ -443,9 +449,9 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 {
     wxTreeItemId id = event.GetItem();
-    treeCtrl_ ->SelectItem(id);
+    m_treeCtrl ->SelectItem(id);
     int report_id = -1;
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(id));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
     if (iData) report_id = iData->get_report_id();
 
     wxMenu* customReportMenu = new wxMenu;
@@ -462,9 +468,9 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
 
 void mmGeneralReportManager::viewControls(bool enable)
 {
-    button_Run_->Enable(enable);
-    button_Save_->Enable(enable);
-    button_SaveAs_->Enable(enable);
+    m_buttonRun->Enable(enable);
+    m_buttonSaveAs->Enable(enable);
+    m_buttonSave->Enable(enable);
     if (!enable)
     {
         m_selectedGroup = "";
@@ -474,13 +480,13 @@ void mmGeneralReportManager::viewControls(bool enable)
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     viewControls(false);
-    selectedItemId_ = event.GetItem();
-    if (!selectedItemId_) return;
+    m_selectedItemID = event.GetItem();
+    if (!m_selectedItemID) return;
 
     wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     for (size_t n = editors_notebook->GetPageCount()-1; n >= 1; n--) editors_notebook->DeletePage(n);
 
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
 
     int id = iData->get_report_id();
@@ -488,6 +494,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        m_selectedReportID = report->REPORTID;
         createEditorTab(editors_notebook, ID_TEMPLATE);
         createEditorTab(editors_notebook, ID_SQL_CONTENT);
         createEditorTab(editors_notebook, ID_LUA_CONTENT);
@@ -527,7 +534,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 
 void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(event.GetItem()));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(event.GetItem()));
     if (!iData) return;
 
     wxString label = event.GetLabel();
@@ -569,7 +576,7 @@ bool mmGeneralReportManager::DeleteReport(int id)
 
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(treeCtrl_->GetItemData(selectedItemId_));
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     int id = event.GetId();
     if (id == ID_NEW1)
     {
@@ -597,7 +604,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 void mmGeneralReportManager::newReport()
 {
     wxString group_name;
-    if (selectedItemId_ == root_)
+    if (m_selectedItemID == m_rootItem)
     {
         group_name = wxGetTextFromUser(_("Enter the name for the new report group")
             , _("Add Report Group"), "");
