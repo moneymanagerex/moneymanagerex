@@ -23,6 +23,7 @@
 #include "defs.h"
 #include "paths.h"
 #include "model/Model_Setting.h"
+#include "model/Model_Payee.h"
 #include "model/Model_Infotable.h"
 #include "../resources/relocate_categories.xpm"
 
@@ -344,6 +345,18 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     }
 
     m_treeCtrl->Delete(selectedItemId_);
+
+    //Clear categories associated with payees
+    Model_Payee::Data_Set payees = Model_Payee::instance().all();
+    for (auto &payee : payees)
+    {
+        if (payee.CATEGID == categID || (payee.SUBCATEGID == subcategID && subcategID != -1))
+        {
+            payee.CATEGID = -1;
+            payee.SUBCATEGID = -1;
+        }
+    }
+    Model_Payee::instance().save(payees);
 
     wxString sIndex = wxString::Format("*%i:%i*",categID, subcategID);
     wxString sSettings = "";
