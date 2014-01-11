@@ -667,16 +667,18 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                int toAccountID = -1;
 
                Model_Checking::Data *pTransaction = Model_Checking::instance().create();
+               pTransaction->TRANSDATE = dtdt_.FormatISODate();
                pTransaction->ACCOUNTID = fromAccountID_;
                pTransaction->TOACCOUNTID = toAccountID;
                pTransaction->PAYEEID = payeeID_;
                pTransaction->TRANSCODE = type_;
                pTransaction->TRANSAMOUNT = val_;
+               pTransaction->TOTRANSAMOUNT = 0.0;
+               pTransaction->CATEGID = categID_;
+               pTransaction->SUBCATEGID = subCategID_;
                pTransaction->STATUS = status;
                pTransaction->TRANSACTIONNUMBER = transNum_;
                pTransaction->NOTES = notes_;
-               pTransaction->TRANSDATE = dtdt_.FormatISODate();
-               pTransaction->TOTRANSAMOUNT = 0.0;
 
                Model_Checking::instance().save(pTransaction);
 
