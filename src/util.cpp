@@ -369,8 +369,8 @@ std::map<wxString,wxString> date_formats_regex()
     date_regex["%d/%m/%Y"] = wxString::Format("^%s/%s/%s$", dd, mm, yyyy);
     date_regex["%d-%m-%y"] = wxString::Format("^%s-%s-%s$", dd, mm, yy);
     date_regex["%d-%m-%Y"] = wxString::Format("^%s-%s-%s$", dd, mm, yyyy);
-    date_regex["%d.%m.%y"] = wxString::Format("^%s\\x2E%s\\x2E%s$", dd, mm, yy);
-    date_regex["%d.%m.%Y"] = wxString::Format("^%s\\x2E%s\\x2E%s$", dd, mm, yyyy);
+    date_regex["%d.%m.%y"] = wxString::Format("^%s\x2E%s\x2E%s$", dd, mm, yy);
+    date_regex["%d.%m.%Y"] = wxString::Format("^%s\x2E%s\x2E%s$", dd, mm, yyyy);
     date_regex["%d,%m,%y"] = wxString::Format("^%s,%s,%s$", dd, mm, yyyy);
     date_regex["%d/%m'%Y"] = wxString::Format("^%s/%s'%s$", dd, mm, yyyy);
     date_regex["%d/%m %Y"] = wxString::Format("^%s/%s %s$", dd, mm, yyyy);
@@ -384,7 +384,7 @@ std::map<wxString,wxString> date_formats_regex()
     date_regex["%y-%m-%d"] = wxString::Format("^%s-%s-%s$", dd, mm, yy);
     date_regex["%Y/%m/%d"] = wxString::Format("^%s/%s/%s$", yyyy, mm, dd);
     date_regex["%Y-%m-%d"] = wxString::Format("^%s-%s-%s$", yyyy, mm, dd);
-    date_regex["%Y.%m.%d"] = wxString::Format("^%s\\x2E%s\\x2E%s$", yyyy, mm, dd);
+    date_regex["%Y.%m.%d"] = wxString::Format("^%s\x2E%s\x2E%s$", yyyy, mm, dd);
     date_regex["%Y %m %d"] = wxString::Format("^%s %s %s$", yyyy, mm, dd);
 
     return date_regex;

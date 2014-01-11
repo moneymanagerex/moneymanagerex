@@ -1224,8 +1224,8 @@ void mmUnivCSVDialog::parseToken(int index, wxString& token)
     switch (index)
     {
         case UNIV_CSV_DATE:
-            mmParseDisplayStringToDate(dtdt_, token, date_format_);
-            dt_ = dtdt_.GetDateOnly().FormatISODate();
+            if (mmParseDisplayStringToDate(dtdt_, token, date_format_))
+                dt_ = dtdt_.GetDateOnly().FormatISODate();
             break;
 
         case UNIV_CSV_PAYEE:
