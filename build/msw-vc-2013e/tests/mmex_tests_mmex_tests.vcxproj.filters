@@ -315,6 +315,9 @@
     <ClCompile Include="..\..\..\src\tests\test_billsdeposits.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_callback_hooks.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -672,6 +675,9 @@
       <Filter>Test Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_billsdeposits.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_callback_hooks.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
   </ItemGroup>

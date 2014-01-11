@@ -22,34 +22,47 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/intl.h>
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
-#include "model/Model_Currency.h"
+class Test_Hooks;
 
-class Test_Model_Currency : public CPPUNIT_NS::TestFixture
+class Test_Callback_Hooks : public CPPUNIT_NS::TestFixture
 {
-    CPPUNIT_TEST_SUITE(Test_Model_Currency);
-    CPPUNIT_TEST(test_TwoDigitPrecision);
-    CPPUNIT_TEST(test_FourDigitPrecision);
-    CPPUNIT_TEST(test_FormatDoubleToCurrency);
+    CPPUNIT_TEST_SUITE(Test_Callback_Hooks);
+    CPPUNIT_TEST(test_Init_Base_Currency);
+    CPPUNIT_TEST(test_Init_Payee_Data);
     CPPUNIT_TEST_SUITE_END();
 
 public:
-    Test_Model_Currency();
-    virtual ~Test_Model_Currency();
+    Test_Callback_Hooks();
+    virtual ~Test_Callback_Hooks();
 
     void setUp();
     void tearDown();
 
-    void test_TwoDigitPrecision();
-    void test_FourDigitPrecision();
-    void test_FormatDoubleToCurrency();
+    void test_Init_Base_Currency();
+    void test_Init_Payee_Data();
 
 private:
     /// Prevents the use of the copy constructor.
-    Test_Model_Currency(const Test_Model_Currency &copy);
+    Test_Callback_Hooks(const Test_Callback_Hooks &copy);
 
     /// Prevents the use of the copy operator.
-    void operator =(const Test_Model_Currency &copy);
+    void operator =(const Test_Callback_Hooks &copy);
 
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
+    Test_Hooks* m_test_callback;
+};
+//----------------------------------------------------------------------------
+
+class Test_Hooks : public wxSQLite3Hook
+{
+private:
+    wxString msg_header;
+
+public:
+    Test_Hooks();
+
+    virtual bool CommitCallback();
+    virtual void RollbackCallback();
+    virtual void UpdateCallback(wxUpdateType type, const wxString& database, const wxString& table, wxLongLong rowid);
 };

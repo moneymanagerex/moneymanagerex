@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Category.h"
+#include "mmOption.h"
 
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_BillsDeposits);
@@ -73,6 +74,7 @@ void Test_BillsDeposits::setUp()
     // For the purpose of this test, we will create the
     // settings table in the main database.
     Model_Setting::instance(&m_test_db);
+    mmIniOptions::instance().loadOptions();
 }
 
 void Test_BillsDeposits::tearDown()
@@ -142,51 +144,51 @@ void Test_BillsDeposits::test_dialog_add()
 
     //----------------------------------------------------------------------------------------
     // Edit existing entry using the dialog.
-    ShowMessage("Edit Entry: Perform test using same instance.");
-    {
-        if (Model_Billsdeposits::instance().all().size() < 1)
-        {
-            CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("If cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
-        }
+    //ShowMessage("Edit Entry: Perform test using same instance.");
+    //{
+    //    if (Model_Billsdeposits::instance().all().size() < 1)
+    //    {
+    //        CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("If cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
+    //    }
 
-        // create a new entry using the dialog.
-        mmBDDialog* dlg = new mmBDDialog(m_frame, 1, true, false);
+    //    // create a new entry using the dialog.
+    //    mmBDDialog* dlg = new mmBDDialog(m_frame, 1, true, false);
 
-        int id = dlg->ShowModal();
-        if (id == wxID_CANCEL)
-        {
-            ShowMessage("Edit Entry: Cancel");
-        }
-        if (id == wxID_OK)
-        {
-            ShowMessage("Edit Entry: OK");
-        }
-        //TODO: Test output
-    }
+    //    int id = dlg->ShowModal();
+    //    if (id == wxID_CANCEL)
+    //    {
+    //        ShowMessage("Edit Entry: Cancel");
+    //    }
+    //    if (id == wxID_OK)
+    //    {
+    //        ShowMessage("Edit Entry: OK");
+    //    }
+    //    //TODO: Test output
+    //}
 
     //----------------------------------------------------------------------------------------
-    // Enter the existing entry using the dialog.
-    ShowMessage("Enter Entry: Perform test using same instance.");
-    {
-        if (Model_Billsdeposits::instance().all().size() < 1)
-        {
-            CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("Cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
-        }
+    //// Enter the existing entry using the dialog.
+    //ShowMessage("Enter Entry: Perform test using same instance.");
+    //{
+    //    if (Model_Billsdeposits::instance().all().size() < 1)
+    //    {
+    //        CPPUNIT_ASSERT_ASSERTION_FAIL_MESSAGE("Cancelled, entry not exist.", CPPUNIT_ASSERT(1 == 1));
+    //    }
 
-        // create a new entry using the dialog.
-        mmBDDialog* dlg = new mmBDDialog(m_frame, 1, false, true);
+    //    // create a new entry using the dialog.
+    //    mmBDDialog* dlg = new mmBDDialog(m_frame, 1, false, true);
 
-        int id = dlg->ShowModal();
-        if (id == wxID_CANCEL)
-        {
-            ShowMessage("Enter Entry: Cancel");
-        }
-        if (id == wxID_OK)
-        {
-            ShowMessage("Enter Entry: OK");
-        }
-        //TODO: Test output
-    }
+    //    int id = dlg->ShowModal();
+    //    if (id == wxID_CANCEL)
+    //    {
+    //        ShowMessage("Enter Entry: Cancel");
+    //    }
+    //    if (id == wxID_OK)
+    //    {
+    //        ShowMessage("Enter Entry: OK");
+    //    }
+    //    //TODO: Test output
+    //}
 }
 
 void Test_BillsDeposits::test_dialog_edit()

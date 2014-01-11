@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_model_currency.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------
@@ -44,15 +44,7 @@ Test_Model_Currency::~Test_Model_Currency()
 
 void Test_Model_Currency::setUp()
 {
-    std::cout << "\n";
     m_test_db.Open(m_test_db_filename);
-
-    m_test_callback = new Test_Hooks();
-
-    // The test hooks area actually passed to SQLite3 by wxSQLite3
-    m_test_db.SetCommitHook(m_test_callback);
-    m_test_db.SetRollbackHook(m_test_callback);
-//    m_test_db.SetUpdateHook(m_test_callback);
 
     Model_Currency::instance(&m_test_db);
     Model_Infotable::instance(&m_test_db);
@@ -60,12 +52,7 @@ void Test_Model_Currency::setUp()
 
 void Test_Model_Currency::tearDown()
 {
-    // need to reset the hooks before deleting them
-    m_test_db.SetCommitHook(0);
-    m_test_db.SetRollbackHook(0);
-//    m_test_db.SetUpdateHook(0);
     m_test_db.Close();
-    delete m_test_callback;
 }
 
 void Test_Model_Currency::test_TwoDigitPrecision()
@@ -78,7 +65,6 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
 
-    std::cout << "* ";
     currency.SetBaseCurrency(&au_record);
 
     //----------------------------------------------
@@ -86,7 +72,7 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     value = currency.toCurrency(12345.12345);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    value = currency.fromString("$12,345.1234", &au_record);
+    value = currency.fromString2Default("$12,345.1234", &au_record);
     CPPUNIT_ASSERT(value == "12,345.1234");
 
     // Test precision regardless of currency to 2 digits
@@ -98,21 +84,20 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     precision = currency.precision(taiwan_record);
     CPPUNIT_ASSERT(precision == 2);
 
-    std::cout << "* ";
     currency.SetBaseCurrency(&taiwan_record);
     //----------------------------------------------
 
     value = currency.toCurrency(12345.12345);
     CPPUNIT_ASSERT(value == "NT$12,345.12");
 
-    value = currency.fromString("NT$12,345.1234", &taiwan_record);
+    value = currency.fromString2Default("NT$12,345.1234", &taiwan_record);
     CPPUNIT_ASSERT(value == "12,345.1234");
 
     value = currency.toString(12345.12345);
     CPPUNIT_ASSERT(value == "12,345.12");
     //----------------------------------------------
 
-    value = currency.fromString("$12,345.12", &au_record);
+    value = currency.fromString2Default("$12,345.12", &au_record);
     CPPUNIT_ASSERT(value == "12,345.12");
 
     value = currency.toCurrency(12345.12345, &au_record);
@@ -158,56 +143,5 @@ void Test_Model_Currency::test_FormatDoubleToCurrency()
 
     s = Model_Currency::toString(-value, 0);
     CPPUNIT_ASSERT(s == wxT("-0.01"));
-}
-//--------------------------------------------------------------------------
-
-Test_Hooks::Test_Hooks()
-{
-    msg_header = "Test Result: Test_Model_Currency ";
-    wxSQLite3Hook::wxSQLite3Hook();
-}
-
-bool Test_Hooks::CommitCallback()
-{
-    //wxMessageBox("COMMIT callback.", msg_header, wxOK, wxTheApp->GetTopWindow());
-    std::cout << "COMMIT callback activated.\n";
-
-    return false;
-}
-
-void Test_Hooks::RollbackCallback()
-{
-    wxMessageBox("ROLLBACK callback", msg_header, wxOK, wxTheApp->GetTopWindow());
-}
-
-void Test_Hooks::UpdateCallback(wxUpdateType type, const wxString& database,
-    const wxString& table, wxLongLong rowid)
-{
-    const char* strType;
-    std::cout << "Here is the UPDATE callback: " << "\n";
-
-    switch (type)
-    {
-    case SQLITE_DELETE:
-        strType = "DELETE row ";
-        break;
-
-    case SQLITE_INSERT:
-        strType = "INSERT row ";
-        break;
-
-    case SQLITE_UPDATE:
-        strType = "UPDATE row ";
-        break;
-
-    default:
-        strType = "Unknown change row ";
-        break;
-    }
-
-    std::cout << strType << (const char*) rowid.ToString().mb_str()
-        << " in table " << (const char*) table.mb_str()
-        << " of database " << (const char*) database.mb_str()
-        << "\n\n";
 }
 //--------------------------------------------------------------------------

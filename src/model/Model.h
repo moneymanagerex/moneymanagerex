@@ -87,6 +87,7 @@ public:
     }
 
     template<typename... Args>
+    /** Args: Specialised parameters used in SQL statements after the WHERE statement */
     typename DB_TABLE::Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);

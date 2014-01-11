@@ -28,6 +28,7 @@ class Model_Category : public Model<DB_Table_CATEGORY_V1>
 {
 public:
     using Model<DB_Table_CATEGORY_V1>::get;
+
 public:
     Model_Category();
     ~Model_Category();
@@ -42,11 +43,13 @@ public:
     /** Return the static instance of Model_Category table */
     static Model_Category& instance();
 
-public:
+private:
     void initialize();
-    Data* get(const wxString& name);
 
 public:
+    /** Return the Data record for the given category name */
+    Data* get(const wxString& name);
+
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);
     static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0);
