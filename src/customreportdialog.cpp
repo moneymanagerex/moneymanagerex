@@ -245,7 +245,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     panel->SetSizer(sizer);
 
     MinimalEditor* templateText = new MinimalEditor(panel, editorID);
-    templateText->SetLexerHtml();
+
     sizer->Add(templateText, flagsExpand);
     panel->SetSizerAndFit(sizer);
 }
@@ -480,24 +480,35 @@ void mmGeneralReportManager::viewControls(bool enable)
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     viewControls(false);
+    m_outputHTML->SetPage("", "");
+
     m_selectedItemID = event.GetItem();
     if (!m_selectedItemID) return;
 
     wxNotebook* editors_notebook = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-    for (size_t n = editors_notebook->GetPageCount()-1; n >= 1; n--) editors_notebook->DeletePage(n);
-
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-    if (!iData) return;
+    if (!iData)
+    {
+        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
+        return;
+    }
 
     int id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
-    if (report)
+    if (!report)
+    {
+        for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
+    }
+    else
     {
         m_selectedReportID = report->REPORTID;
-        createEditorTab(editors_notebook, ID_TEMPLATE);
-        createEditorTab(editors_notebook, ID_SQL_CONTENT);
-        createEditorTab(editors_notebook, ID_LUA_CONTENT);
+        if (!editors_notebook->FindItem(ID_TEMPLATE))
+            createEditorTab(editors_notebook, ID_TEMPLATE);
+        if (!editors_notebook->FindItem(ID_LUA_CONTENT))
+            createEditorTab(editors_notebook, ID_LUA_CONTENT);
+        if (!editors_notebook->FindItem(ID_SQL_CONTENT))
+            createEditorTab(editors_notebook, ID_SQL_CONTENT);
 
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
@@ -508,6 +519,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
+
+        m_outputHTML->SetPage(report->REPORTNAME, ""); //TODO: provide report info
 
         wxString full_path = report->TEMPLATEPATH;
         wxTextFile tFile;
