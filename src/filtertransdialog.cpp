@@ -1074,7 +1074,6 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 wxString mmFilterTransactionsDialog::to_json()
 {
     json::Object o;
-
     o["ACCOUNT_YN"] = json::Boolean(accountCheckBox_->IsChecked());
     o["ACCOUNT"] = json::String(accountDropDown_->GetStringSelection().ToStdString());
     o["DATE_YN"] = json::Boolean(dateRangeCheckBox_->IsChecked());
@@ -1090,14 +1089,19 @@ wxString mmFilterTransactionsDialog::to_json()
     wxCharBuffer buffer = wxpayee.ToUTF8();
     std::string str_std(buffer.data(), strlen(buffer.data()));
     std::string test = wxpayee.ToStdString();
-    wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s", wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
+    wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s"
+        , wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
 
     o["PAYEE"] = json::String(test);
     o["CATEGORY_YN"] = json::Boolean(categoryCheckBox_->IsChecked());
     o["SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
     o["CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdString());
     o["STATUS_YN"] = json::Boolean(statusCheckBox_->IsChecked());
-    o["STATUS"] = json::String(Model_Checking::all_status()[choiceStatus_->GetSelection()].ToStdString());
+    int item = choiceStatus_->GetSelection();
+    wxString status;
+    if (0 <= item && item < Model_Checking::all_status().size())
+        status = Model_Checking::all_status()[item];
+    o["STATUS"] = json::String(status.ToStdString());
     wxString type = wxString()
         << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
         << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
