@@ -60,10 +60,28 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     wxString value;
     int precision;
     Model_Currency currency = Model_Currency::instance();
-
     Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
+
+    // Check precision is 2 digits
     precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
+
+    // check database values
+    CPPUNIT_ASSERT(au_record.DECIMAL_POINT == ".");
+    CPPUNIT_ASSERT(au_record.GROUP_SEPARATOR != ",");   // Not set correctly in database
+
+    // confirm that group separator should be a comma
+    wxString os_gs = currency.os_group_separator();
+    CPPUNIT_ASSERT(os_gs == ",");
+
+    // ensure that group separator is a comma in database.
+    au_record.GROUP_SEPARATOR = os_gs;
+    currency.save(&au_record);
+
+    // check database values
+    au_record = currency.GetCurrencyRecord("AUD");
+    CPPUNIT_ASSERT(au_record.DECIMAL_POINT == ".");
+    CPPUNIT_ASSERT(au_record.GROUP_SEPARATOR == ",");
 
     currency.SetBaseCurrency(&au_record);
 
@@ -72,7 +90,10 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     value = currency.toCurrency(12345.12345);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    value = currency.fromString2Default("$12,345.1234", &au_record);
+    value = currency.toCurrency(12345.12345, &au_record);
+    CPPUNIT_ASSERT(value == "$12,345.12");
+
+    value = currency.fromString2Default("12,345.1234", &au_record);
     CPPUNIT_ASSERT(value == "12,345.1234");
 
     // Test precision regardless of currency to 2 digits
@@ -84,39 +105,51 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     precision = currency.precision(taiwan_record);
     CPPUNIT_ASSERT(precision == 2);
 
+    taiwan_record.GROUP_SEPARATOR = ".";
+    taiwan_record.DECIMAL_POINT = ",";
+    taiwan_record.SFX_SYMBOL = " - MOD";
+    currency.save(&taiwan_record);
+
     currency.SetBaseCurrency(&taiwan_record);
     //----------------------------------------------
 
     value = currency.toCurrency(12345.12345);
-    CPPUNIT_ASSERT(value == "NT$12,345.12");
+    CPPUNIT_ASSERT(value == "NT$12.345,12 - MOD");
 
-    value = currency.fromString2Default("NT$12,345.1234", &taiwan_record);
+    value = currency.fromString2Default("NT$12.345,1234 - MOD", &taiwan_record);
+    CPPUNIT_ASSERT(value == "NT$12,345.1234 - MOD");
+
+    value = currency.fromString2Default("12.345,1234", &taiwan_record);
     CPPUNIT_ASSERT(value == "12,345.1234");
 
     value = currency.toString(12345.12345);
-    CPPUNIT_ASSERT(value == "12,345.12");
+    CPPUNIT_ASSERT(value == "12.345,12");
     //----------------------------------------------
 
-    value = currency.fromString2Default("$12,345.12", &au_record);
+    value = currency.fromString2Default("12,345.12", &au_record);
     CPPUNIT_ASSERT(value == "12,345.12");
 
     value = currency.toCurrency(12345.12345, &au_record);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    std::cout << "* ";
     currency.SetBaseCurrency(&au_record);
 }
 
 void Test_Model_Currency::test_FourDigitPrecision()
 {
+    wxString value;
+    int precision;
+
     Model_Currency currency = Model_Currency::instance();
     Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
 
     // check precision of currency
-    int precision = currency.precision(au_record);
+    precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
 
-    wxString value;
+
+    CPPUNIT_ASSERT(au_record.GROUP_SEPARATOR == ",");
+
 
     // Test precision regardless of currency to 4 digits
     value = currency.toString(12345.12345, 0, 4);
@@ -128,10 +161,10 @@ void Test_Model_Currency::test_FourDigitPrecision()
 
     // Test precision using currency of currency to 4 digits
     value = currency.toString(12345.12345, &taiwan_record, 4);
-    CPPUNIT_ASSERT(value == "12,345.1234");
+    CPPUNIT_ASSERT(value == "12.345,1234");
 
     value = currency.toCurrency(12345.12345, &taiwan_record, 4);
-    CPPUNIT_ASSERT(value == "NT$12,345.1234");
+    CPPUNIT_ASSERT(value == "NT$12.345,1234 - MOD");
 }
 
 void Test_Model_Currency::test_FormatDoubleToCurrency()
@@ -139,9 +172,34 @@ void Test_Model_Currency::test_FormatDoubleToCurrency()
     double value = 0.0099;
 
     wxString s = Model_Currency::toString(value, 0);
-    CPPUNIT_ASSERT(s == wxT("0.01"));
+    CPPUNIT_ASSERT(s == "0.01");
 
     s = Model_Currency::toString(-value, 0);
-    CPPUNIT_ASSERT(s == wxT("-0.01"));
+    CPPUNIT_ASSERT(s == "-0.01");
+
+    //------------------------------------------------------------------------
+    value = -0.001;
+
+    s = Model_Currency::toString(value, 0);
+    CPPUNIT_ASSERT(s == "0.00");
+
+    s = Model_Currency::toString(value, 0, 4);
+    CPPUNIT_ASSERT(s == "-0.0010");
+
+    //------------------------------------------------------------------------
+    value = -0.000099;
+    s = Model_Currency::toString(value, 0);
+    CPPUNIT_ASSERT(s == "0.00");
+
+    s = Model_Currency::toString(value, 0, 4);
+    CPPUNIT_ASSERT(s == "-0.0001");
+
+    //------------------------------------------------------------------------
+    value = -0.00001;
+    s = Model_Currency::toString(value, 0);
+    CPPUNIT_ASSERT(s == "0.00");
+
+    s = Model_Currency::toString(value, 0, 4);
+    CPPUNIT_ASSERT(s == "0.0000");
 }
 //--------------------------------------------------------------------------

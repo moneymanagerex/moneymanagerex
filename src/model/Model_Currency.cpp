@@ -140,9 +140,14 @@ wxString Model_Currency::os_group_separator()
 wxString Model_Currency::toString(double value, const Data* currency, int precision)
 {
     precision = precision >= 0 ? precision : (currency ? log10(currency->SCALE) : 2);
+    bool positive_value = true;
+    if ((value < 0) && (abs(wxRound(value * pow(10, precision + 1))) > 1))
+    {
+        positive_value = false;
+    }
     int style = wxNumberFormatter::Style_WithThousandsSep;
     wxString s = wxNumberFormatter::ToString(value, precision, style);
-    s.Replace("-0.0", "0.0");
+    if (positive_value) s.Replace("-0.0", "0.0");
     if (currency)
     {
         s.Replace(os_group_separator(), "\t");
