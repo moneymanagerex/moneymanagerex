@@ -252,10 +252,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
 {
-    openReport();
+    importReport();
 }
 
-void mmGeneralReportManager::openReport()
+void mmGeneralReportManager::importReport()
 {
     wxString reportFileName = wxFileSelector(_("Load report file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
@@ -309,6 +309,26 @@ void mmGeneralReportManager::openReport()
         m_outputHTML->SetPage(readme, "readme");
     }
     fillControls();
+}
+
+bool mmGeneralReportManager::readTextFile(const wxString &fileName, wxString &data)
+{
+    bool ok = true;
+    wxTextFile reportFile(fileName);
+    if (reportFile.Open())
+    {
+        while (!reportFile.Eof())
+            data.Append(reportFile.GetNextLine() + "\n");
+
+        reportFile.Close();
+    }
+    else
+    {
+        wxString msg = wxString::Format(_("Unable to open file \n%s\n\n"), fileName);
+        wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
+        ok = false;
+    }
+    return ok;
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
@@ -480,7 +500,6 @@ void mmGeneralReportManager::viewControls(bool enable)
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
 {
     viewControls(false);
-    m_outputHTML->SetPage("", "");
 
     m_selectedItemID = event.GetItem();
     if (!m_selectedItemID) return;
@@ -515,12 +534,16 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
 
         m_fileNameCtrl->ChangeValue(report->TEMPLATEPATH);
+        wxString data;
+        readTextFile(report->TEMPLATEPATH, data);
+        templateText->ChangeValue(data);
+        templateText->SetLexerHtml();
         SqlScriptText->ChangeValue(report->SQLCONTENT);
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
 
-        m_outputHTML->SetPage(report->REPORTNAME, ""); //TODO: provide report info
+        //m_outputHTML->SetPage(report->REPORTNAME, ""); //TODO: provide report info
 
         wxString full_path = report->TEMPLATEPATH;
         wxTextFile tFile;
@@ -532,6 +555,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         }
         else
         {
+            templateText->ClearAll();
             wxFileInputStream input(full_path);
             wxTextInputStream text(input);
             while (input.IsOk() && !input.Eof())
@@ -646,34 +670,23 @@ void mmGeneralReportManager::newReport()
         "end\n";
     report->TEMPLATEPATH = openTemplate();
     if (!report->TEMPLATEPATH.empty())
-        Model_Report::instance().save(report);
+        m_selectedReportID = Model_Report::instance().save(report);
 }
 
 wxString mmGeneralReportManager::openTemplate()
 {
     wxString sScriptFileName = wxFileSelector(_("Load file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "File(*.html)|*.html"
+        , "File(*.htt)|*.htt"
         , wxFD_FILE_MUST_EXIST);
     if (!sScriptFileName.empty())
     {
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        templateText->SetEvtHandlerEnabled(false);
         wxTextFile reportFile(sScriptFileName);
-        if (reportFile.Open())
-        {
-            while (!reportFile.Eof())
-                templateText->AppendText(reportFile.GetNextLine() + "\n");
-
-            reportFile.Close();
-            m_fileNameCtrl->ChangeValue(sScriptFileName);
-        }
-        else
+        if (!reportFile.Open())
         {
             wxString msg = wxString::Format( _("Unable to open file \n%s\n\n"), sScriptFileName);
             wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
         }
-        templateText->SetEvtHandlerEnabled(true);
     }
     return sScriptFileName;
 }

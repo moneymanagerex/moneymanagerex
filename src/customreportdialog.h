@@ -68,7 +68,8 @@ private:
     void CreateControls();
     void fillControls();
     void OnImportReportEvt(wxCommandEvent& event);
-    void openReport();
+    void importReport();
+    bool readTextFile(const wxString &fileName, wxString &data);
     bool openZipFile(const wxString &reportFileName
         , const wxString &httFileName
         , const wxString directoryToExtract
