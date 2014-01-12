@@ -50,7 +50,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_buttonSaveAs()
     , m_buttonRun()
     , m_treeCtrl()
-    , m_fileNameCtrl() 
+    , m_fileNameCtrl()
     , m_outputHTML()
     , m_selectedReportID(0)
 {
@@ -99,7 +99,7 @@ void mmGeneralReportManager::fillControls()
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
     m_treeCtrl->SetFocus();
-    Model_Report::Data_Set records 
+    Model_Report::Data_Set records
         = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
@@ -227,20 +227,21 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
 
 void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int type)
 {
-    wxSizerFlags flagsExpand;
-    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
-    wxString label;
     int editorID = 0;
-
+    wxString label;
     switch (type) {
     case ID_SQL_CONTENT: label = _("SQL"); editorID = ID_SQL_CONTENT; break;
     case ID_LUA_CONTENT: label = _("Lua"); editorID = ID_LUA_CONTENT;  break;
     case ID_TEMPLATE: label = _("htt"); editorID = ID_TEMPLATE;  break;
     //default: ;
     }
+    if (FindWindow(editorID + MAGIC_NUM))  return;
+
+    wxSizerFlags flagsExpand;
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
 
     int tabID = editors_notebook->GetRowCount();
-    wxPanel* panel = new wxPanel(editors_notebook, wxID_ANY);
+    wxPanel* panel = new wxPanel(editors_notebook, editorID + MAGIC_NUM);
     editors_notebook->InsertPage(tabID, panel, label);
     wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
     panel->SetSizer(sizer);
@@ -453,7 +454,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     if (!iData) return;
-    
+
     int id = iData->get_report_id();
     m_selectedGroup = iData->get_group_name();
     Model_Report::Data * report = Model_Report::instance().get(id);
@@ -523,12 +524,9 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     else
     {
         m_selectedReportID = report->REPORTID;
-        if (!editors_notebook->FindItem(ID_TEMPLATE))
-            createEditorTab(editors_notebook, ID_TEMPLATE);
-        if (!editors_notebook->FindItem(ID_LUA_CONTENT))
-            createEditorTab(editors_notebook, ID_LUA_CONTENT);
-        if (!editors_notebook->FindItem(ID_SQL_CONTENT))
-            createEditorTab(editors_notebook, ID_SQL_CONTENT);
+        createEditorTab(editors_notebook, ID_TEMPLATE);
+        createEditorTab(editors_notebook, ID_LUA_CONTENT);
+        createEditorTab(editors_notebook, ID_SQL_CONTENT);
 
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);

@@ -45,6 +45,7 @@ private:
         ID_TAB_HTT,
         ID_TAB_SQL,
         ID_TAB_LUA,
+        MAGIC_NUM = 16,
         ID_NEW1 = wxID_HIGHEST + 500,
         ID_DELETE,
         ID_GROUP, 
