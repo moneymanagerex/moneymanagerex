@@ -92,7 +92,8 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 
 void mmGeneralReportManager::fillControls()
 {
-    m_treeCtrl->SetEvtHandlerEnabled(false);
+    viewControls(false);
+    //m_treeCtrl->SetEvtHandlerEnabled(false);
     m_treeCtrl->DeleteAllItems();
     m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
     m_selectedItemID = m_rootItem;
@@ -121,7 +122,7 @@ void mmGeneralReportManager::fillControls()
         }
     }
     m_treeCtrl->ExpandAll();
-    m_treeCtrl->SetEvtHandlerEnabled(true);
+    //m_treeCtrl->SetEvtHandlerEnabled(true);
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -603,7 +604,11 @@ bool mmGeneralReportManager::DeleteReport(int id)
         int iError = wxMessageBox(msg, "General Reports Manager", wxYES_NO | wxICON_ERROR);
         if (iError == wxYES)
         {
+            m_selectedReportID = -1;
             Model_Report::instance().remove(id);
+            wxListEvent evt(wxEVT_TREE_SEL_CHANGED, wxID_ANY);
+            AddPendingEvent(evt);
+
             fillControls();
             return true;
         }
