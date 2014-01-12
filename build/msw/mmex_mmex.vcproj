@@ -649,6 +649,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\3rd\mongoose\mongoose.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\optionsdialog.cpp"
 				>
 			</File>
@@ -1043,6 +1047,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmTips.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmcheckingpanel.h"
 				>
 			</File>
@@ -1083,7 +1091,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmsinglechoicedialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\mmtextctrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\3rd\mongoose\mongoose.h"
 				>
 			</File>
 			<File

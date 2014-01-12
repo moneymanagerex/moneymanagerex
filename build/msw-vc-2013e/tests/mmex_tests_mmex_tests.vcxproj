@@ -253,6 +253,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Asset.cpp" />
@@ -350,6 +351,7 @@
     <ClCompile Include="..\..\..\src\wizard_newdb.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\3rd\mongoose\mongoose.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Assets_V1.h" />

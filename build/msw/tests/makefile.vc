@@ -126,6 +126,16 @@ CPPUNIT_OBJECTS =  \
 	cppunit_DefaultProtector.obj \
 	cppunit_DynamicLibraryManager.obj \
 	cppunit_DynamicLibraryManagerException.obj
+MMEX_TESTS_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
+	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
+	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
+	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex_tests.pdb \
+	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
+	/I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
+	/I..\..\..\lib\wxsqlite3\include /I..\..\..\lib\lua\src /I..\..\..\lib \
+	/I..\..\..\3rd /I..\..\..\3rd\LuaGlue\include /I..\..\..\3rd\cgitemplate \
+	/I..\..\..\src /DNOPCH /D_CONSOLE /I..\..\..\src \
+	/I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
@@ -224,9 +234,16 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Stock.obj \
 	mmex_tests_Model_Subcategory.obj \
 	mmex_tests_html_template.obj \
-	mmex_tests_currency_test.obj \
+	mmex_tests_mongoose.obj \
+	mmex_tests_framebase_tests.obj \
 	mmex_tests_mmex_tests.obj \
-	mmex_tests_test_model_currency.obj
+	mmex_tests_test_assets.obj \
+	mmex_tests_test_billsdeposits.obj \
+	mmex_tests_test_callback_hooks.obj \
+	mmex_tests_test_dialog_about.obj \
+	mmex_tests_test_model_checking.obj \
+	mmex_tests_test_model_currency.obj \
+	mmex_tests_test_stocks.obj
 MMEX_TESTS_RESOURCES =  \
 	mmex_tests_mmex_tests.res
 
@@ -994,14 +1011,35 @@ mmex_tests_Model_Subcategory.obj: ..\..\..\src\model\Model_Subcategory.cpp
 mmex_tests_html_template.obj: ..\..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\3rd\cgitemplate\html_template.cpp
 
-mmex_tests_currency_test.obj: ..\..\..\src\tests\currency_test.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\currency_test.cpp
+mmex_tests_mongoose.obj: ..\..\..\3rd\mongoose\mongoose.c
+	$(CC) /c /nologo /TC /Fo$@ $(MMEX_TESTS_CFLAGS) ..\..\..\3rd\mongoose\mongoose.c
+
+mmex_tests_framebase_tests.obj: ..\..\..\src\tests\framebase_tests.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\framebase_tests.cpp
 
 mmex_tests_mmex_tests.obj: ..\..\..\src\tests\mmex_tests.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\mmex_tests.cpp
 
+mmex_tests_test_assets.obj: ..\..\..\src\tests\test_assets.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_assets.cpp
+
+mmex_tests_test_billsdeposits.obj: ..\..\..\src\tests\test_billsdeposits.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_billsdeposits.cpp
+
+mmex_tests_test_callback_hooks.obj: ..\..\..\src\tests\test_callback_hooks.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_callback_hooks.cpp
+
+mmex_tests_test_dialog_about.obj: ..\..\..\src\tests\test_dialog_about.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_dialog_about.cpp
+
+mmex_tests_test_model_checking.obj: ..\..\..\src\tests\test_model_checking.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_model_checking.cpp
+
 mmex_tests_test_model_currency.obj: ..\..\..\src\tests\test_model_currency.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_model_currency.cpp
+
+mmex_tests_test_stocks.obj: ..\..\..\src\tests\test_stocks.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_stocks.cpp
 
 mmex_tests_mmex_tests.res: ..\..\..\src\tests\mmex_tests.rc
 	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\..\lib\wxsqlite3\include /i ..\..\..\lib\lua\src /i ..\..\..\lib /i ..\..\..\3rd /i ..\..\..\3rd\LuaGlue\include /i ..\..\..\3rd\cgitemplate /i ..\..\..\src /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\cppunit\include ..\..\..\src\tests\mmex_tests.rc

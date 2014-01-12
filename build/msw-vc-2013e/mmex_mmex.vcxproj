@@ -256,6 +256,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\src\aboutdialog.cpp" />
     <ClCompile Include="..\..\src\accountdialog.cpp" />
     <ClCompile Include="..\..\src\appstartdialog.cpp" />
@@ -344,6 +345,7 @@
     <ClCompile Include="..\..\src\wizard_newdb.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
     <ClInclude Include="..\..\src\customreportdialog.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />

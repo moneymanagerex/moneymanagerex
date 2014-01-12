@@ -318,6 +318,9 @@
     <ClCompile Include="..\..\..\src\tests\test_callback_hooks.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -679,6 +682,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_callback_hooks.h">
       <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\3rd\mongoose\mongoose.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

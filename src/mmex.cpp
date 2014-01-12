@@ -79,6 +79,7 @@
 #include "model/Model_Report.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
+#include "../3rd/mongoose/mongoose.h"
 
 #include <wx/defs.h>
 //----------------------------------------------------------------------------
@@ -409,6 +410,8 @@ BEGIN_EVENT_TABLE(mmGUIFrame, wxFrame)
     EVT_MENU_RANGE(wxID_FILE1, wxID_FILE5, mmGUIFrame::OnRecentFiles)
     EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
 
+    EVT_CLOSE(mmGUIFrame::OnClose)
+
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -437,6 +440,8 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 , helpFileIndex_(mmex::HTML_INDEX)
 , expandedReportNavTree_(true)
 , expandedBudgetingNavTree_(true)
+, m_pThread(0)
+, m_bExitServer(false)
 {
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
@@ -504,7 +509,13 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 
     wxAcceleratorTable tab(sizeof(entries)/sizeof(*entries), entries);
     SetAcceleratorTable(tab);
-
+    
+    m_pThread = new WebServerThread(this);
+    if (m_pThread->Run() != wxTHREAD_NO_ERROR)
+    {
+        delete m_pThread;
+        m_pThread = NULL;
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -1988,6 +1999,15 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
 
     homePanel_->Layout();
     menuPrintingEnable(true);
+
+    // Test code to copy html to web server. Report can be viewed in browser window using "http://localhost:8080".
+    {
+        wxCriticalSectionLocker enter1(m_pThreadCS);
+        wxCriticalSectionLocker enter2(m_pFileSystemCS);
+        if (m_pThread->m_htmlpage)
+            delete m_pThread->m_htmlpage;
+        m_pThread->m_htmlpage = new wxString(rs->getHTMLText());
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -3623,4 +3643,82 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 {
     gotoAccountID_ = account_id;
     gotoTransID_   = transID;
+}
+
+void mmGUIFrame::OnClose(wxCloseEvent&)
+{
+    if (m_pThread)
+    {
+        {
+            wxCriticalSectionLocker enter(m_pExitCS);
+            m_bExitServer = true;
+        }
+        while (1)
+        {
+            {
+                wxCriticalSectionLocker enter(m_pThreadCS);
+                if (!m_pThread) break;
+            }
+            // wait for thread completion
+            wxMilliSleep(1);
+        }
+    }
+    Destroy();
+}
+
+class mmGUIFrame * WebServerThread::m_pHandler = NULL;
+class wxString * WebServerThread::m_htmlpage = NULL;
+
+WebServerThread::WebServerThread(mmGUIFrame *handler) : wxThread(wxTHREAD_DETACHED)
+{
+    m_pHandler = handler;
+}
+
+WebServerThread::~WebServerThread()
+{
+    wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
+    if (m_htmlpage)
+        delete m_htmlpage;
+
+    wxCriticalSectionLocker enter2(m_pHandler->m_pThreadCS);
+    m_pHandler->m_pThread = NULL;
+}
+
+int WebServerThread::index_html(struct mg_connection *conn) {
+    int nReturn = 0;
+
+    wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
+    if (m_htmlpage != NULL)
+    {
+        nReturn = 1;
+        mg_send_data(conn, m_htmlpage->GetData(), m_htmlpage->Length());
+    }
+    else
+        mg_printf_data(conn, "Unable to find the requested URI is [%s]", conn->uri);
+
+    return nReturn;
+}
+
+wxThread::ExitCode WebServerThread::Entry()
+{
+    // Create and configure the server
+    struct mg_server *server = mg_create_server(NULL);
+    mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
+    mg_add_uri_handler(server, "/", WebServerThread::index_html);
+
+    // Serve requests
+    while (1)
+    {
+        mg_poll_server(server, 1000);
+        {
+            wxCriticalSectionLocker enter(m_pHandler->m_pExitCS);
+            if (m_pHandler->m_bExitServer) break;
+        }
+    }
+
+    // Cleanup, and free server instance
+    // Note: mg_destroy_server in mongoose.c has been modified to fix memory leaks.
+    mg_destroy_server(&server);
+
+    return (wxThread::ExitCode)0;
 }

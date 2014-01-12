@@ -94,6 +94,14 @@ LUA_OBJECTS =  \
 	lua_lundump.obj \
 	lua_lvm.obj \
 	lua_lzio.obj
+MMEX_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
+	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
+	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
+	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex.pdb \
+	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
+	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
+	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
+	/I..\..\3rd\cgitemplate /I..\..\src /DNOPCH /D_WINDOWS $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
@@ -189,7 +197,8 @@ MMEX_OBJECTS =  \
 	mmex_Model_Splittransaction.obj \
 	mmex_Model_Stock.obj \
 	mmex_Model_Subcategory.obj \
-	mmex_html_template.obj
+	mmex_html_template.obj \
+	mmex_mongoose.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
 
@@ -886,6 +895,9 @@ mmex_Model_Subcategory.obj: ..\..\src\model\Model_Subcategory.cpp
 
 mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\cgitemplate\html_template.cpp
+
+mmex_mongoose.obj: ..\..\3rd\mongoose\mongoose.c
+	$(CC) /c /nologo /TC /Fo$@ $(MMEX_CFLAGS) ..\..\3rd\mongoose\mongoose.c
 
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
 	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc

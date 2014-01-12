@@ -139,6 +139,13 @@ CPPUNIT_OBJECTS =  \
 	cppunit_DefaultProtector.o \
 	cppunit_DynamicLibraryManager.o \
 	cppunit_DynamicLibraryManagerException.o
+MMEX_TESTS_CFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
+	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
+	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
+	-I$(srcdir)/../../3rd/LuaGlue/include -I$(srcdir)/../../3rd/cgitemplate \
+	-I$(srcdir)/../../src -DNOPCH -I$(srcdir)/../../src \
+	-I$(srcdir)/../../lib/cppunit/include $(WX_CFLAGS) $(PIC_FLAG) $(CPPFLAGS) \
+	$(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
@@ -233,9 +240,16 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Stock.o \
 	mmex_tests_Model_Subcategory.o \
 	mmex_tests_html_template.o \
-	mmex_tests_currency_test.o \
+	mmex_tests_mongoose.o \
+	mmex_tests_framebase_tests.o \
 	mmex_tests_mmex_tests.o \
+	mmex_tests_test_assets.o \
+	mmex_tests_test_billsdeposits.o \
+	mmex_tests_test_callback_hooks.o \
+	mmex_tests_test_dialog_about.o \
+	mmex_tests_test_model_checking.o \
 	mmex_tests_test_model_currency.o \
+	mmex_tests_test_stocks.o \
 	$(__mmex_tests___win32rc)
 
 ### Conditionally set variables: ###
@@ -806,14 +820,35 @@ mmex_tests_Model_Subcategory.o: $(srcdir)/../../src/model/Model_Subcategory.cpp
 mmex_tests_html_template.o: $(srcdir)/../../3rd/cgitemplate/html_template.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/cgitemplate/html_template.cpp
 
-mmex_tests_currency_test.o: $(srcdir)/../../src/tests/currency_test.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/currency_test.cpp
+mmex_tests_mongoose.o: $(srcdir)/../../3rd/mongoose/mongoose.c
+	$(CCC) -c -o $@ $(MMEX_TESTS_CFLAGS) $(srcdir)/../../3rd/mongoose/mongoose.c
+
+mmex_tests_framebase_tests.o: $(srcdir)/../../src/tests/framebase_tests.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/framebase_tests.cpp
 
 mmex_tests_mmex_tests.o: $(srcdir)/../../src/tests/mmex_tests.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/mmex_tests.cpp
 
+mmex_tests_test_assets.o: $(srcdir)/../../src/tests/test_assets.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_assets.cpp
+
+mmex_tests_test_billsdeposits.o: $(srcdir)/../../src/tests/test_billsdeposits.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_billsdeposits.cpp
+
+mmex_tests_test_callback_hooks.o: $(srcdir)/../../src/tests/test_callback_hooks.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_callback_hooks.cpp
+
+mmex_tests_test_dialog_about.o: $(srcdir)/../../src/tests/test_dialog_about.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_dialog_about.cpp
+
+mmex_tests_test_model_checking.o: $(srcdir)/../../src/tests/test_model_checking.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_model_checking.cpp
+
 mmex_tests_test_model_currency.o: $(srcdir)/../../src/tests/test_model_currency.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_model_currency.cpp
+
+mmex_tests_test_stocks.o: $(srcdir)/../../src/tests/test_stocks.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_stocks.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
 	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd --include-dir $(srcdir)/../../3rd/LuaGlue/include --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include

@@ -545,10 +545,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\currency_test.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\currencydialog.cpp"
 				>
 			</File>
@@ -566,6 +562,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\filtertransdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\framebase_tests.cpp"
 				>
 			</File>
 			<File
@@ -657,6 +657,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\mongoose\mongoose.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\optionsdialog.cpp"
 				>
 			</File>
@@ -729,7 +733,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\test_assets.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_billsdeposits.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_callback_hooks.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_dialog_about.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_model_checking.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\tests\test_model_currency.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_stocks.cpp"
 				>
 			</File>
 			<File
@@ -979,10 +1007,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\currency_test.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\currencydialog.h"
 				>
 			</File>
@@ -1004,6 +1028,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\filtertransdialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\framebase_tests.h"
 				>
 			</File>
 			<File
@@ -1059,6 +1087,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\mmTips.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\mmcheckingpanel.h"
 				>
 			</File>
@@ -1099,7 +1131,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\mmsinglechoicedialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\mmtextctrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\mongoose\mongoose.h"
 				>
 			</File>
 			<File
@@ -1187,7 +1227,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\test_assets.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_billsdeposits.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_callback_hooks.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_dialog_about.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_model_checking.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\tests\test_model_currency.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_stocks.h"
 				>
 			</File>
 			<File

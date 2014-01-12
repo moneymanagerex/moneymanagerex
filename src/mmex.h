@@ -80,6 +80,21 @@ private:
 DECLARE_APP(mmGUIApp)
 //----------------------------------------------------------------------------
 
+class WebServerThread : public wxThread
+{
+public:
+    WebServerThread(mmGUIFrame *handler);
+    ~WebServerThread();
+
+    static wxString *m_htmlpage;
+
+protected:
+    static mmGUIFrame *m_pHandler;
+
+    virtual ExitCode Entry();
+    static int index_html(struct mg_connection *conn);
+};
+
 class mmGUIFrame : public wxFrame
 {
 public:
@@ -132,6 +147,8 @@ public:
     void SetCheckingAccountPageInactive();
     void SetBudgetingPageInactive();
     void menuPrintingEnable(bool enable);
+
+    void OnClose(wxCloseEvent&);
 
 private:
     /* handles to SQLite Database */
@@ -373,6 +390,13 @@ private:
         AUTO_REPEAT_TRANSACTIONS_TIMER_ID,
     };
 
+    // mongoose web server
+    wxCriticalSection m_pThreadCS;
+    wxCriticalSection m_pExitCS;
+    wxCriticalSection m_pFileSystemCS;
+    WebServerThread *m_pThread;
+    bool m_bExitServer;
+    friend class WebServerThread;
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_MMEX_H_
