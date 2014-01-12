@@ -1,4 +1,4 @@
-/*******************************************************
+﻿/*******************************************************
 Copyright (C) 2006-2012
 
 This program is free software; you can redistribute it and/or modify
@@ -20,11 +20,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #pragma implementation "filtertransdialog.h"
 #endif
 
-
 #ifdef __BORLANDC__
 #pragma hdrstop
 #endif
-
 
 #include "filtertransdialog.h"
 #include "constants.h"
@@ -39,8 +37,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Billsdeposits.h"
-#include "../resources/save.xpm"
 
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
+
+#include "../resources/save.xpm"
 
 static const wxString TRANSACTION_STATUSES[] =
 {
@@ -821,6 +823,8 @@ wxString mmFilterTransactionsDialog::GetCurrentSettings()
     settings_string_ << notesCheckBox_->GetValue() << ";";
     settings_string_ << notesEdit_->GetValue() << ";";
 
+    wxLogDebug("%s", to_json()); //TODO
+
     return settings_string_;
 }
 
@@ -1065,4 +1069,53 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
         filterDetails.Prepend(wxString() << "<b>" << _("Filtering Details: ") << "</b><br>");
         hb.addParaText(filterDetails);
     }
+}
+
+wxString mmFilterTransactionsDialog::to_json()
+{
+    json::Object o;
+
+    o["ACCOUNT_YN"] = json::Boolean(accountCheckBox_->IsChecked());
+    o["ACCOUNT"] = json::String(accountDropDown_->GetStringSelection().ToStdString());
+    o["DATE_YN"] = json::Boolean(dateRangeCheckBox_->IsChecked());
+    o["DATE1"] = json::String(fromDateCtrl_->GetValue().FormatISODate().ToStdString());
+    o["DATE2"] = json::String(toDateControl_->GetValue().FormatISODate().ToStdString());
+    o["PAYEE_YN"] = json::Boolean(payeeCheckBox_->IsChecked());
+
+    wxString wxpayee = cbPayee_->GetValue();
+    //TODO: Here is big problem for UTF8 usage!!! wxString::ToStdString() does not working
+    //for some strings like Kubalíková
+    //but cyrillic working Николай = Николай (РќРёРєРѕР»Р°Р№) 
+    //Kubalíková ----> KubalГ­kovГЎ
+    wxCharBuffer buffer = wxpayee.ToUTF8();
+    std::string str_std(buffer.data(), strlen(buffer.data()));
+    std::string test = wxpayee.ToStdString();
+    wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s", wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
+
+    o["PAYEE"] = json::String(test);
+    o["CATEGORY_YN"] = json::Boolean(categoryCheckBox_->IsChecked());
+    o["SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
+    o["CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdString());
+    o["STATUS_YN"] = json::Boolean(statusCheckBox_->IsChecked());
+    o["STATUS"] = json::String(Model_Checking::all_status()[choiceStatus_->GetSelection()].ToStdString());
+    wxString type = wxString()
+        << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
+        << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
+        << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
+        << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
+    o["TYPE_YN"] = json::Boolean(typeCheckBox_->IsChecked());
+    o["TYPE"] = json::String(type.ToStdString());
+    double amount1, amount2;
+    amountMinEdit_->GetDouble(amount1);
+    amountMaxEdit_->GetDouble(amount2);
+    o["AMOUNT_YN"] = json::Boolean(amountRangeCheckBox_->IsChecked());
+    o["AMOUNT1"] = json::Number(amount1);
+    o["AMOUNT2"] = json::Number(amount2);
+    o["NUMBER_YN"] = json::Boolean(transNumberCheckBox_->IsChecked());
+    o["NUMBER"] = json::String(transNumberEdit_->GetValue().ToStdString());
+    o["NOTES_YN"] = json::Boolean(notesCheckBox_->IsChecked());
+    o["NOTES"] = json::String(notesEdit_->GetValue().ToStdString());
+    std::stringstream ss;
+    json::Writer::Write(o, ss);
+    return ss.str();
 }

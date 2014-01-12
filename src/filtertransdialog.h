@@ -192,6 +192,7 @@ private:
     bool get_next_value(wxStringTokenizer& tkz, wxString& value);
 
     void OnCategs(wxCommandEvent& event);
+    wxString to_json();
 
     /// Should we show tooltips?
     static bool ShowToolTips();
