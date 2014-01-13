@@ -601,12 +601,12 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
         Model_Account::Data* account = Model_Account::instance().get(acctName);
         if (account)
         {
-            double amount;
+            double amount = 0.0;
             textAmount_->GetDouble(amount);
             textAmount_->SetValue(amount, account);
             if (advancedToTransAmountSet_)
             {
-                double toAmount;
+                double toAmount = 0.0;
                 toTextAmount_->GetDouble(toAmount);
                 toTextAmount_->SetValue(amount, account);
             }

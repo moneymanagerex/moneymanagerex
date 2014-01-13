@@ -31,6 +31,18 @@
     <Filter Include="Source Files\db">
       <UniqueIdentifier>{8065496b-1595-40c0-aed0-25ad0497606d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\3d">
+      <UniqueIdentifier>{0d7bc36d-6163-4e16-9ee6-74708d02d562}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3d">
+      <UniqueIdentifier>{4695e88c-9983-4fb5-92b4-b01b5ec74915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Headers\Base">
+      <UniqueIdentifier>{a3492eec-83d9-41dc-a97d-2944d3133a54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Source\Base">
+      <UniqueIdentifier>{91e5ed09-4368-4b7f-9119-02370497529f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\src\aboutdialog.cpp">
@@ -103,9 +115,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\filtertransdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\3rd\cgitemplate\html_template.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\reports\html_widget_bills_and_deposits.cpp">
@@ -288,9 +297,6 @@
     <ClCompile Include="..\..\..\src\dbwrapper.cpp">
       <Filter>Source Files\db</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp">
-      <Filter>Test Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\minimal_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -306,9 +312,6 @@
     <ClCompile Include="..\..\..\src\tests\test_assets.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\framebase_tests.cpp">
-      <Filter>Test Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\tests\test_dialog_about.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
@@ -318,8 +321,26 @@
     <ClCompile Include="..\..\..\src\tests\test_callback_hooks.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\3rd\cgitemplate\html_template.cpp">
+      <Filter>Source Files\3d</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_relocate_category.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_relocate_payee.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\cpu_timer.cpp">
+      <Filter>Test Source\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\framebase_tests.cpp">
+      <Filter>Test Source\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\mmex_tests.cpp">
+      <Filter>Test Source\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -399,9 +420,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\guiid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\3rd\cgitemplate\html_template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\reports\html_widget_bills_and_deposits.h">
@@ -671,9 +689,6 @@
     <ClInclude Include="..\..\..\src\tests\test_stocks.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\tests\framebase_tests.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_dialog_about.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
@@ -683,8 +698,23 @@
     <ClInclude Include="..\..\..\src\tests\test_callback_hooks.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\3rd\cgitemplate\html_template.h">
+      <Filter>Header Files\3d</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\3rd\mongoose\mongoose.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_relocate_category.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_relocate_payee.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\cpu_timer.h">
+      <Filter>Test Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\framebase_tests.h">
+      <Filter>Test Headers\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

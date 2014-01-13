@@ -22,6 +22,15 @@
     <Filter Include="Source Files\Model">
       <UniqueIdentifier>{4498683a-2aa4-4f24-8342-719d9d96201d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\3d">
+      <UniqueIdentifier>{28b51ae8-7571-4e61-b13b-9f26791f5710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3d">
+      <UniqueIdentifier>{485ba4c0-3d1a-4ce9-aadd-7426678ef72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\db">
+      <UniqueIdentifier>{ca3c8614-b5c1-4e74-904c-13def9608090}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\aboutdialog.cpp">
@@ -87,16 +96,10 @@
     <ClCompile Include="..\..\src\currencydialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\dbwrapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\import_export\export.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\filtertransdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\3rd\cgitemplate\html_template.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reports\html_widget_bills_and_deposits.cpp">
@@ -283,7 +286,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\3rd\mongoose\mongoose.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\3rd\cgitemplate\html_template.cpp">
+      <Filter>Source Files\3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\dbwrapper.cpp">
+      <Filter>Source Files\db</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -350,9 +359,6 @@
     <ClInclude Include="..\..\src\currencydialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\dbwrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\defs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -363,9 +369,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\guiid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\cgitemplate\html_template.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\html_widget_bills_and_deposits.h">
@@ -621,7 +624,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\3rd\cgitemplate\html_template.h">
+      <Filter>Header Files\3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\dbwrapper.h">
+      <Filter>Header Files\db</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

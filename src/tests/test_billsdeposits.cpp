@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
+#include "cpu_timer.h"
 //----------------------------------------------------------------------------
 #include "test_billsdeposits.h"
 #include "framebase_tests.h"
@@ -29,7 +30,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_BillsDeposits);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_BillsDeposits);
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Test_BillsDeposits::~Test_BillsDeposits()
 
 void Test_BillsDeposits::setUp()
 {
+    CpuTimer time("Setup");
     m_frame = new TestFrameBase(m_this_instance);
     m_frame->Show(true);
    
@@ -60,8 +62,8 @@ void Test_BillsDeposits::setUp()
     Model_Infotable::instance(&m_test_db);
     Model_Currency::instance(&m_test_db);
     Model_Account::instance(&m_test_db);
-    Model_Billsdeposits::instance(&m_test_db);
     Model_Budgetsplittransaction::instance(&m_test_db);
+    Model_Billsdeposits::instance(&m_test_db);
 
     // subcategory must be initialized before category
     Model_Subcategory::instance(&m_test_db);

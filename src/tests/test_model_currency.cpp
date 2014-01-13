@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
+#include "cpu_timer.h"
 //----------------------------------------------------------------------------
 #include "test_model_currency.h"
 
@@ -44,6 +45,7 @@ Test_Model_Currency::~Test_Model_Currency()
 
 void Test_Model_Currency::setUp()
 {
+    CpuTimer time("Setup");
     m_test_db.Open(m_test_db_filename);
 
     Model_Currency::instance(&m_test_db);
@@ -57,6 +59,7 @@ void Test_Model_Currency::tearDown()
 
 void Test_Model_Currency::test_TwoDigitPrecision()
 {
+    CpuTimer time_this;
     wxString value;
     int precision;
     Model_Currency currency = Model_Currency::instance();
@@ -137,6 +140,7 @@ void Test_Model_Currency::test_TwoDigitPrecision()
 
 void Test_Model_Currency::test_FourDigitPrecision()
 {
+    CpuTimer time_this;
     wxString value;
     int precision;
 
@@ -169,6 +173,7 @@ void Test_Model_Currency::test_FourDigitPrecision()
 
 void Test_Model_Currency::test_FormatDoubleToCurrency()
 {
+    CpuTimer time_this;
     double value = 0.0099;
 
     wxString s = Model_Currency::toString(value, 0);
