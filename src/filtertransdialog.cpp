@@ -690,7 +690,7 @@ wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
     }
     settings_string_ = Model_Infotable::instance().GetStringInfo(
         wxString::Format("TRANSACTIONS_FILTER_%d", id)
-        , "{}");
+        , "");
     return settings_string_;
 }
 
@@ -702,7 +702,6 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 void mmFilterTransactionsDialog::clearSettings()
 {
     settings_string_.Clear();
-    settings_string_ = L"{}";
     dataToControls();
 }
 void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
@@ -893,49 +892,14 @@ void mmFilterTransactionsDialog::OnTextEntered(wxCommandEvent& event)
 
 void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 {
+    hb.addHorizontalLine();
+    hb.addHeaderItalic(1, _("Filtering Details: "));
     // Extract the parameters from the transaction dialog and add them to the report.
-    wxString filterDetails;
-
-    if (getAccountCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Account:"), getAccountName());
-
-    //Date range
-    if (getDateRangeCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Date Range:"), userDateRangeStr());
-
-    //Payees
-    if (checkPayeeCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Payee:"), userPayeeStr());
-
-    //Category
-    if (getCategoryCheckBox())
-    {
-        filterDetails << "<b>" << _("Category:") << " </b>" << userCategoryStr()
-            << (getSimilarCategoryStatus() ? wxString(" (") << _("Include Similar") << ")" : "")
-            << "<br>";
-    }
-    //Status
-    if (getStatusCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Status:"), userStatusStr());
-    //Type
-    if (getTypeCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Type:"), userTypeStr());
-    //Amount Range
-    if (getAmountRangeCheckBoxMin() || getAmountRangeCheckBoxMax())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Amount Range:"), userAmountRangeStr());
-    //Number
-    if (getNumberCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Number:"), getNumber());
-    //Notes
-    if (getNotesCheckBox())
-        filterDetails << wxString::Format("<b>%s</b> %s<br>", _("Notes:"), getNotes());
-
-    if (!filterDetails.IsEmpty())
-    {
-        hb.addHorizontalLine();
-        filterDetails.Prepend(wxString() << "<b>" << _("Filtering Details: ") << "</b><br>");
-        hb.addParaText(filterDetails);
-    }
+    wxString filterDetails = to_json();
+    filterDetails.Replace(",\n", "<br>");
+    filterDetails.replace(0, 1, ' ');
+    filterDetails.RemoveLast(1);
+    hb.addParaText(filterDetails);
 }
 
 wxString mmFilterTransactionsDialog::to_json()
@@ -1008,12 +972,13 @@ wxString mmFilterTransactionsDialog::to_json()
 
 void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
-    //return;
-    json::Object o;
+    wxString str = data;
+    if (str.empty() || !(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
     std::stringstream ss;
-    ss << data.ToStdString();
+    ss << str.ToStdString();
+    json::Object o;
     json::Reader::Read(o, ss);
-
+    
     //Account
     accountCheckBox_->SetValue(!wxString(json::String(o["ACCOUNT"])).empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
