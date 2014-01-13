@@ -3501,6 +3501,7 @@ unsigned int mg_poll_server(struct mg_server *server, int milliseconds) {
 
 void mg_destroy_server(struct mg_server **server) {
   struct ll *lp, *tmp;
+  int i; // for Modificiations
 
   if (server != NULL && *server != NULL) {
     closesocket((*server)->listening_sock);
@@ -3523,7 +3524,7 @@ void mg_destroy_server(struct mg_server **server) {
 #endif
     // Start Modificiations (free saved options)
     const char **all_opts = mg_get_valid_option_names();
-    for (int i = 0; all_opts[i * 2] != NULL; i++) {
+    for (i = 0; all_opts[i * 2] != NULL; i++) {
         if ((*server)->config_options[i] != NULL) {
             free((*server)->config_options[i]);
         }
