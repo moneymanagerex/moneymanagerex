@@ -143,89 +143,8 @@ void mmFilterTransactionsDialog::BuildPayeeList()
 
 void mmFilterTransactionsDialog::dataToControls()
 {
-    wxStringTokenizer tkz(settings_string_, ";", wxTOKEN_RET_EMPTY_ALL);
-    wxString value = "";
-    bool status;
-
-    status = get_next_value(tkz, value);
-    accountCheckBox_ ->SetValue(status);
-    accountDropDown_ ->Enable(status);
-    accountDropDown_ ->SetStringSelection(value);
-
-    status = get_next_value(tkz, value);
-    dateRangeCheckBox_ ->SetValue(status);
-    fromDateCtrl_ ->Enable(status);
-    fromDateCtrl_ ->SetValue(mmGetStorageStringAsDate(value));
-    get_next_value(tkz, value);
-    toDateControl_ ->Enable(status);
-    toDateControl_ ->SetValue(mmGetStorageStringAsDate(value));
-
-    status = get_next_value(tkz, value);
-    cbPayee_ ->Enable(status);
-    cbPayee_ ->SetValue(value);
-    payeeCheckBox_->SetValue(status);
     BuildPayeeList();
-
-    status = get_next_value(tkz, value);
-    categoryCheckBox_ ->SetValue(status);
-    btnCategory_ ->Enable(status);
-    similarCategCheckBox_->Enable(status);
-
-    wxStringTokenizer similar_categ_token(value, "|", wxTOKEN_RET_EMPTY_ALL);
-    wxStringTokenizer categ_token(similar_categ_token.GetNextToken(), ":", wxTOKEN_RET_EMPTY_ALL);
-    Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
-    if (category)
-        categID_ = category->CATEGID;
-    Model_Subcategory::Data* sub_category = 0;
-    wxString subcateg_name = categ_token.GetNextToken().Trim(false);
-    if (!subcateg_name.IsEmpty())
-    {
-        sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
-        if (sub_category)
-            subcategID_ = sub_category->SUBCATEGID;
-    }
-    btnCategory_ ->SetLabel(Model_Category::full_name(categID_, subcategID_));
-    wxString similarCategory = similar_categ_token.GetNextToken();
-    if (!similarCategory.IsEmpty())
-        bSimilarCategoryStatus_ = (wxAtoi(similarCategory) != 0);
-    else
-        bSimilarCategoryStatus_ = false;
-    similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
-
-    status = get_next_value(tkz, value);
-    statusCheckBox_ ->SetValue(status);
-    choiceStatus_ ->Enable(status);
-    choiceStatus_ ->SetStringSelection(value);
-
-    status = get_next_value(tkz, value);
-    typeCheckBox_ ->SetValue(status);
-    cbTypeWithdrawal_ ->SetValue(value.Contains("W"));
-    cbTypeWithdrawal_ ->Enable(status);
-    cbTypeDeposit_ ->SetValue(value.Contains("D"));
-    cbTypeDeposit_ ->Enable(status);
-    cbTypeTransferTo_ ->SetValue(value.Contains("T"));
-    cbTypeTransferTo_ ->Enable(status);
-    cbTypeTransferFrom_->SetValue(value.Contains("F"));
-    cbTypeTransferFrom_->Enable(status);
-
-    status = get_next_value(tkz, value);
-    amountRangeCheckBox_ ->SetValue(status);
-    amountMinEdit_ ->Enable(status);
-    amountMinEdit_ ->SetValue(value);
-    get_next_value(tkz, value);
-    amountMaxEdit_ ->Enable(status);
-    amountMaxEdit_ ->SetValue(value);
-
-    status = get_next_value(tkz, value);
-    transNumberCheckBox_ ->SetValue(status);
-    transNumberEdit_ ->Enable(status);
-    transNumberEdit_ ->SetValue(value);
-
-    status = get_next_value(tkz, value);
-    notesCheckBox_ ->SetValue(status);
-    notesEdit_ ->Enable(status);
-    notesEdit_ ->SetValue(value);
-
+    from_json(settings_string_);
 }
 void mmFilterTransactionsDialog::CreateControls()
 {
@@ -743,7 +662,7 @@ wxString mmFilterTransactionsDialog::userAmountRangeStr() const
 void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )
 {
     int i = m_radio_box_->GetSelection();
-    settings_string_ = GetCurrentSettings();
+    settings_string_ = to_json();
     Model_Infotable::instance().Set(wxString::Format("TRANSACTIONS_FILTER_%d", i), settings_string_);
     Model_Infotable::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", i);
     wxLogDebug("Settings Saled to registry %i\n %s", i, settings_string_);
@@ -770,61 +689,8 @@ wxString mmFilterTransactionsDialog::GetStoredSettings(int id)
         Model_Setting::instance().Set("TRANSACTIONS_FILTER_VIEW_NO", id);
     }
     settings_string_ = Model_Infotable::instance().GetStringInfo(
-                              wxString::Format("TRANSACTIONS_FILTER_%d", id),
-                              "0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;");
-    return settings_string_;
-}
-
-bool mmFilterTransactionsDialog::get_next_value( wxStringTokenizer& tkz, wxString& value)
-{
-    value = "";
-    bool on = "1" == tkz.GetNextToken();
-    value = tkz.GetNextToken();
-    return on;
-}
-
-wxString mmFilterTransactionsDialog::GetCurrentSettings()
-{
-    settings_string_.clear();
-
-    settings_string_ << accountCheckBox_->GetValue() << ";";
-    settings_string_ << accountDropDown_->GetStringSelection() << ";";
-
-    settings_string_ << dateRangeCheckBox_->GetValue() << ";";
-    settings_string_ << fromDateCtrl_->GetValue().FormatISODate() << ";";
-    settings_string_ << dateRangeCheckBox_->GetValue() << ";";
-    settings_string_ << toDateControl_->GetValue().FormatISODate() << ";";
-
-    settings_string_ << payeeCheckBox_->GetValue() << ";";
-    settings_string_ << cbPayee_->GetValue() << ";";
-
-    settings_string_ << categoryCheckBox_->GetValue() << ";";
-    settings_string_ << btnCategory_ ->GetLabel() << ";";
-    settings_string_ << (bSimilarCategoryStatus_ ? "|1" : "|0");
-
-    settings_string_ << statusCheckBox_->GetValue() << ";";
-    settings_string_ << choiceStatus_ ->GetStringSelection() << ";";
-
-    settings_string_ << typeCheckBox_->GetValue() << ";"
-    << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
-    << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
-    << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
-    << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "")
-    << ";";
-
-    settings_string_ << amountRangeCheckBox_->GetValue() << ";";
-    settings_string_ << amountMinEdit_->GetValue() << ";";
-    settings_string_ << amountRangeCheckBox_->GetValue() << ";";
-    settings_string_ << amountMaxEdit_->GetValue() << ";";
-
-    settings_string_ << transNumberCheckBox_->GetValue() << ";";
-    settings_string_ << transNumberEdit_->GetValue() << ";";
-
-    settings_string_ << notesCheckBox_->GetValue() << ";";
-    settings_string_ << notesEdit_->GetValue() << ";";
-
-    wxLogDebug("%s", to_json()); //TODO
-
+        wxString::Format("TRANSACTIONS_FILTER_%d", id)
+        , "{}");
     return settings_string_;
 }
 
@@ -835,7 +701,8 @@ void mmFilterTransactionsDialog::setAccountToolTip(const wxString& tip) const
 
 void mmFilterTransactionsDialog::clearSettings()
 {
-    settings_string_ = "0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;0;;";
+    settings_string_.Clear();
+    settings_string_ = L"{}";
     dataToControls();
 }
 void mmFilterTransactionsDialog::datePresetMenuSelected( wxCommandEvent& event )
@@ -1074,52 +941,148 @@ void mmFilterTransactionsDialog::getDescription(mmHTMLBuilder &hb)
 wxString mmFilterTransactionsDialog::to_json()
 {
     json::Object o;
-    o["ACCOUNT_YN"] = json::Boolean(accountCheckBox_->IsChecked());
-    o["ACCOUNT"] = json::String(accountDropDown_->GetStringSelection().ToStdString());
-    o["DATE_YN"] = json::Boolean(dateRangeCheckBox_->IsChecked());
-    o["DATE1"] = json::String(fromDateCtrl_->GetValue().FormatISODate().ToStdString());
-    o["DATE2"] = json::String(toDateControl_->GetValue().FormatISODate().ToStdString());
-    o["PAYEE_YN"] = json::Boolean(payeeCheckBox_->IsChecked());
+    o.Clear();
+    if (accountCheckBox_->IsChecked())
+        o["ACCOUNT"] = json::String(accountDropDown_->GetStringSelection().ToStdString());
+    if (dateRangeCheckBox_->IsChecked())
+    {
+        o["DATE1"] = json::String(fromDateCtrl_->GetValue().FormatISODate().ToStdString());
+        o["DATE2"] = json::String(toDateControl_->GetValue().FormatISODate().ToStdString());
+    }
+    if (payeeCheckBox_->IsChecked())
+    {
+        wxString wxpayee = cbPayee_->GetValue();
+        //TODO: Here is big problem for UTF8 usage!!! wxString::ToStdString() does not working
+        //for some strings like Kubalíková
+        //but cyrillic working Николай = Николай (РќРёРєРѕР»Р°Р№)
+        //Kubalíková ----> KubalГ­kovГЎ
+        wxCharBuffer buffer = wxpayee.ToUTF8();
+        std::string str_std(buffer.data(), strlen(buffer.data()));
+        std::string test = wxpayee.ToStdString();
+        wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s"
+            , wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
 
-    wxString wxpayee = cbPayee_->GetValue();
-    //TODO: Here is big problem for UTF8 usage!!! wxString::ToStdString() does not working
-    //for some strings like Kubalíková
-    //but cyrillic working Николай = Николай (РќРёРєРѕР»Р°Р№) 
-    //Kubalíková ----> KubalГ­kovГЎ
-    wxCharBuffer buffer = wxpayee.ToUTF8();
-    std::string str_std(buffer.data(), strlen(buffer.data()));
-    std::string test = wxpayee.ToStdString();
-    wxLogDebug("utf8: %s|to_chars %s|from_chars %s|std::string: %s"
-        , wxpayee, str_std, wxString(str_std.c_str(), wxConvUTF8), test);
+        o["PAYEE"] = json::String(test);
+    }
+    if (categoryCheckBox_->IsChecked())
+    {
+        o["SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
+        o["CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdString());
+    }
+    if (statusCheckBox_->IsChecked())
+    {
+        int item = choiceStatus_->GetSelection();
+        wxString status;
+        if (0 <= item && item < Model_Checking::all_status().size())
+            status = Model_Checking::all_status()[item];
+        o["STATUS"] = json::String(status.ToStdString());
+    }
+    if (typeCheckBox_->IsChecked())
+    {
+        wxString type = wxString()
+            << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
+            << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
+            << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
+            << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
+        o["TYPE"] = json::String(type.ToStdString());
+    }
 
-    o["PAYEE"] = json::String(test);
-    o["CATEGORY_YN"] = json::Boolean(categoryCheckBox_->IsChecked());
-    o["SIMILAR_YN"] = json::Boolean(bSimilarCategoryStatus_);
-    o["CATEGORY"] = json::String(btnCategory_->GetLabel().ToStdString());
-    o["STATUS_YN"] = json::Boolean(statusCheckBox_->IsChecked());
-    int item = choiceStatus_->GetSelection();
-    wxString status;
-    if (0 <= item && item < Model_Checking::all_status().size())
-        status = Model_Checking::all_status()[item];
-    o["STATUS"] = json::String(status.ToStdString());
-    wxString type = wxString()
-        << (cbTypeWithdrawal_->GetValue() && typeCheckBox_->GetValue() ? "W" : "")
-        << (cbTypeDeposit_->GetValue() && typeCheckBox_->GetValue() ? "D" : "")
-        << (cbTypeTransferTo_->GetValue() && typeCheckBox_->GetValue() ? "T" : "")
-        << (cbTypeTransferFrom_->GetValue() && typeCheckBox_->GetValue() ? "F" : "");
-    o["TYPE_YN"] = json::Boolean(typeCheckBox_->IsChecked());
-    o["TYPE"] = json::String(type.ToStdString());
-    double amount1, amount2;
-    amountMinEdit_->GetDouble(amount1);
-    amountMaxEdit_->GetDouble(amount2);
-    o["AMOUNT_YN"] = json::Boolean(amountRangeCheckBox_->IsChecked());
-    o["AMOUNT1"] = json::Number(amount1);
-    o["AMOUNT2"] = json::Number(amount2);
-    o["NUMBER_YN"] = json::Boolean(transNumberCheckBox_->IsChecked());
-    o["NUMBER"] = json::String(transNumberEdit_->GetValue().ToStdString());
-    o["NOTES_YN"] = json::Boolean(notesCheckBox_->IsChecked());
-    o["NOTES"] = json::String(notesEdit_->GetValue().ToStdString());
+    if (amountRangeCheckBox_->IsChecked())
+    {
+        o["AMOUNT"] = json::Boolean(true);
+        double amount1, amount2;
+        amountMinEdit_->GetDouble(amount1);
+        amountMaxEdit_->GetDouble(amount2);
+        o["AMOUNT1"] = json::Number(amount1);
+        o["AMOUNT2"] = json::Number(amount2);
+    }
+    if (transNumberCheckBox_->IsChecked())
+        o["NUMBER"] = json::String(transNumberEdit_->GetValue().ToStdString());
+    if (notesCheckBox_->IsChecked())
+        o["NOTES"] = json::String(notesEdit_->GetValue().ToStdString());
+
     std::stringstream ss;
     json::Writer::Write(o, ss);
     return ss.str();
+}
+
+void mmFilterTransactionsDialog::from_json(const wxString &data)
+{
+    //return;
+    json::Object o;
+    std::stringstream ss;
+    ss << data.ToStdString();
+    json::Reader::Read(o, ss);
+
+    //Account
+    accountCheckBox_->SetValue(!wxString(json::String(o["ACCOUNT"])).empty());
+    accountDropDown_->Enable(accountCheckBox_->IsChecked());
+    accountDropDown_->SetStringSelection(wxString(json::String(o["ACCOUNT"])));
+
+    //Dates
+    dateRangeCheckBox_->SetValue(!wxString(json::String(o["DATE"])).empty() || !wxString(json::String(o["DATE2"])).empty());
+    fromDateCtrl_->Enable(dateRangeCheckBox_->IsChecked());
+    fromDateCtrl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o["DATE1"]))));
+    toDateControl_->Enable(dateRangeCheckBox_->IsChecked());
+    toDateControl_->SetValue(mmGetStorageStringAsDate(wxString(json::String(o["DATE2"]))));
+
+    //Payee
+    payeeCheckBox_->SetValue(!wxString(json::String(o["PAYEE"])).empty());
+    cbPayee_->Enable(payeeCheckBox_->IsChecked());
+    cbPayee_->SetValue(wxString(json::String(o["PAYEE"])));
+
+    //Category
+    wxString value = wxString(json::String(o["CATEGORY"]));
+    categoryCheckBox_->SetValue(!value.empty());
+    btnCategory_->Enable(categoryCheckBox_->IsChecked());
+    similarCategCheckBox_->SetValue(json::Boolean(o["SIMILAR_YN"]));
+    similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
+    wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
+    Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());
+    if (category)
+        categID_ = category->CATEGID;
+    Model_Subcategory::Data* sub_category = 0;
+    wxString subcateg_name = categ_token.GetNextToken().Trim(false);
+    if (!subcateg_name.IsEmpty())
+    {
+        sub_category = Model_Subcategory::instance().get(subcateg_name, categID_);
+        if (sub_category)
+            subcategID_ = sub_category->SUBCATEGID;
+    }
+    btnCategory_->SetLabel(Model_Category::full_name(categID_, subcategID_));
+
+    //Status
+    statusCheckBox_->SetValue(!wxString(json::String(o["STATUS"])).empty());
+    choiceStatus_->Enable(payeeCheckBox_->IsChecked());
+    choiceStatus_->SetStringSelection(wxGetTranslation(wxString(json::String(o["STATUS"]))));
+
+    //Type
+    wxString type = wxString(json::String(o["TYPE"]));
+    typeCheckBox_->SetValue(!type.empty());
+    cbTypeWithdrawal_->SetValue(type.Contains("W"));
+    cbTypeWithdrawal_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeDeposit_->SetValue(type.Contains("D"));
+    cbTypeDeposit_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeTransferTo_->SetValue(type.Contains("T"));
+    cbTypeTransferTo_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeTransferFrom_->SetValue(type.Contains("F"));
+    cbTypeTransferFrom_->Enable(typeCheckBox_->IsEnabled());
+
+    //Amounts
+    amountRangeCheckBox_->SetValue(json::Boolean(o["AMOUNT"]));
+    amountMinEdit_->Enable(amountRangeCheckBox_->IsChecked());
+    amountMinEdit_->SetValue(json::Number(o["AMOUNT1"]));
+    amountMaxEdit_->Enable(amountRangeCheckBox_->IsChecked());
+    amountMaxEdit_->SetValue(json::Number(o["AMOUNT2"]));
+
+    //Number
+    transNumberCheckBox_->SetValue(!wxString(json::String(o["NUMBER"])).empty());
+    transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
+    transNumberEdit_->SetValue(wxString(json::String(o["NUMBER"])));
+
+    //Notes
+    notesCheckBox_->SetValue(!wxString(json::String(o["NOTES"])).empty());
+    notesEdit_->Enable(notesCheckBox_->IsChecked());
+    notesEdit_->SetValue(wxString(json::String(o["NOTES"])));
+
 }

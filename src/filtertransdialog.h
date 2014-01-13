@@ -175,7 +175,6 @@ private:
     void CreateControls();
     void dataToControls();
     wxString GetStoredSettings(int id);
-    wxString GetCurrentSettings();
 
     /// wxEVT_COMMAND_CHECKBOX_CLICKED event handler for ID_CHECKBOXACCOUNT
     void OnCheckboxClick( wxCommandEvent& event );
@@ -189,10 +188,10 @@ private:
     void datePresetMenuSelected(wxCommandEvent& event);
     void OnPayeeUpdated(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
-    bool get_next_value(wxStringTokenizer& tkz, wxString& value);
 
     void OnCategs(wxCommandEvent& event);
     wxString to_json();
+    void from_json(const wxString &data);
 
     /// Should we show tooltips?
     static bool ShowToolTips();
