@@ -117,6 +117,7 @@ private:
     int transaction_id_; //The transaction ID. NULL if new transaction
 
     bool skip_account_init_;
+    bool skip_amount_init_;
     bool skip_payee_init_;
     bool skip_status_init_;
     bool skip_notes_init_;

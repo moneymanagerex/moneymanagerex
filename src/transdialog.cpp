@@ -61,7 +61,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_status_init_(false)
     , skip_notes_init_(false)
     , skip_category_init_(false)
-
+    , skip_amount_init_(false)
 {
     if (transaction_id_)
     {
@@ -169,17 +169,22 @@ void mmTransDialog::dataToControls()
 
     //Advanced
     cAdvanced_->Enable(transfer);
-    cAdvanced_->SetValue(advancedToTransAmountSet_);
+    cAdvanced_->SetValue(advancedToTransAmountSet_ && transfer);
 
     //Amounts
-    if (transaction_->TRANSAMOUNT)
-        textAmount_->SetValue(transaction_->TRANSAMOUNT, Model_Account::instance().get(accountID_));
-    if (transaction_->TOTRANSAMOUNT && cAdvanced_->IsChecked())
+    if (!skip_amount_init_)
+    {
+        if (transaction_->TRANSAMOUNT)
+            textAmount_->SetValue(transaction_->TRANSAMOUNT, Model_Account::instance().get(accountID_));
+        skip_amount_init_ = true;
+    }
+
+    if (transaction_->TOTRANSAMOUNT && advancedToTransAmountSet_)
         toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, Model_Account::instance().get(accountID_));
     if (!transfer)
         toTextAmount_->SetValue("");
 
-    toTextAmount_->Enable(cAdvanced_->IsChecked());
+    toTextAmount_->Enable(cAdvanced_->IsChecked() && transfer);
     textAmount_->UnsetToolTip();
     toTextAmount_->UnsetToolTip();
 
@@ -552,7 +557,6 @@ bool mmTransDialog::validateData()
     }
 
     bool bTransfer = (Model_Checking::type(transaction_) == Model_Checking::TRANSFER);
-    advancedToTransAmountSet_ = cAdvanced_->IsChecked();
 
     if (cSplit_->IsChecked())
     {
@@ -574,7 +578,7 @@ bool mmTransDialog::validateData()
             return false;
         }
     }
-    else
+    else //non split
     {
         if (!textAmount_->checkValue(transaction_->TRANSAMOUNT))
         {
@@ -591,17 +595,6 @@ bool mmTransDialog::validateData()
     }
 
     transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
-    if (bTransfer)
-    {
-        if (advancedToTransAmountSet_)
-        {
-            if (!toTextAmount_->checkValue(transaction_->TRANSAMOUNT))
-            {
-                return false;
-            }
-        }
-    }
-
     if (!bTransfer)
     {
         wxString payee_name = cbPayee_->GetValue();
@@ -641,6 +634,12 @@ bool mmTransDialog::validateData()
     }
     else
     {
+        if (advancedToTransAmountSet_)
+        {
+            if (!toTextAmount_->checkValue(transaction_->TOTRANSAMOUNT))
+                return false;
+        }
+
         Model_Account::Data *to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
         if (!to_account || transaction_->TOACCOUNTID == newAccountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
@@ -722,7 +721,7 @@ void mmTransDialog::SetDialogTitle(const wxString& title)
     this->SetTitle(title);
 }
 
-//** --------------=Event handlers=----------------- **//
+//** --------------=Event handlers=------------------ **//
 void mmTransDialog::OnDateChanged(wxDateEvent& event)
 {
     //get weekday name
@@ -890,7 +889,6 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
         }
         else
         {
-            toTextAmount_->SetValue("");
             transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
         }
     }
@@ -898,8 +896,6 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
     {
         transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
     }
-
-    toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT);
 
     dataToControls();
 }
