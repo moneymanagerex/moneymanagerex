@@ -131,6 +131,13 @@ void Test_Relocate_Payee::ShowMessage(wxString msg)
 
 void Test_Relocate_Payee::test_dialog()
 {
+    int supermarket_id = Model_Payee::instance().get("Supermarket")->id();
+    int coles_id = Model_Payee::instance().get("Coles")->id();
+
+    CPPUNIT_ASSERT(Model_Checking::instance().get(1)->PAYEEID == supermarket_id);
+    CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->PAYEEID == supermarket_id);
+
+
     ShowMessage("Please relocate Supermarket to Coles\n\nThis should result in 2 records being changed.\n");
     relocatePayeeDialog dlg(m_frame);
     if (dlg.ShowModal() == wxID_OK)
@@ -141,10 +148,6 @@ void Test_Relocate_Payee::test_dialog()
     }
 
     CPPUNIT_ASSERT(dlg.updatedPayeesCount() == 2);
-
-    //TODO: Provide simple accessors in payee table.
-    // cannot do this yet.
-    // Model_Checking::instance().get(1)->PAYEEID == Model_Payee::instance().PayeeName("Aldi");
-
-
+    CPPUNIT_ASSERT(Model_Checking::instance().get(1)->PAYEEID == coles_id);
+    CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->PAYEEID == coles_id);
 }

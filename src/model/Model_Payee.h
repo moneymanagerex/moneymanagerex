@@ -43,7 +43,10 @@ public:
 
 public:
     Data_Set FilterPayees(const wxString& payee_pattern);
+
+    /** Return the Data record for the given payee name*/
     Data* get(const wxString& name);
+
     bool remove(int id);
 
     wxArrayString all_payee_names();
