@@ -22,8 +22,9 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "framebase_tests.h"
 #include "cpu_timer.h"
 //----------------------------------------------------------------------------
-#include "test_relocate_category.h"
-#include "relocatecategorydialog.h"
+#include "test_filtertrans_dialog.h"
+#include "filtertransdialog.h"
+//----------------------------------------------------------------------------
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 
@@ -31,22 +32,21 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
 #include "model/Model_Billsdeposits.h"
-#include "model/Model_Budget.h"
 #include "mmOption.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
+CPPUNIT_TEST_SUITE_REGISTRATION( Test_FilterTrans_Dialog );
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
-Test_Relocate_Category::Test_Relocate_Category()
+Test_FilterTrans_Dialog::Test_FilterTrans_Dialog()
 {
     s_instance_count++;
     m_this_instance = s_instance_count;
-    m_test_db_filename = "test_db_relocate_category.mmb";
+    m_test_db_filename = "test_db_filtertrans.mmb";
 }
 
-Test_Relocate_Category::~Test_Relocate_Category()
+Test_FilterTrans_Dialog::~Test_FilterTrans_Dialog()
 {
     s_instance_count--;
     if (s_instance_count < 1)
@@ -55,7 +55,7 @@ Test_Relocate_Category::~Test_Relocate_Category()
     }
 }
 
-void Test_Relocate_Category::setUp()
+void Test_FilterTrans_Dialog::setUp()
 {
     CpuTimer time("Startup");
     m_frame = new TestFrameBase(m_this_instance);
@@ -70,17 +70,13 @@ void Test_Relocate_Category::setUp()
     Model_Setting::instance(&m_test_db);
     mmIniOptions::instance().loadOptions();
 
+    Model_Account::instance(&m_test_db);
     Model_Payee::instance(&m_test_db);
-
-    // subcategory must be initialized before category
     Model_Subcategory::instance(&m_test_db);
     Model_Category::instance(&m_test_db);
     Model_Checking::instance(&m_test_db);
-    Model_Splittransaction::instance(&m_test_db);
 
     Model_Billsdeposits::instance(&m_test_db);
-    Model_Budgetsplittransaction::instance(&m_test_db);
-    Model_Budget::instance(&m_test_db);
 
     int cat_id_insurance = Model_Category::instance().get("Insurance")->id();
     int subcat_id_auto = Model_Subcategory::instance().get("Auto", cat_id_insurance)->id();
@@ -93,77 +89,53 @@ void Test_Relocate_Category::setUp()
         checking_entry->SUBCATEGID = subcat_id_auto;
         Model_Checking::instance().save(checking_entry);
 
-        Model_Splittransaction::Data* split_trans_entry = Model_Splittransaction::instance().create();
-        split_trans_entry->CATEGID = cat_id_insurance;
-        split_trans_entry->SUBCATEGID = subcat_id_auto;
-        Model_Splittransaction::instance().save(split_trans_entry);
-
-        Model_Budgetsplittransaction::Data* budget_split_trans_entry = Model_Budgetsplittransaction::instance().create();
-        budget_split_trans_entry->CATEGID = cat_id_insurance;
-        budget_split_trans_entry->SUBCATEGID = subcat_id_auto;
-        Model_Budgetsplittransaction::instance().save(budget_split_trans_entry);
-
         Model_Billsdeposits::Data* bill_entry = Model_Billsdeposits::instance().create();
         bill_entry->CATEGID = cat_id_insurance;
         bill_entry->SUBCATEGID = subcat_id_auto;
         Model_Billsdeposits::instance().save(bill_entry);
-
-        Model_Budget::Data* budget_entry = Model_Budget::instance().create();
-        budget_entry->CATEGID = cat_id_insurance;
-        budget_entry->SUBCATEGID = subcat_id_auto;
-        Model_Budget::instance().save(budget_entry);
-
         Model_Payee::Data* payee_entry = Model_Payee::instance().create();
         payee_entry->PAYEENAME = "Aldi";
         payee_entry->CATEGID = cat_id_insurance;
         payee_entry->SUBCATEGID = subcat_id_auto;
         Model_Payee::instance().save(payee_entry);
+
+        payee_entry = Model_Payee::instance().clone(payee_entry);
+        payee_entry->PAYEENAME = "Supermarket";
+        Model_Payee::instance().save(payee_entry);
+        payee_entry = Model_Payee::instance().clone(payee_entry);
+
+        payee_entry = Model_Payee::instance().clone(payee_entry);
+        payee_entry->PAYEENAME = "Coles";
+        Model_Payee::instance().save(payee_entry);
+        
+        payee_entry = Model_Payee::instance().clone(payee_entry);
+        payee_entry->PAYEENAME = "Woolworths";
+        Model_Payee::instance().save(payee_entry);
     }
     Model_Checking::instance().Commit();
 }
 
-void Test_Relocate_Category::tearDown()
+void Test_FilterTrans_Dialog::tearDown()
 {
     m_test_db.Close();
     delete m_frame;
 }
 
-void Test_Relocate_Category::ShowMessage(wxString msg)
+void Test_FilterTrans_Dialog::ShowMessage(wxString msg)
 {
     msg = msg << "\nInstance # " << m_this_instance;
-    wxMessageBox(msg, "Test: Relocate Category Dialog", wxOK, wxTheApp->GetTopWindow());
+    wxMessageBox(msg, "Test: FilterTrans Dialog", wxOK, wxTheApp->GetTopWindow());
 }
 
-void Test_Relocate_Category::test_dialog()
+void Test_FilterTrans_Dialog::test_dialog()
 {
-    ShowMessage("Please relocate Insurance/Auto to Automobile/Registration\n\nThis should result in 6 records being changed.\n");
-    relocateCategoryDialog dlg(m_frame);
+    //ShowMessage("Please relocate Insurance/Auto to Automobile/Registration\n\nThis should result in 6 records being changed.\n");
+    ShowMessage("No data in tables yet.\n\nStill under construction.\n");
+    mmFilterTransactionsDialog dlg(m_frame);
     if (dlg.ShowModal() == wxID_OK)
     {
         wxString msg = "Test Complete: ";
-        msg << dlg.updatedCategoriesCount() << " records changed.";
+        //msg << dlg.updatedCategoriesCount() << " records changed.";
         ShowMessage(msg);
     }
-
-    int cat_id_auto = Model_Category::instance().get("Automobile")->id();
-    int subcat_id_reg = Model_Subcategory::instance().get("Registration", cat_id_auto)->id();
-
-    CPPUNIT_ASSERT(dlg.updatedCategoriesCount() == 6);
-    CPPUNIT_ASSERT(Model_Checking::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Checking::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Splittransaction::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Splittransaction::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Budgetsplittransaction::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Budgetsplittransaction::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Budget::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Budget::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Payee::instance().get("Aldi")->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Payee::instance().get("Aldi")->SUBCATEGID == subcat_id_reg);
 }
