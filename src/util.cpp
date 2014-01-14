@@ -404,16 +404,18 @@ void mmMessageCategoryInvalid(wxButton *button)
     button->SetFocus();
 }
 
-void mmMessageAccountInvalid(wxComboBox *comboBox)
+void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
 {
     const wxString errorHeader = _("Invalid Account ");
-    const wxString errorMessage = (_("Account not selected for this transaction.")
-        + "\n"
+    wxString errorMessage = _("Account not selected for this transaction.");
+    if (transfer) errorMessage = _("Specify which account the transfer is going to");
+
+    errorMessage += ( "\n"
         + _("Please, choose an account.")
         + "\n");
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor((comboBox->FindWindowById(comboBox->GetId())));
+    tip.ShowFor((wxWindow*) comboBox);
 }
 
 void mmMessagePayeeInvalid(wxComboBox *comboBox)
@@ -425,5 +427,5 @@ void mmMessagePayeeInvalid(wxComboBox *comboBox)
         + "\n");
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
-    tip.ShowFor((comboBox->FindWindowById(comboBox->GetId()))); //FIXME: does not working
+    tip.ShowFor((wxWindow*)comboBox);
 }

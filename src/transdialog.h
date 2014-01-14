@@ -53,7 +53,7 @@ public:
     );
 
     void SetDialogTitle(const wxString& title);
-    int getAccountID() { return newAccountID_; }
+    int getAccountID() { return accountID_; }
     int getToAccountID() { return transaction_->TOACCOUNTID; }
     int getTransactionID() { return transaction_->TRANSID; }
 
@@ -111,8 +111,7 @@ private:
 
     Model_Checking::Data * transaction_;
     Model_Splittransaction::Data_Set m_local_splits;
-    int accountID_; //The transaction account ID
-    int newAccountID_;
+    int accountID_; //The transaction account ID //TODO: may be Model_Account ?
     int referenceAccountID_; // used for transfer transactions
     int transaction_id_; //The transaction ID. NULL if new transaction
 

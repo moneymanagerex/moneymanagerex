@@ -197,7 +197,6 @@ void mmTransDialog::dataToControls()
     {
         cbAccount_->SetEvtHandlerEnabled(false);
         cbAccount_->Clear();
-        newAccountID_ = accountID_;
         Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
 
         for (const auto &account : accounts)
@@ -251,7 +250,7 @@ void mmTransDialog::dataToControls()
             if (payee)
                 cbPayee_->ChangeValue(payee->PAYEENAME);
         }
-        else
+        else //transfer
         {
             textAmount_->SetToolTip(amountTransferTip_);
             toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
@@ -260,6 +259,15 @@ void mmTransDialog::dataToControls()
                 cSplit_->SetValue(false);
                 m_local_splits.clear();
             }
+
+            Model_Category::Data_Set categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
+            if (!categs.empty())
+            {
+                transaction_->SUBCATEGID = -1;
+                transaction_->CATEGID = categs.begin()->CATEGID;
+                bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, -1));
+            }
+
             for (const auto & entry : Model_Account::instance().all_checking_account_names())
                 cbPayee_->Append(entry);
             Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
@@ -548,7 +556,7 @@ bool mmTransDialog::validateData()
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
     if (account && Model_Account::type(account) != Model_Account::INVESTMENT)
     {
-        newAccountID_ = account->ACCOUNTID;
+        accountID_ = account->ACCOUNTID;
     }
     else
     {
@@ -596,19 +604,19 @@ bool mmTransDialog::validateData()
         payee->SUBCATEGID = transaction_->SUBCATEGID;
         Model_Payee::instance().save(payee);
     }
-    else
+    else //transfer
     {
+        Model_Account::Data *to_account = Model_Account::instance().get(cbPayee_->GetValue());
+        if (!to_account || to_account->ACCOUNTID == accountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
+        {
+            mmMessageAccountInvalid(cbPayee_, true);
+            return false;
+        }
+        transaction_->TOACCOUNTID = to_account->ACCOUNTID;
         if (advancedToTransAmountSet_)
         {
             if (!toTextAmount_->checkValue(transaction_->TOTRANSAMOUNT))
                 return false;
-        }
-
-        Model_Account::Data *to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
-        if (!to_account || transaction_->TOACCOUNTID == newAccountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
-        {
-            mmMessageAccountInvalid(cbPayee_);
-            return false;
         }
 
         transaction_->PAYEEID = -1;
@@ -690,6 +698,23 @@ void mmTransDialog::changeFocus(wxChildFocusEvent& event)
         textNotes_->SetValue("");
         textNotes_->SetForegroundColour(notesColour_);
     }
+
+    const Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
+    const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
+    if (account)
+    {
+        currency = Model_Account::currency(account);
+        accountID_ = account->ACCOUNTID;
+    }
+    textAmount_->GetDouble(transaction_->TRANSAMOUNT);
+    if (transaction_->TRANSAMOUNT) textAmount_->SetValue(transaction_->TRANSAMOUNT, currency);
+
+    if (advancedToTransAmountSet_)
+    {
+        toTextAmount_->GetDouble(transaction_->TOTRANSAMOUNT);
+        if (transaction_->TOTRANSAMOUNT) toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, currency);
+    }
+
     event.Skip();
 }
 
@@ -711,7 +736,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
     
-    SplitTransactionDialog dlg(this, &m_local_splits, transaction_type_->GetSelection(), newAccountID_);
+    SplitTransactionDialog dlg(this, &m_local_splits, transaction_type_->GetSelection(), accountID_);
     dlg.ShowModal();
     transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
     skip_category_init_ = false;
@@ -764,8 +789,7 @@ void mmTransDialog::OnTransTypeChanged(wxCommandEvent& event)
 void mmTransDialog::OnAccountUpdated(wxCommandEvent& /*event*/)
 {
     const Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
-    if (account) newAccountID_ = account->ACCOUNTID;
-    wxLogDebug("%i", newAccountID_);
+    if (account) accountID_ = account->ACCOUNTID;
 }
 
 void mmTransDialog::OnPayeeUpdated(wxCommandEvent& event)
@@ -896,6 +920,7 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
     else
     {
         transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
+        toTextAmount_->SetValue("");
     }
 
     dataToControls();
@@ -954,8 +979,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     transaction_->NOTES = textNotes_->GetValue();
     transaction_->TRANSACTIONNUMBER = textNumber_->GetValue();
 
-    transaction_->ACCOUNTID = newAccountID_;
-    transaction_->TOACCOUNTID = transaction_->TOACCOUNTID;
+    transaction_->ACCOUNTID = accountID_;
     transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
 
     if (!m_local_splits.empty())
