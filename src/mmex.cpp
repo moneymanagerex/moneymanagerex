@@ -111,6 +111,7 @@
 #include "../resources/issues.xpm"
 #include "../resources/main-setup.xpm"
 #include "../resources/moneyaccount.xpm"
+#include "../resources/money.xpm"
 #include "../resources/new_custom_sql.xpm"
 #include "../resources/new.xpm"
 #include "../resources/newacct.xpm"
@@ -270,6 +271,12 @@ bool OnInitImpl(mmGUIApp* app)
     if (valy >= sys_screen_y ) valy = sys_screen_y - valh;
 
     app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
+
+    new wxSplashScreen(wxBitmap(money_xpm),
+        wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT,
+        4000, app->m_frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+        wxSIMPLE_BORDER | wxSTAY_ON_TOP);
+
     bool ok = app->m_frame->Show();
 
     if (isMax) app->m_frame->Maximize(true);
