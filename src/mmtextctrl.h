@@ -48,15 +48,15 @@ public:
     {
         this->SetValue(Model_Currency::toString(value, currency_, precision));
     }
-    void SetValue(double value, const Model_Account::Data* account)
+    void SetValue(double value, const Model_Account::Data* account, int precision = -1)
     {
-        currency_ = Model_Currency::instance().get(account->CURRENCYID);
-        this->SetValue(Model_Account::toString(value, account));
+        if (account) currency_ = Model_Currency::instance().get(account->CURRENCYID);
+        this->SetValue(value, precision > -1 ? precision : log10(currency_->SCALE));
     }
-    void SetValue(double value, const Model_Account::Data* account, int precision)
+    void SetValue(double value, const Model_Currency::Data* currency, int precision = -1)
     {
-        currency_ = Model_Currency::instance().get(account->CURRENCYID);
-        this->SetValue(value, precision);
+        currency_ = (currency ? currency : Model_Currency::GetBaseCurrency());
+        this->SetValue(value, precision > -1 ? precision : log10(currency_->SCALE));
     }
     void Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
     {

@@ -863,30 +863,27 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
 {
     advancedToTransAmountSet_ = cAdvanced_->IsChecked();
 
-    wxString amountStr = textAmount_->GetValue().Trim();
     if (advancedToTransAmountSet_)
     {
-        if (amountStr.IsEmpty())
+        if (textAmount_->GetValue().Trim().IsEmpty())
         {
-            amountStr = "1";
             transaction_->TRANSAMOUNT = 1;
             transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
-            textAmount_->SetValue(amountStr);
+            textAmount_->SetValue(1);
         }
 
-        toTextAmount_->GetDouble(transaction_->TRANSAMOUNT);
-
-        const Model_Account::Data* to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
+        const Model_Account::Data* to_account = Model_Account::instance().get(cbPayee_->GetValue());
         if (to_account)
         {
-            const Model_Account::Data* from_account = Model_Account::instance().get(accountID_);
+            const Model_Account::Data* from_account = Model_Account::instance().get(cbAccount_->GetValue());
             const Model_Currency::Data* from_currency = Model_Currency::GetBaseCurrency();
             if (from_account) from_currency = Model_Account::currency(from_account);
             double rateFrom = from_currency->BASECONVRATE;
-            double rateTo = Model_Account::currency(to_account)->BASECONVRATE;
+            const Model_Currency::Data* to_currency = Model_Account::currency(to_account);
+            double rateTo = to_currency->BASECONVRATE;
             textAmount_->GetDouble(transaction_->TRANSAMOUNT);
             double toAmount = rateFrom * transaction_->TRANSAMOUNT / rateTo;
-            toTextAmount_->SetValue(toAmount, from_account);
+            toTextAmount_->SetValue(toAmount, to_account);
             transaction_->TOTRANSAMOUNT = toAmount;
         }
         else
