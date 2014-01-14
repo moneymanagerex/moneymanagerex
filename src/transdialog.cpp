@@ -385,9 +385,9 @@ void mmTransDialog::CreateControls()
             transaction_type_->Append(wxGetTranslation(i), new wxStringClientData(i));
     }
 
-    cAdvanced_ = new wxCheckBox(this,
-        ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("Advanced"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    cAdvanced_ = new wxCheckBox(this
+        , ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("&Advanced")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
 
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
 
@@ -884,12 +884,15 @@ void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
             if (from_account) from_currency = Model_Account::currency(from_account);
             double rateFrom = from_currency->BASECONVRATE;
             double rateTo = Model_Account::currency(to_account)->BASECONVRATE;
-            double convToBaseFrom = rateFrom * transaction_->TRANSAMOUNT;
-            transaction_->TOTRANSAMOUNT = convToBaseFrom / rateTo;
+            textAmount_->GetDouble(transaction_->TRANSAMOUNT);
+            double toAmount = rateFrom * transaction_->TRANSAMOUNT / rateTo;
+            toTextAmount_->SetValue(toAmount, from_account);
+            transaction_->TOTRANSAMOUNT = toAmount;
         }
         else
         {
             transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
+            toTextAmount_->SetValue(textAmount_->GetValue());
         }
     }
     else

@@ -446,7 +446,7 @@ void mmBDDialog::CreateControls()
 
     transaction_type_->SetSelection(0);
     transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
-    cAdvanced_ = new wxCheckBox(transactionPanel, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("Advanced")
+    cAdvanced_ = new wxCheckBox(transactionPanel, ID_DIALOG_TRANS_ADVANCED_CHECKBOX, _("&Advanced")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cAdvanced_->SetValue(false);
     cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
