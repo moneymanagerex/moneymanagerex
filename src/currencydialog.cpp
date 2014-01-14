@@ -46,6 +46,7 @@ mmCurrencyDialog::~mmCurrencyDialog()
 mmCurrencyDialog::mmCurrencyDialog(wxWindow* parent, Model_Currency::Data * currency)
 : m_currency(currency)
   , scale_(2)
+  , baseConvRate_()
 {
     long style = wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX;
     Create(parent, wxID_STATIC, _("Currency Manager"), wxDefaultPosition, wxSize(500, 300), style);
@@ -132,7 +133,7 @@ void mmCurrencyDialog::fillControls()
         scale_ = log10(m_currency->SCALE);
         wxString scale_value = wxString::Format("%i", scale_);
         scaleTx_->SetValue(scale_value);
-        baseConvRate_->SetValue(wxString::Format("%.4f", m_currency->BASECONVRATE));
+        baseConvRate_->SetValue(m_currency->BASECONVRATE, 4);
         m_currencySymbol->SetValue(m_currency->CURRENCY_SYMBOL);
     }
     else
@@ -243,12 +244,9 @@ void mmCurrencyDialog::CreateControls()
 
 void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
 {
-    double convRate;
-    if (!wxNumberFormatter::FromString(baseConvRate_->GetValue(), &convRate) || convRate < 0)
-    {
-        wxMessageBox(_("Invalid Conversion Rate"), _("Invalid Entry"), wxOK | wxICON_ERROR);
+    double baseConvRate;
+    if (!baseConvRate_->checkValue(baseConvRate))
         return;
-    }
 
     wxString name = m_currencyName->GetValue();
     if (name.empty()) return;
@@ -276,19 +274,18 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
     m_currency->UNIT_NAME = unitTx_->GetValue();
     m_currency->CENT_NAME = centTx_->GetValue();
     m_currency->SCALE = static_cast<int>(pow(10,scal));
-    m_currency->BASECONVRATE = convRate;
+    m_currency->BASECONVRATE = baseConvRate;
     m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
     Model_Currency::instance().save(m_currency);
-
-    EndModal(wxID_OK);
+    fillControls();
 }
 
 void mmCurrencyDialog::onTextEntered(wxCommandEvent& event)
 {
     if (event.GetId() == baseConvRate_->GetId())
     {
-        baseConvRate_->Calculate(m_currency, 4);
+        baseConvRate_->Calculate(Model_Currency::GetBaseCurrency(), 4);
     }
 }
