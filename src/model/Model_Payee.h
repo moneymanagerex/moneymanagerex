@@ -25,6 +25,7 @@
 class Model_Payee : public Model<DB_Table_PAYEE_V1>
 {
 public:
+    using Model<DB_Table_PAYEE_V1>::remove;
     using Model<DB_Table_PAYEE_V1>::get;
 
 public:
