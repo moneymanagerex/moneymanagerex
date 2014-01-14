@@ -67,14 +67,13 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
-    void OnPayeeUpdated(wxCommandEvent& event);
-    void OnAccountUpdated(wxCommandEvent& event);
+    void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
-    void changeFocus(wxChildFocusEvent& event);
+    void onFocusChange(wxChildFocusEvent& event);
     void onTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void activateSplitTransactionsDlg();
@@ -97,6 +96,7 @@ private:
     wxStaticText* account_label_;
     wxStaticText* payee_label_;
 
+    bool m_transfer;
     bool categUpdated_;
     bool advancedToTransAmountSet_;
 
