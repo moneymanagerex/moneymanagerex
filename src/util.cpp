@@ -25,6 +25,7 @@
 #include "singleton.h"
 #include "model/Model_Setting.h"
 #include <wx/sound.h>
+#include <wx/richtooltip.h>
 
 //----------------------------------------------------------------------------
 
@@ -126,19 +127,6 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
     }
 
     return lang;
-}
-
-void mmShowErrorMessage(wxWindow *parent
-    , const wxString &message, const wxString &messageheader)
-{
-    wxMessageDialog msgDlg(parent, message, messageheader, wxOK|wxICON_ERROR);
-    msgDlg.ShowModal();
-}
-
-void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
-{
-    wxString msg = wxString::Format(_("Entry %s is invalid"), message);
-    mmShowErrorMessage(parent, msg, _("Invalid Entry"));
 }
 
 wxString inQuotes(wxString label, wxString& delimiter)
@@ -388,4 +376,54 @@ std::map<wxString,wxString> date_formats_regex()
     date_regex["%Y %m %d"] = wxString::Format("^%s %s %s$", yyyy, mm, dd);
 
     return date_regex;
+}
+
+/* Error Mesaages --------------------------------------------------------*/
+void mmShowErrorMessage(wxWindow *parent
+    , const wxString &message, const wxString &messageheader)
+{
+    wxMessageDialog msgDlg(parent, message, messageheader, wxOK | wxICON_ERROR);
+    msgDlg.ShowModal();
+}
+
+void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
+{
+    wxString msg = wxString::Format(_("Entry %s is invalid"), message);
+    mmShowErrorMessage(parent, msg, _("Invalid Entry"));
+}
+
+void mmMessageCategoryInvalid(wxButton *button)
+{
+    wxRichToolTip tip(_("Invalid Category Entered "),
+        _("No any categories selected for this transaction.")
+        + "\n"
+        + _("Please, choose a category.")
+        + "\n");
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor(button);
+    button->SetFocus();
+}
+
+void mmMessageAccountInvalid(wxComboBox *comboBox)
+{
+    const wxString errorHeader = _("Invalid Account ");
+    const wxString errorMessage = (_("Account not selected for this transaction.")
+        + "\n"
+        + _("Please, choose an account.")
+        + "\n");
+    wxRichToolTip tip(errorHeader, errorMessage);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor((comboBox->FindWindowById(comboBox->GetId())));
+}
+
+void mmMessagePayeeInvalid(wxComboBox *comboBox)
+{
+    const wxString errorHeader = _("Invalid Payee ");
+    const wxString errorMessage = (_("Payee not selected for this transaction.")
+        + "\n"
+        + _("Please, choose a payee.")
+        + "\n");
+    wxRichToolTip tip(errorHeader, errorMessage);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor((comboBox->FindWindowById(comboBox->GetId()))); //FIXME: does not working
 }

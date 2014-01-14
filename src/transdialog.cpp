@@ -552,47 +552,11 @@ bool mmTransDialog::validateData()
     }
     else
     {
-        mmShowErrorMessageInvalid(this, _("Account"));
+        mmMessageAccountInvalid(cbAccount_);
         return false;
     }
 
     bool bTransfer = (Model_Checking::type(transaction_) == Model_Checking::TRANSFER);
-
-    if (cSplit_->IsChecked())
-    {
-        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
-        if (transaction_->TRANSAMOUNT < 0.0)
-        {
-            if (bTransfer) {
-                if (transaction_->TRANSAMOUNT < 0)
-                    transaction_->TRANSAMOUNT = - transaction_->TRANSAMOUNT;
-            } else {
-                mmShowErrorMessageInvalid(this, _("Amount"));
-                return false;
-            }
-        }
-
-        if (m_local_splits.empty())
-        {
-            mmShowErrorMessageInvalid(this, _("Category"));
-            return false;
-        }
-    }
-    else //non split
-    {
-        if (!textAmount_->checkValue(transaction_->TRANSAMOUNT))
-        {
-            return false;
-        }
-
-        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
-        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
-        if (!category || !(subcategory || transaction_->SUBCATEGID < 0))
-        {
-            mmShowErrorMessageInvalid(this, _("Category"));
-            return false;
-        }
-    }
 
     transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
     if (!bTransfer)
@@ -600,7 +564,7 @@ bool mmTransDialog::validateData()
         wxString payee_name = cbPayee_->GetValue();
         if (payee_name.IsEmpty())
         {
-            mmShowErrorMessageInvalid(this, _("Payee"));
+            mmMessagePayeeInvalid(cbPayee_);
             return false;
         }
 
@@ -643,13 +607,50 @@ bool mmTransDialog::validateData()
         Model_Account::Data *to_account = Model_Account::instance().get(transaction_->TOACCOUNTID);
         if (!to_account || transaction_->TOACCOUNTID == newAccountID_ || Model_Account::type(to_account) == Model_Account::INVESTMENT)
         {
-            mmShowErrorMessageInvalid(this, _("To Account"));
-            cbPayee_->SetFocus();
+            mmMessageAccountInvalid(cbPayee_);
             return false;
         }
 
         transaction_->PAYEEID = -1;
     }
+
+    if (cSplit_->IsChecked())
+    {
+        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
+        if (transaction_->TRANSAMOUNT < 0.0)
+        {
+            if (bTransfer) {
+                if (transaction_->TRANSAMOUNT < 0)
+                    transaction_->TRANSAMOUNT = -transaction_->TRANSAMOUNT;
+            }
+            else {
+                mmShowErrorMessageInvalid(this, _("Amount"));
+                return false;
+            }
+        }
+
+        if (m_local_splits.empty())
+        {
+            mmMessageCategoryInvalid(bCategory_);
+            return false;
+        }
+    }
+    else //non split
+    {
+        if (!textAmount_->checkValue(transaction_->TRANSAMOUNT))
+        {
+            return false;
+        }
+
+        Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
+        Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
+        if (!category || !(subcategory || transaction_->SUBCATEGID < 0))
+        {
+            mmMessageCategoryInvalid(bCategory_);
+            return false;
+        }
+    }
+
     return true;
 }
 

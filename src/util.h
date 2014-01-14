@@ -103,6 +103,9 @@ private:
 
 void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message);
 void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxString &messageheader);
+void mmMessageCategoryInvalid(wxButton *button);
+void mmMessageAccountInvalid(wxComboBox *comboBox);
+void mmMessagePayeeInvalid(wxComboBox *comboBox);
 
 wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting = true);
 
