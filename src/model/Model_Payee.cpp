@@ -71,8 +71,7 @@ Model_Payee::Data* Model_Payee::get(const wxString& name)
 bool Model_Payee::remove(int id)
 {
     if (is_used(id)) return false;
-
-    return this->remove(id);
+    return this->remove(id, db_);
 }
 
 wxArrayString Model_Payee::all_payee_names()
