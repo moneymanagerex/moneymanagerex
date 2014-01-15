@@ -46,11 +46,15 @@ mmPrintableBaseSpecificAccounts::~mmPrintableBaseSpecificAccounts()
 
 void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
 {
-    wxArrayString accountArray;
     wxArrayString* selections = new wxArrayString();
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME)) accountArray.Add(account.ACCOUNTNAME);
+    wxArrayString accounts;
+    for (const auto &account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    {
+        if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
+        accounts.Add(account.ACCOUNTNAME);
+    }
 
-    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), reportName_, accountArray);
+    wxMultiChoiceDialog mcd(0, _("Choose Accounts"), reportName_, accounts);
     wxButton* ok = (wxButton*) mcd.FindWindow(wxID_OK);
     if (ok) ok->SetLabel(_("&OK "));
     wxButton* ca = (wxButton*) mcd.FindWindow(wxID_CANCEL);
@@ -62,7 +66,7 @@ void mmPrintableBaseSpecificAccounts::getSpecificAccounts()
 
         for (size_t i = 0; i < arraySel.size(); ++i)
         {
-            selections->Add(accountArray.Item(arraySel[i]));
+            selections->Add(accounts.Item(arraySel[i]));
         }
     }
 
