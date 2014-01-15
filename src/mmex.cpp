@@ -79,7 +79,7 @@
 #include "model/Model_Report.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
-#include "../3rd/mongoose/mongoose.h"
+#include "mongoose/mongoose.h"
 
 #include <wx/defs.h>
 //----------------------------------------------------------------------------
