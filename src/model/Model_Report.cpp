@@ -76,20 +76,44 @@ wxString Model_Report::get_html(const Data* r)
     report("TEMPLATEPATH") = r->TEMPLATEPATH;
 
     loop_t contents;
-
-    wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
-    wxLogDebug(stmt.GetSQL());
     loop_t errors;
     row_t error;
-    if (!stmt.IsReadOnly())
+
+    //Check if script is read only
+    int rows;
+    wxString sqlScriptException;
+    try
     {
-        error("ERROR") = r->SQLCONTENT + " will modify database! aborted!";
+        rows = this->db_->ExecuteScalar(wxString::Format("select count (*) from (\n%s\n)", r->SQLCONTENT));
+    }
+    catch (const wxSQLite3Exception& e)
+    {
+        sqlScriptException = e.GetMessage().Lower();
+    }
+
+    if (sqlScriptException.Contains("update") ||
+        sqlScriptException.Contains("delete") ||
+        sqlScriptException.Contains("insert"))
+    {
+        error("ERROR") = r->SQLCONTENT + "\nwill modify database! aborted!";
         errors += error;
     }
     else
     {
-        wxSQLite3ResultSet q = stmt.ExecuteQuery();
-        int columnCount = q.GetColumnCount();
+        wxSQLite3ResultSet q;
+        bool ok = true;
+        try
+        {
+            q = this->db_->ExecuteQuery(r->SQLCONTENT);
+        }
+        catch (const wxSQLite3Exception& e)
+        {
+            error("ERROR") = wxString::Format(_("Error: %s"), e.GetMessage());
+            errors += error;
+            ok = false;
+        }
+
+        int columnCount = ok ? q.GetColumnCount() : 0;
 
         loop_t columns;
         for (int i = 0; i < columnCount; ++ i)
@@ -116,7 +140,7 @@ wxString Model_Report::get_html(const Data* r)
             errors += error;
         }
 
-        while (q.NextRow())
+        while (ok && q.NextRow())
         {
             Record r;
             for (int i = 0; i < columnCount; ++ i)
@@ -151,7 +175,7 @@ wxString Model_Report::get_html(const Data* r)
             for (const auto& item : r) row(item.first) = item.second;
             contents += row;
         }
-        q.Finalize();
+        if (ok) q.Finalize();
 
         Record result;
         if (lua_status) 
