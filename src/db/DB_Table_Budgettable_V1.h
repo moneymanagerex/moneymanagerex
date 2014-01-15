@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-02 10:04:41.532000.
+ *          AUTO GENERATED at 2014-01-16 02:43:09.708000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -244,7 +244,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not save");
+                wxLogError("can not save BUDGETTABLE_V1");
                 return false;
             }
 
@@ -256,7 +256,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not remove");
+                wxLogError("can not remove BUDGETTABLE_V1");
                 return false;
             }
             

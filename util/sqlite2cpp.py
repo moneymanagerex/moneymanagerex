@@ -321,7 +321,7 @@ struct DB_Table_%s : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not save");
+                wxLogError("can not save %s");
                 return false;
             }
 
@@ -333,7 +333,7 @@ struct DB_Table_%s : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not remove");
+                wxLogError("can not remove %s");
                 return false;
             }
             
@@ -342,7 +342,7 @@ struct DB_Table_%s : public DB_Table
 
         void destroy() { delete this; }
     };
-'''
+''' % (self._table.upper(), self._table.upper())
         s +='''
     enum
     {
