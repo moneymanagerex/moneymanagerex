@@ -81,7 +81,7 @@ wxString Model_Report::get_html(const Data* r)
 
     //Check if script is read only
     wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
-    wxLogDebug(stmt.GetSQL());
+    wxLogDebug("%s", stmt.GetSQL());
     LuaGlue state;
     bool lua_status = false;
 
