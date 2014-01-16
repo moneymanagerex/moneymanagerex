@@ -19,8 +19,9 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
-#include "framebase_tests.h"
 #include "cpu_timer.h"
+#include "db_init_model.h"
+#include "framebase_tests.h"
 //----------------------------------------------------------------------------
 #include "test_filtertrans_dialog.h"
 #include "filtertransdialog.h"
@@ -61,64 +62,16 @@ void Test_FilterTrans_Dialog::setUp()
     m_frame = new TestFrameBase(m_this_instance);
     m_frame->Show(true);
     m_test_db.Open(m_test_db_filename);
-
-    // Initialise the required tables
-    Model_Infotable::instance(&m_test_db);
-
-    // For the purpose of this test, we will create the
-    // settings table in the main database.
-    Model_Setting::instance(&m_test_db);
-    mmIniOptions::instance().loadOptions();
-
-    Model_Account::instance(&m_test_db);
-    Model_Payee::instance(&m_test_db);
-    Model_Subcategory::instance(&m_test_db);
-    Model_Category::instance(&m_test_db);
-    Model_Checking::instance(&m_test_db);
-
-    Model_Billsdeposits::instance(&m_test_db);
-
-    int cat_id_insurance = Model_Category::instance().get("Insurance")->id();
-    int subcat_id_auto = Model_Subcategory::instance().get("Auto", cat_id_insurance)->id();
-
-    Model_Checking::instance().Begin();
-    {
-        // Set up the categories in the other tables.
-        Model_Checking::Data* checking_entry = Model_Checking::instance().create();
-        checking_entry->CATEGID = cat_id_insurance;
-        checking_entry->SUBCATEGID = subcat_id_auto;
-        Model_Checking::instance().save(checking_entry);
-
-        Model_Billsdeposits::Data* bill_entry = Model_Billsdeposits::instance().create();
-        bill_entry->CATEGID = cat_id_insurance;
-        bill_entry->SUBCATEGID = subcat_id_auto;
-        Model_Billsdeposits::instance().save(bill_entry);
-        Model_Payee::Data* payee_entry = Model_Payee::instance().create();
-        payee_entry->PAYEENAME = "Aldi";
-        payee_entry->CATEGID = cat_id_insurance;
-        payee_entry->SUBCATEGID = subcat_id_auto;
-        Model_Payee::instance().save(payee_entry);
-
-        payee_entry = Model_Payee::instance().clone(payee_entry);
-        payee_entry->PAYEENAME = "Supermarket";
-        Model_Payee::instance().save(payee_entry);
-        payee_entry = Model_Payee::instance().clone(payee_entry);
-
-        payee_entry = Model_Payee::instance().clone(payee_entry);
-        payee_entry->PAYEENAME = "Coles";
-        Model_Payee::instance().save(payee_entry);
-        
-        payee_entry = Model_Payee::instance().clone(payee_entry);
-        payee_entry->PAYEENAME = "Woolworths";
-        Model_Payee::instance().save(payee_entry);
-    }
-    Model_Checking::instance().Commit();
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
+    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_FilterTrans_Dialog::tearDown()
 {
     m_test_db.Close();
     delete m_frame;
+    delete m_dbmodel;
 }
 
 void Test_FilterTrans_Dialog::ShowMessage(wxString msg)
@@ -129,12 +82,44 @@ void Test_FilterTrans_Dialog::ShowMessage(wxString msg)
 
 void Test_FilterTrans_Dialog::test_dialog()
 {
+    CpuTimer Start("Entries");
+
+    Model_Checking::instance().Begin();
+    {
+        // Add some payees.
+        m_dbmodel->Add_Payee("Supermarket");
+        m_dbmodel->Add_Payee("Aldi");
+        m_dbmodel->Add_Payee("Coles");
+        m_dbmodel->Add_Payee("Woolworths");
+
+        // Add some accounts
+        m_dbmodel->Add_Account("Savings", Model_Account::TYPE::CHECKING);
+        m_dbmodel->Add_Account("Cheque", Model_Account::TYPE::CHECKING);
+        m_dbmodel->Add_Account("Mastercard", Model_Account::TYPE::CHECKING);
+
+        // Put some data in each account
+        m_dbmodel->Set_AccountName("Cheque");
+        m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 100.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+
+        m_dbmodel->Set_AccountName("Savings");
+        m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+
+        m_dbmodel->Set_AccountName("Mastercard");
+        m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    }
+    Model_Checking::instance().Commit();
+
     //ShowMessage("Please relocate Insurance/Auto to Automobile/Registration\n\nThis should result in 6 records being changed.\n");
-    ShowMessage("No data in tables yet.\n\nStill under construction.\n");
     mmFilterTransactionsDialog dlg(m_frame);
     if (dlg.ShowModal() == wxID_OK)
     {
-        wxString msg = "Test Complete: ";
+        wxString msg = "Test Complete: No data checking performed.\n\nStill under construction.\n";
         //msg << dlg.updatedCategoriesCount() << " records changed.";
         ShowMessage(msg);
     }

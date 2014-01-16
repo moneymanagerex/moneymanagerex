@@ -18,11 +18,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #pragma once;
+
 //----------------------------------------------------------------------------
 #include <wx/intl.h>
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
 #include "model/Model_Currency.h"
+
+class DB_Init_Model;
 
 class Test_Model_Currency : public CPPUNIT_NS::TestFixture
 {
@@ -39,17 +42,14 @@ public:
     void setUp();
     void tearDown();
 
+private:
+    wxString m_test_db_filename;
+    wxSQLite3Database m_test_db;
+    DB_Init_Model* m_dbmodel;
+
+private:
     void test_TwoDigitPrecision();
     void test_FourDigitPrecision();
     void test_FormatDoubleToCurrency();
 
-private:
-    /// Prevents the use of the copy constructor.
-    Test_Model_Currency(const Test_Model_Currency &copy);
-
-    /// Prevents the use of the copy operator.
-    void operator =(const Test_Model_Currency &copy);
-
-    wxString m_test_db_filename;
-    wxSQLite3Database m_test_db;
 };

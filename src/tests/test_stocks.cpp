@@ -19,16 +19,17 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
+#include "db_init_model.h"
+#include "framebase_tests.h"
 //----------------------------------------------------------------------------
 #include "test_stocks.h"
-#include "framebase_tests.h"
 #include "stockdialog.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Account.h"
 #include "model/Model_Infotable.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Stock);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_Stock);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------
@@ -49,42 +50,30 @@ Test_Stock::~Test_Stock()
 
 void Test_Stock::setUp()
 {
-    frame = new TestFrameBase(instance_count);
-    frame->Show(true);
+    m_frame = new TestFrameBase(instance_count);
+    m_frame->Show(true);
    
     m_test_db.Open(m_test_db_filename);
-
-    // Initialise the required tables
-    Model_Infotable::instance(&m_test_db);
-    Model_Currency::instance(&m_test_db);
-    Model_Account::instance(&m_test_db);
-    Model_Stock::instance(&m_test_db);
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Stocks(&m_test_db);
+    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_Stock::tearDown()
 {
     m_test_db.Close();
-    delete frame;
+    delete m_frame;
+    delete m_dbmodel;
 }
 
 void Test_Stock::test_dialog_add()
 {
-    // Set the base currency
-    Model_Currency::Data base_currency = Model_Currency::instance().GetCurrencyRecord("AUD");
-    Model_Currency::instance().SetBaseCurrency(&base_currency);
-
-    // initialise an account name in the account table
-    Model_Account::Data* account = Model_Account::instance().create();
-    account->ACCOUNTNAME = "ACME Corp";
-    account->ACCOUNTTYPE = Model_Account::instance().all_type()[Model_Account::INVESTMENT];
-    account->STATUS = Model_Account::instance().all_status()[Model_Account::OPEN];
-    account->CURRENCYID = base_currency.id();
-    Model_Account::instance().save(account);
-
-    int account_id = Model_Account::instance().get("ACME Corp")->id();
+    m_dbmodel->Add_Account("AMP", Model_Account::INVESTMENT);
+    int account_id = m_dbmodel->Add_Account("ACME Corp", Model_Account::INVESTMENT);
+    m_dbmodel->Add_Account("Qwerty Keyboards", Model_Account::INVESTMENT);
 
     // create a new entry using the dialog.
-    mmStockDialog* dlg = new mmStockDialog(frame, 0, account_id);
+    mmStockDialog* dlg = new mmStockDialog(m_frame, 0, account_id);
 
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
@@ -99,8 +88,7 @@ void Test_Stock::test_dialog_add()
 
 void Test_Stock::test_dialog_edit()
 {
-    Model_Stock stock = Model_Stock::instance();
-    Model_Stock::Data* my_entry = stock.get(1);
+    Model_Stock::Data* my_entry = Model_Stock::instance().get(1);
     CPPUNIT_ASSERT(my_entry);
 
     double commission = my_entry->COMMISSION;
@@ -109,7 +97,7 @@ void Test_Stock::test_dialog_edit()
     double purchase_price = my_entry->PURCHASEPRICE;
 
     // create a new entry using the dialog.
-    mmStockDialog* dlg = new mmStockDialog(frame, my_entry, my_entry->HELDAT);
+    mmStockDialog* dlg = new mmStockDialog(m_frame, my_entry, my_entry->HELDAT);
     int id = dlg->ShowModal();
     if (id == wxID_CANCEL)
     {
@@ -117,7 +105,7 @@ void Test_Stock::test_dialog_edit()
     }
     if (id == wxID_OK)
     {
-        Model_Stock::Data* my_new_entry = stock.get(1);
+        Model_Stock::Data* my_new_entry = Model_Stock::instance().get(1);
 
         CPPUNIT_ASSERT(my_new_entry->COMMISSION == commission);
         CPPUNIT_ASSERT(my_new_entry->CURRENTPRICE == current_price);

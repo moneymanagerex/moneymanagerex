@@ -19,12 +19,13 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
+#include  "cpu_timer.h"
 //----------------------------------------------------------------------------
 #include "test_model_checking.h"
-#include "model/Model_Checking.h"
+#include "db_init_model.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Checking);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Checking);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------
@@ -49,7 +50,9 @@ void Test_Model_Checking::setUp()
     m_test_db.Open(m_test_db_filename);
     m_test_db.SetCommitHook(m_commit_hook);
 
-    Model_Checking::instance(&m_test_db);
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
+    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_Model_Checking::tearDown()
@@ -57,43 +60,49 @@ void Test_Model_Checking::tearDown()
     m_test_db.SetCommitHook(0);
     m_test_db.Close();
     delete m_commit_hook;
+    delete m_dbmodel;
 }
 
 void Test_Model_Checking::add_entries()
 {
-    Model_Checking tran = Model_Checking::instance();
-    // Add a list of transactions in the database.
+    CpuTimer Start("Entries");
 
-    Model_Checking::Data* entry;
-    entry = tran.create();
-    entry->TRANSCODE = tran.all_type()[Model_Checking::DEPOSIT];
-    entry->TRANSAMOUNT = 1000;
-    tran.save(entry);
+    m_dbmodel->Add_Payee("Supermarket");
+    m_dbmodel->Add_Payee("Aldi");
+    m_dbmodel->Add_Payee("Coles");
+    m_dbmodel->Add_Payee("Woolworths");
 
-    entry = tran.create();
-    entry->TRANSCODE = tran.all_type()[Model_Checking::DEPOSIT];
-    entry->TRANSAMOUNT = 2000;
-    tran.save(entry);
+    m_dbmodel->Add_Account("Savings", Model_Account::TYPE::CHECKING);
+    m_dbmodel->Add_Account("Cheque", Model_Account::TYPE::CHECKING);
+    m_dbmodel->Add_Account("Mastercard", Model_Account::TYPE::CHECKING);
 
-    entry = tran.create();
-    entry->TRANSCODE = tran.all_type()[Model_Checking::WITHDRAWAL];
-    entry->TRANSAMOUNT = 500;
-    tran.save(entry);
+
+    m_dbmodel->Set_AccountName("Cheque");
+
+    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 100.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
 }
 
-void Test_Model_Checking::test_balance()
+void Test_Model_Checking::add_entries_savings()
 {
-    Model_Checking tran = Model_Checking::instance();
-    // Add a list of transactions in the database.
+    CpuTimer Start("Entries_Savings");
 
-    CPPUNIT_ASSERT_EQUAL("Test", "TODO");
+    m_dbmodel->Set_AccountName("Savings");
+
+    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 200.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
 }
 
-void Test_Model_Checking::delete_entries()
+void Test_Model_Checking::add_entries_mc()
 {
-    Model_Checking tran = Model_Checking::instance();
-    // Add a list of transactions in the database.
+    CpuTimer Start("Entries_mc");
 
-    CPPUNIT_ASSERT_EQUAL("Test", "TODO");
+    m_dbmodel->Set_AccountName("Mastercard");
+
+    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
 }
 //--------------------------------------------------------------------------

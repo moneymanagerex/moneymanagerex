@@ -20,9 +20,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
+#include "db_init_model.h"
+#include "framebase_tests.h"
 //----------------------------------------------------------------------------
 #include "test_billsdeposits.h"
-#include "framebase_tests.h"
 #include "billsdepositsdialog.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Setting.h"
@@ -30,7 +31,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_BillsDeposits);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_BillsDeposits);
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
@@ -57,32 +58,15 @@ void Test_BillsDeposits::setUp()
     m_frame->Show(true);
    
     m_test_db.Open(m_test_db_filename);
-
-    // Initialise the required tables
-    Model_Infotable::instance(&m_test_db);
-    Model_Currency::instance(&m_test_db);
-    Model_Account::instance(&m_test_db);
-    Model_Budgetsplittransaction::instance(&m_test_db);
-    Model_Billsdeposits::instance(&m_test_db);
-
-    // subcategory must be initialized before category
-    Model_Subcategory::instance(&m_test_db);
-    Model_Category::instance(&m_test_db);
-    Model_Payee::instance(&m_test_db);
-
-    Model_Checking::instance(&m_test_db);
-    Model_Splittransaction::instance(&m_test_db);
-
-    // For the purpose of this test, we will create the
-    // settings table in the main database.
-    Model_Setting::instance(&m_test_db);
-    mmIniOptions::instance().loadOptions();
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
 }
 
 void Test_BillsDeposits::tearDown()
 {
     m_test_db.Close();
     delete m_frame;
+    delete m_dbmodel;
 }
 
 void Test_BillsDeposits::ShowMessage(wxString msg)

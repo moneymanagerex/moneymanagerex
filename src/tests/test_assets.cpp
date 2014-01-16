@@ -19,12 +19,12 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
+#include "db_init_model.h"
 //----------------------------------------------------------------------------
 #include "test_assets.h"
-#include "model/Model_Asset.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Asset);
+CPPUNIT_TEST_SUITE_REGISTRATION(Test_Asset);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------
@@ -46,51 +46,34 @@ Test_Asset::~Test_Asset()
 void Test_Asset::setUp()
 {
     m_test_db.Open(m_test_db_filename);
-
-    Model_Asset::instance(&m_test_db);
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Assets(&m_test_db);
 }
 
 void Test_Asset::tearDown()
 {
     m_test_db.Close();
+    delete m_dbmodel;
 }
 
 void Test_Asset::test_add()
 {
-    Model_Asset asset = Model_Asset::instance();
+    wxDateTime asset_date = wxDateTime::Today().Subtract(wxDateSpan::Years(5));
+    int asset_id_1 = m_dbmodel->Add_Asset("Stop Watch", asset_date, 1000, Model_Asset::TYPE_JEWELLERY, Model_Asset::RATE_APPRECIATE, 20.0, "One of 3");
+    CPPUNIT_ASSERT(asset_id_1 == 1);
 
-    Model_Asset::Data* entry = asset.create();
-    CPPUNIT_ASSERT(entry->id() == -1);
+    int asset_id_2 = m_dbmodel->Add_Asset("Stop Watch", asset_date, 1000, Model_Asset::TYPE_JEWELLERY, Model_Asset::RATE_DEPRECIATE, 20.0, "Two of 3");
+    CPPUNIT_ASSERT(asset_id_2 == 2);
 
-    entry->ASSETNAME = "Stop watch";
-    entry->ASSETTYPE = Model_Asset::all_type()[Model_Asset::TYPE_JEWELLERY];
-    wxDateTime date = wxDateTime::Today().Subtract(wxDateSpan::Years(2));
-    entry->STARTDATE = date.FormatISODate();
-    entry->VALUE = 2000;
-    entry->VALUECHANGE = Model_Asset::all_rate()[Model_Asset::RATE_NONE];
-    entry->VALUECHANGERATE = 20.00;
-    entry->NOTES = "One of 3";
-    int asset_id = asset.save(entry);
-    CPPUNIT_ASSERT(asset_id == 1);
+    int asset_id_3 = m_dbmodel->Add_Asset("Stop Watch", asset_date, 1000, Model_Asset::TYPE_JEWELLERY, Model_Asset::RATE_NONE, 20.0, "Three of 3");
+    CPPUNIT_ASSERT(asset_id_3 == 3);
 
-    entry = asset.clone(entry);
-    CPPUNIT_ASSERT(entry->id() == -1);
-    entry->VALUECHANGE = Model_Asset::all_rate()[Model_Asset::RATE_APPRECIATE];
-    entry->NOTES = "two of 3";
-    asset_id = asset.save(entry);
-    CPPUNIT_ASSERT(asset_id == 2);
-
-    entry = asset.clone(entry);
-    CPPUNIT_ASSERT(entry->id() == -1);
-    entry->VALUECHANGE = Model_Asset::all_rate()[Model_Asset::RATE_DEPRECIATE];
-    entry->NOTES = "Three of 3";
-    asset_id = asset.save(entry);
-    CPPUNIT_ASSERT(asset_id == 3);
+    Model_Asset::Data_Set assets = Model_Asset::instance().all();
+    CPPUNIT_ASSERT(assets.size() == 3);
 }
 
 void Test_Asset::test_appreciate()
 {
-    Model_Asset asset = Model_Asset::instance();
     //TODO Finalise the test
 
     CPPUNIT_ASSERT_EQUAL("Test", "TODO");
@@ -98,7 +81,6 @@ void Test_Asset::test_appreciate()
 
 void Test_Asset::test_depreciate()
 {
-    Model_Asset asset = Model_Asset::instance();
     //TODO Finalise the test
 
     CPPUNIT_ASSERT_EQUAL("Test", "TODO");
@@ -106,9 +88,10 @@ void Test_Asset::test_depreciate()
 
 void Test_Asset::test_remove()
 {
-    Model_Asset asset = Model_Asset::instance();
     //TODO Finalise the test
 
-    CPPUNIT_ASSERT_EQUAL("Test", "TODO");
+    Model_Asset::instance().remove(3);
+    Model_Asset::Data_Set assets = Model_Asset::instance().all();
+    CPPUNIT_ASSERT(assets.size() == 2);
 }
 //--------------------------------------------------------------------------

@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
 class TestFrameBase;
+class DB_Init_Model;
 
 class Test_Relocate_Category : public CPPUNIT_NS::TestFixture
 {
@@ -39,10 +40,12 @@ public:
 private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
+    DB_Init_Model* m_dbmodel;
     TestFrameBase *m_frame;
-
-    void ShowMessage(wxString msg);
     int m_this_instance;
+
+private:    
+    void ShowMessage(wxString msg);
 
     // Test cases
     void test_dialog();

@@ -41,10 +41,12 @@ public:
 private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
+    DB_Init_Model* m_dbmodel;
     TestFrameBase *m_frame;
-
-    void ShowMessage(wxString msg);
     int m_this_instance;
+
+private:
+    void ShowMessage(wxString msg);
 
     // Test cases
     void test_dialog_add();

@@ -38,19 +38,20 @@ public:
     void setUp();
     void tearDown();
 
-    void test_Init_Base_Currency();
-    void test_Init_Payee_Data();
+private:
+    wxString m_test_db_filename;
+    wxSQLite3Database m_test_db;
+    Test_Hooks* m_test_callback;
 
 private:
+    void test_Init_Base_Currency();
+    void test_Init_Payee_Data();
+    
     /// Prevents the use of the copy constructor.
     Test_Callback_Hooks(const Test_Callback_Hooks &copy);
 
     /// Prevents the use of the copy operator.
     void operator =(const Test_Callback_Hooks &copy);
-
-    wxString m_test_db_filename;
-    wxSQLite3Database m_test_db;
-    Test_Hooks* m_test_callback;
 };
 //----------------------------------------------------------------------------
 

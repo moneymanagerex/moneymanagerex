@@ -23,12 +23,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "mmOption.h"
 
+class DB_Init_Model;
+
 class Test_Model_Checking : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_Model_Checking);
     CPPUNIT_TEST(add_entries);
-    CPPUNIT_TEST(test_balance);
-    CPPUNIT_TEST(delete_entries);
+    CPPUNIT_TEST(add_entries_savings);
+    CPPUNIT_TEST(add_entries_mc);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -42,10 +44,11 @@ public:
 private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
+    DB_Init_Model* m_dbmodel;
     CommitCallbackHook* m_commit_hook;
 
     // Test cases
     void add_entries();
-    void test_balance();
-    void delete_entries();
+    void add_entries_savings();
+    void add_entries_mc();
 };

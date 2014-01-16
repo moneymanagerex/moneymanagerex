@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
+#include "db_init_model.h"
 //----------------------------------------------------------------------------
 #include "test_model_currency.h"
 
@@ -47,14 +48,14 @@ void Test_Model_Currency::setUp()
 {
     CpuTimer time("Setup");
     m_test_db.Open(m_test_db_filename);
-
-    Model_Currency::instance(&m_test_db);
-    Model_Infotable::instance(&m_test_db);
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
 }
 
 void Test_Model_Currency::tearDown()
 {
     m_test_db.Close();
+    delete m_dbmodel;
 }
 
 void Test_Model_Currency::test_TwoDigitPrecision()

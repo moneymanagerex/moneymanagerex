@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
+#include "db_init_model.h"
 //----------------------------------------------------------------------------
 #include "test_relocate_payee.h"
 #include "framebase_tests.h"
@@ -30,7 +31,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Billsdeposits.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Payee );
+CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Payee );
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
@@ -56,63 +57,46 @@ void Test_Relocate_Payee::setUp()
     m_frame = new TestFrameBase(m_this_instance);
     m_frame->Show(true);
     m_test_db.Open(m_test_db_filename);
+    m_dbmodel = new DB_Init_Model();
+    m_dbmodel->Init_Model_Tables(&m_test_db);
+    m_dbmodel->Init_BaseCurrency();
 
-    /**
-    Initialise the required tables.
-
-    The subcategory table must be initialized before the Category table.
-    The tests, require the global instance to remain active for the different
-    instances to access the single entity. If this is not done, the program
-    will crash on exit.
-    */
-    m_subcategory_table = &Model_Subcategory::instance(&m_test_db);
-
-    Model_Category::instance(&m_test_db);
-    Model_Payee::instance(&m_test_db);
-
-    Model_Checking::instance(&m_test_db);
-    Model_Billsdeposits::instance(&m_test_db);
 
     // Initialise some payees
     Model_Payee::instance().Begin();
     {
-        Model_Payee payee_table = Model_Payee::instance();
-        Model_Category category_table = Model_Category::instance();
-        Model_Checking checking_table = Model_Checking::instance();
-        Model_Billsdeposits bill_table = Model_Billsdeposits::instance();
-
-        Model_Payee::Data* payee = payee_table.create();
+        Model_Payee::Data* payee = Model_Payee::instance().create();
         payee->PAYEENAME = "Workshop";
-        payee->CATEGID = category_table.get("Income")->id();
-        payee->SUBCATEGID = m_subcategory_table->get("Salary", payee->CATEGID)->id();
-        payee_table.save(payee);
+        payee->CATEGID = Model_Category::instance().get("Income")->id();
+        payee->SUBCATEGID = Model_Subcategory::instance().get("Salary", payee->CATEGID)->id();
+        Model_Payee::instance().save(payee);
 
         Model_Payee::Data* supermarket = Model_Payee::instance().clone(payee);
         supermarket->PAYEENAME = "Supermarket";
-        supermarket->CATEGID = category_table.get("Food")->id();
-        supermarket->SUBCATEGID = m_subcategory_table->get("Groceries", supermarket->CATEGID)->id();
-        payee_table.save(supermarket);
+        supermarket->CATEGID = Model_Category::instance().get("Food")->id();
+        supermarket->SUBCATEGID = Model_Subcategory::instance().get("Groceries", supermarket->CATEGID)->id();
+        Model_Payee::instance().save(supermarket);
 
-        payee = payee_table.create();
+        payee = Model_Payee::instance().create();
         payee->PAYEENAME = "Aldi";
-        payee_table.save(payee);
+        Model_Payee::instance().save(payee);
 
-        payee = payee_table.create();
+        payee = Model_Payee::instance().create();
         payee->PAYEENAME = "Coles";
-        payee_table.save(payee);
+        Model_Payee::instance().save(payee);
 
-        payee = payee_table.create();
+        payee = Model_Payee::instance().create();
         payee->PAYEENAME = "Woolworths";
-        payee_table.save(payee);
+        Model_Payee::instance().save(payee);
 
         // Set up payees inthe other tables.
-        Model_Checking::Data* checking_entry = checking_table.create();
+        Model_Checking::Data* checking_entry = Model_Checking::instance().create();
         checking_entry->PAYEEID = supermarket->id();
-        checking_table.save(checking_entry);
+        Model_Checking::instance().save(checking_entry);
 
-        Model_Billsdeposits::Data* bill_entry = bill_table.create();
+        Model_Billsdeposits::Data* bill_entry = Model_Billsdeposits::instance().create();
         bill_entry->PAYEEID = supermarket->id();
-        bill_table.save(bill_entry);
+        Model_Billsdeposits::instance().save(bill_entry);
     }
     Model_Payee::instance().Commit();
 }
@@ -121,6 +105,7 @@ void Test_Relocate_Payee::tearDown()
 {
     m_test_db.Close();
     delete m_frame;
+    delete m_dbmodel;
 }
 
 void Test_Relocate_Payee::ShowMessage(wxString msg)
