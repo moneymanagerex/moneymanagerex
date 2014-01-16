@@ -39,17 +39,45 @@ static const char LUA_SAMPLE[] =
     "end\n";
 static const char SQL_SAMPLE[] =
     "SELECT * FROM ASSETS_V1";
-static const char HTT_SAMPLE[] =
-    "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\">"
-    "<html>"
-    "<head>"
-    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>MoneyManagerEx - Report</title>"
-    "<TMPL_INCLUDE NAME=\"summaryassets.tmpl\">"
-    "</head>"
-    "<body>"
+static const wxString HTT_SAMPLE = //TODO:
+    "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\">\n"
+    "<html>\n"
+    "<head>\n"
+    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>MoneyManagerEx - Report</title>\n"
+    "</head>\n"
+    "<body>\n"
+    "Sample <TMPL_VAR TODAY>\n"
+    "<table>\n"
+    "<tr>\n"
+        "<th>Date</th>\n"
+        "<th>Name</th>\n"
+        "<th>Type</th>\n"
+        "<th>Value</th>\n"
+        "<th>Notes</th>\n"
+    "</tr>\n"
+    "<TMPL_LOOP NAME=CONTENTS>\n"
+        "<TMPL_IF NAME=\"__ODD__\">\n"
+            "<tr bgcolor=\"#FFFFFF\" >\n"
+        "<TMPL_ELSE>\n"
+            "<tr bgcolor=\"#E1EDFB\" >\n"
+        "</TMPL_IF>\n"
+        "<td><TMPL_VAR STARTDATE></td>\n"
+        "<td><TMPL_VAR ASSETNAME></td>\n"
+        "<td><TMPL_VAR ASSETTYPE></td>\n"
+        "<td><TMPL_VAR VALUE></td>\n"
+        "<td><TMPL_VAR NOTES></td>\n"
+    "</tr>\n"
+    "</TMPL_LOOP>\n"
+        "<tr>"
+        "<td colspan=3 >Total Assets: </td>"
+        "<td nowrap align=\"right\"><TMPL_VAR ASSET_BALANCE></td>"
+    "</tr>"
+
+    "</table>\n"
+
     //TODO:
-    "</body>"
-    "</html>";
+    "</body>\n"
+    "</html>\n";
 
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
@@ -693,18 +721,27 @@ void mmGeneralReportManager::newReport()
 
 wxString mmGeneralReportManager::openTemplate()
 {
-    wxString sTemplateFileName = wxFileSelector(_("Load file:")
+    wxString sTemplateFileName = wxFileSelector(_("Save template file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
         , "File(*.htt)|*.htt"
-        , wxFD_FILE_MUST_EXIST);
+        , wxFD_SAVE);
     if (!sTemplateFileName.empty())
     {
-        wxTextFile reportFile(sTemplateFileName);
-        if (!reportFile.Open())
+        correctEmptyFileExt("htt", sTemplateFileName);
+        wxTextFile templateFile(sTemplateFileName);
+        if (!templateFile.Exists() && !templateFile.Create())
         {
-            wxString msg = wxString::Format( _("Unable to open file \n%s\n\n"), sTemplateFileName);
-            wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
+            wxMessageBox(_("Unable to write to file."), _("General Report Manager"), wxOK|wxICON_WARNING);
+            return "";
         }
+        else
+        {
+            //clear the contents of the current file
+            templateFile.Clear();
+            templateFile.AddLine(HTT_SAMPLE); //TODO: Line separators
+        }
+        templateFile.Write();
+        templateFile.Close();
     }
     return sTemplateFileName;
 }
