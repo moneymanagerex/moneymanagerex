@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 
 // Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
+//CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------

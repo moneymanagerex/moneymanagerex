@@ -79,7 +79,8 @@ public:
     int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
         Model_Asset::RATE value_change, double value_change_rate, const wxString& notes = "");
 
-    
+    void ShowMessage(wxString msg);
+
 private:
     int m_baseCurrency_id;
     wxString m_account_name;
@@ -87,7 +88,6 @@ private:
     
     bool m_processing_bill;
 
-    void ShowMessage(wxString msg);
 
     int Category_id(const wxString& category);
     int Subcategory_id(const wxString& subcategory, int category_id);

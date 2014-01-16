@@ -80,6 +80,12 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
 
 void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
 {
+    Model_Setting::instance(test_db);
+    mmIniOptions::instance().loadOptions();
+
+    Model_Infotable::instance(test_db);
+    mmOptions::instance().LoadInfotableOptions();
+
     Model_Asset::instance(test_db);
 }
 
@@ -350,9 +356,9 @@ int DB_Init_Model::Add_Asset(const wxString& name, const wxDate& date, double va
     Model_Asset::Data* entry = Model_Asset::instance().create();
     entry->ASSETNAME = name;
     entry->STARTDATE = date.FormatISODate();
-    entry->VALUE = 2000;
-    entry->VALUECHANGE = Model_Asset::all_rate()[Model_Asset::RATE_NONE];
-    entry->VALUECHANGERATE = 20.00;
+    entry->VALUE = value;
+    entry->VALUECHANGE = Model_Asset::all_rate()[value_change];
+    entry->VALUECHANGERATE = value_change_rate;
     entry->ASSETTYPE = Model_Asset::all_type()[asset_type];
     entry->NOTES = notes;
     return Model_Asset::instance().save(entry);

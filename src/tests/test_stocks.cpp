@@ -29,7 +29,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Infotable.h"
 
 // Registers the fixture into the 'registry'
-CPPUNIT_TEST_SUITE_REGISTRATION(Test_Stock);
+//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Stock);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------

@@ -30,17 +30,24 @@ wxBEGIN_EVENT_TABLE(TestFrameBase, wxFrame)
 wxEND_EVENT_TABLE()
 
 TestFrameBase::TestFrameBase(int frame_count)
-: wxFrame(NULL, wxID_ANY, "MMEX Test Frame: Used to test Dialogs", wxPoint(150, 150), wxSize(400, 250))
+: wxFrame(NULL, wxID_ANY, "TEST Base Frame: MMEX Tests", wxPoint(50, 50), wxSize(400, 250))
 {
-    wxMenu *menuFile = new wxMenu;
-    menuFile->AppendSeparator();
+    wxMenu *menuBase = new wxMenu;
     wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append(menuFile, "Dummy Entry");
+    menuBar->Append(menuBase, "Testing...");
     SetMenuBar(menuBar);
     CreateStatusBar();
-    wxString msg = wxString() << "MMEX Testing Frame: " << frame_count;
+    wxString msg = wxString() << "TEST: Base Frame " << frame_count;
     SetStatusText(msg);
 }
+
+TestFrameBase::TestFrameBase(wxWindow* parent, int size_x, int size_y)
+: wxFrame(parent, wxID_ANY, "MMEX Test Frame: Used to test Dialogs", wxPoint(60, 60), wxSize(size_x, size_y))
+{
+    CreateStatusBar();
+}
+
+
 
 TestFrameBase::~TestFrameBase()
 {

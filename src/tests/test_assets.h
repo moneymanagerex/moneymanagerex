@@ -30,6 +30,7 @@ class Test_Asset : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(test_appreciate);
     CPPUNIT_TEST(test_depreciate);
     CPPUNIT_TEST(test_remove);
+    CPPUNIT_TEST(test_assetpanel);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -52,4 +53,5 @@ private:
     void test_appreciate();
     void test_depreciate();
     void test_remove();
+    void test_assetpanel();
 };

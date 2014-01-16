@@ -24,7 +24,13 @@ class wxFrame;
 class TestFrameBase : public wxFrame
 {
 public:
+    /** This is the base frame */
     TestFrameBase(int frame_count);
+    /**
+    Create subsequent frames using parent TestFrameBase
+    * Set the required window size. Base size: (400, 250)
+    */
+    TestFrameBase(wxWindow* parent, int size_x, int size_y);
     ~TestFrameBase();
 
 private:
