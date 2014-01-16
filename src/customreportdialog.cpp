@@ -29,6 +29,28 @@
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
+static const char LUA_SAMPLE[] =
+    "local total_balance = 0\n"
+    "function handle_record(record)\n"
+        "\ttotal_balance = total_balance + record:get('VALUE');\n"
+    "end\n\n"
+    "function complete(result)\n"
+        "\tresult:set('ASSET_BALANCE', total_balance);\n"
+    "end\n";
+static const char SQL_SAMPLE[] =
+    "SELECT * FROM ASSETS_V1";
+static const char HTT_SAMPLE[] =
+    "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\">"
+    "<html>"
+    "<head>"
+    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>MoneyManagerEx - Report</title>"
+    "<TMPL_INCLUDE NAME=\"summaryassets.tmpl\">"
+    "</head>"
+    "<body>"
+    //TODO:
+    "</body>"
+    "</html>";
+
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
@@ -578,7 +600,8 @@ void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty())
+        if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty()
+            && !label.empty())
         {
             report->REPORTNAME = label;
             Model_Report::instance().save(report);
@@ -661,16 +684,8 @@ void mmGeneralReportManager::newReport()
     while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
         report_name = wxString::Format(_("New Report %i"), ++i);
     report->REPORTNAME = report_name;
-    report->SQLCONTENT = "SELECT * FROM ASSETS_V1" ;
-    report->LUACONTENT =
-        "local total_balance = 0\n"
-        "function handle_record(record)\n"
-            "\trecord:set('xxxx', 'YYYYY');\n"
-            "\ttotal_balance = total_balance + record:get('VALUE');\n"
-        "end\n\n"
-        "function complete(result)\n"
-            "\tresult:set('ASSET_BALANCE', total_balance);\n"
-        "end\n";
+    report->SQLCONTENT = SQL_SAMPLE;
+    report->LUACONTENT = LUA_SAMPLE;
     report->TEMPLATEPATH = openTemplate();
     if (!report->TEMPLATEPATH.empty())
         m_selectedReportID = Model_Report::instance().save(report);
@@ -678,20 +693,20 @@ void mmGeneralReportManager::newReport()
 
 wxString mmGeneralReportManager::openTemplate()
 {
-    wxString sScriptFileName = wxFileSelector(_("Load file:")
+    wxString sTemplateFileName = wxFileSelector(_("Load file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
         , "File(*.htt)|*.htt"
         , wxFD_FILE_MUST_EXIST);
-    if (!sScriptFileName.empty())
+    if (!sTemplateFileName.empty())
     {
-        wxTextFile reportFile(sScriptFileName);
+        wxTextFile reportFile(sTemplateFileName);
         if (!reportFile.Open())
         {
-            wxString msg = wxString::Format( _("Unable to open file \n%s\n\n"), sScriptFileName);
+            wxString msg = wxString::Format( _("Unable to open file \n%s\n\n"), sTemplateFileName);
             wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
         }
     }
-    return sScriptFileName;
+    return sTemplateFileName;
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
