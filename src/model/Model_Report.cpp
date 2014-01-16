@@ -80,31 +80,23 @@ wxString Model_Report::get_html(const Data* r)
     row_t error;
 
     //Check if script is read only
-    int rows;
-    wxString sqlScriptException;
-    try
-    {
-        rows = this->db_->ExecuteScalar(wxString::Format("select count (*) from (\n%s\n)", r->SQLCONTENT));
-    }
-    catch (const wxSQLite3Exception& e)
-    {
-        sqlScriptException = e.GetMessage().Lower();
-    }
+    wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
+    wxLogDebug(stmt.GetSQL());
+    LuaGlue state;
+    bool lua_status = false;
 
-    if (sqlScriptException.Contains("update") ||
-        sqlScriptException.Contains("delete") ||
-        sqlScriptException.Contains("insert"))
+    if (!stmt.IsReadOnly())
     {
         error("ERROR") = r->SQLCONTENT + "\nwill modify database! aborted!";
         errors += error;
     }
     else
     {
-        wxSQLite3ResultSet q;
+        wxSQLite3ResultSet q = stmt.ExecuteQuery();
         bool ok = true;
         try
         {
-            q = this->db_->ExecuteQuery(r->SQLCONTENT);
+            q = stmt.ExecuteQuery();
         }
         catch (const wxSQLite3Exception& e)
         {
@@ -113,69 +105,71 @@ wxString Model_Report::get_html(const Data* r)
             ok = false;
         }
 
-        int columnCount = ok ? q.GetColumnCount() : 0;
-
-        loop_t columns;
-        for (int i = 0; i < columnCount; ++ i)
+        if (ok)
         {
-            row_t row;
-            row("COLUMN") = q.GetColumnName(i);
+            int columnCount = q.GetColumnCount();
 
-            columns += row;
-        }
-        report("COLUMNS") = columns;
-
-        LuaGlue state;
-        state.
-            Class<Record>("Record").
-            ctor("new").
-            method("get", &Record::get).
-            method("set", &Record::set).
-            end().open().glue();
-
-        bool lua_status = !r->LUACONTENT.IsEmpty() && state.doString(r->LUACONTENT.ToStdString());
-        if (!lua_status)
-        {
-            error("ERROR") = "failed to doString : " + r->LUACONTENT + " err: " + state.lastError();
-            errors += error;
-        }
-
-        while (ok && q.NextRow())
-        {
-            Record r;
-            for (int i = 0; i < columnCount; ++ i)
+            loop_t columns;
+            for (int i = 0; i < columnCount; ++i)
             {
-                wxString column_name = q.GetColumnName(i);
-                r[column_name.ToStdString()] = q.GetAsString(i);
+                row_t row;
+                row("COLUMN") = q.GetColumnName(i);
+
+                columns += row;
+            }
+            report("COLUMNS") = columns;
+
+            state.
+                Class<Record>("Record").
+                ctor("new").
+                method("get", &Record::get).
+                method("set", &Record::set).
+                end().open().glue();
+
+            lua_status = !r->LUACONTENT.IsEmpty() && state.doString(r->LUACONTENT.ToStdString());
+            if (!lua_status)
+            {
+                error("ERROR") = "failed to doString : " + r->LUACONTENT + " err: " + state.lastError();
+                errors += error;
             }
 
-            if (lua_status) 
+            while (q.NextRow())
             {
-                try
+                Record r;
+                for (int i = 0; i < columnCount; ++i)
                 {
-                    state.invokeVoidFunction("handle_record", &r);
+                    wxString column_name = q.GetColumnName(i);
+                    r[column_name.ToStdString()] = q.GetAsString(i);
                 }
-                catch (const std::runtime_error& e)
+
+                if (lua_status)
                 {
-                    error("ERROR") = std::string("failed to call handle_record : ") + e.what();
-                    errors += error;
+                    try
+                    {
+                        state.invokeVoidFunction("handle_record", &r);
+                    }
+                    catch (const std::runtime_error& e)
+                    {
+                        error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                        errors += error;
+                    }
+                    catch (const std::exception& e)
+                    {
+                        error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                        errors += error;
+                    }
+                    catch (...)
+                    {
+                        error("ERROR") = "failed to call handle_record ";
+                        errors += error;
+                    }
                 }
-                catch (const std::exception& e)
-                {
-                    error("ERROR") = std::string("failed to call handle_record : ") + e.what();
-                    errors += error;
-                }
-                catch (...)
-                {
-                    error("ERROR") = "failed to call handle_record ";
-                    errors += error;
-                }
+                row_t row;
+                for (const auto& item : r) row(item.first) = item.second;
+                contents += row;
             }
-            row_t row;
-            for (const auto& item : r) row(item.first) = item.second;
-            contents += row;
-        }
-        if (ok) q.Finalize();
+            q.Finalize();
+        }//OK
 
         Record result;
         if (lua_status) 
@@ -201,7 +195,7 @@ wxString Model_Report::get_html(const Data* r)
             }
         }
         for (const auto& item : result) report(item.first) = item.second;
-    }
+    } //IsReadOnly
 
     report("CONTENTS") = contents;
     report("ERRORS") = errors;
