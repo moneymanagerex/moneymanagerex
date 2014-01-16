@@ -31,12 +31,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Setting table.
-    * Reset the Model_Setting table or create the table if it does not exist.
+    Initialize the global Model_Setting table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Setting table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Setting& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Setting table. */
+    /**
+    * Return the static instance address for Model_Setting table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Setting& instance();
 
 public:

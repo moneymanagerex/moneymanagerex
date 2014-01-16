@@ -74,12 +74,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Checking table.
-    * Reset the Model_Checking table or create the table if it does not exist.
+    Initialize the global Model_Checking table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Checking table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Checking& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Checking table */
+    /**
+    * Return the static instance address for Model_Checking table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Checking& instance();
 
 public:

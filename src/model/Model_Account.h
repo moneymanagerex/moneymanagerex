@@ -43,19 +43,24 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Account table.
-    * Reset the Model_Account table or create the table if it does not exist.
+    Initialize the global Model_Account table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Account table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Account& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Account table */
+    /**
+    * Return the static instance address for Model_Account table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Account& instance();
 
 public:
-    /** Get the Data record instance in memory. */
+    /** Return the Data record for the given account name */
     Data* get(const wxString& name);
     
-    /** Remove the Data record instance from memory and the database. */
+    /** Remove the Data record from memory and the database. */
     bool remove(int id);
 
 public:

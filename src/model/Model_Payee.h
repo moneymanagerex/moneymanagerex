@@ -34,12 +34,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Payee table.
-    * Reset the Model_Payee table or create the table if it does not exist.
+    Initialize the global Model_Payee table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Payee table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Payee& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Payee table */
+    /**
+    * Return the static instance address for Model_Payee table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Payee& instance();
 
 public:

@@ -33,14 +33,20 @@ public:
     ~Model_Report();
 
 public:
-    /** Return the static instance of Model_Report table */
-    static Model_Report& instance();
-
     /**
-    * Initialize the global Model_Report table.
-    * Reset the Model_Report table or create the table if it does not exist.
+    Initialize the global Model_Report table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Report table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Report& instance(wxSQLite3Database* db);
+
+    /**
+    * Return the static instance address for Model_Report table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
+    static Model_Report& instance();
+
 public:
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);

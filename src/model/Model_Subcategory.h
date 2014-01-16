@@ -33,16 +33,21 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Subcategory table.
-    * Reset the Model_Subcategory table or create the table if it does not exist.
+    Initialize the global Model_Subcategory table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Subcategory table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Subcategory& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Subcategory table */
+    /**
+    * Return the static instance address for Model_Subcategory table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Subcategory& instance();
 
 public:
-    /** Return the Data record instance for the given subcategory name and category ID */
+    /** Return the Data record for the given subcategory name and category ID */
     Data* get(const wxString& name, int category_id);
 
 public:

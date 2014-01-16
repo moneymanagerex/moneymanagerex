@@ -30,12 +30,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Splittransaction table.
-    * Reset the Model_Splittransaction table or create the table if it does not exist.
+    Initialize the global Model_Splittransaction table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Splittransaction table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Splittransaction& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Splittransaction table */
+    /**
+    * Return the static instance address for Model_Splittransaction table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Splittransaction& instance();
 
 public:

@@ -32,12 +32,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Currency table.
-    * Reset the Model_Currency table or create the table if it does not exist.
+    Initialize the global Model_Currency table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Currency table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Currency& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Currency table */
+    /**
+    * Return the static instance address for Model_Currency table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Currency& instance();
 
 private:

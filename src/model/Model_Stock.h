@@ -30,12 +30,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Stock table.
-    * Reset the Model_Stock table or create the table if it does not exist.
+    Initialize the global Model_Stock table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Stock table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Stock& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Stock table */
+    /**
+    * Return the static instance address for Model_Stock table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Stock& instance();
 
 public:

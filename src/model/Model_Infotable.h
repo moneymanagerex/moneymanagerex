@@ -31,12 +31,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Infotable.
-    * Reset the Model_Infotable or create the table if it does not exist.
+    Initialize the global Model_Infotable table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Infotable table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Infotable& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Infotable */
+    /**
+    * Return the static instance address for Model_Infotable table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Infotable& instance();
 
 public:

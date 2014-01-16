@@ -33,12 +33,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Budgetyear table.
-    * Reset the Model_Budgetyear table or create the table if it does not exist.
+    Initialize the global Model_Budgetyear table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Budgetyear table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Budgetyear& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Budgetyear table */
+    /**
+    * Return the static instance address for Model_Budgetyear table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Budgetyear& instance();
 
     bool remove(int id);

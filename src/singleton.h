@@ -24,7 +24,7 @@ class Singleton
 {
 public:
     /**
-    * Returns the static instance for the given class.
+    * Returns the address of the static instance created for the class.
     * Creates the instance on first call.
     */
     static inline T& instance()

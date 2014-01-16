@@ -80,12 +80,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Billsdeposits table.
-    * Reset the Model_Billsdeposits table or create the table if it does not exist.
+    Initialize the global Model_Billsdeposits table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Billsdeposits table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Billsdeposits& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Billsdeposits table */
+    /**
+    * Return the static instance address for Model_Billsdeposits table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Billsdeposits& instance();
 
 public:

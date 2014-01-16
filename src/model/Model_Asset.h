@@ -40,12 +40,17 @@ public:
 
 public:
     /**
-    * Initialize the global Model_Asset table.
-    * Reset the Model_Asset table or create the table if it does not exist.
+    Initialize the global Model_Asset table on initial call.
+    Resets the global table on subsequent calls.
+    * Return the static instance address for Model_Asset table
+    * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Asset& instance(wxSQLite3Database* db);
 
-    /** Return the static instance of Model_Asset table */
+    /**
+    * Return the static instance address for Model_Asset table
+    * Note: Assigning the address to a local variable can destroy the instance.
+    */
     static Model_Asset& instance();
 
 public:
