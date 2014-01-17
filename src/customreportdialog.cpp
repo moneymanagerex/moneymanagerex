@@ -38,47 +38,29 @@ static const char LUA_SAMPLE[] =
         "\tresult:set('ASSET_BALANCE', total_balance);\n"
     "end\n";
 static const char SQL_SAMPLE [] =
-    "SELECT * FROM ASSETS_V1;";
-static const wxString HTT_SAMPLE = //TODO:
-    "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\">\n"
-    "<html>\n"
-    "<head>\n"
-    "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /><title>MoneyManagerEx - Report</title>\n"
-    "</head>\n"
-    "<body>\n"
-    "Sample <TMPL_VAR TODAY>\n"
-    "<table>\n"
-    "<tr>\n"
-        "<th>Date</th>\n"
-        "<th>Name</th>\n"
-        "<th>Type</th>\n"
-        "<th>Value</th>\n"
-        "<th>Notes</th>\n"
-    "</tr>\n"
-    "<TMPL_LOOP NAME=CONTENTS>\n"
-        "<TMPL_IF NAME=\"__ODD__\">\n"
-            "<tr bgcolor=\"#FFFFFF\" >\n"
-        "<TMPL_ELSE>\n"
-            "<tr bgcolor=\"#E1EDFB\" >\n"
-        "</TMPL_IF>\n"
-        "<td><TMPL_VAR STARTDATE></td>\n"
-        "<td><TMPL_VAR ASSETNAME></td>\n"
-        "<td><TMPL_VAR ASSETTYPE></td>\n"
-        "<td><TMPL_VAR VALUE></td>\n"
-        "<td><TMPL_VAR NOTES></td>\n"
-    "</tr>\n"
-    "</TMPL_LOOP>\n"
-        "<tr>"
-        "<td colspan=3 >Total Assets: </td>"
-        "<td nowrap align=\"right\"><TMPL_VAR ASSET_BALANCE></td>"
-    "</tr>"
-
+    "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES FROM ASSETS_V1;";
+static const wxString HTT_SAMPLE =
+    "<h3>Assets</h3>\n"
+    "<TMPL_VAR TODAY>\n"
+    "<table border=1>\n"
+    "    <TMPL_LOOP NAME=CONTENTS>\n"
+    "    <tr>\n"
+    "        <td<TMPL_VAR STARTDATE></td>\n"
+    "        <td><TMPL_VAR ASSETNAME></td>\n"
+    "        <td><TMPL_VAR ASSETTYPE></td>\n"
+    "        <td><TMPL_VAR VALUE></td>\n"
+    "        <td><TMPL_VAR NOTES></td>\n"
+    "    </tr>\n"
+    "    </TMPL_LOOP>\n"
+    "    <tr>\n"
+    "    <td colspan=2 >Total Assets: </td>\n"
+    "        <td nowrap align=\"right\"><TMPL_VAR ASSET_BALANCE></td>\n"
+    "    </tr>\n"
     "</table>\n"
-
-    //TODO:
-    "</body>\n"
-    "</html>\n";
-
+    "<TMPL_LOOP ERRORS>\n"
+    "    <hr>"
+    "    <TMPL_VAR ERROR>\n"
+    "</TMPL_LOOP>";
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
