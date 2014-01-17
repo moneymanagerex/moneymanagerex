@@ -77,106 +77,116 @@ wxString Model_Report::get_html(const Data* r)
 
     loop_t contents;
 
-    wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
-    wxLogDebug("%s", stmt.GetSQL());
     loop_t errors;
     row_t error;
-    if (!stmt.IsReadOnly())
+
+    if (!this->db_->CheckSyntax(r->SQLCONTENT))
     {
-        error("ERROR") = r->SQLCONTENT + " will modify database! aborted!";
+        error("ERROR") = wxString("Syntax Error : ") + r->SQLCONTENT;
         errors += error;
     }
     else
     {
-        wxSQLite3ResultSet q = stmt.ExecuteQuery();
-        int columnCount = q.GetColumnCount();
+        wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
+        wxLogDebug("%s", stmt.GetSQL());
 
-        loop_t columns;
-        for (int i = 0; i < columnCount; ++ i)
+        if (!stmt.IsReadOnly())
         {
-            row_t row;
-            row("COLUMN") = q.GetColumnName(i);
-
-            columns += row;
-        }
-        report("COLUMNS") = columns;
-
-        LuaGlue state;
-        state.
-            Class<Record>("Record").
-            ctor("new").
-            method("get", &Record::get).
-            method("set", &Record::set).
-            end().open().glue();
-
-        bool lua_status = !r->LUACONTENT.IsEmpty() && state.doString(r->LUACONTENT.ToStdString());
-        if (!lua_status)
-        {
-            error("ERROR") = "failed to doString : " + r->LUACONTENT + " err: " + state.lastError();
+            error("ERROR") = r->SQLCONTENT + " will modify database! aborted!";
             errors += error;
         }
-
-        while (q.NextRow())
+        else
         {
-            Record r;
+            wxSQLite3ResultSet q = stmt.ExecuteQuery();
+            int columnCount = q.GetColumnCount();
+
+            loop_t columns;
             for (int i = 0; i < columnCount; ++ i)
             {
-                wxString column_name = q.GetColumnName(i);
-                r[column_name.ToStdString()] = q.GetAsString(i);
+                row_t row;
+                row("COLUMN") = q.GetColumnName(i);
+
+                columns += row;
+            }
+            report("COLUMNS") = columns;
+
+            LuaGlue state;
+            state.
+                Class<Record>("Record").
+                ctor("new").
+                method("get", &Record::get).
+                method("set", &Record::set).
+                end().open().glue();
+
+            bool lua_status = !r->LUACONTENT.IsEmpty() && state.doString(r->LUACONTENT.ToStdString());
+            if (!lua_status)
+            {
+                error("ERROR") = "failed to doString : " + r->LUACONTENT + " err: " + state.lastError();
+                errors += error;
             }
 
+            while (q.NextRow())
+            {
+                Record r;
+                for (int i = 0; i < columnCount; ++ i)
+                {
+                    wxString column_name = q.GetColumnName(i);
+                    r[column_name.ToStdString()] = q.GetAsString(i);
+                }
+
+                if (lua_status) 
+                {
+                    try
+                    {
+                        state.invokeVoidFunction("handle_record", &r);
+                    }
+                    catch (const std::runtime_error& e)
+                    {
+                        error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                        errors += error;
+                    }
+                    catch (const std::exception& e)
+                    {
+                        error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                        errors += error;
+                    }
+                    catch (...)
+                    {
+                        error("ERROR") = "failed to call handle_record ";
+                        errors += error;
+                    }
+                }
+                row_t row;
+                for (const auto& item : r) row(item.first) = item.second;
+                contents += row;
+            }
+            q.Finalize();
+
+            Record result;
             if (lua_status) 
             {
                 try
                 {
-                    state.invokeVoidFunction("handle_record", &r);
+                    state.invokeVoidFunction("complete", &result);
                 }
                 catch (const std::runtime_error& e)
                 {
-                    error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                    error("ERROR") = std::string("failed to call complete: ") + e.what();
                     errors += error;
                 }
                 catch (const std::exception& e)
                 {
-                    error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                    error("ERROR") = std::string("failed to call complete: ") + e.what();
                     errors += error;
                 }
                 catch (...)
                 {
-                    error("ERROR") = "failed to call handle_record ";
+                    error("ERROR") = "failed to call complete";
                     errors += error;
                 }
             }
-            row_t row;
-            for (const auto& item : r) row(item.first) = item.second;
-            contents += row;
+            for (const auto& item : result) report(item.first) = item.second;
         }
-        q.Finalize();
-
-        Record result;
-        if (lua_status) 
-        {
-            try
-            {
-                state.invokeVoidFunction("complete", &result);
-            }
-            catch (const std::runtime_error& e)
-            {
-                error("ERROR") = std::string("failed to call complete: ") + e.what();
-                errors += error;
-            }
-            catch (const std::exception& e)
-            {
-                error("ERROR") = std::string("failed to call complete: ") + e.what();
-                errors += error;
-            }
-            catch (...)
-            {
-                error("ERROR") = "failed to call complete";
-                errors += error;
-            }
-        }
-        for (const auto& item : result) report(item.first) = item.second;
     }
 
     report("CONTENTS") = contents;
