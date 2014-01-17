@@ -489,59 +489,6 @@ bool mmFilterTransactionsDialog::somethingSelected()
         || getNotesCheckBox();
 }
 
-wxString mmFilterTransactionsDialog::getAccountName()
-{
-    Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
-    if (account)
-        return account->ACCOUNTNAME;
-    else
-        return "";
-}
-
-bool mmFilterTransactionsDialog::getDateRange(wxDateTime& startDate, wxDateTime& endDate) const
-{
-    if (dateRangeCheckBox_->IsChecked())
-    {
-        startDate = fromDateCtrl_->GetValue();
-        endDate = toDateControl_->GetValue();
-        return true;
-    }
-    return false;
-}
-
-wxString mmFilterTransactionsDialog::userDateRangeStr() const
-{
-    wxString dateStr;
-    if (dateRangeCheckBox_->IsChecked())
-    {
-        wxString dtBegin = mmGetDateForDisplay(fromDateCtrl_->GetValue());
-        wxString dtEnd = mmGetDateForDisplay(toDateControl_->GetValue());
-        dateStr << wxString::Format(_("From %s till %s"), dtBegin, dtEnd);
-    }
-    return dateStr;
-}
-
-int mmFilterTransactionsDialog::getPayeeID() const
-{
-    Model_Payee::Data* payee = Model_Payee::instance().get(cbPayee_->GetValue());
-    if (payee) return payee->PAYEEID;
-    return -1;
-}
-
-wxString mmFilterTransactionsDialog::userPayeeStr() const
-{
-    if (payeeCheckBox_->IsChecked())
-        return cbPayee_->GetValue();
-    return "";
-}
-
-wxString mmFilterTransactionsDialog::userCategoryStr() const
-{
-    if (categoryCheckBox_->IsChecked())
-        return btnCategory_->GetLabelText();
-    return "";
-}
-
 wxString mmFilterTransactionsDialog::getStatus() const
 {
     wxString status;
@@ -595,30 +542,6 @@ bool mmFilterTransactionsDialog::allowType(const wxString& typeState, bool sameA
     return result;
 }
 
-wxString mmFilterTransactionsDialog::userTypeStr() const
-{
-    wxString transCode = wxEmptyString;
-    if (typeCheckBox_->IsChecked())
-    {
-        if (cbTypeWithdrawal_->GetValue())
-            transCode = wxGetTranslation(Model_Checking::all_type()[Model_Checking::WITHDRAWAL]);
-        if (cbTypeDeposit_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation(Model_Checking::all_type()[Model_Checking::DEPOSIT]);
-        if (cbTypeTransferTo_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation("Transfer To");
-        if (cbTypeTransferFrom_->GetValue())
-            transCode << (transCode.IsEmpty() ? "" : ", ") << wxGetTranslation("Transfer From");
-    }
-    return transCode;
-}
-
-wxString mmFilterTransactionsDialog::userStatusStr() const
-{
-    if (statusCheckBox_->IsChecked())
-        return choiceStatus_->GetStringSelection();
-    return "";
-}
-
 double mmFilterTransactionsDialog::getAmountMin()
 {
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
@@ -645,18 +568,6 @@ double mmFilterTransactionsDialog::getAmountMax()
         amount = 0;
 
     return amount;
-}
-
-wxString mmFilterTransactionsDialog::userAmountRangeStr() const
-{
-    wxString amountRangeStr;
-    if (amountRangeCheckBox_->IsChecked())
-    {
-        wxString minamt = amountMinEdit_->GetValue();
-        wxString maxamt = amountMaxEdit_->GetValue();
-        amountRangeStr << _("Min: ") << minamt << " " << _("Max: ") << maxamt;
-    }
-    return amountRangeStr;
 }
 
 void mmFilterTransactionsDialog::OnButtonSaveClick( wxCommandEvent& /*event*/ )

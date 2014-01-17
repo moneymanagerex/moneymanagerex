@@ -64,8 +64,6 @@ public:
 private:
     void BuildPayeeList();
 
-    wxString getAccountName();
-
     bool getDateRangeCheckBox()
     {
         return dateRangeCheckBox_->GetValue();
@@ -94,23 +92,7 @@ private:
     bool checkCategory(const Model_Checking::Data &tran);
     bool checkCategory(const Model_Billsdeposits::Data &tran);
 
-    int getPayeeID() const;
     wxString getStatus() const;
-
-    /// Returns the payee string, when Payee is selected.
-    wxString userPayeeStr() const;
-    /// Returns the Category/subcategory string, when Category is selected.
-    wxString userCategoryStr() const;
-    /// Returns the date range string, when Date Range is selected.
-    wxString userDateRangeStr() const;
-    /// Returns the Status string, when Status is selected.
-    wxString userStatusStr() const;
-    /// Returns the amount range string, when Amount Range is selected.
-    wxString userAmountRangeStr() const;
-    wxString userTypeStr() const;
-
-    /// Returns true with valid dates, when the dialog date range is selected.
-    bool getDateRange(wxDateTime& startDate, wxDateTime& endDate) const;
 
     wxString getNumber()
     {
@@ -146,19 +128,6 @@ private:
     {
         return categoryCheckBox_->IsChecked();
     }
-    int getCategoryID()
-    {
-        return categID_;
-    }
-    int getSubCategoryID()
-    {
-        return subcategID_;
-    }
-    bool getSimilarCategoryStatus()
-    {
-        return bSimilarCategoryStatus_;
-    }
-    bool checkPayeeCheckBox() { return payeeCheckBox_->IsChecked(); }
 
     void setPresettings(const wxString& view);
     void clearSettings();
