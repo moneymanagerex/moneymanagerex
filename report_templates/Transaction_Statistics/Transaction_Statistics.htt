@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>MoneyManagerEx - Report</title>
+    <STYLE><TMPL_INCLUDE NAME="master.css"></STYLE>
+</head>
+<body>
+    <div class="container">
+        <h3>Transaction Statistics</h3>
+        <p><TMPL_VAR TODAY></p>
+        <div class="row">
+            <div class="col-xs-2"></div>
+            <div class="col-xs-8">
+                <table class="table table-condences">
+                <thead>
+                  <tr>
+                    <th>Year</th>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                    <th>Apr</th>
+                    <th>May</th>
+                    <th>Jun</th>
+                    <th>Jul</th>
+                    <th>Aug</th>
+                    <th>Sep</th>
+                    <th>Oct</th>
+                    <th>Nov</th>
+                    <th>Dec</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <TMPL_LOOP NAME=CONTENTS>
+                    <tr>
+                        <th><TMPL_VAR YEAR></th>
+                        <td><TMPL_VAR Jan></td>
+                        <td><TMPL_VAR Feb></td>
+                        <td><TMPL_VAR Mar></td>
+                        <td><TMPL_VAR Apr></td>
+                        <td><TMPL_VAR May></td>
+                        <td><TMPL_VAR Jun></td>
+                        <td><TMPL_VAR Jul></td>
+                        <td><TMPL_VAR Aug></td>
+                        <td><TMPL_VAR Sep></td>
+                        <td><TMPL_VAR Oct></td>
+                        <td><TMPL_VAR Nov></td>
+                        <td><TMPL_VAR Dec></td>
+                        <th class="total"><TMPL_VAR YEAR_TOTAL></th>
+                    </tr>
+                    </TMPL_LOOP>
+                </tbody>
+                <tfoot>
+                    <tr class="total">
+                        <td>Totals:</td>
+                        <td><TMPL_VAR TOTAL_Jan></td>
+                        <td><TMPL_VAR TOTAL_Feb></td>
+                        <td><TMPL_VAR TOTAL_Mar></td>
+                        <td><TMPL_VAR TOTAL_Apr></td>
+                        <td><TMPL_VAR TOTAL_May></td>
+                        <td><TMPL_VAR TOTAL_Jun></td>
+                        <td><TMPL_VAR TOTAL_Jul></td>
+                        <td><TMPL_VAR TOTAL_Aug></td>
+                        <td><TMPL_VAR TOTAL_Sep></td>
+                        <td><TMPL_VAR TOTAL_Oct></td>
+                        <td><TMPL_VAR TOTAL_Nov></td>
+                        <td><TMPL_VAR TOTAL_Dec></td>
+                        <td><span class="badge"><TMPL_VAR GRAND_TOTAL></span></td>
+                    </tr>
+                </tfoot>
+                </table>
+            </div>
+            <table class="table table-simple">
+                <tbody>
+                    <TMPL_LOOP ERRORS>
+                    <tr><td><h3><span class="label label-danger">Error</span></h3></td></tr>
+                    <tr><td><TMPL_VAR ERROR></td></tr>
+                </TMPL_LOOP>
+                </tbody>
+            </table>
+        </div>
+    </div>   
+</body>
+</html>

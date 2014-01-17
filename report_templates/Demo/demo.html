@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <title>Test CSS styles</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <link rel="stylesheet" type="text/css" href="master.css">
+   <style>
+    /* just for the purpose of this DEMO */
+   	.visualize-grid .row div {
+   		background-color: #eeeeee;
+   		border: 1px solid silver;
+   	}
+   	
+   </style>
+ </head>
+ <body>
+   	
+   	<div class="page-header">
+    	<h1>Master.css demo <small>all examples based on master.css styles</small></h1>
+    </div>
+   	
+   	<div class="page-header">
+    	<h2>Typography</h2>
+    </div>
+
+	<div class="container">
+	
+		<h1>h1. Example heading</h1>
+		<h2>h2. Example heading</h2>
+		<h3>h3. Example heading</h3>
+		<h4>h4. Example heading</h4>
+		<h5>h5. Example heading</h5>
+		<h6>h6. Example heading</h6>
+	
+		<h1>h1. Example heading <small>Secondary text</small></h1>
+		<h2>h2. Example heading <small>Secondary text</small></h2>
+		<h3>h3. Example heading <small>Secondary text</small></h3>
+		<h4>h4. Example heading <small>Secondary text</small></h4>
+		<h5>h5. Example heading <small>Secondary text</small></h5>
+		<h6>h6. Example heading <small>Secondary text</small></h6>
+	
+		<h3>Text styles</h3>
+	   
+		<p class="text-muted">Fusce dapibus, tellus ac cursus commodo, tortor mauris nibh.</p>
+	    <p class="text-primary">Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+	    <p class="text-success">Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+	    <p class="text-info">Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+	    <p class="text-warning">Etiam porta sem malesuada magna mollis euismod.</p>
+	    <p class="text-danger">Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+		<h3>Labels</h3>
+
+    	<span class="label label-default">Default</span>
+		<span class="label label-primary">Primary</span>
+		<span class="label label-success">Success</span>
+		<span class="label label-info">Info</span>
+		<span class="label label-warning">Warning</span>
+		<span class="label label-danger">Danger</span>
+		<h3>Example heading <span class="label label-default">New</span> <span class="label label-warning">Outdated</span></h3>
+
+		<h3>Badges</h3>
+		<span>Some items <span class="badge">42</span> some more text here</span>
+
+	    <h3>Unorderred list</h3>
+	    
+	    <ul>
+	        <li>Lorem ipsum dolor sit amet</li>
+	        <li>Consectetur adipiscing elit</li>
+	        <li>Integer molestie lorem at massa</li>
+	        <li>Facilisis in pretium nisl aliquet</li>
+	        <li>Nulla volutpat aliquam velit
+	          <ul>
+	            <li>Phasellus iaculis neque</li>
+	            <li>Purus sodales ultricies</li>
+	            <li>Vestibulum laoreet porttitor sem</li>
+	            <li>Ac tristique libero volutpat at</li>
+	          </ul>
+	        </li>
+	        <li>Faucibus porta lacus fringilla vel</li>
+	        <li>Aenean sit amet erat nunc</li>
+	        <li>Eget porttitor lorem</li>
+	    </ul>
+		    
+		  <h3>Orderred list</h3>
+	      
+	      <ol>
+	        <li>Lorem ipsum dolor sit amet</li>
+	        <li>Consectetur adipiscing elit</li>
+	        <li>Integer molestie lorem at massa</li>
+	        <li>Facilisis in pretium nisl aliquet</li>
+	        <li>Nulla volutpat aliquam velit</li>
+	        <li>Faucibus porta lacus fringilla vel</li>
+	        <li>Aenean sit amet erat nunc</li>
+	        <li>Eget porttitor lorem</li>
+	      </ol>
+
+	
+	    <h3>Text alignment</h3>
+	   
+	    <p class="text-left">Left aligned text.</p>
+		<p class="text-center">Center aligned text.</p>
+		<p class="text-right">Right aligned text.</p>
+		
+	</div>
+  
+
+    <div class="page-header">
+    	<h2>Tables</h2>
+    </div>
+      
+    <div class="container">
+      
+      <h3>Simple table</h3>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      <h3>Striped table</h3>
+      
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>Bordered table</h3>
+      
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2">1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@TwBootstrap</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      <h3>Contextual classes for table rows</h3>
+      
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Column heading</th>
+            <th>Column heading</th>
+            <th>Column heading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="active">
+            <td>1</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+          <tr class="success">
+            <td>3</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+          <tr class="warning">
+            <td>5</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+          <tr class="danger">
+            <td>7</td>
+            <td>Column content</td>
+            <td>Column content</td>
+            <td>Column content</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      <h3>Condensed table (smaller paddings)</h3>
+      
+      <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    
+    <div class="page-header">
+    	<h2>Grid system</h2>
+    </div>      
+      
+      <div class="container visualize-grid">
+        
+        <h4>2 columns</h4>
+      	<div class="row">
+		  <div class="col-xs-6">.col-xs-6</div>
+		  <div class="col-xs-6">.col-xs-6</div>
+		</div>
+		
+		<h4>12 columns</h4>
+		<div class="row">
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		  <div class="col-xs-1">.col-xs-1</div>
+		</div>
+		
+		<h4>3 columns</h4>
+		<div class="row">
+		  <div class="col-xs-4">.col-xs-4</div>
+		  <div class="col-xs-4">.col-xs-4</div>
+		  <div class="col-xs-4">.col-xs-4</div>
+		</div>
+		
+		<h4>Columns with various sizes</h4>
+		<div class="row">
+		  <div class="col-xs-9">.col-xs-9</div>
+		  <div class="col-xs-3">.col-xs-3</div>
+		</div>
+		<div class="row">
+		  <div class="col-xs-3">.col-xs-3</div>
+		  <div class="col-xs-9">.col-xs-9</div>
+		</div>
+   
+   		<h4>Offsetting columns</h4>
+   
+	    <div class="row">
+	      <div class="col-xs-4">.col-xs-4</div>
+	      <div class="col-xs-4 col-xs-offset-4">.col-xs-4 .col-xs-offset-4</div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-3 col-xs-offset-3">.col-xs-3 .col-xs-offset-3</div>
+	      <div class="col-xs-3 col-xs-offset-3">.col-xs-3 .col-xs-offset-3</div>
+	    </div>
+	    <div class="row">
+	      <div class="col-xs-6 col-xs-offset-3">.col-xs-6 .col-xs-offset-3</div>
+	    </div>
+
+	</div>
+
+   
+	<h3>End of DEMO! Congratulations!</h3>
+
+   
+ </body> 
+</html>
