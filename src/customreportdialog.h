@@ -46,7 +46,8 @@ private:
         ID_TAB_SQL,
         ID_TAB_LUA,
         MAGIC_NUM = 16,
-        ID_NEW1 = wxID_HIGHEST + 500,
+        ID_NEW_SAMPLE = wxID_HIGHEST + 500,
+        ID_NEW_EMPTY,
         ID_DELETE,
         ID_GROUP, 
         ID_NOTEBOOK,
@@ -72,11 +73,8 @@ private:
     void importReport();
     bool readTextFile(const wxString &fileName, wxString &data);
     bool openZipFile(const wxString &reportFileName
-        , const wxString &httFileName
-        , const wxString directoryToExtract
-        , wxString &sql, wxString &lua, wxString &readme);
+        , wxString &htt, wxString &sql, wxString &lua, wxString &readme);
     void OnUpdateReport(wxCommandEvent& event);
-    wxString openTemplate();
     void OnExportReport(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
@@ -86,11 +84,10 @@ private:
     void OnLabelChanged(wxTreeEvent& event);
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
-    void newReport();
+    void newReport(bool sample = false);
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
 
-    wxTextCtrl* m_fileNameCtrl;
     wxWebView* m_outputHTML;
 
     wxButton* m_buttonOpen;

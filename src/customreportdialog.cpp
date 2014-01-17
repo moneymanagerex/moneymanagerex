@@ -37,8 +37,8 @@ static const char LUA_SAMPLE[] =
     "function complete(result)\n"
         "\tresult:set('ASSET_BALANCE', total_balance);\n"
     "end\n";
-static const char SQL_SAMPLE[] =
-    "SELECT * FROM ASSETS_V1";
+static const char SQL_SAMPLE [] =
+    "SELECT * FROM ASSETS_V1;";
 static const wxString HTT_SAMPLE = //TODO:
     "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN\">\n"
     "<html>\n"
@@ -100,7 +100,6 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_buttonSaveAs()
     , m_buttonRun()
     , m_treeCtrl()
-    , m_fileNameCtrl()
     , m_outputHTML()
     , m_selectedReportID(0)
 {
@@ -221,13 +220,6 @@ void mmGeneralReportManager::CreateControls()
 
     createOutputTab(editors_notebook, ID_TAB_OUT);
 
-    wxBoxSizer *file_sizer = new wxBoxSizer(wxHORIZONTAL);
-    m_fileNameCtrl = new wxTextCtrl(this, wxID_FILE, wxEmptyString
-        , wxDefaultPosition, wxSize(480, -1), wxTE_READONLY);
-    file_sizer->Add(new wxStaticText(this, wxID_STATIC, _("File Name:")), flags);
-    file_sizer->Add(m_fileNameCtrl, flagsExpand);
-    headingPanelSizerV3->Add(file_sizer, flagsExpand.Proportion(0));
-
     /****************************************
      Bottom Panel
      ***************************************/
@@ -309,7 +301,7 @@ void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::importReport()
 {
-    wxString reportFileName = wxFileSelector(_("Load report file:")
+    const wxString reportFileName = wxFileSelector(_("Load report file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
         , "GRM Files (*.grm)|*.grm|ZIP files (*.zip)|*.zip"
         , wxFD_FILE_MUST_EXIST);
@@ -317,21 +309,8 @@ void mmGeneralReportManager::importReport()
     if (reportFileName.empty()) return;
 
     wxFileName fn(reportFileName);
-    wxString clearFileName = fn.FileName(reportFileName).GetName();
-    wxFileDialog dlg(this
-        , _("Choose file to Save As HTML Template")
-        , wxEmptyString
-        , clearFileName + ".htt"
-        , "HTML File(*.htt)|*.htt"
-        , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
-        );
+    const wxString clearFileName = fn.FileName(reportFileName).GetName();
 
-    if (dlg.ShowModal() != wxID_OK)
-        return;
-
-    const wxString directory = dlg.GetDirectory() + wxFileName::GetPathSeparator();
-    const wxString httFileName = dlg.GetFilename();
-    const wxString httFullFileName = directory + httFileName;
     wxString sql, lua, htt, readme;
     Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(clearFileName));
     if (!reports.empty())
@@ -341,16 +320,15 @@ void mmGeneralReportManager::importReport()
     }
     else
     {
-        openZipFile(reportFileName, httFileName, directory, sql, lua, readme);
+        openZipFile(reportFileName, htt, sql, lua, readme);
         Model_Report::Data *report = 0;
         report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
         report->REPORTNAME = clearFileName;
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
-        report->TEMPLATEPATH = httFullFileName;
-        if (!report->TEMPLATEPATH.empty())
-            m_selectedReportID = Model_Report::instance().save(report);
+        report->TEMPLATEPATH = htt;
+        m_selectedReportID = Model_Report::instance().save(report);
     }
 
     if (!readme.empty())
@@ -384,9 +362,7 @@ bool mmGeneralReportManager::readTextFile(const wxString &fileName, wxString &da
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
-    , const wxString &httFileName
-    , const wxString directoryToExtract
-    , wxString &sql, wxString &lua, wxString &readme)
+    , wxString &htt, wxString &sql, wxString &lua, wxString &readme)
 {
     if (!reportFileName.empty())
     {
@@ -418,16 +394,8 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
                     lua = textdata;
                 else if (f.StartsWith("readme"))
                     readme << textdata;
-                else
-                {
-                    wxString file = f;
-                    if (f.EndsWith(".htt")) file = httFileName;
-                    wxLogDebug("copy %s to %s", f, directoryToExtract + file);
-                    wxFileOutputStream output(directoryToExtract + file);
-                    wxTextOutputStream text(output);
-                    text << textdata;
-                    output.Close();
-                }
+                else if (f.EndsWith(".htt"))
+                    htt << textdata;
             }
         }
         else
@@ -448,55 +416,14 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
-
-        wxFileOutputStream output(report->TEMPLATEPATH);
-        wxTextOutputStream text(output);
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        text << templateText->GetValue();
-        output.Close();
+        report->TEMPLATEPATH = templateText->GetValue();
 
         Model_Report::instance().save(report);
-    }
-}
-
-void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
-{
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-    if (!iData) return;
-
-    int id = iData->get_report_id();
-    Model_Report::Data * report = Model_Report::instance().get(id);
-    if (report)
-    {
-        wxString file_name = report->REPORTNAME + ".grm";
-        wxFileDialog dlg(this
-            , _("Choose file to Save As Report")
-            , wxEmptyString
-            , file_name
-            , "GRM File(*.grm)|*.grm"
-            , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
-            );
-
-        if (dlg.ShowModal() != wxID_OK)
-            return;
-
-        file_name = dlg.GetPath();
-
-        wxFFileOutputStream out(file_name);
-        wxZipOutputStream zip(out);
-        wxTextOutputStream txt(zip);
-        zip.PutNextEntry("sqlcontent.sql");
-        txt << report->SQLCONTENT;
-        zip.PutNextEntry("luacontent.lua");
-        txt << report->LUACONTENT;
-        zip.PutNextEntry("template.html");
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        txt << templateText->GetValue();
-        //TODO: save all files from VFS handler???
     }
 }
 
@@ -527,12 +454,13 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     if (iData) report_id = iData->get_report_id();
 
     wxMenu* customReportMenu = new wxMenu;
-    customReportMenu->Append(ID_NEW1, _("New Custom Report"));
+    customReportMenu->Append(ID_NEW_SAMPLE, _("New Sample Report"));
+    customReportMenu->Append(ID_NEW_EMPTY, _("New Empty Report"));
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_GROUP, _("Change Group"));
     customReportMenu->Enable(ID_GROUP, report_id > 0);
     customReportMenu->AppendSeparator();
-    customReportMenu->Append(ID_DELETE, _("Delete Custom Report"));
+    customReportMenu->Append(ID_DELETE, _("Delete Report"));
     customReportMenu->Enable(ID_DELETE, report_id > 0);
     PopupMenu(customReportMenu);
     delete customReportMenu;
@@ -546,7 +474,6 @@ void mmGeneralReportManager::viewControls(bool enable)
     if (!enable)
     {
         m_selectedGroup = "";
-        m_fileNameCtrl->ChangeValue("");
     }
 }
 void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
@@ -582,38 +509,13 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
 
-        m_fileNameCtrl->ChangeValue(report->TEMPLATEPATH);
-        wxString data;
-        readTextFile(report->TEMPLATEPATH, data);
-        templateText->ChangeValue(data);
+        templateText->ChangeValue(report->TEMPLATEPATH);
         templateText->SetLexerHtml();
         SqlScriptText->ChangeValue(report->SQLCONTENT);
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
 
-        //m_outputHTML->SetPage(report->REPORTNAME, ""); //TODO: provide report info
-
-        wxString full_path = report->TEMPLATEPATH;
-        wxTextFile tFile;
-        tFile.Open(full_path);
-        if (!tFile.Open())
-        {
-            wxMessageBox(wxString::Format(_("Unable to open file %s"), full_path)
-                , _("General Reports Manager"), wxOK | wxICON_ERROR);
-        }
-        else
-        {
-            templateText->ClearAll();
-            wxFileInputStream input(full_path);
-            wxTextInputStream text(input);
-            while (input.IsOk() && !input.Eof())
-            {
-                const wxString line = text.ReadLine();
-                if (!line.IsEmpty())
-                    templateText->AppendText(line + "\n");
-            }
-        }
         viewControls(true);
     }
 }
@@ -669,9 +571,13 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     int id = event.GetId();
-    if (id == ID_NEW1)
+    if (id == ID_NEW_SAMPLE)
     {
-        newReport();
+        newReport(true);
+    }
+    if (id == ID_NEW_EMPTY)
+    {
+        newReport(false);
     }
     else if (iData && id == ID_DELETE)
     {
@@ -692,7 +598,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     fillControls();
 }
 
-void mmGeneralReportManager::newReport()
+void mmGeneralReportManager::newReport(bool sample)
 {
     wxString group_name;
     if (m_selectedItemID == m_rootItem)
@@ -712,38 +618,45 @@ void mmGeneralReportManager::newReport()
     while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
         report_name = wxString::Format(_("New Report %i"), ++i);
     report->REPORTNAME = report_name;
-    report->SQLCONTENT = SQL_SAMPLE;
-    report->LUACONTENT = LUA_SAMPLE;
-    report->TEMPLATEPATH = openTemplate();
-    if (!report->TEMPLATEPATH.empty())
-        m_selectedReportID = Model_Report::instance().save(report);
+    report->SQLCONTENT = sample ? SQL_SAMPLE : "";
+    report->LUACONTENT = sample ? LUA_SAMPLE : "";
+    report->TEMPLATEPATH = sample ? HTT_SAMPLE : ""; //TODO: rename TEMPLATEPATH to TEMPLATECONTENT
+    m_selectedReportID = Model_Report::instance().save(report);
 }
 
-wxString mmGeneralReportManager::openTemplate()
+void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 {
-    wxString sTemplateFileName = wxFileSelector(_("Save template file:")
-        , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "File(*.htt)|*.htt"
-        , wxFD_SAVE);
-    if (!sTemplateFileName.empty())
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
+    if (!iData) return;
+
+    int id = iData->get_report_id();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
     {
-        correctEmptyFileExt("htt", sTemplateFileName);
-        wxTextFile templateFile(sTemplateFileName);
-        if (!templateFile.Exists() && !templateFile.Create())
-        {
-            wxMessageBox(_("Unable to write to file."), _("General Report Manager"), wxOK|wxICON_WARNING);
-            return "";
-        }
-        else
-        {
-            //clear the contents of the current file
-            templateFile.Clear();
-            templateFile.AddLine(HTT_SAMPLE); //TODO: Line separators
-        }
-        templateFile.Write();
-        templateFile.Close();
+        wxString file_name = report->REPORTNAME + ".grm";
+        wxFileDialog dlg(this
+            , _("Choose file to Save As Report")
+            , wxEmptyString
+            , file_name
+            , "GRM File(*.grm)|*.grm"
+            , wxFD_SAVE | wxFD_OVERWRITE_PROMPT
+            );
+
+        if (dlg.ShowModal() != wxID_OK)
+            return;
+
+        file_name = dlg.GetPath();
+
+        wxFFileOutputStream out(file_name);
+        wxZipOutputStream zip(out);
+        wxTextOutputStream txt(zip);
+        zip.PutNextEntry("sqlcontent.sql");
+        txt << report->SQLCONTENT;
+        zip.PutNextEntry("luacontent.lua");
+        txt << report->LUACONTENT;
+        zip.PutNextEntry("template.htt");
+        txt << report->TEMPLATEPATH;
     }
-    return sTemplateFileName;
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)

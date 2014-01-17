@@ -66,14 +66,25 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    mm_html_template report(r->TEMPLATEPATH);
+    wxFileName fName;
+    fName.AssignTempFileName("template");
+    if (!fName.IsOk())
+        return wxString::Format(_("Unable to open file \n%s\n\n"), fName.GetFullName());;
+
+    wxFileOutputStream output(fName.GetFullName());
+    wxTextOutputStream text(output);
+    text << r->TEMPLATEPATH;
+    output.Close();
+
+    mm_html_template report(fName.GetFullName());
+    wxLogDebug("temp file: %s", fName.GetFullName());
 
     report("REPORTID") = r->REPORTID;
     report("REPORTNAME") = r->REPORTNAME;
     report("GROUPNAME") = r->GROUPNAME;
-    report("SQLCONTENTTYPE") = r->SQLCONTENT;
-    report("LUACONTENT") = r->LUACONTENT;
-    report("TEMPLATEPATH") = r->TEMPLATEPATH;
+    //report("SQLCONTENTTYPE") = r->SQLCONTENT;
+    //report("LUACONTENT") = r->LUACONTENT;
+    //report("TEMPLATEPATH") = r->TEMPLATEPATH;
 
     loop_t contents;
 
@@ -192,7 +203,9 @@ wxString Model_Report::get_html(const Data* r)
     report("CONTENTS") = contents;
     report("ERRORS") = errors;
 
-    return wxString(report.Process());
+    const wxString out = wxString(report.Process());
+    wxRemoveFile(fName.GetFullName());
+    return out;
 }
 
 wxString Model_Report::get_html(const Data& r) 
