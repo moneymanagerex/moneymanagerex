@@ -103,9 +103,10 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
 
-    wxAcceleratorEntry entries[1];
+    wxAcceleratorEntry entries[2];
     entries[0].Set(wxACCEL_NORMAL, WXK_F9, wxID_EXECUTE);
-    wxAcceleratorTable accel(1, entries);
+    entries[1].Set(wxACCEL_CTRL, 'S', wxID_SAVE);
+    wxAcceleratorTable accel(2, entries);
     SetAcceleratorTable(accel);
 
     Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), NULL, this);
@@ -229,7 +230,7 @@ void mmGeneralReportManager::CreateControls()
     buttonPanelSizer->Add(m_buttonRun, flags);
     m_buttonRun->SetToolTip(_("Run selected report."));
 
-    wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE);
+    wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, _("&Cancel "));
     buttonPanelSizer->Add(button_Close, flags);
     //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
 
@@ -259,7 +260,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     case ID_TEMPLATE: label = _("htt"); editorID = ID_TEMPLATE;  break;
     //default: ;
     }
-    if (FindWindow(editorID + MAGIC_NUM))  return;
+    if (FindWindow(editorID + MAGIC_NUM)) return;
 
     wxSizerFlags flagsExpand;
     flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
