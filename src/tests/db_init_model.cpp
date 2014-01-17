@@ -81,6 +81,15 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
 void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
 {
     Model_Setting::instance(test_db);
+    test_db->Begin();
+    {
+        Model_Setting::instance().Set("ASSETS_COL0_WIDTH", 111);
+        Model_Setting::instance().Set("ASSETS_COL1_WIDTH", 94);
+        Model_Setting::instance().Set("ASSETS_COL2_WIDTH", 83);
+        Model_Setting::instance().Set("ASSETS_COL3_WIDTH", 109);
+        Model_Setting::instance().Set("ASSETS_COL4_WIDTH", 118);
+    }
+    test_db->Commit();
     mmIniOptions::instance().loadOptions();
 
     Model_Infotable::instance(test_db);

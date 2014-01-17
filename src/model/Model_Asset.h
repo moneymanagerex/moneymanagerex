@@ -68,8 +68,12 @@ public:
     static TYPE type(const Data& r);
     static RATE rate(const Data* r);
     static RATE rate(const Data& r);
+
+    /** Returns the base currency Data record pointer*/
     static Model_Currency::Data* currency(const Data* /* r */);
+    /** Returns the calculated current value */
     static double value(const Data* r);
+    /** Returns the calculated current value */
     static double value(const Data& r);
 };
 

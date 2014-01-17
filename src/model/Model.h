@@ -78,8 +78,9 @@ public:
     using DB_TABLE::get;
     using DB_TABLE::save;
     using DB_TABLE::remove;
+
     typedef typename DB_TABLE::COLUMN COLUMN;
-    /** Return a list of Data records (Data_Set) derived directly from the database. */
+    /** Return a list of Data record addresses (Data_Set) derived directly from the database. */
     typename DB_TABLE::Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
@@ -87,34 +88,58 @@ public:
     }
 
     template<typename... Args>
-    /** Args: Specialised parameters used in SQL statements after the WHERE statement */
+    /**
+    Command: find(const Args&... args)
+    Args: One or more Specialised Parameters creating SQL statement conditions used after the WHERE statement.
+    Specialised Parameters: Table_Column_Name(content)[, Table_Column_Name(content)[, ...]]
+    Example:
+    Model_Asset::ASSETID(2), Model_Asset::ASSETTYPE(Model_Asset::TYPE_JEWELLERY)
+    produces SQL statement condition: ASSETID = 2 AND ASSETTYPE = "Jewellery"
+    * Returns a Data_Set containing the addresses of the items found.
+    * The Data_Set is empty when nothing found.
+    */
     typename DB_TABLE::Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);
     }
+
     template<typename... Args>
+    /**
+    Command: find_or(const Args&... args)
+    Args: One or more Specialised Parameters creating SQL statement conditions used after the WHERE statement.
+    Specialised Parameters: Table_Column_Name(content)[, Table_Column_Name(content)[, ...]]
+    Example:
+    Model_Asset::ASSETID(2), Model_Asset::ASSETTYPE(Model_Asset::TYPE_JEWELLERY)
+    produces SQL statement condition: ASSETID = 2 OR ASSETTYPE = "Jewellery"
+    * Returns a Data_Set containing the addresses of the items found.
+    * The Data_Set is empty when nothing found.
+    */
     typename DB_TABLE::Data_Set find_or(const Args&... args)
     {
         return find_by(this, db_, false, args...);
     }
 
-    /** Return the Data record instance for the given ID*/
+    /**
+    * Return the Data record pointer for the given ID
+    * from either memory cache or the database.
+    */
     typename DB_TABLE::Data* get(int id)
     {
         return this->get(id, this->db_);
     }
 
-    /** Save the Data record instance in memory to the database. */
+    /** Save the Data record memory instance to the database. */
     int save(typename DB_TABLE::Data* r)
     {
         r->save(this->db_);
         return r->id();
     }
-    /**
-    * Save the all the Data record instances in memory to the database
-    * for the record list (Data_Set).
-    */
+
     template<class DATA_SET>
+    /**
+    * Save all Data record memory instances contained
+    * in the record list (Data_Set) to the database.
+    */
     int save(DATA_SET& rows)
     {
         this->Begin();
