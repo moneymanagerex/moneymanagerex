@@ -311,7 +311,7 @@ void mmGeneralReportManager::importReport()
 {
     wxString reportFileName = wxFileSelector(_("Load report file:")
         , mmex::getPathUser(mmex::DIRECTORY), wxEmptyString, wxEmptyString
-        , "File(*.grm)|*.grm"
+        , "GRM Files (*.grm)|*.grm|ZIP files (*.zip)|*.zip"
         , wxFD_FILE_MUST_EXIST);
 
     if (reportFileName.empty()) return;
