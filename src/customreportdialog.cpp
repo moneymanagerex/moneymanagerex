@@ -38,14 +38,14 @@ static const char LUA_SAMPLE[] =
         "\tresult:set('ASSET_BALANCE', total_balance);\n"
     "end\n";
 static const char SQL_SAMPLE [] =
-    "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES FROM ASSETS_V1;";
+    "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
 static const wxString HTT_SAMPLE =
     "<h3>Assets</h3>\n"
     "<TMPL_VAR TODAY>\n"
     "<table border=1>\n"
     "    <TMPL_LOOP NAME=CONTENTS>\n"
     "    <tr>\n"
-    "        <td<TMPL_VAR STARTDATE></td>\n"
+    "        <td><TMPL_VAR STARTDATE></td>\n"
     "        <td><TMPL_VAR ASSETNAME></td>\n"
     "        <td><TMPL_VAR ASSETTYPE></td>\n"
     "        <td><TMPL_VAR VALUE></td>\n"
@@ -53,7 +53,7 @@ static const wxString HTT_SAMPLE =
     "    </tr>\n"
     "    </TMPL_LOOP>\n"
     "    <tr>\n"
-    "        <td colspan=2 >Total Assets: </td>\n"
+    "        <td colspan=3>Total Assets: </td>\n"
     "        <td nowrap align=\"right\"><TMPL_VAR ASSET_BALANCE></td>\n"
     "        <td></td>"
     "    </tr>\n"
