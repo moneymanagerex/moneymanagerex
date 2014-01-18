@@ -129,8 +129,9 @@ wxString Model_Report::get_html(const Data* r)
                 method("set", &Record::set).
                 end().open().glue();
 
-            bool lua_status = !r->LUACONTENT.IsEmpty() && state.doString(r->LUACONTENT.ToStdString());
-            if (!lua_status)
+            bool skip_lua = r->LUACONTENT.IsEmpty();
+            bool lua_status = state.doString(r->LUACONTENT.ToStdString());
+            if (!skip_lua && !lua_status)
             {
                 error("ERROR") = "failed to doString : " + r->LUACONTENT + " err: " + state.lastError();
                 errors += error;
@@ -145,7 +146,7 @@ wxString Model_Report::get_html(const Data* r)
                     r[column_name.ToStdString()] = q.GetAsString(i);
                 }
 
-                if (lua_status) 
+                if (lua_status && !skip_lua) 
                 {
                     try
                     {
@@ -174,7 +175,7 @@ wxString Model_Report::get_html(const Data* r)
             q.Finalize();
 
             Record result;
-            if (lua_status) 
+            if (lua_status && !skip_lua)
             {
                 try
                 {
