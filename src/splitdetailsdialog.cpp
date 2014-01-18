@@ -177,8 +177,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 {
     if (split_->CATEGID == -1)
     {
-        mmShowErrorMessage(this, _("Invalid Category Entered "), _("Error"));
-        bCategory_->SetFocus();
+        mmMessageCategoryInvalid(bCategory_);
         return;
     }
 
@@ -188,10 +187,8 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
 
     wxString amountStr = textAmount_->GetValue().Trim();
     double amount;
-    if (!Model_Currency::fromString(amountStr, amount, currency) || amount < 0)
+    if (!textAmount_->checkValue(amount))
     {
-        mmShowErrorMessage(this, _("Invalid Amount Entered "), _("Error"));
-        textAmount_->SetFocus();
         return;
     }
 
