@@ -19,10 +19,7 @@
 #include "webserver.h"
 #include "mmframe.h"
 #include <wx/fs_mem.h>
-extern "C"
-{
 #include "mongoose/mongoose.h"
-}
 
 class mmGUIFrame * WebServerThread::m_pHandler = NULL;
 class wxString * WebServerThread::m_htmlpage = NULL;
@@ -36,32 +33,67 @@ WebServerThread::~WebServerThread()
 {
     wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
     if (m_htmlpage)
+    {
+        wxMemoryFSHandler::RemoveFile(*m_htmlpage);
         delete m_htmlpage;
+    }
 
     wxCriticalSectionLocker enter2(m_pHandler->m_pThreadCS);
     m_pHandler->m_pThread = NULL;
 }
 
-int WebServerThread::index_html(struct mg_connection *conn) {
+int WebServerThread::IndexHtml(struct mg_connection *conn) {
     int nReturn = 0;
 
     wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
     if (m_htmlpage != NULL)
     {
-        if (strcmp(conn->uri, "/") == 0)
+        wxString name = conn->uri;
+        if (name.EndsWith(".png"))
         {
-            nReturn = 1;
-            mg_send_data(conn, m_htmlpage->GetData(), m_htmlpage->Length());
+            wxString imagename = "memory:" + name.Mid(1);
+            if (SendFile(conn, imagename))
+                nReturn = 1;
+        }
+        else if (strcmp(conn->uri, "/") == 0)
+        {
+            wxString pagename = "memory:" + *m_htmlpage;
+            if (SendFile(conn, pagename))
+                nReturn = 1;
+            else
+                mg_printf_data(conn, "Unable to access the requested URI is [%s]", conn->uri);
         }
         else
-        {
             mg_printf_data(conn, "requested URI is [%s]", conn->uri);
-        }
     }
     else
         mg_printf_data(conn, "Unable to find the requested URI is [%s]", conn->uri);
 
     return nReturn;
+}
+
+bool WebServerThread::SendFile(struct mg_connection *conn, wxString &filename)
+{
+    bool bFound = false;
+
+    wxFileSystem fs;
+    wxFSFile *pFile = fs.OpenFile(filename);
+    if (pFile)
+    {
+        bFound = true;
+        wxInputStream *is = pFile->GetStream();
+        while (is->CanRead())
+        {
+            char szBuffer[256];
+            is->Read(&szBuffer, sizeof(szBuffer));
+            int nRead = is->LastRead();
+            mg_send_data(conn, szBuffer, nRead);
+            if (nRead < sizeof(szBuffer))
+                break;
+        }
+        delete pFile;
+    }
+    return bFound;
 }
 
 wxThread::ExitCode WebServerThread::Entry()
@@ -70,7 +102,8 @@ wxThread::ExitCode WebServerThread::Entry()
     struct mg_server *server = mg_create_server(NULL);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "enable_directory_listing", "no");
-    mg_add_uri_handler(server, "/", WebServerThread::index_html);
+    const char *uri = "/";
+    mg_add_uri_handler(server, uri, WebServerThread::IndexHtml);
 
     // Serve requests
     while (1)
@@ -93,6 +126,16 @@ wxThread::ExitCode WebServerThread::Entry()
         }
     };
     // Memory for uri handler is also not released
+    try
+    {
+        char *pHandler = *(char **)(*(char **)((char *)server + 32) + 8);
+        if (strncmp(pHandler, uri, strlen(uri)) == 0)
+            free(pHandler);
+    }
+    catch (...)
+    {
+        ;
+    }
 
     // Cleanup, and free server instance
     mg_destroy_server(&server);
@@ -102,16 +145,19 @@ wxThread::ExitCode WebServerThread::Entry()
 
 void WebServerThread::ServerPage(wxString &htmlpage)
 {
-    // Test code to copy html to web server. Report can be viewed in browser window using "http://localhost:8080".
-    wxString oldstr = "memory:";
-    wxString newstr = "localhost:8080/";
-    /*size_t nbr =*/ htmlpage.Replace(oldstr, newstr);
-//    wxString pagename = "report.html";
-//    wxMemoryFSHandler::AddFile(pagename, htmlpage);
+    // Report can be viewed in browser window using "http://localhost:8080".
+
+    // Cleanup html
+    htmlpage.Replace("memory:", "");
 
     wxCriticalSectionLocker enter1(m_pHandler->m_pThreadCS);
     wxCriticalSectionLocker enter2(m_pHandler->m_pFileSystemCS);
     if (m_htmlpage)
+    {
+        wxMemoryFSHandler::RemoveFile(*m_htmlpage);
         delete m_htmlpage;
+    }
     m_htmlpage = new wxString(htmlpage);
+    *m_htmlpage = "report.html";
+    wxMemoryFSHandler::AddFile(*m_htmlpage, htmlpage);
 }
