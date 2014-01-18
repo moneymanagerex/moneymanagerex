@@ -2714,6 +2714,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
     mmGeneralReportManager dlg(this);
     dlg.ShowModal();
     updateNavTreeControl();
+    createHomePage();
 }
 
 //----------------------------------------------------------------------------
