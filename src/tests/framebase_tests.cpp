@@ -22,7 +22,9 @@ This frame serves as a test base for dialogs.
 #include <wx/frame.h>
 #include <wx/menu.h>
 #include <wx/msgdlg.h> 
- 
+#include <wx/infobar.h>
+#include <wx/sizer.h>
+
 #include "framebase_tests.h"
 
 wxBEGIN_EVENT_TABLE(TestFrameBase, wxFrame)
@@ -30,7 +32,7 @@ wxBEGIN_EVENT_TABLE(TestFrameBase, wxFrame)
 wxEND_EVENT_TABLE()
 
 TestFrameBase::TestFrameBase(int frame_count)
-: wxFrame(NULL, wxID_ANY, "TEST Base Frame: MMEX Tests", wxPoint(50, 50), wxSize(400, 250))
+: wxFrame(NULL, wxID_ANY, "TEST Base Frame: MMEX Tests", wxPoint(50, 50), wxSize(400, 150))
 {
     wxMenu *menuBase = new wxMenu;
     wxMenuBar *menuBar = new wxMenuBar;
@@ -47,7 +49,19 @@ TestFrameBase::TestFrameBase(wxWindow* parent, int size_x, int size_y)
     CreateStatusBar();
 }
 
+TestFrameBase::TestFrameBase(wxWindow* parent, const wxString& heading)
+: wxFrame(parent, wxID_ANY, heading, wxPoint(500, 50), wxSize(400, 150))
+{
+    m_infoBar = new wxInfoBar(this);
+    wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(m_infoBar, wxSizerFlags().Expand().Border());
+    SetSizer(sizer);
+}
 
+void TestFrameBase::Show_InfoBarMessage(const wxString& info_message)
+{
+    m_infoBar->ShowMessage(info_message, wxICON_INFORMATION);
+}
 
 TestFrameBase::~TestFrameBase()
 {

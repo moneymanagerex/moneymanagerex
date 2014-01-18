@@ -848,7 +848,7 @@ wxString mmFilterTransactionsDialog::to_json()
     {
         int item = choiceStatus_->GetSelection();
         wxString status;
-        if (0 <= item && item < Model_Checking::all_status().size())
+        if (0 <= item && item < (int)Model_Checking::all_status().size())
             status = Model_Checking::all_status()[item];
         o["STATUS"] = json::String(status.ToStdString());
     }

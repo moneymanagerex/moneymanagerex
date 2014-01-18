@@ -50,7 +50,10 @@ public:
 public:
     Data_Set FilterPayees(const wxString& payee_pattern);
 
-    /** Return the Data record for the given payee name*/
+    /**
+    * Return the Data record pointer for the given payee name
+    * Returns 0 when payee not found.
+    */
     Data* get(const wxString& name);
 
     bool remove(int id);

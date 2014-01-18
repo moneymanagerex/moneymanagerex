@@ -36,7 +36,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "mmOption.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
+CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
@@ -59,8 +59,8 @@ Test_Relocate_Category::~Test_Relocate_Category()
 void Test_Relocate_Category::setUp()
 {
     CpuTimer time("Startup");
-    m_frame = new TestFrameBase(m_this_instance);
-    m_frame->Show(true);
+    m_base_frame = new TestFrameBase(m_this_instance);
+    m_base_frame->Show(true);
     m_test_db.Open(m_test_db_filename);
 
     m_dbmodel = new DB_Init_Model();
@@ -109,47 +109,43 @@ void Test_Relocate_Category::setUp()
 
 void Test_Relocate_Category::tearDown()
 {
-    m_test_db.Close();
-    delete m_frame;
     delete m_dbmodel;
-}
-
-void Test_Relocate_Category::ShowMessage(wxString msg)
-{
-    msg = msg << "\nInstance # " << m_this_instance;
-    wxMessageBox(msg, "Test: Relocate Category Dialog", wxOK, wxTheApp->GetTopWindow());
+    m_test_db.Close();
+    delete m_base_frame;
 }
 
 void Test_Relocate_Category::test_dialog()
 {
-    ShowMessage("Please relocate Insurance/Auto to Automobile/Registration\n\nThis should result in 6 records being changed.\n");
-    relocateCategoryDialog dlg(m_frame);
+    TestFrameBase* user_request = new TestFrameBase(m_base_frame);
+    user_request->Show();
+
+    wxString info_message = "Please relocate:\n";
+    info_message << "Insurance/Auto to Automobile/Registration\n\n";
+    info_message << "Use Cancel to ignore test results.";
+    user_request->Show_InfoBarMessage(info_message);
+    relocateCategoryDialog dlg(m_base_frame);
     if (dlg.ShowModal() == wxID_OK)
     {
-        wxString msg = "Test Complete: ";
-        msg << dlg.updatedCategoriesCount() << " records changed.";
-        ShowMessage(msg);
+        CPPUNIT_ASSERT(dlg.updatedCategoriesCount() == 6);
+        int cat_id_auto = Model_Category::instance().get("Automobile")->id();
+        int subcat_id_reg = Model_Subcategory::instance().get("Registration", cat_id_auto)->id();
+
+        CPPUNIT_ASSERT(Model_Checking::instance().get(1)->CATEGID == cat_id_auto);
+        CPPUNIT_ASSERT(Model_Checking::instance().get(1)->SUBCATEGID == subcat_id_reg);
+
+        CPPUNIT_ASSERT(Model_Splittransaction::instance().get(1)->CATEGID == cat_id_auto);
+        CPPUNIT_ASSERT(Model_Splittransaction::instance().get(1)->SUBCATEGID == subcat_id_reg);
+
+        CPPUNIT_ASSERT(Model_Budgetsplittransaction::instance().get(1)->CATEGID == cat_id_auto);
+        CPPUNIT_ASSERT(Model_Budgetsplittransaction::instance().get(1)->SUBCATEGID == subcat_id_reg);
+
+        CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->CATEGID == cat_id_auto);
+        CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->SUBCATEGID == subcat_id_reg);
+
+        CPPUNIT_ASSERT(Model_Budget::instance().get(1)->CATEGID == cat_id_auto);
+        CPPUNIT_ASSERT(Model_Budget::instance().get(1)->SUBCATEGID == subcat_id_reg);
+
+        CPPUNIT_ASSERT(Model_Payee::instance().get("Aldi")->CATEGID == cat_id_auto);
+        CPPUNIT_ASSERT(Model_Payee::instance().get("Aldi")->SUBCATEGID == subcat_id_reg);
     }
-
-    int cat_id_auto = Model_Category::instance().get("Automobile")->id();
-    int subcat_id_reg = Model_Subcategory::instance().get("Registration", cat_id_auto)->id();
-
-    CPPUNIT_ASSERT(dlg.updatedCategoriesCount() == 6);
-    CPPUNIT_ASSERT(Model_Checking::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Checking::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Splittransaction::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Splittransaction::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Budgetsplittransaction::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Budgetsplittransaction::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Budget::instance().get(1)->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Budget::instance().get(1)->SUBCATEGID == subcat_id_reg);
-
-    CPPUNIT_ASSERT(Model_Payee::instance().get("Aldi")->CATEGID == cat_id_auto);
-    CPPUNIT_ASSERT(Model_Payee::instance().get("Aldi")->SUBCATEGID == subcat_id_reg);
 }

@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 This frame serves as a test base for dialogs.
 *****************************************************************************/ 
 class wxFrame;
+class wxInfoBar;
 
 class TestFrameBase : public wxFrame
 {
@@ -33,6 +34,11 @@ public:
     TestFrameBase(wxWindow* parent, int size_x, int size_y);
     ~TestFrameBase();
 
+    TestFrameBase(wxWindow* parent, const wxString& heading = "Test: User Action Request");
+    void Show_InfoBarMessage(const wxString& info_message);
+
 private:
+
+    wxInfoBar *m_infoBar;
     wxDECLARE_EVENT_TABLE();
 };
