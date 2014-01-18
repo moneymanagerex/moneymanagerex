@@ -149,6 +149,11 @@ void WebServerThread::ServerPage(wxString &htmlpage)
 
     // Cleanup html
     htmlpage.Replace("memory:", "");
+    wxString update_string = "http://localhost:8080/";
+    htmlpage.Replace("TRXID:", update_string);
+    htmlpage.Replace("ACCT:", update_string);
+    htmlpage.Replace("STOCK:", update_string);
+    htmlpage.Replace("SORT:", update_string);
 
     wxCriticalSectionLocker enter1(m_pHandler->m_pThreadCS);
     wxCriticalSectionLocker enter2(m_pHandler->m_pFileSystemCS);
