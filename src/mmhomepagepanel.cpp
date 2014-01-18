@@ -21,6 +21,7 @@
 #include "reports/html_widget_bills_and_deposits.h"
 #include "reports/html_widget_stocks.h"
 #include "mmex.h"
+#include "mmframe.h"
 
 #include "reports/htmlbuilder.h"
 #include "billsdepositspanel.h"

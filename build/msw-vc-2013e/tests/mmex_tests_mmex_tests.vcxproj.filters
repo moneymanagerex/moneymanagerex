@@ -348,6 +348,12 @@
     <ClCompile Include="..\..\..\src\tests\db_init_model.cpp">
       <Filter>Test Source\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\mmframe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\webserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -727,6 +733,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\db_init_model.h">
       <Filter>Test Headers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\mmframe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\webserver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

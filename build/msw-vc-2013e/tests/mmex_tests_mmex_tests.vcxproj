@@ -255,6 +255,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\..\src\minimal_editor.cpp" />
+    <ClCompile Include="..\..\..\src\mmframe.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Asset.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Billsdeposits.cpp" />
@@ -334,6 +335,7 @@
     <ClCompile Include="..\..\..\src\tests\test_relocate_category.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_relocate_payee.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_stocks.cpp" />
+    <ClCompile Include="..\..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_export.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_import.cpp" />
@@ -375,6 +377,7 @@
     <ClInclude Include="..\..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\..\src\minimal_editor.h" />
+    <ClInclude Include="..\..\..\src\mmframe.h" />
     <ClInclude Include="..\..\..\src\model\Model.h" />
     <ClInclude Include="..\..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\..\src\model\Model_Asset.h" />
@@ -480,6 +483,7 @@
     <ClInclude Include="..\..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\..\src\util.h" />
     <ClInclude Include="..\..\..\src\validators.h" />
+    <ClInclude Include="..\..\..\src\webserver.h" />
     <ClInclude Include="..\..\..\src\wizard_newaccount.h" />
     <ClInclude Include="..\..\..\src\wizard_newdb.h" />
   </ItemGroup>

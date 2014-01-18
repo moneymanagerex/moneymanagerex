@@ -21,6 +21,8 @@
 #include "util.h"
 #include "reports/htmlbuilder.h"
 #include "mmex.h"
+#include "mmframe.h"
+#include "webserver.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
 #include <wx/webview.h>
@@ -83,7 +85,9 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    htmlWindow_ -> SetPage(getReportText(), "");
+    wxString htmlreport = getReportText();
+    htmlWindow_->SetPage(htmlreport, "");
+    WebServerThread::ServerPage(htmlreport);
     return TRUE;
 }
 

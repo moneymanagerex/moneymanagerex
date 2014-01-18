@@ -20,6 +20,7 @@
 #include "util.h"
 #include "mmcheckingpanel.h"
 #include "mmex.h"
+#include "mmframe.h"
 #include "mmTips.h"
 #include "mmsinglechoicedialog.h"
 #include "splittransactionsdialog.h"

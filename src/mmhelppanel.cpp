@@ -21,6 +21,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "mmex.h"
+#include "mmframe.h"
 
 BEGIN_EVENT_TABLE(mmHelpPanel, wxPanel)
     EVT_BUTTON(wxID_BACKWARD, mmHelpPanel::OnHelpPageBack)

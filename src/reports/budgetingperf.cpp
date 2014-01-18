@@ -19,6 +19,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "budgetingperf.h"
 #include "htmlbuilder.h"
 #include "mmex.h"
+#include "mmframe.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Budget.h"
 #include "model/Model_Category.h"

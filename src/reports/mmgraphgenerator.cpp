@@ -43,7 +43,6 @@ private:
 Eraser::Eraser()
     : count(0)
 {
-    wxFileSystem::AddHandler(new wxMemoryFSHandler);
 }
 
 Eraser::~Eraser()

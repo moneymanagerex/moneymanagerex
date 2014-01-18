@@ -18,6 +18,7 @@
 #include "budget.h"
 
 #include "mmex.h"
+#include "mmframe.h"
 #include "htmlbuilder.h"
 
 mmReportBudget::mmReportBudget()

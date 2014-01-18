@@ -21,6 +21,7 @@
 #include "budgetentrydialog.h"
 #include "mmOption.h"
 #include "mmex.h"
+#include "mmframe.h"
 #include "reports/budget.h"
 #include "reports/mmDateRange.h"
 #include "model/Model_Setting.h"
