@@ -71,8 +71,8 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnExportReport)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
+    //EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
-    EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
 END_EVENT_TABLE()
@@ -87,7 +87,8 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxSize(640, 480), style);
+    Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
+    SetClientSize(wxSize(720, 576));
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
@@ -133,7 +134,7 @@ void mmGeneralReportManager::fillControls()
     m_treeCtrl->SetItemBold(m_rootItem, true);
     m_treeCtrl->SetFocus();
     Model_Report::Data_Set records
-        = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
+        = Model_Report::instance().all(Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)
@@ -181,9 +182,9 @@ void mmGeneralReportManager::CreateControls()
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //
 
-    long treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS;
+    long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #if defined (__WXWIN__)
-    treeCtrlFlags = wxTR_EDIT_LABELS | wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
+    treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
     m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
@@ -231,7 +232,7 @@ void mmGeneralReportManager::CreateControls()
     buttonPanelSizer->Add(m_buttonRun, flags);
     m_buttonRun->SetToolTip(_("Run selected report."));
 
-    wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, _("&Cancel "));
+    wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, _("&Close "));
     buttonPanelSizer->Add(button_Close, flags);
     //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
 
@@ -443,6 +444,8 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_GROUP, _("Change Group"));
     customReportMenu->Enable(ID_GROUP, report_id > 0);
+    customReportMenu->Append(ID_RENAME, _("Rename Report"));
+    customReportMenu->Enable(ID_RENAME, report_id > 0);
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_DELETE, _("Delete Report"));
     customReportMenu->Enable(ID_DELETE, report_id > 0);
@@ -504,16 +507,19 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     }
 }
 
-void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
+/*void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(event.GetItem()));
-    if (!iData) return;
+    event.Veto();
+}*/
 
-    wxString label = event.GetLabel();
-    int id = iData->get_report_id();
+void mmGeneralReportManager::renameReport(int id)
+{
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
+        wxString label = wxGetTextFromUser(_("Enter the name for the report")
+            , _("General Report Manager"), report->REPORTNAME);
+        label.Trim();
         if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty()
             && !label.empty())
         {
@@ -521,11 +527,7 @@ void mmGeneralReportManager::OnLabelChanged(wxTreeEvent& event)
             Model_Report::instance().save(report);
             fillControls();
         }
-        else
-            event.Veto();
     }
-    else
-        event.Veto();
 }
 
 bool mmGeneralReportManager::DeleteReport(int id)
@@ -559,9 +561,14 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     {
         newReport(true);
     }
-    if (id == ID_NEW_EMPTY)
+    else if (id == ID_NEW_EMPTY)
     {
         newReport(false);
+    }
+    else if (iData && id == ID_RENAME)
+    {
+        int report_id = iData->get_report_id();
+        this->renameReport(report_id);
     }
     else if (iData && id == ID_DELETE)
     {
@@ -645,5 +652,5 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
 {
-    EndModal(wxID_CANCEL);
+    EndModal(wxID_OK);
 }

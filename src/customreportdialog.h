@@ -49,6 +49,7 @@ private:
         ID_NEW_SAMPLE = wxID_HIGHEST + 500,
         ID_NEW_EMPTY,
         ID_DELETE,
+        ID_RENAME,
         ID_GROUP, 
         ID_NOTEBOOK,
         ID_WEB,
@@ -80,8 +81,9 @@ private:
     void OnClose(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
+    //void OnLabelChanged(wxTreeEvent& event);
     void viewControls(bool enable);
-    void OnLabelChanged(wxTreeEvent& event);
+    void renameReport(int id);
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
     void newReport(bool sample = false);
