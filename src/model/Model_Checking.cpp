@@ -245,12 +245,18 @@ Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
  , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
     const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
-    const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
     if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
-    if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
 
-    const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-    if (payee) this->PAYEENAME = payee->PAYEENAME;
+    if (Model_Checking::TRANSFER == Model_Checking::type(this))
+    {
+        const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
+        if (to_account) this->TOACCOUNTNAME = to_account->ACCOUNTNAME;
+    }
+    else
+    {
+        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
+        if (payee) this->PAYEENAME = payee->PAYEENAME;
+    }
     
     if (Model_Checking::splittransaction(r).empty())
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);

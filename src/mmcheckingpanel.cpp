@@ -300,20 +300,9 @@ void mmCheckingPanel::filterTable()
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
         {
             bool transfer_to = tran.ACCOUNTID == this->m_AccountID;
-            const Model_Account::Data* account = Model_Account::instance().get(transfer_to ? tran.TOACCOUNTID : tran.ACCOUNTID);
-            if (account) full_tran.PAYEENAME = wxString(account->ACCOUNTNAME).Prepend(transfer_to ? "> " : "< ");
-        }
-        else
-        {
-            const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
+            full_tran.PAYEENAME = transfer_to ? "> " + full_tran.TOACCOUNTNAME : "< " + full_tran.ACCOUNTNAME;
         }
         
-        if (Model_Checking::splittransaction(tran).empty())
-            full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
-        else
-            full_tran.CATEGNAME = "...";
-
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
     }
