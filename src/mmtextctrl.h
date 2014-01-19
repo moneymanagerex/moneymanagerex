@@ -82,12 +82,10 @@ public:
     {
         if (!GetDouble(amount) || amount < 0)
         {
-            wxRichToolTip tip(_("Invalid Amount Entered "),
-                _("You might have made an error in the amount entered.")
-                + "\n"
-                + _("Value should be positive and proper formated.")
+            wxRichToolTip tip(_("Invalid Amount."),
+                _("Please enter a positive or calculated value.")
                 + "\n\n"
-                + _("Tip: Enter some amount or math expression like '2+2'\nthen press Enter for proper format"));
+                + _("Tip: For calculations, enter expressions like (2+2)*(2+2)\nCalculations will be evaluated and the result used as the entry."));
             tip.SetIcon(wxICON_WARNING);
             tip.ShowFor(this);
             SetFocus();

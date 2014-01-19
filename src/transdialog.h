@@ -77,6 +77,7 @@ private:
     void onTextEntered(wxCommandEvent& event);
     void OnAdvanceChecked(wxCommandEvent& event);
     void activateSplitTransactionsDlg();
+    void setTooltips();
 
     mmTextCtrl *textNumber_;
     mmTextCtrl *textAmount_;

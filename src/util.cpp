@@ -407,13 +407,13 @@ void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
     wxString errorMessage;
     if (!transfer)
     {
-        errorMessage = _("Please select the account for this transaction");
+        errorMessage = _("Please select the account for this transaction.");
     }
     else
     {
-        errorMessage = _("Specify which account the transfer is going to");
+        errorMessage = _("Please specify which account the transfer is going to.");
     }
-    wxString errorTips = _("Type in account name or use the dropdown button");
+    wxString errorTips = _("Selection can be made by using the dropdown button.");
     errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
     wxRichToolTip tip(errorHeader, errorMessage);

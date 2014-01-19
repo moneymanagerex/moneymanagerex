@@ -186,8 +186,6 @@ void mmTransDialog::dataToControls()
         toTextAmount_->SetValue("");
 
     toTextAmount_->Enable(cAdvanced_->IsChecked() && m_transfer);
-    textAmount_->UnsetToolTip();
-    toTextAmount_->UnsetToolTip();
 
     // backup the original currency rate first
     if (transaction_->TRANSAMOUNT > 0.0)
@@ -228,20 +226,11 @@ void mmTransDialog::dataToControls()
         wxString payee_tooltip = "";
         if (!m_transfer)
         {
-            textAmount_->SetToolTip(amountNormalTip_);
-
             if (transaction_->TRANSCODE == Model_Checking::all_type()[Model_Checking::WITHDRAWAL])
-            {
-                payee_tooltip = _("Specify to whom the transaction is going to");
                 payee_label_->SetLabel(_("Payee"));
-            }
             else
-            {
-                payee_tooltip = _("Specify where the transaction is coming from");
                 payee_label_->SetLabel(_("From"));
-            }
 
-            cbAccount_->SetToolTip(_("Specify account for the transaction"));
             account_label_->SetLabel(_("Account"));
             transaction_->TOACCOUNTID = -1;
             for (const auto & entry : Model_Payee::instance().all_payee_names())
@@ -253,8 +242,6 @@ void mmTransDialog::dataToControls()
         }
         else //transfer
         {
-            textAmount_->SetToolTip(amountTransferTip_);
-            toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
             if (cSplit_->IsChecked())
             {
                 cSplit_->SetValue(false);
@@ -278,13 +265,10 @@ void mmTransDialog::dataToControls()
             cbPayee_->AutoComplete(Model_Account::instance().all_checking_account_names());
 
             payee_label_->SetLabel(_("To"));
-            payee_tooltip = _("Specify which account the transfer is going to");
             transaction_->PAYEEID = -1;
             account_label_->SetLabel(_("From"));
-            cbAccount_->SetToolTip(_("Specify which account the transfer is coming from"));
             cbAccount_->Enable(true);
         }
-        cbPayee_->SetToolTip(payee_tooltip);
         skip_payee_init_ = true;
         cbPayee_->SetEvtHandlerEnabled(true);
     }
@@ -297,7 +281,6 @@ void mmTransDialog::dataToControls()
         if (has_split)
         {
             fullCategoryName = _("Categories");
-            bCategory_->SetToolTip(_("Specify categories for this transaction"));
             double total = Model_Splittransaction::instance().get_total(m_local_splits);
             textAmount_->SetValue(total);
         }
@@ -307,7 +290,6 @@ void mmTransDialog::dataToControls()
             Model_Subcategory::Data *subcategory = (Model_Subcategory::instance().get(transaction_->SUBCATEGID));
             fullCategoryName = Model_Category::full_name(category, subcategory);
             if (fullCategoryName.IsEmpty()) fullCategoryName = _("Select Category");
-            bCategory_->SetToolTip(_("Specify the category for this transaction"));
         }
 
         bCategory_->SetLabel(fullCategoryName);
@@ -332,6 +314,7 @@ void mmTransDialog::dataToControls()
         }
         skip_notes_init_ = true;
     }
+    setTooltips();
 }
 
 void mmTransDialog::CreateControls()
@@ -464,8 +447,9 @@ void mmTransDialog::CreateControls()
     wxButton* bAuto = new wxButton(this
         , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
         , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
-    bAuto -> Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
+    bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
+    bAuto->SetToolTip(_("Populate Transaction #"));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), flags);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -478,22 +462,6 @@ void mmTransDialog::CreateControls()
         , wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
 
     box_sizer->Add(textNotes_, flagsExpand.Border(wxLEFT|wxRIGHT|wxBOTTOM, 10));
-
-    amountNormalTip_   = _("Specify the amount for this transaction");
-    amountTransferTip_ = _("Specify the amount to be transfered");
-    if (true) //TODO: Add parameter
-    {
-        dpc_->SetToolTip(_("Specify the date of the transaction"));
-        spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
-        choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
-        transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
-        cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
-        textAmount_->SetToolTip(amountNormalTip_);
-        cSplit_->SetToolTip(_("Use split Categories"));
-        textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
-        bAuto->SetToolTip(_("Populate Transaction #"));
-        textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
-    }
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -1039,6 +1007,56 @@ void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 #endif
 
     EndModal(wxID_CANCEL);
+}
+
+void mmTransDialog::setTooltips()
+{
+    textAmount_->UnsetToolTip();
+    toTextAmount_->UnsetToolTip();
+    cbAccount_->UnsetToolTip();
+    cbPayee_->UnsetToolTip();
+    bCategory_->UnsetToolTip();
+    
+    if (m_transfer)
+    {
+        cbAccount_->SetToolTip(_("Specify account the money is taken from"));
+        cbPayee_->SetToolTip(_("Specify account the money is moved to"));
+        
+        if (advancedToTransAmountSet_)
+        {
+            toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
+        }
+    }
+    else
+    {
+        cbAccount_->SetToolTip(_("Specify account for the transaction"));
+        if (Model_Checking::WITHDRAWAL == Model_Checking::type(transaction_))
+            cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
+        else
+            cbPayee_->SetToolTip(_("Specify where the transaction is coming from"));
+    }
+
+    if (this->m_local_splits.empty())
+    {
+        bCategory_->SetToolTip(_("Specify the category for this transaction"));
+    }
+    else
+    {
+        bCategory_->SetToolTip(_("Specify categories for this transaction"));
+    }
+    
+    textAmount_->SetToolTip(_("Specify the amount for this transaction"));
+
+    //Permanent
+    dpc_->SetToolTip(_("Specify the date of the transaction"));
+    spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
+    choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
+    transaction_type_->SetToolTip(_("Specify the type of transactions to be created."));
+    cSplit_->SetToolTip(_("Use split Categories"));
+    textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
+    textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
+    cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
+
 }
 
 void mmTransDialog::OnQuit(wxCloseEvent& /*event*/)
