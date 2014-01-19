@@ -20,33 +20,33 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 //---------------------------------------------------------------------------
-#include "test_dialog_about.h"
+#include "test_about_dialog.h"
 #include "framebase_tests.h"
 #include "aboutdialog.h"
 #include "paths.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION( Test_Dialog_About );
+//CPPUNIT_TEST_SUITE_REGISTRATION( Test_About_Dialog );
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------
-Test_Dialog_About::Test_Dialog_About()
+Test_About_Dialog::Test_About_Dialog()
 {
     instance_count++;
 }
 
-Test_Dialog_About::~Test_Dialog_About()
+Test_About_Dialog::~Test_About_Dialog()
 {
     instance_count--;
 }
 
-void Test_Dialog_About::setUp()
+void Test_About_Dialog::setUp()
 {
     frame = new TestFrameBase(instance_count);
     frame->Show(true);
 }
 
-void Test_Dialog_About::tearDown()
+void Test_About_Dialog::tearDown()
 {
     /**
     * Note: If the frame is not deleted here, it will
@@ -55,7 +55,7 @@ void Test_Dialog_About::tearDown()
     delete frame;
 }
 
-void Test_Dialog_About::test_dialog_about()
+void Test_About_Dialog::test_about_dialog()
 {
     wxString file_name = mmex::getPathDoc(mmex::F_CONTRIB);
     if (wxFileExists(file_name))

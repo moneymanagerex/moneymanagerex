@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2014 Stefano Giorgio
+Copyright (C) 2013 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,28 +17,43 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#pragma once
+#pragma once;
 //----------------------------------------------------------------------------
-#include <wx/intl.h>
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
+#include "mmOption.h"
+
 class TestFrameBase;
 
-class Test_Dialog_About : public CPPUNIT_NS::TestFixture
+class Test_Checking : public CPPUNIT_NS::TestFixture
 {
-	CPPUNIT_TEST_SUITE( Test_Dialog_About );
-    CPPUNIT_TEST(test_dialog_about);
+    CPPUNIT_TEST_SUITE(Test_Checking);
+    CPPUNIT_TEST(add_entries);
+    CPPUNIT_TEST(add_entries_savings);
+    CPPUNIT_TEST(add_entries_mc);
+    CPPUNIT_TEST(Test_Transaction_Dialog);
     CPPUNIT_TEST_SUITE_END();
 
 public:
-	Test_Dialog_About();
-	virtual ~Test_Dialog_About();
+    Test_Checking();
+    virtual ~Test_Checking();
 
-	void setUp();
-	void tearDown();
+    void setUp();
+    void tearDown();
 
 private:
-    TestFrameBase *frame;
+    wxString m_test_db_filename;
+    wxSQLite3Database m_test_db;
+    DB_Init_Model* m_dbmodel;
+    TestFrameBase* m_base_frame;
+    int m_this_instance;
+    CommitCallbackHook* m_commit_hook;
 
-    void test_dialog_about();
+private:
+    // Test cases
+    void add_entries();
+    void add_entries_savings();
+    void add_entries_mc();
+
+    void Test_Transaction_Dialog();
 };

@@ -300,19 +300,10 @@
     <ClCompile Include="..\..\..\src\minimal_editor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\test_model_currency.cpp">
-      <Filter>Test Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\test_model_checking.cpp">
-      <Filter>Test Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\tests\test_stocks.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\tests\test_assets.cpp">
-      <Filter>Test Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\src\tests\test_dialog_about.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\src\tests\test_billsdeposits.cpp">
@@ -353,6 +344,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\src\webserver.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_about_dialog.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_checking.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_currency.cpp">
+      <Filter>Test Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -689,19 +689,10 @@
     <ClInclude Include="..\..\..\src\minimal_editor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\src\tests\test_model_currency.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\tests\test_model_checking.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_assets.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_stocks.h">
-      <Filter>Test Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\tests\test_dialog_about.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_billsdeposits.h">
@@ -739,6 +730,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\webserver.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_about_dialog.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_checking.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_currency.h">
+      <Filter>Test Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

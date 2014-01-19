@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2014 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,39 +17,28 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#pragma once;
-
+#pragma once
 //----------------------------------------------------------------------------
 #include <wx/intl.h>
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
-#include "model/Model_Currency.h"
+class TestFrameBase;
 
-class DB_Init_Model;
-
-class Test_Model_Currency : public CPPUNIT_NS::TestFixture
+class Test_About_Dialog : public CPPUNIT_NS::TestFixture
 {
-    CPPUNIT_TEST_SUITE(Test_Model_Currency);
-    CPPUNIT_TEST(test_TwoDigitPrecision);
-    CPPUNIT_TEST(test_FourDigitPrecision);
-    CPPUNIT_TEST(test_FormatDoubleToCurrency);
+	CPPUNIT_TEST_SUITE( Test_About_Dialog );
+    CPPUNIT_TEST(test_about_dialog);
     CPPUNIT_TEST_SUITE_END();
 
 public:
-    Test_Model_Currency();
-    virtual ~Test_Model_Currency();
+	Test_About_Dialog();
+	virtual ~Test_About_Dialog();
 
-    void setUp();
-    void tearDown();
-
-private:
-    wxString m_test_db_filename;
-    wxSQLite3Database m_test_db;
-    DB_Init_Model* m_dbmodel;
+	void setUp();
+	void tearDown();
 
 private:
-    void test_TwoDigitPrecision();
-    void test_FourDigitPrecision();
-    void test_FormatDoubleToCurrency();
+    TestFrameBase *frame;
 
+    void test_about_dialog();
 };

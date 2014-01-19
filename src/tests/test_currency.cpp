@@ -22,20 +22,20 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "cpu_timer.h"
 #include "db_init_model.h"
 //----------------------------------------------------------------------------
-#include "test_model_currency.h"
+#include "test_currency.h"
 
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Model_Currency);
+//CPPUNIT_TEST_SUITE_REGISTRATION(Test_Currency);
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------
-Test_Model_Currency::Test_Model_Currency()
+Test_Currency::Test_Currency()
 {
     instance_count++;
     m_test_db_filename = "test_db_model_currency.mmb";
 }
 
-Test_Model_Currency::~Test_Model_Currency()
+Test_Currency::~Test_Currency()
 {
     instance_count--;
     if (instance_count < 1)
@@ -44,7 +44,7 @@ Test_Model_Currency::~Test_Model_Currency()
     }
 }
 
-void Test_Model_Currency::setUp()
+void Test_Currency::setUp()
 {
     CpuTimer time("Setup");
     m_test_db.Open(m_test_db_filename);
@@ -52,13 +52,13 @@ void Test_Model_Currency::setUp()
     m_dbmodel->Init_Model_Tables(&m_test_db);
 }
 
-void Test_Model_Currency::tearDown()
+void Test_Currency::tearDown()
 {
     m_test_db.Close();
     delete m_dbmodel;
 }
 
-void Test_Model_Currency::test_TwoDigitPrecision()
+void Test_Currency::test_TwoDigitPrecision()
 {
     CpuTimer time_this;
     wxString value;
@@ -139,7 +139,7 @@ void Test_Model_Currency::test_TwoDigitPrecision()
     currency.SetBaseCurrency(&au_record);
 }
 
-void Test_Model_Currency::test_FourDigitPrecision()
+void Test_Currency::test_FourDigitPrecision()
 {
     CpuTimer time_this;
     wxString value;
@@ -172,7 +172,7 @@ void Test_Model_Currency::test_FourDigitPrecision()
     CPPUNIT_ASSERT(value == "NT$12.345,1234 - MOD");
 }
 
-void Test_Model_Currency::test_FormatDoubleToCurrency()
+void Test_Currency::test_FormatDoubleToCurrency()
 {
     CpuTimer time_this;
     double value = 0.0099;

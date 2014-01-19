@@ -166,11 +166,12 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
     return Model_Payee::instance().save(payee_entry);
 }
 
-void DB_Init_Model::Set_AccountName(const wxString& account_name)
+int DB_Init_Model::Add_category(const wxString& name)
 {
-    Model_Account::Data* account = Model_Account::instance().get(account_name);
-    m_account_name = account->ACCOUNTNAME;
-    m_account_id = account->id();
+    Model_Category::Data* cat_entry = Model_Category::instance().create();
+    cat_entry->CATEGNAME = name;
+
+    return Model_Category::instance().save(cat_entry);
 }
 
 int DB_Init_Model::Category_id(const wxString& category)
@@ -185,6 +186,15 @@ int DB_Init_Model::Category_id(const wxString& category)
     return cat_id;
 }
 
+int DB_Init_Model::Add_subcategory(const wxString& name, int category_id)
+{
+    Model_Subcategory::Data* subcat_entry = Model_Subcategory::instance().create();
+    subcat_entry->SUBCATEGNAME = name;
+    subcat_entry->CATEGID = category_id;
+
+    return Model_Subcategory::instance().save(subcat_entry);
+}
+
 int DB_Init_Model::Subcategory_id(const wxString& subcategory, int category_id)
 {
     int subcat_id = -1;
@@ -195,6 +205,13 @@ int DB_Init_Model::Subcategory_id(const wxString& subcategory, int category_id)
     }
 
     return subcat_id;
+}
+
+void DB_Init_Model::Set_AccountName(const wxString& account_name)
+{
+    Model_Account::Data* account = Model_Account::instance().get(account_name);
+    m_account_name = account->ACCOUNTNAME;
+    m_account_id = account->id();
 }
 
 // This commands sets m_processing_transaction

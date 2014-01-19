@@ -18,25 +18,26 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #pragma once;
+
 //----------------------------------------------------------------------------
+#include <wx/intl.h>
 #include <cppunit/extensions/HelperMacros.h>
 //----------------------------------------------------------------------------
-#include "mmOption.h"
+#include "model/Model_Currency.h"
 
 class DB_Init_Model;
 
-class Test_Model_Checking : public CPPUNIT_NS::TestFixture
+class Test_Currency : public CPPUNIT_NS::TestFixture
 {
-    CPPUNIT_TEST_SUITE(Test_Model_Checking);
-    CPPUNIT_TEST(add_entries);
-    CPPUNIT_TEST(add_entries_savings);
-    CPPUNIT_TEST(add_entries_mc);
+    CPPUNIT_TEST_SUITE(Test_Currency);
+    CPPUNIT_TEST(test_TwoDigitPrecision);
+    CPPUNIT_TEST(test_FourDigitPrecision);
+    CPPUNIT_TEST(test_FormatDoubleToCurrency);
     CPPUNIT_TEST_SUITE_END();
 
 public:
-    Test_Model_Checking();
-
-    virtual ~Test_Model_Checking();
+    Test_Currency();
+    virtual ~Test_Currency();
 
     void setUp();
     void tearDown();
@@ -45,10 +46,10 @@ private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
     DB_Init_Model* m_dbmodel;
-    CommitCallbackHook* m_commit_hook;
 
-    // Test cases
-    void add_entries();
-    void add_entries_savings();
-    void add_entries_mc();
+private:
+    void test_TwoDigitPrecision();
+    void test_FourDigitPrecision();
+    void test_FormatDoubleToCurrency();
+
 };

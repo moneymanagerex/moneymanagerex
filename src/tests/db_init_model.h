@@ -40,7 +40,16 @@ public:
     void Init_BaseCurrency(const wxString& base_currency_symbol = "AUD", const wxString& user_name = "Test Database");
     
     int Add_Account(const wxString& name, Model_Account::TYPE account_type, wxString currency_symbol = "AUD");
+
     int Add_Payee(const wxString& name, const wxString& category = "", const wxString& subcategory = "");
+    void Add_payee_category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = ""); 
+    int Payee_id(const wxString& name);
+    
+    int Add_category(const wxString& name);
+    int Category_id(const wxString& category);
+
+    int Add_subcategory(const wxString& name, int category_id);
+    int Subcategory_id(const wxString& subcategory, int category_id);
 
     /** Set the account name for Add_Trans_xxx commands */
     void Set_AccountName(const wxString& account_name); 
@@ -87,8 +96,4 @@ private:
     int m_account_id;
     
     bool m_processing_bill;
-
-
-    int Category_id(const wxString& category);
-    int Subcategory_id(const wxString& subcategory, int category_id);
 };
