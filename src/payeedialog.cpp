@@ -42,7 +42,11 @@ END_EVENT_TABLE()
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     m_payee_id(-1)
     , m_payee_rename(-1)
+<<<<<<< .mine
     , refreshRequested_(false)
+    , debug_(WXDEBUG)
+=======
+>>>>>>> .r5966
 {
     if (_DEBUG) ColName_[PAYEE_ID] = _("#");
     ColName_[PAYEE_NAME] = _("Name");
