@@ -4,7 +4,7 @@ Version History of Money Manager Ex
 
 - Reports
 
-1.0.0.1 (TBA)
+1.0.0.1 (January 19, 2014)
 - Fix account number not saved (bug #259)
 - Fix translation items (bug #257)
 - Fix stock currency format (bug #262)
@@ -13,6 +13,10 @@ Version History of Money Manager Ex
 - fix transaction report crash (bug #273)
 - fix home page repeating transaction value (bug #274)
 - fix summary asset total (bug #275)
+- fix changing account causes amount to change (bug #278)
+- fix error message when category is deleted (bug #277)
+- fix csv file import (bug #276)
+- fix transaction advanced amount (bug #285)
 
 1.0.0.0 (December 28, 2013) (includes 0.9.9.2 changes)
 - Custom Reports has been temporarily removed  (under construction). Will be introduced in next release.
