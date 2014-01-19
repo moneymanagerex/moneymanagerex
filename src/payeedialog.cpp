@@ -42,10 +42,9 @@ END_EVENT_TABLE()
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     m_payee_id(-1)
     , m_payee_rename(-1)
-    , debug_(WXDEBUG)
     , refreshRequested_(false)
 {
-    if (debug_) ColName_[PAYEE_ID] = _("#");
+    if (_DEBUG) ColName_[PAYEE_ID] = _("#");
     ColName_[PAYEE_NAME] = _("Name");
     ColName_[PAYEE_CATEGORY]   = _("Default Category");
 
@@ -88,7 +87,7 @@ void mmPayeeDialog::CreateControls()
     payeeListBox_ = new wxDataViewListCtrl( this
         , wxID_ANY, wxDefaultPosition, wxSize(450, 500)/*, wxDV_HORIZ_RULES*/);
 
-    if (debug_) payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_ID], wxDATAVIEW_CELL_INERT, 30 );
+    if (_DEBUG) payeeListBox_->AppendTextColumn(ColName_[PAYEE_ID], wxDATAVIEW_CELL_INERT, 30);
     payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 150);
     payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 250);
     itemBoxSizer2->Add(payeeListBox_, 1, wxGROW|wxALL, 1);
@@ -118,7 +117,7 @@ void mmPayeeDialog::fillControls()
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
         int payeeID = payee.PAYEEID;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", payeeID)));
+        if (_DEBUG) data.push_back(wxVariant(wxString::Format("%i", payeeID)));
         data.push_back(wxVariant(payee.PAYEENAME));
         data.push_back(wxVariant(full_category_name));
         payeeListBox_->AppendItem(data, (wxUIntPtr)payeeID);

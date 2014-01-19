@@ -80,7 +80,5 @@ private:
     void OnDataChanged(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
-
-    bool debug_;
 };
 #endif // _MM_EX_PAYEEDIALOG_H_
