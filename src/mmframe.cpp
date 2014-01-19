@@ -31,7 +31,7 @@
 #include "categdialog.h"
 #include "constants.h"
 #include "currencydialog.h"
-#include "customreportdialog.h"
+#include "general_report_manager.h"
 #include "filtertransdialog.h"
 #include "images_list.h"
 #include "maincurrencydialog.h"

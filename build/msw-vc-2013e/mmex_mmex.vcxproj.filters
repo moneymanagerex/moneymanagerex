@@ -222,9 +222,6 @@
     <ClCompile Include="..\..\src\util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\customreportdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\model\Model_Category.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
@@ -298,6 +295,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\webserver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\general_report_manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -512,9 +512,6 @@
     <ClInclude Include="..\..\src\validators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\customreportdialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\db\DB_Table.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
@@ -642,6 +639,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\webserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\general_report_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

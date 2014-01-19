@@ -17,7 +17,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "customreportdialog.h"
+#include "general_report_manager.h"
 #include "minimal_editor.h"
 #include "util.h"
 #include "paths.h"
@@ -87,7 +87,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Custom Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
+    Create(parent, wxID_ANY, _("General Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
     SetClientSize(wxSize(720, 576));
 }
 

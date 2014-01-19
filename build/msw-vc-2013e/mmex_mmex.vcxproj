@@ -264,7 +264,7 @@
     <ClCompile Include="..\..\src\assetspanel.cpp" />
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
-    <ClCompile Include="..\..\src\customreportdialog.cpp" />
+    <ClCompile Include="..\..\src\general_report_manager.cpp" />
     <ClCompile Include="..\..\src\images_list.cpp" />
     <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmframe.cpp" />
@@ -348,7 +348,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
-    <ClInclude Include="..\..\src\customreportdialog.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
@@ -365,6 +364,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
+    <ClInclude Include="..\..\src\general_report_manager.h" />
     <ClInclude Include="..\..\src\images_list.h" />
     <ClInclude Include="..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\src\mmframe.h" />
