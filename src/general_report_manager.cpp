@@ -475,6 +475,14 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     if (!iData)
     {
         for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
+
+        wxFileName helpIndexFile(mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL));
+        if (mmOptions::instance().language_ != "english") helpIndexFile.AppendDir(mmOptions::instance().language_);
+        wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)mmex::HTML_CUSTOM_SQL);
+        if (helpIndexFile.FileExists()) // Load the help file for the given language 
+            url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
+        m_outputHTML->LoadURL(url);
+        wxLogDebug("%s", url);
         return;
     }
 
