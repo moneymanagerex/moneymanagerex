@@ -394,10 +394,10 @@ void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
 
 void mmMessageCategoryInvalid(wxButton *button)
 {
-    wxRichToolTip tip(_("Invalid Category Entered "),
-        _("No any categories selected for this transaction.")
+    wxRichToolTip tip(_("Invalid Category"),
+        _("Please use this button for category selection or")
         + "\n"
-        + _("Please, choose a category.")
+        + _("use the 'Split' checkbox for multiple categories.")
         + "\n");
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor(button);
@@ -406,13 +406,13 @@ void mmMessageCategoryInvalid(wxButton *button)
 
 void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
 {
-    const wxString errorHeader = _("Invalid Account ");
-    wxString errorMessage = _("Account not selected for this transaction.");
-    if (transfer) errorMessage = _("Specify which account the transfer is going to");
-
+    const wxString errorHeader = _("Invalid Account");
+    wxString errorMessage = _("Please select the account for this transaction");
     errorMessage += ( "\n"
-        + _("Please, choose an account.")
+        + _("using the dropdown button.")
         + "\n");
+    if (transfer) errorMessage += _("The account specifies where the money is going.");
+
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor((wxWindow*) comboBox);
@@ -420,10 +420,10 @@ void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
 
 void mmMessagePayeeInvalid(wxComboBox *comboBox)
 {
-    const wxString errorHeader = _("Invalid Payee ");
-    const wxString errorMessage = (_("Payee not selected for this transaction.")
+    const wxString errorHeader = _("Invalid Payee");
+    const wxString errorMessage = (_("Please type in a new payee, or")
         + "\n"
-        + _("Please, choose a payee.")
+        + _("make a selection using the dropdown button.")
         + "\n");
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
