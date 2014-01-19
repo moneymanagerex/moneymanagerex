@@ -395,23 +395,26 @@ void mmShowErrorMessageInvalid(wxWindow *parent, const wxString &message)
 void mmMessageCategoryInvalid(wxButton *button)
 {
     wxRichToolTip tip(_("Invalid Category"),
-        _("Please use this button for category selection or")
-        + "\n"
-        + _("use the 'Split' checkbox for multiple categories.")
+        _("Please use this button for category selection\nor use the 'Split' checkbox for multiple categories.")
         + "\n");
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor(button);
-    button->SetFocus();
 }
 
 void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
 {
     const wxString errorHeader = _("Invalid Account");
-    wxString errorMessage = _("Please select the account for this transaction");
-    errorMessage += ( "\n"
-        + _("using the dropdown button.")
-        + "\n");
-    if (transfer) errorMessage += _("The account specifies where the money is going.");
+    wxString errorMessage;
+    if (!transfer)
+    {
+        errorMessage = _("Please select the account for this transaction");
+    }
+    else
+    {
+        errorMessage = _("Specify which account the transfer is going to");
+    }
+    wxString errorTips = _("Type in account name or use the dropdown button");
+    errorMessage = errorMessage + "\n\n" + errorTips + "\n";
 
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
@@ -421,9 +424,7 @@ void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer)
 void mmMessagePayeeInvalid(wxComboBox *comboBox)
 {
     const wxString errorHeader = _("Invalid Payee");
-    const wxString errorMessage = (_("Please type in a new payee, or")
-        + "\n"
-        + _("make a selection using the dropdown button.")
+    const wxString errorMessage = (_("Please type in a new payee,\nor make a selection using the dropdown button.")
         + "\n");
     wxRichToolTip tip(errorHeader, errorMessage);
     tip.SetIcon(wxICON_WARNING);
