@@ -2,8 +2,8 @@
 File:           defined_test_selection.h
 
 Author:         Stefano Giorgio ( Jan 2014)
-Description:    This identifies all the tests in this test envirinment.
-				It simplifies the, selection of any desired test.
+Description:    This identifies all the tests in this test environment.
+				It simplifies the selection of any desired test.
 
 Purpose:        To enable or disable tests from a single location.
 Action:         Comment out any unwanted test.
