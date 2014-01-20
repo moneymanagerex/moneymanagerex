@@ -608,7 +608,7 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
             {
                 double toAmount = 0.0;
                 toTextAmount_->GetDouble(toAmount);
-                toTextAmount_->SetValue(amount, account);
+                toTextAmount_->SetValue(toAmount, account);
             }
             accountID_ = account->ACCOUNTID;
             itemAccountName_->SetLabel(acctName);
@@ -844,7 +844,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
         }
     }
 
-    double amount;
+    double amount = 0;
     if (cSplit_->GetValue())
     {
         amount = Model_Budgetsplittransaction::instance().get_total(local_splits_);
@@ -869,7 +869,7 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 
     if (advancedToTransAmountSet_)
     {
-        if (!toTextAmount_->checkValue(amount))
+        if (!toTextAmount_->checkValue(toTransAmount_))
         {
             return;
         }
