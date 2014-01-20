@@ -254,6 +254,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c" />
+    <ClCompile Include="..\..\..\src\general_report_manager.cpp" />
     <ClCompile Include="..\..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\..\src\mmframe.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Account.cpp" />
@@ -293,7 +294,6 @@
     <ClCompile Include="..\..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\..\src\constants.cpp" />
     <ClCompile Include="..\..\..\src\currencydialog.cpp" />
-    <ClCompile Include="..\..\..\src\customreportdialog.cpp" />
     <ClCompile Include="..\..\..\src\dbwrapper.cpp" />
     <ClCompile Include="..\..\..\src\import_export\export.cpp" />
     <ClCompile Include="..\..\..\src\filtertransdialog.cpp" />
@@ -376,6 +376,7 @@
     <ClInclude Include="..\..\..\src\db\DB_Table_Splittransactions_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Subcategory_V1.h" />
+    <ClInclude Include="..\..\..\src\general_report_manager.h" />
     <ClInclude Include="..\..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\..\src\mmframe.h" />
     <ClInclude Include="..\..\..\src\model\Model.h" />
@@ -416,7 +417,6 @@
     <ClInclude Include="..\..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\..\src\constants.h" />
     <ClInclude Include="..\..\..\src\currencydialog.h" />
-    <ClInclude Include="..\..\..\src\customreportdialog.h" />
     <ClInclude Include="..\..\..\src\dbwrapper.h" />
     <ClInclude Include="..\..\..\src\defs.h" />
     <ClInclude Include="..\..\..\src\import_export\export.h" />
@@ -457,6 +457,7 @@
     <ClInclude Include="..\..\..\src\reports\reportbase.h" />
     <ClInclude Include="..\..\..\src\resource.h" />
     <ClInclude Include="..\..\..\src\tests\cpu_timer.h" />
+    <ClInclude Include="..\..\..\src\tests\defined_test_selection.h" />
     <ClInclude Include="..\..\..\src\tests\framebase_tests.h" />
     <ClInclude Include="..\..\..\src\tests\db_init_model.h" />
     <ClInclude Include="..\..\..\src\tests\resource.h" />

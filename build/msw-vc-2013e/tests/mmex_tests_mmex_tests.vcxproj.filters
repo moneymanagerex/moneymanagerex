@@ -108,9 +108,6 @@
     <ClCompile Include="..\..\..\src\currencydialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\src\customreportdialog.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\src\import_export\export.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -354,6 +351,9 @@
     <ClCompile Include="..\..\..\src\tests\test_currency.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\general_report_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -417,9 +417,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\currencydialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\src\customreportdialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\defs.h">
@@ -739,6 +736,12 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_currency.h">
       <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\general_report_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\defined_test_selection.h">
+      <Filter>Test Headers\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

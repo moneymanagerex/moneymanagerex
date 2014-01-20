@@ -29,7 +29,7 @@ public:
     TestFrameBase(int frame_count);
     /**
     Create subsequent frames using parent TestFrameBase
-    * Set the required window size. Base size: (400, 250)
+    * Set the required window size. Base size: (400, 180)
     */
     TestFrameBase(wxWindow* parent, int size_x, int size_y);
     ~TestFrameBase();

@@ -26,9 +26,19 @@ class TestFrameBase;
 class Test_BillsDeposits : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_BillsDeposits);
-    CPPUNIT_TEST(test_dialog_add);
-    CPPUNIT_TEST(test_dialog_edit);
-    CPPUNIT_TEST(test_dialog_enter);
+    CPPUNIT_TEST(test_new_simple_entry);
+    CPPUNIT_TEST(test_edit_simple_entry);
+    CPPUNIT_TEST(test_enter_simple_entry);
+
+    CPPUNIT_TEST(test_new_transfer_entry);
+    CPPUNIT_TEST(test_edit_transfer_entry);
+    CPPUNIT_TEST(test_enter_transfer_entry);
+    
+    CPPUNIT_TEST(test_new_split_entry);
+    CPPUNIT_TEST(test_edit_split_entry);
+    CPPUNIT_TEST(test_enter_split_entry);
+    
+    CPPUNIT_TEST(test_dialog_freeform);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -42,14 +52,25 @@ private:
     wxString m_test_db_filename;
     wxSQLite3Database m_test_db;
     DB_Init_Model* m_dbmodel;
-    TestFrameBase *m_frame;
+    TestFrameBase *m_base_frame;
     int m_this_instance;
+    TestFrameBase* m_user_request;
 
 private:
     void ShowMessage(wxString msg);
 
     // Test cases
-    void test_dialog_add();
-    void test_dialog_edit();
-    void test_dialog_enter();
+    void test_new_simple_entry();
+    void test_edit_simple_entry();
+    void test_enter_simple_entry();
+    
+    void test_new_transfer_entry();
+    void test_edit_transfer_entry();
+    void test_enter_transfer_entry();
+    
+    void test_new_split_entry();
+    void test_edit_split_entry();
+    void test_enter_split_entry();
+    
+    void test_dialog_freeform();
 };

@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 //---------------------------------------------------------------------------
@@ -25,8 +26,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "aboutdialog.h"
 #include "paths.h"
 
+#ifdef __MMEX_TESTS__ABOUT_DIALOG
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION( Test_About_Dialog );
+CPPUNIT_TEST_SUITE_REGISTRATION( Test_About_Dialog );
+#endif
 
 static int instance_count = 0;
 //----------------------------------------------------------------------------

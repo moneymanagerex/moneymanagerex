@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -35,8 +36,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Billsdeposits.h"
 #include "mmOption.h"
 
+#ifdef __MMEX_TESTS__FILTER_TRANS_DIALOG
 // Registers the fixture into the 'registry'
-//CPPUNIT_TEST_SUITE_REGISTRATION( Test_FilterTrans_Dialog );
+CPPUNIT_TEST_SUITE_REGISTRATION( Test_FilterTrans_Dialog );
+#endif
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
@@ -59,33 +62,18 @@ Test_FilterTrans_Dialog::~Test_FilterTrans_Dialog()
 void Test_FilterTrans_Dialog::setUp()
 {
     CpuTimer time("Startup");
-    m_frame = new TestFrameBase(m_this_instance);
-    m_frame->Show(true);
+    m_base_frame = new TestFrameBase(m_this_instance);
+    m_base_frame->Show(true);
+
     m_test_db.Open(m_test_db_filename);
     m_dbmodel = new DB_Init_Model();
     m_dbmodel->Init_Model_Tables(&m_test_db);
     m_dbmodel->Init_BaseCurrency();
-}
 
-void Test_FilterTrans_Dialog::tearDown()
-{
-    m_test_db.Close();
-    delete m_frame;
-    delete m_dbmodel;
-}
-
-void Test_FilterTrans_Dialog::ShowMessage(wxString msg)
-{
-    msg = msg << "\nInstance # " << m_this_instance;
-    wxMessageBox(msg, "Test: FilterTrans Dialog", wxOK, wxTheApp->GetTopWindow());
-}
-
-void Test_FilterTrans_Dialog::test_dialog()
-{
-    CpuTimer Start("Entries");
-
+    // set up entries in the database
     Model_Checking::instance().Begin();
     {
+        CpuTimer Start("Entries");
         // Add some payees.
         m_dbmodel->Add_Payee("Supermarket");
         m_dbmodel->Add_Payee("Aldi");
@@ -97,30 +85,94 @@ void Test_FilterTrans_Dialog::test_dialog()
         m_dbmodel->Add_Account("Cheque", Model_Account::TYPE::CHECKING);
         m_dbmodel->Add_Account("Mastercard", Model_Account::TYPE::CHECKING);
 
+        wxDateTime trans_date = wxDateTime::Today();
+
         // Put some data in each account
         m_dbmodel->Set_AccountName("Cheque");
-        m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 100.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+        m_dbmodel->Add_Trans_Deposit(trans_date, "Aldi", 100.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Days(3)), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer(trans_date.Subtract(wxDateSpan::Days(5)), "Mastercard", 30.0, "Gifts", "", true, 40.0);
 
         m_dbmodel->Set_AccountName("Savings");
-        m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 200.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+        m_dbmodel->Add_Trans_Deposit(trans_date.Subtract(wxDateSpan::Weeks(1)), "Aldi", 200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer(trans_date.Subtract(wxDateSpan::Weeks(3)), "Mastercard", 30.0, "Gifts", "", true, 40.0);
 
         m_dbmodel->Set_AccountName("Mastercard");
-        m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+        m_dbmodel->Add_Trans_Deposit(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(1)), "Aldi", 300.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0, "Food", "Groceries");
+        // Sddition of split transactions.
+        int trans_id = m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Woolworths", 0.0);
+        m_dbmodel->Add_Trans_Split(trans_id, 300, "Healthcare", "Dental");
+        m_dbmodel->Add_Trans_Split(trans_id, 400, "Healthcare", "Eyecare");
+        m_dbmodel->Add_Trans_Split(trans_id, 100, "Healthcare", "Prescriptions");
+
+        trans_id = m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0);
+        m_dbmodel->Add_Trans_Split(trans_id, 150, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Split(trans_id, 400, "Homeneeds", "Others");
     }
     Model_Checking::instance().Commit();
+}
 
-    //ShowMessage("Please relocate Insurance/Auto to Automobile/Registration\n\nThis should result in 6 records being changed.\n");
-    mmFilterTransactionsDialog dlg(m_frame);
-    if (dlg.ShowModal() == wxID_OK)
+void Test_FilterTrans_Dialog::tearDown()
+{
+    delete m_dbmodel;
+    m_test_db.Close();
+    delete m_base_frame;
+}
+
+void Test_FilterTrans_Dialog::ShowMessage(wxString msg)
+{
+    msg = msg << "\nInstance # " << m_this_instance;
+    wxMessageBox(msg, "Test: FilterTrans Dialog", wxOK, wxTheApp->GetTopWindow());
+}
+
+void Test_FilterTrans_Dialog::test_mmFilterTransactionsDialog()
+{
+    TestFrameBase* user_request = new TestFrameBase(m_base_frame);
+    user_request->Show();
+
+    // Create it here because we want it to remember last actions.
+    mmFilterTransactionsDialog test_dialog(m_base_frame);
+
+    bool testing_dialog = true;
+    int test_count = 0;
+    while (testing_dialog && test_count <= 2)
     {
-        wxString msg = "Test Complete: No data checking performed.\n\nStill under construction.\n";
-        //msg << dlg.updatedCategoriesCount() << " records changed.";
-        ShowMessage(msg);
+        test_count++;
+        switch (test_count)
+        {
+        case 1:
+            user_request->Show_InfoBarMessage("Please set Account as 'Mastercard'\n\n Cancel to bypass this test.");
+            if (test_dialog.ShowModal() == wxID_OK)
+            {
+                int account_id = -1;
+                if (test_dialog.getAccountCheckBox())
+                {
+                    account_id = test_dialog.getAccountID();
+                }
+                CPPUNIT_ASSERT(account_id == 3);
+            }
+            else testing_dialog = false;
+
+            break;
+
+        case 2:
+            user_request->Show_InfoBarMessage("Please set payee to 'Aldi'\n\n Cancel to bypass this test.");
+            if (test_dialog.ShowModal() == wxID_OK)
+            {
+                //                dlg.checkAll()
+
+
+                CPPUNIT_ASSERT(test_dialog.somethingSelected());
+            }
+            else testing_dialog = false;
+
+            break;
+
+        default:
+            user_request->Show_InfoBarMessage("Test Completed\n\n Refer back to console.");
+            testing_dialog = false;
+        }
     }
 }

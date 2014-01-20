@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -26,8 +27,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_assets.h"
 #include "assetspanel.h"
 
+#ifdef __MMEX_TESTS__ASSETS
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_Asset);
+#endif
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
@@ -51,8 +54,12 @@ void Test_Asset::setUp()
 {
     CpuTimer time("Startup");
     m_test_db.Open(m_test_db_filename);
-    m_base_frame = new TestFrameBase(m_this_instance);
-    m_base_frame->Show(true);
+
+    if (m_this_instance == 5)
+    {
+        m_base_frame = new TestFrameBase(m_this_instance);
+        m_base_frame->Show(true);
+    }
 
     m_dbmodel = new DB_Init_Model();
     m_dbmodel->Init_Model_Assets(&m_test_db);
@@ -60,9 +67,13 @@ void Test_Asset::setUp()
 
 void Test_Asset::tearDown()
 {
-    m_test_db.Close();
-    delete m_base_frame;
     delete m_dbmodel;
+    m_test_db.Close();
+
+    if (m_this_instance == 5)
+    {
+        delete m_base_frame;
+    }
 }
 
 void Test_Asset::test_add()

@@ -32,25 +32,25 @@ wxBEGIN_EVENT_TABLE(TestFrameBase, wxFrame)
 wxEND_EVENT_TABLE()
 
 TestFrameBase::TestFrameBase(int frame_count)
-: wxFrame(NULL, wxID_ANY, "TEST Base Frame: MMEX Tests", wxPoint(50, 50), wxSize(400, 150))
+: wxFrame(NULL, wxID_ANY, "MMEX Tests: Base Frame", wxPoint(50, 50), wxSize(400, 180))
 {
     wxMenu *menuBase = new wxMenu;
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append(menuBase, "Testing...");
     SetMenuBar(menuBar);
     CreateStatusBar();
-    wxString msg = wxString() << "TEST: Base Frame " << frame_count;
+    wxString msg = wxString() << "TEST Using Base Frame: " << frame_count;
     SetStatusText(msg);
 }
 
 TestFrameBase::TestFrameBase(wxWindow* parent, int size_x, int size_y)
-: wxFrame(parent, wxID_ANY, "MMEX Test Frame: Used to test Dialogs", wxPoint(60, 60), wxSize(size_x, size_y))
+: wxFrame(parent, wxID_ANY, "MMEX Tests: Testing Panels", wxPoint(50, 50), wxSize(size_x, size_y))
 {
     CreateStatusBar();
 }
 
 TestFrameBase::TestFrameBase(wxWindow* parent, const wxString& heading)
-: wxFrame(parent, wxID_ANY, heading, wxPoint(500, 50), wxSize(400, 150))
+: wxFrame(parent, wxID_ANY, heading, wxPoint(500, 50), wxSize(400, 180))
 {
     m_infoBar = new wxInfoBar(this);
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);

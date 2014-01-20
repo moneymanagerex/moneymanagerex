@@ -17,6 +17,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -35,8 +36,10 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budget.h"
 #include "mmOption.h"
 
+#ifdef __MMEX_TESTS__RELOCATE_CATEGORY
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
+#endif
 
 static int s_instance_count = 0;
 //----------------------------------------------------------------------------
