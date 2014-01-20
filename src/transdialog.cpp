@@ -1021,6 +1021,7 @@ void mmTransDialog::setTooltips()
     {
         cbAccount_->SetToolTip(_("Specify account the money is taken from"));
         cbPayee_->SetToolTip(_("Specify account the money is moved to"));
+        textAmount_->SetToolTip(_("Specify the transfer amount in the From Account."));
         
         if (advancedToTransAmountSet_)
         {
@@ -1029,6 +1030,7 @@ void mmTransDialog::setTooltips()
     }
     else
     {
+        textAmount_->SetToolTip(_("Specify the amount for this transaction"));
         cbAccount_->SetToolTip(_("Specify account for the transaction"));
         if (Model_Checking::WITHDRAWAL == Model_Checking::type(transaction_))
             cbPayee_->SetToolTip(_("Specify to whom the transaction is going to"));
@@ -1045,8 +1047,6 @@ void mmTransDialog::setTooltips()
         bCategory_->SetToolTip(_("Specify categories for this transaction"));
     }
     
-    textAmount_->SetToolTip(_("Specify the amount for this transaction"));
-
     //Permanent
     dpc_->SetToolTip(_("Specify the date of the transaction"));
     spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
