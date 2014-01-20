@@ -24,6 +24,7 @@
 #include <wx/webview.h>
 #include <wx/webviewfshandler.h>
 #include <vector>
+#include <wx/dataview.h>
 
 class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog
@@ -57,6 +58,7 @@ private:
         ID_TEMPLATE,
         ID_SQL_CONTENT,
         ID_LUA_CONTENT,
+        ID_SQL_GRID,
         ID_CSS_CONTENT,
         ID_JS_CONTENT,
     };
@@ -79,6 +81,7 @@ private:
     void OnExportReport(wxCommandEvent& event);
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
+    void OnSqlTest(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     //void OnLabelChanged(wxTreeEvent& event);
@@ -90,6 +93,12 @@ private:
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
 
+    void getSqlQueryData();
+    virtual wxString OnGetItemText(long item, long column);
+    wxString getItem(long item, long column);
+    std::vector <std::vector <wxString> > m_sqlQueryData;
+    std::vector <wxString> m_sqlColumnHeader;
+
     wxWebView* m_outputHTML;
 
     wxButton* m_buttonOpen;
@@ -97,6 +106,7 @@ private:
     wxButton* m_buttonSaveAs;
     wxButton* m_buttonRun;
     wxTreeCtrl* m_treeCtrl;
+    wxListCtrl* m_sqlListBox;
     wxTreeItemId m_rootItem;
     wxTreeItemId m_selectedItemID;
     int m_selectedReportID;

@@ -71,6 +71,7 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnExportReport)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
+    EVT_BUTTON(wxID_INFO, mmGeneralReportManager::OnSqlTest)
     //EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
@@ -84,6 +85,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_buttonRun()
     , m_treeCtrl()
     , m_outputHTML()
+    , m_sqlListBox()
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -264,7 +266,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     }
     if (FindWindow(editorID + MAGIC_NUM)) return;
 
-    wxSizerFlags flagsExpand;
+    wxSizerFlags flags, flagsExpand;
+    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
     flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
 
     int tabID = editors_notebook->GetRowCount();
@@ -276,7 +279,66 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     MinimalEditor* templateText = new MinimalEditor(panel, editorID);
 
     sizer->Add(templateText, flagsExpand);
+
+    if (editorID == ID_SQL_CONTENT)
+    {
+        wxBoxSizer *grid_sizer = new wxBoxSizer(wxVERTICAL);
+        wxButton* buttonPlay = new wxButton(panel, wxID_INFO, _("&Test"));
+        m_sqlListBox = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize
+            , wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL | wxLC_EDIT_LABELS);
+        grid_sizer->Add(buttonPlay, flags);
+        grid_sizer->Add(m_sqlListBox, flagsExpand);
+        sizer->Add(grid_sizer, flagsExpand.Border(0));
+    }
+
     panel->SetSizerAndFit(sizer);
+}
+
+void mmGeneralReportManager::getSqlQueryData()
+{
+    //Emulation
+    m_sqlQueryData.clear();
+    m_sqlColumnHeader.clear();
+    int sql_cols = 1 + rand() % 5;
+    long rows = 1 + rand() % 5;
+
+    for (int pos = 0; pos < sql_cols; pos++)
+    {
+        m_sqlColumnHeader.push_back(wxString::Format("COL%i", pos));
+    }
+
+    for (int row = 0; row < rows; row++)
+    {
+        std::vector<wxString> sql_row;
+        for (int pos = 0; pos < sql_cols; pos++)
+        {
+            sql_row.push_back(wxString::Format("%i", 1 + rand() % 10));
+        }
+        m_sqlQueryData.push_back(sql_row);
+    }
+}
+
+void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
+{
+    getSqlQueryData();
+
+    m_sqlListBox->ClearAll();
+
+    int pos = 0, row = 0;
+    for (const auto& col : m_sqlColumnHeader)
+        m_sqlListBox->InsertColumn(pos++, col, wxLIST_FORMAT_RIGHT, 80);
+    
+    for (const auto& dataRow : m_sqlQueryData)
+    {
+        pos = 0;
+        for (const auto& dataCol: dataRow)
+        {
+            m_sqlListBox->SetItem(row++, pos++, wxString::Format("%i-%i=%s", row, pos, dataCol));
+        }
+    }
+    m_sqlListBox->SetItemCount(row);
+    m_sqlListBox->RefreshItems(0, m_sqlQueryData.size() - 1);
+
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
@@ -658,6 +720,19 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
     }
 }
 
+wxString mmGeneralReportManager::OnGetItemText(long item, long column)
+{
+    return getItem(item, column);
+}
+
+wxString mmGeneralReportManager::getItem(long item, long column)
+{
+    if (item < 0 || item >= (int) m_sqlQueryData.size()) return "";
+
+    const std::vector <wxString> row = m_sqlQueryData.at(item);
+
+    return "test";
+}
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_OK);
