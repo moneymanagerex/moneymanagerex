@@ -84,7 +84,6 @@ wxString Model_Report::get_html(const Data* r)
     report("GROUPNAME") = r->GROUPNAME;
     report("SQLCONTENT") = r->SQLCONTENT;
     report("LUACONTENT") = r->LUACONTENT;
-    //report("TEMPLATEPATH") = r->TEMPLATEPATH;
 
     loop_t contents;
 
