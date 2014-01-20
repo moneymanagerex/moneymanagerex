@@ -43,7 +43,11 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     m_payee_id(-1)
     , m_payee_rename(-1)
     , refreshRequested_(false)
+#ifdef __WXMSW__
+    , debug_(__WXDEBUG__)
+#else
     , debug_(WXDEBUG)
+#endif
 {
     if (debug_) ColName_[PAYEE_ID] = _("#");
     ColName_[PAYEE_NAME] = _("Name");
