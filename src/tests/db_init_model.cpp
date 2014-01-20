@@ -144,24 +144,10 @@ int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account
 
 int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, const wxString& subcategory)
 {
-    int cat_id = -1;
-    if (!category.IsEmpty())
-    {
-        // Get category id using the category name
-        cat_id = Model_Category::instance().get(category)->id();
-    }
-
-    int subcat_id = -1;
-    if (!subcategory.IsEmpty())
-    {
-        // Get subcategory id using the subcategory name
-        subcat_id = Model_Subcategory::instance().get(subcategory, cat_id)->id();
-    }
-
     Model_Payee::Data* payee_entry = Model_Payee::instance().create();
     payee_entry->PAYEENAME = name;
-    payee_entry->CATEGID = cat_id;
-    payee_entry->SUBCATEGID = subcat_id;
+    payee_entry->CATEGID = Category_id(category);
+    payee_entry->SUBCATEGID = Subcategory_id(subcategory, payee_entry->CATEGID);
 
     return Model_Payee::instance().save(payee_entry);
 }
@@ -180,7 +166,11 @@ int DB_Init_Model::Category_id(const wxString& category)
     if (!category.IsEmpty())
     {
         // Get category id using the category name
-        cat_id = Model_Category::instance().get(category)->id();
+        Model_Category::Data* entry = Model_Category::instance().get(category);
+        if (entry)
+        {
+            cat_id = entry->id();
+        }
     }
 
     return cat_id;
@@ -201,7 +191,11 @@ int DB_Init_Model::Subcategory_id(const wxString& subcategory, int category_id)
     if (!subcategory.IsEmpty())
     {
         // Get subcategory id using the subcategory name
-        subcat_id = Model_Subcategory::instance().get(subcategory, category_id)->id();
+        Model_Subcategory::Data* entry = Model_Subcategory::instance().get(subcategory, category_id);
+        if (entry)
+        {
+            subcat_id = entry->id();
+        }
     }
 
     return subcat_id;
@@ -288,9 +282,6 @@ int DB_Init_Model::Add_Trans_Transfer(const wxDateTime& date, const wxString& to
 void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
 {
     Model_Checking::Data* trans_entry = Model_Checking::instance().get(trans_id);
-    int cat_id = -1;
-    int subcat_id = -1;
-
     if (trans_entry)
     {
         if ((trans_entry->CATEGID > 0) || (trans_entry->SUBCATEGID > 0))
@@ -301,24 +292,11 @@ void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& 
             Model_Checking::instance().save(trans_entry);
         }
 
-        if (!category.IsEmpty())
-        {
-            // Get category id for the category name
-            cat_id = Model_Category::instance().get(category)->id();
-            if (cat_id < 0) ShowMessage("Split transaction category not set.");
-        }
-
-        if (!subcategory.IsEmpty())
-        {
-            // Get subcategory id for the subcategory name
-            subcat_id = Model_Subcategory::instance().get(subcategory, cat_id)->id();
-        }
-
         Model_Splittransaction::Data* trans_split_entry = Model_Splittransaction::instance().create();
         trans_split_entry->TRANSID = trans_id;
         trans_split_entry->SPLITTRANSAMOUNT = value;
-        trans_split_entry->CATEGID = cat_id;
-        trans_split_entry->SUBCATEGID = subcat_id;
+        trans_split_entry->CATEGID = Category_id(category);
+        trans_split_entry->SUBCATEGID = Subcategory_id(subcategory, trans_split_entry->CATEGID);
         Model_Splittransaction::instance().save(trans_split_entry);
     }
     else ShowMessage("Transaction not found for the Split Transaction");
@@ -327,37 +305,21 @@ void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& 
 void DB_Init_Model::Add_Bill_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
 {
     Model_Checking::Data* trans_entry = Model_Checking::instance().get(trans_id);
-    int cat_id = -1;
-    int subcat_id = -1;
-
     if (trans_entry)
     {
         if ((trans_entry->CATEGID > 0) || (trans_entry->SUBCATEGID > 0))
         {
-            ShowMessage("Transaction Category reset for Split transaction");
+            ShowMessage("Bill Category reset for Bill Split");
             trans_entry->CATEGID = -1;
             trans_entry->SUBCATEGID = -1;
             Model_Checking::instance().save(trans_entry);
         }
 
-        if (!category.IsEmpty())
-        {
-            // Get category id for the category name
-            cat_id = Model_Category::instance().get(category)->id();
-            if (cat_id < 0) ShowMessage("Split transaction category not set.");
-        }
-
-        if (!subcategory.IsEmpty())
-        {
-            // Get subcategory id for the subcategory name
-            subcat_id = Model_Subcategory::instance().get(subcategory, cat_id)->id();
-        }
-
         Model_Budgetsplittransaction::Data* bill_split_entry = Model_Budgetsplittransaction::instance().create();
         bill_split_entry->TRANSID = trans_id;
         bill_split_entry->SPLITTRANSAMOUNT = value;
-        bill_split_entry->CATEGID = cat_id;
-        bill_split_entry->SUBCATEGID = subcat_id;
+        bill_split_entry->CATEGID = Category_id(category);
+        bill_split_entry->SUBCATEGID = Subcategory_id(subcategory, bill_split_entry->CATEGID);
         Model_Budgetsplittransaction::instance().save(bill_split_entry);
     }
     else ShowMessage("Transaction not found for the Split Transaction");

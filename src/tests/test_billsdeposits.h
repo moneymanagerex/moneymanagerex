@@ -26,6 +26,10 @@ class TestFrameBase;
 class Test_BillsDeposits : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_BillsDeposits);
+    CPPUNIT_TEST(test_dialog_freeform_new);
+    CPPUNIT_TEST(test_dialog_freeform_edit);
+    CPPUNIT_TEST(test_dialog_freeform_enter);
+
     CPPUNIT_TEST(test_new_simple_entry);
     CPPUNIT_TEST(test_edit_simple_entry);
     CPPUNIT_TEST(test_enter_simple_entry);
@@ -38,7 +42,6 @@ class Test_BillsDeposits : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(test_edit_split_entry);
     CPPUNIT_TEST(test_enter_split_entry);
     
-    CPPUNIT_TEST(test_dialog_freeform);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -60,6 +63,10 @@ private:
     void ShowMessage(wxString msg);
 
     // Test cases
+    void test_dialog_freeform_new();
+    void test_dialog_freeform_edit();
+    void test_dialog_freeform_enter();
+
     void test_new_simple_entry();
     void test_edit_simple_entry();
     void test_enter_simple_entry();
@@ -71,6 +78,4 @@ private:
     void test_new_split_entry();
     void test_edit_split_entry();
     void test_enter_split_entry();
-    
-    void test_dialog_freeform();
 };

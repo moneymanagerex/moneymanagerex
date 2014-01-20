@@ -103,6 +103,70 @@ void Test_BillsDeposits::ShowMessage(wxString msg)
     wxMessageBox(msg, "MMEX Bill Deposits Dialog Test", wxOK, wxTheApp->GetTopWindow());
 }
 
+void Test_BillsDeposits::test_dialog_freeform_new()
+{
+    m_user_request->Show_InfoBarMessage(
+        "Free form New Repeating Transaction\n\n"
+        "Use Cancel to progress to next dialog.\n"
+        "Note:\n"
+        "Enter and Entry dialogs will only appear\n"
+        "if an entry has been created\n");
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 0, false, false);
+
+    bool testing_dialog = true;
+    while (testing_dialog)
+    {
+        if (dlg->ShowModal() == wxID_CANCEL)
+        {
+            testing_dialog = false;
+        }
+    }
+}
+
+void Test_BillsDeposits::test_dialog_freeform_edit()
+{
+    Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
+    if (entries.size() < 1) return;
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
+
+    m_user_request->Show_InfoBarMessage(
+        "Free form Edit Repeating Transaction\n\n"
+        "Editing last repeat transaction in the list.\n\n"
+        "Use Cancel to exit dialog.");
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, true, false);
+
+    bool testing_dialog = true;
+    while (testing_dialog)
+    {
+        if (dlg->ShowModal() == wxID_CANCEL)
+        {
+            testing_dialog = false;
+        }
+    }
+}
+
+void Test_BillsDeposits::test_dialog_freeform_enter()
+{
+    Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
+    if (entries.size() < 1) return;
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
+
+    m_user_request->Show_InfoBarMessage(
+        "Free form Entry Repeating Transaction\n\n"
+        "Editing last repeat transaction in the list.\n\n"
+        "Use Cancel to exit dialog.");
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, false, true);
+
+    bool testing_dialog = true;
+    while (testing_dialog)
+    {
+        if (dlg->ShowModal() == wxID_CANCEL)
+        {
+            testing_dialog = false;
+        }
+    }
+}
+
 void Test_BillsDeposits::test_new_simple_entry()
 {
     m_user_request->Show_InfoBarMessage(
@@ -114,9 +178,9 @@ void Test_BillsDeposits::test_new_simple_entry()
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Billsdeposits::Data_Set table_entries = Model_Billsdeposits::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Billsdeposits::Data entry = table_entries[0];
+            Model_Billsdeposits::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.NEXTOCCURRENCEDATE == wxDateTime(wxDateTime::Today()).FormatISODate());
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 100);
@@ -130,7 +194,7 @@ void Test_BillsDeposits::test_edit_simple_entry()
 {
     Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
     if (entries.size() < 1) return;
-    CPPUNIT_ASSERT(entries.size() == 1);
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
 
     m_user_request->Show_InfoBarMessage(
         "Please confirm Simple entry - Edit\n\n"
@@ -139,13 +203,13 @@ void Test_BillsDeposits::test_edit_simple_entry()
         "Category: Food/Groceries\n\n"
         "Modify Amount: 200\n");
 
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 1, true, false);
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, true, false);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Billsdeposits::Data_Set table_entries = Model_Billsdeposits::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Billsdeposits::Data entry = table_entries[0];
+            Model_Billsdeposits::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.NEXTOCCURRENCEDATE == wxDateTime(wxDateTime::Today()).FormatISODate());
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 200);
@@ -159,7 +223,7 @@ void Test_BillsDeposits::test_enter_simple_entry()
 {
     Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
     if (entries.size() < 1) return;
-    CPPUNIT_ASSERT(entries.size() == 1);
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
 
     m_user_request->Show_InfoBarMessage(
         "Please confirm Simple entry - Enter\n\n"
@@ -167,13 +231,13 @@ void Test_BillsDeposits::test_enter_simple_entry()
         "Amount: 200,   Payee: Supermarket\n"
         "Category: Food/Groceries\n");
 
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 1, false, true);
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, false, true);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Checking::Data_Set table_entries = Model_Checking::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Checking::Data entry = table_entries[0];
+            Model_Checking::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 200);
             CPPUNIT_ASSERT(entry.TOTRANSAMOUNT == 200);
@@ -199,9 +263,9 @@ void Test_BillsDeposits::test_new_transfer_entry()
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Billsdeposits::Data_Set table_entries = Model_Billsdeposits::instance().all();
-        if (table_entries.size() == 2)
+        if (table_entries.size() > 0)
         {
-            Model_Billsdeposits::Data entry = table_entries[1];
+            Model_Billsdeposits::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.NEXTOCCURRENCEDATE == wxDateTime(wxDateTime::Today()).FormatISODate());
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 100);
@@ -214,8 +278,8 @@ void Test_BillsDeposits::test_new_transfer_entry()
 void Test_BillsDeposits::test_edit_transfer_entry()
 {
     Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
-    if (entries.size() < 2) return;
-    CPPUNIT_ASSERT(entries.size() == 2);
+    if (entries.size() < 1) return;
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
 
     m_user_request->Show_InfoBarMessage(
         "Please confirm transfer entry - Edit\n\n"
@@ -223,13 +287,13 @@ void Test_BillsDeposits::test_edit_transfer_entry()
         "Type: Transfer,   Advanced,   Amount: 100, 50\n"
         "To: Cheque        Category: Gifts\n");
 
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 2, true, false);
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, true, false);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Billsdeposits::Data_Set table_entries = Model_Billsdeposits::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Billsdeposits::Data entry = table_entries[1];
+            Model_Billsdeposits::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.NEXTOCCURRENCEDATE == wxDateTime(wxDateTime::Today()).FormatISODate());
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 100);
@@ -242,8 +306,8 @@ void Test_BillsDeposits::test_edit_transfer_entry()
 void Test_BillsDeposits::test_enter_transfer_entry()
 {
     Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
-    if (entries.size() < 2) return;
-    CPPUNIT_ASSERT(entries.size() == 2);
+    if (entries.size() < 1) return;
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
 
     m_user_request->Show_InfoBarMessage(
         "Please confirm transfer entry - Enter\n\n"
@@ -251,13 +315,13 @@ void Test_BillsDeposits::test_enter_transfer_entry()
         "Type: Transfer,   Advanced,   Amount: 100, 50\n"
         "To Account: Cheque   Category: Gifts\n");
 
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 2, false, true);
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, false, true);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Checking::Data_Set table_entries = Model_Checking::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Checking::Data entry = table_entries[1];
+            Model_Checking::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 100);
             CPPUNIT_ASSERT(entry.TOTRANSAMOUNT == 50);
@@ -283,9 +347,9 @@ void Test_BillsDeposits::test_new_split_entry()
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Billsdeposits::Data_Set table_entries = Model_Billsdeposits::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Billsdeposits::Data entry = table_entries[2];
+            Model_Billsdeposits::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.NEXTOCCURRENCEDATE == wxDateTime(wxDateTime::Today()).FormatISODate());
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 100);
@@ -298,8 +362,8 @@ void Test_BillsDeposits::test_new_split_entry()
 void Test_BillsDeposits::test_edit_split_entry()
 {
     Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
-    if (entries.size() < 3) return;
-    CPPUNIT_ASSERT(entries.size() == 3);
+    if (entries.size() < 1) return;
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
 
     m_user_request->Show_InfoBarMessage(
         "Please confirm Split entry - Edit\n\n"
@@ -309,13 +373,13 @@ void Test_BillsDeposits::test_edit_split_entry()
         "Type: Withdrawal 150,   Category: Food/Groceries\n"
         "Type: Deposit 50,       Category: Bills/Water\n");
 
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 3, true, false);
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, true, false);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Billsdeposits::Data_Set table_entries = Model_Billsdeposits::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Billsdeposits::Data entry = table_entries[2];
+            Model_Billsdeposits::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.NEXTOCCURRENCEDATE == wxDateTime(wxDateTime::Today()).FormatISODate());
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 200);
@@ -328,8 +392,8 @@ void Test_BillsDeposits::test_edit_split_entry()
 void Test_BillsDeposits::test_enter_split_entry()
 {
     Model_Billsdeposits::Data_Set entries = Model_Billsdeposits::instance().all();
-    if (entries.size() < 3) return;
-    CPPUNIT_ASSERT(entries.size() == 3);
+    if (entries.size() < 1) return;
+    Model_Billsdeposits::Data test_entry = entries.at(entries.size() - 1);
 
     m_user_request->Show_InfoBarMessage(
         "Please confirm Split entry - Enter\n\n"
@@ -339,13 +403,13 @@ void Test_BillsDeposits::test_enter_split_entry()
         "Type: Withdrawal 150,   Category: Food/Groceries\n"
         "Type: Deposit 50,       Category: Bills/Water\n");
 
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 3, false, true);
+    mmBDDialog* dlg = new mmBDDialog(m_base_frame, test_entry.BDID, false, true);
     if (dlg->ShowModal() == wxID_OK)
     {
         Model_Checking::Data_Set table_entries = Model_Checking::instance().all();
-        if (table_entries.size() == 1)
+        if (table_entries.size() > 0)
         {
-            Model_Checking::Data entry = table_entries[2];
+            Model_Checking::Data entry = table_entries.at(table_entries.size() - 1);
             CPPUNIT_ASSERT(entry.ACCOUNTID == Model_Account::instance().get("Savings")->ACCOUNTID);
             CPPUNIT_ASSERT(entry.TRANSAMOUNT == 200);
             CPPUNIT_ASSERT(entry.TOTRANSAMOUNT == 200);
@@ -357,20 +421,4 @@ void Test_BillsDeposits::test_enter_split_entry()
         }
     }
 }
-
-void Test_BillsDeposits::test_dialog_freeform()
-{
-    m_user_request->Show_InfoBarMessage("Freeform Test\nUse Cancel to exit dialog.");
-    mmBDDialog* dlg = new mmBDDialog(m_base_frame, 0, false, false);
-
-    bool testing_dialog = true;
-    while (testing_dialog)
-    {
-        if (dlg->ShowModal() == wxID_CANCEL)
-        {
-            testing_dialog = false;
-        }
-    }
-}
-
 //--------------------------------------------------------------------------
