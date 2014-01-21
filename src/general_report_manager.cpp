@@ -285,7 +285,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         wxBoxSizer *grid_sizer = new wxBoxSizer(wxVERTICAL);
         wxButton* buttonPlay = new wxButton(panel, wxID_INFO, _("&Test"));
         m_sqlListBox = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize
-            , wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL | wxLC_EDIT_LABELS);
+            , wxLC_REPORT);
         grid_sizer->Add(buttonPlay, flags);
         grid_sizer->Add(m_sqlListBox, flagsExpand);
         sizer->Add(grid_sizer, flagsExpand.Border(0));
@@ -324,21 +324,23 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 
     m_sqlListBox->ClearAll();
 
-    int pos = 0, row = 0;
+    int row = 0, pos = 0;
     for (const auto& col : m_sqlColumnHeader)
         m_sqlListBox->InsertColumn(pos++, col, wxLIST_FORMAT_RIGHT, 80);
     
     for (const auto& dataRow : m_sqlQueryData)
     {
-        pos = 0;
-        for (const auto& dataCol: dataRow)
+        int pos = 0;
+        long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
+        for (const auto& dataCol : dataRow)
         {
-            m_sqlListBox->SetItem(row++, pos++, wxString::Format("%i-%i=%s", row, pos, dataCol));
+            wxString buf = wxString::Format("r:%i c:%i=%s", itemIndex, pos, dataCol);
+            m_sqlListBox->SetItem(itemIndex, pos++, buf);
         }
+        ++row;
     }
     m_sqlListBox->SetItemCount(row);
-    m_sqlListBox->RefreshItems(0, m_sqlQueryData.size() - 1);
-
+    //m_sqlListBox->RefreshItems(0, m_sqlQueryData.size() - 1);
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
