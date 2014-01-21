@@ -294,25 +294,17 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     panel->SetSizerAndFit(sizer);
 }
 
-void mmGeneralReportManager::getSqlQueryData()
+void mmGeneralReportManager::getSqlQueryData(const wxString sql)
 {
     //Emulation
     m_sqlQueryData.clear();
-    m_sqlColumnHeader.clear();
-    int sql_cols = 1 + rand() % 5;
-    long rows = 1 + rand() % 5;
 
-    for (int pos = 0; pos < sql_cols; pos++)
-    {
-        m_sqlColumnHeader.push_back(wxString::Format("COL%i", pos));
-    }
-
-    for (int row = 0; row < rows; row++)
+    for (int row = 0; row < 1 + rand() % 5; row++)
     {
         std::vector<wxString> sql_row;
-        for (int pos = 0; pos < sql_cols; pos++)
+        for (const auto& col : Model_Report::instance().getColumns(sql))
         {
-            sql_row.push_back(wxString::Format("%i", 1 + rand() % 10));
+            sql_row.push_back(wxString::Format("%i %i", col.second, rand() % 100));
         }
         m_sqlQueryData.push_back(sql_row);
     }
@@ -320,24 +312,40 @@ void mmGeneralReportManager::getSqlQueryData()
 
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
-    getSqlQueryData();
+    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
+    if (!iData) return;
 
-    m_sqlListBox->ClearAll();
-
-    int row = 0, pos = 0;
-    for (const auto& col : m_sqlColumnHeader)
-        m_sqlListBox->InsertColumn(pos++, col, wxLIST_FORMAT_RIGHT, 80);
-    
-    for (const auto& dataRow : m_sqlQueryData)
+    int id = iData->get_report_id();
+    Model_Report::Data * report = Model_Report::instance().get(id);
+    if (report)
     {
-        int pos = 0;
-        long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
-        for (const auto& dataCol : dataRow)
+        if (Model_Report::instance().CheckSyntax(report->SQLCONTENT))
         {
-            wxString buf = wxString::Format("r:%i c:%i=%s", itemIndex, pos, dataCol);
-            m_sqlListBox->SetItem(itemIndex, pos++, buf);
+            getSqlQueryData(report->SQLCONTENT);
+
+            m_sqlListBox->ClearAll();
+
+            int row = 0, pos = 0;
+            for (const auto& col : Model_Report::instance().getColumns(report->SQLCONTENT))
+                m_sqlListBox->InsertColumn(pos++, col.first, wxLIST_FORMAT_RIGHT, 80);
+
+            for (const auto& dataRow : m_sqlQueryData)
+            {
+                int pos = 0;
+                long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
+                for (const auto& dataCol : dataRow)
+                {
+                    wxString buf = wxString::Format("r:%i c:%i=%s", itemIndex, pos, dataCol);
+                    m_sqlListBox->SetItem(itemIndex, pos++, buf);
+                }
+                ++row;
+            }
         }
-        ++row;
+        else
+        {
+            wxMessageDialog msgDlg(this, _("Syntax Error"), _("Error"), wxOK | wxICON_ERROR);
+            msgDlg.ShowModal();
+        }
     }
 }
 
@@ -720,19 +728,6 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
     }
 }
 
-wxString mmGeneralReportManager::OnGetItemText(long item, long column)
-{
-    return getItem(item, column);
-}
-
-wxString mmGeneralReportManager::getItem(long item, long column)
-{
-    if (item < 0 || item >= (int) m_sqlQueryData.size()) return "";
-
-    const std::vector <wxString> row = m_sqlQueryData.at(item);
-
-    return "test";
-}
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_OK);

@@ -212,3 +212,26 @@ wxString Model_Report::get_html(const Data& r)
 { 
     return get_html(&r); 
 }
+
+bool Model_Report::CheckSyntax(const wxString sql)
+{
+    return this->db_->CheckSyntax(sql);
+}
+
+std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString sql)
+{
+    std::vector<std::pair<wxString, int> > columns;
+    wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
+
+    wxSQLite3ResultSet q = stmt.ExecuteQuery();
+    int columnCount = q.GetColumnCount();
+
+    for (int i = 0; i < columnCount; ++i)
+    {
+        std::pair<wxString, int> col_and_type;
+        col_and_type.second = q.GetColumnType(i);
+        col_and_type.first = q.GetColumnName(i);
+        columns.push_back(col_and_type);
+    }
+    return columns;
+}

@@ -94,10 +94,9 @@ private:
     void createOutputTab(wxNotebook* notebook, int type);
 
     void getSqlQueryData();
-    virtual wxString OnGetItemText(long item, long column);
-    wxString getItem(long item, long column);
+
+    void getSqlQueryData(const wxString sql);
     std::vector <std::vector <wxString> > m_sqlQueryData;
-    std::vector <wxString> m_sqlColumnHeader;
 
     wxWebView* m_outputHTML;
 
