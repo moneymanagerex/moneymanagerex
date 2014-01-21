@@ -262,7 +262,6 @@ private:
     void SetTransactionFilterState(bool active);
 
     /* updates the checking panel data */
-    void initVirtualListControl(int trans_id = -1);
     void showTips();
     void updateExtraTransactionData(int selIndex);
 

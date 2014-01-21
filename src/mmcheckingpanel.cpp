@@ -302,7 +302,7 @@ void mmCheckingPanel::filterTable()
             bool transfer_to = tran.ACCOUNTID == this->m_AccountID;
             full_tran.PAYEENAME = transfer_to ? "> " + full_tran.TOACCOUNTNAME : "< " + full_tran.ACCOUNTNAME;
         }
-        
+
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
     }
@@ -344,7 +344,7 @@ void mmCheckingPanel::markSelectedTransaction(int trans_id)
     long i = 0;
     for (const auto & tran : m_trans)
     {
-        if (trans_id == tran.TRANSID && trans_id > 0) 
+        if (trans_id == tran.TRANSID && trans_id > 0)
         {
             m_listCtrlAccount->m_selectedIndex = i;
             break;
@@ -393,22 +393,6 @@ void mmCheckingPanel::OnMouseLeftDown( wxMouseEvent& event )
         }
     }
     event.Skip();
-}
-
-//----------------------------------------------------------------------------
-
-void mmCheckingPanel::initVirtualListControl(int /*trans_id*/)
-{
-    // clear everything
-    m_listCtrlAccount->DeleteAllItems();
-
-    // decide whether top or down icon needs to be shown
-    m_listCtrlAccount->setColumnImage(m_listCtrlAccount->g_sortcol
-        , m_listCtrlAccount->g_asc ? m_listCtrlAccount->ICON_ASC : m_listCtrlAccount->ICON_DESC);
-    filterTable();
-    sortTable();
-    m_listCtrlAccount->SetItemCount(m_trans.size());
-    setAccountSummary();
 }
 
 //----------------------------------------------------------------------------
@@ -1560,7 +1544,19 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 void TransactionListCtrl::refreshVisualList(int trans_id)
 {
     this->SetEvtHandlerEnabled(false);
-    m_cp->initVirtualListControl();
+    Hide();
+
+    // clear everything
+    DeleteAllItems();
+
+    // decide whether top or down icon needs to be shown
+    setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
+    m_cp->filterTable();
+    m_cp->sortTable();
+    SetItemCount(m_cp->m_trans.size());
+    Show();
+    m_cp->setAccountSummary();
+
     m_cp->markSelectedTransaction(trans_id);
 
     if (topItemIndex_ >= (long)m_cp->m_trans.size())
