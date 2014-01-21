@@ -294,7 +294,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     panel->SetSizerAndFit(sizer);
 }
 
-void mmGeneralReportManager::getSqlQueryData(const wxString sql)
+void mmGeneralReportManager::getSqlQueryData(const wxString& sql)
 {
     //Emulation
     m_sqlQueryData.clear();
@@ -327,7 +327,9 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 
             int row = 0, pos = 0;
             for (const auto& col : Model_Report::instance().getColumns(report->SQLCONTENT))
-                m_sqlListBox->InsertColumn(pos++, col.first, wxLIST_FORMAT_RIGHT, 80);
+                m_sqlListBox->InsertColumn(pos++, col.first
+                    , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
+                    , col.first.length()*10+20);
 
             for (const auto& dataRow : m_sqlQueryData)
             {

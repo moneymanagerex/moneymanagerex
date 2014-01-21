@@ -213,12 +213,12 @@ wxString Model_Report::get_html(const Data& r)
     return get_html(&r); 
 }
 
-bool Model_Report::CheckSyntax(const wxString sql)
+bool Model_Report::CheckSyntax(const wxString& sql) const
 {
     return this->db_->CheckSyntax(sql);
 }
 
-std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString sql)
+std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString& sql)
 {
     std::vector<std::pair<wxString, int> > columns;
     wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
