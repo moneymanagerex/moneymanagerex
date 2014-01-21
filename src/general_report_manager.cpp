@@ -339,8 +339,6 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
         }
         ++row;
     }
-    m_sqlListBox->SetItemCount(row);
-    //m_sqlListBox->RefreshItems(0, m_sqlQueryData.size() - 1);
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
