@@ -612,7 +612,11 @@ void mmBDDialog::OnAccountName(wxCommandEvent& /*event*/)
             }
             accountID_ = account->ACCOUNTID;
             itemAccountName_->SetLabel(acctName);
-            if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER) bPayee_->SetLabel(acctName);
+            if (transaction_type_->GetSelection() == Model_Billsdeposits::TRANSFER)
+            {
+                payeeID_ = account->ACCOUNTID;
+                bPayee_->SetLabel(acctName);
+            }
         }
     }
 }
