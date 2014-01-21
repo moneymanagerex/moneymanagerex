@@ -340,6 +340,12 @@ void mmHTMLBuilder::addTableRowBold(const wxString& label, double data)
     this->endTableRow();
 }
 
+std::ostream& operator << (std::ostream& os, const wxDateTime& date)
+{
+    os << date.FormatISODate();
+    return os;
+}
+
 mm_html_template::mm_html_template(const wxString& arg_file_name): html_template(arg_file_name.ToStdString())
 {
     this->load_context();
@@ -347,7 +353,7 @@ mm_html_template::mm_html_template(const wxString& arg_file_name): html_template
 
 void mm_html_template::load_context()
 {
-    (*this)("TODAY") = wxDateTime::Today().FormatISODate();
+    (*this)("TODAY") = wxDateTime::Today();
     for (const auto &r: Model_Infotable::instance().all())
         (*this)(r.INFONAME.ToStdString()) = r.INFOVALUE;
     (*this)("INFOTABLE") = Model_Infotable::to_loop_t();
