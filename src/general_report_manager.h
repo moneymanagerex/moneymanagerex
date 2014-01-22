@@ -43,9 +43,9 @@ private:
     enum
     {
         ID_TAB_OUT = 0,
-        ID_TAB_HTT,
         ID_TAB_SQL,
         ID_TAB_LUA,
+        ID_TAB_HTT,
         MAGIC_NUM = 16,
         ID_NEW_SAMPLE = wxID_HIGHEST + 500,
         ID_NEW_EMPTY,
@@ -82,6 +82,7 @@ private:
     void OnRun(wxCommandEvent& event);
     void OnClose(wxCommandEvent& event);
     void OnSqlTest(wxCommandEvent& event);
+    void OnNewTemplate(wxCommandEvent& event);
     void OnItemRightClick(wxTreeEvent& event);
     void OnSelChanged(wxTreeEvent& event);
     //void OnLabelChanged(wxTreeEvent& event);

@@ -72,6 +72,7 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
     EVT_BUTTON(wxID_INFO, mmGeneralReportManager::OnSqlTest)
+    EVT_BUTTON(wxID_NEW, mmGeneralReportManager::OnNewTemplate)
     //EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
     EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
@@ -90,7 +91,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("General Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
-    SetClientSize(wxSize(720, 576));
+    SetClientSize(wxSize(940, 576));
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
@@ -282,13 +283,19 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
     if (editorID == ID_SQL_CONTENT)
     {
-        wxBoxSizer *grid_sizer = new wxBoxSizer(wxVERTICAL);
+        wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
+        wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
         wxButton* buttonPlay = new wxButton(panel, wxID_INFO, _("&Test"));
+        wxButton* buttonNewTemplate = new wxButton(panel, wxID_NEW, _("Create Template"));
+        buttonNewTemplate->Enable(false);
+        box_sizer2->Add(buttonPlay);
+        box_sizer2->AddSpacer(10);
+        box_sizer2->Add(buttonNewTemplate);
         m_sqlListBox = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize
             , wxLC_REPORT);
-        grid_sizer->Add(buttonPlay, flags);
-        grid_sizer->Add(m_sqlListBox, flagsExpand);
-        sizer->Add(grid_sizer, flagsExpand.Border(0));
+        box_sizer1->Add(box_sizer2, flags);
+        box_sizer1->Add(m_sqlListBox, flagsExpand);
+        sizer->Add(box_sizer1, flagsExpand.Border(0));
     }
 
     panel->SetSizerAndFit(sizer);
@@ -342,6 +349,9 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
                 }
                 ++row;
             }
+            wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+            MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+            b->Enable(templateText->GetValue().empty());
         }
         else
         {
@@ -349,6 +359,19 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
             msgDlg.ShowModal();
         }
     }
+}
+
+void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
+{
+    MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+    if (!templateText->GetValue().empty()) return;
+
+    wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
+    n->SetSelection(ID_TAB_HTT);
+    templateText->ChangeValue("test");
+
+    wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+    b->Enable(false);
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)
