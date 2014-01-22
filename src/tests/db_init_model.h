@@ -21,6 +21,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Account.h"
 #include "model/Model_Asset.h"
 
+class Model_Checking;
+
 class DB_Init_Model
 {
 public:
@@ -40,16 +42,17 @@ public:
     void Init_BaseCurrency(const wxString& base_currency_symbol = "AUD", const wxString& user_name = "Test Database");
     
     int Add_Account(const wxString& name, Model_Account::TYPE account_type, wxString currency_symbol = "AUD");
+    int Add_Account(const wxString& name, Model_Account::TYPE account_type, bool favorite, wxString currency_symbol = "AUD");
 
     int Add_Payee(const wxString& name, const wxString& category = "", const wxString& subcategory = "");
     void Add_payee_category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = ""); 
     int Payee_id(const wxString& name);
     
-    int Add_category(const wxString& name);
+    int Add_Category(const wxString& name);
     int Category_id(const wxString& category);
 
-    int Add_subcategory(const wxString& name, int category_id);
-    int Subcategory_id(const wxString& subcategory, int category_id);
+    int Add_Subcategory(int category_id, const wxString& name);
+    int Subcategory_id(int category_id, const wxString& subcategory);
 
     /** Set the account name for Add_Trans_xxx commands */
     void Set_AccountName(const wxString& account_name); 
@@ -78,12 +81,21 @@ public:
     /** Add_Trans command If category not supplied, assume that it is a split. */
     void Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory = "");
 
+    /**
+    Starts the sequence to create a Repeating transaction using commands:
+    Bill_Start(...)
+    Bill_Trans_xxx(...)
+    Bill_Trans_End(...) - Provides ID to use command:Add_Bill_Split(...)
+    */
+    void Bill_Start(const wxString& account, const wxDate& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur = -1);
+    void Bill_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = "");
+    void Bill_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = "");
+    void Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
+        , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
+    int BILL_End(bool execute_auto_manual = false, bool execute_full_auto = false);
     void Add_Bill_Split(int trans_id, double value, const wxString& category, const wxString& subcategory = "");
-
-//    void Add_Bill(const wxDate& start_date); // set processing_bill
-//    void SetNormalRepeat(BILL_REPEAT repeat_type);
-//    void SetAdvancedRepeat(BILL_ADVANCED repeat_type, int period = 1);
-    void EndBILL();
 
     int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
         Model_Asset::RATE value_change, double value_change_rate, const wxString& notes = "");
@@ -92,8 +104,16 @@ public:
 
 private:
     int m_baseCurrency_id;
-    wxString m_account_name;
-    int m_account_id;
-    
-    bool m_processing_bill;
+    wxString m_account_name;    // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
+    int m_account_id;           // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
+
+    int Add_Trans(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = "");
+
+
+    bool bill_initialised;      // Set to true by Bill_Start(...)
+    bool bill_transaction_set;  // Set to true by any Bill_xxx_Transaction(...) commands 
+    Model_Billsdeposits::Data* bill_entry;  // Used by Bill_Set(...) to complete the command and save the transaction.
+    void Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = "");
 };

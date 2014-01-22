@@ -32,7 +32,7 @@ wxBEGIN_EVENT_TABLE(TestFrameBase, wxFrame)
 wxEND_EVENT_TABLE()
 
 TestFrameBase::TestFrameBase(int frame_count)
-: wxFrame(NULL, wxID_ANY, "MMEX Tests: Base Frame", wxPoint(50, 350), wxSize(400, 180))
+: wxFrame(NULL, wxID_ANY, "MMEX Tests: Base Frame", wxPoint(50, 380), wxSize(400, 180))
 {
     wxMenu *menuBase = new wxMenu;
     wxMenuBar *menuBar = new wxMenuBar;
@@ -44,7 +44,7 @@ TestFrameBase::TestFrameBase(int frame_count)
 }
 
 TestFrameBase::TestFrameBase(wxWindow* parent, int size_x, int size_y)
-: wxFrame(parent, wxID_ANY, "MMEX Tests: Testing Panels", wxPoint(50, 350), wxSize(size_x, size_y))
+: wxFrame(parent, wxID_ANY, "MMEX Tests: Testing Panels", wxPoint(50, 380), wxSize(size_x, size_y))
 {
     CreateStatusBar();
 }

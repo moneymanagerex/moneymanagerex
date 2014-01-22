@@ -125,6 +125,11 @@ void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, cons
 
 int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, wxString currency_symbol)
 {
+    return Add_Account(name, account_type, true, currency_symbol);
+}
+
+int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, bool favorite, wxString currency_symbol)
+{
     int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
     if (currencyID == -1)
     {
@@ -132,7 +137,12 @@ int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account
     }
 
     Model_Account::Data* account = Model_Account::instance().create();
-    account->FAVORITEACCT = "TRUE";
+    if (favorite)
+    {
+        account->FAVORITEACCT = "TRUE";
+    }
+    else account->FAVORITEACCT = "FALSE";
+
     account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
     account->ACCOUNTTYPE = Model_Account::all_type()[account_type];
     account->ACCOUNTNAME = name;
@@ -147,12 +157,12 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
     Model_Payee::Data* payee_entry = Model_Payee::instance().create();
     payee_entry->PAYEENAME = name;
     payee_entry->CATEGID = Category_id(category);
-    payee_entry->SUBCATEGID = Subcategory_id(subcategory, payee_entry->CATEGID);
+    payee_entry->SUBCATEGID = Subcategory_id(payee_entry->CATEGID, subcategory);
 
     return Model_Payee::instance().save(payee_entry);
 }
 
-int DB_Init_Model::Add_category(const wxString& name)
+int DB_Init_Model::Add_Category(const wxString& name)
 {
     Model_Category::Data* cat_entry = Model_Category::instance().create();
     cat_entry->CATEGNAME = name;
@@ -176,7 +186,7 @@ int DB_Init_Model::Category_id(const wxString& category)
     return cat_id;
 }
 
-int DB_Init_Model::Add_subcategory(const wxString& name, int category_id)
+int DB_Init_Model::Add_Subcategory(int category_id, const wxString& name)
 {
     Model_Subcategory::Data* subcat_entry = Model_Subcategory::instance().create();
     subcat_entry->SUBCATEGNAME = name;
@@ -185,7 +195,7 @@ int DB_Init_Model::Add_subcategory(const wxString& name, int category_id)
     return Model_Subcategory::instance().save(subcat_entry);
 }
 
-int DB_Init_Model::Subcategory_id(const wxString& subcategory, int category_id)
+int DB_Init_Model::Subcategory_id(int category_id, const wxString& subcategory)
 {
     int subcat_id = -1;
     if (!subcategory.IsEmpty())
@@ -208,8 +218,7 @@ void DB_Init_Model::Set_AccountName(const wxString& account_name)
     m_account_id = account->id();
 }
 
-// This commands sets m_processing_transaction
-int DB_Init_Model::Add_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+int DB_Init_Model::Add_Trans(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
@@ -220,39 +229,30 @@ int DB_Init_Model::Add_Trans_Deposit(const wxDateTime& date, const wxString& pay
     tran_entry->PAYEEID = entry->id();
 
     // Set to Deposit
-    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::DEPOSIT];
-    tran_entry->TRANSAMOUNT = 1000;
+    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
+    tran_entry->TRANSAMOUNT = value;
     tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
 
     tran_entry->CATEGID = Category_id(category);
-    tran_entry->SUBCATEGID = Subcategory_id(subcategory, tran_entry->CATEGID);
+    tran_entry->SUBCATEGID = Subcategory_id(tran_entry->CATEGID, subcategory);
     tran_entry->TRANSDATE = date.FormatISODate();
     tran_entry->FOLLOWUPID = 0;
     tran_entry->TOTRANSAMOUNT = value;
     return Model_Checking::instance().save(tran_entry);
 }
 
+
+// This commands sets m_processing_transaction
+int DB_Init_Model::Add_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+    , const wxString& category, const wxString& subcategory)
+{
+    return Add_Trans(Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
+}
+
 int DB_Init_Model::Add_Trans_Withdrawal(const wxDateTime& date, const wxString& payee
     , double value, const wxString& category, const wxString& subcategory)
 {
-    Model_Checking::Data* tran_entry = Model_Checking::instance().create();
-    tran_entry->ACCOUNTID = m_account_id;
-    tran_entry->TOACCOUNTID = -1;
-
-    Model_Payee::Data* entry = Model_Payee::instance().get(payee);
-    tran_entry->PAYEEID = entry->id();
-
-    // Set to withdrawal
-    tran_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::WITHDRAWAL];
-    tran_entry->TRANSAMOUNT = 1000;
-    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
-
-    tran_entry->CATEGID = Category_id(category);
-    tran_entry->SUBCATEGID = Subcategory_id(subcategory, tran_entry->CATEGID);
-    tran_entry->TRANSDATE = date.FormatISODate();
-    tran_entry->FOLLOWUPID = 0;
-    tran_entry->TOTRANSAMOUNT = value;
-    return Model_Checking::instance().save(tran_entry);
+    return Add_Trans(Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
 }
 
 // This commands sets m_processing_transfer_transaction
@@ -266,11 +266,11 @@ int DB_Init_Model::Add_Trans_Transfer(const wxDateTime& date, const wxString& to
 
     // Set to Transfer
     tran_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::TRANSFER];
-    tran_entry->TRANSAMOUNT = 1000;
+    tran_entry->TRANSAMOUNT = value;
     tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
 
     tran_entry->CATEGID = Category_id(category);
-    tran_entry->SUBCATEGID = Subcategory_id(subcategory, tran_entry->CATEGID);
+    tran_entry->SUBCATEGID = Subcategory_id(tran_entry->CATEGID, subcategory);
     tran_entry->TRANSDATE = date.FormatISODate();
     tran_entry->FOLLOWUPID = 0;
     tran_entry->TOTRANSAMOUNT = value;
@@ -296,7 +296,7 @@ void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& 
         trans_split_entry->TRANSID = trans_id;
         trans_split_entry->SPLITTRANSAMOUNT = value;
         trans_split_entry->CATEGID = Category_id(category);
-        trans_split_entry->SUBCATEGID = Subcategory_id(subcategory, trans_split_entry->CATEGID);
+        trans_split_entry->SUBCATEGID = Subcategory_id(trans_split_entry->CATEGID, subcategory);
         Model_Splittransaction::instance().save(trans_split_entry);
     }
     else ShowMessage("Transaction not found for the Split Transaction");
@@ -319,23 +319,119 @@ void DB_Init_Model::Add_Bill_Split(int trans_id, double value, const wxString& c
         bill_split_entry->TRANSID = trans_id;
         bill_split_entry->SPLITTRANSAMOUNT = value;
         bill_split_entry->CATEGID = Category_id(category);
-        bill_split_entry->SUBCATEGID = Subcategory_id(subcategory, bill_split_entry->CATEGID);
+        bill_split_entry->SUBCATEGID = Subcategory_id(bill_split_entry->CATEGID, subcategory);
         Model_Budgetsplittransaction::instance().save(bill_split_entry);
     }
     else ShowMessage("Transaction not found for the Split Transaction");
 }
 
-
-
-
-//void DB_Init_Model::SetAdvancedRepeat(BILL_ADVANCED repeat_type, int period)
-//{
-//
-//}
-
-void DB_Init_Model::EndBILL()
+void DB_Init_Model::Bill_Start(const wxString& account, const wxDate& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur)
 {
+    if (!bill_entry)
+    {
+        //Model_Billsdeposits::Data* 
+        bill_entry = Model_Billsdeposits::instance().create();
+        bill_entry->ACCOUNTID = Model_Account::instance().get(account)->id();
+        bill_entry->NEXTOCCURRENCEDATE = start_date.FormatISODate();
 
+        bill_entry->REPEATS = repeats;  // This will have extra data added multiplexed to this field.
+        bill_entry->NUMOCCURRENCES = num_occur;
+    }
+    else ShowMessage("Previous bill not saved. \n\nPlease use command: Bill_End(...)\n");
+}
+
+void DB_Init_Model::Bill_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+    , const wxString& category, const wxString& subcategory)
+{
+    Bill_Transaction(Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
+}
+
+void DB_Init_Model::Bill_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
+    , const wxString& category, const wxString& subcategory)
+{
+    Bill_Transaction(Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
+}
+
+// Common to Bill_Trans_Deposit(...) and Bill_Trans_Withdrawal(...)
+void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+    , const wxString& category, const wxString& subcategory)
+{
+    if (bill_initialised && !bill_transaction_set)
+    {
+        bill_entry->ACCOUNTID = m_account_id;
+        bill_entry->TOACCOUNTID = -1;
+
+        Model_Payee::Data* entry = Model_Payee::instance().get(payee);
+        bill_entry->PAYEEID = entry->id();
+
+        // Set to Deposit
+        bill_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
+        bill_entry->TRANSAMOUNT = value;
+        bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+
+        bill_entry->CATEGID = Category_id(category);
+        bill_entry->SUBCATEGID = Subcategory_id(bill_entry->CATEGID, subcategory);
+        bill_entry->TRANSDATE = date.FormatISODate();
+        bill_entry->FOLLOWUPID = 0;
+        bill_entry->TOTRANSAMOUNT = value;
+
+        bill_transaction_set = true;
+    }
+    else ShowMessage("Bill not initialised.\n\nPlease use command: Bill_Start(...)\n");
+}
+
+void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
+    , const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
+{
+    if (bill_initialised && !bill_transaction_set)
+    {
+        bill_entry->ACCOUNTID = m_account_id;
+        bill_entry->TOACCOUNTID = Model_Account::instance().get(to_account)->id();
+        bill_entry->PAYEEID = -1;
+
+        // Set to Transfer
+        bill_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::TRANSFER];
+        bill_entry->TRANSAMOUNT = value;
+        bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+
+        bill_entry->CATEGID = Category_id(category);
+        bill_entry->SUBCATEGID = Subcategory_id(bill_entry->CATEGID, subcategory);
+        bill_entry->TRANSDATE = date.FormatISODate();
+        bill_entry->FOLLOWUPID = 0;
+        bill_entry->TOTRANSAMOUNT = value;
+        if (advanced) bill_entry->TOTRANSAMOUNT = adv_value;
+
+        bill_transaction_set = true;
+    }
+    else ShowMessage("Bill not initialised.\n\nPlease use command: Bill_Start(...)\n");
+}
+
+int DB_Init_Model::BILL_End(bool autoExecuteUserAck, bool autoExecuteSilent)
+{
+    int bill_id = -1;
+    if (bill_initialised && bill_transaction_set)
+    {
+        //TODO: Put this multiplex function in the model.
+        // Multiplex Auto executable onto the repeat field of the database.
+        if (autoExecuteUserAck)
+        {
+            bill_entry->REPEATS += BD_REPEATS_MULTIPLEX_BASE;
+            if (autoExecuteSilent)
+                bill_entry->REPEATS += BD_REPEATS_MULTIPLEX_BASE;
+        }
+
+        bill_id = Model_Billsdeposits::instance().save(bill_entry);
+
+        bill_entry = NULL;     // Reset the pointer
+        bill_initialised = false;
+        bill_transaction_set = false;
+    }
+    else ShowMessage(
+        "Bill not initialised.\n\n"
+        "Please use command: Bill_Start(...)\n"
+        "Followed by one Bill_xxx_Transaction(...) command.");
+
+    return bill_id;
 }
 
 int DB_Init_Model::Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
