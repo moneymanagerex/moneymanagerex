@@ -51,6 +51,7 @@ public:
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);
     bool CheckSyntax(const wxString& sql) const;
+    wxString getTemplate(const wxString& sql);
     std::vector<std::pair<wxString, int> >  getColumns(const wxString& sql);
 };
 

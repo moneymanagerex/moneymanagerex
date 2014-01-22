@@ -319,45 +319,40 @@ void mmGeneralReportManager::getSqlQueryData(const wxString& sql)
 
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
-    if (!iData) return;
+    MinimalEditor* sqlText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
+    if (sqlText->GetValue().empty()) return;
 
-    int id = iData->get_report_id();
-    Model_Report::Data * report = Model_Report::instance().get(id);
-    if (report)
+    if (Model_Report::instance().CheckSyntax(sqlText->GetValue()))
     {
-        if (Model_Report::instance().CheckSyntax(report->SQLCONTENT))
+        getSqlQueryData(sqlText->GetValue());
+
+        m_sqlListBox->ClearAll();
+
+        int row = 0, pos = 0;
+        for (const auto& col : Model_Report::instance().getColumns(sqlText->GetValue()))
+            m_sqlListBox->InsertColumn(pos++, col.first
+            , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
+            , col.first.length() * 10 + 20);
+
+        for (const auto& dataRow : m_sqlQueryData)
         {
-            getSqlQueryData(report->SQLCONTENT);
-
-            m_sqlListBox->ClearAll();
-
-            int row = 0, pos = 0;
-            for (const auto& col : Model_Report::instance().getColumns(report->SQLCONTENT))
-                m_sqlListBox->InsertColumn(pos++, col.first
-                    , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
-                    , col.first.length()*10+20);
-
-            for (const auto& dataRow : m_sqlQueryData)
+            int pos = 0;
+            long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
+            for (const auto& dataCol : dataRow)
             {
-                int pos = 0;
-                long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
-                for (const auto& dataCol : dataRow)
-                {
-                    wxString buf = wxString::Format("r:%i c:%i=%s", itemIndex, pos, dataCol);
-                    m_sqlListBox->SetItem(itemIndex, pos++, buf);
-                }
-                ++row;
+                wxString buf = wxString::Format("r:%i c:%i=%s", itemIndex, pos, dataCol);
+                m_sqlListBox->SetItem(itemIndex, pos++, buf);
             }
-            wxButton* b = (wxButton*) FindWindow(wxID_NEW);
-            MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-            b->Enable(templateText->GetValue().empty());
+            ++row;
         }
-        else
-        {
-            wxMessageDialog msgDlg(this, _("Syntax Error"), _("Error"), wxOK | wxICON_ERROR);
-            msgDlg.ShowModal();
-        }
+        wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+        b->Enable(templateText->GetValue().empty());
+    }
+    else
+    {
+        wxMessageDialog msgDlg(this, _("Syntax Error"), _("Error"), wxOK | wxICON_ERROR);
+        msgDlg.ShowModal();
     }
 }
 
@@ -365,13 +360,18 @@ void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
 {
     MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
     if (!templateText->GetValue().empty()) return;
+    MinimalEditor* sqlText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
 
     wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     n->SetSelection(ID_TAB_HTT);
-    templateText->ChangeValue("test");
+
+    templateText->ChangeValue(Model_Report::instance().getTemplate(sqlText->GetValue()));
 
     wxButton* b = (wxButton*) FindWindow(wxID_NEW);
     b->Enable(false);
+
+    wxCommandEvent evt;
+    OnUpdateReport(evt);
 }
 
 void mmGeneralReportManager::OnImportReportEvt(wxCommandEvent& /*event*/)

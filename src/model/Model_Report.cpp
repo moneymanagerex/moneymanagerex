@@ -21,6 +21,21 @@
 #include "reports/htmlbuilder.h"
 #include "LuaGlue/LuaGlue.h"
 
+static const wxString HTT_CONTEINER =
+"<h3><TMPL_VAR REPORTNAME></h3>\n"
+"<TMPL_VAR TODAY>\n"
+"<table border=1>\n"
+"    <TMPL_LOOP NAME=CONTENTS>\n"
+"    <tr>\n"
+"%s"
+"    </tr>\n"
+"    </TMPL_LOOP>\n"
+"</table>\n"
+"<TMPL_LOOP ERRORS>\n"
+"    <hr>"
+"    <TMPL_VAR ERROR>\n"
+"</TMPL_LOOP>";
+
 class Record : public std::map<std::string, std::string>
 {
 public:
@@ -234,4 +249,14 @@ std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString& 
         columns.push_back(col_and_type);
     }
     return columns;
+}
+
+wxString Model_Report::getTemplate(const wxString& sql)
+{
+    wxString body;
+    for (const auto& col : this->getColumns(sql))
+    {
+        body += wxString::Format("        <td><TMPL_VAR %s></td>\n", col.first);
+    }
+    return wxString::Format(HTT_CONTEINER, body);
 }
