@@ -22,6 +22,7 @@
 #include "../resources/termaccount.xpm"
 #include "../resources/about.xpm"
 #include "../resources/clock.xpm"
+#include "../resources/filter.xpm"
 #include "../resources/chartpiereport.xpm"
 #include "../resources/work.xpm"
 #include "../resources/money_dollar.xpm"
@@ -47,7 +48,7 @@ wxImageList* navtree_images_list()
     imageList->Add(wxBitmap(wxImage(calendar_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(chartpiereport_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(help_xpm).Scale(16, 16)));
-    imageList->Add(wxBitmap(wxImage(stock_curve_xpm).Scale(16, 16))); //TODO: remove
+    imageList->Add(wxBitmap(wxImage(filter_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(car_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(customsql_xpm).Scale(16, 16)));
     imageList->Add(wxBitmap(wxImage(moneyaccount_xpm).Scale(16, 16))); // used for: savings_account
