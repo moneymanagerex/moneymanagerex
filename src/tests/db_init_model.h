@@ -87,7 +87,7 @@ public:
     Bill_Trans_xxx(...)
     Bill_Trans_End(...) - Provides ID to use command:Add_Bill_Split(...)
     */
-    void Bill_Start(const wxString& account, const wxDate& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur = -1);
+    void Bill_Start(const wxString& account, const wxDateTime& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur = -1);
     void Bill_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
     void Bill_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
@@ -95,7 +95,7 @@ public:
     void Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
         , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
     int BILL_End(bool execute_auto_manual = false, bool execute_full_auto = false);
-    void Add_Bill_Split(int trans_id, double value, const wxString& category, const wxString& subcategory = "");
+    void Add_Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory = "");
 
     int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
         Model_Asset::RATE value_change, double value_change_rate, const wxString& notes = "");
@@ -111,9 +111,9 @@ private:
         , const wxString& category = "", const wxString& subcategory = "");
 
 
-    bool bill_initialised;      // Set to true by Bill_Start(...)
-    bool bill_transaction_set;  // Set to true by any Bill_xxx_Transaction(...) commands 
-    Model_Billsdeposits::Data* bill_entry;  // Used by Bill_Set(...) to complete the command and save the transaction.
+    bool m_bill_initialised;      // Set to true by Bill_Start(...)
+    bool m_bill_transaction_set;  // Set to true by any Bill_xxx_Transaction(...) commands 
+    Model_Billsdeposits::Data* m_bill_entry;  // Used by Bill_Set(...) to complete the command and save the transaction.
     void Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
 };

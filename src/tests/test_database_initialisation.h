@@ -28,11 +28,13 @@ class TestFrameBase;
 class Test_DatabaseInitialisation : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_DatabaseInitialisation);
-    CPPUNIT_TEST(add_account_entries);
-    CPPUNIT_TEST(add_payee_entries);
-    CPPUNIT_TEST(add_category_entries);
-    CPPUNIT_TEST(add_transaction_entries);
-    CPPUNIT_TEST(add_repeat_transaction_entries);
+    CPPUNIT_TEST(Add_Account_Entries);
+    CPPUNIT_TEST(Add_Payee_Entries);
+    CPPUNIT_TEST(Add_Category_Entries);
+    CPPUNIT_TEST(Add_Transaction_Entries);
+    CPPUNIT_TEST(Add_Repeat_Transaction_Entries);
+    CPPUNIT_TEST(Backup_Database);
+    CPPUNIT_TEST(Change_Database_Password);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -52,11 +54,11 @@ private:
 
 private:
     // Test cases
-    void add_account_entries();
-    void add_payee_entries();
-    void add_category_entries();
-    void add_transaction_entries();
-    void add_repeat_transaction_entries();
-
-    void Test_Transaction_Dialog();
+    void Add_Account_Entries();
+    void Add_Payee_Entries();
+    void Add_Category_Entries();
+    void Add_Transaction_Entries();
+    void Add_Repeat_Transaction_Entries();
+    void Backup_Database();
+    void Change_Database_Password();
 };

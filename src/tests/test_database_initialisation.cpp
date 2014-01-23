@@ -73,7 +73,7 @@ void Test_DatabaseInitialisation::tearDown()
     m_test_db.Close();
 }
 
-void Test_DatabaseInitialisation::add_account_entries()
+void Test_DatabaseInitialisation::Add_Account_Entries()
 {
     CpuTimer Start("Account  Entries");
 
@@ -93,7 +93,7 @@ void Test_DatabaseInitialisation::add_account_entries()
     m_test_db.Commit();
 }
 
-void Test_DatabaseInitialisation::add_payee_entries()
+void Test_DatabaseInitialisation::Add_Payee_Entries()
 {
     CpuTimer Start("Payee  Entries");
 
@@ -110,10 +110,11 @@ void Test_DatabaseInitialisation::add_payee_entries()
     m_test_db.Commit();
 }
 
-void Test_DatabaseInitialisation::add_category_entries()
+void Test_DatabaseInitialisation::Add_Category_Entries()
 {
     CpuTimer Start("Category Entries");
     m_test_db.Begin();
+
     // Adding a complete structure
     int family_home = m_dbmodel->Add_Category("Family Home");
     m_dbmodel->Add_Subcategory(family_home, "General Rates");
@@ -123,14 +124,10 @@ void Test_DatabaseInitialisation::add_category_entries()
     m_dbmodel->Add_Subcategory(family_home, "Phone/Internet");
     m_dbmodel->Add_Subcategory(family_home, "Home Insurance");
 
-
-
-
-
     m_test_db.Commit();
 }
 
-void Test_DatabaseInitialisation::add_transaction_entries()
+void Test_DatabaseInitialisation::Add_Transaction_Entries()
 {
     CpuTimer Start("Transaction Entries");
 
@@ -143,17 +140,181 @@ void Test_DatabaseInitialisation::add_transaction_entries()
     m_test_db.Commit();
 }
 
-void Test_DatabaseInitialisation::add_repeat_transaction_entries()
+void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
 {
     CpuTimer Start("Repeat Transaction Entries");
-
-    m_dbmodel->Set_AccountName("Mastercard");
+    wxDateTime start_date = wxDateTime::Today().Add(wxDateSpan::Day());
 
     m_test_db.Begin();
-    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+
+    m_dbmodel->Bill_Start("Mastercard", start_date, Model_Billsdeposits::REPEAT_WEEKLY);
+    m_dbmodel->Bill_Trans_Withdrawal(start_date, "Woolworths", 100);
+    int bill_id = m_dbmodel->BILL_End();
+   
+    m_dbmodel->Add_Bill_Split(bill_id, 10, "Food", "Groceries");
+    m_dbmodel->Add_Bill_Split(bill_id, 30, "Food", "Groceries");
+    m_dbmodel->Add_Bill_Split(bill_id, 60, "Food", "Groceries");
+
     m_test_db.Commit();
 }
 
+void Test_DatabaseInitialisation::Backup_Database()
+{
+    wxString encryption_password = "test_db";
+    wxString target_encrypted_backup_filename = "test_db_encrypted_backup.emb";
+    wxString target_backup_filename = "test_db_non-encrypted_backup.mmb";
+
+    // Backup the existing database - with and without encryption.
+    m_test_db.Backup(target_encrypted_backup_filename, encryption_password);
+    m_test_db.Backup(target_backup_filename);
+
+    bool file_ok = false;
+    wxSQLite3Database protected_test_db;
+    if (!protected_test_db.IsOpen())
+    {
+        protected_test_db.Open(target_encrypted_backup_filename, encryption_password);
+        if (protected_test_db.IsEncrypted())
+        {
+            try
+            {
+                // Test the access to the database
+                protected_test_db.ExecuteQuery("select * from infotable_v1;");
+                file_ok = true;
+            }
+            catch (...) { file_ok = false; }
+        }
+        protected_test_db.Close();
+    }
+    CPPUNIT_ASSERT(file_ok == true);
+
+    file_ok = false;
+    if (!protected_test_db.IsOpen())
+    {
+        protected_test_db.Open(target_encrypted_backup_filename);
+        if (!protected_test_db.IsEncrypted())
+        {
+            try
+            {
+                // Test the access to the database
+                protected_test_db.ExecuteQuery("select * from infotable_v1;");
+                file_ok = true;
+            }
+            catch (...) { file_ok = false; }
+        }
+        protected_test_db.Close();
+    }
+    CPPUNIT_ASSERT(file_ok == false);
+
+
+    file_ok = false;
+    wxSQLite3Database non_protected_test_db;
+    if (!non_protected_test_db.IsOpen())
+    {
+        non_protected_test_db.Open(target_backup_filename);
+        if (!protected_test_db.IsEncrypted())
+        {
+            try
+            {
+                // Test the access to the database
+                non_protected_test_db.ExecuteQuery("select * from infotable_v1;");
+                file_ok = true;
+            }
+            catch (...) { file_ok = false; }
+        }
+        non_protected_test_db.Close();
+    }
+    CPPUNIT_ASSERT(file_ok == true);
+
+    file_ok = false;
+    if (!non_protected_test_db.IsOpen())
+    {
+        non_protected_test_db.Open(target_backup_filename, encryption_password);
+        if (!protected_test_db.IsEncrypted())
+        {
+            try
+            {
+                // Test the access to the database
+                non_protected_test_db.ExecuteQuery("select * from infotable_v1;");
+                file_ok = true;
+            }
+            catch (...) { file_ok = false; }
+        }
+    }
+    CPPUNIT_ASSERT(file_ok == false);
+}
+
+void Test_DatabaseInitialisation::Change_Database_Password()
+{
+    wxString encryption_password = "correct_password";
+    wxString encrypted_database_filename = "test_correct_encrypted_database.emb";
+
+    // Create a backup of the main database and encrypt it
+    // This ensures we have a proper database to work with.
+    m_test_db.Backup(encrypted_database_filename, encryption_password);
+
+    // Open the encrypted database.
+    wxSQLite3Database protected_test_db;
+    if (!protected_test_db.IsOpen())
+    {
+        // Open the encrypted database
+        protected_test_db.Open(encrypted_database_filename, encryption_password);
+
+        if (protected_test_db.IsEncrypted())
+        {
+            bool password_changed = false;
+            
+            // Test incorrect password
+            // Reopen it with a duplicate.
+            wxSQLite3Database protected_test_db_duplicate;
+            try
+            {
+                protected_test_db_duplicate.Open(encrypted_database_filename, "incorrect_password");
+                if (protected_test_db_duplicate.IsOpen())
+                {
+                    protected_test_db_duplicate.ExecuteQuery("select * from infotable_v1;");
+                    protected_test_db_duplicate.ReKey("new_password");
+                    password_changed = true;
+                }
+            }
+            catch (...) { password_changed = false; }
+
+            protected_test_db_duplicate.Close();
+            CPPUNIT_ASSERT(password_changed == false);
+
+            // Test correct password
+            try
+            {
+                protected_test_db_duplicate.Open(encrypted_database_filename, "correct_password");
+                if (protected_test_db_duplicate.IsOpen())
+                {
+                    protected_test_db_duplicate.ExecuteQuery("select * from infotable_v1;");
+                    protected_test_db_duplicate.ReKey("new_password");
+                    password_changed = true;
+                }
+            }
+            catch (...) { password_changed = false; }
+
+            protected_test_db_duplicate.Close();
+            CPPUNIT_ASSERT(password_changed == true);
+        }
+        protected_test_db.Close();
+
+        if (!protected_test_db.IsOpen())
+        {
+            protected_test_db.Open(encrypted_database_filename, "new_password");
+            bool password_change_successful;
+            try
+            {
+                protected_test_db.ExecuteQuery("select * from infotable_v1");
+                password_change_successful = true;
+            }
+            catch (...) { password_change_successful = false; }
+            CPPUNIT_ASSERT(password_change_successful == true);
+        }
+    }
+
+    // change the password back, because the file is not deleted at the start of the testing.
+    protected_test_db.ReKey(encryption_password);
+    protected_test_db.Close();
+}
 //--------------------------------------------------------------------------

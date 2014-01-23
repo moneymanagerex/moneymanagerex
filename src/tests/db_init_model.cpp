@@ -37,6 +37,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 
 DB_Init_Model::DB_Init_Model()
+: m_bill_entry(0)
+, m_bill_initialised(false)
+, m_bill_transaction_set(false)
 {
 //    ShowMessage("DB_Init_Model - Initialise Instance Only.");
 }
@@ -302,40 +305,48 @@ void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& 
     else ShowMessage("Transaction not found for the Split Transaction");
 }
 
-void DB_Init_Model::Add_Bill_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
+void DB_Init_Model::Add_Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory)
 {
-    Model_Checking::Data* trans_entry = Model_Checking::instance().get(trans_id);
-    if (trans_entry)
+    Model_Billsdeposits::Data* bill_entry = Model_Billsdeposits::instance().get(bill_id);
+    if (bill_entry)
     {
-        if ((trans_entry->CATEGID > 0) || (trans_entry->SUBCATEGID > 0))
+        if ((bill_entry->CATEGID > 0) || (bill_entry->SUBCATEGID > 0))
         {
             ShowMessage("Bill Category reset for Bill Split");
-            trans_entry->CATEGID = -1;
-            trans_entry->SUBCATEGID = -1;
-            Model_Checking::instance().save(trans_entry);
+            bill_entry->CATEGID = -1;
+            bill_entry->SUBCATEGID = -1;
+            Model_Billsdeposits::instance().save(bill_entry);
         }
 
         Model_Budgetsplittransaction::Data* bill_split_entry = Model_Budgetsplittransaction::instance().create();
-        bill_split_entry->TRANSID = trans_id;
+        bill_split_entry->TRANSID = bill_id;
         bill_split_entry->SPLITTRANSAMOUNT = value;
         bill_split_entry->CATEGID = Category_id(category);
         bill_split_entry->SUBCATEGID = Subcategory_id(bill_split_entry->CATEGID, subcategory);
         Model_Budgetsplittransaction::instance().save(bill_split_entry);
     }
-    else ShowMessage("Transaction not found for the Split Transaction");
+    else ShowMessage("Bill entry not found for the Bill Split Transaction");
 }
 
-void DB_Init_Model::Bill_Start(const wxString& account, const wxDate& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur)
+void DB_Init_Model::Bill_Start(const wxString& account, const wxDateTime& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur)
 {
-    if (!bill_entry)
+    if (!m_bill_entry)
     {
-        //Model_Billsdeposits::Data* 
-        bill_entry = Model_Billsdeposits::instance().create();
-        bill_entry->ACCOUNTID = Model_Account::instance().get(account)->id();
-        bill_entry->NEXTOCCURRENCEDATE = start_date.FormatISODate();
+        m_bill_entry = Model_Billsdeposits::instance().create();
 
-        bill_entry->REPEATS = repeats;  // This will have extra data added multiplexed to this field.
-        bill_entry->NUMOCCURRENCES = num_occur;
+        Model_Account::Data* acc = Model_Account::instance().get(account);
+        if (acc)
+        {
+            m_bill_entry->ACCOUNTID = acc->id();
+        }
+        else ShowMessage("Bill Start for account" + account + "not found.\n");
+
+        m_bill_entry->NEXTOCCURRENCEDATE = start_date.FormatISODate();
+
+        m_bill_entry->REPEATS = repeats;  // This will have extra data added multiplexed to this field.
+        m_bill_entry->NUMOCCURRENCES = num_occur;
+
+        m_bill_initialised = true;
     }
     else ShowMessage("Previous bill not saved. \n\nPlease use command: Bill_End(...)\n");
 }
@@ -356,26 +367,25 @@ void DB_Init_Model::Bill_Trans_Withdrawal(const wxDateTime& date, const wxString
 void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
-    if (bill_initialised && !bill_transaction_set)
+    if (m_bill_initialised && !m_bill_transaction_set)
     {
-        bill_entry->ACCOUNTID = m_account_id;
-        bill_entry->TOACCOUNTID = -1;
+        m_bill_entry->TOACCOUNTID = -1;
 
         Model_Payee::Data* entry = Model_Payee::instance().get(payee);
-        bill_entry->PAYEEID = entry->id();
+        m_bill_entry->PAYEEID = entry->id();
 
         // Set to Deposit
-        bill_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
-        bill_entry->TRANSAMOUNT = value;
-        bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+        m_bill_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
+        m_bill_entry->TRANSAMOUNT = value;
+        m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
 
-        bill_entry->CATEGID = Category_id(category);
-        bill_entry->SUBCATEGID = Subcategory_id(bill_entry->CATEGID, subcategory);
-        bill_entry->TRANSDATE = date.FormatISODate();
-        bill_entry->FOLLOWUPID = 0;
-        bill_entry->TOTRANSAMOUNT = value;
+        m_bill_entry->CATEGID = Category_id(category);
+        m_bill_entry->SUBCATEGID = Subcategory_id(m_bill_entry->CATEGID, subcategory);
+        m_bill_entry->TRANSDATE = date.FormatISODate();
+        m_bill_entry->FOLLOWUPID = 0;
+        m_bill_entry->TOTRANSAMOUNT = value;
 
-        bill_transaction_set = true;
+        m_bill_transaction_set = true;
     }
     else ShowMessage("Bill not initialised.\n\nPlease use command: Bill_Start(...)\n");
 }
@@ -383,25 +393,24 @@ void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDa
 void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
     , const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
 {
-    if (bill_initialised && !bill_transaction_set)
+    if (m_bill_initialised && !m_bill_transaction_set)
     {
-        bill_entry->ACCOUNTID = m_account_id;
-        bill_entry->TOACCOUNTID = Model_Account::instance().get(to_account)->id();
-        bill_entry->PAYEEID = -1;
+        m_bill_entry->TOACCOUNTID = Model_Account::instance().get(to_account)->id();
+        m_bill_entry->PAYEEID = -1;
 
         // Set to Transfer
-        bill_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::TRANSFER];
-        bill_entry->TRANSAMOUNT = value;
-        bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+        m_bill_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::TRANSFER];
+        m_bill_entry->TRANSAMOUNT = value;
+        m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
 
-        bill_entry->CATEGID = Category_id(category);
-        bill_entry->SUBCATEGID = Subcategory_id(bill_entry->CATEGID, subcategory);
-        bill_entry->TRANSDATE = date.FormatISODate();
-        bill_entry->FOLLOWUPID = 0;
-        bill_entry->TOTRANSAMOUNT = value;
-        if (advanced) bill_entry->TOTRANSAMOUNT = adv_value;
+        m_bill_entry->CATEGID = Category_id(category);
+        m_bill_entry->SUBCATEGID = Subcategory_id(m_bill_entry->CATEGID, subcategory);
+        m_bill_entry->TRANSDATE = date.FormatISODate();
+        m_bill_entry->FOLLOWUPID = 0;
+        m_bill_entry->TOTRANSAMOUNT = value;
+        if (advanced) m_bill_entry->TOTRANSAMOUNT = adv_value;
 
-        bill_transaction_set = true;
+        m_bill_transaction_set = true;
     }
     else ShowMessage("Bill not initialised.\n\nPlease use command: Bill_Start(...)\n");
 }
@@ -409,22 +418,22 @@ void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& 
 int DB_Init_Model::BILL_End(bool autoExecuteUserAck, bool autoExecuteSilent)
 {
     int bill_id = -1;
-    if (bill_initialised && bill_transaction_set)
+    if (m_bill_initialised && m_bill_transaction_set)
     {
         //TODO: Put this multiplex function in the model.
         // Multiplex Auto executable onto the repeat field of the database.
         if (autoExecuteUserAck)
         {
-            bill_entry->REPEATS += BD_REPEATS_MULTIPLEX_BASE;
+            m_bill_entry->REPEATS += BD_REPEATS_MULTIPLEX_BASE;
             if (autoExecuteSilent)
-                bill_entry->REPEATS += BD_REPEATS_MULTIPLEX_BASE;
+                m_bill_entry->REPEATS += BD_REPEATS_MULTIPLEX_BASE;
         }
 
-        bill_id = Model_Billsdeposits::instance().save(bill_entry);
+        bill_id = Model_Billsdeposits::instance().save(m_bill_entry);
 
-        bill_entry = NULL;     // Reset the pointer
-        bill_initialised = false;
-        bill_transaction_set = false;
+        m_bill_entry = NULL;     // Reset the pointer
+        m_bill_initialised = false;
+        m_bill_transaction_set = false;
     }
     else ShowMessage(
         "Bill not initialised.\n\n"
