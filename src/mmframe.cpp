@@ -1522,23 +1522,17 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             AddPendingEvent(evt);
             return;
         }
+        else if (iData->getString() == "rep:Transaction Report")
+        {
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
+            AddPendingEvent(evt);           // Events will be processed in due course.
+        }
 
         if (!m_db)
             return;
         //========================================================================
 
-        wxString sData = iData->getString();
-        wxString title = wxGetTranslation(sData);
-
-        if (sData == "Transaction Report")
-        {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-            AddPendingEvent(evt);           // Events will be processed in due course.
-        }
-        else
-        {
-            createReportsPage(iData->get_report(), false);
-        }
+        createReportsPage(iData->get_report(), false);
     }
 }
 //----------------------------------------------------------------------------

@@ -64,7 +64,7 @@ public:
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
-        , stringData_(string)
+        , stringData_("rep:" + string)
         , report_(report)
     {}
     ~mmTreeItemData()

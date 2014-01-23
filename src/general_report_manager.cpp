@@ -602,14 +602,14 @@ void mmGeneralReportManager::renameReport(int id)
         wxString label = wxGetTextFromUser(_("Enter the name for the report")
             , _("General Report Manager"), report->REPORTNAME);
         label.Trim();
-        for (auto reserved : m_reservedNames)
+        /*for (auto reserved : m_reservedNames)
         {
             if (label == reserved)
             {
                 wxMessageBox(_("Invalid name"), _("MMEX reserved name"), wxOK | wxICON_ERROR);
                 return;
             }
-        }
+        }*/
         if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty()
             && !label.empty())
         {
