@@ -132,12 +132,6 @@
 #include "../resources/view.xpm"
 #include "../resources/wrench.xpm"
 
-const wxString NAVTREECTRL_REPORTS = "Reports";
-const wxString NAVTREECTRL_HELP = "Help";
-const wxString NAVTREECTRL_CUSTOM_REPORTS = "Custom_Reports";
-const wxString NAVTREECTRL_INVESTMENT = "Stocks";
-const wxString NAVTREECTRL_BUDGET = "Budgeting";
-
 //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
@@ -711,7 +705,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), 4, 4);
     navTreeCtrl_->SetItemBold(reports, true);
-    navTreeCtrl_->SetItemData(reports, new mmTreeItemData(NAVTREECTRL_REPORTS));
+    navTreeCtrl_->SetItemData(reports, new mmTreeItemData("Reports"));
 
     /* ================================================================================================= */
 
@@ -1314,7 +1308,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     ///////////////////////////////////////////////////////////////////
 
     wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), 5, 5);
-    navTreeCtrl_->SetItemData(help, new mmTreeItemData(NAVTREECTRL_HELP));
+    navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
     navTreeCtrl_->SetItemBold(help, true);
 
      /* Start Populating the dynamic data */
@@ -1393,9 +1387,9 @@ void mmGUIFrame::OnTreeItemExpanded(wxTreeEvent& event)
         dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
 
-    if (iData->getString() == NAVTREECTRL_REPORTS)
+    if (iData->getString() == "item@Reports")
         expandedReportNavTree_ = true;
-    else if (iData->getString() == NAVTREECTRL_BUDGET)
+    else if (iData->getString() == "item@Budgeting")
         expandedBudgetingNavTree_ = true;
 }
 //----------------------------------------------------------------------------
@@ -1406,9 +1400,9 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
         dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(event.GetItem()));
     if (!iData) return;
 
-    if (iData->getString() == NAVTREECTRL_REPORTS)
+    if (iData->getString() == "item@Reports")
         expandedReportNavTree_ = false;
-    else if (iData->getString() == NAVTREECTRL_BUDGET)
+    else if (iData->getString() == "item@Budgeting")
         expandedBudgetingNavTree_ = false;
 }
 //----------------------------------------------------------------------------
@@ -1487,42 +1481,42 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     {
         // Note: These string names are reserved names and can't be used for custom report names.
         // When adding another reserved name the list of reserved names in general_report_manager.cpp needs to be updated.
-        if (iData->getString() == "Home Page")
+        if (iData->getString() == "item@Home Page")
         {
             createHomePage();
             return;
         }
-        else if (iData->getString() == NAVTREECTRL_HELP)
+        else if (iData->getString() == "item@Help")
         {
             helpFileIndex_ = mmex::HTML_INDEX;
             createHelpPage();
             return;
         }
-        else if (iData->getString() == NAVTREECTRL_INVESTMENT)
+        else if (iData->getString() == "item@Stocks")
         {
             helpFileIndex_ = mmex::HTML_INVESTMENT;
             createHelpPage();
             return;
         }
-        else if (iData->getString() == NAVTREECTRL_BUDGET)
+        else if (iData->getString() == "item@Budgeting")
         {
             helpFileIndex_ = mmex::HTML_BUDGET;
             createHelpPage();
             return;
         }
-        else if (iData->getString() == "Assets")
+        else if (iData->getString() == "item@Assets")
         {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
             AddPendingEvent(evt);
             return;
         }
-        else if (iData->getString() == "Bills & Deposits")
+        else if (iData->getString() == "item@Bills & Deposits")
         {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
             AddPendingEvent(evt);
             return;
         }
-        else if (iData->getString() == "rep:Transaction Report")
+        else if (iData->getString() == "rep@Transaction Report")
         {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
             AddPendingEvent(evt);           // Events will be processed in due course.
@@ -1641,33 +1635,17 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
     }
     else
     {
-        if (iData->getString() == NAVTREECTRL_BUDGET)
+        if (iData->getString() == "item@Budgeting")
         {
             wxCommandEvent e;
             OnBudgetSetupDialog(e);
         }
         else
-        if (iData->getString() == "Bank Accounts" ||
-            iData->getString() == "Term Accounts" ||
-            iData->getString() == "Stocks")
-        { // Create for Bank Term & Stock Accounts
-
-         //wxMenu menu;
-            /*Popup Menu for Bank Accounts*/
-        //New Account    //
-        //Delete Account //
-        //Edit Account   //
-        //Export >       //
-            //CSV Files //
-            //QIF Files //
-        //Import >       //
-            //CSV Files //
-            //QIF Files           //
-        //Accounts Visible//
-            //All      //
-            //Favorite //
-            //Open     //
-
+        if (iData->getString() == "item@Bank Accounts" ||
+            iData->getString() == "item@Term Accounts" ||
+            iData->getString() == "item@Stocks")
+        { 
+            // Create for Bank Term & Stock Accounts
             wxMenu menu;
             menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
             menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
@@ -1676,7 +1654,7 @@ void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
             menu.AppendSeparator();
 
             // Create only for Bank Accounts
-            if ( (iData->getString() != "Term Accounts") && (iData->getString() != "Stocks") )
+            if ( (iData->getString() != "item@Term Accounts") && (iData->getString() != "item@Stocks") )
             {
                 wxMenu *exportTo = new wxMenu;
                 exportTo->Append(MENU_TREEPOPUP_ACCOUNT_EXPORT2CSV, _("&CSV Files..."));
@@ -3268,7 +3246,7 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 
 void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
 {
-    m_mgr.GetPane("Bank Accounts").Show(event.IsChecked());
+    m_mgr.GetPane("item@Bank Accounts").Show(event.IsChecked());
     m_mgr.Update();
 
     if (!refreshRequested_)
@@ -3281,7 +3259,7 @@ void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
 
 void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
 {
-    m_mgr.GetPane("Term Accounts").Show(event.IsChecked());
+    m_mgr.GetPane("item@Term Accounts").Show(event.IsChecked());
     m_mgr.Update();
 
     if (!refreshRequested_)
@@ -3295,7 +3273,7 @@ void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
 
 void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
 {
-    m_mgr.GetPane("Stock Accounts").Show(event.IsChecked());
+    m_mgr.GetPane("item@Stock Accounts").Show(event.IsChecked());
     m_mgr.Update();
 
     if (!refreshRequested_)

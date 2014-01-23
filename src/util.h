@@ -60,12 +60,19 @@ public:
         , isBudgetingNode_(isBudget)
         , report_(0)
     {}
-    mmTreeItemData(const wxString& string, mmPrintableBase* report = 0)
+    mmTreeItemData(const wxString& string, mmPrintableBase* report)
         : id_(0)
         , isString_(true)
         , isBudgetingNode_(false)
-        , stringData_("rep:" + string)
+        , stringData_("report@" + string)
         , report_(report)
+    {}
+    mmTreeItemData(const wxString& string)
+        : id_(0)
+        , isString_(true)
+        , isBudgetingNode_(false)
+        , stringData_("item@" + string)
+        , report_(0)
     {}
     ~mmTreeItemData()
     {
