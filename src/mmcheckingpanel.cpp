@@ -407,7 +407,7 @@ void mmCheckingPanel::CreateControls()
         , ID_PANEL_CHECKING_STATIC_BALHEADER5, "$", wxDefaultPosition, wxSize(120, -1));
 
     wxFlexGridSizer* balances_header = new wxFlexGridSizer(0,8,5,10);
-    itemBoxSizerVHeader->Add(balances_header);
+    itemBoxSizerVHeader->Add(balances_header, flagsExpand);
     balances_header->Add(new wxStaticText(headerPanel, wxID_STATIC, _("Account Bal: ")));
     balances_header->Add(itemStaticText12);
     balances_header->Add(new wxStaticText(headerPanel,  wxID_STATIC, _("Reconciled Bal: ")));

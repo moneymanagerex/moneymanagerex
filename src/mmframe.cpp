@@ -248,7 +248,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 , menuBar_()
 , toolBar_()
 , selectedItemData_()
-, helpFileIndex_(mmex::HTML_INDEX)
+, helpFileIndex_(-1)
 , expandedReportNavTree_(true)
 , expandedBudgetingNavTree_(true)
 , m_pThread(0)
@@ -1479,53 +1479,40 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     }
     else
     {
-        // Note: These string names are reserved names and can't be used for custom report names.
-        // When adding another reserved name the list of reserved names in general_report_manager.cpp needs to be updated.
-        if (iData->getString() == "item@Home Page")
+        const wxString data = iData->getString();
+        if (data == "item@Help")
+            helpFileIndex_ = mmex::HTML_INDEX;
+        else if (data == "item@Stocks")
+            helpFileIndex_ = mmex::HTML_INVESTMENT;
+        else if (data == "item@Budgeting")
+            helpFileIndex_ = mmex::HTML_BUDGET;
+        if (helpFileIndex_ > -1)
+        {
+            createHelpPage();
+            helpFileIndex_ = -1;
+            return;
+        }
+
+        if (!m_db) return;
+
+        if (data == "item@Home Page")
         {
             createHomePage();
             return;
         }
-        else if (iData->getString() == "item@Help")
+        wxCommandEvent *evt = 0;
+        if (data == "item@Assets")
+            evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+        else if (data == "item@Bills & Deposits")
+            evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+        else if (data == "item@Transaction Report")
+            evt = new wxCommandEvent(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
+        if (evt)
         {
-            helpFileIndex_ = mmex::HTML_INDEX;
-            createHelpPage();
+            AddPendingEvent(*evt);
+            delete evt;
             return;
         }
-        else if (iData->getString() == "item@Stocks")
-        {
-            helpFileIndex_ = mmex::HTML_INVESTMENT;
-            createHelpPage();
-            return;
-        }
-        else if (iData->getString() == "item@Budgeting")
-        {
-            helpFileIndex_ = mmex::HTML_BUDGET;
-            createHelpPage();
-            return;
-        }
-        else if (iData->getString() == "item@Assets")
-        {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-            AddPendingEvent(evt);
-            return;
-        }
-        else if (iData->getString() == "item@Bills & Deposits")
-        {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-            AddPendingEvent(evt);
-            return;
-        }
-        else if (iData->getString() == "rep@Transaction Report")
-        {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
-            AddPendingEvent(evt);           // Events will be processed in due course.
-        }
-
-        if (!m_db)
-            return;
-        //========================================================================
-
         createReportsPage(iData->get_report(), false);
     }
 }
