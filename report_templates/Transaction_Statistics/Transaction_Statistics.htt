@@ -29,6 +29,7 @@
                     <th>Nov</th>
                     <th>Dec</th>
                     <th>Total</th>
+                    <th>Average</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,7 @@
                         <td><TMPL_VAR Nov></td>
                         <td><TMPL_VAR Dec></td>
                         <th class="total"><TMPL_VAR YEAR_TOTAL></th>
+                        <th class="total"><TMPL_VAR MONTH_AVERAGE></th>
                     </tr>
                     </TMPL_LOOP>
                 </tbody>
@@ -67,6 +69,24 @@
                         <td><TMPL_VAR TOTAL_Nov></td>
                         <td><TMPL_VAR TOTAL_Dec></td>
                         <td><span class="badge"><TMPL_VAR GRAND_TOTAL></span></td>
+                        <td></td>
+                    </tr>
+                    <tr class="total">
+                        <td>Average:</td>
+                        <td><TMPL_VAR AVERAGE_Jan></td>
+                        <td><TMPL_VAR AVERAGE_Feb></td>
+                        <td><TMPL_VAR AVERAGE_Mar></td>
+                        <td><TMPL_VAR AVERAGE_Apr></td>
+                        <td><TMPL_VAR AVERAGE_May></td>
+                        <td><TMPL_VAR AVERAGE_Jun></td>
+                        <td><TMPL_VAR AVERAGE_Jul></td>
+                        <td><TMPL_VAR AVERAGE_Aug></td>
+                        <td><TMPL_VAR AVERAGE_Sep></td>
+                        <td><TMPL_VAR AVERAGE_Oct></td>
+                        <td><TMPL_VAR AVERAGE_Nov></td>
+                        <td><TMPL_VAR AVERAGE_Dec></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tfoot>
                 </table>
