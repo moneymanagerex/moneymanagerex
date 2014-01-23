@@ -1433,13 +1433,13 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 
             wxTreeItemId idparent = navTreeCtrl_->GetItemParent(id);
             mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(idparent));
-            if (iParentData->getString() == "Budget Performance")
+            if (iParentData->getString() == "item@Budget Performance")
             {
                 int year = data;
                 mmPrintableBase* rs = new mmReportBudgetingPerformance(year);
                 createReportsPage(rs, true);
             }
-            else if (iParentData->getString() == "Budget Setup Performance")
+            else if (iParentData->getString() == "item@Budget Setup Performance")
             {
                 mmPrintableBase* rs = new mmReportBudgetCategorySummary(year);
                 createReportsPage(rs, true);
