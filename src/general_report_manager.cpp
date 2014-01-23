@@ -647,15 +647,8 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     int id = event.GetId();
-    if (id == ID_NEW_SAMPLE_ASSETS)
-    {
-        newReport(ID_NEW_SAMPLE_ASSETS);
-    }
-    else if (id == ID_NEW_EMPTY)
-    {
-        newReport(ID_NEW_EMPTY);
-    }
-    else if (iData && id == ID_RENAME)
+
+    if (iData && id == ID_RENAME)
     {
         int report_id = iData->get_report_id();
         this->renameReport(report_id);
@@ -676,6 +669,9 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
             Model_Report::instance().save(report);
         }
     }
+    else
+        newReport(id);
+
     fillControls();
 }
 

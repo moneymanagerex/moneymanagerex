@@ -25,6 +25,9 @@ static const wxString HTT_CONTEINER =
 "<h3><TMPL_VAR REPORTNAME></h3>\n"
 "<TMPL_VAR TODAY>\n"
 "<table border=1>\n"
+"    <tr bgcolor='#d5d6de'>\n"
+"%s"
+"    </tr>"
 "    <TMPL_LOOP NAME=CONTENTS>\n"
 "    <tr>\n"
 "%s"
@@ -32,9 +35,9 @@ static const wxString HTT_CONTEINER =
 "    </TMPL_LOOP>\n"
 "</table>\n"
 "<TMPL_LOOP ERRORS>\n"
-"    <hr>"
+"    <hr>\n"
 "    <TMPL_VAR ERROR>\n"
-"</TMPL_LOOP>";
+"</TMPL_LOOP>\n";
 
 class Record : public std::map<std::string, std::string>
 {
@@ -255,10 +258,11 @@ std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString& 
 
 wxString Model_Report::getTemplate(const wxString& sql)
 {
-    wxString body;
+    wxString body, header;
     for (const auto& col : this->getColumns(sql))
     {
         body += wxString::Format("        <td><TMPL_VAR %s></td>\n", col.first);
+        header += wxString::Format("        <th>%s</th>\n", col.first);
     }
-    return wxString::Format(HTT_CONTEINER, body);
+    return wxString::Format(HTT_CONTEINER, header, body);
 }
