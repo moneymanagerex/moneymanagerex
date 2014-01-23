@@ -1425,17 +1425,14 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 
     if (!iData->isStringData())
     {
-        int data = iData->getData();
         if (iData->isBudgetingNode())
         {
-            wxString reportWaitingMsg = _("Budget report being generated... Please wait.");
-            int year = data;
+            int year = iData->getData();
 
             wxTreeItemId idparent = navTreeCtrl_->GetItemParent(id);
             mmTreeItemData* iParentData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(idparent));
             if (iParentData->getString() == "item@Budget Performance")
             {
-                int year = data;
                 mmPrintableBase* rs = new mmReportBudgetingPerformance(year);
                 createReportsPage(rs, true);
             }
@@ -1451,9 +1448,10 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         }
         else
         {
-           Model_Account::Data* account = Model_Account::instance().get(data);
-           if (account)
-           {
+            int data = iData->getData();
+            Model_Account::Data* account = Model_Account::instance().get(data);
+            if (account)
+            {
                 if (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::TERM)
                 {
                     gotoAccountID_ = data;
