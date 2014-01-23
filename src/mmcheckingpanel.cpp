@@ -51,65 +51,6 @@
 #include <wx/srchctrl.h>
 #include <algorithm>
 //----------------------------------------------------------------------------
-enum
-{
-    ID_PANEL_CHECKING_STATIC_BALHEADER1,
-    ID_PANEL_CHECKING_STATIC_BALHEADER2,
-    ID_PANEL_CHECKING_STATIC_BALHEADER3,
-    ID_PANEL_CHECKING_STATIC_BALHEADER4,
-    ID_PANEL_CHECKING_STATIC_BALHEADER5,
-    ID_PANEL_CHECKING_LISTCTRL_ACCT,
-    ID_PANEL_CHECKING_STATIC_DETAILS,
-    ID_PANEL_CHECKING_STATIC_BITMAP_VIEW,
-    ID_PANEL_CHECKING_STATIC_BITMAP_FILTER,
-    /* Checking Panel */
-
-    MENU_TREEPOPUP_SHOWTRASH,
-
-    MENU_TREEPOPUP_MARKRECONCILED,
-    MENU_TREEPOPUP_MARKUNRECONCILED,
-    MENU_TREEPOPUP_MARKVOID,
-    MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP,
-    MENU_TREEPOPUP_MARKDUPLICATE,
-    MENU_TREEPOPUP_MARKDELETE,
-
-    MENU_TREEPOPUP_MARKRECONCILED_ALL,
-    MENU_TREEPOPUP_MARKUNRECONCILED_ALL,
-    MENU_TREEPOPUP_MARKVOID_ALL,
-    MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP_ALL,
-    MENU_TREEPOPUP_MARKDUPLICATE_ALL,
-    MENU_TREEPOPUP_DELETE_VIEWED,
-    MENU_TREEPOPUP_DELETE_FLAGGED,
-
-    MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
-    MENU_SUBMENU_MARK_ALL,
-
-    MENU_VIEW_,
-    MENU_VIEW_DELETE_TRANS,
-    MENU_VIEW_DELETE_FLAGGED,
-
-    MENU_ON_COPY_TRANSACTION,
-    MENU_ON_PASTE_TRANSACTION,
-    MENU_ON_NEW_TRANSACTION,
-    MENU_ON_DUPLICATE_TRANSACTION,
-
-    MENU_ON_SET_UDC0, //Default colour
-    MENU_ON_SET_UDC1, //User defined colour 1
-    MENU_ON_SET_UDC2, //User defined colour 2
-    MENU_ON_SET_UDC3, //User defined colour 3
-    MENU_ON_SET_UDC4, //User defined colour 4
-    MENU_ON_SET_UDC5, //User defined colour 5
-    MENU_ON_SET_UDC6, //User defined colour 6
-    MENU_ON_SET_UDC7, //User defined colour 7
-
-    ID_SPLITTERWINDOW,
-    ID_LISTCTRL,
-
-    MENU_TREEPOPUP_NEW2,
-    MENU_TREEPOPUP_EDIT2,
-    MENU_TREEPOPUP_MOVE2,
-    MENU_TREEPOPUP_DELETE2,
-};
 
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
@@ -124,15 +65,15 @@ END_EVENT_TABLE()
 
 BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
 
-    EVT_LIST_ITEM_SELECTED(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnListItemSelected)
-    EVT_LIST_ITEM_DESELECTED(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnListItemDeselected)
-    EVT_LIST_ITEM_ACTIVATED(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnListItemActivated)
-    //EVT_LIST_ITEM_RIGHT_CLICK(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnItemRightClick)
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
+    EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeselected)
+    EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
+    //EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, TransactionListCtrl::OnItemRightClick)
     EVT_RIGHT_DOWN(TransactionListCtrl::OnListRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
-    EVT_LIST_COL_END_DRAG(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnItemResize)
-    EVT_LIST_COL_CLICK(ID_PANEL_CHECKING_LISTCTRL_ACCT, TransactionListCtrl::OnColClick)
-    EVT_LIST_KEY_DOWN(ID_PANEL_CHECKING_LISTCTRL_ACCT,  TransactionListCtrl::OnListKeyDown)
+    EVT_LIST_COL_END_DRAG(wxID_ANY, TransactionListCtrl::OnItemResize)
+    EVT_LIST_COL_CLICK(wxID_ANY, TransactionListCtrl::OnColClick)
+    EVT_LIST_KEY_DOWN(wxID_ANY,  TransactionListCtrl::OnListKeyDown)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
         ,MENU_TREEPOPUP_MARKDELETE,             TransactionListCtrl::OnMarkTransaction)
@@ -493,8 +434,8 @@ void mmCheckingPanel::CreateControls()
     m_imageList->Add(wxImage(duplicate_xpm).Scale(16, 16));
     m_imageList->Add(wxImage(trash_xpm).Scale(16, 16));
 
-    m_listCtrlAccount = new TransactionListCtrl( this, itemSplitterWindow10
-        , ID_PANEL_CHECKING_LISTCTRL_ACCT);
+    m_listCtrlAccount = new TransactionListCtrl(this, itemSplitterWindow10
+        , wxID_ANY);
 
     m_listCtrlAccount->SetImageList(m_imageList.get(), wxIMAGE_LIST_SMALL);
     m_listCtrlAccount->setSortOrder(m_listCtrlAccount->g_asc);
