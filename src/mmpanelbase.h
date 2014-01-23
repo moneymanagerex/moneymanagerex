@@ -53,6 +53,42 @@ public:
     {
         return (row % 2) ? attr2_ : attr1_;
     }
+    wxString BuildPage() const
+    {
+        wxString text;
+        text << "<TABLE ";
+
+        if ((GetWindowStyle() & wxLC_HRULES) ||
+          (GetWindowStyle() & wxLC_VRULES))
+            text << "border=1";
+        else
+            text << "border=0";
+
+            text << " cellpadding=4 cellspacing=0 >" << wxTextFile::GetEOL();
+
+            text << "<tr>" << wxTextFile::GetEOL();
+
+        for (int c = 0; c < GetColumnCount(); c++)
+        { 
+            wxListItem col;
+            GetColumn(c, col);
+            text << "<td><i>" << col.GetText() << "</i>" << wxTextFile::GetEOL();
+        }
+
+        for (int i = 0; i < GetItemCount(); i++)
+        { 
+            text << "<tr>" << wxTextFile::GetEOL();
+
+            for (int col = 0; col < GetColumnCount(); col++)
+            {
+                text << "<td>" << wxListCtrl::GetItemText(i, col) << wxTextFile::GetEOL();
+            }
+        }
+
+        text << "</TABLE>" << wxTextFile::GetEOL();
+
+        return text;
+    }
 };
 
 class mmPanelBase : public wxPanel
@@ -62,6 +98,7 @@ public:
     virtual ~mmPanelBase() {mmGraphGenerator::cleanup();}
 
 public:
+    wxString BuildPage() const { return "TBD"; }
     void windowsFreezeThaw()
     {
 #ifdef __WXGTK__

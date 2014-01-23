@@ -236,7 +236,9 @@ bool Model_Report::CheckSyntax(const wxString& sql) const
 std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString& sql)
 {
     std::vector<std::pair<wxString, int> > columns;
+    if (!this->db_->CheckSyntax(sql)) return columns;
     wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
+    if (!stmt.IsReadOnly()) return columns;
 
     wxSQLite3ResultSet q = stmt.ExecuteQuery();
     int columnCount = q.GetColumnCount();
