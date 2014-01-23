@@ -29,39 +29,6 @@
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
-static const char LUA_SAMPLE[] =
-    "local total_balance = 0\n"
-    "function handle_record(record)\n"
-        "\ttotal_balance = total_balance + record:get('VALUE');\n"
-    "end\n\n"
-    "function complete(result)\n"
-        "\tresult:set('ASSET_BALANCE', total_balance);\n"
-    "end\n";
-static const char SQL_SAMPLE [] =
-    "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
-static const wxString HTT_SAMPLE =
-    "<h3>Assets</h3>\n"
-    "<TMPL_VAR TODAY>\n"
-    "<table border=1>\n"
-    "    <TMPL_LOOP NAME=CONTENTS>\n"
-    "    <tr>\n"
-    "        <td><TMPL_VAR STARTDATE></td>\n"
-    "        <td><TMPL_VAR ASSETNAME></td>\n"
-    "        <td><TMPL_VAR ASSETTYPE></td>\n"
-    "        <td><TMPL_VAR VALUE></td>\n"
-    "        <td><TMPL_VAR NOTES></td>\n"
-    "    </tr>\n"
-    "    </TMPL_LOOP>\n"
-    "    <tr>\n"
-    "        <td colspan=3>Total Assets: </td>\n"
-    "        <td nowrap align=\"right\"><TMPL_VAR ASSET_BALANCE></td>\n"
-    "        <td></td>"
-    "    </tr>\n"
-    "</table>\n"
-    "<TMPL_LOOP ERRORS>\n"
-    "    <hr>"
-    "    <TMPL_VAR ERROR>\n"
-    "</TMPL_LOOP>";
 
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
@@ -542,9 +509,12 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
     if (iData) report_id = iData->get_report_id();
 
+    wxMenu* samplesMenu = new wxMenu;
+    samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets"));
+
     wxMenu* customReportMenu = new wxMenu;
-    customReportMenu->Append(ID_NEW_SAMPLE, _("New Sample Report"));
     customReportMenu->Append(ID_NEW_EMPTY, _("New Empty Report"));
+    customReportMenu->Append(wxID_ANY, _("New Sample Report"), samplesMenu);
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_GROUP, _("Change Group"));
     customReportMenu->Enable(ID_GROUP, report_id > 0);
@@ -677,13 +647,13 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     int id = event.GetId();
-    if (id == ID_NEW_SAMPLE)
+    if (id == ID_NEW_SAMPLE_ASSETS)
     {
-        newReport(true);
+        newReport(ID_NEW_SAMPLE_ASSETS);
     }
     else if (id == ID_NEW_EMPTY)
     {
-        newReport(false);
+        newReport(ID_NEW_EMPTY);
     }
     else if (iData && id == ID_RENAME)
     {
@@ -709,7 +679,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
     fillControls();
 }
 
-void mmGeneralReportManager::newReport(bool sample)
+void mmGeneralReportManager::newReport(int sample)
 {
     wxString group_name;
     if (m_selectedItemID == m_rootItem)
@@ -729,9 +699,20 @@ void mmGeneralReportManager::newReport(bool sample)
     while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
         report_name = wxString::Format(_("New Report %i"), ++i);
     report->REPORTNAME = report_name;
-    report->SQLCONTENT = sample ? SQL_SAMPLE : "";
-    report->LUACONTENT = sample ? LUA_SAMPLE : "";
-    report->TEMPLATEPATH = sample ? HTT_SAMPLE : ""; //TODO: rename TEMPLATEPATH to TEMPLATECONTENT
+    wxString sqlContent, luaContent, httContent;
+    switch (sample) {
+    case ID_NEW_EMPTY:
+        sqlContent = ""; luaContent = ""; httContent = ""; break;
+    case ID_NEW_SAMPLE_ASSETS:
+        sqlContent = SAMPLE_ASSETS_SQL;
+        luaContent = SAMPLE_ASSETS_LUA;
+        httContent = SAMPLE_ASSETS_HTT;
+        break;
+    }
+
+    report->SQLCONTENT = sqlContent;
+    report->LUACONTENT = luaContent;
+    report->TEMPLATEPATH = httContent; //TODO: rename TEMPLATEPATH to TEMPLATECONTENT
     m_selectedReportID = Model_Report::instance().save(report);
 }
 

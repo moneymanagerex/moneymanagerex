@@ -40,29 +40,6 @@ public:
     mmGeneralReportManager(wxWindow* parent);
 
 private:
-    enum
-    {
-        ID_TAB_OUT = 0,
-        ID_TAB_SQL,
-        ID_TAB_LUA,
-        ID_TAB_HTT,
-        MAGIC_NUM = 16,
-        ID_NEW_SAMPLE = wxID_HIGHEST + 500,
-        ID_NEW_EMPTY,
-        ID_DELETE,
-        ID_RENAME,
-        ID_GROUP, 
-        ID_NOTEBOOK,
-        ID_WEB,
-        ID_TYPELABEL,
-        ID_TEMPLATE,
-        ID_SQL_CONTENT,
-        ID_LUA_CONTENT,
-        ID_SQL_GRID,
-        ID_CSS_CONTENT,
-        ID_JS_CONTENT,
-    };
-
     bool Create(wxWindow* parent
         , wxWindowID id
         , const wxString& caption
@@ -90,7 +67,7 @@ private:
     void renameReport(int id);
     bool DeleteReport(int id);
     void OnMenuSelected(wxCommandEvent& event);
-    void newReport(bool sample = false);
+    void newReport(int sample = ID_NEW_EMPTY);
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
 
@@ -110,6 +87,66 @@ private:
     int m_selectedReportID;
     wxString m_selectedGroup;
     wxArrayString m_reservedNames;
+    enum
+    {
+        ID_TAB_OUT = 0,
+        ID_TAB_SQL,
+        ID_TAB_LUA,
+        ID_TAB_HTT,
+        MAGIC_NUM = 16,
+        ID_NEW_EMPTY = wxID_HIGHEST + 500,
+        ID_NEW_SAMPLE_ASSETS,
+        ID_NEW_SAMPLE_STOCKS,
+        ID_NEW_SAMPLE_STATS,
+        ID_DELETE,
+        ID_RENAME,
+        ID_GROUP,
+        ID_NOTEBOOK,
+        ID_WEB,
+        ID_TYPELABEL,
+        ID_TEMPLATE,
+        ID_SQL_CONTENT,
+        ID_LUA_CONTENT,
+        ID_SQL_GRID,
+        ID_CSS_CONTENT,
+        ID_JS_CONTENT,
+    };
+    const wxString SAMPLE_ASSETS_LUA =
+        "local total_balance = 0\n"
+        "function handle_record(record)\n"
+        "\ttotal_balance = total_balance + record:get('VALUE');\n"
+        "end\n\n"
+        "function complete(result)\n"
+        "\tresult:set('ASSET_BALANCE', total_balance);\n"
+        "end\n";
+
+    const wxString SAMPLE_ASSETS_SQL =
+        "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
+
+    const wxString SAMPLE_ASSETS_HTT =
+        "<h3>Assets</h3>\n"
+        "<TMPL_VAR TODAY>\n"
+        "<table border=1>\n"
+        "    <TMPL_LOOP NAME=CONTENTS>\n"
+        "    <tr>\n"
+        "        <td><TMPL_VAR STARTDATE></td>\n"
+        "        <td><TMPL_VAR ASSETNAME></td>\n"
+        "        <td><TMPL_VAR ASSETTYPE></td>\n"
+        "        <td><TMPL_VAR VALUE></td>\n"
+        "        <td><TMPL_VAR NOTES></td>\n"
+        "    </tr>\n"
+        "    </TMPL_LOOP>\n"
+        "    <tr>\n"
+        "        <td colspan=3>Total Assets: </td>\n"
+        "        <td nowrap align=\"right\"><TMPL_VAR ASSET_BALANCE></td>\n"
+        "        <td></td>"
+        "    </tr>\n"
+        "</table>\n"
+        "<TMPL_LOOP ERRORS>\n"
+        "    <hr>"
+        "    <TMPL_VAR ERROR>\n"
+        "</TMPL_LOOP>";
+
 };
 
 class MyTreeItemData : public wxTreeItemData
@@ -123,4 +160,3 @@ private:
     int m_report_id;
     wxString m_selectedGroup;
 };
-
