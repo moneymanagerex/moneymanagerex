@@ -89,6 +89,15 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_sqlListBox()
     , m_selectedReportID(0)
 {
+    // list of reserved names from mmGUIFrame::OnSelChanged()
+    m_reservedNames.Add("Home Page");
+    m_reservedNames.Add("Help");
+    m_reservedNames.Add("Stocks");
+    m_reservedNames.Add("Budgeting");
+    m_reservedNames.Add("Assets");
+    m_reservedNames.Add("Bills & Deposits");
+    m_reservedNames.Add("Transaction Report");
+
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("General Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
     SetClientSize(wxSize(940, 576));
@@ -623,6 +632,14 @@ void mmGeneralReportManager::renameReport(int id)
         wxString label = wxGetTextFromUser(_("Enter the name for the report")
             , _("General Report Manager"), report->REPORTNAME);
         label.Trim();
+        for (auto reserved : m_reservedNames)
+        {
+            if (label == reserved)
+            {
+                wxMessageBox(_("Invalid name"), _("MMEX reserved name"), wxOK | wxICON_ERROR);
+                return;
+            }
+        }
         if (Model_Report::instance().find(Model_Report::REPORTNAME(label)).empty()
             && !label.empty())
         {

@@ -109,6 +109,7 @@ private:
     wxTreeItemId m_selectedItemID;
     int m_selectedReportID;
     wxString m_selectedGroup;
+    wxArrayString m_reservedNames;
 };
 
 class MyTreeItemData : public wxTreeItemData

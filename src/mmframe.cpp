@@ -1485,6 +1485,8 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
     }
     else
     {
+        // Note: These string names are reserved names and can't be used for custom report names.
+        // When adding another reserved name the list of reserved names in general_report_manager.cpp needs to be updated.
         if (iData->getString() == "Home Page")
         {
             createHomePage();
@@ -1532,11 +1534,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
         {
             wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TRANSACTIONREPORT);
             AddPendingEvent(evt);           // Events will be processed in due course.
-        }
-        else if (sData == "Bills & Deposits")
-        {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-            AddPendingEvent(evt);
         }
         else
         {
