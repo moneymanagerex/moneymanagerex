@@ -10,7 +10,7 @@ Action:         Comment out any unwanted test.
 ******************************************************************************/
 //#define __MMEX_TESTS__ABOUT_DIALOG
 //#define __MMEX_TESTS__ASSETS
-#define __MMEX_TESTS__BILLS_DEPOSITS
+//#define __MMEX_TESTS__BILLS_DEPOSITS
 //#define __MMEX_TESTS__CALLBACK_HOOKS
 //#define __MMEX_TESTS__CHECKING
 //#define __MMEX_TESTS__CURRENCY

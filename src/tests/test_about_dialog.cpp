@@ -17,14 +17,18 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
+#include "framebase_tests.h"
 //---------------------------------------------------------------------------
 #include "test_about_dialog.h"
-#include "framebase_tests.h"
 #include "aboutdialog.h"
 #include "paths.h"
+
+/*****************************************************************************
+Turn test ON or OFF in file: defined_test_selection.h
+*****************************************************************************/
+#include "defined_test_selection.h"
 
 #ifdef __MMEX_TESTS__ABOUT_DIALOG
 // Registers the fixture into the 'registry'

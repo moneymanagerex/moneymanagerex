@@ -41,8 +41,10 @@ public:
     // Used only once. Set the username and base currency
     void Init_BaseCurrency(const wxString& base_currency_symbol = "AUD", const wxString& user_name = "Test Database");
     
-    int Add_Account(const wxString& name, Model_Account::TYPE account_type, wxString currency_symbol = "AUD");
-    int Add_Account(const wxString& name, Model_Account::TYPE account_type, bool favorite, wxString currency_symbol = "AUD");
+    int Add_Bank_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
+    int Add_Investment_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
+    int Add_Term_Account(const wxString& name, double initial_value = 0, const wxString& notes = "", bool favorite = true, const wxString& currency_symbol = "AUD");
+    int Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol = "AUD");
 
     int Add_Payee(const wxString& name, const wxString& category = "", const wxString& subcategory = "");
     void Add_payee_category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = ""); 
@@ -55,8 +57,8 @@ public:
     int Subcategory_id(int category_id, const wxString& subcategory);
 
     /** Set the account name for Add_Trans_xxx commands */
-    void Set_AccountName(const wxString& account_name); 
-
+    void Set_AccountName(const wxString& account_name);
+    int Get_Account_ID(const wxString& account_name);
     /**
     If category not supplied, assume that it is a split.
     * Returns the transaction ID to enamle split creation.

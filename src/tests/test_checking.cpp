@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2014 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -25,8 +24,12 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "framebase_tests.h"
 //----------------------------------------------------------------------------
 #include "test_checking.h"
-#include <wx/frame.h>
 #include "transdialog.h"
+
+/*****************************************************************************
+Turn test ON or OFF in file: defined_test_selection.h
+*****************************************************************************/
+#include "defined_test_selection.h"
 
 #ifdef __MMEX_TESTS__CHECKING
 // Registers the fixture into the 'registry'
@@ -80,6 +83,11 @@ void Test_Checking::tearDown()
     m_test_db.SetCommitHook(0);
     m_test_db.Close();
     delete m_commit_hook;
+
+    if (m_this_instance == 4)
+    {
+        delete m_base_frame;
+    }
 }
 
 void Test_Checking::add_entries()
@@ -87,13 +95,13 @@ void Test_Checking::add_entries()
     CpuTimer Start("Entries");
 
     // Add accounts
-    m_dbmodel->Add_Account("Savings", Model_Account::TYPE::CHECKING);
-    m_dbmodel->Add_Account("Cheque", Model_Account::TYPE::CHECKING);
-    m_dbmodel->Add_Account("Mastercard", Model_Account::TYPE::CHECKING);
+    m_dbmodel->Add_Bank_Account("Savings");
+    m_dbmodel->Add_Bank_Account("Cheque");
+    m_dbmodel->Add_Bank_Account("Mastercard");
 
-    m_dbmodel->Add_Account("Home Loan", Model_Account::TYPE::TERM);
-    m_dbmodel->Add_Account("Savings Investment", Model_Account::TYPE::TERM);
-    m_dbmodel->Add_Account("Property Management", Model_Account::TYPE::TERM);
+    m_dbmodel->Add_Term_Account("Home Loan");
+    m_dbmodel->Add_Term_Account("Savings Investment");
+    m_dbmodel->Add_Term_Account("Property Management");
 
     // Add Payees
     m_dbmodel->Add_Payee("Supermarket");

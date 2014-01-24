@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2014 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -27,6 +26,11 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_database_initialisation.h"
 #include <wx/frame.h>
 #include "transdialog.h"
+
+/*****************************************************************************
+Turn test ON or OFF in file: defined_test_selection.h
+*****************************************************************************/
+#include "defined_test_selection.h"
 
 #ifdef __MMEX_TESTS__TEST_DATABASE_INITIALISATION
 // Registers the fixture into the 'registry'
@@ -79,17 +83,20 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
 
     // Add accounts
     m_test_db.Begin();
-    m_dbmodel->Add_Account("Savings", Model_Account::TYPE::CHECKING);
-    m_dbmodel->Add_Account("Investment Savings", Model_Account::TYPE::TERM, false);
+    m_dbmodel->Add_Bank_Account("Savings", 1000, "Joint - General account");
+    m_dbmodel->Add_Term_Account("Investment Savings", 0, "Savings for special ocasions", false);
     
-    m_dbmodel->Add_Account("Cheque", Model_Account::TYPE::CHECKING, false);
-    m_dbmodel->Add_Account("Home Loan", Model_Account::TYPE::TERM);
+    m_dbmodel->Add_Bank_Account("Cheque", 0, "", false);
+    m_dbmodel->Add_Term_Account("Home Loan", 0, "", false);
     
-    m_dbmodel->Add_Account("Mastercard", Model_Account::TYPE::CHECKING);
-    m_dbmodel->Add_Account("Wallet - Cash", Model_Account::TYPE::CHECKING);
+    m_dbmodel->Add_Bank_Account("Mastercard", 0, "Credit Card");
+    m_dbmodel->Add_Bank_Account("Wallet - Peter", 0, "Cash Money - Daily Expenses");
+    m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
 
-    m_dbmodel->Add_Account("Property Management", Model_Account::TYPE::TERM);
-    m_dbmodel->Add_Account("Insurance Policies", Model_Account::TYPE::TERM);
+    m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
+    m_dbmodel->Add_Investment_Account("Acme Corporation", 0, "Shares");
+    m_dbmodel->Add_Term_Account("Property Management");
+    m_dbmodel->Add_Term_Account("Insurance Policies");
     m_test_db.Commit();
 }
 

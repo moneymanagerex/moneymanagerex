@@ -103,6 +103,18 @@ void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
 
 void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
 {
+    Model_Setting::instance(test_db);
+    test_db->Begin();
+    {
+        Model_Setting::instance().Set("STOCKS_COL3_WIDTH", 72);
+        Model_Setting::instance().Set("STOCKS_COL0_WIDTH", 126);
+        Model_Setting::instance().Set("STOCKS_COL4_WIDTH", 73);
+        Model_Setting::instance().Set("STOCKS_COL5_WIDTH", 66);
+        Model_Setting::instance().Set("STOCKS_COL1_WIDTH", 128);
+        Model_Setting::instance().Set("STOCKS_COL6_WIDTH", 138);
+    }
+    test_db->Commit();
+    mmIniOptions::instance().loadOptions();
     // Initialise the required tables
     Model_Infotable::instance(test_db);
     Model_Currency::instance(test_db);
@@ -126,14 +138,30 @@ void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, cons
     mmOptions::instance().userNameString_ = user_name;
 }
 
-int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, wxString currency_symbol)
+int DB_Init_Model::Add_Bank_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
-    return Add_Account(name, account_type, true, currency_symbol);
+    return Add_Account(name, Model_Account::TYPE::CHECKING, initial_value, notes, true, currency_symbol);
 }
 
-int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, bool favorite, wxString currency_symbol)
+int DB_Init_Model::Add_Investment_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
-    int currencyID = Model_Infotable::instance().GetBaseCurrencyId();
+    return Add_Account(name, Model_Account::TYPE::INVESTMENT, initial_value, notes, true, currency_symbol);
+}
+
+int DB_Init_Model::Add_Term_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+{
+    return Add_Account(name, Model_Account::TYPE::TERM, initial_value, notes, true, currency_symbol);
+}
+
+int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
+{
+    int currencyID = -1;
+    if (!currency_symbol.IsEmpty())
+    {
+        currencyID = Model_Currency::instance().GetCurrencyRecord(currency_symbol).id();
+    }
+    else currencyID = Model_Infotable::instance().GetBaseCurrencyId();
+
     if (currencyID == -1)
     {
         ShowMessage("Base Currency has not been set.\n\n Use InitDatabase(...)");
@@ -149,7 +177,8 @@ int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account
     account->STATUS = Model_Account::all_status()[Model_Account::OPEN];
     account->ACCOUNTTYPE = Model_Account::all_type()[account_type];
     account->ACCOUNTNAME = name;
-    account->INITIALBAL = 0;
+    account->INITIALBAL = initial_value;
+    account->NOTES = notes;
     account->CURRENCYID = currencyID;
 
     return Model_Account::instance().save(account);
@@ -212,6 +241,15 @@ int DB_Init_Model::Subcategory_id(int category_id, const wxString& subcategory)
     }
 
     return subcat_id;
+}
+
+int DB_Init_Model::Get_Account_ID(const wxString& account_name)
+{
+    int account_id = -1;
+    Model_Account::Data* account = Model_Account::instance().get(account_name);
+    if (account) account_id = account->id();
+
+    return account_id;
 }
 
 void DB_Init_Model::Set_AccountName(const wxString& account_name)

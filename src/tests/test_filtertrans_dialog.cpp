@@ -17,7 +17,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -35,6 +34,11 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Category.h"
 #include "model/Model_Billsdeposits.h"
 #include "mmOption.h"
+
+/*****************************************************************************
+Turn test ON or OFF in file: defined_test_selection.h
+*****************************************************************************/
+#include "defined_test_selection.h"
 
 #ifdef __MMEX_TESTS__FILTER_TRANS_DIALOG
 // Registers the fixture into the 'registry'
@@ -81,9 +85,9 @@ void Test_FilterTrans_Dialog::setUp()
         m_dbmodel->Add_Payee("Woolworths");
 
         // Add some accounts
-        m_dbmodel->Add_Account("Savings", Model_Account::TYPE::CHECKING);
-        m_dbmodel->Add_Account("Cheque", Model_Account::TYPE::CHECKING);
-        m_dbmodel->Add_Account("Mastercard", Model_Account::TYPE::CHECKING);
+        m_dbmodel->Add_Bank_Account("Savings");
+        m_dbmodel->Add_Bank_Account("Cheque");
+        m_dbmodel->Add_Bank_Account("Mastercard");
 
         wxDateTime trans_date = wxDateTime::Today();
 

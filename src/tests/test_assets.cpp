@@ -1,6 +1,6 @@
 /*******************************************************
 Copyright (C) 2013 James Higley
-Copyright (C) 2013 Stefano Giorgio
+Copyright (C) 2014 Stefano Giorgio
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "defined_test_selection.h"
 #include "defs.h"
 #include <cppunit/config/SourcePrefix.h>
 #include "cpu_timer.h"
@@ -26,6 +25,11 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_assets.h"
 #include "assetspanel.h"
+
+/*****************************************************************************
+Turn test ON or OFF in file: defined_test_selection.h
+*****************************************************************************/
+#include "defined_test_selection.h"
 
 #ifdef __MMEX_TESTS__ASSETS
 // Registers the fixture into the 'registry'
