@@ -377,6 +377,24 @@ void mmGUIFrame::cleanup()
     {
         BackupDatabase(fileName_, true);
     }
+    
+    wxLogDebug("Shuting down web server ----------------------------");
+    if (m_pThread)
+    {
+        {
+            wxCriticalSectionLocker enter(m_pExitCS);
+            m_bExitServer = true; //FIXME:
+        }
+        while (1)
+        {
+            {
+                wxCriticalSectionLocker enter(m_pThreadCS);
+                if (!m_pThread) break;
+            }
+            // wait for thread completion
+            wxMilliSleep(100);
+        }
+    }
 }
 
 void mmGUIFrame::ShutdownDatabase()
@@ -3442,22 +3460,5 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 
 void mmGUIFrame::OnClose(wxCloseEvent&)
 {
-    wxLogDebug("OnClose(wxCloseEvent&)");
-    if (m_pThread)
-    {
-        {
-            wxCriticalSectionLocker enter(m_pExitCS);
-            //m_bExitServer = true; //FIXME:
-        }
-        while (0)
-        {
-            {
-                wxCriticalSectionLocker enter(m_pThreadCS);
-                if (!m_pThread) break;
-            }
-            // wait for thread completion
-            wxMilliSleep(1);
-        }
-    }
     Destroy();
 }
