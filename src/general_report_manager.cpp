@@ -39,7 +39,7 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_SAVEAS, mmGeneralReportManager::OnExportReport)
     EVT_BUTTON(wxID_EXECUTE, mmGeneralReportManager::OnRun)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
-    EVT_BUTTON(wxID_INFO, mmGeneralReportManager::OnSqlTest)
+    EVT_BUTTON(ID_TEST, mmGeneralReportManager::OnSqlTest)
     EVT_BUTTON(wxID_NEW, mmGeneralReportManager::OnNewTemplate)
     //EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
     EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
@@ -262,15 +262,19 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     {
         wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
-        wxButton* buttonPlay = new wxButton(panel, wxID_INFO, _("&Test"));
+        wxButton* buttonPlay = new wxButton(panel, ID_TEST, _("&Test"));
         wxButton* buttonNewTemplate = new wxButton(panel, wxID_NEW, _("Create Template"));
+        wxStaticText *info = new wxStaticText(panel, wxID_INFO, "");
         buttonNewTemplate->Enable(false);
         box_sizer2->Add(buttonPlay);
         box_sizer2->AddSpacer(10);
         box_sizer2->Add(buttonNewTemplate);
+        box_sizer2->AddSpacer(10);
+        box_sizer2->Add(info, flagsExpand);
+
         m_sqlListBox = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize
             , wxLC_REPORT);
-        box_sizer1->Add(box_sizer2, flags);
+        box_sizer1->Add(box_sizer2, wxSizerFlags(flagsExpand).Proportion(0));
         box_sizer1->Add(m_sqlListBox, flagsExpand);
         sizer->Add(box_sizer1, flagsExpand.Border(0));
     }
@@ -286,52 +290,58 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     const wxString &sql = sqlText->GetValue();
     if (Model_Report::instance().CheckSyntax(sql))
     {
-        Model_Report::instance().getSqlQuery(sql, m_sqlQueryData);
-
-        m_sqlListBox->ClearAll();
-
-        int row = 0, pos = 0;
-        m_sqlListBox->InsertColumn(pos, _("#"), wxLIST_FORMAT_RIGHT, 40);
-        for (const auto& col : Model_Report::instance().getColumns(sql))
-            m_sqlListBox->InsertColumn(++pos, col.first
-            , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
-            , col.first.length() * 10 + 20);
-
-        for (const auto& dataRow : m_sqlQueryData)
+        long interval = GetTickCount();
+        if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
         {
-            int pos = 0;
-            long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
-            m_sqlListBox->SetItem(itemIndex, pos, wxString()<<++row);
-            for (const auto& dataCol : dataRow)
+            interval = GetTickCount() - interval;
+            m_sqlListBox->ClearAll();
+
+            int row = 0, pos = 0;
+            m_sqlListBox->InsertColumn(pos, _("#"), wxLIST_FORMAT_RIGHT, 40);
+            for (const auto& col : Model_Report::instance().getColumns(sql))
+                m_sqlListBox->InsertColumn(++pos, col.first
+                , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
+                , col.first.length() * 10 + 20);
+
+            for (const auto& dataRow : m_sqlQueryData)
             {
-                m_sqlListBox->SetItem(itemIndex, ++pos, dataCol);
+                int pos = 0;
+                long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
+                m_sqlListBox->SetItem(itemIndex, pos, wxString() << ++row);
+                for (const auto& dataCol : dataRow)
+                {
+                    m_sqlListBox->SetItem(itemIndex, ++pos, dataCol);
+                }
             }
-        }
-        wxButton* b = (wxButton*) FindWindow(wxID_NEW);
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        if (Model_Report::instance().CheckHeaders(sql))
-        {
-            b->Enable(templateText->GetValue().empty());
+            wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
+            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms"), row, wxString()<<interval));
+
+            wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+            MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+            if (Model_Report::instance().CheckHeaders(sql))
+            {
+                b->Enable(templateText->GetValue().empty());
+            }
+            else
+            {
+                b->Enable(false);
+                if (templateText->GetValue().empty())
+                {
+                    wxRichToolTip tip(_("Error")
+                        , _("Some columns alias is wrong! Can't create HTML template")
+                        + "\n\n"
+                        + _("Tip: SQL AS temporarily assigns a table column a new name.")
+                        + "\n");
+                    tip.SetIcon(wxICON_WARNING);
+                    tip.ShowFor((wxWindow*) b);
+                }
+            }
         }
         else
         {
-            b->Enable(false);
-            if (templateText->GetValue().empty())
-            {
-                wxRichToolTip tip(_("Error")
-                    , _("Some columns alias is wrong! Can't create HTML template")
-                    + "\n\n"
-                    + _("Tip: SQL AS temporarily assigns a table column a new name.")
-                    + "\n");
-                tip.SetIcon(wxICON_WARNING);
-                tip.ShowFor((wxWindow*) b);
-            }
+            wxMessageDialog msgDlg(this, _("Syntax Error"), _("Error"), wxOK | wxICON_ERROR);
+            msgDlg.ShowModal();
         }
-    }
-    else
-    {
-        wxMessageDialog msgDlg(this, _("Syntax Error"), _("Error"), wxOK | wxICON_ERROR);
-        msgDlg.ShowModal();
     }
 }
 

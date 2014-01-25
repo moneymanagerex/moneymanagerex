@@ -104,6 +104,7 @@ private:
         ID_WEB,
         ID_TYPELABEL,
         ID_TEMPLATE,
+        ID_TEST,
         ID_SQL_CONTENT,
         ID_LUA_CONTENT,
         ID_SQL_GRID,
