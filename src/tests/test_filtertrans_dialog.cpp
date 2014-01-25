@@ -92,26 +92,23 @@ void Test_FilterTrans_Dialog::setUp()
         wxDateTime trans_date = wxDateTime::Today();
 
         // Put some data in each account
-        m_dbmodel->Set_AccountName("Cheque");
-        m_dbmodel->Add_Trans_Deposit(trans_date, "Aldi", 100.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Days(3)), "Coles", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Transfer(trans_date.Subtract(wxDateSpan::Days(5)), "Mastercard", 30.0, "Gifts", "", true, 40.0);
+        m_dbmodel->Add_Trans_Deposit("Cheque", trans_date, "Aldi", 100.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("Cheque", trans_date.Subtract(wxDateSpan::Days(3)), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer("Cheque", trans_date.Subtract(wxDateSpan::Days(5)), "Mastercard", 30.0, "Gifts", "", true, 40.0);
 
-        m_dbmodel->Set_AccountName("Savings");
-        m_dbmodel->Add_Trans_Deposit(trans_date.Subtract(wxDateSpan::Weeks(1)), "Aldi", 200.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Transfer(trans_date.Subtract(wxDateSpan::Weeks(3)), "Mastercard", 30.0, "Gifts", "", true, 40.0);
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Subtract(wxDateSpan::Weeks(1)), "Aldi", 200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Transfer("Savings", trans_date.Subtract(wxDateSpan::Weeks(3)), "Mastercard", 30.0, "Gifts", "", true, 40.0);
 
-        m_dbmodel->Set_AccountName("Mastercard");
-        m_dbmodel->Add_Trans_Deposit(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(1)), "Aldi", 300.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Deposit("Mastercard", trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(1)), "Aldi", 300.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("Mastercard", trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0, "Food", "Groceries");
         // Sddition of split transactions.
-        int trans_id = m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Woolworths", 0.0);
+        int trans_id = m_dbmodel->Add_Trans_Withdrawal("Mastercard", trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Woolworths", 0.0);
         m_dbmodel->Add_Trans_Split(trans_id, 300, "Healthcare", "Dental");
         m_dbmodel->Add_Trans_Split(trans_id, 400, "Healthcare", "Eyecare");
         m_dbmodel->Add_Trans_Split(trans_id, 100, "Healthcare", "Prescriptions");
 
-        trans_id = m_dbmodel->Add_Trans_Withdrawal(trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0);
+        trans_id = m_dbmodel->Add_Trans_Withdrawal("Mastercard", trans_date.Subtract(wxDateSpan::Months(1)).Subtract(wxDateSpan::Weeks(2)), "Coles", 20.0);
         m_dbmodel->Add_Trans_Split(trans_id, 150, "Food", "Groceries");
         m_dbmodel->Add_Trans_Split(trans_id, 400, "Homeneeds", "Others");
     }

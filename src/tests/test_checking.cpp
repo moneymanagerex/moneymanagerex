@@ -111,34 +111,27 @@ void Test_Checking::add_entries()
 
     // No need to add categories as these are initialised by main database.
 
-
-    m_dbmodel->Set_AccountName("Cheque");
-
-    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 100.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    m_dbmodel->Add_Trans_Deposit("Cheque", wxDateTime::Today(), "Aldi", 100.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal("Cheque", wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer("Cheque", wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
 }
 
 void Test_Checking::add_entries_savings()
 {
     CpuTimer Start("Entries_Savings");
 
-    m_dbmodel->Set_AccountName("Savings");
-
-    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 200.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    m_dbmodel->Add_Trans_Deposit("Savings", wxDateTime::Today(), "Aldi", 200.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal("Savings", wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer("Savings", wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
 }
 
 void Test_Checking::add_entries_mc()
 {
     CpuTimer Start("Entries_mc");
 
-    m_dbmodel->Set_AccountName("Mastercard");
-
-    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    m_dbmodel->Add_Trans_Deposit("Mastercard", wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal("Mastercard", wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer("Mastercard", wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
 }
 
 void Test_Checking::Test_Transaction_Dialog()
@@ -186,5 +179,4 @@ void Test_Checking::Test_Transaction_Dialog()
         }
     }
 }
-
 //--------------------------------------------------------------------------

@@ -56,28 +56,26 @@ public:
     int Add_Subcategory(int category_id, const wxString& name);
     int Subcategory_id(int category_id, const wxString& subcategory);
 
-    /** Set the account name for Add_Trans_xxx commands */
-    void Set_AccountName(const wxString& account_name);
     int Get_Account_ID(const wxString& account_name);
     /**
     If category not supplied, assume that it is a split.
     * Returns the transaction ID to enamle split creation.
     */
-    int Add_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+    int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
     
     /**
     If category not supplied, assume that it is a split.
     * Returns the transaction ID to enamle split creation.
     */
-    int Add_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
+    int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
     
     /**
     If category not supplied, assume that it is a split.
     * Returns the transaction ID to enamle split creation.
     */
-    int Add_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
+    int Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
         , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
     
     /** Add_Trans command If category not supplied, assume that it is a split. */
@@ -99,8 +97,8 @@ public:
     int BILL_End(bool execute_auto_manual = false, bool execute_full_auto = false);
     void Add_Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory = "");
 
-    int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type,
-        Model_Asset::RATE value_change, double value_change_rate, const wxString& notes = "");
+    int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type = Model_Asset::TYPE_CASH,
+        Model_Asset::RATE value_change = Model_Asset::RATE::RATE_NONE, double value_change_rate = 0, const wxString& notes = "");
 
     void ShowMessage(wxString msg);
 
@@ -109,7 +107,7 @@ private:
     wxString m_account_name;    // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
     int m_account_id;           // Initialised by Set_AccountName(...), Used by Add_Trans_XXX(...) Commands.
 
-    int Add_Trans(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+    int Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
 
 

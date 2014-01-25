@@ -57,6 +57,10 @@ Test_DatabaseInitialisation::~Test_DatabaseInitialisation()
     if (s_instance_count < 1)
     {
         //wxRemoveFile(m_test_db_filename);
+        TestFrameBase base_frame(m_this_instance);
+        base_frame.Show();
+        wxMessageBox("Database files created for this test have not been deleted."
+            , "Test: DatabaseInitialisation", wxOK | wxICON_WARNING, &base_frame);
     }
 }
 
@@ -87,7 +91,7 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
     m_dbmodel->Add_Term_Account("Investment Savings", 0, "Savings for special ocasions", false);
     
     m_dbmodel->Add_Bank_Account("Cheque", 0, "", false);
-    m_dbmodel->Add_Term_Account("Home Loan", 0, "", false);
+    m_dbmodel->Add_Term_Account("Home Loan", -500000, "", false);
     
     m_dbmodel->Add_Bank_Account("Mastercard", 0, "Credit Card");
     m_dbmodel->Add_Bank_Account("Wallet - Peter", 0, "Cash Money - Daily Expenses");
@@ -122,14 +126,19 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
     CpuTimer Start("Category Entries");
     m_test_db.Begin();
 
-    // Adding a complete structure
-    int family_home = m_dbmodel->Add_Category("Family Home");
-    m_dbmodel->Add_Subcategory(family_home, "General Rates");
-    m_dbmodel->Add_Subcategory(family_home, "Water Rates");
-    m_dbmodel->Add_Subcategory(family_home, "Gas");
-    m_dbmodel->Add_Subcategory(family_home, "Electricity");
-    m_dbmodel->Add_Subcategory(family_home, "Phone/Internet");
-    m_dbmodel->Add_Subcategory(family_home, "Home Insurance");
+    // Category structure: "Family Home"
+    int cat_id = m_dbmodel->Add_Category("Family Home");
+    m_dbmodel->Add_Subcategory(cat_id, "General Rates");
+    m_dbmodel->Add_Subcategory(cat_id, "Water Rates");
+    m_dbmodel->Add_Subcategory(cat_id, "Gas");
+    m_dbmodel->Add_Subcategory(cat_id, "Electricity");
+    m_dbmodel->Add_Subcategory(cat_id, "Phone/Internet");
+    m_dbmodel->Add_Subcategory(cat_id, "Home Insurance");
+
+    // Category structure: "Mastercard"
+    cat_id = m_dbmodel->Add_Category("Mastercard");
+    m_dbmodel->Add_Subcategory(cat_id, "Repayment");
+    m_dbmodel->Add_Subcategory(cat_id, "Annual Fee");
 
     m_test_db.Commit();
 }
@@ -138,12 +147,163 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
 {
     CpuTimer Start("Transaction Entries");
 
-    m_dbmodel->Set_AccountName("Mastercard");
+    wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(3)));
 
+    // Set date to start of financial year.
+    int month = starting_date.GetMonth() - 6;
+    if (month < 0)
+    {
+        starting_date.Subtract(wxDateSpan::Months(month));
+    }
+    else starting_date.Add(wxDateSpan::Months(month));
+    starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
+
+    double payee_work_peter = 0;
+    double payee_work_mary = 0;
+
+    double payee_Aldi = 0;
+    double payee_Coles = 0;
+    double payee_woolworths = 0;
+    double payee_supermarket = 0;
+
+    double cat_income_salary = 0;
+    double cat_mastercard_repayment = 0;
+    double cat_food_groceries = 0;
+
+    wxDateTime trans_date = starting_date;
+
+    // Create transactions for a single month. These are repeated for till present day.
     m_test_db.Begin();
-    m_dbmodel->Add_Trans_Deposit(wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal(wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer(wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    while (starting_date < wxDateTime::Today())
+    {
+        //wxLogDebug(starting_date.FormatISODate() + " trans: " + trans_date.FormatISODate());
+        trans_date = starting_date;
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(8)), "Work: Peter", 1200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(7)), "Work: Peter", 1500.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(7)), "Work: Peter", 1200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(7)), "Work: Peter", 1200.0, "Income", "Salary");
+        int payee_work_peter_month = 5100;
+        int cat_income_salary_month = 5100;
+
+        trans_date = starting_date;
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(14)), "Work: Mary", 1600.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(14)), "Work: Mary", 1700.0, "Income", "Salary");
+        int payee_work_mary_month = 3300;
+        cat_income_salary_month += 3300;
+
+        trans_date = starting_date;
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(1)), "Aldi", 50, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 30, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Woolworths", 40, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 120, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Aldi", 40.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 60.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 80.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Woolworths", 20.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Coles", 60.0, "Food", "Groceries");
+        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 40.0, "Food", "Groceries");
+        int payee_Aldi_month = 90;
+        int payee_Coles_month = 170;
+        int payee_supermarket_month = 240;
+        int payee_woolworths_month = 60;
+        int cat_food_groceries_month = 560;
+
+        trans_date = starting_date;
+        m_dbmodel->Add_Trans_Transfer("Savings", trans_date.Add(wxDateSpan::Days(27)), "Mastercard", 30.0, "Repayment", "", true, 40.0);
+        int cat_mastercard_repayment_month = 30;
+
+        
+        
+        
+        trans_date = starting_date;
+        // Quarterley Transactions
+        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6) || (trans_date.GetMonth() == 9) || (trans_date.GetMonth() == 12))  // December
+        {
+
+
+        }
+
+        trans_date = starting_date;
+        // Yearly Transactions - 1
+        if ((trans_date.GetMonth() == 2))
+        {
+
+
+        }
+
+        trans_date = starting_date;
+        // Yearly Transactions - 2
+        if ((trans_date.GetMonth() == 2))
+        {
+
+
+        }
+
+        trans_date = starting_date;
+        // Yearly Transactions - 3
+        if ((trans_date.GetMonth() == 2))
+        {
+
+
+        }
+
+        trans_date = starting_date;
+        // Six Monthly Transactions - 1
+        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6))
+        {
+
+
+        }
+
+        trans_date = starting_date;
+        // Six Monthly Transactions - 2
+        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6))
+        {
+
+
+        }
+
+        m_dbmodel->Add_Asset("payee_work_peter", starting_date, payee_work_peter_month);
+        m_dbmodel->Add_Asset("payee_work_mary", starting_date, payee_work_mary_month);
+        m_dbmodel->Add_Asset("cat_income_salary", starting_date, cat_income_salary_month);
+
+        m_dbmodel->Add_Asset("payee_Aldi", starting_date, payee_Aldi_month);
+        m_dbmodel->Add_Asset("payee_Coles", starting_date, payee_Coles_month);
+        m_dbmodel->Add_Asset("payee_supermarket", starting_date, payee_supermarket_month);
+        m_dbmodel->Add_Asset("payee_woolworths", starting_date, payee_woolworths_month);
+
+        m_dbmodel->Add_Asset("cat_mastercard_repayment", starting_date, cat_mastercard_repayment_month);
+        m_dbmodel->Add_Asset("cat_food_groceries", starting_date, cat_food_groceries_month);
+
+        // End of transactions for month---------------------------------------
+        starting_date.Add(wxDateSpan::Month());
+
+        payee_work_peter += payee_work_peter_month;
+        payee_work_mary += payee_work_mary_month;
+
+        payee_Aldi += payee_Aldi_month;
+        payee_Coles += payee_Coles_month;
+        payee_woolworths += payee_woolworths_month;
+        payee_supermarket += payee_supermarket_month;
+
+        cat_income_salary += cat_income_salary_month;
+        cat_mastercard_repayment += cat_mastercard_repayment_month;
+        cat_food_groceries += cat_food_groceries_month;
+    }
+
+    m_dbmodel->Add_Asset("payee_work_peter", starting_date, payee_work_peter);
+    m_dbmodel->Add_Asset("payee_work_mary", starting_date, payee_work_mary);
+    m_dbmodel->Add_Asset("cat_income_salary", starting_date, cat_income_salary);
+
+    m_dbmodel->Add_Asset("payee_Aldi", starting_date, payee_Aldi);
+    m_dbmodel->Add_Asset("payee_Coles", starting_date, payee_Coles);
+    m_dbmodel->Add_Asset("payee_supermarket", starting_date, payee_supermarket);
+    m_dbmodel->Add_Asset("payee_woolworths", starting_date, payee_woolworths);
+
+    m_dbmodel->Add_Asset("cat_mastercard_repayment", starting_date, cat_mastercard_repayment);
+    m_dbmodel->Add_Asset("cat_food_groceries", starting_date, cat_food_groceries);
+
     m_test_db.Commit();
 }
 
@@ -283,7 +443,10 @@ void Test_DatabaseInitialisation::Change_Database_Password()
                     password_changed = true;
                 }
             }
-            catch (...) { password_changed = false; }
+            catch (...)
+            { 
+                password_changed = false;
+            }
 
             protected_test_db_duplicate.Close();
             CPPUNIT_ASSERT(password_changed == false);
@@ -299,7 +462,10 @@ void Test_DatabaseInitialisation::Change_Database_Password()
                     password_changed = true;
                 }
             }
-            catch (...) { password_changed = false; }
+            catch (...)
+            {
+                password_changed = false;
+            }
 
             protected_test_db_duplicate.Close();
             CPPUNIT_ASSERT(password_changed == true);
@@ -323,5 +489,39 @@ void Test_DatabaseInitialisation::Change_Database_Password()
     // change the password back, because the file is not deleted at the start of the testing.
     protected_test_db.ReKey(encryption_password);
     protected_test_db.Close();
+}
+
+void Test_DatabaseInitialisation::Failed_Password_Change_Attempt()
+{
+    wxString encryption_password = "test_db";
+    wxString encrypted_database_filename = "test_db_encrypted_backup.emb";
+
+    TestFrameBase base_frame(m_this_instance);
+    base_frame.Show();
+    wxPasswordEntryDialog password_entry(&base_frame, "Please provide a new password:", "Test Password Change: " + encryption_password);
+
+    bool old_password_correct = false;
+    if (password_entry.ShowModal() == wxID_OK)
+    {
+        wxString password_from_user = password_entry.GetValue();
+        wxSQLite3Database protected_test_db;
+        try
+        {
+            protected_test_db.Open(encrypted_database_filename, password_from_user);
+            protected_test_db.ExecuteQuery("select * from infotable_v1;");  // Will throw exception if opened incorrectly.
+            old_password_correct = true;
+        }
+        catch (...)
+        {
+            /* Expected errors: Do Nothing */
+        }
+        protected_test_db.Close();
+
+        if (old_password_correct)
+        {
+            wxMessageBox("Correct password supplied.\n\nPassword Change: Will be successful", "Test Password Change", wxOK | wxICON_INFORMATION, &base_frame);
+        }
+        else wxMessageBox("Password Change will cause problems", "Test Password Change", wxOK | wxICON_WARNING, &base_frame);
+    }
 }
 //--------------------------------------------------------------------------

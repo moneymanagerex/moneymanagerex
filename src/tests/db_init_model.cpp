@@ -252,16 +252,15 @@ int DB_Init_Model::Get_Account_ID(const wxString& account_name)
     return account_id;
 }
 
-void DB_Init_Model::Set_AccountName(const wxString& account_name)
-{
-    Model_Account::Data* account = Model_Account::instance().get(account_name);
-    m_account_name = account->ACCOUNTNAME;
-    m_account_id = account->id();
-}
-
-int DB_Init_Model::Add_Trans(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
+int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
+    if (m_account_name != account_name)
+    {
+        m_account_name = account_name;
+        m_account_id = Get_Account_ID(account_name);
+    }
+
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
     tran_entry->ACCOUNTID = m_account_id;
     tran_entry->TOACCOUNTID = -1;
@@ -272,7 +271,7 @@ int DB_Init_Model::Add_Trans(Model_Checking::TYPE trans_type, const wxDateTime& 
     // Set to Deposit
     tran_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
     tran_entry->TRANSAMOUNT = value;
-    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
     tran_entry->CATEGID = Category_id(category);
     tran_entry->SUBCATEGID = Subcategory_id(tran_entry->CATEGID, subcategory);
@@ -282,24 +281,27 @@ int DB_Init_Model::Add_Trans(Model_Checking::TYPE trans_type, const wxDateTime& 
     return Model_Checking::instance().save(tran_entry);
 }
 
-
-// This commands sets m_processing_transaction
-int DB_Init_Model::Add_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
+int DB_Init_Model::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
     , const wxString& category, const wxString& subcategory)
 {
-    return Add_Trans(Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
+    return Add_Trans(account_name, Model_Checking::DEPOSIT, date, payee, value, category, subcategory);
 }
 
-int DB_Init_Model::Add_Trans_Withdrawal(const wxDateTime& date, const wxString& payee
+int DB_Init_Model::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee
     , double value, const wxString& category, const wxString& subcategory)
 {
-    return Add_Trans(Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
+    return Add_Trans(account_name, Model_Checking::WITHDRAWAL, date, payee, value, category, subcategory);
 }
 
-// This commands sets m_processing_transfer_transaction
-int DB_Init_Model::Add_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
+int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
     , const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
 {
+    if (m_account_name != account_name)
+    {
+        m_account_name = account_name;
+        m_account_id = Get_Account_ID(account_name);
+    }
+
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
     tran_entry->ACCOUNTID = m_account_id;
     tran_entry->TOACCOUNTID = Model_Account::instance().get(to_account)->id();
@@ -308,7 +310,7 @@ int DB_Init_Model::Add_Trans_Transfer(const wxDateTime& date, const wxString& to
     // Set to Transfer
     tran_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::TRANSFER];
     tran_entry->TRANSAMOUNT = value;
-    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+    tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
     tran_entry->CATEGID = Category_id(category);
     tran_entry->SUBCATEGID = Subcategory_id(tran_entry->CATEGID, subcategory);
@@ -415,7 +417,7 @@ void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDa
         // Set to Deposit
         m_bill_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
         m_bill_entry->TRANSAMOUNT = value;
-        m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+        m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
         m_bill_entry->CATEGID = Category_id(category);
         m_bill_entry->SUBCATEGID = Subcategory_id(m_bill_entry->CATEGID, subcategory);
@@ -439,7 +441,7 @@ void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& 
         // Set to Transfer
         m_bill_entry->TRANSCODE = Model_Checking::instance().all_type()[Model_Checking::TRANSFER];
         m_bill_entry->TRANSAMOUNT = value;
-        m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED];
+        m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
         m_bill_entry->CATEGID = Category_id(category);
         m_bill_entry->SUBCATEGID = Subcategory_id(m_bill_entry->CATEGID, subcategory);
