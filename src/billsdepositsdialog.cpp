@@ -22,6 +22,7 @@
 #include "mmOption.h"
 #include "mmsinglechoicedialog.h"
 #include "paths.h"
+#include "constants.h"
 #include "categdialog.h"
 #include "payeedialog.h"
 #include "splittransactionsdialog.h"
@@ -261,11 +262,6 @@ void mmBDDialog::CreateControls()
 
     };
 
-    int border = 5;
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border).Expand();
-
     wxBoxSizer* mainBoxSizerOuter = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* mainBoxSizerInner = new wxBoxSizer(wxHORIZONTAL);
 
@@ -306,12 +302,12 @@ void mmBDDialog::CreateControls()
     repeatTransBoxSizer->Add(repeatDetailsStaticBoxSizer, 0, wxALIGN_CENTER|wxALL, 5);
 
     wxFlexGridSizer* itemFlexGridSizer5 = new wxFlexGridSizer(0, 2, 0, 0);
-    repeatDetailsStaticBoxSizer->Add(itemFlexGridSizer5, flags);
+    repeatDetailsStaticBoxSizer->Add(itemFlexGridSizer5, g_flags);
 
-    itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Account Name")), flags);
+    itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Account Name")), g_flags);
     itemAccountName_ = new wxButton( this, ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, _("Select Account"),
                                      wxDefaultPosition, wxSize(180, -1));
-    itemFlexGridSizer5->Add(itemAccountName_, flags);
+    itemFlexGridSizer5->Add(itemAccountName_, g_flags);
     itemAccountName_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
 
     Model_Account::Data_Set accounts = Model_Account::instance().all();
@@ -343,15 +339,15 @@ void mmBDDialog::CreateControls()
     spinNextOccDate_->SetToolTip(_("Retard or advance the date of the 'next occurrence"));
 
     wxBoxSizer* nextOccurDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    nextOccurDateBoxSizer->Add(dpcbd_, flags);
-    nextOccurDateBoxSizer->Add(spinNextOccDate_, flags);
+    nextOccurDateBoxSizer->Add(dpcbd_, g_flags);
+    nextOccurDateBoxSizer->Add(spinNextOccDate_, g_flags);
 
-    itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Next Occurrence")), flags);
+    itemFlexGridSizer5->Add(new wxStaticText( this, wxID_STATIC, _("Next Occurrence")), g_flags);
     itemFlexGridSizer5->Add(nextOccurDateBoxSizer);
 
     // Repeats --------------------------------------------
     staticTextRepeats_ = new wxStaticText( this, wxID_STATIC, _("Repeats") );
-    itemFlexGridSizer5->Add(staticTextRepeats_, flags);
+    itemFlexGridSizer5->Add(staticTextRepeats_, g_flags);
 
     itemRepeats_ = new wxChoice( this, ID_DIALOG_BD_COMBOBOX_REPEATS,
         wxDefaultPosition, wxSize(110, -1));
@@ -367,8 +363,8 @@ void mmBDDialog::CreateControls()
     bSetNextOccurDate_ = new wxButton( this, ID_DIALOG_TRANS_BUTTONTRANSNUM, _("Next"),
                                        wxDefaultPosition, wxSize(60, -1));
     bSetNextOccurDate_->SetToolTip(_("Advance the Next Occurance Date with the specified values"));
-    repeatBoxSizer->Add(itemRepeats_, flags);
-    repeatBoxSizer->Add(bSetNextOccurDate_, flags);
+    repeatBoxSizer->Add(itemRepeats_, g_flags);
+    repeatBoxSizer->Add(bSetNextOccurDate_, g_flags);
 
     itemFlexGridSizer5->Add(repeatBoxSizer);
     itemRepeats_->SetSelection(0);
@@ -379,7 +375,7 @@ void mmBDDialog::CreateControls()
 
     textNumRepeats_ = new wxTextCtrl( this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, "",
         wxDefaultPosition, wxSize(110, -1), 0, wxIntegerValidator<int>() );
-    itemFlexGridSizer5->Add(textNumRepeats_, flags);
+    itemFlexGridSizer5->Add(textNumRepeats_, g_flags);
     textNumRepeats_->SetMaxLength(12);
     setRepeatDetails();
 
@@ -393,8 +389,8 @@ void mmBDDialog::CreateControls()
     itemCheckBoxAutoExeSilent_->Disable();
     itemCheckBoxAutoExeSilent_->SetToolTip(_("Automatic Execution will occur without user interaction"));
 
-    repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, flags);
-    repeatTransBoxSizer->Add(itemCheckBoxAutoExeSilent_, flags);
+    repeatTransBoxSizer->Add(itemCheckBoxAutoExeUserAck_, g_flags);
+    repeatTransBoxSizer->Add(itemCheckBoxAutoExeSilent_, g_flags);
 
     /************************************************************************************************************
     transactionPanel controlled by transPanelSizer - is contained in the transDetailsStaticBoxSizer.
@@ -416,10 +412,10 @@ void mmBDDialog::CreateControls()
     spinTransDate_->SetToolTip(_("Retard or advance the date of the transaction"));
 
     wxBoxSizer* transDateBoxSizer = new wxBoxSizer(wxHORIZONTAL);
-    transDateBoxSizer->Add(dpc_, flags);
+    transDateBoxSizer->Add(dpc_, g_flags);
     transDateBoxSizer->Add(spinTransDate_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT, interval);
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Date")), flags);
+    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Date")), g_flags);
     transPanelSizer->Add(transDateBoxSizer);
 
     // Status --------------------------------------------
@@ -431,8 +427,8 @@ void mmBDDialog::CreateControls()
     choiceStatus_->SetSelection(mmIniOptions::instance().transStatusReconciled_);
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Status")), flags);
-    transPanelSizer->Add(choiceStatus_, flags);
+    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Status")), g_flags);
+    transPanelSizer->Add(choiceStatus_, g_flags);
 
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(transactionPanel, wxID_VIEW_DETAILS
@@ -452,10 +448,10 @@ void mmBDDialog::CreateControls()
     cAdvanced_->SetToolTip(_("Allows the setting of different amounts in the FROM and TO accounts."));
 
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
-    typeSizer->Add(transaction_type_, flags);
-    typeSizer->Add(cAdvanced_, flags);
+    typeSizer->Add(transaction_type_, g_flags);
+    typeSizer->Add(cAdvanced_, g_flags);
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Type")), flags);
+    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Type")), g_flags);
     transPanelSizer->Add(typeSizer);
 
     // Amount Fields --------------------------------------------
@@ -479,10 +475,10 @@ void mmBDDialog::CreateControls()
         wxCommandEventHandler(mmBDDialog::OnTextEntered), NULL, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(textAmount_,   flags);
-    amountSizer->Add(toTextAmount_, flags);
+    amountSizer->Add(textAmount_, g_flags);
+    amountSizer->Add(toTextAmount_, g_flags);
 
-    transPanelSizer->Add(staticTextAmount, flags);
+    transPanelSizer->Add(staticTextAmount, g_flags);
     transPanelSizer->Add(amountSizer);
 
     // Payee ------------------------------------------------
@@ -494,8 +490,8 @@ void mmBDDialog::CreateControls()
     payeeDepositTip_    = _("Specify where the transaction is coming from");
     bPayee_->SetToolTip(payeeWithdrawalTip_);
 
-    transPanelSizer->Add(staticTextPayee, flags);
-    transPanelSizer->Add(bPayee_, flags);
+    transPanelSizer->Add(staticTextPayee, g_flags);
+    transPanelSizer->Add(bPayee_, g_flags);
 
     // Payee Alternate ------------------------------------------------
     wxStaticText* staticTextTo = new wxStaticText( transactionPanel, ID_DIALOG_TRANS_STATIC_FROM, " " );
@@ -503,8 +499,8 @@ void mmBDDialog::CreateControls()
                          wxDefaultPosition, wxSize(225, -1), 0 );
     bTo_->SetToolTip(_("Specify which account the transfer is going to"));
 
-    transPanelSizer->Add(staticTextTo, flags);
-    transPanelSizer->Add(bTo_, flags);
+    transPanelSizer->Add(staticTextTo, g_flags);
+    transPanelSizer->Add(bTo_, g_flags);
 
     // Split Category -------------------------------------------
     cSplit_ = new wxCheckBox( transactionPanel, ID_DIALOG_TRANS_SPLITCHECKBOX, _("Split"),
@@ -513,7 +509,7 @@ void mmBDDialog::CreateControls()
     cSplit_->SetToolTip(_("Use split Categories"));
 
     transPanelSizer->AddSpacer(20); // Fill empty space.
-    transPanelSizer->Add(cSplit_, flags);
+    transPanelSizer->Add(cSplit_, g_flags);
 
     // Category ---------------------------------------------
     wxStaticText* staticTextCategory = new wxStaticText( transactionPanel, wxID_STATIC, _("Category"));
@@ -521,25 +517,25 @@ void mmBDDialog::CreateControls()
                                wxDefaultPosition, wxSize(225, -1), 0 );
     //bCategory_->SetToolTip(_("Specify the category for this transaction"));
 
-    transPanelSizer->Add(staticTextCategory, flags);
-    transPanelSizer->Add(bCategory_, flags);
+    transPanelSizer->Add(staticTextCategory, g_flags);
+    transPanelSizer->Add(bCategory_, g_flags);
 
     // Number ---------------------------------------------
     textNumber_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTNUMBER, "",
                                   wxDefaultPosition, wxSize(225, -1));
     textNumber_->SetToolTip(_("Specify any associated check number or transaction number"));
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Number")), flags);
-    transPanelSizer->Add(textNumber_, flags);
+    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Number")), g_flags);
+    transPanelSizer->Add(textNumber_, g_flags);
 
     // Notes ---------------------------------------------
     textNotes_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, "",
                                  wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE );
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
-    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Notes")), flags);
+    transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Notes")), g_flags);
     transPanelSizer->AddSpacer(1);
-    box_sizer1->Add(textNotes_, flagsExpand);
+    box_sizer1->Add(textNotes_, g_flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
     prevType_ = Model_Billsdeposits::WITHDRAWAL;
@@ -551,10 +547,10 @@ void mmBDDialog::CreateControls()
     buttonsPanel->SetSizer(buttonsPanelSizer);
 
     wxButton* okButton = new wxButton(buttonsPanel, wxID_OK, _("&OK "));
-    buttonsPanelSizer->Add(okButton, flags);
+    buttonsPanelSizer->Add(okButton, g_flags);
 
     wxButton* cancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
-    buttonsPanelSizer->Add(cancelButton, flags);
+    buttonsPanelSizer->Add(cancelButton, g_flags);
     cancelButton->SetFocus();
 
     /**********************************************************************************************

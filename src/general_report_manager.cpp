@@ -21,6 +21,7 @@
 #include "minimal_editor.h"
 #include "util.h"
 #include "paths.h"
+#include "constants.h"
 #include "mmpanelbase.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Report.h"
@@ -141,10 +142,6 @@ void mmGeneralReportManager::fillControls()
 
 void mmGeneralReportManager::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
-
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainBoxSizer);
 
@@ -169,19 +166,19 @@ void mmGeneralReportManager::CreateControls()
     m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
-    headingPanelSizerH2->Add(flex_sizer, flags);
-    headingPanelSizerH2->Add(m_treeCtrl, flagsExpand);
+    headingPanelSizerH2->Add(flex_sizer, g_flags);
+    headingPanelSizerH2->Add(m_treeCtrl, g_flagsExpand);
 
     /****************************************
      Script Area
      ***************************************/
     // ListBox for source code
     wxBoxSizer* headingPanelSizerV3 = new wxBoxSizer(wxVERTICAL);
-    headingPanelSizerH->Add(headingPanelSizerV3, flagsExpand);
+    headingPanelSizerH->Add(headingPanelSizerV3, g_flagsExpand);
 
     wxNotebook* editors_notebook = new wxNotebook(this
         , ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
-    headingPanelSizerV3->Add(editors_notebook, flagsExpand);
+    headingPanelSizerV3->Add(editors_notebook, g_flagsExpand);
 
     createOutputTab(editors_notebook, ID_TAB_OUT);
 
@@ -189,31 +186,31 @@ void mmGeneralReportManager::CreateControls()
      Bottom Panel
      ***************************************/
     wxPanel* buttonPanel = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    mainBoxSizer->Add(buttonPanel, flags.Center());
+    mainBoxSizer->Add(buttonPanel, wxSizerFlags(g_flags).Center());
 
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
 
     //
     m_buttonOpen = new wxButton(buttonPanel, wxID_OPEN, _("&Import"));
-    buttonPanelSizer->Add(m_buttonOpen, flags);
+    buttonPanelSizer->Add(m_buttonOpen, g_flags);
     m_buttonOpen->SetToolTip(_("Locate and load a report file."));
 
     m_buttonSaveAs = new wxButton(buttonPanel, wxID_SAVEAS, _("&Export"));
-    buttonPanelSizer->Add(m_buttonSaveAs, flags);
+    buttonPanelSizer->Add(m_buttonSaveAs, g_flags);
     m_buttonSaveAs->SetToolTip(_("Export the report to a new file."));
     buttonPanelSizer->AddSpacer(50);
 
     m_buttonSave = new wxButton(buttonPanel, wxID_SAVE, _("&Save "));
-    buttonPanelSizer->Add(m_buttonSave, flags);
+    buttonPanelSizer->Add(m_buttonSave, g_flags);
     m_buttonSave->SetToolTip(_("Save changes."));
 
     m_buttonRun = new wxButton(buttonPanel, wxID_EXECUTE, _("&Run"));
-    buttonPanelSizer->Add(m_buttonRun, flags);
+    buttonPanelSizer->Add(m_buttonRun, g_flags);
     m_buttonRun->SetToolTip(_("Run selected report."));
 
     wxButton* button_Close = new wxButton(buttonPanel, wxID_CLOSE, _("&Close "));
-    buttonPanelSizer->Add(button_Close, flags);
+    buttonPanelSizer->Add(button_Close, g_flags);
     //button_Close->SetToolTip(_("Save changes before closing. Changes without Save will be lost."));
 
 }
@@ -228,7 +225,7 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
     wxBoxSizer *out_sizer = new wxBoxSizer(wxVERTICAL);
     out_tab->SetSizer(out_sizer);
     m_outputHTML = wxWebView::New(out_tab, ID_WEB);
-    out_sizer->Add(m_outputHTML, flagsExpand);
+    out_sizer->Add(m_outputHTML, g_flagsExpand);
     out_tab->SetSizerAndFit(out_sizer);
 }
 
@@ -244,10 +241,6 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     }
     if (FindWindow(editorID + MAGIC_NUM)) return;
 
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
-
     int tabID = editors_notebook->GetRowCount();
     wxPanel* panel = new wxPanel(editors_notebook, editorID + MAGIC_NUM);
     editors_notebook->InsertPage(tabID, panel, label);
@@ -256,7 +249,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
     MinimalEditor* templateText = new MinimalEditor(panel, editorID);
 
-    sizer->Add(templateText, flagsExpand);
+    sizer->Add(templateText, g_flagsExpand);
 
     if (editorID == ID_SQL_CONTENT)
     {
@@ -270,13 +263,13 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         box_sizer2->AddSpacer(10);
         box_sizer2->Add(buttonNewTemplate);
         box_sizer2->AddSpacer(10);
-        box_sizer2->Add(info, flagsExpand);
+        box_sizer2->Add(info, g_flagsExpand);
 
         m_sqlListBox = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize
             , wxLC_REPORT);
-        box_sizer1->Add(box_sizer2, wxSizerFlags(flagsExpand).Proportion(0));
-        box_sizer1->Add(m_sqlListBox, flagsExpand);
-        sizer->Add(box_sizer1, flagsExpand.Border(0));
+        box_sizer1->Add(box_sizer2, wxSizerFlags(g_flagsExpand).Proportion(0));
+        box_sizer1->Add(m_sqlListBox, g_flagsExpand);
+        sizer->Add(box_sizer1, wxSizerFlags(g_flagsExpand).Border(0));
     }
 
     panel->SetSizerAndFit(sizer);

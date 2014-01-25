@@ -21,6 +21,7 @@
 #include "mmtextctrl.h"
 #include "util.h"
 #include "mmOption.h"
+#include "constants.h"
 #include "paths.h"
 #include "categdialog.h"
 #include "splittransactionsdialog.h"
@@ -319,21 +320,16 @@ void mmTransDialog::dataToControls()
 
 void mmTransDialog::CreateControls()
 {
-    int border = 5;
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxEXPAND).Border(wxALL, border).Proportion(1);
-
     wxBoxSizer* box_sizer1 = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* box_sizer2 = new wxBoxSizer(wxVERTICAL);
-    box_sizer1->Add(box_sizer2, flagsExpand);
+    box_sizer1->Add(box_sizer2, g_flagsExpand);
 
     wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Transaction Details"));
     wxStaticBoxSizer* box_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
-    box_sizer2->Add(box_sizer, flagsExpand);
+    box_sizer2->Add(box_sizer, g_flagsExpand);
 
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    box_sizer->Add(flex_sizer, flags);
+    box_sizer->Add(flex_sizer, g_flags);
 
     // Date --------------------------------------------
     long date_style = wxDP_DROPDOWN|wxDP_SHOWCENTURY;
@@ -350,12 +346,12 @@ void mmTransDialog::CreateControls()
         wxSP_VERTICAL|wxSP_ARROW_KEYS|wxSP_WRAP);
     spinCtrl_->SetRange (-32768, 32768);
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Date")), flags);
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Date")), g_flags);
     wxBoxSizer* date_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(date_sizer);
-    date_sizer->Add(dpc_, flags);
-    date_sizer->Add(spinCtrl_, flags);
-    date_sizer->Add(itemStaticTextWeek_, flags);
+    date_sizer->Add(dpc_, g_flags);
+    date_sizer->Add(spinCtrl_, g_flags);
+    date_sizer->Add(itemStaticTextWeek_, g_flags);
 
     // Status --------------------------------------------
     choiceStatus_ = new wxChoice(this, ID_DIALOG_TRANS_STATUS,
@@ -364,8 +360,8 @@ void mmTransDialog::CreateControls()
     for(const auto& i : Model_Checking::all_status())
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), flags);
-    flex_sizer->Add(choiceStatus_, flags);
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Status")), g_flags);
+    flex_sizer->Add(choiceStatus_, g_flags);
 
     // Type --------------------------------------------
     transaction_type_ = new wxChoice(this, ID_DIALOG_TRANS_TYPE,
@@ -383,10 +379,10 @@ void mmTransDialog::CreateControls()
 
     wxBoxSizer* typeSizer = new wxBoxSizer(wxHORIZONTAL);
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Type")), flags);
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Type")), g_flags);
     flex_sizer->Add(typeSizer);
-    typeSizer->Add(transaction_type_, flags);
-    typeSizer->Add(cAdvanced_, flags);
+    typeSizer->Add(transaction_type_, g_flags);
+    typeSizer->Add(cAdvanced_, g_flags);
 
     // Amount Fields --------------------------------------------
     textAmount_ = new mmTextCtrl( this, ID_DIALOG_TRANS_TEXTAMOUNT, "",
@@ -398,10 +394,10 @@ void mmTransDialog::CreateControls()
         wxALIGN_RIGHT|wxTE_PROCESS_ENTER, mmCalcValidator());
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(textAmount_, flags);
-    amountSizer->Add(toTextAmount_, flags);
+    amountSizer->Add(textAmount_, g_flags);
+    amountSizer->Add(toTextAmount_, g_flags);
 
-    flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Amount")), flags);
+    flex_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Amount")), g_flags);
     flex_sizer->Add(amountSizer);
 
     // Account ---------------------------------------------
@@ -409,8 +405,8 @@ void mmTransDialog::CreateControls()
         wxDefaultPosition, wxSize(230, -1));
 
     account_label_ = new wxStaticText(this, wxID_STATIC, _("Account"));
-    flex_sizer->Add(account_label_, flags);
-    flex_sizer->Add(cbAccount_, flags);
+    flex_sizer->Add(account_label_, g_flags);
+    flex_sizer->Add(cbAccount_, g_flags);
 
     // Payee ---------------------------------------------
     payee_label_ = new wxStaticText(this, wxID_STATIC, _("Payee"));
@@ -421,8 +417,8 @@ void mmTransDialog::CreateControls()
     cbPayee_ = new wxComboBox(this, ID_DIALOG_TRANS_PAYEECOMBO, ""
         , wxDefaultPosition, wxSize(230, -1));
 
-    flex_sizer->Add(payee_label_, flags);
-    flex_sizer->Add(cbPayee_, flags);
+    flex_sizer->Add(payee_label_, g_flags);
+    flex_sizer->Add(cbPayee_, g_flags);
 
     // Split Category -------------------------------------------
     cSplit_ = new wxCheckBox(this, wxID_FORWARD
@@ -430,14 +426,14 @@ void mmTransDialog::CreateControls()
     cSplit_->SetValue(FALSE);
 
     flex_sizer->AddSpacer(20);  // Fill empty space.
-    flex_sizer->Add(cSplit_, flags);
+    flex_sizer->Add(cSplit_, g_flags);
 
     // Category -------------------------------------------------
     bCategory_ = new wxButton(this, wxID_VIEW_DETAILS, ""
         , wxDefaultPosition, wxSize(230, -1));
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Category")), flags);
-    flex_sizer->Add(bCategory_, flags);
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Category")), g_flags);
+    flex_sizer->Add(bCategory_, g_flags);
 
     // Number  ---------------------------------------------
     textNumber_ = new mmTextCtrl(this
@@ -451,32 +447,32 @@ void mmTransDialog::CreateControls()
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
     bAuto->SetToolTip(_("Populate Transaction #"));
 
-    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), flags);
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flags);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
-    flex_sizer->Add(number_sizer, flagsExpand.Border(wxALL, 0));
-    number_sizer->Add(textNumber_, flagsExpand.Border(wxALL, border));
-    number_sizer->Add(bAuto, flags);
+    flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
+    number_sizer->Add(textNumber_, g_flagsExpand);
+    number_sizer->Add(bAuto, g_flags);
 
     notesTip_ = _("Notes");
     textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
         , wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
 
-    box_sizer->Add(textNotes_, flagsExpand.Border(wxLEFT|wxRIGHT|wxBOTTOM, 10));
+    box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    box_sizer1->Add(buttons_panel, flags.Center().Border(wxALL, 0));
+    box_sizer1->Add(buttons_panel, wxSizerFlags(g_flags).Center().Border(wxALL, 0));
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonOK = new wxButton( buttons_panel, wxID_OK, _("&OK "));
-    itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    itemButtonCancel_ = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
 
-    buttons_sizer->Add(itemButtonOK, flags.Border(wxBOTTOM|wxRIGHT, 10));
-    buttons_sizer->Add(itemButtonCancel_, flags);
+    buttons_sizer->Add(itemButtonOK, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
+    buttons_sizer->Add(itemButtonCancel_, wxSizerFlags(g_flags).Border(wxBOTTOM | wxRIGHT, 10));
 
     itemButtonCancel_->SetFocus();
 
