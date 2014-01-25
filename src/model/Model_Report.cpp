@@ -231,7 +231,17 @@ wxString Model_Report::get_html(const Data& r)
     return get_html(&r); 
 }
 
-bool Model_Report::CheckSyntax(const wxString& sql) const
+bool Model_Report::CheckHeaders(const wxString& sql)
+{
+    if (!this->db_->CheckSyntax(sql)) return false;
+    for (const auto& col : getColumns(sql))
+    {
+        if (!col.first.IsWord()) return false;
+    }
+    return true;
+}
+
+bool Model_Report::CheckSyntax(const wxString& sql)
 {
     return this->db_->CheckSyntax(sql);
 }
@@ -265,4 +275,24 @@ wxString Model_Report::getTemplate(const wxString& sql)
         header += wxString::Format("        <th>%s</th>\n", col.first);
     }
     return wxString::Format(HTT_CONTEINER, header, body);
+}
+
+bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData)
+{
+    if (!this->db_->CheckSyntax(sql)) return false;
+    wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
+    if (!stmt.IsReadOnly()) return false;
+
+    wxSQLite3ResultSet q = stmt.ExecuteQuery();
+    int columnCount = q.GetColumnCount();
+
+    sqlQueryData.clear();
+    while (q.NextRow())
+    {
+        std::vector<wxString> row;
+        for (int i = 0; i < columnCount; ++i)
+            row.push_back(q.GetAsString(i));
+        sqlQueryData.push_back(row);
+    }
+    return true;
 }

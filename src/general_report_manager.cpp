@@ -26,6 +26,7 @@
 #include "model/Model_Report.h"
 #include <wx/zipstrm.h>
 #include <memory>
+#include <wx/richtooltip.h>
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
@@ -277,36 +278,22 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     panel->SetSizerAndFit(sizer);
 }
 
-void mmGeneralReportManager::getSqlQueryData(const wxString& sql)
-{
-    //Emulation
-    m_sqlQueryData.clear();
-
-    for (int row = 0; row < 1 + rand() % 5; row++)
-    {
-        std::vector<wxString> sql_row;
-        for (const auto& col : Model_Report::instance().getColumns(sql))
-        {
-            sql_row.push_back(wxString::Format("%i %i", col.second, rand() % 100));
-        }
-        m_sqlQueryData.push_back(sql_row);
-    }
-}
-
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
     MinimalEditor* sqlText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
     if (sqlText->GetValue().empty()) return;
 
-    if (Model_Report::instance().CheckSyntax(sqlText->GetValue()))
+    const wxString &sql = sqlText->GetValue();
+    if (Model_Report::instance().CheckSyntax(sql))
     {
-        getSqlQueryData(sqlText->GetValue());
+        Model_Report::instance().getSqlQuery(sql, m_sqlQueryData);
 
         m_sqlListBox->ClearAll();
 
         int row = 0, pos = 0;
-        for (const auto& col : Model_Report::instance().getColumns(sqlText->GetValue()))
-            m_sqlListBox->InsertColumn(pos++, col.first
+        m_sqlListBox->InsertColumn(pos, _("#"), wxLIST_FORMAT_RIGHT, 40);
+        for (const auto& col : Model_Report::instance().getColumns(sql))
+            m_sqlListBox->InsertColumn(++pos, col.first
             , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
             , col.first.length() * 10 + 20);
 
@@ -314,16 +301,32 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
         {
             int pos = 0;
             long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
+            m_sqlListBox->SetItem(itemIndex, pos, wxString()<<++row);
             for (const auto& dataCol : dataRow)
             {
-                wxString buf = wxString::Format("r:%i c:%i=%s", itemIndex, pos, dataCol);
-                m_sqlListBox->SetItem(itemIndex, pos++, buf);
+                m_sqlListBox->SetItem(itemIndex, ++pos, dataCol);
             }
-            ++row;
         }
         wxButton* b = (wxButton*) FindWindow(wxID_NEW);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        b->Enable(templateText->GetValue().empty());
+        if (Model_Report::instance().CheckHeaders(sql))
+        {
+            b->Enable(templateText->GetValue().empty());
+        }
+        else
+        {
+            b->Enable(false);
+            if (templateText->GetValue().empty())
+            {
+                wxRichToolTip tip(_("Error")
+                    , _("Some columns alias is wrong! Can't create HTML template")
+                    + "\n\n"
+                    + _("Tip: SQL AS temporarily assigns a table column a new name.")
+                    + "\n");
+                tip.SetIcon(wxICON_WARNING);
+                tip.ShowFor((wxWindow*) b);
+            }
+        }
     }
     else
     {

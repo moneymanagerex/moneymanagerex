@@ -71,7 +71,6 @@ private:
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
 
-    void getSqlQueryData(const wxString& sql);
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
     wxWebView* m_outputHTML;
