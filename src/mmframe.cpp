@@ -329,17 +329,37 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 
 mmGUIFrame::~mmGUIFrame()
 {
+wxLogDebug("~mmGUIFrame()");
     try {
         cleanup();
     }
     catch (...) {
         wxASSERT(false);
     }
+    
+        // Report database statistics
+    Model_Account::instance().show_statistics();
+    Model_Asset::instance().show_statistics();
+    Model_Billsdeposits::instance().show_statistics();
+    Model_Budgetsplittransaction::instance().show_statistics();
+    Model_Budget::instance().show_statistics();
+    Model_Budgetyear::instance().show_statistics();
+    Model_Category::instance().show_statistics();
+    Model_Checking::instance().show_statistics();
+    Model_Currency::instance().show_statistics();
+    Model_Infotable::instance().show_statistics();
+    Model_Payee::instance().show_statistics();
+    Model_Setting::instance().show_statistics();
+    Model_Splittransaction::instance().show_statistics();
+    Model_Stock::instance().show_statistics();
+    Model_Subcategory::instance().show_statistics();
+
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::cleanup()
 {
+	autoRepeatTransactionsTimer_.Stop();
     printer_.reset();
     delete recentFiles_;
     if (!fileName_.IsEmpty()) // Exiting before file is opened
@@ -368,6 +388,7 @@ void mmGUIFrame::ShutdownDatabase()
         delete m_commit_callback_hook;
         m_db.reset();
     }
+
 }
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
@@ -2500,7 +2521,7 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 {
-    autoRepeatTransactionsTimer_.Stop();
+	wxLogDebug("OnQuit(wxCommandEvent& WXUNUSED(event)");
     //    this->Destroy();
     Close(TRUE);
 }
@@ -3421,13 +3442,14 @@ void mmGUIFrame::setGotoAccountID(int account_id, long transID)
 
 void mmGUIFrame::OnClose(wxCloseEvent&)
 {
+    wxLogDebug("OnClose(wxCloseEvent&)");
     if (m_pThread)
     {
         {
             wxCriticalSectionLocker enter(m_pExitCS);
-            m_bExitServer = true;
+            //m_bExitServer = true; //FIXME:
         }
-        while (1)
+        while (0)
         {
             {
                 wxCriticalSectionLocker enter(m_pThreadCS);

@@ -23,20 +23,9 @@
 #include "constants.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "model/Model_Asset.h"
-#include "model/Model_Stock.h"
-#include "model/Model_Infotable.h"
+
 #include "model/Model_Setting.h"
-#include "model/Model_Budgetyear.h"
-#include "model/Model_Account.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Checking.h"
-#include "model/Model_Category.h"
-#include "model/Model_Subcategory.h"
-#include "model/Model_Billsdeposits.h"
-#include "model/Model_Splittransaction.h"
-#include "model/Model_Budget.h"
-#include "model/Model_Report.h"
+
 
 #include <wx/fs_mem.h>
 //----------------------------------------------------------------------------
@@ -213,23 +202,7 @@ bool mmGUIApp::OnInit()
 
 int mmGUIApp::OnExit()
 {
-    // Report database statistics
-    Model_Account::instance().show_statistics();
-    Model_Asset::instance().show_statistics();
-    Model_Billsdeposits::instance().show_statistics();
-    Model_Budgetsplittransaction::instance().show_statistics();
-    Model_Budget::instance().show_statistics();
-    Model_Budgetyear::instance().show_statistics();
-    Model_Category::instance().show_statistics();
-    Model_Checking::instance().show_statistics();
-    Model_Currency::instance().show_statistics();
-    Model_Infotable::instance().show_statistics();
-    Model_Payee::instance().show_statistics();
-    Model_Setting::instance().show_statistics();
-    Model_Splittransaction::instance().show_statistics();
-    Model_Stock::instance().show_statistics();
-    Model_Subcategory::instance().show_statistics();
-
+	wxLogDebug("OnExit()");
     if (m_setting_db) delete m_setting_db;
 
     return 0;
