@@ -85,7 +85,7 @@ private:
     wxTreeItemId m_selectedItemID;
     int m_selectedReportID;
     wxString m_selectedGroup;
-    wxArrayString m_reservedNames;
+
     enum
     {
         ID_TAB_OUT = 0,
