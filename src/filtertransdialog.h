@@ -167,6 +167,7 @@ private:
 
     wxString settings_string_;
     wxString prev_value_;
+    wxTextCtrl* m_settingLabel;
     wxCheckBox* accountCheckBox_;
     wxChoice* accountDropDown_;
     wxCheckBox* dateRangeCheckBox_;

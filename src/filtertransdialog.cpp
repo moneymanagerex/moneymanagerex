@@ -92,6 +92,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     , refAccountID_(-1)
     , refAccountStr_("")
     , date_range_(0)
+    , m_settingLabel()
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
@@ -148,14 +149,10 @@ void mmFilterTransactionsDialog::dataToControls()
 }
 void mmFilterTransactionsDialog::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 0);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxEXPAND).Border(wxALL, 0).Proportion(1);
-
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxVERTICAL);
-    itemBoxSizer2->Add(itemBoxSizer3, flagsExpand);
+    itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
     wxStaticBox* static_box_sizer = new wxStaticBox(this, wxID_ANY, _(" Specify "));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(static_box_sizer, wxVERTICAL);
@@ -167,29 +164,29 @@ void mmFilterTransactionsDialog::CreateControls()
      Items Panel
     *******************************************************************************/
     wxPanel* itemPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemStaticBoxSizer4->Add(itemPanel, 1, wxGROW | wxALL, 5);
+    itemStaticBoxSizer4->Add(itemPanel, g_flagsExpand);
 
     wxBoxSizer* itemBoxSizer4 = new wxBoxSizer(wxVERTICAL);
-    wxFlexGridSizer* itemPanelSizer = new wxFlexGridSizer(0, 2, 10, 5);
+    wxFlexGridSizer* itemPanelSizer = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanelSizer->AddGrowableCol(1, 1);
 
     itemPanel->SetSizer(itemBoxSizer4);
-    itemBoxSizer4->Add(itemPanelSizer, flagsExpand);
+    itemBoxSizer4->Add(itemPanelSizer, g_flagsExpand);
     //--Start of Row --------------------------------------------------------
-    accountCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Account"),
-                                      wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    itemPanelSizer->Add(accountCheckBox_, flags);
+    accountCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Account")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    itemPanelSizer->Add(accountCheckBox_, g_flags);
 
     wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
     accountDropDown_ = new wxChoice(itemPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, accountArray, 0);
-    itemPanelSizer->Add(accountDropDown_, flagsExpand);
+    itemPanelSizer->Add(accountDropDown_, g_flagsExpand);
 
     //--End of Row --------------------------------------------------------
 
     dateRangeCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Date Range"),
                                         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    itemPanelSizer->Add(dateRangeCheckBox_, flags);
+    itemPanelSizer->Add(dateRangeCheckBox_, g_flags);
 
     fromDateCtrl_ = new wxDatePickerCtrl(itemPanel, wxID_ANY, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
@@ -199,21 +196,21 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), NULL, this);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
-    dateSizer->Add(fromDateCtrl_, flagsExpand);
+    dateSizer->Add(fromDateCtrl_, g_flagsExpand);
     dateSizer->AddSpacer(5);
-    dateSizer->Add(toDateControl_, flagsExpand);
-    itemPanelSizer->Add(dateSizer, flagsExpand);
+    dateSizer->Add(toDateControl_, g_flagsExpand);
+    itemPanelSizer->Add(dateSizer, wxSizerFlags(g_flagsExpand).Border(0));
     //--End of Row --------------------------------------------------------
 
     payeeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Payee")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(payeeCheckBox_, flags);
+    itemPanelSizer->Add(payeeCheckBox_, g_flags);
 
     cbPayee_ = new wxComboBox(itemPanel, wxID_ANY);
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
 
-    itemPanelSizer->Add(cbPayee_, flagsExpand);
+    itemPanelSizer->Add(cbPayee_, g_flagsExpand);
     //--End of Row --------------------------------------------------------
 
     categoryCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Category")
@@ -222,8 +219,8 @@ void mmFilterTransactionsDialog::CreateControls()
     wxFlexGridSizer* categSizer = new wxFlexGridSizer(0, 1, 0, 0);
     categSizer->AddGrowableCol(0, 1);
 
-    itemPanelSizer->Add(categoryCheckBox_, flags);
-    itemPanelSizer->Add(categSizer, flagsExpand);
+    itemPanelSizer->Add(categoryCheckBox_, g_flags);
+    itemPanelSizer->Add(categSizer, wxSizerFlags(g_flagsExpand).Border(0));
 
     btnCategory_ = new wxButton(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize);
@@ -233,21 +230,21 @@ void mmFilterTransactionsDialog::CreateControls()
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     similarCategCheckBox_->SetToolTip(_("Include all subcategories for the selected category."));
 
-    categSizer->Add(btnCategory_, flagsExpand);
-    categSizer->Add(similarCategCheckBox_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
-    categSizer->AddSpacer(1);
+    categSizer->Add(btnCategory_, g_flagsExpand);
+    categSizer->Add(similarCategCheckBox_, wxSizerFlags(g_flags).Center().Border(0));
+    categSizer->AddSpacer(5);
     //--End of Row --------------------------------------------------------
 
     statusCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Status")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(statusCheckBox_, flags);
+    itemPanelSizer->Add(statusCheckBox_, g_flags);
 
     choiceStatus_ = new wxChoice(itemPanel, wxID_ANY);
 
     for(const auto& i : TRANSACTION_STATUSES)
         choiceStatus_->Append(wxGetTranslation(i), new wxStringClientData(i));
 
-    itemPanelSizer->Add(choiceStatus_, flagsExpand);
+    itemPanelSizer->Add(choiceStatus_, g_flagsExpand);
     choiceStatus_->SetToolTip(_("Specify the status for the transaction"));
     //--End of Row --------------------------------------------------------
 
@@ -266,8 +263,8 @@ void mmFilterTransactionsDialog::CreateControls()
     cbTypeTransferFrom_ = new wxCheckBox(itemPanel, wxID_ANY, _("Transfer From")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 
-    itemPanelSizer->Add(typeCheckBox_, flags);
-    itemPanelSizer->Add(typeSizer, flagsExpand);
+    itemPanelSizer->Add(typeCheckBox_, g_flags);
+    itemPanelSizer->Add(typeSizer, g_flagsExpand);
     typeSizer->Add(cbTypeWithdrawal_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
     typeSizer->Add(cbTypeDeposit_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
     typeSizer->Add(cbTypeTransferTo_, 1, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 2);
@@ -278,7 +275,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     amountRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Amount Range")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(amountRangeCheckBox_, flags);
+    itemPanelSizer->Add(amountRangeCheckBox_, g_flags);
 
     amountMinEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
@@ -292,30 +289,31 @@ void mmFilterTransactionsDialog::CreateControls()
         wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), NULL, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
-    amountSizer->Add(amountMinEdit_, flagsExpand);
+    amountSizer->Add(amountMinEdit_, g_flagsExpand);
     amountSizer->AddSpacer(5);
-    amountSizer->Add(amountMaxEdit_, flagsExpand);
-    itemPanelSizer->Add(amountSizer, flagsExpand);
+    amountSizer->Add(amountMaxEdit_, g_flagsExpand);
+    itemPanelSizer->Add(amountSizer, wxSizerFlags(g_flagsExpand).Border(0));
     //--End of Row --------------------------------------------------------
 
-    transNumberCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Number")
+    transNumberCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Number")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    itemPanelSizer->Add(transNumberCheckBox_, flags);
+    itemPanelSizer->Add(transNumberCheckBox_, g_flags);
 
-    transNumberEdit_ = new wxTextCtrl( itemPanel, wxID_ANY);
-    itemPanelSizer->Add(transNumberEdit_, flagsExpand);
+    transNumberEdit_ = new wxTextCtrl(itemPanel, wxID_ANY);
+    itemPanelSizer->Add(transNumberEdit_, g_flagsExpand);
     //--End of Row --------------------------------------------------------
 
     notesCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Notes")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemPanelSizer->Add(notesCheckBox_, flags);
+    itemPanelSizer->Add(notesCheckBox_, g_flags);
 
     notesEdit_ = new wxTextCtrl( itemPanel, wxID_ANY);
-    itemPanelSizer->Add(notesEdit_, flagsExpand);
+    itemPanelSizer->Add(notesEdit_, g_flagsExpand);
     //--End of Row --------------------------------------------------------
 
-    wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* settings_box_sizer = new wxBoxSizer(wxVERTICAL);
 
+    m_settingLabel = new wxTextCtrl(this, wxID_INFO, "");
     wxString choices[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     int num = sizeof(choices) / sizeof(wxString);
     m_radio_box_ = new wxRadioBox(this, wxID_APPLY, ""
@@ -327,14 +325,15 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_->SetSelection(view_no);
     m_radio_box_->Show(true);
 
-    itemBoxSizer3->Add(settings_box_sizer, flags.Center());
-    settings_box_sizer->Add( m_radio_box_, flags);
+    itemBoxSizer3->Add(settings_box_sizer, wxSizerFlags(g_flags).Center());
+    settings_box_sizer->Add(m_settingLabel, wxSizerFlags(g_flagsExpand).Border(0));
+    settings_box_sizer->Add(m_radio_box_, g_flags);
 
     /******************************************************************************
      Button Panel with OK/Cancel buttons
     *******************************************************************************/
     wxPanel* buttonPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer3->Add(buttonPanel, flags.Border(wxALL, 5));
+    itemBoxSizer3->Add(buttonPanel, wxSizerFlags(g_flags).Center());
 
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
@@ -352,10 +351,10 @@ void mmFilterTransactionsDialog::CreateControls()
 
     save_button->Show(true);
 
-    buttonPanelSizer->Add(save_button, flags.Border(wxALL, 5));
-    buttonPanelSizer->Add(itemButtonOK, flags);
-    buttonPanelSizer->Add(itemButtonCancel, flags);
-    buttonPanelSizer->Add(itemButtonClear, flags);
+    buttonPanelSizer->Add(save_button,g_flags);
+    buttonPanelSizer->Add(itemButtonOK, g_flags);
+    buttonPanelSizer->Add(itemButtonCancel, g_flags);
+    buttonPanelSizer->Add(itemButtonClear, g_flags);
 }
 
 /*!
@@ -817,6 +816,7 @@ wxString mmFilterTransactionsDialog::to_json()
 {
     json::Object o;
     o.Clear();
+    o["LABEL"] = json::String(m_settingLabel->GetValue().ToStdString());
     if (accountCheckBox_->IsChecked())
         o["ACCOUNT"] = json::String(accountDropDown_->GetStringSelection().ToStdString());
     if (dateRangeCheckBox_->IsChecked())
@@ -890,6 +890,9 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     json::Object o;
     json::Reader::Read(o, ss);
     
+    //Label
+    m_settingLabel->ChangeValue(wxString(json::String(o["LABEL"])));
+
     //Account
     accountCheckBox_->SetValue(!wxString(json::String(o["ACCOUNT"])).empty());
     accountDropDown_->Enable(accountCheckBox_->IsChecked());
@@ -954,11 +957,10 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     //Number
     transNumberCheckBox_->SetValue(!wxString(json::String(o["NUMBER"])).empty());
     transNumberEdit_->Enable(transNumberCheckBox_->IsChecked());
-    transNumberEdit_->SetValue(wxString(json::String(o["NUMBER"])));
+    transNumberEdit_->ChangeValue(wxString(json::String(o["NUMBER"])));
 
     //Notes
     notesCheckBox_->SetValue(!wxString(json::String(o["NOTES"])).empty());
     notesEdit_->Enable(notesCheckBox_->IsChecked());
-    notesEdit_->SetValue(wxString(json::String(o["NOTES"])));
-
+    notesEdit_->ChangeValue(wxString(json::String(o["NOTES"])));
 }
