@@ -59,6 +59,7 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
     mmIniOptions::instance().loadOptions();
 
     Model_Infotable::instance(test_db);
+    Model_Infotable::instance().Set("DATEFORMAT", "%d-%m-%Y");
     mmOptions::instance().LoadInfotableOptions();
 
     Model_Currency::instance(test_db);
@@ -140,17 +141,17 @@ void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, cons
 
 int DB_Init_Model::Add_Bank_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
-    return Add_Account(name, Model_Account::TYPE::CHECKING, initial_value, notes, true, currency_symbol);
+    return Add_Account(name, Model_Account::TYPE::CHECKING, initial_value, notes, favorite, currency_symbol);
 }
 
 int DB_Init_Model::Add_Investment_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
-    return Add_Account(name, Model_Account::TYPE::INVESTMENT, initial_value, notes, true, currency_symbol);
+    return Add_Account(name, Model_Account::TYPE::INVESTMENT, initial_value, notes, favorite, currency_symbol);
 }
 
 int DB_Init_Model::Add_Term_Account(const wxString& name, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
 {
-    return Add_Account(name, Model_Account::TYPE::TERM, initial_value, notes, true, currency_symbol);
+    return Add_Account(name, Model_Account::TYPE::TERM, initial_value, notes, favorite, currency_symbol);
 }
 
 int DB_Init_Model::Add_Account(const wxString& name, Model_Account::TYPE account_type, double initial_value, const wxString& notes, bool favorite, const wxString& currency_symbol)
@@ -194,6 +195,19 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
     return Model_Payee::instance().save(payee_entry);
 }
 
+int DB_Init_Model::Get_Payee_id(const wxString& name)
+{
+    int payee_id = -1;
+    Model_Payee::Data* entry = Model_Payee::instance().get(name);
+    if (entry)
+    {
+        payee_id = entry->id();
+    }
+    else ShowMessage("The ID not found for Payee: " + name);
+
+    return payee_id;
+}
+
 int DB_Init_Model::Add_Category(const wxString& name)
 {
     Model_Category::Data* cat_entry = Model_Category::instance().create();
@@ -213,6 +227,7 @@ int DB_Init_Model::Category_id(const wxString& category)
         {
             cat_id = entry->id();
         }
+        else ShowMessage("The ID not found for Category: " + category);
     }
 
     return cat_id;
@@ -238,6 +253,7 @@ int DB_Init_Model::Subcategory_id(int category_id, const wxString& subcategory)
         {
             subcat_id = entry->id();
         }
+        else ShowMessage("The ID not found for Subcategory: " + subcategory);
     }
 
     return subcat_id;
@@ -247,7 +263,11 @@ int DB_Init_Model::Get_Account_ID(const wxString& account_name)
 {
     int account_id = -1;
     Model_Account::Data* account = Model_Account::instance().get(account_name);
-    if (account) account_id = account->id();
+    if (account)
+    {
+        account_id = account->id();
+    }
+    else ShowMessage("The ID not found for account: " + account_name);
 
     return account_id;
 }
@@ -265,8 +285,7 @@ int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE 
     tran_entry->ACCOUNTID = m_account_id;
     tran_entry->TOACCOUNTID = -1;
 
-    Model_Payee::Data* entry = Model_Payee::instance().get(payee);
-    tran_entry->PAYEEID = entry->id();
+    tran_entry->PAYEEID = Get_Payee_id(payee);
 
     // Set to Deposit
     tran_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
@@ -304,7 +323,7 @@ int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDate
 
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
     tran_entry->ACCOUNTID = m_account_id;
-    tran_entry->TOACCOUNTID = Model_Account::instance().get(to_account)->id();
+    tran_entry->TOACCOUNTID = Get_Account_ID(to_account);
     tran_entry->PAYEEID = -1;
 
     // Set to Transfer
@@ -374,12 +393,11 @@ void DB_Init_Model::Bill_Start(const wxString& account, const wxDateTime& start_
     {
         m_bill_entry = Model_Billsdeposits::instance().create();
 
-        Model_Account::Data* acc = Model_Account::instance().get(account);
-        if (acc)
+        m_bill_entry->ACCOUNTID = Get_Account_ID(account);
+        if (m_bill_entry->ACCOUNTID < 0)
         {
-            m_bill_entry->ACCOUNTID = acc->id();
+            ShowMessage("Bill Start for account: " + account + " not found.\n");
         }
-        else ShowMessage("Bill Start for account" + account + "not found.\n");
 
         m_bill_entry->NEXTOCCURRENCEDATE = start_date.FormatISODate();
 
@@ -410,9 +428,7 @@ void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDa
     if (m_bill_initialised && !m_bill_transaction_set)
     {
         m_bill_entry->TOACCOUNTID = -1;
-
-        Model_Payee::Data* entry = Model_Payee::instance().get(payee);
-        m_bill_entry->PAYEEID = entry->id();
+        m_bill_entry->PAYEEID = Get_Payee_id(payee);
 
         // Set to Deposit
         m_bill_entry->TRANSCODE = Model_Checking::instance().all_type()[trans_type];
@@ -435,7 +451,7 @@ void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& 
 {
     if (m_bill_initialised && !m_bill_transaction_set)
     {
-        m_bill_entry->TOACCOUNTID = Model_Account::instance().get(to_account)->id();
+        m_bill_entry->TOACCOUNTID = Get_Account_ID(to_account);
         m_bill_entry->PAYEEID = -1;
 
         // Set to Transfer

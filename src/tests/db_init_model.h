@@ -48,8 +48,8 @@ public:
 
     int Add_Payee(const wxString& name, const wxString& category = "", const wxString& subcategory = "");
     void Add_payee_category(const wxString& name, const wxString& category_name, const wxString& subcategory_name = ""); 
-    int Payee_id(const wxString& name);
-    
+    int Get_Payee_id(const wxString& name);
+
     int Add_Category(const wxString& name);
     int Category_id(const wxString& category);
 

@@ -26,6 +26,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "test_database_initialisation.h"
 #include <wx/frame.h>
 #include "transdialog.h"
+#include "reports/mmDateRange.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -81,25 +82,52 @@ void Test_DatabaseInitialisation::tearDown()
     m_test_db.Close();
 }
 
+void Test_DatabaseInitialisation::Financial_Year_Date_Range()
+{
+    wxDateTime starting_date(wxDateTime::Today());
+
+    // Set date to start of financial year.
+    int month = starting_date.GetMonth();
+    if (month > 6)
+    {
+        starting_date.Subtract(wxDateSpan::Months(month - 6));
+    }
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
+    starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
+
+    // Now for the tests:
+    //------------------------------------------------------------------------
+    mmCurrentFinancialYear current_financial_year(1, 6);
+    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), current_financial_year.start_date().FormatISODate());
+
+    mmLastFinancialYear last_financial_year(1, 6);
+    starting_date.Subtract(wxDateSpan::Year());
+    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), last_financial_year.start_date().FormatISODate());
+
+    mmLastYear last_year;
+    starting_date.Add(wxDateSpan::Months(6));
+    CPPUNIT_ASSERT_EQUAL(starting_date.FormatISODate(), last_year.start_date().FormatISODate());
+}
+
 void Test_DatabaseInitialisation::Add_Account_Entries()
 {
     CpuTimer Start("Account  Entries");
 
     // Add accounts
     m_test_db.Begin();
-    m_dbmodel->Add_Bank_Account("Savings", 1000, "Joint - General account");
-    m_dbmodel->Add_Term_Account("Investment Savings", 0, "Savings for special ocasions", false);
+    m_dbmodel->Add_Bank_Account("NAB: Savings", 1000, "Joint - General Account");
+    m_dbmodel->Add_Term_Account("ANZ: Cash Manager", 0, "Savings for special ocasions, Higher Interest Account", false);
+    m_dbmodel->Add_Term_Account("ANZ: Personal Loan", 0, "$10,000 @ 20% pa", false);
+
+    m_dbmodel->Add_Bank_Account("ANZ: Cheque", 0, "", false);
+    m_dbmodel->Add_Term_Account("Home Loan", -500000, "House Mortgage", false);
     
-    m_dbmodel->Add_Bank_Account("Cheque", 0, "", false);
-    m_dbmodel->Add_Term_Account("Home Loan", -500000, "", false);
-    
-    m_dbmodel->Add_Bank_Account("Mastercard", 0, "Credit Card");
-    m_dbmodel->Add_Bank_Account("Wallet - Peter", 0, "Cash Money - Daily Expenses");
-    m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
+    m_dbmodel->Add_Bank_Account("ANZ: Mastercard", 0, "Credit Card");
+    m_dbmodel->Add_Bank_Account("Wallet: Peter", 0, "Cash Money - Daily Expenses");
+    m_dbmodel->Add_Bank_Account("Wallet: Mary", 0, "Cash Money - Daily Expenses");
 
     m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
     m_dbmodel->Add_Investment_Account("Acme Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("Property Management");
     m_dbmodel->Add_Term_Account("Insurance Policies");
     m_test_db.Commit();
 }
@@ -114,10 +142,13 @@ void Test_DatabaseInitialisation::Add_Payee_Entries()
     m_dbmodel->Add_Payee("Aldi", "Food", "Groceries");
     m_dbmodel->Add_Payee("Coles", "Food", "Groceries");
     m_dbmodel->Add_Payee("Woolworths", "Food", "Groceries");
-    m_dbmodel->Add_Payee("Work: Peter", "Income", "Salary");
-    m_dbmodel->Add_Payee("Work: Mary", "Income", "Salary");
+    m_dbmodel->Add_Payee("Peter", "Income", "Salary");
+    m_dbmodel->Add_Payee("Mary", "Income", "Salary");
     m_dbmodel->Add_Payee("Bank: NAB");
     m_dbmodel->Add_Payee("Bank: ANZ");
+    m_dbmodel->Add_Payee("Government Authorities");
+    m_dbmodel->Add_Payee("Utility Provider");
+    m_dbmodel->Add_Payee("Cash - Miscellaneous");
     m_test_db.Commit();
 }
 
@@ -127,18 +158,31 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
     m_test_db.Begin();
 
     // Category structure: "Family Home"
-    int cat_id = m_dbmodel->Add_Category("Family Home");
+    int cat_id = m_dbmodel->Add_Category("Home");
     m_dbmodel->Add_Subcategory(cat_id, "General Rates");
     m_dbmodel->Add_Subcategory(cat_id, "Water Rates");
-    m_dbmodel->Add_Subcategory(cat_id, "Gas");
     m_dbmodel->Add_Subcategory(cat_id, "Electricity");
+    m_dbmodel->Add_Subcategory(cat_id, "Gas");
     m_dbmodel->Add_Subcategory(cat_id, "Phone/Internet");
-    m_dbmodel->Add_Subcategory(cat_id, "Home Insurance");
+    m_dbmodel->Add_Subcategory(cat_id, "Insurance");
+    m_dbmodel->Add_Subcategory(cat_id, "Loan Repayments");
+    m_dbmodel->Add_Subcategory(cat_id, "Loan Offset");
+    m_dbmodel->Add_Subcategory(cat_id, "Loan Interest");
 
     // Category structure: "Mastercard"
     cat_id = m_dbmodel->Add_Category("Mastercard");
     m_dbmodel->Add_Subcategory(cat_id, "Repayment");
     m_dbmodel->Add_Subcategory(cat_id, "Annual Fee");
+
+    // Category structure: "Personal Loan"
+    cat_id = m_dbmodel->Add_Category("Personal Loan");
+    m_dbmodel->Add_Subcategory(cat_id, "Repayments");
+    m_dbmodel->Add_Subcategory(cat_id, "Offset");
+    m_dbmodel->Add_Subcategory(cat_id, "Interest");
+
+    cat_id = m_dbmodel->Category_id("Income");
+    m_dbmodel->Add_Subcategory(cat_id, "Tax");
+    m_dbmodel->Add_Subcategory(cat_id, "Bank Interest");
 
     m_test_db.Commit();
 }
@@ -146,21 +190,20 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
 void Test_DatabaseInitialisation::Add_Transaction_Entries()
 {
     CpuTimer Start("Transaction Entries");
-
+    // Set date 3 years ago from today.
     wxDateTime starting_date(wxDateTime::Today().Subtract(wxDateSpan::Years(3)));
 
-    // Set date to start of financial year.
-    int month = starting_date.GetMonth() - 6;
-    if (month < 0)
+    // Advance or retard the date to the beginning of that financial year.
+    int month = starting_date.GetMonth();
+    if (month > 6)
     {
-        starting_date.Subtract(wxDateSpan::Months(month));
+        starting_date.Subtract(wxDateSpan::Months(month - 6));
     }
-    else starting_date.Add(wxDateSpan::Months(month));
+    else starting_date.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(6 - month));
     starting_date.Subtract(wxDateSpan::Days(starting_date.GetDay() - 1));
 
-    double payee_work_peter = 0;
-    double payee_work_mary = 0;
-
+    double payee_peter = 0;
+    double payee_mary = 0;
     double payee_Aldi = 0;
     double payee_Coles = 0;
     double payee_woolworths = 0;
@@ -169,142 +212,272 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     double cat_income_salary = 0;
     double cat_mastercard_repayment = 0;
     double cat_food_groceries = 0;
+    double cat_home_loan_repayments = 0;
 
     wxDateTime trans_date = starting_date;
+    m_test_db.Begin();  // Set all data to memory first, then save to database at end.
 
-    // Create transactions for a single month. These are repeated for till present day.
-    m_test_db.Begin();
+    // Setting up a personal loan
+    int personal_loan_id = m_dbmodel->Add_Trans_Transfer("ANZ: Personal Loan", trans_date, "ANZ: Cheque", 10000, "Transfer");
+    Model_Checking::Data* personal_loan = Model_Checking::instance().get(personal_loan_id);
+    personal_loan->NOTES = "Initialise $10,000 Personal loan from ANZ:Bank";
+    Model_Checking::instance().save(personal_loan);
+
+    // Create transactions for a single month. These are repeated untill current month.
+    int month_count = 0;
+    bool display_month_totals = true;
     while (starting_date < wxDateTime::Today())
     {
-        //wxLogDebug(starting_date.FormatISODate() + " trans: " + trans_date.FormatISODate());
+        month_count++;
         trans_date = starting_date;
-        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(8)), "Work: Peter", 1200.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(7)), "Work: Peter", 1500.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(7)), "Work: Peter", 1200.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(7)), "Work: Peter", 1200.0, "Income", "Salary");
-        int payee_work_peter_month = 5100;
-        int cat_income_salary_month = 5100;
+        double payee_peter_month = 0;
+        double cat_income_salary_month = 0;
+        double cat_income_tax_month = 0;
+        m_dbmodel->Add_Trans_Deposit("NAB: Savings", trans_date.Add(wxDateSpan::Days(8)), "Peter", 1200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Peter", 300.0, "Income", "Tax");
+        payee_peter_month += 1200;
+        cat_income_salary_month += 1200;
+        cat_income_tax_month += 300;
+        m_dbmodel->Add_Trans_Deposit("NAB: Savings", trans_date.Add(wxDateSpan::Days(7)), "Peter", 1500.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Peter", 375.0, "Income", "Tax");
+        payee_peter_month += 1500;
+        cat_income_salary_month += 1500;
+        cat_income_tax_month += 375;
+        m_dbmodel->Add_Trans_Deposit("NAB: Savings", trans_date.Add(wxDateSpan::Days(7)), "Peter", 1200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Peter", 300.0, "Income", "Tax");
+        payee_peter_month += 1200;
+        cat_income_salary_month += 1200;
+        cat_income_tax_month += 300;
+        m_dbmodel->Add_Trans_Deposit("NAB: Savings", trans_date.Add(wxDateSpan::Days(7)), "Peter", 1200.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Peter", 300.0, "Income", "Tax");
+        payee_peter_month += 1200;
+        cat_income_salary_month += 1200;
+        cat_income_tax_month += 300;
+        //--------------------------------------------------------------------
 
         trans_date = starting_date;
-        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(14)), "Work: Mary", 1600.0, "Income", "Salary");
-        m_dbmodel->Add_Trans_Deposit("Savings", trans_date.Add(wxDateSpan::Days(14)), "Work: Mary", 1700.0, "Income", "Salary");
-        int payee_work_mary_month = 3300;
-        cat_income_salary_month += 3300;
+        double payee_mary_month = 0;
+        m_dbmodel->Add_Trans_Deposit("NAB: Savings", trans_date.Add(wxDateSpan::Days(14)), "Mary", 1600.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Mary", 375.0, "Income", "Tax");
+        payee_mary_month += 1600;
+        cat_income_tax_month += 300;
+        cat_income_salary_month += 1600;
+        m_dbmodel->Add_Trans_Deposit("NAB: Savings", trans_date.Add(wxDateSpan::Days(14)), "Mary", 1700.0, "Income", "Salary");
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Mary", 375.0, "Income", "Tax");
+        payee_mary_month += 1700;
+        cat_income_salary_month += 1700;
+        cat_income_tax_month += 300;
+        //--------------------------------------------------------------------
 
         trans_date = starting_date;
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(1)), "Aldi", 50, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 30, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Woolworths", 40, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 120, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Aldi", 40.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 60.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 80.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(2)), "Woolworths", 20.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Coles", 60.0, "Food", "Groceries");
-        m_dbmodel->Add_Trans_Withdrawal("Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 40.0, "Food", "Groceries");
-        int payee_Aldi_month = 90;
-        int payee_Coles_month = 170;
-        int payee_supermarket_month = 240;
-        int payee_woolworths_month = 60;
-        int cat_food_groceries_month = 560;
+        double payee_aldi_month = 0;
+        double payee_coles_month = 0;
+        double payee_supermarket_month = 0;
+        double payee_woolworths_month = 0;
+        double cat_groceries_month = 0;
+
+        double food_value = 50;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(1)), "Aldi", food_value, "Food", "Groceries");
+        payee_aldi_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 30;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 30, "Food", "Groceries");
+        payee_coles_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 30;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(3)), "Woolworths", 40, "Food", "Groceries");
+        payee_woolworths_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 30;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", 100, "Food", "Groceries");
+        payee_supermarket_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 30;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", food_value, "Food", "Groceries");
+        payee_coles_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 40;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(3)), "Aldi", food_value, "Food", "Groceries");
+        payee_aldi_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 60;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", food_value, "Food", "Groceries");
+        payee_coles_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 80;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", food_value, "Food", "Groceries");
+        payee_supermarket_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 30;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(2)), "Woolworths", food_value, "Food", "Groceries");
+        payee_woolworths_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 40;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(3)), "Coles", food_value, "Food", "Groceries");
+        payee_coles_month += food_value;
+        cat_groceries_month += food_value;
+
+        food_value = 50;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date.Add(wxDateSpan::Days(3)), "Supermarket", food_value, "Food", "Groceries");
+        payee_supermarket_month += food_value;
+        cat_groceries_month += food_value;
+        //--------------------------------------------------------------------
 
         trans_date = starting_date;
-        m_dbmodel->Add_Trans_Transfer("Savings", trans_date.Add(wxDateSpan::Days(27)), "Mastercard", 30.0, "Repayment", "", true, 40.0);
-        int cat_mastercard_repayment_month = 30;
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date.Add(wxDateSpan::Days(1)), "Wallet: Peter", 70, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "Wallet: Mary", 80, "Transfer");
 
-        
-        
-        
+        m_dbmodel->Add_Trans_Withdrawal("Wallet: Peter", trans_date.Add(wxDateSpan::Days(7)), "Cash - Miscellaneous", 70, "Miscellaneous");
+        m_dbmodel->Add_Trans_Withdrawal("Wallet: Mary", trans_date, "Cash - Miscellaneous", 80, "Miscellaneous");
+
+
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "Wallet: Peter", 70, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "Wallet: Mary", 100, "Transfer");
+
+        m_dbmodel->Add_Trans_Withdrawal("Wallet: Peter", trans_date.Add(wxDateSpan::Days(7)), "Cash - Miscellaneous", 70, "Miscellaneous");
+        m_dbmodel->Add_Trans_Withdrawal("Wallet: Mary", trans_date, "Cash - Miscellaneous", 100, "Miscellaneous");
+
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "Wallet: Peter", 60, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "Wallet: Mary", 90, "Transfer");
+
+        // Add split Transactions
+        int split_id = m_dbmodel->Add_Trans_Withdrawal("Wallet: Peter", trans_date.Add(wxDateSpan::Days(8)), "Cash - Miscellaneous", 60);
+        m_dbmodel->Add_Trans_Split(split_id, 20, "Leisure", "Magazines");
+        m_dbmodel->Add_Trans_Split(split_id, 40, "Miscellaneous");
+
+        split_id = m_dbmodel->Add_Trans_Withdrawal("Wallet: Mary", trans_date, "Cash - Miscellaneous", 90);
+        m_dbmodel->Add_Trans_Split(split_id, 30, "Leisure", "Video Rental");
+        m_dbmodel->Add_Trans_Split(split_id, 20, "Miscellaneous");
+        m_dbmodel->Add_Trans_Split(split_id, 40, "Healthcare", "Health");
+
         trans_date = starting_date;
         // Quarterley Transactions
         if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6) || (trans_date.GetMonth() == 9) || (trans_date.GetMonth() == 12))  // December
         {
-
-
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date, "Government Authorities", 250, "Home", "Water Rates");
         }
 
         trans_date = starting_date;
         // Yearly Transactions - 1
-        if ((trans_date.GetMonth() == 2))
+        if ((trans_date.GetMonth() == 6))
         {
-
-
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 400, "Home", "Electricity");
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date, "Utility Provider", 700, "Home", "Gas");
         }
 
         trans_date = starting_date;
         // Yearly Transactions - 2
-        if ((trans_date.GetMonth() == 2))
+        if ((trans_date.GetMonth() == 12))
         {
-
-
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 200, "Home", "Electricity");
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date, "Utility Provider", 50, "Home", "Gas");
         }
 
         trans_date = starting_date;
         // Yearly Transactions - 3
-        if ((trans_date.GetMonth() == 2))
+        if ((trans_date.GetMonth() == 8))   // August
         {
-
-
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date.Add(wxDateSpan::Days(12)), "Government Authorities", 2200, "Home", "General Rates");
         }
 
         trans_date = starting_date;
         // Six Monthly Transactions - 1
-        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6))
+        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 9)) // March & September
         {
-
-
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 300, "Home", "Electricity");
+            m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date, "Utility Provider", 400, "Home", "Gas");
         }
+        //--------------------------------------------------------------------
 
+        // End of Month Transactions
         trans_date = starting_date;
-        // Six Monthly Transactions - 2
-        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6))
+        trans_date.SetToLastMonthDay();
+
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "ANZ: Mastercard", 625.0, "Mastercard", "Repayment");
+        int cat_mastercard_repayment_month = 30;
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Bank: NAB", 3500, "Home", "Loan Repayments");
+        m_dbmodel->Add_Trans_Deposit("Home Loan", trans_date, "Bank: NAB", 3500, "Home", "Loan Offset");
+        m_dbmodel->Add_Trans_Withdrawal("Home Loan", trans_date, "Bank: NAB", 500, "Home", "Loan Interest");
+
+        m_dbmodel->Add_Trans_Withdrawal("ANZ: Mastercard", trans_date, "Utility Provider", 150, "Home", "Phone/Internet");
+
+        m_dbmodel->Add_Trans_Withdrawal("NAB: Savings", trans_date, "Bank: ANZ", 180, "Personal Loan", "Repayments");
+        m_dbmodel->Add_Trans_Deposit("ANZ: Personal Loan", trans_date, "Bank: ANZ", 180, "Personal Loan", "Offset");
+        m_dbmodel->Add_Trans_Withdrawal("ANZ: Personal Loan", trans_date, "Bank: ANZ", ((10000 - (180 * month_count)) * 0.20) / 12 , "Personal Loan", "Interest");
+
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "ANZ: Cheque", 100, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB: Savings", trans_date, "ANZ: Cash Manager", 250, "Transfer");
+        m_dbmodel->Add_Trans_Deposit("ANZ: Cash Manager", trans_date, "Bank: ANZ", (250 * month_count * .05)/12, "Income", "Bank Interest");
+
+        double home_loan_repayments_month = 1000;
+
+        //--------------------------------------------------------------------
+        if (display_month_totals)
         {
+            m_dbmodel->Add_Asset("Month Totals", starting_date, 0, Model_Asset::TYPE::TYPE_OTHER);
+            m_dbmodel->Add_Asset("Payee: Peter", starting_date, payee_peter_month);
+            m_dbmodel->Add_Asset("Payee: Mary", starting_date, payee_mary_month);
+            m_dbmodel->Add_Asset("Category: Income/Salary", starting_date, cat_income_salary_month);
+            m_dbmodel->Add_Asset("Category: Income/Tax", starting_date, cat_income_tax_month);
 
+            m_dbmodel->Add_Asset("Payee: Aldi", starting_date, payee_aldi_month);
+            m_dbmodel->Add_Asset("Payee: Coles", starting_date, payee_coles_month);
+            m_dbmodel->Add_Asset("Payee: Supermarket", starting_date, payee_supermarket_month);
+            m_dbmodel->Add_Asset("Payee: Woolworths", starting_date, payee_woolworths_month);
 
+            m_dbmodel->Add_Asset("Category: Mastercard Repayment", starting_date, cat_mastercard_repayment_month);
+            m_dbmodel->Add_Asset("Category: Food/Groceries", starting_date, cat_groceries_month);
+            m_dbmodel->Add_Asset("Category: Home/Loan Repayments", starting_date, home_loan_repayments_month);
+            
+            display_month_totals = false;
         }
 
-        m_dbmodel->Add_Asset("payee_work_peter", starting_date, payee_work_peter_month);
-        m_dbmodel->Add_Asset("payee_work_mary", starting_date, payee_work_mary_month);
-        m_dbmodel->Add_Asset("cat_income_salary", starting_date, cat_income_salary_month);
+        // -------------------------------------------------------------------
+        // Collect Totals Data.
+        payee_peter += payee_peter_month;
+        payee_mary += payee_mary_month;
 
-        m_dbmodel->Add_Asset("payee_Aldi", starting_date, payee_Aldi_month);
-        m_dbmodel->Add_Asset("payee_Coles", starting_date, payee_Coles_month);
-        m_dbmodel->Add_Asset("payee_supermarket", starting_date, payee_supermarket_month);
-        m_dbmodel->Add_Asset("payee_woolworths", starting_date, payee_woolworths_month);
-
-        m_dbmodel->Add_Asset("cat_mastercard_repayment", starting_date, cat_mastercard_repayment_month);
-        m_dbmodel->Add_Asset("cat_food_groceries", starting_date, cat_food_groceries_month);
-
-        // End of transactions for month---------------------------------------
-        starting_date.Add(wxDateSpan::Month());
-
-        payee_work_peter += payee_work_peter_month;
-        payee_work_mary += payee_work_mary_month;
-
-        payee_Aldi += payee_Aldi_month;
-        payee_Coles += payee_Coles_month;
+        payee_Aldi += payee_aldi_month;
+        payee_Coles += payee_coles_month;
         payee_woolworths += payee_woolworths_month;
         payee_supermarket += payee_supermarket_month;
 
         cat_income_salary += cat_income_salary_month;
         cat_mastercard_repayment += cat_mastercard_repayment_month;
-        cat_food_groceries += cat_food_groceries_month;
+        cat_food_groceries += cat_groceries_month;
+        cat_home_loan_repayments += home_loan_repayments_month;
+
+        // Set start of next month transactions
+        starting_date.Add(wxDateSpan::Month());
     }
 
-    m_dbmodel->Add_Asset("payee_work_peter", starting_date, payee_work_peter);
-    m_dbmodel->Add_Asset("payee_work_mary", starting_date, payee_work_mary);
-    m_dbmodel->Add_Asset("cat_income_salary", starting_date, cat_income_salary);
+    // -----------------------------------------------------------------------
+    // Report Totals for payees and categories
+    m_dbmodel->Add_Asset("Grand Totals", starting_date, 0, Model_Asset::TYPE::TYPE_OTHER);
+    m_dbmodel->Add_Asset("Payee: Peter", starting_date, payee_peter);
+    m_dbmodel->Add_Asset("Payee: Mary", starting_date, payee_mary);
+    m_dbmodel->Add_Asset("Category: Income/Salary", starting_date, cat_income_salary);
 
-    m_dbmodel->Add_Asset("payee_Aldi", starting_date, payee_Aldi);
-    m_dbmodel->Add_Asset("payee_Coles", starting_date, payee_Coles);
-    m_dbmodel->Add_Asset("payee_supermarket", starting_date, payee_supermarket);
-    m_dbmodel->Add_Asset("payee_woolworths", starting_date, payee_woolworths);
+    m_dbmodel->Add_Asset("Payee: Aldi", starting_date, payee_Aldi);
+    m_dbmodel->Add_Asset("Payee: Coles", starting_date, payee_Coles);
+    m_dbmodel->Add_Asset("Payee: Supermarket", starting_date, payee_supermarket);
+    m_dbmodel->Add_Asset("Payee: Woolworths", starting_date, payee_woolworths);
 
-    m_dbmodel->Add_Asset("cat_mastercard_repayment", starting_date, cat_mastercard_repayment);
-    m_dbmodel->Add_Asset("cat_food_groceries", starting_date, cat_food_groceries);
+    m_dbmodel->Add_Asset("Category: Food/Groceries", starting_date, cat_food_groceries);
+    m_dbmodel->Add_Asset("Category: Mastercard/Repayment", starting_date, cat_mastercard_repayment);
+    m_dbmodel->Add_Asset("home_loan_repayments", starting_date, cat_home_loan_repayments);
 
-    m_test_db.Commit();
+    //------------------------------------------------------------------------ 
+    m_test_db.Commit(); // Finalise the database entries.
 }
 
 void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
@@ -314,7 +487,7 @@ void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
 
     m_test_db.Begin();
 
-    m_dbmodel->Bill_Start("Mastercard", start_date, Model_Billsdeposits::REPEAT_WEEKLY);
+    m_dbmodel->Bill_Start("ANZ: Mastercard", start_date, Model_Billsdeposits::REPEAT_WEEKLY);
     m_dbmodel->Bill_Trans_Withdrawal(start_date, "Woolworths", 100);
     int bill_id = m_dbmodel->BILL_End();
    
