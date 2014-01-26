@@ -142,7 +142,7 @@ void mmGeneralReportManager::fillControls()
     }
     m_treeCtrl->ExpandAll();
     //m_treeCtrl->SetEvtHandlerEnabled(true);
-    showHelp();
+    if (m_selectedItemID == m_rootItem) showHelp();
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -571,6 +571,11 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     if (!report)
     {
         for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
+        wxString repList = "<table>";
+        for (const auto& rep: Model_Report::instance().find(Model_Report::GROUPNAME(m_selectedGroup)))
+            repList += "<tr><td>" + rep.REPORTNAME + "</td><td>" + rep.DESCRIPTION + "</td></tr>";
+        repList += "</table>";
+        m_outputHTML->SetPage(repList, "");
     }
     else
     {
@@ -589,6 +594,8 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
+        
+        m_outputHTML->SetPage(report->DESCRIPTION, "");
 
         viewControls(true);
     }
@@ -693,20 +700,24 @@ void mmGeneralReportManager::newReport(int sample)
     while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
         report_name = wxString::Format(_("New Report %i"), ++i);
     report->REPORTNAME = report_name;
-    wxString sqlContent, luaContent, httContent;
+    wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
     case ID_NEW_EMPTY:
-        sqlContent = ""; luaContent = ""; httContent = ""; break;
+        sqlContent = ""; luaContent = ""; httContent = "";
+        description = _("New Report");
+        break;
     case ID_NEW_SAMPLE_ASSETS:
         sqlContent = SAMPLE_ASSETS_SQL;
         luaContent = SAMPLE_ASSETS_LUA;
         httContent = SAMPLE_ASSETS_HTT;
+        description = SAMPLE_ASSETS_DESC;
         break;
     }
 
     report->SQLCONTENT = sqlContent;
     report->LUACONTENT = luaContent;
     report->TEMPLATECONTENT = httContent;
+    report->DESCRIPTION = description;
     m_selectedReportID = Model_Report::instance().save(report);
 }
 
@@ -742,6 +753,8 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
         txt << report->LUACONTENT;
         zip.PutNextEntry("template.htt");
         txt << report->TEMPLATECONTENT;
+        zip.PutNextEntry("description.txt");
+        txt << report->DESCRIPTION;
     }
 }
 

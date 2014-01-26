@@ -112,6 +112,9 @@ private:
         ID_CSS_CONTENT,
         ID_JS_CONTENT,
     };
+    
+    const wxString SAMPLE_ASSETS_DESC =
+        _("Assets");
     const wxString SAMPLE_ASSETS_LUA =
         "local total_balance = 0\n"
         "function handle_record(record)\n"
