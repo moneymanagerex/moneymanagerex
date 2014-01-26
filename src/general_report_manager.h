@@ -70,6 +70,7 @@ private:
     void newReport(int sample = ID_NEW_EMPTY);
     void createEditorTab(wxNotebook* notebook, int type);
     void createOutputTab(wxNotebook* notebook, int type);
+    void showHelp();
 
     std::vector <std::vector <wxString> > m_sqlQueryData;
 
