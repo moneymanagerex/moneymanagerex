@@ -394,7 +394,7 @@ void mmGeneralReportManager::importReport()
         report->REPORTNAME = clearFileName;
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
-        report->TEMPLATEPATH = htt;
+        report->TEMPLATECONTENT = htt;
         m_selectedReportID = Model_Report::instance().save(report);
     }
 
@@ -488,7 +488,7 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
-        report->TEMPLATEPATH = templateText->GetValue();
+        report->TEMPLATECONTENT = templateText->GetValue();
 
         Model_Report::instance().save(report);
     }
@@ -583,7 +583,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
 
-        templateText->ChangeValue(report->TEMPLATEPATH);
+        templateText->ChangeValue(report->TEMPLATECONTENT);
         templateText->SetLexerHtml();
         SqlScriptText->ChangeValue(report->SQLCONTENT);
         SqlScriptText->SetLexerSql();
@@ -706,7 +706,7 @@ void mmGeneralReportManager::newReport(int sample)
 
     report->SQLCONTENT = sqlContent;
     report->LUACONTENT = luaContent;
-    report->TEMPLATEPATH = httContent; //TODO: rename TEMPLATEPATH to TEMPLATECONTENT
+    report->TEMPLATECONTENT = httContent;
     m_selectedReportID = Model_Report::instance().save(report);
 }
 
@@ -741,7 +741,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
         zip.PutNextEntry("luacontent.lua");
         txt << report->LUACONTENT;
         zip.PutNextEntry("template.htt");
-        txt << report->TEMPLATEPATH;
+        txt << report->TEMPLATECONTENT;
     }
 }
 

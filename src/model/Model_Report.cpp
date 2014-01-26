@@ -48,12 +48,6 @@ public:
     void set(const char* index, const char * val) { (*this)[std::string(index)] = std::string(val); }
 };
 
-const std::vector<std::pair<Model_Report::STATUS, wxString> > Model_Report::STATUS_CHOICES = 
-{
-    std::make_pair(Model_Report::ACTIVE, wxTRANSLATE("ACTIVE"))
-    , std::make_pair(Model_Report::INACTIVE, wxTRANSLATE("INACTIVE"))
-};
-
 Model_Report::Model_Report(): Model<DB_Table_REPORT_V1>()
 {
 }
@@ -91,7 +85,7 @@ wxString Model_Report::get_html(const Data* r)
 
     wxFileOutputStream output(fName.GetFullName());
     wxTextOutputStream text(output);
-    text << r->TEMPLATEPATH;
+    text << r->TEMPLATECONTENT;
     output.Close();
 
     mm_html_template report(fName.GetFullName());

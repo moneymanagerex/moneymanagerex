@@ -800,12 +800,12 @@ struct SorterByCURRENCYNAME
     }
 };
 
-struct SorterByTEMPLATEPATH
+struct SorterByTEMPLATECONTENT
 { 
     template<class DATA>
     bool operator()(const DATA& x, const DATA& y)
     {
-        return x.TEMPLATEPATH < y.TEMPLATEPATH;
+        return x.TEMPLATECONTENT < y.TEMPLATECONTENT;
     }
 };
 
