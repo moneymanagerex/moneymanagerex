@@ -391,7 +391,7 @@ struct DB_Table_%s : public DB_Table
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
         wxString sql = wxEmptyString;
-        if (entity->id() < 0) //  new & insert
+        if (entity->id() <= 0) //  new & insert
         {
             sql = "INSERT INTO %s(%s) VALUES(%s)";
         }''' % (self._table, ', '.join([field['name'] for field in self._fields if not field['pk']]), ', '.join(['?' for field in self._fields if not field['pk']]))
@@ -441,7 +441,7 @@ struct DB_Table_%s : public DB_Table
             return false;
         }
 
-        if (entity->id() < 0) entity->id((db->GetLastRowId()).ToLong());
+        if (entity->id() <= 0) entity->id((db->GetLastRowId()).ToLong());
         return true;
     }
 ''' % (len(self._fields), self._primay_key, self._table)
@@ -449,7 +449,7 @@ struct DB_Table_%s : public DB_Table
     /** Remove the Data record from the database and the memory table (cache) */
     bool remove(int id, wxSQLite3Database* db)
     {
-        if (id < 0) return false;
+        if (id <= 0) return false;
         try
         {
             wxString sql = "DELETE FROM %s WHERE %s = ?";
@@ -501,7 +501,7 @@ struct DB_Table_%s : public DB_Table
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id < 0) 
+        if (id <= 0) 
         {
             ++ skip_;
             return 0;

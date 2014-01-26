@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-16 02:43:09.708000.
+ *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -364,7 +364,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     bool save(Self::Data* entity, wxSQLite3Database* db)
     {
         wxString sql = wxEmptyString;
-        if (entity->id() < 0) //  new & insert
+        if (entity->id() <= 0) //  new & insert
         {
             sql = "INSERT INTO CURRENCYFORMATS_V1(CURRENCYNAME, PFX_SYMBOL, SFX_SYMBOL, DECIMAL_POINT, GROUP_SEPARATOR, UNIT_NAME, CENT_NAME, SCALE, BASECONVRATE, CURRENCY_SYMBOL) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         }
@@ -415,14 +415,14 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             return false;
         }
 
-        if (entity->id() < 0) entity->id((db->GetLastRowId()).ToLong());
+        if (entity->id() <= 0) entity->id((db->GetLastRowId()).ToLong());
         return true;
     }
 
     /** Remove the Data record from the database and the memory table (cache) */
     bool remove(int id, wxSQLite3Database* db)
     {
-        if (id < 0) return false;
+        if (id <= 0) return false;
         try
         {
             wxString sql = "DELETE FROM CURRENCYFORMATS_V1 WHERE CURRENCYID = ?";
@@ -472,7 +472,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     */
     Self::Data* get(int id, wxSQLite3Database* db)
     {
-        if (id < 0) 
+        if (id <= 0) 
         {
             ++ skip_;
             return 0;
