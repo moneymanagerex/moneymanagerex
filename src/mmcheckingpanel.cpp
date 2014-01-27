@@ -215,48 +215,69 @@ void mmCheckingPanel::sortTable()
 void mmCheckingPanel::filterTable()
 {
     this->m_trans.clear();
-    account_balance_ = 0.0;
-    reconciled_balance_ = 0.0;
+    account_balance_ = m_account ? m_account->INITIALBAL : 0.0;
+    reconciled_balance_ = account_balance_;
     filteredBalance_ = 0.0;
-    if (m_account)
-    {
-        account_balance_ = m_account->INITIALBAL;
-        reconciled_balance_ = account_balance_;
-    }
+
     int interval = GetTickCount();
     const auto& trans = Model_Account::transaction(this->m_account);
-    wxLogDebug("Get data %s ms", wxString() << GetTickCount() - interval);
-    interval = GetTickCount();
+
+    std::map <wxString, int> speed;
+    speed["Get Data"] += GetTickCount() - interval;
+
 #if 0
     copy(trans.begin(), trans.end(), back_inserter(m_trans));
 #else
     for (const auto& tran : trans)
     {
+        interval = GetTickCount();
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
+        speed["Balance calc"] += GetTickCount() - interval;
+
         if (transFilterActive_)
         {
-            if (!transFilterDlg_->checkAll(tran, m_AccountID)) continue;
+            interval = GetTickCount();
+            if (!transFilterDlg_->checkAll(tran, m_AccountID))
+            {
+                speed["Filter"] += GetTickCount() - interval;
+                continue;
+            }
+            speed["Filter"] += GetTickCount() - interval;
         }
         else
         {
+            interval = GetTickCount();
             if (!Model_Checking::TRANSDATE(tran)
-                .IsBetween(quickFilterBeginDate_, quickFilterEndDate_)
-                ) continue;
+                .IsBetween(quickFilterBeginDate_, quickFilterEndDate_))
+            {
+                speed["Filter"] += GetTickCount() - interval;
+                continue;
+            }
+            speed["Filter"] += GetTickCount() - interval;
         }
 
-        if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_) continue;
+        interval = GetTickCount();
+        if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
+        {
+            speed["Status check"] += GetTickCount() - interval;
+            continue;
+        }
+        speed["Status check"] += GetTickCount() - interval;
 
+        interval = GetTickCount();
         Model_Checking::Full_Data full_tran(tran);
         full_tran.BALANCE = account_balance_;
 
         if (transaction_amount > 0)
-            full_tran.DEPOSIT = Model_Currency::toString(fabs(transaction_amount), this->m_currency);
+            full_tran.DEPOSIT = Model_Currency::toString(transaction_amount, this->m_currency);
         else
             full_tran.WITHDRAWAL = Model_Currency::toString(fabs(transaction_amount), this->m_currency);
+        speed["Amount to string"] += GetTickCount() - interval;
 
+        interval = GetTickCount();
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
         {
             bool transfer_to = tran.ACCOUNTID == this->m_AccountID;
@@ -265,9 +286,15 @@ void mmCheckingPanel::filterTable()
 
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
+        speed["Transfer prefix + push_back"] += GetTickCount() - interval;
     }
 #endif
-    wxLogDebug("Filtering %s ms", wxString() << GetTickCount() - interval);
+    wxLogDebug("-----------------------------------------------------------------\n Records: %s", wxString() << trans.size());
+    for (const auto& item : speed)
+    {
+        wxLogDebug("%s - %s ms", item.first, wxString::Format("%i", item.second));
+    }
+
 }
 
 void mmCheckingPanel::updateTable()
@@ -1508,31 +1535,19 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
     this->SetEvtHandlerEnabled(false);
     Hide();
 
-    // clear everything
-    DeleteAllItems();
-
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
     m_cp->filterTable();
     m_cp->sortTable();
     SetItemCount(m_cp->m_trans.size());
-    Show();
-    m_cp->setAccountSummary();
-
     m_cp->markSelectedTransaction(trans_id);
 
     if (topItemIndex_ >= (long)m_cp->m_trans.size())
         topItemIndex_ = g_asc ? (long)m_cp->m_trans.size() - 1 : 0;
-
     if (m_selectedIndex > (long)m_cp->m_trans.size() - 1) m_selectedIndex = -1;
-
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
-    if (!m_cp->m_trans.empty()) {
-        RefreshItems(0, m_cp->m_trans.size() - 1);
-    }
-    else
-        m_selectedIndex = -1;
+    Refresh();
 
     if (m_selectedIndex >= 0 && !m_cp->m_trans.empty())
     {
@@ -1542,9 +1557,9 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
             topItemIndex_ = m_selectedIndex;
         EnsureVisible(topItemIndex_);
     }
-    //debugger
-    //wxLogDebug("+trx id:%d | top:%ld | selected:%ld", trans_id, topItemIndex_, m_selectedIndex);
 
+    Show();
+    m_cp->setAccountSummary();
     m_cp->updateExtraTransactionData(m_selectedIndex);
     this->SetEvtHandlerEnabled(true);
 }
