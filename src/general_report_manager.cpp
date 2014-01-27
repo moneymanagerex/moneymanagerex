@@ -29,19 +29,6 @@
 #include <memory>
 #include <wx/richtooltip.h>
 
-#ifndef _WIN32
-    #include <sys/time.h>
-
-    unsigned GetTickCount()
-    {
-            struct timeval tv;
-            if(gettimeofday(&tv, NULL) != 0)
-                return 0;
-
-            return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-    }
-#endif
-
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
 

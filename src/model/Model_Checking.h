@@ -40,7 +40,7 @@ public:
     {
         Full_Data();
         Full_Data(const Data& r);
-        Full_Data::Full_Data(const Data& r, double &balance);
+        Full_Data(const Data& r, double &balance);
 
         ~Full_Data();
         wxString ACCOUNTNAME, TOACCOUNTNAME;
