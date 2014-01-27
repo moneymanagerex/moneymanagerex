@@ -52,6 +52,19 @@
 #include <algorithm>
 //----------------------------------------------------------------------------
 
+#ifndef _WIN32
+#include <sys/time.h>
+
+unsigned GetTickCount()
+{
+    struct timeval tv;
+    if (gettimeofday(&tv, NULL) != 0)
+        return 0;
+
+    return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+}
+#endif
+
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
     EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
@@ -210,8 +223,14 @@ void mmCheckingPanel::filterTable()
         account_balance_ = m_account->INITIALBAL;
         reconciled_balance_ = account_balance_;
     }
-
-    for (const auto& tran : Model_Account::transaction(this->m_account))
+    int interval = GetTickCount();
+    const auto& trans = Model_Account::transaction(this->m_account);
+    wxLogDebug("Get data %s ms", wxString() << GetTickCount() - interval);
+    interval = GetTickCount();
+#if 1
+    copy(trans.begin(), trans.end(), back_inserter(m_trans));
+#else
+    for (const auto& tran : trans)
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
@@ -247,6 +266,8 @@ void mmCheckingPanel::filterTable()
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
     }
+#endif
+    wxLogDebug("Sorting %s ms", wxString() << GetTickCount() - interval);
 }
 
 void mmCheckingPanel::updateTable()
