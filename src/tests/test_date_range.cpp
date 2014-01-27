@@ -109,7 +109,7 @@ void Test_Date_Range::Current_Year_To_Date()
 
 void Test_Date_Range::Last_Financial_Year()
 {
-    mmLastFinancialYear last_financial_year(1, 6);
+    mmLastFinancialYear last_financial_year(1, 7);
     m_start_date->Subtract(wxDateSpan::Year());
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), last_financial_year.start_date().FormatISODate());
 
@@ -119,7 +119,7 @@ void Test_Date_Range::Last_Financial_Year()
 
 void Test_Date_Range::Current_Financial_Year()
 {
-    mmCurrentFinancialYear current_financial_year(1, 6);
+    mmCurrentFinancialYear current_financial_year(1, 7);
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), current_financial_year.start_date().FormatISODate());
 
     m_start_date->Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
@@ -128,7 +128,7 @@ void Test_Date_Range::Current_Financial_Year()
 
 void Test_Date_Range::Current_Financial_Year_To_Date()
 {
-    mmCurrentFinancialYear current_financial_year_to_date(1, 6);
+    mmCurrentFinancialYearToDate current_financial_year_to_date(1, 7);
     CPPUNIT_ASSERT_EQUAL(m_start_date->FormatISODate(), current_financial_year_to_date.start_date().FormatISODate());
 
     wxDateTime today(wxDateTime::Today());

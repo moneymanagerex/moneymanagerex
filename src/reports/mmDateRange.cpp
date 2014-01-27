@@ -151,49 +151,40 @@ mmLastYear::mmLastYear()
 mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
 : mmDateRange()
 {
-    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
-    this->end_date_ = wxDateTime(start_date_).SetMonth(wxDateTime::Dec).SetDay(31);
-    this->start_date_.Add(wxDateSpan::Days(day-1)).Add(wxDateSpan::Months(month-1));
-    this->end_date_.Add(wxDateSpan::Days(day-1)).Add(wxDateSpan::Months(month-1));
-
-    if (today_ < start_date_)
+    // Set date to the beginning of a financial year.
+    int this_month = this->start_date_.GetMonth() + 1;
+    if (this_month > month)
     {
-        start_date_.Subtract(wxDateSpan::Years(1));
-        end_date_.Subtract(wxDateSpan::Years(1));
+        this->start_date_.Subtract(wxDateSpan::Months(this_month - month));
     }
+    else
+    {
+        this->start_date_.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(month - this_month));
+    }
+    this->start_date_.Subtract(wxDateSpan::Days(this->start_date_.GetDay() - 1)).Add(wxDateSpan::Days(day - 1));
+    
+    this->end_date_ = this->start_date_;
+    this->end_date_.Add(wxDateSpan::Year()).Subtract(wxDateSpan::Day());
     this->title_ = _("Current Financial Year");
 }
 
 mmCurrentFinancialYearToDate::mmCurrentFinancialYearToDate(const int day, const int month)
 : mmDateRange()
 {
-    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan);
-    this->start_date_.Add(wxDateSpan::Days(day - 1)).Add(wxDateSpan::Months(month - 1));
+    mmCurrentFinancialYear current_financial_year(day, month);
+    this->start_date_ = current_financial_year.start_date();
     // no change to end_date_
 
-    if (today_ < start_date_)
-    {
-        start_date_.Subtract(wxDateSpan::Years(1));
-    }
     this->title_ = _("Current Financial Year to Date");
 }
 
 mmLastFinancialYear::mmLastFinancialYear(const int day, const int month)
 : mmDateRange()
 {
-    this->start_date_.SetDay(1).SetMonth(wxDateTime::Jan)
-        .Add(wxDateSpan::Days(day-1))
-        .Add(wxDateSpan::Months(month-1))
-        .Subtract(wxDateSpan::Years(1));;
-    this->end_date_ = wxDateTime(start_date_).SetMonth(wxDateTime::Dec)
-        .SetDay(31).Add(wxDateSpan::Days(day-1))
-        .Add(wxDateSpan::Months(month-1));
+    mmCurrentFinancialYear current_financial_year(day, month);
+    this->start_date_ = current_financial_year.start_date().Subtract(wxDateSpan::Year());
+    this->end_date_ = current_financial_year.end_date().Subtract(wxDateSpan::Year());
 
-    if (today_ < start_date_)
-    {
-        this->start_date_.Subtract(wxDateSpan::Years(1));
-        this->end_date_.Subtract(wxDateSpan::Years(1));
-    }
     this->title_ = _("Last Financial Year");
 }
 
