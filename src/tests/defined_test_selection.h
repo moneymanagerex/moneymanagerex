@@ -18,4 +18,5 @@ Action:         Comment out any unwanted test.
 //#define __MMEX_TESTS__RELOCATE_CATEGORY
 //#define __MMEX_TESTS__RELOCATE_PAYEE
 //#define __MMEX_TESTS__STOCKS
-#define __MMEX_TESTS__TEST_DATABASE_INITIALISATION
+//#define __MMEX_TESTS__TEST_DATABASE_INITIALISATION
+#define __MMEX_TESTS__TEST_DATE_RANGE

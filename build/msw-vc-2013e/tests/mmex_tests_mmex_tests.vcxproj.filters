@@ -357,6 +357,9 @@
     <ClCompile Include="..\..\..\src\tests\test_database_initialisation.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\tests\test_date_range.cpp">
+      <Filter>Test Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -747,6 +750,9 @@
       <Filter>Test Headers\Base</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_database_initialisation.h">
+      <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\tests\test_date_range.h">
       <Filter>Test Headers</Filter>
     </ClInclude>
   </ItemGroup>

@@ -332,6 +332,7 @@
     <ClCompile Include="..\..\..\src\tests\test_checking.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_currency.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_database_initialisation.cpp" />
+    <ClCompile Include="..\..\..\src\tests\test_date_range.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_filtertrans_dialog.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_relocate_category.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_relocate_payee.cpp" />
@@ -478,6 +479,7 @@
     <ClInclude Include="..\..\..\src\tests\test_checking.h" />
     <ClInclude Include="..\..\..\src\tests\test_currency.h" />
     <ClInclude Include="..\..\..\src\tests\test_database_initialisation.h" />
+    <ClInclude Include="..\..\..\src\tests\test_date_range.h" />
     <ClInclude Include="..\..\..\src\tests\test_filtertrans_dialog.h" />
     <ClInclude Include="..\..\..\src\tests\test_relocate_category.h" />
     <ClInclude Include="..\..\..\src\tests\test_relocate_payee.h" />

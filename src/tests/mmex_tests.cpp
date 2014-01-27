@@ -70,7 +70,7 @@ int main(int /*argc*/, char const* /*argv*/[])
 		outputter.write();
 
         // Pause command window. Allow user to review results from Windows and/or IDE
-        std::cout << "\nDeleting temporary database files created for the tests.";
+        std::cout << "\nDeleting any temporary database files created for the tests.";
         std::cout << "\nPress ENTER to continue... ";
         std::cin.get();
     }

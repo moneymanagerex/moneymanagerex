@@ -24,8 +24,6 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include "framebase_tests.h"
 //----------------------------------------------------------------------------
 #include "test_database_initialisation.h"
-#include <wx/frame.h>
-#include "transdialog.h"
 #include "reports/mmDateRange.h"
 
 /*****************************************************************************
