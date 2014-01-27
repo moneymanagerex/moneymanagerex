@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -160,8 +160,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            CATEGID = q.GetInt("CATEGID");
-            CATEGNAME = q.GetString("CATEGNAME");
+            CATEGID = q.GetInt(0); // CATEGID
+            CATEGNAME = q.GetString(1); // CATEGNAME
         }
 
         wxString to_json() const

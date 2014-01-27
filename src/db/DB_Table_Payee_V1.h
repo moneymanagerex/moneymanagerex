@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -180,10 +180,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             view_ = view;
         
-            PAYEEID = q.GetInt("PAYEEID");
-            PAYEENAME = q.GetString("PAYEENAME");
-            CATEGID = q.GetInt("CATEGID");
-            SUBCATEGID = q.GetInt("SUBCATEGID");
+            PAYEEID = q.GetInt(0); // PAYEEID
+            PAYEENAME = q.GetString(1); // PAYEENAME
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
         }
 
         wxString to_json() const

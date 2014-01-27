@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -170,9 +170,9 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            SUBCATEGID = q.GetInt("SUBCATEGID");
-            SUBCATEGNAME = q.GetString("SUBCATEGNAME");
-            CATEGID = q.GetInt("CATEGID");
+            SUBCATEGID = q.GetInt(0); // SUBCATEGID
+            SUBCATEGNAME = q.GetString(1); // SUBCATEGNAME
+            CATEGID = q.GetInt(2); // CATEGID
         }
 
         wxString to_json() const

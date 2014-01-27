@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -261,19 +261,19 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         {
             view_ = view;
         
-            ACCOUNTID = q.GetInt("ACCOUNTID");
-            ACCOUNTNAME = q.GetString("ACCOUNTNAME");
-            ACCOUNTTYPE = q.GetString("ACCOUNTTYPE");
-            ACCOUNTNUM = q.GetString("ACCOUNTNUM");
-            STATUS = q.GetString("STATUS");
-            NOTES = q.GetString("NOTES");
-            HELDAT = q.GetString("HELDAT");
-            WEBSITE = q.GetString("WEBSITE");
-            CONTACTINFO = q.GetString("CONTACTINFO");
-            ACCESSINFO = q.GetString("ACCESSINFO");
-            INITIALBAL = q.GetDouble("INITIALBAL");
-            FAVORITEACCT = q.GetString("FAVORITEACCT");
-            CURRENCYID = q.GetInt("CURRENCYID");
+            ACCOUNTID = q.GetInt(0); // ACCOUNTID
+            ACCOUNTNAME = q.GetString(1); // ACCOUNTNAME
+            ACCOUNTTYPE = q.GetString(2); // ACCOUNTTYPE
+            ACCOUNTNUM = q.GetString(3); // ACCOUNTNUM
+            STATUS = q.GetString(4); // STATUS
+            NOTES = q.GetString(5); // NOTES
+            HELDAT = q.GetString(6); // HELDAT
+            WEBSITE = q.GetString(7); // WEBSITE
+            CONTACTINFO = q.GetString(8); // CONTACTINFO
+            ACCESSINFO = q.GetString(9); // ACCESSINFO
+            INITIALBAL = q.GetDouble(10); // INITIALBAL
+            FAVORITEACCT = q.GetString(11); // FAVORITEACCT
+            CURRENCYID = q.GetInt(12); // CURRENCYID
         }
 
         wxString to_json() const

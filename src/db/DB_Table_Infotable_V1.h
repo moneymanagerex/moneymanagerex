@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -169,9 +169,9 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             view_ = view;
         
-            INFOID = q.GetInt("INFOID");
-            INFONAME = q.GetString("INFONAME");
-            INFOVALUE = q.GetString("INFOVALUE");
+            INFOID = q.GetInt(0); // INFOID
+            INFONAME = q.GetString(1); // INFONAME
+            INFOVALUE = q.GetString(2); // INFOVALUE
         }
 
         wxString to_json() const

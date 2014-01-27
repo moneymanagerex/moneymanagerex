@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -191,11 +191,11 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
         {
             view_ = view;
         
-            SPLITTRANSID = q.GetInt("SPLITTRANSID");
-            TRANSID = q.GetInt("TRANSID");
-            CATEGID = q.GetInt("CATEGID");
-            SUBCATEGID = q.GetInt("SUBCATEGID");
-            SPLITTRANSAMOUNT = q.GetDouble("SPLITTRANSAMOUNT");
+            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
+            TRANSID = q.GetInt(1); // TRANSID
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
         }
 
         wxString to_json() const

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -205,13 +205,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             view_ = view;
         
-            REPORTID = q.GetInt("REPORTID");
-            REPORTNAME = q.GetString("REPORTNAME");
-            GROUPNAME = q.GetString("GROUPNAME");
-            SQLCONTENT = q.GetString("SQLCONTENT");
-            LUACONTENT = q.GetString("LUACONTENT");
-            TEMPLATECONTENT = q.GetString("TEMPLATECONTENT");
-            DESCRIPTION = q.GetString("DESCRIPTION");
+            REPORTID = q.GetInt(0); // REPORTID
+            REPORTNAME = q.GetString(1); // REPORTNAME
+            GROUPNAME = q.GetString(2); // GROUPNAME
+            SQLCONTENT = q.GetString(3); // SQLCONTENT
+            LUACONTENT = q.GetString(4); // LUACONTENT
+            TEMPLATECONTENT = q.GetString(5); // TEMPLATECONTENT
+            DESCRIPTION = q.GetString(6); // DESCRIPTION
         }
 
         wxString to_json() const

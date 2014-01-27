@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -169,9 +169,9 @@ struct DB_Table_SETTING_V1 : public DB_Table
         {
             view_ = view;
         
-            SETTINGID = q.GetInt("SETTINGID");
-            SETTINGNAME = q.GetString("SETTINGNAME");
-            SETTINGVALUE = q.GetString("SETTINGVALUE");
+            SETTINGID = q.GetInt(0); // SETTINGID
+            SETTINGNAME = q.GetString(1); // SETTINGNAME
+            SETTINGVALUE = q.GetString(2); // SETTINGVALUE
         }
 
         wxString to_json() const

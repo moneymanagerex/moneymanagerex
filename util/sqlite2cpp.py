@@ -24,7 +24,8 @@ def get_table_list(cursor):
 def _table_info(cursor, name):
     cursor.execute('PRAGMA table_info(%s)' % name)
     # cid, name, type, notnull, dflt_value, pk
-    return [{'name': field[1],
+    return [{'cid': field[0],
+        'name': field[1],
         'type': field[2].upper(),
         'null_ok': not field[3],
         'pk': field[5]     # undocumented
@@ -271,7 +272,7 @@ struct DB_Table_%s : public DB_Table
         for field in self._fields:
             func = base_data_types_function[field['type']]
             s += '''
-            %s = q.%s("%s");''' % (field['name'], func, field['name'])
+            %s = q.%s(%d); // %s''' % (field['name'], func, field['cid'], field['name'])
 
         s += '''
         }

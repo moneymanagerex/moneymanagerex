@@ -20,7 +20,7 @@ all_status = ("V", "R", "N", "F", "D")
 
 today = date.today()
 
-for x in range(1, 10000):
+for x in range(1, 100000):
     account_id = all_account[random.randint(0, len(all_account) -1)]
     payee_id = all_payee[random.randint(0, len(all_payee) -1)]
     transcode = all_type[random.randint(0, len(all_type) - 2)]

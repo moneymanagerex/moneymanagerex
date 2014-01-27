@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -200,12 +200,12 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         {
             view_ = view;
         
-            BUDGETENTRYID = q.GetInt("BUDGETENTRYID");
-            BUDGETYEARID = q.GetInt("BUDGETYEARID");
-            CATEGID = q.GetInt("CATEGID");
-            SUBCATEGID = q.GetInt("SUBCATEGID");
-            PERIOD = q.GetString("PERIOD");
-            AMOUNT = q.GetDouble("AMOUNT");
+            BUDGETENTRYID = q.GetInt(0); // BUDGETENTRYID
+            BUDGETYEARID = q.GetInt(1); // BUDGETYEARID
+            CATEGID = q.GetInt(2); // CATEGID
+            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            PERIOD = q.GetString(4); // PERIOD
+            AMOUNT = q.GetDouble(5); // AMOUNT
         }
 
         wxString to_json() const

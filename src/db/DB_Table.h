@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-26 18:05:09.061783.
+ *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -410,6 +410,15 @@ struct SorterByFOLLOWUPID
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.FOLLOWUPID < y.FOLLOWUPID;
+    }
+};
+
+struct SorterByDESCRIPTION
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.DESCRIPTION < y.DESCRIPTION;
     }
 };
 
