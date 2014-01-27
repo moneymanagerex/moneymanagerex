@@ -227,7 +227,7 @@ void mmCheckingPanel::filterTable()
     const auto& trans = Model_Account::transaction(this->m_account);
     wxLogDebug("Get data %s ms", wxString() << GetTickCount() - interval);
     interval = GetTickCount();
-#if 1
+#if 0
     copy(trans.begin(), trans.end(), back_inserter(m_trans));
 #else
     for (const auto& tran : trans)
@@ -267,7 +267,7 @@ void mmCheckingPanel::filterTable()
         this->m_trans.push_back(full_tran);
     }
 #endif
-    wxLogDebug("Sorting %s ms", wxString() << GetTickCount() - interval);
+    wxLogDebug("Filtering %s ms", wxString() << GetTickCount() - interval);
 }
 
 void mmCheckingPanel::updateTable()
