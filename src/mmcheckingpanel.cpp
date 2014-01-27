@@ -223,29 +223,30 @@ void mmCheckingPanel::filterTable()
     const auto& trans = Model_Account::transaction(this->m_account);
 
     std::map <wxString, int> speed;
-    speed["Get Data"] += GetTickCount() - interval;
+    speed["1. Get Data"] += GetTickCount() - interval;
 
 #if 0
     copy(trans.begin(), trans.end(), back_inserter(m_trans));
 #else
     for (const auto& tran : trans)
     {
-        interval = GetTickCount();
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
-        reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
-        speed["Balance calc"] += GetTickCount() - interval;
+        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+            reconciled_balance_ += transaction_amount;
+        //reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
+        speed["2. Balances calc"] += GetTickCount() - interval;
 
         if (transFilterActive_)
         {
             interval = GetTickCount();
             if (!transFilterDlg_->checkAll(tran, m_AccountID))
             {
-                speed["Filter"] += GetTickCount() - interval;
+                speed["3. Filter"] += GetTickCount() - interval;
                 continue;
             }
-            speed["Filter"] += GetTickCount() - interval;
+            speed["3. Filter"] += GetTickCount() - interval;
         }
         else
         {
@@ -253,29 +254,23 @@ void mmCheckingPanel::filterTable()
             if (!Model_Checking::TRANSDATE(tran)
                 .IsBetween(quickFilterBeginDate_, quickFilterEndDate_))
             {
-                speed["Filter"] += GetTickCount() - interval;
+                speed["3. Filter"] += GetTickCount() - interval;
                 continue;
             }
-            speed["Filter"] += GetTickCount() - interval;
+            speed["3. Filter"] += GetTickCount() - interval;
         }
 
-        interval = GetTickCount();
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
-        {
-            speed["Status check"] += GetTickCount() - interval;
             continue;
-        }
-        speed["Status check"] += GetTickCount() - interval;
 
         interval = GetTickCount();
         Model_Checking::Full_Data full_tran(tran);
         full_tran.BALANCE = account_balance_;
+        speed["4. Get Full_Data"] += GetTickCount() - interval;
 
-        if (transaction_amount > 0)
-            full_tran.DEPOSIT = Model_Currency::toString(transaction_amount, this->m_currency);
-        else
-            full_tran.WITHDRAWAL = Model_Currency::toString(fabs(transaction_amount), this->m_currency);
-        speed["Amount to string"] += GetTickCount() - interval;
+        full_tran.DEPOSIT = transaction_amount;
+        full_tran.WITHDRAWAL = transaction_amount;
+
 
         interval = GetTickCount();
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
@@ -286,7 +281,7 @@ void mmCheckingPanel::filterTable()
 
         filteredBalance_ += transaction_amount;
         this->m_trans.push_back(full_tran);
-        speed["Transfer prefix + push_back"] += GetTickCount() - interval;
+        speed["5. Transfer prefix + push_back"] += GetTickCount() - interval;
     }
 #endif
     wxLogDebug("-----------------------------------------------------------------\n Records: %s", wxString() << trans.size());
@@ -822,11 +817,16 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_STATUS:
         return tran.STATUS;
     case TransactionListCtrl::COL_CATEGORY:
-        return tran.CATEGNAME;
+    {
+                                              if (Model_Checking::splittransaction(tran).empty())
+                                                  return  Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
+                                              else
+                                                  return "...";
+    }
     case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.WITHDRAWAL;
+        return tran.WITHDRAWAL <= 0 ? Model_Currency::toString(tran.WITHDRAWAL, this->m_currency) : "";
     case TransactionListCtrl::COL_DEPOSIT:
-        return tran.DEPOSIT;
+        return tran.DEPOSIT > 0 ? Model_Currency::toString(tran.DEPOSIT, this->m_currency) : "";
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:

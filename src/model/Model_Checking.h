@@ -45,8 +45,8 @@ public:
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        wxString DEPOSIT;
-        wxString WITHDRAWAL;
+        double DEPOSIT;
+        double WITHDRAWAL;
         double BALANCE;
         Model_Splittransaction::Data_Set m_splits;
         
