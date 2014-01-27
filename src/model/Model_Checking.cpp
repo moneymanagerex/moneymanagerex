@@ -241,6 +241,11 @@ Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0)
 {
 }
 
+Model_Checking::Full_Data::Full_Data(const Data& r, double &balance) : Data(r)
+{
+    BALANCE = balance;
+}
+
 Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
  , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
 {
@@ -258,10 +263,10 @@ Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
         if (payee) this->PAYEENAME = payee->PAYEENAME;
     }
     
-    /*if (Model_Checking::splittransaction(r).empty())
+    if (Model_Checking::splittransaction(r).empty())
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
     else
-        this->CATEGNAME = "...";*/
+        this->CATEGNAME = "..."; //TODO: provide list comma separated
 }
 
 Model_Checking::Full_Data::~Full_Data()

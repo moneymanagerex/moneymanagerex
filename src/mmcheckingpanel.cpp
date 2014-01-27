@@ -225,11 +225,9 @@ void mmCheckingPanel::filterTable()
     std::map <wxString, int> speed;
     speed["1. Get Data"] += GetTickCount() - interval;
 
-#if 0
-    copy(trans.begin(), trans.end(), back_inserter(m_trans));
-#else
     for (const auto& tran : trans)
     {
+        interval = GetTickCount();
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
@@ -264,26 +262,18 @@ void mmCheckingPanel::filterTable()
             continue;
 
         interval = GetTickCount();
-        Model_Checking::Full_Data full_tran(tran);
-        full_tran.BALANCE = account_balance_;
+        Model_Checking::Full_Data full_tran(tran, account_balance_);
         speed["4. Get Full_Data"] += GetTickCount() - interval;
 
-        full_tran.DEPOSIT = transaction_amount;
-        full_tran.WITHDRAWAL = transaction_amount;
-
-
-        interval = GetTickCount();
-        if (Model_Checking::TRANSFER == Model_Checking::type(tran))
-        {
-            bool transfer_to = tran.ACCOUNTID == this->m_AccountID;
-            full_tran.PAYEENAME = transfer_to ? "> " + full_tran.TOACCOUNTNAME : "< " + full_tran.ACCOUNTNAME;
-        }
+        full_tran.AMOUNT = transaction_amount;
 
         filteredBalance_ += transaction_amount;
+
+        interval = GetTickCount();
         this->m_trans.push_back(full_tran);
-        speed["5. Transfer prefix + push_back"] += GetTickCount() - interval;
+        speed["5. push_back"] += GetTickCount() - interval;
     }
-#endif
+
     wxLogDebug("-----------------------------------------------------------------\n Records: %s", wxString() << trans.size());
     for (const auto& item : speed)
     {
@@ -813,7 +803,27 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
     case TransactionListCtrl::COL_PAYEE_STR:
-        return tran.PAYEENAME;
+    {
+                                               if (Model_Checking::TRANSFER == Model_Checking::type(tran))
+                                               {
+                                                   if (tran.ACCOUNTID == m_AccountID)
+                                                   {
+                                                       const Model_Account::Data* to_account = Model_Account::instance().get(tran.TOACCOUNTID);
+                                                       if (to_account) return "> " + to_account->ACCOUNTNAME;
+                                                   }
+                                                   else
+                                                   {
+                                                       const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
+                                                       if (account) return "< " + account->ACCOUNTNAME;
+                                                   }
+                                               }
+                                               else
+                                               {
+                                                   const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+                                                   if (payee) return payee->PAYEENAME;
+                                               }
+                                               return "";
+    }
     case TransactionListCtrl::COL_STATUS:
         return tran.STATUS;
     case TransactionListCtrl::COL_CATEGORY:
@@ -824,9 +834,9 @@ const wxString mmCheckingPanel::getItem(long item, long column)
                                                   return "...";
     }
     case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.WITHDRAWAL <= 0 ? Model_Currency::toString(tran.WITHDRAWAL, this->m_currency) : "";
+        return tran.AMOUNT <= 0 ? Model_Currency::toString(fabs(tran.AMOUNT), this->m_currency) : "";
     case TransactionListCtrl::COL_DEPOSIT:
-        return tran.DEPOSIT > 0 ? Model_Currency::toString(tran.DEPOSIT, this->m_currency) : "";
+        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, this->m_currency) : "";
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_NOTES:

@@ -40,13 +40,13 @@ public:
     {
         Full_Data();
         Full_Data(const Data& r);
+        Full_Data::Full_Data(const Data& r, double &balance);
 
         ~Full_Data();
         wxString ACCOUNTNAME, TOACCOUNTNAME;
         wxString PAYEENAME;
         wxString CATEGNAME;
-        double DEPOSIT;
-        double WITHDRAWAL;
+        double AMOUNT;
         double BALANCE;
         Model_Splittransaction::Data_Set m_splits;
         
