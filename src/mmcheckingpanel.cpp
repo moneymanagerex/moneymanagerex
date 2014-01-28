@@ -209,11 +209,15 @@ void mmCheckingPanel::filterTable()
             reconciled_balance_ += transaction_amount;
 
         if (transFilterActive_)
+        {
             if (!transFilterDlg_->checkAll(tran, m_AccountID))
                 continue;
+        }
         else
+        {
             if (!Model_Checking::TRANSDATE(tran).IsBetween(quickFilterBeginDate_, quickFilterEndDate_))
                 continue;
+        }
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
             continue;
@@ -622,7 +626,9 @@ void mmCheckingPanel::initFilterSettings()
 {
     mmDateRange* date_range = 0;
 
-    if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
+    if (transFilterActive_)
+        date_range = new mmAllTime;
+    else if (currentView_ == MENU_VIEW_ALLTRANSACTIONS)
         date_range = new mmAllTime;
     else if (currentView_ == MENU_VIEW_TODAY)
         date_range = new mmToday;
@@ -647,10 +653,10 @@ void mmCheckingPanel::initFilterSettings()
     {
         quickFilterBeginDate_ = date_range->start_date();
         quickFilterEndDate_ = date_range->end_date();
-
         delete date_range;
     }
 }
+
 void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
     if (currentView_ == VIEW_TRANS_ALL_STR)
@@ -840,10 +846,11 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     m_account = Model_Account::instance().get(accountID);
     if (m_account)
         m_currency = Model_Account::currency(m_account);
+
     this->windowsFreezeThaw();   // prevent screen updates while controls being repopulated
 
     initViewTransactionsHeader();
-
+    initFilterSettings();
     m_listCtrlAccount->m_selectedIndex = -1;
     m_listCtrlAccount->refreshVisualList();
     showTips();
@@ -858,10 +865,10 @@ void mmCheckingPanel::RefreshList()
 
 void mmCheckingPanel::SetTransactionFilterState(bool active)
 {
-    /*bitmapTransFilter_->Enable(active || transFilterActive_);
-    statTextTransFilter_->Enable(active || transFilterActive_);
     bitmapMainFilter_->Enable(!transFilterActive_);
-    stxtMainFilter_->Enable(!transFilterActive_);*/
+    stxtMainFilter_->Enable(!transFilterActive_);
+    //bitmapTransFilter_->Enable(active || transFilterActive_);
+    //statTextTransFilter_->Enable(active || transFilterActive_);
 }
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)
