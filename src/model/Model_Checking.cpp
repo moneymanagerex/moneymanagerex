@@ -263,7 +263,7 @@ Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
         if (payee) this->PAYEENAME = payee->PAYEENAME;
     }
     
-    if (Model_Checking::splittransaction(r).empty())
+    if (m_splits.empty())
         this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
     else
         this->CATEGNAME = "..."; //TODO: provide list comma separated
