@@ -219,67 +219,32 @@ void mmCheckingPanel::filterTable()
     reconciled_balance_ = account_balance_;
     filteredBalance_ = 0.0;
 
-    int interval = GetTickCount();
     const auto& trans = Model_Account::transaction(this->m_account);
-
-    std::map <wxString, int> speed;
-    speed["1. Get Data"] += GetTickCount() - interval;
-
     for (const auto& tran : trans)
     {
-        interval = GetTickCount();
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
             reconciled_balance_ += transaction_amount;
-        //reconciled_balance_ += Model_Checking::reconciled(tran, m_AccountID);
-        speed["2. Balances calc"] += GetTickCount() - interval;
 
         if (transFilterActive_)
-        {
-            interval = GetTickCount();
             if (!transFilterDlg_->checkAll(tran, m_AccountID))
-            {
-                speed["3. Filter"] += GetTickCount() - interval;
                 continue;
-            }
-            speed["3. Filter"] += GetTickCount() - interval;
-        }
         else
-        {
-            interval = GetTickCount();
-            if (!Model_Checking::TRANSDATE(tran)
-                .IsBetween(quickFilterBeginDate_, quickFilterEndDate_))
-            {
-                speed["3. Filter"] += GetTickCount() - interval;
+            if (!Model_Checking::TRANSDATE(tran).IsBetween(quickFilterBeginDate_, quickFilterEndDate_))
                 continue;
-            }
-            speed["3. Filter"] += GetTickCount() - interval;
-        }
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
             continue;
 
-        interval = GetTickCount();
         Model_Checking::Full_Data full_tran(tran, account_balance_);
-        speed["4. Get Full_Data"] += GetTickCount() - interval;
 
         full_tran.AMOUNT = transaction_amount;
-
         filteredBalance_ += transaction_amount;
 
-        interval = GetTickCount();
         this->m_trans.push_back(full_tran);
-        speed["5. push_back"] += GetTickCount() - interval;
     }
-
-    wxLogDebug("-----------------------------------------------------------------\n Records: %s", wxString() << trans.size());
-    for (const auto& item : speed)
-    {
-        wxLogDebug("%s - %s ms", item.first, wxString::Format("%i", item.second));
-    }
-
 }
 
 void mmCheckingPanel::updateTable()
@@ -594,7 +559,7 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
     if (selIndex > -1)
     {
         enableEditDeleteButtons(true);
-        const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
+        const Model_Checking::Data& tran = this->m_trans.at(selIndex);
         info_panel_->SetLabel(tran.NOTES);
         wxString miniStr;
         miniStr = getMiniInfoStr(selIndex);
@@ -802,6 +767,23 @@ const wxString mmCheckingPanel::getItem(long item, long column)
         return mmGetDateForDisplay(Model_Checking::TRANSDATE(tran));
     case TransactionListCtrl::COL_NUMBER:
         return tran.TRANSACTIONNUMBER;
+    case TransactionListCtrl::COL_STATUS:
+        return tran.STATUS;
+    case TransactionListCtrl::COL_NOTES:
+        return tran.NOTES;
+    case TransactionListCtrl::COL_WITHDRAWAL:
+        return tran.AMOUNT <= 0 ? Model_Currency::toString(fabs(tran.AMOUNT), this->m_currency) : "";
+    case TransactionListCtrl::COL_DEPOSIT:
+        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, this->m_currency) : "";
+    case TransactionListCtrl::COL_BALANCE:
+        return Model_Currency::toString(tran.BALANCE, this->m_currency);
+    case TransactionListCtrl::COL_CATEGORY:
+    {
+                                              if (Model_Checking::splittransaction(tran).empty())
+                                                  return  Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
+                                              else
+                                                  return "...";
+    }
     case TransactionListCtrl::COL_PAYEE_STR:
     {
                                                if (Model_Checking::TRANSFER == Model_Checking::type(tran))
@@ -824,23 +806,6 @@ const wxString mmCheckingPanel::getItem(long item, long column)
                                                }
                                                return "";
     }
-    case TransactionListCtrl::COL_STATUS:
-        return tran.STATUS;
-    case TransactionListCtrl::COL_CATEGORY:
-    {
-                                              if (Model_Checking::splittransaction(tran).empty())
-                                                  return  Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
-                                              else
-                                                  return "...";
-    }
-    case TransactionListCtrl::COL_WITHDRAWAL:
-        return tran.AMOUNT <= 0 ? Model_Currency::toString(fabs(tran.AMOUNT), this->m_currency) : "";
-    case TransactionListCtrl::COL_DEPOSIT:
-        return tran.AMOUNT > 0 ? Model_Currency::toString(tran.AMOUNT, this->m_currency) : "";
-    case TransactionListCtrl::COL_BALANCE:
-        return Model_Currency::toString(tran.BALANCE, this->m_currency);
-    case TransactionListCtrl::COL_NOTES:
-        return tran.NOTES;
     default:
         return "";
     }
