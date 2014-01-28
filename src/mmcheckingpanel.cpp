@@ -52,19 +52,6 @@
 #include <algorithm>
 //----------------------------------------------------------------------------
 
-#ifndef _WIN32
-#include <sys/time.h>
-
-unsigned GetTickCount()
-{
-    struct timeval tv;
-    if (gettimeofday(&tv, NULL) != 0)
-        return 0;
-
-    return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-}
-#endif
-
 BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_NEW,         mmCheckingPanel::OnNewTransaction)
     EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
