@@ -94,7 +94,7 @@ public:
     long m_selectedIndex;
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
-    void refreshVisualList(int trans_id = -1);
+    void refreshVisualList(int trans_id = -1, bool filter = true);
     bool showDeletedTransactions_;
 
 private:

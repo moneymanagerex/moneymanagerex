@@ -666,7 +666,6 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
 
     m_listCtrlAccount->m_selectedIndex = -1;
     m_listCtrlAccount->refreshVisualList();
-
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -717,7 +716,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     wxBitmap bitmapFilterIcon(rightarrow_xpm);
 
     if (e == wxEVT_LEFT_DOWN) {
-        transFilterDlg_->setAccountToolTip("Select account used in transfer transactions");
+        transFilterDlg_->setAccountToolTip(_("Select account used in transfer transactions"));
         if (transFilterDlg_->ShowModal() == wxID_OK && transFilterDlg_->somethingSelected())
         {
             transFilterActive_ = true;
@@ -1177,7 +1176,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("CHECK_ASC", (g_asc ? 1 : 0));
     Model_Setting::instance().Set("CHECK_SORT_COL", g_sortcol);
 
-    m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID);
+    m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID, false);
 
 }
 //----------------------------------------------------------------------------
@@ -1466,14 +1465,14 @@ void TransactionListCtrl::OnSetUserColour(wxCommandEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void TransactionListCtrl::refreshVisualList(int trans_id)
+void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
 {
     this->SetEvtHandlerEnabled(false);
     Hide();
 
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
-    m_cp->filterTable(); //FIXME: too slow function to be called from here (column sorting slow)
+    if (filter) m_cp->filterTable();
     m_cp->sortTable();
     SetItemCount(m_cp->m_trans.size());
     m_cp->markSelectedTransaction(trans_id);
