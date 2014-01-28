@@ -241,9 +241,33 @@ Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0)
 {
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r, double &balance) : Data(r)
+Model_Checking::Full_Data::Full_Data(const Data& r, int &account, double &balance) : Data(r)
 {
     BALANCE = balance;
+
+    if (Model_Checking::splittransaction(r).empty())
+        CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
+    else
+        CATEGNAME = " ...";
+
+    if (Model_Checking::TRANSFER == Model_Checking::type(r))
+    {
+        if (r.ACCOUNTID == account)
+        {
+            const Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
+            if (to_account) PAYEENAME = "> " + to_account->ACCOUNTNAME;
+        }
+        else
+        {
+            const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
+            if (account) PAYEENAME = "< " + account->ACCOUNTNAME;
+        }
+    }
+    else
+    {
+        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
+        if (payee) PAYEENAME = payee->PAYEENAME;
+    }
 }
 
 Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)

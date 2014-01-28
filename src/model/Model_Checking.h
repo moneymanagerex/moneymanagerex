@@ -40,7 +40,7 @@ public:
     {
         Full_Data();
         Full_Data(const Data& r);
-        Full_Data(const Data& r, double &balance);
+        Full_Data::Full_Data(const Data& r, int &account, double &balance);
 
         ~Full_Data();
         wxString ACCOUNTNAME, TOACCOUNTNAME;
@@ -61,6 +61,22 @@ public:
         bool operator()(const DATA& x, const DATA& y)
         {
             return x.BALANCE < y.BALANCE;
+        }
+    };
+    struct SorterByDEPOSIT
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return x.AMOUNT < y.AMOUNT;
+        }
+    };
+    struct SorterByWITHDRAWAL
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return x.AMOUNT > y.AMOUNT;
         }
     };
 

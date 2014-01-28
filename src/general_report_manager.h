@@ -25,7 +25,9 @@
 #include <wx/webviewfshandler.h>
 #include <vector>
 #include <wx/dataview.h>
+#ifndef _WIN32
 #include <sys/time.h>
+#endif
 
 class wxStyledTextCtrl;
 class mmGeneralReportManager: public wxDialog

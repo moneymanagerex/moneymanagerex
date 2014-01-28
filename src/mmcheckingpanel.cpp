@@ -172,18 +172,10 @@ void mmCheckingPanel::sortTable()
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByCATEGNAME());
         break;
     case TransactionListCtrl::COL_WITHDRAWAL:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
-        {
-            return Model_Checking::amount(x, this->m_AccountID) >= Model_Checking::amount(y, this->m_AccountID);
-        });
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByWITHDRAWAL());
         break;
     case TransactionListCtrl::COL_DEPOSIT:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end()
-            , [&](const Model_Checking::Data& x, const Model_Checking::Data& y)
-        {
-            return Model_Checking::amount(x, this->m_AccountID) < Model_Checking::amount(y, this->m_AccountID);
-        });
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByDEPOSIT());
         break;
     case TransactionListCtrl::COL_BALANCE:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByBALANCE());
@@ -225,7 +217,7 @@ void mmCheckingPanel::filterTable()
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
             continue;
 
-        Model_Checking::Full_Data full_tran(tran, account_balance_);
+        Model_Checking::Full_Data full_tran(tran, m_AccountID, account_balance_);
 
         full_tran.AMOUNT = transaction_amount;
         filteredBalance_ += transaction_amount;
@@ -765,34 +757,9 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     case TransactionListCtrl::COL_BALANCE:
         return Model_Currency::toString(tran.BALANCE, this->m_currency);
     case TransactionListCtrl::COL_CATEGORY:
-    {
-                                              if (Model_Checking::splittransaction(tran).empty())
-                                                  return  Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
-                                              else
-                                                  return "...";
-    }
+        return tran.CATEGNAME;
     case TransactionListCtrl::COL_PAYEE_STR:
-    {
-                                               if (Model_Checking::TRANSFER == Model_Checking::type(tran))
-                                               {
-                                                   if (tran.ACCOUNTID == m_AccountID)
-                                                   {
-                                                       const Model_Account::Data* to_account = Model_Account::instance().get(tran.TOACCOUNTID);
-                                                       if (to_account) return "> " + to_account->ACCOUNTNAME;
-                                                   }
-                                                   else
-                                                   {
-                                                       const Model_Account::Data* account = Model_Account::instance().get(tran.ACCOUNTID);
-                                                       if (account) return "< " + account->ACCOUNTNAME;
-                                                   }
-                                               }
-                                               else
-                                               {
-                                                   const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-                                                   if (payee) return payee->PAYEENAME;
-                                               }
-                                               return "";
-    }
+        return tran.PAYEENAME;
     default:
         return "";
     }
