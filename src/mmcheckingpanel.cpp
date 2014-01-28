@@ -198,6 +198,7 @@ void mmCheckingPanel::filterTable()
     reconciled_balance_ = account_balance_;
     filteredBalance_ = 0.0;
 
+    std::map <wxString, int> speed;
     const auto& trans = Model_Account::transaction(this->m_account);
     for (const auto& tran : trans)
     {
@@ -216,13 +217,19 @@ void mmCheckingPanel::filterTable()
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
             continue;
-
+        int interval = GetTickCount();
         Model_Checking::Full_Data full_tran(tran, m_AccountID, account_balance_);
+        speed["Full_Data"] += GetTickCount() - interval;
 
         full_tran.AMOUNT = transaction_amount;
         filteredBalance_ += transaction_amount;
 
         this->m_trans.push_back(full_tran);
+    }
+
+    for (const auto& item : speed)
+    {
+        wxLogDebug("%s - %s ms", item.first, wxString::Format("%i", item.second));
     }
 }
 
@@ -1466,7 +1473,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id)
 
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
-    m_cp->filterTable();
+    m_cp->filterTable(); //FIXME: too slow function to be called from here (column sorting slow)
     m_cp->sortTable();
     SetItemCount(m_cp->m_trans.size());
     m_cp->markSelectedTransaction(trans_id);
