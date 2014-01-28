@@ -198,7 +198,6 @@ void mmCheckingPanel::filterTable()
     reconciled_balance_ = account_balance_;
     filteredBalance_ = 0.0;
 
-    std::map <wxString, int> speed;
     const auto& trans = Model_Account::transaction(this->m_account);
     for (const auto& tran : trans)
     {
@@ -221,19 +220,14 @@ void mmCheckingPanel::filterTable()
 
         if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
             continue;
-        int interval = GetTickCount();
-        Model_Checking::Full_Data full_tran(tran, m_AccountID, account_balance_);
-        speed["Full_Data"] += GetTickCount() - interval;
+        Model_Checking::Full_Data full_tran(tran);
 
+        full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
+        full_tran.BALANCE = account_balance_;
         full_tran.AMOUNT = transaction_amount;
         filteredBalance_ += transaction_amount;
 
         this->m_trans.push_back(full_tran);
-    }
-
-    for (const auto& item : speed)
-    {
-        wxLogDebug("%s - %s ms", item.first, wxString::Format("%i", item.second));
     }
 }
 
