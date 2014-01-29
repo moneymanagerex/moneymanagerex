@@ -342,8 +342,7 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerVHeader2);
 
     header_text_ = new wxStaticText( headerPanel, wxID_STATIC, "");
-    int font_size = this->GetFont().GetPointSize() + 2;
-    header_text_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
+    header_text_->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader2->Add(header_text_, flags);
 
     wxBoxSizer* itemBoxSizerHHeader2 = new wxBoxSizer(wxHORIZONTAL);

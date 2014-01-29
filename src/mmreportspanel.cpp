@@ -112,8 +112,7 @@ void mmReportsPanel::CreateControls()
 
     wxStaticText* itemStaticText9 = new wxStaticText( itemPanel3, wxID_ANY,
         _("REPORTS"));
-    int font_size = this->GetFont().GetPointSize() + 2;
-    itemStaticText9->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
+    itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);

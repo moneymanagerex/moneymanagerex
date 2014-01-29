@@ -373,9 +373,8 @@ void mmStocksPanel::CreateControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    int font_size = this->GetFont().GetPointSize() + 2;
     header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
-    header_text_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
+    header_text_->SetFont(this->GetFont().Larger().Bold());
 
     header_total_ = new wxStaticText(headerPanel, wxID_STATIC, "");
 

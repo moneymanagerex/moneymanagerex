@@ -209,8 +209,7 @@ void mmBudgetingPanel::CreateControls()
 
     budgetReportHeading_ = new wxStaticText(itemPanel3, wxID_ANY, "");
 
-    int font_size = this->GetFont().GetPointSize();
-    budgetReportHeading_->SetFont(wxFont(font_size+2, wxSWISS, wxNORMAL, wxBOLD, FALSE, ""));
+    budgetReportHeading_->SetFont(this->GetFont().Larger().Bold());
 
     wxBoxSizer* budgetReportHeadingSizer = new wxBoxSizer(wxHORIZONTAL);
     budgetReportHeadingSizer->Add(budgetReportHeading_, 1);

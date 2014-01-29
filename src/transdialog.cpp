@@ -310,8 +310,7 @@ void mmTransDialog::dataToControls()
             notesColour_ = textNotes_->GetForegroundColour();
             textNotes_->SetForegroundColour(wxColour("GREY"));
             textNotes_->SetValue(notesTip_);
-            int font_size = textNotes_->GetFont().GetPointSize();
-            textNotes_->SetFont(wxFont(font_size, wxSWISS, wxNORMAL, wxNORMAL, FALSE, ""));
+            textNotes_->SetFont(this->GetFont());
         }
         skip_notes_init_ = true;
     }
