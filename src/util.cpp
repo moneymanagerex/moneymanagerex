@@ -26,6 +26,7 @@
 #include "model/Model_Setting.h"
 #include <wx/sound.h>
 #include <wx/richtooltip.h>
+#include <wx/sstream.h>
 
 //----------------------------------------------------------------------------
 

@@ -110,21 +110,21 @@ void mmBudgetEntryDialog::CreateControls()
     wxStaticText* itemTextActCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Actual:"));
     wxStaticText* itemTextActCatAmt = new wxStaticText( itemPanel7, wxID_STATIC, catActualAmountStr_);
     
-    itemGridSizer2->Add(itemTextCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
-    itemGridSizer2->Add(itemTextCatName, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
+    itemGridSizer2->Add(itemTextCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(itemTextCatName, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
     // only add the subcategory if it exists.
     if (budgetEntry_->SUBCATEGID >= 0) {
         wxStaticText* itemTextSubCatTag = new wxStaticText( itemPanel7, wxID_STATIC
             , _("Sub Category: "));
         wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC, sub_category->SUBCATEGNAME);
         
-        itemGridSizer2->Add(itemTextSubCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
-        itemGridSizer2->Add(itemTextSubCatName, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
+        itemGridSizer2->Add(itemTextSubCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+        itemGridSizer2->Add(itemTextSubCatName, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
     }
-    itemGridSizer2->Add(itemTextEstCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
-    itemGridSizer2->Add(itemTextEstCatAmt, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
-    itemGridSizer2->Add(itemTextActCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
-    itemGridSizer2->Add(itemTextActCatAmt, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
+    itemGridSizer2->Add(itemTextEstCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(itemTextEstCatAmt, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(itemTextActCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(itemTextActCatAmt, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Type:")));
 

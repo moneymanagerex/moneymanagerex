@@ -28,6 +28,7 @@
 #include <wx/zipstrm.h>
 #include <memory>
 #include <wx/richtooltip.h>
+#include <wx/sstream.h>
 
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.

@@ -136,7 +136,7 @@ mmNewDatabaseWizardPage::mmNewDatabaseWizardPage(mmNewDatabaseWizard* parent)
     mainSizer->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 5);
 
     wxStaticText* itemStaticText6 = new wxStaticText(this, wxID_STATIC, _("User Name"));
-    itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 5);
+    itemBoxSizer5->Add(itemStaticText6, 0, wxALIGN_CENTER_VERTICAL | wxALL, 5);
 
     itemUserName_ = new wxTextCtrl(this, wxID_ANY);
     itemBoxSizer5->Add(itemUserName_, 1, wxALIGN_CENTER_VERTICAL | wxGROW | wxALL, 5);

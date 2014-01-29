@@ -371,7 +371,7 @@ void mmBDDialog::CreateControls()
 
     // Repeat Times --------------------------------------------
     staticTimesRepeat_ = new wxStaticText( this, wxID_STATIC, _("Times Repeated") );
-    itemFlexGridSizer5->Add(staticTimesRepeat_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
+    itemFlexGridSizer5->Add(staticTimesRepeat_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     textNumRepeats_ = new wxTextCtrl( this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, "",
         wxDefaultPosition, wxSize(110, -1), 0, wxIntegerValidator<int>() );

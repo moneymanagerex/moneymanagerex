@@ -103,7 +103,7 @@ void SplitDetailDialog::CreateControls()
     itemPanel7->SetSizer(controlSizer);
 
     wxStaticText* staticTextType = new wxStaticText( itemPanel7, wxID_STATIC, _("Type"));
-    controlSizer->Add(staticTextType, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
+    controlSizer->Add(staticTextType, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     const wxString itemChoiceStrings[] =
     {
@@ -119,7 +119,7 @@ void SplitDetailDialog::CreateControls()
     controlSizer->Add(choiceType_, 0, wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
 
     wxStaticText* staticTextAmount = new wxStaticText( itemPanel7, wxID_STATIC, _("Amount"));
-    controlSizer->Add(staticTextAmount, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
+    controlSizer->Add(staticTextAmount, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     textAmount_ = new mmTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
         , wxDefaultPosition, wxSize(110,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
@@ -127,7 +127,7 @@ void SplitDetailDialog::CreateControls()
     controlSizer->Add(textAmount_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
     wxStaticText* staticTextCategory = new wxStaticText( itemPanel7, wxID_STATIC, _("Category"));
-    controlSizer->Add(staticTextCategory, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE, 0);
+    controlSizer->Add(staticTextCategory, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
     bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, ""
         , wxDefaultPosition, wxSize(200, -1), 0 );
     controlSizer->Add(bCategory_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
