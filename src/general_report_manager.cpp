@@ -224,27 +224,27 @@ void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int t
 
 void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int type)
 {
-    int editorID = 0;
     wxString label;
     switch (type) {
-    case ID_SQL_CONTENT: label = _("SQL"); editorID = ID_SQL_CONTENT; break;
-    case ID_LUA_CONTENT: label = _("Lua"); editorID = ID_LUA_CONTENT;  break;
-    case ID_TEMPLATE: label = _("htt"); editorID = ID_TEMPLATE;  break;
+    case ID_SQL_CONTENT: label = _("SQL"); break;
+    case ID_LUA_CONTENT: label = _("Lua");  break;
+    case ID_TEMPLATE: label = _("Template");  break;
+    case ID_DESCRIPTION: label = _("Description"); break;
     //default: ;
     }
-    if (FindWindow(editorID + MAGIC_NUM)) return;
+    if (FindWindow(type + MAGIC_NUM)) return;
 
     int tabID = editors_notebook->GetRowCount();
-    wxPanel* panel = new wxPanel(editors_notebook, editorID + MAGIC_NUM);
+    wxPanel* panel = new wxPanel(editors_notebook, type + MAGIC_NUM);
     editors_notebook->InsertPage(tabID, panel, label);
     wxBoxSizer *sizer = new wxBoxSizer(wxVERTICAL);
     panel->SetSizer(sizer);
 
-    MinimalEditor* templateText = new MinimalEditor(panel, editorID);
+    MinimalEditor* templateText = new MinimalEditor(panel, type);
 
     sizer->Add(templateText, g_flagsExpand);
 
-    if (editorID == ID_SQL_CONTENT)
+    if (type == ID_SQL_CONTENT)
     {
         wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
@@ -271,10 +271,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
     MinimalEditor* sqlText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
-    if (sqlText->GetValue().empty()) return;
-
+    wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
     const wxString &sql = sqlText->GetValue();
-    if (Model_Report::instance().CheckSyntax(sql))
+
+    if (sql.empty() || Model_Report::instance().CheckSyntax(sql))
     {
         long interval = GetTickCount();
         if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
@@ -299,7 +299,6 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
                     m_sqlListBox->SetItem(itemIndex, ++pos, dataCol);
                 }
             }
-            wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
             info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms"), row, wxString()<<interval));
 
             wxButton* b = (wxButton*) FindWindow(wxID_NEW);
@@ -325,9 +324,12 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
         }
         else
         {
-            wxMessageDialog msgDlg(this, _("Syntax Error"), _("Error"), wxOK | wxICON_ERROR);
-            msgDlg.ShowModal();
+            info->SetLabel(_("SQL Syntax Error"));
         }
+    }
+    else
+    {
+        info->SetLabel(_("SQL Syntax Error"));
     }
 }
 
@@ -474,11 +476,14 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
+        MinimalEditor* descriptionText = (MinimalEditor*) FindWindow(ID_DESCRIPTION);
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
         report->TEMPLATECONTENT = templateText->GetValue();
+        report->DESCRIPTION = descriptionText->GetValue();
 
         Model_Report::instance().save(report);
+        m_outputHTML->SetPage(report->DESCRIPTION, "");
     }
 }
 
@@ -568,6 +573,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     else
     {
         m_selectedReportID = report->REPORTID;
+        createEditorTab(editors_notebook, ID_DESCRIPTION);
         createEditorTab(editors_notebook, ID_TEMPLATE);
         createEditorTab(editors_notebook, ID_LUA_CONTENT);
         createEditorTab(editors_notebook, ID_SQL_CONTENT);
@@ -575,6 +581,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
         MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
         MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+        MinimalEditor* descriptionText = (MinimalEditor*) FindWindow(ID_DESCRIPTION);
 
         templateText->ChangeValue(report->TEMPLATECONTENT);
         templateText->SetLexerHtml();
@@ -582,6 +589,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         SqlScriptText->SetLexerSql();
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
+        descriptionText->ChangeValue(report->DESCRIPTION);
         
         m_outputHTML->SetPage(report->DESCRIPTION, "");
 

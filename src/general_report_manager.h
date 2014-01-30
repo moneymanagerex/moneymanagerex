@@ -107,10 +107,11 @@ private:
         ID_NOTEBOOK,
         ID_WEB,
         ID_TYPELABEL,
-        ID_TEMPLATE,
         ID_TEST,
         ID_SQL_CONTENT,
         ID_LUA_CONTENT,
+        ID_TEMPLATE,
+        ID_DESCRIPTION,
         ID_SQL_GRID,
         ID_CSS_CONTENT,
         ID_JS_CONTENT,
@@ -133,9 +134,20 @@ private:
     const wxString SAMPLE_ASSETS_HTT =
         "<h3>Assets</h3>\n"
         "<TMPL_VAR TODAY>\n"
-        "<table border=1>\n"
+        "<table cellspacing=\"1\" width=\"95%\">\n"
+        "    <tr bgcolor='#d5d6de'>\n"
+        "        <td>STARTDATE</td>\n"
+        "        <td>ASSETNAME</td>\n"
+        "        <td>ASSETTYPE</td>\n"
+        "        <td>VALUE</td>\n"
+        "        <td>NOTES</td>\n"
+        "    </tr>\n"
         "    <TMPL_LOOP NAME=CONTENTS>\n"
-        "    <tr>\n"
+        "    <TMPL_IF __ODD__>\n"
+        "        <tr>\n"
+        "    <TMPL_ELSE>\n"
+        "        <tr bgcolor='#E1EDFB'>\n"
+        "    </TMPL_IF>\n"
         "        <td><TMPL_VAR STARTDATE></td>\n"
         "        <td><TMPL_VAR ASSETNAME></td>\n"
         "        <td><TMPL_VAR ASSETTYPE></td>\n"
