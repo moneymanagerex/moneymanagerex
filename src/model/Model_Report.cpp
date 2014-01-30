@@ -23,7 +23,7 @@
 
 static const wxString HTT_CONTEINER =
 "<h3><TMPL_VAR REPORTNAME></h3>\n"
-"<TMPL_VAR TODAY>\n"
+"<TMPL_VAR TODAY><hr>\n"
 "<table cellspacing='1' width='95%%'>\n"
 "    <tr bgcolor='#D5D6DE'>\n"
 "%s"
@@ -234,7 +234,7 @@ bool Model_Report::CheckHeaders(const wxString& sql)
     if (!this->db_->CheckSyntax(sql)) return false;
     for (const auto& col : getColumns(sql))
     {
-        if (!col.first.IsWord()) return false;
+        //if (!col.first.IsWord()) return false; //TODO:
     }
     return true;
 }
@@ -269,8 +269,12 @@ wxString Model_Report::getTemplate(const wxString& sql)
     wxString body, header;
     for (const auto& col : this->getColumns(sql))
     {
-        body += wxString::Format("        <td><TMPL_VAR %s></td>\n", col.first);
+		wxLogDebug("%s", wxString()<<col.second);
         header += wxString::Format("        <th>%s</th>\n", col.first);
+        if (col.second == 1)
+            body += wxString::Format("        <td nowrap align='right'><TMPL_VAR '%s'></td>\n", col.first);
+        else
+            body += wxString::Format("        <td><TMPL_VAR '%s'></td>\n", col.first);
     }
     return wxString::Format(HTT_CONTEINER, header, body);
 }
