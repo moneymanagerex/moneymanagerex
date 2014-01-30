@@ -92,10 +92,7 @@ bool mmBudgetingPanel::Create( wxWindow *parent,
 
     initVirtualListControl();
     if (!budget_.empty())
-    {
-        listCtrlBudget_->RefreshItems(0, (static_cast<long>(budget_.size() - 1)));
         listCtrlBudget_->EnsureVisible(0);
-    }
 
     this->windowsFreezeThaw();
     return TRUE;
@@ -138,13 +135,10 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
 void mmBudgetingPanel::RefreshList()
 {
-    listCtrlBudget_->DeleteAllItems();
     initVirtualListControl();
+    listCtrlBudget_->Refresh();
     if (!budget_.empty())
-    {
-        listCtrlBudget_->RefreshItems(0, (static_cast<long>(budget_.size() - 1)));
         listCtrlBudget_->EnsureVisible(0);
-    }
 }
 
 void mmBudgetingPanel::OnMouseLeftDown( wxMouseEvent& event )
@@ -386,11 +380,15 @@ void mmBudgetingPanel::initVirtualListControl()
         else
             estIncome += estimated;
 
-        double actual = categoryStats_[category.CATEGID][-1][0];
-        if (actual < 0)
-            actExpenses += actual;
-        else
-            actIncome += actual;
+        double actual = 0;
+        if (currentView_ != "View Planned Budget Categories" && estimated != 0)
+        {
+            double actual = categoryStats_[category.CATEGID][-1][0];
+            if (actual < 0)
+                actExpenses += actual;
+            else
+                actIncome += actual;
+        }
 
         /***************************************************************************
          Create a TOTALS entry for the category.
@@ -415,12 +413,16 @@ void mmBudgetingPanel::initVirtualListControl()
             else
                 estIncome += estimated;
 
-            actual = categoryStats_[category.CATEGID][subcategory.SUBCATEGID][0];
-            if (actual < 0)
-                actExpenses += actual;
-            else
-                actIncome += actual;
-
+            actual = 0;
+            if (currentView_ != "View Planned Budget Categories" && estimated != 0)
+            {
+                actual = categoryStats_[category.CATEGID][subcategory.SUBCATEGID][0];
+                if (actual < 0)
+                    actExpenses += actual;
+                else
+                    actIncome += actual;
+            }
+    
             /***************************************************************************
              Update the TOTALS entry for the subcategory.
             ***************************************************************************/
