@@ -40,6 +40,7 @@ enum
 {
     ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_EST = wxID_HIGHEST + 1400,
     MENU_VIEW_ALLBUDGETENTRIES,
+    MENU_VIEW_PLANNEDBUDGETENTRIES,
     MENU_VIEW_NONZEROBUDGETENTRIES,
     MENU_VIEW_INCOMEBUDGETENTRIES,
     MENU_VIEW_SUMMARYBUDGETENTRIES,
@@ -119,6 +120,8 @@ void mmBudgetingPanel::OnViewPopupSelected(wxCommandEvent& event)
         currentView_ = wxTRANSLATE("View All Budget Categories");
     else if (evt == MENU_VIEW_NONZEROBUDGETENTRIES)
         currentView_ = wxTRANSLATE("View Non-Zero Budget Categories");
+    else if (evt == MENU_VIEW_PLANNEDBUDGETENTRIES)
+        currentView_ = wxTRANSLATE("View Planned Budget Categories");
     else if (evt == MENU_VIEW_INCOMEBUDGETENTRIES)
         currentView_ = wxTRANSLATE("View Income Budget Categories");
     else if (evt == MENU_VIEW_EXPENSEBUDGETENTRIES)
@@ -153,6 +156,7 @@ void mmBudgetingPanel::OnMouseLeftDown( wxMouseEvent& event )
         {
             wxMenu menu;
             menu.Append(MENU_VIEW_ALLBUDGETENTRIES, _("View All Budget Categories"));
+            menu.Append(MENU_VIEW_PLANNEDBUDGETENTRIES, _("View Planned Budget Categories"));
             menu.Append(MENU_VIEW_NONZEROBUDGETENTRIES, _("View Non-Zero Budget Categories"));
             menu.Append(MENU_VIEW_INCOMEBUDGETENTRIES, _("View Income Budget Categories"));
             menu.Append(MENU_VIEW_EXPENSEBUDGETENTRIES, _("View Expense Budget Categories"));
@@ -317,6 +321,8 @@ bool mmBudgetingPanel::DisplayEntryAllowed(int categoryID, int subcategoryID)
         result = ((estimated != 0.0) || (actual != 0.0));
     else if (currentView_ == "View Income Budget Categories")
         result = ((estimated > 0.0) || (actual > 0.0));
+    else if (currentView_ == "View Planned Budget Categories")
+        result = (estimated != 0.0);
     else if (currentView_ == "View Expense Budget Categories")
         result = ((estimated < 0.0) || (actual < 0.0));
     else if (currentView_ == "View Budget Category Summary")
