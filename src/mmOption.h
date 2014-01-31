@@ -53,12 +53,10 @@ public:
     bool enableAssets_;
     bool enableBudget_;
     bool enableRepeatingTransactions_;
-    bool enableCustomLogo_;
     bool enableCheckForUpdates_;
     bool enableReportIssues_;
     bool enableBeNotifiedForNewReleases_;
     bool enableVisitWebsite_;
-    wxString logoName_;
     int html_font_size_;
 //    wxString aboutCompanyName_;
 

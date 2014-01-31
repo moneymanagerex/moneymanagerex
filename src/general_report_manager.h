@@ -130,8 +130,6 @@ private:
         ID_TEMPLATE,
         ID_DESCRIPTION,
         ID_SQL_GRID,
-        ID_CSS_CONTENT,
-        ID_JS_CONTENT,
     };
     
     const wxString SAMPLE_ASSETS_DESC =

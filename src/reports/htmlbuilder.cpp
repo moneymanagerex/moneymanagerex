@@ -59,12 +59,6 @@ void mmHTMLBuilder::init()
     {
         startTable("100%");
         startTableRow();
-        if (mmIniOptions::instance().enableCustomLogo_)
-        {
-            startTableCell();
-            addImage(mmIniOptions::instance().logoName_);
-            endTableCell();
-        }
         startTableCell();
         addHeader(2, mmOptions::instance().userNameString_);
         endTableCell();

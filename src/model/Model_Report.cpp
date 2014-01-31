@@ -229,27 +229,16 @@ wxString Model_Report::get_html(const Data& r)
     return get_html(&r); 
 }
 
-bool Model_Report::CheckHeaders(const wxString& sql)
-{
-    if (!this->db_->CheckSyntax(sql)) return false;
-    for (const auto& col : getColumns(sql))
-    {
-        //if (!col.first.IsWord()) return false; //TODO:
-    }
-    return true;
-}
-
 bool Model_Report::CheckSyntax(const wxString& sql)
 {
     return this->db_->CheckSyntax(sql);
 }
 
-std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString& sql)
+bool Model_Report::getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders)
 {
-    std::vector<std::pair<wxString, int> > columns;
-    if (!this->db_->CheckSyntax(sql)) return columns;
+    if (!this->db_->CheckSyntax(sql)) return false;
     wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
-    if (!stmt.IsReadOnly()) return columns;
+    if (!stmt.IsReadOnly()) return false;
 
     wxSQLite3ResultSet q = stmt.ExecuteQuery();
     int columnCount = q.GetColumnCount();
@@ -259,22 +248,24 @@ std::vector<std::pair<wxString, int> > Model_Report::getColumns(const wxString& 
         std::pair<wxString, int> col_and_type;
         col_and_type.second = q.GetColumnType(i);
         col_and_type.first = q.GetColumnName(i);
-        columns.push_back(col_and_type);
+
+        colHeaders.push_back(col_and_type);
     }
-    return columns;
+    return true;
 }
 
 wxString Model_Report::getTemplate(const wxString& sql)
 {
     wxString body, header;
-    for (const auto& col : this->getColumns(sql))
+    std::vector<std::pair<wxString, int> > colHeaders;
+    this->getColumns(sql, colHeaders);
+    for (const auto& col : colHeaders)
     {
-		wxLogDebug("%s", wxString()<<col.second);
         header += wxString::Format("        <th>%s</th>\n", col.first);
         if (col.second == 1)
-            body += wxString::Format("        <td nowrap align='right'><TMPL_VAR '%s'></td>\n", col.first);
+            body += wxString::Format("        <td nowrap align='right'><TMPL_VAR \"%s\"></td>\n", col.first);
         else
-            body += wxString::Format("        <td><TMPL_VAR '%s'></td>\n", col.first);
+            body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
     }
     return wxString::Format(HTT_CONTEINER, header, body);
 }

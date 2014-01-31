@@ -47,7 +47,6 @@ class mmPanelBase;
 class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
-class CustomReportIndex;
 class RecentDatabaseFiles;
 class WebServerThread;
 //----------------------------------------------------------------------------
@@ -256,8 +255,6 @@ private:
 
     void OnTreeItemExpanded(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
-
-    void OnEditCustomSqlReport(wxCommandEvent& event);
 
     bool IsUpdateAvailable(const wxString& page);
     void processPendingEvents();

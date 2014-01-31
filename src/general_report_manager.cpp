@@ -62,6 +62,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_buttonRun()
     , m_treeCtrl()
     , m_outputHTML()
+    , m_sqlListBox()
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -278,47 +279,30 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
     const wxString &sql = sqlText->GetValue();
 
-    if (sql.empty() || Model_Report::instance().CheckSyntax(sql))
+    if (!sql.empty() && Model_Report::instance().CheckSyntax(sql))
     {
         m_sqlListBox->DeleteAllColumns();
         long interval = GetTickCount();
         if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
         {
             interval = GetTickCount() - interval;
+            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms")
+                , (int) m_sqlQueryData.size(), wxString() << interval));
 
+            MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+            std::vector<std::pair<wxString, int> > colHeaders;
+            bool colsOK = Model_Report::instance().getColumns(sql, colHeaders);
+            wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+            b->Enable(colsOK && templateText->GetValue().empty());
             int pos = 0;
-            //m_sqlListBox->InsertColumn(pos, _("#"), wxLIST_FORMAT_RIGHT, 40);
-            for (const auto& col : Model_Report::instance().getColumns(sql))
+            for (const auto& col : colHeaders)
                 m_sqlListBox->InsertColumn(pos++, col.first
-                , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
-                , col.first.length() * 10 + 20);
+                    , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
+                    , col.first.length() * 10 + 20);
 
-            m_sqlListBox->SetItemCount(m_sqlQueryData.size() - 1);
+            m_sqlListBox->SetItemCount(m_sqlQueryData.size());
             m_sqlListBox->Refresh();
             m_sqlListBox->EnsureVisible(0);
-
-            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms"), (int)m_sqlQueryData.size(), wxString() << interval));
-
-            wxButton* b = (wxButton*) FindWindow(wxID_NEW);
-            MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-            if (Model_Report::instance().CheckHeaders(sql))
-            {
-                b->Enable(templateText->GetValue().empty());
-            }
-            else
-            {
-                b->Enable(false);
-                if (templateText->GetValue().empty())
-                {
-                    wxRichToolTip tip(_("Error")
-                        , _("Some columns alias is wrong! Can't create HTML template")
-                        + "\n\n"
-                        + _("Tip: SQL AS temporarily assigns a table column a new name.")
-                        + "\n");
-                    tip.SetIcon(wxICON_WARNING);
-                    tip.ShowFor((wxWindow*) b);
-                }
-            }
         }
         else
         {
@@ -562,9 +546,10 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
     if (!report)
     {
         for (size_t n = editors_notebook->GetPageCount() - 1; n >= 1; n--) editors_notebook->DeletePage(n);
-        wxString repList = "<table>";
+        wxString repList = "<table cellspacing='2' width='90%'>";
+        repList += "<tr bgcolor='#D5D6DE'><td>" + _("Name") + "</td><td>" + _("Description") + "</tr>";
         for (const auto& rep: Model_Report::instance().find(Model_Report::GROUPNAME(m_selectedGroup)))
-            repList += "<tr><td>" + rep.REPORTNAME + "</td><td>" + rep.DESCRIPTION + "</td></tr>";
+            repList += "<tr><td width='30%' nowrap>" + rep.REPORTNAME + "</td><td>" + rep.DESCRIPTION + "</td></tr>";
         repList += "</table>";
         m_outputHTML->SetPage(repList, "");
     }
@@ -630,7 +615,7 @@ bool mmGeneralReportManager::DeleteReport(int id)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        wxString msg = wxString() << _("Delete the Custom Report Title:")
+        wxString msg = wxString() << _("Delete the Report Title:")
             << "\n\n"
             << report->REPORTNAME;
         int iError = wxMessageBox(msg, "General Reports Manager", wxYES_NO | wxICON_ERROR);

@@ -35,12 +35,6 @@ inline const wxString getSettingsFileName()
 }
 //----------------------------------------------------------------------------
 
-inline const wxString getCustomReportIndexFilename()
-{
-    return "CustomReportIndex.txt";
-}
-//----------------------------------------------------------------------------
-
 inline const wxString getDirectory()
 {
     return "";
@@ -178,7 +172,6 @@ wxString mmex::getPathUser(EUserFile f)
 {
     static const wxString files[USER_FILES_MAX] = {
       getSettingsFileName(),
-      getCustomReportIndexFilename(),
       getDirectory()
     };
 
