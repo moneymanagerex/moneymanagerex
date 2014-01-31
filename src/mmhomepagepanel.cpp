@@ -433,7 +433,7 @@ wxString mmHomePagePanel::getCalendarWidget()
         selectedMonthDay.SetDay(d);
         wxString sColor = "", sBgColor = "";
         if (d == today.GetDay()) sBgColor = "YELLOW";
-        hb.startTableCell(wxString::Format("0\" bgcolor=\"%s", sBgColor));
+        hb.startTableCell(wxString::Format("0\" bgcolor=\"%s\" align=\"center", sBgColor));
         if (wxDateTime::GetWeekDayName(selectedMonthDay.GetWeekDay())=="Sunday") sColor = "#FF0000";
         else if (wxDateTime::GetWeekDayName(selectedMonthDay.GetWeekDay())=="Saturday") sColor = "#FF0000";
         hb.font_settings(hb.font_size(), sColor);
