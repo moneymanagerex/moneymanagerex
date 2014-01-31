@@ -58,6 +58,7 @@ wxString htmlWidgetStocks::getHTMLText()
             for (const auto& account : accounts)
             {
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+                if (Model_Account::status(account) != Model_Account::OPEN) continue;
                 Model_Currency::Data *currency = Model_Currency::instance().get(account.CURRENCYID);
                 hb.startTableRow();
                 hb.addTableCellLink(wxString::Format("STOCK:%i", account.ACCOUNTID)
@@ -102,8 +103,11 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
         double gain_lost = (stock.VALUE - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
         values.first += gain_lost;
         values.second += stock.VALUE;
-        grand_gain_lost_ += gain_lost * conv_rate;
-        grand_total_ += stock.VALUE * conv_rate;
+        if (account && account->STATUS == "Open")
+        {
+            grand_total_ += stock.VALUE * conv_rate;
+            grand_gain_lost_ += gain_lost * conv_rate;
+        }
     }
 }
 
