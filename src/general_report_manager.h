@@ -25,11 +25,27 @@
 #include <wx/webviewfshandler.h>
 #include <vector>
 #include <wx/dataview.h>
+#include "mmpanelbase.h"
+
 #ifndef _WIN32
 #include <sys/time.h>
 #endif
 
 class wxStyledTextCtrl;
+class mmGeneralReportManager;
+
+class sqlListCtrl : public mmListCtrl
+{
+    DECLARE_NO_COPY_CLASS(sqlListCtrl)
+public:
+
+    sqlListCtrl(mmGeneralReportManager *grm, wxWindow *parent
+        , const wxWindowID id);
+    virtual wxString OnGetItemText(long item, long column) const;
+private:
+    mmGeneralReportManager* m_grm;
+};
+
 class mmGeneralReportManager: public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmGeneralReportManager )
@@ -41,6 +57,7 @@ public:
     virtual ~mmGeneralReportManager();
 
     mmGeneralReportManager(wxWindow* parent);
+    wxString OnGetItemText(long item, long column) const;
 
 private:
     bool Create(wxWindow* parent
@@ -84,7 +101,7 @@ private:
     wxButton* m_buttonSaveAs;
     wxButton* m_buttonRun;
     wxTreeCtrl* m_treeCtrl;
-    wxListCtrl* m_sqlListBox;
+    sqlListCtrl* m_sqlListBox;
     wxTreeItemId m_rootItem;
     wxTreeItemId m_selectedItemID;
     int m_selectedReportID;
@@ -176,7 +193,6 @@ unsigned GetTickCount()
         return (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 }
 #endif
-
 };
 
 class MyTreeItemData : public wxTreeItemData

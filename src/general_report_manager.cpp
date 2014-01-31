@@ -49,6 +49,12 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
 END_EVENT_TABLE()
 
+sqlListCtrl::sqlListCtrl(mmGeneralReportManager* grm, wxWindow *parent, wxWindowID winid)
+    : mmListCtrl(parent, winid)
+    , m_grm(grm)
+{
+}
+
 mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     : m_buttonOpen()
     , m_buttonSave()
@@ -56,7 +62,6 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     , m_buttonRun()
     , m_treeCtrl()
     , m_outputHTML()
-    , m_sqlListBox()
     , m_selectedReportID(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -258,8 +263,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         box_sizer2->AddSpacer(10);
         box_sizer2->Add(info, g_flagsExpand);
 
-        m_sqlListBox = new wxListCtrl(panel, wxID_ANY, wxDefaultPosition, wxDefaultSize
-            , wxLC_REPORT);
+        m_sqlListBox = new sqlListCtrl(this, panel, wxID_ANY);
         box_sizer1->Add(box_sizer2, wxSizerFlags(g_flagsExpand).Proportion(0));
         box_sizer1->Add(m_sqlListBox, g_flagsExpand);
         sizer->Add(box_sizer1, wxSizerFlags(g_flagsExpand).Border(0));
@@ -276,30 +280,24 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 
     if (sql.empty() || Model_Report::instance().CheckSyntax(sql))
     {
+        m_sqlListBox->DeleteAllColumns();
         long interval = GetTickCount();
         if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
         {
             interval = GetTickCount() - interval;
-            m_sqlListBox->ClearAll();
 
-            int row = 0, pos = 0;
-            m_sqlListBox->InsertColumn(pos, _("#"), wxLIST_FORMAT_RIGHT, 40);
+            int pos = 0;
+            //m_sqlListBox->InsertColumn(pos, _("#"), wxLIST_FORMAT_RIGHT, 40);
             for (const auto& col : Model_Report::instance().getColumns(sql))
-                m_sqlListBox->InsertColumn(++pos, col.first
+                m_sqlListBox->InsertColumn(pos++, col.first
                 , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
                 , col.first.length() * 10 + 20);
 
-            for (const auto& dataRow : m_sqlQueryData)
-            {
-                int pos = 0;
-                long itemIndex = m_sqlListBox->InsertItem(row, "", 0);
-                m_sqlListBox->SetItem(itemIndex, pos, wxString() << ++row);
-                for (const auto& dataCol : dataRow)
-                {
-                    m_sqlListBox->SetItem(itemIndex, ++pos, dataCol);
-                }
-            }
-            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms"), row, wxString()<<interval));
+            m_sqlListBox->SetItemCount(m_sqlQueryData.size() - 1);
+            m_sqlListBox->Refresh();
+            m_sqlListBox->EnsureVisible(0);
+
+            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms"), (int)m_sqlQueryData.size(), wxString() << interval));
 
             wxButton* b = (wxButton*) FindWindow(wxID_NEW);
             MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
@@ -500,7 +498,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
         n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
-        mmGeneralReport gr(report);
+        mmGeneralReport gr(report); //TODO: limit 500 line
         m_outputHTML->SetPage(gr.getHTMLText(),"");
     }
 }
@@ -592,6 +590,12 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         descriptionText->ChangeValue(report->DESCRIPTION);
 
         m_outputHTML->SetPage(report->DESCRIPTION, "");
+        if (m_sqlListBox) m_sqlListBox->DeleteAllItems();
+        if (m_sqlListBox) m_sqlListBox->DeleteAllColumns();
+        wxButton* createTemplate = (wxButton*) FindWindow(wxID_NEW);
+        if (createTemplate) createTemplate->Enable(false);
+        wxStaticText *info = (wxStaticText*)FindWindow(wxID_INFO);
+        if (info) info->SetLabel("");
 
         viewControls(true);
     }
@@ -766,6 +770,16 @@ void mmGeneralReportManager::showHelp()
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
     m_outputHTML->LoadURL(url);
     wxLogDebug("%s", url);
+}
+
+wxString mmGeneralReportManager::OnGetItemText(long item, long column) const
+{
+    return m_sqlQueryData.at(item).at(column);
+}
+
+wxString sqlListCtrl::OnGetItemText(long item, long column) const
+{
+    return m_grm->OnGetItemText(item, column);
 }
 
 void mmGeneralReportManager::OnClose(wxCommandEvent& /*event*/)
