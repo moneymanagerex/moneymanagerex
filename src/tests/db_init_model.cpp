@@ -517,3 +517,280 @@ void DB_Init_Model::ShowMessage(wxString msg)
 {
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());
 }
+//----------------------------------------------------------------------------
+
+template <class Value_Type>
+double  Value_List<Value_Type>::Current_Total()
+{
+    double result = 0;
+    for (int pos = 0; pos < (int) list.size(); ++pos)
+    {
+        result += list[pos].Value();
+    }
+
+    return result;
+}
+
+//----------------------------------------------------------------------------
+Single_Name_List::Single_Name_List()
+{}
+
+void Single_Name_List::Set_Value(const wxString& primary_name, const double value)
+{
+    bool names_exists = false;
+    int pos = 0;
+    while (pos < (int) m_name_list.list.size())
+    {
+        if (m_name_list.list[pos].Primary_Name() == primary_name)
+        {
+            names_exists = true;
+            break;
+        }
+        ++pos;
+    }
+
+    if (names_exists) // Update the value
+    {
+        m_name_list.list[pos].Add_Value(value);
+    }
+    else    // Create the new value.
+    {
+        Single_Name named_value(primary_name, value);
+        m_name_list.list.push_back(named_value);
+    }
+}
+
+double Single_Name_List::Current_List_Total()
+{
+    return m_name_list.Current_Total();
+}
+
+Single_Name Single_Name_List::Item(const int pos) const
+{
+    return m_name_list.list[pos];
+}
+
+int Single_Name_List::Size()
+{
+    return m_name_list.list.size();
+}
+
+Single_Name::Single_Name(const wxString& primary_name, const double value)
+: m_name(primary_name)
+, m_value(value)
+{}
+
+wxString Single_Name::Primary_Name() const
+{
+    return m_name;
+}
+
+double Single_Name::Value() const
+{
+    return m_value;
+}
+
+void Single_Name::Add_Value(const double value)
+{
+    m_value += value;
+}
+//----------------------------------------------------------------------------
+
+Dual_Name_List::Dual_Name_List()
+{}
+
+void Dual_Name_List::Set_Value(const wxString& primary_name, const wxString& secondary_name, const double value)
+{
+    bool names_exists = false;
+    int pos = 0;
+    while (pos < (int) m_name_list.list.size())
+    {
+        if ((m_name_list.list[pos].Primary_Name() == primary_name) && (m_name_list.list[pos].Secondary_Name() == secondary_name))
+        {
+            names_exists = true;
+            break;
+        }
+        ++pos;
+    }
+
+    if (names_exists) // Update the value
+    {
+        m_name_list.list[pos].Add_Value(value);
+    }
+    else    // Create the new value.
+    {
+        Dual_Name named_value(primary_name, secondary_name, value);
+        m_name_list.list.push_back(named_value);
+    }
+}
+
+double Dual_Name_List::Current_List_Total()
+{
+    return m_name_list.Current_Total();
+}
+
+Dual_Name Dual_Name_List::Item(const int pos) const
+{
+    return m_name_list.list[pos];
+}
+
+int Dual_Name_List::Size()
+{
+    return m_name_list.list.size();
+}
+
+Dual_Name::Dual_Name(const wxString& primary_name, const wxString& secondary_name, const double value)
+: m_primary_name(primary_name)
+, m_secondary_name(secondary_name)
+, m_value(value)
+{}
+
+wxString Dual_Name::Primary_Name() const
+{
+    return m_primary_name;
+}
+
+wxString Dual_Name::Secondary_Name() const
+{
+    return m_secondary_name;
+}
+
+double Dual_Name::Value() const
+{
+    return m_value;
+}
+
+void Dual_Name::Add_Value(const double value)
+{
+    m_value += value;
+}
+
+//----------------------------------------------------------------------------
+int DB_Model_Initialise_Statistics::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
+{
+    payee_income_list.Set_Value(payee, value);
+    category_income_list.Set_Value(category, value);
+    subcategory_income_list.Set_Value(category, subcategory, value);
+    return DB_Init_Model::Add_Trans_Deposit(account_name, date, payee, value, category, subcategory);
+}
+
+int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
+{
+    payee_expense_list.Set_Value(payee, value);
+    if (!category.IsEmpty())
+    {
+        category_expense_list.Set_Value(category, value);
+        if (!subcategory.IsEmpty())
+        {
+            subcategory_expense_list.Set_Value(category, subcategory, value);
+        }
+    }
+    return DB_Init_Model::Add_Trans_Withdrawal(account_name, date, payee, value, category, subcategory);
+}
+
+int DB_Model_Initialise_Statistics::Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value, const wxString& category, const wxString& subcategory, bool advanced, double adv_value)
+{
+    if (!category.IsEmpty())
+    {
+        category_income_list.Set_Value(category, value);
+        category_expense_list.Set_Value(category, value);
+        if (!subcategory.IsEmpty())
+        {
+            subcategory_income_list.Set_Value(category, subcategory, value);
+            subcategory_expense_list.Set_Value(category, subcategory, value);
+        }
+    }
+    return DB_Init_Model::Add_Trans_Transfer(account_name, date, to_account, value, category, subcategory, advanced, adv_value);
+}
+
+void DB_Model_Initialise_Statistics::Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory)
+{
+    if (!category.IsEmpty())
+    {
+        if (value < 0)
+        {
+            category_expense_list.Set_Value(category, value);
+            if (!subcategory.IsEmpty())
+            {
+                subcategory_expense_list.Set_Value(category, subcategory, value);
+            }
+        }
+        else
+        {
+            category_income_list.Set_Value(category, value);
+            if (!subcategory.IsEmpty())
+            {
+                subcategory_income_list.Set_Value(category, subcategory, value);
+            }
+        }
+    }
+    DB_Init_Model::Add_Trans_Split(trans_id, value, category, subcategory);
+}
+
+
+void DB_Model_Initialise_Statistics::Current_Single_Name_Stats(const wxString& title, const wxDateTime& starting_date, Single_Name_List& single_name_list)
+{
+    Add_Asset(title, starting_date, 0, Model_Asset::TYPE::TYPE_OTHER);
+    for (int pos = 0; pos < single_name_list.Size(); ++pos)
+    {
+        Add_Asset(single_name_list.Item(pos).Primary_Name(), starting_date, single_name_list.Item(pos).Value());
+    }
+}
+
+void DB_Model_Initialise_Statistics::Current_Payee_Income_Stats(const wxString& title, const wxDateTime& starting_date)
+{
+    Current_Single_Name_Stats(title, starting_date, payee_income_list);
+}
+
+void DB_Model_Initialise_Statistics::Current_Payee_Expense_Stats(const wxString& title, const wxDateTime& starting_date)
+{
+    Current_Single_Name_Stats(title, starting_date, payee_expense_list);
+}
+
+void DB_Model_Initialise_Statistics::Current_Category_Income_Stats(const wxString& title, const wxDateTime& starting_date)
+{
+    Current_Single_Name_Stats(title, starting_date, category_income_list);
+}
+
+void DB_Model_Initialise_Statistics::Current_Category_Expense_Stats(const wxString& title, const wxDateTime& starting_date)
+{
+    Current_Single_Name_Stats(title, starting_date, category_expense_list);
+}
+
+void DB_Model_Initialise_Statistics::Current_Dual_Name_Stats(const wxString& title, const wxDateTime& starting_date, Dual_Name_List& dual_name_list)
+{
+    Add_Asset(title, starting_date, 0, Model_Asset::TYPE::TYPE_OTHER);
+    for (int pos = 0; pos < dual_name_list.Size(); ++pos)
+    {
+        Add_Asset(dual_name_list.Item(pos).Primary_Name() + ":" + dual_name_list.Item(pos).Secondary_Name(), starting_date, dual_name_list.Item(pos).Value());
+    }
+}
+
+void DB_Model_Initialise_Statistics::Current_Subcategory_Income_Stats(const wxString& title, const wxDateTime& starting_date)
+{
+    Current_Dual_Name_Stats(title, starting_date, subcategory_income_list);
+}
+
+void DB_Model_Initialise_Statistics::Current_Subcategory_Expense_Stats(const wxString& title, const wxDateTime& starting_date)
+{
+    Current_Dual_Name_Stats(title, starting_date, subcategory_expense_list);
+}
+//----------------------------------------------------------------------------
+
+void DB_Model_Initialise_Statistics::Total_Payee_Stats(const wxDateTime& starting_date)
+{
+    Add_Asset("-------------------- Total Income for Payees:", starting_date, payee_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Expenses for Payees:", starting_date, payee_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+}
+
+void DB_Model_Initialise_Statistics::Total_Category_Stats(const wxDateTime& starting_date)
+{
+    Add_Asset("-------------------- Total Income for Categories:", starting_date, category_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Expenses for Categories:", starting_date, category_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+}
+
+void DB_Model_Initialise_Statistics::Total_Subcategory_Stats(const wxDateTime& starting_date)
+{
+    Add_Asset("-------------------- Total Income for Subcategories:", starting_date, subcategory_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Expenses for Subcategories:", starting_date, subcategory_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+}

@@ -117,3 +117,124 @@ private:
     void Bill_Transaction(Model_Checking::TYPE trans_type, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
 };
+//----------------------------------------------------------------------------
+
+template <class Value_Type>
+class Value_List
+{
+public:
+    std::vector<Value_Type> list;
+
+    double Current_Total();
+};
+//----------------------------------------------------------------------------
+
+class Single_Name
+{
+public:
+    Single_Name(const wxString& primary_name, const double value);
+
+    wxString Primary_Name() const;
+    double Value() const;
+    void Add_Value(const double value);
+
+private:
+    wxString m_name;
+    double m_value;
+};
+
+class Single_Name_List
+{
+public:
+    Single_Name_List();
+    void Set_Value(const wxString& primary_name, const double value);
+    double Current_List_Total();
+    Single_Name Item(const int pos) const;
+    int Size();
+
+private:
+    Value_List<Single_Name> m_name_list;
+};
+//----------------------------------------------------------------------------
+
+class Dual_Name
+{
+public:
+    Dual_Name(const wxString& primary_name, const wxString& secondary_name, const double value);
+
+    wxString Primary_Name() const;
+    wxString Secondary_Name() const;
+    double Value() const;
+    void Add_Value(const double value);
+
+private:
+    wxString m_primary_name;
+    wxString m_secondary_name;
+    double m_value;
+};
+
+class Dual_Name_List
+{
+public:
+    Dual_Name_List();
+    void Set_Value(const wxString& primary_name, const wxString& secondary_name, const double value);
+    double Current_List_Total();
+    Dual_Name Item(const int pos) const;
+    int Size();
+
+private:
+    Value_List<Dual_Name> m_name_list;
+};
+//----------------------------------------------------------------------------
+
+class DB_Model_Initialise_Statistics : public DB_Init_Model
+{
+public:
+    /**
+    If category not supplied, assume that it is a split.
+    * Returns the transaction ID to enamle split creation.
+    */
+    int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = "");
+
+    /**
+    If category not supplied, assume that it is a split.
+    * Returns the transaction ID to enamle split creation.
+    */
+    int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
+        , const wxString& category = "", const wxString& subcategory = "");
+
+    /**
+    If category not supplied, assume that it is a split.
+    * Returns the transaction ID to enamle split creation.
+    */
+    int Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
+        , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
+
+    /** Add_Trans command If category not supplied, assume that it is a split. */
+    void Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory = "");
+
+    void Current_Payee_Income_Stats(const wxString& title, const wxDateTime& starting_date);
+    void Current_Payee_Expense_Stats(const wxString& title, const wxDateTime& starting_date);
+
+    void Current_Category_Income_Stats(const wxString& title, const wxDateTime& starting_date);
+    void Current_Category_Expense_Stats(const wxString& title, const wxDateTime& starting_date);
+
+    void Current_Subcategory_Income_Stats(const wxString& title, const wxDateTime& starting_date);
+    void Current_Subcategory_Expense_Stats(const wxString& title, const wxDateTime& starting_date);
+
+    void Total_Payee_Stats(const wxDateTime& starting_date);
+    void Total_Category_Stats(const wxDateTime& starting_date);
+    void Total_Subcategory_Stats(const wxDateTime& starting_date);
+
+private:
+    Single_Name_List payee_income_list;
+    Single_Name_List payee_expense_list;
+    Single_Name_List category_income_list;
+    Single_Name_List category_expense_list;
+    Dual_Name_List subcategory_income_list;
+    Dual_Name_List subcategory_expense_list;
+
+    void Current_Single_Name_Stats(const wxString& title, const wxDateTime& starting_date, Single_Name_List& single_name_list);
+    void Current_Dual_Name_Stats(const wxString& title, const wxDateTime& starting_date, Dual_Name_List& dual_name_list);
+};
