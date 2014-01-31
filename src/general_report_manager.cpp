@@ -115,9 +115,9 @@ void mmGeneralReportManager::fillControls()
         bool no_group = record.GROUPNAME.empty();
         if (group_name != record.GROUPNAME && !no_group)
         {
-            group = m_treeCtrl->AppendItem(m_rootItem, record.GROUPNAME);
-            m_treeCtrl->SetItemData(group, new MyTreeItemData(-1, record.GROUPNAME));
             group_name = record.GROUPNAME;
+            group = m_treeCtrl->AppendItem(m_rootItem, group_name);
+            m_treeCtrl->SetItemData(group, new MyTreeItemData(-1, group_name));
         }
         wxTreeItemId item = m_treeCtrl->AppendItem(no_group ? m_rootItem : group, record.REPORTNAME);
         m_treeCtrl->SetItemData(item, new MyTreeItemData(record.REPORTID, record.GROUPNAME));
@@ -590,7 +590,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         LuaScriptText->ChangeValue(report->LUACONTENT);
         LuaScriptText->SetLexerLua();
         descriptionText->ChangeValue(report->DESCRIPTION);
-        
+
         m_outputHTML->SetPage(report->DESCRIPTION, "");
 
         viewControls(true);
@@ -632,11 +632,9 @@ bool mmGeneralReportManager::DeleteReport(int id)
         int iError = wxMessageBox(msg, "General Reports Manager", wxYES_NO | wxICON_ERROR);
         if (iError == wxYES)
         {
-            m_selectedReportID = -1;
             Model_Report::instance().remove(id);
-            wxListEvent evt(wxEVT_TREE_SEL_CHANGED, wxID_ANY);
-            AddPendingEvent(evt);
-
+            m_selectedReportID = -1;
+            m_selectedItemID = m_rootItem;
             fillControls();
             return true;
         }
@@ -646,32 +644,37 @@ bool mmGeneralReportManager::DeleteReport(int id)
 
 void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
     int id = event.GetId();
 
-    if (iData && id == ID_RENAME)
+    if (id == ID_RENAME || id == ID_DELETE || id == ID_GROUP)
     {
-        int report_id = iData->get_report_id();
-        this->renameReport(report_id);
-    }
-    else if (iData && id == ID_DELETE)
-    {
+        MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
+        if (iData && id == ID_RENAME)
+        {
+            int report_id = iData->get_report_id();
+            this->renameReport(report_id);
+        }
+        else if (iData && id == ID_DELETE)
+        {
             int report_id = iData->get_report_id();
             this->DeleteReport(report_id);
-    }
-    else if (iData && id == ID_GROUP)
-    {
-        int report_id = iData->get_report_id();
-        Model_Report::Data * report = Model_Report::instance().get(report_id);
-        if (report)
+        }
+        else if (iData && id == ID_GROUP)
         {
-            report->GROUPNAME = wxGetTextFromUser(_("Enter the name for the new report group")
-                , _("General Report Manager"), "");
-            Model_Report::instance().save(report);
+            int report_id = iData->get_report_id();
+            Model_Report::Data * report = Model_Report::instance().get(report_id);
+            if (report)
+            {
+                report->GROUPNAME = wxGetTextFromUser(_("Enter the name for the new report group")
+                    , _("General Report Manager"), "");
+                Model_Report::instance().save(report);
+            }
         }
     }
     else
+    {
         newReport(id);
+    }
 
     fillControls();
 }
@@ -689,13 +692,10 @@ void mmGeneralReportManager::newReport(int sample)
         group_name = m_selectedGroup;
     }
 
-    Model_Report::Data* report = Model_Report::instance().create();
-    report->GROUPNAME = group_name;
     int i = Model_Report::instance().all().size();
     wxString report_name = _("New Report");
     while (!Model_Report::instance().find(Model_Report::REPORTNAME(report_name)).empty())
         report_name = wxString::Format(_("New Report %i"), ++i);
-    report->REPORTNAME = report_name;
     wxString sqlContent, luaContent, httContent, description;
     switch (sample) {
     case ID_NEW_EMPTY:
@@ -710,6 +710,9 @@ void mmGeneralReportManager::newReport(int sample)
         break;
     }
 
+    Model_Report::Data* report = Model_Report::instance().create();
+    report->GROUPNAME = group_name;
+    report->REPORTNAME = report_name;
     report->SQLCONTENT = sqlContent;
     report->LUACONTENT = luaContent;
     report->TEMPLATECONTENT = httContent;
