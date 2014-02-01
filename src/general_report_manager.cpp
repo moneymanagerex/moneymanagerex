@@ -106,7 +106,7 @@ bool mmGeneralReportManager::Create(wxWindow* parent
 void mmGeneralReportManager::fillControls()
 {
     viewControls(false);
-    //m_treeCtrl->SetEvtHandlerEnabled(false);
+    m_treeCtrl->SetEvtHandlerEnabled(false);
     m_treeCtrl->DeleteAllItems();
     m_rootItem = m_treeCtrl->AddRoot(_("Reports"));
     m_selectedItemID = m_rootItem;
@@ -131,12 +131,12 @@ void mmGeneralReportManager::fillControls()
         if (m_selectedReportID == record.REPORTID)
         {
             m_selectedItemID = item;
-            m_treeCtrl->SelectItem(m_selectedItemID);
         }
     }
     m_treeCtrl->ExpandAll();
-    //m_treeCtrl->SetEvtHandlerEnabled(true);
-    if (m_selectedItemID == m_rootItem) showHelp();
+    m_treeCtrl->SetEvtHandlerEnabled(true);
+    m_treeCtrl->SelectItem(m_selectedItemID);
+
 }
 
 void mmGeneralReportManager::CreateControls()
@@ -350,7 +350,7 @@ void mmGeneralReportManager::importReport()
     wxFileName fn(reportFileName);
     const wxString clearFileName = fn.FileName(reportFileName).GetName();
 
-    wxString sql, lua, htt, readme;
+    wxString sql, lua, htt, txt;
     Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(clearFileName));
     if (!reports.empty())
     {
@@ -359,7 +359,7 @@ void mmGeneralReportManager::importReport()
     }
     else
     {
-        openZipFile(reportFileName, htt, sql, lua, readme);
+        openZipFile(reportFileName, htt, sql, lua, txt);
         Model_Report::Data *report = 0;
         report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
@@ -367,16 +367,10 @@ void mmGeneralReportManager::importReport()
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
         report->TEMPLATECONTENT = htt;
+        report->DESCRIPTION = txt;
         m_selectedReportID = Model_Report::instance().save(report);
     }
 
-    if (!readme.empty())
-    {
-        wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
-        n->SetSelection(ID_TAB_OUT);
-        m_outputHTML->ClearBackground();
-        m_outputHTML->SetPage(readme, "readme");
-    }
     fillControls();
 }
 
@@ -401,7 +395,7 @@ bool mmGeneralReportManager::readTextFile(const wxString &fileName, wxString &da
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
-    , wxString &htt, wxString &sql, wxString &lua, wxString &readme)
+    , wxString &htt, wxString &sql, wxString &lua, wxString &txt)
 {
     if (!reportFileName.empty())
     {
@@ -431,8 +425,8 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
                     sql = textdata;
                 else if (f.EndsWith(".lua"))
                     lua = textdata;
-                else if (f.StartsWith("readme"))
-                    readme << textdata;
+                else if (f.StartsWith("description"))
+                    txt << textdata;
                 else if (f.EndsWith(".htt"))
                     htt << textdata;
             }
@@ -575,6 +569,7 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         descriptionText->ChangeValue(report->DESCRIPTION);
 
         m_outputHTML->SetPage(report->DESCRIPTION, "");
+
         if (m_sqlListBox) m_sqlListBox->DeleteAllItems();
         if (m_sqlListBox) m_sqlListBox->DeleteAllColumns();
         wxButton* createTemplate = (wxButton*) FindWindow(wxID_NEW);
