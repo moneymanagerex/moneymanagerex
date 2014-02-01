@@ -62,7 +62,7 @@ SplitDetailDialog::SplitDetailDialog(
 
 bool SplitDetailDialog::Create(wxWindow* parent)
 {
-    long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX | wxWS_EX_BLOCK_EVENTS;
+    long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     wxDialog::Create(parent, wxID_ANY, _("Split Detail Dialog"), wxDefaultPosition, wxSize(400, 300), style);
 
     CreateControls();
@@ -94,16 +94,16 @@ void SplitDetailDialog::CreateControls()
 
     wxStaticBox* itemStaticBoxSizer4Static = new wxStaticBox(this, wxID_ANY, _("Split Transaction Details"));
     wxStaticBoxSizer* itemStaticBoxSizer4 = new wxStaticBoxSizer(itemStaticBoxSizer4Static, wxVERTICAL);
-    itemBoxSizer2->Add(itemStaticBoxSizer4, 0, wxALIGN_CENTER_HORIZONTAL|wxLEFT|wxTOP|wxRIGHT, 10);
+    itemBoxSizer2->Add(itemStaticBoxSizer4, g_flagsExpand);
 
-    wxPanel* itemPanel7 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-    itemStaticBoxSizer4->Add(itemPanel7, 0, wxGROW|wxALL, 10);
+    wxPanel* itemPanel7 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    itemStaticBoxSizer4->Add(itemPanel7, g_flagsExpand);
 
-    wxFlexGridSizer* controlSizer = new wxFlexGridSizer(0, 2, 10, 10);
+    wxFlexGridSizer* controlSizer = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(controlSizer);
 
     wxStaticText* staticTextType = new wxStaticText( itemPanel7, wxID_STATIC, _("Type"));
-    controlSizer->Add(staticTextType, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
+    controlSizer->Add(staticTextType, g_flags);
 
     const wxString itemChoiceStrings[] =
     {
@@ -112,37 +112,39 @@ void SplitDetailDialog::CreateControls()
     };
     choiceType_ = new wxChoice(itemPanel7, ID_DIALOG_SPLTTRANS_TYPE
         , wxDefaultPosition, wxDefaultSize
-        , 2
-        , itemChoiceStrings);
+        , 2, itemChoiceStrings);
     choiceType_->SetSelection(split_->SPLITTRANSAMOUNT < 0 ? !transType_ : transType_);
     choiceType_->SetToolTip(_("Specify the type of transactions to be created."));
-    controlSizer->Add(choiceType_, 0, wxALIGN_CENTER_VERTICAL | wxALL | wxADJUST_MINSIZE, 0);
+    controlSizer->Add(choiceType_, g_flags);
 
     wxStaticText* staticTextAmount = new wxStaticText( itemPanel7, wxID_STATIC, _("Amount"));
-    controlSizer->Add(staticTextAmount, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
+    controlSizer->Add(staticTextAmount, g_flags);
 
     textAmount_ = new mmTextCtrl( itemPanel7, ID_TEXTCTRLAMOUNT, ""
         , wxDefaultPosition, wxSize(110,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
-    controlSizer->Add(textAmount_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
+    controlSizer->Add(textAmount_, g_flags);
 
     wxStaticText* staticTextCategory = new wxStaticText( itemPanel7, wxID_STATIC, _("Category"));
-    controlSizer->Add(staticTextCategory, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
+    controlSizer->Add(staticTextCategory, g_flags);
     bCategory_ = new wxButton( itemPanel7, ID_BUTTONCATEGORY, ""
-        , wxDefaultPosition, wxSize(200, -1), 0 );
-    controlSizer->Add(bCategory_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 0);
+        , wxDefaultPosition, wxSize(200, -1));
+    controlSizer->Add(bCategory_, g_flags);
 
     /**************************************************************************
      Control Buttons
     ***************************************************************************/
-    wxBoxSizer* buttonSizer = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(buttonSizer, 0, wxALIGN_RIGHT|wxALL, 5);
+    wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
+    itemBoxSizer2->Add(buttons_panel, wxSizerFlags(g_flags).Center().Border(wxALL, 10));
 
-    wxButton* itemButtonOK = new wxButton( this, wxID_OK, _("&OK "));
-    buttonSizer->Add(itemButtonOK, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
+    buttons_panel->SetSizer(buttons_sizer);
 
-    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, _("&Cancel "));
-    buttonSizer->Add(itemButtonCancel, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
+    wxButton* itemButtonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    buttons_sizer->Add(itemButtonOK, g_flags);
+
+    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    buttons_sizer->Add(itemButtonCancel, g_flags);
 }
 
 /*!

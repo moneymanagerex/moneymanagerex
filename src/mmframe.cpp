@@ -3052,7 +3052,7 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
     mmReportsPanel* report_panel = dynamic_cast<mmReportsPanel*>(panelCurrent_);
     if (report_panel)
     {
-        wxString fileName = wxFileSelector("Choose HTML file to Export",
+        wxString fileName = wxFileSelector(_("Choose HTML file to Export"),
             wxEmptyString, wxEmptyString, wxEmptyString, "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
         if (!fileName.empty())
         {
