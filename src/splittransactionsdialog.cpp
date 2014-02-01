@@ -114,18 +114,18 @@ void SplitTransactionDialog::CreateControls()
     wxBoxSizer* dialogMainSizerV = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(dialogMainSizerV);
 
-    wxStaticText* headingText = new wxStaticText( this, wxID_STATIC, _(" Split Category Details"));
-    dialogMainSizerV->Add(headingText, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxLEFT|wxTOP|wxRIGHT, 10);
+    wxStaticText* headingText = new wxStaticText(this, wxID_STATIC, _(" Split Category Details"));
+    dialogMainSizerV->Add(headingText, g_flags);
 
     wxBoxSizer* listCtrlSizer = new wxBoxSizer(wxHORIZONTAL);
-    dialogMainSizerV->Add(listCtrlSizer, 1, wxGROW|wxALL, 5);
+    dialogMainSizerV->Add(listCtrlSizer, g_flagsExpand);
 
-    lcSplit_ = new wxDataViewListCtrl(this, wxID_ANY, wxDefaultPosition
-        , wxSize(265, 120));
+    lcSplit_ = new wxDataViewListCtrl(this, wxID_ANY
+        , wxDefaultPosition, wxSize(265, 120));
     lcSplit_->AppendTextColumn(_("Category"), wxDATAVIEW_CELL_INERT, 180);
     lcSplit_->AppendTextColumn(_("Amount"), wxDATAVIEW_CELL_INERT, 180);
 
-    listCtrlSizer->Add(lcSplit_, 1, wxGROW | wxALL, 5);
+    listCtrlSizer->Add(lcSplit_, g_flagsExpand);
 
     wxBoxSizer* totalAmountSizer = new wxBoxSizer(wxHORIZONTAL);
     wxString totalMessage = _("Total:");
@@ -139,35 +139,38 @@ void SplitTransactionDialog::CreateControls()
         totalMessage.Prepend(" ");
         totalMessage.Prepend(_("Deposit"));
     }
-    wxStaticText* transAmountText_ = new wxStaticText( this, wxID_STATIC, totalMessage);
-    transAmount_ = new wxStaticText( this, wxID_STATIC, wxEmptyString);
-    totalAmountSizer->Add(transAmountText_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxALL, 0);
-    totalAmountSizer->Add(transAmount_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxLEFT, 5);
-    dialogMainSizerV->Add(totalAmountSizer, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 5);
+    wxStaticText* transAmountText = new wxStaticText(this, wxID_STATIC, totalMessage);
+    transAmount_ = new wxStaticText(this, wxID_STATIC, wxEmptyString);
+    totalAmountSizer->Add(transAmountText, g_flags);
+    totalAmountSizer->Add(transAmount_, g_flags);
+    dialogMainSizerV->Add(totalAmountSizer, g_flags);
 
-    wxStaticLine* line = new wxStaticLine (this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
-    dialogMainSizerV->Add(line, 0, wxGROW|wxLEFT|wxTOP|wxRIGHT, 10);
+    wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
+    dialogMainSizerV->Add(buttons_panel, wxSizerFlags(g_flags).Center().Border(wxALL, 5));
+    wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
+    buttons_panel->SetSizer(buttons_sizer);
 
+    wxSizerFlags flags = wxSizerFlags(g_flags).Border(wxLEFT | wxRIGHT | wxBOTTOM, 5).Center();
     wxBoxSizer* mainButtonSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* topRowButtonSizer = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* bottomRowButtonSizer = new wxBoxSizer(wxHORIZONTAL);
-    mainButtonSizer->Add(topRowButtonSizer, 0, wxALIGN_RIGHT|wxALL, 0);
-    mainButtonSizer->Add(bottomRowButtonSizer, 0, wxALIGN_RIGHT|wxALL, 0);
-    dialogMainSizerV->Add(mainButtonSizer, 0, wxALIGN_RIGHT|wxALL, 10);
+    mainButtonSizer->Add(topRowButtonSizer, flags);
+    mainButtonSizer->Add(bottomRowButtonSizer, flags);
+    buttons_sizer->Add(mainButtonSizer);
 
-    itemButtonNew_ = new wxButton( this, wxID_ADD, _("&Add "));
-    itemButtonEdit_ = new wxButton( this, wxID_EDIT, _("&Edit "));
-    itemButtonDelete_ = new wxButton( this, wxID_REMOVE, _("&Remove "));
-    topRowButtonSizer->Add(itemButtonNew_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 5);
-    topRowButtonSizer->Add(itemButtonEdit_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 5);
-    topRowButtonSizer->Add(itemButtonDelete_, 0, wxALIGN_RIGHT|wxALIGN_CENTER_VERTICAL|wxRIGHT, 0);
+    itemButtonNew_ = new wxButton(buttons_panel, wxID_ADD, _("&Add "));
+    itemButtonEdit_ = new wxButton(buttons_panel, wxID_EDIT, _("&Edit "));
+    itemButtonDelete_ = new wxButton(buttons_panel, wxID_REMOVE, _("&Remove "));
+    topRowButtonSizer->Add(itemButtonNew_, flags);
+    topRowButtonSizer->Add(itemButtonEdit_, flags);
+    topRowButtonSizer->Add(itemButtonDelete_, flags);
 
-    itemButtonOK_ = new wxButton( this, wxID_OK, _("&OK "));
-    wxButton* itemButtonCancel = new wxButton( this, wxID_CANCEL, _("&Cancel "));
+    itemButtonOK_ = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    wxButton* itemButtonCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
     itemButtonCancel->SetFocus();
 
-    bottomRowButtonSizer->Add(itemButtonOK_, 0, wxALIGN_RIGHT|wxTOP|wxRIGHT, 5);
-    bottomRowButtonSizer->Add(itemButtonCancel, 0, wxALIGN_RIGHT|wxTOP, 5);
+    bottomRowButtonSizer->Add(itemButtonOK_, g_flags);
+    bottomRowButtonSizer->Add(itemButtonCancel, g_flags);
 }
 
 void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
