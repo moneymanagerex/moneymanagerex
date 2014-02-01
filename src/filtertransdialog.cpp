@@ -71,14 +71,12 @@ static const wxString DATE_PRESETTINGS[] =
 IMPLEMENT_DYNAMIC_CLASS( mmFilterTransactionsDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmFilterTransactionsDialog, wxDialog )
-
     EVT_CHECKBOX(wxID_ANY,    mmFilterTransactionsDialog::OnCheckboxClick )
     EVT_BUTTON  (wxID_OK,     mmFilterTransactionsDialog::OnButtonokClick )
     EVT_BUTTON  (wxID_CANCEL, mmFilterTransactionsDialog::OnButtoncancelClick )
     EVT_BUTTON  (wxID_SAVE,   mmFilterTransactionsDialog::OnButtonSaveClick )
     EVT_BUTTON  (wxID_CLEAR,  mmFilterTransactionsDialog::OnButtonClearClick )
     EVT_MENU    (wxID_ANY,    mmFilterTransactionsDialog::datePresetMenuSelected )
-
 END_EVENT_TABLE()
 
 mmFilterTransactionsDialog::mmFilterTransactionsDialog( )
@@ -459,7 +457,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
     mmCategDialog dlg(this);
 
     Model_Category::Data* category = Model_Category::instance().get(categID_);
-    Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
+    Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
     dlg.setTreeSelection(category ? category->CATEGNAME : "", sub_category ? sub_category->SUBCATEGNAME : "");
 
     if (dlg.ShowModal() == wxID_OK)
@@ -467,7 +465,7 @@ void mmFilterTransactionsDialog::OnCategs(wxCommandEvent& /*event*/)
         categID_ = dlg.getCategId();
         subcategID_ = dlg.getSubCategId();
         Model_Category::Data* category = Model_Category::instance().get(categID_);
-        Model_Subcategory::Data* sub_category = (subcategID_ != -1 ? Model_Subcategory::instance().get(subcategID_) : 0);
+        Model_Subcategory::Data* sub_category = Model_Subcategory::instance().get(subcategID_);
 
         btnCategory_->SetLabel(Model_Category::full_name(category, sub_category));
     }
@@ -816,7 +814,8 @@ wxString mmFilterTransactionsDialog::to_json()
 {
     json::Object o;
     o.Clear();
-    o["LABEL"] = json::String(m_settingLabel->GetValue().ToStdString());
+    wxString label = m_settingLabel->GetValue().Trim().ToStdString();
+    if (!label.empty()) o["LABEL"] = json::String();
     if (accountCheckBox_->IsChecked())
         o["ACCOUNT"] = json::String(accountDropDown_->GetStringSelection().ToStdString());
     if (dateRangeCheckBox_->IsChecked())
@@ -884,7 +883,7 @@ wxString mmFilterTransactionsDialog::to_json()
 void mmFilterTransactionsDialog::from_json(const wxString &data)
 {
     wxString str = data;
-    if (str.empty() || !(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
+    if (!(str.StartsWith("{") && str.EndsWith("}"))) str = "{}";
     std::stringstream ss;
     ss << str.ToStdString();
     json::Object o;
@@ -939,13 +938,13 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     wxString type = wxString(json::String(o["TYPE"]));
     typeCheckBox_->SetValue(!type.empty());
     cbTypeWithdrawal_->SetValue(type.Contains("W"));
-    cbTypeWithdrawal_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeWithdrawal_->Enable(typeCheckBox_->IsChecked());
     cbTypeDeposit_->SetValue(type.Contains("D"));
-    cbTypeDeposit_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeDeposit_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferTo_->SetValue(type.Contains("T"));
-    cbTypeTransferTo_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeTransferTo_->Enable(typeCheckBox_->IsChecked());
     cbTypeTransferFrom_->SetValue(type.Contains("F"));
-    cbTypeTransferFrom_->Enable(typeCheckBox_->IsEnabled());
+    cbTypeTransferFrom_->Enable(typeCheckBox_->IsChecked());
 
     //Amounts
     amountRangeCheckBox_->SetValue(json::Boolean(o["AMOUNT"]));
