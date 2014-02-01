@@ -29,7 +29,6 @@
                     <th>Nov</th>
                     <th>Dec</th>
                     <th>Total</th>
-                    <th>Average</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -49,28 +48,10 @@
                         <td><TMPL_VAR Nov></td>
                         <td><TMPL_VAR Dec></td>
                         <th class="total"><TMPL_VAR YEAR_TOTAL></th>
-                        <th class="total"><TMPL_VAR MONTH_AVERAGE></th>
                     </tr>
                     </TMPL_LOOP>
                 </tbody>
                 <tfoot>
-                    <tr class="total">
-                        <td>Totals:</td>
-                        <td><TMPL_VAR TOTAL_Jan></td>
-                        <td><TMPL_VAR TOTAL_Feb></td>
-                        <td><TMPL_VAR TOTAL_Mar></td>
-                        <td><TMPL_VAR TOTAL_Apr></td>
-                        <td><TMPL_VAR TOTAL_May></td>
-                        <td><TMPL_VAR TOTAL_Jun></td>
-                        <td><TMPL_VAR TOTAL_Jul></td>
-                        <td><TMPL_VAR TOTAL_Aug></td>
-                        <td><TMPL_VAR TOTAL_Sep></td>
-                        <td><TMPL_VAR TOTAL_Oct></td>
-                        <td><TMPL_VAR TOTAL_Nov></td>
-                        <td><TMPL_VAR TOTAL_Dec></td>
-                        <td><span class="badge"><TMPL_VAR GRAND_TOTAL></span></td>
-                        <td></td>
-                    </tr>
                     <tr class="total">
                         <td>Average:</td>
                         <td><TMPL_VAR AVERAGE_Jan></td>
@@ -85,15 +66,14 @@
                         <td><TMPL_VAR AVERAGE_Oct></td>
                         <td><TMPL_VAR AVERAGE_Nov></td>
                         <td><TMPL_VAR AVERAGE_Dec></td>
-                        <td></td>
-                        <td></td>
+                        <td><span class="badge"><TMPL_VAR GRAND_TOTAL></span></td>
                     </tr>
                 </tfoot>
                 </table>
             </div>
             <table class="table table-simple">
                 <tbody>
-                    <TMPL_LOOP ERRORS>
+                <TMPL_LOOP ERRORS>
                     <tr><td><h3><span class="label label-danger">Error</span></h3></td></tr>
                     <tr><td><TMPL_VAR ERROR></td></tr>
                 </TMPL_LOOP>
