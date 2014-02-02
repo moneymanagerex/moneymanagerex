@@ -148,7 +148,7 @@ bool mmCheckingPanel::Create(
     initViewTransactionsHeader();
     initFilterSettings();
 
-    m_listCtrlAccount->refreshVisualList();
+    RefreshList();
     this->windowsFreezeThaw();
 
     return true;
@@ -664,7 +664,7 @@ void mmCheckingPanel::OnFilterResetToViewAll(wxMouseEvent& event) {
     initFilterSettings();
 
     m_listCtrlAccount->m_selectedIndex = -1;
-    m_listCtrlAccount->refreshVisualList();
+    RefreshList();
 }
 
 void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
@@ -681,7 +681,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
     Model_Infotable::instance().Set(wxString::Format("CHECK_FILTER_ID_%ld", (long)m_AccountID), currentView_);
     initFilterSettings();
-    m_listCtrlAccount->refreshVisualList(m_listCtrlAccount->m_selectedID);
+    RefreshList(m_listCtrlAccount->m_selectedID);
 
 }
 
@@ -736,7 +736,7 @@ void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
     bitmapTransFilter_->SetBitmap(pic);
     SetTransactionFilterState(true);
 
-    m_listCtrlAccount->refreshVisualList();
+    RefreshList();
 }
 
 
@@ -832,28 +832,9 @@ void mmCheckingPanel::DisplaySplitCategories(int transID)
     splitTransDialog.ShowModal();
 }
 
-// Refresh account screen with new details
-void mmCheckingPanel::DisplayAccountDetails(int accountID)
+void mmCheckingPanel::RefreshList(int transID)
 {
-    m_AccountID = accountID;
-    m_account = Model_Account::instance().get(accountID);
-    if (m_account)
-        m_currency = Model_Account::currency(m_account);
-
-    this->windowsFreezeThaw();   // prevent screen updates while controls being repopulated
-
-    initViewTransactionsHeader();
-    initFilterSettings();
-    m_listCtrlAccount->m_selectedIndex = -1;
-    m_listCtrlAccount->refreshVisualList();
-    showTips();
-
-    this->windowsFreezeThaw();     // Enable screen refresh with new data.
-}
-
-void mmCheckingPanel::RefreshList()
-{
-    m_listCtrlAccount->refreshVisualList();
+    m_listCtrlAccount->refreshVisualList(transID);
 }
 
 void mmCheckingPanel::SetTransactionFilterState(bool active)
@@ -866,8 +847,23 @@ void mmCheckingPanel::SetTransactionFilterState(bool active)
 
 void mmCheckingPanel::SetSelectedTransaction(int transID)
 {
-    m_listCtrlAccount->refreshVisualList(transID);
+    RefreshList(transID);
     m_listCtrlAccount->SetFocus();
+}
+
+// Refresh account screen with new details
+void mmCheckingPanel::DisplayAccountDetails(int accountID)
+{
+    m_AccountID = accountID;
+    m_account = Model_Account::instance().get(accountID);
+    if (m_account)
+        m_currency = Model_Account::currency(m_account);
+
+    initViewTransactionsHeader();
+    initFilterSettings();
+    m_listCtrlAccount->m_selectedIndex = -1;
+    RefreshList();
+    showTips();
 }
 
 //----------------------------------------------------------------------------

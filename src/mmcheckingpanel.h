@@ -211,7 +211,7 @@ public:
 
     void SetSelectedTransaction(int transID);
 
-    void RefreshList();
+    void RefreshList(int transID = -1);
 private:
     enum
     {
