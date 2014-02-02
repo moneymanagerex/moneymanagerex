@@ -952,10 +952,10 @@ void TransactionListCtrl::OnListItemSelected(wxListEvent& event)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     topItemIndex_ = GetTopItem() + GetCountPerPage() - 1;
 
-    if (m_cp->m_listCtrlAccount->GetSelectedItemCount()>1)
+    if (GetSelectedItemCount()>1)
         m_cp->btnEdit_->Enable(false);
 
-    m_cp->m_listCtrlAccount->m_selectedID = m_cp->m_trans[m_selectedIndex].TRANSID;
+    m_selectedID = m_cp->m_trans[m_selectedIndex].TRANSID;
 }
 //----------------------------------------------------------------------------
 
@@ -972,7 +972,7 @@ void TransactionListCtrl::OnItemResize(wxListEvent& event)
 {
     int i = event.GetColumn();
     wxString parameter_name = wxString::Format("CHECK_COL%d_WIDTH", i);
-    int current_width = m_cp->m_listCtrlAccount->GetColumnWidth(i);
+    int current_width = GetColumnWidth(i);
     Model_Setting::instance().Set(parameter_name, current_width);
 }
 
@@ -980,7 +980,7 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
 {
     if (m_selectedIndex > -1)
     {
-        if (m_cp->m_listCtrlAccount->GetItemState(m_selectedIndex, wxLIST_STATE_SELECTED) == 0)
+        if (GetItemState(m_selectedIndex, wxLIST_STATE_SELECTED) == 0)
             m_cp->updateExtraTransactionData(-1);
     }
     event.Skip();
@@ -991,7 +991,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     long selectedIndex = m_selectedIndex;
     if (m_selectedIndex > -1)
     {
-        if (m_cp->m_listCtrlAccount->GetItemState(m_selectedIndex, wxLIST_STATE_SELECTED) == 0)
+        if (GetItemState(m_selectedIndex, wxLIST_STATE_SELECTED) == 0)
             selectedIndex = -1;
     }
 
@@ -1176,7 +1176,7 @@ void TransactionListCtrl::OnColClick(wxListEvent& event)
     Model_Setting::instance().Set("CHECK_ASC", (g_asc ? 1 : 0));
     Model_Setting::instance().Set("CHECK_SORT_COL", g_sortcol);
 
-    m_cp->m_listCtrlAccount->refreshVisualList(m_selectedID, false);
+    refreshVisualList(m_selectedID, false);
 
 }
 //----------------------------------------------------------------------------
@@ -1409,7 +1409,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
         for (const auto& i : m_cp->m_trans)
         {
             long transID = i.TRANSID;
-            if (m_cp->m_listCtrlAccount->GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+            if (GetItemState(x, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
             {
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
