@@ -164,7 +164,7 @@ void mmTransDialog::dataToControls()
     {
         choiceStatus_->SetSelection(Model_Checking::status(transaction_));
         skip_status_init_ = true;
-	}
+    }
 
     //Type
     transaction_type_->SetSelection(Model_Checking::type(transaction_));
@@ -705,7 +705,7 @@ void mmTransDialog::activateSplitTransactionsDlg()
     }
     transaction_->CATEGID = -1;
     transaction_->SUBCATEGID = -1;
-    
+
     SplitTransactionDialog dlg(this, &m_local_splits, transaction_type_->GetSelection(), accountID_);
     dlg.ShowModal();
     transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
@@ -723,8 +723,10 @@ void mmTransDialog::OnDateChanged(wxDateEvent& event)
     //get weekday name
     wxDateTime date = dpc_->GetValue();
     if (event.GetDate().IsValid())
+    {
         itemStaticTextWeek_->SetLabel(wxGetTranslation(date.GetWeekDayName(date.GetWeekDay())));
-    event.Skip();
+        transaction_->TRANSDATE = date.FormatISODate();
+    }
 }
 
 void mmTransDialog::OnSpin(wxSpinEvent& event)
@@ -1011,13 +1013,13 @@ void mmTransDialog::setTooltips()
     cbAccount_->UnsetToolTip();
     cbPayee_->UnsetToolTip();
     bCategory_->UnsetToolTip();
-    
+
     if (m_transfer)
     {
         cbAccount_->SetToolTip(_("Specify account the money is taken from"));
         cbPayee_->SetToolTip(_("Specify account the money is moved to"));
         textAmount_->SetToolTip(_("Specify the transfer amount in the From Account."));
-        
+
         if (advancedToTransAmountSet_)
         {
             toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
@@ -1041,7 +1043,7 @@ void mmTransDialog::setTooltips()
     {
         bCategory_->SetToolTip(_("Specify categories for this transaction"));
     }
-    
+
     //Permanent
     dpc_->SetToolTip(_("Specify the date of the transaction"));
     spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
