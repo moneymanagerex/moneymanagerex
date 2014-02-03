@@ -264,15 +264,18 @@ void mmCheckingPanel::updateTable()
 
 void mmCheckingPanel::markSelectedTransaction(int trans_id)
 {
-    long i = 0;
-    for (const auto & tran : m_trans)
+    if (trans_id > 0)
     {
-        if (trans_id == tran.TRANSID && trans_id > 0)
+        long i = 0;
+        for (const auto & tran : m_trans)
         {
-            m_listCtrlAccount->m_selectedIndex = i;
-            break;
+            if (trans_id == tran.TRANSID)
+            {
+                m_listCtrlAccount->m_selectedIndex = i;
+                break;
+            }
+            ++i;
         }
-        ++i;
     }
 
     if (!m_trans.empty() && m_listCtrlAccount->m_selectedIndex < 0)
@@ -1469,8 +1472,10 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     // decide whether top or down icon needs to be shown
     setColumnImage(g_sortcol, g_asc ? ICON_ASC : ICON_DESC);
     if (filter) m_cp->filterTable();
-    m_cp->sortTable();
     SetItemCount(m_cp->m_trans.size());
+    Show();
+    Refresh();
+    m_cp->sortTable();
     m_cp->markSelectedTransaction(trans_id);
 
     if (topItemIndex_ >= (long)m_cp->m_trans.size())
@@ -1478,7 +1483,6 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     if (m_selectedIndex > (long)m_cp->m_trans.size() - 1) m_selectedIndex = -1;
     if (topItemIndex_ < m_selectedIndex) topItemIndex_ = m_selectedIndex;
 
-    Refresh();
 
     if (m_selectedIndex >= 0 && !m_cp->m_trans.empty())
     {
@@ -1489,10 +1493,10 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
         EnsureVisible(topItemIndex_);
     }
 
-    Show();
     m_cp->setAccountSummary();
     m_cp->updateExtraTransactionData(m_selectedIndex);
     this->SetEvtHandlerEnabled(true);
+    Refresh();
 }
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
