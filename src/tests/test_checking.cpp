@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "test_checking.h"
 #include "transdialog.h"
+#include "mmcheckingpanel.h"
 
 /*****************************************************************************
 Turn test ON or OFF in file: defined_test_selection.h
@@ -61,7 +62,7 @@ void Test_Checking::setUp()
 
     // Only set up the base frame if test requires it.
     // wxWidgets will clean up the test frames on completion.
-    if (m_this_instance == 4)
+    if (m_this_instance > 3)
     {
         m_base_frame = new TestFrameBase(m_this_instance);
         m_base_frame->Show(true);
@@ -84,21 +85,22 @@ void Test_Checking::tearDown()
     m_test_db.Close();
     delete m_commit_hook;
 
-    if (m_this_instance == 4)
+    if (m_this_instance > 3)
     {
         delete m_base_frame;
     }
 }
 
-void Test_Checking::add_entries()
+void Test_Checking::Set_UP_Database_conditions()
 {
-    CpuTimer Start("Entries");
-
-    // Add accounts
+    CpuTimer Start("Set Up Database Conditions");
+    m_test_db.Begin();
+    // Add Bank Accounts
     m_dbmodel->Add_Bank_Account("Savings");
     m_dbmodel->Add_Bank_Account("Cheque");
     m_dbmodel->Add_Bank_Account("Mastercard");
 
+    // Add Term Accounts
     m_dbmodel->Add_Term_Account("Home Loan");
     m_dbmodel->Add_Term_Account("Savings Investment");
     m_dbmodel->Add_Term_Account("Property Management");
@@ -108,37 +110,66 @@ void Test_Checking::add_entries()
     m_dbmodel->Add_Payee("Aldi");
     m_dbmodel->Add_Payee("Coles");
     m_dbmodel->Add_Payee("Woolworths");
+    m_dbmodel->Add_Payee("Work - Salary");
+    m_dbmodel->Add_Payee("Investment Property");
 
-    // No need to add categories as these are initialised by main database.
+    // Add extra categories
+    int cat_id = m_dbmodel->Add_Category("Mastercard");
+    m_dbmodel->Add_Subcategory(cat_id,"Repayment");
 
-    m_dbmodel->Add_Trans_Deposit("Cheque", wxDateTime::Today(), "Aldi", 100.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal("Cheque", wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer("Cheque", wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    m_test_db.Commit();
 }
 
-void Test_Checking::add_entries_savings()
+void Test_Checking::Add_Transactions()
 {
-    CpuTimer Start("Entries_Savings");
+    CpuTimer Start("Add_Transactions");
+    m_test_db.Begin();
+    wxDateTime start_date(wxDateTime::Today().Subtract(wxDateSpan::Month()));
+    m_dbmodel->Add_Trans_Deposit("Savings", start_date, "Aldi", 200.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal("Savings", start_date, "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer("Savings", start_date, "Savings", 30.0, "Gifts", "", true, 40.0);
 
-    m_dbmodel->Add_Trans_Deposit("Savings", wxDateTime::Today(), "Aldi", 200.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal("Savings", wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer("Savings", wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+    m_dbmodel->Add_Trans_Deposit("Mastercard", start_date, "Aldi", 300.0, "Income", "Salary");
+    m_dbmodel->Add_Trans_Withdrawal("Mastercard", start_date, "Coles", 20.0, "Food", "Groceries");
+    m_dbmodel->Add_Trans_Transfer("Mastercard", start_date, "Savings", 30.0, "Gifts", "", true, 40.0);
+    m_test_db.Commit();
 }
 
-void Test_Checking::add_entries_mc()
+void Test_Checking::Add_Split_Transactions()
 {
-    CpuTimer Start("Entries_mc");
+    CpuTimer Start("Add_Split_Transactions");
+//    m_test_db.Begin();
 
-    m_dbmodel->Add_Trans_Deposit("Mastercard", wxDateTime::Today(), "Aldi", 300.0, "Income", "Salary");
-    m_dbmodel->Add_Trans_Withdrawal("Mastercard", wxDateTime::Today(), "Coles", 20.0, "Food", "Groceries");
-    m_dbmodel->Add_Trans_Transfer("Mastercard", wxDateTime::Today(), "Savings", 30.0, "Gifts", "", true, 40.0);
+//    m_test_db.Commit();
 }
 
-void Test_Checking::Test_Transaction_Dialog()
+// On closing, the test will crash.
+void Test_Checking::Test_Account_View()
 {
     TestFrameBase* user_request = new TestFrameBase(m_base_frame);
     user_request->Show();
 
+    // Create a new frame anchored to the base frame.
+    TestFrameBase* account_frame = new TestFrameBase(m_base_frame, 670, 400);
+    account_frame->Show();
+
+    int account_id = m_dbmodel->Get_account_id("Savings");
+
+    // Create the panel under test
+    mmCheckingPanel* account_panel = new mmCheckingPanel(account_id, account_frame);
+    account_panel->Show();
+
+    // Anchor the panel. Otherwise it will disappear.
+    wxMessageBox("Account Panel being displayed.\n\nContinue other tests ...",
+        "Testing Account: Savings", wxOK, wxTheApp->GetTopWindow());
+}
+
+void Test_Checking::Test_Transaction_Dialog_Messages()
+{
+    TestFrameBase* user_request = new TestFrameBase(m_base_frame);
+    user_request->Show();
+
+    int account_id = m_dbmodel->Get_account_id("Savings");
     bool testing = true;
     int test_count = 0;
     while (testing)
@@ -147,35 +178,95 @@ void Test_Checking::Test_Transaction_Dialog()
         switch (test_count)
         {
             case 1:
+            {
                 user_request->Show_InfoBarMessage(
                     "1. Use the OK button to observe error messages.\n"
                     "2. Add appropriate details as required.\n\n"
                     "Use Cancel to exit dialog.");
+                mmTransDialog test_dialog(m_base_frame, account_id, 0);
+                if (wxID_CANCEL == test_dialog.ShowModal())
+                {
+                    testing = false;
+                }
+
                 break;
+            }
 
             case 2:
+            {
                 user_request->Show_InfoBarMessage(
                     "Set the Type to: Transfer\n\n"
                     "1. Use the OK button to observe error messages.\n"
                     "2. Add appropriate details as required.\n\n"
                     "Use Cancel to exit dialog.");
+                mmTransDialog test_dialog(m_base_frame, account_id, 0);
+                if (wxID_CANCEL == test_dialog.ShowModal())
+                {
+                    testing = false;
+                }
                 break;
-
-            case 3:
-                user_request->Show_InfoBarMessage(
-                    "Test Completed.\n\n"
-                    "Use Cancel to exit dialog.");
-                break;
-
+            }
             default:
-                user_request->Show_InfoBarMessage("Use 'Cancel' to exit dialog.");
-        }
+            {
+                Model_Checking::Data_Set table = Model_Checking::instance().all();
+                Model_Checking::Data trans_entry = table.at(table.size() - 1);
 
-        mmTransDialog test_dialog(m_base_frame, 1, 0);
-        if (wxID_CANCEL == test_dialog.ShowModal())
+                user_request->Show_InfoBarMessage("This Test Completed\n\n Use Cancel to proceed to next test.");
+                mmTransDialog test_dialog(m_base_frame, account_id, trans_entry.id());
+                if (wxID_CANCEL == test_dialog.ShowModal())
+                {
+                    testing = false;
+                }
+            }
+        }
+    }
+}
+
+void Test_Checking::Test_Transaction_New_Edit()
+{
+    TestFrameBase* user_request = new TestFrameBase(m_base_frame);
+    user_request->Show();
+
+    int account_id = m_dbmodel->Get_account_id("Savings");
+    bool testing = true;
+    int test_count = 0;
+    while (testing)
+    {
+        test_count++;
+        switch (test_count)
         {
-            user_request->Show_InfoBarMessage("Test Completed\n\n Refer back to console.");
-            testing = false;
+            case 1:
+            {
+                user_request->Show_InfoBarMessage(
+                      "Create a new 'Transfer' transaction.: \n\n"
+                      "1. Set the category to Mastercard/Repayment\n"
+                      "   This transaction will be used for editing.\n"
+                      "2. Add appropriate details as required.\n\n"
+                      "Use Cancel to exit dialog.\n");
+                mmTransDialog test_dialog(m_base_frame, account_id, 0);
+                if (wxID_CANCEL == test_dialog.ShowModal())
+                {
+                    user_request->Show_InfoBarMessage("Test Completed\n\n Refer back to console.");
+                    testing = false;
+                }
+                break;
+            }
+            default:
+            {
+                Model_Checking::Data_Set table = Model_Checking::instance().all();
+                Model_Checking::Data trans_entry = table.at(table.size() - 1);
+                user_request->Show_InfoBarMessage(
+                    "Edit the 'Transfer' transaction.: \n\n"
+                    "1. Check that the category is Mastercard/Repayment\n"
+                    "2. Add appropriate details as required.\n\n"
+                    "Use Cancel to exit dialog.\n");
+                mmTransDialog test_dialog(m_base_frame, account_id, trans_entry.id());
+                if (wxID_CANCEL == test_dialog.ShowModal())
+                {
+                    user_request->Show_InfoBarMessage("Test Completed\n\n Refer back to console.");
+                    testing = false;
+                }
+            }
         }
     }
 }

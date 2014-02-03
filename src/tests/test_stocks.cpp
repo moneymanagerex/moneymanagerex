@@ -117,7 +117,7 @@ void Test_Stock::Test_Edit_Stock_Dialog()
         stock_table = Model_Stock::instance().all();
         Model_Stock::Data new_stock_entry = stock_table.at(stock_table.size() - 1);
 
-        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_Account_ID("ACME Corp"));
+        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("ACME Corp"));
         CPPUNIT_ASSERT(new_stock_entry.COMMISSION == commission);
         CPPUNIT_ASSERT(new_stock_entry.CURRENTPRICE == current_price);
         CPPUNIT_ASSERT(new_stock_entry.NUMSHARES == num_shares);
@@ -131,7 +131,7 @@ void Test_Stock::Test_Stocks_Panel()
     TestFrameBase* stocks_frame = new TestFrameBase(m_base_frame, 670, 400);
     stocks_frame->Show();
 
-    int stock_Account_id = m_dbmodel->Get_Account_ID("ACME Corp");
+    int stock_Account_id = m_dbmodel->Get_account_id("ACME Corp");
 
     // Create the panel under test
     mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);

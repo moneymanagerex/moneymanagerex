@@ -51,51 +51,71 @@ public:
     int Get_Payee_id(const wxString& name);
 
     int Add_Category(const wxString& name);
-    int Category_id(const wxString& category);
+    int Get_category_id(const wxString& category);
 
     int Add_Subcategory(int category_id, const wxString& name);
-    int Subcategory_id(int category_id, const wxString& subcategory);
+    int Get_subcategory_id(int category_id, const wxString& subcategory);
 
-    int Get_Account_ID(const wxString& account_name);
+    int Get_account_id(const wxString& account_name);
     /**
-    If category not supplied, assume that it is a split.
-    * Returns the transaction ID to enamle split creation.
+    Allows the creation of a Split Transaction when a category is not supplied.
+    * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
-    
     /**
-    If category not supplied, assume that it is a split.
-    * Returns the transaction ID to enamle split creation.
+    Allows the creation of a Split Transaction when a category is not supplied.
+    * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
-    
     /**
-    If category not supplied, assume that it is a split.
-    * Returns the transaction ID to enamle split creation.
+    Allows the creation of a Split Transaction when a category is not supplied.
+    * Returns the trans_id to enable split creation.
     */
     int Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
         , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
-    
-    /** Add_Trans command If category not supplied, assume that it is a split. */
+
+    /** Creates a Split Transaction after a transaction has been created.*/
     void Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory = "");
 
     /**
     Starts the sequence to create a Repeating transaction using commands:
-    Bill_Start(...)
-    Bill_Trans_xxx(...)
-    Bill_Trans_End(...) - Provides ID to use command:Add_Bill_Split(...)
+    Bill_Start(...)     - Sets the repeating conditions 
+    Bill_Trans_xxx(...) - Creates the bill transaction for the final transaction
+    Bill_Trans_End(...) - Provides bill_id for the command: Bill_Split(...)
     */
     void Bill_Start(const wxString& account, const wxDateTime& start_date, Model_Billsdeposits::REPEAT_TYPE repeats, int num_occur = -1);
+    /**
+    Create the transaction for a Repeating transaction.
+    See command: Bill_Start(...)
+    */
     void Bill_Trans_Deposit(const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
+    /**
+    Create the transaction for a Repeating transaction.
+    See command: Bill_Start(...)
+    */
     void Bill_Trans_Withdrawal(const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
+    /**
+    Create the transaction for a Repeating transaction.
+    See command: Bill_Start(...)
+    */
     void Bill_Trans_Transfer(const wxDateTime& date, const wxString& to_account, double value
         , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
+    /**
+    End the sequence to create a Repeating transaction.
+    See command: Bill_Start(...)
+    * Returns the bill_id to create a Bill_Split(...)
+    */
     int BILL_End(bool execute_auto_manual = false, bool execute_full_auto = false);
-    void Add_Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory = "");
+
+    /**
+    Create a Bill Split Transaction entry, after completion of a Bill entry using the command:
+    Bill_Trans_End(...) - See command: Bill_Start(...)
+    */
+    void Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory = "");
 
     int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type = Model_Asset::TYPE_CASH,
         Model_Asset::RATE value_change = Model_Asset::RATE::RATE_NONE, double value_change_rate = 0, const wxString& notes = "");
@@ -126,6 +146,7 @@ public:
     std::vector<Value_Type> list;
 
     double Current_Total();
+    double Primary_Name_Value(const wxString& name);
 };
 //----------------------------------------------------------------------------
 
@@ -148,6 +169,7 @@ class Single_Name_List
 public:
     Single_Name_List();
     void Set_Value(const wxString& primary_name, const double value);
+    double Primary_Name_Value(const wxString& name);
     double Current_List_Total();
     Single_Name Item(const int pos) const;
     int Size();
@@ -178,6 +200,8 @@ class Dual_Name_List
 public:
     Dual_Name_List();
     void Set_Value(const wxString& primary_name, const wxString& secondary_name, const double value);
+    double Primary_Name_Value(const wxString& name);
+    double Secondary_Name_Value(const wxString& primary_name, const wxString& secondary_name);
     double Current_List_Total();
     Dual_Name Item(const int pos) const;
     int Size();
@@ -191,49 +215,69 @@ class DB_Model_Initialise_Statistics : public DB_Init_Model
 {
 public:
     /**
-    If category not supplied, assume that it is a split.
-    * Returns the transaction ID to enamle split creation.
+    Allows the creation of a Split Transaction when a category is not supplied.
+    * Returns the transaction ID to enable split creation.
     */
     int Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
-
     /**
-    If category not supplied, assume that it is a split.
-    * Returns the transaction ID to enamle split creation.
+    Allows the creation of a Split Transaction when a category is not supplied.
+    * Returns the transaction ID to enable split creation.
     */
     int Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value
         , const wxString& category = "", const wxString& subcategory = "");
-
     /**
-    If category not supplied, assume that it is a split.
-    * Returns the transaction ID to enamle split creation.
+    Allows the creation of a Split Transaction when a category is not supplied.
+    * Returns the transaction ID to enable split creation.
     */
     int Add_Trans_Transfer(const wxString& account_name, const wxDateTime& date, const wxString& to_account, double value
         , const wxString& category = "", const wxString& subcategory = "", bool advanced = false, double adv_value = 0);
 
-    /** Add_Trans command If category not supplied, assume that it is a split. */
+    /** Creates a Split Transaction after a transaction has been created.*/
     void Add_Trans_Split(int trans_id, double value, const wxString& category, const wxString& subcategory = "");
 
+    /* Creates Asset entries for each Payee showing the Income amounts.*/
     void Current_Payee_Income_Stats(const wxString& title, const wxDateTime& starting_date);
+    /* Creates Asset entries for each Payee showing the Expense amounts.*/
     void Current_Payee_Expense_Stats(const wxString& title, const wxDateTime& starting_date);
 
+    /* Creates Asset entries for each Category showing the Income amounts.*/
     void Current_Category_Income_Stats(const wxString& title, const wxDateTime& starting_date);
+    /* Creates Asset entries for each Category showing the Expense amounts.*/
     void Current_Category_Expense_Stats(const wxString& title, const wxDateTime& starting_date);
 
+    /* Creates Asset entries for each Subcategory showing the Income amounts.*/
     void Current_Subcategory_Income_Stats(const wxString& title, const wxDateTime& starting_date);
+    /* Creates Asset entries for each Subcategory showing the Expense amounts.*/
     void Current_Subcategory_Expense_Stats(const wxString& title, const wxDateTime& starting_date);
-
+    
+    /* Creates Asset entries for the total Income and Expense amounts for a payee.*/
     void Total_Payee_Stats(const wxDateTime& starting_date);
+    /* Creates Asset entries for the total Income and Expense amounts for a category.*/
     void Total_Category_Stats(const wxDateTime& starting_date);
+    /* Creates Asset entries for the total Income and Expense amounts for a subcategory.*/
     void Total_Subcategory_Stats(const wxDateTime& starting_date);
 
+    /* Returns the current total Income for the payee.*/
+    double Payee_Income(const wxString& name);
+    /* Returns the current total Expense for the payee.*/
+    double Payee_Expense(const wxString& name);
+    /* Returns the current total Income for the Category.*/
+    double Category_Income(const wxString& name);
+    /* Returns the current total Expense for the Category.*/
+    double Category_Expense(const wxString& name);
+    /* Returns the current total Income for the Category:Subcategory combination.*/
+    double Subcategory_Income(const wxString& primary_name, const wxString& secondary_name);
+    /* Returns the current total Expense for the Category:Subcategory combination.*/
+    double Subcategory_Expense(const wxString& primary_name, const wxString& secondary_name);
+
 private:
-    Single_Name_List payee_income_list;
-    Single_Name_List payee_expense_list;
-    Single_Name_List category_income_list;
-    Single_Name_List category_expense_list;
-    Dual_Name_List subcategory_income_list;
-    Dual_Name_List subcategory_expense_list;
+    Single_Name_List m_payee_income_list;
+    Single_Name_List m_payee_expense_list;
+    Single_Name_List m_category_income_list;
+    Single_Name_List m_category_expense_list;
+    Dual_Name_List m_subcategory_income_list;
+    Dual_Name_List m_subcategory_expense_list;
 
     void Current_Single_Name_Stats(const wxString& title, const wxDateTime& starting_date, Single_Name_List& single_name_list);
     void Current_Dual_Name_Stats(const wxString& title, const wxDateTime& starting_date, Dual_Name_List& dual_name_list);

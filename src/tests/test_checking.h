@@ -28,10 +28,12 @@ class TestFrameBase;
 class Test_Checking : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_Checking);
-    CPPUNIT_TEST(add_entries);
-    CPPUNIT_TEST(add_entries_savings);
-    CPPUNIT_TEST(add_entries_mc);
-    CPPUNIT_TEST(Test_Transaction_Dialog);
+    CPPUNIT_TEST(Set_UP_Database_conditions);
+    CPPUNIT_TEST(Add_Transactions);
+    CPPUNIT_TEST(Add_Split_Transactions);
+    //CPPUNIT_TEST(Test_Account_View);      // On closing, it will crash the test.
+    CPPUNIT_TEST(Test_Transaction_Dialog_Messages);
+    CPPUNIT_TEST(Test_Transaction_New_Edit);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -51,9 +53,17 @@ private:
 
 private:
     // Test cases
-    void add_entries();
-    void add_entries_savings();
-    void add_entries_mc();
+    void Set_UP_Database_conditions();
+    void Add_Transactions();
+    void Add_Split_Transactions();
+    /*
+    On closing, Test_Account_View() will crash the test.
+    The destructor calls mmGuiFrame via: wxGetApp().m_frame->SetCheckingAccountPageInactive();
 
-    void Test_Transaction_Dialog();
+    Because we cannot set up mmGuiFrame as the main app for the tests,
+    the function fails to set a variable that does not exist.
+    */
+    void Test_Account_View();
+    void Test_Transaction_Dialog_Messages();
+    void Test_Transaction_New_Edit();
 };

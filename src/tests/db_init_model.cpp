@@ -189,8 +189,8 @@ int DB_Init_Model::Add_Payee(const wxString& name, const wxString& category, con
 {
     Model_Payee::Data* payee_entry = Model_Payee::instance().create();
     payee_entry->PAYEENAME = name;
-    payee_entry->CATEGID = Category_id(category);
-    payee_entry->SUBCATEGID = Subcategory_id(payee_entry->CATEGID, subcategory);
+    payee_entry->CATEGID = Get_category_id(category);
+    payee_entry->SUBCATEGID = Get_subcategory_id(payee_entry->CATEGID, subcategory);
 
     return Model_Payee::instance().save(payee_entry);
 }
@@ -216,7 +216,7 @@ int DB_Init_Model::Add_Category(const wxString& name)
     return Model_Category::instance().save(cat_entry);
 }
 
-int DB_Init_Model::Category_id(const wxString& category)
+int DB_Init_Model::Get_category_id(const wxString& category)
 {
     int cat_id = -1;
     if (!category.IsEmpty())
@@ -242,7 +242,7 @@ int DB_Init_Model::Add_Subcategory(int category_id, const wxString& name)
     return Model_Subcategory::instance().save(subcat_entry);
 }
 
-int DB_Init_Model::Subcategory_id(int category_id, const wxString& subcategory)
+int DB_Init_Model::Get_subcategory_id(int category_id, const wxString& subcategory)
 {
     int subcat_id = -1;
     if (!subcategory.IsEmpty())
@@ -259,7 +259,7 @@ int DB_Init_Model::Subcategory_id(int category_id, const wxString& subcategory)
     return subcat_id;
 }
 
-int DB_Init_Model::Get_Account_ID(const wxString& account_name)
+int DB_Init_Model::Get_account_id(const wxString& account_name)
 {
     int account_id = -1;
     Model_Account::Data* account = Model_Account::instance().get(account_name);
@@ -278,7 +278,7 @@ int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE 
     if (m_account_name != account_name)
     {
         m_account_name = account_name;
-        m_account_id = Get_Account_ID(account_name);
+        m_account_id = Get_account_id(account_name);
     }
 
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
@@ -292,8 +292,8 @@ int DB_Init_Model::Add_Trans(const wxString& account_name, Model_Checking::TYPE 
     tran_entry->TRANSAMOUNT = value;
     tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
-    tran_entry->CATEGID = Category_id(category);
-    tran_entry->SUBCATEGID = Subcategory_id(tran_entry->CATEGID, subcategory);
+    tran_entry->CATEGID = Get_category_id(category);
+    tran_entry->SUBCATEGID = Get_subcategory_id(tran_entry->CATEGID, subcategory);
     tran_entry->TRANSDATE = date.FormatISODate();
     tran_entry->FOLLOWUPID = 0;
     tran_entry->TOTRANSAMOUNT = value;
@@ -318,12 +318,12 @@ int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDate
     if (m_account_name != account_name)
     {
         m_account_name = account_name;
-        m_account_id = Get_Account_ID(account_name);
+        m_account_id = Get_account_id(account_name);
     }
 
     Model_Checking::Data* tran_entry = Model_Checking::instance().create();
     tran_entry->ACCOUNTID = m_account_id;
-    tran_entry->TOACCOUNTID = Get_Account_ID(to_account);
+    tran_entry->TOACCOUNTID = Get_account_id(to_account);
     tran_entry->PAYEEID = -1;
 
     // Set to Transfer
@@ -331,8 +331,8 @@ int DB_Init_Model::Add_Trans_Transfer(const wxString& account_name, const wxDate
     tran_entry->TRANSAMOUNT = value;
     tran_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
-    tran_entry->CATEGID = Category_id(category);
-    tran_entry->SUBCATEGID = Subcategory_id(tran_entry->CATEGID, subcategory);
+    tran_entry->CATEGID = Get_category_id(category);
+    tran_entry->SUBCATEGID = Get_subcategory_id(tran_entry->CATEGID, subcategory);
     tran_entry->TRANSDATE = date.FormatISODate();
     tran_entry->FOLLOWUPID = 0;
     tran_entry->TOTRANSAMOUNT = value;
@@ -357,14 +357,14 @@ void DB_Init_Model::Add_Trans_Split(int trans_id, double value, const wxString& 
         Model_Splittransaction::Data* trans_split_entry = Model_Splittransaction::instance().create();
         trans_split_entry->TRANSID = trans_id;
         trans_split_entry->SPLITTRANSAMOUNT = value;
-        trans_split_entry->CATEGID = Category_id(category);
-        trans_split_entry->SUBCATEGID = Subcategory_id(trans_split_entry->CATEGID, subcategory);
+        trans_split_entry->CATEGID = Get_category_id(category);
+        trans_split_entry->SUBCATEGID = Get_subcategory_id(trans_split_entry->CATEGID, subcategory);
         Model_Splittransaction::instance().save(trans_split_entry);
     }
     else ShowMessage("Transaction not found for the Split Transaction");
 }
 
-void DB_Init_Model::Add_Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory)
+void DB_Init_Model::Bill_Split(int bill_id, double value, const wxString& category, const wxString& subcategory)
 {
     Model_Billsdeposits::Data* bill_entry = Model_Billsdeposits::instance().get(bill_id);
     if (bill_entry)
@@ -380,8 +380,8 @@ void DB_Init_Model::Add_Bill_Split(int bill_id, double value, const wxString& ca
         Model_Budgetsplittransaction::Data* bill_split_entry = Model_Budgetsplittransaction::instance().create();
         bill_split_entry->TRANSID = bill_id;
         bill_split_entry->SPLITTRANSAMOUNT = value;
-        bill_split_entry->CATEGID = Category_id(category);
-        bill_split_entry->SUBCATEGID = Subcategory_id(bill_split_entry->CATEGID, subcategory);
+        bill_split_entry->CATEGID = Get_category_id(category);
+        bill_split_entry->SUBCATEGID = Get_subcategory_id(bill_split_entry->CATEGID, subcategory);
         Model_Budgetsplittransaction::instance().save(bill_split_entry);
     }
     else ShowMessage("Bill entry not found for the Bill Split Transaction");
@@ -393,7 +393,7 @@ void DB_Init_Model::Bill_Start(const wxString& account, const wxDateTime& start_
     {
         m_bill_entry = Model_Billsdeposits::instance().create();
 
-        m_bill_entry->ACCOUNTID = Get_Account_ID(account);
+        m_bill_entry->ACCOUNTID = Get_account_id(account);
         if (m_bill_entry->ACCOUNTID < 0)
         {
             ShowMessage("Bill Start for account: " + account + " not found.\n");
@@ -435,8 +435,8 @@ void DB_Init_Model::Bill_Transaction(Model_Checking::TYPE trans_type, const wxDa
         m_bill_entry->TRANSAMOUNT = value;
         m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
-        m_bill_entry->CATEGID = Category_id(category);
-        m_bill_entry->SUBCATEGID = Subcategory_id(m_bill_entry->CATEGID, subcategory);
+        m_bill_entry->CATEGID = Get_category_id(category);
+        m_bill_entry->SUBCATEGID = Get_subcategory_id(m_bill_entry->CATEGID, subcategory);
         m_bill_entry->TRANSDATE = date.FormatISODate();
         m_bill_entry->FOLLOWUPID = 0;
         m_bill_entry->TOTRANSAMOUNT = value;
@@ -451,7 +451,7 @@ void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& 
 {
     if (m_bill_initialised && !m_bill_transaction_set)
     {
-        m_bill_entry->TOACCOUNTID = Get_Account_ID(to_account);
+        m_bill_entry->TOACCOUNTID = Get_account_id(to_account);
         m_bill_entry->PAYEEID = -1;
 
         // Set to Transfer
@@ -459,8 +459,8 @@ void DB_Init_Model::Bill_Trans_Transfer(const wxDateTime& date, const wxString& 
         m_bill_entry->TRANSAMOUNT = value;
         m_bill_entry->STATUS = Model_Checking::all_status()[Model_Checking::RECONCILED].Mid(0,1);
 
-        m_bill_entry->CATEGID = Category_id(category);
-        m_bill_entry->SUBCATEGID = Subcategory_id(m_bill_entry->CATEGID, subcategory);
+        m_bill_entry->CATEGID = Get_category_id(category);
+        m_bill_entry->SUBCATEGID = Get_subcategory_id(m_bill_entry->CATEGID, subcategory);
         m_bill_entry->TRANSDATE = date.FormatISODate();
         m_bill_entry->FOLLOWUPID = 0;
         m_bill_entry->TOTRANSAMOUNT = value;
@@ -531,6 +531,22 @@ double  Value_List<Value_Type>::Current_Total()
     return result;
 }
 
+template <class Value_Type>
+double  Value_List<Value_Type>::Primary_Name_Value(const wxString& name)
+{
+    double result = 0;
+    for (int pos = 0; pos < (int) list.size(); ++pos)
+    {
+        if (list[pos].Primary_Name() == name)
+        {
+            result = list[pos].Value();
+            break;
+        }
+    }
+
+    return result;
+}
+
 //----------------------------------------------------------------------------
 Single_Name_List::Single_Name_List()
 {}
@@ -563,6 +579,11 @@ void Single_Name_List::Set_Value(const wxString& primary_name, const double valu
 double Single_Name_List::Current_List_Total()
 {
     return m_name_list.Current_Total();
+}
+
+double Single_Name_List::Primary_Name_Value(const wxString& name)
+{
+    return m_name_list.Primary_Name_Value(name);
 }
 
 Single_Name Single_Name_List::Item(const int pos) const
@@ -629,6 +650,26 @@ double Dual_Name_List::Current_List_Total()
     return m_name_list.Current_Total();
 }
 
+double Dual_Name_List::Primary_Name_Value(const wxString& name)
+{
+    return m_name_list.Primary_Name_Value(name);
+}
+
+double Dual_Name_List::Secondary_Name_Value(const wxString& primary_name, const wxString& secondary_name)
+{
+    double result = 0;
+    for (int pos = 0; pos < (int) m_name_list.list.size(); ++pos)
+    {
+        if ((m_name_list.list[pos].Primary_Name() == primary_name) && (m_name_list.list[pos].Secondary_Name() == secondary_name))
+        {
+            result = m_name_list.list[pos].Value();
+            break;
+        }
+    }
+
+    return result;
+}
+
 Dual_Name Dual_Name_List::Item(const int pos) const
 {
     return m_name_list.list[pos];
@@ -668,21 +709,21 @@ void Dual_Name::Add_Value(const double value)
 //----------------------------------------------------------------------------
 int DB_Model_Initialise_Statistics::Add_Trans_Deposit(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
 {
-    payee_income_list.Set_Value(payee, value);
-    category_income_list.Set_Value(category, value);
-    subcategory_income_list.Set_Value(category, subcategory, value);
+    m_payee_income_list.Set_Value(payee, value);
+    m_category_income_list.Set_Value(category, value);
+    m_subcategory_income_list.Set_Value(category, subcategory, value);
     return DB_Init_Model::Add_Trans_Deposit(account_name, date, payee, value, category, subcategory);
 }
 
 int DB_Model_Initialise_Statistics::Add_Trans_Withdrawal(const wxString& account_name, const wxDateTime& date, const wxString& payee, double value, const wxString& category, const wxString& subcategory)
 {
-    payee_expense_list.Set_Value(payee, value);
+    m_payee_expense_list.Set_Value(payee, value);
     if (!category.IsEmpty())
     {
-        category_expense_list.Set_Value(category, value);
+        m_category_expense_list.Set_Value(category, value);
         if (!subcategory.IsEmpty())
         {
-            subcategory_expense_list.Set_Value(category, subcategory, value);
+            m_subcategory_expense_list.Set_Value(category, subcategory, value);
         }
     }
     return DB_Init_Model::Add_Trans_Withdrawal(account_name, date, payee, value, category, subcategory);
@@ -692,12 +733,12 @@ int DB_Model_Initialise_Statistics::Add_Trans_Transfer(const wxString& account_n
 {
     if (!category.IsEmpty())
     {
-        category_income_list.Set_Value(category, value);
-        category_expense_list.Set_Value(category, value);
+        m_category_income_list.Set_Value(category, value);
+        m_category_expense_list.Set_Value(category, value);
         if (!subcategory.IsEmpty())
         {
-            subcategory_income_list.Set_Value(category, subcategory, value);
-            subcategory_expense_list.Set_Value(category, subcategory, value);
+            m_subcategory_income_list.Set_Value(category, subcategory, value);
+            m_subcategory_expense_list.Set_Value(category, subcategory, value);
         }
     }
     return DB_Init_Model::Add_Trans_Transfer(account_name, date, to_account, value, category, subcategory, advanced, adv_value);
@@ -709,18 +750,18 @@ void DB_Model_Initialise_Statistics::Add_Trans_Split(int trans_id, double value,
     {
         if (value < 0)
         {
-            category_expense_list.Set_Value(category, value);
+            m_category_expense_list.Set_Value(category, value);
             if (!subcategory.IsEmpty())
             {
-                subcategory_expense_list.Set_Value(category, subcategory, value);
+                m_subcategory_expense_list.Set_Value(category, subcategory, value);
             }
         }
         else
         {
-            category_income_list.Set_Value(category, value);
+            m_category_income_list.Set_Value(category, value);
             if (!subcategory.IsEmpty())
             {
-                subcategory_income_list.Set_Value(category, subcategory, value);
+                m_subcategory_income_list.Set_Value(category, subcategory, value);
             }
         }
     }
@@ -739,22 +780,22 @@ void DB_Model_Initialise_Statistics::Current_Single_Name_Stats(const wxString& t
 
 void DB_Model_Initialise_Statistics::Current_Payee_Income_Stats(const wxString& title, const wxDateTime& starting_date)
 {
-    Current_Single_Name_Stats(title, starting_date, payee_income_list);
+    Current_Single_Name_Stats(title, starting_date, m_payee_income_list);
 }
 
 void DB_Model_Initialise_Statistics::Current_Payee_Expense_Stats(const wxString& title, const wxDateTime& starting_date)
 {
-    Current_Single_Name_Stats(title, starting_date, payee_expense_list);
+    Current_Single_Name_Stats(title, starting_date, m_payee_expense_list);
 }
 
 void DB_Model_Initialise_Statistics::Current_Category_Income_Stats(const wxString& title, const wxDateTime& starting_date)
 {
-    Current_Single_Name_Stats(title, starting_date, category_income_list);
+    Current_Single_Name_Stats(title, starting_date, m_category_income_list);
 }
 
 void DB_Model_Initialise_Statistics::Current_Category_Expense_Stats(const wxString& title, const wxDateTime& starting_date)
 {
-    Current_Single_Name_Stats(title, starting_date, category_expense_list);
+    Current_Single_Name_Stats(title, starting_date, m_category_expense_list);
 }
 
 void DB_Model_Initialise_Statistics::Current_Dual_Name_Stats(const wxString& title, const wxDateTime& starting_date, Dual_Name_List& dual_name_list)
@@ -768,29 +809,59 @@ void DB_Model_Initialise_Statistics::Current_Dual_Name_Stats(const wxString& tit
 
 void DB_Model_Initialise_Statistics::Current_Subcategory_Income_Stats(const wxString& title, const wxDateTime& starting_date)
 {
-    Current_Dual_Name_Stats(title, starting_date, subcategory_income_list);
+    Current_Dual_Name_Stats(title, starting_date, m_subcategory_income_list);
 }
 
 void DB_Model_Initialise_Statistics::Current_Subcategory_Expense_Stats(const wxString& title, const wxDateTime& starting_date)
 {
-    Current_Dual_Name_Stats(title, starting_date, subcategory_expense_list);
+    Current_Dual_Name_Stats(title, starting_date, m_subcategory_expense_list);
 }
 //----------------------------------------------------------------------------
 
 void DB_Model_Initialise_Statistics::Total_Payee_Stats(const wxDateTime& starting_date)
 {
-    Add_Asset("-------------------- Total Income for Payees:", starting_date, payee_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
-    Add_Asset("-------------------- Total Expenses for Payees:", starting_date, payee_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Income for Payees:", starting_date, m_payee_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Expenses for Payees:", starting_date, m_payee_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
 }
 
 void DB_Model_Initialise_Statistics::Total_Category_Stats(const wxDateTime& starting_date)
 {
-    Add_Asset("-------------------- Total Income for Categories:", starting_date, category_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
-    Add_Asset("-------------------- Total Expenses for Categories:", starting_date, category_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Income for Categories:", starting_date, m_category_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Expenses for Categories:", starting_date, m_category_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
 }
 
 void DB_Model_Initialise_Statistics::Total_Subcategory_Stats(const wxDateTime& starting_date)
 {
-    Add_Asset("-------------------- Total Income for Subcategories:", starting_date, subcategory_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
-    Add_Asset("-------------------- Total Expenses for Subcategories:", starting_date, subcategory_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Income for Subcategories:", starting_date, m_subcategory_income_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+    Add_Asset("-------------------- Total Expenses for Subcategories:", starting_date, m_subcategory_expense_list.Current_List_Total(), Model_Asset::TYPE::TYPE_OTHER);
+}
+
+double DB_Model_Initialise_Statistics::Payee_Income(const wxString& name)
+{
+    return m_payee_income_list.Primary_Name_Value(name);
+}
+
+double DB_Model_Initialise_Statistics::Payee_Expense(const wxString& name)
+{
+    return m_payee_expense_list.Primary_Name_Value(name);
+}
+
+double DB_Model_Initialise_Statistics::Category_Income(const wxString& name)
+{
+    return m_category_income_list.Primary_Name_Value(name);
+}
+
+double DB_Model_Initialise_Statistics::Category_Expense(const wxString& name)
+{
+    return m_category_expense_list.Primary_Name_Value(name);
+}
+
+double DB_Model_Initialise_Statistics::Subcategory_Income(const wxString& primary_name, const wxString& secondary_name)
+{
+    return m_subcategory_income_list.Secondary_Name_Value(primary_name, secondary_name);
+}
+
+double DB_Model_Initialise_Statistics::Subcategory_Expense(const wxString& primary_name, const wxString& secondary_name)
+{
+    return m_subcategory_expense_list.Secondary_Name_Value(primary_name, secondary_name);
 }

@@ -178,7 +178,7 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
     m_dbmodel->Add_Subcategory(cat_id, "Offset");
     m_dbmodel->Add_Subcategory(cat_id, "Interest");
 
-    cat_id = m_dbmodel->Category_id("Income");
+    cat_id = m_dbmodel->Get_category_id("Income");
     m_dbmodel->Add_Subcategory(cat_id, "Tax");
     m_dbmodel->Add_Subcategory(cat_id, "Bank Interest");
 
@@ -389,9 +389,9 @@ void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
     m_dbmodel->Bill_Trans_Withdrawal(start_date, "Woolworths", 100);
     int bill_id = m_dbmodel->BILL_End();
    
-    m_dbmodel->Add_Bill_Split(bill_id, 10, "Food", "Groceries");
-    m_dbmodel->Add_Bill_Split(bill_id, 30, "Food", "Groceries");
-    m_dbmodel->Add_Bill_Split(bill_id, 60, "Food", "Groceries");
+    m_dbmodel->Bill_Split(bill_id, 10, "Food", "Groceries");
+    m_dbmodel->Bill_Split(bill_id, 30, "Food", "Groceries");
+    m_dbmodel->Bill_Split(bill_id, 60, "Food", "Groceries");
 
     m_test_db.Commit();
 }
