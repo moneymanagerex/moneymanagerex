@@ -31,6 +31,7 @@
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
 #include <wx/valnum.h>
+#include <wx/numformatter.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
 
@@ -825,17 +826,17 @@ void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
 
 void mmTransDialog::OnAutoTransNum(wxCommandEvent& /*event*/)
 {
-    //TODO:
-    wxString number = textNumber_->GetValue();
-    double next_number = 1;
-    if (number.ToDouble(&next_number))
+    double next_number = 0, temp_num;
+    for (const auto &num : Model_Checking::instance()
+        .find(Model_Checking::ACCOUNTID(accountID_)))
     {
-        next_number++;
-        number = wxString::Format("%i", static_cast<int>(next_number));
+        if (num.TRANSACTIONNUMBER.empty() || !num.TRANSACTIONNUMBER.IsNumber()) continue;
+        if (num.TRANSACTIONNUMBER.ToDouble(&temp_num) && temp_num > next_number)
+            next_number = temp_num;
     }
 
-    if (number.IsEmpty()) number = "1";
-    textNumber_->SetValue(number);
+    next_number++;
+    textNumber_->SetValue(wxNumberFormatter::ToString(next_number, 0, wxNumberFormatter::Style_None));
 }
 
 void mmTransDialog::OnAdvanceChecked(wxCommandEvent& /*event*/)
