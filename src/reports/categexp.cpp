@@ -36,7 +36,6 @@ mmReportCategoryExpenses::mmReportCategoryExpenses
 , type_(type)
 , ignoreFutureDate_(mmIniOptions::instance().ignoreFutureTransactions_)
 , with_date_(false)
-, grandtotal_(0)
 {
     with_date_ = date_range_->is_with_date();
 }
@@ -55,10 +54,6 @@ wxString mmReportCategoryExpenses::version()
 void  mmReportCategoryExpenses::RefreshData()
 {
     data_.clear();
-    valueList_.clear();
-    valueListTotals_.clear();
-    grandtotal_ = 0.0;
-
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , date_range_
@@ -66,86 +61,47 @@ void  mmReportCategoryExpenses::RefreshData()
         , false
         , with_date_);
 
+    for (const auto& entry : categoryStats)
+    {
+        wxString categName = "";
+        Model_Category::Data *category = Model_Category::instance().get(entry.first);
+        if (category) categName = category->CATEGNAME;
+
+        double categ_total = entry.second.at(-1).at(0);
+        for (const auto &subentry : entry.second)
+        {
+            double subcateg_total = subentry.second.at(0);
+            if ((type_ == GOES && subcateg_total > 0.0) || (type_ == COME && subcateg_total < 0.0) || (type_ == NONE && subcateg_total != 0.0))
+                valueList_.push_back({ Model_Category::full_name(entry.first, subentry.first), subcateg_total });
+            categ_total += subcateg_total;
+        }
+        if ((type_ == GOES && categ_total > 0.0) || (type_ == COME && categ_total < 0.0) || (type_ == NONE && categ_total != 0.0))
+            valueListTotals_.push_back({ categName, categ_total });
+    }
+
     data_holder line;
+    int groupID = 1;
     for (const auto& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
-        int categs = 0;
-        double categtotal = 0.0;
-        int categID = category.CATEGID;
         const wxString& sCategName = category.CATEGNAME;
-        double amt = categoryStats[categID][-1][0];
+        double amt = categoryStats[category.CATEGID][-1][0];
         if (type_ == GOES && amt < 0.0) amt = 0;
         if (type_ == COME && amt > 0.0) amt = 0;
-
-        categtotal += amt;
-        grandtotal_ += amt;
-
-        if (amt != 0)
-        {
-            ValuePair vp;
-            vp.label = sCategName;
-            vp.amount = amt;
-            valueList_.push_back(vp);
-
-            line.name = sCategName;
-            line.amount = amt;
-            line.categs = 0;
-            data_.push_back(line);
-        }
+        if (amt != 0.0)
+            data_.push_back({ sCategName, amt, groupID });
 
         Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
         std::stable_sort(subcategories.begin(), subcategories.end(), SorterBySUBCATEGNAME());
         for (const auto& sub_category : subcategories)
         {
-            int subcategID = sub_category.SUBCATEGID;
-
-            wxString sFullCategName = Model_Category::full_name(categID, subcategID);
-            amt = categoryStats[categID][subcategID][0];
-
+            wxString sFullCategName = Model_Category::full_name(category.CATEGID, sub_category.SUBCATEGID);
+            amt = categoryStats[category.CATEGID][sub_category.SUBCATEGID][0];
             if (type_ == GOES && amt < 0.0) amt = 0;
             if (type_ == COME && amt > 0.0) amt = 0;
-
-            categtotal += amt;
-            grandtotal_ += amt;
-
-            if (amt != 0)
-            {
-                categs++;
-                ValuePair vp;
-                vp.label = sFullCategName;
-                vp.amount = amt;
-                valueList_.push_back(vp);
-
-                line.name = sFullCategName;
-                line.amount = amt;
-                line.categs = 0;
-                data_.push_back(line);
-            }
+            if (amt != 0.0)
+                data_.push_back({ sFullCategName, amt, groupID });
         }
-
-        if (categtotal != 0)
-        {
-            ValuePair vp_total;
-            vp_total.label = category.CATEGNAME;
-            vp_total.amount = categtotal;
-            valueListTotals_.push_back(vp_total);
-        }
-
-        if (categs > 1)
-        {
-            line.name = _("Category Total: ");
-            line.amount = categtotal;
-            line.categs = categs;
-            data_.push_back(line);
-        }
-        else if (categs > 0 || amt != 0)
-        {
-            // Insert place holder to add a seperator
-            line.name = "";
-            line.amount = 0;
-            line.categs = categs;
-            data_.push_back(line);
-        }
+        groupID++;
     }
 }
 
@@ -164,12 +120,21 @@ wxString mmReportCategoryExpenses::getHTMLText()
         );
     }
 
+    std::map <int, int> group_counter;
+    std::map <int, double> group_total;
+    for (const auto& entry : sortedData)
+    {
+        wxLogDebug("%s %s %s", entry.name, wxString() << entry.categs, wxString() << entry.amount);
+        group_counter[entry.categs]++;
+        group_total[entry.categs] += entry.amount;
+        group_total[-1] += entry.amount < 0 ? entry.amount : 0;
+        group_total[-2] += entry.amount > 0 ? entry.amount : 0;
+    }
+
     mmHTMLBuilder hb;
     hb.init();
     hb.addHeader(2, title_);
-
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), with_date_);
-
     hb.startCenter();
 
     // Add the graph
@@ -197,50 +162,39 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addTableHeaderCell(_("Total"), true);
     hb.endTableRow();
 
-    bool endSeparator = false;
+    int group = 1;
     for (const auto& entry : sortedData)
     {
-        endSeparator = false;
-        if (entry.categs > 0)
+        if (group != entry.categs)
         {
-            if(CATEGORY_SORT_BY_NAME == sortColumn_)
-            {
-                if (entry.name != "")
-                {
-                    if (entry.amount != 0)
-                    {
-                        hb.startTableRow();
-                        hb.addTableCell(entry.name, false, true, true, "GRAY");
-                        hb.addTableCell("");
-                        hb.addMoneyCell(entry.amount, "GRAY");
-                        hb.endTableRow();
-                    }
-                }
-                hb.addRowSeparator(3);
-                endSeparator = true;
-            }
-        }
-        else
-        {
-            if (entry.amount != 0)
+            if (group_counter[group] > 1)
             {
                 hb.startTableRow();
-                hb.addTableCell(entry.name, false, true);
-                hb.addMoneyCell(entry.amount); //TODO: shift single categ amount to next row
+                hb.addTableCell(_("Category Total: "), false, true, true, "GRAY");
                 hb.addTableCell("");
+                hb.addMoneyCell(group_total[group], "GRAY");
                 hb.endTableRow();
             }
-            else
-            {
-                hb.addRowSeparator(3);
-                endSeparator = true;
-            }
+            hb.addRowSeparator(3);
         }
+        group = entry.categs;
+        hb.startTableRow();
+        hb.addTableCell(entry.name, false, true);
+        hb.addMoneyCell(entry.amount);
+        if (group_counter[entry.categs] > 1)
+            hb.addTableCell("");
+        else
+            hb.addMoneyCell(entry.amount);
+        hb.endTableRow();
     }
 
-    if (!endSeparator)
-        hb.addRowSeparator(3);
-    hb.addTotalRow(_("Grand Total: "), 3, grandtotal_);
+    hb.addRowSeparator(3);
+    if (type_ == NONE)
+    {
+        hb.addTotalRow(_("Total Expences: "), 3, group_total[-1]);
+        hb.addTotalRow(_("Total Income: "), 3, group_total[-2]);
+    }
+    hb.addTotalRow(_("Grand Total: "), 3, group_total[-1] + group_total[-2]);
 
     hb.endTable();
     hb.endCenter();

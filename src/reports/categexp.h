@@ -50,7 +50,6 @@ private:
     std::vector<ValuePair> valueList_;
     std::vector<ValuePair> valueListTotals_;
     bool with_date_;
-    double grandtotal_;
 };
 
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
