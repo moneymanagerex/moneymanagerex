@@ -160,7 +160,7 @@ void mmCheckingPanel::sortTable()
     switch (m_listCtrlAccount->g_sortcol)
     {
     case TransactionListCtrl::COL_NUMBER:
-        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByTRANSACTIONNUMBER());
+        std::stable_sort(this->m_trans.begin(), this->m_trans.end(), Model_Checking::SorterByNUMBER());
         break;
     case TransactionListCtrl::COL_PAYEE_STR:
         std::stable_sort(this->m_trans.begin(), this->m_trans.end(), SorterByPAYEENAME());

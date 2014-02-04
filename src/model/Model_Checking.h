@@ -78,7 +78,16 @@ public:
             return x.AMOUNT > y.AMOUNT;
         }
     };
-
+    struct SorterByNUMBER
+    {
+        template<class DATA>
+        bool operator()(const DATA& x, const DATA& y)
+        {
+            return x.TRANSACTIONNUMBER.IsNumber() && y.TRANSACTIONNUMBER.IsNumber()
+                ? (wxAtoi(x.TRANSACTIONNUMBER) < wxAtoi(y.TRANSACTIONNUMBER))
+                : x.TRANSACTIONNUMBER < y.TRANSACTIONNUMBER;
+        }
+    };
 public:
     Model_Checking();
     ~Model_Checking();
