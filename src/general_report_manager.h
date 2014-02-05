@@ -147,6 +147,7 @@ private:
         "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
 
     const wxString SAMPLE_ASSETS_HTT =
+        "<!DOCTYPE html>"
         "<h3>Assets</h3>\n"
         "<TMPL_VAR TODAY><hr>\n"
         "<table cellspacing=\"1\" width=\"95%\">\n"

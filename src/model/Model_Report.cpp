@@ -22,6 +22,7 @@
 #include "LuaGlue/LuaGlue.h"
 
 static const wxString HTT_CONTEINER =
+"<!DOCTYPE html>"
 "<h3><TMPL_VAR REPORTNAME></h3>\n"
 "<TMPL_VAR TODAY><hr>\n"
 "<table cellspacing='1' width='95%%'>\n"
