@@ -250,12 +250,15 @@ void mmTransDialog::dataToControls()
                 m_local_splits.clear();
             }
 
-            Model_Category::Data_Set categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
-            if (!categs.empty())
+            if (!transaction_id_)
             {
-                transaction_->SUBCATEGID = -1;
-                transaction_->CATEGID = categs.begin()->CATEGID;
-                bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, -1));
+                Model_Category::Data_Set categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
+                if (!categs.empty())
+                {
+                    transaction_->SUBCATEGID = -1;
+                    transaction_->CATEGID = categs.begin()->CATEGID;
+                    bCategory_->SetLabel(Model_Category::full_name(transaction_->CATEGID, -1));
+                }
             }
 
             for (const auto & entry : Model_Account::instance().all_checking_account_names())
