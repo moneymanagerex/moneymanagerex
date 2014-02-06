@@ -1,49 +1,52 @@
-#How to prepare system to build mmex
+# How to build and install mmex
 
+# Install required packages
+sudo apt-get install build-essential
+sudo apt-get install g++-multilib
+sudo apt-get install automake
+sudo apt-get install python-dev
+sudo apt-get install libgtk-3-dev
+sudo apt-get install webkitgtk-3.0
+sudo apt-get install lintian
 sudo apt-get install subversion
 
+# Download, build and install wxWidgets
 mkdir ~/Development
 cd ~/Development
-svn checkout http://svn.code.sf.net/p/moneymanagerex/code/trunk/mmex mmex
+svn checkout http://svn.wxwidgets.org/svn/wx/wxWidgets/tags/WX_3_0_0 wxWidgets-3.0.0
+cd wxWidgets-3.0.0
+./configure --enable-webview --enable-webview-webkit && make
+sudo make install
+sudo ldconfig
 
-#Install wx libs
-sudo apt-get install libwxgtk2.9-dev libwxgtk2.9
-
-#Installing Bakefile On Ubuntu 11.04
-sudo apt-get install python-dev
-
-#Download archive from link below then unpack it and build
-http://sourceforge.net/projects/bakefile/files/bakefile/0.2.9/bakefile-0.2.9.tar.gz/download
+# Download, build and install bakefile
+cd ~/Development
+wget http://sourceforge.net/projects/bakefile/files/bakefile/0.2.9/bakefile-0.2.9.tar.gz
+tar xfz bakefile-0.2.9.tar.gz
+cd bakefile-0.2.9
 ./configure && make 
 sudo make install
 
-sudo apt-get install automake
+# Download mmex
+cd ~/Development
+svn checkout http://svn.code.sf.net/p/moneymanagerex/code/trunk mmex
 
-# How to build (and install) mmex.deb package
-#
-# Note: Build support for 32 bit and 64 bit.
-#
-# Difference in Control file: Line 13 (In file: build.sh)
-#       32bit:= Architecture: i386
-#       64bit:= Architecture: amd64
-#
-# To build the amd64 (64 bit version), set variable in build.sh file to amd64
-#
+# Configure mmex
+#     Modify 3rd/cgitemplate/html_template.h
+#         Add line "#include <cstddef>"
+#     Modify "setup/linux/debian/build.sh"
+#         Specify version of mmex ("1.0.1.0")
+#         Specify system Architecture  ("i386" or "amd64")
 
-# Specify system Architecture  ("i386" or "amd64")
-ARCHITECTURE="i386"
+# Build mmex
+cd mmex/setup/linux/debian
+./build.sh
 
-# The corresponding version of mmex must be specified:
-MMEX_VERSION="0.9.9.0"
+# Install the package (Have you backed up your databases?)
+cd ~/build
+dpkg -i mmex-xXX.deb
 
-#Then start ./build.sh file
+# Then run it
+mmex&
 
-#Check ~/build/mmex-xXX.deb file
-lintian mmex-xXX.deb
-# check errors against other lintian deb 
 
-# install the package (Have you backed up your databases?)
-#dpkg -i mmex.deb
-
-#Then run it
-#mmex&
