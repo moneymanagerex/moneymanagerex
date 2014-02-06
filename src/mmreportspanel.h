@@ -50,11 +50,14 @@ public:
 
     wxString getReportText();
 
-private:
+protected:
     wxWebView * htmlWindow_;
     mmPrintableBase* rb_;
+
+    friend class WebViewHandlerStatic;
+
+private:
     bool cleanup_;
-    void OnLinkClicked(wxHtmlLinkEvent& event);
 };
 
 #endif

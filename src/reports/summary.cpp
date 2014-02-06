@@ -177,7 +177,7 @@ wxString mmReportSummary::getHTMLText()
     hb.addRowSeparator(2);
 
     hb.startTableRow();
-    hb.addTableCellLink("Assets", _("Assets"), false, true);
+    hb.addTableCellLink("Assets:", _("Assets"), false, true);
     hb.addMoneyCell(asset_balance_);
     hb.endTableRow();
 

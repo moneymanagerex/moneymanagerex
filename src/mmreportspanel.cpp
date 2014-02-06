@@ -31,30 +31,69 @@
 class WebViewHandlerStatic : public wxWebViewHandler
 {
 public:
-    WebViewHandlerStatic(const wxString& protocol)
+    WebViewHandlerStatic(mmReportsPanel *panel, const wxString& protocol)
         : wxWebViewHandler(protocol)
     {
-        m_fs = new wxFileSystem();
+        m_reportPanel = panel;
     }
 
     virtual ~WebViewHandlerStatic()
     {
-        wxDELETE(m_fs);
     }
 
     virtual wxFSFile* GetFile (const wxString &uri)
     {
-        wxString content = uri.substr(9, uri.length()).BeforeLast('/');
+        mmGUIFrame* frame = wxGetApp().m_frame;
+        wxString sData;
+        if (uri.Upper().StartsWith("ASSETS", &sData))
+        {
+            frame->setNavTreeSection(_("Assets"));
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.Upper().StartsWith("ACCT:", &sData))
+        {
+            long id = -1;
+            sData.ToLong(&id);
+            frame->setGotoAccountID(id);
+            const Model_Account::Data* account = Model_Account::instance().get(id);
+            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.Upper().StartsWith("TRXID:", &sData))
+        {
+            long transID = -1;
+            sData.ToLong(&transID);
+            if (transID > 0)
+            {
+                const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
+                if (transaction)
+                {
+                    int account_id = transaction->ACCOUNTID;
+                    frame->setGotoAccountID(account_id, transID);
+                    const Model_Account::Data* account = Model_Account::instance().get(account_id);
+                    frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                    frame->GetEventHandler()->AddPendingEvent(evt);
+                }
+            }
+        }
+        else if (uri.Upper().StartsWith("SORT:", &sData))
+        {
+            long sortColumn = -1;
+            sData.ToLong(&sortColumn);
+            m_reportPanel->rb_->setSortColumn(sortColumn);
+            m_reportPanel->htmlWindow_->SetPage(m_reportPanel->getReportText(), "");
+        }
 
-        return m_fs->OpenFile(content);
+        return NULL;
     }   
-
 private:
-    wxFileSystem* m_fs;
+    mmReportsPanel *m_reportPanel;
 };
 
 BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
-    EVT_HTML_LINK_CLICKED(wxID_ANY, mmReportsPanel::OnLinkClicked)
 END_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
@@ -117,81 +156,14 @@ void mmReportsPanel::CreateControls()
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "Assets")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "ACCT")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "TRXID")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "SORT")));
 
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
 
 void mmReportsPanel::sortTable()
 {
-}
-
-void mmReportsPanel::OnLinkClicked(wxHtmlLinkEvent& event)
-{
-    wxHtmlLinkInfo link_info = event.GetLinkInfo();
-    wxString sInfo = link_info.GetHref();
-    wxString sData;
-    bool bIsTrxId = sInfo.StartsWith("TRXID:", &sData);
-    bool isAcct = sInfo.StartsWith("ACCT:", &sData);
-    bool isStock = sInfo.StartsWith("STOCK:", &sData);
-	bool bIsSort = sInfo.StartsWith("SORT:", &sData);
-    mmGUIFrame* frame = wxGetApp().m_frame;
-    if (sInfo == "billsdeposits")
-    {
-        frame->setNavTreeSection(_("Repeating Transactions"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (sInfo == "Assets")
-    {
-        frame->setNavTreeSection(_("Assets"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (isAcct)
-    {
-        long id = -1;
-        sData.ToLong(&id);
-        frame->setGotoAccountID(id);
-        const Model_Account::Data* account = Model_Account::instance().get(id);
-        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (isStock)
-    {
-        long id = -1;
-        sData.ToLong(&id);
-        frame->setGotoAccountID(id);
-        const Model_Account::Data* account = Model_Account::instance().get(id);
-        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (bIsTrxId)
-    {
-        long transID = -1;
-        sData.ToLong(&transID);
-        if (transID > 0)
-        {
-            const Model_Checking::Data* transaction = Model_Checking::instance().get(transID);
-            if (transaction)
-            {
-                int account_id = transaction->ACCOUNTID;
-                frame->setGotoAccountID(account_id, transID);
-                const Model_Account::Data* account = Model_Account::instance().get(account_id);
-                frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                frame->GetEventHandler()->AddPendingEvent(evt);
-            }
-        }
-    }
-	else if (bIsSort)
-	{
-        long sortColumn = -1;
-        sData.ToLong(&sortColumn);
-		rb_ -> setSortColumn(sortColumn);
-		htmlWindow_ -> SetPage(getReportText(), "");
-	}
-    else
-        wxLaunchDefaultBrowser(sInfo);
 }
