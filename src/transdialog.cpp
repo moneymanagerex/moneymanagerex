@@ -671,13 +671,14 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         accountID_ = account->ACCOUNTID;
         cbAccount_->SetValue(account->ACCOUNTNAME);
     }
+
+    textAmount_->Calculate(currency);
     textAmount_->GetDouble(transaction_->TRANSAMOUNT);
-    if (transaction_->TRANSAMOUNT) textAmount_->SetValue(transaction_->TRANSAMOUNT, currency);
 
     if (advancedToTransAmountSet_)
     {
+        toTextAmount_->Calculate(currency);
         toTextAmount_->GetDouble(transaction_->TOTRANSAMOUNT);
-        if (transaction_->TOTRANSAMOUNT) toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, currency);
     }
 
     if (m_transfer)

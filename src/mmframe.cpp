@@ -2531,8 +2531,8 @@ void mmGUIFrame::OnImportUniversalCSV(wxCommandEvent& /*event*/)
     if (univCSVDialog.InportCompletedSuccessfully())
     {
         Model_Account::Data* account = Model_Account::instance().get(univCSVDialog.ImportedAccountID());
-        setAccountNavTreeSection(account->ACCOUNTNAME);
         createCheckingAccountPage(univCSVDialog.ImportedAccountID());
+        if (account) setAccountNavTreeSection(account->ACCOUNTNAME);
     }
 }
 //----------------------------------------------------------------------------
@@ -2663,12 +2663,13 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
         if (dlg.ShowModal() == wxID_OK)
         {
             gotoAccountID_ = dlg.getAccountID();
+			gotoTransID_ = dlg.getTransactionID();
             refreshRequested_ = true;
             Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
             if (account)
             {
-                setAccountNavTreeSection(account->ACCOUNTNAME);
                 createCheckingAccountPage(gotoAccountID_);
+                setAccountNavTreeSection(account->ACCOUNTNAME);
             }
         }
     }
@@ -3119,14 +3120,15 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
             accountID, homePanel_);
         panelCurrent_ = checkingAccountPage_;
         activeCheckingAccountPage_ = true;
-        if (gotoTransID_ > 0)
-        {
-            checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
-        }
 
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
     }
+
+	if (gotoTransID_ > 0)
+	{
+		checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
+	}
 }
 //----------------------------------------------------------------------------
 

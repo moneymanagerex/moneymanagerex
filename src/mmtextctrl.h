@@ -60,7 +60,7 @@ public:
     }
     void Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
     {
-        if (!currency) return;
+        if (!currency || this->GetValue().empty()) return;
         mmCalculator calc;
         int precision = alt_precision >= 0 ? alt_precision : log10(currency->SCALE);
         if (calc.is_ok(Model_Currency::fromString2Default(this->GetValue(), currency)))
