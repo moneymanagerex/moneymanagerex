@@ -664,7 +664,11 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     }
 
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
-    const Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
+    wxString accountName = cbAccount_->GetValue();
+    for (const auto& acc : Model_Account::instance().all_checking_account_names()){
+        if (acc.CmpNoCase(accountName) == 0) accountName = acc;
+    }
+    const Model_Account::Data* account = Model_Account::instance().get(accountName);
     if (account)
     {
         currency = Model_Account::currency(account);
