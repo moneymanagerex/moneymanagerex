@@ -687,10 +687,14 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     else
     {
         Model_Payee::Data * payee = Model_Payee::instance().get(transaction_->PAYEEID);
-        if (payee) cbPayee_->ChangeValue(payee->PAYEENAME);
+        if (payee)
+        {
+            cbPayee_->ChangeValue(payee->PAYEENAME);
+            wxCommandEvent evt(wxEVT_COMBOBOX, wxID_ANY);
+            event.SetId(ID_DIALOG_TRANS_PAYEECOMBO);
+            this->OnAccountOrPayeeUpdated(evt);
+        }
     }
-
-    event.Skip();
 }
 
 void mmTransDialog::activateSplitTransactionsDlg()
@@ -769,8 +773,15 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
     transaction_->PAYEEID = -1;
     if (!m_transfer && event.GetId() == ID_DIALOG_TRANS_PAYEECOMBO)
     {
-        const Model_Payee::Data *payee = Model_Payee::instance().get(event.GetString());
-        if (payee) transaction_->PAYEEID = payee->PAYEEID;
+        wxString payeeName = event.GetString().Trim();
+        for (const auto& payee : Model_Payee::instance().all_payee_names()) {
+            if (payee.CmpNoCase(payeeName) == 0)
+                payeeName = payee;
+        }
+
+        const Model_Payee::Data *payee = Model_Payee::instance().get(payeeName);
+        if (payee)
+            transaction_->PAYEEID = payee->PAYEEID;
 
         // Only for new transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
@@ -781,7 +792,7 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
             Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
             if (category)
             {
-                Model_Subcategory::Data *subcategory = (payee->SUBCATEGID != -1 ? Model_Subcategory::instance().get(payee->SUBCATEGID) : 0);
+                Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee->SUBCATEGID);
                 wxString fullCategoryName = Model_Category::full_name(category, subcategory);
 
                 transaction_->CATEGID = payee->CATEGID;
@@ -791,8 +802,6 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
             }
         }
     }
-    wxChildFocusEvent evt;
-    onFocusChange(evt);
 }
 
 void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
