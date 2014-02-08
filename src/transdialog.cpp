@@ -671,14 +671,13 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         accountID_ = account->ACCOUNTID;
         cbAccount_->SetValue(account->ACCOUNTNAME);
     }
-
-    textAmount_->Calculate(currency);
     textAmount_->GetDouble(transaction_->TRANSAMOUNT);
+    if (transaction_->TRANSAMOUNT) textAmount_->SetValue(transaction_->TRANSAMOUNT, currency);
 
     if (advancedToTransAmountSet_)
     {
-        toTextAmount_->Calculate(currency);
         toTextAmount_->GetDouble(transaction_->TOTRANSAMOUNT);
+        if (transaction_->TOTRANSAMOUNT) toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, currency);
     }
 
     if (m_transfer)
@@ -687,14 +686,10 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     else
     {
         Model_Payee::Data * payee = Model_Payee::instance().get(transaction_->PAYEEID);
-        if (payee)
-        {
-            cbPayee_->ChangeValue(payee->PAYEENAME);
-            wxCommandEvent evt(wxEVT_COMBOBOX, wxID_ANY);
-            event.SetId(ID_DIALOG_TRANS_PAYEECOMBO);
-            this->OnAccountOrPayeeUpdated(evt);
-        }
+        if (payee) cbPayee_->ChangeValue(payee->PAYEENAME);
     }
+
+    event.Skip();
 }
 
 void mmTransDialog::activateSplitTransactionsDlg()
@@ -776,12 +771,10 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
         wxString payeeName = event.GetString().Trim();
         for (const auto& payee : Model_Payee::instance().all_payee_names()) {
             if (payee.CmpNoCase(payeeName) == 0)
-                payeeName = payee;
+                payeeName = payee; 
         }
-
         const Model_Payee::Data *payee = Model_Payee::instance().get(payeeName);
-        if (payee)
-            transaction_->PAYEEID = payee->PAYEEID;
+        if (payee) transaction_->PAYEEID = payee->PAYEEID;
 
         // Only for new transactions: if user want to autofill last category used for payee.
         // If this is a Split Transaction, ignore displaying last category for payee
@@ -792,7 +785,7 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
             Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
             if (category)
             {
-                Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(payee->SUBCATEGID);
+                Model_Subcategory::Data *subcategory = (payee->SUBCATEGID != -1 ? Model_Subcategory::instance().get(payee->SUBCATEGID) : 0);
                 wxString fullCategoryName = Model_Category::full_name(category, subcategory);
 
                 transaction_->CATEGID = payee->CATEGID;
@@ -802,6 +795,8 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
             }
         }
     }
+    wxChildFocusEvent evt;
+    onFocusChange(evt);
 }
 
 void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
