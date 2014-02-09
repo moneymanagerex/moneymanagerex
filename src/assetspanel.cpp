@@ -57,6 +57,8 @@ mmAssetsListCtrl::mmAssetsListCtrl(mmAssetsPanel* cp, wxWindow *parent, wxWindow
     : mmListCtrl(parent, winid)
     , cp_(cp)
 {
+    ToggleWindowStyle(wxLC_EDIT_LABELS);
+
     // load the global variables
     m_selected_col = Model_Setting::instance().GetIntSetting("ASSETS_SORT_COL", 0);
     m_asc = Model_Setting::instance().GetBoolSetting("ASSETS_ASC", true);

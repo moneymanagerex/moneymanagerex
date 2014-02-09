@@ -30,7 +30,7 @@ class mmListCtrl: public wxListCtrl
 {
 public:
     mmListCtrl(wxWindow *parent, wxWindowID winid)
-        : wxListCtrl(parent, winid, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_HRULES|wxLC_VRULES|wxLC_VIRTUAL|wxLC_SINGLE_SEL|wxLC_EDIT_LABELS)
+        : wxListCtrl(parent, winid, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_HRULES|wxLC_VRULES|wxLC_VIRTUAL|wxLC_SINGLE_SEL)
         , attr1_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont))
         , attr2_(new wxListItemAttr(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont))
         , m_selected_row(-1)
@@ -56,36 +56,34 @@ public:
     wxString BuildPage() const
     {
         wxString text;
-        text << "<TABLE ";
-
+        text << "<table ";
         if ((GetWindowStyle() & wxLC_HRULES) ||
           (GetWindowStyle() & wxLC_VRULES))
             text << "border=1";
         else
             text << "border=0";
+        text << " cellpadding=4 cellspacing=0 >" << wxTextFile::GetEOL();
 
-            text << " cellpadding=4 cellspacing=0 >" << wxTextFile::GetEOL();
-
-            text << "<tr>" << wxTextFile::GetEOL();
-
+        text << "<tr>" << wxTextFile::GetEOL();
         for (int c = 0; c < GetColumnCount(); c++)
         { 
             wxListItem col;
+            col.SetMask(wxLIST_MASK_TEXT);
             GetColumn(c, col);
-            text << "<td><i>" << col.GetText() << "</i>" << wxTextFile::GetEOL();
+            text << "<th><i>" << col.GetText() << "</i></th>" << wxTextFile::GetEOL();
         }
+        text << "</tr>" << wxTextFile::GetEOL();
 
         for (int i = 0; i < GetItemCount(); i++)
         { 
             text << "<tr>" << wxTextFile::GetEOL();
-
             for (int col = 0; col < GetColumnCount(); col++)
             {
-                text << "<td>" << wxListCtrl::GetItemText(i, col) << wxTextFile::GetEOL();
+                text << "<td>" << wxListCtrl::GetItemText(i, col) << "</td>" << wxTextFile::GetEOL();
             }
+            text << "</tr>" << wxTextFile::GetEOL();
         }
-
-        text << "</TABLE>" << wxTextFile::GetEOL();
+        text << "</table>" << wxTextFile::GetEOL();
 
         return text;
     }
@@ -98,7 +96,7 @@ public:
     virtual ~mmPanelBase() {mmGraphGenerator::cleanup();}
 
 public:
-    wxString BuildPage() const { return "TBD"; }
+    virtual wxString BuildPage() const { return "TBD"; }
     void windowsFreezeThaw()
     {
 #ifdef __WXGTK__

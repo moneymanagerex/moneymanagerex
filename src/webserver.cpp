@@ -143,7 +143,7 @@ wxThread::ExitCode WebServerThread::Entry()
     return (wxThread::ExitCode)0;
 }
 
-void WebServerThread::ServerPage(wxString &htmlpage)
+void WebServerThread::ServerPage(wxString htmlpage)
 {
     // Report can be viewed in browser window using "http://localhost:8080".
 

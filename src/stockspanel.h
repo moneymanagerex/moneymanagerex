@@ -128,6 +128,8 @@ public:
     wxStaticText* stock_details_short_;
     void updateHeader();
 
+    wxString BuildPage() const { return listCtrlAccount_->BuildPage(); }
+
 private:
     wxStaticText* stock_details_;
     void call_dialog(int selectedIndex);

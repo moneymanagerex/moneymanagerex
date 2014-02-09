@@ -49,6 +49,7 @@ public:
     void sortTable();
 
     wxString getReportText();
+    wxString BuildPage() const { return htmlreport_; }
 
 protected:
     wxWebView * htmlWindow_;
@@ -58,6 +59,7 @@ protected:
 
 private:
     bool cleanup_;
+    wxString htmlreport_;
 };
 
 #endif

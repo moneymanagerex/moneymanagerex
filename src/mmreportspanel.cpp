@@ -124,17 +124,20 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    wxString htmlreport = getReportText();
-    htmlWindow_->SetPage(htmlreport, "");
-    WebServerThread::ServerPage(htmlreport);
+    htmlWindow_->SetPage(getReportText(), "");
     return TRUE;
 }
 
 wxString mmReportsPanel::getReportText()
 {
-    if (!rb_) return "coming soon...";
-    wxGetApp().m_frame->SetStatusText(rb_->version());
-    return rb_->getHTMLText();
+    htmlreport_ = "coming soon...";
+    if (rb_)
+    {
+        wxGetApp().m_frame->SetStatusText(rb_->version());
+        htmlreport_ = rb_->getHTMLText();
+        WebServerThread::ServerPage(htmlreport_);
+    }
+    return htmlreport_;
 }
 
 void mmReportsPanel::CreateControls()

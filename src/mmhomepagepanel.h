@@ -65,7 +65,9 @@ public:
 
     ~mmHomePagePanel();
 
-    wxString GetHomePageText();
+    wxString GetHomePageText() const;
+
+    wxString BuildPage() const { return GetHomePageText(); }
 
 private:
     mmGUIFrame* frame_;

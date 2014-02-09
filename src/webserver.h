@@ -30,7 +30,7 @@ public:
     WebServerThread(mmGUIFrame *handler);
     ~WebServerThread();
 
-    static void ServerPage(wxString &htmlpage);
+    static void ServerPage(wxString htmlpage);
 
 protected:
     static wxString *m_htmlpage;

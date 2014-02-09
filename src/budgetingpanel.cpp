@@ -269,9 +269,7 @@ void mmBudgetingPanel::CreateControls()
     m_imageList->Add(wxBitmap(flag_xpm));
     m_imageList->Add(wxBitmap(empty_xpm));
 
-    listCtrlBudget_ = new budgetingListCtrl( this, this,
-        wxID_ANY, wxDefaultPosition, wxDefaultSize,
-        wxLC_REPORT | wxLC_HRULES | wxLC_VRULES | wxLC_VIRTUAL | wxLC_SINGLE_SEL  );
+    listCtrlBudget_ = new budgetingListCtrl( this, this, wxID_ANY);
 
     listCtrlBudget_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
     listCtrlBudget_->InsertColumn(0, _("Category"));
@@ -606,7 +604,7 @@ wxListItemAttr* budgetingListCtrl::OnGetItemAttr(long item) const
     }
 
     /* Returns the alternating background pattern */
-    return (item % 2) ? (wxListItemAttr *)&attr2_ : (wxListItemAttr *)&attr1_;
+    return (item % 2) ? attr2_ : attr1_;
 }
 
 void budgetingListCtrl::OnListItemActivated(wxListEvent& event)

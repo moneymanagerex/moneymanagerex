@@ -37,6 +37,8 @@ public:
                  long style = wxTAB_TRAVERSAL | wxNO_BORDER,
                  const wxString& name = wxPanelNameStr );
 
+    wxString BuildPage() const { return ""; }
+
 private:
     wxWebView* htmlWindow_;
 

@@ -212,6 +212,9 @@ public:
     void SetSelectedTransaction(int transID);
 
     void RefreshList(int transID = -1);
+
+    wxString BuildPage() const { return m_listCtrlAccount->BuildPage(); }
+
 private:
     enum
     {

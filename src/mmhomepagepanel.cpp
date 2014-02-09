@@ -62,7 +62,7 @@ mmHomePagePanel::~mmHomePagePanel()
         delete date_range_;
 }
 
-wxString mmHomePagePanel::GetHomePageText()
+wxString mmHomePagePanel::GetHomePageText() const
 {
     return m_templateText;
 }

@@ -28,20 +28,15 @@ class wxListEvent;
 class mmBudgetingPanel;
 
 /* Custom ListCtrl class that implements virtual LC style */
-class budgetingListCtrl: public wxListCtrl
+class budgetingListCtrl : public mmListCtrl
 {
     DECLARE_NO_COPY_CLASS(budgetingListCtrl)
     DECLARE_EVENT_TABLE()
 
 public:
-    budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent,
-                      const wxWindowID id, const wxPoint& pos,
-                      const wxSize& size, long style)
-        : wxListCtrl(parent, id, pos, size, style),
-          attr1_(mmColors::listBorderColor, mmColors::listAlternativeColor0, wxNullFont),
-          attr2_(mmColors::listBorderColor, mmColors::listAlternativeColor1, wxNullFont),
+    budgetingListCtrl(mmBudgetingPanel* cp, wxWindow *parent, const wxWindowID id)
+        : mmListCtrl(parent, id),
           attr3_(mmColors::listAlternativeColor1, mmColors::listFutureDateColor, wxNullFont),
-
           cp_(cp),
           selectedIndex_(-1)
     {}
@@ -57,8 +52,6 @@ public:
 
 private:
     void OnItemResize(wxListEvent& event);
-    wxListItemAttr attr1_; // style1
-    wxListItemAttr attr2_; // style2
     wxListItemAttr attr3_; // style3
     mmBudgetingPanel* cp_;
     long selectedIndex_;
@@ -101,6 +94,8 @@ public:
     }
 
     void RefreshList();
+
+    wxString BuildPage() const { return listCtrlBudget_->BuildPage(); }
 
 private:
     std::vector<std::pair<int, int> > budget_;

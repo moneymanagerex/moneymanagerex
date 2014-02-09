@@ -1505,6 +1505,7 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 
                     homePanel_->Layout();
                 }
+                menuPrintingEnable(true);
             }
             else
             {
@@ -1768,6 +1769,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
     }
+    menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
 
@@ -2959,47 +2961,22 @@ void mmGUIFrame::OnPrintPageSetup(wxCommandEvent& WXUNUSED(event))
 void mmGUIFrame::OnPrintPage(bool preview)
 {
     if (!printer_) return;
-    // TODO fix this dirty impl and to move print to every panel class
-    mmAssetsPanel* asset_panel = dynamic_cast<mmAssetsPanel*>(panelCurrent_);
-    if (asset_panel)
+
+    mmHelpPanel* help_page = dynamic_cast<mmHelpPanel*>(panelCurrent_);
+    if (help_page)
     {
         if (preview)
-            printer_->PreviewText(asset_panel->BuildPage());
+            printer_->PreviewFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
         else
-            printer_->PrintText(asset_panel->BuildPage());
+            printer_->PrintFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
     }
     else
     {
-        mmReportsPanel* report_panel = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-        if (report_panel)
-        {
-            if (preview)
-                printer_->PreviewText(report_panel->getReportText());
-            else
-                printer_->PrintText(report_panel->getReportText());
-        }
-        else if (activeHomePage_)
-        {
-            mmHomePagePanel* home_page = dynamic_cast<mmHomePagePanel*>(panelCurrent_);
-            if (home_page)
-            {
-                if (preview)
-                    printer_->PreviewText(home_page->GetHomePageText());
-                else
-                    printer_->PrintText(home_page->GetHomePageText());
-            }
-        }
+        wxString htmlText = panelCurrent_->BuildPage();
+        if (preview)
+            printer_->PreviewText(htmlText);
         else
-        {
-            mmHelpPanel* help_page = dynamic_cast<mmHelpPanel*>(panelCurrent_);
-            if (help_page)
-            {
-                if (preview)
-                    printer_->PreviewFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
-                else
-                    printer_->PrintFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
-            }
-        }
+            printer_->PrintText(htmlText);
     }
 }
 
@@ -3077,6 +3054,7 @@ void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
     homePanel_->Layout();
+    menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
 
