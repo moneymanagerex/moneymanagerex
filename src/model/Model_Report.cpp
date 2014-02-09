@@ -87,7 +87,10 @@ wxString Model_Report::get_html(const Data* r)
     wxFileOutputStream output(fNameTemplate);
     wxTextOutputStream text(output);
     wxString template_text = r->TEMPLATECONTENT;
-    template_text.Replace("master.css", mmex::getPathResource(mmex::EResFile::CSS_FILE));
+    template_text.Replace("<TMPL_INCLUDE NAME=\"master.css\">"
+        , wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", mmex::getPathResource(mmex::EResFile::CSS_FILE)));
+    template_text.Replace("<TMPL_INCLUDE NAME=\"Chart.js\">"
+        , wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", mmex::getPathResource(mmex::EResFile::JS_FILE)));
     template_text.Replace("Chart.js", mmex::getPathResource(mmex::EResFile::JS_FILE));
     text << template_text;
     output.Close();
