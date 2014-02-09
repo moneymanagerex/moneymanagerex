@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>MoneyManagerEx - Report</title>
+    <title><TMPL_VAR REPORTNAME></title>
     <STYLE><TMPL_INCLUDE NAME="master.css"></STYLE>
+    <SCRIPT><TMPL_INCLUDE NAME="Chart.js"></SCRIPT>
 </head>
 <body>
     <div class="container">
