@@ -545,11 +545,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\cpu_timer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\currencydialog.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\customreportdialog.cpp"
+				RelativePath="..\..\..\src\tests\db_init_model.cpp"
 				>
 			</File>
 			<File
@@ -566,6 +570,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\tests\framebase_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\general_report_manager.cpp"
 				>
 			</File>
 			<File
@@ -626,6 +634,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\tests\mmex_tests.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\mmframe.cpp"
 				>
 			</File>
 			<File
@@ -733,6 +745,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\test_about_dialog.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\tests\test_assets.cpp"
 				>
 			</File>
@@ -745,15 +761,31 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\test_dialog_about.cpp"
+				RelativePath="..\..\..\src\tests\test_checking.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\test_model_checking.cpp"
+				RelativePath="..\..\..\src\tests\test_currency.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\test_model_currency.cpp"
+				RelativePath="..\..\..\src\tests\test_database_initialisation.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_date_range.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_filtertrans_dialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_relocate_category.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_relocate_payee.cpp"
 				>
 			</File>
 			<File
@@ -774,6 +806,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\util.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\webserver.cpp"
 				>
 			</File>
 			<File
@@ -1007,15 +1043,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\cpu_timer.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\currencydialog.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\customreportdialog.h"
+				RelativePath="..\..\..\src\tests\db_init_model.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\src\dbwrapper.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\defined_test_selection.h"
 				>
 			</File>
 			<File
@@ -1032,6 +1076,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\tests\framebase_tests.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\general_report_manager.h"
 				>
 			</File>
 			<File
@@ -1096,6 +1144,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\mmframe.h"
 				>
 			</File>
 			<File
@@ -1227,6 +1279,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\tests\test_about_dialog.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\tests\test_assets.h"
 				>
 			</File>
@@ -1239,15 +1295,31 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\test_dialog_about.h"
+				RelativePath="..\..\..\src\tests\test_checking.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\test_model_checking.h"
+				RelativePath="..\..\..\src\tests\test_currency.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\tests\test_model_currency.h"
+				RelativePath="..\..\..\src\tests\test_database_initialisation.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_date_range.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_filtertrans_dialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_relocate_category.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\tests\test_relocate_payee.h"
 				>
 			</File>
 			<File
@@ -1272,6 +1344,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\validators.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\webserver.h"
 				>
 			</File>
 			<File

@@ -114,6 +114,7 @@ copy "..\..\po\*.po" "%mmex_build_dir%\po"
 if not exist %mmex_build_dir%\res mkdir %mmex_build_dir%\res
 copy "..\..\resources\kaching.wav"     "%mmex_build_dir%\res"
 copy "..\..\resources\mmex.ico"        "%mmex_build_dir%\res"
+copy "..\..\resources\master.css"      "%mmex_build_dir%\res"
 @echo ------------------------------------------------------------------------
 @echo.
 @echo Updated Support Files for: %mmex_build_dir%

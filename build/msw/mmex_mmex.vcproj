@@ -549,10 +549,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\customreportdialog.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\dbwrapper.cpp"
 				>
 			</File>
@@ -562,6 +558,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\filtertransdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\general_report_manager.cpp"
 				>
 			</File>
 			<File
@@ -618,6 +618,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmex.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmframe.cpp"
 				>
 			</File>
 			<File
@@ -738,6 +742,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\util.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\webserver.cpp"
 				>
 			</File>
 			<File
@@ -975,10 +983,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\customreportdialog.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\dbwrapper.h"
 				>
 			</File>
@@ -992,6 +996,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\filtertransdialog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\general_report_manager.h"
 				>
 			</File>
 			<File
@@ -1056,6 +1064,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\mmex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\mmframe.h"
 				>
 			</File>
 			<File
@@ -1200,6 +1212,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\validators.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\webserver.h"
 				>
 			</File>
 			<File

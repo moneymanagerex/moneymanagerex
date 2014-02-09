@@ -121,9 +121,9 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.o \
 	mmex_constants.o \
 	mmex_currencydialog.o \
-	mmex_customreportdialog.o \
 	mmex_dbwrapper.o \
 	mmex_filtertransdialog.o \
+	mmex_general_report_manager.o \
 	mmex_images_list.o \
 	mmex_maincurrencydialog.o \
 	mmex_minimal_editor.o \
@@ -131,6 +131,7 @@ MMEX_OBJECTS =  \
 	mmex_mmOption.o \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
+	mmex_mmframe.o \
 	mmex_mmhelppanel.o \
 	mmex_mmhomepagepanel.o \
 	mmex_mmreportspanel.o \
@@ -146,6 +147,7 @@ MMEX_OBJECTS =  \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
 	mmex_util.o \
+	mmex_webserver.o \
 	mmex_wizard_newaccount.o \
 	mmex_wizard_newdb.o \
 	mmex_budget.o \
@@ -337,6 +339,8 @@ install: install_mmex
 	( cd ..\..\resources && copy /Y  mmex.ico $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  kaching.wav $(PREFIX)\mmex\res )
+	-mkdir $(PREFIX)\mmex\res
+	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
 	-mkdir $(PREFIX)\mmex\help
@@ -348,6 +352,7 @@ uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\*.txt -del *.txt
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
+	-if exist $(PREFIX)\mmex\res\master.css -del master.css
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html
 	-if exist $(PREFIX)\mmex\help\*.png -del *.png
 	-if exist $(PREFIX)\mmex\po\en\*.mo -del *.mo
@@ -553,13 +558,13 @@ mmex_constants.o: ../../src/constants.cpp
 mmex_currencydialog.o: ../../src/currencydialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_customreportdialog.o: ../../src/customreportdialog.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_dbwrapper.o: ../../src/dbwrapper.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_filtertransdialog.o: ../../src/filtertransdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_general_report_manager.o: ../../src/general_report_manager.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_images_list.o: ../../src/images_list.cpp
@@ -581,6 +586,9 @@ mmex_mmcheckingpanel.o: ../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmex.o: ../../src/mmex.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmframe.o: ../../src/mmframe.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmhelppanel.o: ../../src/mmhelppanel.cpp
@@ -626,6 +634,9 @@ mmex_transdialog.o: ../../src/transdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_util.o: ../../src/util.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_webserver.o: ../../src/webserver.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_wizard_newaccount.o: ../../src/wizard_newaccount.cpp

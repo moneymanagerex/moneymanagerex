@@ -83,19 +83,15 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    wxFileName fName;
-    fName.AssignTempFileName("template");
-    if (!fName.IsOk())
-        return wxString::Format(_("Unable to open file \n%s\n\n"), fName.GetFullName());;
-
-    wxFileOutputStream output(fName.GetFullName());
+    wxString fNameTemplate = wxFileName::CreateTempFileName(wxGetEmptyString());
+    wxFileOutputStream output(fNameTemplate);
     wxTextOutputStream text(output);
-    text << r->TEMPLATECONTENT;
+    wxString template_text = r->TEMPLATECONTENT;
+    template_text.Replace("master.css", mmex::getPathResource(mmex::EResFile::CSS_FILE));
+    text << template_text;
     output.Close();
 
-    mm_html_template report(fName.GetFullName());
-    wxLogDebug("temp file: %s", fName.GetFullName());
-
+    mm_html_template report(fNameTemplate);
     report("REPORTID") = r->REPORTID;
     report("REPORTNAME") = r->REPORTNAME;
     report("GROUPNAME") = r->GROUPNAME;
@@ -221,7 +217,7 @@ wxString Model_Report::get_html(const Data* r)
     report("ERRORS") = errors;
 
     const wxString out = wxString(report.Process());
-    wxRemoveFile(fName.GetFullName());
+    wxRemoveFile(fNameTemplate);
     return out;
 }
 

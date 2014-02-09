@@ -126,9 +126,9 @@ MMEX_OBJECTS =  \
 	mmex_categdialog.obj \
 	mmex_constants.obj \
 	mmex_currencydialog.obj \
-	mmex_customreportdialog.obj \
 	mmex_dbwrapper.obj \
 	mmex_filtertransdialog.obj \
+	mmex_general_report_manager.obj \
 	mmex_images_list.obj \
 	mmex_maincurrencydialog.obj \
 	mmex_minimal_editor.obj \
@@ -136,6 +136,7 @@ MMEX_OBJECTS =  \
 	mmex_mmOption.obj \
 	mmex_mmcheckingpanel.obj \
 	mmex_mmex.obj \
+	mmex_mmframe.obj \
 	mmex_mmhelppanel.obj \
 	mmex_mmhomepagepanel.obj \
 	mmex_mmreportspanel.obj \
@@ -151,6 +152,7 @@ MMEX_OBJECTS =  \
 	mmex_stockspanel.obj \
 	mmex_transdialog.obj \
 	mmex_util.obj \
+	mmex_webserver.obj \
 	mmex_wizard_newaccount.obj \
 	mmex_wizard_newdb.obj \
 	mmex_budget.obj \
@@ -444,6 +446,8 @@ install: install_mmex
 	( cd ..\..\resources && copy /Y  mmex.ico $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\res
 	( cd ..\..\resources && copy /Y  kaching.wav $(PREFIX)\mmex\res )
+	-mkdir $(PREFIX)\mmex\res
+	( cd ..\..\resources && copy /Y  master.css $(PREFIX)\mmex\res )
 	-mkdir $(PREFIX)\mmex\help
 	( cd ..\..\doc\help && copy /Y  *.html $(PREFIX)\mmex\help )
 	-mkdir $(PREFIX)\mmex\help
@@ -455,6 +459,7 @@ uninstall: uninstall_mmex
 	-if exist $(PREFIX)\mmex\*.txt -del *.txt
 	-if exist $(PREFIX)\mmex\res\mmex.ico -del mmex.ico
 	-if exist $(PREFIX)\mmex\res\kaching.wav -del kaching.wav
+	-if exist $(PREFIX)\mmex\res\master.css -del master.css
 	-if exist $(PREFIX)\mmex\help\*.html -del *.html
 	-if exist $(PREFIX)\mmex\help\*.png -del *.png
 	-if exist $(PREFIX)\mmex\po\en\*.mo -del *.mo
@@ -680,14 +685,14 @@ mmex_constants.obj: ..\..\src\constants.cpp
 mmex_currencydialog.obj: ..\..\src\currencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\currencydialog.cpp
 
-mmex_customreportdialog.obj: ..\..\src\customreportdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\customreportdialog.cpp
-
 mmex_dbwrapper.obj: ..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\dbwrapper.cpp
 
 mmex_filtertransdialog.obj: ..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\filtertransdialog.cpp
+
+mmex_general_report_manager.obj: ..\..\src\general_report_manager.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\general_report_manager.cpp
 
 mmex_images_list.obj: ..\..\src\images_list.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\images_list.cpp
@@ -709,6 +714,9 @@ mmex_mmcheckingpanel.obj: ..\..\src\mmcheckingpanel.cpp
 
 mmex_mmex.obj: ..\..\src\mmex.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmex.cpp
+
+mmex_mmframe.obj: ..\..\src\mmframe.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmframe.cpp
 
 mmex_mmhelppanel.obj: ..\..\src\mmhelppanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\mmhelppanel.cpp
@@ -754,6 +762,9 @@ mmex_transdialog.obj: ..\..\src\transdialog.cpp
 
 mmex_util.obj: ..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\util.cpp
+
+mmex_webserver.obj: ..\..\src\webserver.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\webserver.cpp
 
 mmex_wizard_newaccount.obj: ..\..\src\wizard_newaccount.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\wizard_newaccount.cpp

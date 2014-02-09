@@ -158,6 +158,7 @@ Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: i
 ; MMEX Resource files
 Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_svn_path}\resources\master.css; DestDir: {app}\res; Flags: ignoreversion; 
 
 ; MMEX Root files - language dependant
 Source: {#my_svn_path}\README.TXT; DestDir: {app}; Flags: ignoreversion; Components: program; Languages: english; 

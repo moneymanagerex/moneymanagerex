@@ -162,9 +162,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categdialog.obj \
 	mmex_tests_constants.obj \
 	mmex_tests_currencydialog.obj \
-	mmex_tests_customreportdialog.obj \
 	mmex_tests_dbwrapper.obj \
 	mmex_tests_filtertransdialog.obj \
+	mmex_tests_general_report_manager.obj \
 	mmex_tests_images_list.obj \
 	mmex_tests_maincurrencydialog.obj \
 	mmex_tests_minimal_editor.obj \
@@ -172,6 +172,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmOption.obj \
 	mmex_tests_mmcheckingpanel.obj \
 	mmex_tests_mmex.obj \
+	mmex_tests_mmframe.obj \
 	mmex_tests_mmhelppanel.obj \
 	mmex_tests_mmhomepagepanel.obj \
 	mmex_tests_mmreportspanel.obj \
@@ -187,6 +188,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_stockspanel.obj \
 	mmex_tests_transdialog.obj \
 	mmex_tests_util.obj \
+	mmex_tests_webserver.obj \
 	mmex_tests_wizard_newaccount.obj \
 	mmex_tests_wizard_newdb.obj \
 	mmex_tests_budget.obj \
@@ -235,14 +237,21 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Subcategory.obj \
 	mmex_tests_html_template.obj \
 	mmex_tests_mongoose.obj \
+	mmex_tests_cpu_timer.obj \
+	mmex_tests_db_init_model.obj \
 	mmex_tests_framebase_tests.obj \
 	mmex_tests_mmex_tests.obj \
+	mmex_tests_test_about_dialog.obj \
 	mmex_tests_test_assets.obj \
 	mmex_tests_test_billsdeposits.obj \
 	mmex_tests_test_callback_hooks.obj \
-	mmex_tests_test_dialog_about.obj \
-	mmex_tests_test_model_checking.obj \
-	mmex_tests_test_model_currency.obj \
+	mmex_tests_test_checking.obj \
+	mmex_tests_test_currency.obj \
+	mmex_tests_test_database_initialisation.obj \
+	mmex_tests_test_date_range.obj \
+	mmex_tests_test_filtertrans_dialog.obj \
+	mmex_tests_test_relocate_category.obj \
+	mmex_tests_test_relocate_payee.obj \
 	mmex_tests_test_stocks.obj
 MMEX_TESTS_RESOURCES =  \
 	mmex_tests_mmex_tests.res
@@ -795,14 +804,14 @@ mmex_tests_constants.obj: ..\..\..\src\constants.cpp
 mmex_tests_currencydialog.obj: ..\..\..\src\currencydialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\currencydialog.cpp
 
-mmex_tests_customreportdialog.obj: ..\..\..\src\customreportdialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\customreportdialog.cpp
-
 mmex_tests_dbwrapper.obj: ..\..\..\src\dbwrapper.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\dbwrapper.cpp
 
 mmex_tests_filtertransdialog.obj: ..\..\..\src\filtertransdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\filtertransdialog.cpp
+
+mmex_tests_general_report_manager.obj: ..\..\..\src\general_report_manager.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\general_report_manager.cpp
 
 mmex_tests_images_list.obj: ..\..\..\src\images_list.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\images_list.cpp
@@ -824,6 +833,9 @@ mmex_tests_mmcheckingpanel.obj: ..\..\..\src\mmcheckingpanel.cpp
 
 mmex_tests_mmex.obj: ..\..\..\src\mmex.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmex.cpp
+
+mmex_tests_mmframe.obj: ..\..\..\src\mmframe.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmframe.cpp
 
 mmex_tests_mmhelppanel.obj: ..\..\..\src\mmhelppanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\mmhelppanel.cpp
@@ -869,6 +881,9 @@ mmex_tests_transdialog.obj: ..\..\..\src\transdialog.cpp
 
 mmex_tests_util.obj: ..\..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\util.cpp
+
+mmex_tests_webserver.obj: ..\..\..\src\webserver.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\webserver.cpp
 
 mmex_tests_wizard_newaccount.obj: ..\..\..\src\wizard_newaccount.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\wizard_newaccount.cpp
@@ -1014,11 +1029,20 @@ mmex_tests_html_template.obj: ..\..\..\3rd\cgitemplate\html_template.cpp
 mmex_tests_mongoose.obj: ..\..\..\3rd\mongoose\mongoose.c
 	$(CC) /c /nologo /TC /Fo$@ $(MMEX_TESTS_CFLAGS) ..\..\..\3rd\mongoose\mongoose.c
 
+mmex_tests_cpu_timer.obj: ..\..\..\src\tests\cpu_timer.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\cpu_timer.cpp
+
+mmex_tests_db_init_model.obj: ..\..\..\src\tests\db_init_model.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\db_init_model.cpp
+
 mmex_tests_framebase_tests.obj: ..\..\..\src\tests\framebase_tests.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\framebase_tests.cpp
 
 mmex_tests_mmex_tests.obj: ..\..\..\src\tests\mmex_tests.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\mmex_tests.cpp
+
+mmex_tests_test_about_dialog.obj: ..\..\..\src\tests\test_about_dialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_about_dialog.cpp
 
 mmex_tests_test_assets.obj: ..\..\..\src\tests\test_assets.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_assets.cpp
@@ -1029,14 +1053,26 @@ mmex_tests_test_billsdeposits.obj: ..\..\..\src\tests\test_billsdeposits.cpp
 mmex_tests_test_callback_hooks.obj: ..\..\..\src\tests\test_callback_hooks.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_callback_hooks.cpp
 
-mmex_tests_test_dialog_about.obj: ..\..\..\src\tests\test_dialog_about.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_dialog_about.cpp
+mmex_tests_test_checking.obj: ..\..\..\src\tests\test_checking.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_checking.cpp
 
-mmex_tests_test_model_checking.obj: ..\..\..\src\tests\test_model_checking.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_model_checking.cpp
+mmex_tests_test_currency.obj: ..\..\..\src\tests\test_currency.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_currency.cpp
 
-mmex_tests_test_model_currency.obj: ..\..\..\src\tests\test_model_currency.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_model_currency.cpp
+mmex_tests_test_database_initialisation.obj: ..\..\..\src\tests\test_database_initialisation.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_database_initialisation.cpp
+
+mmex_tests_test_date_range.obj: ..\..\..\src\tests\test_date_range.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_date_range.cpp
+
+mmex_tests_test_filtertrans_dialog.obj: ..\..\..\src\tests\test_filtertrans_dialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_filtertrans_dialog.cpp
+
+mmex_tests_test_relocate_category.obj: ..\..\..\src\tests\test_relocate_category.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_relocate_category.cpp
+
+mmex_tests_test_relocate_payee.obj: ..\..\..\src\tests\test_relocate_payee.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_relocate_payee.cpp
 
 mmex_tests_test_stocks.obj: ..\..\..\src\tests\test_stocks.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_stocks.cpp

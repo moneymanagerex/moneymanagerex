@@ -155,9 +155,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_categdialog.o \
 	mmex_tests_constants.o \
 	mmex_tests_currencydialog.o \
-	mmex_tests_customreportdialog.o \
 	mmex_tests_dbwrapper.o \
 	mmex_tests_filtertransdialog.o \
+	mmex_tests_general_report_manager.o \
 	mmex_tests_images_list.o \
 	mmex_tests_maincurrencydialog.o \
 	mmex_tests_minimal_editor.o \
@@ -165,6 +165,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmOption.o \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmex.o \
+	mmex_tests_mmframe.o \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmreportspanel.o \
@@ -180,6 +181,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_stockspanel.o \
 	mmex_tests_transdialog.o \
 	mmex_tests_util.o \
+	mmex_tests_webserver.o \
 	mmex_tests_wizard_newaccount.o \
 	mmex_tests_wizard_newdb.o \
 	mmex_tests_budget.o \
@@ -228,14 +230,21 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Subcategory.o \
 	mmex_tests_html_template.o \
 	mmex_tests_mongoose.o \
+	mmex_tests_cpu_timer.o \
+	mmex_tests_db_init_model.o \
 	mmex_tests_framebase_tests.o \
 	mmex_tests_mmex_tests.o \
+	mmex_tests_test_about_dialog.o \
 	mmex_tests_test_assets.o \
 	mmex_tests_test_billsdeposits.o \
 	mmex_tests_test_callback_hooks.o \
-	mmex_tests_test_dialog_about.o \
-	mmex_tests_test_model_checking.o \
-	mmex_tests_test_model_currency.o \
+	mmex_tests_test_checking.o \
+	mmex_tests_test_currency.o \
+	mmex_tests_test_database_initialisation.o \
+	mmex_tests_test_date_range.o \
+	mmex_tests_test_filtertrans_dialog.o \
+	mmex_tests_test_relocate_category.o \
+	mmex_tests_test_relocate_payee.o \
 	mmex_tests_test_stocks.o \
 	mmex_tests_mmex_tests_rc.o
 
@@ -700,13 +709,13 @@ mmex_tests_constants.o: ../../../src/constants.cpp
 mmex_tests_currencydialog.o: ../../../src/currencydialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_customreportdialog.o: ../../../src/customreportdialog.cpp
-	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
-
 mmex_tests_dbwrapper.o: ../../../src/dbwrapper.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_filtertransdialog.o: ../../../src/filtertransdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_general_report_manager.o: ../../../src/general_report_manager.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_images_list.o: ../../../src/images_list.cpp
@@ -728,6 +737,9 @@ mmex_tests_mmcheckingpanel.o: ../../../src/mmcheckingpanel.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex.o: ../../../src/mmex.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmframe.o: ../../../src/mmframe.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmhelppanel.o: ../../../src/mmhelppanel.cpp
@@ -773,6 +785,9 @@ mmex_tests_transdialog.o: ../../../src/transdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_util.o: ../../../src/util.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_webserver.o: ../../../src/webserver.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_wizard_newaccount.o: ../../../src/wizard_newaccount.cpp
@@ -919,10 +934,19 @@ mmex_tests_html_template.o: ../../../3rd/cgitemplate/html_template.cpp
 mmex_tests_mongoose.o: ../../../3rd/mongoose/mongoose.c
 	$(CC) -c -o $@ $(MMEX_TESTS_CFLAGS) $(CPPDEPS) $<
 
+mmex_tests_cpu_timer.o: ../../../src/tests/cpu_timer.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_db_init_model.o: ../../../src/tests/db_init_model.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_framebase_tests.o: ../../../src/tests/framebase_tests.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests.o: ../../../src/tests/mmex_tests.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_about_dialog.o: ../../../src/tests/test_about_dialog.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_test_assets.o: ../../../src/tests/test_assets.cpp
@@ -934,13 +958,25 @@ mmex_tests_test_billsdeposits.o: ../../../src/tests/test_billsdeposits.cpp
 mmex_tests_test_callback_hooks.o: ../../../src/tests/test_callback_hooks.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_test_dialog_about.o: ../../../src/tests/test_dialog_about.cpp
+mmex_tests_test_checking.o: ../../../src/tests/test_checking.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_test_model_checking.o: ../../../src/tests/test_model_checking.cpp
+mmex_tests_test_currency.o: ../../../src/tests/test_currency.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
-mmex_tests_test_model_currency.o: ../../../src/tests/test_model_currency.cpp
+mmex_tests_test_database_initialisation.o: ../../../src/tests/test_database_initialisation.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_date_range.o: ../../../src/tests/test_date_range.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_filtertrans_dialog.o: ../../../src/tests/test_filtertrans_dialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_relocate_category.o: ../../../src/tests/test_relocate_category.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_test_relocate_payee.o: ../../../src/tests/test_relocate_payee.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_test_stocks.o: ../../../src/tests/test_stocks.cpp

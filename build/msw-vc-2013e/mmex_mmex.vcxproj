@@ -128,6 +128,9 @@
       <OutputFile>$(Platform)\$(Configuration)\mmex_mmex.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>copy_files.bat $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
@@ -170,6 +173,9 @@
       <OutputFile>$(Platform)\$(Configuration)\mmex_mmex.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>copy_files.bat $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
@@ -209,6 +215,9 @@
       <OutputFile>$(Platform)\$(Configuration)\mmex_mmex.bsc</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
     </Bscmake>
+    <PostBuildEvent>
+      <Command>copy_files.bat $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
