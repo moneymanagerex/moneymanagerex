@@ -54,6 +54,12 @@
     </data-files>
 
 	<data-files>
+            <install-to>$(DATADIR)/mmex/res</install-to>
+        <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
+        <files>Chart.js</files>
+    </data-files>
+
+	<data-files>
         <install-to>$(DATADIR)/mmex/po/en</install-to>
         <srcdir>$(SRCDIR)/po</srcdir>
         <files>*.mo</files>
@@ -153,6 +159,12 @@
         <install-to>$(PREFIX)/mmex/res</install-to>
             <srcdir>$(SRCDIR)/resources</srcdir>
         <files>master.css</files>
+    </data-files>
+
+        <data-files>
+        <install-to>$(PREFIX)/mmex/res</install-to>
+            <srcdir>$(SRCDIR)/3rd/Chart.js</srcdir>
+        <files>Chart.js</files>
     </data-files>
 
     <!-- doc -> mmex/help -->

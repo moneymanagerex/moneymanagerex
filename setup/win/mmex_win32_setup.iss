@@ -138,6 +138,8 @@ Name: lang\vietnamese; Description: Vietnamese; Types: full;
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; 
 Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked; 
 
+[Registry]
+Root: HKCU; Subkey: "Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION"; ValueType: dword; ValueName: "mmex.exe"; ValueData: "9000"; Flags: createvalueifdoesntexist
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
@@ -159,6 +161,7 @@ Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: i
 Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\master.css; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_svn_path}\3rd\Chart.js\Chart.js; DestDir: {app}\res; Flags: ignoreversion; 
 
 ; MMEX Root files - language dependant
 Source: {#my_svn_path}\README.TXT; DestDir: {app}; Flags: ignoreversion; Components: program; Languages: english; 

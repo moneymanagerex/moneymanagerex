@@ -88,6 +88,7 @@ wxString Model_Report::get_html(const Data* r)
     wxTextOutputStream text(output);
     wxString template_text = r->TEMPLATECONTENT;
     template_text.Replace("master.css", mmex::getPathResource(mmex::EResFile::CSS_FILE));
+    template_text.Replace("Chart.js", mmex::getPathResource(mmex::EResFile::JS_FILE));
     text << template_text;
     output.Close();
 

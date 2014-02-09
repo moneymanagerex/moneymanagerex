@@ -142,7 +142,8 @@ wxString mmex::getPathResource(EResFile f)
     static const wxString files[RES_FILES_MAX] = {
       "mmex.ico",
       "kaching.wav",
-      "master.css"
+      "master.css",
+      "Chart.js"
     };
 
     wxASSERT(f >= 0 && f < RES_FILES_MAX);
