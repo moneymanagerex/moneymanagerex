@@ -113,7 +113,7 @@ void mmGeneralReportManager::fillControls()
     m_treeCtrl->SetItemBold(m_rootItem, true);
     m_treeCtrl->SetFocus();
     Model_Report::Data_Set records
-        = Model_Report::instance().all(Model_Report::COL_REPORTNAME);
+        = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)
@@ -650,7 +650,7 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
             if (report)
             {
                 report->GROUPNAME = wxGetTextFromUser(_("Enter the name for the new report group")
-                    , _("General Report Manager"), "");
+                    , _("General Report Manager"), m_selectedGroup);
                 Model_Report::instance().save(report);
             }
         }
