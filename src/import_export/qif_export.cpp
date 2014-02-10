@@ -393,6 +393,7 @@ void mmQIFExportDialog::mmExportQIF()
                 buffer << header.getAccountHeaderQIF();
             }
 
+            const auto splits = Model_Splittransaction::instance().get_all();
             for (const auto& transaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(account_id)
                 , Model_Checking::TOACCOUNTID(account_id)))
             {
@@ -407,9 +408,9 @@ void mmQIFExportDialog::mmExportQIF()
 
                 mmExportTransaction data(transaction.TRANSID, account_id);
                 if (qif_csv)
-                    buffer << data.getTransactionQIF();
+                    buffer << data.getTransactionQIF(splits);
                 else
-                    buffer << data.getTransactionCSV();
+                    buffer << data.getTransactionCSV(splits);
 
                 if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
@@ -421,9 +422,9 @@ void mmQIFExportDialog::mmExportQIF()
                         mmExportTransaction data2(transaction.TRANSID, index);
                         wxString second_part = "";
                         if (qif_csv)
-                            second_part = data2.getTransactionQIF();
+                            second_part = data2.getTransactionQIF(splits);
                         else
-                            second_part = data2.getTransactionCSV();
+                            second_part = data2.getTransactionCSV(splits);
                         transferTransactions[index] += second_part;
                     }
                 }

@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define _MM_EX_EXPORT_H_
 
 #include "mmOption.h"
+#include "model\Model_Splittransaction.h"
 
 class mmExportBase
 {
@@ -40,8 +41,8 @@ public:
     mmExportTransaction(int accountID);
     mmExportTransaction(int transactionID, int accountID);
 
-    wxString getTransactionQIF();
-    wxString getTransactionCSV();
+    wxString getTransactionQIF(const std::map <int, Model_Splittransaction::Data_Set> &splits);
+    wxString getTransactionCSV(const std::map <int, Model_Splittransaction::Data_Set> &splits);
     wxString getAccountHeaderQIF();
     wxString getCategoriesQIF();
     wxString getCategoriesCSV();

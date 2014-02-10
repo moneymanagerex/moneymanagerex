@@ -53,3 +53,13 @@ double Model_Splittransaction::get_total(const Data_Set& rows)
     for (auto& r : rows) total += r.SPLITTRANSAMOUNT;
     return total;
 }
+
+std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all()
+{
+    std::map<int, Model_Splittransaction::Data_Set> data;
+    for (const auto &split : instance().all())
+    {
+        data[split.TRANSID].push_back(split);
+    }
+    return data;
+}

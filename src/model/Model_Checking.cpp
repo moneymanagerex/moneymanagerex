@@ -241,8 +241,9 @@ Model_Checking::Full_Data::Full_Data() : Data(0), BALANCE(0)
 {
 }
 
-Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
- , m_splits(Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID)))
+Model_Checking::Full_Data::Full_Data(const Data& r
+    , const std::map<int /*trans id*/, Model_Splittransaction::Data_Set /*split trans*/ > & splits)
+: Data(r), BALANCE(0)
 {
     const Model_Account::Data* from_account = Model_Account::instance().get(r.ACCOUNTID);
     if (from_account) this->ACCOUNTNAME = from_account->ACCOUNTNAME;
@@ -258,29 +259,20 @@ Model_Checking::Full_Data::Full_Data(const Data& r): Data(r), BALANCE(0)
         if (payee) this->PAYEENAME = payee->PAYEENAME;
     }
     
-    if (m_splits.empty())
-        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
+    const auto it = splits.find(this->id());
+    if (it != splits.end())
+    {
+        m_splits = it->second;
+        for (const auto& entry : m_splits)
+            this->CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID) + " ";
+        this->CATEGNAME.Prepend(" * ");
+    }
     else
-        this->CATEGNAME = "..."; //TODO: provide list comma separated
+    {
+        this->CATEGNAME = Model_Category::instance().full_name(r.CATEGID, r.SUBCATEGID);
+    }
 }
 
 Model_Checking::Full_Data::~Full_Data()
 {
-}
-
-wxString Model_Checking::Full_Data::real_payee_name(int account_id) const
-{
-    if (Model_Checking::TRANSFER == Model_Checking::type(this))
-    {
-        return this->ACCOUNTID == account_id ? "> " + this->TOACCOUNTNAME : "< " + this->ACCOUNTNAME;
-    }
-    else
-    {
-        return this->PAYEENAME;
-    }
-}
-
-bool Model_Checking::Full_Data::has_split() const
-{
-    return !this->m_splits.empty();
 }

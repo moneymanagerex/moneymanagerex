@@ -40,32 +40,15 @@ mmExportTransaction::mmExportTransaction(int transactionID, int accountID)
 mmExportTransaction::~mmExportTransaction()
 {}
 
-wxString mmExportTransaction::getTransactionQIF()
+wxString mmExportTransaction::getTransactionQIF(const std::map <int, Model_Splittransaction::Data_Set> &splits)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
     if (!transaction) return "";
-    Model_Checking::Full_Data full_tran(*transaction);
+    Model_Checking::Full_Data full_tran(*transaction, splits);
     bool out = transaction->ACCOUNTID == m_account_id;
 
-    const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-    if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
-    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
-    {
-        account = Model_Account::instance().get(transaction->TOACCOUNTID);
-        if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
-    }
-    else
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
-        if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
-    }
-    full_tran.CATEGNAME = Model_Category::instance().full_name(transaction->CATEGID, transaction->SUBCATEGID);
-
     wxString buffer = "";
-    int trans_id = transaction->TRANSID;
-    wxString accountName = full_tran.ACCOUNTNAME;
-    wxString categ = full_tran.CATEGNAME;
-    wxString payee = full_tran.PAYEENAME;
+    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     notes.Replace("''", "'");
@@ -73,19 +56,18 @@ wxString mmExportTransaction::getTransactionQIF()
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (!out ? accountName : payee) + "]";
-        payee = "";
+        categ = "[" + (!out ? full_tran.ACCOUNTNAME : full_tran.PAYEENAME) + "]";
 
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%i", trans_id);
+            transNum = wxString::Format("#%i", full_tran.id());
     }
     
     buffer << "D" << full_tran.TRANSDATE << "\n";
     buffer << "T" << Model_Checking::balance(*transaction, (out ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << "\n";
-    if (!payee.IsEmpty())
-        buffer << "P" << payee << "\n";
+    if (!full_tran.PAYEENAME.empty())
+        buffer << "P" << full_tran.PAYEENAME << "\n";
     if (!transNum.IsEmpty())
         buffer << "N" << transNum << "\n";
     if (!categ.IsEmpty())
@@ -93,53 +75,35 @@ wxString mmExportTransaction::getTransactionQIF()
     if (!notes.IsEmpty())
         buffer << "M" << notes << "\n";
 
-    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
-    if (!splits.empty())
+    for (const auto &split_entry : full_tran.m_splits)
     {
-        for (const auto &split_entry : splits)
-        {
-            double value = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
-                value = -value;
-            const wxString split_amount = wxString()<<value;
-            const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
-            buffer << "S" << split_categ << "\n"
-                << "$" << split_amount << "\n";
-        }
+        double value = split_entry.SPLITTRANSAMOUNT;
+        if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+            value = -value;
+        const wxString split_amount = wxString() << value;
+        const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
+        buffer << "S" << split_categ << "\n"
+            << "$" << split_amount << "\n";
     }
 
     buffer << "^" << "\n";
     return buffer;
 }
 
-wxString mmExportTransaction::getTransactionCSV()
+wxString mmExportTransaction::getTransactionCSV(const std::map <int, Model_Splittransaction::Data_Set> &splits)
 {
     Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
     if (!transaction) return "";
-    Model_Checking::Full_Data full_tran(*transaction);
-    bool out = transaction->ACCOUNTID == m_account_id;
 
-    const Model_Account::Data* account = Model_Account::instance().get(transaction->ACCOUNTID);
-    if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
-    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
-    {
-        account = Model_Account::instance().get(transaction->TOACCOUNTID);
-        if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
-    }
-    else
-    {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(transaction->PAYEEID);
-        if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
-    }
-    full_tran.CATEGNAME = Model_Category::instance().full_name(transaction->CATEGID, transaction->SUBCATEGID);
+    Model_Checking::Full_Data full_tran(*transaction, splits);
+    bool out = transaction->ACCOUNTID == m_account_id;
 
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
     wxString buffer = "";
-    int trans_id = transaction->TRANSID;
+    int trans_id = full_tran.id();
     wxString accountName = (!out ? full_tran.PAYEENAME : full_tran.ACCOUNTNAME);
-    wxString categ = full_tran.CATEGNAME;
-    wxString payee = full_tran.PAYEENAME;
+    wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
     notes.Replace("''", "'");
@@ -147,19 +111,17 @@ wxString mmExportTransaction::getTransactionCSV()
 
     if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (!out ? full_tran.ACCOUNTNAME : payee) + "]";
-        payee = "";
+        categ = "[" + (!out ? full_tran.ACCOUNTNAME : full_tran.PAYEENAME) + "]";
 
         //Transaction number used to make transaction unique
         // to proper merge transfer records
         if (transNum.IsEmpty() && notes.IsEmpty())
-            transNum = wxString::Format("#%i", trans_id);
+            transNum = wxString::Format("#%i", full_tran.id());
     }
 
-    Model_Splittransaction::Data_Set splits = Model_Checking::splittransaction(transaction);
-    if (!splits.empty())
+    if (!full_tran.m_splits.empty())
     {
-        for (const auto &split_entry : splits)
+        for (const auto &split_entry : splits.at(transaction->id()))
         {
             double value = split_entry.SPLITTRANSAMOUNT;
             if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
@@ -171,7 +133,7 @@ wxString mmExportTransaction::getTransactionCSV()
             buffer << trans_id << delimit
                 << inQuotes(accountName, delimit) << delimit
                 << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(transaction)), delimit) << delimit
-                << inQuotes(payee, delimit) << delimit
+                << inQuotes(full_tran.PAYEENAME, delimit) << delimit
                 << transaction->STATUS << delimit
                 << transaction->TRANSCODE << delimit
                 << inQuotes(split_categ, delimit) << delimit
@@ -187,14 +149,14 @@ wxString mmExportTransaction::getTransactionCSV()
         buffer << trans_id << delimit
             << inQuotes(accountName, delimit) << delimit
             << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(transaction)), delimit) << delimit
-            << inQuotes(payee, delimit) << delimit
+            << inQuotes(full_tran.PAYEENAME, delimit) << delimit
             << transaction->STATUS << delimit
             << transaction->TRANSCODE << delimit
             << inQuotes(categ, delimit) << delimit
             << Model_Checking::balance(*transaction, (out ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << delimit
             << "" << delimit
             << inQuotes(notes, delimit)
-            << "\n";        
+            << "\n";
     }
     return buffer;
 }

@@ -39,7 +39,9 @@ public:
     struct Full_Data: public Data
     {
         Full_Data();
-        Full_Data(const Data& r);
+        Full_Data(const Data& r
+            , const std::map<int /*trans id*/
+                , Model_Splittransaction::Data_Set /*split trans*/ > & splits);
 
         ~Full_Data();
         wxString ACCOUNTNAME, TOACCOUNTNAME;
@@ -48,9 +50,6 @@ public:
         double AMOUNT;
         double BALANCE;
         Model_Splittransaction::Data_Set m_splits;
-        
-        wxString real_payee_name(int account_id) const;
-        bool has_split() const;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 

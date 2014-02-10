@@ -45,6 +45,7 @@ public:
 
 public:
     static double get_total(const Data_Set& rows);
+    std::map<int, Model_Splittransaction::Data_Set> get_all();
 };
 
 #endif // 

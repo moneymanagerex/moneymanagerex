@@ -184,36 +184,18 @@ wxString mmReportTransactions::getHTMLText()
 
 void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
 {
+    const auto splits = Model_Splittransaction::instance().get_all();
     for (const auto& tran : Model_Checking::instance().all())
     {
         if (!dlg->checkAll(tran, refAccountID_)) continue;
-
-        Model_Checking::Full_Data full_tran(tran);
-        Model_Account::Data *account = Model_Account::instance().get(full_tran.ACCOUNTID);
-        if (account) full_tran.ACCOUNTNAME = account->ACCOUNTNAME;
+        Model_Checking::Full_Data full_tran(tran, splits);
         if (Model_Checking::TRANSFER == Model_Checking::type(tran))
         {
-            bool transfer_to = (refAccountID_ < 0 || full_tran.TOACCOUNTID == refAccountID_);
-            account = Model_Account::instance().get(transfer_to
-                ? full_tran.TOACCOUNTID : full_tran.ACCOUNTID);
-            if (account) full_tran.PAYEENAME = account->ACCOUNTNAME;
+            if (tran.ACCOUNTID == refAccountID_)
+                full_tran.PAYEENAME = "> " + full_tran.TOACCOUNTNAME;
+            else
+                full_tran.PAYEENAME = "< " + full_tran.ACCOUNTNAME;
         }
-        else
-        {
-            const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
-            if (payee) full_tran.PAYEENAME = payee->PAYEENAME;
-        }
-
-        if (Model_Checking::splittransaction(tran).empty())
-            full_tran.CATEGNAME = Model_Category::instance().full_name(tran.CATEGID, tran.SUBCATEGID);
-        else
-        {
-            for (const auto& entry : Model_Checking::splittransaction(full_tran))
-                full_tran.CATEGNAME += Model_Category::full_name(entry.CATEGID, entry.SUBCATEGID)
-                + " = "
-                + Model_Currency::toString(entry.SPLITTRANSAMOUNT) + "<br>";
-        }
-
         trans_.push_back(full_tran);
     }
 }
