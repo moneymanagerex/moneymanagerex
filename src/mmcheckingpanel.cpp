@@ -124,7 +124,13 @@ mmCheckingPanel::mmCheckingPanel(
 mmCheckingPanel::~mmCheckingPanel()
 {
     if (transFilterDlg_) delete transFilterDlg_;
+
+    /* Please do not remove:
+    The #ifndef _CONSOLE has been added for mmex_tests.
+    _CONSOLE is not defined in main application.*/
+    #ifndef _CONSOLE
     wxGetApp().m_frame->SetCheckingAccountPageInactive();
+    #endif
 }
 
 bool mmCheckingPanel::Create(
