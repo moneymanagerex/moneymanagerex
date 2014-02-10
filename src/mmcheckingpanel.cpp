@@ -215,7 +215,7 @@ void mmCheckingPanel::filterTable()
             if (!m_listCtrlAccount->showDeletedTransactions_)
                 continue;
         }
-        if (Model_Checking::status(tran) != Model_Checking::RECONCILED)
+        if (Model_Checking::status(tran) == Model_Checking::RECONCILED)
             reconciled_balance_ += transaction_amount;
 
         if (transFilterActive_)
