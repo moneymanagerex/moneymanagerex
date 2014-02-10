@@ -210,7 +210,12 @@ void mmCheckingPanel::filterTable()
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
             account_balance_ += transaction_amount;
-        if (Model_Checking::status(tran) != Model_Checking::VOID_)
+        else
+        {
+            if (!m_listCtrlAccount->showDeletedTransactions_)
+                continue;
+        }
+        if (Model_Checking::status(tran) != Model_Checking::RECONCILED)
             reconciled_balance_ += transaction_amount;
 
         if (transFilterActive_)
@@ -224,8 +229,6 @@ void mmCheckingPanel::filterTable()
                 continue;
         }
 
-        if (!m_listCtrlAccount->showDeletedTransactions_ && Model_Checking::status(tran) == Model_Checking::VOID_)
-            continue;
         Model_Checking::Full_Data full_tran(tran);
 
         full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
