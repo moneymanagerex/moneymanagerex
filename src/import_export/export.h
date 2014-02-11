@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define _MM_EX_EXPORT_H_
 
 #include "mmOption.h"
-#include "model\Model_Splittransaction.h"
+#include "model/Model_Splittransaction.h"
 
 class mmExportBase
 {
