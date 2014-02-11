@@ -205,8 +205,7 @@ void mmCheckingPanel::filterTable()
     filteredBalance_ = 0.0;
 
     const auto splits = Model_Splittransaction::instance().get_all();
-    const auto& trans = Model_Account::transaction(this->m_account);
-    for (const auto& tran : trans)
+    for (const auto& tran : Model_Account::transaction(this->m_account))
     {
         double transaction_amount = Model_Checking::amount(tran, m_AccountID);
         if (Model_Checking::status(tran) != Model_Checking::VOID_)
@@ -231,14 +230,7 @@ void mmCheckingPanel::filterTable()
         }
 
         Model_Checking::Full_Data full_tran(tran, splits);
-        
-        if (Model_Checking::TRANSFER == Model_Checking::type(tran))
-        {
-            if (tran.ACCOUNTID == m_AccountID)
-                full_tran.PAYEENAME = "> " + full_tran.TOACCOUNTNAME;
-            else
-                full_tran.PAYEENAME = "< " + full_tran.ACCOUNTNAME;
-        }
+        full_tran.PAYEENAME = full_tran.real_payee_name(m_AccountID);
         full_tran.BALANCE = account_balance_;
         full_tran.AMOUNT = transaction_amount;
         filteredBalance_ += transaction_amount;
