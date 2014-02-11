@@ -83,14 +83,40 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
+    wxString fNameCss = wxFileName::CreateTempFileName(wxGetEmptyString());
+    wxString fNameJs = wxFileName::CreateTempFileName(wxGetEmptyString());
     wxString fNameTemplate = wxFileName::CreateTempFileName(wxGetEmptyString());
     wxFileOutputStream output(fNameTemplate);
     wxTextOutputStream text(output);
     wxString template_text = r->TEMPLATECONTENT;
-    template_text.Replace("<TMPL_INCLUDE NAME=\"master.css\">"
-        , wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", mmex::getPathResource(mmex::EResFile::CSS_FILE)));
-    template_text.Replace("<TMPL_INCLUDE NAME=\"Chart.js\">"
-        , wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", mmex::getPathResource(mmex::EResFile::JS_FILE)));
+    if (template_text.Replace("<TMPL_INCLUDE NAME=\"master.css\">", wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", fNameCss)) > 0)
+    {
+        wxFileName fn(mmex::getPathResource(mmex::EResFile::CSS_FILE));
+        wxString filename = "memory:" + fn.GetFullName();
+        wxFileSystem fs;
+        wxFSFile *pFile = fs.OpenFile(filename);
+        if (pFile)
+        {
+            wxFileOutputStream output(fNameCss);
+            output.Write(*pFile->GetStream());
+            output.Close();
+            delete pFile;
+        }
+    }
+    if (template_text.Replace("<TMPL_INCLUDE NAME=\"Chart.js\">", wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", fNameJs)) > 0)
+    {
+        wxFileName fn(mmex::getPathResource(mmex::EResFile::JS_FILE));
+        wxString filename = "memory:" + fn.GetFullName();
+        wxFileSystem fs;
+        wxFSFile *pFile = fs.OpenFile(filename);
+        if (pFile)
+        {
+            wxFileOutputStream output(fNameJs);
+            output.Write(*pFile->GetStream());
+            output.Close();
+            delete pFile;
+        }
+    }
     text << template_text;
     output.Close();
 
@@ -221,6 +247,8 @@ wxString Model_Report::get_html(const Data* r)
 
     const wxString out = wxString(report.Process());
     wxRemoveFile(fNameTemplate);
+    wxRemoveFile(fNameCss);
+    wxRemoveFile(fNameJs);
     return out;
 }
 
