@@ -379,9 +379,9 @@ void mmBudgetingPanel::initVirtualListControl()
             estIncome += estimated;
 
         double actual = 0;
-        if (currentView_ != "View Planned Budget Categories" && estimated != 0)
+        if (currentView_ != "View Planned Budget Categories" || estimated != 0)
         {
-            double actual = categoryStats_[category.CATEGID][-1][0];
+            actual = categoryStats_[category.CATEGID][-1][0];
             if (actual < 0)
                 actExpenses += actual;
             else
@@ -412,7 +412,7 @@ void mmBudgetingPanel::initVirtualListControl()
                 estIncome += estimated;
 
             actual = 0;
-            if (currentView_ != "View Planned Budget Categories" && estimated != 0)
+            if (currentView_ != "View Planned Budget Categories" || estimated != 0)
             {
                 actual = categoryStats_[category.CATEGID][subcategory.SUBCATEGID][0];
                 if (actual < 0)
@@ -611,7 +611,6 @@ void budgetingListCtrl::OnListItemActivated(wxListEvent& event)
 {
     selectedIndex_ = event.GetIndex();
     cp_->OnListItemActivated(selectedIndex_);
-    RefreshItem(selectedIndex_);
 }
 
 void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
@@ -644,7 +643,7 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
     if (dlg.ShowModal() == wxID_OK)
     {
         initVirtualListControl();
-        listCtrlBudget_->RefreshItem(selectedIndex);
+        listCtrlBudget_->Refresh();
         listCtrlBudget_->EnsureVisible(selectedIndex);
     }
 }
