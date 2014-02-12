@@ -112,8 +112,9 @@ void mmGeneralReportManager::fillControls()
     m_selectedItemID = m_rootItem;
     m_treeCtrl->SetItemBold(m_rootItem, true);
     m_treeCtrl->SetFocus();
-    Model_Report::Data_Set records
-        = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
+    Model_Report::Data_Set records = Model_Report::instance().all();
+    std::sort(records.begin(), records.end(), SorterByREPORTNAME());
+    std::stable_sort(records.begin(), records.end(), SorterByGROUPNAME());
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)
