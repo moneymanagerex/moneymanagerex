@@ -167,7 +167,7 @@ bool mmBillsDepositsPanel::Create( wxWindow *parent,
     transFilterDlg_    = new mmFilterTransactionsDialog(this);
 
     initVirtualListControl();
-    
+
     this->windowsFreezeThaw();
 
     return TRUE;
@@ -303,105 +303,30 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
     listCtrlAccount_->SetColumn(listCtrlAccount_->m_selected_col, item);
 
     bills_.clear();
-    if (transFilterActive_)
+
+    for (const Model_Billsdeposits::Data& data : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
-        for (const Model_Billsdeposits::Data& data : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+        if (transFilterActive_ && !transFilterDlg_->checkAll(data))
+            continue;
+
+        Model_Billsdeposits::Full_Data r(data);
+
+        const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
+        if (payee) r.PAYEENAME = payee->PAYEENAME;
+        const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
+        if (account)
         {
-            /*if (transFilterDlg_->getAccountCheckBox() && transFilterDlg_->getAccountID() != data.ACCOUNTID)
-                continue; // Skip
-
-            if (transFilterDlg_->getDateRangeCheckBox() && !Model_Billsdeposits::NEXTOCCURRENCEDATE(data).IsBetween(transFilterDlg_->getFromDateCtrl(), transFilterDlg_->getToDateControl()))
-                continue; // Skip
-
-            if (!transFilterDlg_->checkPayee(data.PAYEEID))
-                continue; // Skip
-
-            if (transFilterDlg_->getCategoryCheckBox())
+            r.ACCOUNTNAME = account->ACCOUNTNAME;
+            if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
             {
-                if (data.CATEGID != -1)
-                {
-                    if (transFilterDlg_->getCategoryID() != data.CATEGID)
-                        continue; // Skip
-                    if (transFilterDlg_->getSubCategoryID() != data.SUBCATEGID && !transFilterDlg_->getSimilarCategoryStatus())
-                        continue; // Skip
-                }
-                else
-                {
-                    bool bMatching = false;
-                    for (const Model_Budgetsplittransaction::Data split : Model_Billsdeposits::splittransaction(data))
-                    {
-                        if (split.CATEGID != data.CATEGID)
-                            continue;
-                        if (split.SUBCATEGID != data.SUBCATEGID && !transFilterDlg_->getSimilarCategoryStatus())
-                            continue;
-
-                        bMatching = true;
-                        break;
-                    }
-                    if (!bMatching)
-                        continue;
-                }
+                Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
+                if (to_account)
+                    r.PAYEENAME = to_account->ACCOUNTNAME;
             }
-            if (transFilterDlg_->getStatusCheckBox() && !transFilterDlg_->compareStatus(data.STATUS))
-                continue; // Skip
-
-            // Repeating transactions are always a transfer to
-            if (transFilterDlg_->getTypeCheckBox() && !transFilterDlg_->allowType(data.TRANSCODE, data.ACCOUNTID != data.TOACCOUNTID))
-                continue; // Skip
-
-            if (transFilterDlg_->getAmountRangeCheckBoxMin() && transFilterDlg_->getAmountMin() > data.TRANSAMOUNT)
-                continue; // Skip
-
-            if (transFilterDlg_->getAmountRangeCheckBoxMax() && transFilterDlg_->getAmountMax() < data.TRANSAMOUNT)
-                continue; // Skip
-
-            if (transFilterDlg_->getNumberCheckBox() && !data.TRANSACTIONNUMBER.Lower().Matches(transFilterDlg_->getNumber().Trim().Lower()))
-                continue; // Skip
-
-            if (transFilterDlg_->getNotesCheckBox() && !data.NOTES.Lower().Matches(transFilterDlg_->getNotes().Trim().Lower()))
-                continue; // Skip*/
-            if (!transFilterDlg_->checkAll(data)) continue;
-
-            Model_Billsdeposits::Full_Data r(data);
-
-            const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-            if (payee) r.PAYEENAME = payee->PAYEENAME;
-            const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
-            if (account) 
-            {
-                r.ACCOUNTNAME = account->ACCOUNTNAME;
-                if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
-                {
-                    Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
-                    if (to_account)
-                        r.PAYEENAME = to_account->ACCOUNTNAME;
-                }
-            }
-
-            bills_.push_back(r);
         }
+        bills_.push_back(r);
     }
-    else
-        for (const auto& data: Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
-        {
-            Model_Billsdeposits::Full_Data r(data);
 
-            const Model_Payee::Data* payee = Model_Payee::instance().get(r.PAYEEID);
-            if (payee) r.PAYEENAME = payee->PAYEENAME;
-            const Model_Account::Data* account = Model_Account::instance().get(r.ACCOUNTID);
-            if (account)
-            {
-                r.ACCOUNTNAME = account->ACCOUNTNAME;
-                if (Model_Billsdeposits::type(r) == Model_Billsdeposits::TRANSFER)
-                {
-                    Model_Account::Data* to_account = Model_Account::instance().get(r.TOACCOUNTID);
-                    if (to_account)
-                        r.PAYEENAME = to_account->ACCOUNTNAME;
-                }
-            }
-
-            bills_.push_back(r);
-        }
     sortTable();
 
     int cnt = 0, selected_item = -1;
