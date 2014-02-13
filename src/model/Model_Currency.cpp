@@ -163,10 +163,10 @@ wxString Model_Currency::fromString2Default(wxString s, const Data* currency)
     // Remove prefix and suffix characters from value
     if (currency)
     {
-        if (!currency->DECIMAL_POINT.empty())
-            s.Replace(currency->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
         if (!currency->GROUP_SEPARATOR.empty())
             s.Replace(currency->GROUP_SEPARATOR, "");
+        if (!currency->DECIMAL_POINT.empty())
+            s.Replace(currency->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
     }
     return s;
 }
