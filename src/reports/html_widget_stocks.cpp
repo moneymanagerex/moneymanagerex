@@ -54,7 +54,7 @@ wxString htmlWidgetStocks::getHTMLText()
 
         if (enable_details_)
         {
-            Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+            const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
             for (const auto& account : accounts)
             {
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
@@ -89,7 +89,7 @@ void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> >
 {
     this->grand_total_ = 0;
     this->grand_gain_lost_ = 0;
-    Model_Stock::Data_Set stocks = Model_Stock::instance().all();
+    const auto &stocks = Model_Stock::instance().all();
     for (const auto& stock : stocks)
     {
         double conv_rate = 1;

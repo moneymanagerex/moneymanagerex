@@ -352,7 +352,7 @@ void mmGeneralReportManager::importReport()
     const wxString clearFileName = fn.FileName(reportFileName).GetName();
 
     wxString sql, lua, htt, txt;
-    Model_Report::Data_Set reports = Model_Report::instance().find(Model_Report::REPORTNAME(clearFileName));
+    const auto &reports = Model_Report::instance().find(Model_Report::REPORTNAME(clearFileName));
     if (!reports.empty())
     {
         mmShowErrorMessage(this, _("Report with same name exists"), _("General Report Manager"));

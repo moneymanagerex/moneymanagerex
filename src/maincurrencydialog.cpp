@@ -354,7 +354,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
         ok = false;
     }
 
-    Model_Currency::Data_Set currencies = Model_Currency::instance().all();
+    auto currencies = Model_Currency::instance().all();
     wxString sOutput;
     if (ok)
     {

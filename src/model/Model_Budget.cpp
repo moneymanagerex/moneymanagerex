@@ -92,8 +92,8 @@ void Model_Budget::getBudgetEntry(int budgetYearID, std::map<int,
     std::map<int, PERIOD_ENUM> > &budgetPeriod,
     std::map<int, std::map<int, double> > &budgetAmt)
 {
-    const Model_Category::Data_Set allCategories = Model_Category::instance().all();
-    const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all();
+    const auto &allCategories = Model_Category::instance().all();
+    const auto &allSubcategories = Model_Subcategory::instance().all();
     //Set std::map with zerros
     double value = 0;
     for (const auto& category : allCategories)

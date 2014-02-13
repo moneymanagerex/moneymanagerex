@@ -193,7 +193,7 @@ void mmReportPayeeExpenses::getPayeeStats(std::map<int, std::pair<double, double
         acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
     }
 
-    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    const auto &transactions = Model_Checking::instance().all();
     for (const auto & trx: transactions)
     {
         if (Model_Checking::status(trx) == Model_Checking::VOID_) continue;

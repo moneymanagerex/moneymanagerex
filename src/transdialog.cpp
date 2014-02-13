@@ -92,7 +92,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
         transaction_->SUBCATEGID = -1;
         if (mmIniOptions::instance().transPayeeSelectionNone_)
         {
-            Model_Checking::Data_Set transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
+            const auto &transactions = Model_Checking::instance().all(Model_Checking::COL_TRANSDATE, false);
             for (const auto &trx : transactions)
             {
                 if (trx.ACCOUNTID != transaction_->ACCOUNTID) continue;
@@ -198,13 +198,13 @@ void mmTransDialog::dataToControls()
     {
         cbAccount_->SetEvtHandlerEnabled(false);
         cbAccount_->Clear();
-        Model_Account::Data_Set accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
-
+        const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         for (const auto &account : accounts)
         {
             if (Model_Account::type(account) == Model_Account::INVESTMENT) continue;
             cbAccount_->Append(account.ACCOUNTNAME);
-            if (account.ACCOUNTID == transaction_->ACCOUNTID) cbAccount_->ChangeValue(account.ACCOUNTNAME);
+            if (account.ACCOUNTID == transaction_->ACCOUNTID)
+                cbAccount_->ChangeValue(account.ACCOUNTNAME);
         }
         cbAccount_->AutoComplete(Model_Account::instance().all_checking_account_names());
         accountID_ = transaction_->ACCOUNTID;
@@ -252,7 +252,7 @@ void mmTransDialog::dataToControls()
 
             if (!transaction_id_)
             {
-                Model_Category::Data_Set categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
+                const auto &categs = Model_Category::instance().find(Model_Category::CATEGNAME(wxGetTranslation("Transfer")));
                 if (!categs.empty())
                 {
                     transaction_->SUBCATEGID = -1;

@@ -61,8 +61,8 @@ Model_Subcategory::Data* Model_Subcategory::get(const wxString& name, int catego
 bool Model_Subcategory::is_used(int id)
 {
     int cat_id = instance().get(id)->CATEGID;
-    Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(cat_id), Model_Billsdeposits::SUBCATEGID(id));
-    Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::CATEGID(cat_id), Model_Checking::SUBCATEGID(id));
+    const auto &deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(cat_id), Model_Billsdeposits::SUBCATEGID(id));
+    const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(cat_id), Model_Checking::SUBCATEGID(id));
     return !deposits.empty() || !trans.empty();
 }
 

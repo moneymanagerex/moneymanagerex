@@ -90,7 +90,7 @@ void  mmReportCategoryExpenses::RefreshData()
         if (amt != 0.0)
             data_.push_back({ sCategName, amt, groupID });
 
-        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+        auto subcategories = Model_Category::sub_category(category);
         std::stable_sort(subcategories.begin(), subcategories.end(), SorterBySUBCATEGNAME());
         for (const auto& sub_category : subcategories)
         {

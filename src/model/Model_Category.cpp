@@ -261,8 +261,8 @@ wxString Model_Category::full_name(int category_id, int subcategory_id)
 
 bool Model_Category::is_used(int id, int sub_id)
 {
-    Model_Billsdeposits::Data_Set deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
-    Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
+    const auto &deposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::CATEGID(id), Model_Billsdeposits::SUBCATEGID(sub_id));
+    const auto &trans = Model_Checking::instance().find(Model_Checking::CATEGID(id), Model_Checking::SUBCATEGID(sub_id));
     return !deposits.empty() || !trans.empty();
 }
 
@@ -317,7 +317,7 @@ void Model_Category::getCategoryStats(
         acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
     }
     //Set std::map with zerros
-    const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all();
+    const auto &allSubcategories = Model_Subcategory::instance().all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
     wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
@@ -373,7 +373,7 @@ void Model_Category::getCategoryStats(
         }
         else
         {
-            Model_Splittransaction::Data_Set split = Model_Checking::splittransaction(transaction);
+            const auto &split = Model_Checking::splittransaction(transaction);
             for (const auto& entry: split)
             {
                 categoryStats[entry.CATEGID][entry.SUBCATEGID][idx] += entry.SPLITTRANSAMOUNT 

@@ -116,7 +116,7 @@ void mmCategDialog::fillControls()
     bool bResult = Model_Setting::instance().GetBoolSetting("SHOW_HIDDEN_CATEGS", true);
     m_cbShowAll->SetValue(bResult);
 
-    Model_Category::Data_Set categories = Model_Category::instance().all();
+    const auto &categories = Model_Category::instance().all();
     for (const Model_Category::Data& category : categories)
     {
         wxTreeItemId maincat;
@@ -128,7 +128,7 @@ void mmCategDialog::fillControls()
             m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
             if (!bShow) m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
 
-            for (const Model_Subcategory::Data& sub_category : Model_Category::sub_category(category))
+            for (const auto &sub_category : Model_Category::sub_category(category))
             {
                 bShow = categShowStatus(category.CATEGID, sub_category.SUBCATEGID);
                 if (m_cbShowAll->IsChecked() || bShow)
@@ -246,7 +246,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 
     if (selectedItemId_ == root_)
     {
-        Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
+        const auto &categories = Model_Category::instance().find(Model_Category::CATEGNAME(text));
         if (!categories.empty())
         {
             wxString errMsg = _("Category with same name exists");
@@ -269,7 +269,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
     mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
     if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
     {
-        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(iData->getCategData());
+        const auto &subcategories = Model_Category::sub_category(iData->getCategData());
         for (const auto& subcategory : subcategories)
         {
             if (subcategory.SUBCATEGNAME == text)
@@ -347,7 +347,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     m_treeCtrl->Delete(selectedItemId_);
 
     //Clear categories associated with payees
-    Model_Payee::Data_Set payees = Model_Payee::instance().all();
+    auto &payees = Model_Payee::instance().all();
     for (auto &payee : payees)
     {
         if (payee.CATEGID == categID || (payee.SUBCATEGID == subcategID && subcategID != -1))
@@ -435,8 +435,9 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
         if (subcategID_ == -1)
         {
 	        Model_Category::Data *category = Model_Category::instance().get(categID_);
-	        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
-	        for (const auto& s : subcategories) bUsed = bUsed || Model_Category::is_used(categID_, s.SUBCATEGID);
+            const auto &subcategories = Model_Category::sub_category(category);
+	        for (const auto &s : subcategories)
+                bUsed = (bUsed || Model_Category::is_used(categID_, s.SUBCATEGID));
         }
 
         m_buttonDelete->Enable(!bUsed);
@@ -477,7 +478,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     else
     {
         Model_Category::Data* category = iData->getCategData();
-        Model_Subcategory::Data_Set subcategories = Model_Category::sub_category(category);
+        const auto &subcategories = Model_Category::sub_category(category);
         for (const auto &entry : subcategories)
         {
             if (entry.SUBCATEGNAME == text)
@@ -515,7 +516,7 @@ wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& 
 
 void mmCategDialog::setTreeSelection(int &category_id, int &subcategory_id)
 {
-    Model_Category::Data_Set categories = Model_Category::instance().find(Model_Category::CATEGID(category_id));
+    const auto &categories = Model_Category::instance().find(Model_Category::CATEGID(category_id));
     if (!categories.empty())
     {
         Model_Category::Data *category = Model_Category::instance().get(category_id);

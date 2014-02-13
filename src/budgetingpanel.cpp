@@ -620,8 +620,8 @@ void mmBudgetingPanel::OnListItemActivated(int selectedIndex)
      ***************************************************************************/
     if (budget_[selectedIndex].first < 0) return;
 
-    Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(GetBudgetYearID()),
-        Model_Budget::CATEGID(budget_[selectedIndex].first), Model_Budget::SUBCATEGID(budget_[selectedIndex].second));
+    Model_Budget::Data_Set budget = Model_Budget::instance().find(Model_Budget::BUDGETYEARID(GetBudgetYearID())
+        , Model_Budget::CATEGID(budget_[selectedIndex].first), Model_Budget::SUBCATEGID(budget_[selectedIndex].second));
     Model_Budget::Data* entry = 0;
     if (budget.empty())
     {

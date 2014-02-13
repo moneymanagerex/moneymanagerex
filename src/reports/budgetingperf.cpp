@@ -93,18 +93,19 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     Model_Category::instance().getCategoryStats(categoryStats, &date_range, mmIniOptions::instance().ignoreFutureTransactions_,
         true, true, (evaluateTransfer ? &budgetAmt : 0));
     //Init totals
-    const Model_Category::Data_Set allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
-    const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
+    const auto &allCategories = Model_Category::instance().all(Model_Category::COL_CATEGNAME);
+    const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     std::map<int, std::map<int, double> > totals;
     for (const auto& category : allCategories)
     {
         totals[category.CATEGID][-1] = 0;
-        for (const Model_Subcategory::Data& subcategory : allSubcategories)
+        for (const auto &subcategory : allSubcategories)
         {
             if (subcategory.CATEGID == category.CATEGID)
                 totals[category.CATEGID][subcategory.SUBCATEGID] = 0;
         }
     }
+
     for (const auto& category : allCategories)
     {
         for (const auto &i : categoryStats[category.CATEGID][-1])

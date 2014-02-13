@@ -310,7 +310,7 @@ void mmBDDialog::CreateControls()
     itemFlexGridSizer5->Add(itemAccountName_, g_flags);
     itemAccountName_->SetToolTip(_("Specify the Account that will own the repeating transaction"));
 
-    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    const auto &accounts = Model_Account::instance().all();
     if (accounts.size() == 1)
     {
         accountID_ = accounts.begin()->ACCOUNTID;
@@ -792,7 +792,7 @@ void mmBDDialog::resetPayeeString()
     wxString payeeStr = _("Select Payee");
     if (payeeID_ == -1)
     {
-        Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees("");
+        const auto &filtd = Model_Payee::instance().FilterPayees("");
         if (filtd.size() == 1)
         {
             //only one payee present. Choose it

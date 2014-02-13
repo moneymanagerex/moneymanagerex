@@ -79,7 +79,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
     //Temporary map
     std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
 
-    Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+    const auto &transactions = Model_Checking::instance().find(
             Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
             , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
             , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
@@ -98,7 +98,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
         }
         else
         {
-            Model_Splittransaction::Data_Set splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(trx.TRANSID));
+            const auto &splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(trx.TRANSID));
             for (const auto& entry : splits)
             {
                 std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);

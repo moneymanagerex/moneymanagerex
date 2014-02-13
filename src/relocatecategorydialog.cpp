@@ -162,22 +162,22 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
 {
     if ((m_sourceCatID > 0) && (m_destCatID > 0) )
     {
-        Model_Checking::Data_Set transactions = Model_Checking::instance()
+        auto transactions = Model_Checking::instance()
             .find(Model_Checking::CATEGID(m_sourceCatID)
                 , Model_Checking::SUBCATEGID(m_sourceSubCatID));
-        Model_Splittransaction::Data_Set checking_split = Model_Splittransaction::instance()
+        auto checking_split = Model_Splittransaction::instance()
             .find(Model_Splittransaction::CATEGID(m_sourceCatID)
                 , Model_Splittransaction::SUBCATEGID(m_sourceSubCatID));
-        Model_Billsdeposits::Data_Set billsdeposits = Model_Billsdeposits::instance()
+        auto billsdeposits = Model_Billsdeposits::instance()
             .find(Model_Billsdeposits::CATEGID(m_sourceCatID)
                 , Model_Billsdeposits::SUBCATEGID(m_sourceSubCatID));
-        Model_Budgetsplittransaction::Data_Set budget_split = Model_Budgetsplittransaction::instance()
+        auto budget_split = Model_Budgetsplittransaction::instance()
             .find(Model_Budgetsplittransaction::CATEGID(m_sourceCatID)
             , Model_Budgetsplittransaction::SUBCATEGID(m_sourceSubCatID));
-        Model_Payee::Data_Set payees = Model_Payee::instance()
+        auto payees = Model_Payee::instance()
             .find(Model_Payee::CATEGID(m_sourceCatID)
             ,Model_Payee::SUBCATEGID(m_sourceSubCatID));
-        Model_Budget::Data_Set budget = Model_Budget::instance()
+        auto budget = Model_Budget::instance()
             .find(Model_Budget::CATEGID(m_sourceCatID)
             ,Model_Budget::SUBCATEGID(m_sourceSubCatID));
 

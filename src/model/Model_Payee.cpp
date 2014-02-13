@@ -86,8 +86,8 @@ wxArrayString Model_Payee::all_payee_names()
 
 bool Model_Payee::is_used(int id)
 {
-    Model_Checking::Data_Set trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
-    Model_Billsdeposits::Data_Set bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
+    const auto &trans = Model_Checking::instance().find(Model_Checking::PAYEEID(id));
+    const auto &bills = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(id));
     return !trans.empty() || !bills.empty();
 }
 

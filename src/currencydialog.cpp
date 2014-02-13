@@ -257,7 +257,7 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
     }
     else
     {
-        Model_Currency::Data_Set currencies = Model_Currency::instance().find(Model_Currency::CURRENCYNAME(name));
+        const auto &currencies = Model_Currency::instance().find(Model_Currency::CURRENCYNAME(name));
         if (!currencies.empty() && m_currency->CURRENCYID == -1)
         {
             wxMessageBox(_("Currency with same name exists"), _("Organize Currency: Add Currency"), wxOK | wxICON_ERROR);

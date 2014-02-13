@@ -137,7 +137,7 @@ Model_Currency::Data* Model_Account::currency(const Data& r)
 
 Model_Checking::Data_Set Model_Account::transaction(const Data*r )
 {
-    Model_Checking::Data_Set trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
+    auto trans = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(r->ACCOUNTID), Model_Checking::TOACCOUNTID(r->ACCOUNTID));
     std::sort(trans.begin(), trans.end());
     std::stable_sort(trans.begin(), trans.end(), SorterByTRANSDATE());
 
@@ -257,7 +257,7 @@ bool Model_Account::FAVORITEACCT(const Data& r)
 
 bool Model_Account::is_used(const Model_Currency::Data* c)
 {
-    Data_Set accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
+    const auto &accounts = Model_Account::instance().find(CURRENCYID(c->CURRENCYID));
     return !accounts.empty();
 }
 

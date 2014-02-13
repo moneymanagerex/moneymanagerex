@@ -202,7 +202,7 @@ void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> 
 {
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
 
-    Model_Checking::Data_Set transactions = Model_Checking::instance().all();
+    const auto &transactions = Model_Checking::instance().all();
     this->total_transactions_ = transactions.size();
     for (const auto& trx : transactions)
     {
@@ -305,7 +305,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
 
     //Calculations
-    Model_Checking::Data_Set transactions = Model_Checking::instance().find(
+    const auto &transactions = Model_Checking::instance().find(
         Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
         , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
         , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)

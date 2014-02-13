@@ -1349,7 +1349,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     ///////////////////////////////////////////////////////////////////
     //TODO: Test reports
-    Model_Report::Data_Set records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
+    const auto &records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
     for (const auto& record : records)
@@ -3164,7 +3164,7 @@ void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 {
-    Model_Account::Data_Set accounts = Model_Account::instance().all();
+    const auto &accounts = Model_Account::instance().all();
     if (accounts.empty())
     {
         wxMessageBox(_("No account available to edit!"), _("Accounts"), wxOK | wxICON_WARNING);

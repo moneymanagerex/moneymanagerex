@@ -119,7 +119,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.addTableHeaderCell(_("Actual"), true);
     hb.endTableRow();
 
-    const Model_Subcategory::Data_Set allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
+    const auto &allSubcategories = Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME);
     for (const Model_Category::Data& category : Model_Category::instance().all(Model_Category::COL_CATEGNAME))
     {
         double estimated = (monthlyBudget ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.CATEGID][-1], budgetAmt[category.CATEGID][-1]) :
