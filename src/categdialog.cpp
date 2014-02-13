@@ -347,7 +347,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
     m_treeCtrl->Delete(selectedItemId_);
 
     //Clear categories associated with payees
-    auto &payees = Model_Payee::instance().all();
+    auto payees = Model_Payee::instance().all();
     for (auto &payee : payees)
     {
         if (payee.CATEGID == categID || (payee.SUBCATEGID == subcategID && subcategID != -1))
