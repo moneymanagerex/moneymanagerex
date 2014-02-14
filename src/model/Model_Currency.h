@@ -72,6 +72,18 @@ public:
     static int precision(const Data* r);
     static int precision(const Data& r);
 
-    static std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int> > all_currencies_template();
+    static std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > all_currencies_template();
+    enum {
+        SYMBOL,
+        NAME,
+        PREFIX,
+        SUFFIX,
+        CURR_NAME,
+        CENT_NAME,
+        PRECISION,
+        CONV_RATE,
+        GROUP_SEPARATOR,
+        DECIMAL_SEPARATOR,
+    };
 };
 #endif // 
