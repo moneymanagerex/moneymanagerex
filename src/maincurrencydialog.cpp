@@ -345,14 +345,11 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
 
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
     if (base_currency)
-    {
         base_symbol = base_currency->CURRENCY_SYMBOL.Upper();
-    }
-    else
-    {
+
+    ok = !base_symbol.empty();
+    if (!ok)
         msg = _("Could not find base currency symbol!");
-        ok = false;
-    }
 
     auto currencies = Model_Currency::instance().all();
     wxString sOutput;

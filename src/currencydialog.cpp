@@ -163,14 +163,14 @@ void mmCurrencyDialog::CreateControls()
 
     //--------------------------
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Name")), flags);
-
     m_currencyName = new mmTextCtrl( this, ID_DIALOG_CURRENCY_CHOICE
         , "", wxDefaultPosition, wxSize(220, -1));
     itemFlexGridSizer3->Add(m_currencyName, flags);
-    itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Symbol")), flags);
 
+    itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Currency Symbol")), flags);
     m_currencySymbol = new mmTextCtrl(this, wxID_ANY
         , "", wxDefaultPosition, wxSize(220, -1));
+    m_currencySymbol->SetMaxLength(3);
     itemFlexGridSizer3->Add(m_currencySymbol, flagsExpand);
 
     itemFlexGridSizer3->Add(new wxStaticText( this, wxID_STATIC, _("Unit Name")), flags);
@@ -275,7 +275,7 @@ void mmCurrencyDialog::OnUpdate(wxCommandEvent& /*event*/)
     m_currency->CENT_NAME = centTx_->GetValue();
     m_currency->SCALE = static_cast<int>(pow(10,scal));
     m_currency->BASECONVRATE = baseConvRate;
-    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue();
+    m_currency->CURRENCY_SYMBOL = m_currencySymbol->GetValue().Trim();
     m_currency->CURRENCYNAME = m_currencyName->GetValue();
 
     Model_Currency::instance().save(m_currency);
