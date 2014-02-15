@@ -22,6 +22,7 @@
 #include "util.h"
 #include "mmOption.h"
 #include "paths.h"
+#include "constants.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
@@ -81,24 +82,19 @@ void mmPayeeDialog::do_create(wxWindow* parent)
 
 void mmPayeeDialog::CreateControls()
 {
-    int border = 5;
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border).Expand();
-
-    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
     //TODO:provide proper style
     payeeListBox_ = new wxDataViewListCtrl( this
         , wxID_ANY, wxDefaultPosition, wxSize(450, 500)/*, wxDV_HORIZ_RULES*/);
 
     if (debug_) payeeListBox_->AppendTextColumn(ColName_[PAYEE_ID], wxDATAVIEW_CELL_INERT, 30);
-    payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 150);
-    payeeListBox_ ->AppendTextColumn( ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 250);
-    itemBoxSizer2->Add(payeeListBox_, 1, wxGROW|wxALL, 1);
+    payeeListBox_->AppendTextColumn(ColName_[PAYEE_NAME], wxDATAVIEW_CELL_EDITABLE, 150);
+    payeeListBox_->AppendTextColumn(ColName_[PAYEE_CATEGORY], wxDATAVIEW_CELL_INERT, 250);
+    mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    itemBoxSizer2->Add(buttons_panel, flags.Center().Border(wxALL, 10));
+    mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flags).Center());
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
@@ -106,10 +102,10 @@ void mmPayeeDialog::CreateControls()
     button_OK_ = new wxButton( buttons_panel, wxID_OK, _("&OK ") );
     btnCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
 
-    buttons_sizer->Add(button_OK_,  flags);
-    buttons_sizer->Add(btnCancel_,  flags);
+    buttons_sizer->Add(button_OK_,  g_flags);
+    buttons_sizer->Add(btnCancel_,  g_flags);
     Center();
-    this->SetSizer(itemBoxSizer2);
+    this->SetSizer(mainBoxSizer);
 }
 
 void mmPayeeDialog::fillControls()

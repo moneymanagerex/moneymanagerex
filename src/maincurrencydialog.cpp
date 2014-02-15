@@ -61,7 +61,7 @@ mmMainCurrencyDialog::mmMainCurrencyDialog(
 
     currencyID_ = Model_Infotable::instance().GetBaseCurrencyId();
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("Currency Dialog"), wxDefaultPosition, wxSize(320, 350), style);
+    Create(parent, wxID_ANY, _("Currency Dialog"), wxDefaultPosition, wxDefaultSize, style);
 }
 
 bool mmMainCurrencyDialog::Create(wxWindow* parent
@@ -72,7 +72,7 @@ bool mmMainCurrencyDialog::Create(wxWindow* parent
     , long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     CreateControls();
     SetIcon(mmex::getProgramIcon());
@@ -125,38 +125,34 @@ void mmMainCurrencyDialog::fillControls()
 
 void mmMainCurrencyDialog::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand();
-
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
     wxBoxSizer* itemBoxSizer22 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer22, flagsExpand);
+    itemBoxSizer2->Add(itemBoxSizer22, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxBitmapButton* update_button = new wxBitmapButton(this
         , wxID_STATIC, wxBitmap(checkupdate_xpm));
-    itemBoxSizer22->Add(update_button, flags);
+    itemBoxSizer22->Add(update_button, g_flags);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), NULL, this);
     update_button->SetToolTip(_("Online update currency rate"));
     itemBoxSizer22->AddSpacer(4);
 
-    itemBoxSizer22->Add(new wxStaticText( this, wxID_STATIC
-       , _("Online Update")), flags);
+    itemBoxSizer22->Add(new wxStaticText(this, wxID_STATIC
+        , _("Online Update")), g_flags);
 
     itemBoxSizer22->AddSpacer(15);
-    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition,
-        wxDefaultSize, wxCHK_2STATE);
+    cbShowAll_ = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
+        , wxDefaultSize, wxCHK_2STATE);
     cbShowAll_->SetToolTip(_("Show all even the unused currencies"));
     cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
         wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), NULL, this);
 
-    itemBoxSizer22->Add(cbShowAll_, flags);
+    itemBoxSizer22->Add(cbShowAll_, g_flags);
 
     wxBoxSizer* itemBoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer3, 1, wxGROW|wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer3, g_flagsExpand);
 
     //TODO:provide proper style and fix validator (does not working)
     currencyListBox_ = new wxDataViewListCtrl( this
@@ -165,33 +161,34 @@ void mmMainCurrencyDialog::CreateControls()
     currencyListBox_->AppendToggleColumn(ColName_[CURR_BASE], wxDATAVIEW_CELL_INERT, 30);
     currencyListBox_->AppendTextColumn(ColName_[CURR_SYMBOL], wxDATAVIEW_CELL_INERT, 60);
     currencyListBox_->AppendTextColumn(ColName_[CURR_NAME], wxDATAVIEW_CELL_INERT, 170);
-    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 60);
+    currencyListBox_->AppendTextColumn(ColName_[BASE_RATE], wxDATAVIEW_CELL_EDITABLE, 80);
 
-    itemBoxSizer3->Add(currencyListBox_, 1, wxGROW|wxALL, 1);
+    itemBoxSizer3->Add(currencyListBox_, g_flagsExpand);
 
-    wxPanel* itemPanel5 = new wxPanel(this, wxID_ANY
-        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    itemBoxSizer2->Add(itemPanel5, 0, wxALIGN_CENTER_HORIZONTAL|wxALL, 1);
+    wxPanel* buttonsPanel = new wxPanel(this, wxID_ANY);
+    itemBoxSizer2->Add(buttonsPanel, wxSizerFlags(g_flags).Center());
 
-    wxBoxSizer* itemBoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
-    itemPanel5->SetSizer(itemBoxSizer6);
+    wxBoxSizer* buttonsSizer = new wxBoxSizer(wxVERTICAL);
+    buttonsPanel->SetSizer(buttonsSizer);
+    wxStdDialogButtonSizer* itemBoxSizer66 = new wxStdDialogButtonSizer;
+    buttonsSizer->Add(itemBoxSizer66);
 
-    wxButton* itemButton7 = new wxButton( itemPanel5, wxID_ADD, _("&Add "));
-    itemBoxSizer6->Add(itemButton7, flags);
+    wxButton* itemButton7 = new wxButton(buttonsPanel, wxID_ADD, _("&Add "));
+    itemBoxSizer66->Add(itemButton7, g_flags);
 
-    itemButtonEdit_ = new wxButton( itemPanel5, wxID_EDIT, _("&Edit ") );
-    itemBoxSizer6->Add(itemButtonEdit_, flags);
+    itemButtonEdit_ = new wxButton(buttonsPanel, wxID_EDIT, _("&Edit "));
+    itemBoxSizer66->Add(itemButtonEdit_, g_flags);
     itemButtonEdit_->Disable();
 
-    itemButtonDelete_ = new wxButton( itemPanel5, wxID_REMOVE, _("&Remove ") );
-    itemBoxSizer6->Add(itemButtonDelete_, flags);
+    itemButtonDelete_ = new wxButton(buttonsPanel, wxID_REMOVE, _("&Remove "));
+    itemBoxSizer66->Add(itemButtonDelete_, g_flags);
     itemButtonDelete_->Disable();
 
-    wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer9, flagsExpand);
+    wxStdDialogButtonSizer* itemBoxSizer9 = new wxStdDialogButtonSizer;
+    buttonsSizer->Add(itemBoxSizer9, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
 
-    wxButton* itemButtonSelect = new wxButton( this, wxID_SELECTALL, _("&Select"));
-    itemBoxSizer9->Add(itemButtonSelect,  4, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    wxButton* itemButtonSelect = new wxButton(buttonsPanel, wxID_SELECTALL, _("&Select"));
+    itemBoxSizer9->Add(itemButtonSelect, wxSizerFlags(g_flagsExpand).Proportion(4));
     //itemButtonSelect->SetToolTip(_("Select the currently selected currency as the selected currency for the account"));
 
     if (bEnableSelect_ == false) {
@@ -199,8 +196,8 @@ void mmMainCurrencyDialog::CreateControls()
     }
 
     //Some interfaces has no any close buttons, it may confuse user. Cancel button added
-    wxButton* itemCancelButton = new wxButton( this, wxID_CANCEL, _("&Cancel "));
-    itemBoxSizer9->Add(itemCancelButton,  flags);
+    wxButton* itemCancelButton = new wxButton(buttonsPanel, wxID_CANCEL, _("&Cancel "));
+    itemBoxSizer9->Add(itemCancelButton, g_flags);
     itemCancelButton->SetFocus();
 
     this->SetMinSize(wxSize(350,450));
