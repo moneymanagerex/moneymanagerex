@@ -138,7 +138,7 @@ void Test_Stock::Test_Stocks_Panel()
     stocks_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
-    wxMessageBox("Stocks Panel being displayed.\n\nContinue other tests ...",
+    wxMessageBox("Please Examine: Stocks Panel.\n\nContinue other tests ...",
         "Testing: Stocks Panel", wxOK, wxTheApp->GetTopWindow());
 }
 //--------------------------------------------------------------------------

@@ -27,5 +27,5 @@ CpuTimer::CpuTimer(const wxString msg)
 
 CpuTimer::~CpuTimer()
 {
-    std::cout << wxString::Format("\nTime Taken: %.5d ms: %s", m_start.Time(), m_message.c_str()).char_str();
+    std::cout << wxString::Format("\n    %.5d ms for: %s", m_start.Time(), m_message.c_str()).char_str();
 }

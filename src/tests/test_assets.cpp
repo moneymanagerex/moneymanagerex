@@ -164,7 +164,7 @@ void Test_Asset::test_assetpanel()
     asset_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
-    wxMessageBox("Asset Panel being displayed.\n\nContinue other tests ...",
+    wxMessageBox("Please Examine: Asset Panel.\n\nContinue other tests ...",
         "Testing: Asset Panel", wxOK, wxTheApp->GetTopWindow());
 }
 //--------------------------------------------------------------------------

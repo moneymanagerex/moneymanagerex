@@ -124,7 +124,7 @@ Test_Hooks::Test_Hooks()
 bool Test_Hooks::CommitCallback()
 {
     //wxMessageBox("COMMIT callback.", msg_header, wxOK, wxTheApp->GetTopWindow());
-    std::cout << "COMMIT callback activated.\n";
+    std::cout << "    COMMIT callback activated.\n";
 
     return false;
 }
@@ -138,7 +138,7 @@ void Test_Hooks::UpdateCallback(wxUpdateType type, const wxString& database,
     const wxString& table, wxLongLong rowid)
 {
     const char* strType;
-    std::cout << "UPDATE callback: ";
+    std::cout << "    UPDATE callback: ";
 
     switch (type)
     {

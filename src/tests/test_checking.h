@@ -30,12 +30,12 @@ class Test_Checking : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST_SUITE(Test_Checking);
     CPPUNIT_TEST(Set_UP_Database_conditions);
     CPPUNIT_TEST(Add_Transactions);
-    CPPUNIT_TEST(Test_Transaction_Dialog_Messages);
-    CPPUNIT_TEST(Test_Transaction_New_Edit);
-    CPPUNIT_TEST(Test_Account_View_Savings);
-    CPPUNIT_TEST(Test_Account_View_Mary);
-    CPPUNIT_TEST(Test_Account_View_Savings);
-    CPPUNIT_TEST(Test_Account_View_Mary);
+    CPPUNIT_TEST(Transaction_Dialog_Messages);
+    CPPUNIT_TEST(Transaction_New_Edit);
+    CPPUNIT_TEST(Account_View_Savings);
+    CPPUNIT_TEST(Account_View_Mary);
+    CPPUNIT_TEST(Account_View_Savings);
+    CPPUNIT_TEST(Account_View_Mary);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -57,10 +57,10 @@ private:
     // Test cases
     void Set_UP_Database_conditions();
     void Add_Transactions();
-    void Test_Transaction_Dialog_Messages();
-    void Test_Transaction_New_Edit();
+    void Transaction_Dialog_Messages();
+    void Transaction_New_Edit();
     /* The destructor call: wxGetApp().m_frame->SetCheckingAccountPageInactive();
     has been disabled for the testing environment.*/
-    void Test_Account_View_Savings();
-    void Test_Account_View_Mary();
+    void Account_View_Savings();
+    void Account_View_Mary();
 };
