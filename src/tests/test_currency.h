@@ -30,9 +30,9 @@ class DB_Init_Model;
 class Test_Currency : public CPPUNIT_NS::TestFixture
 {
     CPPUNIT_TEST_SUITE(Test_Currency);
-    CPPUNIT_TEST(test_TwoDigitPrecision);
-    CPPUNIT_TEST(test_FourDigitPrecision);
-    CPPUNIT_TEST(test_FormatDoubleToCurrency);
+    CPPUNIT_TEST(TwoDigitPrecision);
+    CPPUNIT_TEST(FourDigitPrecision);
+    CPPUNIT_TEST(FormatDoubleToCurrency);
     CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -48,8 +48,8 @@ private:
     DB_Init_Model* m_dbmodel;
 
 private:
-    void test_TwoDigitPrecision();
-    void test_FourDigitPrecision();
-    void test_FormatDoubleToCurrency();
+    void TwoDigitPrecision();
+    void FourDigitPrecision();
+    void FormatDoubleToCurrency();
 
 };

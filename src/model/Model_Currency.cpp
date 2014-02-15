@@ -155,7 +155,6 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
 
 wxString Model_Currency::fromString2Default(wxString s, const Data* currency)
 {
-    // Remove prefix and suffix characters from value
     if (currency)
     {
         if (!currency->GROUP_SEPARATOR.empty())

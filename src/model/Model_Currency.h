@@ -66,7 +66,7 @@ public:
     static wxString os_group_separator();
     /** convert value to a currency formatted string with required precision */
     static wxString toString(double value, const Data* currency = GetBaseCurrency(), int precision = -1);
-    /** Reformat string like 1.234,56 to default format like 1,234.56 */
+    /** Reset currency string like 1.234,56 to standard number format like 1234.56 */
     static wxString fromString2Default(wxString s, const Data* currency = Model_Currency::GetBaseCurrency());
     static bool fromString(wxString s, double& val, const Data* currency = GetBaseCurrency());
     static int precision(const Data* r);
