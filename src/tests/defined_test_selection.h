@@ -8,12 +8,13 @@ Description:    This identifies all the tests in this test environment.
 Purpose:        To enable or disable tests from a single location.
 Action:         Comment out any unwanted test.
 ******************************************************************************/
+
 //#define __MMEX_TESTS__ABOUT_DIALOG
 //#define __MMEX_TESTS__ASSETS
 //#define __MMEX_TESTS__BILLS_DEPOSITS
 //#define __MMEX_TESTS__CALLBACK_HOOKS
-#define __MMEX_TESTS__CHECKING
-//#define __MMEX_TESTS__CURRENCY
+//#define __MMEX_TESTS__CHECKING
+#define __MMEX_TESTS__CURRENCY
 //#define __MMEX_TESTS__FILTER_TRANS_DIALOG
 //#define __MMEX_TESTS__RELOCATE_CATEGORY
 //#define __MMEX_TESTS__RELOCATE_PAYEE
