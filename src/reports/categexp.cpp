@@ -138,14 +138,22 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.startCenter();
 
     // Add the graph
+    hb.startTable("100%");
+    hb.startTableRow();
+    hb.startTableCell("50%");
     mmGraphPie ggtotal;
     hb.addImage(ggtotal.getOutputFileName());
     ggtotal.init(valueListTotals_);
     ggtotal.Generate(_("Categories"));
+    hb.endTableCell();
+    hb.startTableCell("50%");
     mmGraphPie gg;
     hb.addImage(gg.getOutputFileName());
     gg.init(valueList_);
     gg.Generate(_("Subcategories"));
+    hb.endTableCell();
+    hb.endTableRow();
+    hb.endTable();
 
     hb.startTable("60%");
     hb.startTableRow();

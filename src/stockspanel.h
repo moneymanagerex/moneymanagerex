@@ -23,6 +23,7 @@
 #include <wx/tglbtn.h>
 #include "model/Model_Stock.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Account.h"
 
 class wxListEvent;
 class mmStocksPanel;
@@ -128,7 +129,7 @@ public:
     wxStaticText* stock_details_short_;
     void updateHeader();
 
-    wxString BuildPage() const { return listCtrlAccount_->BuildPage(); }
+    wxString BuildPage() const;
 
 private:
     wxStaticText* stock_details_;
@@ -141,6 +142,7 @@ private:
 
     bool DownloadIsRequired(void);
     bool onlineQuoteRefresh(wxString& sError);
+    wxString GetPanelTitle(const Model_Account::Data& account) const;
 
     wxString strLastUpdate_;
     bool StocksRefreshStatus_;

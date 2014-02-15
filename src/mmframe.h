@@ -142,8 +142,6 @@ private:
     bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
 
     /* printing */
-    wxScopedPtr<wxHtmlEasyPrinting> printer_;
-    void restorePrinterValues();
     int helpFileIndex_;
 
     /* wxAUI */
@@ -194,10 +192,7 @@ private:
     void OnImportQFX(wxCommandEvent& event);
     void OnImportUniversalCSV(wxCommandEvent& event);
     void OnImportQIF(wxCommandEvent& event);
-    void OnPrintPageSetup(wxCommandEvent& WXUNUSED(event));
-    void OnPrintPageReport(wxCommandEvent& WXUNUSED(event));
-    void OnPrintPagePreview(wxCommandEvent& WXUNUSED(event));
-    void OnPrintPage(bool preview);
+    void OnPrintPage(wxCommandEvent& WXUNUSED(event));
     void OnQuit(wxCommandEvent& event);
     void OnBillsDeposits(wxCommandEvent& event);
     void OnAssets(wxCommandEvent& event);
@@ -301,8 +296,6 @@ private:
         MENU_FACEBOOK,
         MENU_EXPORT_CSV,
         MENU_EXPORT_QIF,
-        MENU_PRINT_REPORT,
-        MENU_PRINT_PREVIEW_REPORT,
         MENU_SHOW_APPSTART,
         MENU_EXPORT_HTML,
         MENU_CURRENCY,

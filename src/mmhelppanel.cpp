@@ -118,3 +118,8 @@ void mmHelpPanel::OnHelpPageForward(wxCommandEvent& /*event*/)
         htmlWindow_->SetFocus();
     }
 }
+
+void mmHelpPanel::PrintPage()
+{
+    htmlWindow_->Print();
+}

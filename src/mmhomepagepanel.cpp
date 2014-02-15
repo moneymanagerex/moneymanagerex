@@ -34,10 +34,63 @@
 #include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
 
-BEGIN_EVENT_TABLE( mmHomePagePanel, wxPanel )
-END_EVENT_TABLE()
+class WebViewHandlerHomePage : public wxWebViewHandler
+{
+public:
+    WebViewHandlerHomePage(mmHomePagePanel *panel, const wxString& protocol)
+        : wxWebViewHandler(protocol)
+    {
+        m_reportPanel = panel;
+    }
 
-BEGIN_EVENT_TABLE(mmHtmlWindow, wxHtmlWindow)
+    virtual ~WebViewHandlerHomePage()
+    {
+    }
+
+    virtual wxFSFile* GetFile(const wxString &uri)
+    {
+        mmGUIFrame* frame = wxGetApp().m_frame;
+        wxString sData;
+        if (uri.Upper().StartsWith("ASSETS", &sData))
+        {
+            frame->setNavTreeSection(_("Assets"));
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.Upper().StartsWith("BILLSDEPOSITS", &sData))
+        {
+            frame->setNavTreeSection(_("Repeating Transactions"));
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.Upper().StartsWith("ACCT:", &sData))
+        {
+            long id = -1;
+            sData.ToLong(&id);
+            frame->setGotoAccountID(id);
+            const Model_Account::Data* account = Model_Account::instance().get(id);
+            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+        else if (uri.Upper().StartsWith("STOCK:", &sData))
+        {
+            long id = -1;
+            sData.ToLong(&id);
+            frame->setGotoAccountID(id);
+            const Model_Account::Data* account = Model_Account::instance().get(id);
+            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
+        }
+
+        return NULL;
+    }
+private:
+    mmHomePagePanel *m_reportPanel;
+};
+
+BEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
 END_EVENT_TABLE()
 
 mmHomePagePanel::mmHomePagePanel(wxWindow *parent
@@ -136,7 +189,7 @@ void mmHomePagePanel::createFrames()
     rightFrame << getStatWidget();
 
     m_templateText = prepareTemplate(leftFrame, rightFrame);
-    htmlWindow_->SetPage(m_templateText);
+    htmlWindow_->SetPage(m_templateText, "");
 }
 
 wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
@@ -286,7 +339,7 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
     {
         hb.startTable("100%");
         hb.startTableRow();
-        hb.addTableCellLink("Assets", _("Assets"), false, true);
+        hb.addTableCellLink("Assets:", _("Assets"), false, true);
         hb.addTableCell("", true);
         hb.addCurrencyCell(Model_Asset::instance().balance());
         hb.endTableRow();
@@ -496,56 +549,16 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    htmlWindow_ = new mmHtmlWindow(this,
-        wxID_ANY,
-        wxDefaultPosition, wxDefaultSize,
-        wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
-    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 0);
+    htmlWindow_ = wxWebView::New(this, wxID_ANY);
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
+    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW | wxALL, 0);
 }
 
-void mmHomePagePanel::sortTable()
+void mmHomePagePanel::PrintPage()
 {
+    htmlWindow_->Print();
 }
-
-void mmHtmlWindow::OnLinkClicked(const wxHtmlLinkInfo& link)
-{
-    mmGUIFrame* frame = wxGetApp().m_frame;
-    wxString href = link.GetHref();
-    wxString number;
-    bool isAcct = href.StartsWith("ACCT:", &number);
-    bool isStock = href.StartsWith("STOCK:", &number);
-    if (href == "billsdeposits")
-    {
-        frame->setNavTreeSection(_("Repeating Transactions"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (href == "Assets")
-    {
-        frame->setNavTreeSection(_("Assets"));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (isAcct)
-    {
-        long id = -1;
-        number.ToLong(&id);
-        frame->setGotoAccountID(id);
-        Model_Account::Data* account = Model_Account::instance().get(id);
-        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-    else if (isStock)
-    {
-        long id = -1;
-        number.ToLong(&id);
-        frame->setGotoAccountID(id);
-        Model_Account::Data* account = Model_Account::instance().get(id);
-        frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-        frame->GetEventHandler()->AddPendingEvent(evt);
-    }
-}
-
-//----------------------------------------------------------------------------

@@ -28,53 +28,37 @@ class mmGUIFrame;
 class mmHTMLBuilder;
 class mmDateRange;
 
-class mmHtmlWindow: public wxHtmlWindow
-{
-    DECLARE_NO_COPY_CLASS(mmHtmlWindow)
-    DECLARE_EVENT_TABLE()
-
-public:
-    mmHtmlWindow(wxWindow *parent,
-                 const wxWindowID id, const wxPoint& pos,
-                 const wxSize& size, long style)
-        : wxHtmlWindow(parent, id, pos, size, style)
-    {}
-
-public:
-    void OnLinkClicked(const wxHtmlLinkInfo& link);
-
-};
-
 class mmHomePagePanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHomePagePanel( wxWindow *parent,
-                     wxWindowID winid = wxID_ANY,
-                     const wxPoint& pos = wxDefaultPosition,
-                     const wxSize& size = wxDefaultSize,
-                     long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                     const wxString& name = wxPanelNameStr );
+    mmHomePagePanel(wxWindow *parent,
+        wxWindowID winid = wxID_ANY,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
 
-    bool Create( wxWindow *parent, wxWindowID winid,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr);
+    bool Create(wxWindow *parent, wxWindowID winid,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
 
     ~mmHomePagePanel();
 
     wxString GetHomePageText() const;
 
     wxString BuildPage() const { return GetHomePageText(); }
+    void PrintPage();
 
 private:
     mmGUIFrame* frame_;
-    mmHtmlWindow* htmlWindow_;
+    wxWebView* htmlWindow_;
     mmDateRange* date_range_;
     void CreateControls();
-    void sortTable();
+    void sortTable() {}
     void createFrames();
     wxString prepareTemplate(const wxString& left, const wxString& right);
     wxString m_templateText;

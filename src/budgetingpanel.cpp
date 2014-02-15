@@ -163,12 +163,12 @@ void mmBudgetingPanel::OnMouseLeftDown( wxMouseEvent& event )
     event.Skip();
 }
 
-void mmBudgetingPanel::UpdateBudgetHeading()
+wxString mmBudgetingPanel::GetPanelTitle() const
 {
     wxString yearStr = Model_Budgetyear::instance().Get(budgetYearID_);
     if ((yearStr.length() < 5))
     {
-        if (wxGetApp().m_frame->budgetFinancialYears() )
+        if (wxGetApp().m_frame->budgetFinancialYears())
         {
             long year;
             yearStr.ToLong(&year);
@@ -184,7 +184,12 @@ void mmBudgetingPanel::UpdateBudgetHeading()
     {
         yearStr = wxString::Format(_("Month: %s"), yearStr);
     }
-    budgetReportHeading_->SetLabel(wxString::Format(_("Budget Setup for %s"), yearStr));
+    return wxString::Format(_("Budget Setup for %s"), yearStr);
+}
+
+void mmBudgetingPanel::UpdateBudgetHeading()
+{
+    budgetReportHeading_->SetLabel(GetPanelTitle());
 
     wxStaticText* header = (wxStaticText*)FindWindow(ID_PANEL_CHECKING_STATIC_PANELVIEW);
     header->SetLabel(wxGetTranslation(currentView_));

@@ -95,7 +95,7 @@ public:
 
     void RefreshList();
 
-    wxString BuildPage() const { return listCtrlBudget_->BuildPage(); }
+    wxString BuildPage() const { return listCtrlBudget_->BuildPage(GetPanelTitle()); }
 
 private:
     std::vector<std::pair<int, int> > budget_;
@@ -127,6 +127,7 @@ private:
     bool DisplayEntryAllowed(int categoryID, int subcategoryID);
     void UpdateBudgetHeading();
     double getEstimate(int category, int subcategory) const;
+    wxString GetPanelTitle() const;
 
     /* Event handlers for Buttons */
     void OnViewPopupSelected(wxCommandEvent& event);

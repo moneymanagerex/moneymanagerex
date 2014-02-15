@@ -78,7 +78,7 @@ public:
     Model_Asset::TYPE m_filter_type;
     int col_max() { return COL_MAX; }
 
-    wxString BuildPage() const { return m_listCtrlAssets->BuildPage(); }
+    wxString BuildPage() const { return m_listCtrlAssets->BuildPage(_("Assets")); }
 
 private:
     void enableEditDeleteButtons(bool enable);

@@ -61,6 +61,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
         hb.addCurrencyCell(i.second);
         hb.endTableRow();
     }
+    hb.endTable();
 
     return hb.getHTMLinTableWraper(true);
 }

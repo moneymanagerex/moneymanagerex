@@ -160,9 +160,7 @@ EVT_MENU(MENU_REPORTISSUES, mmGUIFrame::OnReportIssues)
 EVT_MENU(MENU_ANNOUNCEMENTMAILING, mmGUIFrame::OnBeNotified)
 EVT_MENU(MENU_FACEBOOK, mmGUIFrame::OnFacebook)
 EVT_MENU(wxID_ABOUT, mmGUIFrame::OnAbout)
-EVT_MENU(wxID_PAGE_SETUP, mmGUIFrame::OnPrintPageSetup)
-EVT_MENU(MENU_PRINT_REPORT, mmGUIFrame::OnPrintPageReport)
-EVT_MENU(MENU_PRINT_PREVIEW_REPORT, mmGUIFrame::OnPrintPagePreview)
+EVT_MENU(wxID_PRINT, mmGUIFrame::OnPrintPage)
 EVT_MENU(MENU_SHOW_APPSTART, mmGUIFrame::OnShowAppStartDialog)
 EVT_MENU(MENU_EXPORT_HTML, mmGUIFrame::OnExportToHtml)
 EVT_MENU(MENU_BILLSDEPOSITS, mmGUIFrame::OnBillsDeposits)
@@ -256,11 +254,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title
     m_mgr.SetManagedWindow(this);
     SetIcon(mmex::getProgramIcon());
     SetMinSize(wxSize(480, 275));
-
-    /* Setup Printer */
-    printer_.reset(new wxHtmlEasyPrinting(mmex::getProgramName(), this));
-    printer_->SetFooter("<center>@PAGENUM@/@PAGESCNT@</center>", wxPAGE_ALL);
-    restorePrinterValues();
 
     // decide if we need to show app start dialog
     bool from_scratch = false;
@@ -385,7 +378,6 @@ wxLogDebug("~mmGUIFrame()");
 void mmGUIFrame::cleanup()
 {
 	autoRepeatTransactionsTimer_.Stop();
-    printer_.reset();
     delete recentFiles_;
     if (!fileName_.IsEmpty()) // Exiting before file is opened
         saveSettings();
@@ -656,7 +648,6 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_CONVERT_ENC_DB)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
-    menuBar_->FindItem(wxID_PREVIEW)->Enable(enable);
     menuBar_->FindItem(wxID_PRINT)->Enable(enable);
     menuBar_->FindItem(wxID_PREFERENCES)->Enable(enable);
     if (mmIniOptions::instance().enableRepeatingTransactions_)
@@ -678,7 +669,6 @@ void mmGUIFrame::menuEnableItems(bool enable)
 
 void mmGUIFrame::menuPrintingEnable(bool enable)
 {
-    menuBar_->FindItem(wxID_PREVIEW)->Enable(enable);
     menuBar_->FindItem(wxID_PRINT)->Enable(enable);
     menuBar_->FindItem(MENU_EXPORT_HTML)->Enable(enable);
 }
@@ -1548,10 +1538,11 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
             helpFileIndex_ = mmex::HTML_INVESTMENT;
         else if (data == "item@Budgeting")
             helpFileIndex_ = mmex::HTML_BUDGET;
+        else
+            helpFileIndex_ = -1;
         if (helpFileIndex_ > -1)
         {
             createHelpPage();
-            helpFileIndex_ = -1;
             return;
         }
 
@@ -1901,23 +1892,9 @@ void mmGUIFrame::createMenu()
 
     menu_file->AppendSeparator();
 
-    wxMenuItem* menuItemPrintSetup = new wxMenuItem(menu_file, wxID_PAGE_SETUP,
-        _("Page Set&up..."), _("Setup page printing options"));
-    menuItemPrintSetup->SetBitmap(toolBarBitmaps[7]);
-    menu_file->Append(menuItemPrintSetup);
-
-    wxMenu* printPreviewMenu = new wxMenu;
-    printPreviewMenu->Append(MENU_PRINT_PREVIEW_REPORT,
-        _("Current &View"), _("Preview current report"));
-
-    menu_file->Append(wxID_PREVIEW, _("Print Pre&view..."), printPreviewMenu);
-
-    wxMenu* printMenu = new wxMenu;
-    wxMenuItem* menuItemPrintView = new wxMenuItem(printMenu, MENU_PRINT_REPORT,
-        _("Current &View"), _("Print current report"));
-    printMenu->Append(menuItemPrintView);
-
-    menu_file->Append(wxID_PRINT, _("&Print..."), printMenu);
+    wxMenuItem* menuItemPrint = new wxMenuItem(menu_file, wxID_PRINT,
+        _("&Print..."), _("Print current view"));
+    menu_file->Append(menuItemPrint);
 
     menu_file->AppendSeparator();
 
@@ -2935,85 +2912,11 @@ void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::restorePrinterValues()
+void mmGUIFrame::OnPrintPage(wxCommandEvent& WXUNUSED(event))
 {
-    // Startup Default Settings
-    int leftMargin = Model_Setting::instance().GetIntSetting("PRINTER_LEFT_MARGIN", 20);
-    int rightMargin = Model_Setting::instance().GetIntSetting("PRINTER_RIGHT_MARGIN", 10);
-    int topMargin = Model_Setting::instance().GetIntSetting("PRINTER_TOP_MARGIN", 10);
-    int bottomMargin = Model_Setting::instance().GetIntSetting("PRINTER_BOTTOM_MARGIN", 10);
-    int pageOrientation = Model_Setting::instance().GetIntSetting("PRINTER_PAGE_ORIENTATION", wxPORTRAIT);
-    int paperID = Model_Setting::instance().GetIntSetting("PRINTER_PAGE_ID", wxPAPER_A4);
-
-    wxPoint topLeft(leftMargin, topMargin);
-    wxPoint bottomRight(rightMargin, bottomMargin);
-
-    wxPageSetupDialogData* pinterData = printer_->GetPageSetupData();
-    pinterData->SetMarginTopLeft(topLeft);
-    pinterData->SetMarginBottomRight(bottomRight);
-
-    wxPrintData* printerData = printer_->GetPrintData();
-    printerData->SetOrientation((wxPrintOrientation) pageOrientation);
-
-    printerData->SetPaperId((wxPaperSize) paperID);
+    panelCurrent_->PrintPage();
 }
 
-void mmGUIFrame::OnPrintPageSetup(wxCommandEvent& WXUNUSED(event))
-{
-    if (printer_)
-    {
-        printer_->PageSetup();
-
-        wxPageSetupDialogData* printerDialogData = printer_->GetPageSetupData();
-        wxPoint topLeft = printerDialogData->GetMarginTopLeft();
-        wxPoint bottomRight = printerDialogData->GetMarginBottomRight();
-
-        wxPrintData* printerData = printer_->GetPrintData();
-        int pageOrientation = printerData->GetOrientation();
-        wxPaperSize paperID = printerData->GetPaperId();
-
-        Model_Setting::instance().Set("PRINTER_LEFT_MARGIN", topLeft.x);
-        Model_Setting::instance().Set("PRINTER_RIGHT_MARGIN", bottomRight.x);
-        Model_Setting::instance().Set("PRINTER_TOP_MARGIN", topLeft.y);
-        Model_Setting::instance().Set("PRINTER_BOTTOM_MARGIN", bottomRight.y);
-        Model_Setting::instance().Set("PRINTER_PAGE_ORIENTATION", pageOrientation);
-        Model_Setting::instance().Set("PRINTER_PAGE_ID", paperID);
-    }
-}
-
-//----------------------------------------------------------------------------
-
-void mmGUIFrame::OnPrintPage(bool preview)
-{
-    if (!printer_) return;
-
-    mmHelpPanel* help_page = dynamic_cast<mmHelpPanel*>(panelCurrent_);
-    if (help_page)
-    {
-        if (preview)
-            printer_->PreviewFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
-        else
-            printer_->PrintFile(mmex::getPathDoc((mmex::EDocFile)helpFileIndex_));
-    }
-    else
-    {
-        wxString htmlText = panelCurrent_->BuildPage();
-        if (preview)
-            printer_->PreviewText(htmlText);
-        else
-            printer_->PrintText(htmlText);
-    }
-}
-
-void mmGUIFrame::OnPrintPageReport(wxCommandEvent& WXUNUSED(event))
-{
-    this->OnPrintPage(false);
-}
-
-void mmGUIFrame::OnPrintPagePreview(wxCommandEvent& WXUNUSED(event))
-{
-    this->OnPrintPage(true);
-}
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::showBeginAppDialog(bool fromScratch)
@@ -3052,19 +2955,15 @@ void mmGUIFrame::OnShowAppStartDialog(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
 {
-    mmReportsPanel* report_panel = dynamic_cast<mmReportsPanel*>(panelCurrent_);
-    if (report_panel)
+    wxString fileName = wxFileSelector(_("Choose HTML file to Export"),
+        wxEmptyString, wxEmptyString, wxEmptyString, "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+    if (!fileName.empty())
     {
-        wxString fileName = wxFileSelector(_("Choose HTML file to Export"),
-            wxEmptyString, wxEmptyString, wxEmptyString, "*.html", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-        if (!fileName.empty())
-        {
-            correctEmptyFileExt("html", fileName);
-            wxFileOutputStream output(fileName);
-            wxTextOutputStream text(output);
-            text << report_panel->getReportText();
-            output.Close();
-        }
+        correctEmptyFileExt("html", fileName);
+        wxFileOutputStream output(fileName);
+        wxTextOutputStream text(output);
+        text << panelCurrent_->BuildPage();
+        output.Close();
     }
 }
 //----------------------------------------------------------------------------

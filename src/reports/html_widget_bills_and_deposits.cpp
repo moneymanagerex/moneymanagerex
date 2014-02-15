@@ -93,7 +93,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         wxString colorStr;
 
         hb.startTable("100%");
-        hb.addTableHeaderRowLink("billsdeposits", title_, 3);
+        hb.addTableHeaderRowLink("billsdeposits:", title_, 3);
 
         for (const auto& item : bd_days)
         {

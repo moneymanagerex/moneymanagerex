@@ -22,8 +22,6 @@
 #include "mmpanelbase.h"
 #include "reports/reportbase.h"
 
-class wxWebView;
-
 class mmReportsPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
@@ -46,16 +44,17 @@ public:
                  const wxString& name = wxPanelNameStr);
 
     void CreateControls();
-    void sortTable();
+    void sortTable() {}
 
     wxString getReportText();
     wxString BuildPage() const { return htmlreport_; }
+    void PrintPage();
 
 protected:
     wxWebView * htmlWindow_;
     mmPrintableBase* rb_;
 
-    friend class WebViewHandlerStatic;
+    friend class WebViewHandlerReportsPage;
 
 private:
     bool cleanup_;

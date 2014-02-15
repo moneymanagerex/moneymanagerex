@@ -21,6 +21,8 @@
 #include "util.h"
 #include "reports/mmgraphgenerator.h"
 #include <wx/listctrl.h>
+#include <wx/webview.h>
+#include <wx/webviewfshandler.h>
 //----------------------------------------------------------------------------
 
 class wxSQLite3Database;
@@ -53,9 +55,14 @@ public:
     {
         return (row % 2) ? attr2_ : attr1_;
     }
-    wxString BuildPage() const
+    wxString BuildPage(const wxString &title) const
     {
         wxString text;
+        text << "<html>" << wxTextFile::GetEOL();
+        text << "<head>" << wxTextFile::GetEOL();
+        text << "<title>" << title << "</title>" << wxTextFile::GetEOL();
+        text << "</head>" << wxTextFile::GetEOL();
+        text << "<body>" << wxTextFile::GetEOL();
         text << "<table ";
         if ((GetWindowStyle() & wxLC_HRULES) ||
           (GetWindowStyle() & wxLC_VRULES))
@@ -84,6 +91,8 @@ public:
             text << "</tr>" << wxTextFile::GetEOL();
         }
         text << "</table>" << wxTextFile::GetEOL();
+        text << "</body>" << wxTextFile::GetEOL();
+        text << "</html>" << wxTextFile::GetEOL();
 
         return text;
     }
@@ -97,6 +106,13 @@ public:
 
 public:
     virtual wxString BuildPage() const { return "TBD"; }
+    virtual void PrintPage()
+    {
+        wxWebView * htmlWindow = wxWebView::New(this, wxID_ANY);
+        htmlWindow->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+        htmlWindow->SetPage(BuildPage(), "");
+        htmlWindow->Print();
+    }
     void windowsFreezeThaw()
     {
 #ifdef __WXGTK__

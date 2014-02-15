@@ -23,7 +23,6 @@
 #include "mmsinglechoicedialog.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
-#include "model/Model_Account.h"
 
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow_red.xpm"
@@ -508,6 +507,17 @@ int StocksListCtrl::initVirtualListControl(int id, int col, bool asc)
     return selected_item;
 }
 
+wxString mmStocksPanel::GetPanelTitle(const Model_Account::Data& account) const
+{
+    return wxString::Format(_("Stock Investments: %s"), account.ACCOUNTNAME);
+}
+
+wxString mmStocksPanel::BuildPage() const
+{ 
+    const Model_Account::Data* account = Model_Account::instance().get(accountID_);
+    return listCtrlAccount_->BuildPage((account ? GetPanelTitle(*account) : ""));
+}
+
 void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(accountID_);
@@ -518,7 +528,7 @@ void mmStocksPanel::updateHeader()
     std::pair<double, double> investment_balance;
     if (account)
     {
-        header_text_->SetLabel(wxString::Format(_("Stock Investments: %s"), account->ACCOUNTNAME));
+        header_text_->SetLabel(GetPanelTitle(*account));
         //Get Init Value of the account
         initVal = account->INITIALBAL;
         investment_balance = Model_Account::investment_balance(account);

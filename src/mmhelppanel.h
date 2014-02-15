@@ -21,7 +21,6 @@
 #define _MM_EX_HELPPANEL_H_
 
 #include "mmpanelbase.h"
-#include <wx/webview.h>
 
 class wxHtmlWindow;
 
@@ -38,6 +37,7 @@ public:
                  const wxString& name = wxPanelNameStr );
 
     wxString BuildPage() const { return ""; }
+    void PrintPage();
 
 private:
     wxWebView* htmlWindow_;

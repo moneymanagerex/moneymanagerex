@@ -25,19 +25,17 @@
 #include "webserver.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
-#include <wx/webview.h>
-#include <wx/webviewfshandler.h>
 
-class WebViewHandlerStatic : public wxWebViewHandler
+class WebViewHandlerReportsPage : public wxWebViewHandler
 {
 public:
-    WebViewHandlerStatic(mmReportsPanel *panel, const wxString& protocol)
+    WebViewHandlerReportsPage(mmReportsPanel *panel, const wxString& protocol)
         : wxWebViewHandler(protocol)
     {
         m_reportPanel = panel;
     }
 
-    virtual ~WebViewHandlerStatic()
+    virtual ~WebViewHandlerReportsPage()
     {
     }
 
@@ -159,14 +157,15 @@ void mmReportsPanel::CreateControls()
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "Assets")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "ACCT")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "TRXID")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic(this, "SORT")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "Assets")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "ACCT")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
 
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
 
-void mmReportsPanel::sortTable()
+void mmReportsPanel::PrintPage()
 {
+    htmlWindow_->Print();
 }
