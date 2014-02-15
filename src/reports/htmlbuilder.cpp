@@ -33,7 +33,7 @@ mmHTMLBuilder::mmHTMLBuilder()
     color_.link = "#0000cc";
     color_.vlink = "#551a8b";
     color_.alink = "#ff0000";
-    color_.table_header = "#d5d6de";
+    color_.table_header = "#4f81bd";
     // init font size from config
     font_size_ = mmIniOptions::instance().html_font_size_;
 
@@ -183,7 +183,7 @@ void mmHTMLBuilder::addTableHeaderRow(const wxString& value, int cols)
 {
     html_+= wxString::Format(tags::TABLE_ROW, color_.bgcolor);
     html_+= wxString::Format(tags::TABLE_HEADER, "left", color_.table_header, cols);
-    this->font_settings(font_size_);
+    this->font_settings(font_size_, "white");
     this->bold(tags::NBSP + value);
     this->font_end();
     html_+= tags::TABLE_HEADER_END;
@@ -195,7 +195,7 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
 {
     wxString align = numeric ? "right" : "left";
     html_+= wxString::Format(tags::TABLE_HEADER, align, color_.table_header, 0);
-    this->font_settings(font_size_);
+    this->font_settings(font_size_, "white");
     this->bold(value);
     this->font_end();
     html_+= tags::TABLE_HEADER_END;
@@ -307,7 +307,7 @@ wxString mmHTMLBuilder::getHTMLinTableWraper(bool indent)
             endTableRow();
             endTable();
         }
-        startTable("100%", "", "1");
+        html_ += wxString::Format(tags::TABLE_START, "#DDDDDD", "100%" ,"", "0");
         startTableRow();
         startTableCell();
         addText(html);
