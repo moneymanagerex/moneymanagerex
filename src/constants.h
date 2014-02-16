@@ -52,12 +52,6 @@ wxString getProgramDescription();
 } // namespace mmex
 
 const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
-const wxString VIEW_TRANS_RECONCILED_STR     = wxTRANSLATE("View Reconciled");
-const wxString VIEW_TRANS_NOT_RECONCILED_STR = wxTRANSLATE("View Not-Reconciled");
-const wxString VIEW_TRANS_UNRECONCILED_STR   = wxTRANSLATE("View UnReconciled");
-const wxString VIEW_TRANS_VOID               = wxTRANSLATE("View Void");
-const wxString VIEW_TRANS_FLAGGED            = wxTRANSLATE("View Flagged");
-const wxString VIEW_TRANS_DUPLICATES         = wxTRANSLATE("View Duplicates");
 const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
 const wxString VIEW_TRANS_CURRENT_MONTH_STR  = wxTRANSLATE("View Current Month");
 const wxString VIEW_TRANS_LAST_30_DAYS_STR   = wxTRANSLATE("View Last 30 days");
@@ -80,30 +74,6 @@ const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";
 const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY = "BUDGET_SETUP_WITHOUT_SUMMARY";
 const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG = "BUDGET_SUMMARY_WITHOUT_CATEGORIES";
 const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS   = "IGNORE_FUTURE_TRANSACTIONS";
-
-static const wxString MONTHS[12] =
-{
-    wxTRANSLATE("January"), wxTRANSLATE("February"), wxTRANSLATE("March")
-    , wxTRANSLATE("April"), wxTRANSLATE("May "), wxTRANSLATE("June")
-    , wxTRANSLATE("July"), wxTRANSLATE("August"), wxTRANSLATE("September")
-    , wxTRANSLATE("October"), wxTRANSLATE("November"), wxTRANSLATE("December")
-};
-
-static const wxString MONTHS_SHORT[12] =
-{
-    wxTRANSLATE("Jan"), wxTRANSLATE("Feb"), wxTRANSLATE("Mar")
-    , wxTRANSLATE("Apr"), wxTRANSLATE("May"), wxTRANSLATE("Jun")
-    , wxTRANSLATE("Jul"), wxTRANSLATE("Aug"), wxTRANSLATE("Sep")
-    , wxTRANSLATE("Oct"), wxTRANSLATE("Nov"), wxTRANSLATE("Dec")
-};
-
-static const wxString gDaysInWeek[7] =
-{
-    wxTRANSLATE("Sunday"), wxTRANSLATE("Monday"), wxTRANSLATE("Tuesday")
-    , wxTRANSLATE("Wednesday"), wxTRANSLATE("Thursday"), wxTRANSLATE("Friday")
-    , wxTRANSLATE("Saturday")
-};
-
 
 #endif // _MM_EX_CONSTANTS_H_
 //----------------------------------------------------------------------------
