@@ -23,8 +23,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class wxString;
 
-static const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-static const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
+extern const wxSizerFlags g_flags;
+extern const wxSizerFlags g_flagsExpand;
 
 namespace mmex
 {
@@ -39,41 +39,41 @@ extern const wxString DEFSTOCKURL;
         Uses for titles, reports, etc.
         Do not use mmex::GetAppName() for such things.
 */
-wxString getProgramName();
-wxString getTitleProgramVersion();
-wxString getProgramVersion();
-wxString getProgramCopyright();
-wxString getProgramWebSite();
-wxString getProgramForum();
-wxString getProgramDanateSite();
-wxString getProgramTwitterSite();
-wxString getProgramFacebookSite();
-wxString getProgramDescription();
+const wxString getProgramName();
+const wxString getTitleProgramVersion();
+const wxString getProgramVersion();
+const wxString getProgramCopyright();
+const wxString getProgramWebSite();
+const wxString getProgramForum();
+const wxString getProgramDanateSite();
+const wxString getProgramTwitterSite();
+const wxString getProgramFacebookSite();
+const wxString getProgramDescription();
 } // namespace mmex
 
-const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
-const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
-const wxString VIEW_TRANS_CURRENT_MONTH_STR  = wxTRANSLATE("View Current Month");
-const wxString VIEW_TRANS_LAST_30_DAYS_STR   = wxTRANSLATE("View Last 30 days");
-const wxString VIEW_TRANS_LAST_90_DAYS_STR   = wxTRANSLATE("View Last 90 days");
-const wxString VIEW_TRANS_LAST_MONTH_STR     = wxTRANSLATE("View Last Month");
-const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months");
-const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
-const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
+extern const wxString VIEW_TRANS_ALL_STR;            
+extern const wxString VIEW_TRANS_TODAY_STR;          
+extern const wxString VIEW_TRANS_CURRENT_MONTH_STR;  
+extern const wxString VIEW_TRANS_LAST_30_DAYS_STR;   
+extern const wxString VIEW_TRANS_LAST_90_DAYS_STR;   
+extern const wxString VIEW_TRANS_LAST_MONTH_STR;     
+extern const wxString VIEW_TRANS_LAST_3MONTHS_STR;   
+extern const wxString VIEW_TRANS_LAST_12MONTHS_STR;  
+extern const wxString VIEW_TRANS_CURRENT_YEAR_STR;   
 
-const wxString  VIEW_ACCOUNTS_ALL_STR       = "ALL";
-const wxString  VIEW_ACCOUNTS_OPEN_STR      = "Open";
-const wxString  VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
+extern const wxString  VIEW_ACCOUNTS_ALL_STR;       
+extern const wxString  VIEW_ACCOUNTS_OPEN_STR;      
+extern const wxString  VIEW_ACCOUNTS_FAVORITES_STR; 
 
-const wxString LANGUAGE_PARAMETER = "LANGUAGE";
-const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
-const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
+extern const wxString LANGUAGE_PARAMETER;
+extern const wxString INIDB_USE_TRANSACTION_SOUND;
+extern const wxString INIDB_USE_ORG_DATE_COPYPASTE;
 
-const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
-const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";
-const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY = "BUDGET_SETUP_WITHOUT_SUMMARY";
-const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG = "BUDGET_SUMMARY_WITHOUT_CATEGORIES";
-const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS   = "IGNORE_FUTURE_TRANSACTIONS";
+extern const wxString INIDB_BUDGET_FINANCIAL_YEARS;
+extern const wxString INIDB_BUDGET_INCLUDE_TRANSFERS;
+extern const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY;
+extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
+extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 
 #endif // _MM_EX_CONSTANTS_H_
 //----------------------------------------------------------------------------

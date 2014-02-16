@@ -41,8 +41,11 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  but will appear on the revision heading of the build.
  *************************************************************************/
 //#define _MM_EX_BUILD_TYPE_RELEASE
-
 const wxString MMEX_REVISION_ID = "$Rev$";
+
+const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
+const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
+
 //---------------------------------------------------------------------------
 const int mmex::MIN_DATAVERSION = 2;
 const wxString mmex::DATAVERSION = "2";
@@ -65,18 +68,15 @@ const wxString mmex::DEFSTOCKURL = "http://finance.yahoo.com/echarts?s=%s";
 
 //----------------------------------------------------------------------------
 
-wxString mmex::getProgramName()
+const wxString mmex::getProgramName()
 {
     return wxString("MoneyManagerEx");
 }
-//----------------------------------------------------------------------------
-
-wxString mmex::getTitleProgramVersion()
+const wxString mmex::getTitleProgramVersion()
 {
     return _("Version: ") + mmex::getProgramVersion();
 }
-
-wxString mmex::getProgramVersion()
+const wxString mmex::getProgramVersion()
 {
     wxString revision(MMEX_REVISION_ID);
     revision.Replace("$", wxEmptyString);
@@ -91,34 +91,31 @@ wxString mmex::getProgramVersion()
     revision.Trim();
     return wxString::Format("1.0.1.0  %s", revision);
 }
-//----------------------------------------------------------------------------
-wxString mmex::getProgramCopyright()
+const wxString mmex::getProgramCopyright()
 {
     return "(c) 2005-2013 Madhan Kanagavel";
 }
-
-wxString mmex::getProgramWebSite()
+const wxString mmex::getProgramWebSite()
 {
     return "http://www.codelathe.com/mmex";
 }
-wxString mmex::getProgramForum()
+const wxString mmex::getProgramForum()
 {
     return "http://www.codelathe.com/forum";
 }
-wxString mmex::getProgramFacebookSite()
+const wxString mmex::getProgramFacebookSite()
 {
     return "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
 }
-wxString mmex::getProgramDanateSite()
+const wxString mmex::getProgramDanateSite()
 {
     return "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Money+Manager+Ex&cmd=_donations&business=moneymanagerex%40gmail.com";
 }
-wxString mmex::getProgramTwitterSite()
+const wxString mmex::getProgramTwitterSite()
 {
     return "https://twitter.com/MoneyManagerEx";
 }
-
-wxString mmex::getProgramDescription()
+const wxString mmex::getProgramDescription()
 {
     wxString description;
     description << _("MMEX is using the following support products") << ":\n"
@@ -137,3 +134,27 @@ wxString mmex::getProgramDescription()
 
     return description;
 }
+
+const wxString LANGUAGE_PARAMETER = "LANGUAGE";
+const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";
+const wxString INIDB_USE_ORG_DATE_COPYPASTE = "USEORIGDATEONCOPYPASTE";
+
+const wxString VIEW_TRANS_ALL_STR            = wxTRANSLATE("View All Transactions");
+const wxString VIEW_TRANS_TODAY_STR          = wxTRANSLATE("View Today");
+const wxString VIEW_TRANS_CURRENT_MONTH_STR  = wxTRANSLATE("View Current Month");
+const wxString VIEW_TRANS_LAST_30_DAYS_STR   = wxTRANSLATE("View Last 30 days");
+const wxString VIEW_TRANS_LAST_90_DAYS_STR   = wxTRANSLATE("View Last 90 days");
+const wxString VIEW_TRANS_LAST_MONTH_STR     = wxTRANSLATE("View Last Month");
+const wxString VIEW_TRANS_LAST_3MONTHS_STR   = wxTRANSLATE("View Last 3 Months");
+const wxString VIEW_TRANS_LAST_12MONTHS_STR  = wxTRANSLATE("View Last 12 Months");
+const wxString VIEW_TRANS_CURRENT_YEAR_STR   = wxTRANSLATE("View Current Year");
+
+const wxString  VIEW_ACCOUNTS_ALL_STR       = "ALL";
+const wxString  VIEW_ACCOUNTS_OPEN_STR      = "Open";
+const wxString  VIEW_ACCOUNTS_FAVORITES_STR = "Favorites";
+
+const wxString INIDB_BUDGET_FINANCIAL_YEARS       = "BUDGET_FINANCIAL_YEARS";
+const wxString INIDB_BUDGET_INCLUDE_TRANSFERS     = "BUDGET_INCLUDE_TRANSFERS";
+const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY = "BUDGET_SETUP_WITHOUT_SUMMARY";
+const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG = "BUDGET_SUMMARY_WITHOUT_CATEGORIES";
+const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS   = "IGNORE_FUTURE_TRANSACTIONS";
