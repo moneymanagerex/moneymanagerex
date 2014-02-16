@@ -51,6 +51,7 @@ public:
     bool getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData);
     wxString getTemplate(const wxString& sql);
     bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);
+    void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
 };
 
 #endif // 

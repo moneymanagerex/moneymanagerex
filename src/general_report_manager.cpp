@@ -43,9 +43,9 @@ BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
     EVT_BUTTON(wxID_CLOSE, mmGeneralReportManager::OnClose)
     EVT_BUTTON(ID_TEST, mmGeneralReportManager::OnSqlTest)
     EVT_BUTTON(wxID_NEW, mmGeneralReportManager::OnNewTemplate)
-    //EVT_TREE_END_LABEL_EDIT(wxID_ANY, mmGeneralReportManager::OnLabelChanged)
-    EVT_TREE_SEL_CHANGED(wxID_ANY, mmGeneralReportManager::OnSelChanged)
-    EVT_TREE_ITEM_MENU(wxID_ANY, mmGeneralReportManager::OnItemRightClick)
+    //EVT_TREE_END_LABEL_EDIT(ID_REPORT_LIST, mmGeneralReportManager::OnLabelChanged)
+    EVT_TREE_SEL_CHANGED(ID_REPORT_LIST, mmGeneralReportManager::OnSelChanged)
+    EVT_TREE_ITEM_MENU(ID_REPORT_LIST, mmGeneralReportManager::OnItemRightClick)
     EVT_MENU(wxID_ANY, mmGeneralReportManager::OnMenuSelected)
 END_EVENT_TABLE()
 
@@ -163,7 +163,7 @@ void mmGeneralReportManager::CreateControls()
 #if defined (__WXWIN__)
     treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
-    m_treeCtrl = new wxTreeCtrl(this, wxID_ANY
+    m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
     headingPanelSizerH2->Add(flex_sizer, g_flags);
@@ -249,10 +249,19 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
     MinimalEditor* templateText = new MinimalEditor(panel, type);
 
-    sizer->Add(templateText, g_flagsExpand);
-
     if (type == ID_SQL_CONTENT)
     {
+        wxBoxSizer *box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
+        box_sizer3->Add(templateText, g_flagsExpand);
+        long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
+#if defined (__WXWIN__)
+        treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
+#endif
+        wxTreeCtrl *dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
+            , wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
+        box_sizer3->Add(dbView);
+        sizer->Add(box_sizer3, g_flagsExpand);
+
         wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer *box_sizer2 = new wxBoxSizer(wxHORIZONTAL);
         wxButton* buttonPlay = new wxButton(panel, ID_TEST, _("&Test"));
@@ -269,7 +278,21 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         box_sizer1->Add(box_sizer2, wxSizerFlags(g_flagsExpand).Proportion(0));
         box_sizer1->Add(m_sqlListBox, g_flagsExpand);
         sizer->Add(box_sizer1, wxSizerFlags(g_flagsExpand).Border(0));
+
+        // Populate database view
+        std::vector<std::pair<wxString, wxArrayString>> sqlTableInfo;
+        Model_Report::instance().getSqlTableInfo(sqlTableInfo);
+        wxTreeItemId root_id = dbView->AddRoot("Tables");
+        for (const auto& t : sqlTableInfo)
+        {
+            wxTreeItemId id = dbView->AppendItem(root_id, t.first);
+            for (const auto& c : t.second)
+                dbView->AppendItem(id, c);
+        }
+        dbView->Expand(root_id);
     }
+    else
+        sizer->Add(templateText, g_flagsExpand);
 
     panel->SetSizerAndFit(sizer);
 }

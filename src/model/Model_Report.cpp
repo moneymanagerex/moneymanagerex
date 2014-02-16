@@ -317,3 +317,31 @@ bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <
     }
     return true;
 }
+
+void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo)
+{
+    const wxString sqlTables = "SELECT name FROM sqlite_master WHERE type = \"table\" ORDER BY name;";
+    const wxString sqlColumns = "PRAGMA table_info(%s);";
+    sqlTableInfo.clear();
+
+    // Get a list of the database tables
+    wxSQLite3Statement stmtTables = this->db_->PrepareStatement(sqlTables);
+    wxSQLite3ResultSet qTables = stmtTables.ExecuteQuery();
+    while (qTables.NextRow())
+    {
+        const wxString table_name = qTables.GetAsString(0);
+
+        // Get a list of the table columns
+        wxString sql = wxString::Format(sqlColumns, table_name);
+        wxSQLite3Statement stmtColumns = this->db_->PrepareStatement(sql);
+        wxSQLite3ResultSet qColumns = stmtColumns.ExecuteQuery();
+        wxArrayString column_names;
+        while (qColumns.NextRow())
+            column_names.push_back(qColumns.GetAsString(1));
+
+        std::pair<wxString, wxArrayString> table_columns;
+        table_columns.first = table_name;
+        table_columns.second = column_names;
+        sqlTableInfo.push_back(table_columns);
+    }
+}
