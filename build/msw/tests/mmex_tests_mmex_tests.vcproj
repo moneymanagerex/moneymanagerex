@@ -733,18 +733,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\reports\summary.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\reports\summaryassets.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\reports\summarystocks.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\tests\test_about_dialog.cpp"
 				>
 			</File>
@@ -1264,18 +1252,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\stockspanel.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\reports\summary.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\reports\summaryassets.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\reports\summarystocks.h"
 				>
 			</File>
 			<File

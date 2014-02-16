@@ -56,9 +56,6 @@
 #include "reports/incexpenses.h"
 #include "reports/htmlbuilder.h"
 #include "reports/payee.h"
-#include "reports/summary.h"
-#include "reports/summaryassets.h"
-#include "reports/summarystocks.h"
 #include "reports/transactions.h"
 #include "import_export/qif_export.h"
 #include "import_export/qif_import.h"
@@ -758,23 +755,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), 4, 4);
     navTreeCtrl_->SetItemBold(reports, true);
     navTreeCtrl_->SetItemData(reports, new mmTreeItemData("Reports"));
-
-    /* ================================================================================================= */
-
-    wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Summary of Accounts"), 4, 4);
-    navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Summary of Accounts"
-        , new mmReportSummary()));
-
-    wxTreeItemId reportsStocks = navTreeCtrl_->AppendItem(reportsSummary, _("Stocks"), 4, 4);
-    navTreeCtrl_->SetItemData(reportsStocks, new mmTreeItemData("Summary of Stocks"
-        , new mmReportSummaryStocks()));
-
-    if (mmIniOptions::instance().enableAssets_)
-    {
-        wxTreeItemId reportsAssets = navTreeCtrl_->AppendItem(reportsSummary, _("Assets"), 4, 4);
-        navTreeCtrl_->SetItemData(reportsAssets, new mmTreeItemData("Summary of Assets"
-            , new mmReportSummaryAssets()));
-    }
 
     /* ================================================================================================= */
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;

@@ -349,9 +349,6 @@
     <ClCompile Include="..\..\..\src\splittransactionsdialog.cpp" />
     <ClCompile Include="..\..\..\src\stockdialog.cpp" />
     <ClCompile Include="..\..\..\src\stockspanel.cpp" />
-    <ClCompile Include="..\..\..\src\reports\summary.cpp" />
-    <ClCompile Include="..\..\..\src\reports\summaryassets.cpp" />
-    <ClCompile Include="..\..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\..\src\reports\transactions.cpp" />
     <ClCompile Include="..\..\..\src\transdialog.cpp" />
     <ClCompile Include="..\..\..\src\import_export\univcsvdialog.cpp" />
@@ -468,9 +465,6 @@
     <ClInclude Include="..\..\..\src\splittransactionsdialog.h" />
     <ClInclude Include="..\..\..\src\stockdialog.h" />
     <ClInclude Include="..\..\..\src\stockspanel.h" />
-    <ClInclude Include="..\..\..\src\reports\summary.h" />
-    <ClInclude Include="..\..\..\src\reports\summaryassets.h" />
-    <ClInclude Include="..\..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\..\src\reports\transactions.h" />
     <ClInclude Include="..\..\..\src\tests\test_about_dialog.h" />
     <ClInclude Include="..\..\..\src\tests\test_assets.h" />

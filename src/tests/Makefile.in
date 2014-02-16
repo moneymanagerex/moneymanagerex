@@ -216,9 +216,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmgraphtopcategories.o \
 	mmex_tests_payee.o \
 	mmex_tests_reportbase.o \
-	mmex_tests_summary.o \
-	mmex_tests_summaryassets.o \
-	mmex_tests_summarystocks.o \
 	mmex_tests_transactions.o \
 	mmex_tests_platfdep.o \
 	mmex_tests_export.o \
@@ -756,15 +753,6 @@ mmex_tests_payee.o: $(srcdir)/../../src/reports/payee.cpp
 
 mmex_tests_reportbase.o: $(srcdir)/../../src/reports/reportbase.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/reportbase.cpp
-
-mmex_tests_summary.o: $(srcdir)/../../src/reports/summary.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/summary.cpp
-
-mmex_tests_summaryassets.o: $(srcdir)/../../src/reports/summaryassets.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/summaryassets.cpp
-
-mmex_tests_summarystocks.o: $(srcdir)/../../src/reports/summarystocks.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/summarystocks.cpp
 
 mmex_tests_transactions.o: $(srcdir)/../../src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/reports/transactions.cpp

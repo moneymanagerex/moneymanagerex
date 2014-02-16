@@ -43,23 +43,7 @@ public:
     {
         mmGUIFrame* frame = wxGetApp().m_frame;
         wxString sData;
-        if (uri.Upper().StartsWith("ASSETS", &sData))
-        {
-            frame->setNavTreeSection(_("Assets"));
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-            frame->GetEventHandler()->AddPendingEvent(evt);
-        }
-        else if (uri.Upper().StartsWith("ACCT:", &sData))
-        {
-            long id = -1;
-            sData.ToLong(&id);
-            frame->setGotoAccountID(id);
-            const Model_Account::Data* account = Model_Account::instance().get(id);
-            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-            frame->GetEventHandler()->AddPendingEvent(evt);
-        }
-        else if (uri.Upper().StartsWith("TRXID:", &sData))
+        if (uri.Upper().StartsWith("TRXID:", &sData))
         {
             long transID = -1;
             sData.ToLong(&transID);
@@ -157,8 +141,6 @@ void mmReportsPanel::CreateControls()
 
     htmlWindow_ = wxWebView::New(this, wxID_ANY);
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "Assets")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "ACCT")));
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
 

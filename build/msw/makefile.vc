@@ -174,9 +174,6 @@ MMEX_OBJECTS =  \
 	mmex_mmgraphtopcategories.obj \
 	mmex_payee.obj \
 	mmex_reportbase.obj \
-	mmex_summary.obj \
-	mmex_summaryassets.obj \
-	mmex_summarystocks.obj \
 	mmex_transactions.obj \
 	mmex_platfdep.obj \
 	mmex_export.obj \
@@ -831,15 +828,6 @@ mmex_payee.obj: ..\..\src\reports\payee.cpp
 
 mmex_reportbase.obj: ..\..\src\reports\reportbase.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\reportbase.cpp
-
-mmex_summary.obj: ..\..\src\reports\summary.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\summary.cpp
-
-mmex_summaryassets.obj: ..\..\src\reports\summaryassets.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\summaryassets.cpp
-
-mmex_summarystocks.obj: ..\..\src\reports\summarystocks.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\summarystocks.cpp
 
 mmex_transactions.obj: ..\..\src\reports\transactions.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\reports\transactions.cpp
