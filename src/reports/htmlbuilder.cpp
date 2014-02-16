@@ -23,6 +23,46 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Infotable.h"
 
+namespace tags
+{
+static const char HTML[] =
+    "<html>\n<head>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />"
+    "<title>%s - Report</title>\n"
+    "</head>\n"
+    "<body bgcolor=\"%s\" "
+    "text=\"%s\" "
+    "link=\"%s\" "
+    "vlink=\"%s\" "
+    "alink=\"%s\">\n";
+static const wxString TABLE_START = "\n<table cellspacing=\"1\" bgcolor=\"%s\" width=\"%s\" valign=\"%s\" border=\"%s\">\n";
+static const wxString TABLE_END = "</table>\n";
+static const wxString TABLE_ROW = "<tr bgcolor=\"%s\" >";
+static const wxString TABLE_ROW_END = "</tr>";
+static const wxString TABLE_CELL = "<td width=\"%s\" >";
+static const wxString TABLE_CELL_RIGHT = "<td nowrap align=\"right\">";
+static const wxString TABLE_CELL_SPAN = "<td colspan=\"%i\" >";
+static const wxString TABLE_CELL_END = "</td>\n";
+static const wxString TABLE_CELL_LINK = "<a href=\"%s\">%s</a>\n";
+static const wxString TABLE_HEADER = "<th align=\"%s\" valign=\"center\" bgcolor=\"%s\" colspan=\"%i\">";
+static const wxString TABLE_HEADER_END = "</th>\n";
+static const wxString HEADER = "<font size=\"%i\"><b>%s</b></font><br>\n";
+static const wxString HEADER_ITALIC = "<font size=\"%i\"><i>%s</i></font>\n";
+static const wxString PARAGRAPH = "<p><font size=\"%d\">%s</font></p>\n";
+static const wxString LINK = "<a href=\"%s\">%s</a>\n";
+static const wxString BI = "<b><i>%s</i></b>";
+static const wxString BOLD = "<b>%s</b>";
+static const wxString ITALIC = "<i>%s</i>";
+static const wxString FONT = "<font size=\"%i\" color=\"%s\">";
+static const wxString FONT_END = "</font>";
+static const wxString HOR_LINE = "<hr size=\"%i\">\n";
+static const wxString IMAGE = "<img src=\"%s\" border=\"0\">";
+static const wxString END = "\n</body>\n</html>\n";
+static const wxString BR = "<br>\n";
+static const wxString NBSP = "&nbsp;";
+static const wxString CENTER = "<center>";
+static const wxString CENTER_END = "</center>";
+}
+
 mmHTMLBuilder::mmHTMLBuilder()
 {
     // init colors from config
@@ -332,6 +372,94 @@ void mmHTMLBuilder::addTableRowBold(const wxString& label, double data)
     this->addTableCell(label, false, true, true);
     this->addMoneyCell(data);
     this->endTableRow();
+}
+
+void mmHTMLBuilder::end()
+{
+    html_+= tags::END;
+};
+void mmHTMLBuilder::endTable()
+{
+    html_+= tags::TABLE_END;
+};
+void mmHTMLBuilder::startTableRow()
+{
+    html_ += wxString::Format(tags::TABLE_ROW, (color_.bgswitch ? color_.color0 : color_.color1));
+}
+void mmHTMLBuilder::startTableRow(const wxString& custom_color)
+{
+    html_ += wxString::Format(tags::TABLE_ROW, custom_color);
+}
+void mmHTMLBuilder::endTableRow()
+{
+    html_+= tags::TABLE_ROW_END;
+    color_.bgswitch = !color_.bgswitch;
+}
+
+void mmHTMLBuilder::addParaText(const wxString& text)
+{
+    html_+= wxString::Format(tags::PARAGRAPH, font_size_, text);
+}
+void mmHTMLBuilder::addText(const wxString& text)
+{
+    html_+= text;
+}
+
+void mmHTMLBuilder::addLineBreak()
+{
+    html_+= tags::BR;
+}
+
+void mmHTMLBuilder::addHorizontalLine(int size)
+{
+    html_+= wxString::Format(tags::HOR_LINE, size);
+}
+
+void mmHTMLBuilder::startTableCell(const wxString& width)
+{
+    html_+= wxString::Format(tags::TABLE_CELL, width);
+}
+void mmHTMLBuilder::endTableCell()
+{
+    html_+= tags::TABLE_CELL_END;
+}
+
+void mmHTMLBuilder::bold_italic(const wxString& value)
+{
+    html_+= wxString::Format(tags::BI, value);
+}
+void mmHTMLBuilder::bold(const wxString& value)
+{
+    html_+= wxString::Format(tags::BOLD, value);
+}
+void mmHTMLBuilder::italic(const wxString& value)
+{
+    html_+= wxString::Format(tags::ITALIC, value);
+}
+void mmHTMLBuilder::font_settings(int size, const wxString& color)
+{
+    html_+= wxString::Format(tags::FONT, size, color);
+}
+void mmHTMLBuilder::font_end()
+{
+    html_+= tags::FONT_END;
+}
+int mmHTMLBuilder::font_size()
+{
+    return font_size_;
+}
+/** Centers the content from this point on */
+void mmHTMLBuilder::startCenter()
+{
+    html_+= tags::CENTER;
+}
+void mmHTMLBuilder::endCenter()
+{
+    html_+= tags::CENTER_END;
+}
+const wxString mmHTMLBuilder::getHTMLText() const
+{
+    return html_;
 }
 
 std::ostream& operator << (std::ostream& os, const wxDateTime& date)
