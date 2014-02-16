@@ -320,13 +320,15 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
             b->Enable(colsOK && templateText->GetValue().empty());
             int pos = 0;
             for (const auto& col : colHeaders)
+            {
                 m_sqlListBox->InsertColumn(pos++, col.first
                     , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
                     , col.first.length() * 10 + 20);
+            }
 
             m_sqlListBox->SetItemCount(m_sqlQueryData.size());
             m_sqlListBox->Refresh();
-            m_sqlListBox->EnsureVisible(0);
+            if (m_sqlQueryData.size() > 0) m_sqlListBox->EnsureVisible(0);
         }
         else
         {
