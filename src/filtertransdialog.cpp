@@ -359,7 +359,7 @@ void mmFilterTransactionsDialog::CreateControls()
  * Should we show tooltips?
  */
 
-bool mmFilterTransactionsDialog::ShowToolTips()
+const bool mmFilterTransactionsDialog::ShowToolTips()
 {
     return TRUE;
 }

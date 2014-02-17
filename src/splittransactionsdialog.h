@@ -81,7 +81,7 @@ public:
     wxIcon GetIconResource( const wxString& name );
 
     /// Should we show tooltips?
-    static bool ShowToolTips();
+    const bool ShowToolTips();
 
     wxDataViewListCtrl* lcSplit_;
     wxStaticText* transAmount_;

@@ -212,7 +212,7 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
     DataToControls();
 }
 
-bool SplitTransactionDialog::ShowToolTips()
+const bool SplitTransactionDialog::ShowToolTips()
 {
     return TRUE;
 }

@@ -329,7 +329,7 @@ void mmUnivCSVDialog::CreateControls()
 
 }
 
-bool mmUnivCSVDialog::ShowToolTips()
+const bool mmUnivCSVDialog::ShowToolTips()
 {
     return TRUE;
 }

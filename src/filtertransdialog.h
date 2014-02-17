@@ -163,7 +163,7 @@ private:
     void from_json(const wxString &data);
 
     /// Should we show tooltips?
-    static bool ShowToolTips();
+    const bool ShowToolTips();
 
     wxString settings_string_;
     wxString prev_value_;

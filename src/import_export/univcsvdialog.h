@@ -167,7 +167,7 @@ private:
 
     wxBitmap GetBitmapResource(const wxString& name);
     wxIcon GetIconResource(const wxString& name);
-    static bool ShowToolTips();
+    const bool ShowToolTips();
 private:
     void csv2tab_separated_values(wxString& line, const wxString& delimit);
 };

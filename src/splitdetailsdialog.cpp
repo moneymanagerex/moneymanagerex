@@ -203,7 +203,7 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
     EndModal(wxID_OK);
 }
 
-bool SplitDetailDialog::ShowToolTips()
+const bool SplitDetailDialog::ShowToolTips()
 {
     return TRUE;
 }

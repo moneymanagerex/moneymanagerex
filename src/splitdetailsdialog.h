@@ -62,7 +62,7 @@ private:
     /// Retrieves icon resources
     wxIcon GetIconResource( const wxString& name );
     /// Should we show tooltips?
-    static bool ShowToolTips();
+    const bool ShowToolTips();
 
     Model_Splittransaction::Data* split_;
 

@@ -258,8 +258,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
         wxTreeCtrl *dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
-            , wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
-        box_sizer3->Add(dbView);
+            , wxSize(-1,200), treeCtrlFlags);
+        box_sizer3->Add(dbView, g_flags);
         sizer->Add(box_sizer3, g_flagsExpand);
 
         wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
