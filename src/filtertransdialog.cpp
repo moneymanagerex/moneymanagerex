@@ -91,6 +91,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     , refAccountStr_("")
     , date_range_(0)
     , m_settingLabel()
+    , bSimilarCategoryStatus_(0)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
