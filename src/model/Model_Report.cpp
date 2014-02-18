@@ -128,6 +128,7 @@ wxString Model_Report::get_html(const Data* r)
     report("LUACONTENT") = r->LUACONTENT;
 
     loop_t contents;
+    json::Array jsoncontents;
 
     loop_t errors;
     row_t error;
@@ -210,8 +211,15 @@ wxString Model_Report::get_html(const Data* r)
                     }
                 }
                 row_t row;
-                for (const auto& item : r) row(item.first) = item.second;
+                json::Object o;
+                for (const auto& item : r) 
+                {
+                    row(item.first) = item.second;
+                    o[item.first] = json::String(item.second);
+                }
                 contents += row;
+                jsoncontents.Insert(o);
+                
             }
             q.Finalize();
 
@@ -243,6 +251,11 @@ wxString Model_Report::get_html(const Data* r)
     }
 
     report("CONTENTS") = contents;
+    {
+        std::stringstream ss;
+        json::Writer::Write(jsoncontents, ss);
+        report("JSONCONTENTS") = ss.str();
+    }
     report("ERRORS") = errors;
 
     const wxString out = wxString(report.Process());
