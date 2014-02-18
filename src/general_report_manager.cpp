@@ -252,14 +252,15 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     if (type == ID_SQL_CONTENT)
     {
         wxBoxSizer *box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
-        box_sizer3->Add(templateText, g_flagsExpand);
+        box_sizer3->Add(templateText, wxSizerFlags(g_flagsExpand).Proportion(3));
+
         long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
 #if defined (__WXWIN__)
         treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
         wxTreeCtrl *dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
-            , wxSize(-1,200), treeCtrlFlags);
-        box_sizer3->Add(dbView, g_flags);
+            , wxDefaultSize, treeCtrlFlags);
+        box_sizer3->Add(dbView, g_flagsExpand);
         sizer->Add(box_sizer3, g_flagsExpand);
 
         wxBoxSizer *box_sizer1 = new wxBoxSizer(wxVERTICAL);
