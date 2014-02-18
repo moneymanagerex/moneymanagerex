@@ -756,7 +756,7 @@ void mmGeneralReportManager::OnExportReport(wxCommandEvent& /*event*/)
 
         wxFFileOutputStream out(file_name);
         wxZipOutputStream zip(out);
-        wxTextOutputStream txt(zip);
+        wxTextOutputStream txt(zip, wxEOL_UNIX);
         zip.PutNextEntry("sqlcontent.sql");
         txt << report->SQLCONTENT;
         zip.PutNextEntry("luacontent.lua");
