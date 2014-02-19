@@ -152,13 +152,14 @@ wxString Model_Report::get_html(const Data* r)
         {
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             int columnCount = q.GetColumnCount();
+            std::vector<std::pair<wxString, int> > colHeaders;
+            this->getColumns(r->SQLCONTENT, colHeaders);
 
             loop_t columns;
-            for (int i = 0; i < columnCount; ++ i)
+            for (const auto &col : colHeaders)
             {
                 row_t row;
-                row("COLUMN") = q.GetColumnName(i);
-
+                row("COLUMN") = col.first;
                 columns += row;
             }
             report("COLUMNS") = columns;
@@ -184,7 +185,7 @@ wxString Model_Report::get_html(const Data* r)
                 Record r;
                 for (int i = 0; i < columnCount; ++ i)
                 {
-                    wxString column_name = q.GetColumnName(i);
+                    const wxString column_name = q.GetColumnName(i);
                     r[column_name.ToStdString()] = q.GetAsString(i);
                 }
 
@@ -212,10 +213,18 @@ wxString Model_Report::get_html(const Data* r)
                 }
                 row_t row;
                 json::Object o;
-                for (const auto& item : r) 
+                for (const auto& item : colHeaders)
                 {
-                    row(item.first) = item.second;
-                    o[item.first] = json::String(item.second);
+                    row(item.first.ToStdString()) = r.at(item.first.ToStdString());
+
+                    double v;
+                    if (wxString(r.at(item.first.ToStdString())).ToDouble(&v) &&
+                        (item.second == WXSQLITE_INTEGER || item.second == WXSQLITE_FLOAT))
+                    {
+                        o[item.first.ToStdString()] = json::Number(v);
+                    }
+                    else
+                        o[item.first.ToStdString()] = json::String(r.at(item.first.ToStdString()));
                 }
                 contents += row;
                 jsoncontents.Insert(o);
