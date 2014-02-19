@@ -342,7 +342,7 @@ bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <
 
 void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo)
 {
-    const wxString sqlTables = "SELECT name FROM sqlite_master WHERE type = \"table\" ORDER BY name;";
+    const wxString sqlTables = "SELECT type, name FROM sqlite_master WHERE type = 'table' or type = 'view' ORDER BY type, name";
     const wxString sqlColumns = "PRAGMA table_info(%s);";
     sqlTableInfo.clear();
 
@@ -351,7 +351,8 @@ void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString
     wxSQLite3ResultSet qTables = stmtTables.ExecuteQuery();
     while (qTables.NextRow())
     {
-        const wxString table_name = qTables.GetAsString(0);
+        const wxString type = qTables.GetAsString(0);
+        const wxString table_name = qTables.GetAsString(1);
 
         // Get a list of the table columns
         wxString sql = wxString::Format(sqlColumns, table_name);
