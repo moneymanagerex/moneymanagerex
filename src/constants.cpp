@@ -40,7 +40,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  update the counter manually. A manual change is not saved to SVN,
  but will appear on the revision heading of the build.
  *************************************************************************/
-//#define _MM_EX_BUILD_TYPE_RELEASE
+//#define _MM_EX_BUILD_TYPE_RELEASE 
 const wxString MMEX_REVISION_ID = "$Rev$";
 
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);

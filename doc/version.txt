@@ -1,8 +1,19 @@
 Version History of Money Manager Ex
 
 1.0.1.0 (TBA)
-
 - Reports
+
+1.0.0.2 (February 19, 2014)
+- Fix advanced transfer amounts disappearing
+- Fix repeating transactions account invalid error
+- Fix closed stocks account shown (bugs #290)
+- Fix transfer transactions getting reset
+- Fix next transaction number
+- Fix for create new transaction
+- Fix for group separator
+- Fix for reconciled balance
+- Performance improvements
+- Updated sponsors
 
 1.0.0.1 (January 19, 2014)
 - Fix account number not saved (bug #259)

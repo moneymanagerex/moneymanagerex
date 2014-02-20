@@ -14,7 +14,7 @@
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.0.0.0"
+#define MyAppVersion "1.0.1.0"
 #define MyAppPublisher "CodeLathe, LLC"
 #define MyAppURL "http://www.codelathe.com/mmex"
 
@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.0.0.0_x64_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.0.0.0_x64_setup"
+#define my_output_path "\mmex_1.0.1.0_x64_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.0.1.0_x64_setup"
 
 ;===============================================================================
 
