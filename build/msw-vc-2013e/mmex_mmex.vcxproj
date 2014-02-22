@@ -275,6 +275,7 @@
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
     <ClCompile Include="..\..\src\general_report_manager.cpp" />
     <ClCompile Include="..\..\src\images_list.cpp" />
+    <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
     <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmframe.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
@@ -336,7 +337,7 @@
     <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
-    <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
+    <ClCompile Include="..\..\src\import_export\qif_import_gui.cpp" />
     <ClCompile Include="..\..\src\recentfiles.cpp" />
     <ClCompile Include="..\..\src\relocatecategorydialog.cpp" />
     <ClCompile Include="..\..\src\relocatepayeedialog.cpp" />
@@ -372,6 +373,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\general_report_manager.h" />
     <ClInclude Include="..\..\src\images_list.h" />
+    <ClInclude Include="..\..\src\import_export\qif_import.h" />
     <ClInclude Include="..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\src\mmframe.h" />
     <ClInclude Include="..\..\src\mmTips.h" />
@@ -445,7 +447,7 @@
     <ClInclude Include="..\..\src\payeedialog.h" />
     <ClInclude Include="..\..\src\platfdep.h" />
     <ClInclude Include="..\..\src\import_export\qif_export.h" />
-    <ClInclude Include="..\..\src\import_export\qif_import.h" />
+    <ClInclude Include="..\..\src\import_export\qif_import_gui.h" />
     <ClInclude Include="..\..\src\recentfiles.h" />
     <ClInclude Include="..\..\src\relocatecategorydialog.h" />
     <ClInclude Include="..\..\src\relocatepayeedialog.h" />

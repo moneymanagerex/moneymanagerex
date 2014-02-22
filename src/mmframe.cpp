@@ -58,7 +58,7 @@
 #include "reports/payee.h"
 #include "reports/transactions.h"
 #include "import_export/qif_export.h"
-#include "import_export/qif_import.h"
+#include "import_export/qif_import_gui.h"
 #include "import_export/univcsvdialog.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Stock.h"
