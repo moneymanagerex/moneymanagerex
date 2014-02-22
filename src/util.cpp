@@ -265,14 +265,15 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, wxStrin
     sDateMask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(sDateMask) == 0) return false;
 
-    wxString regex = date_formats_regex()[sDateMask];
+    const wxString regex = date_formats_regex()[sDateMask];
     wxRegEx pattern(regex);
     //wxLogDebug("%s %s %i %s", sDate, sDateMask, pattern.Matches(sDate), regex);
-    if (pattern.Matches(sDate))
+    //skip dot if present in pattern but not in date string 
+    const wxString separator = sDateMask.Mid(2,1);
+    if (pattern.Matches(sDate) && sDate.Contains(separator))
     {
         date.ParseFormat(sDate, sDateMask, wxDateTime::Today());
-        //wxString one = pattern.GetMatch(sDate, 1);
-        return true;
+        return date.IsValid();
     }
     return false;
 }
