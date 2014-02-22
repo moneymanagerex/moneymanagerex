@@ -72,9 +72,9 @@ private:
     int fromAccountID_;
 
     bool isLineOK(const wxString& line);
-    wxString getLineData(const wxString& line);
-    wxString getFileLine(wxTextInputStream& textFile, int& lineNumber);
-    wxString getFinancistoProject(wxString& sSubCateg);
+    wxString getLineData(const wxString& line) const;
+    wxString getFileLine(wxTextInputStream& textFile, int& lineNumber) const;
+    wxString getFinancistoProject(wxString& sSubCateg) const;
     wxString sFileName_;
 
     wxDataViewListCtrl* dataListBox_;
@@ -108,7 +108,7 @@ private:
         wxString payeeString, type, amountString, transNum, notes;
         wxString dt, convDate, accountName, dateString, sToAccountName;
         wxString sFullCateg, sCateg, sSubCateg, sSplitCategs, sSplitAmount, sValid, sDescription;
-        double val = 0.0, dSplitAmount = 0.0;
+        double val, dSplitAmount;
     } m_data;
 
     //QIF specific data

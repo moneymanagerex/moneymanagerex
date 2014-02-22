@@ -79,10 +79,6 @@ bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& 
 
 void mmQIFImportDialog::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-    flagsExpand.Align(wxALIGN_CENTER).Border(wxALL, 5).Expand().Proportion(1);
-
     wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(main_sizer);
     wxBoxSizer* left_sizer = new wxBoxSizer(wxVERTICAL);
@@ -101,11 +97,11 @@ void mmQIFImportDialog::CreateControls()
 
     bbFile_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition
         , wxSize(file_name_ctrl_->GetSize().GetHeight(), file_name_ctrl_->GetSize().GetHeight()));
-    flex_sizer->Add(file_name_label, flags);
-    flex_sizer->Add(button_search_, flags);
-    flex_sizer->Add(bbFile_, flags);
+    flex_sizer->Add(file_name_label, g_flags);
+    flex_sizer->Add(button_search_, g_flags);
+    flex_sizer->Add(bbFile_, g_flags);
     main_sizer->Add(file_name_ctrl_, 0, wxALL|wxGROW, 5);
-    left_sizer->Add(flex_sizer, flagsExpand);
+    left_sizer->Add(flex_sizer, g_flagsExpand);
 
     // Date Format Settings
     dateFormat_ = mmOptions::instance().dateFormat_;
@@ -122,18 +118,18 @@ void mmQIFImportDialog::CreateControls()
 
     bbFormat_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition
         , wxSize(file_name_ctrl_->GetSize().GetHeight(), file_name_ctrl_->GetSize().GetHeight()));
-    flex_sizer->Add(dateFormat, flags);
-    flex_sizer->Add(choiceDateFormat_, flags);
-    flex_sizer->Add(bbFormat_, flags);
+    flex_sizer->Add(dateFormat, g_flags);
+    flex_sizer->Add(choiceDateFormat_, g_flags);
+    flex_sizer->Add(bbFormat_, g_flags);
 
     // Accounts
     wxStaticText* newAccountsText = new wxStaticText(this, wxID_STATIC, _("Missing Accounts"));
     newAccounts_ = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxSize(150,-1));
     bbAccounts_ = new wxBitmapButton(this, wxID_ANY, wxNullBitmap, wxDefaultPosition
         , wxSize(file_name_ctrl_->GetSize().GetHeight(), file_name_ctrl_->GetSize().GetHeight()));
-    flex_sizer->Add(newAccountsText, flags);
-    flex_sizer->Add(newAccounts_, flags);
-    flex_sizer->Add(bbAccounts_, flags);
+    flex_sizer->Add(newAccountsText, g_flags);
+    flex_sizer->Add(newAccounts_, g_flags);
+    flex_sizer->Add(bbAccounts_, g_flags);
 
     // From Date --------------------------------------------
     dateFromCheckBox_ = new wxCheckBox( this, wxID_ANY, _("From Date")
@@ -141,8 +137,8 @@ void mmQIFImportDialog::CreateControls()
     fromDateCtrl_ = new wxDatePickerCtrl( this, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     fromDateCtrl_->Enable(false);
-    flex_sizer->Add(dateFromCheckBox_, flags);
-    flex_sizer->Add(fromDateCtrl_, flags);
+    flex_sizer->Add(dateFromCheckBox_, g_flags);
+    flex_sizer->Add(fromDateCtrl_, g_flags);
     flex_sizer->AddSpacer(1);
 
     // To Date --------------------------------------------
@@ -151,8 +147,8 @@ void mmQIFImportDialog::CreateControls()
     toDateCtrl_ = new wxDatePickerCtrl( this, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
-    flex_sizer->Add(dateToCheckBox_, flags);
-    flex_sizer->Add(toDateCtrl_, flags);
+    flex_sizer->Add(dateToCheckBox_, g_flags);
+    flex_sizer->Add(toDateCtrl_, g_flags);
     flex_sizer->AddSpacer(1);
 
     //Log viewer
@@ -160,7 +156,7 @@ void mmQIFImportDialog::CreateControls()
 
     log_field_ = new wxTextCtrl( this, wxID_STATIC, ""
         , wxDefaultPosition, wxSize(500, -1), wxTE_MULTILINE|wxHSCROLL );
-    log_sizer->Add(log_field_, 1, wxGROW|wxALL, 5);
+    log_sizer->Add(log_field_, g_flagsExpand);
 
     //Data viewer
     wxPanel* data_panel = new wxPanel(this, wxID_ANY);
@@ -177,20 +173,20 @@ void mmQIFImportDialog::CreateControls()
     dataListBox_->AppendTextColumn(ColName_[COL_CATEGORY], wxDATAVIEW_CELL_INERT, 140, wxALIGN_RIGHT);
     dataListBox_->AppendTextColumn(ColName_[COL_VALUE], wxDATAVIEW_CELL_INERT, 100, wxALIGN_RIGHT);
     dataListBox_->AppendTextColumn(ColName_[COL_NOTES], wxDATAVIEW_CELL_INERT, 300);
-    data_sizer->Add(dataListBox_, flagsExpand);
+    data_sizer->Add(dataListBox_, g_flagsExpand);
 
     //Compose all sizers togethe
     wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
-    main_sizer->Add(top_sizer, flagsExpand);
-    top_sizer->Add(left_sizer, flags);
-    top_sizer->Add(log_sizer, flagsExpand);
-    main_sizer->Add(data_panel, flagsExpand);
+    main_sizer->Add(top_sizer, g_flagsExpand);
+    top_sizer->Add(left_sizer, g_flags);
+    top_sizer->Add(log_sizer, g_flagsExpand);
+    main_sizer->Add(data_panel, g_flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
     ***********************************************************************************************/
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    main_sizer->Add(buttons_panel, flags.Center());
+    main_sizer->Add(buttons_panel, wxSizerFlags(g_flags).Center());
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
@@ -200,8 +196,8 @@ void mmQIFImportDialog::CreateControls()
     btnOK_->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmQIFImportDialog::OnOk), NULL, this);
 
-    buttons_sizer->Add(btnOK_, flags);
-    buttons_sizer->Add(itemButtonCancel_, flags);
+    buttons_sizer->Add(btnOK_, g_flags);
+    buttons_sizer->Add(itemButtonCancel_, g_flags);
 
     buttons_sizer->Realize();
     Fit();
@@ -226,13 +222,12 @@ bool mmQIFImportDialog::isLineOK(const wxString& line)
     return wxString("!DNPAT^MLSE$C/UI").Contains(line.Left(1));
 }
 
-wxString mmQIFImportDialog::getLineData(const wxString& line)
+wxString mmQIFImportDialog::getLineData(const wxString& line) const
 {
-    wxString dataString = line.substr(1, line.Length()-1);
-    return dataString;
+    return line.substr(1, line.Length()-1);
 }
 
-wxString mmQIFImportDialog::getFileLine(wxTextInputStream& textFile, int& lineNumber)
+wxString mmQIFImportDialog::getFileLine(wxTextInputStream& textFile, int& lineNumber) const
 {
     wxString textLine = textFile.ReadLine();
     lineNumber ++;
@@ -241,7 +236,7 @@ wxString mmQIFImportDialog::getFileLine(wxTextInputStream& textFile, int& lineNu
     return textLine;
 }
 
-wxString mmQIFImportDialog::getFinancistoProject(wxString& sSubCateg)
+wxString mmQIFImportDialog::getFinancistoProject(wxString& sSubCateg) const
 {
     //Additional parsint for Financisto
     wxString sProject = "";
