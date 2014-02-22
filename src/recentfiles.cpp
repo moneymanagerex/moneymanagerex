@@ -22,7 +22,7 @@
 RecentDatabaseFiles::RecentDatabaseFiles(wxMenu *menuRecentFiles)
 : menuRecentFiles_(menuRecentFiles)
 , recentListSize_(6)
-, dbIndexName_("RECENT_DB_")
+, dbIndexName_("RECENT_DB_%i")
 {
     recentFileList_.Add(Model_Setting::instance().getLastDbPath());
     for (int index = 1; index < recentListSize_; ++ index)
@@ -42,7 +42,7 @@ void RecentDatabaseFiles::loadRecentList()
 {
     for (int index = 1; index < recentListSize_; ++ index)
     {
-        wxString dbIndex = wxString() << dbIndexName_ << index;
+        const wxString dbIndex = wxString::Format(dbIndexName_, index);
         recentFileList_[index] = Model_Setting::instance().GetStringSetting(dbIndex, "");
     }
 }
@@ -51,8 +51,8 @@ void RecentDatabaseFiles::saveRecentList()
 {
     for (int index = 1; index < recentListSize_; ++ index)
     {
-        wxString dbIndex = wxString() << dbIndexName_ << index;
-        Model_Setting::instance().Set(dbIndex, recentFileList_[index] );
+        const wxString dbIndex = wxString::Format(dbIndexName_, index);
+        Model_Setting::instance().Set(dbIndex, recentFileList_[index]);
     }
 }
 
@@ -62,48 +62,23 @@ void RecentDatabaseFiles::setMenuFileItems()
     if (!menuRecentFiles_)
         return;
 
-    if (menuRecentFiles_->FindItem(wxID_FILE))
-        menuRecentFiles_->Delete(wxID_FILE);
+    for (int i = 0; i < recentListSize_; i++)
+    {
+        if (menuRecentFiles_->FindItem(i + wxID_FILE))
+            menuRecentFiles_->Delete(i + wxID_FILE);
+    }
 
-    if (menuRecentFiles_->FindItem(wxID_FILE1))
-        menuRecentFiles_->Delete(wxID_FILE1);
-
-    if (menuRecentFiles_->FindItem(wxID_FILE2))
-        menuRecentFiles_->Delete(wxID_FILE2);
-
-    if (menuRecentFiles_->FindItem(wxID_FILE3))
-        menuRecentFiles_->Delete(wxID_FILE3);
-
-    if (menuRecentFiles_->FindItem(wxID_FILE4))
-        menuRecentFiles_->Delete(wxID_FILE4);
-
-    if (menuRecentFiles_->FindItem(wxID_FILE5))
-        menuRecentFiles_->Delete(wxID_FILE5);
+    for (int i = 0; i < recentListSize_; i++)
+    {
+        if (!recentFileList_[i].IsEmpty())
+            menuRecentFiles_->Append(i + wxID_FILE, recentFileList_[i]);
+    }
 
     if (recentFileList_[0].IsEmpty())
     {
         menuRecentFiles_->Append(wxID_FILE, _("Empty"));
         menuRecentFiles_->Enable(wxID_FILE, false);
     }
-    else
-    {
-        menuRecentFiles_->Append(wxID_FILE, recentFileList_[0]);
-    }
-    
-    if (! recentFileList_[1].IsEmpty()) 
-        menuRecentFiles_->Append(wxID_FILE1, recentFileList_[1]);
-
-    if (! recentFileList_[2].IsEmpty()) 
-        menuRecentFiles_->Append(wxID_FILE2, recentFileList_[2]);
-
-    if (! recentFileList_[3].IsEmpty()) 
-        menuRecentFiles_->Append(wxID_FILE3, recentFileList_[3]);
-
-    if (! recentFileList_[4].IsEmpty()) 
-        menuRecentFiles_->Append(wxID_FILE4, recentFileList_[4]);
-
-    if (! recentFileList_[5].IsEmpty()) 
-        menuRecentFiles_->Append(wxID_FILE5, recentFileList_[5]);
 }
 
 void RecentDatabaseFiles::updateRecentList(const wxString& currentFileName)

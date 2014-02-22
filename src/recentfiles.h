@@ -49,7 +49,7 @@ private:
     wxArrayString recentFileList_;
 
     int recentListSize_;
-    wxString dbIndexName_;
+    const wxString dbIndexName_;
 };
 
 #endif
