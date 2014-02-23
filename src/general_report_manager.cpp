@@ -217,8 +217,6 @@ void mmGeneralReportManager::CreateControls()
 
 void mmGeneralReportManager::createOutputTab(wxNotebook* editors_notebook, int type)
 {
-    wxSizerFlags flagsExpand;
-    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
     //Output
     wxPanel* out_tab = new wxPanel(editors_notebook, wxID_ANY);
     editors_notebook->InsertPage(ID_TAB_OUT, out_tab, _("Output"));
@@ -323,7 +321,8 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
             for (const auto& col : colHeaders)
             {
                 m_sqlListBox->InsertColumn(pos++, col.first
-                    , col.second == 1 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
+                    , (col.second == WXSQLITE_INTEGER || col.second == WXSQLITE_FLOAT) 
+                        ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
                     , col.first.length() * 10 + 20);
             }
 
