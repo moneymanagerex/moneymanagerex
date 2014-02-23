@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
+ *          AUTO GENERATED at 2014-02-23 21:14:57.787845.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -162,7 +162,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     };
 
     /** Returns the column name as a string*/
-    wxString column_to_name(COLUMN col) const
+    static wxString column_to_name(COLUMN col)
     {
         switch(col)
         {
@@ -184,7 +184,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     }
 
     /** Returns the comumn number from the given column name*/
-    COLUMN name_to_column(const wxString& name) const
+    static COLUMN name_to_column(const wxString& name)
     {
         if ("CURRENCYID" == name) return COL_CURRENCYID;
         else if ("CURRENCYNAME" == name) return COL_CURRENCYNAME;
@@ -295,6 +295,20 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             row("BASECONVRATE") = BASECONVRATE;
             row("CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
             return row;
+        }
+        void to_template(html_template& t) const
+        {
+            t("CURRENCYID") = CURRENCYID;
+            t("CURRENCYNAME") = CURRENCYNAME;
+            t("PFX_SYMBOL") = PFX_SYMBOL;
+            t("SFX_SYMBOL") = SFX_SYMBOL;
+            t("DECIMAL_POINT") = DECIMAL_POINT;
+            t("GROUP_SEPARATOR") = GROUP_SEPARATOR;
+            t("UNIT_NAME") = UNIT_NAME;
+            t("CENT_NAME") = CENT_NAME;
+            t("SCALE") = SCALE;
+            t("BASECONVRATE") = BASECONVRATE;
+            t("CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
         }
 
         /** Save the record instance in memory to the database. */

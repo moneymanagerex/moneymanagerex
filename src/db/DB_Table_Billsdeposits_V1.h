@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
+ *          AUTO GENERATED at 2014-02-23 21:14:57.787845.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -198,7 +198,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     };
 
     /** Returns the column name as a string*/
-    wxString column_to_name(COLUMN col) const
+    static wxString column_to_name(COLUMN col)
     {
         switch(col)
         {
@@ -226,7 +226,7 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     }
 
     /** Returns the comumn number from the given column name*/
-    COLUMN name_to_column(const wxString& name) const
+    static COLUMN name_to_column(const wxString& name)
     {
         if ("BDID" == name) return COL_BDID;
         else if ("ACCOUNTID" == name) return COL_ACCOUNTID;
@@ -375,6 +375,26 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             row("NEXTOCCURRENCEDATE") = NEXTOCCURRENCEDATE;
             row("NUMOCCURRENCES") = NUMOCCURRENCES;
             return row;
+        }
+        void to_template(html_template& t) const
+        {
+            t("BDID") = BDID;
+            t("ACCOUNTID") = ACCOUNTID;
+            t("TOACCOUNTID") = TOACCOUNTID;
+            t("PAYEEID") = PAYEEID;
+            t("TRANSCODE") = TRANSCODE;
+            t("TRANSAMOUNT") = TRANSAMOUNT;
+            t("STATUS") = STATUS;
+            t("TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
+            t("NOTES") = NOTES;
+            t("CATEGID") = CATEGID;
+            t("SUBCATEGID") = SUBCATEGID;
+            t("TRANSDATE") = TRANSDATE;
+            t("FOLLOWUPID") = FOLLOWUPID;
+            t("TOTRANSAMOUNT") = TOTRANSAMOUNT;
+            t("REPEATS") = REPEATS;
+            t("NEXTOCCURRENCEDATE") = NEXTOCCURRENCEDATE;
+            t("NUMOCCURRENCES") = NUMOCCURRENCES;
         }
 
         /** Save the record instance in memory to the database. */

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
+ *          AUTO GENERATED at 2014-02-23 21:14:57.787845.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -138,7 +138,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     };
 
     /** Returns the column name as a string*/
-    wxString column_to_name(COLUMN col) const
+    static wxString column_to_name(COLUMN col)
     {
         switch(col)
         {
@@ -156,7 +156,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     }
 
     /** Returns the comumn number from the given column name*/
-    COLUMN name_to_column(const wxString& name) const
+    static COLUMN name_to_column(const wxString& name)
     {
         if ("REPORTID" == name) return COL_REPORTID;
         else if ("REPORTNAME" == name) return COL_REPORTNAME;
@@ -245,6 +245,16 @@ struct DB_Table_REPORT_V1 : public DB_Table
             row("TEMPLATECONTENT") = TEMPLATECONTENT;
             row("DESCRIPTION") = DESCRIPTION;
             return row;
+        }
+        void to_template(html_template& t) const
+        {
+            t("REPORTID") = REPORTID;
+            t("REPORTNAME") = REPORTNAME;
+            t("GROUPNAME") = GROUPNAME;
+            t("SQLCONTENT") = SQLCONTENT;
+            t("LUACONTENT") = LUACONTENT;
+            t("TEMPLATECONTENT") = TEMPLATECONTENT;
+            t("DESCRIPTION") = DESCRIPTION;
         }
 
         /** Save the record instance in memory to the database. */

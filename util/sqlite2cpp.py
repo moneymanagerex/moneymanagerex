@@ -188,7 +188,7 @@ struct DB_Table_%s : public DB_Table
 '''
         s += '''
     /** Returns the column name as a string*/
-    wxString column_to_name(COLUMN col) const
+    static wxString column_to_name(COLUMN col)
     {
         switch(col)
         {
@@ -206,7 +206,7 @@ struct DB_Table_%s : public DB_Table
 '''
         s +='''
     /** Returns the comumn number from the given column name*/
-    COLUMN name_to_column(const wxString& name) const
+    static COLUMN name_to_column(const wxString& name)
     {
         if ("%s" == name) return COL_%s;''' % (self._primay_key, self._primay_key.upper())
 
@@ -313,6 +313,16 @@ struct DB_Table_%s : public DB_Table
 
         s+='''
             return row;
+        }'''
+
+        s +='''
+        void to_template(html_template& t) const
+        {'''
+        for field in self._fields:
+            s += '''
+            t("%s") = %s;''' % (field['name'], field['name'])
+
+        s +='''
         }'''
 
         s += '''

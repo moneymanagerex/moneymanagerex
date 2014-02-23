@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-01-27 17:28:22.830244.
+ *          AUTO GENERATED at 2014-02-23 21:14:57.787845.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -114,7 +114,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     };
 
     /** Returns the column name as a string*/
-    wxString column_to_name(COLUMN col) const
+    static wxString column_to_name(COLUMN col)
     {
         switch(col)
         {
@@ -128,7 +128,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
     }
 
     /** Returns the comumn number from the given column name*/
-    COLUMN name_to_column(const wxString& name) const
+    static COLUMN name_to_column(const wxString& name)
     {
         if ("SUBCATEGID" == name) return COL_SUBCATEGID;
         else if ("SUBCATEGNAME" == name) return COL_SUBCATEGNAME;
@@ -198,6 +198,12 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             row("SUBCATEGNAME") = SUBCATEGNAME;
             row("CATEGID") = CATEGID;
             return row;
+        }
+        void to_template(html_template& t) const
+        {
+            t("SUBCATEGID") = SUBCATEGID;
+            t("SUBCATEGNAME") = SUBCATEGNAME;
+            t("CATEGID") = CATEGID;
         }
 
         /** Save the record instance in memory to the database. */
