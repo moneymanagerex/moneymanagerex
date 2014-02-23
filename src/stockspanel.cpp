@@ -518,6 +518,17 @@ wxString mmStocksPanel::BuildPage() const
     return listCtrlAccount_->BuildPage((account ? GetPanelTitle(*account) : ""));
 }
 
+double mmStocksPanel::Total_Shares()
+{
+    double total_shares = 0;
+    for (const auto& stock : Model_Stock::instance().find(Model_Stock::HELDAT(accountID_)))
+    {
+        total_shares += stock.NUMSHARES;
+    }
+
+    return total_shares;
+}
+
 void mmStocksPanel::updateHeader()
 {
     const Model_Account::Data* account = Model_Account::instance().get(accountID_);
@@ -541,7 +552,7 @@ void mmStocksPanel::updateHeader()
     wxString diffStr = Model_Currency::toCurrency(total > originalVal ? total - originalVal : originalVal - total, m_currency);
 
     wxString lbl;
-    lbl << _("Total: ") << balance << "     " << _("Invested: ") << original;
+    lbl << _("Total Shares: ") << Total_Shares() << "     " << _("Total: ") << balance << "     " << _("Invested: ") << original;
 
     //Percent
     if (originalVal != 0.0) {

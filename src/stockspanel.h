@@ -135,6 +135,7 @@ private:
     wxStaticText* stock_details_;
     void call_dialog(int selectedIndex);
     void sortTable() {}
+    double Total_Shares();
 
     wxStaticText* header_text_;
     wxStaticText* header_total_;
