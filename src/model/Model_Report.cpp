@@ -121,11 +121,7 @@ wxString Model_Report::get_html(const Data* r)
     output.Close();
 
     mm_html_template report(fNameTemplate);
-    report("REPORTID") = r->REPORTID;
-    report("REPORTNAME") = r->REPORTNAME;
-    report("GROUPNAME") = r->GROUPNAME;
-    report("SQLCONTENT") = r->SQLCONTENT;
-    report("LUACONTENT") = r->LUACONTENT;
+    r->to_template(report);
 
     loop_t contents;
     json::Array jsoncontents;
