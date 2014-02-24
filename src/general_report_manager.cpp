@@ -305,10 +305,10 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     if (!sql.empty() && Model_Report::instance().CheckSyntax(sql))
     {
         m_sqlListBox->DeleteAllColumns();
-        long interval = GetTickCount();
+        long interval = wxGetUTCTimeMillis().ToLong();
         if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
         {
-            interval = GetTickCount() - interval;
+            interval = wxGetUTCTimeMillis().ToLong() - interval;
             info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms")
                 , (int) m_sqlQueryData.size(), wxString() << interval));
 
