@@ -1,7 +1,7 @@
 // -*- C++ -*-
 //=============================================================================
 /**
- *      Copyright (c) 2013 Guan Lisheng (guanlisheng@gmail.com)
+ *      Copyright (c) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
  *
  *      @file
  *
@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-02-23 21:14:57.787845.
+ *          AUTO GENERATED at 2014-02-24 09:03:45.599009.
  *          DO NOT EDIT!
  */
 //=============================================================================
