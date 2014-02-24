@@ -349,7 +349,6 @@ void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString
     wxSQLite3ResultSet qTables = stmtTables.ExecuteQuery();
     while (qTables.NextRow())
     {
-        const wxString type = qTables.GetAsString(0);
         const wxString table_name = qTables.GetAsString(1);
 
         // Get a list of the table columns
@@ -360,9 +359,6 @@ void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString
         while (qColumns.NextRow())
             column_names.push_back(qColumns.GetAsString(1));
 
-        std::pair<wxString, wxArrayString> table_columns;
-        table_columns.first = table_name;
-        table_columns.second = column_names;
-        sqlTableInfo.push_back(table_columns);
+        sqlTableInfo.push_back(std::make_pair(table_name, column_names));
     }
 }
