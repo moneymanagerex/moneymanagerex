@@ -305,12 +305,12 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     if (!sql.empty() && Model_Report::instance().CheckSyntax(sql))
     {
         m_sqlListBox->DeleteAllColumns();
-        long interval = wxGetUTCTimeMillis().ToLong();
+        wxLongLong interval = wxGetUTCTimeMillis();
         if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
         {
-            interval = wxGetUTCTimeMillis().ToLong() - interval;
-            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %s ms")
-                , (int) m_sqlQueryData.size(), wxString() << interval));
+            interval = wxGetUTCTimeMillis() - interval;
+            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
+                , (int) m_sqlQueryData.size(), interval.ToLong()));
 
             MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
             std::vector<std::pair<wxString, int> > colHeaders;
