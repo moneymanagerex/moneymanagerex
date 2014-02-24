@@ -71,7 +71,6 @@ bool mmAboutDialog::Create(wxWindow* parent
 void mmAboutDialog::InitControls()
 {
     mmHTMLBuilder hb;
-    hb.init();
     wxString html = mmex::getProgramDescription();
     html.Replace("======================================\n", "");
     html.Replace("\n", "<br>");
