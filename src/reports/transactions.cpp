@@ -79,11 +79,10 @@ wxString mmReportTransactions::getHTMLText()
     hb.init();
 
     wxString transHeading = _("Transaction List ");
-    if (refAccountID_ > -1)
-    {
-        const Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
+    const Model_Account::Data* account = Model_Account::instance().get(refAccountID_);
+    if (account)
         transHeading = wxString::Format(_("Transaction List for Account: %s"), account->ACCOUNTNAME);
-    }
+
     hb.addHeader(2, transHeading);
 
     hb.addDateNow();
@@ -148,6 +147,7 @@ wxString mmReportTransactions::getHTMLText()
         hb.addTableCell(transaction.CATEGNAME, false, true);
 
         hb.addTableCell(wxGetTranslation(transaction.TRANSCODE));
+
         // Get the exchange rate for the account
         Model_Account::Data* account = Model_Account::instance().get(transaction.ACCOUNTID);
         const Model_Currency::Data* currency = Model_Account::currency(account);
@@ -189,13 +189,24 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
     {
         if (!dlg->checkAll(tran, refAccountID_)) continue;
         Model_Checking::Full_Data full_tran(tran, splits);
-        if (Model_Checking::TRANSFER == Model_Checking::type(tran))
-        {
-            if (tran.ACCOUNTID == refAccountID_)
-                full_tran.PAYEENAME = "> " + full_tran.TOACCOUNTNAME;
-            else
-                full_tran.PAYEENAME = "< " + full_tran.ACCOUNTNAME;
+        full_tran.PAYEENAME = full_tran.real_payee_name(refAccountID_);
+        if (transDialog_->getCategoryCheckBox() && full_tran.has_split()) {
+            full_tran.CATEGNAME.clear();
+            full_tran.TRANSAMOUNT = 0;
+            for (const auto& split : Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(full_tran.TRANSID)))
+            {
+                const wxString split_info = wxString::Format("%s = %s | "
+                    , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
+                    , wxString()<<split.SPLITTRANSAMOUNT) ;
+                full_tran.CATEGNAME.Append(split_info);
+                if (split.CATEGID != transDialog_->getCategId() ) continue;
+                if (split.SUBCATEGID != transDialog_->getSubCategId() && !transDialog_->getSimilarStatus()) continue;
+
+                full_tran.TRANSAMOUNT += split.SPLITTRANSAMOUNT;
+            }
+            full_tran.CATEGNAME.RemoveLast(2);
         }
+
         trans_.push_back(full_tran);
     }
 }

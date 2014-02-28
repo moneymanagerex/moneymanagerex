@@ -60,6 +60,13 @@ public:
     {
         return refAccountID_;
     }
+    bool getCategoryCheckBox()
+    {
+        return categoryCheckBox_->IsChecked();
+    }
+    bool getSimilarStatus() { return bSimilarCategoryStatus_; }
+    int getCategId() { return categID_; }
+    int getSubCategId() { return subcategID_; }
 
 private:
     void BuildPayeeList();
@@ -122,11 +129,6 @@ private:
     bool getNotesCheckBox()
     {
         return notesCheckBox_->IsChecked();
-    }
-
-    bool getCategoryCheckBox()
-    {
-        return categoryCheckBox_->IsChecked();
     }
 
     void setPresettings(const wxString& view);
