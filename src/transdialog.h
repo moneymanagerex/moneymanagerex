@@ -70,6 +70,8 @@ private:
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
+    void OnFrequentUsedNotes(wxCommandEvent& event);
+    void onNoteSelected(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
     void OnSpin(wxSpinEvent&);
     void OnDateChanged(wxDateEvent& event);
@@ -115,6 +117,7 @@ private:
     int accountID_; //The transaction account ID //TODO: may be Model_Account ?
     int referenceAccountID_; // used for transfer transactions
     int transaction_id_; //The transaction ID. NULL if new transaction
+    std::vector<std::pair<wxString, wxString>> frequentNotes_;
 
     bool skip_account_init_;
     bool skip_amount_init_;

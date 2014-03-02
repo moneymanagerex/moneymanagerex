@@ -47,6 +47,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_SPIN(wxID_ANY,mmTransDialog::OnSpin)
     EVT_DATE_CHANGED(ID_DIALOG_TRANS_BUTTONDATE, mmTransDialog::OnDateChanged)
     EVT_COMBOBOX(wxID_ANY, mmTransDialog::OnAccountOrPayeeUpdated)
+    EVT_MENU(wxID_ANY, mmTransDialog::onNoteSelected)
 END_EVENT_TABLE()
 
 mmTransDialog::mmTransDialog(wxWindow* parent
@@ -456,11 +457,17 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flags);
 
+    // Notes ---------------------------------------------
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxT(">>"), wxDefaultPosition, wxSize(40, -1), 0);
+    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
+
     notesTip_ = _("Notes");
     textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
         , wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
 
-    box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
+    flex_sizer->Add(bFrequentUsedNotes, g_flags);
+    flex_sizer->Add(textNotes_, g_flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -931,6 +938,30 @@ void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
     else if (object_in_focus_ == textNumber_->GetId())
     {
         textNotes_->SetFocus();
+    }
+}
+
+void mmTransDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
+{
+    Model_Checking::getFrequentUsedNotes(accountID_, frequentNotes_);
+    wxMenu menu;
+    for (int id = 0; id < (int)frequentNotes_.size(); id++)
+        menu.Append(id + 1, frequentNotes_[id].first);
+    if (frequentNotes_.size() > 0)
+        PopupMenu(&menu);
+}
+
+void mmTransDialog::onNoteSelected(wxCommandEvent& event)
+{
+    int i = event.GetId();
+    if (i > 0)
+    {
+        if (textNotes_->GetValue() == notesTip_)
+        {
+            textNotes_->SetValue("");
+            textNotes_->SetForegroundColour(notesColour_);
+        }
+        *textNotes_ << frequentNotes_[i - 1].second;
     }
 }
 

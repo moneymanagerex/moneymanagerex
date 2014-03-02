@@ -56,7 +56,8 @@ BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_CHOICE(ID_DIALOG_BD_COMBOBOX_REPEATS, mmBDDialog::OnRepeatTypeChanged)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTRANSNUM, mmBDDialog::OnsetNextRepeatDate)
     EVT_TEXT(ID_DIALOG_BD_TEXTCTRL_NUM_TIMES,mmBDDialog::OnPeriodChange)
-END_EVENT_TABLE()
+    EVT_MENU(wxID_ANY, mmBDDialog::onNoteSelected)
+    END_EVENT_TABLE()
 
 //const wxString REPEAT_TRANSACTIONS_MSGBOX_HEADING = _("Repeat Transaction - Auto Execution Checking");
 
@@ -529,13 +530,18 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(textNumber_, g_flags);
 
     // Notes ---------------------------------------------
-    textNotes_ = new wxTextCtrl( transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, "",
+    wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxT(">>"), wxDefaultPosition, wxSize(40, -1), 0);
+    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), NULL, this);
+
+    textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, "",
                                  wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE );
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
     transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Notes")), g_flags);
     transPanelSizer->AddSpacer(1);
-    box_sizer1->Add(textNotes_, g_flagsExpand);
+    transPanelSizer->Add(bFrequentUsedNotes, g_flags);
+    transPanelSizer->Add(textNotes_, g_flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
     prevType_ = Model_Billsdeposits::WITHDRAWAL;
@@ -814,6 +820,23 @@ void mmBDDialog::resetPayeeString()
         }
     }
     bPayee_->SetLabel(payeeStr);
+}
+
+void mmBDDialog::OnFrequentUsedNotes(wxCommandEvent& WXUNUSED(event))
+{
+    Model_Checking::getFrequentUsedNotes(accountID_, frequentNotes_);
+    wxMenu menu;
+    for (int id = 0; id < (int)frequentNotes_.size(); id++)
+        menu.Append(id + 1, frequentNotes_[id].first);
+    if (frequentNotes_.size() > 0)
+        PopupMenu(&menu);
+}
+
+void mmBDDialog::onNoteSelected(wxCommandEvent& event)
+{
+    int i = event.GetId();
+    if (i > 0)
+        *textNotes_ << frequentNotes_[i - 1].second;
 }
 
 void mmBDDialog::OnOk(wxCommandEvent& /*event*/)

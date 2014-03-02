@@ -143,6 +143,7 @@ public:
     static double reconciled(const Data* r, int account_id);
     static double reconciled(const Data& r, int account_id);
     static wxString toShortStatus(const wxString& fullStatus);
+    static void getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes);
 };
 
 #endif // 

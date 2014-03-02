@@ -113,6 +113,7 @@ private:
     bool advancedToTransAmountSet_;
     bool categUpdated_;
     int prevType_;
+    std::vector<std::pair<wxString, wxString>> frequentNotes_;
 
     wxString payeeDepositTip_;
     wxString payeeWithdrawalTip_;
@@ -132,6 +133,8 @@ private:
     void OnNextOccurDateForward(wxSpinEvent& event);
     void OnNextOccurDateBack(wxSpinEvent& event);
     void SetNewDate(wxDatePickerCtrl* dpc, bool forward = true);
+    void OnFrequentUsedNotes(wxCommandEvent& event);
+    void onNoteSelected(wxCommandEvent& event);
 
     wxStaticText* staticTimesRepeat_;
     wxStaticText* staticTextRepeats_;

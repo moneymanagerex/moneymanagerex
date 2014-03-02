@@ -323,3 +323,28 @@ bool Model_Checking::Full_Data::has_split() const
 {
     return !this->m_splits.empty();
 }
+
+void Model_Checking::getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes)
+{
+    const wxString sql = "select max (TRANSDATE) as TRANSDATE , count (notes) COUNT, "
+        "(case when accountid = ? then '1' else '2' end) as ACC "
+        ",replace(replace (substr (notes, 1, 30), x'0A', ' '), '&', '&&')||(case when length(notes)>30 then '...' else '' end) as NOTE, "
+        "notes as NOTES "
+        "from checkingaccount_v1 ca "
+        "where notes is not '' "
+        "and TRANSDATE< date ('now', '1 day', 'localtime') "
+        "group by rtrim (notes) "
+        "order by ACC, TRANSDATE desc, COUNT desc "
+        "limit 20 ";
+
+    frequentNotes.clear();
+    wxSQLite3Statement stmt = Model_Checking::instance().db_->PrepareStatement(sql);
+    stmt.Bind(1, account_id);
+    wxSQLite3ResultSet q1 = stmt.ExecuteQuery();
+    while (q1.NextRow())
+    {
+        wxString noteSTR = q1.GetString(wxT("NOTE"));
+        wxString notes = q1.GetString(wxT("NOTES"));
+        frequentNotes.push_back(std::make_pair(noteSTR, notes));
+    }
+}
