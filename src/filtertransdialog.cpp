@@ -91,7 +91,7 @@ mmFilterTransactionsDialog::mmFilterTransactionsDialog(wxWindow* parent)
     , refAccountStr_("")
     , date_range_(0)
     , m_settingLabel()
-    , bSimilarCategoryStatus_(0)
+    , bSimilarCategoryStatus_(false)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Transaction Filter"), wxDefaultPosition, wxSize(400, 300), style);
@@ -929,7 +929,8 @@ void mmFilterTransactionsDialog::from_json(const wxString &data)
     wxString value = wxString(json::String(o["CATEGORY"]));
     categoryCheckBox_->SetValue(!value.empty());
     btnCategory_->Enable(categoryCheckBox_->IsChecked());
-    similarCategCheckBox_->SetValue(json::Boolean(o["SIMILAR_YN"]));
+    bSimilarCategoryStatus_ = json::Boolean(o["SIMILAR_YN"]);
+    similarCategCheckBox_->SetValue(bSimilarCategoryStatus_);
     similarCategCheckBox_->Enable(categoryCheckBox_->IsChecked());
     wxStringTokenizer categ_token(value, ":", wxTOKEN_RET_EMPTY_ALL);
     Model_Category::Data* category = Model_Category::instance().get(categ_token.GetNextToken().Trim());

@@ -197,7 +197,7 @@ void mmReportTransactions::Run(mmFilterTransactionsDialog* dlg)
             {
                 const wxString split_info = wxString::Format("%s = %s | "
                     , Model_Category::full_name(split.CATEGID, split.SUBCATEGID)
-                    , wxString()<<split.SPLITTRANSAMOUNT) ;
+                    , wxString::Format("%.2f", split.SPLITTRANSAMOUNT));
                 full_tran.CATEGNAME.Append(split_info);
                 if (split.CATEGID != transDialog_->getCategId() ) continue;
                 if (split.SUBCATEGID != transDialog_->getSubCategId() && !transDialog_->getSimilarStatus()) continue;
