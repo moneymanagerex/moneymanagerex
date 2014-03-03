@@ -28,6 +28,7 @@
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
+class MinimalEditor;
 
 class mmTransDialog : public wxDialog
 {
@@ -84,7 +85,7 @@ private:
     mmTextCtrl *textNumber_;
     mmTextCtrl *textAmount_;
     mmTextCtrl *toTextAmount_;
-    mmTextCtrl *textNotes_;
+    MinimalEditor* textNotes_;
     wxButton* bCategory_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
@@ -107,8 +108,6 @@ private:
     double  edit_currency_rate;
     wxString amountNormalTip_;
     wxString amountTransferTip_;
-    wxString notesTip_;
-    wxColour notesColour_;
     int object_in_focus_;
     wxString resetPayeeString(/*bool normal = true*/);
 

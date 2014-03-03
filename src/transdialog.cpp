@@ -32,6 +32,7 @@
 #include "model/Model_Subcategory.h"
 #include <wx/valnum.h>
 #include <wx/numformatter.h>
+#include "minimal_editor.h"
 
 IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
 
@@ -310,13 +311,7 @@ void mmTransDialog::dataToControls()
     {
         textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
         textNotes_->SetValue(transaction_->NOTES);
-        if (transaction_->NOTES.IsEmpty() && !transaction_id_)
-        {
-            notesColour_ = textNotes_->GetForegroundColour();
-            textNotes_->SetForegroundColour(wxColour("GREY"));
-            textNotes_->SetValue(notesTip_);
-            textNotes_->SetFont(this->GetFont());
-        }
+        textNotes_->SetHint(_("Notes"));
         skip_notes_init_ = true;
     }
     setTooltips();
@@ -451,23 +446,23 @@ void mmTransDialog::CreateControls()
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
     bAuto->SetToolTip(_("Populate Transaction #"));
 
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+        , wxT(">>"), wxDefaultPosition
+        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
+    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
+
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flags);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flags);
+    number_sizer->Add(bFrequentUsedNotes, g_flags);
 
     // Notes ---------------------------------------------
-    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxT(">>"), wxDefaultPosition, wxSize(40, -1), 0);
-    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
-
-    notesTip_ = _("Notes");
-    textNotes_ = new mmTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, ""
-        , wxDefaultPosition, wxSize(-1,80), wxTE_MULTILINE);
-
-    flex_sizer->Add(bFrequentUsedNotes, g_flags);
-    flex_sizer->Add(textNotes_, g_flagsExpand);
+    textNotes_ = new MinimalEditor(this, ID_DIALOG_TRANS_TEXTNOTES);
+    textNotes_->SetSize(wxSize(-1, 120));
+    box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -663,12 +658,6 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     wxWindow *w = event.GetWindow();
     if ( w )
         object_in_focus_ = w->GetId();
-
-    if (textNotes_->GetValue() == notesTip_ && object_in_focus_ == ID_DIALOG_TRANS_TEXTNOTES)
-    {
-        textNotes_->SetValue("");
-        textNotes_->SetForegroundColour(notesColour_);
-    }
 
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     wxString accountName = cbAccount_->GetValue();
@@ -956,12 +945,7 @@ void mmTransDialog::onNoteSelected(wxCommandEvent& event)
     int i = event.GetId();
     if (i > 0)
     {
-        if (textNotes_->GetValue() == notesTip_)
-        {
-            textNotes_->SetValue("");
-            textNotes_->SetForegroundColour(notesColour_);
-        }
-        *textNotes_ << frequentNotes_[i - 1].second;
+        textNotes_->ChangeValue(frequentNotes_[i - 1].second);
     }
 }
 
