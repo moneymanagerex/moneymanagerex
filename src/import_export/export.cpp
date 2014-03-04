@@ -27,12 +27,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 mmExportTransaction::mmExportTransaction()
 {}
 
-mmExportTransaction::mmExportTransaction(int accountID)
-: m_account_id(accountID)
+mmExportTransaction::mmExportTransaction(int accountID): mmExportBase()
+    , m_account_id(accountID)
 {}
 
-mmExportTransaction::mmExportTransaction(int transactionID, int accountID)
-: m_account_id(accountID)
+mmExportTransaction::mmExportTransaction(int transactionID, int accountID): mmExportBase(transactionID)
+    , m_account_id(accountID)
 {
     m_transaction_id = transactionID;
 }

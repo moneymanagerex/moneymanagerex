@@ -27,6 +27,7 @@ class mmExportBase
 
 public:
     mmExportBase() : m_transaction_id(0) {}
+    mmExportBase(int transactionID) : m_transaction_id(transactionID) {}
 
 protected:
     int m_transaction_id;

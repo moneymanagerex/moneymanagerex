@@ -358,10 +358,10 @@ void mmQIFExportDialog::OnFileNameEntered(wxCommandEvent& event)
 
 void mmQIFExportDialog::mmExportQIF()
 {
-    const bool qif_csv = m_radio_box_->GetSelection() == 0;
-    const bool exp_categ = cCategs_->GetValue();
-    const bool exp_transactions = (accountsCheckBox_->GetValue() && selected_accounts_id_.GetCount()>0);
-    const bool write_to_file = toFileCheckBox_->GetValue();
+    bool qif_csv = m_radio_box_->GetSelection() == 0;
+    bool exp_categ = cCategs_->GetValue();
+    bool exp_transactions = (accountsCheckBox_->GetValue() && selected_accounts_id_.GetCount()>0);
+    bool write_to_file = toFileCheckBox_->GetValue();
     wxString sErrorMsg;
     wxString buffer;
     int numRecords = 0;
