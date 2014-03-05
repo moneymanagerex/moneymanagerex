@@ -311,7 +311,7 @@ void mmTransDialog::dataToControls()
     {
         textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
         textNotes_->SetValue(transaction_->NOTES);
-        textNotes_->SetHint(_("Notes"));
+        textNotes_->SetScrollWidth(200);
         skip_notes_init_ = true;
     }
     setTooltips();
@@ -446,20 +446,21 @@ void mmTransDialog::CreateControls()
         wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
     bAuto->SetToolTip(_("Populate Transaction #"));
 
-    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
-        , wxT(">>"), wxDefaultPosition
-        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
-    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
-
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flags);
     wxBoxSizer* number_sizer = new wxBoxSizer(wxHORIZONTAL);
     flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flags);
-    number_sizer->Add(bFrequentUsedNotes, g_flags);
 
     // Notes ---------------------------------------------
+    flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flags);
+    wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
+        , "...", wxDefaultPosition
+        , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
+    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
+    flex_sizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+
     textNotes_ = new MinimalEditor(this, ID_DIALOG_TRANS_TEXTNOTES);
     textNotes_->SetSize(wxSize(-1, 120));
     box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
