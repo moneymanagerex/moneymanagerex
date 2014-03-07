@@ -4,10 +4,14 @@
     <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
     <TITLE>Money Manager Ex User Manual</TITLE>
     <link rel="stylesheet" type="text/css" href="../res/master.css">
+      <style>
+        table {
+        font-size: 100%;
+        }
+      </style>
 </HEAD>
 <BODY LANG="en-US" DIR="LTR">
-<!--div class="container"-->
-<table><tr>
+<table class="table, small"><tr>
     <TD><span class="label label-info">Languages:</span></TD>
     <TD> </TD><TD><A HREF="french/index.html">French</A><BR>
     <TD> </TD><TD><A HREF="italian/index.html">Italian</A></TD>
@@ -15,10 +19,9 @@
     <TD> </TD><TD><A HREF="spanish/index.html">Spanish</A></TD>
     <TD> </TD><TD><A HREF="polish/index.html">Polish</A></TD>
 </tr></table>
-<!--/div-->
-  <div class="page-header">
-<H2>Money Manager Ex User Manual <small>MMEX 1.0.1.0</small></H2>
-    </div>
+<div class="page-header">
+    <H2>Money Manager Ex User Manual <small>MMEX 1.0.1.0</small></H2>
+</div>
   <UL>
     <LI>
       <A HREF="#introduction">Introduction</A>
@@ -142,8 +145,6 @@
   <UL>
     <LI><A HREF="investment.html">Stock Investments</A></LI>
     <LI><A HREF="#assets">Assets</A></LI>
-  </UL>
-  <UL>
     <LI>
       <A HREF="#repeating_transactions">
         Repeating Transactions</A>
@@ -151,21 +152,15 @@
     <LI>
       <A HREF="#transfilter">Transaction Report Filter</A>
     </LI>
-  </UL>
-  <UL>
     <LI>
       <A HREF="budget.html">Budgeting</A>
       </li>
       <LI>
         <A HREF="#print">Printing</A>
-        </li>
-      </UL>
-  <UL>
+        </LI>
     <LI>
       <A HREF="#options">MMEX Options</A>
     </LI>
-  </UL>
-  <UL>
     <LI>
       <A HREF="#faq">
         Frequently Asked Questions
@@ -174,8 +169,8 @@
   </UL>
   <HR>
 <H3><A NAME="introduction"></A>Introduction</H3>
-<P><B>Money Manager Ex (MMEX) </B>is
-a personal money management system, for any one starting out in
+<P><B>Money Manager Ex (MMEX) </B>
+is a personal money management system, for any one starting out in
 keeping track of their money, and their spending habits. Based on
 simple principles, thus allowing anyone with little, to no knowledge
 of finance and general book keeping, to successfully manage their
@@ -191,20 +186,17 @@ money goes, in order to make better financial decisions for our
 future.</P>
 <P>Think of Money Manager Ex as a
 computer checkbook which enables you to balance your accounts,
-organize, manage and generate reports for your finances. 
-</P>
+organize, manage and generate reports for your finances.</P>
 <P>It is also a great way to keep abreast of
 your financial worth.</P>
 <P>The purpose of this manual is to give you
 (the user) some basic instructions for using MMEX. This instruction
 manual will evolve as the program evolves. So check the help system
-with each update and see what's new and how to better utilize MMEX. 
-</P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A><BR><BR><BR>
-</H5>
+with each update and see what's new and how to better utilize MMEX.</P>
+<H5><A HREF="#top">Back to Top</A><BR><BR><BR></H5>
 <HR>
-<H3 CLASS="western"><A NAME="financial_health"></A><BR>Working
-towards better Financial Health</H3>
+<H3><A NAME="financial_health"></A>
+<BR>Working towards better Financial Health</H3>
 <P>Becoming organized financially requires some
 amount of discipline. Financial management can become complicated
 when there is no clear understanding of how much money we are
@@ -233,9 +225,9 @@ good as the data it has to process. Garbage In Garbage Out. But if
 you have started thinking of even using Personal finance software,
 you are well on your way to making every dollar count.</P>
 <P>Read on how to work with Money Manager Ex.</P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="concepts"></A><BR>Money
+<H3><A NAME="concepts"></A><BR>Money
 Manager Ex Concepts</H3>
 <P>Money Manager EX models the real world to
 help us maintain our personal finances.</P>
@@ -251,8 +243,8 @@ of the system.</P>
 <P>As we hopefully do not spend all the money we
 receive, we would obviously need a place to keep our money. This is
 generally, some financial institution, or several institutions or in
-our pocket. MMEX tags these places as <A HREF="#create_account"><B>Accounts</B></A>.
-
+our pocket. MMEX tags these places as
+<A HREF="#create_account"><B>Accounts</B></A>.
 </P>
 <P>When we spend or receive money, we see this
 as a <A HREF="#creating_new_transaction"><I><B>transaction</B></I></A><I><SPAN STYLE="font-weight: normal">,
@@ -260,17 +252,13 @@ and the reason for our income or expense is our </SPAN></I><A HREF="#categories"
 There will be times where we need to transfer money from one place to
 another, such as a withdrawal from an ATM, and this type of
 transaction is known as a </SPAN></I><A HREF="#trans_types"><I><B>transfer</B></I></A><I><SPAN STYLE="font-weight: normal">.</SPAN></I></P>
-<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
-	<COL WIDTH=51*>
-	<COL WIDTH=205*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=20%>
-			<P STYLE="font-weight: normal"><I>This can be
-			simplified as shown in the following diagram:</I></P>
+<TABLE class="table, small">
+	<TR>
+		<TD>
+			<I>This can be simplified as shown in the following diagram:</I></P>
 		</TD>
-		<TD WIDTH=80%>
-			<P><IMG SRC="mmex_concept.png" NAME="graphics1" ALIGN=BOTTOM WIDTH=581 HEIGHT=338 BORDER=0>
-						</P>
+		<TD>
+			<P><IMG SRC="mmex_concept.png" NAME="graphics1"></P>
 		</TD>
 	</TR>
 </TABLE>
@@ -281,9 +269,9 @@ we use to perform the transactions.</P>
 MMEX uses a <A HREF="#create_database"><B>database</B></A>
 to store and connect all these entities
 together.</P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="recommendation"></A><BR>Recommendations</H3>
+<H3><A NAME="recommendation"></A><BR>Recommendations</H3>
 <P>The database that MMEX generates, known as
 the <B>.mmb</B> file, becomes an important file for you to maintain.
 Depending on circumstances, security features such as encryption can
@@ -310,9 +298,9 @@ when system changes have been detected, and the system shuts down.</P>
 	<LI><P>Use the Menu Tools--&gt;Options... to
 	set up the level of backup required.</P>
 </UL>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="create_database"></A><BR>Creating
+<H3><A NAME="create_database"></A><BR>Creating
 a New Database</H3>
 <P>When MMEX initially starts up, it will
 attempt to load the last database that was opened. If no database
@@ -345,9 +333,9 @@ required by selecting the menu: <B>Tools
 <P>The database name will be displayed on the
 title bar which helps remind you which database file is open.<BR><B>The
 new .mmb database file is not encrypted.</B></P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="encrypting_database">
+<H3><A NAME="encrypting_database">
 </A><BR>Encrypting your database file.</H3>
 <P STYLE="font-weight: normal">The database can
 now be encrypted as follows: on the Menu, Select <B>File-&gt;Save
@@ -362,7 +350,7 @@ Database As</B></P>
 	password for your file &ndash; <B>You will need the password when
 	opening the database file.</B></P>
 </OL>
-<div class="col-xs-8">  
+  <div class="col-xs-8">  
   <span class="label label-info">Tips:</span>
   <table class="table">
     <tr class="success">
@@ -372,10 +360,9 @@ Database As</B></P>
     </TR>
     <TR class="success">
       <td>
-        Database file is not encrypted:</SPAN><BR>That means anyone else having the
-    	proper know how, can actually open the file and read the contents.
-	    So make sure that if you are storing any sensitive financial
-	    information, it is properly guarded.
+        Database file is not encrypted:</SPAN><BR>
+        That means anyone else having the proper know how, can actually open the file and read the contents.
+	    So make sure that if you are storing any sensitive financial information, it is properly guarded.
       </td>
     </tr>
     <tr class="success">
@@ -384,12 +371,12 @@ Database As</B></P>
       </td>
       </TR>
     </table>
-</div>
+  </div>
 <P><BR><BR><BR><BR><BR><BR><BR><BR><BR><BR></P>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="switching_databases"></A><BR>Switching
+<H3><A NAME="switching_databases"></A><BR>Switching
 Databases</H3>
 <P STYLE="margin-bottom: 0in"><BR>
 </P>
@@ -407,9 +394,9 @@ This will appear in the recent file list as the first entry when MMEX
 is restarted.</P>
 <P><BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="create_account"></A><BR>Creating
+<H3><A NAME="create_account"></A><BR>Creating
 New Accounts</H3>
 <P>When creating a new database file, you will
 automatically be requested to create a new account.</P>
@@ -509,9 +496,9 @@ on Navigation Tree</A></P>
 </div>
 <P><BR><BR><BR></P>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="account_setup"></A><B><BR>Account
+<H3><A NAME="account_setup"></A><B><BR>Account
 Setup Example:</B></H3>
 <P>We have a savings account with $1250, a check
 account with $500, a MasterCard owing $250, a Visa Card owing $475, a
@@ -623,7 +610,7 @@ on the home page will reflect the payment. Now you can determine the
 amount of money you have on a day to day basis. Regular payments can
 also be set up from your savings account to your mortgage account
 using <A HREF="#repeating_transactions">Repeating Transactions</A>.</P>
-<H3 CLASS="western"><A NAME="navTreeTips"></A><B><BR>Tip
+<H3><A NAME="navTreeTips"></A><B><BR>Tip
 on</B> using the Navigation Tree and Home
 page:</H3>
 <P>As more accounts are created the Navigation
@@ -664,9 +651,9 @@ temporarily changed to show or hide the appropriate section:</P>
 </UL>
 <P>To make the change permanent, change the
 options using the menu: Tools -&gt;Options --&gt;View Options</P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="editaccounts"></A><BR>Editing
+<H3><A NAME="editaccounts"></A><BR>Editing
 Account Information</H3>
 <P>Once you have created an account, you can
 edit any of the account information fields in the following ways:</P>
@@ -687,9 +674,9 @@ dialog where the required fields can be changed.</P>
 </UL>
 <P><BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="creating_new_transaction"></A><BR>Creating
+<H3><A NAME="creating_new_transaction"></A><BR>Creating
 New Transactions</H3>
 <P>Once you have created a new account, and
 selected the required account from the navigation tree, or the home
@@ -807,9 +794,9 @@ check-box will activate the Split Transactions Dialog</P>
 </UL>
 <P><BR><BR><P><BR><BR></P>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="edittrans"></A><BR>Editing
+<H3><A NAME="edittrans"></A><BR>Editing
 and Updating Transactions</H3>
 <P>Editing existing transactions can be achieved
 in a number of ways:</P>
@@ -844,9 +831,9 @@ deleted in bulk if so desired.
   </div>
   <BR><BR><BR><BR><BR>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="rectrans"></A><BR>Reconciling
+<H3><A NAME="rectrans"></A><BR>Reconciling
 and Balancing Transactions</H3>
 <P><B>Unreconciled Transactions:</B></P>
 <UL>
@@ -879,9 +866,9 @@ settings.</P>
   </div>
   <BR><BR><BR><BR><BR>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="followup"></A><BR>Flagging
+<H3><A NAME="followup"></A><BR>Flagging
 transactions for followup</H3>
 <P>Some transactions might have some issues that
 you want to follow up on. Mark these as with status of flag for
@@ -899,9 +886,9 @@ followup. This is indicated in MMEX with a different icon.</P>
     </table>
   </div>
   <BR><BR><BR><BR><BR>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="currencies"></A><BR>Working
+<H3><A NAME="currencies"></A><BR>Working
 with Currencies</H3>
 <P STYLE="font-weight: normal">As MMEX can be
 used in many countries, MMEX need to consider the currency for the
@@ -967,11 +954,11 @@ Online Update Currency Rate</B>, the following must occur:</P>
     </tr>
   </table>
 </div>
-<P><BR><BR><BR><BR><BR><BR><BR></P>
+<P><BR><BR><BR><BR><BR><BR><BR><BR></P>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="categories"></A><BR>Working
+<H3><A NAME="categories"></A><BR>Working
 with Categories</H3>
 <P><B>Categories indicate the reason an
 expenditure is made or an income is received.</B> 
@@ -1075,9 +1062,9 @@ make the category free so it can then be deleted.</P>
     </table>
 </div>
 <P><BR><BR><BR><BR><BR><BR><BR><BR></P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="payees"></A><BR>Working
+<H3><A NAME="payees"></A><BR>Working
 with Payees</H3>
 <P><B>Payees are the people or institutions that
 give us money, or <BR>the people or institutions who we pay, for our
@@ -1137,11 +1124,11 @@ transactions use this payee. This can be done by:</P>
   </tr>
   </table>
 </div>
-<P><BR><BR><BR><BR><BR><BR><BR><BR></P>
+<P><BR><BR><BR><BR><BR><BR><BR><BR><BR></P>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="importQIF"></A><BR>Importing
+<H3><A NAME="importQIF"></A><BR>Importing
 From QIF Files</H3>
 <P>Quicken Interchange Format (QIF) is an open
 specification for reading and writing financial data to media (i.e.
@@ -1169,9 +1156,9 @@ Flag&quot; as it its status. You can mark all transactions with this
 flag using the bulk status setting commands using the right click
 menu in the account view. 
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="importUnivCSV"></A><BR>Importing
+<H3><A NAME="importUnivCSV"></A><BR>Importing
 From Universal CSV Format</H3>
 <P>To alleviate the problem of users having to
 pre-format their bank transaction CSV files into the fixed format
@@ -1210,11 +1197,12 @@ After importing from QIF, all transactions will have a &quot;Follow
 Flag&quot; as it its status. You can mark all transactions with this
 flag using the bulk status setting commands using the right click
 menu in the account view.</P>
-<P><!-- creating csv tips added by terry wick 9/14/2007 --><BR><BR>
+<P><!-- creating csv tips added by terry wick 9/14/2007 -->
+  <BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="importcsvtips"></A><BR>Tips
+<H3><A NAME="importcsvtips"></A><BR>Tips
 for creating CSV Files</H3>
 <UL>
 	<LI><P>When creating your CSV file be sure that
@@ -1239,9 +1227,9 @@ for creating CSV Files</H3>
 </UL>
 <P><!-- end of tips addition from terry wick --><BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="exportcsv"></A><BR>Exporting
+<H3><A NAME="exportcsv"></A><BR>Exporting
 to CSV Files</H3>
 <P>MMEX can export to a fixed format CSV file.
 This file format exactly matches the CSV format that MMEX can import.
@@ -1261,9 +1249,9 @@ of the transaction<BR><I><B>SubCategory</B></I> - The subcategory of
 the transaction if any (otherwise blank)<BR><I><B>Notes</B></I> -
 Transaction Notes<BR><BR>Note that the transactions from an account
 can be exported to a single CSV file.</P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="export_qif"></A><BR>Exporting
+<H3><A NAME="export_qif"></A><BR>Exporting
 to QIF Files</H3>
 <P>MMEX can export an account to a file of the
 format: QIF.</P>
@@ -1273,9 +1261,9 @@ format: QIF.</P>
 be reloaded into a single account, they will not function correctly.</P>
 <P><BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="repeating_transactions"></A><BR>Repeating
+<H3><A NAME="repeating_transactions"></A><BR>Repeating
 Transactions</H3>
 <P>These are special transactions that we set up
 in order to have the transaction entered into the data base at some
@@ -1357,18 +1345,18 @@ the home page within 15 days of the due date.</SPAN></P>
   </div>
   <BR><BR><BR><BR><BR><BR><BR><BR><BR><BR>
 
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="assets"></A><BR>Assets</H3>
+<H3><A NAME="assets"></A><BR>Assets</H3>
 <P>MMEX allows you to track fixed assets like
 cars, houses, land and others. Each asset can have its value
 appreciate by a certain rate per year, depreciate by a certain rate
 per year, or not change in value. The total assets are added to your
 total financial worth. 
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="transfilter"></A><BR>Transaction
+<H3><A NAME="transfilter"></A><BR>Transaction
 Report Filter</H3>
 <P>MMEX allows you to search for transactions
 that meet certain criteria. This can be done using the <A HREF="#transaction_filtering">Transaction
@@ -1381,9 +1369,9 @@ of transactions can be printed or saved as a HTML file.</P>
 </P>
 <P><BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="reports"></A><A NAME="budgeting"></A><BR>Reports</H3>
+<H3><A NAME="reports"></A><A NAME="budgeting"></A><BR>Reports</H3>
 <P>MMEX allows a variety of reports. <BR>All the
 reports can also be printed if required using the menu:
 <B>File-&gt;Print... --&gt;Current View</B></P>
@@ -1446,9 +1434,9 @@ Repeating Transactions for the various accounts, and reflect forward
 of money that may be available each month based on current payments.</P>
 <P><BR><BR>
 </P>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="print"></A><BR>Printing</H3>
+<H3><A NAME="print"></A><BR>Printing</H3>
 <P>MMEX supports printing of all reports that
 can be viewed. 
 </P>
@@ -1461,84 +1449,81 @@ menu, File-&gt;Print... Current View</P>
 	<LI><P>Use the print preview option to check
 	the layout of the report before printing.</P>
 </UL>
-<H5 CLASS="western"><A HREF="#top">Back to Top</A></H5>
+<H5><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="options"></A><BR>MMEX
+<H3><A NAME="options"></A><BR>MMEX
 Options</H3>
 <P>You can modify some run time behavior of MMEX
 by changing the options in the Options Dialog.</P>
 <P>Access from the menu with <B>Tools-&gt;Options</B></P>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
-	<COL WIDTH=45*>
-	<COL WIDTH=211*>
-	<TBODY>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18% BGCOLOR="#e6e6e6">
+<TABLE class="table table-striped">
+  <thead>
+		<TR>
+			<TH>
 				<P><B>General Panel</B></P>
-			</TD>
-			<TD WIDTH=82% BGCOLOR="#e6e6e6">
+			</TH>
+			<TH>
 				<P><BR>
 				</P>
-			</TD>
+			</TH>
 		</TR>
-	</TBODY>
-	<TBODY>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+    </thead>
+      <TR>
+			<TD>
 				<P><I><B>User Name<BR></B><SPAN STYLE="font-weight: normal">Optional</SPAN></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>This field is used as a title on the Home
 				Page, and on Reports.<BR>Leaving this field blank, will remove
 				the Home Page and Report titles.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><I><B>Language</B></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>This is the language used by the MMEX
 				GUI. MMEX might require a restart before all GUI elements have
 				the new language.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><I><B>Base Currency:</B></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>The base currency setting is used to set
 				the currency of the database. Individual accounts will use this
 				as the default, but can be changed if different currencies as
 				required.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><I><B>Date Format:</B></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>The date format setting is used to
 				control how dates should be displayed and also how dates should
 				be parsed when importing QIF, CSV files.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><B>Financial Year</B></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>Sets the start Day and Month for a
 				Financial Year period, as opposed to a calendar year. This is
 				used in Budgets and Reports.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><I><B>Database<BR>Backup</B></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>Sets the way the backups are performed
 				when MMEX starts.</P>
 				<UL>
@@ -1557,72 +1542,71 @@ by changing the options in the Options Dialog.</P>
 				</UL>
 			</TD>
 		</TR>
-	</TBODY>
 </TABLE>
 <P><BR><BR>
 </P>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
-	<COL WIDTH=45*>
-	<COL WIDTH=211*>
-	<TBODY>
-		<TR>
-			<TD COLSPAN=2 WIDTH=100% VALIGN=TOP BGCOLOR="#e6e6e6">
-				<P><B>View Options Panel</B></P>
-			</TD>
-		</TR>
-	</TBODY>
-	<TBODY>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+<TABLE class="table table-striped">
+  <thead>
+    <TR>
+      <TH>
+        <P>
+          <B>View Options Panel</B>
+        </P>
+      </TH>
+      <TH>
+      </TH>
+    </TR>
+  </thead>
+      <TR>
+			<TD>
 				<P><I><B>Account View</B></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>This sets the Navigation tree's visible
 				accounts, according to status.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><I><B>Transaction View</B></I></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>This determines which transactions are
 				seen as default in the Account View.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><B>Font Size</B></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>This will set the font being used on the
 				Home Page and in Reports.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><B>Tree View<BR>Expand Section</B></P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P>Sets the account types being expanded
 				when in the navigation tree is refreshed.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><B>Home Page</B><BR><B>Expand Section</B></P>
 			</TD>
-			<TD WIDTH=82%>
-				<P>Sets the account types being expanded
-				when the home page is refreshed.</P>
+			<TD>
+				<P>Sets the account types being expanded when the home page is refreshed.</P>
 			</TD>
 		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
+		<TR>
+			<TD>
 				<P><BR>
 				</P>
 			</TD>
-			<TD WIDTH=82%>
+			<TD>
 				<P><BR>
 				</P>
 			</TD>
@@ -1631,34 +1615,45 @@ by changing the options in the Options Dialog.</P>
 </TABLE>
 <P><BR><BR>
 </P>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=NONE>
-	<COL WIDTH=45*>
-	<COL WIDTH=211*>
-	<TR VALIGN=TOP>
-		<TD WIDTH=18% BGCOLOR="#e6e6e6">
-			<P><B>Colors Panel</B></P>
-		</TD>
-		<TD WIDTH=82%>
-			<P>Allows the user to modify colors in MMEX
-			to suit his/her style.</P>
-		</TD>
-	</TR>
+<TABLE class="table table-striped">
+  <thead>
+    <TR>
+      <TH>
+        <P>
+          <B>Colors Panel</B>
+        </P>
+      </TH>
+      <TH>
+      </TH>
+    </TR>
+  </thead>
+  <TR>
+    <TD>
+    </TD>
+    <TD>
+    <P>
+      Allows the user to modify colors in MMEX to suit his/her style.
+    </P>
+  </TD>
+  </TR>
 </TABLE>
 <P><BR><BR>
 </P>
-<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=ROWS>
-	<COL WIDTH=45*>
-	<COL WIDTH=211*>
+<TABLE class="table table-striped">
+  <thead>
 	<TR>
-		<TD COLSPAN=2 WIDTH=100% VALIGN=TOP BGCOLOR="#e6e6e6">
-			<P><B>Import/Export Panel</B></P>
-		</TD>
+		<TH>
+			<B>Import/Export Panel</B>
+		</TH>
+      <TH>
+        </TH>
 	</TR>
-	<TR VALIGN=TOP>
-		<TD WIDTH=18%>
+    </thead>
+	<TR>
+		<TD>
 			<P><I><B>CSV Limiter</B></I></P>
 		</TD>
-		<TD WIDTH=82%>
+		<TD>
 			<P>This is used as the delimiting character
 			when parsing CSV files. This is useful to modify from the default
 			',' when dealing with currencies that use ',' to denote decimal
@@ -1667,123 +1662,135 @@ by changing the options in the Options Dialog.</P>
 		</TD>
 	</TR>
 </TABLE>
-<H5 CLASS="western"><BR><BR>
+<H5><BR><BR>
 </H5>
-<TABLE WIDTH="100%" BORDER="1" BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=0 RULES=GROUPS>
-	<COL WIDTH=45*>
-	<COL WIDTH=211*>
-	<TBODY>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18% BGCOLOR="#e6e6e6">
-				<P><B>Others Panel</B></P>
-			</TD>
-			<TD WIDTH=82% BGCOLOR="#e6e6e6">
-				<P><BR>
-				</P>
-			</TD>
-		</TR>
-	</TBODY>
-	<TBODY>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
-				<P><I><B>New Transactions</B></I></P>
-			</TD>
-			<TD WIDTH=82%>
-				<P>Changes the default settings for the
-				New/Edit Transactions Dialog</P>
-			</TD>
-		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
-				<P><I><B>Stock Quote Web Page</B></I></P>
-			</TD>
-			<TD WIDTH=82%>
-				<P>This URL is used by the Refresh button on
-				the Stock Investments page.</P>
-				<P>This URL is also used by the New/Edit
-				Stock dialog, to display the web page for the listed stock.</P>
-				<P>The default is yahoo finance.
-				Alternatively other sites can be used if necessary.</P>
-			</TD>
-		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
-				<P>Use Original date... 
-				</P>
-			</TD>
-			<TD WIDTH=82%>
-				<P>Activate to use the date of the
-				transaction date when using paste transaction, in account view.</P>
-			</TD>
-		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
-				<P>Use sound...</P>
-			</TD>
-			<TD WIDTH=82%>
-				<P>Activate to plays a sound when a
-				transaction is entered.</P>
-			</TD>
-		</TR>
-		<TR VALIGN=TOP>
-			<TD WIDTH=18%>
-				<P>Enable online currency...</P>
-			</TD>
-			<TD WIDTH=82%>
-				<P>Activate to allow currencies to be
-				updated via the internet.</P>
-			</TD>
-		</TR>
-	</TBODY>
+<TABLE class="table table-striped">
+  <thead>
+    <TR>
+      <TH>Others Panel</TH>
+      <TH>
+        <P>
+          <BR>
+				
+        </P>
+      </TH>
+    </TR>
+  </thead>
+  <TR>
+    <TD>
+      <P>
+        <I>
+          <B>New Transactions</B>
+        </I>
+      </P>
+    </TD>
+    <TD>
+      <P>
+        Changes the default settings for the
+        New/Edit Transactions Dialog
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+      <P>
+        <I>
+          <B>Stock Quote Web Page</B>
+        </I>
+      </P>
+    </TD>
+    <TD>
+      <P>
+        This URL is used by the Refresh button on
+        the Stock Investments page.
+      </P>
+      <P>
+        This URL is also used by the New/Edit
+        Stock dialog, to display the web page for the listed stock.
+      </P>
+      <P>
+        The default is yahoo finance.
+        Alternatively other sites can be used if necessary.
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+      <P>
+        Use Original date...
+      </P>
+    </TD>
+    <TD>
+      <P>
+        Activate to use the date of the
+        transaction date when using paste transaction, in account view.
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+      <P>Use sound...</P>
+    </TD>
+    <TD>
+      <P>
+        Activate to plays a sound when a
+        transaction is entered.
+      </P>
+    </TD>
+  </TR>
+  <TR>
+    <TD>
+      <P>Enable online currency...</P>
+    </TD>
+    <TD>
+      <P>
+        Activate to allow currencies to be
+        updated via the internet.
+      </P>
+    </TD>
+  </TR>
 </TABLE>
-<H5 CLASS="western"><BR><A HREF="#top">Back to
-Top</A></H5>
+
+<H5><BR><A HREF="#top">Back to Top</A></H5>
 <HR>
-<H3 CLASS="western"><A NAME="faq"></A><BR>Frequently
-Asked Questions</H3>
+<H3><A NAME="faq"></A><BR>Frequently Asked Questions</H3>
 <OL>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#contribute">How
-	can I contribute?</A> 
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#contribute">
+      How can I contribute?</A> 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#nameex">What's
-	the reason for the EX in the name of the software?</A> 
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#nameex">
+      What's the reason for the EX in the name of the software?</A> 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#database1">Is
-	the .mmb file format proprietary? And is my data safe?</A> 
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#database1">
+      Is the .mmb file format proprietary? And is my data safe?</A> 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#usbkey">Can
-	MMEX run from a USB Key?</A> 
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#usbkey">
+      Can MMEX run from a USB Key?</A> 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A HREF="#safety">How
-	do I know MMEX is not trying to steal my sensitive financial
-	information?</A> 
+	<LI><P STYLE="margin-bottom: 0in"><A HREF="#safety">
+      How do I know MMEX is not trying to steal my sensitive financial information?</A> 
 	</P>
-	<LI><P><A HREF="#statements">How do I print
-	account statements using MMEX?</A> 
+	<LI><P><A HREF="#statements">How do I print account statements using MMEX?</A> 
 	</P>
 </OL>
 <HR>
-<H3 CLASS="western"><A NAME="contribute"></A><BR>How
-can I contribute?</H3>
-<P><A NAME="contribute1"></A>You can contribute
-by 
-</P>
+<H3><A NAME="contribute"></A><BR>How can I contribute?</H3>
+<P><A NAME="contribute1"></A>You can contribute by</P>
 <UL>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute2"></A>Reporting
-	bugs 
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute2"></A>
+    Reporting bugs 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute3"></A>Translating
-	to your language 
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute3"></A>
+    Translating	to your language 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute4"></A>Helping
-	spread the word 
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute4"></A>
+    Helping	spread the word 
 	</P>
-	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute5"></A>If
-	you are a C++ expert, by helping extend MMEX developing code. 
+	<LI><P STYLE="margin-bottom: 0in"><A NAME="contribute5"></A>
+    If you are a C++ expert, by helping extend MMEX developing code. 
 	</P>
 	<LI><P>If you are really very happy because you
-	saved a lot of money by using MMEX, you can donate to the MMEX
-	project. 
+	saved a lot of money by using MMEX, you can donate to the MMEX project. 
 	</P>
 </UL>
 <P STYLE="margin-bottom: 0in"><BR>
@@ -1791,19 +1798,19 @@ by
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#top">Back to
+			<H5><A HREF="#top">Back to
 			Top</A></H5>
 		</TD>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#faq">Back to
+			<H5><A HREF="#faq">Back to
 			Frequently Asked Questions</A></H5>
 		</TD>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="nameex"></A><BR>What's
+<H3><A NAME="nameex"></A><BR>What's
 the reason for the EX in the name of the software?</H3>
 <P>Originally I developed a personal finance
 software called Money Manager. It was written in .NET and more of a
@@ -1828,25 +1835,25 @@ tacked on a 'Ex' to the end.
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#top">Back to
+			<H5><A HREF="#top">Back to
 			Top</A></H5>
 		</TD>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#faq">Back to
+			<H5><A HREF="#faq">Back to
 			Frequently Asked Questions</A></H5>
 		</TD>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="database1"></A><BR>Is
+<H3><A NAME="database1"></A><BR>Is
 the .mmb format proprietary? And, Is my data safe? 
 </H3>
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=13*>
 	<COL WIDTH=243*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=5%>
 			<P><B>No</B></P>
 		</TD>
@@ -1855,7 +1862,7 @@ the .mmb format proprietary? And, Is my data safe?
 			not proprietary.</P>
 		</TD>
 	</TR>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=5%>
 			<P><BR>
 			</P>
@@ -1872,7 +1879,7 @@ the .mmb format proprietary? And, Is my data safe?
 			</P>
 		</TD>
 	</TR>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=5%>
 			<P><B>Yes</B></P>
 		</TD>
@@ -1880,7 +1887,7 @@ the .mmb format proprietary? And, Is my data safe?
 			<P>Your data is completely safe.</P>
 		</TD>
 	</TR>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=5%>
 			<P><BR>
 			</P>
@@ -1906,19 +1913,19 @@ the .mmb format proprietary? And, Is my data safe?
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#top">Back to
+			<H5><A HREF="#top">Back to
 			Top</A></H5>
 		</TD>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#faq">Back to
+			<H5><A HREF="#faq">Back to
 			Frequently Asked Questions</A></H5>
 		</TD>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="usbkey"></A><BR>Can
+<H3><A NAME="usbkey"></A><BR>Can
 MMEX run from a USB Key?</H3>
 <P><A NAME="usbkey1"></A><B>Yes.</B></P>
 <P>MMEX is a portable application which means
@@ -1949,19 +1956,19 @@ mmex's folder on that drive.</P>
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#top">Back to
+			<H5><A HREF="#top">Back to
 			Top</A></H5>
 		</TD>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#faq">Back to
+			<H5><A HREF="#faq">Back to
 			Frequently Asked Questions</A></H5>
 		</TD>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="safety"></A><BR>How
+<H3><A NAME="safety"></A><BR>How
 do I know MMEX is not trying to steal my sensitive financial
 information?</H3>
 <P><A NAME="safety1"></A>Generally, with any
@@ -1984,19 +1991,19 @@ for an update etc). <BR><BR><BR>
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#top">Back to
+			<H5><A HREF="#top">Back to
 			Top</A></H5>
 		</TD>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#faq">Back to
+			<H5><A HREF="#faq">Back to
 			Frequently Asked Questions</A></H5>
 		</TD>
 	</TR>
 </TABLE>
 <HR>
-<H3 CLASS="western"><A NAME="statements"></A><BR>How
+<H3><A NAME="statements"></A><BR>How
 do I print account statements using MMEX?</H3>
 <P><A NAME="statements1"></A>To print a
 statement with transactions from any arbitrary set of criteria, use
@@ -2020,19 +2027,19 @@ the Quick Navigation buttons in the top left hand corner of MMEX.</P>
 <TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0>
 	<COL WIDTH=128*>
 	<COL WIDTH=128*>
-	<TR VALIGN=TOP>
+	<TR>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#top">Back to
+			<H5><A HREF="#top">Back to
 			Top</A></H5>
 		</TD>
 		<TD WIDTH=50%>
-			<H5 CLASS="western"><A HREF="#faq">Back to
+			<H5><A HREF="#faq">Back to
 			Frequently Asked Questions</A></H5>
 		</TD>
 	</TR>
 </TABLE>
 <HR>
-<H5 CLASS="western">Copyright &ordf; 2005-2013&nbsp;
+<H5>Copyright &ordf; 2005-2013&nbsp;
 CodeLathe LLC. All rights reserved.</H5>
 </BODY>
 </HTML>
