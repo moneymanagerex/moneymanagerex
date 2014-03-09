@@ -109,7 +109,7 @@ const wxString mmex::getProgramFacebookSite()
 }
 const wxString mmex::getProgramDanateSite()
 {
-    return "https://www.paypal.com/cgi-bin/webscr?item_name=Donation+to+Money+Manager+Ex&cmd=_donations&business=moneymanagerex%40gmail.com";
+    return "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 }
 const wxString mmex::getProgramTwitterSite()
 {
