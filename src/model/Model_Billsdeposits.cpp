@@ -37,6 +37,11 @@ const std::vector<std::pair<Model_Billsdeposits::STATUS_ENUM, wxString> > Model_
 
 Model_Billsdeposits::Model_Billsdeposits()
 : Model<DB_Table_BILLSDEPOSITS_V1>()
+, m_autoExecuteManual (false)
+, m_autoExecuteSilent (false)
+, m_requireExecution (false)
+, m_allowExecution (false)
+
 {
 }
 

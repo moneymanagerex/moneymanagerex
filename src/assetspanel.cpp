@@ -274,8 +274,8 @@ mmAssetsPanel::mmAssetsPanel(wxWindow *parent)
     , m_listCtrlAssets()
     , itemStaticTextMainFilter_()
     , header_text_()
+    , tips_()
 {
-    tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     Create(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, wxPanelNameStr);
 }
 
@@ -292,6 +292,7 @@ bool mmAssetsPanel::Create(wxWindow *parent
 
     this->windowsFreezeThaw();
 
+    tips_ = _("MMEX allows you to track fixed assets like cars, houses, land and others. Each asset can have its value appreciate by a certain rate per year, depreciate by a certain rate per year, or not change in value. The total assets are added to your total financial worth.");
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);

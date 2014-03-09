@@ -159,9 +159,10 @@ void mmGeneralReportManager::CreateControls()
     wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
     //
 
+#if defined (__WXMSW__)
+    long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
+#else
     long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
-#if defined (__WXWIN__)
-    treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
     m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
@@ -251,10 +252,10 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     {
         wxBoxSizer *box_sizer3 = new wxBoxSizer(wxHORIZONTAL);
         box_sizer3->Add(templateText, wxSizerFlags(g_flagsExpand).Proportion(3));
-
+#if defined (__WXMSW__)
+        long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
+#else
         long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS;
-#if defined (__WXWIN__)
-        treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
 #endif
         wxTreeCtrl *dbView = new wxTreeCtrl(panel, wxID_ANY, wxDefaultPosition
             , wxDefaultSize, treeCtrlFlags);
@@ -298,7 +299,7 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
 
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 {
-    MinimalEditor* sqlText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
+    MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
     wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
     const wxString &sql = sqlText->GetValue();
 
@@ -312,7 +313,7 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
             info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
                 , (int) m_sqlQueryData.size(), interval.ToLong()));
 
-            MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+            MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
             std::vector<std::pair<wxString, int> > colHeaders;
             bool colsOK = Model_Report::instance().getColumns(sql, colHeaders);
             wxButton* b = (wxButton*) FindWindow(wxID_NEW);
@@ -343,9 +344,9 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
 
 void mmGeneralReportManager::OnNewTemplate(wxCommandEvent& event)
 {
-    MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
+    MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
     if (!templateText->GetValue().empty()) return;
-    MinimalEditor* sqlText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
+    MinimalEditor* sqlText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
 
     wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
     n->SetSelection(ID_TAB_HTT);
@@ -475,10 +476,10 @@ void mmGeneralReportManager::OnUpdateReport(wxCommandEvent& /*event*/)
     Model_Report::Data * report = Model_Report::instance().get(id);
     if (report)
     {
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
-        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
-        MinimalEditor* descriptionText = (MinimalEditor*) FindWindow(ID_DESCRIPTION);
+        MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
+        MinimalEditor* SqlScriptText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
+        MinimalEditor* LuaScriptText = static_cast<MinimalEditor*>(FindWindow(ID_LUA_CONTENT));
+        MinimalEditor* descriptionText = static_cast<MinimalEditor*>(FindWindow(ID_DESCRIPTION));
         report->SQLCONTENT = SqlScriptText->GetValue();
         report->LUACONTENT = LuaScriptText->GetValue();
         report->TEMPLATECONTENT = templateText->GetValue();
@@ -581,10 +582,10 @@ void mmGeneralReportManager::OnSelChanged(wxTreeEvent& event)
         createEditorTab(editors_notebook, ID_LUA_CONTENT);
         createEditorTab(editors_notebook, ID_SQL_CONTENT);
 
-        MinimalEditor* SqlScriptText = (MinimalEditor*) FindWindow(ID_SQL_CONTENT);
-        MinimalEditor* LuaScriptText = (MinimalEditor*) FindWindow(ID_LUA_CONTENT);
-        MinimalEditor* templateText = (MinimalEditor*) FindWindow(ID_TEMPLATE);
-        MinimalEditor* descriptionText = (MinimalEditor*) FindWindow(ID_DESCRIPTION);
+        MinimalEditor* SqlScriptText = static_cast<MinimalEditor*>(FindWindow(ID_SQL_CONTENT));
+        MinimalEditor* LuaScriptText = static_cast<MinimalEditor*>(FindWindow(ID_LUA_CONTENT));
+        MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
+        MinimalEditor* descriptionText = static_cast<MinimalEditor*>(FindWindow(ID_DESCRIPTION));
 
         templateText->ChangeValue(report->TEMPLATECONTENT);
         templateText->SetLexerHtml();

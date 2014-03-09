@@ -390,7 +390,7 @@ void mmUnivCSVDialog::OnAdd(wxCommandEvent& /*event*/)
     int index = csvFieldCandicate_->GetSelection();
     if (index != wxNOT_FOUND)
     {
-        mmListBoxItem* item = (mmListBoxItem*)csvFieldCandicate_->GetClientObject(index);
+        mmListBoxItem* item = static_cast<mmListBoxItem*> (csvFieldCandicate_->GetClientObject(index));
 
         csvListBox_->Append(item->getName(), new mmListBoxItem(item->getIndex(), item->getName()));
         csvFieldOrder_.push_back(item->getIndex());
@@ -414,7 +414,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND)
     {
-        mmListBoxItem *item = (mmListBoxItem*)csvListBox_->GetClientObject(index);
+        mmListBoxItem *item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex();
         wxString item_name = item->getName();
 
@@ -423,7 +423,7 @@ void mmUnivCSVDialog::OnRemove(wxCommandEvent& /*event*/)
             int pos = 0;
             for (pos = 0; pos < (int)csvFieldCandicate_->GetCount() - 1; pos ++)
             {
-                mmListBoxItem *item = (mmListBoxItem*)csvFieldCandicate_->GetClientObject(pos);
+                mmListBoxItem *item = static_cast<mmListBoxItem*>(csvFieldCandicate_->GetClientObject(pos));
                 if (item_index < item->getIndex())
                     break;
             }
@@ -1076,7 +1076,7 @@ void mmUnivCSVDialog::OnMoveUp(wxCommandEvent& /*event*/)
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND && index != 0)
     {
-        mmListBoxItem* item = (mmListBoxItem*)csvListBox_->GetClientObject(index);
+        mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex();
         wxString item_name = item->getName();
 
@@ -1095,7 +1095,7 @@ void mmUnivCSVDialog::OnMoveDown(wxCommandEvent& /*event*/)
     int index = csvListBox_->GetSelection();
     if (index != wxNOT_FOUND && index != (int)csvListBox_->GetCount() - 1)
     {
-        mmListBoxItem* item = (mmListBoxItem*)csvListBox_->GetClientObject(index);
+        mmListBoxItem* item = static_cast<mmListBoxItem*>(csvListBox_->GetClientObject(index));
         int item_index = item->getIndex();
         wxString item_name = item->getName();
 
