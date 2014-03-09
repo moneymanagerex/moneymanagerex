@@ -255,6 +255,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\..\src\general_report_manager.cpp" />
+    <ClCompile Include="..\..\..\src\import_export\qif_import_gui.cpp" />
     <ClCompile Include="..\..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\..\src\mmframe.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Account.cpp" />
@@ -376,6 +377,7 @@
     <ClInclude Include="..\..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\..\src\general_report_manager.h" />
+    <ClInclude Include="..\..\..\src\import_export\qif_import_gui.h" />
     <ClInclude Include="..\..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\..\src\mmframe.h" />
     <ClInclude Include="..\..\..\src\model\Model.h" />

@@ -125,7 +125,9 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
     m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
 
     m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
+    m_dbmodel->Add_Term_Account("Stocks - Acme Corporation", 0, "Share Dividends");
     m_dbmodel->Add_Investment_Account("Acme Corporation", 0, "Shares");
+    m_dbmodel->Add_Term_Account("Stocks - ABC Corporation", 0, "Share Dividends");
     m_dbmodel->Add_Term_Account("Insurance Policies");
     m_test_db.Commit();
 }
@@ -147,6 +149,9 @@ void Test_DatabaseInitialisation::Add_Payee_Entries()
     m_dbmodel->Add_Payee("Government Authorities");
     m_dbmodel->Add_Payee("Utility Provider");
     m_dbmodel->Add_Payee("Cash - Miscellaneous");
+
+    m_dbmodel->Add_Payee("ACME Corporation");
+    m_dbmodel->Add_Payee("ABC Corporation");
     m_test_db.Commit();
 }
 
@@ -178,9 +183,19 @@ void Test_DatabaseInitialisation::Add_Category_Entries()
     m_dbmodel->Add_Subcategory(cat_id, "Offset");
     m_dbmodel->Add_Subcategory(cat_id, "Interest");
 
+    // Extend Category structure: "Income"
     cat_id = m_dbmodel->Get_category_id("Income");
     m_dbmodel->Add_Subcategory(cat_id, "Tax");
     m_dbmodel->Add_Subcategory(cat_id, "Bank Interest");
+    m_dbmodel->Add_Subcategory(cat_id, "Share Dividend");
+
+    // Extend Category structure: "Transfer"
+    cat_id = m_dbmodel->Get_category_id("Transfer");
+    m_dbmodel->Add_Subcategory(cat_id, "Share Dividend");
+    m_dbmodel->Add_Subcategory(cat_id, "Share Purchase");
+    m_dbmodel->Add_Subcategory(cat_id, "Bank Loan");
+    m_dbmodel->Add_Subcategory(cat_id, "Spending Money");
+    m_dbmodel->Add_Subcategory(cat_id, "Saving");
 
     m_test_db.Commit();
 }
@@ -204,7 +219,7 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     m_test_db.Begin();  // Set all data to memory first, then save to database at end.
 
     // Setting up a personal loan
-    int personal_loan_id = m_dbmodel->Add_Trans_Transfer("ANZ - Personal Loan", trans_date, "ANZ - Cheque", 10000, "Transfer");
+    int personal_loan_id = m_dbmodel->Add_Trans_Transfer("ANZ - Personal Loan", trans_date, "ANZ - Cheque", 10000, "Transfer", "Bank Loan");
     Model_Checking::Data* personal_loan = Model_Checking::instance().get(personal_loan_id);
     personal_loan->NOTES = "Initialise $10,000 Personal loan from ANZ -Bank";
     Model_Checking::instance().save(personal_loan);
@@ -234,7 +249,6 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         //--------------------------------------------------------------------
 
         trans_date = starting_date;
-
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date.Add(wxDateSpan::Days(1)), "Aldi", 50, "Food", "Groceries");
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date.Add(wxDateSpan::Days(2)), "Coles", 30, "Food", "Groceries");
         m_dbmodel->Add_Trans_Withdrawal("NAB - Savings", trans_date.Add(wxDateSpan::Days(3)), "Woolworths", 40, "Food", "Groceries");
@@ -249,20 +263,20 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         //--------------------------------------------------------------------
 
         trans_date = starting_date;
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date.Add(wxDateSpan::Days(1)), "Wallet - Peter", 70, "Transfer");
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 80, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date.Add(wxDateSpan::Days(1)), "Wallet - Peter", 70, "Transfer", "Spending Money");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 80, "Transfer", "Spending Money");
 
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Peter", trans_date.Add(wxDateSpan::Days(7)), "Cash - Miscellaneous", 70, "Miscellaneous");
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Mary", trans_date, "Cash - Miscellaneous", 80, "Miscellaneous");
 
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Peter", 70, "Transfer");
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 100, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Peter", 70, "Transfer", "Spending Money");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 100, "Transfer", "Spending Money");
 
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Peter", trans_date.Add(wxDateSpan::Days(7)), "Cash - Miscellaneous", 70, "Miscellaneous");
         m_dbmodel->Add_Trans_Withdrawal("Wallet - Mary", trans_date, "Cash - Miscellaneous", 100, "Miscellaneous");
 
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Peter", 60, "Transfer");
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 90, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Peter", 60, "Transfer", "Spending Money");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "Wallet - Mary", 90, "Transfer", "Spending Money");
 
         // Add split Transactions
         int split_id = m_dbmodel->Add_Trans_Withdrawal("Wallet - Peter", trans_date.Add(wxDateSpan::Days(8)), "Cash - Miscellaneous", 60);
@@ -275,41 +289,47 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         m_dbmodel->Add_Trans_Split(split_id, 40, "Healthcare", "Health");
 
         trans_date = starting_date;
-        // Quarterley Transactions
-        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 6) || (trans_date.GetMonth() == 9) || (trans_date.GetMonth() == 12))  // December
+        // Quarterley Transactions March, June, September, December
+        if ((trans_date.GetMonth() == wxDateTime::Mar) || (trans_date.GetMonth() == wxDateTime::Jun) || (trans_date.GetMonth() == wxDateTime::Sep) || (trans_date.GetMonth() == wxDateTime::Dec))
         {
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Government Authorities", 250, "Home", "Water Rates");
         }
 
         trans_date = starting_date;
-        // Yearly Transactions - 1
-        if ((trans_date.GetMonth() == 6))
+        // Yearly Transactions
+        if ((trans_date.GetMonth() == wxDateTime::Jun))
         {
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 400, "Home", "Electricity");
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 700, "Home", "Gas");
         }
 
         trans_date = starting_date;
-        // Yearly Transactions - 2
-        if ((trans_date.GetMonth() == 12))
+        // Yearly Transactions
+        if ((trans_date.GetMonth() == wxDateTime::Dec))
         {
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 200, "Home", "Electricity");
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 50, "Home", "Gas");
+            m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Bank - ANZ", 80, "Mastercard", "Annual Fee");
         }
 
         trans_date = starting_date;
-        // Yearly Transactions - 3
-        if ((trans_date.GetMonth() == 8))   // August
+        // Yearly Transactions - August 
+        if ((trans_date.GetMonth() == wxDateTime::Aug))
         {
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(12)), "Government Authorities", 2200, "Home", "General Rates");
         }
 
         trans_date = starting_date;
-        // Six Monthly Transactions - 1
-        if ((trans_date.GetMonth() == 3) || (trans_date.GetMonth() == 9)) // March & September
+        // Six Monthly Transactions
+        if ((trans_date.GetMonth() == wxDateTime::Mar) || (trans_date.GetMonth() == wxDateTime::Sep))
         {
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 300, "Home", "Electricity");
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 400, "Home", "Gas");
+
+            m_dbmodel->Add_Trans_Deposit("Stocks - Acme Corporation", trans_date.Add(wxDateSpan::Days(7)), "ACME Corporation", 25.75, "Income", "Share Dividend");
+            m_dbmodel->Add_Trans_Transfer("Stocks - Acme Corporation", trans_date, "ANZ - Cash Manager", 25.75, "Transfer", "Share Dividend");
+            m_dbmodel->Add_Trans_Deposit("Stocks - ABC Corporation", trans_date.Add(wxDateSpan::Days(7)), "ABC Corporation", 555.25, "Income", "Share Dividend");
+            m_dbmodel->Add_Trans_Transfer("Stocks - ABC Corporation", trans_date, "ANZ - Cash Manager", 555.25, "Transfer", "Share Dividend");
         }
         //--------------------------------------------------------------------
 
@@ -328,8 +348,8 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
         m_dbmodel->Add_Trans_Deposit("ANZ - Personal Loan", trans_date, "Bank - ANZ", 180, "Personal Loan", "Offset");
         m_dbmodel->Add_Trans_Withdrawal("ANZ - Personal Loan", trans_date, "Bank - ANZ", ((10000 - (180 * month_count)) * 0.20) / 12 , "Personal Loan", "Interest");
 
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cheque", 100, "Transfer");
-        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cash Manager", 250, "Transfer");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cheque", 100, "Transfer", "Saving");
+        m_dbmodel->Add_Trans_Transfer("NAB - Savings", trans_date, "ANZ - Cash Manager", 150, "Transfer", "Saving");
         m_dbmodel->Add_Trans_Deposit("ANZ - Cash Manager", trans_date, "Bank - ANZ", (250 * month_count * .05)/12, "Income", "Bank Interest");
 
 

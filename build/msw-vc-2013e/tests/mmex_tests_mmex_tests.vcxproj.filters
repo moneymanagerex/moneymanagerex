@@ -351,6 +351,9 @@
     <ClCompile Include="..\..\..\src\tests\test_date_range.cpp">
       <Filter>Test Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\import_export\qif_import_gui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\src\aboutdialog.h">
@@ -736,6 +739,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\src\tests\test_date_range.h">
       <Filter>Test Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\import_export\qif_import_gui.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
