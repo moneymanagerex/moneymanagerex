@@ -94,7 +94,29 @@ void Model_Currency::initialize()
 Model_Currency::Data* Model_Currency::GetBaseCurrency()
 {
     int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
-    return Model_Currency::instance().get(currency_id);
+    Model_Currency::Data *currency = Model_Currency::instance().get(currency_id);
+    if (currency) {
+        return Model_Currency::instance().get(currency_id);
+    }
+    else
+    {
+        wxASSERT(false); //Base Currency ID is invalid
+        for (const auto c : Model_Currency::instance().all())
+        {
+            //Get first available currency as base currency
+            currency = Model_Currency::instance().get(c.CURRENCYID);
+            break;
+        }
+
+        if (currency)
+        {
+            wxLogError(_("Base Currency Not Set"));
+            return currency;
+        }
+        else
+            wxLogFatalError("There are no any valid currencies in DB. Exit.");
+    }
+    return 0;
 }
 
 void Model_Currency::SetBaseCurrency(Data* r)
