@@ -21,6 +21,37 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "defs.h"
 
+enum qifLineType
+{
+    AcctType = 1, // !
+    Date = 2, // D
+    Amount = 3, // T
+    Address = 4, // A
+    Payee = 5, // P
+    EOTLT = 6, // ^
+    TransNumber = 7, // N
+    Status = 8, // C
+    UnknownType = 9,
+    Memo = 10, // M
+    Category = 11,  // L
+    CategorySplit = 12,  // S
+    MemoSplit = 13,  // E
+    AmountSplit = 14   // '$'
+};
+
+//QIF specific data
+enum qifAccountInfoType
+{
+    Name = 1, // N
+    AccountType = 2, // T
+    Description = 3, // D
+    CreditLimit = 4, // L
+    BalanceDate = 5, // /
+    Balance = 6, // $
+    EOT = 7, // ^
+    UnknownInfo = 8
+};
+
 class mmQIFImport
 {
 
@@ -31,37 +62,6 @@ public:
     wxString getLineData(const wxString& line) const;
     wxString getFileLine(wxTextInputStream& textFile, int& lineNumber) const;
     wxString getFinancistoProject(wxString& sSubCateg) const;
-
-    //QIF specific data
-    enum qifAccountInfoType
-    {
-        Name = 1, // N
-        AccountType = 2, // T
-        Description = 3, // D
-        CreditLimit = 4, // L
-        BalanceDate = 5, // /
-        Balance = 6, // $
-        EOT = 7, // ^
-        UnknownInfo = 8
-    };
-
-    enum qifLineType
-    {
-        AcctType = 1, // !
-        Date = 2, // D
-        Amount = 3, // T
-        Address = 4, // A
-        Payee = 5, // P
-        EOTLT = 6, // ^
-        TransNumber = 7, // N
-        Status = 8, // C
-        UnknownType = 9,
-        Memo = 10, // M
-        Category = 11,  // L
-        CategorySplit = 12,  // S
-        MemoSplit = 13,  // E
-        AmountSplit = 14   // '$'
-    };
 
     qifAccountInfoType accountInfoType(const wxString& line)
     {
