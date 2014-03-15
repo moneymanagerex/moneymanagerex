@@ -713,6 +713,28 @@ void mmOptionsDialog::CreateControls()
 //    delimiterRadioButtonU4->Hide();
 //    textDelimiter4->Hide();
 
+    wxStaticBox* WebAppStaticBox = new wxStaticBox(importExportPanel, wxID_STATIC, _("WebApp Settings"));
+    WebAppStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
+    wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(2, 2, 2, 10);
+    importExportPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
+    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
+
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("Url")), flags);
+    wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
+        WebAppURL, wxDefaultPosition, wxSize(200, -1));
+    WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
+    WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
+
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("GUID")), flags);
+    wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
+    wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
+        WebAppGUID, wxDefaultPosition, wxSize(200, -1));
+    WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
+    WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
+
+
    /**********************************************************************************************
     Setting up the notebook with the 5 pages
     **********************************************************************************************/
@@ -1062,6 +1084,12 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
     wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
     wxString delim = st->GetValue();
     if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
+
+    wxTextCtrl* WebAppURL = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL);
+    Model_Infotable::instance().Set("WEBAPPURL", WebAppURL->GetValue());
+
+    wxTextCtrl* WebAppGUID = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
+    Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
