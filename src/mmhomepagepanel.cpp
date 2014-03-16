@@ -189,7 +189,7 @@ void mmHomePagePanel::createFrames()
     rightFrame << getStatWidget();
 
     m_templateText = prepareTemplate(leftFrame, rightFrame);
-    htmlWindow_->SetPage(m_templateText, "");
+    browser_->SetPage(m_templateText, "");
 }
 
 wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
@@ -549,16 +549,16 @@ void mmHomePagePanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    htmlWindow_ = wxWebView::New(this, wxID_ANY);
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
-    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW | wxALL, 0);
+    browser_ = wxWebView::New(this, wxID_ANY);
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
+    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
 }
 
 void mmHomePagePanel::PrintPage()
 {
-    htmlWindow_->Print();
+    browser_->Print();
 }

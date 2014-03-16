@@ -40,7 +40,7 @@ public:
     void PrintPage();
 
 private:
-    wxWebView* htmlWindow_;
+    wxWebView* browser_;
 
     bool Create(wxWindow *parent, wxWindowID winid
         , const wxPoint& pos = wxDefaultPosition

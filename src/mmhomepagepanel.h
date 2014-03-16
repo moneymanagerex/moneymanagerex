@@ -55,7 +55,7 @@ public:
 
 private:
     mmGUIFrame* frame_;
-    wxWebView* htmlWindow_;
+    wxWebView* browser_;
     mmDateRange* date_range_;
     void CreateControls();
     void sortTable() {}

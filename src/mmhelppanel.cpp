@@ -71,8 +71,8 @@ void mmHelpPanel::CreateControls()
     itemBoxSizerHeader->Add(buttonFordward, 0, wxLEFT | wxRIGHT, 5);
     itemBoxSizerHeader->Add(itemStaticText9, 0, wxLEFT | wxTOP, 5);
 
-    htmlWindow_ = wxWebView::New(this, wxID_ANY);
-    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW | wxALL, 1);
+    browser_ = wxWebView::New(this, wxID_ANY);
+    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 1);
     
     /**************************************************************************
     Allows help files for a specific language.
@@ -93,7 +93,7 @@ void mmHelpPanel::CreateControls()
     wxString url = "file://" + mmex::getPathDoc((mmex::EDocFile)helpFileIndex);
     if (helpIndexFile.FileExists()) // Load the help file for the given language 
         url = "file://" + helpIndexFile.GetPathWithSep() + helpIndexFile.GetFullName();
-    htmlWindow_->LoadURL(url);
+    browser_->LoadURL(url);
     wxLogDebug("%s", url);
 }
 
@@ -103,23 +103,23 @@ void mmHelpPanel::sortTable()
 
 void mmHelpPanel::OnHelpPageBack(wxCommandEvent& /*event*/)
 {
-    if (htmlWindow_->CanGoBack())
+    if (browser_->CanGoBack())
     {
-        htmlWindow_->GoBack();
-        htmlWindow_->SetFocus();
+        browser_->GoBack();
+        browser_->SetFocus();
     }
 }
 
 void mmHelpPanel::OnHelpPageForward(wxCommandEvent& /*event*/)
 {
-    if (htmlWindow_->CanGoForward() )
+    if (browser_->CanGoForward() )
     {
-        htmlWindow_->GoForward();
-        htmlWindow_->SetFocus();
+        browser_->GoForward();
+        browser_->SetFocus();
     }
 }
 
 void mmHelpPanel::PrintPage()
 {
-    htmlWindow_->Print();
+    browser_->Print();
 }
