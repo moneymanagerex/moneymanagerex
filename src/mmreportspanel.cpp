@@ -26,6 +26,30 @@
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
 
+class WebViewHandlerStatic : public wxWebViewHandler
+{
+public:
+    WebViewHandlerStatic(const wxString& protocol): wxWebViewHandler(protocol)
+    {
+        m_fs = new wxFileSystem();
+    }
+    virtual ~WebViewHandlerStatic()
+    {
+        wxDELETE(m_fs);
+    }
+    virtual wxFSFile* GetFile(const wxString& uri)
+    {
+        wxLogDebug("xxxxx %s", uri);
+        if (wxFileSystem::HasHandlerForPath(uri))
+            return m_fs->OpenFile(uri);
+        else
+            return NULL;
+    }
+
+private:
+   wxFileSystem* m_fs;
+};
+
 class WebViewHandlerReportsPage : public wxWebViewHandler
 {
 public:
@@ -143,6 +167,7 @@ void mmReportsPanel::CreateControls()
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
     htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
+    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic("static")));
 
     itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
 }
