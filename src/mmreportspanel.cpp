@@ -90,7 +90,7 @@ public:
             long sortColumn = -1;
             sData.ToLong(&sortColumn);
             m_reportPanel->rb_->setSortColumn(sortColumn);
-            m_reportPanel->htmlWindow_->SetPage(m_reportPanel->getReportText(), "");
+            m_reportPanel->browser_->SetPage(m_reportPanel->getReportText(), "");
         }
 
         return NULL;
@@ -130,7 +130,7 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    htmlWindow_->SetPage(getReportText(), "");
+    browser_->SetPage(getReportText(), "");
     return TRUE;
 }
 
@@ -163,16 +163,16 @@ void mmReportsPanel::CreateControls()
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
-    htmlWindow_ = wxWebView::New(this, wxID_ANY);
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
-    htmlWindow_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic("static")));
+    browser_ = wxWebView::New(this, wxID_ANY);
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic("static")));
 
-    itemBoxSizer2->Add(htmlWindow_, 1, wxGROW|wxALL, 1);
+    itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }
 
 void mmReportsPanel::PrintPage()
 {
-    htmlWindow_->Print();
+    browser_->Print();
 }

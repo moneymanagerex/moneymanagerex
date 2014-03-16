@@ -51,7 +51,7 @@ public:
     void PrintPage();
 
 protected:
-    wxWebView * htmlWindow_;
+    wxWebView * browser_;
     mmPrintableBase* rb_;
 
     friend class WebViewHandlerReportsPage;
