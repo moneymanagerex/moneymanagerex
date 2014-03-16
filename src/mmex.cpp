@@ -28,6 +28,9 @@
 
 
 #include <wx/fs_mem.h>
+#include <wx/fs_arc.h>
+#include <wx/fs_filter.h>
+
 //----------------------------------------------------------------------------
 /* Include XPM Support */
 #include "../resources/money.xpm"
@@ -130,7 +133,10 @@ bool OnInitImpl(mmGUIApp* app)
     wxImage::AddHandler(new wxPNGHandler());
 
     /* Initialize File System Handlers */
-    wxFileSystem::AddHandler(new wxMemoryFSHandler);
+    wxFileSystem::AddHandler(new wxMemoryFSHandler());
+    wxFileSystem::AddHandler(new wxInternetFSHandler());
+    wxFileSystem::AddHandler(new wxArchiveFSHandler());
+    wxFileSystem::AddHandler(new wxFilterFSHandler());
 
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));

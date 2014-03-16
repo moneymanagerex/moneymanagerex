@@ -16,6 +16,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "platfdep.h"
 #include "mmreportspanel.h"
 #include "mmcheckingpanel.h"
 #include "util.h"
@@ -40,10 +41,11 @@ public:
     virtual wxFSFile* GetFile(const wxString& uri)
     {
         wxLogDebug("xxxxx %s", uri);
-        if (wxFileSystem::HasHandlerForPath(uri))
-            return m_fs->OpenFile(uri);
-        else
-            return NULL;
+        wxLogDebug(wxURI(uri).GetPath());
+        wxLogDebug(mmex::GetResourceDir().GetPath());
+
+        m_fs->ChangePathTo(mmex::GetResourceDir().GetPath(), true);
+        return m_fs->OpenFile(wxURI(uri).GetPath());
     }
 
 private:
@@ -167,7 +169,7 @@ void mmReportsPanel::CreateControls()
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic("static")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerStatic("local")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }
