@@ -27,6 +27,8 @@
 #include "model/Model_Category.h"
 #include "model/Model_Checking.h"
 
+#include "csv_parser/csv_parser.hpp"
+
 IMPLEMENT_DYNAMIC_CLASS(mmUnivCSVDialog, wxDialog)
 
 BEGIN_EVENT_TABLE(mmUnivCSVDialog, wxDialog)
