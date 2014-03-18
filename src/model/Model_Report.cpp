@@ -22,27 +22,53 @@
 #include "LuaGlue/LuaGlue.h"
 
 static const wxString HTT_CONTEINER =
-"<!DOCTYPE html>"
+"<!DOCTYPE html>\n"
+"<html>\n"
+"<head>\n"
+"    <meta http - equiv = \"Content-Type\" content = \"text/html; charset=UTF-8\"/>\n"
+"    <title><TMPL_VAR REPORTNAME></title>\n"
+"    <script src = \"local:Chart.js\"></script>\n"
+"    <script><TMPL_INCLUDE NAME=\"Chart.js\"></script>\n"
+"    <link href = \"local:master.css\" rel = \"stylesheet\">\n"
+"    <style><TMPL_INCLUDE NAME=\"master.css\"></style>\n"
+"</head>\n"
+"<body>\n"
+"<div class = \"container\">\n"
 "<h3><TMPL_VAR REPORTNAME></h3>\n"
 "<TMPL_VAR TODAY><hr>\n"
-"<table cellspacing='1' width='95%%'>\n"
-"    <tr bgcolor='#D5D6DE'>\n"
+"<div class = \"row\">\n"
+"<div class = \"col-xs-2\"></div>\n"
+"<div class = \"col-xs-8\">\n"
+"<table class = \"table\">\n"
+"<thead>\n"
+"    <tr>\n"
 "%s"
 "    </tr>\n"
+"</thead>\n"
+"<tbody>\n"
 "    <TMPL_LOOP NAME=CONTENTS>\n"
-"    <TMPL_IF __ODD__>\n"
 "        <tr>\n"
-"    <TMPL_ELSE>\n"
-"        <tr bgcolor='#E1EDFB'>\n"
-"    </TMPL_IF>\n"
 "%s"
 "        </tr>\n"
 "    </TMPL_LOOP>\n"
+"</tbody>\n"
 "</table>\n"
+"</div>\n"
 "<TMPL_LOOP ERRORS>\n"
 "    <hr>\n"
 "    <TMPL_VAR ERROR>\n"
-"</TMPL_LOOP>\n";
+"</TMPL_LOOP>\n"
+"</div>\n"
+"</div>\n"
+"</body>\n"
+"<script>\n"
+"<!--Format numbers-->\n"
+"    function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }\n"
+"    var elements = document.getElementsByClassName(\"money, text-right\");\n"
+"    for (var i = 0; i < elements.length; i++)\n"
+"        { elements[i].innerHTML = \"<TMPL_VAR PFX_SYMBOL>\" + currency(elements[i].innerHTML) + \"<TMPL_VAR SFX_SYMBOL>\"; }\n"
+"</script>\n"
+"</html>\n";
 
 class Record : public std::map<std::string, std::string>
 {
@@ -310,8 +336,10 @@ wxString Model_Report::getTemplate(const wxString& sql)
     for (const auto& col : colHeaders)
     {
         header += wxString::Format("        <th>%s</th>\n", col.first);
-        if (col.second == 1)
-            body += wxString::Format("        <td nowrap align='right'><TMPL_VAR \"%s\"></td>\n", col.first);
+        if (col.second == WXSQLITE_FLOAT)
+            body += wxString::Format("        <td class = \"money, text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        else if (col.second == WXSQLITE_INTEGER)
+            body += wxString::Format("        <td class = \"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
         else
             body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
     }
