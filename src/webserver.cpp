@@ -18,6 +18,7 @@
 
 #include "webserver.h"
 #include "mmframe.h"
+#include "platfdep.h"
 #include <wx/fs_mem.h>
 #include "mongoose/mongoose.h"
 
@@ -102,6 +103,7 @@ wxThread::ExitCode WebServerThread::Entry()
     struct mg_server *server = mg_create_server(NULL);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "enable_directory_listing", "no");
+    mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
     const char *uri = "/";
     mg_add_uri_handler(server, uri, WebServerThread::IndexHtml);
 

@@ -27,10 +27,8 @@ static const wxString HTT_CONTEINER =
 "<head>\n"
 "    <meta http - equiv = \"Content-Type\" content = \"text/html; charset=UTF-8\"/>\n"
 "    <title><TMPL_VAR REPORTNAME></title>\n"
-"    <script src = \"local:Chart.js\"></script>\n"
-"    <script><TMPL_INCLUDE NAME=\"Chart.js\"></script>\n"
-"    <link href = \"local:master.css\" rel = \"stylesheet\">\n"
-"    <style><TMPL_INCLUDE NAME=\"master.css\"></style>\n"
+"    <script src = \"memory:Chart.js\"></script>\n"
+"    <link href = \"memory:master.css\" rel = \"stylesheet\">\n"
 "</head>\n"
 "<body>\n"
 "<div class = \"container\">\n"
@@ -109,41 +107,11 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    wxString fNameCss = wxFileName::CreateTempFileName(wxGetEmptyString());
-    wxString fNameJs = wxFileName::CreateTempFileName(wxGetEmptyString());
     wxString fNameTemplate = wxFileName::CreateTempFileName(wxGetEmptyString());
+
     wxFileOutputStream output(fNameTemplate);
     wxTextOutputStream text(output);
-    wxString template_text = r->TEMPLATECONTENT;
-    if (template_text.Replace("<TMPL_INCLUDE NAME=\"master.css\">", wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", fNameCss)) > 0)
-    {
-        wxFileName fn(mmex::getPathResource(mmex::EResFile::CSS_FILE));
-        wxString filename = "memory:" + fn.GetFullName();
-        wxFileSystem fs;
-        wxFSFile *pFile = fs.OpenFile(filename);
-        if (pFile)
-        {
-            wxFileOutputStream output(fNameCss);
-            output.Write(*pFile->GetStream());
-            output.Close();
-            delete pFile;
-        }
-    }
-    if (template_text.Replace("<TMPL_INCLUDE NAME=\"Chart.js\">", wxString::Format("<TMPL_INCLUDE NAME=\"%s\">", fNameJs)) > 0)
-    {
-        wxFileName fn(mmex::getPathResource(mmex::EResFile::JS_FILE));
-        wxString filename = "memory:" + fn.GetFullName();
-        wxFileSystem fs;
-        wxFSFile *pFile = fs.OpenFile(filename);
-        if (pFile)
-        {
-            wxFileOutputStream output(fNameJs);
-            output.Write(*pFile->GetStream());
-            output.Close();
-            delete pFile;
-        }
-    }
-    text << template_text;
+    text << r->TEMPLATECONTENT;
     output.Close();
 
     mm_html_template report(fNameTemplate);
@@ -293,8 +261,6 @@ wxString Model_Report::get_html(const Data* r)
 
     const wxString out = wxString(report.Process());
     wxRemoveFile(fNameTemplate);
-    wxRemoveFile(fNameCss);
-    wxRemoveFile(fNameJs);
     return out;
 }
 
