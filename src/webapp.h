@@ -24,22 +24,38 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 class mmWebApp
 {
-const static wxString geturl();
-const static wxString getguid();
-const static wxString getdelimiter();
-const static wxString getservicespage();
-const static wxString getimportaccountparameter();
-const static wxString getimportpayeeparameter();
-const static wxString getdeletealltransactionparameter();
-const static wxString getdownloadnewtransactionparameter();
+const static wxString getUrl();
+const static wxString getGuid();
+const static wxString getDelimiter();
+const static wxString getServicesPage();
+const static wxString getCheckGuidParameter();
+const static wxString getCheckApiVersionParameter();
+const static wxString getCheckNewTransactionParameter();
+const static wxString getImportAccountParameter();
+const static wxString getImportPayeeParameter();
+const static wxString getDeletePayeeParameter();
+const static wxString getDeleteOneTransactionParameter();
+const static wxString getWebApp_DeleteAllTransactionParameter();
+const static wxString getDownloadNewTransactionParameter();
+const static wxString getMessageSucceeded();
+const static wxString getMessageWrongGuid();
 
 public:
-	const static wxString getmessagesucceeded();
-	const static wxString getmessagewrongguid();
-	bool UpdateAccount();
-	bool UpdatePayee();
-	bool DeleteAllTransaction();
-	bool DownloadNewTransaction();
+	const static wxString getDbFilePath();
+	static wxString getApiExpectedVersion();
+	static bool returnResult(const int& ErrorCode, wxString& outputMessage);
+	static bool WebApp_CheckGuid();
+	static wxString WebApp_getApiVersion();
+	static bool WebApp_CheckNewTransaction();
+	static bool WebApp_UpdateAccount();
+	static bool WebApp_UpdatePayee();
+	static bool WebApp_DeleteAllPayee();
+	static bool WebApp_DeleteOneTransaction(const int& WebAppNewTransactionId);
+	static bool WebApp_DeleteAllTransaction();
+	static bool WebApp_DownloadNewTransaction();
+	static int Local_getNextTransactionID();
+	static int MMEX_InsertNewTransaction(const int& WebAppNewTransactionId);
+	static bool Local_DeleteOneTransaction(const int& LocalTransactionId);
 };
 
 #endif _MM_EX_WEBAPP_H_
