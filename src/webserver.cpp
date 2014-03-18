@@ -43,7 +43,9 @@ WebServerThread::~WebServerThread()
     m_pHandler->m_pThread = NULL;
 }
 
-int WebServerThread::IndexHtml(struct mg_connection *conn, enum mg_event ev) {
+int WebServerThread::IndexHtml(struct mg_connection *conn, enum mg_event ev) 
+{
+    if (ev != MG_REQUEST) return MG_TRUE;
     int nReturn = 0;
 
     wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
@@ -102,7 +104,6 @@ wxThread::ExitCode WebServerThread::Entry()
     // Create and configure the server
     struct mg_server *server = mg_create_server(NULL, WebServerThread::IndexHtml);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
-    mg_set_option(server, "enable_directory_listing", "no");
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
 
     // Serve requests
