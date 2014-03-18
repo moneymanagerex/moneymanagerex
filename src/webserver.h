@@ -38,7 +38,7 @@ protected:
 
     virtual ExitCode Entry();
     static int IndexHtml(struct mg_connection *conn);
-    static bool SendFile(struct mg_connection *conn, wxString &filename);
+    static bool SendFile(struct mg_connection *conn, const wxString &filename);
 };
 
 //----------------------------------------------------------------------------

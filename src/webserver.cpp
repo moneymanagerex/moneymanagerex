@@ -50,7 +50,7 @@ int WebServerThread::IndexHtml(struct mg_connection *conn) {
     if (m_htmlpage != NULL)
     {
         wxString name = conn->uri;
-        if (name.EndsWith(".png"))
+        if (name.EndsWith(".png") || name.EndsWith(".js") || name.EndsWith(".css"))
         {
             wxString imagename = "memory:" + name.Mid(1);
             if (SendFile(conn, imagename))
@@ -73,7 +73,7 @@ int WebServerThread::IndexHtml(struct mg_connection *conn) {
     return nReturn;
 }
 
-bool WebServerThread::SendFile(struct mg_connection *conn, wxString &filename)
+bool WebServerThread::SendFile(struct mg_connection *conn, const wxString &filename)
 {
     bool bFound = false;
 
