@@ -144,11 +144,12 @@ private:
     void CreateControls();
     void OnAdd(wxCommandEvent& event);
     void OnImport(wxCommandEvent& event);
+    void OnImport2(wxCommandEvent& event);
     void OnExport(wxCommandEvent& event);
     void OnRemove(wxCommandEvent& event);
     bool isIndexPresent(int index) const;
     const wxString getCSVFieldName(int index) const;
-    void parseToken(int index,wxString& token);
+    void parseToken(int index, const wxString& token);
     void OnLoad(wxCommandEvent& event);
     void OnSave(wxCommandEvent& event);
     void OnMoveUp(wxCommandEvent& event);
