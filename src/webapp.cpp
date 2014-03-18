@@ -110,7 +110,7 @@ const wxString mmWebApp::getMessageWrongGuid()
 //Public constants
 const wxString mmWebApp::getDbFilePath()
 {
-	return mmex::getPathUser(mmex::DIRECTORY) + "\WebAppNewTransaction.db";
+	return mmex::getPathUser(mmex::DIRECTORY) + "WebAppNewTransaction.db";
 }
 
 /***************
