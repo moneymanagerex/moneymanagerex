@@ -140,10 +140,13 @@ bool OnInitImpl(mmGUIApp* app)
     wxDir::GetAllFiles(mmex::GetResourceDir().GetPath(), &files);
     for (const auto& file : files)
     {
+        wxFileName fn(file);
+        fn.MakeRelativeTo(mmex::GetResourceDir().GetPath());
+        wxLogDebug(fn.GetFullPath());
         wxString content;
         wxFile(file).ReadAll(&content);
-        wxMemoryFSHandler::AddFile(file, content);
-        wxLogDebug("Add %s to memory", file);
+        wxMemoryFSHandler::AddFile(fn.GetFullPath(), content);
+        wxLogDebug("Add %s to memory:%s", file, fn.GetFullPath());
     }
 
     app->m_setting_db = new wxSQLite3Database();
