@@ -142,7 +142,6 @@ bool OnInitImpl(mmGUIApp* app)
     {
         wxFileName fn(file);
         fn.MakeRelativeTo(mmex::GetResourceDir().GetPath());
-        wxLogDebug(fn.GetFullPath());
         wxString content;
         wxFile(file).ReadAll(&content);
         wxMemoryFSHandler::AddFile(fn.GetFullPath(), content);
