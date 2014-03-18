@@ -58,4 +58,4 @@ public:
 	static bool Local_DeleteOneTransaction(const int& LocalTransactionId);
 };
 
-#endif _MM_EX_WEBAPP_H_
+#endif // _MM_EX_WEBAPP_H_
