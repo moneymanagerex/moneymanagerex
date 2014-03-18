@@ -98,14 +98,16 @@ MMEX_CFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\src -DNOPCH $(CPPFLAGS) $(CFLAGS)
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
+	$(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
 	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
 	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\src -DNOPCH $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
+	$(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.o \
 	mmex_accountdialog.o \
@@ -147,6 +149,7 @@ MMEX_OBJECTS =  \
 	mmex_stockspanel.o \
 	mmex_transdialog.o \
 	mmex_util.o \
+	mmex_webapp.o \
 	mmex_webserver.o \
 	mmex_wizard_newaccount.o \
 	mmex_wizard_newdb.o \
@@ -174,6 +177,7 @@ MMEX_OBJECTS =  \
 	mmex_export.o \
 	mmex_qif_export.o \
 	mmex_qif_import.o \
+	mmex_qif_import_gui.o \
 	mmex_univcsvdialog.o \
 	mmex_Model_Account.o \
 	mmex_Model_Asset.o \
@@ -193,6 +197,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Subcategory.o \
 	mmex_html_template.o \
 	mmex_mongoose.o \
+	mmex_csv_parser.o \
 	mmex_resources_mmex_rc.o
 
 ### Conditionally set variables: ###
@@ -636,6 +641,9 @@ mmex_transdialog.o: ../../src/transdialog.cpp
 mmex_util.o: ../../src/util.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_webapp.o: ../../src/webapp.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_webserver.o: ../../src/webserver.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -717,6 +725,9 @@ mmex_qif_export.o: ../../src/import_export/qif_export.cpp
 mmex_qif_import.o: ../../src/import_export/qif_import.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_qif_import_gui.o: ../../src/import_export/qif_import_gui.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_univcsvdialog.o: ../../src/import_export/univcsvdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -774,8 +785,11 @@ mmex_html_template.o: ../../3rd/cgitemplate/html_template.cpp
 mmex_mongoose.o: ../../3rd/mongoose/mongoose.c
 	$(CC) -c -o $@ $(MMEX_CFLAGS) $(CPPDEPS) $<
 
+mmex_csv_parser.o: ../../3rd/csv-parser/csv_parser.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_17_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_3) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../src --define NOPCH
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_17_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_3) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../src --define NOPCH
 
 .PHONY: all install uninstall clean install_mmex uninstall_mmex po setup check
 

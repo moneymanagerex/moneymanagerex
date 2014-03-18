@@ -43,7 +43,7 @@ WebServerThread::~WebServerThread()
     m_pHandler->m_pThread = NULL;
 }
 
-int WebServerThread::IndexHtml(struct mg_connection *conn) {
+int WebServerThread::IndexHtml(struct mg_connection *conn, enum mg_event ev) {
     int nReturn = 0;
 
     wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
@@ -100,12 +100,10 @@ bool WebServerThread::SendFile(struct mg_connection *conn, const wxString &filen
 wxThread::ExitCode WebServerThread::Entry()
 {
     // Create and configure the server
-    struct mg_server *server = mg_create_server(NULL);
+    struct mg_server *server = mg_create_server(NULL, WebServerThread::IndexHtml);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "enable_directory_listing", "no");
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
-    const char *uri = "/";
-    mg_add_uri_handler(server, uri, WebServerThread::IndexHtml);
 
     // Serve requests
     while (1)
@@ -115,28 +113,6 @@ wxThread::ExitCode WebServerThread::Entry()
             wxCriticalSectionLocker enter(m_pHandler->m_pExitCS);
             if (m_pHandler->m_bExitServer) break;
         }
-    }
-
-    // Free memory for items which mongoose is not doing
-    const char **all_opts = mg_get_valid_option_names();
-    for (int i = 0; all_opts[i * 2] != NULL; i++)
-    {
-        const char *value = mg_get_option(server, all_opts[i * 2]);
-        if (strlen(value) > 0)
-        {
-            free(const_cast<char *>(value));
-        }
-    };
-    // Memory for uri handler is also not released
-    try
-    {
-        char *pHandler = *(char **)(*(char **)((char *)server + 32) + 8);
-        if (strncmp(pHandler, uri, strlen(uri)) == 0)
-            free(pHandler);
-    }
-    catch (...)
-    {
-        ;
     }
 
     // Cleanup, and free server instance

@@ -21,6 +21,7 @@
 #define _WEB_SERVER_H_
 
 #include <wx/thread.h>
+#include "mongoose/mongoose.h"
 
 class mmGUIFrame;
 
@@ -37,7 +38,7 @@ protected:
     static mmGUIFrame *m_pHandler;
 
     virtual ExitCode Entry();
-    static int IndexHtml(struct mg_connection *conn);
+    static int IndexHtml(struct mg_connection *conn, enum mg_event ev);
     static bool SendFile(struct mg_connection *conn, const wxString &filename);
 };
 

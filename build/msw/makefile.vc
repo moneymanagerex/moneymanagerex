@@ -101,7 +101,8 @@ MMEX_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\src /DNOPCH /D_WINDOWS $(CPPFLAGS) $(CFLAGS)
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_WINDOWS $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
@@ -109,8 +110,8 @@ MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\src /DNOPCH /D_WINDOWS /EHsc /GR \
-	$(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.obj \
 	mmex_accountdialog.obj \
@@ -152,6 +153,7 @@ MMEX_OBJECTS =  \
 	mmex_stockspanel.obj \
 	mmex_transdialog.obj \
 	mmex_util.obj \
+	mmex_webapp.obj \
 	mmex_webserver.obj \
 	mmex_wizard_newaccount.obj \
 	mmex_wizard_newdb.obj \
@@ -179,6 +181,7 @@ MMEX_OBJECTS =  \
 	mmex_export.obj \
 	mmex_qif_export.obj \
 	mmex_qif_import.obj \
+	mmex_qif_import_gui.obj \
 	mmex_univcsvdialog.obj \
 	mmex_Model_Account.obj \
 	mmex_Model_Asset.obj \
@@ -197,7 +200,8 @@ MMEX_OBJECTS =  \
 	mmex_Model_Stock.obj \
 	mmex_Model_Subcategory.obj \
 	mmex_html_template.obj \
-	mmex_mongoose.obj
+	mmex_mongoose.obj \
+	mmex_csv_parser.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
 
@@ -763,6 +767,9 @@ mmex_transdialog.obj: ..\..\src\transdialog.cpp
 mmex_util.obj: ..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\util.cpp
 
+mmex_webapp.obj: ..\..\src\webapp.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\webapp.cpp
+
 mmex_webserver.obj: ..\..\src\webserver.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\webserver.cpp
 
@@ -844,6 +851,9 @@ mmex_qif_export.obj: ..\..\src\import_export\qif_export.cpp
 mmex_qif_import.obj: ..\..\src\import_export\qif_import.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\qif_import.cpp
 
+mmex_qif_import_gui.obj: ..\..\src\import_export\qif_import_gui.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\qif_import_gui.cpp
+
 mmex_univcsvdialog.obj: ..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\import_export\univcsvdialog.cpp
 
@@ -901,6 +911,9 @@ mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
 mmex_mongoose.obj: ..\..\3rd\mongoose\mongoose.c
 	$(CC) /c /nologo /TC /Fo$@ $(MMEX_CFLAGS) ..\..\3rd\mongoose\mongoose.c
 
+mmex_csv_parser.obj: ..\..\3rd\csv-parser\csv_parser.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\csv-parser\csv_parser.cpp
+
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
 

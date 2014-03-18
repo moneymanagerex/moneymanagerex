@@ -309,30 +309,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
 
-    // Load files used for reports into memory
-    wxString file_name = mmex::getPathResource(mmex::EResFile::CSS_FILE);
-    wxFile cssFile(file_name);
-    if (cssFile.IsOpened())
-    {
-        wxString file_text;
-        if (cssFile.ReadAll(&file_text))
-        {
-            wxFileName fn(file_name);
-            wxMemoryFSHandler::AddFile(fn.GetFullName(), file_text);
-        }
-    }
-    file_name = mmex::getPathResource(mmex::EResFile::JS_FILE);
-    wxFile jsFile(file_name);
-    if (jsFile.IsOpened())
-    {
-        wxString file_text;
-        if (jsFile.ReadAll(&file_text))
-        {
-            wxFileName fn(file_name);
-            wxMemoryFSHandler::AddFile(fn.GetFullName(), file_text);
-        }
-    }
-
     m_pThread = new WebServerThread(this);
     if (m_pThread->Run() != wxTHREAD_NO_ERROR)
     {

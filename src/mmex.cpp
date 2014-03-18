@@ -141,9 +141,7 @@ bool OnInitImpl(mmGUIApp* app)
     for (const auto& file : files)
     {
         wxString content;
-        wxTextFile f(file);
-        for (wxString str = f.GetFirstLine(); !f.Eof(); str = f.GetNextLine())
-            content += str;
+        wxFile(file).ReadAll(&content);
         wxMemoryFSHandler::AddFile(file, content);
         wxLogDebug("Add %s to memory", file);
     }
