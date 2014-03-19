@@ -98,7 +98,7 @@
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -137,7 +137,7 @@
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -179,7 +179,7 @@
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS /Zi %(AdditionalOptions)</AdditionalOptions>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -218,7 +218,7 @@
     <ClCompile>
       <AdditionalOptions>/MP /D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\lib\cppunit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling>Sync</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -253,6 +253,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c" />
     <ClCompile Include="..\..\..\src\general_report_manager.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_import_gui.cpp" />
@@ -338,6 +339,7 @@
     <ClCompile Include="..\..\..\src\tests\test_relocate_category.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_relocate_payee.cpp" />
     <ClCompile Include="..\..\..\src\tests\test_stocks.cpp" />
+    <ClCompile Include="..\..\..\src\webapp.cpp" />
     <ClCompile Include="..\..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_export.cpp" />
@@ -484,6 +486,7 @@
     <ClInclude Include="..\..\..\src\import_export\univcsvdialog.h" />
     <ClInclude Include="..\..\..\src\util.h" />
     <ClInclude Include="..\..\..\src\validators.h" />
+    <ClInclude Include="..\..\..\src\webapp.h" />
     <ClInclude Include="..\..\..\src\webserver.h" />
     <ClInclude Include="..\..\..\src\wizard_newaccount.h" />
     <ClInclude Include="..\..\..\src\wizard_newdb.h" />
