@@ -136,18 +136,6 @@ bool OnInitImpl(mmGUIApp* app)
     wxFileSystem::AddHandler(new wxArchiveFSHandler());
     wxFileSystem::AddHandler(new wxFilterFSHandler());
 
-    wxArrayString files;
-    wxDir::GetAllFiles(mmex::GetResourceDir().GetPath(), &files);
-    for (const auto& file : files)
-    {
-        wxFileName fn(file);
-        fn.MakeRelativeTo(mmex::GetResourceDir().GetPath());
-        wxString content;
-        wxFile(file).ReadAll(&content);
-        wxMemoryFSHandler::AddFile(fn.GetFullPath(), content);
-        wxLogDebug("Add %s to memory:%s", file, fn.GetFullPath());
-    }
-
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
     Model_Setting::instance(app->m_setting_db);

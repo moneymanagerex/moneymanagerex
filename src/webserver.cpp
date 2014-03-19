@@ -45,6 +45,7 @@ WebServerThread::~WebServerThread()
 
 int WebServerThread::IndexHtml(struct mg_connection *conn, enum mg_event ev) 
 {
+    // TODO better dispatch
     if (ev != MG_REQUEST) return MG_TRUE;
     int nReturn = 0;
 
@@ -54,7 +55,7 @@ int WebServerThread::IndexHtml(struct mg_connection *conn, enum mg_event ev)
         wxString name = conn->uri;
         if (name.EndsWith(".png") || name.EndsWith(".js") || name.EndsWith(".css"))
         {
-            wxString imagename = "memory:" + name.Mid(1);
+            wxString imagename = name.Mid(1);
             if (SendFile(conn, imagename))
                 nReturn = 1;
         }
@@ -105,6 +106,7 @@ wxThread::ExitCode WebServerThread::Entry()
     struct mg_server *server = mg_create_server(NULL, WebServerThread::IndexHtml);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
+    chdir(mg_get_option(server, "document_root"));
 
     // Serve requests
     while (1)
@@ -127,7 +129,6 @@ void WebServerThread::ServerPage(wxString htmlpage)
     // Report can be viewed in browser window using "http://localhost:8080".
 
     // Cleanup html
-    htmlpage.Replace("memory:", "");
     wxString update_string = "http://localhost:8080/";
     htmlpage.Replace("TRXID:", update_string);
     htmlpage.Replace("ACCT:", update_string);

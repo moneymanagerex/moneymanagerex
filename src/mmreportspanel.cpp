@@ -92,7 +92,7 @@ public:
             long sortColumn = -1;
             sData.ToLong(&sortColumn);
             m_reportPanel->rb_->setSortColumn(sortColumn);
-            m_reportPanel->browser_->SetPage(m_reportPanel->getReportText(), "");
+            m_reportPanel->browser_->SetPage(m_reportPanel->getReportText(), mmex::GetResourceDir().GetPath() + "/");
         }
 
         return NULL;
@@ -132,7 +132,7 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    browser_->SetPage(getReportText(), "");
+    browser_->SetPage(getReportText(), mmex::GetResourceDir().GetPath() + "/");
     return TRUE;
 }
 
