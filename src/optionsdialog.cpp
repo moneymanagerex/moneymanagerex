@@ -723,14 +723,14 @@ void mmOptionsDialog::CreateControls()
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("Url")), flags);
     wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
-        WebAppURL, wxDefaultPosition, wxSize(200, -1));
+        WebAppURL, wxDefaultPosition, wxSize(250, -1));
     WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
     WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
 
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("GUID")), flags);
     wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-        WebAppGUID, wxDefaultPosition, wxSize(200, -1));
+        WebAppGUID, wxDefaultPosition, wxSize(250, -1));
     WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 

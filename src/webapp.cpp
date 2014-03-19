@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "util.h"
 
 //Expected WebAppVersion
-wxString mmWebApp::getApiExpectedVersion()
+const wxString mmWebApp::getApiExpectedVersion()
 {
 	return "0.9.0";
 }
@@ -97,6 +97,21 @@ const wxString mmWebApp::getDownloadNewTransactionParameter()
     return "download_db";
 }
 
+//Get WebApp Api version
+const wxString mmWebApp::WebApp_getApiVersion()
+{
+	wxString CheckApiVersionUrl = mmWebApp::getUrl() + "/" +
+		mmWebApp::getServicesPage() + "?" +
+		mmWebApp::getCheckApiVersionParameter() + "&"
+		"guid=" + mmWebApp::getGuid()
+		;
+
+	wxString outputMessage;
+	site_content(CheckApiVersionUrl, outputMessage);
+
+	return outputMessage;
+}
+
 const wxString mmWebApp::getMessageSucceeded()
 {
     return "Operation has succeeded";
@@ -129,6 +144,20 @@ bool mmWebApp::returnResult(const int& ErrorCode, wxString& outputMessage)
 	}
 }
 
+//Check if WebApp is enabled
+bool mmWebApp::WebApp_CheckEnabled()
+{
+	if (Model_Infotable::instance().GetStringInfo("WEBAPPURL", "") != ""
+		&& Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "") != "")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 //Check guid
 bool mmWebApp::WebApp_CheckGuid()
 {
@@ -145,26 +174,39 @@ bool mmWebApp::WebApp_CheckGuid()
 	{
 		return true;
 	}
+	else if (outputMessage == mmWebApp::getMessageWrongGuid())
+	{
+		wxString msgStr = wxString() << "Wrong WebApp GUID:" << "\n"
+			<< "please check it in import / export options." << "\n";
+		wxMessageBox(msgStr, "Wrong WebApp settings", wxICON_ERROR);
+		return false;
+	}
 	else
 	{
+		wxString msgStr = wxString() << "Unable to connect to WebApp:" << "\n"
+			<< "please check settings and / or internet connection." << "\n";
+		wxMessageBox(msgStr, "WebApp connection error", wxICON_ERROR);
 		return false;
 	}
 }
 
-//Check WebApp version
-wxString mmWebApp::WebApp_getApiVersion()
+//Check WebApp Api version
+bool mmWebApp::WebApp_CheckApiVersion()
 {
-	wxString CheckApiVersionUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getCheckApiVersionParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
-	wxString outputMessage;
-	site_content(CheckApiVersionUrl, outputMessage);
-
-	return outputMessage;
+	if (mmWebApp::WebApp_getApiVersion() != mmWebApp::getApiExpectedVersion())
+	{
+		wxString msgStr = wxString() << _("Wrong WebApp API version:") << "\n" <<
+			"WebApp   API version -> " << mmWebApp::WebApp_getApiVersion() << "\n" <<
+			"Expected API version -> " << mmWebApp::getApiExpectedVersion() << "\n";
+		wxMessageBox(msgStr, "Wrong WebApp API version", wxICON_ERROR);
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
+
 
 //Check New Transaction
 bool mmWebApp::WebApp_CheckNewTransaction()
@@ -217,6 +259,26 @@ bool mmWebApp::WebApp_UpdateAccount()
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
 
+//Update payee in MMEX
+bool mmWebApp::MMEX_WebApp_UpdateAccount()
+{
+	if (mmWebApp::WebApp_CheckEnabled())
+	{
+		if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
+		{
+			return mmWebApp::WebApp_UpdateAccount();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
 //Update payee on WebApp
 bool mmWebApp::WebApp_UpdatePayee()
 {
@@ -246,6 +308,26 @@ bool mmWebApp::WebApp_UpdatePayee()
 	int ErrorCode = site_content(UpdatePayeeUrl + PayeesList, outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
+}
+
+//Update payee in MMEX
+bool mmWebApp::MMEX_WebApp_UpdatePayee()
+{
+	if (mmWebApp::WebApp_CheckEnabled())
+	{
+		if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
+		{
+			return mmWebApp::WebApp_UpdatePayee();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
 }
 
 //Delete all payee on WebApp
@@ -333,6 +415,7 @@ int mmWebApp::Local_getNextTransactionID()
 	db->Open(mmWebApp::getDbFilePath());
 	wxSQLite3ResultSet MinIDResultSet = db->ExecuteQuery(wxT("SELECT ID FROM New_Transaction ORDER BY Date LIMIT 1"));
 	int MinID = wxAtoi(MinIDResultSet.GetString(0));
+	MinIDResultSet.Finalize();
 	db->Close();
 	return MinID;
 }
@@ -409,6 +492,7 @@ int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 
 			if (desktopNewTransactionId > 0)
 			{
+				NewTrResultSet.Finalize();
 				stmt.Finalize();
 				db->Close();
 				mmWebApp::Local_DeleteOneTransaction(WebAppNewTransactionId);
@@ -416,6 +500,7 @@ int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 			}
 			else
 			{
+				NewTrResultSet.Finalize();
 				stmt.Finalize();
 				db->Close();
 				mmWebApp::Local_DeleteOneTransaction(WebAppNewTransactionId);
@@ -426,6 +511,7 @@ int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 			wxString msgStr = wxString() << "Account not found!" << "\n"
 				<< "Please correct WebApp transaction with account '" << AccountName << "'\n";
 			wxMessageBox(msgStr, "Wrong WebApp account", wxICON_ERROR);
+			NewTrResultSet.Finalize();
 			stmt.Finalize();
 			db->Close();
 			mmWebApp::Local_DeleteOneTransaction(WebAppNewTransactionId);
@@ -433,6 +519,7 @@ int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 	}
 	else
 	{
+		NewTrResultSet.Finalize();
 		stmt.Finalize();
 		db->Close();
 		mmWebApp::Local_DeleteOneTransaction(WebAppNewTransactionId);
@@ -459,5 +546,19 @@ bool mmWebApp::Local_DeleteOneTransaction(const int& LocalTransactionId)
 	else
 	{
 		return false;
+	}
+}
+
+//Delete local new transaction db file
+bool mmWebApp::Local_DeleteDbFile()
+{
+	wxString Local_DbFilePath = mmWebApp::getDbFilePath();
+	if (wxFileName::FileExists(Local_DbFilePath))
+	{
+		return wxRemoveFile(Local_DbFilePath);
+	}
+	else
+	{
+		return true;
 	}
 }

@@ -37,15 +37,17 @@ const static wxString getDeletePayeeParameter();
 const static wxString getDeleteOneTransactionParameter();
 const static wxString getWebApp_DeleteAllTransactionParameter();
 const static wxString getDownloadNewTransactionParameter();
+const static wxString WebApp_getApiVersion();
 const static wxString getMessageSucceeded();
 const static wxString getMessageWrongGuid();
+const static wxString getApiExpectedVersion();
 
 public:
 	const static wxString getDbFilePath();
-	static wxString getApiExpectedVersion();
 	static bool returnResult(const int& ErrorCode, wxString& outputMessage);
+	static bool WebApp_CheckEnabled();
 	static bool WebApp_CheckGuid();
-	static wxString WebApp_getApiVersion();
+	static bool WebApp_CheckApiVersion();
 	static bool WebApp_CheckNewTransaction();
 	static bool WebApp_UpdateAccount();
 	static bool WebApp_UpdatePayee();
@@ -54,8 +56,11 @@ public:
 	static bool WebApp_DeleteAllTransaction();
 	static bool WebApp_DownloadNewTransaction();
 	static int Local_getNextTransactionID();
-	static int MMEX_InsertNewTransaction(const int& WebAppNewTransactionId);
 	static bool Local_DeleteOneTransaction(const int& LocalTransactionId);
+	static bool Local_DeleteDbFile();
+	static bool MMEX_WebApp_UpdatePayee();
+	static bool MMEX_WebApp_UpdateAccount();
+	static int MMEX_InsertNewTransaction(const int& WebAppNewTransactionId);
 };
 
 #endif // _MM_EX_WEBAPP_H_

@@ -74,6 +74,8 @@
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Budget.h"
 #include "model/Model_Report.h"
+#include "transdialog.h"
+#include "webapp.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
 #include <wx/fs_mem.h>
@@ -501,6 +503,50 @@ void mmGUIFrame::setHomePageActive(bool active)
 //----------------------------------------------------------------------------
 void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 {
+	//WebApp check
+	if (mmWebApp::WebApp_CheckEnabled())
+	{
+		if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
+		{
+			mmWebApp::WebApp_UpdateAccount();
+			mmWebApp::WebApp_UpdatePayee();
+			if (mmWebApp::WebApp_CheckNewTransaction())
+			{
+				wxString msgStr = wxString() << _("New transactions found on web app") << "\n" <<
+					"Do you want to downlaod them?";
+				int NewTransactionResponse = wxMessageBox(msgStr, "Download WebApp new transaction", wxYES_NO);
+				if (NewTransactionResponse == wxYES)
+				{
+					if(mmWebApp::WebApp_DownloadNewTransaction())
+					{
+						while (mmWebApp::Local_getNextTransactionID() > 0)
+						{
+							int NextTransactionID = mmWebApp::Local_getNextTransactionID();
+							int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NextTransactionID);
+							if (InsertedTransactionID > 0)
+							{
+								mmGUIFrame* EditTransactionFrame = const_cast<mmGUIFrame *>(this);
+								mmTransDialog EditTransactionDialog(EditTransactionFrame, 1, InsertedTransactionID);
+								EditTransactionDialog.ShowModal();
+							}
+						}
+						mmWebApp::Local_DeleteDbFile();
+					}
+					else
+					{
+						wxString msgStr = wxString() << _("WebApp database not found!") << "\n";
+						wxMessageBox(msgStr, "Wrong WebApp database", wxICON_ERROR);
+					}
+				}
+				else
+				{
+					//Response NO
+				}
+			}
+		}
+	}
+
+	//Auto repeating transaction
     bool continueExecution = false;
 
     Model_Billsdeposits& bills = Model_Billsdeposits::instance();

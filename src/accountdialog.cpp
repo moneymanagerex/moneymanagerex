@@ -24,6 +24,7 @@
 #include "mmOption.h"
 #include "paths.h"
 #include "validators.h"
+#include "webapp.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
@@ -368,6 +369,7 @@ void mmNewAcctDialog::OnOk(wxCommandEvent& /*event*/)
     Model_Account::instance().save(m_account);
 
     EndModal(wxID_OK);
+	mmWebApp::MMEX_WebApp_UpdateAccount();
 }
 
 void mmNewAcctDialog::OnImageButton(wxCommandEvent& /*event*/)

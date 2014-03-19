@@ -23,6 +23,7 @@
 #include "mmOption.h"
 #include "paths.h"
 #include "constants.h"
+#include "webapp.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
@@ -162,6 +163,7 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
         {
             payee->PAYEENAME = value;
             Model_Payee::instance().save(payee);
+			mmWebApp::MMEX_WebApp_UpdatePayee();
             refreshRequested_ = true;
         }
     }
@@ -195,6 +197,7 @@ void mmPayeeDialog::AddPayee()
         Model_Payee::Data *payee = Model_Payee::instance().create();
         payee->PAYEENAME = name;
         m_payee_id = Model_Payee::instance().save(payee);
+		mmWebApp::MMEX_WebApp_UpdatePayee();
         m_selected_index = -1;
     }
     else
@@ -221,6 +224,7 @@ void mmPayeeDialog::EditPayee()
         {
             payee->PAYEENAME = name;
             m_payee_id = Model_Payee::instance().save(payee);
+			mmWebApp::MMEX_WebApp_UpdatePayee();
             m_selected_index = -1;
         }
         else
@@ -266,6 +270,7 @@ void mmPayeeDialog::DefineDefaultCategory()
             payee->SUBCATEGID = dlg.getSubCategId();
             refreshRequested_ = true;
             Model_Payee::instance().save(payee);
+			mmWebApp::MMEX_WebApp_UpdatePayee();
         }
         else
         {
@@ -273,6 +278,7 @@ void mmPayeeDialog::DefineDefaultCategory()
             payee->SUBCATEGID = -1;
             refreshRequested_ = true;
             Model_Payee::instance().save(payee);
+			mmWebApp::MMEX_WebApp_UpdatePayee();
         }
     }
     fillControls();

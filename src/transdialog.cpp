@@ -26,6 +26,7 @@
 #include "categdialog.h"
 #include "splittransactionsdialog.h"
 #include "validators.h"
+#include "webapp.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
@@ -560,6 +561,7 @@ bool mmTransDialog::validateData()
                 payee = Model_Payee::instance().create();
                 payee->PAYEENAME = payee_name;
                 Model_Payee::instance().save(payee);
+				mmWebApp::MMEX_WebApp_UpdatePayee();
             }
             else
                 return false;
@@ -570,6 +572,7 @@ bool mmTransDialog::validateData()
         payee->CATEGID = transaction_->CATEGID;
         payee->SUBCATEGID = transaction_->SUBCATEGID;
         Model_Payee::instance().save(payee);
+		mmWebApp::MMEX_WebApp_UpdatePayee();
     }
     else //transfer
     {
