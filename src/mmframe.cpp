@@ -513,8 +513,8 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 			if (mmWebApp::WebApp_CheckNewTransaction())
 			{
 				wxString msgStr = wxString() << _("New transactions found on web app") << "\n" <<
-					"Do you want to downlaod them?";
-				int NewTransactionResponse = wxMessageBox(msgStr, "Download WebApp new transaction", wxYES_NO);
+					_("Do you want to downlaod them?");
+				int NewTransactionResponse = wxMessageBox(msgStr, _("Download WebApp new transaction"), wxYES_NO);
 				if (NewTransactionResponse == wxYES)
 				{
 					if(mmWebApp::WebApp_DownloadNewTransaction())
@@ -535,7 +535,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 					else
 					{
 						wxString msgStr = wxString() << _("WebApp database not found!") << "\n";
-						wxMessageBox(msgStr, "Wrong WebApp database", wxICON_ERROR);
+						wxMessageBox(msgStr, _("Wrong WebApp database"), wxICON_ERROR);
 					}
 				}
 				else

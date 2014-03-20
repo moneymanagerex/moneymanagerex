@@ -176,16 +176,16 @@ bool mmWebApp::WebApp_CheckGuid()
 	}
 	else if (outputMessage == mmWebApp::getMessageWrongGuid())
 	{
-		wxString msgStr = wxString() << "Wrong WebApp GUID:" << "\n"
-			<< "please check it in import / export options." << "\n";
-		wxMessageBox(msgStr, "Wrong WebApp settings", wxICON_ERROR);
+		wxString msgStr = wxString() << _("Wrong WebApp GUID:") << "\n"
+			<< _("please check it in import / export options.") << "\n";
+		wxMessageBox(msgStr, _("Wrong WebApp settings"), wxICON_ERROR);
 		return false;
 	}
 	else
 	{
-		wxString msgStr = wxString() << "Unable to connect to WebApp:" << "\n"
-			<< "please check settings and / or internet connection." << "\n";
-		wxMessageBox(msgStr, "WebApp connection error", wxICON_ERROR);
+		wxString msgStr = wxString() << _("Unable to connect to WebApp:") << "\n"
+			<< _("please check settings and / or internet connection.") << "\n";
+		wxMessageBox(msgStr, _("WebApp connection error"), wxICON_ERROR);
 		return false;
 	}
 }
@@ -196,9 +196,9 @@ bool mmWebApp::WebApp_CheckApiVersion()
 	if (mmWebApp::WebApp_getApiVersion() != mmWebApp::getApiExpectedVersion())
 	{
 		wxString msgStr = wxString() << _("Wrong WebApp API version:") << "\n" <<
-			"WebApp   API version -> " << mmWebApp::WebApp_getApiVersion() << "\n" <<
-			"Expected API version -> " << mmWebApp::getApiExpectedVersion() << "\n";
-		wxMessageBox(msgStr, "Wrong WebApp API version", wxICON_ERROR);
+			_("WebApp   API version -> ") << mmWebApp::WebApp_getApiVersion() << "\n" <<
+			_("Expected API version -> ") << mmWebApp::getApiExpectedVersion() << "\n";
+		wxMessageBox(msgStr, _("Wrong WebApp API version"), wxICON_ERROR);
 		return false;
 	}
 	else
@@ -508,9 +508,9 @@ int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 		}
 		else
 		{
-			wxString msgStr = wxString() << "Account not found!" << "\n"
-				<< "Please correct WebApp transaction with account '" << AccountName << "'\n";
-			wxMessageBox(msgStr, "Wrong WebApp account", wxICON_ERROR);
+			wxString msgStr = wxString() << _("Account not found!") << "\n"
+				<< _("Please correct WebApp transaction with account '") << AccountName << "'\n";
+			wxMessageBox(msgStr, _("Wrong WebApp account"), wxICON_ERROR);
 			NewTrResultSet.Finalize();
 			stmt.Finalize();
 			db->Close();
