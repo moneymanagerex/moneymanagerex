@@ -134,8 +134,7 @@ void mmFilterTransactionsDialog::BuildPayeeList()
     wxString selected = cbPayee_->GetValue();
     cbPayee_->SetEvtHandlerEnabled(false);
     cbPayee_->Clear();
-    for (const auto& payee : all_payees)
-        cbPayee_->Append(payee);
+    cbPayee_->Insert(all_payees, 0);
     cbPayee_->AutoComplete(all_payees);
     cbPayee_->SetValue(selected);
     cbPayee_->SetEvtHandlerEnabled(true);
