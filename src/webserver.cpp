@@ -21,6 +21,7 @@
 #include "platfdep.h"
 #include <wx/fs_mem.h>
 #include "mongoose/mongoose.h"
+#include "singleton.h"
 
 class mmGUIFrame * WebServerThread::m_pHandler = NULL;
 class wxString * WebServerThread::m_htmlpage = NULL;
@@ -145,4 +146,34 @@ void WebServerThread::ServerPage(wxString htmlpage)
     m_htmlpage = new wxString(htmlpage);
     *m_htmlpage = "report.html";
     wxMemoryFSHandler::AddFile(*m_htmlpage, htmlpage);
+}
+
+Mongoose_Service::Mongoose_Service()
+{}
+
+Mongoose_Service::~Mongoose_Service()
+{}
+
+Mongoose_Service&
+Mongoose_Service::instance()
+{
+    return Singleton<Mongoose_Service>::instance();
+}
+
+int Mongoose_Service::open()
+{
+    // TODO
+    return 0;
+}
+
+int Mongoose_Service::svc()
+{
+    // TODO 
+    return 0;
+}
+
+int Mongoose_Service::stop()
+{
+    // TODO cleanup
+    return 0;
 }

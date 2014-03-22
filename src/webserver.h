@@ -42,6 +42,21 @@ protected:
     static bool SendFile(struct mg_connection *conn, const wxString &filename);
 };
 
+class Mongoose_Service
+{
+public:
+    Mongoose_Service();
+    ~Mongoose_Service();
+
+    static Mongoose_Service& instance();
+
+public:
+    int open();
+    int svc();
+
+    int stop();
+};
+
 //----------------------------------------------------------------------------
 #endif // _WEB_SERVER_H_
 //----------------------------------------------------------------------------

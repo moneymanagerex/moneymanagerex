@@ -25,6 +25,7 @@
 #include "platfdep.h"
 
 #include "model/Model_Setting.h"
+#include "webserver.h"
 
 
 #include <wx/fs_mem.h>
@@ -168,6 +169,8 @@ bool OnInitImpl(mmGUIApp* app)
 
     app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
+    Mongoose_Service::instance().open();
+
     new wxSplashScreen(wxBitmap(money_xpm),
         wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT,
         4000, app->m_frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
@@ -208,6 +211,8 @@ int mmGUIApp::OnExit()
 {
 	wxLogDebug("OnExit()");
     if (m_setting_db) delete m_setting_db;
+
+    Mongoose_Service::instance().stop();
 
     return 0;
 }
