@@ -530,18 +530,17 @@ void mmBDDialog::CreateControls()
     transPanelSizer->Add(textNumber_, g_flags);
 
     // Notes ---------------------------------------------
-    wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxT(">>"), wxDefaultPosition, wxSize(40, -1), 0);
-    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), NULL, this);
-
     textNotes_ = new wxTextCtrl(transactionPanel, ID_DIALOG_TRANS_TEXTNOTES, "",
                                  wxDefaultPosition, wxSize(225, 80), wxTE_MULTILINE );
     textNotes_->SetToolTip(_("Specify any text notes you want to add to this transaction."));
 
     transPanelSizer->Add(new wxStaticText( transactionPanel, wxID_STATIC, _("Notes")), g_flags);
-    transPanelSizer->AddSpacer(1);
-    transPanelSizer->Add(bFrequentUsedNotes, g_flags);
-    transPanelSizer->Add(textNotes_, g_flagsExpand);
+    wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...",
+        wxDefaultPosition, wxSize(40, -1));
+    bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), NULL, this);
+    transPanelSizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    box_sizer1->Add(textNotes_, g_flagsExpand);
 
     SetTransferControls();  // hide appropriate fields
     prevType_ = Model_Billsdeposits::WITHDRAWAL;
