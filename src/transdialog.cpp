@@ -238,8 +238,7 @@ void mmTransDialog::dataToControls()
 
             account_label_->SetLabel(_("Account"));
             transaction_->TOACCOUNTID = -1;
-            for (const auto & entry : Model_Payee::instance().all_payee_names())
-                cbPayee_->Append(entry);
+            cbPayee_->Insert(Model_Payee::instance().all_payee_names(), 0);
             cbPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
             Model_Payee::Data* payee = Model_Payee::instance().get(transaction_->PAYEEID);
             if (payee)
@@ -264,8 +263,7 @@ void mmTransDialog::dataToControls()
                 }
             }
 
-            for (const auto & entry : Model_Account::instance().all_checking_account_names())
-                cbPayee_->Append(entry);
+            cbPayee_->Insert(Model_Account::instance().all_checking_account_names(), 0);
             Model_Account::Data *account = Model_Account::instance().get(transaction_->TOACCOUNTID);
             if (account)
                 cbPayee_->ChangeValue(account->ACCOUNTNAME);
