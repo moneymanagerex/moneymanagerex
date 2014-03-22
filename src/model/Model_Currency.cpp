@@ -96,7 +96,7 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     int currency_id = Model_Infotable::instance().GetBaseCurrencyId();
     Model_Currency::Data *currency = Model_Currency::instance().get(currency_id);
     if (currency) {
-        return Model_Currency::instance().get(currency_id);
+        return currency;
     }
     else
     {
