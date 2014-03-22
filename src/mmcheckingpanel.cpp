@@ -912,7 +912,6 @@ TransactionListCtrl::TransactionListCtrl(
     m_attr16(*wxYELLOW, mmColors::userDefColor6, wxNullFont),
     m_attr17(*wxYELLOW, mmColors::userDefColor7, wxNullFont),
     m_sortCol(COL_DEF_SORT),
-    m_asc(true),
     g_sortcol(COL_DEF_SORT),
     g_asc(true),
     m_selectedID(-1),

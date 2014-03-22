@@ -161,7 +161,6 @@ private:
     wxListItemAttr m_attr17; // user defined style 7
 
     EColumn m_sortCol;
-    bool m_asc;
 
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;

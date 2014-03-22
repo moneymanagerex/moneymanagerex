@@ -423,7 +423,6 @@ int mmWebApp::Local_getNextTransactionID()
 //Insert new transaction
 int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 {
-	Model_Checking::Data * desktopNewTransaction;
 	int desktopNewTransactionId = 0;
 
 	wxSQLite3Database* db = new wxSQLite3Database();
@@ -473,7 +472,8 @@ int mmWebApp::MMEX_InsertNewTransaction(const int& WebAppNewTransactionId)
 				}
 			}
 
-			desktopNewTransaction = Model_Checking::instance().create();
+            Model_Checking::Data * desktopNewTransaction;
+            desktopNewTransaction = Model_Checking::instance().create();
 			desktopNewTransaction->TRANSDATE = NewTrResultSet.GetString("Date");
 			desktopNewTransaction->STATUS = NewTrResultSet.GetString("Status");
 			desktopNewTransaction->TRANSCODE = NewTrResultSet.GetString("Type");
