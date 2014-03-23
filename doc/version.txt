@@ -3,6 +3,13 @@ Version History of Money Manager Ex
 1.0.1.0 (TBA)
 - Reports
 
+1.0.0.3 (March 23, 2014)
+- Include images in HTML export
+- Performance improvement for large number of payees
+- Fix transaction report (feature-request #282)
+- Restore frequently used notes feature (bugs #324)
+- Base currency not found (bugs #326)
+
 1.0.0.2 (February 19, 2014)
 - Fix advanced transfer amounts disappearing
 - Fix repeating transactions account invalid error
