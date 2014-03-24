@@ -46,6 +46,7 @@ public:
     static Model_Currency& instance();
 
 private:
+    static bool init_currencies_;
     void initialize();
 
 public:

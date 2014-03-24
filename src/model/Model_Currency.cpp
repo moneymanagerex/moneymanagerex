@@ -19,6 +19,7 @@
 #include "Model_Currency.h"
 #include <wx/numformatter.h>
 
+bool Model_Currency::init_currencies_ = false;
 
 Model_Currency::Model_Currency()
 : Model<DB_Table_CURRENCYFORMATS_V1>()
@@ -37,9 +38,9 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
 {
     Model_Currency& ins = Singleton<Model_Currency>::instance();
     ins.db_ = db;
-    bool init_currencies = !ins.exists(db);
+    init_currencies_ = !ins.exists(db);
     ins.ensure(db);
-    if (init_currencies)
+    if (init_currencies_)
     {
         ins.initialize();   // Initialises currency data in database.
     }
@@ -98,7 +99,7 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     if (currency) {
         return currency;
     }
-    else
+    else if (!init_currencies_)
     {
         wxASSERT(false); //Base Currency ID is invalid
         for (const auto c : Model_Currency::instance().all())
@@ -121,6 +122,7 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
 
 void Model_Currency::SetBaseCurrency(Data* r)
 {
+    init_currencies_ = false;
     Model_Infotable::instance().SetBaseCurrencyID(r->CURRENCYID);
 }
 
