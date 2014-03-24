@@ -1600,8 +1600,9 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
-                createHomePage();
                 updateNavTreeControl();
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+                OnAccountList(evt);
             }
         }
     }
@@ -1624,7 +1625,8 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);
                 updateNavTreeControl();
-                createHomePage();
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+                OnAccountList(evt);
             }
         }
     }
@@ -2654,8 +2656,9 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
     {
         refreshPanelData(false);
     }
-    createHomePage();
     updateNavTreeControl();
+    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+    OnAccountList(evt);
 }
 //----------------------------------------------------------------------------
 
@@ -2687,8 +2690,9 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
     if (m_db)
     {
         mmBudgetYearDialog(this).ShowModal();
-        createHomePage();
         updateNavTreeControl();
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+        OnAccountList(evt);
     }
 }
 //----------------------------------------------------------------------------
@@ -2713,7 +2717,8 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
     mmGeneralReportManager dlg(this);
     dlg.ShowModal();
     updateNavTreeControl();
-    createHomePage();
+    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+    OnAccountList(evt);
 }
 
 //----------------------------------------------------------------------------
@@ -2747,8 +2752,9 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         }
         wxMessageBox(sysMsg, _("New MMEX Options"), messageIcon);
 
-        createHomePage();
         updateNavTreeControl();
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+        OnAccountList(evt);
     }
 }
 //----------------------------------------------------------------------------
@@ -3176,7 +3182,8 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         }
     }
     updateNavTreeControl();
-    createHomePage();
+    wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+    OnAccountList(evt);
 }
 //----------------------------------------------------------------------------
 
@@ -3221,7 +3228,8 @@ void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
     if (!refreshRequested_)
     {
         refreshRequested_ = true;
-        createHomePage();
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+        OnAccountList(evt);
     }
 }
 //----------------------------------------------------------------------------
@@ -3234,8 +3242,9 @@ void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
     if (!refreshRequested_)
     {
         refreshRequested_ = true;
-        createHomePage();
         updateNavTreeControl(menuBar_->IsChecked(MENU_VIEW_TERMACCOUNTS));
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+        OnAccountList(evt);
     }
 }
 //----------------------------------------------------------------------------
@@ -3248,7 +3257,8 @@ void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
     if (!refreshRequested_)
     {
         refreshRequested_ = true;
-        createHomePage();
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+        OnAccountList(evt);
     }
 }
 //----------------------------------------------------------------------------
@@ -3260,8 +3270,9 @@ void mmGUIFrame::OnIgnoreFutureTransactions(wxCommandEvent &event)
     if (!refreshRequested_)
     {
         refreshRequested_ = true;
-        createHomePage();
         updateNavTreeControl(menuBar_->IsChecked(MENU_VIEW_TERMACCOUNTS));
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
+        OnAccountList(evt);
     }
 }
 //----------------------------------------------------------------------------
