@@ -92,14 +92,6 @@ LUA_OBJECTS =  \
 	lua_lundump.o \
 	lua_lvm.o \
 	lua_lzio.o
-MMEX_CFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
-	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
-	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
-	-Wall $(__DEBUGINFO) $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
-	-I..\..\lib\wxsqlite3\sqlite3\secure\src -I..\..\lib\wxsqlite3\include \
-	-I..\..\lib\lua\src -I..\..\lib -I..\..\3rd -I..\..\3rd\LuaGlue\include \
-	-I..\..\3rd\cgitemplate -I..\..\3rd\csv-parser\include -I..\..\src -DNOPCH \
-	$(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
@@ -195,9 +187,6 @@ MMEX_OBJECTS =  \
 	mmex_Model_Splittransaction.o \
 	mmex_Model_Stock.o \
 	mmex_Model_Subcategory.o \
-	mmex_html_template.o \
-	mmex_mongoose.o \
-	mmex_csv_parser.o \
 	mmex_resources_mmex_rc.o
 
 ### Conditionally set variables: ###
@@ -777,15 +766,6 @@ mmex_Model_Stock.o: ../../src/model/Model_Stock.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Subcategory.o: ../../src/model/Model_Subcategory.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_html_template.o: ../../3rd/cgitemplate/html_template.cpp
-	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
-
-mmex_mongoose.o: ../../3rd/mongoose/mongoose.c
-	$(CC) -c -o $@ $(MMEX_CFLAGS) $(CPPDEPS) $<
-
-mmex_csv_parser.o: ../../3rd/csv-parser/csv_parser.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc

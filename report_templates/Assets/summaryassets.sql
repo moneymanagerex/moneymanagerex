@@ -1,1 +1,0 @@
-select * from assets_v1 order by assetname;

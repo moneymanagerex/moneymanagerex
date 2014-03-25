@@ -87,18 +87,11 @@ LUA_OBJECTS =  \
 	lua_lundump.o \
 	lua_lvm.o \
 	lua_lzio.o
-MMEX_TESTS_CFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
-	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
-	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
-	-I$(srcdir)/../../3rd/LuaGlue/include -I$(srcdir)/../../3rd/cgitemplate \
-	-I$(srcdir)/../../3rd/mongoose -I$(srcdir)/../../src -DNOPCH \
-	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CFLAGS) \
-	$(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
 	-I$(srcdir)/../../3rd/LuaGlue/include -I$(srcdir)/../../3rd/cgitemplate \
-	-I$(srcdir)/../../3rd/mongoose -I$(srcdir)/../../src -DNOPCH \
+	-I$(srcdir)/../../3rd/csv-parser/include -I$(srcdir)/../../src -DNOPCH \
 	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) \
 	$(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
@@ -142,6 +135,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_stockspanel.o \
 	mmex_tests_transdialog.o \
 	mmex_tests_util.o \
+	mmex_tests_webapp.o \
 	mmex_tests_webserver.o \
 	mmex_tests_wizard_newaccount.o \
 	mmex_tests_wizard_newdb.o \
@@ -169,6 +163,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_export.o \
 	mmex_tests_qif_export.o \
 	mmex_tests_qif_import.o \
+	mmex_tests_qif_import_gui.o \
 	mmex_tests_univcsvdialog.o \
 	mmex_tests_Model_Account.o \
 	mmex_tests_Model_Asset.o \
@@ -186,8 +181,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Splittransaction.o \
 	mmex_tests_Model_Stock.o \
 	mmex_tests_Model_Subcategory.o \
-	mmex_tests_html_template.o \
-	mmex_tests_mongoose.o \
 	mmex_tests_cpu_timer.o \
 	mmex_tests_db_init_model.o \
 	mmex_tests_framebase_tests.o \
@@ -489,6 +482,9 @@ mmex_tests_transdialog.o: $(srcdir)/../../src/transdialog.cpp
 mmex_tests_util.o: $(srcdir)/../../src/util.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/util.cpp
 
+mmex_tests_webapp.o: $(srcdir)/../../src/webapp.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/webapp.cpp
+
 mmex_tests_webserver.o: $(srcdir)/../../src/webserver.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/webserver.cpp
 
@@ -570,6 +566,9 @@ mmex_tests_qif_export.o: $(srcdir)/../../src/import_export/qif_export.cpp
 mmex_tests_qif_import.o: $(srcdir)/../../src/import_export/qif_import.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/qif_import.cpp
 
+mmex_tests_qif_import_gui.o: $(srcdir)/../../src/import_export/qif_import_gui.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/qif_import_gui.cpp
+
 mmex_tests_univcsvdialog.o: $(srcdir)/../../src/import_export/univcsvdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/import_export/univcsvdialog.cpp
 
@@ -621,12 +620,6 @@ mmex_tests_Model_Stock.o: $(srcdir)/../../src/model/Model_Stock.cpp
 mmex_tests_Model_Subcategory.o: $(srcdir)/../../src/model/Model_Subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Subcategory.cpp
 
-mmex_tests_html_template.o: $(srcdir)/../../3rd/cgitemplate/html_template.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/cgitemplate/html_template.cpp
-
-mmex_tests_mongoose.o: $(srcdir)/../../3rd/mongoose/mongoose.c
-	$(CCC) -c -o $@ $(MMEX_TESTS_CFLAGS) $(srcdir)/../../3rd/mongoose/mongoose.c
-
 mmex_tests_cpu_timer.o: $(srcdir)/../../src/tests/cpu_timer.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/cpu_timer.cpp
 
@@ -676,7 +669,7 @@ mmex_tests_test_stocks.o: $(srcdir)/../../src/tests/test_stocks.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_stocks.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd --include-dir $(srcdir)/../../3rd/LuaGlue/include --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../3rd/mongoose --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd --include-dir $(srcdir)/../../3rd/LuaGlue/include --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../3rd/csv-parser/include --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
 
 
 # Include dependency info, if present:

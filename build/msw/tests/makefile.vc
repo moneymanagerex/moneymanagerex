@@ -13,7 +13,7 @@
 ### Variables: ###
 
 COMPILER_PREFIX = vc
-WXSQLITE_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
+WXSQLITE_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
@@ -22,7 +22,7 @@ WXSQLITE_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
 	/DSQLITE_ENABLE_COLUMN_METADATA /DWXSQLITE3_HAVE_CODEC \
 	/DWXSQLITE3_HAVE_METADATA /I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
 	/I..\..\..\lib\wxsqlite3\include $(CPPFLAGS) $(CFLAGS)
-WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
+WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) \
 	$(____DEBUGINFO) /Fdwxsqlite.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
 	/D_CRT_SECURE_NO_WARNINGS $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
@@ -34,7 +34,7 @@ WXSQLITE_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
 WXSQLITE_OBJECTS =  \
 	wxsqlite_wxsqlite3.obj \
 	wxsqlite_sqlite3secure.obj
-LUA_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
+LUA_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 /W4 $(__DEBUGINFO) $(____DEBUGINFO) \
 	/Fdlua.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	$(CPPFLAGS) $(CFLAGS)
 LUA_OBJECTS =  \
@@ -72,61 +72,7 @@ LUA_OBJECTS =  \
 	lua_lundump.obj \
 	lua_lvm.obj \
 	lua_lzio.obj
-CPPUNIT_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 /W4 $(__DEBUGINFO) \
-	$(____DEBUGINFO) /Fdcppunit.pdb $(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) \
-	/D_CRT_SECURE_NO_WARNINGS /I..\..\..\lib\cppunit\include /EHsc /GR \
-	$(CPPFLAGS) $(CXXFLAGS)
-CPPUNIT_OBJECTS =  \
-	cppunit_AdditionalMessage.obj \
-	cppunit_Asserter.obj \
-	cppunit_BeOsDynamicLibraryManager.obj \
-	cppunit_BriefTestProgressListener.obj \
-	cppunit_CompilerOutputter.obj \
-	cppunit_Exception.obj \
-	cppunit_Message.obj \
-	cppunit_PlugInManager.obj \
-	cppunit_PlugInParameters.obj \
-	cppunit_Protector.obj \
-	cppunit_ProtectorChain.obj \
-	cppunit_RepeatedTest.obj \
-	cppunit_ShlDynamicLibraryManager.obj \
-	cppunit_SourceLine.obj \
-	cppunit_StringTools.obj \
-	cppunit_SynchronizedObject.obj \
-	cppunit_Test.obj \
-	cppunit_TestAssert.obj \
-	cppunit_TestCase.obj \
-	cppunit_TestCaseDecorator.obj \
-	cppunit_TestComposite.obj \
-	cppunit_TestDecorator.obj \
-	cppunit_TestFactoryRegistry.obj \
-	cppunit_TestFailure.obj \
-	cppunit_TestLeaf.obj \
-	cppunit_TestNamer.obj \
-	cppunit_TestPath.obj \
-	cppunit_TestPlugInDefaultImpl.obj \
-	cppunit_TestResult.obj \
-	cppunit_TestResultCollector.obj \
-	cppunit_TestRunner.obj \
-	cppunit_TestSetUp.obj \
-	cppunit_TestSuccessListener.obj \
-	cppunit_TestSuite.obj \
-	cppunit_TestSuiteBuilderContext.obj \
-	cppunit_TextOutputter.obj \
-	cppunit_TextTestProgressListener.obj \
-	cppunit_TextTestResult.obj \
-	cppunit_TextTestRunner.obj \
-	cppunit_TypeInfoHelper.obj \
-	cppunit_UnixDynamicLibraryManager.obj \
-	cppunit_Win32DynamicLibraryManager.obj \
-	cppunit_XmlDocument.obj \
-	cppunit_XmlElement.obj \
-	cppunit_XmlOutputter.obj \
-	cppunit_XmlOutputterHook.obj \
-	cppunit_DefaultProtector.obj \
-	cppunit_DynamicLibraryManager.obj \
-	cppunit_DynamicLibraryManagerException.obj
-MMEX_TESTS_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
+MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
 	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex_tests.pdb \
@@ -134,19 +80,9 @@ MMEX_TESTS_CFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
 	/I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
 	/I..\..\..\lib\wxsqlite3\include /I..\..\..\lib\lua\src /I..\..\..\lib \
 	/I..\..\..\3rd /I..\..\..\3rd\LuaGlue\include /I..\..\..\3rd\cgitemplate \
-	/I..\..\..\src /DNOPCH /D_CONSOLE /I..\..\..\src \
-	/I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CFLAGS)
-MMEX_TESTS_CXXFLAGS = /MD$(__DEBUGINFO_2) /DWIN32 $(____WX_SHARED) \
-	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
-	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
-	/I$(WX_DIR)\include /W4 $(__DEBUGINFO) $(____DEBUGINFO) /Fdmmex_tests.pdb \
-	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
-	/I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
-	/I..\..\..\lib\wxsqlite3\include /I..\..\..\lib\lua\src /I..\..\..\lib \
-	/I..\..\..\3rd /I..\..\..\3rd\LuaGlue\include /I..\..\..\3rd\cgitemplate \
-	/I..\..\..\src /DNOPCH /D_CONSOLE /I..\..\..\src \
-	/I..\..\..\lib\cppunit\include /EHsc /GR $(__mmex_tests_CL_FLAGS) \
-	$(CPPFLAGS) $(CXXFLAGS)
+	/I..\..\..\3rd\csv-parser\include /I..\..\..\src /DNOPCH /D_CONSOLE \
+	/I..\..\..\src /I..\..\..\lib\cppunit\include /EHsc /GR \
+	$(__mmex_tests_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.obj \
 	mmex_tests_accountdialog.obj \
@@ -188,6 +124,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_stockspanel.obj \
 	mmex_tests_transdialog.obj \
 	mmex_tests_util.obj \
+	mmex_tests_webapp.obj \
 	mmex_tests_webserver.obj \
 	mmex_tests_wizard_newaccount.obj \
 	mmex_tests_wizard_newdb.obj \
@@ -215,6 +152,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_export.obj \
 	mmex_tests_qif_export.obj \
 	mmex_tests_qif_import.obj \
+	mmex_tests_qif_import_gui.obj \
 	mmex_tests_univcsvdialog.obj \
 	mmex_tests_Model_Account.obj \
 	mmex_tests_Model_Asset.obj \
@@ -232,8 +170,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Splittransaction.obj \
 	mmex_tests_Model_Stock.obj \
 	mmex_tests_Model_Subcategory.obj \
-	mmex_tests_html_template.obj \
-	mmex_tests_mongoose.obj \
 	mmex_tests_cpu_timer.obj \
 	mmex_tests_db_init_model.obj \
 	mmex_tests_framebase_tests.obj \
@@ -412,10 +348,10 @@ ____DEBUGINFO =
 ____DEBUGINFO = /D_DEBUG
 !endif
 !if "$(WX_DEBUG)" == "0"
-__DEBUGINFO_2 = 
+__DEBUGINFO_1 = 
 !endif
 !if "$(WX_DEBUG)" == "1"
-__DEBUGINFO_2 = d
+__DEBUGINFO_1 = d
 !endif
 !if "$(WX_DEBUG)" == "0"
 __OPTIMIZEFLAG = /O2
@@ -489,10 +425,10 @@ lua.lib: $(LUA_OBJECTS)
 	$(LUA_OBJECTS)
 <<
 
-cppunit.lib: $(CPPUNIT_OBJECTS)
+cppunit.lib: 
 	if exist $@ del $@
 	link /LIB /NOLOGO /OUT:$@ @<<
-	$(CPPUNIT_OBJECTS)
+	
 <<
 
 mmex_tests.exe: $(MMEX_TESTS_OBJECTS) wxsqlite.lib lua.lib cppunit.lib mmex_tests_mmex_tests.res
@@ -611,153 +547,6 @@ lua_lvm.obj: ..\..\..\lib\lua\src\lvm.c
 
 lua_lzio.obj: ..\..\..\lib\lua\src\lzio.c
 	$(CC) /c /nologo /TC /Fo$@ $(LUA_CFLAGS) ..\..\..\lib\lua\src\lzio.c
-
-cppunit_AdditionalMessage.obj: ..\..\..\lib\cppunit\src\cppunit\AdditionalMessage.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\AdditionalMessage.cpp
-
-cppunit_Asserter.obj: ..\..\..\lib\cppunit\src\cppunit\Asserter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\Asserter.cpp
-
-cppunit_BeOsDynamicLibraryManager.obj: ..\..\..\lib\cppunit\src\cppunit\BeOsDynamicLibraryManager.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\BeOsDynamicLibraryManager.cpp
-
-cppunit_BriefTestProgressListener.obj: ..\..\..\lib\cppunit\src\cppunit\BriefTestProgressListener.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\BriefTestProgressListener.cpp
-
-cppunit_CompilerOutputter.obj: ..\..\..\lib\cppunit\src\cppunit\CompilerOutputter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\CompilerOutputter.cpp
-
-cppunit_Exception.obj: ..\..\..\lib\cppunit\src\cppunit\Exception.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\Exception.cpp
-
-cppunit_Message.obj: ..\..\..\lib\cppunit\src\cppunit\Message.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\Message.cpp
-
-cppunit_PlugInManager.obj: ..\..\..\lib\cppunit\src\cppunit\PlugInManager.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\PlugInManager.cpp
-
-cppunit_PlugInParameters.obj: ..\..\..\lib\cppunit\src\cppunit\PlugInParameters.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\PlugInParameters.cpp
-
-cppunit_Protector.obj: ..\..\..\lib\cppunit\src\cppunit\Protector.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\Protector.cpp
-
-cppunit_ProtectorChain.obj: ..\..\..\lib\cppunit\src\cppunit\ProtectorChain.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\ProtectorChain.cpp
-
-cppunit_RepeatedTest.obj: ..\..\..\lib\cppunit\src\cppunit\RepeatedTest.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\RepeatedTest.cpp
-
-cppunit_ShlDynamicLibraryManager.obj: ..\..\..\lib\cppunit\src\cppunit\ShlDynamicLibraryManager.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\ShlDynamicLibraryManager.cpp
-
-cppunit_SourceLine.obj: ..\..\..\lib\cppunit\src\cppunit\SourceLine.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\SourceLine.cpp
-
-cppunit_StringTools.obj: ..\..\..\lib\cppunit\src\cppunit\StringTools.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\StringTools.cpp
-
-cppunit_SynchronizedObject.obj: ..\..\..\lib\cppunit\src\cppunit\SynchronizedObject.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\SynchronizedObject.cpp
-
-cppunit_Test.obj: ..\..\..\lib\cppunit\src\cppunit\Test.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\Test.cpp
-
-cppunit_TestAssert.obj: ..\..\..\lib\cppunit\src\cppunit\TestAssert.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestAssert.cpp
-
-cppunit_TestCase.obj: ..\..\..\lib\cppunit\src\cppunit\TestCase.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestCase.cpp
-
-cppunit_TestCaseDecorator.obj: ..\..\..\lib\cppunit\src\cppunit\TestCaseDecorator.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestCaseDecorator.cpp
-
-cppunit_TestComposite.obj: ..\..\..\lib\cppunit\src\cppunit\TestComposite.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestComposite.cpp
-
-cppunit_TestDecorator.obj: ..\..\..\lib\cppunit\src\cppunit\TestDecorator.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestDecorator.cpp
-
-cppunit_TestFactoryRegistry.obj: ..\..\..\lib\cppunit\src\cppunit\TestFactoryRegistry.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestFactoryRegistry.cpp
-
-cppunit_TestFailure.obj: ..\..\..\lib\cppunit\src\cppunit\TestFailure.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestFailure.cpp
-
-cppunit_TestLeaf.obj: ..\..\..\lib\cppunit\src\cppunit\TestLeaf.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestLeaf.cpp
-
-cppunit_TestNamer.obj: ..\..\..\lib\cppunit\src\cppunit\TestNamer.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestNamer.cpp
-
-cppunit_TestPath.obj: ..\..\..\lib\cppunit\src\cppunit\TestPath.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestPath.cpp
-
-cppunit_TestPlugInDefaultImpl.obj: ..\..\..\lib\cppunit\src\cppunit\TestPlugInDefaultImpl.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestPlugInDefaultImpl.cpp
-
-cppunit_TestResult.obj: ..\..\..\lib\cppunit\src\cppunit\TestResult.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestResult.cpp
-
-cppunit_TestResultCollector.obj: ..\..\..\lib\cppunit\src\cppunit\TestResultCollector.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestResultCollector.cpp
-
-cppunit_TestRunner.obj: ..\..\..\lib\cppunit\src\cppunit\TestRunner.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestRunner.cpp
-
-cppunit_TestSetUp.obj: ..\..\..\lib\cppunit\src\cppunit\TestSetUp.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestSetUp.cpp
-
-cppunit_TestSuccessListener.obj: ..\..\..\lib\cppunit\src\cppunit\TestSuccessListener.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestSuccessListener.cpp
-
-cppunit_TestSuite.obj: ..\..\..\lib\cppunit\src\cppunit\TestSuite.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestSuite.cpp
-
-cppunit_TestSuiteBuilderContext.obj: ..\..\..\lib\cppunit\src\cppunit\TestSuiteBuilderContext.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TestSuiteBuilderContext.cpp
-
-cppunit_TextOutputter.obj: ..\..\..\lib\cppunit\src\cppunit\TextOutputter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TextOutputter.cpp
-
-cppunit_TextTestProgressListener.obj: ..\..\..\lib\cppunit\src\cppunit\TextTestProgressListener.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TextTestProgressListener.cpp
-
-cppunit_TextTestResult.obj: ..\..\..\lib\cppunit\src\cppunit\TextTestResult.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TextTestResult.cpp
-
-cppunit_TextTestRunner.obj: ..\..\..\lib\cppunit\src\cppunit\TextTestRunner.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TextTestRunner.cpp
-
-cppunit_TypeInfoHelper.obj: ..\..\..\lib\cppunit\src\cppunit\TypeInfoHelper.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\TypeInfoHelper.cpp
-
-cppunit_UnixDynamicLibraryManager.obj: ..\..\..\lib\cppunit\src\cppunit\UnixDynamicLibraryManager.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\UnixDynamicLibraryManager.cpp
-
-cppunit_Win32DynamicLibraryManager.obj: ..\..\..\lib\cppunit\src\cppunit\Win32DynamicLibraryManager.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\Win32DynamicLibraryManager.cpp
-
-cppunit_XmlDocument.obj: ..\..\..\lib\cppunit\src\cppunit\XmlDocument.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\XmlDocument.cpp
-
-cppunit_XmlElement.obj: ..\..\..\lib\cppunit\src\cppunit\XmlElement.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\XmlElement.cpp
-
-cppunit_XmlOutputter.obj: ..\..\..\lib\cppunit\src\cppunit\XmlOutputter.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\XmlOutputter.cpp
-
-cppunit_XmlOutputterHook.obj: ..\..\..\lib\cppunit\src\cppunit\XmlOutputterHook.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\XmlOutputterHook.cpp
-
-cppunit_DefaultProtector.obj: ..\..\..\lib\cppunit\src\cppunit\DefaultProtector.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\DefaultProtector.cpp
-
-cppunit_DynamicLibraryManager.obj: ..\..\..\lib\cppunit\src\cppunit\DynamicLibraryManager.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\DynamicLibraryManager.cpp
-
-cppunit_DynamicLibraryManagerException.obj: ..\..\..\lib\cppunit\src\cppunit\DynamicLibraryManagerException.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(CPPUNIT_CXXFLAGS) ..\..\..\lib\cppunit\src\cppunit\DynamicLibraryManagerException.cpp
 
 mmex_tests_aboutdialog.obj: ..\..\..\src\aboutdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\aboutdialog.cpp
@@ -879,6 +668,9 @@ mmex_tests_transdialog.obj: ..\..\..\src\transdialog.cpp
 mmex_tests_util.obj: ..\..\..\src\util.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\util.cpp
 
+mmex_tests_webapp.obj: ..\..\..\src\webapp.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\webapp.cpp
+
 mmex_tests_webserver.obj: ..\..\..\src\webserver.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\webserver.cpp
 
@@ -960,6 +752,9 @@ mmex_tests_qif_export.obj: ..\..\..\src\import_export\qif_export.cpp
 mmex_tests_qif_import.obj: ..\..\..\src\import_export\qif_import.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\qif_import.cpp
 
+mmex_tests_qif_import_gui.obj: ..\..\..\src\import_export\qif_import_gui.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\qif_import_gui.cpp
+
 mmex_tests_univcsvdialog.obj: ..\..\..\src\import_export\univcsvdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\import_export\univcsvdialog.cpp
 
@@ -1011,12 +806,6 @@ mmex_tests_Model_Stock.obj: ..\..\..\src\model\Model_Stock.cpp
 mmex_tests_Model_Subcategory.obj: ..\..\..\src\model\Model_Subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Subcategory.cpp
 
-mmex_tests_html_template.obj: ..\..\..\3rd\cgitemplate\html_template.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\3rd\cgitemplate\html_template.cpp
-
-mmex_tests_mongoose.obj: ..\..\..\3rd\mongoose\mongoose.c
-	$(CC) /c /nologo /TC /Fo$@ $(MMEX_TESTS_CFLAGS) ..\..\..\3rd\mongoose\mongoose.c
-
 mmex_tests_cpu_timer.obj: ..\..\..\src\tests\cpu_timer.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\cpu_timer.cpp
 
@@ -1066,5 +855,5 @@ mmex_tests_test_stocks.obj: ..\..\..\src\tests\test_stocks.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\tests\test_stocks.cpp
 
 mmex_tests_mmex_tests.res: ..\..\..\src\tests\mmex_tests.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\..\lib\wxsqlite3\include /i ..\..\..\lib\lua\src /i ..\..\..\lib /i ..\..\..\3rd /i ..\..\..\3rd\LuaGlue\include /i ..\..\..\3rd\cgitemplate /i ..\..\..\src /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\cppunit\include ..\..\..\src\tests\mmex_tests.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_46_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_55_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\..\lib\wxsqlite3\include /i ..\..\..\lib\lua\src /i ..\..\..\lib /i ..\..\..\3rd /i ..\..\..\3rd\LuaGlue\include /i ..\..\..\3rd\cgitemplate /i ..\..\..\3rd\csv-parser\include /i ..\..\..\src /d NOPCH /d _CONSOLE /i ..\..\..\src /i ..\..\..\lib\cppunit\include ..\..\..\src\tests\mmex_tests.rc
 
