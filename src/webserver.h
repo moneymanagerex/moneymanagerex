@@ -29,12 +29,9 @@ class WebServerThread : public wxThread
 {
 public:
     WebServerThread();
-    WebServerThread(mmGUIFrame *handler);
     ~WebServerThread();
 
 protected:
-    static mmGUIFrame *m_pHandler;
-
     virtual ExitCode Entry();
 };
 

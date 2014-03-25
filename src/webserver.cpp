@@ -16,10 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "defs.h"
 #include "webserver.h"
-#include "mmframe.h"
 #include "platfdep.h"
-#include <wx/fs_mem.h>
 #include "mongoose/mongoose.h"
 #include "singleton.h"
 
