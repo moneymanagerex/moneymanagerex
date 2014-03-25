@@ -35,7 +35,6 @@ protected:
     static mmGUIFrame *m_pHandler;
 
     virtual ExitCode Entry();
-    static bool SendFile(struct mg_connection *conn, const wxString &filename);
 };
 
 class Mongoose_Service

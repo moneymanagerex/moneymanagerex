@@ -36,30 +36,6 @@ WebServerThread::~WebServerThread()
     m_pHandler->m_pThread = NULL;
 }
 
-bool WebServerThread::SendFile(struct mg_connection *conn, const wxString &filename)
-{
-    bool bFound = false;
-
-    wxFileSystem fs;
-    wxFSFile *pFile = fs.OpenFile(filename);
-    if (pFile)
-    {
-        bFound = true;
-        wxInputStream *is = pFile->GetStream();
-        while (is->CanRead())
-        {
-            char szBuffer[256];
-            is->Read(&szBuffer, sizeof(szBuffer));
-            int nRead = is->LastRead();
-            mg_send_data(conn, szBuffer, nRead);
-            if (nRead < sizeof(szBuffer))
-                break;
-        }
-        delete pFile;
-    }
-    return bFound;
-}
-
 wxThread::ExitCode WebServerThread::Entry()
 {
     // Create and configure the server
