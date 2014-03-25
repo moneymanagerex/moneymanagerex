@@ -549,6 +549,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\csv-parser\csv_parser.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\currencydialog.cpp"
 				>
 			</File>
@@ -574,6 +578,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\general_report_manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\cgitemplate\html_template.cpp"
 				>
 			</File>
 			<File
@@ -662,6 +670,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmreportspanel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\mongoose\mongoose.c"
 				>
 			</File>
 			<File
@@ -1075,6 +1087,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\cgitemplate\html_template.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\reports\html_widget_bills_and_deposits.h"
 				>
 			</File>
@@ -1172,6 +1188,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\mmtextctrl.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\mongoose\mongoose.h"
 				>
 			</File>
 			<File

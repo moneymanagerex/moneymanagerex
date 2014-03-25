@@ -21,9 +21,6 @@
 #define _WEB_SERVER_H_
 
 #include <wx/thread.h>
-#include "mongoose/mongoose.h"
-
-class mmGUIFrame;
 
 class WebServerThread : public wxThread
 {

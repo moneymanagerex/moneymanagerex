@@ -87,6 +87,13 @@ LUA_OBJECTS =  \
 	lua_lundump.o \
 	lua_lvm.o \
 	lua_lzio.o
+MMEX_TESTS_CFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
+	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
+	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
+	-I$(srcdir)/../../3rd/LuaGlue/include -I$(srcdir)/../../3rd/cgitemplate \
+	-I$(srcdir)/../../3rd/csv-parser/include -I$(srcdir)/../../src -DNOPCH \
+	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CFLAGS) \
+	$(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
@@ -181,6 +188,9 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Splittransaction.o \
 	mmex_tests_Model_Stock.o \
 	mmex_tests_Model_Subcategory.o \
+	mmex_tests_html_template.o \
+	mmex_tests_mongoose.o \
+	mmex_tests_csv_parser.o \
 	mmex_tests_cpu_timer.o \
 	mmex_tests_db_init_model.o \
 	mmex_tests_framebase_tests.o \
@@ -619,6 +629,15 @@ mmex_tests_Model_Stock.o: $(srcdir)/../../src/model/Model_Stock.cpp
 
 mmex_tests_Model_Subcategory.o: $(srcdir)/../../src/model/Model_Subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Subcategory.cpp
+
+mmex_tests_html_template.o: $(srcdir)/../../3rd/cgitemplate/html_template.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/cgitemplate/html_template.cpp
+
+mmex_tests_mongoose.o: $(srcdir)/../../3rd/mongoose/mongoose.c
+	$(CCC) -c -o $@ $(MMEX_TESTS_CFLAGS) $(srcdir)/../../3rd/mongoose/mongoose.c
+
+mmex_tests_csv_parser.o: $(srcdir)/../../3rd/csv-parser/csv_parser.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/csv-parser/csv_parser.cpp
 
 mmex_tests_cpu_timer.o: $(srcdir)/../../src/tests/cpu_timer.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/cpu_timer.cpp

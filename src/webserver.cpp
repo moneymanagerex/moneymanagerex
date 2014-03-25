@@ -21,6 +21,30 @@
 #include "platfdep.h"
 #include "mongoose/mongoose.h"
 #include "singleton.h"
+#include "model/Model_Account.h"
+
+static int ev_handler(struct mg_connection *conn, enum mg_event ev) 
+{
+    int result = MG_FALSE;
+
+    if (ev == MG_REQUEST) 
+    {
+        if (strcmp(conn->uri, "/accounts") == 0)
+        {
+            const Model_Account::Data* account = Model_Account::instance().get(1);
+            mg_printf_data(conn, account->to_json());
+            result = MG_TRUE;
+        }
+        else
+            result = MG_FALSE;
+    } 
+    else 
+    {
+        result = MG_TRUE;
+    }
+
+    return result;
+}
 
 WebServerThread::WebServerThread(): wxThread()
 {
@@ -33,7 +57,6 @@ WebServerThread::~WebServerThread()
 wxThread::ExitCode WebServerThread::Entry()
 {
     // Create and configure the server
-    //struct mg_server *server = mg_create_server(NULL, WebServerThread::IndexHtml);
     struct mg_server *server = mg_create_server(NULL, NULL);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
