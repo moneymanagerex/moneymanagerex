@@ -246,8 +246,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 , helpFileIndex_(-1)
 , expandedReportNavTree_(true)
 , expandedBudgetingNavTree_(true)
-, m_pThread(0)
-, m_bExitServer(false)
 {
     // tell wxAuiManager to manage this frame
     m_mgr.SetManagedWindow(this);
@@ -310,13 +308,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 
     wxAcceleratorTable tab(sizeof(entries) / sizeof(*entries), entries);
     SetAcceleratorTable(tab);
-
-    m_pThread = new WebServerThread(this);
-    if (m_pThread->Run() != wxTHREAD_NO_ERROR)
-    {
-        delete m_pThread;
-        m_pThread = NULL;
-    }
 }
 //----------------------------------------------------------------------------
 
@@ -368,24 +359,6 @@ void mmGUIFrame::cleanup()
     if (mmOptions::instance().databaseUpdated_ && Model_Setting::instance().GetBoolSetting("BACKUPDB_UPDATE", false))
     {
         BackupDatabase(fileName_, true);
-    }
-
-    wxLogDebug("Shuting down web server ----------------------------");
-    if (m_pThread)
-    {
-        {
-            wxCriticalSectionLocker enter(m_pExitCS);
-            m_bExitServer = true; //FIXME:
-        }
-        while (1)
-        {
-            {
-                wxCriticalSectionLocker enter(m_pThreadCS);
-                if (!m_pThread) break;
-            }
-            // wait for thread completion
-            wxMilliSleep(100);
-        }
     }
 }
 

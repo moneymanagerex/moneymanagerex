@@ -23,17 +23,12 @@
 #include "mongoose/mongoose.h"
 #include "singleton.h"
 
-class mmGUIFrame * WebServerThread::m_pHandler = NULL;
-
-WebServerThread::WebServerThread(mmGUIFrame *handler) : wxThread(wxTHREAD_DETACHED)
+WebServerThread::WebServerThread(): wxThread()
 {
-    m_pHandler = handler;
 }
 
 WebServerThread::~WebServerThread()
 {
-    wxCriticalSectionLocker enter2(m_pHandler->m_pThreadCS);
-    m_pHandler->m_pThread = NULL;
 }
 
 wxThread::ExitCode WebServerThread::Entry()
@@ -49,10 +44,6 @@ wxThread::ExitCode WebServerThread::Entry()
     while (1)
     {
         mg_poll_server(server, 1000);
-        {
-            wxCriticalSectionLocker enter(m_pHandler->m_pExitCS);
-            if (m_pHandler->m_bExitServer) break;
-        }
     }
 
     // Cleanup, and free server instance
@@ -61,8 +52,9 @@ wxThread::ExitCode WebServerThread::Entry()
     return (wxThread::ExitCode)0;
 }
 
-Mongoose_Service::Mongoose_Service()
-{}
+Mongoose_Service::Mongoose_Service(): m_thread(0)
+{
+}
 
 Mongoose_Service::~Mongoose_Service()
 {}
@@ -75,18 +67,27 @@ Mongoose_Service::instance()
 
 int Mongoose_Service::open()
 {
-    // TODO
+    this->svc();
     return 0;
 }
 
 int Mongoose_Service::svc()
 {
-    // TODO 
+    m_thread = new WebServerThread();
+    wxLogDebug("Mongoose Service started");
+    m_thread->Run();
     return 0;
 }
 
 int Mongoose_Service::stop()
 {
-    // TODO cleanup
+    if (m_thread->Delete() == wxTHREAD_NO_ERROR)
+    {
+        wxLogDebug("Mongoose Service ended.");
+    }
+    else
+    {
+        wxLogError("Can't delete the thread!");
+    }
     return 0;
 }

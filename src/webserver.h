@@ -28,6 +28,7 @@ class mmGUIFrame;
 class WebServerThread : public wxThread
 {
 public:
+    WebServerThread();
     WebServerThread(mmGUIFrame *handler);
     ~WebServerThread();
 
@@ -50,6 +51,8 @@ public:
     int svc();
 
     int stop();
+private:
+    WebServerThread *m_thread;
 };
 
 //----------------------------------------------------------------------------

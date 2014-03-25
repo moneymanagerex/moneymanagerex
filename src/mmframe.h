@@ -48,7 +48,6 @@ class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
 class RecentDatabaseFiles;
-class WebServerThread;
 //----------------------------------------------------------------------------
 
 class mmGUIFrame : public wxFrame
@@ -336,13 +335,6 @@ private:
         MENU_TREEPOPUP_ACCOUNT_VIEWOPEN,
         AUTO_REPEAT_TRANSACTIONS_TIMER_ID,
     };
-
-    // mongoose web server
-    wxCriticalSection m_pThreadCS;
-    wxCriticalSection m_pExitCS;
-    WebServerThread *m_pThread;
-    bool m_bExitServer;
-    friend class WebServerThread;
 };
 //----------------------------------------------------------------------------
 #endif // _MM_FRAME_H_
