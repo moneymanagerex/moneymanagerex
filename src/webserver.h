@@ -38,7 +38,6 @@ protected:
     static mmGUIFrame *m_pHandler;
 
     virtual ExitCode Entry();
-    static int IndexHtml(struct mg_connection *conn, enum mg_event ev);
     static bool SendFile(struct mg_connection *conn, const wxString &filename);
 };
 

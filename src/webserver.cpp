@@ -44,39 +44,6 @@ WebServerThread::~WebServerThread()
     m_pHandler->m_pThread = NULL;
 }
 
-int WebServerThread::IndexHtml(struct mg_connection *conn, enum mg_event ev) 
-{
-    // TODO better dispatch
-    if (ev != MG_REQUEST) return MG_TRUE;
-    int nReturn = 0;
-
-    wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
-    if (m_htmlpage != NULL)
-    {
-        wxString name = conn->uri;
-        if (name.EndsWith(".png") || name.EndsWith(".js") || name.EndsWith(".css"))
-        {
-            wxString imagename = name.Mid(1);
-            if (SendFile(conn, imagename))
-                nReturn = 1;
-        }
-        else if (strcmp(conn->uri, "/") == 0)
-        {
-            wxString pagename = "memory:" + *m_htmlpage;
-            if (SendFile(conn, pagename))
-                nReturn = 1;
-            else
-                mg_printf_data(conn, "Unable to access the requested URI is [%s]", conn->uri);
-        }
-        else
-            mg_printf_data(conn, "requested URI is [%s]", conn->uri);
-    }
-    else
-        mg_printf_data(conn, "Unable to find the requested URI is [%s]", conn->uri);
-
-    return nReturn;
-}
-
 bool WebServerThread::SendFile(struct mg_connection *conn, const wxString &filename)
 {
     bool bFound = false;
@@ -104,7 +71,8 @@ bool WebServerThread::SendFile(struct mg_connection *conn, const wxString &filen
 wxThread::ExitCode WebServerThread::Entry()
 {
     // Create and configure the server
-    struct mg_server *server = mg_create_server(NULL, WebServerThread::IndexHtml);
+    //struct mg_server *server = mg_create_server(NULL, WebServerThread::IndexHtml);
+    struct mg_server *server = mg_create_server(NULL, NULL);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
     chdir(mg_get_option(server, "document_root"));

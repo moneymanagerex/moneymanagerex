@@ -17,6 +17,7 @@
  ********************************************************/
 
 #include "paths.h"
+#include "platfdep.h"
 #include "Model_Report.h"
 #include "reports/htmlbuilder.h"
 #include "LuaGlue/LuaGlue.h"
@@ -25,10 +26,11 @@ static const wxString HTT_CONTEINER =
 "<!DOCTYPE html>\n"
 "<html>\n"
 "<head>\n"
-"    <meta http - equiv = \"Content-Type\" content = \"text/html; charset=UTF-8\"/>\n"
+"<meta charset=\"UTF-8\">:
+"    <meta http - equiv = \"Content-Type\" content = \"text/html\"/>\n"
 "    <title><TMPL_VAR REPORTNAME></title>\n"
-"    <script src = \"memory:Chart.js\"></script>\n"
-"    <link href = \"memory:master.css\" rel = \"stylesheet\">\n"
+"    <script src = \"Chart.js\"></script>\n"
+"    <link href = \"master.css\" rel = \"stylesheet\">\n"
 "</head>\n"
 "<body>\n"
 "<div class = \"container\">\n"
@@ -261,6 +263,12 @@ wxString Model_Report::get_html(const Data* r)
 
     const wxString out = wxString(report.Process());
     wxRemoveFile(fNameTemplate);
+
+    wxFileOutputStream index_output(mmex::GetResourceDir().GetPath() + "/" + "index.html");
+    wxTextOutputStream index_file(index_output);
+    index_file << out;
+    index_output.Close();
+
     return out;
 }
 
