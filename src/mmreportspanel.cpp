@@ -118,7 +118,11 @@ wxString mmReportsPanel::getReportText()
     {
         wxGetApp().m_frame->SetStatusText(rb_->version());
         htmlreport_ = rb_->getHTMLText();
-        WebServerThread::ServerPage(htmlreport_);
+
+        wxFileOutputStream index_output(mmex::GetResourceDir().GetPath() + "/" + "index.html");
+        wxTextOutputStream index_file(index_output);
+        index_file << htmlreport_;
+        index_output.Close();
     }
     return htmlreport_;
 }

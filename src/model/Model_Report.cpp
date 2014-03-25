@@ -26,7 +26,7 @@ static const wxString HTT_CONTEINER =
 "<!DOCTYPE html>\n"
 "<html>\n"
 "<head>\n"
-"<meta charset=\"UTF-8\">:
+"<meta charset=\"UTF-8\">:"
 "    <meta http - equiv = \"Content-Type\" content = \"text/html\"/>\n"
 "    <title><TMPL_VAR REPORTNAME></title>\n"
 "    <script src = \"Chart.js\"></script>\n"
