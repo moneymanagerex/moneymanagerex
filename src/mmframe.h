@@ -340,7 +340,6 @@ private:
     // mongoose web server
     wxCriticalSection m_pThreadCS;
     wxCriticalSection m_pExitCS;
-    wxCriticalSection m_pFileSystemCS;
     WebServerThread *m_pThread;
     bool m_bExitServer;
     friend class WebServerThread;

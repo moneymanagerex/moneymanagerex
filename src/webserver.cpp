@@ -24,7 +24,6 @@
 #include "singleton.h"
 
 class mmGUIFrame * WebServerThread::m_pHandler = NULL;
-class wxString * WebServerThread::m_htmlpage = NULL;
 
 WebServerThread::WebServerThread(mmGUIFrame *handler) : wxThread(wxTHREAD_DETACHED)
 {
@@ -33,13 +32,6 @@ WebServerThread::WebServerThread(mmGUIFrame *handler) : wxThread(wxTHREAD_DETACH
 
 WebServerThread::~WebServerThread()
 {
-    wxCriticalSectionLocker enter(m_pHandler->m_pFileSystemCS);
-    if (m_htmlpage)
-    {
-        wxMemoryFSHandler::RemoveFile(*m_htmlpage);
-        delete m_htmlpage;
-    }
-
     wxCriticalSectionLocker enter2(m_pHandler->m_pThreadCS);
     m_pHandler->m_pThread = NULL;
 }
@@ -91,29 +83,6 @@ wxThread::ExitCode WebServerThread::Entry()
     mg_destroy_server(&server);
 
     return (wxThread::ExitCode)0;
-}
-
-void WebServerThread::ServerPage(wxString htmlpage)
-{
-    // Report can be viewed in browser window using "http://localhost:8080".
-
-    // Cleanup html
-    wxString update_string = "http://localhost:8080/";
-    htmlpage.Replace("TRXID:", update_string);
-    htmlpage.Replace("ACCT:", update_string);
-    htmlpage.Replace("STOCK:", update_string);
-    htmlpage.Replace("SORT:", update_string);
-
-    wxCriticalSectionLocker enter1(m_pHandler->m_pThreadCS);
-    wxCriticalSectionLocker enter2(m_pHandler->m_pFileSystemCS);
-    if (m_htmlpage)
-    {
-        wxMemoryFSHandler::RemoveFile(*m_htmlpage);
-        delete m_htmlpage;
-    }
-    m_htmlpage = new wxString(htmlpage);
-    *m_htmlpage = "report.html";
-    wxMemoryFSHandler::AddFile(*m_htmlpage, htmlpage);
 }
 
 Mongoose_Service::Mongoose_Service()
