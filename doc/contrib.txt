@@ -111,6 +111,8 @@ http://www.famfamfam.com/lab/icons/silk
 Geoff Mulhall
 Fabio Toffolo	
 Bruce McLendon
+Dimitrios Valsamis
+Eleanor Batchelder
 
 2013
 CodeLathe LLC
