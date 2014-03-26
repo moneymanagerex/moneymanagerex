@@ -637,6 +637,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_ORGPAYEE)->Enable(enable);
     menuBar_->FindItem(MENU_CATEGORY_RELOCATION)->Enable(enable);
     menuBar_->FindItem(MENU_PAYEE_RELOCATION)->Enable(enable);
+    menuBar_->FindItem(wxID_VIEW_LIST)->Enable(enable);
     menuBar_->FindItem(MENU_CONVERT_ENC_DB)->Enable(enable);
 
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
@@ -656,6 +657,7 @@ void mmGUIFrame::menuEnableItems(bool enable)
     toolBar_->EnableTool(MENU_ORGPAYEE, enable);
     toolBar_->EnableTool(MENU_ORGCATEGS, enable);
     toolBar_->EnableTool(MENU_CURRENCY, enable);
+    toolBar_->EnableTool(wxID_VIEW_LIST, enable);
 }
 //----------------------------------------------------------------------------
 
@@ -2014,6 +2016,13 @@ void mmGUIFrame::createMenu()
         , _("&Transaction Report Filter..."), _("Transaction Report Filter"));
     menuItemTransactions->SetBitmap(wxBitmap(filter_xpm));
     menuTools->Append(menuItemTransactions);
+
+    menuTools->AppendSeparator();
+
+    wxMenuItem* menuItemGRM = new wxMenuItem(menuTools, wxID_VIEW_LIST
+        , _("&General Report Manager..."), _("General Report Manager"));
+    menuItemGRM->SetBitmap(wxBitmap(general_report_manager_xpm));
+    menuTools->Append(menuItemGRM);
 
     menuTools->AppendSeparator();
 
