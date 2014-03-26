@@ -107,7 +107,8 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    browser_->SetPage(getReportText(), mmex::GetResourceDir().GetPath() + "/");
+    getReportText();
+    browser_->LoadURL(mmex::GetResourceDir().GetPath() + "/" + "index.html");
     return TRUE;
 }
 
