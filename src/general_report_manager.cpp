@@ -21,6 +21,7 @@
 #include "minimal_editor.h"
 #include "util.h"
 #include "paths.h"
+#include "platfdep.h"
 #include "constants.h"
 #include "mmpanelbase.h"
 #include "model/Model_Infotable.h"
@@ -504,7 +505,13 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
         mmGeneralReport gr(report); //TODO: limit 500 line
-        m_outputHTML->SetPage(gr.getHTMLText(),"");
+
+        const wxString index = mmex::GetResourceDir().GetPath() + "/" + "index.html";
+        wxFileOutputStream index_output(index);
+        wxTextOutputStream index_file(index_output);
+        index_file << gr.getHTMLText();
+        index_output.Close();
+        m_outputHTML->LoadURL(index);
     }
 }
 
