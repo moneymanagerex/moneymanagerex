@@ -63,7 +63,7 @@ wxThread::ExitCode WebServerThread::Entry()
     chdir(mg_get_option(server, "document_root"));
 
     // Serve requests
-    while (1)
+    while (IsAlive())
     {
         mg_poll_server(server, 1000);
     }
