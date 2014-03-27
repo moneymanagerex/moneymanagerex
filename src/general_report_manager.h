@@ -71,7 +71,6 @@ private:
     void fillControls();
     void OnImportReportEvt(wxCommandEvent& event);
     void importReport();
-    bool readTextFile(const wxString &fileName, wxString &data);
     bool openZipFile(const wxString &reportFileName
         , wxString &htt, wxString &sql, wxString &lua, wxString &readme);
     void OnUpdateReport(wxCommandEvent& event);

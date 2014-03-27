@@ -376,10 +376,9 @@ void mmGeneralReportManager::importReport()
     if (reportFileName.empty()) return;
 
     wxFileName fn(reportFileName);
-    const wxString clearFileName = fn.FileName(reportFileName).GetName();
+    const wxString basename = fn.FileName(reportFileName).GetName();
 
-    wxString sql, lua, htt, txt;
-    const auto &reports = Model_Report::instance().find(Model_Report::REPORTNAME(clearFileName));
+    const auto &reports = Model_Report::instance().find(Model_Report::REPORTNAME(basename));
     if (!reports.empty())
     {
         mmShowErrorMessage(this, _("Report with same name exists"), _("General Report Manager"));
@@ -387,11 +386,12 @@ void mmGeneralReportManager::importReport()
     }
     else
     {
+        wxString sql, lua, htt, txt;
         openZipFile(reportFileName, htt, sql, lua, txt);
         Model_Report::Data *report = 0;
         report = Model_Report::instance().create();
         report->GROUPNAME = m_selectedGroup;
-        report->REPORTNAME = clearFileName;
+        report->REPORTNAME = basename;
         report->SQLCONTENT = sql;
         report->LUACONTENT = lua;
         report->TEMPLATECONTENT = htt;
@@ -400,26 +400,6 @@ void mmGeneralReportManager::importReport()
     }
 
     fillControls();
-}
-
-bool mmGeneralReportManager::readTextFile(const wxString &fileName, wxString &data)
-{
-    bool ok = true;
-    wxTextFile reportFile(fileName);
-    if (reportFile.Open())
-    {
-        while (!reportFile.Eof())
-            data.Append(reportFile.GetNextLine() + "\n");
-
-        reportFile.Close();
-    }
-    else
-    {
-        wxString msg = wxString::Format(_("Unable to open file \n%s\n\n"), fileName);
-        wxMessageBox(msg, _("General Reports Manager"), wxOK | wxICON_ERROR);
-        ok = false;
-    }
-    return ok;
 }
 
 bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
