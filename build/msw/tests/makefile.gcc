@@ -77,8 +77,9 @@ MMEX_TESTS_CFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
 	-I..\..\..\lib\wxsqlite3\include -I..\..\..\lib\lua\src -I..\..\..\lib \
 	-I..\..\..\3rd -I..\..\..\3rd\LuaGlue\include -I..\..\..\3rd\cgitemplate \
-	-I..\..\..\3rd\csv-parser\include -I..\..\..\src -DNOPCH -I..\..\..\src \
-	-I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CFLAGS)
+	-I..\..\..\3rd\csv-parser\include \
+	-I..\..\..\3rd\wxExtension\extension\include -I..\..\..\src -DNOPCH \
+	-I..\..\..\src -I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	$(__WXDEBUG_DEFINE_p) -D__WXMSW__ \
 	-I$(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) -I$(WX_DIR)\include -mthreads -W \
@@ -86,8 +87,9 @@ MMEX_TESTS_CXXFLAGS = -DHAVE_W32API_H $(____WX_SHARED) $(__WXUNICODE_DEFINE_p) \
 	-I..\..\..\lib\wxsqlite3\sqlite3\secure\src \
 	-I..\..\..\lib\wxsqlite3\include -I..\..\..\lib\lua\src -I..\..\..\lib \
 	-I..\..\..\3rd -I..\..\..\3rd\LuaGlue\include -I..\..\..\3rd\cgitemplate \
-	-I..\..\..\3rd\csv-parser\include -I..\..\..\src -DNOPCH -I..\..\..\src \
-	-I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CXXFLAGS)
+	-I..\..\..\3rd\csv-parser\include \
+	-I..\..\..\3rd\wxExtension\extension\include -I..\..\..\src -DNOPCH \
+	-I..\..\..\src -I..\..\..\lib\cppunit\include $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -178,6 +180,53 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_html_template.o \
 	mmex_tests_mongoose.o \
 	mmex_tests_csv_parser.o \
+	mmex_tests_address.o \
+	mmex_tests_app.o \
+	mmex_tests_art.o \
+	mmex_tests_configdlg.o \
+	mmex_tests_configitem.o \
+	mmex_tests_dialog.o \
+	mmex_tests_dir.o \
+	mmex_tests_ex.o \
+	mmex_tests_file.o \
+	mmex_tests_filedlg.o \
+	mmex_tests_filename.o \
+	mmex_tests_frame.o \
+	mmex_tests_frd.o \
+	mmex_tests_grid.o \
+	mmex_tests_hexmode.o \
+	mmex_tests_indicator.o \
+	mmex_tests_lexer.o \
+	mmex_tests_lexers.o \
+	mmex_tests_link.o \
+	mmex_tests_listitem.o \
+	mmex_tests_listview.o \
+	mmex_tests_managedframe.o \
+	mmex_tests_marker.o \
+	mmex_tests_menu.o \
+	mmex_tests_notebook.o \
+	mmex_tests_otl.o \
+	mmex_tests_printing.o \
+	mmex_tests_process.o \
+	mmex_tests_property.o \
+	mmex_tests_shell.o \
+	mmex_tests_stat.o \
+	mmex_tests_statusbar.o \
+	mmex_tests_stc.o \
+	mmex_tests_stcdlg.o \
+	mmex_tests_stcfile.o \
+	mmex_tests_style.o \
+	mmex_tests_textfile.o \
+	mmex_tests_tool.o \
+	mmex_tests_toolbar.o \
+	mmex_tests_extension_src_util.o \
+	mmex_tests_variable.o \
+	mmex_tests_vcs.o \
+	mmex_tests_vcscommand.o \
+	mmex_tests_vcsentry.o \
+	mmex_tests_version.o \
+	mmex_tests_vi.o \
+	mmex_tests_vimacros.o \
 	mmex_tests_cpu_timer.o \
 	mmex_tests_db_init_model.o \
 	mmex_tests_framebase_tests.o \
@@ -735,6 +784,147 @@ mmex_tests_mongoose.o: ../../../3rd/mongoose/mongoose.c
 mmex_tests_csv_parser.o: ../../../3rd/csv-parser/csv_parser.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_address.o: ../../../3rd/wxExtension/extension/src/address.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_app.o: ../../../3rd/wxExtension/extension/src/app.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_art.o: ../../../3rd/wxExtension/extension/src/art.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_configdlg.o: ../../../3rd/wxExtension/extension/src/configdlg.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_configitem.o: ../../../3rd/wxExtension/extension/src/configitem.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_dialog.o: ../../../3rd/wxExtension/extension/src/dialog.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_dir.o: ../../../3rd/wxExtension/extension/src/dir.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_ex.o: ../../../3rd/wxExtension/extension/src/ex.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_file.o: ../../../3rd/wxExtension/extension/src/file.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_filedlg.o: ../../../3rd/wxExtension/extension/src/filedlg.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_filename.o: ../../../3rd/wxExtension/extension/src/filename.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_frame.o: ../../../3rd/wxExtension/extension/src/frame.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_frd.o: ../../../3rd/wxExtension/extension/src/frd.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_grid.o: ../../../3rd/wxExtension/extension/src/grid.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_hexmode.o: ../../../3rd/wxExtension/extension/src/hexmode.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_indicator.o: ../../../3rd/wxExtension/extension/src/indicator.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_lexer.o: ../../../3rd/wxExtension/extension/src/lexer.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_lexers.o: ../../../3rd/wxExtension/extension/src/lexers.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_link.o: ../../../3rd/wxExtension/extension/src/link.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_listitem.o: ../../../3rd/wxExtension/extension/src/listitem.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_listview.o: ../../../3rd/wxExtension/extension/src/listview.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_managedframe.o: ../../../3rd/wxExtension/extension/src/managedframe.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_marker.o: ../../../3rd/wxExtension/extension/src/marker.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_menu.o: ../../../3rd/wxExtension/extension/src/menu.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_notebook.o: ../../../3rd/wxExtension/extension/src/notebook.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_otl.o: ../../../3rd/wxExtension/extension/src/otl.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_printing.o: ../../../3rd/wxExtension/extension/src/printing.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_process.o: ../../../3rd/wxExtension/extension/src/process.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_property.o: ../../../3rd/wxExtension/extension/src/property.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_shell.o: ../../../3rd/wxExtension/extension/src/shell.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_stat.o: ../../../3rd/wxExtension/extension/src/stat.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_statusbar.o: ../../../3rd/wxExtension/extension/src/statusbar.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_stc.o: ../../../3rd/wxExtension/extension/src/stc.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_stcdlg.o: ../../../3rd/wxExtension/extension/src/stcdlg.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_stcfile.o: ../../../3rd/wxExtension/extension/src/stcfile.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_style.o: ../../../3rd/wxExtension/extension/src/style.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_textfile.o: ../../../3rd/wxExtension/extension/src/textfile.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_tool.o: ../../../3rd/wxExtension/extension/src/tool.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_toolbar.o: ../../../3rd/wxExtension/extension/src/toolbar.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_extension_src_util.o: ../../../3rd/wxExtension/extension/src/util.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_variable.o: ../../../3rd/wxExtension/extension/src/variable.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_vcs.o: ../../../3rd/wxExtension/extension/src/vcs.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_vcscommand.o: ../../../3rd/wxExtension/extension/src/vcscommand.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_vcsentry.o: ../../../3rd/wxExtension/extension/src/vcsentry.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_version.o: ../../../3rd/wxExtension/extension/src/version.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_vi.o: ../../../3rd/wxExtension/extension/src/vi.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_vimacros.o: ../../../3rd/wxExtension/extension/src/vimacros.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_cpu_timer.o: ../../../src/tests/cpu_timer.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -784,7 +974,7 @@ mmex_tests_test_stocks.o: ../../../src/tests/test_stocks.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../../src/tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../../lib/wxsqlite3/include --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../3rd --include-dir ../../../3rd/LuaGlue/include --include-dir ../../../3rd/cgitemplate --include-dir ../../../3rd/csv-parser/include --include-dir ../../../src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/cppunit/include
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_26_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../../lib/wxsqlite3/include --include-dir ../../../lib/lua/src --include-dir ../../../lib --include-dir ../../../3rd --include-dir ../../../3rd/LuaGlue/include --include-dir ../../../3rd/cgitemplate --include-dir ../../../3rd/csv-parser/include --include-dir ../../../3rd/wxExtension/extension/include --include-dir ../../../src --define NOPCH --include-dir ../../../src --include-dir ../../../lib/cppunit/include
 
 .PHONY: all install uninstall clean check
 

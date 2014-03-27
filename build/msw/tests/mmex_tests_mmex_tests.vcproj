@@ -48,13 +48,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS /Zi"
 				Optimization="2"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
@@ -72,7 +72,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -138,13 +138,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -164,7 +164,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -231,13 +231,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS /Zi"
 				Optimization="2"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
@@ -255,7 +255,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXMSW__;NDEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -321,13 +321,13 @@
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 				PreprocessorDefinitions="WIN32;_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
@@ -347,7 +347,7 @@
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="_UNICODE;__WXDEBUG__;__WXMSW__;_DEBUG;_DEBUG;NOPCH;_CONSOLE"
 				Culture="1033"
-				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
+				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\..\lib\wxsqlite3\include;..\..\..\lib\lua\src;..\..\..\lib;..\..\..\3rd;..\..\..\3rd\LuaGlue\include;..\..\..\3rd\cgitemplate;..\..\..\3rd\csv-parser\include;..\..\..\3rd\wxExtension\extension\include;..\..\..\src;..\..\..\src;..\..\..\lib\cppunit\include"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -473,7 +473,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\address.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\app.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\appstartdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\art.cpp"
 				>
 			</File>
 			<File
@@ -541,6 +553,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\configdlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\configitem.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\constants.cpp"
 				>
 			</File>
@@ -565,7 +585,31 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\dialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\dir.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\ex.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\import_export\export.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\file.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\filedlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\filename.cpp"
 				>
 			</File>
 			<File
@@ -573,11 +617,27 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\frame.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\tests\framebase_tests.cpp"
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\frd.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\general_report_manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\grid.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\hexmode.cpp"
 				>
 			</File>
 			<File
@@ -609,7 +669,43 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\indicator.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\lexer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\lexers.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\link.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\listitem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\listview.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\maincurrencydialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\managedframe.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\marker.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\menu.cpp"
 				>
 			</File>
 			<File
@@ -677,7 +773,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\notebook.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\optionsdialog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\otl.cpp"
 				>
 			</File>
 			<File
@@ -694,6 +798,18 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\win\platfdep.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\printing.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\process.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\property.cpp"
 				>
 			</File>
 			<File
@@ -725,6 +841,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\shell.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\splitdetailsdialog.cpp"
 				>
 			</File>
@@ -733,11 +853,35 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\stat.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\statusbar.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\stc.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\stcdlg.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\stcfile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\stockdialog.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\src\stockspanel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\style.cpp"
 				>
 			</File>
 			<File
@@ -789,6 +933,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\textfile.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\tool.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\toolbar.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\reports\transactions.cpp"
 				>
 			</File>
@@ -801,7 +957,103 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\util.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\extension_src_util.obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\extension_src_util.obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\extension_src_util.obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\extension_src_util.obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="..\..\..\src\util.cpp"
+				>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\src_util.obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\src_util.obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\src_util.obj"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						ObjectFile="$(PlatformName)\$(ConfigurationName)\mmex_tests\src_util.obj"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\variable.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\vcs.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\vcscommand.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\vcsentry.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\version.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\vi.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\3rd\wxExtension\extension\src\vimacros.cpp"
 				>
 			</File>
 			<File
