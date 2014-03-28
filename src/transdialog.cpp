@@ -163,6 +163,7 @@ void mmTransDialog::dataToControls()
     {
         const wxDateTime trx_date = Model_Checking::TRANSDATE(transaction_);
         dpc_->SetValue(trx_date);
+        dpc_->SetFocus();
         //process date change event for set weekday name
         wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
         GetEventHandler()->ProcessEvent(dateEvent);
