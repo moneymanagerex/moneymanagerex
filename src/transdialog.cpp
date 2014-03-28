@@ -66,6 +66,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_account_init_(false)
     , skip_payee_init_(false)
     , skip_status_init_(false)
+    , skip_date_init_(false)
     , skip_notes_init_(false)
     , skip_category_init_(false)
     , category_changed_(false)
@@ -158,11 +159,15 @@ void mmTransDialog::dataToControls()
         SetDialogTitle(_("New Transaction"));
 
     //Date
-    const wxDateTime trx_date = Model_Checking::TRANSDATE(transaction_);
-    dpc_->SetValue(trx_date);
-    //process date change event for set weekday name
-    wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
-    GetEventHandler()->ProcessEvent(dateEvent);
+    if (!skip_date_init_)
+    {
+        const wxDateTime trx_date = Model_Checking::TRANSDATE(transaction_);
+        dpc_->SetValue(trx_date);
+        //process date change event for set weekday name
+        wxDateEvent dateEvent(dpc_, trx_date, wxEVT_DATE_CHANGED);
+        GetEventHandler()->ProcessEvent(dateEvent);
+        skip_date_init_ = true;
+    }
 
     //Status
     if (!skip_status_init_)
