@@ -63,3 +63,29 @@ std::map<int, Model_Splittransaction::Data_Set> Model_Splittransaction::get_all(
     }
     return data;
 }
+
+int Model_Splittransaction::update(const Data_Set& rows, int transactionID)
+{
+
+    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(transactionID));
+    for (const auto& split_item : split)
+    {
+        Model_Splittransaction::instance().remove(split_item.SPLITTRANSID);
+    }
+
+    if (!rows.empty())
+    {
+        Model_Splittransaction::Data_Set split_items;
+        for (const auto &item : rows)
+        {
+            Model_Splittransaction::Data *split_item = Model_Splittransaction::instance().create();
+            split_item->TRANSID = transactionID;
+            split_item->SPLITTRANSAMOUNT = item.SPLITTRANSAMOUNT;
+            split_item->CATEGID = item.CATEGID;
+            split_item->SUBCATEGID = item.SUBCATEGID;
+            split_items.push_back(*split_item);
+        }
+        Model_Splittransaction::instance().save(split_items);
+    }
+    return rows.size();
+}

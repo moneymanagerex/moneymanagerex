@@ -87,12 +87,14 @@ public:
     wxStaticText* transAmount_;
 
     void SetDisplaySplitCategories();
+    bool isItemsChanged(){ return items_changed_; }
 
 private:
     Model_Splittransaction::Data_Set* m_splits;
     Model_Splittransaction::Data_Set m_local_splits;
     int transType_;
     int accountID_;
+    bool items_changed_;
 
     wxButton* itemButtonNew_;
     wxButton* itemButtonEdit_;

@@ -53,6 +53,7 @@ SplitTransactionDialog::SplitTransactionDialog( wxWindow* parent
     , int accountID)
     : m_splits(splits)
     , accountID_(accountID)
+    , items_changed_(false)
 {
     for (const auto &item : *m_splits) m_local_splits.push_back(item);
 
@@ -181,6 +182,7 @@ void SplitTransactionDialog::OnButtonAddClick( wxCommandEvent& /*event*/ )
     if (sdd.ShowModal() == wxID_OK)
     {
         this->m_local_splits.push_back(*split);
+        items_changed_ = true;
     }
     DataToControls();
 }
@@ -212,6 +214,7 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
         return;
     this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
     selectedIndex_ = -1;
+    items_changed_ = true;
     DataToControls();
 }
 
@@ -243,6 +246,7 @@ void SplitTransactionDialog::EditEntry(int index)
     SplitDetailDialog sdd(this, &split, transType_, accountID_);
     if (sdd.ShowModal() == wxID_OK)
     {
+        items_changed_ = true;
         DataToControls();
         UpdateSplitTotal();
     }

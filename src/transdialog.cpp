@@ -68,6 +68,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_status_init_(false)
     , skip_notes_init_(false)
     , skip_category_init_(false)
+    , category_changed_(false)
     , skip_amount_init_(false)
 {
     if (transaction_id_)
@@ -709,13 +710,16 @@ void mmTransDialog::activateSplitTransactionsDlg()
         split->SUBCATEGID = transaction_->SUBCATEGID;
         m_local_splits.push_back(*split);
     }
-    transaction_->CATEGID = -1;
-    transaction_->SUBCATEGID = -1;
 
     SplitTransactionDialog dlg(this, &m_local_splits, transaction_type_->GetSelection(), accountID_);
-    dlg.ShowModal();
-    transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
-    skip_category_init_ = false;
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
+        transaction_->CATEGID = -1;
+        transaction_->SUBCATEGID = -1;
+        skip_category_init_ = false;
+        category_changed_ = dlg.isItemsChanged();
+    }
 }
 
 void mmTransDialog::SetDialogTitle(const wxString& title)
@@ -956,7 +960,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     if (!validateData()) return;
 
     transaction_->STATUS = "";
-    wxStringClientData* status_obj = (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
+    wxStringClientData* status_obj = (wxStringClientData *) choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
     if (status_obj) transaction_->STATUS = Model_Checking::toShortStatus(status_obj->GetData());
 
     transaction_->NOTES = textNotes_->GetValue();
@@ -966,27 +970,15 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
     transaction_id_ = Model_Checking::instance().save(transaction_);
 
-    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(transaction_id_));
-    for (const auto& split_item : split)
-    {
-        bool ok = false;
-        for (const auto &item : m_local_splits)
-        {
-            ok = ok || item.TRANSID == split_item.SPLITTRANSID;
-            if (ok) break;
-        }
-        if (!ok)
-            Model_Splittransaction::instance().remove(split_item.SPLITTRANSID);
-    }
-
     if (!m_local_splits.empty())
     {
         this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
         this->transaction_->CATEGID = -1;
         this->transaction_->SUBCATEGID = -1;
-        for (auto &item : m_local_splits) item.TRANSID = transaction_id_;
-        Model_Splittransaction::instance().save(m_local_splits);
     }
+
+    if (category_changed_)
+        Model_Splittransaction::instance().update(m_local_splits, transaction_id_);
 
     wxLogDebug(transaction_->to_json());
     EndModal(wxID_OK);
