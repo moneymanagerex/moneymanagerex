@@ -23,26 +23,45 @@
 #include "mongoose/mongoose.h"
 #include "singleton.h"
 #include "model/Model_Account.h"
+#include "model/Model_Payee.h"
+
+std::string event_to_name(enum mg_event ev)
+{
+    switch (ev)
+    {
+    case MG_POLL:       return "MG_POLL";
+    case MG_CONNECT:    return "MG_CONNECT";
+    case MG_AUTH:       return "MG_AUTH";
+    case MG_REQUEST:    return "MG_REQUEST";
+    case MG_REPLY:      return "MG_REPLY";
+    case MG_CLOSE:      return "MG_CLOSE";
+    case MG_LUA:        return "MG_LUA";
+    case MG_HTTP_ERROR: return "MG_HTTP_ERROR";
+    default:            return "UNKNOWN";
+    }
+}
 
 static int ev_handler(struct mg_connection *conn, enum mg_event ev) 
 {
+    wxLogDebug("RUI: %s, TYPE: %s", conn->uri, event_to_name(ev));
+    if (ev == MG_AUTH) return MG_TRUE;
     int result = MG_FALSE;
 
     if (ev == MG_REQUEST) 
     {
-        if (strcmp(conn->uri, "/accounts") == 0)
+        if (strcmp(conn->uri, "/account") == 0)
         {
-            const Model_Account::Data* account = Model_Account::instance().get(1);
-            mg_printf_data(conn, account->to_json());
+            mg_printf_data(conn, Model_Account::instance().all().to_json().c_str());
+            result = MG_TRUE;
+        }
+        else if (strcmp(conn->uri, "/payee") == 0)
+        {
+            mg_printf_data(conn, Model_Payee::instance().all().to_json().c_str());
             result = MG_TRUE;
         }
         else
             result = MG_FALSE;
     } 
-    else 
-    {
-        result = MG_TRUE;
-    }
 
     return result;
 }
@@ -58,7 +77,7 @@ WebServerThread::~WebServerThread()
 wxThread::ExitCode WebServerThread::Entry()
 {
     // Create and configure the server
-    struct mg_server *server = mg_create_server(NULL, NULL);
+    struct mg_server *server = mg_create_server(NULL, ev_handler);
     mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
     chdir(mg_get_option(server, "document_root"));
