@@ -210,12 +210,7 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
     if (selectedIndex_ < 0 || selectedIndex_ >= (int)this->m_local_splits.size())
         return;
-    int id = m_local_splits[selectedIndex_].SPLITTRANSID;
     this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
-    Model_Splittransaction::Data *split_item = Model_Splittransaction::instance().get(id);
-    if (split_item) {
-        Model_Splittransaction::instance().remove(id);
-    }
     selectedIndex_ = -1;
     DataToControls();
 }

@@ -966,6 +966,19 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
     transaction_id_ = Model_Checking::instance().save(transaction_);
 
+    Model_Splittransaction::Data_Set split = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(transaction_id_));
+    for (const auto& split_item : split)
+    {
+        bool ok = false;
+        for (const auto &item : m_local_splits)
+        {
+            ok = ok || item.TRANSID == split_item.SPLITTRANSID;
+            if (ok) break;
+        }
+        if (!ok)
+            Model_Splittransaction::instance().remove(split_item.SPLITTRANSID);
+    }
+
     if (!m_local_splits.empty())
     {
         this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
