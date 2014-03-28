@@ -118,6 +118,7 @@ private:
     int transaction_id_; //The transaction ID. NULL if new transaction
     std::vector<std::pair<wxString, wxString>> frequentNotes_;
 
+    bool skip_date_init_;
     bool skip_account_init_;
     bool skip_amount_init_;
     bool skip_payee_init_;
