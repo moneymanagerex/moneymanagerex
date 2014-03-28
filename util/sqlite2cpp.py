@@ -83,7 +83,22 @@ struct DB_Table_%s : public DB_Table
     struct Data;
     typedef DB_Table_%s Self;
     /** A container to hold list of Data records for the table*/
-    typedef std::vector<Self::Data> Data_Set;
+    struct Data_Set : public std::vector<Self::Data>
+    {
+        std::string to_json() const
+        {
+            json::Array a;
+            for (const auto & item: *this)
+            {
+                json::Object o;
+                item.to_json(o);
+                a.Insert(o);
+            }
+            std::stringstream ss;
+            json::Writer::Write(a, ss);
+            return ss.str();
+        }
+    };
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
     Cache cache_;
