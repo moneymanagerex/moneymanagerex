@@ -57,13 +57,13 @@ SplitTransactionDialog::SplitTransactionDialog( wxWindow* parent
     for (const auto &item : *m_splits) m_local_splits.push_back(item);
 
     transType_ = transType;
-    selectedIndex_ = 0;
+    selectedIndex_ = -1;
     if (transType_ == Model_Checking::TRANSFER)
         transType_ = Model_Checking::WITHDRAWAL;
 
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("Split Transaction Dialog")
-        , wxDefaultPosition, wxSize(400, 300), style);
+        , wxDefaultPosition, wxSize(400, 400), style);
 }
 
 bool SplitTransactionDialog::Create(wxWindow* parent
@@ -106,6 +106,7 @@ void SplitTransactionDialog::DataToControls()
         if (lcSplit_->GetItemCount()-1 == selectedIndex_) lcSplit_->SelectRow(selectedIndex_);
     }
     UpdateSplitTotal();
+    SetDisplayEditDeleteButtons();
     itemButtonNew_->SetFocus();
 }
 
@@ -121,7 +122,7 @@ void SplitTransactionDialog::CreateControls()
     dialogMainSizerV->Add(listCtrlSizer, g_flagsExpand);
 
     lcSplit_ = new wxDataViewListCtrl(this, wxID_ANY
-        , wxDefaultPosition, wxSize(265, 120));
+        , wxDefaultPosition, wxSize(265, 150));
     lcSplit_->AppendTextColumn(_("Category"), wxDATAVIEW_CELL_INERT, 180);
     lcSplit_->AppendTextColumn(_("Amount"), wxDATAVIEW_CELL_INERT, 180);
 
@@ -207,8 +208,15 @@ void SplitTransactionDialog::OnOk( wxCommandEvent& /*event*/ )
 
 void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
 {
-    if (selectedIndex_ < 0 || selectedIndex_ >= (int)this->m_local_splits.size()) return;
+    if (selectedIndex_ < 0 || selectedIndex_ >= (int)this->m_local_splits.size())
+        return;
+    int id = m_local_splits[selectedIndex_].SPLITTRANSID;
     this->m_local_splits.erase(this->m_local_splits.begin() + selectedIndex_);
+    Model_Splittransaction::Data *split_item = Model_Splittransaction::instance().get(id);
+    if (split_item) {
+        Model_Splittransaction::instance().remove(id);
+    }
+    selectedIndex_ = -1;
     DataToControls();
 }
 
@@ -249,6 +257,7 @@ void SplitTransactionDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
     selectedIndex_ = lcSplit_->ItemToRow(item);
+    SetDisplayEditDeleteButtons();
 }
 
 void SplitTransactionDialog::OnListDblClick(wxDataViewEvent& event)
@@ -264,3 +273,9 @@ void SplitTransactionDialog::SetDisplaySplitCategories()
     itemButtonOK_->Hide();
 }
 
+void SplitTransactionDialog::SetDisplayEditDeleteButtons()
+{
+    bool active = selectedIndex_ >= 0 && selectedIndex_ < (int)this->m_local_splits.size();
+    itemButtonEdit_->Enable(active);
+    itemButtonDelete_->Enable(active);
+}

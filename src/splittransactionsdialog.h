@@ -99,6 +99,7 @@ private:
     wxButton* itemButtonDelete_;
     wxButton* itemButtonOK_;
 
+    void SetDisplayEditDeleteButtons();
     void OnListDblClick(wxDataViewEvent& event);
     void OnListItemSelected(wxDataViewEvent& event);
     void EditEntry(int id);

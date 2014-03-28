@@ -183,11 +183,6 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
         return;
     }
 
-    Model_Account::Data* account = Model_Account::instance().get(accountID_);
-    Model_Currency::Data* currency 
-        = account ? Model_Account::currency(account) : Model_Currency::GetBaseCurrency();
-
-    wxString amountStr = textAmount_->GetValue().Trim();
     double amount;
     if (!textAmount_->checkValue(amount))
     {

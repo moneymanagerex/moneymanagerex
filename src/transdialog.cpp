@@ -959,23 +959,21 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
     wxStringClientData* status_obj = (wxStringClientData *)choiceStatus_->GetClientObject(choiceStatus_->GetSelection());
     if (status_obj) transaction_->STATUS = Model_Checking::toShortStatus(status_obj->GetData());
 
-    textNotes_->SetFocus();
     transaction_->NOTES = textNotes_->GetValue();
     transaction_->TRANSACTIONNUMBER = textNumber_->GetValue();
 
     transaction_->ACCOUNTID = accountID_;
     transaction_->TRANSDATE = dpc_->GetValue().FormatISODate();
+    transaction_id_ = Model_Checking::instance().save(transaction_);
 
     if (!m_local_splits.empty())
     {
         this->transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
         this->transaction_->CATEGID = -1;
         this->transaction_->SUBCATEGID = -1;
+        for (auto &item : m_local_splits) item.TRANSID = transaction_id_;
+        Model_Splittransaction::instance().save(m_local_splits);
     }
-
-    transaction_id_ = Model_Checking::instance().save(transaction_);
-    for (auto &item : m_local_splits) item.TRANSID = transaction_->TRANSID;
-    Model_Splittransaction::instance().save(m_local_splits);
 
     wxLogDebug(transaction_->to_json());
     EndModal(wxID_OK);
