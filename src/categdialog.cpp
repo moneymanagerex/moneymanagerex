@@ -23,6 +23,7 @@
 #include "defs.h"
 #include "paths.h"
 #include "constants.h"
+#include "webapp.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Infotable.h"
@@ -262,6 +263,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         Model_Category::Data *category = Model_Category::instance().create();
         category->CATEGNAME = text;
         Model_Category::instance().save(category);
+		mmWebApp::MMEX_WebApp_UpdateCategory();
 
         wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);
         Model_Subcategory::Data subcat = 0;
@@ -288,6 +290,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         subcategory->SUBCATEGNAME = text;
         subcategory->CATEGID = iData->getCategData()->CATEGID;
         Model_Subcategory::instance().save(subcategory);
+		mmWebApp::MMEX_WebApp_UpdateCategory();
 
         wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*iData->getCategData(), *subcategory));
@@ -362,6 +365,7 @@ void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
         }
     }
     Model_Payee::instance().save(payees);
+	mmWebApp::MMEX_WebApp_UpdatePayee();
 
     wxString sIndex = wxString::Format("*%i:%i*",categID, subcategID);
     wxString sSettings = "";
@@ -479,6 +483,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
         Model_Category::Data* category = iData->getCategData();
         category->CATEGNAME = text;
         Model_Category::instance().save(category);
+		mmWebApp::MMEX_WebApp_UpdateCategory();
     }
     else
     {
@@ -496,6 +501,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
         Model_Subcategory::Data* sub_category = iData->getSubCategData();
         sub_category->SUBCATEGNAME = text;
         Model_Subcategory::instance().save(sub_category);
+		mmWebApp::MMEX_WebApp_UpdateCategory();
     }
 
     m_treeCtrl->SetItemText(selectedItemId_, text);

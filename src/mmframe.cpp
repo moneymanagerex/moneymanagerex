@@ -483,6 +483,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 		{
 			mmWebApp::WebApp_UpdateAccount();
 			mmWebApp::WebApp_UpdatePayee();
+			mmWebApp::WebApp_UpdateCategory();
 			if (mmWebApp::WebApp_CheckNewTransaction())
 			{
 				wxString msgStr = wxString() << _("New transactions found on web app") << "\n" <<
@@ -490,25 +491,29 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 				int NewTransactionResponse = wxMessageBox(msgStr, _("Download WebApp new transaction"), wxYES_NO);
 				if (NewTransactionResponse == wxYES)
 				{
-					if(mmWebApp::WebApp_DownloadNewTransaction())
+					while (mmWebApp::WebApp_CheckNewTransaction())
 					{
-						while (mmWebApp::Local_getNextTransactionID() > 0)
+						wxString NewTransactionJSON;
+						if (mmWebApp::WebApp_DownloadNewTransaction(NewTransactionJSON))
 						{
-							int NextTransactionID = mmWebApp::Local_getNextTransactionID();
-							int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NextTransactionID);
+							int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NewTransactionJSON);
 							if (InsertedTransactionID > 0)
 							{
 								mmGUIFrame* EditTransactionFrame = const_cast<mmGUIFrame *>(this);
 								mmTransDialog EditTransactionDialog(EditTransactionFrame, 1, InsertedTransactionID);
 								EditTransactionDialog.ShowModal();
 							}
+							else
+							{
+								wxString msgStr = wxString() << _("Unable to insert transaction in MMEX database") << "\n";
+								wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
+							}
 						}
-						mmWebApp::Local_DeleteDbFile();
-					}
-					else
-					{
-						wxString msgStr = wxString() << _("WebApp database not found!") << "\n";
-						wxMessageBox(msgStr, _("Wrong WebApp database"), wxICON_ERROR);
+						else
+						{
+							wxString msgStr = wxString() << _("Unable to download new transaction from WebApp") << "\n";
+							wxMessageBox(msgStr, _("WebApp communication error"), wxICON_ERROR);
+						}
 					}
 				}
 				else

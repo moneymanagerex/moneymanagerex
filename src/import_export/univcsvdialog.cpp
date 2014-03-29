@@ -20,6 +20,7 @@
 #include "util.h"
 #include "paths.h"
 #include "platfdep.h"
+#include "webapp.h"
 #include <algorithm>
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
@@ -711,6 +712,9 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             {
                 // we need to save them to the database.
                 Model_Checking::instance().Commit();
+				mmWebApp::MMEX_WebApp_UpdateAccount();
+				mmWebApp::MMEX_WebApp_UpdatePayee();
+				mmWebApp::MMEX_WebApp_UpdateCategory();
                 importSuccessful_ = true;
                 msg << _("Transactions saved to database in account: ") << acctName;
             }
@@ -878,6 +882,9 @@ void mmUnivCSVDialog::OnImport2(wxCommandEvent& /*event*/)
             {
                 // we need to save them to the database.
                 Model_Checking::instance().Commit();
+				mmWebApp::MMEX_WebApp_UpdateAccount();
+				mmWebApp::MMEX_WebApp_UpdatePayee();
+				mmWebApp::MMEX_WebApp_UpdateCategory();
                 importSuccessful_ = true;
                 msg << _("Transactions saved to database in account: ") << acctName;
             }

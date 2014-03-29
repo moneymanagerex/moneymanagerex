@@ -20,6 +20,7 @@
 #include "relocatecategorydialog.h"
 #include "paths.h"
 #include "categdialog.h"
+#include "webapp.h"
 #include "wx/statline.h"
 #include "model/Model_Category.h"
 #include "model/Model_Payee.h"
@@ -230,6 +231,7 @@ void relocateCategoryDialog::OnOk(wxCommandEvent& /*event*/)
                 entry.SUBCATEGID = m_destSubCatID;
             }
             m_changedRecords += Model_Payee::instance().save(payees);
+			mmWebApp::MMEX_WebApp_UpdatePayee();
 
             for (auto &entry : budget)
             {

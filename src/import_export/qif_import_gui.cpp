@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
+#include "webapp.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
@@ -1023,6 +1024,9 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             if (m_firstReferencedAccountID < 0) m_firstReferencedAccountID = refTrans->ACCOUNTID;
         }
 
+		mmWebApp::MMEX_WebApp_UpdateAccount();
+		mmWebApp::MMEX_WebApp_UpdatePayee();
+		mmWebApp::MMEX_WebApp_UpdateCategory();
         sMsg = _("Import finished successfully");
         btnOK_->Enable(false);
         progressDlg.Destroy();
