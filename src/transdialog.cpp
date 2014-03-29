@@ -993,6 +993,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 void mmTransDialog::OnCancel(wxCommandEvent& /*event*/)
 {
 #ifndef __WXMAC__
+    if (wxGetKeyState(wxKeyCode(WXK_RETURN))) return;
     if (object_in_focus_ == bCategory_->GetId()) return;
     if (object_in_focus_ == textNotes_->GetId()) return;
 
