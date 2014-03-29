@@ -342,8 +342,8 @@ void mmCheckingPanel::CreateControls()
     this->SetSizer(itemBoxSizer9);
 
     /* ---------------------- */
-    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition,
-        wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
+    wxPanel* headerPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition
+        , wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
     itemBoxSizer9->Add(headerPanel, flags);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
@@ -375,7 +375,7 @@ void mmCheckingPanel::CreateControls()
 
     itemFlexGridSizerHHeader2->AddSpacer(20);
 
-    bitmapTransFilter_ = new wxStaticBitmap( headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
+    bitmapTransFilter_ = new wxStaticBitmap(headerPanel, ID_PANEL_CHECKING_STATIC_BITMAP_FILTER
         , itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, flags);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
@@ -383,8 +383,8 @@ void mmCheckingPanel::CreateControls()
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
         , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
 
-    statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY,
-        _("Transaction Filter"));
+    statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
+        , _("Transaction Filter"));
     itemFlexGridSizerHHeader2->Add(statTextTransFilter_, flags);
 
     wxStaticText* itemStaticText12 = new wxStaticText(headerPanel
@@ -412,7 +412,7 @@ void mmCheckingPanel::CreateControls()
     /* ---------------------- */
 
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
-        , ID_SPLITTERWINDOW, wxDefaultPosition, wxSize(200, 200)
+        , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
         , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     wxSize imageSize(16, 16);
@@ -1106,14 +1106,11 @@ void TransactionListCtrl::OnMarkTransaction(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE)          status = "D";
     else wxASSERT(false);
 
-    bool bVoidTransaction = false;
-    if (status == "V")
-        bVoidTransaction = true;
+    bool bVoidTransaction = (status == "V");
+
     Model_Checking::Data *trx = Model_Checking::instance().get(m_cp->m_trans[m_selectedIndex].TRANSID);
     if (trx)
     {
-        if (trx->STATUS == "V")
-            bVoidTransaction = true;
         m_cp->m_trans[m_selectedIndex].STATUS = status;
         trx->STATUS = status;
         Model_Checking::instance().save(trx);
@@ -1372,31 +1369,31 @@ void TransactionListCtrl::OnListKeyDown(wxListEvent& event)
     wxString status = m_cp->m_trans[m_selectedIndex].STATUS;
 
     if (wxGetKeyState(wxKeyCode('R')) && status != "R") {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
-            OnMarkTransaction(evt);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKRECONCILED);
+        OnMarkTransaction(evt);
     }
     else if (wxGetKeyState(wxKeyCode('U')) && status != "") {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
-            OnMarkTransaction(evt);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKUNRECONCILED);
+        OnMarkTransaction(evt);
     }
     else if (wxGetKeyState(wxKeyCode('F')) && status != "F") {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
-            OnMarkTransaction(evt);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARK_ADD_FLAG_FOLLOWUP);
+        OnMarkTransaction(evt);
     }
     else if (wxGetKeyState(wxKeyCode('D')) && status != "D") {
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
-            OnMarkTransaction(evt);
+        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKDUPLICATE);
+        OnMarkTransaction(evt);
     }
     else if (wxGetKeyState(wxKeyCode('V')) && status != "V") {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if ((wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
+    else if ((wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE)) && status != "V")
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_MARKVOID);
         OnMarkTransaction(evt);
     }
-    else if (wxGetKeyState(WXK_DELETE)|| wxGetKeyState(WXK_NUMPAD_DELETE))
+    else if (wxGetKeyState(WXK_DELETE) || wxGetKeyState(WXK_NUMPAD_DELETE))
     {
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_DELETE2);
         OnDeleteTransaction(evt);
@@ -1419,7 +1416,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
     wxMessageDialog msgDlg(this
         , _("Do you really want to delete the selected transaction?")
         , _("Confirm Transaction Deletion")
-        , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+        , wxYES_NO | wxYES_DEFAULT | wxICON_ERROR);
 
     if (msgDlg.ShowModal() == wxID_YES)
     {
@@ -1516,6 +1513,7 @@ void TransactionListCtrl::refreshVisualList(int trans_id, bool filter)
     m_cp->updateExtraTransactionData(m_selectedIndex);
     this->SetEvtHandlerEnabled(true);
     Refresh();
+    m_cp->m_listCtrlAccount->SetFocus();
 }
 
 void TransactionListCtrl::OnMoveTransaction(wxCommandEvent& /*event*/)
