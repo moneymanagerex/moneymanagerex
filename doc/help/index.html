@@ -103,6 +103,8 @@
   <UL>
     <LI>Import From</LI>
     <UL>
+	  <LI>
+		<A HREF="#WebApp">WebApp</A>
       <LI>
         <A HREF="#importQIF">QIF Files</A>
         <LI>
@@ -1129,6 +1131,32 @@ transactions use this payee. This can be done by:</P>
 
 <H5><A HREF="#top">Back to Top</A></H5>
 <HR>
+<H3><A NAME="WebApp"></A><BR>Importing From WebApp</H3>
+<P>MMEX has a light WebApp that can be installed on every PHP webserver
+like NAS, shared hosting or other PHP local installation.<BR>You can download all needed files
+<A href="https://sourceforge.net/projects/moneymanagerex-webapp/files/latest/download">
+from project page</A>.<BR><BR>
+To start-up WebApp you only have to:
+<UL>
+	<LI>unzip file in a folder on your webserver or upload files through FTP</LI>
+	<LI>rename htaccess.txt in .htaccess
+		(on Windows you need to do it from CMD and "rename" command)</LI>
+	<LI>enable PDO_SQLite if needed</LI>
+</UL>
+Then simply open your browser to the folder URL, fill first settings and 
+insert correct URL and GUID in MMEX settings (import/export tab).<BR>
+Now at every start-up MMEX will contact WebApp for new transaction that
+will be downloaded and imported in desktop database.<BR>
+All main transaction linked settings will be automatically synced to WebApp,
+in this way you can have all your account and payees ready to use
+inserting new transaction.<BR><BR>
+To obtain more information about set-up and installation see 
+<A href="https://sourceforge.net/p/moneymanagerex-webapp/wiki/">
+wiki pages.</A>
+<BR><BR>
+</P>
+<H5><A HREF="#top">Back to Top</A></H5>
+<HR>
 <H3><A NAME="importQIF"></A><BR>Importing
 From QIF Files</H3>
 <P>Quicken Interchange Format (QIF) is an open
@@ -1659,6 +1687,15 @@ by changing the options in the Options Dialog.</P>
 			when parsing CSV files. This is useful to modify from the default
 			',' when dealing with currencies that use ',' to denote decimal
 			points in amounts. 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P><I><B>WebApp settings</B></I></P>
+		</TD>
+		<TD>
+			<P>Set URL and GUID of your WebApp installation to allow data sync. Parameters can be found in WebApp 'Guide' page.
 			</P>
 		</TD>
 	</TR>
