@@ -500,8 +500,9 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     wxTreeItemId id = event.GetItem();
     m_treeCtrl ->SelectItem(id);
     int report_id = -1;
-    MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
+    MyTreeItemData *iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(id));
     if (iData) report_id = iData->get_report_id();
+    Model_Report::Data *report = Model_Report::instance().get(report_id);
 
     wxMenu* samplesMenu = new wxMenu;
     samplesMenu->Append(ID_NEW_SAMPLE_ASSETS, _("Assets"));
@@ -511,12 +512,20 @@ void mmGeneralReportManager::OnItemRightClick(wxTreeEvent& event)
     customReportMenu->Append(wxID_ANY, _("New Sample Report"), samplesMenu);
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_GROUP, _("Change Group"));
-    customReportMenu->Enable(ID_GROUP, report_id > 0);
+    customReportMenu->Append(ID_UNGROUP, _("UnGroup"));
     customReportMenu->Append(ID_RENAME, _("Rename Report"));
-    customReportMenu->Enable(ID_RENAME, report_id > 0);
     customReportMenu->AppendSeparator();
     customReportMenu->Append(ID_DELETE, _("Delete Report"));
-    customReportMenu->Enable(ID_DELETE, report_id > 0);
+
+    if (report) {
+        customReportMenu->Enable(ID_UNGROUP, !report->GROUPNAME.empty());
+    }
+    else {
+        customReportMenu->Enable(ID_GROUP, false);
+        customReportMenu->Enable(ID_UNGROUP, false);
+        customReportMenu->Enable(ID_RENAME, false);
+        customReportMenu->Enable(ID_DELETE, false);
+    }
     PopupMenu(customReportMenu);
     delete customReportMenu;
 }
@@ -644,27 +653,35 @@ void mmGeneralReportManager::OnMenuSelected(wxCommandEvent& event)
 {
     int id = event.GetId();
 
-    if (id == ID_RENAME || id == ID_DELETE || id == ID_GROUP)
+    if (id == ID_RENAME || id == ID_DELETE || id == ID_GROUP || id == ID_UNGROUP)
     {
         MyTreeItemData* iData = dynamic_cast<MyTreeItemData*>(m_treeCtrl->GetItemData(m_selectedItemID));
+        int report_id = iData->get_report_id();
         if (iData && id == ID_RENAME)
         {
-            int report_id = iData->get_report_id();
             this->renameReport(report_id);
         }
         else if (iData && id == ID_DELETE)
         {
-            int report_id = iData->get_report_id();
             this->DeleteReport(report_id);
         }
-        else if (iData && id == ID_GROUP)
+        else if (iData && (id == ID_GROUP || id == ID_UNGROUP))
         {
-            int report_id = iData->get_report_id();
             Model_Report::Data * report = Model_Report::instance().get(report_id);
-            if (report)
+            if (report && id == ID_GROUP)
             {
-                report->GROUPNAME = wxGetTextFromUser(_("Enter the name for the new report group")
+                const wxString groupName = wxGetTextFromUser(_("Enter the name for the new report group")
                     , _("General Report Manager"), m_selectedGroup);
+                if (!groupName.empty()){
+                    report->GROUPNAME = groupName;
+                    Model_Report::instance().save(report);
+                }
+                else
+                    return;
+            }
+            else if (report && id == ID_UNGROUP)
+            {
+                report->GROUPNAME = "";
                 Model_Report::instance().save(report);
             }
         }

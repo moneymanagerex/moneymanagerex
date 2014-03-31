@@ -120,6 +120,7 @@ private:
         ID_DELETE,
         ID_RENAME,
         ID_GROUP,
+        ID_UNGROUP,
         ID_NOTEBOOK,
         ID_WEB,
         ID_TYPELABEL,
