@@ -491,7 +491,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         wxTextOutputStream index_file(index_output);
         index_file << gr.getHTMLText();
         index_output.Close();
-        m_outputHTML->LoadURL(index);
+        m_outputHTML->LoadURL(wxString(index).Prepend("file://"));
     }
 }
 
