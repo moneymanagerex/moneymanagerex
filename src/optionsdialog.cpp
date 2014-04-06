@@ -42,6 +42,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
+	EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsFolderChanged)
 
     EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, mmOptionsDialog::OnDelimiterSelectedC)
     EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, mmOptionsDialog::OnDelimiterSelectedS)
@@ -251,6 +252,29 @@ void mmOptionsDialog::CreateControls()
     int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     monthSelection_->SetSelection(monthItem - 1);
     monthSelection_->SetToolTip(_("Specify month for start of financial year"));
+
+	// Attachments Settings
+	wxStaticBox* attachmentsStaticBox = new wxStaticBox(generalPanel, wxID_STATIC, _("Attachments"));
+	attachmentsStaticBox->SetFont(staticBoxFontSetting);
+	wxStaticBoxSizer* attachmentsStaticBoxSizer = new wxStaticBoxSizer(attachmentsStaticBox, wxVERTICAL);
+
+	//attachmentsStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Attachments archive folder:")), flags);
+
+	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+	if (AttachmentsFolder == "")
+		AttachmentsFolder = _("Browse for folder");
+	wxButton* AttachmentsFolderButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
+		AttachmentsFolder, wxDefaultPosition, wxSize(200, -1), 0);
+	AttachmentsFolderButton->SetToolTip(_("Choose the attachments archive folder"));
+	attachmentsStaticBoxSizer->Add(AttachmentsFolderButton, 1, wxEXPAND | wxALL, 5);
+
+	cbDeleteAttachments_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+	cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", ""));
+	cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
+	attachmentsStaticBoxSizer->Add(cbDeleteAttachments_, flags);
+
+	generalPanelSizer->Add(attachmentsStaticBoxSizer, flagsExpand);
+
 
     /*********************************************************************************************
      Views Panel
@@ -810,6 +834,24 @@ void mmOptionsDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
         return;
 }
 
+void mmOptionsDialog::OnAttachmentsFolderChanged(wxCommandEvent& /*event*/)
+{
+	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+	wxDirDialog dlg(this
+		, _("Choose folder to set as attachments archive")
+		, AttachmentsFolder
+		, wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST
+		);
+
+	if (dlg.ShowModal() != wxID_OK)
+		return;
+
+	AttachmentsFolder = dlg.GetPath();
+
+	wxButton* btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
+	btn->SetLabel(AttachmentsFolder);
+}
+
 void mmOptionsDialog::OnNavTreeColorChanged(wxCommandEvent& event)
 {
     int buttonId = event.GetId();
@@ -959,6 +1001,11 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
     Model_Infotable::instance().SetBaseCurrencyID(currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
     SaveFinancialYearStart();
+
+	wxButton *AttachmentsFolderButton = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
+	if (AttachmentsFolderButton->GetLabel() != _("Browse for folder"))
+		Model_Infotable::instance().Set("ATTACHMENTSFOLDER", AttachmentsFolderButton->GetLabel());
+	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
 }
 
 void mmOptionsDialog::SaveViewPanelSettings()

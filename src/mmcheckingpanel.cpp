@@ -26,6 +26,7 @@
 #include "splittransactionsdialog.h"
 #include "transdialog.h"
 #include "validators.h"
+#include "attachmentdialog.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Checking.h"
@@ -33,6 +34,7 @@
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Category.h"
+#include "model/Model_Attachment.h"
 
 #include "../resources/reconciled.xpm"
 #include "../resources/unreconciled.xpm"
@@ -94,6 +96,7 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_MENU_RANGE(MENU_ON_SET_UDC0, MENU_ON_SET_UDC7, TransactionListCtrl::OnSetUserColour)
 
     EVT_MENU(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, TransactionListCtrl::OnViewSplitTransaction)
+	EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, TransactionListCtrl::OnOrganizeAttachments)
 
     EVT_CHAR(TransactionListCtrl::OnChar)
 
@@ -1050,6 +1053,10 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     if (hide_menu_item || have_category)
         menu.Enable(MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES, false);
 
+	menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
+	if (hide_menu_item)
+		menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, false);
+
     menu.AppendSeparator();
 
     wxString menu_item_label = showDeletedTransactions_ ? _("Hide Deleted (Void)") : _("Show Deleted (Void)");
@@ -1553,6 +1560,18 @@ void TransactionListCtrl::OnViewSplitTransaction(wxCommandEvent& /*event*/)
 
     if (m_cp->m_trans[m_selectedIndex].CATEGID < 0)
         m_cp->DisplaySplitCategories(m_cp->m_trans[m_selectedIndex].TRANSID);
+
+}
+
+//----------------------------------------------------------------------------
+void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+{
+	if (m_selectedIndex < 0) return;
+
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+	int RefId = m_cp->m_trans[m_selectedIndex].TRANSID;
+	mmAttachmentDialog dlg(this, RefType, RefId);
+	dlg.ShowModal();
 
 }
 

@@ -91,6 +91,7 @@ public:
     void OnMoveTransaction(wxCommandEvent& event);
     /// Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
+	void OnOrganizeAttachments(wxCommandEvent& event);
     long m_selectedIndex;
     long m_selectedForCopy; //The transaction ID if selected for copy
     long m_selectedID; //Selected transaction ID
@@ -116,6 +117,7 @@ private:
         MENU_TREEPOPUP_DELETE_FLAGGED,
 
         MENU_TREEPOPUP_VIEW_SPLIT_CATEGORIES,
+		MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
         MENU_SUBMENU_MARK_ALL,
 
         MENU_VIEW_,
@@ -308,7 +310,7 @@ private:
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
     void OnMouseLeftDown( wxMouseEvent& event );
-    void OnViewPopupSelected(wxCommandEvent& event);
+	void OnViewPopupSelected(wxCommandEvent& event);
     void OnFilterTransactions(wxMouseEvent& event);
     void OnSearchTxtEntered(wxCommandEvent& event);
     void OnFilterResetToViewAll(wxMouseEvent& event);

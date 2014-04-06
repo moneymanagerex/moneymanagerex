@@ -74,6 +74,7 @@
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Budget.h"
 #include "model/Model_Report.h"
+#include "model/Model_Attachment.h"
 #include "transdialog.h"
 #include "webapp.h"
 #include "wizard_newdb.h"
@@ -2163,6 +2164,7 @@ void mmGUIFrame::InitializeModelTables()
     Model_Budgetsplittransaction::instance(m_db.get());
     Model_Budget::instance(m_db.get());
     Model_Report::instance(m_db.get());
+	Model_Attachment::instance(m_db.get());
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

@@ -58,6 +58,7 @@ private:
     void OnCurrency(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void OnLanguageChanged(wxCommandEvent& event);
+	void OnAttachmentsFolderChanged(wxCommandEvent& event);
 
     /// Colour Changing events
     void OnNavTreeColorChanged(wxCommandEvent& event);
@@ -116,6 +117,7 @@ private:
     wxCheckBox* cbUseOrgDateCopyPaste_;
     wxCheckBox* cbUseSound_;
 
+	wxCheckBox* cbDeleteAttachments_;
     wxCheckBox* cbBudgetFinancialYears_;
     wxCheckBox* cbBudgetIncludeTransfers_;
     wxCheckBox* cbBudgetSetupWithoutSummary_;
@@ -192,6 +194,7 @@ private:
         ID_DIALOG_OPTIONS_TEXTCTRL_PROXY,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
+		ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER
 
     };
 

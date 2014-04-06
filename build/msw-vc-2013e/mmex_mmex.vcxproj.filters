@@ -300,6 +300,12 @@
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp">
       <Filter>Source Files\3d</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\attachmentdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_Attachment.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -640,6 +646,15 @@
     </ClInclude>
     <ClInclude Include="..\..\src\webapp.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\db\DB_Table_Attachment_V1.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\attachmentdialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_Attachment.h">
+      <Filter>Header Files\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

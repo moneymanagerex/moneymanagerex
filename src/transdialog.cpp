@@ -26,11 +26,13 @@
 #include "categdialog.h"
 #include "splittransactionsdialog.h"
 #include "validators.h"
+#include "attachmentdialog.h"
 #include "webapp.h"
 #include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
+#include "model/Model_Attachment.h"
 #include <wx/valnum.h>
 #include <wx/numformatter.h>
 #include "minimal_editor.h"
@@ -41,6 +43,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
+	EVT_BUTTON(wxID_VIEW_ATTACHMENTS, mmTransDialog::OnAttachments)
     EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -457,6 +460,13 @@ void mmTransDialog::CreateControls()
     flex_sizer->Add(number_sizer, wxSizerFlags(g_flagsExpand).Border(wxALL, 0));
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flags);
+
+	// Attachments ---------------------------------------------
+	bAttachments_ = new wxButton(this, wxID_VIEW_ATTACHMENTS, _("Organize Attachments")
+		, wxDefaultPosition, wxSize(bCategory_->GetSize().GetX(), bCategory_->GetSize().GetY()));
+
+	flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Attachments")), g_flags);
+	flex_sizer->Add(bAttachments_, g_flags);
 
     // Notes ---------------------------------------------
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flags);
@@ -922,6 +932,14 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
     }
 }
 
+void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
+{
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+	int RefId = transaction_id_;
+	mmAttachmentDialog dlg(this, RefType, RefId);
+	dlg.ShowModal();
+}
+
 void mmTransDialog::onTextEntered(wxCommandEvent& WXUNUSED(event))
 {
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
@@ -1084,6 +1102,16 @@ void mmTransDialog::setTooltips()
         bCategory_->SetToolTip(_("Specify categories for this transaction"));
     }
 
+	if (transaction_id_)
+	{
+		bAttachments_->SetToolTip(_("Manage attachments for this transaction"));
+		bAttachments_->Enable(true);
+	}
+	else
+	{
+		bAttachments_->SetToolTip(_("You cannot add attachments on a new transaction"));
+		bAttachments_->Enable(false);
+	}
     //Permanent
     dpc_->SetToolTip(_("Specify the date of the transaction"));
     spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));

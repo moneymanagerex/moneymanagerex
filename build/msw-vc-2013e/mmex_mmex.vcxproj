@@ -272,6 +272,7 @@
     <ClCompile Include="..\..\src\appstartdialog.cpp" />
     <ClCompile Include="..\..\src\assetdialog.cpp" />
     <ClCompile Include="..\..\src\assetspanel.cpp" />
+    <ClCompile Include="..\..\src\attachmentdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\src\billsdepositspanel.cpp" />
     <ClCompile Include="..\..\src\general_report_manager.cpp" />
@@ -281,6 +282,7 @@
     <ClCompile Include="..\..\src\mmframe.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
+    <ClCompile Include="..\..\src\model\Model_Attachment.cpp" />
     <ClCompile Include="..\..\src\model\Model_Billsdeposits.cpp" />
     <ClCompile Include="..\..\src\model\Model_Budget.cpp" />
     <ClCompile Include="..\..\src\model\Model_Budgetsplittransaction.cpp" />
@@ -357,9 +359,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
+    <ClInclude Include="..\..\src\attachmentdialog.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Assets_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Attachment_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Billsdeposits_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Budgetsplittransactions_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Budgettable_V1.h" />
@@ -382,6 +386,7 @@
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\src\model\Model_Asset.h" />
+    <ClInclude Include="..\..\src\model\Model_Attachment.h" />
     <ClInclude Include="..\..\src\model\Model_Billsdeposits.h" />
     <ClInclude Include="..\..\src\model\Model_Budget.h" />
     <ClInclude Include="..\..\src\model\Model_Budgetsplittransaction.h" />

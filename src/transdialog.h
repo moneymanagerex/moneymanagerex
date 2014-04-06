@@ -68,6 +68,7 @@ private:
     void OnCancel(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCategs(wxCommandEvent& event);
+	void OnAttachments(wxCommandEvent& event);
     void OnAccountOrPayeeUpdated(wxCommandEvent& event);
     void OnDpcKillFocus(wxFocusEvent& event);
     void OnAutoTransNum(wxCommandEvent& event);
@@ -87,6 +88,7 @@ private:
     mmTextCtrl *toTextAmount_;
     MinimalEditor* textNotes_;
     wxButton* bCategory_;
+	wxButton* bAttachments_;
     wxComboBox* cbAccount_;
     wxComboBox* cbPayee_;
     wxCheckBox* cSplit_;
