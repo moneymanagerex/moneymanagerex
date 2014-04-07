@@ -43,7 +43,7 @@ BEGIN_EVENT_TABLE( mmTransDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmTransDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmTransDialog::OnCancel)
     EVT_BUTTON(wxID_VIEW_DETAILS, mmTransDialog::OnCategs)
-	EVT_BUTTON(wxID_VIEW_ATTACHMENTS, mmTransDialog::OnAttachments)
+	EVT_BUTTON(wxID_FILE, mmTransDialog::OnAttachments)
     EVT_CLOSE(mmTransDialog::OnQuit)
     EVT_CHOICE(ID_DIALOG_TRANS_TYPE, mmTransDialog::OnTransTypeChanged)
     EVT_CHECKBOX(ID_DIALOG_TRANS_ADVANCED_CHECKBOX, mmTransDialog::OnAdvanceChecked)
@@ -462,7 +462,7 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(bAuto, g_flags);
 
 	// Attachments ---------------------------------------------
-	bAttachments_ = new wxButton(this, wxID_VIEW_ATTACHMENTS, _("Organize Attachments")
+	bAttachments_ = new wxButton(this, wxID_FILE, _("Organize Attachments")
 		, wxDefaultPosition, wxSize(bCategory_->GetSize().GetX(), bCategory_->GetSize().GetY()));
 
 	flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Attachments")), g_flags);
