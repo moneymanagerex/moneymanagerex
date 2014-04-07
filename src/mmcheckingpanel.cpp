@@ -716,6 +716,7 @@ void mmCheckingPanel::DeleteViewedTransactions()
     {
         // remove also removes any split transactions
         Model_Checking::instance().remove(tran.TRANSID);
+		mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
         if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
 }
@@ -728,6 +729,7 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
         {
             // remove also removes any split transactions
             Model_Checking::instance().remove(tran.TRANSID);
+			mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
             if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
@@ -1435,6 +1437,7 @@ void TransactionListCtrl::OnDeleteTransaction(wxCommandEvent& /*event*/)
             {
                 // remove also removes any split transactions
                 Model_Checking::instance().remove(transID);
+				mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), transID);
                 if (x <= topItemIndex_) topItemIndex_--;
                 if (!m_cp->m_trans.empty() && m_selectedIndex > 0) m_selectedIndex--;
                 if (m_selectedForCopy == transID) m_selectedForCopy = -1;

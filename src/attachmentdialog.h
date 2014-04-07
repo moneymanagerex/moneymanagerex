@@ -81,9 +81,11 @@ private:
 class mmAttachmentManage
 {
 public:
+	static wxString GetAttachmentsFolder();
 	static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
 	static bool DeleteAttachment(const wxString& FileToDelete);
 	static bool OpenAttachment(const wxString& FileToOpen);
+	static bool DeleteAllAttachments(const wxString& RefType, const int& RefId);
 };
 
 #endif // _MM_EX_ATTACHMENTDIALOG_H_

@@ -51,11 +51,22 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
 
 	do_create(parent);
 
-	if (Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") == "")
+	wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder();
+
+	if (AttachmentsFolder == "")
 	{
 		wxString msgStr = wxString() << _("Attachment folder not defined.") << "\n"
 			<< _("Please set it in Tools -> Options") << "\n";
 		wxMessageBox(msgStr, _("Attachment folder not defined"), wxICON_ERROR);
+	}
+
+	if (!wxDirExists(AttachmentsFolder))
+	{
+		wxString msgStr = wxString() << _("Unable to find attachments folder:") << "\n"
+			<< "'" << AttachmentsFolder << "'" << "\n"
+			<< "\n"
+			<< _("Please verify that user has rights into it.") << "\n";
+		wxMessageBox(msgStr, _("Attachments folder not found"), wxICON_ERROR);
 	}
 }
 
@@ -167,7 +178,7 @@ void mmAttachmentDialog::AddAttachment()
     const wxString attachmentDescription = wxGetTextFromUser(_("Enter a description for the new attachment:")
 		, _("Organize Attachments: Add Attachment"), attachmentFileName);
 
-	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+	wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder();
 	wxString attachmentNumberString = Model_Attachment::LastAttachmentFileName(m_RefType, m_RefId);
 	attachmentNumberString = attachmentNumberString.SubString(attachmentNumberString.Find("Attach")+6, attachmentNumberString.Find(".")-1);
 	int attachmentNumber = wxAtoi(attachmentNumberString);
@@ -191,7 +202,7 @@ void mmAttachmentDialog::AddAttachment()
 void mmAttachmentDialog::OpenAttachment()
 {
 	Model_Attachment::Data *attachments = Model_Attachment::instance().get(m_attachment_id);
-	wxString attachmentFilePath = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + wxFileName::GetPathSeparator() + attachments->REFTYPE + wxFileName::GetPathSeparator() + attachments->FILENAME;
+	wxString attachmentFilePath = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + attachments->REFTYPE + wxFileName::GetPathSeparator() + attachments->FILENAME;
 
 	mmAttachmentManage::OpenAttachment(attachmentFilePath);
 }
@@ -226,7 +237,7 @@ void mmAttachmentDialog::DeleteAttachment()
 			, wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 		if (DeleteResponse == wxYES)
 		{
-			wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + wxFileName::GetPathSeparator() + attachments->REFTYPE;
+			wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + attachments->REFTYPE;
 			if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + wxFileName::GetPathSeparator() + attachments->FILENAME))
 			{
 				Model_Attachment::instance().remove(m_attachment_id);
@@ -269,7 +280,8 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_ATTACHMENT, _("&Remove ")));
 	
 	//Disable buttons
-	if (Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") == "")
+	wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder();
+	if (AttachmentsFolder == "" || !wxDirExists(AttachmentsFolder))
 		mainMenu->Enable(MENU_NEW_ATTACHMENT, false);
 
 	if (!attachment)
@@ -287,7 +299,7 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& event)
 {
 	Model_Attachment::Data *attachments = Model_Attachment::instance().get(m_attachment_id);
-	wxString attachmentFilePath = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + wxFileName::GetPathSeparator() + attachments->REFTYPE + wxFileName::GetPathSeparator() + attachments->FILENAME;
+	wxString attachmentFilePath = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + attachments->REFTYPE + wxFileName::GetPathSeparator() + attachments->FILENAME;
 
 	mmAttachmentManage::OpenAttachment(attachmentFilePath);
 }
@@ -306,6 +318,13 @@ void mmAttachmentDialog::OnOk(wxCommandEvent& /*event*/)
 /***********************
 ** mmAttachmentManage **
 ************************/
+wxString mmAttachmentManage::GetAttachmentsFolder()
+{
+	wxString AttachmentsFolder;
+	AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+	return AttachmentsFolder;
+}
+
 bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile)
 {
 	wxString destinationFolder = wxPathOnly(ImportedFile);
@@ -372,13 +391,25 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 	{
 		if (!wxRemoveFile(FileToDelete))
 		{
-			wxString msgStr = wxString() << _("Unable to delete file:") << "\n"
+			wxString msgStr = wxString() << _("Unable to delete attachment:") << "\n"
 				<< "'" << FileToDelete << "'" << "\n"
 				<< "\n"
 				<< _("Please verify that file is not open and user has rights to delete it.") << "\n";
 			wxMessageBox(msgStr, _("Delete imported file failed"), wxICON_ERROR);
 			return false;
 		}
+	}
+	else
+	{
+		wxString msgStr = wxString() << _("Attachment not found:") << "\n"
+			<< "'" << FileToDelete << "'" << "\n"
+			<< "\n"
+			<< _("Do you want to continue and delete attachment on database?") << "\n";
+		int DeleteResponse = wxMessageBox(msgStr, _("Delete attachment failed"), wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
+		if (DeleteResponse == wxYES)
+			return true;
+		else
+			return false;
 	}
 	return true;
 }
@@ -387,6 +418,16 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 {
 	wxFileName fn(FileToOpen);
 	const wxString FileExtension = fn.FileName(FileToOpen).GetExt();
+
+	if (!wxFileExists(FileToOpen))
+	{
+		wxString msgStr = wxString() << _("Unable to open file:") << "\n"
+			<< "'" << FileToOpen << "'" << "\n"
+			<< "\n"
+			<< _("Please verify that file exists and user has rights to read it.") << "\n";
+		wxMessageBox(msgStr, _("Open attachment failed"), wxICON_ERROR);
+		return false;
+	}
 
 	wxMimeTypesManager manager;
 	wxFileType *filetype = manager.GetFileTypeFromExtension(FileExtension);
@@ -402,6 +443,19 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 			<< "\n"
 			<< _("Please verify that operatin system is able to handle this type of file.") << "\n";
 		wxMessageBox(msgStr, _("Open attachment failed"), wxICON_ERROR);
+	}
+	return true;
+}
+
+bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, const int& RefId)
+{
+	Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);
+
+	for (const auto &entry : attachments)
+	{
+		wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + entry.REFTYPE;
+		mmAttachmentManage::DeleteAttachment(AttachmentsFolder + wxFileName::GetPathSeparator() + entry.FILENAME);
+		Model_Attachment::instance().remove(entry.ATTACHMENTID);
 	}
 	return true;
 }
