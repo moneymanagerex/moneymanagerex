@@ -269,7 +269,7 @@ void mmOptionsDialog::CreateControls()
 	attachmentsStaticBoxSizer->Add(AttachmentsFolderButton, 1, wxEXPAND | wxALL, 5);
 
 	cbDeleteAttachments_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-	cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", ""));
+	cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
 	cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
 	attachmentsStaticBoxSizer->Add(cbDeleteAttachments_, flags);
 
