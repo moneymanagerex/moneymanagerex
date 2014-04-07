@@ -89,6 +89,7 @@ public:
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnSetUserColour(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
     /// Displays the split categories for the selected transaction
     void OnViewSplitTransaction(wxCommandEvent& event);
 	void OnOrganizeAttachments(wxCommandEvent& event);
@@ -260,6 +261,7 @@ private:
     wxButton* btnEdit_;
     wxButton* btnDuplicate_;
     wxButton* btnDelete_;
+	wxButton* btnAttachment_;
     wxStaticText* header_text_;
     wxStaticText* info_panel_;
     wxStaticText* info_panel_mini_;
@@ -309,6 +311,7 @@ private:
     void OnEditTransaction(wxCommandEvent& event);
     void OnDuplicateTransaction(wxCommandEvent& event);
     void OnMoveTransaction(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
     void OnMouseLeftDown( wxMouseEvent& event );
 	void OnViewPopupSelected(wxCommandEvent& event);
     void OnFilterTransactions(wxMouseEvent& event);

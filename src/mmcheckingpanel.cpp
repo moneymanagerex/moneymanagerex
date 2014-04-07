@@ -46,6 +46,7 @@
 #include "../resources/downarrow.xpm"
 #include "../resources/tipicon.xpm"
 #include "../resources/trash.xpm"
+#include "../resources/attachment.xpm"
 
 
 //----------------------------------------------------------------------------
@@ -59,6 +60,7 @@ BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_EDIT,        mmCheckingPanel::OnEditTransaction)
     EVT_BUTTON(wxID_REMOVE,      mmCheckingPanel::OnDeleteTransaction)
     EVT_BUTTON(wxID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
+	EVT_BUTTON(wxID_FILE, mmCheckingPanel::OnOpenAttachment)
     EVT_MENU(wxID_ANY, mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
     EVT_TEXT_ENTER(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
@@ -488,6 +490,11 @@ void mmCheckingPanel::CreateControls()
     itemButtonsSizer->Add(btnDuplicate_, 0, wxRIGHT, 5);
     btnDuplicate_->Enable(false);
 
+	btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE, wxBitmap(attachment_xpm));
+	btnAttachment_->SetToolTip(_("Open attachments"));
+	itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);
+	btnDuplicate_->Enable(false);
+
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, btnDuplicate_->GetSize().GetHeight())
@@ -552,12 +559,14 @@ void mmCheckingPanel::enableEditDeleteButtons(bool en)
         btnEdit_->Enable(false);
         btnDelete_->Enable(true);
         btnDuplicate_->Enable(false);
+		btnAttachment_->Enable(false);
     }
     else
     {
         btnEdit_->Enable(en);
         btnDelete_->Enable(en);
         btnDuplicate_->Enable(en);
+		btnAttachment_->Enable(en);
     }
 }
 //----------------------------------------------------------------------------
@@ -629,6 +638,13 @@ void mmCheckingPanel::OnMoveTransaction(wxCommandEvent& event)
     m_listCtrlAccount->OnMoveTransaction(event);
 }
 //----------------------------------------------------------------------------
+
+void mmCheckingPanel::OnOpenAttachment(wxCommandEvent& event)
+{
+	m_listCtrlAccount->OnOpenAttachment(event);
+}
+//----------------------------------------------------------------------------
+
 
 void mmCheckingPanel::initViewTransactionsHeader()
 {
@@ -1360,6 +1376,33 @@ int TransactionListCtrl::OnPaste(Model_Checking::Data* tran)
     Model_Splittransaction::instance().save(copy_split);
 
     return transactionID;
+}
+
+void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
+{
+	if (m_selectedIndex < 0) return;
+	int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
+	int AttachmentsNr = 0;
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+	int VariableWithoutUse = 0;
+
+	Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, transaction_id);
+	for (const auto &entry : attachments)
+	{
+		VariableWithoutUse = entry.ATTACHMENTID;
+		AttachmentsNr++;
+	}
+
+	if (AttachmentsNr == 1)
+	{
+		wxString attachmentFilePath = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + attachments[0].REFTYPE + wxFileName::GetPathSeparator() + attachments[0].FILENAME;
+		mmAttachmentManage::OpenAttachment(attachmentFilePath);
+	}
+	else
+	{
+		mmAttachmentDialog dlg(this, RefType, transaction_id);
+		dlg.ShowModal();
+	}
 }
 
 //----------------------------------------------------------------------------
