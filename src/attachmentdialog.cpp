@@ -64,7 +64,7 @@ void mmAttachmentDialog::do_create(wxWindow* parent)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
 
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
-    if (!wxDialog::Create(parent, wxID_ANY, _("Organize Attachments")
+	if (!wxDialog::Create(parent, wxID_ANY, _("Organize Attachments | ") + m_RefType + " " + wxString::Format(wxT("%i"), m_RefId)
         , wxDefaultPosition, wxDefaultSize, style))
     {
         return;
@@ -121,7 +121,7 @@ void mmAttachmentDialog::fillControls()
         wxVector<wxVariant> data;
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", attachmentID)));
 		data.push_back(wxVariant(entry.DESCRIPTION));
-		data.push_back(wxVariant(entry.REFTYPE + mmAttachmentManage::GetPathSeparator() + entry.FILENAME));
+		data.push_back(wxVariant(entry.REFTYPE + wxFileName::GetPathSeparator() + entry.FILENAME));
         attachmentListBox_->AppendItem(data, (wxUIntPtr)attachmentID);
         if (m_selected_index == attachmentListBox_->GetItemCount() - 1)
         {
@@ -174,7 +174,7 @@ void mmAttachmentDialog::AddAttachment()
 
 	wxString importedFileName = m_RefType + "_" + wxString::Format(wxT("%i"), m_RefId) + "_Attach" + wxString::Format(wxT("%i"), attachmentNumber+1) + "." + attachmentFileExtension;
 
-	if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + mmAttachmentManage::GetPathSeparator() + m_RefType + mmAttachmentManage::GetPathSeparator() + importedFileName))
+	if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + wxFileName::GetPathSeparator() + m_RefType + wxFileName::GetPathSeparator() + importedFileName))
 	{
 		Model_Attachment::Data* NewAttachment = Model_Attachment::instance().create();
 		NewAttachment->REFTYPE = m_RefType;
@@ -191,7 +191,7 @@ void mmAttachmentDialog::AddAttachment()
 void mmAttachmentDialog::OpenAttachment()
 {
 	Model_Attachment::Data *attachments = Model_Attachment::instance().get(m_attachment_id);
-	wxString attachmentFilePath = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + mmAttachmentManage::GetPathSeparator() + attachments->REFTYPE + mmAttachmentManage::GetPathSeparator() + attachments->FILENAME;
+	wxString attachmentFilePath = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + wxFileName::GetPathSeparator() + attachments->REFTYPE + wxFileName::GetPathSeparator() + attachments->FILENAME;
 
 	mmAttachmentManage::OpenAttachment(attachmentFilePath);
 }
@@ -226,8 +226,8 @@ void mmAttachmentDialog::DeleteAttachment()
 			, wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
 		if (DeleteResponse == wxYES)
 		{
-			wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + mmAttachmentManage::GetPathSeparator() + attachments->REFTYPE;
-			if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + mmAttachmentManage::GetPathSeparator() + attachments->FILENAME))
+			wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + wxFileName::GetPathSeparator() + attachments->REFTYPE;
+			if (mmAttachmentManage::DeleteAttachment(AttachmentsFolder + wxFileName::GetPathSeparator() + attachments->FILENAME))
 			{
 				Model_Attachment::instance().remove(m_attachment_id);
 			}
@@ -287,7 +287,7 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 void mmAttachmentDialog::OnListItemActivated(wxDataViewEvent& event)
 {
 	Model_Attachment::Data *attachments = Model_Attachment::instance().get(m_attachment_id);
-	wxString attachmentFilePath = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + mmAttachmentManage::GetPathSeparator() + attachments->REFTYPE + mmAttachmentManage::GetPathSeparator() + attachments->FILENAME;
+	wxString attachmentFilePath = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "") + wxFileName::GetPathSeparator() + attachments->REFTYPE + wxFileName::GetPathSeparator() + attachments->FILENAME;
 
 	mmAttachmentManage::OpenAttachment(attachmentFilePath);
 }
@@ -306,12 +306,6 @@ void mmAttachmentDialog::OnOk(wxCommandEvent& /*event*/)
 /***********************
 ** mmAttachmentManage **
 ************************/
-wxString mmAttachmentManage::GetPathSeparator()
-{
-	wxString PathSeparator = "\\";
-	return PathSeparator;
-}
-
 bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile)
 {
 	wxString destinationFolder = wxPathOnly(ImportedFile);

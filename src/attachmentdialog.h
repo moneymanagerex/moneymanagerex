@@ -81,7 +81,6 @@ private:
 class mmAttachmentManage
 {
 public:
-	static wxString GetPathSeparator();
 	static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
 	static bool DeleteAttachment(const wxString& FileToDelete);
 	static bool OpenAttachment(const wxString& FileToOpen);
