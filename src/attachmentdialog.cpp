@@ -56,11 +56,10 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
 	if (AttachmentsFolder == "")
 	{
 		wxString msgStr = wxString() << _("Attachment folder not defined.") << "\n"
-			<< _("Please set it in Tools -> Options") << "\n";
+			<< _("Please set it in Tools -> Options -> Import/Export") << "\n";
 		wxMessageBox(msgStr, _("Attachment folder not defined"), wxICON_ERROR);
 	}
-
-	if (!wxDirExists(AttachmentsFolder))
+	else if (!wxDirExists(AttachmentsFolder))
 	{
 		wxString msgStr = wxString() << _("Unable to find attachments folder:") << "\n"
 			<< "'" << AttachmentsFolder << "'" << "\n"
@@ -321,7 +320,13 @@ void mmAttachmentDialog::OnOk(wxCommandEvent& /*event*/)
 wxString mmAttachmentManage::GetAttachmentsFolder()
 {
 	wxString AttachmentsFolder;
+	
 	AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR)
+		AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator() + "MMEX_Attachments";
+	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR)
+		AttachmentsFolder = mmex::getPathUser(mmex::DIRECTORY) + "attachments";
+
 	return AttachmentsFolder;
 }
 

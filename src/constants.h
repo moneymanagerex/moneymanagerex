@@ -75,5 +75,8 @@ extern const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY;
 extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
 extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 
+extern const wxString INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR;
+extern const wxString INIDB_ATTACHMENTS_FOLDER_MMEXDIR;
+
 #endif // _MM_EX_CONSTANTS_H_
 //----------------------------------------------------------------------------

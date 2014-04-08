@@ -19,10 +19,12 @@
 
 #include "optionsdialog.h"
 #include "maincurrencydialog.h"
+#include "attachmentdialog.h"
 #include "util.h"
 #include "mmOption.h"
 #include <wx/colordlg.h>
 #include "constants.h"
+#include "paths.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Currency.h"
@@ -48,6 +50,9 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, mmOptionsDialog::OnDelimiterSelectedS)
     EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4, mmOptionsDialog::OnDelimiterSelectedT)
     EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4, mmOptionsDialog::OnDelimiterSelectedU)
+	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1, mmOptionsDialog::OnAttachmentSelected1)
+	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2, mmOptionsDialog::OnAttachmentSelected2)
+	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER, mmOptionsDialog::OnAttachmentSelectedU)
 END_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -252,29 +257,7 @@ void mmOptionsDialog::CreateControls()
     int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     monthSelection_->SetSelection(monthItem - 1);
     monthSelection_->SetToolTip(_("Specify month for start of financial year"));
-
-	// Attachments Settings
-	wxStaticBox* attachmentsStaticBox = new wxStaticBox(generalPanel, wxID_STATIC, _("Attachments"));
-	attachmentsStaticBox->SetFont(staticBoxFontSetting);
-	wxStaticBoxSizer* attachmentsStaticBoxSizer = new wxStaticBoxSizer(attachmentsStaticBox, wxVERTICAL);
-
-	//attachmentsStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Attachments archive folder:")), flags);
-
-	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
-	if (AttachmentsFolder == "")
-		AttachmentsFolder = _("Browse for folder");
-	wxButton* AttachmentsFolderButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
-		AttachmentsFolder, wxDefaultPosition, wxSize(200, -1), 0);
-	AttachmentsFolderButton->SetToolTip(_("Choose the attachments archive folder"));
-	attachmentsStaticBoxSizer->Add(AttachmentsFolderButton, 1, wxEXPAND | wxALL, 5);
-
-	cbDeleteAttachments_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-	cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
-	cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
-	attachmentsStaticBoxSizer->Add(cbDeleteAttachments_, flags);
-
-	generalPanelSizer->Add(attachmentsStaticBoxSizer, flagsExpand);
-
+	
 
     /*********************************************************************************************
      Views Panel
@@ -688,7 +671,8 @@ void mmOptionsDialog::CreateControls()
     wxBoxSizer* importExportPanelSizer = new wxBoxSizer(wxVERTICAL);
     importExportPanel->SetSizer(importExportPanelSizer);
 
-    wxStaticBox* importExportStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("Import/Export Settings"));
+	//CSV Import
+    wxStaticBox* importExportStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("CSV Settings"));
     importExportStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* importExportStaticBoxSizer = new wxStaticBoxSizer(importExportStaticBox, wxVERTICAL);
 
@@ -705,8 +689,9 @@ void mmOptionsDialog::CreateControls()
 
     wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
-    wxRadioButton* delimiterRadioButtonU4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4, _("User Defined"));
-    wxRadioButton* delimiterRadioButtonC4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, _("Comma"));
+	wxRadioButton* delimiterRadioButtonU4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4,
+		_("User Defined"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+	wxRadioButton* delimiterRadioButtonC4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, _("Comma"));
     if (delimiter == ",") delimiterRadioButtonC4 ->SetValue(true);
 
     wxRadioButton* delimiterRadioButtonS4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, _("Semicolon"));
@@ -737,6 +722,7 @@ void mmOptionsDialog::CreateControls()
 //    delimiterRadioButtonU4->Hide();
 //    textDelimiter4->Hide();
 
+	//WebApp settings
     wxStaticBox* WebAppStaticBox = new wxStaticBox(importExportPanel, wxID_STATIC, _("WebApp Settings"));
     WebAppStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
@@ -747,17 +733,78 @@ void mmOptionsDialog::CreateControls()
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("Url")), flags);
     wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
-        WebAppURL, wxDefaultPosition, wxSize(250, -1));
+        WebAppURL, wxDefaultPosition, wxSize(300, -1));
     WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
     WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
 
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("GUID")), flags);
     wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-        WebAppGUID, wxDefaultPosition, wxSize(250, -1));
+        WebAppGUID, wxDefaultPosition, wxSize(300, -1));
     WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
     WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
+	//Attachments
+	wxStaticBox* attachmentStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("Attachments Settings"));
+	attachmentStaticBox->SetFont(staticBoxFontSetting);
+	wxStaticBoxSizer* attachmentStaticBoxSizer = new wxStaticBoxSizer(attachmentStaticBox, wxVERTICAL);
+
+	importExportPanelSizer->Add(attachmentStaticBoxSizer, flagsExpand);
+
+	wxStaticText* attachmentStaticText = new wxStaticText(importExportPanel, wxID_STATIC, _("Attachment archive folder:"));
+	attachmentStaticBoxSizer->Add(attachmentStaticText, flags);
+
+	wxBoxSizer* attachRadioButtonSizer = new wxBoxSizer(wxVERTICAL);
+	wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
+	attachmentStaticBoxSizer->Add(attachRadioButtonSizer);
+	attachmentStaticBoxSizer->Add(attachDefinedSizer);
+	attachmentStaticBoxSizer->AddSpacer(5);
+
+	wxString attachment = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+
+	wxRadioButton* attachmentRadioButton1 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1,
+		_("System documents directory"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+	attachmentRadioButton1->SetToolTip(_("Subfolder") + " 'MMEX_Attachments' " + _("into ") + wxStandardPaths::Get().GetDocumentsDir());
+	if (attachment == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR) attachmentRadioButton1->SetValue(true);
+
+	wxRadioButton* attachmentRadioButton2 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2, _("Money Manager directory"));
+	attachmentRadioButton2->SetToolTip(_("Subfolder") + " 'attachments' " + _("into ") + mmex::getPathUser(mmex::DIRECTORY));
+	if (attachment == INIDB_ATTACHMENTS_FOLDER_MMEXDIR) attachmentRadioButton2->SetValue(true);
+
+	wxRadioButton* attachmentRadioButtonU = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER, _("User Defined"));
+	attachmentRadioButtonU->SetToolTip(_("Specify the folder to use when archive attachments"));
+
+	wxTextCtrl* textAttachmentU = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachment, wxDefaultPosition, wxSize(225,-1), 0);
+
+	wxButton* AttachmentsFolderButton = new wxButton(importExportPanel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
+		"  ...  ", wxDefaultPosition, wxSize(25, -1), 0);
+	AttachmentsFolderButton->SetToolTip(_("Browse for folder"));
+
+	if (attachment == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR || attachment == INIDB_ATTACHMENTS_FOLDER_MMEXDIR)
+	{
+		textAttachmentU->Enable(false);
+		AttachmentsFolderButton->Enable(false);
+	}
+	else
+	{
+		attachmentRadioButtonU->SetValue(true);
+		textAttachmentU->SetToolTip(attachment);
+	}
+
+	attachRadioButtonSizer->Add(attachmentRadioButton1, flags);
+	attachRadioButtonSizer->Add(attachmentRadioButton2, flags);
+
+	attachDefinedSizer->Add(attachmentRadioButtonU, flags);
+	attachDefinedSizer->Add(textAttachmentU, flags);
+	attachDefinedSizer->Add(AttachmentsFolderButton, flags);
+
+	//TODO: Add a line to separate radio from other settings
+	attachmentStaticBoxSizer->AddSpacer(10);
+
+	cbDeleteAttachments_ = new wxCheckBox(importExportPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+	cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
+	cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
+	attachmentStaticBoxSizer->Add(cbDeleteAttachments_, flags);
 
    /**********************************************************************************************
     Setting up the notebook with the 5 pages
@@ -834,24 +881,6 @@ void mmOptionsDialog::OnDateFormatChanged(wxCommandEvent& /*event*/)
         return;
 }
 
-void mmOptionsDialog::OnAttachmentsFolderChanged(wxCommandEvent& /*event*/)
-{
-	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
-	wxDirDialog dlg(this
-		, _("Choose folder to set as attachments archive")
-		, AttachmentsFolder
-		, wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST
-		);
-
-	if (dlg.ShowModal() != wxID_OK)
-		return;
-
-	AttachmentsFolder = dlg.GetPath();
-
-	wxButton* btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
-	btn->SetLabel(AttachmentsFolder);
-}
-
 void mmOptionsDialog::OnNavTreeColorChanged(wxCommandEvent& event)
 {
     int buttonId = event.GetId();
@@ -919,6 +948,58 @@ void mmOptionsDialog::OnDelimiterSelectedT(wxCommandEvent& /*event*/)
     wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
     st ->Enable(false);
     st ->SetValue("\t");
+}
+
+void mmOptionsDialog::OnAttachmentSelectedU(wxCommandEvent& /*event*/)
+{
+	wxTextCtrl* d = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	if (d->GetValue() == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR || d->GetValue() == INIDB_ATTACHMENTS_FOLDER_MMEXDIR)
+		d->SetValue(wxEmptyString);
+	d->Enable(true);
+
+	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
+	button->Enable(true);
+}
+
+void mmOptionsDialog::OnAttachmentSelected1(wxCommandEvent& /*event*/)
+{
+	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	st->Enable(false);
+	st->SetValue(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
+
+	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
+	button->Enable(false);
+}
+
+void mmOptionsDialog::OnAttachmentSelected2(wxCommandEvent& /*event*/)
+{
+	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	st->Enable(false);
+	st->SetValue(INIDB_ATTACHMENTS_FOLDER_MMEXDIR);
+
+	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
+	button->Enable(false);
+}
+
+void mmOptionsDialog::OnAttachmentsFolderChanged(wxCommandEvent& /*event*/)
+{
+	wxTextCtrl* att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	wxString attachmentFolder = att->GetValue();
+
+	wxDirDialog dlg(this
+		, _("Choose folder to set as attachments archive")
+		, attachmentFolder
+		, wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST
+		);
+
+	if (dlg.ShowModal() != wxID_OK)
+		return;
+
+	wxString AttachmentsFolder = dlg.GetPath();
+
+	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	st->SetValue(AttachmentsFolder);
+	st->SetToolTip(AttachmentsFolder);
 }
 
 void mmOptionsDialog::SaveViewAccountOptions()
@@ -1001,11 +1082,6 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
     Model_Infotable::instance().SetBaseCurrencyID(currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
     SaveFinancialYearStart();
-
-	wxButton *AttachmentsFolderButton = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
-	if (AttachmentsFolderButton->GetLabel() != _("Browse for folder"))
-		Model_Infotable::instance().Set("ATTACHMENTSFOLDER", AttachmentsFolderButton->GetLabel());
-	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
 }
 
 void mmOptionsDialog::SaveViewPanelSettings()
@@ -1137,6 +1213,28 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
 
     wxTextCtrl* WebAppGUID = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
+
+	wxTextCtrl* att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	wxString attachmentFolder = att->GetValue();
+	if (!attachmentFolder.IsEmpty())
+	{
+		Model_Infotable::instance().Set("ATTACHMENTSFOLDER", attachmentFolder);
+
+		//Create attachments folder
+		wxString attachmentFolderPath = mmAttachmentManage::GetAttachmentsFolder();
+		if (!wxDirExists(attachmentFolderPath))
+		{
+			if (!wxMkdir(attachmentFolderPath))
+			{
+				wxString msgStr = wxString() << _("Unable to create folder:") << "\n"
+					<< "'" << attachmentFolderPath << "'" << "\n"
+					<< "\n"
+					<< _("Please verify that user has rights into it.") << "\n";
+				wxMessageBox(msgStr, _("Import attachment failed"), wxICON_ERROR);
+			}
+		}
+	}
+	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)

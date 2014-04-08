@@ -58,7 +58,6 @@ private:
     void OnCurrency(wxCommandEvent& event);
     void OnDateFormatChanged(wxCommandEvent& event);
     void OnLanguageChanged(wxCommandEvent& event);
-	void OnAttachmentsFolderChanged(wxCommandEvent& event);
 
     /// Colour Changing events
     void OnNavTreeColorChanged(wxCommandEvent& event);
@@ -76,6 +75,11 @@ private:
     void OnDelimiterSelectedC(wxCommandEvent& event);
     void OnDelimiterSelectedS(wxCommandEvent& event);
     void OnDelimiterSelectedT(wxCommandEvent& event);
+
+	void OnAttachmentSelectedU(wxCommandEvent& event);
+	void OnAttachmentSelected1(wxCommandEvent& event);
+	void OnAttachmentSelected2(wxCommandEvent& event);
+	void OnAttachmentsFolderChanged(wxCommandEvent& event);
 
     void SaveViewAccountOptions();
     void SaveViewTransactionOptions();
@@ -147,6 +151,10 @@ private:
         ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4,
         ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4,
         ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4,
+		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER,
+		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1,
+		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2,
+		ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT,
         ID_DIALOG_OPTIONS_BUTTON_CURRENCY,
         ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
         ID_DIALOG_OPTIONS_LISTBOOK,
