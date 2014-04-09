@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/string.h>
 #include <wx/filefn.h>
 #include "lua.hpp"
+#include "mongoose/mongoose.h"
 
 /*************************************************************************
  Revision of last commit: $Revision$
@@ -122,8 +123,9 @@ const wxString mmex::getProgramDescription()
                 << "======================================\n"
                 << wxVERSION_STRING << "\n"
                 << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
-                << wxSQLITE3_VERSION_STRING << "\n";
-//              << LUA_VERSION << "\n";
+                << wxSQLITE3_VERSION_STRING << "\n"
+                << "Mongoose " << MONGOOSE_VERSION << "\n"
+                << LUA_VERSION << "\n";
     #if defined(_MSC_VER)
         description << "Microsoft Visual Studio " <<_MSC_VER;
     #elif defined(__clang__)

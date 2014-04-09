@@ -4,6 +4,7 @@ Lisheng          [guanlisheng]
 James            [siena123]
 Stefano          [stef145g]
 Pat              [omalleypat]
+Gabriele         [gabriele-v]
 =======================================
 ##What's new
 - General Report Manager replaced Custom Reports
