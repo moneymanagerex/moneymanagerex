@@ -34,7 +34,6 @@ END_EVENT_TABLE()
 mmAboutDialog::mmAboutDialog(wxWindow* parent)
 : about_text_()
 , developers_text_()
-, translators_text_()
 , artwork_text_()
 , sponsors_text_()
 {
@@ -141,9 +140,8 @@ void mmAboutDialog::InitControls()
     }
 
     developers_text_->SetPage(data[0]);
-    if (data.GetCount() > 1) translators_text_->SetPage(data[1]);
-    if (data.GetCount() > 2) artwork_text_->SetPage(data[2]);
-    if (data.GetCount() > 3) sponsors_text_->SetPage(data[3]);
+    if (data.GetCount() > 1) artwork_text_->SetPage(data[1]);
+    if (data.GetCount() > 2) sponsors_text_->SetPage(data[2]);
 
 }
 void mmAboutDialog::CreateControls()
@@ -177,11 +175,6 @@ void mmAboutDialog::CreateControls()
     wxBoxSizer *developers_sizer = new wxBoxSizer(wxVERTICAL);
     developers_tab->SetSizer(developers_sizer);
 
-    wxPanel* translators_tab = new wxPanel(about_notebook, wxID_ANY);
-    about_notebook->AddPage(translators_tab, _("Translators"));
-    wxBoxSizer *translators_sizer = new wxBoxSizer(wxVERTICAL);
-    translators_tab->SetSizer(translators_sizer);
-
     wxPanel* artwork_tab = new wxPanel(about_notebook, wxID_ANY);
     about_notebook->AddPage(artwork_tab, _("Artwork"));
     wxBoxSizer *artwork_sizer = new wxBoxSizer(wxVERTICAL);
@@ -203,11 +196,6 @@ void mmAboutDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, internal_size
         , wxHW_SCROLLBAR_AUTO | wxSUNKEN_BORDER | wxHSCROLL | wxVSCROLL);
     developers_sizer->Add(developers_text_, 1, wxEXPAND);
-
-    translators_text_ = new wxHtmlWindow( translators_tab
-        , wxID_ANY, wxDefaultPosition, internal_size
-        , wxHW_SCROLLBAR_AUTO|wxSUNKEN_BORDER|wxHSCROLL|wxVSCROLL );
-    translators_sizer->Add(translators_text_, 1, wxEXPAND);
 
     artwork_text_ = new wxHtmlWindow(artwork_tab
         , wxID_ANY, wxDefaultPosition, internal_size

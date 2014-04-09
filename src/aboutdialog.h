@@ -49,7 +49,6 @@ private:
 
     wxHtmlWindow* about_text_;
     wxHtmlWindow* developers_text_;
-    wxHtmlWindow* translators_text_;
     wxHtmlWindow* artwork_text_;
     wxHtmlWindow* sponsors_text_;
 
