@@ -79,6 +79,7 @@ private:
 	void OnAttachmentSelectedU(wxCommandEvent& event);
 	void OnAttachmentSelected1(wxCommandEvent& event);
 	void OnAttachmentSelected2(wxCommandEvent& event);
+	void OnAttachmentSelected3(wxCommandEvent& event);
 	void OnAttachmentsFolderChanged(wxCommandEvent& event);
 
     void SaveViewAccountOptions();
@@ -154,6 +155,7 @@ private:
 		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER,
 		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1,
 		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2,
+		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3,
 		ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT,
         ID_DIALOG_OPTIONS_BUTTON_CURRENCY,
         ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,

@@ -21,6 +21,7 @@ Copyright (C) 2014 Gabriele-V
 #include "paths.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Setting.h"
 #include <wx/mimetype.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmAttachmentDialog, wxDialog )
@@ -320,12 +321,18 @@ void mmAttachmentDialog::OnOk(wxCommandEvent& /*event*/)
 wxString mmAttachmentManage::GetAttachmentsFolder()
 {
 	wxString AttachmentsFolder;
+	wxString LastDBPath = Model_Setting::instance().getLastDbPath();
+	wxFileName fn(LastDBPath);
+	wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
+	wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
 	
 	AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
 	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR)
-		AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator() + "MMEX_Attachments";
+		AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator() + "MMEX_" + LastDBFileName + "_Attachments";
 	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR)
-		AttachmentsFolder = mmex::getPathUser(mmex::DIRECTORY) + "attachments";
+		AttachmentsFolder = mmex::getPathUser(mmex::DIRECTORY) + "attachments_" + LastDBFileName;
+	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR)
+		AttachmentsFolder = LastDBFolder + wxFileName::GetPathSeparator() + "Attachments_" + LastDBFileName;
 
 	return AttachmentsFolder;
 }
