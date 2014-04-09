@@ -120,6 +120,7 @@ MMEX_OBJECTS =  \
 	mmex_appstartdialog.obj \
 	mmex_assetdialog.obj \
 	mmex_assetspanel.obj \
+	mmex_attachmentdialog.obj \
 	mmex_billsdepositsdialog.obj \
 	mmex_billsdepositspanel.obj \
 	mmex_budgetentrydialog.obj \
@@ -187,6 +188,7 @@ MMEX_OBJECTS =  \
 	mmex_univcsvdialog.obj \
 	mmex_Model_Account.obj \
 	mmex_Model_Asset.obj \
+	mmex_Model_Attachment.obj \
 	mmex_Model_Billsdeposits.obj \
 	mmex_Model_Budget.obj \
 	mmex_Model_Budgetsplittransaction.obj \
@@ -711,6 +713,9 @@ mmex_assetdialog.obj: ..\..\src\assetdialog.cpp
 mmex_assetspanel.obj: ..\..\src\assetspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\assetspanel.cpp
 
+mmex_attachmentdialog.obj: ..\..\src\attachmentdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\attachmentdialog.cpp
+
 mmex_billsdepositsdialog.obj: ..\..\src\billsdepositsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\billsdepositsdialog.cpp
 
@@ -911,6 +916,9 @@ mmex_Model_Account.obj: ..\..\src\model\Model_Account.cpp
 
 mmex_Model_Asset.obj: ..\..\src\model\Model_Asset.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Asset.cpp
+
+mmex_Model_Attachment.obj: ..\..\src\model\Model_Attachment.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Attachment.cpp
 
 mmex_Model_Billsdeposits.obj: ..\..\src\model\Model_Billsdeposits.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Billsdeposits.cpp

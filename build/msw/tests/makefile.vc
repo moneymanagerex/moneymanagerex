@@ -102,6 +102,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_appstartdialog.obj \
 	mmex_tests_assetdialog.obj \
 	mmex_tests_assetspanel.obj \
+	mmex_tests_attachmentdialog.obj \
 	mmex_tests_billsdepositsdialog.obj \
 	mmex_tests_billsdepositspanel.obj \
 	mmex_tests_budgetentrydialog.obj \
@@ -169,6 +170,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_univcsvdialog.obj \
 	mmex_tests_Model_Account.obj \
 	mmex_tests_Model_Asset.obj \
+	mmex_tests_Model_Attachment.obj \
 	mmex_tests_Model_Billsdeposits.obj \
 	mmex_tests_Model_Budget.obj \
 	mmex_tests_Model_Budgetsplittransaction.obj \
@@ -626,6 +628,9 @@ mmex_tests_assetdialog.obj: ..\..\..\src\assetdialog.cpp
 mmex_tests_assetspanel.obj: ..\..\..\src\assetspanel.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\assetspanel.cpp
 
+mmex_tests_attachmentdialog.obj: ..\..\..\src\attachmentdialog.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\attachmentdialog.cpp
+
 mmex_tests_billsdepositsdialog.obj: ..\..\..\src\billsdepositsdialog.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\billsdepositsdialog.cpp
 
@@ -826,6 +831,9 @@ mmex_tests_Model_Account.obj: ..\..\..\src\model\Model_Account.cpp
 
 mmex_tests_Model_Asset.obj: ..\..\..\src\model\Model_Asset.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Asset.cpp
+
+mmex_tests_Model_Attachment.obj: ..\..\..\src\model\Model_Attachment.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Attachment.cpp
 
 mmex_tests_Model_Billsdeposits.obj: ..\..\..\src\model\Model_Billsdeposits.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Billsdeposits.cpp

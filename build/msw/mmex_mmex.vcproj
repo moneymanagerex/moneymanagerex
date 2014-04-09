@@ -409,6 +409,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Attachment.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model_Billsdeposits.cpp"
 				>
 			</File>
@@ -494,6 +498,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\assetspanel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\attachmentdialog.cpp"
 				>
 			</File>
 			<File
@@ -1027,6 +1035,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Attachment_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\db\DB_Table_Billsdeposits_V1.h"
 				>
 			</File>
@@ -1092,6 +1104,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Asset.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_Attachment.h"
 				>
 			</File>
 			<File
@@ -1168,6 +1184,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\assetspanel.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\attachmentdialog.h"
 				>
 			</File>
 			<File

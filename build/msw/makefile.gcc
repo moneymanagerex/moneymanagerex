@@ -116,6 +116,7 @@ MMEX_OBJECTS =  \
 	mmex_appstartdialog.o \
 	mmex_assetdialog.o \
 	mmex_assetspanel.o \
+	mmex_attachmentdialog.o \
 	mmex_billsdepositsdialog.o \
 	mmex_billsdepositspanel.o \
 	mmex_budgetentrydialog.o \
@@ -183,6 +184,7 @@ MMEX_OBJECTS =  \
 	mmex_univcsvdialog.o \
 	mmex_Model_Account.o \
 	mmex_Model_Asset.o \
+	mmex_Model_Attachment.o \
 	mmex_Model_Billsdeposits.o \
 	mmex_Model_Budget.o \
 	mmex_Model_Budgetsplittransaction.o \
@@ -585,6 +587,9 @@ mmex_assetdialog.o: ../../src/assetdialog.cpp
 mmex_assetspanel.o: ../../src/assetspanel.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_attachmentdialog.o: ../../src/attachmentdialog.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_billsdepositsdialog.o: ../../src/billsdepositsdialog.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
@@ -784,6 +789,9 @@ mmex_Model_Account.o: ../../src/model/Model_Account.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Asset.o: ../../src/model/Model_Asset.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_Model_Attachment.o: ../../src/model/Model_Attachment.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_Model_Billsdeposits.o: ../../src/model/Model_Billsdeposits.cpp

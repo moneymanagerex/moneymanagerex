@@ -109,6 +109,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_appstartdialog.o \
 	mmex_tests_assetdialog.o \
 	mmex_tests_assetspanel.o \
+	mmex_tests_attachmentdialog.o \
 	mmex_tests_billsdepositsdialog.o \
 	mmex_tests_billsdepositspanel.o \
 	mmex_tests_budgetentrydialog.o \
@@ -176,6 +177,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_univcsvdialog.o \
 	mmex_tests_Model_Account.o \
 	mmex_tests_Model_Asset.o \
+	mmex_tests_Model_Attachment.o \
 	mmex_tests_Model_Billsdeposits.o \
 	mmex_tests_Model_Budget.o \
 	mmex_tests_Model_Budgetsplittransaction.o \
@@ -436,6 +438,9 @@ mmex_tests_assetdialog.o: $(srcdir)/../../src/assetdialog.cpp
 mmex_tests_assetspanel.o: $(srcdir)/../../src/assetspanel.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/assetspanel.cpp
 
+mmex_tests_attachmentdialog.o: $(srcdir)/../../src/attachmentdialog.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/attachmentdialog.cpp
+
 mmex_tests_billsdepositsdialog.o: $(srcdir)/../../src/billsdepositsdialog.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/billsdepositsdialog.cpp
 
@@ -636,6 +641,9 @@ mmex_tests_Model_Account.o: $(srcdir)/../../src/model/Model_Account.cpp
 
 mmex_tests_Model_Asset.o: $(srcdir)/../../src/model/Model_Asset.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Asset.cpp
+
+mmex_tests_Model_Attachment.o: $(srcdir)/../../src/model/Model_Attachment.cpp
+	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Attachment.cpp
 
 mmex_tests_Model_Billsdeposits.o: $(srcdir)/../../src/model/Model_Billsdeposits.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/model/Model_Billsdeposits.cpp
