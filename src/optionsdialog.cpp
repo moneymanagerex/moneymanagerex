@@ -828,6 +828,11 @@ void mmOptionsDialog::CreateControls()
 	cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
 	attachmentStaticBoxSizer->Add(cbDeleteAttachments_, flags);
 
+	cbTrashAttachments_ = new wxCheckBox(importExportPanel, wxID_STATIC, _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+	cbTrashAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
+	cbTrashAttachments_->SetToolTip(_("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
+	attachmentStaticBoxSizer->Add(cbTrashAttachments_, flags);
+
    /**********************************************************************************************
     Setting up the notebook with the 5 pages
     **********************************************************************************************/
@@ -1267,6 +1272,7 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
 		}
 	}
 	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
+	Model_Infotable::instance().Set("ATTACHMENTSTRASH", cbTrashAttachments_->GetValue());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)

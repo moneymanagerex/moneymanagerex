@@ -122,12 +122,14 @@ private:
     wxCheckBox* cbUseOrgDateCopyPaste_;
     wxCheckBox* cbUseSound_;
 
-	wxCheckBox* cbDeleteAttachments_;
     wxCheckBox* cbBudgetFinancialYears_;
     wxCheckBox* cbBudgetIncludeTransfers_;
     wxCheckBox* cbBudgetSetupWithoutSummary_;
     wxCheckBox* cbBudgetSummaryWithoutCateg_;
     wxCheckBox* cbIgnoreFutureTransactions_;
+
+	wxCheckBox* cbDeleteAttachments_;
+	wxCheckBox* cbTrashAttachments_;
 
     wxStaticText* sampleDateText_;
     wxSpinCtrl *scMax_files_;
