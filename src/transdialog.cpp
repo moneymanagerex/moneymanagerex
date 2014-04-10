@@ -36,6 +36,7 @@
 #include <wx/valnum.h>
 #include <wx/numformatter.h>
 #include "minimal_editor.h"
+#include "../resources/attachment.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmTransDialog, wxDialog )
 
@@ -461,13 +462,6 @@ void mmTransDialog::CreateControls()
     number_sizer->Add(textNumber_, g_flagsExpand);
     number_sizer->Add(bAuto, g_flags);
 
-	// Attachments ---------------------------------------------
-	bAttachments_ = new wxButton(this, wxID_FILE, _("Organize Attachments")
-		, wxDefaultPosition, wxSize(bCategory_->GetSize().GetX(), bCategory_->GetSize().GetY()));
-
-	flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Attachments")), g_flags);
-	flex_sizer->Add(bAttachments_, g_flags);
-
     // Notes ---------------------------------------------
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Notes")), g_flags);
     wxButton* bFrequentUsedNotes = new wxButton(this, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES
@@ -475,7 +469,17 @@ void mmTransDialog::CreateControls()
         , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
     bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
-    flex_sizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+	
+	// Attachments ---------------------------------------------
+	bAttachments_ = new wxBitmapButton(this, wxID_FILE
+		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, wxSize(bFrequentUsedNotes->GetSize().GetY(), bFrequentUsedNotes->GetSize().GetY()));
+	bAttachments_->SetToolTip(_("Organize attachments of this transaction"));
+
+	wxBoxSizer* RightAlign_sizer = new wxBoxSizer(wxHORIZONTAL);
+	flex_sizer->Add(RightAlign_sizer, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+	RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
+	RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
     textNotes_ = new MinimalEditor(this, ID_DIALOG_TRANS_TEXTNOTES);
     textNotes_->SetSize(wxSize(-1, 120));
@@ -1094,24 +1098,15 @@ void mmTransDialog::setTooltips()
     }
 
     if (this->m_local_splits.empty())
-    {
-        bCategory_->SetToolTip(_("Specify the category for this transaction"));
-    }
+		bCategory_->SetToolTip(_("Specify the category for this transaction"));
     else
-    {
-        bCategory_->SetToolTip(_("Specify categories for this transaction"));
-    }
+		bCategory_->SetToolTip(_("Specify categories for this transaction"));
 
 	if (transaction_id_)
-	{
-		bAttachments_->SetToolTip(_("Manage attachments for this transaction"));
 		bAttachments_->Enable(true);
-	}
 	else
-	{
-		bAttachments_->SetToolTip(_("You cannot add attachments on a new transaction"));
 		bAttachments_->Enable(false);
-	}
+
     //Permanent
     dpc_->SetToolTip(_("Specify the date of the transaction"));
     spinCtrl_->SetToolTip(_("Retard or advance the date of the transaction"));
