@@ -686,7 +686,7 @@ bool mmQIFImportDialog::mmParseQIF()
             {
                 for (auto& refTransaction : vQIF_trxs_)
                 {
-                    auto *refTrans(refTransaction.first);
+                    auto &refTrans = refTransaction.first;
                     if (Model_Checking::type(refTrans) != Model_Checking::TRANSFER) continue;
                     if (refTrans->STATUS == "D") continue;
                     if (Model_Checking::TRANSDATE(refTrans) != m_data.dtdt) continue;
@@ -700,13 +700,6 @@ bool mmQIFImportDialog::mmParseQIF()
                     else
                         refTrans->TRANSAMOUNT = m_data.val;
                     refTrans->STATUS = "D";
-
-                    /*sMsg = wxString::Format("%f -> %f (%f)\n", refTrans->TRANSAMOUNT
-                        , refTrans->TOTRANSAMOUNT
-                        , (fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT)<1)
-                        ? fabs(refTrans->TOTRANSAMOUNT) / fabs(refTrans->TRANSAMOUNT)
-                        : fabs(refTrans->TRANSAMOUNT) / fabs(refTrans->TOTRANSAMOUNT));
-                    logWindow->AppendText(sMsg);*/
 
                     m_data.valid = false;
                     break;
