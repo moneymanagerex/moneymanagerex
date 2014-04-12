@@ -406,11 +406,11 @@ void mmQIFExportDialog::mmExportQIF()
                 if (!progressDlg.Pulse(wxString::Format(_("Exporting transaction %i"), ++numRecords))) // if cancel clicked
                     break; // abort processing
 
-                mmExportTransaction data(transaction.TRANSID, account_id);
+                Model_Checking::Full_Data full_tran(transaction, splits);
                 if (qif_csv)
-                    buffer << data.getTransactionQIF(splits);
+                    buffer << mmExportTransaction::getTransactionQIF(full_tran, account_id);
                 else
-                    buffer << data.getTransactionCSV(splits);
+                    buffer << mmExportTransaction::getTransactionCSV(full_tran, account_id);
 
                 if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
                 {
@@ -419,12 +419,11 @@ void mmQIFExportDialog::mmExportQIF()
                     if (selected_accounts_id_.Index(index) == wxNOT_FOUND)
                     {
                         //get second part of transfer transaction
-                        mmExportTransaction data2(transaction.TRANSID, index);
                         wxString second_part = "";
                         if (qif_csv)
-                            second_part = data2.getTransactionQIF(splits);
+                            second_part = mmExportTransaction::getTransactionQIF(full_tran, account_id);
                         else
-                            second_part = data2.getTransactionCSV(splits);
+                            second_part = mmExportTransaction::getTransactionCSV(full_tran, account_id);
                         transferTransactions[index] += second_part;
                     }
                 }

@@ -40,12 +40,9 @@ mmExportTransaction::mmExportTransaction(int transactionID, int accountID): mmEx
 mmExportTransaction::~mmExportTransaction()
 {}
 
-wxString mmExportTransaction::getTransactionQIF(const std::map <int, Model_Splittransaction::Data_Set> &splits)
+wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data& full_tran, int accountID)
 {
-    Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
-    if (!transaction) return "";
-    Model_Checking::Full_Data full_tran(*transaction, splits);
-    bool out = transaction->ACCOUNTID == m_account_id;
+    bool out = full_tran.ACCOUNTID == accountID;
 
     wxString buffer = "";
     wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
@@ -54,7 +51,7 @@ wxString mmExportTransaction::getTransactionQIF(const std::map <int, Model_Split
     notes.Replace("''", "'");
     notes.Replace("\n", " ");
 
-    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+    if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
     {
         categ = "[" + (!out ? full_tran.ACCOUNTNAME : full_tran.PAYEENAME) + "]";
 
@@ -65,7 +62,7 @@ wxString mmExportTransaction::getTransactionQIF(const std::map <int, Model_Split
     }
     
     buffer << "D" << full_tran.TRANSDATE << "\n";
-    buffer << "T" << Model_Checking::balance(*transaction, (out ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << "\n";
+    buffer << "T" << Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID)) << "\n";
     if (!full_tran.PAYEENAME.empty())
         buffer << "P" << full_tran.PAYEENAME << "\n";
     if (!transNum.IsEmpty())
@@ -78,7 +75,7 @@ wxString mmExportTransaction::getTransactionQIF(const std::map <int, Model_Split
     for (const auto &split_entry : full_tran.m_splits)
     {
         double value = split_entry.SPLITTRANSAMOUNT;
-        if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+        if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             value = -value;
         const wxString split_amount = wxString() << value;
         const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
@@ -90,13 +87,9 @@ wxString mmExportTransaction::getTransactionQIF(const std::map <int, Model_Split
     return buffer;
 }
 
-wxString mmExportTransaction::getTransactionCSV(const std::map <int, Model_Splittransaction::Data_Set> &splits)
+wxString mmExportTransaction::getTransactionCSV(const Model_Checking::Full_Data & full_tran, int accountID)
 {
-    Model_Checking::Data *transaction = Model_Checking::instance().get(m_transaction_id);
-    if (!transaction) return "";
-
-    Model_Checking::Full_Data full_tran(*transaction, splits);
-    bool out = transaction->ACCOUNTID == m_account_id;
+    bool out = full_tran.ACCOUNTID == accountID;
 
     wxString delimit = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
@@ -109,7 +102,7 @@ wxString mmExportTransaction::getTransactionCSV(const std::map <int, Model_Split
     notes.Replace("''", "'");
     notes.Replace("\n", " ");
 
-    if (Model_Checking::type(transaction) == Model_Checking::TRANSFER)
+    if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
     {
         categ = "[" + (!out ? full_tran.ACCOUNTNAME : full_tran.PAYEENAME) + "]";
 
@@ -121,10 +114,10 @@ wxString mmExportTransaction::getTransactionCSV(const std::map <int, Model_Split
 
     if (!full_tran.m_splits.empty())
     {
-        for (const auto &split_entry : splits.at(transaction->id()))
+        for (const auto &split_entry : full_tran.m_splits)
         {
             double value = split_entry.SPLITTRANSAMOUNT;
-            if (Model_Checking::type(transaction) == Model_Checking::WITHDRAWAL)
+            if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
                 value = -value;
             const wxString split_amount = wxString() << value;
 
@@ -132,10 +125,10 @@ wxString mmExportTransaction::getTransactionCSV(const std::map <int, Model_Split
 
             buffer << trans_id << delimit
                 << inQuotes(accountName, delimit) << delimit
-                << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(transaction)), delimit) << delimit
+                << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(full_tran)), delimit) << delimit
                 << inQuotes(full_tran.PAYEENAME, delimit) << delimit
-                << transaction->STATUS << delimit
-                << transaction->TRANSCODE << delimit
+                << full_tran.STATUS << delimit
+                << full_tran.TRANSCODE << delimit
                 << inQuotes(split_categ, delimit) << delimit
                 << inQuotes(split_amount, delimit) << delimit
                 << "" << delimit
@@ -148,12 +141,12 @@ wxString mmExportTransaction::getTransactionCSV(const std::map <int, Model_Split
     {
         buffer << trans_id << delimit
             << inQuotes(accountName, delimit) << delimit
-            << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(transaction)), delimit) << delimit
+            << inQuotes(mmGetDateForDisplay(Model_Checking::TRANSDATE(full_tran)), delimit) << delimit
             << inQuotes(full_tran.PAYEENAME, delimit) << delimit
-            << transaction->STATUS << delimit
-            << transaction->TRANSCODE << delimit
+            << full_tran.STATUS << delimit
+            << full_tran.TRANSCODE << delimit
             << inQuotes(categ, delimit) << delimit
-            << Model_Checking::balance(*transaction, (out ? transaction->ACCOUNTID : transaction->TOACCOUNTID)) << delimit
+            << Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID)) << delimit
             << "" << delimit
             << inQuotes(notes, delimit)
             << "\n";
