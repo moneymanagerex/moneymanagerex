@@ -385,6 +385,7 @@ void mmQIFExportDialog::mmExportQIF()
         wxProgressDialog progressDlg(_("Please wait"), _("Exporting")
             , 100, this, wxPD_APP_MODAL | wxPD_CAN_ABORT);
 
+        const auto splits = Model_Splittransaction::instance().get_all();
         for (const auto &account_id : selected_accounts_id_)
         {
             if (qif_csv)
@@ -393,7 +394,6 @@ void mmQIFExportDialog::mmExportQIF()
                 buffer << header.getAccountHeaderQIF();
             }
 
-            const auto splits = Model_Splittransaction::instance().get_all();
             for (const auto& transaction : Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(account_id)
                 , Model_Checking::TOACCOUNTID(account_id)))
             {
