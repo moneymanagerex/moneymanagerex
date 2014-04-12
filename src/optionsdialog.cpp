@@ -673,20 +673,20 @@ void mmOptionsDialog::CreateControls()
     importExportPanel->SetSizer(importExportPanelSizer);
 
 	//CSV Import
-    wxStaticBox* importExportStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("CSV Settings"));
-    importExportStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* importExportStaticBoxSizer = new wxStaticBoxSizer(importExportStaticBox, wxVERTICAL);
+    wxStaticBox* csvStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("CSV Settings"));
+    csvStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
 
-    importExportPanelSizer->Add(importExportStaticBoxSizer, flagsExpand);
+    importExportPanelSizer->Add(csvStaticBoxSizer, flagsExpand);
 
     wxStaticText* csvDelimiterStaticText = new wxStaticText(importExportPanel, wxID_STATIC, _("CSV Delimiter"));
-    importExportStaticBoxSizer->Add(csvDelimiterStaticText, flags);
+    csvStaticBoxSizer->Add(csvDelimiterStaticText, flags);
 
     wxBoxSizer* radioButtonSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* userDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
-    importExportStaticBoxSizer->Add(radioButtonSizer);
-    importExportStaticBoxSizer->Add(userDefinedSizer);
-    importExportStaticBoxSizer->AddSpacer(5);
+    csvStaticBoxSizer->Add(radioButtonSizer);
+    csvStaticBoxSizer->Add(userDefinedSizer);
+    csvStaticBoxSizer->AddSpacer(5);
 
     wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
@@ -728,7 +728,7 @@ void mmOptionsDialog::CreateControls()
     WebAppStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
     wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
-    importExportPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
+	importExportPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
     WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
 
     WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("Url")), flags);
@@ -756,15 +756,13 @@ void mmOptionsDialog::CreateControls()
 	attachmentStaticBoxSizer->Add(attachmentStaticText, flags);
 
 	wxBoxSizer* attachRadioButtonSizer = new wxBoxSizer(wxVERTICAL);
-	wxFlexGridSizer* attachFolderPathSizer = new wxFlexGridSizer(0, 2, 0, 0);
 	wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
 	
 	attachmentStaticBoxSizer->Add(attachRadioButtonSizer);
 	attachmentStaticBoxSizer->Add(attachDefinedSizer);
-	attachmentStaticBoxSizer->Add(attachFolderPathSizer, wxSizerFlags(flags).Border(wxLEFT, 26));
+	attachmentStaticBoxSizer->AddSpacer(5);
 	
-	wxString attachmentWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", "");
-	wxString attachmentUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Unix", "");
+	wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
 	wxString LastDBPath = Model_Setting::instance().getLastDbPath();
 	wxFileName fn(LastDBPath);
 	wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
@@ -777,7 +775,7 @@ void mmOptionsDialog::CreateControls()
 		+ "\n"
 		+ _("MAKE ATTENTION:") + "\n"
 		+ _("It won't work if you use more than one DB with the same filename!"));
-	if (attachmentWin == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR) attachmentRadioButton1->SetValue(true);
+	if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR) attachmentRadioButton1->SetValue(true);
 
 	wxRadioButton* attachmentRadioButton2 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2, _("Money Manager directory"));
 	attachmentRadioButton2->SetToolTip(_("Subfolder") + " 'attachments_" + LastDBFileName + "' " + "\n"
@@ -785,46 +783,31 @@ void mmOptionsDialog::CreateControls()
 		+ "\n"
 		+ _("MAKE ATTENTION:") + "\n"
 		+ _("It won't work if you use more than one DB with the same filename!"));
-	if (attachmentWin == INIDB_ATTACHMENTS_FOLDER_MMEXDIR) attachmentRadioButton2->SetValue(true);
+	if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR) attachmentRadioButton2->SetValue(true);
 
 	wxRadioButton* attachmentRadioButton3 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3, _("Database file directory"));
 	attachmentRadioButton3->SetToolTip(_("Subfolder") + " 'Attachments_" + LastDBFileName + "' " + "\n"
 		+ _("into ") + LastDBFolder);
-	if (attachmentWin == INIDB_ATTACHMENTS_FOLDER_DBDIR) attachmentRadioButton3->SetValue(true);
+	if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR) attachmentRadioButton3->SetValue(true);
 
 	wxRadioButton* attachmentRadioButtonU = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER, _("User Defined"));
 	attachmentRadioButtonU->SetToolTip(_("Specify the folder to use when archive attachments"));
-
-	wxButton* AttachmentsFolderButton = new wxButton(importExportPanel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
-		_("Browse"), wxDefaultPosition, wxSize(50, -1), 0);
+	wxTextCtrl* textAttachment = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachmentFolder, wxDefaultPosition, wxSize(225, -1), 0);
+	wxButton* AttachmentsFolderButton = new wxButton(importExportPanel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
 	AttachmentsFolderButton->SetToolTip(_("Browse for folder"));
 
-	wxStaticText* attachmentWinStaticText = new wxStaticText(importExportPanel, wxID_STATIC, _("Windows:"), wxDefaultPosition, wxSize(60, -1), 0);
-	wxTextCtrl* textAttachmentWin = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN, attachmentWin, wxDefaultPosition, wxSize(260, -1), 0);
-	wxStaticText* attachmentUnixStaticText = new wxStaticText(importExportPanel, wxID_STATIC, _("Unix:"), wxDefaultPosition, wxSize(60, -1), 0);
-	wxTextCtrl* textAttachmentUnix = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX, attachmentUnix, wxDefaultPosition, wxSize(260, -1), 0);
-
-	if (attachmentWin == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
-		|| attachmentWin == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
-		|| attachmentWin == INIDB_ATTACHMENTS_FOLDER_DBDIR)
+	if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
+		|| attachmentFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
+		|| attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR)
 	{
-		textAttachmentWin->Enable(false);
-		textAttachmentUnix->Enable(false);
+		textAttachment->Enable(false);
 		AttachmentsFolderButton->Enable(false);
 	}
 	else
 	{
 		attachmentRadioButtonU->SetValue(true);
-		if (mmPlatformIsWindows())
-		{
-			textAttachmentUnix->Enable(false);
-			textAttachmentWin->SetToolTip(attachmentWin);
-		}
-		else
-		{
-			textAttachmentWin->Enable(false);
-			textAttachmentUnix->SetToolTip(attachmentUnix);
-		}
+		textAttachment->Enable(true);
+		textAttachment->SetToolTip(attachmentFolder);
 	}
 
 	attachRadioButtonSizer->Add(attachmentRadioButton1, flags);
@@ -832,15 +815,11 @@ void mmOptionsDialog::CreateControls()
 	attachRadioButtonSizer->Add(attachmentRadioButton3, flags);
 
 	attachDefinedSizer->Add(attachmentRadioButtonU, flags);
+	attachDefinedSizer->Add(textAttachment, flags);
 	attachDefinedSizer->Add(AttachmentsFolderButton, flags);
 
-	attachFolderPathSizer->Add(attachmentWinStaticText, flags);
-	attachFolderPathSizer->Add(textAttachmentWin, wxSizerFlags(flags).Border(wxTOP | wxBOTTOM, 1));
-	attachFolderPathSizer->Add(attachmentUnixStaticText, flags);
-	attachFolderPathSizer->Add(textAttachmentUnix, wxSizerFlags(flags).Border(wxTOP | wxBOTTOM, 1));
-
 	//TODO: Add a line to separate radio from other settings
-	attachmentStaticBoxSizer->AddSpacer(5);
+	attachmentStaticBoxSizer->AddSpacer(10);
 
 	cbDeleteAttachments_ = new wxCheckBox(importExportPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 	cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
@@ -998,21 +977,12 @@ void mmOptionsDialog::OnDelimiterSelectedT(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnAttachmentSelectedU(wxCommandEvent& /*event*/)
 {
-	wxTextCtrl* d = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN);
+	wxTextCtrl* d = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
 	if (d->GetValue() == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
 		|| d->GetValue() == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
 		|| d->GetValue() == INIDB_ATTACHMENTS_FOLDER_DBDIR)
 		d->SetValue(wxEmptyString);
-	if (mmPlatformIsWindows())
-		d->Enable(true);
-
-	wxTextCtrl* d1 = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX);
-	if (d1->GetValue() == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
-		|| d1->GetValue() == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
-		|| d1->GetValue() == INIDB_ATTACHMENTS_FOLDER_DBDIR)
-		d1->SetValue(wxEmptyString);
-	if (!mmPlatformIsWindows())
-		d1->Enable(true);
+	d->Enable(true);
 
 	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
 	button->Enable(true);
@@ -1020,13 +990,9 @@ void mmOptionsDialog::OnAttachmentSelectedU(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnAttachmentSelected1(wxCommandEvent& /*event*/)
 {
-	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN);
+	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
 	st->Enable(false);
 	st->SetValue(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
-
-	wxTextCtrl* st1 = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX);
-	st1->Enable(false);
-	st1->SetValue(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
 
 	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
 	button->Enable(false);
@@ -1034,13 +1000,9 @@ void mmOptionsDialog::OnAttachmentSelected1(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnAttachmentSelected2(wxCommandEvent& /*event*/)
 {
-	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN);
+	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
 	st->Enable(false);
 	st->SetValue(INIDB_ATTACHMENTS_FOLDER_MMEXDIR);
-
-	wxTextCtrl* st1 = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX);
-	st1->Enable(false);
-	st1->SetValue(INIDB_ATTACHMENTS_FOLDER_MMEXDIR);
 
 	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
 	button->Enable(false);
@@ -1048,13 +1010,9 @@ void mmOptionsDialog::OnAttachmentSelected2(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnAttachmentSelected3(wxCommandEvent& /*event*/)
 {
-	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN);
+	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
 	st->Enable(false);
 	st->SetValue(INIDB_ATTACHMENTS_FOLDER_DBDIR);
-
-	wxTextCtrl* st1 = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX);
-	st1->Enable(false);
-	st1->SetValue(INIDB_ATTACHMENTS_FOLDER_DBDIR);
 
 	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
 	button->Enable(false);
@@ -1062,12 +1020,7 @@ void mmOptionsDialog::OnAttachmentSelected3(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnAttachmentsFolderChanged(wxCommandEvent& /*event*/)
 {
-	wxTextCtrl* att;
-	if (mmPlatformIsWindows())
-		att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN);
-	else
-		att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX);
-	
+	wxTextCtrl* att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
 	wxString attachmentFolder = att->GetValue();
 
 	wxDirDialog dlg(this
@@ -1297,13 +1250,9 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
     wxTextCtrl* WebAppGUID = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 
-	wxTextCtrl* attWin = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTWIN);
-	wxString attachmentFolderWin = attWin->GetValue();
-	Model_Infotable::instance().Set("ATTACHMENTSFOLDER:Win", attachmentFolderWin);
-
-	wxTextCtrl* attUnix = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENTUNIX);
-	wxString attachmentFolderUnix = attUnix->GetValue();
-	Model_Infotable::instance().Set("ATTACHMENTSFOLDER:Unix", attachmentFolderUnix);
+	wxTextCtrl* attTextCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	wxString attachmentFolder = attTextCtrl->GetValue();
+	Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
 
 	//Create attachments folder
 	wxString attachmentFolderPath = mmAttachmentManage::GetAttachmentsFolder();

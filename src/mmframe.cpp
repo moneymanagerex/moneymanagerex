@@ -2852,7 +2852,7 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     versionTokens.GetNextToken(); // ignore old counters
     page = versionTokens.GetNextToken(); // substrtute new counters
 
-    page = page.SubString(page.find(wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3)), 53);
+	page = page.SubString(page.find(mmPlatformType()), 53);
     wxString current_version = page;
     wxStringTokenizer mySysToken(page, ":");
     mySysToken.GetNextToken().Trim(false).Trim();           // skip Operating System. Already accounted for.

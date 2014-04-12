@@ -456,10 +456,7 @@ void mmMessagePayeeInvalid(wxComboBox *comboBox)
     tip.ShowFor((wxWindow*)comboBox);
 }
 
-bool mmPlatformIsWindows()
+wxString mmPlatformType()
 {
-	if (wxPlatformInfo::Get().GetOperatingSystemFamilyName() == "Windows")
-		return true;
-	else
-		return false;
+	return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
 }

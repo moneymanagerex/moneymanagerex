@@ -321,16 +321,11 @@ void mmAttachmentDialog::OnOk(wxCommandEvent& /*event*/)
 ************************/
 wxString mmAttachmentManage::GetAttachmentsFolder()
 {
-	wxString AttachmentsFolder;
+	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
 	wxString LastDBPath = Model_Setting::instance().getLastDbPath();
 	wxFileName fn(LastDBPath);
 	wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
 	wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
-	
-	if (mmPlatformIsWindows())
-		AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", "");
-	else
-		AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Unix", "");
 
 	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR)
 		AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator() + "MMEX_" + LastDBFileName + "_Attachments";

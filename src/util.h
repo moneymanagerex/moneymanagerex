@@ -154,7 +154,7 @@ int site_content(const wxString& site, wxString& output);
 
 wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
-bool mmPlatformIsWindows();
+wxString mmPlatformType();
 
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------
