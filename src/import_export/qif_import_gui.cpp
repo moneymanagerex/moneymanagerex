@@ -272,7 +272,6 @@ bool mmQIFImportDialog::mmParseQIF()
     vQIF_trxs_.clear();
     Model_Payee::Data* payee = 0;
     Model_Splittransaction::Cache mmSplit;
-    wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
     wxFileInputStream input(sFileName_);
     wxTextInputStream text(input, "\x09", wxConvUTF8);
@@ -575,7 +574,6 @@ bool mmQIFImportDialog::mmParseQIF()
             if (m_data.type == Model_Checking::all_type()[Model_Checking::TRANSFER])
             {
                 m_data.to_accountID = getOrCreateAccount(m_data.sToAccountName, 0, m_data.sDescription);
-                accountArray.Add(m_data.sToAccountName);
 
                 if (m_data.val > 0.0)
                 {
