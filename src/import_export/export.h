@@ -23,25 +23,13 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
 
-class mmExportBase
-{
-
-public:
-    mmExportBase() : m_transaction_id(0) {}
-    mmExportBase(int transactionID) : m_transaction_id(transactionID) {}
-
-protected:
-    int m_transaction_id;
-};
-
-class mmExportTransaction : public mmExportBase
+class mmExportTransaction
 {
 
 public:
     ~mmExportTransaction();
     mmExportTransaction();
     mmExportTransaction(int accountID);
-    mmExportTransaction(int transactionID, int accountID);
 
     static wxString getTransactionQIF(const Model_Checking::Full_Data & tran, int accountID);
     static wxString getTransactionCSV(const Model_Checking::Full_Data & tran, int accountID);
