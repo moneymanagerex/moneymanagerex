@@ -326,7 +326,8 @@ bool mmQIFImportDialog::mmParseQIF()
             continue;
         }
 
-        if (m_QIFimport->lineType(readLine) == AcctType)
+        qifLineType lineType = m_QIFimport->lineType(readLine);
+        if (lineType == AcctType)
         {
             wxString accountType = getLineData(readLine);
             if  ((!accountType.CmpNoCase("Type:Bank"))
@@ -348,7 +349,7 @@ bool mmQIFImportDialog::mmParseQIF()
                 {
                     readLine = text.ReadLine();
                     numLines++;
-                    if (m_QIFimport->lineType(readLine) == AcctType)
+                    if (lineType == AcctType)
                     {
                         reading = false;
                         accountType = getLineData(readLine);
@@ -424,7 +425,7 @@ bool mmQIFImportDialog::mmParseQIF()
         m_data.to_accountID = -1;
         m_data.from_accountID = fromAccountID_;
 
-        if (m_QIFimport->lineType(readLine) == Date) // 'D'
+        if (lineType == Date) // 'D'
         {
             m_data.dt = getLineData(readLine);
 
@@ -433,7 +434,7 @@ bool mmQIFImportDialog::mmParseQIF()
             m_data.convDate = m_data.dtdt.FormatISODate();
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == Amount) // 'T'
+        else if (lineType == Amount) // 'T'
         {
             m_data.amountString = getLineData(readLine);
 
@@ -445,22 +446,22 @@ bool mmQIFImportDialog::mmParseQIF()
             }
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == Payee) // 'P'
+        else if (lineType == Payee) // 'P'
         {
             m_data.payeeString = getLineData(readLine);
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == TransNumber) // 'N'
+        else if (lineType == TransNumber) // 'N'
         {
             m_data.transNum = getLineData(readLine);
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == Memo || m_QIFimport->lineType(readLine) == MemoSplit) // 'M' // 'E'
+        else if (lineType == Memo || lineType == MemoSplit) // 'M' // 'E'
         {
             m_data.notes << getLineData(readLine) << "\n";
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == Category || m_QIFimport->lineType(readLine) == CategorySplit) // 'S' // 'L'
+        else if (lineType == Category || lineType == CategorySplit) // 'S' // 'L'
         {
             m_data.sFullCateg = getLineData(readLine);
 
@@ -509,7 +510,7 @@ bool mmQIFImportDialog::mmParseQIF()
 
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == AmountSplit) // '$'
+        else if (lineType == AmountSplit) // '$'
         {
             m_data.sSplitAmount = getLineData(readLine);
 
@@ -529,12 +530,12 @@ bool mmQIFImportDialog::mmParseQIF()
             continue;
         }
         //MemoSplit
-        else if (m_QIFimport->lineType(readLine) == Address) // 'A'
+        else if (lineType == Address) // 'A'
         {
             m_data.notes << getLineData(readLine) << "\n";
             continue;
         }
-        else if (m_QIFimport->lineType(readLine) == EOTLT) // ^
+        else if (lineType == EOTLT) // ^
         {
             wxString status = "F";
 
