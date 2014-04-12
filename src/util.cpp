@@ -455,3 +455,11 @@ void mmMessagePayeeInvalid(wxComboBox *comboBox)
     tip.SetIcon(wxICON_WARNING);
     tip.ShowFor((wxWindow*)comboBox);
 }
+
+bool mmPlatformIsWindows()
+{
+	if (wxPlatformInfo::Get().GetOperatingSystemFamilyName() == "Windows")
+		return true;
+	else
+		return false;
+}

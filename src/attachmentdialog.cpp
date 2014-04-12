@@ -19,6 +19,7 @@ Copyright (C) 2014 Gabriele-V
 #include "attachmentdialog.h"
 #include "constants.h"
 #include "paths.h"
+#include "util.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
@@ -326,7 +327,11 @@ wxString mmAttachmentManage::GetAttachmentsFolder()
 	wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
 	wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
 	
-	AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER", "");
+	if (mmPlatformIsWindows())
+		AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", "");
+	else
+		AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Unix", "");
+
 	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR)
 		AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator() + "MMEX_" + LastDBFileName + "_Attachments";
 	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR)
