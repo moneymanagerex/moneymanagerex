@@ -21,6 +21,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <wx/dataview.h>
 #include "model/Model_Checking.h"
+#include "model/Model_Account.h"
 
 class wxDatePickerCtrl;
 class mmQIFImport;
@@ -124,4 +125,6 @@ private:
         COL_MAX, // number of columns
     };
     std::map<int, wxString> ColName_;
+private:
+    std::map<wxString, const Model_Account::Data *> m_account_cache;
 };
