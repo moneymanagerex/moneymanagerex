@@ -66,7 +66,7 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
 		wxString msgStr = wxString() << _("Unable to find attachments folder:") << "\n"
 			<< "'" << AttachmentsFolder << "'" << "\n"
 			<< "\n"
-			<< _("Please verify that user has rights into it.") << "\n";
+			<< _("Please verify that above path is correct") << "\n";
 		wxMessageBox(msgStr, _("Attachments folder not found"), wxICON_ERROR);
 	}
 }
@@ -349,14 +349,7 @@ bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxSt
 	if (!wxDirExists(destinationFolder))
 	{
 		if (!wxMkdir(destinationFolder))
-		{
-			wxString msgStr = wxString() << _("Unable to create folder:") << "\n"
-				<< "'" << destinationFolder << "'" << "\n"
-				<< "\n"
-				<< _("Please verify that user has rights into it.") << "\n";
-			wxMessageBox(msgStr, _("Import attachment failed"), wxICON_ERROR);
 			return false;
-		}
 	}
 	if (wxFileExists(ImportedFile))
 	{
@@ -381,26 +374,11 @@ bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxSt
 	}
 	else if (wxCopyFile(FileToImport, ImportedFile))
 	{
-		if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false) && !wxRemoveFile(FileToImport))
-		{
-			wxString msgStr = wxString() << _("Unable to delete file:") << "\n"
-				<< "'" << FileToImport << "'" << "\n"
-				<< "\n"
-				<< _("Please verify that file is not open and user has rights to delete it.") << "\n";
-			wxMessageBox(msgStr, _("Delete imported file failed"), wxICON_ERROR);
-		}
+		if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false))
+			wxRemoveFile(FileToImport);
 	}
 	else
-	{
-		wxString msgStr = wxString() << _("Unable to copy file:") << "\n"
-			<< "'" << FileToImport << "'" << "\n"
-			<< _("to folder:") << "\n"
-			<< "'" << wxPathOnly(ImportedFile) << "'" << "\n"
-			<< "\n"
-			<<_("Please verify that destination folder exists and user has rights to write into it.") << "\n";
-		wxMessageBox(msgStr, _("Import attachment failed"), wxICON_ERROR);
 		return false;
-	}
 
 	return true;
 }
@@ -417,40 +395,17 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 			if (!wxDirExists(DeletedAttachmentFolder))
 			{
 				if (!wxMkdir(DeletedAttachmentFolder))
-				{
-					wxString msgStr = wxString() << _("Unable to create folder:") << "\n"
-						<< "'" << DeletedAttachmentFolder << "'" << "\n"
-						<< "\n"
-						<< _("Please verify that user has rights into it.") << "\n";
-					wxMessageBox(msgStr, _("Import attachment failed"), wxICON_ERROR);
 					return false;
-				}
 			}
 
-			wxFileName fn(FileToDelete);
 			wxString FileToTrash = DeletedAttachmentFolder + wxFileName::GetPathSeparator()
-				+ wxDateTime::Now().FormatISODate() + "_"
-				+ fn.FileName(FileToDelete).GetName() + "." + fn.FileName(FileToDelete).GetExt();
+				+ wxDateTime::Now().FormatISODate() + "_" + wxFileNameFromPath(FileToDelete);
 
 			if (!wxRenameFile(FileToDelete, FileToTrash))
-			{
-				wxString msgStr = wxString() << _("Unable to move file:") << "\n"
-					<< "'" << FileToDelete << "' to " << "\n"
-					<< "'" << FileToTrash << "'" << "\n"
-					<< _("Please verify that user has rights to do it.") << "\n";
-				wxMessageBox(msgStr, _("Trash attachment failed"), wxICON_ERROR);
 				return false;
-			}
 		}
 		else if (!wxRemoveFile(FileToDelete))
-		{
-			wxString msgStr = wxString() << _("Unable to delete attachment:") << "\n"
-				<< "'" << FileToDelete << "'" << "\n"
-				<< "\n"
-				<< _("Please verify that file is not open and user has rights to delete it.") << "\n";
-			wxMessageBox(msgStr, _("Delete attachment file failed"), wxICON_ERROR);
 			return false;
-		}
 	}
 	else
 	{

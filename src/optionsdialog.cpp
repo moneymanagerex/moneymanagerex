@@ -1308,16 +1308,7 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
 	//Create attachments folder
 	wxString attachmentFolderPath = mmAttachmentManage::GetAttachmentsFolder();
 	if (!wxDirExists(attachmentFolderPath))
-	{
-		if (!wxMkdir(attachmentFolderPath))
-		{
-			wxString msgStr = wxString() << _("Unable to create folder:") << "\n"
-				<< "'" << attachmentFolderPath << "'" << "\n"
-				<< "\n"
-				<< _("Please verify that user has rights into it.") << "\n";
-			wxMessageBox(msgStr, _("Import attachment failed"), wxICON_ERROR);
-		}
-	}
+		wxMkdir(attachmentFolderPath);
 
 	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
 	Model_Infotable::instance().Set("ATTACHMENTSTRASH", cbTrashAttachments_->GetValue());
