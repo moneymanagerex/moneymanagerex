@@ -348,6 +348,7 @@ bool mmQIFImportDialog::mmParseQIF()
                 while (input.IsOk() && !input.Eof() && reading)
                 {
                     readLine = text.ReadLine();
+                    lineType = m_QIFimport->lineType(readLine);
                     numLines++;
                     if (lineType == AcctType)
                     {
@@ -400,6 +401,7 @@ bool mmQIFImportDialog::mmParseQIF()
             if ( accountType == "Option:AutoSwitch" )
             {
                 readLine = text.ReadLine();
+                lineType = m_QIFimport->lineType(readLine);
                 numLines++;
                 while(readLine != "^" || input.Eof())
                 {
