@@ -149,16 +149,8 @@ void mmGeneralReportManager::CreateControls()
     /****************************************
      Parameters Area
      ***************************************/
-
-    wxBoxSizer* headingPanelSizerH = new wxBoxSizer(wxHORIZONTAL);
-    mainBoxSizer->Add(headingPanelSizerH, 5, wxGROW | wxALL, 5);
-
-    wxBoxSizer* headingPanelSizerH2 = new wxBoxSizer(wxVERTICAL);
-    headingPanelSizerH2->AddSpacer(15);
-
-    headingPanelSizerH->Add(headingPanelSizerH2, 0, wxEXPAND);
-    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 0);
-    //
+    wxBoxSizer* topScreenSizer = new wxBoxSizer(wxHORIZONTAL);
+    mainBoxSizer->Add(topScreenSizer, 1, wxGROW | wxALL);
 
 #if defined (__WXMSW__)
     long treeCtrlFlags = wxTR_SINGLE | wxTR_HAS_BUTTONS | wxTR_ROW_LINES;
@@ -168,21 +160,27 @@ void mmGeneralReportManager::CreateControls()
     m_treeCtrl = new wxTreeCtrl(this, ID_REPORT_LIST
         , wxDefaultPosition, wxSize(titleTextWidth, titleTextWidth), treeCtrlFlags);
 
-    headingPanelSizerH2->Add(flex_sizer, g_flags);
-    headingPanelSizerH2->Add(m_treeCtrl, g_flagsExpand);
+    wxBoxSizer* reportTreeSizer = new wxBoxSizer(wxVERTICAL);
+    reportTreeSizer->Add(m_treeCtrl, g_flagsExpand);
 
     /****************************************
      Script Area
      ***************************************/
     // ListBox for source code
-    wxBoxSizer* headingPanelSizerV3 = new wxBoxSizer(wxVERTICAL);
-    headingPanelSizerH->Add(headingPanelSizerV3, g_flagsExpand);
-
+    wxBoxSizer* notebookSizer = new wxBoxSizer(wxVERTICAL);
     wxNotebook* editors_notebook = new wxNotebook(this
         , ID_NOTEBOOK, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
-    headingPanelSizerV3->Add(editors_notebook, g_flagsExpand);
-
+    notebookSizer->Add(editors_notebook, g_flagsExpand);
     createOutputTab(editors_notebook, ID_TAB_OUT);
+
+    topScreenSizer->Add(reportTreeSizer, 0, wxEXPAND | wxALL, 5);
+    topScreenSizer->Add(notebookSizer, g_flagsExpand);
+
+    /****************************************
+     Separation Line
+     ***************************************/
+    wxStaticLine* staticline1 = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
+    mainBoxSizer->Add(staticline1, 0, wxEXPAND | wxALL, 1);
 
     /****************************************
      Bottom Panel
