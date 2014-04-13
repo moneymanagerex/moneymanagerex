@@ -280,10 +280,16 @@ bool mmQIFImportDialog::mmParseQIF()
         , m_numLines, this, wxPD_APP_MODAL | wxPD_CAN_ABORT | wxPD_AUTO_HIDE);
 
     m_data.trxComplited = true;
+    wxLongLong start = wxGetUTCTimeMillis();
     while (input.IsOk() && !input.Eof())
     {
-        if (!progressDlg.Update(++numLines, wxString::Format(_("Reading line %i of %i"), numLines, m_numLines))) // if cancel clicked
-            break; // abort processing
+        ++ numLines;
+        if (numLines % 100 == 0 || numLines == m_numLines)
+        {
+            wxLongLong interval = wxGetUTCTimeMillis() - start;
+            if (!progressDlg.Update(numLines, wxString::Format(_("Reading line %i of %i, %ld ms"), numLines, m_numLines, interval.ToLong()))) 
+                break;
+        }
 
         wxString readLine = text.ReadLine();
 
