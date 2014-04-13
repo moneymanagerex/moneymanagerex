@@ -88,7 +88,7 @@ private:
 
     void SaveGeneralPanelSettings();
     void SaveViewPanelSettings();
-    void SaveColourPanelSettings();
+    void SaveAttachmentPanelSettings();
     void SaveOthersPanelSettings();
     void SaveImportExportPanelSettings();
     void OnOk(wxCommandEvent& /*event*/);
