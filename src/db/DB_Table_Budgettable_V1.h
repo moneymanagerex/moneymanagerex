@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -245,22 +245,22 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("BUDGETENTRYID") = BUDGETENTRYID;
-            row("BUDGETYEARID") = BUDGETYEARID;
-            row("CATEGID") = CATEGID;
-            row("SUBCATEGID") = SUBCATEGID;
-            row("PERIOD") = PERIOD;
-            row("AMOUNT") = AMOUNT;
+            row(L"BUDGETENTRYID") = BUDGETENTRYID;
+            row(L"BUDGETYEARID") = BUDGETYEARID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"PERIOD") = PERIOD;
+            row(L"AMOUNT") = AMOUNT;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("BUDGETENTRYID") = BUDGETENTRYID;
-            t("BUDGETYEARID") = BUDGETYEARID;
-            t("CATEGID") = CATEGID;
-            t("SUBCATEGID") = SUBCATEGID;
-            t("PERIOD") = PERIOD;
-            t("AMOUNT") = AMOUNT;
+            t(L"BUDGETENTRYID") = BUDGETENTRYID;
+            t(L"BUDGETYEARID") = BUDGETYEARID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"PERIOD") = PERIOD;
+            t(L"AMOUNT") = AMOUNT;
         }
 
         /** Save the record instance in memory to the database. */

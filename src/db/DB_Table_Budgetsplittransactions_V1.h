@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -234,20 +234,20 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("SPLITTRANSID") = SPLITTRANSID;
-            row("TRANSID") = TRANSID;
-            row("CATEGID") = CATEGID;
-            row("SUBCATEGID") = SUBCATEGID;
-            row("SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            row(L"SPLITTRANSID") = SPLITTRANSID;
+            row(L"TRANSID") = TRANSID;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("SPLITTRANSID") = SPLITTRANSID;
-            t("TRANSID") = TRANSID;
-            t("CATEGID") = CATEGID;
-            t("SUBCATEGID") = SUBCATEGID;
-            t("SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
+            t(L"SPLITTRANSID") = SPLITTRANSID;
+            t(L"TRANSID") = TRANSID;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"SPLITTRANSAMOUNT") = SPLITTRANSAMOUNT;
         }
 
         /** Save the record instance in memory to the database. */

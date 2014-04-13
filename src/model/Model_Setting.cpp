@@ -162,6 +162,6 @@ row_t Model_Setting::to_row_t()
 {
     row_t row;
     for (const auto &r: instance().all())
-        row(r.SETTINGNAME.ToStdString()) = r.SETTINGVALUE;
+        row(r.SETTINGNAME.ToStdWstring()) = r.SETTINGVALUE;
     return row;
 }

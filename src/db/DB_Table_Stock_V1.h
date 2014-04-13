@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -302,32 +302,32 @@ struct DB_Table_STOCK_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("STOCKID") = STOCKID;
-            row("HELDAT") = HELDAT;
-            row("PURCHASEDATE") = PURCHASEDATE;
-            row("STOCKNAME") = STOCKNAME;
-            row("SYMBOL") = SYMBOL;
-            row("NUMSHARES") = NUMSHARES;
-            row("PURCHASEPRICE") = PURCHASEPRICE;
-            row("NOTES") = NOTES;
-            row("CURRENTPRICE") = CURRENTPRICE;
-            row("VALUE") = VALUE;
-            row("COMMISSION") = COMMISSION;
+            row(L"STOCKID") = STOCKID;
+            row(L"HELDAT") = HELDAT;
+            row(L"PURCHASEDATE") = PURCHASEDATE;
+            row(L"STOCKNAME") = STOCKNAME;
+            row(L"SYMBOL") = SYMBOL;
+            row(L"NUMSHARES") = NUMSHARES;
+            row(L"PURCHASEPRICE") = PURCHASEPRICE;
+            row(L"NOTES") = NOTES;
+            row(L"CURRENTPRICE") = CURRENTPRICE;
+            row(L"VALUE") = VALUE;
+            row(L"COMMISSION") = COMMISSION;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("STOCKID") = STOCKID;
-            t("HELDAT") = HELDAT;
-            t("PURCHASEDATE") = PURCHASEDATE;
-            t("STOCKNAME") = STOCKNAME;
-            t("SYMBOL") = SYMBOL;
-            t("NUMSHARES") = NUMSHARES;
-            t("PURCHASEPRICE") = PURCHASEPRICE;
-            t("NOTES") = NOTES;
-            t("CURRENTPRICE") = CURRENTPRICE;
-            t("VALUE") = VALUE;
-            t("COMMISSION") = COMMISSION;
+            t(L"STOCKID") = STOCKID;
+            t(L"HELDAT") = HELDAT;
+            t(L"PURCHASEDATE") = PURCHASEDATE;
+            t(L"STOCKNAME") = STOCKNAME;
+            t(L"SYMBOL") = SYMBOL;
+            t(L"NUMSHARES") = NUMSHARES;
+            t(L"PURCHASEPRICE") = PURCHASEPRICE;
+            t(L"NOTES") = NOTES;
+            t(L"CURRENTPRICE") = CURRENTPRICE;
+            t(L"VALUE") = VALUE;
+            t(L"COMMISSION") = COMMISSION;
         }
 
         /** Save the record instance in memory to the database. */

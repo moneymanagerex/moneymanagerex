@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -298,32 +298,32 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("CURRENCYID") = CURRENCYID;
-            row("CURRENCYNAME") = CURRENCYNAME;
-            row("PFX_SYMBOL") = PFX_SYMBOL;
-            row("SFX_SYMBOL") = SFX_SYMBOL;
-            row("DECIMAL_POINT") = DECIMAL_POINT;
-            row("GROUP_SEPARATOR") = GROUP_SEPARATOR;
-            row("UNIT_NAME") = UNIT_NAME;
-            row("CENT_NAME") = CENT_NAME;
-            row("SCALE") = SCALE;
-            row("BASECONVRATE") = BASECONVRATE;
-            row("CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
+            row(L"CURRENCYID") = CURRENCYID;
+            row(L"CURRENCYNAME") = CURRENCYNAME;
+            row(L"PFX_SYMBOL") = PFX_SYMBOL;
+            row(L"SFX_SYMBOL") = SFX_SYMBOL;
+            row(L"DECIMAL_POINT") = DECIMAL_POINT;
+            row(L"GROUP_SEPARATOR") = GROUP_SEPARATOR;
+            row(L"UNIT_NAME") = UNIT_NAME;
+            row(L"CENT_NAME") = CENT_NAME;
+            row(L"SCALE") = SCALE;
+            row(L"BASECONVRATE") = BASECONVRATE;
+            row(L"CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("CURRENCYID") = CURRENCYID;
-            t("CURRENCYNAME") = CURRENCYNAME;
-            t("PFX_SYMBOL") = PFX_SYMBOL;
-            t("SFX_SYMBOL") = SFX_SYMBOL;
-            t("DECIMAL_POINT") = DECIMAL_POINT;
-            t("GROUP_SEPARATOR") = GROUP_SEPARATOR;
-            t("UNIT_NAME") = UNIT_NAME;
-            t("CENT_NAME") = CENT_NAME;
-            t("SCALE") = SCALE;
-            t("BASECONVRATE") = BASECONVRATE;
-            t("CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
+            t(L"CURRENCYID") = CURRENCYID;
+            t(L"CURRENCYNAME") = CURRENCYNAME;
+            t(L"PFX_SYMBOL") = PFX_SYMBOL;
+            t(L"SFX_SYMBOL") = SFX_SYMBOL;
+            t(L"DECIMAL_POINT") = DECIMAL_POINT;
+            t(L"GROUP_SEPARATOR") = GROUP_SEPARATOR;
+            t(L"UNIT_NAME") = UNIT_NAME;
+            t(L"CENT_NAME") = CENT_NAME;
+            t(L"SCALE") = SCALE;
+            t(L"BASECONVRATE") = BASECONVRATE;
+            t(L"CURRENCY_SYMBOL") = CURRENCY_SYMBOL;
         }
 
         /** Save the record instance in memory to the database. */

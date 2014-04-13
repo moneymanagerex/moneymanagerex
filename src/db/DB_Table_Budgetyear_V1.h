@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -197,14 +197,14 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("BUDGETYEARID") = BUDGETYEARID;
-            row("BUDGETYEARNAME") = BUDGETYEARNAME;
+            row(L"BUDGETYEARID") = BUDGETYEARID;
+            row(L"BUDGETYEARNAME") = BUDGETYEARNAME;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("BUDGETYEARID") = BUDGETYEARID;
-            t("BUDGETYEARNAME") = BUDGETYEARNAME;
+            t(L"BUDGETYEARID") = BUDGETYEARID;
+            t(L"BUDGETYEARNAME") = BUDGETYEARNAME;
         }
 
         /** Save the record instance in memory to the database. */

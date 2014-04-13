@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -338,38 +338,38 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("TRANSID") = TRANSID;
-            row("ACCOUNTID") = ACCOUNTID;
-            row("TOACCOUNTID") = TOACCOUNTID;
-            row("PAYEEID") = PAYEEID;
-            row("TRANSCODE") = TRANSCODE;
-            row("TRANSAMOUNT") = TRANSAMOUNT;
-            row("STATUS") = STATUS;
-            row("TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
-            row("NOTES") = NOTES;
-            row("CATEGID") = CATEGID;
-            row("SUBCATEGID") = SUBCATEGID;
-            row("TRANSDATE") = TRANSDATE;
-            row("FOLLOWUPID") = FOLLOWUPID;
-            row("TOTRANSAMOUNT") = TOTRANSAMOUNT;
+            row(L"TRANSID") = TRANSID;
+            row(L"ACCOUNTID") = ACCOUNTID;
+            row(L"TOACCOUNTID") = TOACCOUNTID;
+            row(L"PAYEEID") = PAYEEID;
+            row(L"TRANSCODE") = TRANSCODE;
+            row(L"TRANSAMOUNT") = TRANSAMOUNT;
+            row(L"STATUS") = STATUS;
+            row(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
+            row(L"NOTES") = NOTES;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"TRANSDATE") = TRANSDATE;
+            row(L"FOLLOWUPID") = FOLLOWUPID;
+            row(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("TRANSID") = TRANSID;
-            t("ACCOUNTID") = ACCOUNTID;
-            t("TOACCOUNTID") = TOACCOUNTID;
-            t("PAYEEID") = PAYEEID;
-            t("TRANSCODE") = TRANSCODE;
-            t("TRANSAMOUNT") = TRANSAMOUNT;
-            t("STATUS") = STATUS;
-            t("TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
-            t("NOTES") = NOTES;
-            t("CATEGID") = CATEGID;
-            t("SUBCATEGID") = SUBCATEGID;
-            t("TRANSDATE") = TRANSDATE;
-            t("FOLLOWUPID") = FOLLOWUPID;
-            t("TOTRANSAMOUNT") = TOTRANSAMOUNT;
+            t(L"TRANSID") = TRANSID;
+            t(L"ACCOUNTID") = ACCOUNTID;
+            t(L"TOACCOUNTID") = TOACCOUNTID;
+            t(L"PAYEEID") = PAYEEID;
+            t(L"TRANSCODE") = TRANSCODE;
+            t(L"TRANSAMOUNT") = TRANSAMOUNT;
+            t(L"STATUS") = STATUS;
+            t(L"TRANSACTIONNUMBER") = TRANSACTIONNUMBER;
+            t(L"NOTES") = NOTES;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"TRANSDATE") = TRANSDATE;
+            t(L"FOLLOWUPID") = FOLLOWUPID;
+            t(L"TOTRANSAMOUNT") = TOTRANSAMOUNT;
         }
 
         /** Save the record instance in memory to the database. */

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -209,16 +209,16 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("SUBCATEGID") = SUBCATEGID;
-            row("SUBCATEGNAME") = SUBCATEGNAME;
-            row("CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
+            row(L"SUBCATEGNAME") = SUBCATEGNAME;
+            row(L"CATEGID") = CATEGID;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("SUBCATEGID") = SUBCATEGID;
-            t("SUBCATEGNAME") = SUBCATEGNAME;
-            t("CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
+            t(L"SUBCATEGNAME") = SUBCATEGNAME;
+            t(L"CATEGID") = CATEGID;
         }
 
         /** Save the record instance in memory to the database. */

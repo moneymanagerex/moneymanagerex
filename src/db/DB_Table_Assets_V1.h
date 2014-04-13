@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -265,26 +265,26 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("ASSETID") = ASSETID;
-            row("STARTDATE") = STARTDATE;
-            row("ASSETNAME") = ASSETNAME;
-            row("VALUE") = VALUE;
-            row("VALUECHANGE") = VALUECHANGE;
-            row("NOTES") = NOTES;
-            row("VALUECHANGERATE") = VALUECHANGERATE;
-            row("ASSETTYPE") = ASSETTYPE;
+            row(L"ASSETID") = ASSETID;
+            row(L"STARTDATE") = STARTDATE;
+            row(L"ASSETNAME") = ASSETNAME;
+            row(L"VALUE") = VALUE;
+            row(L"VALUECHANGE") = VALUECHANGE;
+            row(L"NOTES") = NOTES;
+            row(L"VALUECHANGERATE") = VALUECHANGERATE;
+            row(L"ASSETTYPE") = ASSETTYPE;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("ASSETID") = ASSETID;
-            t("STARTDATE") = STARTDATE;
-            t("ASSETNAME") = ASSETNAME;
-            t("VALUE") = VALUE;
-            t("VALUECHANGE") = VALUECHANGE;
-            t("NOTES") = NOTES;
-            t("VALUECHANGERATE") = VALUECHANGERATE;
-            t("ASSETTYPE") = ASSETTYPE;
+            t(L"ASSETID") = ASSETID;
+            t(L"STARTDATE") = STARTDATE;
+            t(L"ASSETNAME") = ASSETNAME;
+            t(L"VALUE") = VALUE;
+            t(L"VALUECHANGE") = VALUECHANGE;
+            t(L"NOTES") = NOTES;
+            t(L"VALUECHANGERATE") = VALUECHANGERATE;
+            t(L"ASSETTYPE") = ASSETTYPE;
         }
 
         /** Save the record instance in memory to the database. */

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -252,24 +252,24 @@ struct DB_Table_REPORT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("REPORTID") = REPORTID;
-            row("REPORTNAME") = REPORTNAME;
-            row("GROUPNAME") = GROUPNAME;
-            row("SQLCONTENT") = SQLCONTENT;
-            row("LUACONTENT") = LUACONTENT;
-            row("TEMPLATECONTENT") = TEMPLATECONTENT;
-            row("DESCRIPTION") = DESCRIPTION;
+            row(L"REPORTID") = REPORTID;
+            row(L"REPORTNAME") = REPORTNAME;
+            row(L"GROUPNAME") = GROUPNAME;
+            row(L"SQLCONTENT") = SQLCONTENT;
+            row(L"LUACONTENT") = LUACONTENT;
+            row(L"TEMPLATECONTENT") = TEMPLATECONTENT;
+            row(L"DESCRIPTION") = DESCRIPTION;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("REPORTID") = REPORTID;
-            t("REPORTNAME") = REPORTNAME;
-            t("GROUPNAME") = GROUPNAME;
-            t("SQLCONTENT") = SQLCONTENT;
-            t("LUACONTENT") = LUACONTENT;
-            t("TEMPLATECONTENT") = TEMPLATECONTENT;
-            t("DESCRIPTION") = DESCRIPTION;
+            t(L"REPORTID") = REPORTID;
+            t(L"REPORTNAME") = REPORTNAME;
+            t(L"GROUPNAME") = GROUPNAME;
+            t(L"SQLCONTENT") = SQLCONTENT;
+            t(L"LUACONTENT") = LUACONTENT;
+            t(L"TEMPLATECONTENT") = TEMPLATECONTENT;
+            t(L"DESCRIPTION") = DESCRIPTION;
         }
 
         /** Save the record instance in memory to the database. */

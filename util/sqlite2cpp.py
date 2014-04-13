@@ -324,7 +324,7 @@ struct DB_Table_%s : public DB_Table
             row_t row;'''
         for field in self._fields:
             s += '''
-            row("%s") = %s;'''%(field['name'], field['name'])
+            row(L"%s") = %s;'''%(field['name'], field['name'])
 
         s+='''
             return row;
@@ -335,7 +335,7 @@ struct DB_Table_%s : public DB_Table
         {'''
         for field in self._fields:
             s += '''
-            t("%s") = %s;''' % (field['name'], field['name'])
+            t(L"%s") = %s;''' % (field['name'], field['name'])
 
         s +='''
         }'''

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -320,36 +320,36 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("ACCOUNTID") = ACCOUNTID;
-            row("ACCOUNTNAME") = ACCOUNTNAME;
-            row("ACCOUNTTYPE") = ACCOUNTTYPE;
-            row("ACCOUNTNUM") = ACCOUNTNUM;
-            row("STATUS") = STATUS;
-            row("NOTES") = NOTES;
-            row("HELDAT") = HELDAT;
-            row("WEBSITE") = WEBSITE;
-            row("CONTACTINFO") = CONTACTINFO;
-            row("ACCESSINFO") = ACCESSINFO;
-            row("INITIALBAL") = INITIALBAL;
-            row("FAVORITEACCT") = FAVORITEACCT;
-            row("CURRENCYID") = CURRENCYID;
+            row(L"ACCOUNTID") = ACCOUNTID;
+            row(L"ACCOUNTNAME") = ACCOUNTNAME;
+            row(L"ACCOUNTTYPE") = ACCOUNTTYPE;
+            row(L"ACCOUNTNUM") = ACCOUNTNUM;
+            row(L"STATUS") = STATUS;
+            row(L"NOTES") = NOTES;
+            row(L"HELDAT") = HELDAT;
+            row(L"WEBSITE") = WEBSITE;
+            row(L"CONTACTINFO") = CONTACTINFO;
+            row(L"ACCESSINFO") = ACCESSINFO;
+            row(L"INITIALBAL") = INITIALBAL;
+            row(L"FAVORITEACCT") = FAVORITEACCT;
+            row(L"CURRENCYID") = CURRENCYID;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("ACCOUNTID") = ACCOUNTID;
-            t("ACCOUNTNAME") = ACCOUNTNAME;
-            t("ACCOUNTTYPE") = ACCOUNTTYPE;
-            t("ACCOUNTNUM") = ACCOUNTNUM;
-            t("STATUS") = STATUS;
-            t("NOTES") = NOTES;
-            t("HELDAT") = HELDAT;
-            t("WEBSITE") = WEBSITE;
-            t("CONTACTINFO") = CONTACTINFO;
-            t("ACCESSINFO") = ACCESSINFO;
-            t("INITIALBAL") = INITIALBAL;
-            t("FAVORITEACCT") = FAVORITEACCT;
-            t("CURRENCYID") = CURRENCYID;
+            t(L"ACCOUNTID") = ACCOUNTID;
+            t(L"ACCOUNTNAME") = ACCOUNTNAME;
+            t(L"ACCOUNTTYPE") = ACCOUNTTYPE;
+            t(L"ACCOUNTNUM") = ACCOUNTNUM;
+            t(L"STATUS") = STATUS;
+            t(L"NOTES") = NOTES;
+            t(L"HELDAT") = HELDAT;
+            t(L"WEBSITE") = WEBSITE;
+            t(L"CONTACTINFO") = CONTACTINFO;
+            t(L"ACCESSINFO") = ACCESSINFO;
+            t(L"INITIALBAL") = INITIALBAL;
+            t(L"FAVORITEACCT") = FAVORITEACCT;
+            t(L"CURRENCYID") = CURRENCYID;
         }
 
         /** Save the record instance in memory to the database. */

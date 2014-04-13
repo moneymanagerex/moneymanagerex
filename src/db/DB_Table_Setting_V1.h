@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -208,16 +208,16 @@ struct DB_Table_SETTING_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("SETTINGID") = SETTINGID;
-            row("SETTINGNAME") = SETTINGNAME;
-            row("SETTINGVALUE") = SETTINGVALUE;
+            row(L"SETTINGID") = SETTINGID;
+            row(L"SETTINGNAME") = SETTINGNAME;
+            row(L"SETTINGVALUE") = SETTINGVALUE;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("SETTINGID") = SETTINGID;
-            t("SETTINGNAME") = SETTINGNAME;
-            t("SETTINGVALUE") = SETTINGVALUE;
+            t(L"SETTINGID") = SETTINGID;
+            t(L"SETTINGNAME") = SETTINGNAME;
+            t(L"SETTINGVALUE") = SETTINGVALUE;
         }
 
         /** Save the record instance in memory to the database. */

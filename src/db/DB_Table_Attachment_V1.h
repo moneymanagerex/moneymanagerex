@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -231,20 +231,20 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("ATTACHMENTID") = ATTACHMENTID;
-            row("REFTYPE") = REFTYPE;
-            row("REFID") = REFID;
-            row("DESCRIPTION") = DESCRIPTION;
-            row("FILENAME") = FILENAME;
+            row(L"ATTACHMENTID") = ATTACHMENTID;
+            row(L"REFTYPE") = REFTYPE;
+            row(L"REFID") = REFID;
+            row(L"DESCRIPTION") = DESCRIPTION;
+            row(L"FILENAME") = FILENAME;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("ATTACHMENTID") = ATTACHMENTID;
-            t("REFTYPE") = REFTYPE;
-            t("REFID") = REFID;
-            t("DESCRIPTION") = DESCRIPTION;
-            t("FILENAME") = FILENAME;
+            t(L"ATTACHMENTID") = ATTACHMENTID;
+            t(L"REFTYPE") = REFTYPE;
+            t(L"REFID") = REFID;
+            t(L"DESCRIPTION") = DESCRIPTION;
+            t(L"FILENAME") = FILENAME;
         }
 
         /** Save the record instance in memory to the database. */

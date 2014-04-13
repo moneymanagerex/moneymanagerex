@@ -70,13 +70,14 @@ static const wxString HTT_CONTEINER =
 "</script>\n"
 "</html>\n";
 
-class Record : public std::map<std::string, std::string>
+class Record : public std::map<std::wstring, std::wstring>
 {
 public:
     Record(){}
     ~Record(){}
-    std::string get(const char* index) { return (*this)[std::string(index)]; }
-    void set(const char* index, const char * val) { (*this)[std::string(index)] = std::string(val); }
+    /* Access functions for LuaGlue (The required conversion between char and wchar_t is done through wxString.) */
+    std::string get(const char* index) { return wxString((*this)[wxString(index).ToStdWstring()]).ToStdString(); }
+    void set(const char* index, const char * val) { (*this)[wxString(index).ToStdWstring()] = wxString(val).ToStdWstring(); }
 };
 
 Model_Report::Model_Report(): Model<DB_Table_REPORT_V1>()
@@ -127,7 +128,7 @@ wxString Model_Report::get_html(const Data* r)
 
     if (!this->db_->CheckSyntax(r->SQLCONTENT))
     {
-        error("ERROR") = wxString("Syntax Error : ") + r->SQLCONTENT;
+        error(L"ERROR") = wxString("Syntax Error : ") + r->SQLCONTENT;
         errors += error;
     }
     else
@@ -137,26 +138,26 @@ wxString Model_Report::get_html(const Data* r)
 
         if (!stmt.IsReadOnly())
         {
-            error("ERROR") = r->SQLCONTENT + " will modify database! aborted!";
+            error(L"ERROR") = r->SQLCONTENT + wxString(" will modify database! aborted!");
             errors += error;
         }
         else
         {
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             int columnCount = q.GetColumnCount();
-            std::map <std::string, int> colHeaders;
+            std::map <std::wstring, int> colHeaders;
 
             loop_t columns;
             for (int i = 0; i < columnCount; ++i)
             {
                 int col_type = q.GetColumnType(i);
-                const std::string col_name = q.GetColumnName(i).ToStdString();
+                const std::wstring col_name = q.GetColumnName(i);
                 colHeaders[col_name] = col_type;
                 row_t row;
-                row("COLUMN") = col_name;
+                row(L"COLUMN") = col_name;
                 columns += row;
             }
-            report("COLUMNS") = columns;
+            report(L"COLUMNS") = columns;
 
             LuaGlue state;
             state.
@@ -170,7 +171,7 @@ wxString Model_Report::get_html(const Data* r)
             bool lua_status = state.doString(r->LUACONTENT.ToStdString());
             if (!skip_lua && !lua_status)
             {
-                error("ERROR") = "failed to doString : " + r->LUACONTENT + " err: " + state.lastError();
+                error(L"ERROR") = wxString("failed to doString : ") + r->LUACONTENT + wxString(" err: ") + wxString(state.lastError());
                 errors += error;
             }
 
@@ -180,7 +181,7 @@ wxString Model_Report::get_html(const Data* r)
                 for (int i = 0; i < columnCount; ++ i)
                 {
                     const wxString column_name = q.GetColumnName(i);
-                    r[column_name.ToStdString()] = q.GetAsString(i);
+                    r[column_name.ToStdWstring()] = q.GetAsString(i);
                 }
 
                 if (lua_status && !skip_lua) 
@@ -191,17 +192,17 @@ wxString Model_Report::get_html(const Data* r)
                     }
                     catch (const std::runtime_error& e)
                     {
-                        error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                        error(L"ERROR") = wxString("failed to call handle_record : ") + wxString(e.what());
                         errors += error;
                     }
                     catch (const std::exception& e)
                     {
-                        error("ERROR") = std::string("failed to call handle_record : ") + e.what();
+                        error(L"ERROR") = wxString("failed to call handle_record : ") + wxString(e.what());
                         errors += error;
                     }
                     catch (...)
                     {
-                        error("ERROR") = "failed to call handle_record ";
+                        error(L"ERROR") = L"failed to call handle_record ";
                         errors += error;
                     }
                 }
@@ -215,10 +216,10 @@ wxString Model_Report::get_html(const Data* r)
                     if ((colHeaders[item.first] == WXSQLITE_INTEGER || colHeaders[item.first] == WXSQLITE_FLOAT)
                         && wxString(item.second).ToDouble(&v))
                     {
-                        o[item.first] = json::Number(v);
+                        o[wxString(item.first).ToStdString()] = json::Number(v);
                     }
                     else
-                        o[item.first] = json::String(item.second);
+                        o[wxString(item.first).ToStdString()] = json::String(wxString(item.second).ToStdString());
                 }
                 contents += row;
                 jsoncontents.Insert(o);
@@ -235,17 +236,17 @@ wxString Model_Report::get_html(const Data* r)
                 }
                 catch (const std::runtime_error& e)
                 {
-                    error("ERROR") = std::string("failed to call complete: ") + e.what();
+                    error(L"ERROR") = wxString("failed to call complete: ") + wxString(e.what());
                     errors += error;
                 }
                 catch (const std::exception& e)
                 {
-                    error("ERROR") = std::string("failed to call complete: ") + e.what();
+                    error(L"ERROR") = wxString("failed to call complete: ") + wxString(e.what());
                     errors += error;
                 }
                 catch (...)
                 {
-                    error("ERROR") = "failed to call complete";
+                    error(L"ERROR") = L"failed to call complete";
                     errors += error;
                 }
             }
@@ -253,13 +254,13 @@ wxString Model_Report::get_html(const Data* r)
         }
     }
 
-    report("CONTENTS") = contents;
+    report(L"CONTENTS") = contents;
     {
         std::stringstream ss;
         json::Writer::Write(jsoncontents, ss);
-        report("JSONCONTENTS") = ss.str();
+        report(L"JSONCONTENTS") = wxString(ss.str());
     }
-    report("ERRORS") = errors;
+    report(L"ERRORS") = errors;
 
     const wxString out = wxString(report.Process());
     wxRemoveFile(fNameTemplate);

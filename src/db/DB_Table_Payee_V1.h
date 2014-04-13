@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-06 14:15:34.688000.
+ *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -221,18 +221,18 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         row_t to_row_t() const
         {
             row_t row;
-            row("PAYEEID") = PAYEEID;
-            row("PAYEENAME") = PAYEENAME;
-            row("CATEGID") = CATEGID;
-            row("SUBCATEGID") = SUBCATEGID;
+            row(L"PAYEEID") = PAYEEID;
+            row(L"PAYEENAME") = PAYEENAME;
+            row(L"CATEGID") = CATEGID;
+            row(L"SUBCATEGID") = SUBCATEGID;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t("PAYEEID") = PAYEEID;
-            t("PAYEENAME") = PAYEENAME;
-            t("CATEGID") = CATEGID;
-            t("SUBCATEGID") = SUBCATEGID;
+            t(L"PAYEEID") = PAYEEID;
+            t(L"PAYEENAME") = PAYEENAME;
+            t(L"CATEGID") = CATEGID;
+            t(L"SUBCATEGID") = SUBCATEGID;
         }
 
         /** Save the record instance in memory to the database. */
