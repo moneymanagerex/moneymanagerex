@@ -68,13 +68,7 @@ Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxString& R
 /** Return the number of attachments linked to a specific object */
 int Model_Attachment::NrAttachments(const wxString& RefType, const int RefId)
 {
-	int NrAttachments = 0;
-	for (auto &attachment : Model_Attachment::instance().all())
-	{
-		if (attachment.REFTYPE.Lower().Matches(RefType.Lower().Append("*")) && attachment.REFID == RefId)
-			NrAttachments++;
-	}
-	return NrAttachments;
+	return Model_Attachment::instance().find(Model_Attachment::DB_Table_ATTACHMENT_V1::REFTYPE(RefType), Model_Attachment::REFID(RefId)).size();
 }
 
 /** Return the last attachment file name linked to a specific object */

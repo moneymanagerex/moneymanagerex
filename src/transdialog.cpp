@@ -939,8 +939,9 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
 	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-	int RefId = transaction_id_;
-	mmAttachmentDialog dlg(this, RefType, RefId);
+	if (!transaction_id_)
+		mmAttachmentManage::DeleteAllAttachments(RefType, transaction_id_);
+	mmAttachmentDialog dlg(this, RefType, transaction_id_);
 	dlg.ShowModal();
 }
 
@@ -985,6 +986,7 @@ void mmTransDialog::onNoteSelected(wxCommandEvent& event)
 
 void mmTransDialog::OnOk(wxCommandEvent& event)
 {
+	int old_transaction_id = transaction_id_;
     if (!validateData()) return;
 
     transaction_->STATUS = "";
@@ -1007,6 +1009,12 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 
     if (category_changed_)
         Model_Splittransaction::instance().update(m_local_splits, transaction_id_);
+
+	if (!old_transaction_id)
+	{
+		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
+		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, transaction_id_);
+	}
 
     wxLogDebug(transaction_->to_json());
     EndModal(wxID_OK);
@@ -1101,11 +1109,6 @@ void mmTransDialog::setTooltips()
 		bCategory_->SetToolTip(_("Specify the category for this transaction"));
     else
 		bCategory_->SetToolTip(_("Specify categories for this transaction"));
-
-	if (transaction_id_)
-		bAttachments_->Enable(true);
-	else
-		bAttachments_->Enable(false);
 
     //Permanent
     dpc_->SetToolTip(_("Specify the date of the transaction"));
