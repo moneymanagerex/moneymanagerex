@@ -30,12 +30,12 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Checking.h"
 
-#include "../resources/view.xpm"
-#include "../resources/preferences-color.xpm"
-//#include "../resources/preferences-other.xpm"
-#include "../resources/main-setup.xpm"
-#include "../resources/preferences-other.xpm"
 #include "../resources/export-import.xpm"
+#include "../resources/main-setup.xpm"
+#include "../resources/preferences-attachments.xpm"
+#include "../resources/preferences-other.xpm"
+#include "../resources/view.xpm"
+
 
 IMPLEMENT_DYNAMIC_CLASS( mmOptionsDialog, wxDialog )
 
@@ -126,7 +126,7 @@ void mmOptionsDialog::CreateControls()
     wxSize imageSize(48, 48);
     m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
     m_imageList->Add(wxBitmap(view_xpm));
-    m_imageList->Add(wxBitmap(preferences_color_xpm));
+    m_imageList->Add(wxBitmap(preferences_attachments_xpm));
     m_imageList->Add(wxBitmap(main_setup_xpm));
     m_imageList->Add(wxBitmap(preferences_other_xpm));
     m_imageList->Add(wxBitmap(export_import_xpm));
@@ -429,7 +429,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
     viewsPanelSizer->Add(userColourSettingStBoxSizer, 0, wxALL | wxCENTER, 0);
 
-    int size_x = restoreDefaultButton_->GetSize().GetY();
+	int size_x = baseCurrencyButton->GetSize().GetY();
     UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11,
         _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);

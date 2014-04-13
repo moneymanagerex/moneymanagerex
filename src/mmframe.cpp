@@ -89,6 +89,7 @@
 
 #include "../resources/about.xpm"
 #include "../resources/accounttree.xpm"
+#include "../resources/attachment.xpm"
 #include "../resources/appstart.xpm"
 #include "../resources/calendar.xpm"
 #include "../resources/categoryedit.xpm"
@@ -114,7 +115,6 @@
 #include "../resources/new_transaction.xpm"
 #include "../resources/notify.xpm"
 #include "../resources/open.xpm"
-#include "../resources/preferences-color.xpm"
 #include "../resources/preferences-other.xpm"
 #include "../resources/print.xpm"
 #include "../resources/printsetup.xpm"
