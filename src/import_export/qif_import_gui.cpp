@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2013-2014 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 IMPLEMENT_DYNAMIC_CLASS( mmQIFImportDialog, wxDialog )
 
-BEGIN_EVENT_TABLE( mmQIFImportDialog, wxDialog )
+BEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
     EVT_CHECKBOX(wxID_ANY, mmQIFImportDialog::OnCheckboxClick )
     EVT_BUTTON(wxID_OK, mmQIFImportDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmQIFImportDialog::OnCancel)
@@ -825,6 +825,7 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
 bool mmQIFImportDialog::checkQIFFile()
 {
     std::map<wxString, int> date_parsing_stat;
+    wxArrayString dates;
     wxString sAccountName;
     wxString lastDate = "";
 
@@ -848,20 +849,16 @@ bool mmQIFImportDialog::checkQIFFile()
             return false;
         }
 
-        if (m_QIFimport->lineType(str) == Date)
+        if (numLines < 1000)
         {
-            const wxString sDate = getLineData(str);
-            if (sDate == lastDate || numLines > 1000) continue; //Speedup
-            lastDate = sDate;
-            for (const auto& date_mask : date_formats_map())
+            if (m_QIFimport->lineType(str) == Date)
             {
-                wxString mask = m_userDefinedFormat ? dateFormat_ : date_mask.first;
-                wxDateTime dtdt;
-                if (mmParseDisplayStringToDate(dtdt, sDate, mask))
-                    date_parsing_stat[mask] ++;
-                if (m_userDefinedFormat) break;
+                const wxString sDate = getLineData(str);
+                if (sDate == lastDate) continue; //Speedup
+                lastDate = sDate;
+                if (dates.Index(sDate) == wxNOT_FOUND) dates.Add(sDate);
+                continue;
             }
-            continue;
         }
 
         if (m_QIFimport->lineType(str) == AcctType && getLineData(str) == "Account")
@@ -874,6 +871,7 @@ bool mmQIFImportDialog::checkQIFFile()
                 if (m_QIFimport->accountInfoType(str) == Name)
                 {
                     sAccountName = getLineData(str);
+                    wxLogDebug("%s", sAccountName);
                     if (Model_Account::instance().all_checking_account_names().Index(sAccountName) == wxNOT_FOUND)
                     {
                         newAccounts_->Append(sAccountName);
@@ -882,6 +880,19 @@ bool mmQIFImportDialog::checkQIFFile()
                 reading = (m_QIFimport->accountInfoType(str) != EOT);
             }
             continue;
+        }
+    }
+
+    //TODO: Speedup
+    for (const auto& sDate : dates)
+    {
+        for (const auto& date_mask : date_formats_map())
+        {
+            wxString mask = m_userDefinedFormat ? dateFormat_ : date_mask.first;
+            wxDateTime dtdt;
+            if (mmParseDisplayStringToDate(dtdt, sDate, mask))
+                date_parsing_stat[mask] ++;
+            if (m_userDefinedFormat) break;
         }
     }
 
