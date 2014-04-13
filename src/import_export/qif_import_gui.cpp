@@ -883,15 +883,21 @@ bool mmQIFImportDialog::checkQIFFile()
         }
     }
 
-    //TODO: Speedup
+    std::map<wxString, wxString> date_formats_temp = date_formats_map();
     for (const auto& sDate : dates)
     {
-        for (const auto& date_mask : date_formats_map())
+        if (date_formats_temp.size() == 1)
+            break;
+        std::map<wxString, wxString> date_formats = date_formats_temp;
+        for (const auto& date_mask : date_formats)
         {
             wxString mask = m_userDefinedFormat ? dateFormat_ : date_mask.first;
             wxDateTime dtdt;
             if (mmParseDisplayStringToDate(dtdt, sDate, mask))
                 date_parsing_stat[mask] ++;
+            else
+                date_formats_temp.erase(mask);
+
             if (m_userDefinedFormat) break;
         }
     }
