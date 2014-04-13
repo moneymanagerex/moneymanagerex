@@ -255,12 +255,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\..\3rd\mongoose\mongoose.c" />
+    <ClCompile Include="..\..\..\src\attachmentdialog.cpp" />
     <ClCompile Include="..\..\..\src\general_report_manager.cpp" />
     <ClCompile Include="..\..\..\src\import_export\qif_import_gui.cpp" />
     <ClCompile Include="..\..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\..\src\mmframe.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Asset.cpp" />
+    <ClCompile Include="..\..\..\src\model\Model_Attachment.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Billsdeposits.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Budget.cpp" />
     <ClCompile Include="..\..\..\src\model\Model_Budgetsplittransaction.cpp" />
@@ -361,6 +363,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\3rd\mongoose\mongoose.h" />
+    <ClInclude Include="..\..\..\src\attachmentdialog.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Assets_V1.h" />
@@ -385,6 +388,7 @@
     <ClInclude Include="..\..\..\src\model\Model.h" />
     <ClInclude Include="..\..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\..\src\model\Model_Asset.h" />
+    <ClInclude Include="..\..\..\src\model\Model_Attachment.h" />
     <ClInclude Include="..\..\..\src\model\Model_Billsdeposits.h" />
     <ClInclude Include="..\..\..\src\model\Model_Budget.h" />
     <ClInclude Include="..\..\..\src\model\Model_Budgetsplittransaction.h" />
