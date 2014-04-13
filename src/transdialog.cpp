@@ -72,6 +72,7 @@ mmTransDialog::mmTransDialog(wxWindow* parent
     , skip_status_init_(false)
     , skip_date_init_(false)
     , skip_notes_init_(false)
+	, skip_attachments_init_(false)
     , skip_category_init_(false)
     , category_changed_(false)
     , skip_amount_init_(false)
@@ -939,8 +940,11 @@ void mmTransDialog::OnCategs(wxCommandEvent& /*event*/)
 void mmTransDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
 	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-	if (!transaction_id_)
+	if (!transaction_id_ && !skip_attachments_init_)
+	{
 		mmAttachmentManage::DeleteAllAttachments(RefType, transaction_id_);
+		skip_attachments_init_ = true;
+	}
 	mmAttachmentDialog dlg(this, RefType, transaction_id_);
 	dlg.ShowModal();
 }
