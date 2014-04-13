@@ -32,7 +32,7 @@ html {
 }
 
 body {
-  margin: 0;
+  margin: 10px;
 }
 
 a {
@@ -116,7 +116,7 @@ html {
 
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.428571429;
   color: #333333;
   background-color: #ffffff;
@@ -205,8 +205,8 @@ h6 .small,
 h1,
 h2,
 h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 h1 small,
@@ -221,8 +221,8 @@ h3 .small {
 h4,
 h5,
 h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-bottom: 3px;
 }
 
 h4 small,
@@ -236,27 +236,27 @@ h6 .small {
 
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 30px;
 }
 
 h2,
 .h2 {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 18px;
 }
 
 h4,
 .h4 {
-  font-size: 18px;
+  font-size: 14px;
 }
 
 h5,
 .h5 {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 h6,
@@ -270,7 +270,7 @@ p {
 
 .lead {
   margin-bottom: 20px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 200;
   line-height: 1.4;
 }
@@ -360,8 +360,8 @@ ol ol {
 /* Grid system */
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -386,6 +386,7 @@ ol ol {
   clear: both;
 }
 
+/*
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -403,10 +404,11 @@ ol ol {
     width: 1170px;
   }
 }
+*/
 
 .row {
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: -5px;
+  margin-left: -5px;
 }
 
 .row:before,
@@ -443,8 +445,8 @@ ol ol {
 .col-xs-12 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .col-xs-1,
@@ -680,7 +682,7 @@ th {
 
 .table {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .table > thead > tr > th,
@@ -689,7 +691,9 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
@@ -725,7 +729,7 @@ th {
 .table-condensed > thead > tr > td,
 .table-condensed > tbody > tr > td,
 .table-condensed > tfoot > tr > td {
-  padding: 5px;
+  padding: 3px;
 }
 
 .table-bordered {
