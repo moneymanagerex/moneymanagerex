@@ -67,7 +67,6 @@ private:
     void OnListBorderChanged(wxCommandEvent& event);
     void OnListDetailsColors(wxCommandEvent& event);
     void OnListFutureDates(wxCommandEvent& event);
-    void OnRestoreDefaultColors(wxCommandEvent& event);
 
     bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
 

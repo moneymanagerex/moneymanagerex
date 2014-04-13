@@ -846,11 +846,6 @@ void mmOptionsDialog::OnNavTreeColorChanged(wxCommandEvent& event)
 {
     int buttonId = event.GetId();
     wxButton* button = (wxButton*)FindWindow(buttonId);
-    if (buttonId == wxID_HIGHEST)
-    {
-        OnRestoreDefaultColors(event);
-        return;
-    }
 
     wxColour colour = button->GetBackgroundColour();
     wxColourData data;
@@ -863,18 +858,6 @@ void mmOptionsDialog::OnNavTreeColorChanged(wxCommandEvent& event)
         colour = dialog.GetColourData().GetColour();
         button->SetBackgroundColour(colour);
     }
-}
-
-void mmOptionsDialog::OnRestoreDefaultColors(wxCommandEvent& /*event*/)
-{
-    // Display the original colours to the user
-    navTreeButton_->SetBackgroundColour(wxColour(255, 255, 255));
-    listRowZeroButton_->SetBackgroundColour(wxColour(225, 237, 251));
-    listRowOneButton_->SetBackgroundColour(wxColour(255, 255, 255));
-    listBackgroundButton_->SetBackgroundColour(wxColour(255, 255, 255));
-    listBorderButton_->SetBackgroundColour(wxColour(0, 0, 0));
-    listDetailsButton_->SetBackgroundColour(wxColour(244, 247, 251));
-    futureTransButton_->SetBackgroundColour(wxColour(116, 134, 168));
 }
 
 bool mmOptionsDialog::GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState)
