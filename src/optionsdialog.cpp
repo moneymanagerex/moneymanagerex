@@ -259,6 +259,18 @@ void mmOptionsDialog::CreateControls()
     monthSelection_->SetSelection(monthItem - 1);
     monthSelection_->SetToolTip(_("Specify month for start of financial year"));
 	
+    //a bit more space visual appearance
+    generalPanelSizer->AddSpacer(15);
+
+    cbUseOrgDateCopyPaste_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbUseOrgDateCopyPaste_->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
+    cbUseOrgDateCopyPaste_->SetToolTip(_("Select whether to use the original transaction date or current date when copying/pasting transactions"));
+    generalPanelSizer->Add(cbUseOrgDateCopyPaste_, flags);
+
+    cbUseSound_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Use Transaction Sound"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbUseSound_->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND, true));
+    cbUseSound_->SetToolTip(_("Select whether to use sounds when entering transactions"));
+    generalPanelSizer->Add(cbUseSound_, flags);
 
     /*********************************************************************************************
      Views Panel
@@ -412,6 +424,47 @@ void mmOptionsDialog::CreateControls()
     cbIgnoreFutureTransactions_->SetValue(GetIniDatabaseCheckboxValue(INIDB_IGNORE_FUTURE_TRANSACTIONS, false));
     viewsPanelSizer->Add(cbIgnoreFutureTransactions_, flags);
 
+    wxStaticBox* userColourSettingStBox = new wxStaticBox(viewsPanel, wxID_ANY, _("User Colors"));
+    userColourSettingStBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
+    viewsPanelSizer->Add(userColourSettingStBoxSizer, 0, wxALL | wxCENTER, 0);
+
+    int size_x = restoreDefaultButton_->GetSize().GetY();
+    UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11,
+        _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
+    userColourSettingStBoxSizer->Add(UDFCB1_, flags);
+
+    UDFCB2_ = new wxButton(viewsPanel, wxID_HIGHEST + 22,
+        _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB2_->SetBackgroundColour(mmColors::userDefColor2);
+    userColourSettingStBoxSizer->Add(UDFCB2_, flags);
+
+    UDFCB3_ = new wxButton(viewsPanel, wxID_HIGHEST + 33,
+        _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB3_->SetBackgroundColour(mmColors::userDefColor3);
+    userColourSettingStBoxSizer->Add(UDFCB3_, flags);
+
+    UDFCB4_ = new wxButton(viewsPanel, wxID_HIGHEST + 44,
+        _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB4_->SetBackgroundColour(mmColors::userDefColor4);
+    userColourSettingStBoxSizer->Add(UDFCB4_, flags);
+
+    UDFCB5_ = new wxButton(viewsPanel, wxID_HIGHEST + 55,
+        _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB5_->SetBackgroundColour(mmColors::userDefColor5);
+    userColourSettingStBoxSizer->Add(UDFCB5_, flags);
+
+    UDFCB6_ = new wxButton(viewsPanel, wxID_HIGHEST + 66,
+        _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB6_->SetBackgroundColour(mmColors::userDefColor6);
+    userColourSettingStBoxSizer->Add(UDFCB6_, flags);
+
+    UDFCB7_ = new wxButton(viewsPanel, wxID_HIGHEST + 77,
+        _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB7_->SetBackgroundColour(mmColors::userDefColor7);
+    userColourSettingStBoxSizer->Add(UDFCB7_, flags);
+
     /*********************************************************************************************
      Colours Panel
     **********************************************************************************************/
@@ -421,111 +474,8 @@ void mmOptionsDialog::CreateControls()
     colourPanel->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
         wxCommandEventHandler(mmOptionsDialog::OnNavTreeColorChanged), NULL, this);
 
-    wxStaticBox* colourSettingStaticBox = new wxStaticBox(colourPanel, wxID_ANY, _("Colour Settings"));
-    colourSettingStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* colourSettingStaticBoxSizer = new wxStaticBoxSizer(colourSettingStaticBox, wxVERTICAL);
-    colourPanelSizer->Add(colourSettingStaticBoxSizer, flagsExpand);
 
-    wxFlexGridSizer* colourPanelSizerGrid = new wxFlexGridSizer(0, 2, 5, 5);
-    colourSettingStaticBoxSizer->Add(colourPanelSizerGrid, flags);
-
-    navTreeButton_ = new wxButton( colourPanel, wxID_HIGHEST-7,
-        _("Nav Tree"), wxDefaultPosition, wxSize(150,-1), 0);
-    navTreeButton_->SetToolTip(_("Specify the color for the nav tree"));
-    navTreeButton_->SetBackgroundColour(mmColors::navTreeBkColor);
-    colourPanelSizerGrid->Add(new wxStaticText(colourPanel, wxID_STATIC, _("Nav Tree")), flags);
-    colourPanelSizerGrid->Add(navTreeButton_, flags);
-
-    listBackgroundButton_ = new wxButton(colourPanel, wxID_HIGHEST-6,
-        _("List Background"), wxDefaultPosition, navTreeButton_->GetSize(), 0 );
-    listBackgroundButton_->SetToolTip(_("Specify the color for the list background"));
-    listBackgroundButton_->SetBackgroundColour(mmColors::listBackColor);
-    colourPanelSizerGrid->Add(new wxStaticText( colourPanel, wxID_STATIC, _("List Background")), flags);
-    colourPanelSizerGrid->Add(listBackgroundButton_, flags);
-
-    listRowZeroButton_ = new wxButton(colourPanel, wxID_HIGHEST-5,
-        _("List Row 0"), wxDefaultPosition, navTreeButton_->GetSize(), 0);
-    listRowZeroButton_->SetToolTip(_("Specify the color for the list row 0"));
-    listRowZeroButton_->SetBackgroundColour(mmColors::listAlternativeColor0);
-    colourPanelSizerGrid->Add(new wxStaticText(colourPanel, wxID_STATIC, _("List Row 0")), flags);
-    colourPanelSizerGrid->Add(listRowZeroButton_, flags);
-
-    listRowOneButton_ = new wxButton(colourPanel, wxID_HIGHEST-4,
-        _("List Row 1"), wxDefaultPosition, navTreeButton_->GetSize(), 0);
-    listRowOneButton_->SetToolTip(_("Specify the color for the list row 1"));
-    listRowOneButton_->SetBackgroundColour(mmColors::listAlternativeColor1);
-    colourPanelSizerGrid->Add(new wxStaticText( colourPanel, wxID_STATIC, _("List Row 1")), flags);
-    colourPanelSizerGrid->Add(listRowOneButton_, flags);
-
-    listBorderButton_ = new wxButton(colourPanel, wxID_HIGHEST-3,
-        _("List Border"), wxDefaultPosition, navTreeButton_->GetSize(), 0);
-    listBorderButton_->SetToolTip(_("Specify the color for the list Border"));
-    listBorderButton_->SetBackgroundColour(mmColors::listBorderColor);
-    colourPanelSizerGrid->Add(new wxStaticText( colourPanel, wxID_STATIC, _("List Border")), flags);
-    colourPanelSizerGrid->Add(listBorderButton_, flags);
-
-    listDetailsButton_ = new wxButton( colourPanel, wxID_HIGHEST-2,
-        _("List Details"), wxDefaultPosition, navTreeButton_->GetSize(), 0);
-    listDetailsButton_->SetToolTip(_("Specify the color for the list details"));
-    listDetailsButton_->SetBackgroundColour(mmColors::listDetailsPanelColor);
-    colourPanelSizerGrid->Add(new wxStaticText( colourPanel, wxID_STATIC, _("List Details")), flags);
-    colourPanelSizerGrid->Add(listDetailsButton_, flags);
-
-    futureTransButton_ = new wxButton( colourPanel, wxID_HIGHEST-1,
-        _("Future Transactions"), wxDefaultPosition, navTreeButton_->GetSize(), 0);
-    futureTransButton_->SetToolTip(_("Specify the color for future transactions"));
-    futureTransButton_->SetBackgroundColour(mmColors::listFutureDateColor);
-    colourPanelSizerGrid->Add(new wxStaticText(colourPanel, wxID_ANY,
-        _("Future Transactions")), flags);
-    colourPanelSizerGrid->Add(futureTransButton_, flags);
-
-    restoreDefaultButton_ = new wxButton(colourPanel, wxID_HIGHEST,
-        _("Restore Defaults"));
-    restoreDefaultButton_->SetToolTip(_("Restore Default Colors"));
-    colourPanelSizer->Add(restoreDefaultButton_, flags);
-
-    wxStaticBox* userColourSettingStBox = new wxStaticBox(colourPanel, wxID_ANY, _("User Colors"));
-    userColourSettingStBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
-    colourPanelSizer->Add(userColourSettingStBoxSizer, 0, wxALL|wxCENTER, 0);
-
-    int size_x = restoreDefaultButton_->GetSize().GetY();
-    UDFCB1_ = new wxButton( colourPanel, wxID_HIGHEST+11,
-        _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
-    userColourSettingStBoxSizer->Add(UDFCB1_, flags);
-
-    UDFCB2_ = new wxButton( colourPanel, wxID_HIGHEST+22,
-        _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB2_->SetBackgroundColour(mmColors::userDefColor2);
-    userColourSettingStBoxSizer->Add(UDFCB2_, flags);
-
-    UDFCB3_ = new wxButton( colourPanel, wxID_HIGHEST+33,
-        _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB3_->SetBackgroundColour(mmColors::userDefColor3);
-    userColourSettingStBoxSizer->Add(UDFCB3_, flags);
-
-    UDFCB4_ = new wxButton( colourPanel, wxID_HIGHEST+44,
-        _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB4_->SetBackgroundColour(mmColors::userDefColor4);
-    userColourSettingStBoxSizer->Add(UDFCB4_, flags);
-
-    UDFCB5_ = new wxButton( colourPanel, wxID_HIGHEST+55,
-        _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB5_->SetBackgroundColour(mmColors::userDefColor5);
-    userColourSettingStBoxSizer->Add(UDFCB5_, flags);
-
-    UDFCB6_ = new wxButton( colourPanel, wxID_HIGHEST+66,
-        _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB6_->SetBackgroundColour(mmColors::userDefColor6);
-    userColourSettingStBoxSizer->Add(UDFCB6_, flags);
-
-    UDFCB7_ = new wxButton( colourPanel, wxID_HIGHEST+77,
-        _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
-    UDFCB7_->SetBackgroundColour(mmColors::userDefColor7);
-    userColourSettingStBoxSizer->Add(UDFCB7_, flags);
-
-/*********************************************************************************************
+    /*********************************************************************************************
      Others Panel
     **********************************************************************************************/
     wxPanel* othersPanel = new wxPanel(newBook, ID_BOOK_PANELMISC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
@@ -594,20 +544,6 @@ void mmOptionsDialog::CreateControls()
     wxBoxSizer* itemBoxSizerStockURL = new wxBoxSizer(wxVERTICAL);
     othersPanelSizer->Add(itemBoxSizerStockURL);
 
-
-    //a bit more space visual appearance
-    othersPanelSizer->AddSpacer(15);
-
-    cbUseOrgDateCopyPaste_ = new wxCheckBox(othersPanel, wxID_STATIC, _("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbUseOrgDateCopyPaste_->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
-    cbUseOrgDateCopyPaste_->SetToolTip(_("Select whether to use the original transaction date or current date when copying/pasting transactions"));
-    othersPanelSizer->Add(cbUseOrgDateCopyPaste_, flags);
-
-    cbUseSound_ = new wxCheckBox(othersPanel, wxID_STATIC, _("Use Transaction Sound"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    cbUseSound_->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND,true));
-    cbUseSound_->SetToolTip(_("Select whether to use sounds when entering transactions"));
-    othersPanelSizer->Add(cbUseSound_, flags);
-
     // Backup Settings
     wxStaticBox* backupStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("Database Backup"));
     backupStaticBox->SetFont(staticBoxFontSetting);
@@ -663,6 +599,28 @@ void mmOptionsDialog::CreateControls()
     proxyStaticBoxSizer->Add(flex_sizer3, flags);
 
     othersPanel->SetSizer(othersPanelSizer);
+
+    //WebApp settings
+    wxStaticBox* WebAppStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("WebApp Settings"));
+    WebAppStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
+    wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
+    othersPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
+    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
+
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Url")), flags);
+    wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
+        WebAppURL, wxDefaultPosition, wxSize(300, -1));
+    WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
+    WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
+
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("GUID")), flags);
+    wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
+    wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
+        WebAppGUID, wxDefaultPosition, wxSize(300, -1));
+    WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
+    WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
     /*********************************************************************************************
      Import/Export Panel
@@ -722,28 +680,6 @@ void mmOptionsDialog::CreateControls()
 // temporarily hide from interface because the user defined CSV delimiter as this is not supported by the universal CSV dialog.
 //    delimiterRadioButtonU4->Hide();
 //    textDelimiter4->Hide();
-
-	//WebApp settings
-    wxStaticBox* WebAppStaticBox = new wxStaticBox(importExportPanel, wxID_STATIC, _("WebApp Settings"));
-    WebAppStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
-    wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
-	importExportPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
-    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
-
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("Url")), flags);
-    wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
-    wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
-        WebAppURL, wxDefaultPosition, wxSize(300, -1));
-    WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
-    WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
-
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(importExportPanel, wxID_STATIC, _("GUID")), flags);
-    wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
-    wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-        WebAppGUID, wxDefaultPosition, wxSize(300, -1));
-    WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
-    WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
 
 	//Attachments
 	wxStaticBox* attachmentStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("Attachments Settings"));
@@ -1118,6 +1054,9 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
     Model_Infotable::instance().SetBaseCurrencyID(currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
     SaveFinancialYearStart();
+
+    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
+    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
 }
 
 void mmOptionsDialog::SaveViewPanelSettings()
@@ -1163,25 +1102,6 @@ void mmOptionsDialog::SaveViewPanelSettings()
 
     mmIniOptions::instance().ignoreFutureTransactions_ = cbIgnoreFutureTransactions_->GetValue();
     Model_Setting::instance().Set(INIDB_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
-}
-
-void mmOptionsDialog::SaveColourPanelSettings()
-{
-    mmColors::navTreeBkColor = navTreeButton_->GetBackgroundColour();
-    mmColors::listAlternativeColor0 = listRowZeroButton_->GetBackgroundColour();
-    mmColors::listAlternativeColor1 = listRowOneButton_->GetBackgroundColour();
-    mmColors::listBackColor = listBackgroundButton_->GetBackgroundColour();
-    mmColors::listBorderColor = listBorderButton_->GetBackgroundColour();
-    mmColors::listDetailsPanelColor = listDetailsButton_->GetBackgroundColour();
-    mmColors::listFutureDateColor = futureTransButton_->GetBackgroundColour();
-
-    Model_Setting::instance().Set("LISTALT0", mmColors::listAlternativeColor0);
-    Model_Setting::instance().Set("LISTALT1", mmColors::listAlternativeColor1);
-    Model_Setting::instance().Set("LISTBACK", mmColors::listBackColor);
-    Model_Setting::instance().Set("NAVTREE",  mmColors::navTreeBkColor);
-    Model_Setting::instance().Set("LISTBORDER", mmColors::listBorderColor);
-    Model_Setting::instance().Set("LISTDETAILSPANEL", mmColors::listDetailsPanelColor);
-    Model_Setting::instance().Set("LISTFUTUREDATES", mmColors::listFutureDateColor);
 
     mmColors::userDefColor1 = UDFCB1_->GetBackgroundColour();
     mmColors::userDefColor2 = UDFCB2_->GetBackgroundColour();
@@ -1198,7 +1118,10 @@ void mmOptionsDialog::SaveColourPanelSettings()
     Model_Setting::instance().Set("USER_COLOR5", mmColors::userDefColor5);
     Model_Setting::instance().Set("USER_COLOR6", mmColors::userDefColor6);
     Model_Setting::instance().Set("USER_COLOR7", mmColors::userDefColor7);
+}
 
+void mmOptionsDialog::SaveColourPanelSettings()
+{
 }
 
 void mmOptionsDialog::SaveOthersPanelSettings()
@@ -1221,9 +1144,6 @@ void mmOptionsDialog::SaveOthersPanelSettings()
 
     SaveStocksUrl();
 
-    Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
-    Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
-
     wxCheckBox* itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_CHK_BACKUP);
     Model_Setting::instance().Set("BACKUPDB", itemCheckBox->GetValue());
 
@@ -1236,6 +1156,12 @@ void mmOptionsDialog::SaveOthersPanelSettings()
     wxString proxyName = proxy->GetValue();
     Model_Setting::instance().Set("PROXYIP", proxyName);
     Model_Setting::instance().Set("PROXYPORT", scProxyPort_->GetValue());
+
+    wxTextCtrl* WebAppURL = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL);
+    Model_Infotable::instance().Set("WEBAPPURL", WebAppURL->GetValue());
+
+    wxTextCtrl* WebAppGUID = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
+    Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 }
 
 void mmOptionsDialog::SaveImportExportPanelSettings()
@@ -1243,12 +1169,6 @@ void mmOptionsDialog::SaveImportExportPanelSettings()
     wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
     wxString delim = st->GetValue();
     if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
-
-    wxTextCtrl* WebAppURL = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL);
-    Model_Infotable::instance().Set("WEBAPPURL", WebAppURL->GetValue());
-
-    wxTextCtrl* WebAppGUID = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
-    Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
 
 	wxTextCtrl* attTextCtrl = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
 	wxString attachmentFolder = attTextCtrl->GetValue();
