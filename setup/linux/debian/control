@@ -2,7 +2,7 @@ Source: mmex
 Section: misc
 Priority: extra
 Maintainer: Nikolay <vomikan@mail.ru>
-Build-Depends: debhelper (>= 8.0.0), autotools-dev, libwxgtk3.0-dev (>= 3.0.0), python-dev (>= 2.7.3), libreadline-dev (>=6.2), gcc-4.7-base (>=4.7)
+Build-Depends: debhelper (>= 8.0.0), autotools-dev, libwxgtk3.0-dev (>= 3.0.0), python-dev (>= 2.7.3), libreadline-dev (>=6.2), webkitgtk-3.0 (>= 3.0.0), gcc-4.7-base (>=4.7)
 Standards-Version: 3.9.2
 Homepage: https://sourceforge.net/projects/moneymanagerex
 #Vcs-Git: git://git.debian.org/collab-maint/mmex.git
