@@ -30,9 +30,9 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Checking.h"
 
-#include "../resources/export-import.xpm"
 #include "../resources/main-setup.xpm"
 #include "../resources/preferences-attachments.xpm"
+#include "../resources/preferences-network.xpm"
 #include "../resources/preferences-other.xpm"
 #include "../resources/view.xpm"
 
@@ -129,7 +129,7 @@ void mmOptionsDialog::CreateControls()
     m_imageList->Add(wxBitmap(preferences_attachments_xpm));
     m_imageList->Add(wxBitmap(main_setup_xpm));
     m_imageList->Add(wxBitmap(preferences_other_xpm));
-    m_imageList->Add(wxBitmap(export_import_xpm));
+    m_imageList->Add(wxBitmap(preferences_network_xpm));
 
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);

@@ -240,6 +240,9 @@ void mmCheckingPanel::filterTable()
         full_tran.AMOUNT = transaction_amount;
         filteredBalance_ += transaction_amount;
 
+		if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), full_tran.TRANSID))
+			full_tran.NOTES = full_tran.NOTES.Prepend("[U] ");
+
         this->m_trans.push_back(full_tran);
     }
 }
