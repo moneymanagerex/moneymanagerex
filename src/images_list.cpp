@@ -9,7 +9,6 @@
 #include "../resources/yandex_money.xpm"
 #include "../resources/calendar.xpm"
 #include "../resources/help.xpm"
-#include "../resources/stock_curve.xpm"
 #include "../resources/savings_acc_favorite.xpm"
 #include "../resources/savings_acc_closed.xpm"
 #include "../resources/term_acc_favorite.xpm"
