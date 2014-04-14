@@ -70,11 +70,6 @@ private:
 
     bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
 
-    void OnDelimiterSelectedU(wxCommandEvent& event);
-    void OnDelimiterSelectedC(wxCommandEvent& event);
-    void OnDelimiterSelectedS(wxCommandEvent& event);
-    void OnDelimiterSelectedT(wxCommandEvent& event);
-
 	void OnAttachmentSelectedU(wxCommandEvent& event);
 	void OnAttachmentSelected1(wxCommandEvent& event);
 	void OnAttachmentSelected2(wxCommandEvent& event);
@@ -148,10 +143,6 @@ private:
     enum
     {
         ID_BOOK_PANEL_EXP_IMP = wxID_HIGHEST + 100,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4,
         ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4,
 		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER,
 		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1,
@@ -170,11 +161,6 @@ private:
         ID_DIALOG_OPTIONS_DATE_FORMAT,
         ID_DIALOG_OPTIONS_VIEW_ACCOUNTS,
         ID_DIALOG_OPTIONS_STATIC_SAMPLE_DATE,
-        ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB,
-        ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER,
         ID_DIALOG_OPTIONS_BUTTON_COLOR_NAVTREE,
         ID_DIALOG_OPTIONS_BUTTON_COLOR_ALT0,
         ID_DIALOG_OPTIONS_BUTTON_COLOR_ALT1,

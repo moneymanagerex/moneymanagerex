@@ -46,10 +46,6 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
 	EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsFolderChanged)
 
-    EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, mmOptionsDialog::OnDelimiterSelectedC)
-    EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, mmOptionsDialog::OnDelimiterSelectedS)
-    EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4, mmOptionsDialog::OnDelimiterSelectedT)
-    EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4, mmOptionsDialog::OnDelimiterSelectedU)
 	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1, mmOptionsDialog::OnAttachmentSelected1)
 	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2, mmOptionsDialog::OnAttachmentSelected2)
 	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3, mmOptionsDialog::OnAttachmentSelected3)
@@ -672,6 +668,24 @@ void mmOptionsDialog::CreateControls()
     flex_sizer2->Add(scMax_files_, flags);
     backupStaticBoxSizer->Add(flex_sizer2);
 
+    //CSV Import
+    const wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+
+    wxStaticBox* csvStaticBox = new wxStaticBox(othersPanel, wxID_ANY, _("CSV Settings"));
+    csvStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
+
+    othersPanelSizer->Add(csvStaticBoxSizer, flagsExpand);
+    wxFlexGridSizer* csvStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
+    csvStaticBoxSizer->Add(csvStaticBoxSizerGrid, flags);
+
+    csvStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Delimiter")), flags);
+    wxTextCtrl* textDelimiter4 = new wxTextCtrl(othersPanel
+        , ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
+    textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
+    textDelimiter4->SetMaxLength(1);
+    csvStaticBoxSizerGrid->Add(textDelimiter4, flags);
+
     /*********************************************************************************************
     Network Panel
     **********************************************************************************************/
@@ -680,58 +694,6 @@ void mmOptionsDialog::CreateControls()
 
     wxBoxSizer* networkPanelSizer = new wxBoxSizer(wxVERTICAL);
     networkPanel->SetSizer(networkPanelSizer);
-
-    //CSV Import
-    wxStaticBox* csvStaticBox = new wxStaticBox(networkPanel, wxID_ANY, _("CSV Settings"));
-    csvStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
-
-    networkPanelSizer->Add(csvStaticBoxSizer, flagsExpand);
-
-    wxStaticText* csvDelimiterStaticText = new wxStaticText(networkPanel, wxID_STATIC, _("CSV Delimiter"));
-    csvStaticBoxSizer->Add(csvDelimiterStaticText, flags);
-
-    wxBoxSizer* radioButtonSizer = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer* userDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
-    csvStaticBoxSizer->Add(radioButtonSizer);
-    csvStaticBoxSizer->Add(userDefinedSizer);
-    csvStaticBoxSizer->AddSpacer(5);
-
-    wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
-
-    wxRadioButton* delimiterRadioButtonU4 = new wxRadioButton(networkPanel
-        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4
-        , _("User Defined"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-    wxRadioButton* delimiterRadioButtonC4 = new wxRadioButton(networkPanel
-        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, _("Comma"));
-    if (delimiter == ",") delimiterRadioButtonC4->SetValue(true);
-
-    wxRadioButton* delimiterRadioButtonS4 = new wxRadioButton(networkPanel
-        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, _("Semicolon"));
-    if (delimiter == ";") delimiterRadioButtonS4->SetValue(true);
-
-    wxRadioButton* delimiterRadioButtonT4 = new wxRadioButton(networkPanel
-        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4, _("TAB"));
-    if (delimiter == "\t") delimiterRadioButtonT4->SetValue(true);
-
-    wxTextCtrl* textDelimiter4 = new wxTextCtrl(networkPanel
-        , ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
-    textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
-    textDelimiter4->SetMaxLength(2);
-    if (delimiter == "\t" || delimiter == "," || delimiter == ";")
-    {
-        textDelimiter4->Enable(false);
-    }
-    else
-    {
-        delimiterRadioButtonU4->SetValue(true);
-    }
-    radioButtonSizer->Add(delimiterRadioButtonC4, flags);
-    radioButtonSizer->Add(delimiterRadioButtonS4, flags);
-    radioButtonSizer->Add(delimiterRadioButtonT4, flags);
-
-    userDefinedSizer->Add(delimiterRadioButtonU4, flags);
-    userDefinedSizer->Add(textDelimiter4, flags);
 
     //WebApp settings
     wxStaticBox* WebAppStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("WebApp Settings"));
@@ -882,33 +844,6 @@ bool mmOptionsDialog::GetIniDatabaseCheckboxValue(wxString dbField, bool default
     bool result = Model_Setting::instance().GetBoolSetting(dbField, defaultState);
 
     return result;
-}
-
-void mmOptionsDialog::OnDelimiterSelectedU(wxCommandEvent& /*event*/)
-{
-    wxStaticText* d = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    d ->Enable(true);
-}
-
-void mmOptionsDialog::OnDelimiterSelectedC(wxCommandEvent& /*event*/)
-{
-    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    st ->Enable(false);
-    st ->SetValue(",");
-}
-
-void mmOptionsDialog::OnDelimiterSelectedS(wxCommandEvent& /*event*/)
-{
-    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    st ->Enable(false);
-    st ->SetValue(";");
-}
-
-void mmOptionsDialog::OnDelimiterSelectedT(wxCommandEvent& /*event*/)
-{
-    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    st ->Enable(false);
-    st ->SetValue("\t");
 }
 
 void mmOptionsDialog::OnAttachmentSelectedU(wxCommandEvent& /*event*/)
@@ -1162,14 +1097,14 @@ void mmOptionsDialog::SaveOthersPanelSettings()
     Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue());
 
     Model_Setting::instance().Set("MAX_BACKUP_FILES", scMax_files_->GetValue());
+
+    wxTextCtrl* st = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
+    wxString delim = st->GetValue();
+    if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
 }
 
 void mmOptionsDialog::SaveNetworkPanelSettings()
 {
-    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    wxString delim = st->GetValue();
-    if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
-
     wxTextCtrl* proxy = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY);
     wxString proxyName = proxy->GetValue();
     Model_Setting::instance().Set("PROXYIP", proxyName);
