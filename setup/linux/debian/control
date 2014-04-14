@@ -10,7 +10,7 @@ Homepage: https://sourceforge.net/projects/moneymanagerex
 
 Package: mmex
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libc6 (>= 2.3.5-1), libwxgtk3.0-0-unofficial (>= 3.0.0)
+Depends: ${shlibs:Depends}, ${misc:Depends}, libc6 (>= 2.3.5-1), libwxgtk3.0 (>= 3.0.0)
 Description: Simple to use financial management software
  Money  Manager  Ex (MMEX) is a free, open-source,
  cross-platform, easy-to-use personal finance software.
