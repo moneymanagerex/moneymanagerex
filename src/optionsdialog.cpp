@@ -45,11 +45,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
 	EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsFolderChanged)
-
-	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1, mmOptionsDialog::OnAttachmentSelected1)
-	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2, mmOptionsDialog::OnAttachmentSelected2)
-	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3, mmOptionsDialog::OnAttachmentSelected3)
-	EVT_RADIOBUTTON(ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER, mmOptionsDialog::OnAttachmentSelectedU)
+	EVT_RADIOBUTTON(wxID_ANY, mmOptionsDialog::OnAttachmentSelected)
 END_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -502,8 +498,9 @@ void mmOptionsDialog::CreateControls()
     wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
     wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
 
-    wxRadioButton* attachmentRadioButton1 = new wxRadioButton(attachmentPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1,
-        _("System documents directory"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    wxRadioButton* attachmentRadioButton1 = new wxRadioButton(attachmentPanel
+        , ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1
+        , _("System documents directory"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
     attachmentRadioButton1->SetToolTip(_("Subfolder") + " 'MMEX_" + LastDBFileName + "_Attachments' " + "\n"
         + _("into ") + wxStandardPaths::Get().GetDocumentsDir() + "\n"
         + "\n"
@@ -842,51 +839,40 @@ void mmOptionsDialog::OnNavTreeColorChanged(wxCommandEvent& event)
 bool mmOptionsDialog::GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState)
 {
     bool result = Model_Setting::instance().GetBoolSetting(dbField, defaultState);
-
     return result;
 }
 
-void mmOptionsDialog::OnAttachmentSelectedU(wxCommandEvent& /*event*/)
+void mmOptionsDialog::OnAttachmentSelected(wxCommandEvent& event)
 {
-	wxTextCtrl* d = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-	if (d->GetValue() == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
-		|| d->GetValue() == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
-		|| d->GetValue() == INIDB_ATTACHMENTS_FOLDER_DBDIR)
-		d->SetValue(wxEmptyString);
-	d->Enable(true);
+    int id = event.GetId();
+    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+    wxRadioButton* d = (wxRadioButton*) FindWindow(id);
+    if (d) {
+        if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1)
+        {
+            st->SetValue(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
+            st->Enable(false);
+        }
+        else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2)
+        {
+            st->SetValue(INIDB_ATTACHMENTS_FOLDER_MMEXDIR);
+            st->Enable(false);
+        }
+        else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3)
+        {
+            st->SetValue(INIDB_ATTACHMENTS_FOLDER_DBDIR);
+            st->Enable(false);
+        }
+        else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER)
+        {
+            const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+            st->SetValue(attachmentFolder);
+            st->Enable(true);
+        }
+    }
 
 	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
 	button->Enable(true);
-}
-
-void mmOptionsDialog::OnAttachmentSelected1(wxCommandEvent& /*event*/)
-{
-	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-	st->Enable(false);
-	st->SetValue(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
-
-	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
-	button->Enable(false);
-}
-
-void mmOptionsDialog::OnAttachmentSelected2(wxCommandEvent& /*event*/)
-{
-	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-	st->Enable(false);
-	st->SetValue(INIDB_ATTACHMENTS_FOLDER_MMEXDIR);
-
-	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
-	button->Enable(false);
-}
-
-void mmOptionsDialog::OnAttachmentSelected3(wxCommandEvent& /*event*/)
-{
-	wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-	st->Enable(false);
-	st->SetValue(INIDB_ATTACHMENTS_FOLDER_DBDIR);
-
-	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
-	button->Enable(false);
 }
 
 void mmOptionsDialog::OnAttachmentsFolderChanged(wxCommandEvent& /*event*/)

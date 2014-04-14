@@ -70,10 +70,7 @@ private:
 
     bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
 
-	void OnAttachmentSelectedU(wxCommandEvent& event);
-	void OnAttachmentSelected1(wxCommandEvent& event);
-	void OnAttachmentSelected2(wxCommandEvent& event);
-	void OnAttachmentSelected3(wxCommandEvent& event);
+	void OnAttachmentSelected(wxCommandEvent& event);
 	void OnAttachmentsFolderChanged(wxCommandEvent& event);
 
     void SaveViewAccountOptions();
@@ -192,10 +189,7 @@ private:
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
 		ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER
-
     };
-
-
 };
 
 #endif
