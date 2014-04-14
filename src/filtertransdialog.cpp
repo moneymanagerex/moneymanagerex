@@ -177,13 +177,14 @@ void mmFilterTransactionsDialog::CreateControls()
 
     wxArrayString accountArray = Model_Account::instance().all_checking_account_names();
 
-    accountDropDown_ = new wxChoice(itemPanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, accountArray, 0);
+    accountDropDown_ = new wxChoice(itemPanel
+        , wxID_ANY, wxDefaultPosition, wxSize(220, -1), accountArray, 0);
     itemPanelSizer->Add(accountDropDown_, g_flagsExpand);
 
     //--End of Row --------------------------------------------------------
 
-    dateRangeCheckBox_ = new wxCheckBox( itemPanel, wxID_ANY, _("Date Range"),
-                                        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
+    dateRangeCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Date Range")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(dateRangeCheckBox_, g_flags);
 
     fromDateCtrl_ = new wxDatePickerCtrl(itemPanel, wxID_ANY, wxDefaultDateTime
@@ -204,7 +205,7 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemPanelSizer->Add(payeeCheckBox_, g_flags);
 
-    cbPayee_ = new wxComboBox(itemPanel, wxID_ANY);
+    cbPayee_ = new wxComboBox(itemPanel, wxID_ANY, "", wxDefaultPosition,  wxSize(220, -1));
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
         , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
 
