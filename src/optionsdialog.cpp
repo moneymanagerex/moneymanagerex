@@ -134,7 +134,8 @@ void mmOptionsDialog::CreateControls()
     wxBoxSizer* mainDialogSizer = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(mainDialogSizer);
 
-    wxPanel* mainDialogPanel = new wxPanel(this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* mainDialogPanel = new wxPanel(this
+        , wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     mainDialogSizer->Add(mainDialogPanel, 1, wxGROW|wxALL, 5);
 
     wxBoxSizer* mainDialogPanelSizer = new wxBoxSizer(wxVERTICAL);
@@ -164,8 +165,8 @@ void mmOptionsDialog::CreateControls()
         _("User Name")), flags);
 
     wxString userName = Model_Infotable::instance().GetStringInfo("USERNAME", "");
-    wxTextCtrl* userNameTextCtr = new wxTextCtrl(generalPanel, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME,
-        userName, wxDefaultPosition, wxSize(200, -1));
+    wxTextCtrl* userNameTextCtr = new wxTextCtrl(generalPanel, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME
+        , userName, wxDefaultPosition, wxSize(200, -1));
     userNameTextCtr->SetToolTip(_("The User Name is used as a title for the database."));
     headerStaticBoxSizer->Add(userNameTextCtr, 1, wxEXPAND|wxALL, 5);
     generalPanelSizer->Add(headerStaticBoxSizer, flagsExpand);
@@ -177,9 +178,9 @@ void mmOptionsDialog::CreateControls()
     generalPanelSizer->Add(languageStaticBoxSizer, flagsExpand);
 
     currentLanguage_ = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
-    wxButton* languageButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,
-        currentLanguage_.Left(1).Upper() + currentLanguage_.SubString(1,currentLanguage_.Len()),
-        wxDefaultPosition, wxSize(150, -1), 0);
+    wxButton* languageButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_LANGUAGE
+        , currentLanguage_.Left(1).Upper() + currentLanguage_.SubString(1,currentLanguage_.Len())
+        , wxDefaultPosition, wxSize(150, -1), 0);
     languageButton->SetToolTip(_("Specify the language to use"));
     languageStaticBoxSizer->Add(languageButton, flags);
 
@@ -196,8 +197,8 @@ void mmOptionsDialog::CreateControls()
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyId_);
     if (currency)
         currName = currency->CURRENCYNAME;
-    wxButton* baseCurrencyButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY,
-        currName, wxDefaultPosition, wxDefaultSize);
+    wxButton* baseCurrencyButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY
+        , currName, wxDefaultPosition, wxDefaultSize);
     baseCurrencyButton->SetToolTip(_("Sets the default currency for the database."));
     currencyStaticBoxSizer->Add(baseCurrencyButton, flags);
 
@@ -251,8 +252,8 @@ void mmOptionsDialog::CreateControls()
     for (wxDateTime::Month m = wxDateTime::Jan; m <= wxDateTime::Dec; m = wxDateTime::Month(m + 1))
         financialMonthsSelection.Add(wxGetTranslation(wxDateTime::GetMonthName(m, wxDateTime::Name_Abbr)));
 
-    monthSelection_ = new wxChoice(generalPanel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH,
-        wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
+    monthSelection_ = new wxChoice(generalPanel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
+        , wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
     financialYearStaticBoxSizerGrid->Add(monthSelection_, flags);
 
     int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
@@ -293,8 +294,8 @@ void mmOptionsDialog::CreateControls()
     int row_id_ = 0;
     wxArrayString itemChoiceViewAccountTranslatedStrings = viewAccountStrings(true, wxEmptyString, row_id_);
 
-    choiceVisible_ = new wxChoice(viewsPanel, ID_DIALOG_OPTIONS_VIEW_ACCOUNTS,
-        wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
+    choiceVisible_ = new wxChoice(viewsPanel, ID_DIALOG_OPTIONS_VIEW_ACCOUNTS
+        , wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
     view_sizer1->Add(choiceVisible_, flags);
 
     wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
@@ -353,21 +354,22 @@ void mmOptionsDialog::CreateControls()
     view_sizer1->Add(choiceFontSize_, flags);
 
     // Navigation Tree Expansion Options
-    wxStaticBox* navTreeOptionsStaticBox = new wxStaticBox(viewsPanel, wxID_ANY, _("Navigation Tree Expansion Options"));
+    wxStaticBox* navTreeOptionsStaticBox = new wxStaticBox(viewsPanel
+        , wxID_ANY, _("Navigation Tree Expansion Options"));
     navTreeOptionsStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* navTreeOptionsStaticBoxSizer = new wxStaticBoxSizer(navTreeOptionsStaticBox, wxHORIZONTAL);
     viewsPanelSizer->Add(navTreeOptionsStaticBoxSizer, flagsExpand);
 
     // Expand Bank Tree
-    wxCheckBox* expandBankCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_TREE,
-        _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* expandBankCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_TREE
+        , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandBankCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_TREE",true));
     expandBankCheckBox->SetToolTip(_("Expand Bank Accounts in Trew View when tree is refreshed"));
     navTreeOptionsStaticBoxSizer->Add(expandBankCheckBox, flags);
 
     // Expand Term Tree
-    wxCheckBox* expandTermCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_TREE,
-        _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* expandTermCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_TREE
+        , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandTermCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_TREE",false));
     expandTermCheckBox->SetToolTip(_("Expand Term Accounts in Trew View when tree is refreshed"));
     navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, flags);
@@ -379,48 +381,52 @@ void mmOptionsDialog::CreateControls()
     viewsPanelSizer->Add(homePageStaticBoxSizer, flagsExpand);
 
     // Expand Bank Home
-    wxCheckBox* expandBankHomeCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_HOME,
-        _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* expandBankHomeCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_HOME
+        , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandBankHomeCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_HOME",true));
     expandBankHomeCheckBox->SetToolTip(_("Expand Bank Accounts on home page when page is refreshed"));
     homePageStaticBoxSizer->Add(expandBankHomeCheckBox, flags);
 
     // Expand Term Home
-    wxCheckBox* itemCheckBoxExpandTermHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_HOME,
-        _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* itemCheckBoxExpandTermHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_HOME
+        , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBoxExpandTermHome->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_HOME",false));
     itemCheckBoxExpandTermHome->SetToolTip(_("Expand Term Accounts on home page when page is refreshed"));
     homePageStaticBoxSizer->Add(itemCheckBoxExpandTermHome, flags);
 
     // Expand Stock Home
-    wxCheckBox* itemCheckBoxExpandStockHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME,
-        _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    wxCheckBox* itemCheckBoxExpandStockHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME
+        , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBoxExpandStockHome->SetValue(GetIniDatabaseCheckboxValue("ENABLESTOCKS",true));
     itemCheckBoxExpandStockHome->SetToolTip(_("Expand Stock Accounts on home page when page is refreshed"));
     homePageStaticBoxSizer->Add(itemCheckBoxExpandStockHome, flags);
 
-    cbBudgetFinancialYears_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets as Financial Years"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbBudgetFinancialYears_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets as Financial Years")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetFinancialYears_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_FINANCIAL_YEARS, false));
     viewsPanelSizer->Add(cbBudgetFinancialYears_, flags);
 
-    cbBudgetIncludeTransfers_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets with 'transfer' transactions"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbBudgetIncludeTransfers_ = new wxCheckBox(viewsPanel, wxID_STATIC
+        , _("View Budgets with 'transfer' transactions")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetIncludeTransfers_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_INCLUDE_TRANSFERS, false));
     viewsPanelSizer->Add(cbBudgetIncludeTransfers_, flags);
 
-    cbBudgetSetupWithoutSummary_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets Setup Without Budget Summaries"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbBudgetSetupWithoutSummary_ = new wxCheckBox(viewsPanel, wxID_STATIC
+        , _("View Budgets Setup Without Budget Summaries")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetSetupWithoutSummary_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false));
     viewsPanelSizer->Add(cbBudgetSetupWithoutSummary_, flags);
 
-    cbBudgetSummaryWithoutCateg_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budget Summary Report without Categories"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbBudgetSummaryWithoutCateg_ = new wxCheckBox(viewsPanel, wxID_STATIC
+        , _("View Budget Summary Report without Categories")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetSummaryWithoutCateg_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true));
     viewsPanelSizer->Add(cbBudgetSummaryWithoutCateg_, flags);
 
-    cbIgnoreFutureTransactions_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Reports without Future Transactions"),
-        wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbIgnoreFutureTransactions_ = new wxCheckBox(viewsPanel, wxID_STATIC
+        , _("View Reports without Future Transactions")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbIgnoreFutureTransactions_->SetValue(GetIniDatabaseCheckboxValue(INIDB_IGNORE_FUTURE_TRANSACTIONS, false));
     viewsPanelSizer->Add(cbIgnoreFutureTransactions_, flags);
 
@@ -430,46 +436,48 @@ void mmOptionsDialog::CreateControls()
     viewsPanelSizer->Add(userColourSettingStBoxSizer, 0, wxALL | wxCENTER, 0);
 
 	int size_x = baseCurrencyButton->GetSize().GetY();
-    UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11,
-        _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11
+        , _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
     userColourSettingStBoxSizer->Add(UDFCB1_, flags);
 
-    UDFCB2_ = new wxButton(viewsPanel, wxID_HIGHEST + 22,
-        _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB2_ = new wxButton(viewsPanel, wxID_HIGHEST + 22
+        , _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB2_->SetBackgroundColour(mmColors::userDefColor2);
     userColourSettingStBoxSizer->Add(UDFCB2_, flags);
 
-    UDFCB3_ = new wxButton(viewsPanel, wxID_HIGHEST + 33,
-        _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB3_ = new wxButton(viewsPanel, wxID_HIGHEST + 33
+        , _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB3_->SetBackgroundColour(mmColors::userDefColor3);
     userColourSettingStBoxSizer->Add(UDFCB3_, flags);
 
-    UDFCB4_ = new wxButton(viewsPanel, wxID_HIGHEST + 44,
-        _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB4_ = new wxButton(viewsPanel, wxID_HIGHEST + 44
+        , _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB4_->SetBackgroundColour(mmColors::userDefColor4);
     userColourSettingStBoxSizer->Add(UDFCB4_, flags);
 
-    UDFCB5_ = new wxButton(viewsPanel, wxID_HIGHEST + 55,
-        _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB5_ = new wxButton(viewsPanel, wxID_HIGHEST + 55
+        , _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB5_->SetBackgroundColour(mmColors::userDefColor5);
     userColourSettingStBoxSizer->Add(UDFCB5_, flags);
 
-    UDFCB6_ = new wxButton(viewsPanel, wxID_HIGHEST + 66,
-        _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB6_ = new wxButton(viewsPanel, wxID_HIGHEST + 66
+        , _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB6_->SetBackgroundColour(mmColors::userDefColor6);
     userColourSettingStBoxSizer->Add(UDFCB6_, flags);
 
-    UDFCB7_ = new wxButton(viewsPanel, wxID_HIGHEST + 77,
-        _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
+    UDFCB7_ = new wxButton(viewsPanel, wxID_HIGHEST + 77
+        , _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB7_->SetBackgroundColour(mmColors::userDefColor7);
     userColourSettingStBoxSizer->Add(UDFCB7_, flags);
 
-    viewsPanel->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmOptionsDialog::OnNavTreeColorChanged), NULL, this);
+    viewsPanel->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxCommandEventHandler(mmOptionsDialog::OnNavTreeColorChanged), NULL, this);
+
     /*********************************************************************************************
      Attachments Panel
     **********************************************************************************************/
+
     wxPanel* attachmentPanel = new wxPanel(newBook, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* attachmentPanelSizer = new wxBoxSizer(wxVERTICAL);
     attachmentPanel->SetSizer(attachmentPanelSizer);
@@ -481,7 +489,8 @@ void mmOptionsDialog::CreateControls()
 
     attachmentPanelSizer->Add(attachmentStaticBoxSizer, flagsExpand);
 
-    wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel, wxID_STATIC, _("Attachment archive folder"));
+    wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel
+        , wxID_STATIC, _("Attachment archive folder"));
     attachmentStaticBoxSizer->Add(attachmentStaticText, flags);
 
     wxBoxSizer* attachRadioButtonSizer = new wxBoxSizer(wxVERTICAL);
@@ -563,15 +572,18 @@ void mmOptionsDialog::CreateControls()
     /*********************************************************************************************
      Others Panel
     **********************************************************************************************/
-    wxPanel* othersPanel = new wxPanel(newBook, ID_BOOK_PANELMISC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* othersPanel = new wxPanel(newBook, ID_BOOK_PANELMISC
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* othersPanelSizer = new wxBoxSizer(wxVERTICAL);
+    othersPanel->SetSizer(othersPanelSizer);
 
     wxStaticText* itemStaticTextURL = new wxStaticText(othersPanel, wxID_STATIC, _("Stock Quote Web Page"));
     itemStaticTextURL->SetFont(staticBoxFontSetting);
     othersPanelSizer->Add(itemStaticTextURL, flags);
 
     wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
-    wxTextCtrl* itemTextCtrURL = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
+    wxTextCtrl* itemTextCtrURL = new wxTextCtrl(othersPanel
+        , ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
     othersPanelSizer->Add(itemTextCtrURL, flagsExpand);
     itemTextCtrURL->SetToolTip(_("Clear the field to Reset the value to system default."));
     othersPanelSizer->AddSpacer(15);
@@ -588,23 +600,26 @@ void mmOptionsDialog::CreateControls()
     defaultValues_.Add(_("None"));
     defaultValues_.Add(_("Last Used"));
 
-    wxChoice* defaultDateChoice = new wxChoice(othersPanel, ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE,
-        wxDefaultPosition, wxSize(140, -1), defaultValues_);
+    wxChoice* defaultDateChoice = new wxChoice(othersPanel
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_DATE
+        , wxDefaultPosition, wxSize(140, -1), defaultValues_);
     defaultDateChoice->SetSelection(mmIniOptions::instance().transDateDefault_);
 
-    wxChoice* defaultPayeeChoice = new wxChoice(othersPanel, ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE,
-        wxDefaultPosition, wxSize(140, -1), defaultValues_);
+    wxChoice* defaultPayeeChoice = new wxChoice(othersPanel
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_PAYEE
+        , wxDefaultPosition, wxSize(140, -1), defaultValues_);
     defaultPayeeChoice->SetSelection(mmIniOptions::instance().transPayeeSelectionNone_);
 
     defaultValues_[1]=(_("Last used for payee"));
 
-    wxChoice* defaultCategoryChoice = new wxChoice(othersPanel, ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY,
-        wxDefaultPosition, defaultPayeeChoice->GetSize(), defaultValues_);
+    wxChoice* defaultCategoryChoice = new wxChoice(othersPanel
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_CATEGORY
+        , wxDefaultPosition, defaultPayeeChoice->GetSize(), defaultValues_);
     defaultCategoryChoice->SetSelection(mmIniOptions::instance().transCategorySelectionNone_);
 
-    wxChoice* default_status = new wxChoice(othersPanel,
-        ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS,
-        wxDefaultPosition, defaultDateChoice->GetSize());
+    wxChoice* default_status = new wxChoice(othersPanel
+        , ID_DIALOG_OPTIONS_DEFAULT_TRANSACTION_STATUS
+        , wxDefaultPosition, defaultDateChoice->GetSize());
 
     for(const auto& i: Model_Checking::all_status())
         default_status->Append(wxGetTranslation(i), new wxStringClientData(i));
@@ -657,72 +672,23 @@ void mmOptionsDialog::CreateControls()
     flex_sizer2->Add(scMax_files_, flags);
     backupStaticBoxSizer->Add(flex_sizer2);
 
-    // Proxy Settings
-    othersPanelSizer->AddSpacer(15);
-
-    wxStaticBox* proxyStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("Proxy Settings"));
-    proxyStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* proxyStaticBoxSizer = new wxStaticBoxSizer(proxyStaticBox, wxVERTICAL);
-    othersPanelSizer->Add(proxyStaticBoxSizer, flagsExpand);
-
-    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
-    wxTextCtrl* proxyNameTextCtr = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY,
-        proxyName, wxDefaultPosition, wxSize(150, -1));
-    proxyNameTextCtr->SetToolTip(_("Specify the proxy IP address"));
-
-    int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
-    scProxyPort_ = new wxSpinCtrl(othersPanel, wxID_ANY,
-        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, proxyPort);
-    scProxyPort_->SetToolTip(_("Specify proxy port number"));
-
-    wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
-    flex_sizer3->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Proxy")), flags);
-    flex_sizer3->Add(proxyNameTextCtr, flags);
-    flex_sizer3->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Port")), flags);
-    flex_sizer3->Add(scProxyPort_, flags);
-
-    proxyStaticBoxSizer->Add(flex_sizer3, flags);
-
-    othersPanel->SetSizer(othersPanelSizer);
-
-    //WebApp settings
-    wxStaticBox* WebAppStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("WebApp Settings"));
-    WebAppStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
-    wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
-    othersPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
-    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
-
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Url")), flags);
-    wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
-    wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
-        WebAppURL, wxDefaultPosition, wxSize(300, -1));
-    WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
-    WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
-
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("GUID")), flags);
-    wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
-    wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(othersPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-        WebAppGUID, wxDefaultPosition, wxSize(300, -1));
-    WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
-    WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
-
     /*********************************************************************************************
-     Import/Export Panel
+    Network Panel
     **********************************************************************************************/
-    wxPanel* importExportPanel = new wxPanel(newBook, ID_BOOK_PANEL_EXP_IMP, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    wxPanel* networkPanel = new wxPanel(newBook
+        , ID_BOOK_PANEL_EXP_IMP, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
-    wxBoxSizer* importExportPanelSizer = new wxBoxSizer(wxVERTICAL);
-    importExportPanel->SetSizer(importExportPanelSizer);
+    wxBoxSizer* networkPanelSizer = new wxBoxSizer(wxVERTICAL);
+    networkPanel->SetSizer(networkPanelSizer);
 
-	//CSV Import
-    wxStaticBox* csvStaticBox = new wxStaticBox(importExportPanel, wxID_ANY, _("CSV Settings"));
+    //CSV Import
+    wxStaticBox* csvStaticBox = new wxStaticBox(networkPanel, wxID_ANY, _("CSV Settings"));
     csvStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
 
-    importExportPanelSizer->Add(csvStaticBoxSizer, flagsExpand);
+    networkPanelSizer->Add(csvStaticBoxSizer, flagsExpand);
 
-    wxStaticText* csvDelimiterStaticText = new wxStaticText(importExportPanel, wxID_STATIC, _("CSV Delimiter"));
+    wxStaticText* csvDelimiterStaticText = new wxStaticText(networkPanel, wxID_STATIC, _("CSV Delimiter"));
     csvStaticBoxSizer->Add(csvDelimiterStaticText, flags);
 
     wxBoxSizer* radioButtonSizer = new wxBoxSizer(wxVERTICAL);
@@ -733,18 +699,23 @@ void mmOptionsDialog::CreateControls()
 
     wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
 
-	wxRadioButton* delimiterRadioButtonU4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4,
-		_("User Defined"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-	wxRadioButton* delimiterRadioButtonC4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, _("Comma"));
-    if (delimiter == ",") delimiterRadioButtonC4 ->SetValue(true);
+    wxRadioButton* delimiterRadioButtonU4 = new wxRadioButton(networkPanel
+        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_USER4
+        , _("User Defined"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    wxRadioButton* delimiterRadioButtonC4 = new wxRadioButton(networkPanel
+        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_COMMA4, _("Comma"));
+    if (delimiter == ",") delimiterRadioButtonC4->SetValue(true);
 
-    wxRadioButton* delimiterRadioButtonS4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, _("Semicolon"));
-    if (delimiter == ";") delimiterRadioButtonS4 ->SetValue(true);
+    wxRadioButton* delimiterRadioButtonS4 = new wxRadioButton(networkPanel
+        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_SEMICOLON4, _("Semicolon"));
+    if (delimiter == ";") delimiterRadioButtonS4->SetValue(true);
 
-    wxRadioButton* delimiterRadioButtonT4 = new wxRadioButton(importExportPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4, _("TAB"));
-    if (delimiter == "\t") delimiterRadioButtonT4 ->SetValue(true);
+    wxRadioButton* delimiterRadioButtonT4 = new wxRadioButton(networkPanel
+        , ID_DIALOG_OPTIONS_RADIOBUTTON_DELIMITER_TAB4, _("TAB"));
+    if (delimiter == "\t") delimiterRadioButtonT4->SetValue(true);
 
-    wxTextCtrl* textDelimiter4 = new wxTextCtrl( importExportPanel, ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
+    wxTextCtrl* textDelimiter4 = new wxTextCtrl(networkPanel
+        , ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
     textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
     textDelimiter4->SetMaxLength(2);
     if (delimiter == "\t" || delimiter == "," || delimiter == ";")
@@ -762,9 +733,55 @@ void mmOptionsDialog::CreateControls()
     userDefinedSizer->Add(delimiterRadioButtonU4, flags);
     userDefinedSizer->Add(textDelimiter4, flags);
 
-// temporarily hide from interface because the user defined CSV delimiter as this is not supported by the universal CSV dialog.
-//    delimiterRadioButtonU4->Hide();
-//    textDelimiter4->Hide();
+    //WebApp settings
+    wxStaticBox* WebAppStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("WebApp Settings"));
+    WebAppStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
+    wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
+    networkPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
+    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
+
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Url")), flags);
+    wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
+    wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(networkPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
+        WebAppURL, wxDefaultPosition, wxSize(300, -1));
+    WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
+    WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
+
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("GUID")), flags);
+    wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
+    wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(networkPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
+        WebAppGUID, wxDefaultPosition, wxSize(300, -1));
+    WebAppGUIDTextCtr->SetToolTip(_("Specify the Web App GUID"));
+    WebAppStaticBoxSizerGrid->Add(WebAppGUIDTextCtr, 1, wxEXPAND | wxALL, 5);
+
+    // Proxy Settings
+    networkPanelSizer->AddSpacer(15);
+
+    wxStaticBox* proxyStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Proxy Settings"));
+    proxyStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* proxyStaticBoxSizer = new wxStaticBoxSizer(proxyStaticBox, wxVERTICAL);
+    networkPanelSizer->Add(proxyStaticBoxSizer, flagsExpand);
+
+    wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
+    wxTextCtrl* proxyNameTextCtr = new wxTextCtrl(networkPanel, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY
+        , proxyName, wxDefaultPosition, wxSize(150, -1));
+    proxyNameTextCtr->SetToolTip(_("Specify the proxy IP address"));
+
+    int proxyPort = Model_Setting::instance().GetIntSetting("PROXYPORT", 0);
+    scProxyPort_ = new wxSpinCtrl(networkPanel, wxID_ANY,
+        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, proxyPort);
+    scProxyPort_->SetToolTip(_("Specify proxy port number"));
+
+    wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
+    flex_sizer3->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Proxy")), flags);
+    flex_sizer3->Add(proxyNameTextCtr, flags);
+    flex_sizer3->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), flags);
+    flex_sizer3->Add(scProxyPort_, flags);
+
+    proxyStaticBoxSizer->Add(flex_sizer3, flags);
+
+    networkPanel->SetSizer(networkPanelSizer);
 
    /**********************************************************************************************
     Setting up the notebook with the 5 pages
@@ -774,7 +791,7 @@ void mmOptionsDialog::CreateControls()
     newBook->InsertPage(0, generalPanel, _("General"), true, 2);
     newBook->InsertPage(1, viewsPanel, _("View Options"), false, 0);
     newBook->InsertPage(2, attachmentPanel, _("Attachments"), false, 1);
-    newBook->InsertPage(3, importExportPanel, _("Import/Export"), false, 4);
+    newBook->InsertPage(3, networkPanel, _("Network"), false, 4);
     newBook->InsertPage(4, othersPanel, _("Others"), false, 3);
 
     mainDialogPanelSizer->Add(newBook, 1, wxGROW|wxALL, 5);
@@ -1018,7 +1035,7 @@ void mmOptionsDialog::SaveNewSystemSettings()
     SaveViewPanelSettings();
     SaveAttachmentPanelSettings();
     SaveOthersPanelSettings();
-    SaveImportExportPanelSettings();
+    SaveNetworkPanelSettings();
 
     // finalise database saves ---------------------------------------------------------------
     Model_Setting::instance().Commit();
@@ -1145,8 +1162,15 @@ void mmOptionsDialog::SaveOthersPanelSettings()
     Model_Setting::instance().Set("BACKUPDB_UPDATE", itemCheckBoxUpdate->GetValue());
 
     Model_Setting::instance().Set("MAX_BACKUP_FILES", scMax_files_->GetValue());
+}
 
-    wxTextCtrl* proxy = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY);
+void mmOptionsDialog::SaveNetworkPanelSettings()
+{
+    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
+    wxString delim = st->GetValue();
+    if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
+
+    wxTextCtrl* proxy = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_PROXY);
     wxString proxyName = proxy->GetValue();
     Model_Setting::instance().Set("PROXYIP", proxyName);
     Model_Setting::instance().Set("PROXYPORT", scProxyPort_->GetValue());
@@ -1156,13 +1180,6 @@ void mmOptionsDialog::SaveOthersPanelSettings()
 
     wxTextCtrl* WebAppGUID = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
-}
-
-void mmOptionsDialog::SaveImportExportPanelSettings()
-{
-    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4);
-    wxString delim = st->GetValue();
-    if (!delim.IsEmpty()) Model_Infotable::instance().Set("DELIMITER", delim);
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)

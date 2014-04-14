@@ -90,7 +90,7 @@ private:
     void SaveViewPanelSettings();
     void SaveAttachmentPanelSettings();
     void SaveOthersPanelSettings();
-    void SaveImportExportPanelSettings();
+    void SaveNetworkPanelSettings();
     void OnOk(wxCommandEvent& /*event*/);
 
     /// Dialog specific controls
