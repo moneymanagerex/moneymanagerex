@@ -151,7 +151,7 @@ wxString Model_Report::get_html(const Data* r)
             for (int i = 0; i < columnCount; ++i)
             {
                 int col_type = q.GetColumnType(i);
-                const std::wstring col_name = q.GetColumnName(i);
+                const std::wstring col_name = q.GetColumnName(i).ToStdWstring();
                 colHeaders[col_name] = col_type;
                 row_t row;
                 row(L"COLUMN") = col_name;
