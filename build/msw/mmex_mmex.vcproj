@@ -469,6 +469,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\model\Model_Usage.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\aboutdialog.cpp"
 				>
 			</File>
@@ -1095,6 +1099,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\db\DB_Table_Usage_V1.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\model\Model.h"
 				>
 			</File>
@@ -1164,6 +1172,10 @@
 			</File>
 			<File
 				RelativePath="..\..\src\model\Model_Subcategory.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\model\Model_Usage.h"
 				>
 			</File>
 			<File

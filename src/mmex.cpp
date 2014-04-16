@@ -25,6 +25,7 @@
 #include "platfdep.h"
 
 #include "model/Model_Setting.h"
+#include "model/Model_Usage.h"
 #include "webserver.h"
 
 
@@ -140,6 +141,12 @@ bool OnInitImpl(mmGUIApp* app)
     app->m_setting_db = new wxSQLite3Database();
     app->m_setting_db->Open(mmex::getPathUser(mmex::SETTINGS));
     Model_Setting::instance(app->m_setting_db);
+    Model_Usage::instance(app->m_setting_db);
+
+    app->m_usage = Model_Usage::instance().create();
+    app->m_usage->USAGEDATE = wxDate::Today().FormatISODate();
+    app->m_usage->JSONCONTENT = "{}";
+    Model_Usage::instance().save(app->m_usage);
 
     /* Force setting MMEX language parameter if it has not been set. */
     mmSelectLanguage(0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
@@ -210,6 +217,7 @@ bool mmGUIApp::OnInit()
 int mmGUIApp::OnExit()
 {
 	wxLogDebug("OnExit()");
+    Model_Usage::instance().save(this->m_usage);
     if (m_setting_db) delete m_setting_db;
 
     Mongoose_Service::instance().stop();

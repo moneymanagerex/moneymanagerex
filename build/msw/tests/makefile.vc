@@ -185,6 +185,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Splittransaction.obj \
 	mmex_tests_Model_Stock.obj \
 	mmex_tests_Model_Subcategory.obj \
+	mmex_tests_Model_Usage.obj \
 	mmex_tests_html_template.obj \
 	mmex_tests_mongoose.obj \
 	mmex_tests_csv_parser.obj \
@@ -876,6 +877,9 @@ mmex_tests_Model_Stock.obj: ..\..\..\src\model\Model_Stock.cpp
 
 mmex_tests_Model_Subcategory.obj: ..\..\..\src\model\Model_Subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Subcategory.cpp
+
+mmex_tests_Model_Usage.obj: ..\..\..\src\model\Model_Usage.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\src\model\Model_Usage.cpp
 
 mmex_tests_html_template.obj: ..\..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_TESTS_CXXFLAGS) ..\..\..\3rd\cgitemplate\html_template.cpp

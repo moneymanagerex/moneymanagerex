@@ -203,6 +203,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Splittransaction.obj \
 	mmex_Model_Stock.obj \
 	mmex_Model_Subcategory.obj \
+	mmex_Model_Usage.obj \
 	mmex_html_template.obj \
 	mmex_mongoose.obj \
 	mmex_csv_parser.obj \
@@ -961,6 +962,9 @@ mmex_Model_Stock.obj: ..\..\src\model\Model_Stock.cpp
 
 mmex_Model_Subcategory.obj: ..\..\src\model\Model_Subcategory.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Subcategory.cpp
+
+mmex_Model_Usage.obj: ..\..\src\model\Model_Usage.cpp
+	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\src\model\Model_Usage.cpp
 
 mmex_html_template.obj: ..\..\3rd\cgitemplate\html_template.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\cgitemplate\html_template.cpp

@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_ASSETS_V1_H
-#define DB_TABLE_ASSETS_V1_H
+#ifndef DB_TABLE_USAGE_V1_H
+#define DB_TABLE_USAGE_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_ASSETS_V1 : public DB_Table
+struct DB_Table_USAGE_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_ASSETS_V1 Self;
+    typedef DB_Table_USAGE_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -46,7 +46,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     Cache cache_;
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_ASSETS_V1() 
+    ~DB_Table_USAGE_V1() 
     {
         destroy_cache();
     }
@@ -76,11 +76,11 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL , ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
+				db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT NULL PRIMARY KEY, USAGEDATE TEXT NOT NULL , JSONCONTENT TEXT NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
-				wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+				wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
 				return false;
 			}
 		}
@@ -94,68 +94,38 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_ASSETS_ASSETTYPE ON ASSETS_V1(ASSETTYPE)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_USAGE_DATE ON USAGE_V1 (USAGEDATE)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
 
-    struct ASSETID : public DB_Column<int>
+    struct USAGEID : public DB_Column<int>
     { 
-        static wxString name() { return "ASSETID"; } 
-        ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "USAGEID"; } 
+        USAGEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct STARTDATE : public DB_Column<wxString>
+    struct USAGEDATE : public DB_Column<wxString>
     { 
-        static wxString name() { return "STARTDATE"; } 
-        STARTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "USAGEDATE"; } 
+        USAGEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    struct ASSETNAME : public DB_Column<wxString>
+    struct JSONCONTENT : public DB_Column<wxString>
     { 
-        static wxString name() { return "ASSETNAME"; } 
-        ASSETNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "JSONCONTENT"; } 
+        JSONCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
-    struct VALUE : public DB_Column<double>
-    { 
-        static wxString name() { return "VALUE"; } 
-        VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    struct VALUECHANGE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "VALUECHANGE"; } 
-        VALUECHANGE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    struct NOTES : public DB_Column<wxString>
-    { 
-        static wxString name() { return "NOTES"; } 
-        NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    struct VALUECHANGERATE : public DB_Column<double>
-    { 
-        static wxString name() { return "VALUECHANGERATE"; } 
-        VALUECHANGERATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
-    };
-    struct ASSETTYPE : public DB_Column<wxString>
-    { 
-        static wxString name() { return "ASSETTYPE"; } 
-        ASSETTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
-    };
-    typedef ASSETID PRIMARY;
+    typedef USAGEID PRIMARY;
     enum COLUMN
     {
-        COL_ASSETID = 0
-        , COL_STARTDATE = 1
-        , COL_ASSETNAME = 2
-        , COL_VALUE = 3
-        , COL_VALUECHANGE = 4
-        , COL_NOTES = 5
-        , COL_VALUECHANGERATE = 6
-        , COL_ASSETTYPE = 7
+        COL_USAGEID = 0
+        , COL_USAGEDATE = 1
+        , COL_JSONCONTENT = 2
     };
 
     /** Returns the column name as a string*/
@@ -163,14 +133,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_ASSETID: return "ASSETID";
-            case COL_STARTDATE: return "STARTDATE";
-            case COL_ASSETNAME: return "ASSETNAME";
-            case COL_VALUE: return "VALUE";
-            case COL_VALUECHANGE: return "VALUECHANGE";
-            case COL_NOTES: return "NOTES";
-            case COL_VALUECHANGERATE: return "VALUECHANGERATE";
-            case COL_ASSETTYPE: return "ASSETTYPE";
+            case COL_USAGEID: return "USAGEID";
+            case COL_USAGEDATE: return "USAGEDATE";
+            case COL_JSONCONTENT: return "JSONCONTENT";
             default: break;
         }
         
@@ -180,14 +145,9 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     /** Returns the comumn number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("ASSETID" == name) return COL_ASSETID;
-        else if ("STARTDATE" == name) return COL_STARTDATE;
-        else if ("ASSETNAME" == name) return COL_ASSETNAME;
-        else if ("VALUE" == name) return COL_VALUE;
-        else if ("VALUECHANGE" == name) return COL_VALUECHANGE;
-        else if ("NOTES" == name) return COL_NOTES;
-        else if ("VALUECHANGERATE" == name) return COL_VALUECHANGERATE;
-        else if ("ASSETTYPE" == name) return COL_ASSETTYPE;
+        if ("USAGEID" == name) return COL_USAGEID;
+        else if ("USAGEDATE" == name) return COL_USAGEDATE;
+        else if ("JSONCONTENT" == name) return COL_JSONCONTENT;
 
         return COLUMN(-1);
     }
@@ -195,20 +155,15 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_ASSETS_V1;
+        friend struct DB_Table_USAGE_V1;
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int ASSETID;//  primay key
-        wxString STARTDATE;
-        wxString ASSETNAME;
-        double VALUE;
-        wxString VALUECHANGE;
-        wxString NOTES;
-        double VALUECHANGERATE;
-        wxString ASSETTYPE;
-        int id() const { return ASSETID; }
-        void id(int id) { ASSETID = id; }
+        int USAGEID;//  primay key
+        wxString USAGEDATE;
+        wxString JSONCONTENT;
+        int id() const { return USAGEID; }
+        void id(int id) { USAGEID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -222,23 +177,16 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             view_ = view;
         
-            ASSETID = -1;
-            VALUE = 0.0;
-            VALUECHANGERATE = 0.0;
+            USAGEID = -1;
         }
 
         Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         
-            ASSETID = q.GetInt(0); // ASSETID
-            STARTDATE = q.GetString(1); // STARTDATE
-            ASSETNAME = q.GetString(2); // ASSETNAME
-            VALUE = q.GetDouble(3); // VALUE
-            VALUECHANGE = q.GetString(4); // VALUECHANGE
-            NOTES = q.GetString(5); // NOTES
-            VALUECHANGERATE = q.GetDouble(6); // VALUECHANGERATE
-            ASSETTYPE = q.GetString(7); // ASSETTYPE
+            USAGEID = q.GetInt(0); // USAGEID
+            USAGEDATE = q.GetString(1); // USAGEDATE
+            JSONCONTENT = q.GetString(2); // JSONCONTENT
         }
 
         wxString to_json() const
@@ -252,39 +200,24 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o["ASSETID"] = json::Number(this->ASSETID);
-            o["STARTDATE"] = json::String(this->STARTDATE.ToStdString());
-            o["ASSETNAME"] = json::String(this->ASSETNAME.ToStdString());
-            o["VALUE"] = json::Number(this->VALUE);
-            o["VALUECHANGE"] = json::String(this->VALUECHANGE.ToStdString());
-            o["NOTES"] = json::String(this->NOTES.ToStdString());
-            o["VALUECHANGERATE"] = json::Number(this->VALUECHANGERATE);
-            o["ASSETTYPE"] = json::String(this->ASSETTYPE.ToStdString());
+            o["USAGEID"] = json::Number(this->USAGEID);
+            o["USAGEDATE"] = json::String(this->USAGEDATE.ToStdString());
+            o["JSONCONTENT"] = json::String(this->JSONCONTENT.ToStdString());
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"ASSETID") = ASSETID;
-            row(L"STARTDATE") = STARTDATE;
-            row(L"ASSETNAME") = ASSETNAME;
-            row(L"VALUE") = VALUE;
-            row(L"VALUECHANGE") = VALUECHANGE;
-            row(L"NOTES") = NOTES;
-            row(L"VALUECHANGERATE") = VALUECHANGERATE;
-            row(L"ASSETTYPE") = ASSETTYPE;
+            row(L"USAGEID") = USAGEID;
+            row(L"USAGEDATE") = USAGEDATE;
+            row(L"JSONCONTENT") = JSONCONTENT;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"ASSETID") = ASSETID;
-            t(L"STARTDATE") = STARTDATE;
-            t(L"ASSETNAME") = ASSETNAME;
-            t(L"VALUE") = VALUE;
-            t(L"VALUECHANGE") = VALUECHANGE;
-            t(L"NOTES") = NOTES;
-            t(L"VALUECHANGERATE") = VALUECHANGERATE;
-            t(L"ASSETTYPE") = ASSETTYPE;
+            t(L"USAGEID") = USAGEID;
+            t(L"USAGEDATE") = USAGEDATE;
+            t(L"JSONCONTENT") = JSONCONTENT;
         }
 
         /** Save the record instance in memory to the database. */
@@ -292,7 +225,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not save ASSETS_V1");
+                wxLogError("can not save USAGE_V1");
                 return false;
             }
 
@@ -304,7 +237,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not remove ASSETS_V1");
+                wxLogError("can not remove USAGE_V1");
                 return false;
             }
             
@@ -316,17 +249,17 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 8
+        NUM_COLUMNS = 3
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "ASSETS_V1"; }
+    wxString name() const { return "USAGE_V1"; }
 
-    DB_Table_ASSETS_V1() 
+    DB_Table_USAGE_V1() 
     {
-        query_ = "SELECT * FROM ASSETS_V1 ";
+        query_ = "SELECT * FROM USAGE_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -356,26 +289,21 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO ASSETS_V1(STARTDATE, ASSETNAME, VALUE, VALUECHANGE, NOTES, VALUECHANGERATE, ASSETTYPE) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            sql = "INSERT INTO USAGE_V1(USAGEDATE, JSONCONTENT) VALUES(?, ?)";
         }
         else
         {
-            sql = "UPDATE ASSETS_V1 SET STARTDATE = ?, ASSETNAME = ?, VALUE = ?, VALUECHANGE = ?, NOTES = ?, VALUECHANGERATE = ?, ASSETTYPE = ? WHERE ASSETID = ?";
+            sql = "UPDATE USAGE_V1 SET USAGEDATE = ?, JSONCONTENT = ? WHERE USAGEID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->STARTDATE);
-            stmt.Bind(2, entity->ASSETNAME);
-            stmt.Bind(3, entity->VALUE);
-            stmt.Bind(4, entity->VALUECHANGE);
-            stmt.Bind(5, entity->NOTES);
-            stmt.Bind(6, entity->VALUECHANGERATE);
-            stmt.Bind(7, entity->ASSETTYPE);
+            stmt.Bind(1, entity->USAGEDATE);
+            stmt.Bind(2, entity->JSONCONTENT);
             if (entity->id() > 0)
-                stmt.Bind(8, entity->ASSETID);
+                stmt.Bind(3, entity->USAGEID);
 
             //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
@@ -398,7 +326,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("USAGE_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -412,7 +340,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM ASSETS_V1 WHERE ASSETID = ?";
+            wxString sql = "DELETE FROM USAGE_V1 WHERE USAGEID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             //wxLogDebug(stmt.GetSQL());
@@ -433,7 +361,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("ASSETS_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("USAGE_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-13 11:13:53.338000.
+ *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -260,6 +260,15 @@ struct SorterByATTACHMENTID
     }
 };
 
+struct SorterByUSAGEID
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.USAGEID < y.USAGEID;
+    }
+};
+
 struct SorterByFOLLOWUPID
 { 
     template<class DATA>
@@ -422,6 +431,15 @@ struct SorterByDECIMAL_POINT
     }
 };
 
+struct SorterByUSAGEDATE
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.USAGEDATE < y.USAGEDATE;
+    }
+};
+
 struct SorterByCOMMISSION
 { 
     template<class DATA>
@@ -455,6 +473,15 @@ struct SorterBySTATUS
     bool operator()(const DATA& x, const DATA& y)
     {
         return x.STATUS < y.STATUS;
+    }
+};
+
+struct SorterByJSONCONTENT
+{ 
+    template<class DATA>
+    bool operator()(const DATA& x, const DATA& y)
+    {
+        return x.JSONCONTENT < y.JSONCONTENT;
     }
 };
 
