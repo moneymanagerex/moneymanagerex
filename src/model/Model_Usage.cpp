@@ -37,6 +37,7 @@ Model_Usage& Model_Usage::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
+    ins.m_start = wxDateTime::Now();
 
     return ins;
 }
@@ -50,4 +51,20 @@ Model_Usage& Model_Usage::instance()
 wxString Model_Usage::version()
 {
     return "$Rev: 6165 $";
+}
+
+void Model_Usage::append(json::Object& o)
+{
+    this->a.Insert(o);
+}
+
+std::string Model_Usage::to_string() const
+{
+    json::Object o;
+    o["start"] = json::String(m_start.FormatISOCombined().ToStdString());
+    o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+    o["usage"] = a;
+    std::stringstream ss;
+    json::Writer::Write(o, ss);
+    return ss.str();
 }

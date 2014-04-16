@@ -214,7 +214,7 @@ int mmGUIApp::OnExit()
 	wxLogDebug("OnExit()");
     Model_Usage::Data* usage = Model_Usage::instance().create();
     usage->USAGEDATE = wxDate::Today().FormatISODate();
-    usage->JSONCONTENT = "{}"; // TODO
+    usage->JSONCONTENT = Model_Usage::instance().to_string();
     Model_Usage::instance().save(usage);
 
     if (m_setting_db) delete m_setting_db;

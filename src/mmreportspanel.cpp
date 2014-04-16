@@ -26,6 +26,7 @@
 #include "webserver.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Usage.h"
 
 class WebViewHandlerReportsPage : public wxWebViewHandler
 {
@@ -117,6 +118,11 @@ wxString mmReportsPanel::getReportText()
     htmlreport_ = "coming soon...";
     if (rb_)
     {
+        json::Object o;
+        o["name"] = json::String(rb_->title().ToStdString());
+        o["version"] = json::String(rb_->version().ToStdString());
+        o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+
         wxGetApp().m_frame->SetStatusText(rb_->version());
         htmlreport_ = rb_->getHTMLText();
 
@@ -124,6 +130,8 @@ wxString mmReportsPanel::getReportText()
         wxTextOutputStream index_file(index_output);
         index_file << htmlreport_;
         index_output.Close();
+        o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+        Model_Usage::instance().append(o);
     }
     return htmlreport_;
 }

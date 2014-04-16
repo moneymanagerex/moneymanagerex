@@ -33,6 +33,7 @@ public:
     virtual wxString getHTMLText() = 0;
 	void setSortColumn(const int sort_by) { sortColumn_ = sort_by; }
     virtual void RefreshData() {}
+    virtual wxString title() const { return "mmPrintableBase"; }
 
 public:
     mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}
@@ -57,7 +58,7 @@ private:
 class mmPrintableBaseSpecificAccounts : public mmPrintableBase
 {
 public:
-    mmPrintableBaseSpecificAccounts(wxString report_name, int sort_column = 0);
+    mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column = 0);
     virtual ~mmPrintableBaseSpecificAccounts();
 
 protected:

@@ -43,6 +43,14 @@ public:
     * Note: Assigning the address to a local variable can destroy the instance.
     */
     static Model_Usage& instance();
+
+private:
+    wxDateTime m_start;
+    json::Array a;
+
+public:
+    void append(json::Object& o);
+    std::string to_string() const;
 };
 
 #endif // 

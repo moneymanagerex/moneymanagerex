@@ -31,7 +31,7 @@ wxString mmGeneralReport::getHTMLText()
     return Model_Report::instance().get_html(this->m_report);
 }
 
-mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(wxString report_name, int sort_column)
+mmPrintableBaseSpecificAccounts::mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column)
 : mmPrintableBase(sort_column)
 , accountArray_(0)
 , reportName_(report_name)
