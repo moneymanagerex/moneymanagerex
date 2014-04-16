@@ -116,6 +116,7 @@ Dimitrios Valsamis
 Eleanor Batchelder
 Pascal Fürhoff
 Panos Sapikas
+Jean-François GATEAU
 
 2013
 CodeLathe LLC
