@@ -143,11 +143,6 @@ bool OnInitImpl(mmGUIApp* app)
     Model_Setting::instance(app->m_setting_db);
     Model_Usage::instance(app->m_setting_db);
 
-    app->m_usage = Model_Usage::instance().create();
-    app->m_usage->USAGEDATE = wxDate::Today().FormatISODate();
-    app->m_usage->JSONCONTENT = "{}";
-    Model_Usage::instance().save(app->m_usage);
-
     /* Force setting MMEX language parameter if it has not been set. */
     mmSelectLanguage(0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
@@ -217,7 +212,11 @@ bool mmGUIApp::OnInit()
 int mmGUIApp::OnExit()
 {
 	wxLogDebug("OnExit()");
-    Model_Usage::instance().save(this->m_usage);
+    Model_Usage::Data* usage = Model_Usage::instance().create();
+    usage->USAGEDATE = wxDate::Today().FormatISODate();
+    usage->JSONCONTENT = "{}"; // TODO
+    Model_Usage::instance().save(usage);
+
     if (m_setting_db) delete m_setting_db;
 
     Mongoose_Service::instance().stop();

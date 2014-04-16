@@ -22,7 +22,6 @@
 //----------------------------------------------------------------------------
 #include <wx/app.h>
 #include <wx/debugrpt.h>
-#include "model/Model_Usage.h"
 
 //----------------------------------------------------------------------------
 class mmGUIFrame;
@@ -39,7 +38,6 @@ public:
     virtual bool OnCmdLineParsed(wxCmdLineParser& parser);
     mmGUIFrame* m_frame;
     wxSQLite3Database* m_setting_db;
-    Model_Usage::Data* m_usage;
     wxString m_optParam;
 
 private:
