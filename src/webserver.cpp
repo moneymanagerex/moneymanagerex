@@ -24,6 +24,7 @@
 #include "singleton.h"
 #include "model/Model_Account.h"
 #include "model/Model_Payee.h"
+#include "model/Model_Setting.h"
 
 std::string event_to_name(enum mg_event ev)
 {
@@ -76,9 +77,13 @@ WebServerThread::~WebServerThread()
 
 wxThread::ExitCode WebServerThread::Entry()
 {
+    // Get user setting
+    int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
+    wxString strPort = wxString::Format("%d", webserverPort);
+
     // Create and configure the server
     struct mg_server *server = mg_create_server(NULL, ev_handler);
-    mg_set_option(server, "listening_port", "8080"); // TODO: port number (8080) should be a user configuration value
+    mg_set_option(server, "listening_port", strPort);
     mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
     chdir(mg_get_option(server, "document_root"));
 
@@ -115,21 +120,27 @@ int Mongoose_Service::open()
 
 int Mongoose_Service::svc()
 {
-    m_thread = new WebServerThread();
-    wxLogDebug("Mongoose Service started");
-    m_thread->Run();
+    if (Model_Setting::instance().GetBoolSetting("ENABLEWEBSERVER", true))
+    {
+        m_thread = new WebServerThread();
+        wxLogDebug("Mongoose Service started");
+        m_thread->Run();
+    }
     return 0;
 }
 
 int Mongoose_Service::stop()
 {
-    if (m_thread->Delete() == wxTHREAD_NO_ERROR)
+    if (m_thread != 0)
     {
-        wxLogDebug("Mongoose Service ended.");
-    }
-    else
-    {
-        wxLogError("Can't delete the thread!");
+        if (m_thread->Delete() == wxTHREAD_NO_ERROR)
+        {
+            wxLogDebug("Mongoose Service ended.");
+        }
+        else
+        {
+            wxLogError("Can't delete the thread!");
+        }
     }
     return 0;
 }

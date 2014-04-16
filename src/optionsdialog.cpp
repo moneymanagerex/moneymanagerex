@@ -740,6 +740,32 @@ void mmOptionsDialog::CreateControls()
 
     proxyStaticBoxSizer->Add(flex_sizer3, flags);
 
+    // Web Server Settings
+    networkPanelSizer->AddSpacer(15);
+
+    wxStaticBox* webserverStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Web Server"));
+    webserverStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* webserverStaticBoxSizer = new wxStaticBoxSizer(webserverStaticBox, wxVERTICAL);
+    networkPanelSizer->Add(webserverStaticBoxSizer, flagsExpand);
+
+    cbWebServerCheckBox_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ENABLE_WEB_SERVER
+        , _("Enable"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbWebServerCheckBox_->SetValue(GetIniDatabaseCheckboxValue("ENABLEWEBSERVER", true));
+    cbWebServerCheckBox_->SetToolTip(_("Enable internal web server when MMEX Starts."));
+
+    int webserverPort = Model_Setting::instance().GetIntSetting("WEBSERVERPORT", 8080);
+    scWebServerPort_ = new wxSpinCtrl(networkPanel, ID_DIALOG_OPTIONS_WEB_SERVER_PORT,
+        wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 0, 65535, webserverPort);
+    scWebServerPort_->SetToolTip(_("Specify web server port number"));
+
+    wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
+    flex_sizer4->Add(cbWebServerCheckBox_, flags);
+    flex_sizer4->AddSpacer(45);
+    flex_sizer4->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), flags);
+    flex_sizer4->Add(scWebServerPort_, flags);
+
+    webserverStaticBoxSizer->Add(flex_sizer4, flags);
+
     networkPanel->SetSizer(networkPanelSizer);
 
    /**********************************************************************************************
@@ -1101,6 +1127,9 @@ void mmOptionsDialog::SaveNetworkPanelSettings()
 
     wxTextCtrl* WebAppGUID = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID);
     Model_Infotable::instance().Set("WEBAPPGUID", WebAppGUID->GetValue());
+
+    Model_Setting::instance().Set("ENABLEWEBSERVER", cbWebServerCheckBox_->GetValue());
+    Model_Setting::instance().Set("WEBSERVERPORT", scWebServerPort_->GetValue());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)

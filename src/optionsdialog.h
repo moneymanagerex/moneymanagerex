@@ -127,6 +127,9 @@ private:
 
     wxSpinCtrl *scProxyPort_;
 
+    wxCheckBox* cbWebServerCheckBox_;
+    wxSpinCtrl *scWebServerPort_;
+
     bool restartRequired_;
     bool changesApplied_;
 
@@ -188,7 +191,9 @@ private:
         ID_DIALOG_OPTIONS_TEXTCTRL_PROXY,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
-		ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER
+		ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
+        ID_DIALOG_OPTIONS_ENABLE_WEB_SERVER,
+        ID_DIALOG_OPTIONS_WEB_SERVER_PORT
     };
 };
 
