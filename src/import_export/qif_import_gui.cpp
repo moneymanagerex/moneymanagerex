@@ -1020,9 +1020,12 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 
         for (auto& refTransaction : vQIF_trxs_)
         {
-            
-            if (!progressDlg.Update(count++, wxString::Format(_("Importing transaction %i of %i"), count, numTransactions))) // if cancel clicked
-                break; // abort processing
+            count ++; 
+            if (count % 100 == 0 || count == numTransactions)
+            {
+                if (!progressDlg.Update(count++, wxString::Format(_("Importing transaction %i of %i"), count, numTransactions))) // if cancel clicked
+                    break; // abort processing
+            }
 
             auto *refTrans(refTransaction.first);
             refTrans->TRANSAMOUNT = fabs(refTrans->TRANSAMOUNT);
