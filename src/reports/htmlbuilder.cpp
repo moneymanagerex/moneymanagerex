@@ -468,7 +468,7 @@ std::ostream& operator << (std::ostream& os, const wxDateTime& date)
     return os;
 }
 
-mm_html_template::mm_html_template(const wxString& arg_file_name): html_template(arg_file_name.ToStdWstring())
+mm_html_template::mm_html_template(const wxString& arg_template): html_template(arg_template.ToStdWstring())
 {
     this->load_context();
 }

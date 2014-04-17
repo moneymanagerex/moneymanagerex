@@ -110,14 +110,7 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    wxString fNameTemplate = wxFileName::CreateTempFileName(wxGetEmptyString());
-
-    wxFileOutputStream output(fNameTemplate);
-    wxTextOutputStream text(output);
-    text << r->TEMPLATECONTENT;
-    output.Close();
-
-    mm_html_template report(fNameTemplate);
+    mm_html_template report(r->TEMPLATECONTENT);
     r->to_template(report);
 
     loop_t contents;
@@ -263,7 +256,6 @@ wxString Model_Report::get_html(const Data* r)
     report(L"ERRORS") = errors;
 
     const wxString out = wxString(report.Process());
-    wxRemoveFile(fNameTemplate);
 
     wxFileOutputStream index_output(mmex::GetResourceDir().GetPath() + "/" + "index.html");
     wxTextOutputStream index_file(index_output);

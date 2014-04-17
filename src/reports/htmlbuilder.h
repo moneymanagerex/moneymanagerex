@@ -156,7 +156,7 @@ private:
 class mm_html_template: public html_template
 {
 public:
-    mm_html_template(const wxString & arg_file_name);
+    mm_html_template(const wxString & arg_template);
 
 private:
     void load_context();
