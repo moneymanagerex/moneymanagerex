@@ -680,8 +680,9 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         //// ------------------
         if (updated && dPrice > 0)
         {
-            if(StockSymbolWithSuffix.EndsWith(".L"))
-                dPrice = dPrice / 100;
+            //HACK seems outdated http://sourceforge.net/p/moneymanagerex/bugs/360/
+            //if(StockSymbolWithSuffix.EndsWith(".L"))
+            //    dPrice = dPrice / 100;
             stocks_data[StockSymbolWithSuffix].first = dPrice;
             stocks_data[StockSymbolWithSuffix].second = sName;
             sError << wxString::Format(_("%s\t -> %s\n")
@@ -697,6 +698,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
         s.CURRENTPRICE = dPrice;
         s.VALUE = dPrice * s.NUMSHARES;
+        if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
         Model_Stock::instance().save(&s);
     }
 
