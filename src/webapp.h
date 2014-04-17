@@ -48,7 +48,7 @@ const static wxString getMessageWrongGuid();
 
 //Internal function
 const static wxString WebApp_getApiVersion();
-static int WebApp_SendJson(wxString& Website, wxString& JsonData, wxString& Output);
+static int WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output);
 static bool WebApp_DeleteAllAccount();
 static bool WebApp_DeleteAllPayee();
 static bool WebApp_DeleteAllCategory();

@@ -194,7 +194,7 @@ bool mmWebApp::WebApp_CheckApiVersion()
 }
 
 //POST data as JSON
-int mmWebApp::WebApp_SendJson(wxString& Website, wxString& JsonData, wxString& Output)
+int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxString& Output)
 {
 	wxHTTP http;
 	int ErrorCode = 0;
