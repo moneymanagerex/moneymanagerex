@@ -707,7 +707,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
-    //navTreeCtrl_->SetBackgroundColour(mmColors::navTreeBkColor);
 
     root = navTreeCtrl_->AddRoot(_("Home Page"), 0, 0);
     navTreeCtrl_->SetItemData(root, new mmTreeItemData("Home Page"));
@@ -1256,11 +1255,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     //////////////////////////////////////////////////////////////////
 
-    wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 6, 6);
-    navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
-
-    ///////////////////////////////////////////////////////////////////
-
     if (m_db && mmIniOptions::instance().enableBudget_)
     {
         wxTreeItemId budgetPerformance;
@@ -1321,7 +1315,12 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemData(cashflowSpecificAccountsDaily, new mmTreeItemData("Daily Cash Flow - Specific Accounts", new mmReportDailyCashFlowSpecificAccounts()));
 
     ///////////////////////////////////////////////////////////////////
-    //TODO: Test reports
+
+    wxTreeItemId transactionList = navTreeCtrl_->AppendItem(reports, _("Transaction Report"), 6, 6);
+    navTreeCtrl_->SetItemData(transactionList, new mmTreeItemData("Transaction Report"));
+
+    ///////////////////////////////////////////////////////////////////
+
     const auto &records = Model_Report::instance().all(Model_Report::COL_GROUPNAME, Model_Report::COL_REPORTNAME);
     wxTreeItemId group;
     wxString group_name;
@@ -1330,13 +1329,13 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         bool no_group = record.GROUPNAME.empty();
         if (group_name != record.GROUPNAME && !no_group)
         {
-            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 4, 4);
+            group = navTreeCtrl_->AppendItem(reports, wxGetTranslation(record.GROUPNAME), 8, 8);
             navTreeCtrl_->SetItemData(group, new mmTreeItemData(record.GROUPNAME, 0));
             group_name = record.GROUPNAME;
         }
         Model_Report::Data* r = Model_Report::instance().get(record.REPORTID);
         wxTreeItemId item = navTreeCtrl_->AppendItem(no_group ? reports : group
-            , wxGetTranslation(record.REPORTNAME), 4, 4);
+            , wxGetTranslation(record.REPORTNAME), 8, 8);
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
 
