@@ -99,9 +99,9 @@ wxArrayString Model_Account::all_type()
 /** Get the Data record instance in memory. */
 Model_Account::Data* Model_Account::get(const wxString& name)
 {
-    for (auto & account : this->cache_)
-        if (account->id() > 0 && account->ACCOUNTNAME.CmpNoCase(name) == 0) return account;
-    Data* account = 0;
+    Data* account = this->get(ACCOUNTNAME(name));
+    if (account) return account;
+
     Data_Set items = this->find(ACCOUNTNAME(name));
     if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);
     return account;

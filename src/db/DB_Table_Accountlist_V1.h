@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -291,6 +291,63 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             CURRENCYID = q.GetInt(12); // CURRENCYID
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::ACCOUNTID &in) const
+        {
+            return this->ACCOUNTID == in.v_;
+        }
+        bool match(const Self::ACCOUNTNAME &in) const
+        {
+            return this->ACCOUNTNAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::ACCOUNTTYPE &in) const
+        {
+            return this->ACCOUNTTYPE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::ACCOUNTNUM &in) const
+        {
+            return this->ACCOUNTNUM.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::STATUS &in) const
+        {
+            return this->STATUS.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::NOTES &in) const
+        {
+            return this->NOTES.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::HELDAT &in) const
+        {
+            return this->HELDAT.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::WEBSITE &in) const
+        {
+            return this->WEBSITE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::CONTACTINFO &in) const
+        {
+            return this->CONTACTINFO.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::ACCESSINFO &in) const
+        {
+            return this->ACCESSINFO.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::INITIALBAL &in) const
+        {
+            return this->INITIALBAL == in.v_;
+        }
+        bool match(const Self::FAVORITEACCT &in) const
+        {
+            return this->FAVORITEACCT.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::CURRENCYID &in) const
+        {
+            return this->CURRENCYID == in.v_;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -522,6 +579,14 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.

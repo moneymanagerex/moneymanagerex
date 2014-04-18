@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -189,6 +189,23 @@ struct DB_Table_SETTING_V1 : public DB_Table
             SETTINGVALUE = q.GetString(2); // SETTINGVALUE
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::SETTINGID &in) const
+        {
+            return this->SETTINGID == in.v_;
+        }
+        bool match(const Self::SETTINGNAME &in) const
+        {
+            return this->SETTINGNAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::SETTINGVALUE &in) const
+        {
+            return this->SETTINGVALUE.CmpNoCase(in.v_) == 0;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -380,6 +397,14 @@ struct DB_Table_SETTING_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.

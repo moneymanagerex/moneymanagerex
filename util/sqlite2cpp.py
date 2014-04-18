@@ -293,6 +293,27 @@ struct DB_Table_%s : public DB_Table
         }
 '''
         s += '''
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }''' 
+        for field in self._fields:
+            type = base_data_types_reverse[field['type']]
+            if type == 'wxString':
+                s += '''
+        bool match(const Self::%s &in) const
+        {
+            return this->%s.CmpNoCase(in.v_) == 0;
+        }''' % (field['name'], field['name'])
+            else:
+                s += '''
+        bool match(const Self::%s &in) const
+        {
+            return this->%s == in.v_;
+        }''' % (field['name'], field['name'])
+
+        s += '''
         wxString to_json() const
         {
             json::Object o;
@@ -519,6 +540,16 @@ struct DB_Table_%s : public DB_Table
     }
 ''' % (self._table, self._primay_key, self._table)
         
+        s += '''
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }'''
+        
         s +='''
     
     /**
@@ -726,6 +757,19 @@ typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_an
     }
  
     return result;
+}
+
+template<class DATA, typename Arg1>
+bool match(const DATA* data, const Arg1& arg1)
+{
+    return data->match(arg1);
+}
+
+template<class DATA, typename Arg1, typename... Args>
+bool match(const DATA* data, const Arg1& arg1, const Args&... args)
+{
+    bool result = data->match(arg1);
+    return result && match(data, args...);
 }
 '''
     for field in fields:

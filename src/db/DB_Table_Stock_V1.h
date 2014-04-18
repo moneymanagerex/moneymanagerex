@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -275,6 +275,55 @@ struct DB_Table_STOCK_V1 : public DB_Table
             COMMISSION = q.GetDouble(10); // COMMISSION
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::STOCKID &in) const
+        {
+            return this->STOCKID == in.v_;
+        }
+        bool match(const Self::HELDAT &in) const
+        {
+            return this->HELDAT == in.v_;
+        }
+        bool match(const Self::PURCHASEDATE &in) const
+        {
+            return this->PURCHASEDATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::STOCKNAME &in) const
+        {
+            return this->STOCKNAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::SYMBOL &in) const
+        {
+            return this->SYMBOL.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::NUMSHARES &in) const
+        {
+            return this->NUMSHARES == in.v_;
+        }
+        bool match(const Self::PURCHASEPRICE &in) const
+        {
+            return this->PURCHASEPRICE == in.v_;
+        }
+        bool match(const Self::NOTES &in) const
+        {
+            return this->NOTES.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::CURRENTPRICE &in) const
+        {
+            return this->CURRENTPRICE == in.v_;
+        }
+        bool match(const Self::VALUE &in) const
+        {
+            return this->VALUE == in.v_;
+        }
+        bool match(const Self::COMMISSION &in) const
+        {
+            return this->COMMISSION == in.v_;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -498,6 +547,14 @@ struct DB_Table_STOCK_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -223,6 +223,35 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             AMOUNT = q.GetDouble(5); // AMOUNT
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::BUDGETENTRYID &in) const
+        {
+            return this->BUDGETENTRYID == in.v_;
+        }
+        bool match(const Self::BUDGETYEARID &in) const
+        {
+            return this->BUDGETYEARID == in.v_;
+        }
+        bool match(const Self::CATEGID &in) const
+        {
+            return this->CATEGID == in.v_;
+        }
+        bool match(const Self::SUBCATEGID &in) const
+        {
+            return this->SUBCATEGID == in.v_;
+        }
+        bool match(const Self::PERIOD &in) const
+        {
+            return this->PERIOD.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::AMOUNT &in) const
+        {
+            return this->AMOUNT == in.v_;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -426,6 +455,14 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.

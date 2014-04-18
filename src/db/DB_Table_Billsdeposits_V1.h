@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -339,6 +339,79 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             NUMOCCURRENCES = q.GetInt(16); // NUMOCCURRENCES
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::BDID &in) const
+        {
+            return this->BDID == in.v_;
+        }
+        bool match(const Self::ACCOUNTID &in) const
+        {
+            return this->ACCOUNTID == in.v_;
+        }
+        bool match(const Self::TOACCOUNTID &in) const
+        {
+            return this->TOACCOUNTID == in.v_;
+        }
+        bool match(const Self::PAYEEID &in) const
+        {
+            return this->PAYEEID == in.v_;
+        }
+        bool match(const Self::TRANSCODE &in) const
+        {
+            return this->TRANSCODE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::TRANSAMOUNT &in) const
+        {
+            return this->TRANSAMOUNT == in.v_;
+        }
+        bool match(const Self::STATUS &in) const
+        {
+            return this->STATUS.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::TRANSACTIONNUMBER &in) const
+        {
+            return this->TRANSACTIONNUMBER.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::NOTES &in) const
+        {
+            return this->NOTES.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::CATEGID &in) const
+        {
+            return this->CATEGID == in.v_;
+        }
+        bool match(const Self::SUBCATEGID &in) const
+        {
+            return this->SUBCATEGID == in.v_;
+        }
+        bool match(const Self::TRANSDATE &in) const
+        {
+            return this->TRANSDATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::FOLLOWUPID &in) const
+        {
+            return this->FOLLOWUPID == in.v_;
+        }
+        bool match(const Self::TOTRANSAMOUNT &in) const
+        {
+            return this->TOTRANSAMOUNT == in.v_;
+        }
+        bool match(const Self::REPEATS &in) const
+        {
+            return this->REPEATS == in.v_;
+        }
+        bool match(const Self::NEXTOCCURRENCEDATE &in) const
+        {
+            return this->NEXTOCCURRENCEDATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::NUMOCCURRENCES &in) const
+        {
+            return this->NUMOCCURRENCES == in.v_;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -586,6 +659,14 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.

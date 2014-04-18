@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -271,6 +271,55 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             CURRENCY_SYMBOL = q.GetString(10); // CURRENCY_SYMBOL
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::CURRENCYID &in) const
+        {
+            return this->CURRENCYID == in.v_;
+        }
+        bool match(const Self::CURRENCYNAME &in) const
+        {
+            return this->CURRENCYNAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::PFX_SYMBOL &in) const
+        {
+            return this->PFX_SYMBOL.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::SFX_SYMBOL &in) const
+        {
+            return this->SFX_SYMBOL.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::DECIMAL_POINT &in) const
+        {
+            return this->DECIMAL_POINT.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::GROUP_SEPARATOR &in) const
+        {
+            return this->GROUP_SEPARATOR.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::UNIT_NAME &in) const
+        {
+            return this->UNIT_NAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::CENT_NAME &in) const
+        {
+            return this->CENT_NAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::SCALE &in) const
+        {
+            return this->SCALE == in.v_;
+        }
+        bool match(const Self::BASECONVRATE &in) const
+        {
+            return this->BASECONVRATE == in.v_;
+        }
+        bool match(const Self::CURRENCY_SYMBOL &in) const
+        {
+            return this->CURRENCY_SYMBOL.CmpNoCase(in.v_) == 0;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -494,6 +543,14 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.

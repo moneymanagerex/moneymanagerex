@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -132,6 +132,19 @@ typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_an
     }
  
     return result;
+}
+
+template<class DATA, typename Arg1>
+bool match(const DATA* data, const Arg1& arg1)
+{
+    return data->match(arg1);
+}
+
+template<class DATA, typename Arg1, typename... Args>
+bool match(const DATA* data, const Arg1& arg1, const Args&... args)
+{
+    bool result = data->match(arg1);
+    return result && match(data, args...);
 }
 
 struct SorterByREFTYPE

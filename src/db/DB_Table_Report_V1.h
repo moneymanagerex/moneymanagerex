@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-16 16:24:19.967290.
+ *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -229,6 +229,39 @@ struct DB_Table_REPORT_V1 : public DB_Table
             DESCRIPTION = q.GetString(6); // DESCRIPTION
         }
 
+        template<typename C>
+        bool match(const C &c) const
+        {
+            return false;
+        }
+        bool match(const Self::REPORTID &in) const
+        {
+            return this->REPORTID == in.v_;
+        }
+        bool match(const Self::REPORTNAME &in) const
+        {
+            return this->REPORTNAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::GROUPNAME &in) const
+        {
+            return this->GROUPNAME.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::SQLCONTENT &in) const
+        {
+            return this->SQLCONTENT.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::LUACONTENT &in) const
+        {
+            return this->LUACONTENT.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::TEMPLATECONTENT &in) const
+        {
+            return this->TEMPLATECONTENT.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::DESCRIPTION &in) const
+        {
+            return this->DESCRIPTION.CmpNoCase(in.v_) == 0;
+        }
         wxString to_json() const
         {
             json::Object o;
@@ -436,6 +469,14 @@ struct DB_Table_REPORT_V1 : public DB_Table
         return false;
     }
 
+    template<typename... Args>
+    Self::Data* get(const Args& ... args)
+    {
+        for (auto & item : this->cache_)
+            if (item->id() > 0 && match(item, args...)) return item;
+
+        return 0;
+    }
     
     /**
     * Search the memory table (Cache) for the data record.
