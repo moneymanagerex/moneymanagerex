@@ -34,10 +34,6 @@
 #include <wx/fs_filter.h>
 
 //----------------------------------------------------------------------------
-/* Include XPM Support */
-#include "../resources/money.xpm"
-
-//----------------------------------------------------------------------------
 IMPLEMENT_APP(mmGUIApp)
 //----------------------------------------------------------------------------
 
@@ -172,11 +168,6 @@ bool OnInitImpl(mmGUIApp* app)
     app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
     Mongoose_Service::instance().open();
-
-    new wxSplashScreen(wxBitmap(money_xpm),
-        wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT,
-        4000, app->m_frame, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-        wxSIMPLE_BORDER | wxSTAY_ON_TOP);
 
     bool ok = app->m_frame->Show();
 
