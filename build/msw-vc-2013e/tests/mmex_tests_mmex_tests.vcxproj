@@ -284,6 +284,7 @@
     <ClCompile Include="..\..\..\src\assetspanel.cpp" />
     <ClCompile Include="..\..\..\src\billsdepositsdialog.cpp" />
     <ClCompile Include="..\..\..\src\billsdepositspanel.cpp" />
+    <ClCompile Include="..\..\..\src\model\Model_Usage.cpp" />
     <ClCompile Include="..\..\..\src\reports\budget.cpp" />
     <ClCompile Include="..\..\..\src\reports\budgetcategorysummary.cpp" />
     <ClCompile Include="..\..\..\src\budgetentrydialog.cpp" />
@@ -367,6 +368,7 @@
     <ClInclude Include="..\..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Accountlist_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Assets_V1.h" />
+    <ClInclude Include="..\..\..\src\db\DB_Table_Attachment_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Billsdeposits_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Budgetsplittransactions_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Budgettable_V1.h" />
@@ -381,6 +383,7 @@
     <ClInclude Include="..\..\..\src\db\DB_Table_Splittransactions_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\..\src\db\DB_Table_Subcategory_V1.h" />
+    <ClInclude Include="..\..\..\src\db\DB_Table_Usage_V1.h" />
     <ClInclude Include="..\..\..\src\general_report_manager.h" />
     <ClInclude Include="..\..\..\src\import_export\qif_import_gui.h" />
     <ClInclude Include="..\..\..\src\minimal_editor.h" />
@@ -410,6 +413,7 @@
     <ClInclude Include="..\..\..\src\assetspanel.h" />
     <ClInclude Include="..\..\..\src\billsdepositsdialog.h" />
     <ClInclude Include="..\..\..\src\billsdepositspanel.h" />
+    <ClInclude Include="..\..\..\src\model\Model_Usage.h" />
     <ClInclude Include="..\..\..\src\reports\budget.h" />
     <ClInclude Include="..\..\..\src\reports\budgetcategorysummary.h" />
     <ClInclude Include="..\..\..\src\budgetentrydialog.h" />

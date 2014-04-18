@@ -16,12 +16,23 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-/****************************************************************************
-This frame serves as a test base for dialogs.
-*****************************************************************************/ 
+#include "../mmOption.h"
+//----------------------------------------------------------------------------
+class CommitCallbackHook : public wxSQLite3Hook
+{
+public:
+    virtual bool CommitCallback()
+    {
+        mmOptions::instance().databaseUpdated_ = true;
+        return false;
+    }
+};
+
 class wxFrame;
 class wxInfoBar;
-
+/****************************************************************************
+This frame serves as a test base for dialogs.
+*****************************************************************************/
 class TestFrameBase : public wxFrame
 {
 public:
