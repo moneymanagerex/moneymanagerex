@@ -183,15 +183,3 @@ private:
         "    <TMPL_VAR ERROR>\n"
         "</TMPL_LOOP>";
 };
-
-class MyTreeItemData : public wxTreeItemData
-{
-public:
-    MyTreeItemData(int report_id, wxString selectedGroup) : m_report_id(report_id)
-        , m_selectedGroup(selectedGroup) { }
-    int get_report_id() { return m_report_id; }
-    wxString get_group_name() { return m_selectedGroup; }
-private:
-    int m_report_id;
-    wxString m_selectedGroup;
-};

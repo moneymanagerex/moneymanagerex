@@ -34,6 +34,18 @@
 int titleTextWidth   = 200; // Determines width of Headings Textbox.
 int sourceTextHeight = 200; // Determines height of Source Textbox.
 
+class MyTreeItemData : public wxTreeItemData
+{
+public:
+    MyTreeItemData(int report_id, wxString selectedGroup) : m_report_id(report_id)
+        , m_selectedGroup(selectedGroup) { }
+    int get_report_id() { return m_report_id; }
+    wxString get_group_name() { return m_selectedGroup; }
+private:
+    int m_report_id;
+    wxString m_selectedGroup;
+};
+
 IMPLEMENT_DYNAMIC_CLASS( mmGeneralReportManager, wxDialog )
 
 BEGIN_EVENT_TABLE(mmGeneralReportManager, wxDialog)
