@@ -54,7 +54,7 @@ mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
 }
 
 bool mmQIFImportDialog::Create(wxWindow* parent, wxWindowID id, const wxString& caption
-                           , const wxPoint& pos, const wxSize& size, long style)
+    , const wxPoint& pos, const wxSize& size, long style)
 {
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create(parent, id, caption, pos, size, style);
@@ -134,39 +134,49 @@ void mmQIFImportDialog::CreateControls()
     flex_sizer->Add(newAccounts_, g_flags);
     flex_sizer->Add(bbAccounts_, g_flags);
 
-    // From Date --------------------------------------------
-    dateFromCheckBox_ = new wxCheckBox( this, wxID_ANY, _("From Date")
-        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    fromDateCtrl_ = new wxDatePickerCtrl( this, wxID_STATIC, wxDefaultDateTime
+    //Filtering Details --------------------------------------------
+    wxStaticBox* static_box = new wxStaticBox(this, wxID_ANY, _("Filtering Details:"));
+    wxStaticBoxSizer* filter_sizer = new wxStaticBoxSizer(static_box, wxVERTICAL);
+    wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0, 2, 0, 0);
+    filter_sizer->Add(flex_sizer2, g_flagsExpand);
+
+    // From Date 
+    dateFromCheckBox_ = new wxCheckBox(static_box, wxID_ANY, _("From Date")
+        , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    fromDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     fromDateCtrl_->Enable(false);
-    flex_sizer->Add(dateFromCheckBox_, g_flags);
-    flex_sizer->Add(fromDateCtrl_, g_flags);
-    flex_sizer->AddSpacer(1);
+    flex_sizer2->Add(dateFromCheckBox_, g_flags);
+    flex_sizer2->Add(fromDateCtrl_, g_flags);
 
-    // To Date --------------------------------------------
-    dateToCheckBox_ = new wxCheckBox( this, wxID_ANY, _("To Date")
+    // To Date
+    dateToCheckBox_ = new wxCheckBox(static_box, wxID_ANY, _("To Date")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE );
-    toDateCtrl_ = new wxDatePickerCtrl( this, wxID_STATIC, wxDefaultDateTime
+    toDateCtrl_ = new wxDatePickerCtrl(static_box, wxID_STATIC, wxDefaultDateTime
         , wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN);
     toDateCtrl_->Enable(false);
-    flex_sizer->Add(dateToCheckBox_, g_flags);
-    flex_sizer->Add(toDateCtrl_, g_flags);
-    flex_sizer->AddSpacer(1);
+    flex_sizer2->Add(dateToCheckBox_, g_flags);
+    flex_sizer2->Add(toDateCtrl_, g_flags);
 
-    //Log viewer
+    //Data viewer ----------------------------------------------
+    wxNotebook* qif_notebook = new wxNotebook(this
+        , wxID_FILE9, wxDefaultPosition, wxDefaultSize, wxNB_MULTILINE);
+
+    wxPanel* log_tab = new wxPanel(qif_notebook, wxID_ANY);
+    qif_notebook->AddPage(log_tab, _("Log"));
     wxBoxSizer* log_sizer = new wxBoxSizer(wxVERTICAL);
+    log_tab->SetSizer(log_sizer);
 
-    log_field_ = new wxTextCtrl( this, wxID_STATIC, ""
+    log_field_ = new wxTextCtrl(log_tab, wxID_ANY, ""
         , wxDefaultPosition, wxSize(500, -1), wxTE_MULTILINE|wxHSCROLL );
     log_sizer->Add(log_field_, g_flagsExpand);
 
-    //Data viewer
-    wxPanel* data_panel = new wxPanel(this, wxID_ANY);
+    wxPanel* data_tab = new wxPanel(qif_notebook, wxID_ANY);
+    qif_notebook->AddPage(data_tab, _("Data"));
     wxBoxSizer* data_sizer = new wxBoxSizer(wxHORIZONTAL);
-    data_panel->SetSizer(data_sizer);
+    data_tab->SetSizer(data_sizer);
 
-    dataListBox_ = new wxDataViewListCtrl(data_panel
+    dataListBox_ = new wxDataViewListCtrl(data_tab
         , wxID_ANY, wxDefaultPosition, wxSize(100, 200));
     dataListBox_->AppendTextColumn(ColName_[COL_ACCOUNT], wxDATAVIEW_CELL_INERT, 120, wxALIGN_RIGHT);
     dataListBox_->AppendTextColumn(ColName_[COL_DATE], wxDATAVIEW_CELL_INERT, 90, wxALIGN_RIGHT);
@@ -180,10 +190,10 @@ void mmQIFImportDialog::CreateControls()
 
     //Compose all sizers togethe
     wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
-    main_sizer->Add(top_sizer, g_flagsExpand);
+    main_sizer->Add(top_sizer, g_flags);
     top_sizer->Add(left_sizer, g_flags);
-    top_sizer->Add(log_sizer, g_flagsExpand);
-    main_sizer->Add(data_panel, g_flagsExpand);
+    top_sizer->Add(filter_sizer, g_flags);
+    main_sizer->Add(qif_notebook, g_flagsExpand);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -785,6 +795,8 @@ void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
         return; // user pressed cancel
     file_name_ctrl_->SetValue(sFileName_);
 
+    wxNotebook* n = (wxNotebook*) FindWindow(wxID_FILE9);
+    if (n) n->SetSelection(0);
     wxTextFile tFile;
     tFile.Open(sFileName_ /*, wxCSConv(wxFONTENCODING_CP1251)*/); //TODO: encoding convertion
     if (!tFile.Open())
@@ -1002,6 +1014,8 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
+            wxNotebook* n = (wxNotebook*) FindWindow(wxID_FILE9);
+            if (n) n->SetSelection(1);
             m_parsedOK = mmParseQIF();
             btnOK_->Enable(m_parsedOK);
         }
