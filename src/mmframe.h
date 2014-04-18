@@ -48,6 +48,7 @@ class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
 class RecentDatabaseFiles;
+class mmFileHistory;
 class CommitCallbackHook;
 //----------------------------------------------------------------------------
 
@@ -255,7 +256,7 @@ private:
     void processPendingEvents();
 
     /* Recent Files */
-    RecentDatabaseFiles* recentFiles_;
+    mmFileHistory* recentFiles_;
     wxMenu *menuRecentFiles_;
 
     void OnRecentFiles(wxCommandEvent& event);

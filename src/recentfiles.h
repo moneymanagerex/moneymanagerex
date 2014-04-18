@@ -1,5 +1,6 @@
 /*************************************************************************
  Copyright (C) 2011,2012 Stefano Giorgio
+ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -21,44 +22,14 @@
 #include "defs.h"
 #include <wx/filehistory.h>
 
-/******************************************************************************
- Class: RecentDatabaseFiles
-
- Note:  For generic use, the number saved is one less that the specified size.
-        The 0 element is not saved by this list.
-*******************************************************************************/
-class RecentDatabaseFiles
-{
-public:
-    // This constructor is for recent files list
-    RecentDatabaseFiles(wxMenu *menuRecentFiles);
-    ~RecentDatabaseFiles();
-
-    void loadRecentList();
-    void saveRecentList();
-    void setMenuFileItems();
-    void updateRecentList(const wxString& currentFileName);
-    void clearRecentList();
-    wxString getRecentFile(int fileNum);
-    void removeRecentFile(int fileNum);
-
-    // returns true if lastListedFileName is valid;
-    bool validLastListedFile(wxString& lastListedFileName);
-
-private:
-    wxMenu *menuRecentFiles_;
-    wxArrayString recentFileList_;
-
-    int recentListSize_;
-    const wxString dbIndexName_;
-};
-
 class mmFileHistory: public wxFileHistory
 {
-    mmFileHistory();
+public:
     mmFileHistory(size_t maxFiles=9, wxWindowID idBase=wxID_FILE1);
     ~mmFileHistory();
 
+public:
+    void Clear();
     void Load();
     void Save();
 };

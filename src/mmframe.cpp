@@ -270,7 +270,9 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 #if wxUSE_STATUSBAR
     CreateStatusBar();
 #endif // wxUSE_STATUSBAR
-    recentFiles_ = new RecentDatabaseFiles(menuRecentFiles_);
+    recentFiles_ = new mmFileHistory(); // TODO Max files
+    recentFiles_->UseMenu(menuRecentFiles_);
+    recentFiles_->Load();
 
     // Load perspective
     wxString auiPerspective = Model_Setting::instance().GetStringSetting("AUIPERSPECTIVE", m_perspective);
@@ -1855,7 +1857,6 @@ void mmGUIFrame::createMenu()
 
     menuRecentFiles_ = new wxMenu;
     menu_file->Append(MENU_RECENT_FILES, _("&Recent Files..."), menuRecentFiles_);
-    // Note: menuRecentFiles_ will be constructed by the class: RecentDatabaseFiles::setMenuFileItems()
     wxMenuItem* menuClearRecentFiles = new wxMenuItem(menu_file, MENU_RECENT_FILES_CLEAR, _("&Clear Recent Files"));
     menuClearRecentFiles->SetBitmap(wxBitmap(clearlist_xpm));
     menu_file->Append(menuClearRecentFiles);
@@ -3322,7 +3323,7 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 
     if (openFile(dbFileName, newDatabase))
     {
-        recentFiles_->updateRecentList(dbFileName);
+        recentFiles_->AddFileToHistory(dbFileName);
     }
     else
     {
@@ -3378,22 +3379,22 @@ void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
 
 void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 {
-    int fileNum = event.GetId() - wxID_FILE1 + 1;
-    wxString file_name = recentFiles_->getRecentFile(fileNum);
+    int fileNum = event.GetId() - recentFiles_->GetBaseId();
+    wxString file_name = recentFiles_->GetHistoryFile(fileNum);
     wxFileName file(file_name);
     if (file.FileExists())
         SetDatabaseFile(file_name);
     else
     {
         wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK | wxICON_ERROR);
-        recentFiles_->removeRecentFile(fileNum);
+        recentFiles_->RemoveFileFromHistory(fileNum);
     }
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnClearRecentFiles(wxCommandEvent& /*event*/)
 {
-    recentFiles_->clearRecentList();
+    recentFiles_->Clear();
 }
 
 void mmGUIFrame::setGotoAccountID(int account_id, long transID)
