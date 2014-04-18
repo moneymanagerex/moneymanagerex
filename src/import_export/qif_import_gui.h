@@ -125,6 +125,4 @@ private:
         COL_MAX, // number of columns
     };
     std::map<int, wxString> ColName_;
-private:
-    std::map<wxString, const Model_Account::Data *> m_account_cache;
 };

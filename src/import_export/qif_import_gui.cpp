@@ -1072,9 +1072,6 @@ void mmQIFImportDialog::OnQuit(wxCloseEvent& /*event*/)
 
 int mmQIFImportDialog::getOrCreateAccount(const wxString& name, double init_balance, const wxString& currency_name)
 {
-    const auto & it = this->m_account_cache.find(name);
-    if (it != this->m_account_cache.end()) return it->second->id();  // cached
-
     int accountID = -1;
     Model_Account::Data* account = Model_Account::instance().get(name);
     if (!account)
@@ -1096,8 +1093,6 @@ int mmQIFImportDialog::getOrCreateAccount(const wxString& name, double init_bala
         accountID = Model_Account::instance().save(account);
         wxString sMsg = wxString::Format(_("Added account: %s"), name);
         log_field_->AppendText(wxString() << sMsg << "\n");
-
-        this->m_account_cache.insert(std::make_pair(account->ACCOUNTNAME, account)); // add to cache
     }
     else
         accountID = account->ACCOUNTID;
