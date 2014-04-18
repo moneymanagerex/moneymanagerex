@@ -47,7 +47,6 @@ class mmPanelBase;
 class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
-class RecentDatabaseFiles;
 class mmFileHistory;
 class CommitCallbackHook;
 //----------------------------------------------------------------------------
