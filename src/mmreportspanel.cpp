@@ -32,9 +32,8 @@ class WebViewHandlerReportsPage : public wxWebViewHandler
 {
 public:
     WebViewHandlerReportsPage(mmReportsPanel *panel, const wxString& protocol)
-        : wxWebViewHandler(protocol)
+        : wxWebViewHandler(protocol), m_reportPanel(panel)
     {
-        m_reportPanel = panel;
     }
 
     virtual ~WebViewHandlerReportsPage()

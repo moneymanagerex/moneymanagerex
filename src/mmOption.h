@@ -78,11 +78,5 @@ public:
     int transDateDefault_;
 };
 
-class CommitCallbackHook : public wxSQLite3Hook
-{
-public:
-    virtual bool CommitCallback();
-};
-
 #endif // _MM_EX_OPTION_H_
 //----------------------------------------------------------------------------

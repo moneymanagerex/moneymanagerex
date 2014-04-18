@@ -22,7 +22,7 @@
 
 #include "mmpanelbase.h"
 
-class wxHtmlWindow;
+class wxWebView;
 
 class mmHelpPanel : public mmPanelBase
 {

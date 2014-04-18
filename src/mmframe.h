@@ -48,6 +48,7 @@ class mmTreeItemData;
 class mmCheckingPanel;
 class mmBudgetingPanel;
 class RecentDatabaseFiles;
+class CommitCallbackHook;
 //----------------------------------------------------------------------------
 
 class mmGUIFrame : public wxFrame

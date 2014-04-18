@@ -119,6 +119,16 @@
 #include "../resources/wrench.xpm"
 
 //----------------------------------------------------------------------------
+class CommitCallbackHook : public wxSQLite3Hook
+{
+public:
+    virtual bool CommitCallback()
+    {
+        mmOptions::instance().databaseUpdated_ = true;
+        return false;
+    }
+};
+//----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
 //----------------------------------------------------------------------------
