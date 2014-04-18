@@ -196,17 +196,35 @@ mmFileHistory::~mmFileHistory()
 
 void mmFileHistory::Load()
 {
-     m_fileHistory.Clear();
+    m_fileHistory.Clear();
 
-     // TODO
+    wxString buf;
+    buf.Printf("RECENT_DB_%d", 1);
 
-     AddFilesToMenu();
+    wxString historyFile;
+    while (m_fileHistory.GetCount() < m_fileMaxFiles)
+    {
+        historyFile = Model_Setting::instance().GetStringSetting(buf, "");
+        if (historyFile.IsEmpty()) break;
+
+        m_fileHistory.Add(historyFile);
+
+        buf.Printf("RECENT_DB_%d", (int)m_fileHistory.GetCount()+1);
+        historyFile = wxEmptyString;
+    }
+
+    AddFilesToMenu();
 }
 
 void mmFileHistory::Save()
 {
     for (size_t i = 0; i < m_fileMaxFiles; i++)
     {
-        // TODO
+        wxString buf;
+        buf.Printf("RECENT_DB_%d", (int)i+1);
+        if (i < m_fileHistory.GetCount())
+            Model_Setting::instance().Set(buf, wxString(m_fileHistory[i]));
+        else
+            Model_Setting::instance().Set(buf, wxEmptyString);
     }
 }
