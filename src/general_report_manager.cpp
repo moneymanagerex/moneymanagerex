@@ -37,7 +37,7 @@ int sourceTextHeight = 200; // Determines height of Source Textbox.
 class MyTreeItemData : public wxTreeItemData
 {
 public:
-    MyTreeItemData(int report_id, wxString selectedGroup) : m_report_id(report_id)
+    MyTreeItemData(int report_id, const wxString& selectedGroup) : m_report_id(report_id)
         , m_selectedGroup(selectedGroup) { }
     int get_report_id() { return m_report_id; }
     wxString get_group_name() { return m_selectedGroup; }
