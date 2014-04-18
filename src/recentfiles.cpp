@@ -181,3 +181,32 @@ bool RecentDatabaseFiles::validLastListedFile(wxString& lastListedFileName)
     }
     return validFileName;
 }
+
+mmFileHistory::mmFileHistory(): wxFileHistory()
+{
+}
+
+mmFileHistory::mmFileHistory(size_t maxFiles, wxWindowID idBase): wxFileHistory(maxFiles, idBase)
+{
+}
+
+mmFileHistory::~mmFileHistory()
+{
+}
+
+void mmFileHistory::Load()
+{
+     m_fileHistory.Clear();
+
+     // TODO
+
+     AddFilesToMenu();
+}
+
+void mmFileHistory::Save()
+{
+    for (size_t i = 0; i < m_fileMaxFiles; i++)
+    {
+        // TODO
+    }
+}

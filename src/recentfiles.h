@@ -19,6 +19,7 @@
 #define _MM_EX_RECENTFILES_H_
 #include <wx/arrstr.h>
 #include "defs.h"
+#include <wx/filehistory.h>
 
 /******************************************************************************
  Class: RecentDatabaseFiles
@@ -50,6 +51,16 @@ private:
 
     int recentListSize_;
     const wxString dbIndexName_;
+};
+
+class mmFileHistory: public wxFileHistory
+{
+    mmFileHistory();
+    mmFileHistory(size_t maxFiles=9, wxWindowID idBase=wxID_FILE1);
+    ~mmFileHistory();
+
+    void Load();
+    void Save();
 };
 
 #endif
