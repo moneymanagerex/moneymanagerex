@@ -63,7 +63,7 @@ Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
 Model_Payee::Data* Model_Payee::get(const wxString& name)
 {
     for (auto & payee : this->cache_)
-        if (payee->id() > 0 && payee->PAYEENAME == name) return payee;
+        if (payee->id() > 0 && payee->PAYEENAME.CmpNoCase(name) == 0) return payee;
     Data* payee = 0;
     Data_Set items = this->find(PAYEENAME(name));
     if (!items.empty()) payee = this->get(items[0].PAYEEID, this->db_);

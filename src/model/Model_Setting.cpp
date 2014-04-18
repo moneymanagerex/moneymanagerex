@@ -66,8 +66,19 @@ void Model_Setting::Set(const wxString& key, const wxColour& value)
 void Model_Setting::Set(const wxString& key, const wxString& value)
 {
     Data* setting = 0;
-    Data_Set items = this->find(SETTINGNAME(key));
-    if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
+    for (auto& item : this->cache_)
+    {
+        if (item->id() > 0 && item->SETTINGNAME.CmpNoCase(key) == 0)
+        {
+            setting = item;
+            break;
+        }
+    }
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (!items.empty()) setting = this->get(items[0].SETTINGID, this->db_);
+    }
     if (setting)
     {
         setting->SETTINGVALUE = value;

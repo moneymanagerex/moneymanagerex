@@ -100,7 +100,7 @@ wxArrayString Model_Account::all_type()
 Model_Account::Data* Model_Account::get(const wxString& name)
 {
     for (auto & account : this->cache_)
-        if (account->id() > 0 && account->ACCOUNTNAME == name) return account;
+        if (account->id() > 0 && account->ACCOUNTNAME.CmpNoCase(name) == 0) return account;
     Data* account = 0;
     Data_Set items = this->find(ACCOUNTNAME(name));
     if (!items.empty()) account = this->get(items[0].ACCOUNTID, this->db_);

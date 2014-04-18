@@ -69,9 +69,19 @@ void Model_Infotable::Set(const wxString& key, const wxDateTime& date)
 void Model_Infotable::Set(const wxString& key, const wxString& value)
 {
     Data* info = 0;
-    Data_Set items = this->find(INFONAME(key));
-    if (!items.empty())
-        info = this->get(items[0].INFOID);
+    for (auto & item : this->cache_)
+    {
+        if (item->id() > 0 && item->INFONAME.CmpNoCase(key) == 0)
+        {
+            info = item;
+            break;
+        }
+    }
+    if (!info) // not cached
+    {
+        Data_Set items = this->find(INFONAME(key));
+        if (!items.empty()) info = this->get(items[0].INFOID);
+    }
     if (info)
     {
         info->INFOVALUE= value;

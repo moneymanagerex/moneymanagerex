@@ -53,7 +53,7 @@ Model_Subcategory& Model_Subcategory::instance()
 Model_Subcategory::Data* Model_Subcategory::get(const wxString& name, int category_id)
 {
     for (auto & category : this->cache_)
-        if (category->id() > 0 && category->SUBCATEGNAME == name && category->CATEGID == category_id) return category;
+        if (category->id() > 0 && category->SUBCATEGNAME.CmpNoCase(name) == 0 && category->CATEGID == category_id) return category;
 
     Data* category = 0;
     Data_Set items = this->find(SUBCATEGNAME(name), CATEGID(category_id));

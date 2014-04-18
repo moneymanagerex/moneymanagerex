@@ -228,7 +228,7 @@ void Model_Category::initialize()
 Model_Category::Data* Model_Category::get(const wxString& name)
 {
     for (auto & category : this->cache_)
-        if (category->id() > 0 && category->CATEGNAME == name) return category;
+        if (category->id() > 0 && category->CATEGNAME.CmpNoCase(name) == 0) return category;
     Data* category = 0;
     Data_Set items = this->find(CATEGNAME(name));
     if (!items.empty()) category = this->get(items[0].CATEGID, this->db_);
