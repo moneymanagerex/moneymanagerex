@@ -2299,6 +2299,7 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
 {
     if (createDataStore(fileName, password, openingNew))
     {
+        recentFiles_->AddFileToHistory(fileName);
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
@@ -3320,11 +3321,7 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
         createHomePage();
     }
 
-    if (openFile(dbFileName, newDatabase))
-    {
-        recentFiles_->AddFileToHistory(dbFileName);
-    }
-    else
+    if (!openFile(dbFileName, newDatabase))
     {
         createHomePage();
         updateNavTreeControl();

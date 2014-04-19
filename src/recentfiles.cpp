@@ -31,6 +31,7 @@ mmFileHistory::~mmFileHistory()
 
 void mmFileHistory::Clear()
 {
+    for (size_t i = 0; i < m_fileHistory.GetCount(); i++) this->RemoveFileFromHistory(i);
     m_fileHistory.Clear();
 }
 
