@@ -212,7 +212,7 @@ EVT_MENU(MENU_TREEPOPUP_ACCOUNT_VIEWOPEN, mmGUIFrame::OnViewOpenAccounts)
 EVT_TIMER(AUTO_REPEAT_TRANSACTIONS_TIMER_ID, mmGUIFrame::OnAutoRepeatTransactionsTimer)
 
 /* Recent Files */
-EVT_MENU_RANGE(wxID_FILE1, wxID_FILE5, mmGUIFrame::OnRecentFiles)
+EVT_MENU_RANGE(wxID_FILE1, wxID_FILE9, mmGUIFrame::OnRecentFiles)
 EVT_MENU(MENU_RECENT_FILES_CLEAR, mmGUIFrame::OnClearRecentFiles)
 
 EVT_CLOSE(mmGUIFrame::OnClose)
@@ -3376,6 +3376,8 @@ void mmGUIFrame::BackupDatabase(const wxString& filename, bool updateRequired)
 void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
 {
     int fileNum = event.GetId() - recentFiles_->GetBaseId();
+    if (fileNum == 0)
+        return;
     wxString file_name = recentFiles_->GetHistoryFile(fileNum);
     wxFileName file(file_name);
     if (file.FileExists())
