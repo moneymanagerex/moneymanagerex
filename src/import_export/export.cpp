@@ -47,7 +47,7 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
 
     if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
     {
-        categ = "[" + (!out ? full_tran.ACCOUNTNAME : full_tran.PAYEENAME) + "]";
+        categ = "[" + (out ? full_tran.TOACCOUNTNAME : full_tran.ACCOUNTNAME) + "]";
 
         //Transaction number used to make transaction unique
         // to proper merge transfer records
