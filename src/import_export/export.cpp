@@ -42,8 +42,6 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
     wxString categ = full_tran.m_splits.empty() ? full_tran.CATEGNAME : "";
     wxString transNum = full_tran.TRANSACTIONNUMBER;
     wxString notes = (full_tran.NOTES);
-    notes.Replace("''", "'");
-    notes.Replace("\n", " ");
 
     if (Model_Checking::type(full_tran) == Model_Checking::TRANSFER)
     {
@@ -64,7 +62,11 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
     if (!categ.IsEmpty())
         buffer << "L" << categ << "\n";
     if (!notes.IsEmpty())
+    {
+        notes.Replace("''", "'");
+        notes.Replace("\n", "\nM");
         buffer << "M" << notes << "\n";
+    }
 
     for (const auto &split_entry : full_tran.m_splits)
     {
