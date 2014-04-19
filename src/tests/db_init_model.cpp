@@ -513,6 +513,24 @@ int DB_Init_Model::Add_Asset(const wxString& name, const wxDate& date, double va
     return Model_Asset::instance().save(entry);
 }
 
+int DB_Init_Model::Add_Stock_Entry(int account_id, const wxDate& purchase_date, double num_shares, double purchase_price,
+    double commission, double current_price, double value,
+    const wxString& stock_name, const wxString& stock_symbol, const wxString& notes)
+{
+    Model_Stock::Data* entry = Model_Stock::instance().create();
+    entry->HELDAT = account_id;
+    entry->PURCHASEDATE = purchase_date.FormatISODate();
+    entry->NUMSHARES = num_shares;
+    entry->PURCHASEPRICE = purchase_price;
+    entry->STOCKNAME = stock_name;
+    entry->SYMBOL = stock_symbol;
+    entry->NOTES = notes;
+    entry->COMMISSION = commission;
+    entry->CURRENTPRICE = current_price == 0 ? purchase_price : current_price;
+    entry->VALUE = value == 0 ? purchase_price * num_shares : value;
+    return Model_Stock::instance().save(entry);
+}
+
 void DB_Init_Model::ShowMessage(wxString msg)
 {
     wxMessageBox(msg, "MMEX_Table Data Initialisation", wxOK | wxICON_WARNING, wxTheApp->GetTopWindow());

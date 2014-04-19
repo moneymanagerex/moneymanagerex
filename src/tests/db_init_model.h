@@ -119,6 +119,11 @@ public:
 
     int Add_Asset(const wxString& name, const wxDate& date, double value, Model_Asset::TYPE asset_type = Model_Asset::TYPE_CASH,
         Model_Asset::RATE value_change = Model_Asset::RATE::RATE_NONE, double value_change_rate = 0, const wxString& notes = "");
+    
+    /** Return the stock_id for a stock entry */
+    int Add_Stock_Entry(int account_id, const wxDate& purchase_date, double num_shares, double purchase_price,
+        double commission = 0, double current_price = 0, double value = 0,
+        const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
 
     void ShowMessage(wxString msg);
 

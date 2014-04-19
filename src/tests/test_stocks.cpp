@@ -132,6 +132,11 @@ void Test_Stock::Test_Stocks_Panel()
     stocks_frame->Show();
 
     int stock_Account_id = m_dbmodel->Get_account_id("ACME Corp");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 1.2575, 0, 0, 0, "Initial Share Purchase");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 100, 1.1575, 0, 0, 0, "DRP");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 150, 1.4575, 0, 0, 0, "Suplement Purchase");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 1.2775, 0, 0, 0, "DRP");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 150, 2.2575, 0, 0, 0, "DRP + Suplement Purchase");
 
     // Create the panel under test
     mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);
