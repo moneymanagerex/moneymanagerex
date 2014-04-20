@@ -35,16 +35,6 @@ public:
 
     /// Saves the updated System Options to the appropriate databases.
     void SaveNewSystemSettings();
-
-    bool RequiresRestart()
-    {
-        return restartRequired_;
-    }
-    bool AppliedChanges()
-    {
-        return changesApplied_;
-    }
-
 private:
     /// Dialog Creation - Used by constructor
     bool Create(wxWindow* parent, wxWindowID id,
@@ -84,6 +74,7 @@ private:
     void SaveOthersPanelSettings();
     void SaveNetworkPanelSettings();
     void OnOk(wxCommandEvent& /*event*/);
+    void OnApply(wxCommandEvent& /*event*/);
 
     /// Dialog specific controls
     wxImageList* m_imageList;
@@ -129,9 +120,6 @@ private:
 
     wxCheckBox* cbWebServerCheckBox_;
     wxSpinCtrl *scWebServerPort_;
-
-    bool restartRequired_;
-    bool changesApplied_;
 
     int currencyId_;
     wxString dateFormat_;

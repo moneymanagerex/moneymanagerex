@@ -41,6 +41,7 @@ IMPLEMENT_DYNAMIC_CLASS( mmOptionsDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
+    EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
@@ -58,8 +59,6 @@ mmOptionsDialog::~mmOptionsDialog( )
 }
 
 mmOptionsDialog::mmOptionsDialog(wxWindow* parent)
-: restartRequired_(false)
-, changesApplied_(false)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
@@ -794,8 +793,10 @@ void mmOptionsDialog::CreateControls()
     mainDialogSizer->Add(buttonPanel, 0, wxALIGN_RIGHT|wxALL, 5);
 
     wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _("&OK "));
+    wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _("&Apply"));
     wxButton* itemButtonCancel = new wxButton(buttonPanel, wxID_CANCEL, _("&Cancel "));
     buttonPanelSizer->Add(itemButtonOK, 0, wxALIGN_RIGHT|wxRIGHT, 5);
+    buttonPanelSizer->Add(itemButtonApply, wxALIGN_RIGHT|wxRIGHT, 5);
     buttonPanelSizer->Add(itemButtonCancel, 0, wxALIGN_RIGHT|wxRIGHT, 5);
     itemButtonOK->SetFocus();
 }
@@ -804,10 +805,6 @@ void mmOptionsDialog::OnLanguageChanged(wxCommandEvent& /*event*/)
 {
     wxString lang = mmSelectLanguage(this, true, false);
     if (lang.empty()) return;
-
-    // Advisable to restart GUI when user acknowledges the change.
-    restartRequired_ = true;
-    changesApplied_ = true;
 
     wxButton *btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     wxASSERT(btn);
@@ -1134,6 +1131,11 @@ void mmOptionsDialog::SaveNetworkPanelSettings()
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    changesApplied_ = true;
+    this->SaveNewSystemSettings();
     EndModal(wxID_OK);
+}
+
+void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
+{
+    // TODO save according panel setting
 }

@@ -2716,10 +2716,8 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     if (!m_db.get()) return;
 
     mmOptionsDialog systemOptions(this);
-    if (systemOptions.ShowModal() == wxID_OK && systemOptions.AppliedChanges())
+    if (systemOptions.ShowModal() == wxID_OK)
     {
-        systemOptions.SaveNewSystemSettings();
-
         //set the View Menu Option items the same as the options saved.
         menuBar_->FindItem(MENU_VIEW_BANKACCOUNTS)->Check(mmIniOptions::instance().expandBankHome_);
         menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Check(mmIniOptions::instance().expandTermHome_);
@@ -2732,12 +2730,6 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 
         int messageIcon = wxOK | wxICON_INFORMATION;
         wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";
-        if (systemOptions.RequiresRestart())
-        {
-            messageIcon = wxOK | wxICON_WARNING;
-            sysMsg << _("Recommendation: Shut down and restart MMEX.") << "\n"
-                << _("This will allow all MMEX option updates to take effect.");
-        }
         wxMessageBox(sysMsg, _("New MMEX Options"), messageIcon);
 
         updateNavTreeControl();
