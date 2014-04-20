@@ -36,6 +36,30 @@
 #include "../resources/preferences-other.xpm"
 #include "../resources/view.xpm"
 
+class mmGeneralSettingPanel: public wxPanel
+{
+    // TODO
+};
+
+class mmDisplaySettingPanel: public wxPanel
+{
+    // TODO
+};
+
+class mmAttachmentSettingPanel: public wxPanel
+{
+    // TODO
+};
+
+class mmNetworkSettingPanel: public wxPanel
+{
+    // TODO
+};
+
+class mmOtherSettingPanel: public wxPanel
+{
+    // TODO
+};
 
 IMPLEMENT_DYNAMIC_CLASS( mmOptionsDialog, wxDialog )
 
