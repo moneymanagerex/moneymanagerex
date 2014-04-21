@@ -44,6 +44,18 @@ class mmSettingPanel: public wxPanel
 class mmGeneralSettingPanel: public mmSettingPanel
 {
     // TODO
+
+    void SaveSetting()
+    {
+        /*
+        Model_Infotable::instance().Set("USERNAME", mmOptions::instance().userNameString_);
+        Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
+        Model_Infotable::instance().SetBaseCurrencyID(currencyId_);
+        Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);
+        Model_Setting::instance().Set(INIDB_USE_ORG_DATE_COPYPASTE, cbUseOrgDateCopyPaste_->GetValue());
+        Model_Setting::instance().Set(INIDB_USE_TRANSACTION_SOUND, cbUseSound_->GetValue());
+        */
+    }
 };
 
 class mmDisplaySettingPanel: public mmSettingPanel
