@@ -55,10 +55,10 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
 
 	wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder();
 
-	if (AttachmentsFolder == "")
+	if (AttachmentsFolder == wxEmptyString)
 	{
 		wxString msgStr = wxString() << _("Attachment folder not defined.") << "\n"
-			<< _("Please set it in Tools -> Options -> Import/Export") << "\n";
+			<< _("Please set it in Tools -> Options -> Attachments") << "\n";
 		wxMessageBox(msgStr, _("Attachment folder not defined"), wxICON_ERROR);
 	}
 	else if (!wxDirExists(AttachmentsFolder))
@@ -279,7 +279,7 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 	
 	//Disable buttons
 	wxString AttachmentsFolder = mmAttachmentManage::GetAttachmentsFolder();
-	if (AttachmentsFolder == "" || !wxDirExists(AttachmentsFolder))
+	if (AttachmentsFolder == wxEmptyString || !wxDirExists(AttachmentsFolder))
 		mainMenu->Enable(MENU_NEW_ATTACHMENT, false);
 
 	if (!attachment)

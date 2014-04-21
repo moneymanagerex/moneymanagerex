@@ -930,8 +930,14 @@ void mmOptionsDialog::OnAttachmentSelected(wxCommandEvent& event)
         else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER)
         {
             const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+			if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
+				|| attachmentFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
+				|| attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR)
+			st->SetValue(wxEmptyString);
+			else
             st->SetValue(attachmentFolder);
-            st->Enable(true);
+
+			st->Enable(true);
         }
     }
 
@@ -1113,7 +1119,7 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
 
     //Create attachments folder
     wxString attachmentFolderPath = mmAttachmentManage::GetAttachmentsFolder();
-    if (!wxDirExists(attachmentFolderPath))
+	if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
         wxMkdir(attachmentFolderPath);
 
     Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
