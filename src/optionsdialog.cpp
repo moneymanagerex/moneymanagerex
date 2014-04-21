@@ -36,27 +36,32 @@
 #include "../resources/preferences-other.xpm"
 #include "../resources/view.xpm"
 
-class mmGeneralSettingPanel: public wxPanel
+class mmSettingPanel: public wxPanel
+{
+    virtual void SaveSetting() = 0;
+};
+
+class mmGeneralSettingPanel: public mmSettingPanel
 {
     // TODO
 };
 
-class mmDisplaySettingPanel: public wxPanel
+class mmDisplaySettingPanel: public mmSettingPanel
 {
     // TODO
 };
 
-class mmAttachmentSettingPanel: public wxPanel
+class mmAttachmentSettingPanel: public mmSettingPanel
 {
     // TODO
 };
 
-class mmNetworkSettingPanel: public wxPanel
+class mmNetworkSettingPanel: public mmSettingPanel
 {
     // TODO
 };
 
-class mmOtherSettingPanel: public wxPanel
+class mmOtherSettingPanel: public mmSettingPanel
 {
     // TODO
 };
