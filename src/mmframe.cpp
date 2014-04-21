@@ -500,8 +500,7 @@ void mmGUIFrame::OnAutoRepeatTransactionsTimer(wxTimerEvent& /*event*/)
 							int InsertedTransactionID = mmWebApp::MMEX_InsertNewTransaction(NewTransactionJSON);
 							if (InsertedTransactionID > 0)
 							{
-								mmGUIFrame* EditTransactionFrame = const_cast<mmGUIFrame *>(this);
-								mmTransDialog EditTransactionDialog(EditTransactionFrame, 1, InsertedTransactionID);
+								mmTransDialog EditTransactionDialog(this, 1, InsertedTransactionID);
 								EditTransactionDialog.ShowModal();
 							}
 							else
