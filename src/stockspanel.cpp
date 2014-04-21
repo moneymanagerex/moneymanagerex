@@ -377,13 +377,7 @@ void mmStocksPanel::CreateControls()
 
     header_total_ = new wxStaticText(headerPanel, wxID_STATIC, "");
 
-    wxBitmap pic(led_off_xpm);
-    refresh_button_ = new wxBitmapButton( headerPanel, wxID_REFRESH, pic);
-    refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
-
     wxBoxSizer* itemBoxSizerHHeader = new wxBoxSizer(wxHORIZONTAL);
-
-    itemBoxSizerHHeader->Add(refresh_button_, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
     itemBoxSizerHHeader->Add(header_text_, 1, wxALIGN_CENTER_VERTICAL|wxALL, 1);
 
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader, 1, wxEXPAND, 1);
@@ -428,6 +422,13 @@ void mmStocksPanel::CreateControls()
     bMove->SetToolTip(_("Move selected transaction to another account"));
     BoxSizerHBottom->Add(bMove, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     bMove->Enable(false);
+
+    wxBitmap pic(led_off_xpm);
+    refresh_button_ = new wxBitmapButton(BottomPanel
+        , wxID_REFRESH, pic, wxDefaultPosition, wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+    refresh_button_->SetLabelText(_("Refresh"));
+    refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
+    BoxSizerHBottom->Add(refresh_button_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
 
     //Infobar-mini
     stock_details_short_ = new wxStaticText(BottomPanel, wxID_STATIC, strLastUpdate_);
