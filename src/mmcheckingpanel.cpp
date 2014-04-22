@@ -820,23 +820,10 @@ const wxString mmCheckingPanel::getItem(long item, long column)
     }
 }
 
-void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
+void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 {
-    //event.GetString() does not working. It seems wxWidgets issue
-    //wxString searchString = event.GetString();
-
-    wxSearchCtrl* st = (wxSearchCtrl*)FindWindow(wxID_FIND);
-    wxString search_string = st->GetValue().Lower();
+    wxString search_string = event.GetString();
     if (search_string.IsEmpty()) return;
-
-    double amount= 0, deposit = 0, withdrawal = 0;
-    bool valid_amount = Model_Currency::fromString(search_string, amount, Model_Account::currency(Model_Account::instance().get(this->m_AccountID)));
-    bool withdrawal_only = false;
-    if (valid_amount && amount < 0)
-    {
-        amount = -amount;
-        withdrawal_only = true;
-    }
 
     long last = m_listCtrlAccount->GetItemCount();
     long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
@@ -848,11 +835,7 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& /*event*/)
     {
         m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
         const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES);
-        if (valid_amount)  Model_Currency::fromString(getItem(selectedItem, m_listCtrlAccount->COL_DEPOSIT), deposit, 0);
-        if (valid_amount)  Model_Currency::fromString(getItem(selectedItem, m_listCtrlAccount->COL_WITHDRAWAL), withdrawal, 0);
-        if (t.Lower().Matches(search_string)
-            || (valid_amount && amount == deposit && !withdrawal_only)
-            || (valid_amount && amount == withdrawal))
+        if (t.Lower().Matches(search_string))
         {
             //First of all any items should be unselected
             long cursel = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
