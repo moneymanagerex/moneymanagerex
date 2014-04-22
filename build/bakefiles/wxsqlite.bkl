@@ -14,6 +14,8 @@
         <!-- disable precompiled headers for wxWidgets -->
         <define>NOPCH</define>
         <define>SQLITE_CORE</define>
+        <define>SQLITE_ENABLE_FTS3</define>
+        <define>SQLITE_ENABLE_FTS3_PARENTHESIS</define>
         <define>SQLITE_HAS_CODEC</define>
         <define>SQLITE_ENABLE_COLUMN_METADATA</define>
 

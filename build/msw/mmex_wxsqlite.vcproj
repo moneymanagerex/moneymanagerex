@@ -47,7 +47,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
 			<Tool
@@ -55,7 +55,7 @@
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="2"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
@@ -70,7 +70,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				Culture="1033"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
@@ -126,7 +126,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
 			<Tool
@@ -134,7 +134,7 @@
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -151,7 +151,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				Culture="1033"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
@@ -207,7 +207,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
 			<Tool
@@ -215,7 +215,7 @@
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="2"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
-				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				ExceptionHandling="1"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="true"
@@ -230,7 +230,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="NDEBUG;_UNICODE;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				Culture="1033"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswu;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
@@ -286,7 +286,7 @@
 			/>
 			<Tool
 				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
 			<Tool
@@ -294,7 +294,7 @@
 				AdditionalOptions="/MP /D_CRT_SECURE_NO_WARNINGS"
 				Optimization="0"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
-				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="WIN32;_LIB;_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -311,7 +311,7 @@
 			/>
 			<Tool
 				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
+				PreprocessorDefinitions="_DEBUG;_DEBUG;_UNICODE;__WXDEBUG__;__WXMSW__;NOPCH;SQLITE_CORE;SQLITE_ENABLE_FTS3;SQLITE_ENABLE_FTS3_PARENTHESIS;SQLITE_HAS_CODEC;SQLITE_ENABLE_COLUMN_METADATA;WXSQLITE3_HAVE_CODEC;WXSQLITE3_HAVE_METADATA"
 				Culture="1033"
 				AdditionalIncludeDirectories="$(WXWIN)\lib\vc_x64_lib\mswud;$(WXWIN)\include;..\..\lib\wxsqlite3\sqlite3\secure\src;..\..\lib\wxsqlite3\include"
 			/>
