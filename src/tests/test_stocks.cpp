@@ -75,10 +75,9 @@ void Test_Stock::tearDown()
 
 void Test_Stock::Test_Add_Stock_Dialog()
 {
-    m_dbmodel->Add_Investment_Account("AMP");
-    int account_id = m_dbmodel->Add_Investment_Account("ACME Corp");
+    m_dbmodel->Add_Investment_Account("ACME Corp");
+    int account_id = m_dbmodel->Add_Investment_Account("AMP");
     m_dbmodel->Add_Investment_Account("Qwerty Keyboards");
-
 
     // create a new entry using the dialog.
     mmStockDialog* dlg = new mmStockDialog(m_base_frame, 0, account_id);
@@ -117,7 +116,7 @@ void Test_Stock::Test_Edit_Stock_Dialog()
         stock_table = Model_Stock::instance().all();
         Model_Stock::Data new_stock_entry = stock_table.at(stock_table.size() - 1);
 
-        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("ACME Corp"));
+        CPPUNIT_ASSERT(stock_entry.HELDAT == m_dbmodel->Get_account_id("AMP"));
         CPPUNIT_ASSERT(new_stock_entry.COMMISSION == commission);
         CPPUNIT_ASSERT(new_stock_entry.CURRENTPRICE == current_price);
         CPPUNIT_ASSERT(new_stock_entry.NUMSHARES == num_shares);
@@ -131,13 +130,14 @@ void Test_Stock::Test_Stocks_Panel()
     TestFrameBase* stocks_frame = new TestFrameBase(m_base_frame, 670, 400);
     stocks_frame->Show();
 
-    int stock_Account_id = m_dbmodel->Get_account_id("ACME Corp");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 1.2575, 0, 0, 0, "Initial Share Purchase");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 100, 1.1575, 0, 0, 0, "DRP");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 150, 1.4575, 0, 0, 0, "Suplement Purchase");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 1.2775, 0, 0, 0, "DRP");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 150, 2.2575, 0, 0, 0, "DRP + Suplement Purchase");
-
+    int stock_Account_id = m_dbmodel->Get_account_id("AMP");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 1.2575, 0, 0, 0, "AMP Initial Share Purchase", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Months(6)), 9550, 2.2575, 0, 0, 0, "AMP Suplement Purchase", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 5, 1.2775, 0, 0, 0, "DRP", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 10, 1.1575, 0, 0, 0, "DRP ", "amp.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 1.4575, 0, 0, 0, "DRP", "AMP.AX");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 1000, 1.2775, 0, 0, 0, "DRP", "AMP.ax");
+    
     // Create the panel under test
     mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);
     stocks_panel->Show();
