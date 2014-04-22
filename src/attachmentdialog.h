@@ -87,6 +87,7 @@ public:
 	static bool OpenAttachment(const wxString& FileToOpen);
 	static bool DeleteAllAttachments(const wxString& RefType, const int& RefId);
 	static bool RelocateAllAttachments(const wxString& RefType, const int& OldRefId, const int& NewRefId);
+	static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, const int& RefId);
 };
 
 #endif // _MM_EX_ATTACHMENTDIALOG_H_

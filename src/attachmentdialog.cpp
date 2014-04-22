@@ -470,3 +470,20 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& RefType, const i
 	}
 	return true;
 }
+
+void mmAttachmentManage::OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, const int& RefId)
+{
+	int AttachmentsNr = Model_Attachment::instance().NrAttachments(RefType, RefId);
+
+	if (AttachmentsNr == 1)
+	{
+		Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, RefId);
+		wxString attachmentFilePath = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + attachments[0].REFTYPE + wxFileName::GetPathSeparator() + attachments[0].FILENAME;
+		mmAttachmentManage::OpenAttachment(attachmentFilePath);
+	}
+	else
+	{
+		mmAttachmentDialog dlg(parent, RefType, RefId);
+		dlg.ShowModal();
+	}
+}

@@ -1372,21 +1372,9 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
 {
     if (m_selectedIndex < 0) return;
     int transaction_id = m_cp->m_trans[m_selectedIndex].TRANSID;
-
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
-	int AttachmentsNr = Model_Attachment::instance().NrAttachments(RefType, transaction_id);
 
-    if (AttachmentsNr == 1)
-    {
-		Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(RefType, transaction_id);
-        wxString attachmentFilePath = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + attachments[0].REFTYPE + wxFileName::GetPathSeparator() + attachments[0].FILENAME;
-        mmAttachmentManage::OpenAttachment(attachmentFilePath);
-    }
-    else
-    {
-        mmAttachmentDialog dlg(this, RefType, transaction_id);
-        dlg.ShowModal();
-    }
+	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, transaction_id);
 }
 
 //----------------------------------------------------------------------------
