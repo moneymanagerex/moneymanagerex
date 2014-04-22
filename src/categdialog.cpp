@@ -318,29 +318,25 @@ void mmCategDialog::showCategDialogDeleteError(wxString deleteCategoryErrMsg, bo
 
 void mmCategDialog::OnDelete(wxCommandEvent& /*event*/)
 {
-    if (selectedItemId_ == root_ || !selectedItemId_ )
+    if (selectedItemId_ == root_ || !selectedItemId_ || m_treeCtrl->ItemHasChildren(selectedItemId_))
         return;
 
     mmTreeItemCateg* iData
         = dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
     int categID = iData->getCategData()->CATEGID;
-    int subcategID = -1;
+    int subcategID = iData->getSubCategData()->SUBCATEGID;
 
-    if (iData->getSubCategData()->SUBCATEGID == -1) // not subcateg
-    {
+    if (subcategID == -1) {
         if (Model_Category::is_used(categID))
         {
-            showCategDialogDeleteError(_("Category in use."));
+            showCategDialogDeleteError(_("Category in use."), false);
             return;
         }
         else
         {
             Model_Category::instance().remove(categID);
         }
-    }
-    else
-    {
-        subcategID = iData->getSubCategData()->SUBCATEGID;
+    } else {
         if (Model_Category::is_used(categID, subcategID))
         {
             showCategDialogDeleteError(_("Sub-Category in use."), false);
@@ -421,8 +417,8 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
 
     m_textCtrl->SetValue(m_treeCtrl->GetItemText(selectedItemId_));
 
-    mmTreeItemCateg* iData = dynamic_cast<mmTreeItemCateg*>
-        (m_treeCtrl->GetItemData(selectedItemId_));
+    mmTreeItemCateg* iData =
+        dynamic_cast<mmTreeItemCateg*>(m_treeCtrl->GetItemData(selectedItemId_));
     categID_ = -1;
     subcategID_ = -1;
     if (iData)
@@ -449,7 +445,7 @@ void mmCategDialog::OnSelChanged(wxTreeEvent& event)
                 bUsed = (bUsed || Model_Category::is_used(categID_, s.SUBCATEGID));
         }
 
-        m_buttonDelete->Enable(!bUsed);
+        m_buttonDelete->Enable(!bUsed && !m_treeCtrl->ItemHasChildren(selectedItemId_));
     }
     m_buttonAdd->Enable(subcategID_ == -1);
     m_buttonEdit->Enable(selectedItemId_ != root_);
