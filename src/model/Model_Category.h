@@ -55,6 +55,7 @@ public:
     /** Return the Data record for the given category name */
     Data* get(const wxString& name);
 
+    static std::map<wxString, std::pair<int, int> > all_categories();
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);
     static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0);

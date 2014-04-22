@@ -235,6 +235,20 @@ Model_Category::Data* Model_Category::get(const wxString& name)
     return category;
 }
 
+std::map<wxString, std::pair<int, int> > Model_Category::all_categories()
+{
+    std::map<wxString, std::pair<int, int> > full_categs;
+    for (const auto& c : instance().all(COL_CATEGNAME))
+    {
+        full_categs[c.CATEGNAME] = std::make_pair(c.CATEGID, -1);
+        for (const auto& s : Model_Subcategory::instance().all(Model_Subcategory::COL_SUBCATEGNAME))
+        {
+            full_categs[instance().full_name(c.CATEGID, s.SUBCATEGID)] = std::make_pair(c.CATEGID, s.SUBCATEGID);
+        }
+    }
+    return full_categs;
+}
+
 Model_Subcategory::Data_Set Model_Category::sub_category(const Data* r)
 {
     return Model_Subcategory::instance().find(Model_Subcategory::CATEGID(r->CATEGID));
