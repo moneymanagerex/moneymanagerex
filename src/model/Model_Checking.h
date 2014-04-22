@@ -53,6 +53,8 @@ public:
         Model_Splittransaction::Data_Set m_splits;
         wxString real_payee_name(int account_id) const;
         bool has_split() const;
+
+        wxString info() const;
     };
     typedef std::vector<Full_Data> Full_Data_Set;
 

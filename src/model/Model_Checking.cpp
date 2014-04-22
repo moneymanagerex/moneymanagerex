@@ -324,6 +324,14 @@ bool Model_Checking::Full_Data::has_split() const
     return !this->m_splits.empty();
 }
 
+wxString Model_Checking::Full_Data::info() const
+{
+    // TODO more info
+    wxDate date = Model_Checking::TRANSDATE(this);
+    wxString info = wxGetTranslation(date.GetWeekDayName(date.GetWeekDay()));
+    return info;
+}
+
 void Model_Checking::getFrequentUsedNotes(const int account_id, std::vector<std::pair<wxString, wxString>> &frequentNotes)
 {
     const wxString sql = "select max (TRANSDATE) as TRANSDATE , count (notes) COUNT, "

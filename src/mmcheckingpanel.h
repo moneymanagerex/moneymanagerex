@@ -329,8 +329,6 @@ private:
 
     /* Getter for Virtual List Control */
     const wxString getItem(long item, long column);
-
-    wxString getMiniInfoStr(int selIndex) const;
 };
 //----------------------------------------------------------------------------
 #endif // _MM_EX_CHECKINGPANEL_H_

@@ -582,9 +582,9 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
     {
         enableEditDeleteButtons(true);
         const Model_Checking::Data& tran = this->m_trans.at(selIndex);
+        Model_Checking::Full_Data full_tran(tran);
         info_panel_->SetLabel(tran.NOTES);
-        wxString miniStr;
-        miniStr = getMiniInfoStr(selIndex);
+        wxString miniStr = full_tran.info();
 
         //Show only first line but full string set as tooltip
         if (miniStr.Find("\n") > 1 && !miniStr.IsEmpty())
@@ -1614,12 +1614,3 @@ void TransactionListCtrl::OnListItemActivated(wxListEvent& /*event*/)
     AddPendingEvent(evt);
 }
 
-//----------------------------------------------------------------------------
-wxString mmCheckingPanel::getMiniInfoStr(int selIndex) const
-{
-    //TODO: Some additional info may be helpfull
-    const Model_Checking::Full_Data& tran = this->m_trans.at(selIndex);
-    wxDateTime date = Model_Checking::TRANSDATE(tran);
-    wxString infoStr = wxGetTranslation(date.GetWeekDayName(date.GetWeekDay()));
-    return infoStr;
-}
