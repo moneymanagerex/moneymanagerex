@@ -41,6 +41,9 @@ const static wxString getImportCategoryParameter();
 const static wxString getDeleteOneTransactionParameter();
 const static wxString getDownloadNewTransactionParameter();
 
+/** Return services page URL with GUID inserted */
+const static wxString getServicesPageURL();
+
 //Return messages from WebApp
 const static wxString getMessageSucceeded();
 const static wxString getMessageWrongGuid();

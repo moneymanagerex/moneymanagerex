@@ -101,17 +101,16 @@ const wxString mmWebApp::getDownloadNewTransactionParameter()
     return "download_transaction";
 }
 
+const wxString mmWebApp::getServicesPageURL()
+{
+	return mmWebApp::getUrl() + "/" + mmWebApp::getServicesPage() + "?" + "guid=" + mmWebApp::getGuid();
+}
+
 //Get WebApp Api version
 const wxString mmWebApp::WebApp_getApiVersion()
 {
-	wxString CheckApiVersionUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getCheckApiVersionParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
 	wxString outputMessage;
-	site_content(CheckApiVersionUrl, outputMessage);
+	site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getCheckApiVersionParameter(), outputMessage);
 
 	return outputMessage;
 }
@@ -142,7 +141,8 @@ bool mmWebApp::returnResult(int& ErrorCode, wxString& outputMessage)
 //Check if WebApp is enabled
 bool mmWebApp::WebApp_CheckEnabled()
 {
-	if (Model_Infotable::instance().GetStringInfo("WEBAPPURL", "") != "" && Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "") != "")
+	if (Model_Infotable::instance().GetStringInfo("WEBAPPURL", "") != wxEmptyString
+		&& Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "") != wxEmptyString)
 		return true;
 	else
 		return false;
@@ -151,21 +151,15 @@ bool mmWebApp::WebApp_CheckEnabled()
 //Check guid
 bool mmWebApp::WebApp_CheckGuid()
 {
-	wxString CheckGuidUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getCheckGuidParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
 	wxString outputMessage;
-	site_content(CheckGuidUrl, outputMessage);
+	site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getCheckGuidParameter(), outputMessage);
 
 	if (outputMessage == mmWebApp::getMessageSucceeded())
 		return true;
 	else if (outputMessage == mmWebApp::getMessageWrongGuid())
 	{
 		wxString msgStr = wxString() << _("Wrong WebApp GUID:") << "\n"
-			<< _("please check it in import / export options.") << "\n";
+			<< _("please check it in network options.") << "\n";
 		wxMessageBox(msgStr, _("Wrong WebApp settings"), wxICON_ERROR);
 		return false;
 	}
@@ -245,14 +239,8 @@ int mmWebApp::WebApp_SendJson(wxString& Website, const wxString& JsonData, wxStr
 //Delete all account on WebApp
 bool mmWebApp::WebApp_DeleteAllAccount()
 {
-	wxString DeleteAllAccountUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getDeleteAccountParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
 	wxString outputMessage;
-	int ErrorCode = site_content(DeleteAllAccountUrl, outputMessage);
+	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeleteAccountParameter(), outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -266,11 +254,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 	wxString outputMessage;
 	int ErrorCode = 0;
 
-	wxString UpdatePayeeUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		"guid=" + mmWebApp::getGuid() + "&" +
-		mmWebApp::getImportAccountParameter() + "=true"
-		;
+	wxString UpdateAccountUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getImportAccountParameter() + "=true";
 
 	mmWebApp::WebApp_DeleteAllAccount();
 
@@ -284,7 +268,7 @@ bool mmWebApp::WebApp_UpdateAccount()
 	json::Writer::Write(jsonAccountList, jsonAccountStream);
 	wxString AccountList = jsonAccountStream.str();
 
-	ErrorCode = mmWebApp::WebApp_SendJson(UpdatePayeeUrl, AccountList, outputMessage);
+	ErrorCode = mmWebApp::WebApp_SendJson(UpdateAccountUrl, AccountList, outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -292,14 +276,8 @@ bool mmWebApp::WebApp_UpdateAccount()
 //Delete all payee on WebApp
 bool mmWebApp::WebApp_DeleteAllPayee()
 {
-	wxString DeleteAllPayeeUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getDeletePayeeParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
 	wxString outputMessage;
-	int ErrorCode = site_content(DeleteAllPayeeUrl, outputMessage);
+	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeletePayeeParameter(), outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -315,11 +293,7 @@ bool mmWebApp::WebApp_UpdatePayee()
 	wxString DefSubCategoryName;
 	int ErrorCode = 0;
 
-	wxString UpdatePayeeUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		"guid=" + mmWebApp::getGuid() + "&" +
-		mmWebApp::getImportPayeeParameter() + "=true"
-		;
+	wxString UpdatePayeeUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getImportPayeeParameter() + "=true";
 
 	mmWebApp::WebApp_DeleteAllPayee();
 
@@ -355,14 +329,8 @@ bool mmWebApp::WebApp_UpdatePayee()
 //Delete all category on WebApp
 bool mmWebApp::WebApp_DeleteAllCategory()
 {
-	wxString DeleteAllCategoryUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getDeleteCategoryParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
 	wxString outputMessage;
-	int ErrorCode = site_content(DeleteAllCategoryUrl, outputMessage);
+	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeleteCategoryParameter(), outputMessage);
 
 	return mmWebApp::returnResult(ErrorCode, outputMessage);
 }
@@ -377,11 +345,7 @@ bool mmWebApp::WebApp_UpdateCategory()
 	wxString SubCategoryName;
 	int ErrorCode = 0;
 
-	wxString UpdateCategoryUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		"guid=" + mmWebApp::getGuid() + "&" +
-		mmWebApp::getImportCategoryParameter() + "=true"
-		;
+	wxString UpdateCategoryUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getImportCategoryParameter() + "=true";
 
 	mmWebApp::WebApp_DeleteAllCategory();
 
@@ -391,7 +355,6 @@ bool mmWebApp::WebApp_UpdateCategory()
 		bool FirstCategoryRun = true;
 		bool SubCategoryFound = false;
 		jsonCategoryList["Categories"][i]["CategoryName"] = json::String(category.CATEGNAME.ToStdString());
-		//Model_Subcategory::Data subcat = 0;
 		for (const auto &sub_category : Model_Category::sub_category(category))
 		{
 			SubCategoryFound = true;
@@ -437,13 +400,7 @@ bool mmWebApp::WebApp_CheckNewTransaction()
 //Download new transactions
 bool mmWebApp::WebApp_DownloadNewTransaction(wxString& NewTransactionJSON)
 {
-	wxString DownloadNewTransactionUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		mmWebApp::getDownloadNewTransactionParameter() + "&"
-		"guid=" + mmWebApp::getGuid()
-		;
-
-	int ErrorCode = site_content(DownloadNewTransactionUrl, NewTransactionJSON);
+	int ErrorCode = site_content(mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDownloadNewTransactionParameter(), NewTransactionJSON);
 
 	if (NewTransactionJSON != "null" && ErrorCode == 0)
 		return true;
@@ -468,7 +425,6 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	int CategoryID = -1;
 	int SubCategoryID = -1;
 	wxString TrStatus;
-
 
 	//Search Account
 	wxString AccountName = wxString(json::String(jsonTransaction["Account"]));
@@ -595,11 +551,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 //Delete one transaction from WebApp
 bool mmWebApp::WebApp_DeleteOneTransaction(int& WebAppNewTransactionId)
 {
-	wxString DeleteOneTransactionUrl = mmWebApp::getUrl() + "/" +
-		mmWebApp::getServicesPage() + "?" +
-		"guid=" + mmWebApp::getGuid() + "&" +
-		mmWebApp::getDeleteOneTransactionParameter() + "=" << WebAppNewTransactionId
-		;
+	wxString DeleteOneTransactionUrl = mmWebApp::getServicesPageURL() + "&" + mmWebApp::getDeleteOneTransactionParameter() + "=" << WebAppNewTransactionId;
 
 	wxString outputMessage;
 	int ErrorCode = site_content(DeleteOneTransactionUrl, outputMessage);
@@ -614,18 +566,12 @@ bool mmWebApp::MMEX_WebApp_UpdateAccount()
 	if (mmWebApp::WebApp_CheckEnabled())
 	{
 		if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
-		{
 			return mmWebApp::WebApp_UpdateAccount();
-		}
 		else
-		{
 			return false;
-		}
 	}
 	else
-	{
 		return false;
-	}
 }
 
 //Update payee in MMEX
@@ -634,18 +580,12 @@ bool mmWebApp::MMEX_WebApp_UpdatePayee()
 	if (mmWebApp::WebApp_CheckEnabled())
 	{
 		if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
-		{
 			return mmWebApp::WebApp_UpdatePayee();
-		}
 		else
-		{
 			return false;
-		}
 	}
 	else
-	{
 		return false;
-	}
 }
 
 //Update category in MMEX
@@ -654,16 +594,10 @@ bool mmWebApp::MMEX_WebApp_UpdateCategory()
 	if (mmWebApp::WebApp_CheckEnabled())
 	{
 		if (mmWebApp::WebApp_CheckGuid() && mmWebApp::WebApp_CheckApiVersion())
-		{
 			return mmWebApp::WebApp_UpdateCategory();
-		}
 		else
-		{
 			return false;
-		}
 	}
 	else
-	{
 		return false;
-	}
 }
