@@ -402,7 +402,7 @@ void mmStocksPanel::CreateControls()
     BottomPanel->SetSizer(BoxSizerVBottom);
 
     wxBoxSizer* BoxSizerHBottom = new wxBoxSizer(wxHORIZONTAL);
-    BoxSizerVBottom->Add(BoxSizerHBottom, 1, wxALIGN_LEFT|wxALL, 5);
+    BoxSizerVBottom->Add(BoxSizerHBottom, g_flagsExpand);
 
     wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW);
     itemButton6->SetToolTip(_("New Stock Investment"));
