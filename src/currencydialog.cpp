@@ -67,8 +67,13 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
 
     if (!m_currency)
     {
-        wxSortedArrayString c;
-        for (const auto &i : Model_Currency::all_currencies_template())
+        wxArrayString c;
+        auto cur = Model_Currency::all_currencies_template();
+        std::sort(cur.begin(), cur.end(),
+            [](std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> const &(a)
+            , std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> const &(b))
+                { return std::get<Model_Currency::NAME>(a) < std::get<Model_Currency::NAME>(b); });
+        for (const auto &i : cur)
             c.Add(std::get<Model_Currency::NAME>(i));
         mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), c);
         if (select_currency_name.ShowModal() == wxID_OK)
@@ -77,7 +82,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
             // fill currency data from template
             for (const auto &data : Model_Currency::all_currencies_template())
             {
-                if (std::get<1>(data) != name) continue;
+                if (std::get<Model_Currency::NAME>(data) != name) continue;
                 // Sample : std::make_tuple("GBP", "UK Pound", L"£", "", "Pound", "Pence", 100, 1);
                 m_currency = Model_Currency::instance().create();
                 m_currency->CURRENCYNAME = name;
