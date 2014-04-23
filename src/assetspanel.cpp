@@ -14,6 +14,7 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/srchctrl.h>
 #include "assetspanel.h"
 #include "assetdialog.h"
 #include "constants.h"
@@ -424,6 +425,14 @@ void mmAssetsPanel::CreateControls()
     itemButton7->SetToolTip(_("Delete Asset"));
     itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
     itemButton7->Enable(false);
+
+    wxSearchCtrl* searchCtrl = new wxSearchCtrl(assets_panel
+        , wxID_FIND, wxEmptyString, wxDefaultPosition
+        , wxSize(100, itemButton7->GetSize().GetHeight())
+        , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB, wxDefaultValidator, _("Search"));
+    searchCtrl->SetHint(_("Search"));
+    itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
+    searchCtrl->SetToolTip(_("Enter any string to find related assets"));
 
     //Infobar-mini
     wxStaticText* itemStaticText44 = new wxStaticText(assets_panel, IDC_PANEL_ASSET_STATIC_DETAILS_MINI, "");
