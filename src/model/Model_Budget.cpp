@@ -88,27 +88,19 @@ DB_Table_BUDGETTABLE_V1::PERIOD Model_Budget::PERIOD(PERIOD_ENUM period, OP op)
     return DB_Table_BUDGETTABLE_V1::PERIOD(all_period()[period], op);
 }
 
-void Model_Budget::getBudgetEntry(int budgetYearID, std::map<int,
-    std::map<int, PERIOD_ENUM> > &budgetPeriod,
-    std::map<int, std::map<int, double> > &budgetAmt)
+void Model_Budget::getBudgetEntry(int budgetYearID
+    , std::map<int, std::map<int, PERIOD_ENUM> > &budgetPeriod
+    , std::map<int, std::map<int, double> > &budgetAmt)
 {
-    const auto &allCategories = Model_Category::instance().all();
-    const auto &allSubcategories = Model_Subcategory::instance().all();
+    const auto &all_categories = Model_Category::all_categories();
     //Set std::map with zerros
     double value = 0;
-    for (const auto& category : allCategories)
+    for (const auto& category : all_categories)
     {
-        budgetPeriod[category.CATEGID][-1] = NONE;
-        budgetAmt[category.CATEGID][-1] = value;
-        for (const auto & sub_category : allSubcategories)
-        {
-            if (sub_category.CATEGID == category.CATEGID)
-            {
-                budgetPeriod[category.CATEGID][sub_category.SUBCATEGID] = NONE;
-                budgetAmt[category.CATEGID][sub_category.SUBCATEGID] = value;
-            }
-        }
+        budgetPeriod[category.second.first][category.second.second] = NONE;
+        budgetAmt[category.second.first][category.second.second] = value;
     }
+
     for (const auto& budget : instance().find(BUDGETYEARID(budgetYearID)))
     {
         budgetPeriod[budget.CATEGID][budget.SUBCATEGID] = period(budget);
