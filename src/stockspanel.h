@@ -43,6 +43,8 @@ public:
     void OnDeleteStocks(wxCommandEvent& event);
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
+	void OnOrganizeAttachments(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
     long get_selectedIndex() { return m_selected_row; }
     int getColumnsNumber() { return ColName_.size(); }
     wxString getStockInfo(int selectedIndex) const;
@@ -115,6 +117,7 @@ public:
     void OnDeleteStocks(wxCommandEvent& event);
     void OnMoveStocks(wxCommandEvent& event);
     void OnEditStocks(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
     void OnRefreshQuotes(wxCommandEvent& event);
     //Unhide the Edit and Delete buttons if any record selected
     void enableEditDeleteButtons(bool en);
@@ -139,6 +142,7 @@ private:
 
     wxStaticText* header_text_;
     wxStaticText* header_total_;
+	wxBitmapButton* attachment_button_;
     wxBitmapButton* refresh_button_;
 
     bool DownloadIsRequired(void);

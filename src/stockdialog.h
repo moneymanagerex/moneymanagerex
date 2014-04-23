@@ -46,6 +46,7 @@ public:
 
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+	void OnAttachments(wxCommandEvent& event);
     void OnStockPriceButton(wxCommandEvent& event);
 
     void fillControls();
@@ -67,9 +68,11 @@ private:
     mmTextCtrl* currentPrice_;
     wxStaticText* valueInvestment_;
     mmTextCtrl* commission_;
+	wxBitmapButton* bAttachments_;
 
     bool edit_;
     int accountID_;
+	bool skip_attachments_init_;
 
     enum
     {

@@ -18,22 +18,26 @@
 
 #include "stockspanel.h"
 #include "stockdialog.h"
+#include "attachmentdialog.h"
 #include "constants.h"
 #include "util.h"
 #include "mmsinglechoicedialog.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
+#include "model/Model_Attachment.h"
 
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow_red.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/leds.xpm"
+#include "../resources/attachment.xpm"
 
 enum {
     IDC_PANEL_STOCKS_LISTCTRL = wxID_HIGHEST + 1900,
     MENU_TREEPOPUP_EDIT,
     MENU_TREEPOPUP_DELETE,
     MENU_TREEPOPUP_NEW,
+	MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
 
 };
 /*******************************************************/
@@ -49,6 +53,7 @@ BEGIN_EVENT_TABLE(StocksListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_NEW,     StocksListCtrl::OnNewStocks)
     EVT_MENU(MENU_TREEPOPUP_EDIT,    StocksListCtrl::OnEditStocks)
     EVT_MENU(MENU_TREEPOPUP_DELETE,  StocksListCtrl::OnDeleteStocks)
+	EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, StocksListCtrl::OnOrganizeAttachments)
 
 END_EVENT_TABLE()
 /*******************************************************/
@@ -115,6 +120,8 @@ void StocksListCtrl::OnItemRightClick(wxListEvent& event)
     menu.AppendSeparator();
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Stock Investment"));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Stock Investment"));
+	menu.AppendSeparator();
+	menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
     PopupMenu(&menu, event.GetPoint());
 }
 
@@ -130,7 +137,13 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
     if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
     if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency);
-    if (column == COL_NOTES)        return m_stocks[item].NOTES;
+	if (column == COL_NOTES)
+	{
+		wxString full_notes = m_stocks[item].NOTES;
+		if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::STOCK), m_stocks[item].STOCKID))
+			full_notes = full_notes.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
+		return full_notes;
+	}
 
     return "";
 }
@@ -200,6 +213,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
     if (msgDlg.ShowModal() == wxID_YES)
     {
         Model_Stock::instance().remove(m_stocks[m_selected_row].STOCKID);
+		mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::STOCK), m_stocks[m_selected_row].STOCKID);
         DeleteItem(m_selected_row);
         doRefreshItems(-1);
     }
@@ -250,6 +264,30 @@ void StocksListCtrl::OnEditStocks(wxCommandEvent& /*event*/)
 
     wxListEvent evt(wxEVT_COMMAND_LIST_ITEM_ACTIVATED, wxID_ANY);
     AddPendingEvent(evt);
+}
+
+void StocksListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+{
+	if (m_selected_row < 0) return;
+
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+	int RefId = m_stocks[m_selected_row].STOCKID;
+
+	mmAttachmentDialog dlg(this, RefType, RefId);
+	dlg.ShowModal();
+
+	doRefreshItems(RefId);
+}
+
+void StocksListCtrl::OnOpenAttachment(wxCommandEvent& /*event*/)
+{
+	if (m_selected_row < 0) return;
+
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+	int RefId = m_stocks[m_selected_row].STOCKID;
+
+	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
+	doRefreshItems(RefId);
 }
 
 void StocksListCtrl::OnListItemActivated(wxListEvent& /*event*/)
@@ -313,6 +351,7 @@ BEGIN_EVENT_TABLE(mmStocksPanel, wxPanel)
     EVT_BUTTON(wxID_EDIT,        mmStocksPanel::OnEditStocks)
     EVT_BUTTON(wxID_DELETE,      mmStocksPanel::OnDeleteStocks)
     EVT_BUTTON(wxID_MOVE_FRAME,  mmStocksPanel::OnMoveStocks)
+	EVT_BUTTON(wxID_FILE,        mmStocksPanel::OnOpenAttachment)
     EVT_BUTTON(wxID_REFRESH,     mmStocksPanel::OnRefreshQuotes)
 END_EVENT_TABLE()
 /*******************************************************/
@@ -423,9 +462,14 @@ void mmStocksPanel::CreateControls()
     BoxSizerHBottom->Add(bMove, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
     bMove->Enable(false);
 
-    wxBitmap pic(led_off_xpm);
+	attachment_button_ = new wxBitmapButton(BottomPanel
+		, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition, wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+	attachment_button_->SetToolTip(_("Open attachments"));
+	BoxSizerHBottom->Add(attachment_button_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
+	attachment_button_->Enable(false);
+
     refresh_button_ = new wxBitmapButton(BottomPanel
-        , wxID_REFRESH, pic, wxDefaultPosition, wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+		, wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
@@ -585,6 +629,11 @@ void mmStocksPanel::OnNewStocks(wxCommandEvent& event)
 void mmStocksPanel::OnEditStocks(wxCommandEvent& event)
 {
     listCtrlAccount_->OnEditStocks(event);
+}
+
+void mmStocksPanel::OnOpenAttachment(wxCommandEvent& event)
+{
+	listCtrlAccount_->OnOpenAttachment(event);
 }
 
 void mmStocksPanel::OnRefreshQuotes(wxCommandEvent& WXUNUSED(event))
@@ -801,9 +850,11 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     wxButton* bE = (wxButton*)FindWindow(wxID_EDIT);
     wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
     wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
+	wxButton* bA = (wxButton*)FindWindow(wxID_FILE);
     bE->Enable(en);
     bD->Enable(en);
     bM->Enable(en);
+	bA->Enable(en);
 }
 
 void mmStocksPanel::call_dialog(int selectedIndex)

@@ -18,6 +18,7 @@
 
 #include "stockdialog.h"
 #include "mmtextctrl.h"
+#include "attachmentdialog.h"
 #include "constants.h"
 #include "paths.h"
 #include "util.h"
@@ -25,7 +26,9 @@
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
-#include"../resources/update_currency.xpm"
+#include "model/Model_Attachment.h"
+#include "../resources/update_currency.xpm"
+#include "../resources/attachment.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )
 
@@ -33,6 +36,7 @@ BEGIN_EVENT_TABLE( mmStockDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmStockDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
+	EVT_BUTTON(wxID_FILE, mmStockDialog::OnAttachments)
 END_EVENT_TABLE()
 
 mmStockDialog::mmStockDialog( )
@@ -45,6 +49,7 @@ mmStockDialog::mmStockDialog(wxWindow* parent
     : m_stock(stock)
     , edit_(stock ? true: false)
     , accountID_(accountID)
+	, skip_attachments_init_(false)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     wxString heading = _("New Stock Investment");
@@ -187,6 +192,12 @@ void mmStockDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), flags);
 
+	bAttachments_ = new wxBitmapButton( itemPanel5, wxID_FILE
+		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, wxSize(commission_->GetSize().GetY(), commission_->GetSize().GetY()));
+	itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(flags).Align(wxALIGN_RIGHT));
+	bAttachments_->SetToolTip(_("Organize attachments of this stock"));
+
     notes_ = new mmTextCtrl( this, wxID_STATIC, "", wxDefaultPosition, wxSize(200, 90), wxTE_MULTILINE );
     itemStaticBoxSizer4->Add(notes_, flagsExpand);
     itemStaticBoxSizer4->AddSpacer(1);
@@ -218,6 +229,18 @@ void mmStockDialog::CreateControls()
 void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_CANCEL);
+}
+
+void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
+{
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+	if (stockID_<0 && !skip_attachments_init_)
+	{
+		mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+		skip_attachments_init_ = true;
+	}
+	mmAttachmentDialog dlg(this, RefType, 0);
+	dlg.ShowModal();
 }
 
 void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
@@ -315,10 +338,14 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     Model_Stock::instance().save(m_stock);
 
-    if (!edit_)
-        transID_ = m_stock->STOCKID;
-    else
-        transID_ = stockID_;
+	if (!edit_)
+	{
+		transID_ = m_stock->STOCKID;
+		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
+		mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
+	}
+	else
+		transID_ = stockID_;
 
     EndModal(wxID_OK);
 }
