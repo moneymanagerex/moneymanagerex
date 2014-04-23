@@ -411,11 +411,10 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(wxTreeItemId itemID, const wxString& acc
     wxTreeItemIdValue treeDummyValue;
     wxTreeItemId navTreeID = navTreeCtrl_->GetFirstChild(itemID, treeDummyValue);
 
-    bool searching = true;
-    while (navTreeID.IsOk() && searching)
+    while (navTreeID.IsOk())
     {
         if (accountName == navTreeCtrl_->GetItemText(navTreeID))
-            searching = false;
+            break;
         else
             navTreeID = navTreeCtrl_->GetNextChild(itemID, treeDummyValue);
     }
@@ -712,7 +711,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemData(root, new mmTreeItemData("Home Page"));
     navTreeCtrl_->SetItemBold(root, true);
     navTreeCtrl_->SetFocus();
-
 
     wxTreeItemId accounts = navTreeCtrl_->AppendItem(root, _("Bank Accounts"), 9, 9);
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
