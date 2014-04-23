@@ -545,7 +545,15 @@ struct DB_Table_%s : public DB_Table
     Self::Data* get(const Args& ... args)
     {
         for (auto & item : this->cache_)
-            if (item->id() > 0 && match(item, args...)) return item;
+        {
+            if (item->id() > 0 && match(item, args...)) 
+            {
+                ++ hit_;
+                return item;
+            }
+        }
+
+        ++ miss_;
 
         return 0;
     }'''
@@ -769,7 +777,10 @@ template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
     bool result = data->match(arg1);
-    return result && match(data, args...);
+    if (data->match(arg1)) 
+        return match(data, args...);
+    else
+        return false; // Short-circuit evaluation
 }
 '''
     for field in fields:
