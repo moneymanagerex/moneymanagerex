@@ -117,6 +117,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     hb.endTableRow();
 
     int categID = -1;
+    double catTotalsAmt = 0.0, catTotalsEstimated = 0.0, catTotalsActual = 0.0;
+
     const auto &all_categories = Model_Category::all_categories();
     for (const auto& category : all_categories)
     {
@@ -139,6 +141,10 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         }
 
         if (categID == -1) categID = category.second.first;
+        
+        catTotalsAmt += actual; //FIXME: what the amount?
+        catTotalsActual += actual;
+        catTotalsEstimated += estimated;
         /***************************************************************************/
         if (wxGetApp().m_frame->budgetCategoryTotal())
         {
@@ -156,11 +162,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         /***************************************************************************
         Display a TOTALS entry for the category.
         ****************************************************************************/
-        if (categID != category.second.first || category.second.second == all_categories.rbegin()->second.second) {
-            double catTotalsAmt = budgetAmt[category.second.first][category.second.second];
-            double catTotalsEstimated = estimated;
-            double catTotalsActual = actual;
-
+        if (categID != category.second.first || category.second.second == all_categories.rbegin()->second.second)
+        {
             if (wxGetApp().m_frame->budgetCategoryTotal()) {
                 hb.addRowSeparator(6);
             }
@@ -177,6 +180,9 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
             hb.addMoneyCell(catTotalsActual, this->actualAmountColour(catTotalsAmt, catTotalsActual, catTotalsEstimated, true));
             hb.endTableRow();
             hb.addRowSeparator(6);
+
+            catTotalsAmt = catTotalsEstimated = catTotalsActual = 0.0;
+
         }
         categID = category.second.first;
     }

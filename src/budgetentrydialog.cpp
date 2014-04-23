@@ -20,6 +20,7 @@
 #include "model/Model_Category.h"
 #include "validators.h"
 #include "paths.h"
+#include <constants.h>
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmBudgetEntryDialog, wxDialog )
@@ -96,37 +97,33 @@ void mmBudgetEntryDialog::CreateControls()
     wxPanel* itemPanel7 = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
     itemStaticBoxSizer4->Add(itemPanel7, 0, wxGROW|wxALL, 10);
 
-    wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 10, 10);
+    wxFlexGridSizer* itemGridSizer2 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel7->SetSizer(itemGridSizer2);
     
     const Model_Category::Data* category = Model_Category::instance().get(budgetEntry_->CATEGID);
     const Model_Subcategory::Data* sub_category = (budgetEntry_->SUBCATEGID != -1 ? Model_Subcategory::instance().get(budgetEntry_->SUBCATEGID) : 0);
-    wxStaticText* itemTextCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Category: "));
-    wxStaticText* itemTextCatName = new wxStaticText( itemPanel7, wxID_STATIC, 
-        category->CATEGNAME, wxDefaultPosition, wxDefaultSize, 0 );
 
-    wxStaticText* itemTextEstCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Estimated:"));
-    wxStaticText* itemTextEstCatAmt = new wxStaticText( itemPanel7, wxID_STATIC, catEstimateAmountStr_);
-    wxStaticText* itemTextActCatTag = new wxStaticText( itemPanel7, wxID_STATIC, _("Actual:"));
-    wxStaticText* itemTextActCatAmt = new wxStaticText( itemPanel7, wxID_STATIC, catActualAmountStr_);
+    wxStaticText* itemTextEstCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catEstimateAmountStr_);
+    wxStaticText* itemTextActCatAmt = new wxStaticText(itemPanel7, wxID_STATIC, catActualAmountStr_);
     
-    itemGridSizer2->Add(itemTextCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
-    itemGridSizer2->Add(itemTextCatName, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Category: ")), g_flags);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, category->CATEGNAME), wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
     // only add the subcategory if it exists.
     if (budgetEntry_->SUBCATEGID >= 0) {
         wxStaticText* itemTextSubCatTag = new wxStaticText( itemPanel7, wxID_STATIC
             , _("Sub Category: "));
-        wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC, sub_category->SUBCATEGNAME);
+        wxStaticText* itemTextSubCatName = new wxStaticText( itemPanel7, wxID_STATIC
+            , sub_category->SUBCATEGNAME);
         
-        itemGridSizer2->Add(itemTextSubCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
-        itemGridSizer2->Add(itemTextSubCatName, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+        itemGridSizer2->Add(itemTextSubCatTag, g_flags);
+        itemGridSizer2->Add(itemTextSubCatName, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
     }
-    itemGridSizer2->Add(itemTextEstCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
-    itemGridSizer2->Add(itemTextEstCatAmt, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
-    itemGridSizer2->Add(itemTextActCatTag, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
-    itemGridSizer2->Add(itemTextActCatAmt, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Estimated:")), g_flags);
+    itemGridSizer2->Add(itemTextEstCatAmt, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Actual:")), g_flags);
+    itemGridSizer2->Add(itemTextActCatAmt, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
 
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Type:")));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Type:")), g_flags);
 
     wxArrayString itemTypeStrings;  
     itemTypeStrings.Add(_("Expense"));
@@ -134,46 +131,44 @@ void mmBudgetEntryDialog::CreateControls()
 
     m_choiceType = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, itemTypeStrings);
-    itemGridSizer2->Add(m_choiceType, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(m_choiceType, g_flagsExpand);
     m_choiceType->SetSelection(DEF_TYPE_EXPENSE);
     m_choiceType->SetToolTip(_("Specify whether this category is an income or an expense category"));
 
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Frequency:")), g_flags);
 
     m_choiceItem = new wxChoice(itemPanel7, wxID_ANY
         , wxDefaultPosition, wxDefaultSize, Model_Budget::all_period());
-    itemGridSizer2->Add(m_choiceItem, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, 0);
+    itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
     m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
     m_choiceItem->SetToolTip(_("Specify the frequency of the expense or deposit"));
     m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), NULL, this);
 
-    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")));
+    itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")), g_flags);
 
-    m_textAmount = new mmTextCtrl( itemPanel7, wxID_ANY, ""
+    m_textAmount = new mmTextCtrl(itemPanel7, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
-    itemGridSizer2->Add(m_textAmount);
+    itemGridSizer2->Add(m_textAmount, g_flagsExpand);
     m_textAmount->SetToolTip(_("Enter the amount budgeted for this category."));
     m_textAmount->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
         , wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), NULL, this);
     m_textAmount->SetFocus();
     
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer2->Add(itemBoxSizer9, 0, wxALIGN_CENTER_HORIZONTAL | wxALL, 5);
+    itemBoxSizer2->Add(itemBoxSizer9, wxSizerFlags(g_flags).Center());
    
     wxButton* itemButton7 = new wxButton(this, wxID_OK, _("&OK "));
-    itemBoxSizer9->Add(itemButton7, 0, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemBoxSizer9->Add(itemButton7, g_flags);
 
     wxButton* itemButton8 = new wxButton(this, wxID_CANCEL, _("&Cancel "));
-    itemBoxSizer9->Add(itemButton8, 0, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL | wxALL, 5);
+    itemBoxSizer9->Add(itemButton8, g_flags);
 }
 
 
 void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
 {
-    int typeSelection = m_choiceType->GetSelection();
-    
+    int typeSelection = m_choiceType->GetSelection();    
     wxString period = Model_Budget::PERIOD_ENUM_CHOICES[m_choiceItem->GetSelection()].second;
-
     wxString displayAmtString = m_textAmount->GetValue().Trim(); //TODO: simplification needed
     double amt = 0.0;
     if (!Model_Currency::fromString(displayAmtString, amt, Model_Currency::GetBaseCurrency()) || amt < 0)
@@ -183,7 +178,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
         return;
     }
 
-    if (period == "None" && amt > 0) {
+    if (period == Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second && amt > 0) {
         m_choiceItem->SetFocus();
         m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
         event.Skip();
@@ -191,7 +186,7 @@ void mmBudgetEntryDialog::OnOk(wxCommandEvent& event)
     }
     
     if (amt == 0.0)
-        period = "None";
+        period = Model_Budget::PERIOD_ENUM_CHOICES[Model_Budget::NONE].second;
 
     if (typeSelection == DEF_TYPE_EXPENSE)
         amt = -amt;
