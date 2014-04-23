@@ -72,24 +72,23 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeselected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
-    //EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, TransactionListCtrl::OnItemRightClick)
-    EVT_RIGHT_DOWN(TransactionListCtrl::OnListRightClick)
+    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, TransactionListCtrl::OnListRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
     EVT_LIST_COL_END_DRAG(wxID_ANY, TransactionListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY, TransactionListCtrl::OnColClick)
     EVT_LIST_KEY_DOWN(wxID_ANY,  TransactionListCtrl::OnListKeyDown)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED
-        ,MENU_TREEPOPUP_MARKDELETE,             TransactionListCtrl::OnMarkTransaction)
+        , MENU_TREEPOPUP_MARKDELETE,        TransactionListCtrl::OnMarkTransaction)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED_ALL
-        ,MENU_TREEPOPUP_DELETE_FLAGGED,         TransactionListCtrl::OnMarkAllTransactions)
-    EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,          TransactionListCtrl::OnShowChbClick)
+        ,MENU_TREEPOPUP_DELETE_FLAGGED,     TransactionListCtrl::OnMarkAllTransactions)
+    EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,      TransactionListCtrl::OnShowChbClick)
 
-    EVT_MENU(MENU_TREEPOPUP_NEW2,                TransactionListCtrl::OnNewTransaction)
-    EVT_MENU(MENU_TREEPOPUP_DELETE2,             TransactionListCtrl::OnDeleteTransaction)
-    EVT_MENU(MENU_TREEPOPUP_EDIT2,               TransactionListCtrl::OnEditTransaction)
-    EVT_MENU(MENU_TREEPOPUP_MOVE2,               TransactionListCtrl::OnMoveTransaction)
+    EVT_MENU(MENU_TREEPOPUP_NEW2,           TransactionListCtrl::OnNewTransaction)
+    EVT_MENU(MENU_TREEPOPUP_DELETE2,        TransactionListCtrl::OnDeleteTransaction)
+    EVT_MENU(MENU_TREEPOPUP_EDIT2,          TransactionListCtrl::OnEditTransaction)
+    EVT_MENU(MENU_TREEPOPUP_MOVE2,          TransactionListCtrl::OnMoveTransaction)
 
     EVT_MENU(MENU_ON_COPY_TRANSACTION,      TransactionListCtrl::OnCopy)
     EVT_MENU(MENU_ON_PASTE_TRANSACTION,     TransactionListCtrl::OnPaste)
@@ -1015,7 +1014,14 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
     event.Skip();
 }
 
-void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
+void TransactionListCtrl::OnListRightClick(wxListEvent& event)
+{
+    m_selectedIndex = event.GetIndex();
+    wxMouseEvent evt = wxMouseEvent(wxEVT_NULL);
+    OnMouseRightClick(evt);
+}
+
+void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& /*event*/)
 {
     long selectedIndex = m_selectedIndex;
     if (m_selectedIndex > -1)
@@ -1100,7 +1106,7 @@ void TransactionListCtrl::OnListRightClick(wxMouseEvent& event)
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
     menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
 
-    PopupMenu(&menu, event.GetPosition());
+    PopupMenu(&menu);
 }
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)

@@ -170,7 +170,8 @@ private:
     virtual int OnGetItemColumnImage(long item, long column) const;
     virtual wxListItemAttr *OnGetItemAttr(long item) const;
 
-    void OnListRightClick(wxMouseEvent& event);
+    void OnMouseRightClick(wxMouseEvent& event);
+    void OnListRightClick(wxListEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
     void OnItemResize(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);
