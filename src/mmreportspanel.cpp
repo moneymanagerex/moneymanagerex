@@ -118,6 +118,7 @@ wxString mmReportsPanel::getReportText()
     if (rb_)
     {
         json::Object o;
+        o["module"] = json::String("Report");
         o["name"] = json::String(rb_->title().ToStdString());
         o["version"] = json::String(rb_->version().ToStdString());
         o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
