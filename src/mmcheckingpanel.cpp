@@ -240,7 +240,7 @@ void mmCheckingPanel::filterTable()
         filteredBalance_ += transaction_amount;
 
 		if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), full_tran.TRANSID))
-			full_tran.NOTES = full_tran.NOTES.Prepend("[U] ");
+			full_tran.NOTES = full_tran.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
 
         this->m_trans.push_back(full_tran);
     }
@@ -497,7 +497,7 @@ void mmCheckingPanel::CreateControls()
         , wxSize(btnDuplicate_->GetSize().GetY(), btnDuplicate_->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);
-    btnDuplicate_->Enable(false);
+	btnAttachment_->Enable(false);
 
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
@@ -1381,6 +1381,7 @@ void TransactionListCtrl::OnOpenAttachment(wxCommandEvent& event)
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
 
 	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, transaction_id);
+	refreshVisualList(transaction_id);
 }
 
 //----------------------------------------------------------------------------
@@ -1594,9 +1595,11 @@ void TransactionListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
 
     wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION);
     int RefId = m_cp->m_trans[m_selectedIndex].TRANSID;
+
     mmAttachmentDialog dlg(this, RefType, RefId);
     dlg.ShowModal();
 
+	refreshVisualList(RefId);
 }
 
 //----------------------------------------------------------------------------

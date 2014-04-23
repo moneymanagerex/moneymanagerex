@@ -26,7 +26,7 @@ class Model_Attachment : public Model<DB_Table_ATTACHMENT_V1>
 {
 public:
     using Model<DB_Table_ATTACHMENT_V1>::get;
-	enum REFTYPE { TRANSACTION = 0, PAYEE};
+	enum REFTYPE { TRANSACTION = 0, STOCK, PAYEE};
 
 	static const std::vector<std::pair<REFTYPE, wxString> > REFTYPE_CHOICES;
 

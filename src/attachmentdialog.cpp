@@ -334,6 +334,11 @@ wxString mmAttachmentManage::GetAttachmentsFolder()
 	return AttachmentsFolder;
 }
 
+wxString mmAttachmentManage::GetAttachmentNoteSign()
+{
+	return "[U] ";
+}
+
 bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile)
 {
 	wxString destinationFolder = wxPathOnly(ImportedFile);
