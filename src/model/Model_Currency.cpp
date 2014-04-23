@@ -362,5 +362,11 @@ std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxStrin
     r.push_back(std::make_tuple("VND", "Vietnamese dong", L"₫", L"", L"", L"", 1, 1, " ", "."));
     r.push_back(std::make_tuple("WST", "Samoan tala", L"WS$", L"", L"", L"", 100, 1, " ", "."));
     r.push_back(std::make_tuple("YER", "Yemeni rial", L"", L"", L"", L"", 1, 1, " ", "."));
+
+    std::sort(r.begin(), r.end(),
+        [](std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> const &(a)
+        , std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> const &(b))
+    { return std::get<NAME>(a) < std::get<NAME>(b); });
+
     return r;
 } 

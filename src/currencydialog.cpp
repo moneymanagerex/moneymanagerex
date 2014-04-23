@@ -69,10 +69,6 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     {
         wxArrayString c;
         auto cur = Model_Currency::all_currencies_template();
-        std::sort(cur.begin(), cur.end(),
-            [](std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> const &(a)
-            , std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> const &(b))
-                { return std::get<Model_Currency::NAME>(a) < std::get<Model_Currency::NAME>(b); });
         for (const auto &i : cur)
             c.Add(std::get<Model_Currency::NAME>(i));
         mmSingleChoiceDialog select_currency_name(this, _("Currency name"), _("Select Currency"), c);
