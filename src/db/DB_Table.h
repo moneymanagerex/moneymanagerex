@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
+ *          AUTO GENERATED at 2014-04-23 14:27:22.781630.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -144,7 +144,10 @@ template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
     bool result = data->match(arg1);
-    return result && match(data, args...);
+    if (data->match(arg1)) 
+        return match(data, args...);
+    else
+        return false; // Short-circuit evaluation
 }
 
 struct SorterByREFTYPE

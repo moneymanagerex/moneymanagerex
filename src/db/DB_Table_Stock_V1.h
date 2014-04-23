@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-18 14:26:43.834130.
+ *          AUTO GENERATED at 2014-04-23 14:27:22.781630.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -551,7 +551,15 @@ struct DB_Table_STOCK_V1 : public DB_Table
     Self::Data* get(const Args& ... args)
     {
         for (auto & item : this->cache_)
-            if (item->id() > 0 && match(item, args...)) return item;
+        {
+            if (item->id() > 0 && match(item, args...)) 
+            {
+                ++ hit_;
+                return item;
+            }
+        }
+
+        ++ miss_;
 
         return 0;
     }
