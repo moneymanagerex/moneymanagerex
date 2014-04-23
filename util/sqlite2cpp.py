@@ -126,6 +126,16 @@ struct DB_Table_%s : public DB_Table
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
         cache_.clear();
     }
+
+    void preload(wxSQLite3Database *db, int max = 1000)
+    {
+        int i = 0;
+        for (const auto & item : all(db))
+        {
+            get(item.id());
+            if (++i > max) break;
+        }
+    }
 ''' % (self._table.upper(), self._table.upper(), self._table, self._table, self._table)
         
         s += '''

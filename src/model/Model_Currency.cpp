@@ -45,6 +45,7 @@ Model_Currency& Model_Currency::instance(wxSQLite3Database* db)
         ins.initialize();   // Initialises currency data in database.
     }
     ins.destroy_cache();
+    ins.preload(db);
     return ins;
 }
 

@@ -44,6 +44,7 @@ Model_Category& Model_Category::instance(wxSQLite3Database* db)
     if (init_categories)
         ins.initialize();
     ins.destroy_cache();
+    ins.preload(db);
 
     return ins;
 }

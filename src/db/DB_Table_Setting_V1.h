@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-23 14:27:22.781630.
+ *          AUTO GENERATED at 2014-04-23 18:46:14.811185.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -67,6 +67,16 @@ struct DB_Table_SETTING_V1 : public DB_Table
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
         cache_.clear();
+    }
+
+    void preload(wxSQLite3Database *db, int max = 1000)
+    {
+        int i = 0;
+        for (const auto & item : all(db))
+        {
+            get(item.id());
+            if (++i > max) break;
+        }
     }
 
     /** Creates the database table if the table does not exist*/
