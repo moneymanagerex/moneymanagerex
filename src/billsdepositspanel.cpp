@@ -164,7 +164,7 @@ bool mmBillsDepositsPanel::Create( wxWindow *parent,
     /* Set up the transaction filter.  The transFilter dialog will be destroyed
        when the checking panel is destroyed. */
     transFilterActive_ = false;
-    transFilterDlg_    = new mmFilterTransactionsDialog(this);
+    transFilterDlg_ = new mmFilterTransactionsDialog(this);
 
     initVirtualListControl();
 
@@ -195,8 +195,8 @@ void mmBillsDepositsPanel::CreateControls()
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     headerPanel->SetSizer(itemBoxSizerVHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText( headerPanel, wxID_ANY,
-        _("Repeating Transactions"));
+    wxStaticText* itemStaticText9 = new wxStaticText(headerPanel, wxID_ANY
+        , _("Repeating Transactions"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
@@ -210,14 +210,14 @@ void mmBillsDepositsPanel::CreateControls()
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), NULL, this);
 
     itemBoxSizerHHeader2->AddSpacer(5);
-    wxStaticText* statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY,
-        _("Transaction Filter"));
+    wxStaticText* statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY
+        , _("Transaction Filter"));
     itemBoxSizerHHeader2->Add(statTextTransFilter_, 0, wxALIGN_CENTER_VERTICAL, 0);
 
     /* ---------------------- */
-    wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow( this,
-        wxID_ANY, wxDefaultPosition, wxSize(200, 200),
-        wxSP_3DBORDER|wxSP_3DSASH|wxNO_BORDER );
+    wxSplitterWindow* itemSplitterWindowBillsDeposit = new wxSplitterWindow(this
+        , wxID_ANY, wxDefaultPosition, wxSize(200, 200)
+        , wxSP_3DBORDER | wxSP_3DSASH | wxNO_BORDER);
 
     wxSize imageSize(16, 16);
     m_imageList = new wxImageList( imageSize.GetWidth(), imageSize.GetHeight() );
@@ -227,7 +227,7 @@ void mmBillsDepositsPanel::CreateControls()
     m_imageList->Add(wxBitmap(wxImage(uparrow_xpm).Scale(16, 16)));
     m_imageList->Add(wxBitmap(wxImage(downarrow_xpm).Scale(16, 16)));
 
-    listCtrlAccount_ = new billsDepositsListCtrl( this, itemSplitterWindowBillsDeposit);
+    listCtrlAccount_ = new billsDepositsListCtrl(this, itemSplitterWindowBillsDeposit);
 
     listCtrlAccount_->SetImageList(m_imageList, wxIMAGE_LIST_SMALL);
     for (const auto&column : ColName_)
@@ -235,14 +235,16 @@ void mmBillsDepositsPanel::CreateControls()
         wxListItem itemCol;
         if (column.first == 4) itemCol.SetImage(4);
         itemCol.SetText(column.second);
-        listCtrlAccount_->InsertColumn(column.first, column.second, (column.first == 4 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT));
+        listCtrlAccount_->InsertColumn(column.first, column.second
+            , (column.first == 4 ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT));
 
-        int col_x = Model_Setting::instance().GetIntSetting(wxString::Format("BD_COL%d_WIDTH", column.first), (column.first > 0 ? - 2 : 150));
+        int col_x = Model_Setting::instance().GetIntSetting(
+            wxString::Format("BD_COL%d_WIDTH", column.first), (column.first > 0 ? - 2 : 150));
         listCtrlAccount_->SetColumnWidth(column.first, col_x);
     }
 
-    wxPanel* itemPanel12 = new wxPanel( itemSplitterWindowBillsDeposit, wxID_ANY,
-        wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTAB_TRAVERSAL );
+    wxPanel* itemPanel12 = new wxPanel(itemSplitterWindowBillsDeposit, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     itemSplitterWindowBillsDeposit->SplitHorizontally(listCtrlAccount_, itemPanel12);
     itemSplitterWindowBillsDeposit->SetMinimumPaneSize(100);
@@ -253,36 +255,36 @@ void mmBillsDepositsPanel::CreateControls()
     itemPanel12->SetSizer(itemBoxSizer4);
 
     wxBoxSizer* itemBoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizer4->Add(itemBoxSizer5, 0, wxALIGN_LEFT|wxALL, 5);
+    itemBoxSizer4->Add(itemBoxSizer5, g_flags);
 
     wxButton* itemButton6 = new wxButton( itemPanel12, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButton6, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton6, g_flags);
 
     wxButton* itemButton81 = new wxButton( itemPanel12, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButton81, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton81, g_flags);
     itemButton81->Enable(false);
 
     wxButton* itemButton7 = new wxButton( itemPanel12, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Bills & Deposit Series"));
-    itemBoxSizer5->Add(itemButton7, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton7, g_flags);
     itemButton7->Enable(false);
 
     wxButton* itemButton8 = new wxButton( itemPanel12, wxID_PASTE, _("En&ter"),
         wxDefaultPosition, wxDefaultSize, 0 );
     itemButton8->SetToolTip(_("Enter Next Bills & Deposit Occurrence"));
-    itemBoxSizer5->Add(itemButton8, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(itemButton8, g_flags);
     itemButton8->Enable(false);
 
     wxButton* buttonSkipTrans = new wxButton( itemPanel12, wxID_IGNORE, _("&Skip"));
     buttonSkipTrans->SetToolTip(_("Skip Next Bills & Deposit Occurrence"));
-    itemBoxSizer5->Add(buttonSkipTrans, 0, wxALIGN_CENTER_VERTICAL|wxALL, 4);
+    itemBoxSizer5->Add(buttonSkipTrans, g_flags);
     buttonSkipTrans->Enable(false);
 
     //Infobar-mini
-    wxStaticText* itemStaticText444 = new wxStaticText(itemPanel12, ID_PANEL_BD_STATIC_MINI, "",
-                                                       wxDefaultPosition, wxDefaultSize, 0);
+    wxStaticText* itemStaticText444 = new wxStaticText(itemPanel12
+        , ID_PANEL_BD_STATIC_MINI, "", wxDefaultPosition, wxDefaultSize, 0);
     itemBoxSizer5->Add(itemStaticText444, 1, wxGROW|wxTOP, 12);
 
     //Infobar
@@ -304,7 +306,8 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
 
     bills_.clear();
 
-    for (const Model_Billsdeposits::Data& data : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+    for (const Model_Billsdeposits::Data& data
+        : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {
         if (transFilterActive_ && !transFilterDlg_->checkAll(data))
             continue;
