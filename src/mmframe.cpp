@@ -1361,41 +1361,21 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        // Checking/Bank Accounts
-        if (Model_Account::type(account) == Model_Account::CHECKING)
+        if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+            (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
+            vAccts == "ALL"))
+            continue;
+
+        int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+        if (Model_Account::type(account) == Model_Account::CHECKING || Model_Account::type(account) == Model_Account::TERM)
         {
-            if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                (vAccts == "ALL"))
-            {
-                int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
-        // Term Accounts
-        else if (Model_Account::type(account) == Model_Account::TERM)
-        {
-            if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                (vAccts == "ALL"))
-            {
-                int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
-        }
-        // Stock Accounts
         else
         {
-            if ((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                (vAccts == "ALL"))
-            {
-                int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-                wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
-                navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-            }
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
     }
 
