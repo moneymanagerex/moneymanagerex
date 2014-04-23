@@ -83,8 +83,8 @@ wxThread::ExitCode WebServerThread::Entry()
 
     // Create and configure the server
     struct mg_server *server = mg_create_server(NULL, ev_handler);
-    mg_set_option(server, "listening_port", strPort);
-    mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath());
+    mg_set_option(server, "listening_port", strPort.mb_str());
+    mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath().mb_str());
     chdir(mg_get_option(server, "document_root"));
 
     // Serve requests
