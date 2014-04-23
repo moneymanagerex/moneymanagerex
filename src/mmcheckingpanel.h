@@ -171,7 +171,6 @@ private:
     virtual wxListItemAttr *OnGetItemAttr(long item) const;
 
     void OnMouseRightClick(wxMouseEvent& event);
-    void OnListRightClick(wxListEvent& event);
     void OnListLeftClick(wxMouseEvent& event);
     void OnItemResize(wxListEvent& event);
     void OnListItemSelected(wxListEvent& event);

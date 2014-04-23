@@ -72,7 +72,7 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
     EVT_LIST_ITEM_SELECTED(wxID_ANY, TransactionListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_DESELECTED(wxID_ANY, TransactionListCtrl::OnListItemDeselected)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY, TransactionListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, TransactionListCtrl::OnListRightClick)
+    EVT_RIGHT_DOWN(TransactionListCtrl::OnMouseRightClick)
     EVT_LEFT_DOWN(TransactionListCtrl::OnListLeftClick)
     EVT_LIST_COL_END_DRAG(wxID_ANY, TransactionListCtrl::OnItemResize)
     EVT_LIST_COL_CLICK(wxID_ANY, TransactionListCtrl::OnColClick)
@@ -1014,23 +1014,18 @@ void TransactionListCtrl::OnListLeftClick(wxMouseEvent& event)
     event.Skip();
 }
 
-void TransactionListCtrl::OnListRightClick(wxListEvent& event)
+void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
 {
-    m_selectedIndex = event.GetIndex();
-    wxMouseEvent evt = wxMouseEvent(wxEVT_NULL);
-    OnMouseRightClick(evt);
-}
+    int Flags = wxLIST_HITTEST_ONITEM;
+    m_selectedIndex = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
-void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& /*event*/)
-{
-    long selectedIndex = m_selectedIndex;
-    if (m_selectedIndex > -1)
+    if (m_selectedIndex >= 0)
     {
-        if (GetItemState(m_selectedIndex, wxLIST_STATE_SELECTED) == 0)
-            selectedIndex = -1;
+        SetItemState(m_selectedIndex, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        SetItemState(m_selectedIndex, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
     }
 
-    bool hide_menu_item = (selectedIndex < 0);
+    bool hide_menu_item = (m_selectedIndex < 0);
     bool type_transfer = false;
     bool have_category = false;
     if (m_selectedIndex > -1)
@@ -1106,7 +1101,8 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& /*event*/)
     subGlobalOpMenu->Append(MENU_TREEPOPUP_MARKDUPLICATE_ALL, _("as Duplicate"));
     menu.Append(MENU_SUBMENU_MARK_ALL, _("Mark all being viewed"), subGlobalOpMenu);
 
-    PopupMenu(&menu);
+    PopupMenu(&menu, event.GetPosition());
+    this->SetFocus();
 }
 //----------------------------------------------------------------------------
 void TransactionListCtrl::OnShowChbClick(wxCommandEvent& /*event*/)
