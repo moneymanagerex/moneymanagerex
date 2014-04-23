@@ -619,7 +619,6 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     //Symbol, (Amount, Name)
     std::map<wxString, std::pair<double, wxString> > stocks_data;
     wxString site = "";
-    wxSortedArrayString symbols_array;
 
     for (const auto &stock : listCtrlAccount_->m_stocks)
     {

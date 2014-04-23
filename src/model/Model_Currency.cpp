@@ -58,14 +58,16 @@ Model_Currency& Model_Currency::instance()
 wxArrayString Model_Currency::all_currency_names()
 {
     wxArrayString c;
-    for (const auto&i : all(COL_CURRENCYNAME)) c.Add(i.CURRENCYNAME);
+    for (const auto&i : all(COL_CURRENCYNAME))
+        c.Add(i.CURRENCYNAME);
     return c;
 }
 
 wxArrayString Model_Currency::all_currency_symbols()
 {
-    wxSortedArrayString c;
-    for (const auto&i : all(COL_CURRENCY_SYMBOL)) c.Add(i.CURRENCY_SYMBOL);
+    wxArrayString c;
+    for (const auto&i : all(COL_CURRENCY_SYMBOL))
+        c.Add(i.CURRENCY_SYMBOL);
     return c;
 }
 
