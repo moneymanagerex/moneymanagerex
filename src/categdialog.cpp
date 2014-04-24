@@ -505,7 +505,7 @@ void mmCategDialog::OnEdit(wxCommandEvent& /*event*/)
     refreshRequested_ = true;
 }
 
-wxTreeItemId mmCategDialog::getTreeItemFor(wxTreeItemId itemID, const wxString& itemText)
+wxTreeItemId mmCategDialog::getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText)
 {
     wxTreeItemIdValue treeDummyValue;
 

@@ -103,7 +103,7 @@ private:
     wxCheckBox* m_cbShowAll;
     wxTreeItemId selectedItemId_;
     wxTreeItemId root_;
-    wxTreeItemId getTreeItemFor(wxTreeItemId itemID, const wxString& itemText);
+    wxTreeItemId getTreeItemFor(const wxTreeItemId& itemID, const wxString& itemText);
     bool bEnableSelect_;
     bool bEnableRelocate_;
     int categID_;

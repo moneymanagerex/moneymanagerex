@@ -181,7 +181,7 @@ private:
     void saveSettings();
     void menuEnableItems(bool enable);
     void updateNavTreeControl(bool expandTermAccounts = false);
-    void showTreePopupMenu(wxTreeItemId id, const wxPoint& pt);
+    void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);

@@ -1622,7 +1622,7 @@ void mmGUIFrame::OnItemRightClick(wxTreeEvent& event)
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::showTreePopupMenu(wxTreeItemId id, const wxPoint& pt)
+void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
 {
     mmTreeItemData* iData = dynamic_cast<mmTreeItemData*>(navTreeCtrl_->GetItemData(id));
     selectedItemData_ = iData;
