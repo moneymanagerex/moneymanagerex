@@ -274,7 +274,7 @@ void mmAssetDialog::onTextEntered(wxCommandEvent& event)
     Model_Currency::Data *currency = Model_Currency::GetBaseCurrency();
     if (event.GetId() == m_value->GetId())
     {
-            m_value->Calculate(currency);
+        m_value->Calculate(currency);
     }
     else if (event.GetId() == m_valueChangeRate->GetId())
     {
