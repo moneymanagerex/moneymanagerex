@@ -1472,12 +1472,18 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 }
                 else
                 {
+                    json::Object o;
+                    o["module"] = json::String("Stock Panel");
+                    o["accountID"] = json::Number(data) = json::Number(data);;
+                    o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
                     wxSizer *sizer = cleanupHomePanel();
 
                     panelCurrent_ = new mmStocksPanel(data, homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
                     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
                     homePanel_->Layout();
+                    o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+                    Model_Usage::instance().append(o);
                 }
                 menuPrintingEnable(true);
             }
