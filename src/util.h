@@ -118,7 +118,7 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
 
 wxDateTime mmGetStorageStringAsDate(const wxString& str);
 wxString mmGetDateForDisplay(const wxDateTime &dt);
-bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, wxString& sDateMask);
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 std::map<wxString,wxString> date_formats_map();
 std::map<wxString,wxString> date_formats_regex();

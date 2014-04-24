@@ -252,19 +252,20 @@ wxString mmGetDateForDisplay(const wxDateTime &dt)
     return dt.Format(mmOptions::instance().dateFormat_);
 }
 
-bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, wxString &sDateMask)
+bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString &sDateMask)
 {
-    sDateMask.Replace("%Y%m%d", "%Y %m %d");
-    if (date_formats_regex().count(sDateMask) == 0) return false;
+    wxString mask = sDateMask;
+    mask.Replace("%Y%m%d", "%Y %m %d");
+    if (date_formats_regex().count(mask) == 0) return false;
 
-    const wxString regex = date_formats_regex()[sDateMask];
+    const wxString regex = date_formats_regex()[mask];
     wxRegEx pattern(regex);
-    //wxLogDebug("%s %s %i %s", sDate, sDateMask, pattern.Matches(sDate), regex);
+    //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
     //skip dot if present in pattern but not in date string 
-    const wxString separator = sDateMask.Mid(2,1);
+    const wxString separator = mask.Mid(2,1);
     if (pattern.Matches(sDate) && sDate.Contains(separator))
     {
-        date.ParseFormat(sDate, sDateMask, wxDateTime::Today());
+        date.ParseFormat(sDate, mask, wxDateTime::Today());
         return date.IsValid();
     }
     return false;
@@ -315,27 +316,27 @@ wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 std::map<wxString,wxString> date_formats_map()
 {
     std::map<wxString, wxString> date_formats;
-    date_formats["%d/%m/%y"]="DD/MM/YY";
-    date_formats["%d/%m/%Y"]="DD/MM/YYYY";
-    date_formats["%d-%m-%y"]="DD-MM-YY";
-    date_formats["%d-%m-%Y"]="DD-MM-YYYY";
-    date_formats["%d.%m.%y"]="DD.MM.YY";
-    date_formats["%d.%m.%Y"]="DD.MM.YYYY";
-    date_formats["%d,%m,%y"]="DD,MM,YY";
-    date_formats["%d/%m'%Y"]="DD/MM'YYYY";
-    date_formats["%d/%m %Y"]="DD/MM YYYY";
-    date_formats["%m/%d/%y"]="MM/DD/YY";
-    date_formats["%m/%d/%Y"]="MM/DD/YYYY";
-    date_formats["%m-%d-%y"]="MM-DD-YY";
-    date_formats["%m-%d-%Y"]="MM-DD-YYYY";
-    date_formats["%m/%d'%y"]="MM/DD'YY";
-    date_formats["%m/%d'%Y"]="MM/DD'YYYY";
-    date_formats["%y/%m/%d"]="YY/MM/DD";
-    date_formats["%y-%m-%d"]="YY-MM-DD";
-    date_formats["%Y/%m/%d"]="YYYY/MM/DD";
-    date_formats["%Y-%m-%d"]="YYYY-MM-DD";
-    date_formats["%Y.%m.%d"]="YYYY.MM.DD";
-    date_formats["%Y%m%d"]="YYYYMMDD";
+    date_formats["%Y-%m-%d"] = "YYYY-MM-DD";
+    date_formats["%d/%m/%y"] = "DD/MM/YY";
+    date_formats["%d/%m/%Y"] = "DD/MM/YYYY";
+    date_formats["%d-%m-%y"] = "DD-MM-YY";
+    date_formats["%d-%m-%Y"] = "DD-MM-YYYY";
+    date_formats["%d.%m.%y"] = "DD.MM.YY";
+    date_formats["%d.%m.%Y"] = "DD.MM.YYYY";
+    date_formats["%d,%m,%y"] = "DD,MM,YY";
+    date_formats["%d/%m'%Y"] = "DD/MM'YYYY";
+    date_formats["%d/%m %Y"] = "DD/MM YYYY";
+    date_formats["%m/%d/%y"] = "MM/DD/YY";
+    date_formats["%m/%d/%Y"] = "MM/DD/YYYY";
+    date_formats["%m-%d-%y"] = "MM-DD-YY";
+    date_formats["%m-%d-%Y"] = "MM-DD-YYYY";
+    date_formats["%m/%d'%y"] = "MM/DD'YY";
+    date_formats["%m/%d'%Y"] = "MM/DD'YYYY";
+    date_formats["%y/%m/%d"] = "YY/MM/DD";
+    date_formats["%y-%m-%d"] = "YY-MM-DD";
+    date_formats["%Y/%m/%d"] = "YYYY/MM/DD";
+    date_formats["%Y.%m.%d"] = "YYYY.MM.DD";
+    date_formats["%Y%m%d"] = "YYYYMMDD";
 
     return date_formats;
 }
