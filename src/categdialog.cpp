@@ -289,7 +289,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
         Model_Subcategory::Data *subcategory = Model_Subcategory::instance().create();
         subcategory->SUBCATEGNAME = text;
         subcategory->CATEGID = iData->getCategData()->CATEGID;
-        int id = Model_Subcategory::instance().save(subcategory);
+        Model_Subcategory::instance().save(subcategory);
 		mmWebApp::MMEX_WebApp_UpdateCategory();
 
         wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);

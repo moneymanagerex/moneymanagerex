@@ -180,16 +180,17 @@ wxString Model_Currency::toString(double value, const Data* currency, int precis
     return s;
 }
 
-wxString Model_Currency::fromString2Default(wxString s, const Data* currency)
+const wxString Model_Currency::fromString2Default(const wxString &s, const Data* currency)
 {
+    wxString str = s;
     if (currency)
     {
         if (!currency->GROUP_SEPARATOR.empty())
-            s.Replace(currency->GROUP_SEPARATOR, "");
+            str.Replace(currency->GROUP_SEPARATOR, "");
         if (!currency->DECIMAL_POINT.empty())
-            s.Replace(currency->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
+            str.Replace(currency->DECIMAL_POINT, wxNumberFormatter::GetDecimalSeparator());
     }
-    return s;
+    return str;
 }
 
 bool Model_Currency::fromString(wxString s, double& val, const Data* currency)
@@ -210,7 +211,7 @@ int Model_Currency::precision(const Data& r)
     return precision(&r);
 }
 
-std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > Model_Currency::all_currencies_template()
+const std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > Model_Currency::all_currencies_template()
 {
     std::vector<std::tuple<wxString, wxString, wxString, wxString, wxString, wxString, int, int, wxString, wxString> > r;
     r.push_back(std::make_tuple("USD", "United States dollar", L"$", L"", L"", L"", 100, 1, " ", "."));

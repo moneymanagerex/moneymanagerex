@@ -77,7 +77,7 @@ bool Model_Payee::remove(int id)
     return this->remove(id, db_);
 }
 
-wxArrayString Model_Payee::all_payee_names()
+const wxArrayString Model_Payee::all_payee_names()
 {
     wxArrayString payees;
     for (const auto &payee: this->all(COL_PAYEENAME))

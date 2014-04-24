@@ -119,8 +119,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     int categID = -1;
     double catTotalsAmt = 0.0, catTotalsEstimated = 0.0, catTotalsActual = 0.0;
 
-    const auto &all_categories = Model_Category::all_categories();
-    for (const auto& category : all_categories)
+    for (const auto& category : Model_Category::all_categories())
     {
         double estimated = (monthlyBudget
             ? Model_Budget::getMonthlyEstimate(budgetPeriod[category.second.first][category.second.second]
@@ -162,7 +161,8 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         /***************************************************************************
         Display a TOTALS entry for the category.
         ****************************************************************************/
-        if (categID != category.second.first || category.second.second == all_categories.rbegin()->second.second)
+        if (categID != category.second.first 
+            || category.second.second == Model_Category::all_categories().rbegin()->second.second)
         {
             if (wxGetApp().m_frame->budgetCategoryTotal()) {
                 hb.addRowSeparator(6);

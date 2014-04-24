@@ -55,11 +55,11 @@ public:
     /** Return the Data record for the given category name */
     Data* get(const wxString& name);
 
-    static std::map<wxString, std::pair<int, int> > all_categories();
+    static const std::map<wxString, std::pair<int, int> > all_categories();
     static Model_Subcategory::Data_Set sub_category(const Data* r);
     static Model_Subcategory::Data_Set sub_category(const Data& r);
-    static wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0);
-    static wxString full_name(int category_id, int subcategory_id = -1);
+    static const wxString full_name(const Data* category, const Model_Subcategory::Data* sub_category = 0);
+    static const wxString full_name(const int &category_id, const int &subcategory_id);
     static bool is_used(int id, int sub_id = -1);
     static bool has_income(int id, int sub_id = -1);
     static void getCategoryStats(

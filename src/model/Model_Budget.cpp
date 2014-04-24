@@ -92,10 +92,9 @@ void Model_Budget::getBudgetEntry(int budgetYearID
     , std::map<int, std::map<int, PERIOD_ENUM> > &budgetPeriod
     , std::map<int, std::map<int, double> > &budgetAmt)
 {
-    const auto &all_categories = Model_Category::all_categories();
     //Set std::map with zerros
     double value = 0;
-    for (const auto& category : all_categories)
+    for (const auto& category : Model_Category::all_categories())
     {
         budgetPeriod[category.second.first][category.second.second] = NONE;
         budgetAmt[category.second.first][category.second.second] = value;
