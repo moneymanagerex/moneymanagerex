@@ -409,7 +409,7 @@ void mmGUIFrame::processPendingEvents()
 
 //----------------------------------------------------------------------------
 // returns a wxTreeItemID for the accountName in the navtree section.
-wxTreeItemId mmGUIFrame::getTreeItemfor(wxTreeItemId itemID, const wxString& accountName) const
+wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const
 {
     wxTreeItemIdValue treeDummyValue;
     wxTreeItemId navTreeID = navTreeCtrl_->GetFirstChild(itemID, treeDummyValue);

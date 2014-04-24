@@ -142,7 +142,7 @@ private:
 
     mmTreeItemData* selectedItemData_;
 
-    wxTreeItemId getTreeItemfor(wxTreeItemId itemID, const wxString& accountName) const;
+    wxTreeItemId getTreeItemfor(const wxTreeItemId& itemID, const wxString& accountName) const;
     bool setAccountInSection(const wxString& sectionName, const wxString& accountName);
 
     /* printing */
