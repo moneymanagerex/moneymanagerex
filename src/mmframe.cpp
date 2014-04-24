@@ -1736,6 +1736,9 @@ void mmGUIFrame::SetBudgetingPageInactive()
 
 void mmGUIFrame::createBudgetingPage(int budgetYearID)
 {
+    json::Object o;
+    o["module"] = json::String("Budget Panel");
+    o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
     if (activeBudgetingPage_)
     {
         budgetingPage_->DisplayBudgetingDetails(budgetYearID);
@@ -1752,6 +1755,8 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
         homePanel_->Layout();
     }
+    o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+    Model_Usage::instance().append(o);
     menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
@@ -2981,6 +2986,9 @@ void mmGUIFrame::OnExportToHtml(wxCommandEvent& WXUNUSED(event))
 
 void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
 {
+    json::Object o;
+    o["module"] = json::String("Bills & Deposits Panel");
+    o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
     wxSizer *sizer = cleanupHomePanel();
 
     panelCurrent_ = new mmBillsDepositsPanel(homePanel_, wxID_STATIC,
@@ -2989,6 +2997,8 @@ void mmGUIFrame::OnBillsDeposits(wxCommandEvent& WXUNUSED(event))
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
 
     homePanel_->Layout();
+    o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+    Model_Usage::instance().append(o);
     menuPrintingEnable(true);
 }
 //----------------------------------------------------------------------------
