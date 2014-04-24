@@ -83,6 +83,7 @@ class mmAttachmentManage
 public:
 	static wxString GetAttachmentsFolder();
 	static wxString GetAttachmentNoteSign();
+	static bool CreateReadmeFile(const wxString& FolderPath);
 	static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
 	static bool DeleteAttachment(const wxString& FileToDelete);
 	static bool OpenAttachment(const wxString& FileToOpen);

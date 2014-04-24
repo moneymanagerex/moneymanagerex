@@ -339,12 +339,40 @@ wxString mmAttachmentManage::GetAttachmentNoteSign()
 	return "[U] ";
 }
 
+bool mmAttachmentManage::CreateReadmeFile(const wxString& FolderPath)
+{
+	wxString ReadmeFilePath = FolderPath + wxFileName::GetPathSeparator() + "readme.txt";
+	wxString ReadmeText;
+	ReadmeText << _("This directory and its files are automatically managed by Money Manager EX software.") << wxTextFile::GetEOL();
+	ReadmeText << wxTextFile::GetEOL();
+	ReadmeText << _("Please do not remove, rename or modify manually directories and files.") << wxTextFile::GetEOL();
+
+	if (!wxFileExists(ReadmeFilePath))
+	{
+		wxFile file(ReadmeFilePath, wxFile::write);
+
+		if (file.IsOpened())
+		{
+			file.Write(ReadmeText);
+			file.Close();
+			return true;
+		}
+	}
+
+	return false;
+}
+
 bool mmAttachmentManage::CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile)
 {
 	wxString destinationFolder = wxPathOnly(ImportedFile);
 
-	if (!wxDirExists(destinationFolder) && !wxMkdir(destinationFolder))
-		return false;
+	if (!wxDirExists(destinationFolder))
+	{
+		if (wxMkdir(destinationFolder))
+			mmAttachmentManage::CreateReadmeFile(destinationFolder);
+		else
+			return false;
+	}
 
 	if (wxFileExists(ImportedFile))
 	{
@@ -386,8 +414,13 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 		{
 			wxString DeletedAttachmentFolder = mmAttachmentManage::GetAttachmentsFolder() + wxFileName::GetPathSeparator() + "Deleted";
 
-			if (!wxDirExists(DeletedAttachmentFolder) && !wxMkdir(DeletedAttachmentFolder))
-				return false;
+			if (!wxDirExists(DeletedAttachmentFolder))
+			{
+				if (wxMkdir(DeletedAttachmentFolder))
+					mmAttachmentManage::CreateReadmeFile(DeletedAttachmentFolder);
+				else
+					return false;
+			}
 
 			wxString FileToTrash = DeletedAttachmentFolder + wxFileName::GetPathSeparator()
 				+ wxDateTime::Now().FormatISODate() + "_" + wxFileNameFromPath(FileToDelete);

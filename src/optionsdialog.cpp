@@ -1120,7 +1120,10 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
     //Create attachments folder
     wxString attachmentFolderPath = mmAttachmentManage::GetAttachmentsFolder();
 	if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
-        wxMkdir(attachmentFolderPath);
+	{
+		wxMkdir(attachmentFolderPath);
+		mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
+	}
 
     Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
     Model_Infotable::instance().Set("ATTACHMENTSTRASH", cbTrashAttachments_->GetValue());
