@@ -1,5 +1,4 @@
 /*******************************************************
- Copyright (C) 2007 Madhan Kanagavel
  Copyright (C) 2011 Stefano Giorgio
  Copyright (C) 2014 Nikolay
 

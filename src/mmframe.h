@@ -1,5 +1,9 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2012 Stefano Giorgio
+Copyright (C) 2013 Nikolay
+Copyright (C) 2014 James Higley
+Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
