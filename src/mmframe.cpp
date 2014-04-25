@@ -326,23 +326,12 @@ wxLogDebug("~mmGUIFrame()");
         wxASSERT(false);
     }
     
-        // Report database statistics
-    Model_Account::instance().show_statistics();
-    Model_Asset::instance().show_statistics();
-    Model_Billsdeposits::instance().show_statistics();
-    Model_Budgetsplittransaction::instance().show_statistics();
-    Model_Budget::instance().show_statistics();
-    Model_Budgetyear::instance().show_statistics();
-    Model_Category::instance().show_statistics();
-    Model_Checking::instance().show_statistics();
-    Model_Currency::instance().show_statistics();
-    Model_Infotable::instance().show_statistics();
-    Model_Payee::instance().show_statistics();
-    Model_Setting::instance().show_statistics();
-    Model_Splittransaction::instance().show_statistics();
-    Model_Stock::instance().show_statistics();
-    Model_Subcategory::instance().show_statistics();
-
+    // Report database statistics
+    for (const auto & model : this->m_all_models)
+    {
+        model->show_statistics();
+        Model_Usage::instance().append_cache_usage(model->cache_to_json());
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -2144,22 +2133,22 @@ void mmGUIFrame::CreateToolBar()
 
 void mmGUIFrame::InitializeModelTables()
 {
-    Model_Infotable::instance(m_db.get());
-    Model_Asset::instance(m_db.get());
-    Model_Stock::instance(m_db.get());
-    Model_Account::instance(m_db.get());
-    Model_Payee::instance(m_db.get());
-    Model_Checking::instance(m_db.get());
-    Model_Currency::instance(m_db.get());
-    Model_Budgetyear::instance(m_db.get());
-    Model_Subcategory::instance(m_db.get()); // subcategory must be initialized before category
-    Model_Category::instance(m_db.get());
-    Model_Billsdeposits::instance(m_db.get());
-    Model_Splittransaction::instance(m_db.get());
-    Model_Budgetsplittransaction::instance(m_db.get());
-    Model_Budget::instance(m_db.get());
-    Model_Report::instance(m_db.get());
-	Model_Attachment::instance(m_db.get());
+    m_all_models.push_back(&Model_Infotable::instance(m_db.get()));
+    m_all_models.push_back(&Model_Asset::instance(m_db.get()));
+    m_all_models.push_back(&Model_Stock::instance(m_db.get()));
+    m_all_models.push_back(&Model_Account::instance(m_db.get()));
+    m_all_models.push_back(&Model_Payee::instance(m_db.get()));
+    m_all_models.push_back(&Model_Checking::instance(m_db.get()));
+    m_all_models.push_back(&Model_Currency::instance(m_db.get()));
+    m_all_models.push_back(&Model_Budgetyear::instance(m_db.get()));
+    m_all_models.push_back(&Model_Subcategory::instance(m_db.get())); // subcategory must be initialized before category
+    m_all_models.push_back(&Model_Category::instance(m_db.get()));
+    m_all_models.push_back(&Model_Billsdeposits::instance(m_db.get()));
+    m_all_models.push_back(&Model_Splittransaction::instance(m_db.get()));
+    m_all_models.push_back(&Model_Budgetsplittransaction::instance(m_db.get()));
+    m_all_models.push_back(&Model_Budget::instance(m_db.get()));
+    m_all_models.push_back(&Model_Report::instance(m_db.get()));
+	m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)

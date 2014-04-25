@@ -61,9 +61,14 @@ wxString Model_Usage::version()
     return "$Rev: 6165 $";
 }
 
-void Model_Usage::append(json::Object& o)
+void Model_Usage::append(const json::Object& o)
 {
     this->a.Insert(o);
+}
+
+void Model_Usage::append_cache_usage(const json::Object& o)
+{
+    this->m_cache.Insert(o);
 }
 
 std::string Model_Usage::to_string() const
@@ -72,6 +77,7 @@ std::string Model_Usage::to_string() const
     o["start"] = json::String(m_start.FormatISOCombined().ToStdString());
     o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
     o["usage"] = a;
+    o["cache"] = m_cache;
 
     std::stringstream ss;
     json::Writer::Write(o, ss);

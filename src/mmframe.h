@@ -26,6 +26,7 @@ Copyright (C) 2014 Guan Lisheng (guanlisheng@gmail.com)
 //----------------------------------------------------------------------------
 #include <wx/aui/aui.h>
 #include <wx/toolbar.h>
+#include <vector>
 #include "mmOption.h"
 enum
 {
@@ -53,6 +54,7 @@ class mmCheckingPanel;
 class mmBudgetingPanel;
 class mmFileHistory;
 class CommitCallbackHook;
+class ModelBase;
 //----------------------------------------------------------------------------
 
 class mmGUIFrame : public wxFrame
@@ -110,6 +112,8 @@ public:
 
     void OnClose(wxCloseEvent&);
 
+private:
+    std::vector<const ModelBase*> m_all_models;
 private:
     /* handles to SQLite Database */
     wxSharedPtr<wxSQLite3Database> m_db;

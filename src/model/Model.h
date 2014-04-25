@@ -66,6 +66,9 @@ protected:
         date.ParseISODate(str_date); // the date in ISO 8601 format "YYYY-MM-DD".
         return date;
     }
+public:
+    virtual json::Object cache_to_json() const = 0;
+    virtual void show_statistics() const = 0;
 protected:
     wxSQLite3Database* db_;
 };
@@ -169,11 +172,24 @@ public:
     json::Object cache_to_json() const
     {
         json::Object o;
+        o["table"] = json::String(this->name().ToStdString());
         o["cached"] = json::Number(this->cache_.size());
         o["hit"] = json::Number(this->hit_);
         o["miss"] = json::Number(this->miss_);
         o["skip"] = json::Number(this->skip_);
+
+        return o;
     }
+    /** Show table statistics*/
+	void show_statistics() const
+	{
+		size_t cache_size = this->cache_.size();
+#ifdef _WIN64
+        wxLogDebug("%s : (cache %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
+#else
+        wxLogDebug("%s : (cache %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
+#endif
+	}
 };
 
 #endif // 

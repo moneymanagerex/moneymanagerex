@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-25 07:58:12.017221.
+ *          AUTO GENERATED at 2014-04-25 08:45:02.179048.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -50,17 +50,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
     {
         destroy_cache();
     }
-    
-    /** Show table statistics*/
-	void show_statistics()
-	{
-		size_t cache_size = this->cache_.size();
-#ifdef _WIN64
-        wxLogDebug("%s : (cache %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
-#else
-        wxLogDebug("%s : (cache %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
-#endif
-	}
 	 
     /** Removes all records stored in memory (cache) for the table*/ 
     void destroy_cache()

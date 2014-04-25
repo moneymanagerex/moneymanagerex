@@ -46,10 +46,11 @@ public:
 
 private:
     wxDateTime m_start;
-    json::Array a;
+    json::Array a, m_cache;
 
 public:
-    void append(json::Object& o);
+    void append(const json::Object& o);
+    void append_cache_usage(const json::Object& o);
     std::string to_string() const;
 };
 
