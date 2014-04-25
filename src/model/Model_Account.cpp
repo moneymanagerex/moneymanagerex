@@ -51,7 +51,7 @@ Model_Account& Model_Account::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
-    ins.preload(db);
+    ins.preload();
 
     return ins;
 }

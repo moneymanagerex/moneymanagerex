@@ -154,6 +154,26 @@ public:
     {
         return this->remove(id, db_);
     }
+
+public:
+    void preload(int max_num = 1000)
+    {
+        int i = 0;
+        for (const auto & item : all())
+        {
+            get(item.id());
+            if (++i >= max_num) break;
+        }       
+    }
+
+    json::Object cache_to_json() const
+    {
+        json::Object o;
+        o["cached"] = json::Number(this->cache_.size());
+        o["hit"] = json::Number(this->hit_);
+        o["miss"] = json::Number(this->miss_);
+        o["skip"] = json::Number(this->skip_);
+    }
 };
 
 #endif // 

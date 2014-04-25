@@ -17,6 +17,14 @@
  ********************************************************/
 
 #include "Model_Usage.h"
+#include "Model_Account.h"
+#include "Model_Asset.h"
+#include "Model_Payee.h"
+#include "Model_Category.h"
+#include "Model_Subcategory.h"
+#include "Model_Currency.h"
+#include "Model_Infotable.h"
+#include "Model_Setting.h"
 
 Model_Usage::Model_Usage()
 : Model<DB_Table_USAGE_V1>()
@@ -64,6 +72,7 @@ std::string Model_Usage::to_string() const
     o["start"] = json::String(m_start.FormatISOCombined().ToStdString());
     o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
     o["usage"] = a;
+
     std::stringstream ss;
     json::Writer::Write(o, ss);
     return ss.str();
