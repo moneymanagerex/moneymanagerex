@@ -34,6 +34,8 @@ public:
     void OnEditAsset(wxCommandEvent& event);
     void OnDeleteAsset(wxCommandEvent& event);
     void OnDuplicateAsset(wxCommandEvent& event);
+	void OnOrganizeAttachments(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
 
     void doRefreshItems(int trx_id = -1);
 
@@ -60,6 +62,7 @@ private:
         MENU_TREEPOPUP_EDIT,
         MENU_TREEPOPUP_DELETE,
         MENU_ON_DUPLICATE_TRANSACTION,
+		MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
     };
 };
 
@@ -101,6 +104,7 @@ private:
     void OnNewAsset(wxCommandEvent& event);
     void OnDeleteAsset(wxCommandEvent& event);
     void OnEditAsset(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
     void OnMouseLeftDown ( wxMouseEvent& event );
 
     void OnViewPopupSelected(wxCommandEvent& event);

@@ -42,6 +42,7 @@ private:
     void CreateControls();
     void OnOk(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& event);
+	void OnAttachments(wxCommandEvent& event);
     void OnChangeAppreciationType(wxCommandEvent& event);
     void enableDisableRate(bool en);
     void onTextEntered(wxCommandEvent& event);
@@ -49,6 +50,7 @@ private:
     void changeFocus(wxChildFocusEvent& event);
 
     bool assetRichText;
+	bool skip_attachments_init_;
 
     mmTextCtrl* m_assetName;
     wxDatePickerCtrl* m_dpc;
@@ -58,6 +60,7 @@ private:
     wxChoice*  m_assetType;
     wxChoice*  m_valueChange;
     wxStaticText* m_valueChangeRateLabel;
+	wxBitmapButton* bAttachments_;
 
     enum
     {

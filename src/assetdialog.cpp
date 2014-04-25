@@ -16,10 +16,13 @@
 
 #include "assetdialog.h"
 #include "mmtextctrl.h"
+#include "attachmentdialog.h"
 #include "paths.h"
 #include "constants.h"
 #include "validators.h"
 #include "model/Model_Asset.h"
+#include "model/Model_Attachment.h"
+#include "../resources/attachment.xpm"
 #include <wx/valnum.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmAssetDialog, wxDialog )
@@ -27,6 +30,7 @@ IMPLEMENT_DYNAMIC_CLASS( mmAssetDialog, wxDialog )
 BEGIN_EVENT_TABLE( mmAssetDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmAssetDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmAssetDialog::OnCancel)
+	EVT_BUTTON(wxID_FILE, mmAssetDialog::OnAttachments)
     EVT_CHOICE(IDC_COMBO_TYPE, mmAssetDialog::OnChangeAppreciationType)
     EVT_CHILD_FOCUS(mmAssetDialog::changeFocus)
 END_EVENT_TABLE()
@@ -41,6 +45,7 @@ mmAssetDialog::mmAssetDialog(wxWindow* parent, Model_Asset::Data* asset)
     , m_assetType()
     , m_valueChange()
     , m_valueChangeRateLabel()
+	, skip_attachments_init_(false)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New/Edit Asset"), wxDefaultPosition, wxSize(400, 300), style);
@@ -166,7 +171,11 @@ void mmAssetDialog::CreateControls()
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), g_flags);
 
-    itemFlexGridSizer6->AddSpacer(1);
+	bAttachments_ = new wxBitmapButton(itemPanel5, wxID_FILE
+		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
+	itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
+	bAttachments_->SetToolTip(_("Organize attachments of this stock"));
 
     m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
@@ -250,7 +259,14 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
     m_asset->VALUECHANGERATE  = valueChangeRate;
     m_asset->ASSETTYPE        = asset_type;
 
-    Model_Asset::instance().save(m_asset);
+	int OldAssetId = m_asset->ASSETID;
+    int NewAssetId = Model_Asset::instance().save(m_asset);
+
+	if (OldAssetId < 0)
+	{
+		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+		mmAttachmentManage::RelocateAllAttachments(RefType, 0, NewAssetId);
+	}
 
     EndModal(wxID_OK);
 }
@@ -261,6 +277,26 @@ void mmAssetDialog::OnCancel(wxCommandEvent& /*event*/)
         return;
     else
         EndModal(wxID_CANCEL);
+}
+
+void mmAssetDialog::OnAttachments(wxCommandEvent& /*event*/)
+{
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::ASSET);
+	int RefId;
+	
+	if (!this->m_asset)
+		RefId = 0;
+	else
+		RefId= m_asset->ASSETID;
+
+	if (RefId == 0 && !skip_attachments_init_)
+	{
+		mmAttachmentManage::DeleteAllAttachments(RefType, 0);
+		skip_attachments_init_ = true;
+	}
+
+	mmAttachmentDialog dlg(this, RefType, RefId);
+	dlg.ShowModal();
 }
 
 void mmAssetDialog::changeFocus(wxChildFocusEvent& event)
