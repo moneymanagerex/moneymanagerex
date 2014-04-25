@@ -44,7 +44,7 @@ std::string event_to_name(enum mg_event ev)
 
 static int ev_handler(struct mg_connection *conn, enum mg_event ev) 
 {
-    wxLogDebug("RUI: %s, TYPE: %s", conn->uri, event_to_name(ev));
+    wxLogDebug("%s, RUI: %s, TYPE: %s", conn->request_method, conn->uri, event_to_name(ev));
     if (ev == MG_AUTH) return MG_TRUE;
     int result = MG_FALSE;
 
