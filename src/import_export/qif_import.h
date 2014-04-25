@@ -36,7 +36,12 @@ enum qifLineType
     Category = 11,  // L
     CategorySplit = 12,  // S
     MemoSplit = 13,  // E
-    AmountSplit = 14   // '$'
+    AmountSplit = 14,   // '$'
+    //mmex expra
+    AccountName = 64,
+    ToAccountName,
+    TrxType,
+    isValid
 };
 
 //QIF specific data

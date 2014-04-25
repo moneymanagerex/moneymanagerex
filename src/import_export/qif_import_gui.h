@@ -1,5 +1,5 @@
 /*******************************************************
-Copyright (C) 2006-2012
+Copyright (C) 2013-2014 Nikolay
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/dataview.h>
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
+#include "mmpanelbase.h"
 
 class wxDatePickerCtrl;
 class mmQIFImport;
@@ -40,45 +41,59 @@ public:
         , const wxPoint& pos
         , const wxSize& size
         , long style);
+
+    wxString OnGetItemText(long item, long column) const;
     int get_last_imported_acc()
     {
         return m_firstReferencedAccountID;
     }
 
 private:
-    bool mmParseQIF();
-    bool m_parsedOK;
-    bool m_IsFileValid;
-    bool m_IsDatesValid;
-    bool m_IsAccountsOK;
 
     void CreateControls();
     void fillControls();
-
     void OnFileSearch(wxCommandEvent& event);
-    bool checkQIFFile();
     void OnCheckboxClick(wxCommandEvent& /*event*/);
     void OnDateMaskChange(wxCommandEvent& event);
     void OnQuit(wxCloseEvent& event);
     void OnCancel(wxCommandEvent& event);
     void OnOk(wxCommandEvent& /*event*/);
-    int getOrCreateAccount(const wxString& name, double init_balance, const wxString& currency_name = "");
+
+    bool mmReadQIFFile();
+    void clear_transaction_data();
+    void getOrCreateAccounts();
+    void getOrCreatePayees();
+    void getOrCreateCategories();
+    void compliteTransaction(std::map <int, wxString> &trx, const wxString &accName);
+    void createTransaction(/*in*/int &num, const std::map <int, wxString> &i
+        , /*out*/ Model_Checking::Data* &trx);
+    bool mergeTransferPair(Model_Checking::Data_Set &to, Model_Checking::Data_Set &from);
+    void appendTransfers(Model_Checking::Data_Set &destination, Model_Checking::Data_Set &target);
+    void getDateMask();
+    void refreshTabs(int tabs = 15);
+    void parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp);
 
     mmQIFImport *m_QIFimport;
-    std::vector< std::pair<Model_Checking::Data*, Model_Splittransaction::Cache> > vQIF_trxs_;
-    wxString dateFormat_;
-    bool m_userDefinedFormat;
-    wxArrayInt accounts_id_;
-    wxArrayInt items_index_;
-    wxArrayString accounts_name_;
-    int fromAccountID_;
 
-    wxString getLineData(const wxString& line) const;
-    wxString getFileLine(wxTextInputStream& textFile, int& lineNumber) const;
-    wxString getFinancistoProject(wxString& sSubCateg) const;
-    wxString sFileName_;
+    //QIF paragraphs represented like maps type = data
+    std::vector <std::map <int, wxString> > vQIF_trxs_;
+    std::map<wxString, int> m_date_parsing_stat;
+    std::map <wxString, std::map <int, wxString> > m_QIFaccounts;
+    std::map <wxString, int> m_QIFaccountsID;
+    std::map <wxString, int> m_QIFpayeeNames;
+    std::map <wxString, std::pair<int, int> > m_QIFcategoryNames;
+
+    wxString m_accountNameStr;
+    wxString m_dateFormatStr;
+    bool m_userDefinedDateMask;
+    int fromAccountID_;
+    wxString m_FileNameStr;
+    wxDateTime m_today;
 
     wxDataViewListCtrl* dataListBox_;
+    wxDataViewListCtrl* accListBox_;
+    wxDataViewListCtrl* payeeListBox_;
+    wxDataViewListCtrl* categoryListBox_;
     wxButton* button_search_;
     wxTextCtrl* file_name_ctrl_;
     wxTextCtrl* log_field_;
@@ -87,38 +102,20 @@ private:
     wxDatePickerCtrl* fromDateCtrl_;
     wxDatePickerCtrl* toDateCtrl_;
     wxComboBox* choiceDateFormat_;
-    wxChoice* newAccounts_;
+    wxCheckBox* accountCheckBox_;
+    wxChoice* accountDropDown_;
     wxButton* btnOK_;
 
-    wxBitmapButton* bbFile_;
-    wxBitmapButton* bbFormat_;
-    wxBitmapButton* bbAccounts_;
     int m_firstReferencedAccountID; //The first available account in the QIF file
-    int m_numLines;
-
-    struct m_data
-    {
-        wxDateTime dtdt;
-        bool valid;
-        bool trxComplited;
-        int payeeID;
-        int categID;
-        int subCategID;
-        int to_accountID;
-        int from_accountID;
-        wxString payeeString, type, amountString, transNum, notes;
-        wxString dt, convDate, accountName, dateString, sToAccountName;
-        wxString sFullCateg, sCateg, sSubCateg, sSplitCategs, sSplitAmount, sValid, sDescription;
-        double val, dSplitAmount;
-    } m_data;
 
     enum EColumn
     {
-        COL_ACCOUNT = 0,
+        COL_ID = 0,
+        COL_ACCOUNT,
         COL_DATE,
         COL_NUMBER,
         COL_PAYEE,
-        COL_STATUS,
+        COL_TYPE,
         COL_CATEGORY,
         COL_VALUE,
         COL_NOTES,
