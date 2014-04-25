@@ -234,12 +234,18 @@ void mmStockDialog::OnCancel(wxCommandEvent& /*event*/)
 void mmStockDialog::OnAttachments(wxCommandEvent& /*event*/)
 {
 	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::STOCK);
-	if (stockID_<0 && !skip_attachments_init_)
+	int RefId = stockID_;
+
+	if (RefId < 0)
+		RefId = 0;
+
+	if (RefId == 0 && !skip_attachments_init_)
 	{
 		mmAttachmentManage::DeleteAllAttachments(RefType, 0);
 		skip_attachments_init_ = true;
 	}
-	mmAttachmentDialog dlg(this, RefType, 0);
+
+	mmAttachmentDialog dlg(this, RefType, RefId);
 	dlg.ShowModal();
 }
 
