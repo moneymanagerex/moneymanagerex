@@ -2148,7 +2148,7 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Budgetsplittransaction::instance(m_db.get()));
     m_all_models.push_back(&Model_Budget::instance(m_db.get()));
     m_all_models.push_back(&Model_Report::instance(m_db.get()));
-	m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
+    m_all_models.push_back(&Model_Attachment::instance(m_db.get()));
 }
 
 bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, bool openingNew)
