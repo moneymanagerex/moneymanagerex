@@ -765,7 +765,6 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    bool result = data->match(arg1);
     if (data->match(arg1)) 
         return match(data, args...);
     else

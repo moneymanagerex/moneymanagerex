@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-25 08:45:02.179048.
+ *          AUTO GENERATED at 2014-04-25 12:08:46.670000.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -143,7 +143,6 @@ bool match(const DATA* data, const Arg1& arg1)
 template<class DATA, typename Arg1, typename... Args>
 bool match(const DATA* data, const Arg1& arg1, const Args&... args)
 {
-    bool result = data->match(arg1);
     if (data->match(arg1)) 
         return match(data, args...);
     else
