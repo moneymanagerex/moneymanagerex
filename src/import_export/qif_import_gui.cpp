@@ -407,7 +407,7 @@ void mmQIFImportDialog::refreshTabs(int tabs)
         {
             const std::map <int, wxString> &map = trx;
             wxVector<wxVariant> data;
-            data.push_back(wxVariant(num + 1));
+            data.push_back(wxVariant(wxString::Format("%i", num + 1)));
             data.push_back(wxVariant(map.find(AccountName) == map.end() ? "" : map.at(AccountName)));
 
             data.push_back(wxVariant(map.find(Date) == map.end() ? "" : map.at(Date)));
