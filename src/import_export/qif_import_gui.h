@@ -61,15 +61,15 @@ private:
 
     bool mmReadQIFFile();
     void clear_transaction_data();
-    void getOrCreateAccounts();
+    int getOrCreateAccounts();
     void getOrCreatePayees();
     void getOrCreateCategories();
     void compliteTransaction(std::map <int, wxString> &trx, const wxString &accName);
-    void createTransaction(/*in*/int &num, const std::map <int, wxString> &i
+    bool createTransaction(/*in*/ const std::map <int, wxString> &i
         , /*out*/ Model_Checking::Data* &trx);
     bool mergeTransferPair(Model_Checking::Data_Set &to, Model_Checking::Data_Set &from);
     void appendTransfers(Model_Checking::Data_Set &destination, Model_Checking::Data_Set &target);
-    void joinSplit(Model_Checking::Data_Set &destination, std::map <int, Model_Splittransaction::Data_Set> &target);
+    void joinSplit(Model_Checking::Data_Set &destination, std::vector <Model_Splittransaction::Data_Set> &target);
     void saveSplit();
     void getDateMask();
     void refreshTabs(int tabs = 15);
@@ -84,7 +84,7 @@ private:
     std::map <wxString, int> m_QIFaccountsID;
     std::map <wxString, int> m_QIFpayeeNames;
     std::map <wxString, std::pair<int, int> > m_QIFcategoryNames;
-    std::map <int, Model_Splittransaction::Data_Set> m_splitDataSets;
+    std::vector <Model_Splittransaction::Data_Set> m_splitDataSets;
 
     wxString m_accountNameStr;
     wxString m_dateFormatStr;
