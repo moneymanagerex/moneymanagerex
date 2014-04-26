@@ -634,6 +634,9 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         mergeTransferPair(transfer_to_data_set, transfer_from_data_set);
         appendTransfers(trx_data_set, transfer_to_data_set);
         Model_Checking::instance().save(trx_data_set);
+        progressDlg.Update(count, _("Importing Split transactions"));
+        joinSplit(trx_data_set, m_splitDataSets);
+        saveSplit();
 
         sMsg = _("Import finished successfully");
         btnOK_->Enable(false);
@@ -649,6 +652,26 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
 
     vQIF_trxs_.clear();
     refreshTabs(2 + 4 + 8);
+}
+
+void mmQIFImportDialog::saveSplit()
+{
+    for (auto &data_set : m_splitDataSets) {
+        Model_Splittransaction::instance().save(data_set.second);
+    }
+}
+void mmQIFImportDialog::joinSplit(Model_Checking::Data_Set &destination, std::map <int, Model_Splittransaction::Data_Set> &target)
+{
+    for (auto &item : destination)
+    {
+        if (item.CATEGID != -1) continue;
+        int splitNum = item.SUBCATEGID;
+        if (target.find(splitNum) != target.end())
+        {
+            for (auto &split_item : target[splitNum])
+                split_item.TRANSID = item.TRANSID;
+        }
+    }
 }
 
 void mmQIFImportDialog::appendTransfers(Model_Checking::Data_Set &destination, Model_Checking::Data_Set &target)
@@ -695,11 +718,9 @@ void mmQIFImportDialog::createTransaction(/*in*/ int &num, const std::map <int, 
     trx->ACCOUNTID = (t.find(AccountName) == t.end() ? -1 : m_QIFaccountsID[t[AccountName]]);
     trx->TOACCOUNTID = (t.find(ToAccountName) == t.end() ? -1 : m_QIFaccountsID[t[ToAccountName]]);
     trx->PAYEEID = (t.find(Payee) == t.end() ? -1 : m_QIFpayeeNames[t.at(Payee)]); //TODO: transfer?
-    trx->CATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].first);
-    trx->SUBCATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].second);
     trx->TRANSACTIONNUMBER = (t.find(TransNumber) == t.end() ? "" : t[TransNumber]);
     trx->NOTES = (t.find(Memo) == t.end() ? "" : t[Memo]);
-    trx->STATUS = Model_Checking::all_status()[Model_Checking::FOLLOWUP];
+    trx->STATUS = "";
     trx->FOLLOWUPID = -1;
     double amt;
     wxString(t.find(Amount) == t.end() ? "" : t[Amount]).ToDouble(&amt);
@@ -707,14 +728,30 @@ void mmQIFImportDialog::createTransaction(/*in*/ int &num, const std::map <int, 
     trx->TOTRANSAMOUNT = amt;
     trx->TRANSCODE = (t.find(TrxType) == t.end() ? "" : t[TrxType]);
 
-    /*int transID = Model_Checking::instance().save(refTrans); //TODO: check for duplicate
-    for (auto& split : refTrxTo.second)
+    if (t.find(CategorySplit) == t.end()) {
+        trx->CATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].first);
+        trx->SUBCATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].second);
+    }
+    else
     {
-    split->TRANSID = transID;
-    if (Model_Checking::type(refTrans) != Model_Checking::DEPOSIT)
-    split->SPLITTRANSAMOUNT = -split->SPLITTRANSAMOUNT;
-    Model_Splittransaction::instance().save(split);
-    }*/ //TODO:
+        Model_Splittransaction::Data_Set split;
+        wxStringTokenizer token(t[CategorySplit], "\n");
+        wxStringTokenizer amtToken(t.find(AmountSplit) == t.end() ? "" : t[AmountSplit], "\n");
+        while (token.HasMoreTokens()) {
+            const wxString c = token.GetNextToken();
+            Model_Splittransaction::Data* s = Model_Splittransaction::instance().create();
+            s->CATEGID = m_QIFcategoryNames[c].first;
+            s->SUBCATEGID = m_QIFcategoryNames[c].second;
+            double amount;
+            amtToken.GetNextToken().ToDouble(&amount);
+            s->SPLITTRANSAMOUNT = (trx->TRANSCODE == Model_Checking::all_type()[Model_Checking::DEPOSIT] ? amount : -amount);
+            s->TRANSID = trx->TRANSID;
+            split.push_back(*s);
+        }
+        int id = m_splitDataSets.size();
+        trx->SUBCATEGID = id;
+        m_splitDataSets[id] = split;
+    }
 
 }
 
