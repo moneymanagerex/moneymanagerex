@@ -1,5 +1,5 @@
 /* XPM */
-static char * preferences_network_xpm[] = {
+static const char * preferences_network_xpm[] = {
 "48 48 256 2",
 "   c #4FC64FC650CA",
 ".  c #4BFF52765AA8",
