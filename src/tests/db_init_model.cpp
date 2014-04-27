@@ -125,15 +125,14 @@ void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
 
 void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)
 {
-    Model_Currency currency = Model_Currency::instance();
-    Model_Currency::Data currency_record = currency.GetCurrencyRecord(base_currency_symbol);
+    Model_Currency::Data currency_record = Model_Currency::instance().GetCurrencyRecord(base_currency_symbol);
     if (base_currency_symbol == "AUD")
     {
         // ensure that group separator is a comma in database.
         currency_record.GROUP_SEPARATOR = ",";
-        currency.save(&currency_record);
+        Model_Currency::instance().save(&currency_record);
     }
-    currency.SetBaseCurrency(&currency_record);
+    Model_Currency::instance().SetBaseCurrency(&currency_record);
     // Set database User Name
     Model_Infotable::instance().Set("USERNAME", user_name);
     mmOptions::instance().userNameString_ = user_name;
