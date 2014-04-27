@@ -76,7 +76,7 @@ void mmAttachmentDialog::do_create(wxWindow* parent)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
 
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
-	if (!wxDialog::Create(parent, wxID_ANY, _("Organize Attachments | ") + m_RefType + " " + wxString::Format(wxT("%i"), m_RefId)
+	if (!wxDialog::Create(parent, wxID_ANY, _("Organize Attachments | ") + m_RefType + " " + wxString::Format("%i", m_RefId)
         , wxDefaultPosition, wxDefaultSize, style))
     {
         return;
@@ -182,7 +182,7 @@ void mmAttachmentDialog::AddAttachment()
 	attachmentNumberString = attachmentNumberString.SubString(attachmentNumberString.Find("Attach")+6, attachmentNumberString.Find(".")-1);
 	int attachmentNumber = wxAtoi(attachmentNumberString);
 
-	wxString importedFileName = m_RefType + "_" + wxString::Format(wxT("%i"), m_RefId) + "_Attach" + wxString::Format(wxT("%i"), attachmentNumber+1) + "." + attachmentFileExtension;
+	wxString importedFileName = m_RefType + "_" + wxString::Format("%i", m_RefId) + "_Attach" + wxString::Format("%i", attachmentNumber+1) + "." + attachmentFileExtension;
 
 	if (mmAttachmentManage::CopyAttachment(attachmentFilePath, AttachmentsFolder + wxFileName::GetPathSeparator() + m_RefType + wxFileName::GetPathSeparator() + importedFileName))
 	{
@@ -500,7 +500,7 @@ bool mmAttachmentManage::RelocateAllAttachments(const wxString& RefType, const i
 	for (auto &entry : attachments)
 	{
 		wxString NewFileName = entry.FILENAME;
-		NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format(wxT("%i"), entry.REFID), entry.REFTYPE + "_" + wxString::Format(wxT("%i"), NewRefId));
+		NewFileName.Replace(entry.REFTYPE + "_" + wxString::Format("%i", entry.REFID), entry.REFTYPE + "_" + wxString::Format("%i", NewRefId));
 		wxRenameFile(AttachmentsFolder + entry.FILENAME, AttachmentsFolder + NewFileName);
 		entry.REFID = NewRefId;
 		entry.FILENAME = NewFileName;
