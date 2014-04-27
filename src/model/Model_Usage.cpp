@@ -67,7 +67,7 @@ void Model_Usage::append_cache_usage(const json::Object& o)
 {
     this->m_cache.Insert(o);
 }
-wxString uuid();
+
 std::string Model_Usage::to_string() const
 {
     json::Object o;
@@ -83,13 +83,12 @@ std::string Model_Usage::to_string() const
 
 wxString uuid()
 {
-    Model_Setting::Data* uuid = Model_Setting::instance().get("UUID");
-    if (uuid)
-        return uuid->SETTINGVALUE;
-    
-    // TODO better logic
-    wxString UUID = wxString::Format("%s_%lld", wxPlatformInfo::Get().GetPortIdShortName(), wxGetUTCTimeMillis().ToLong());
-    Model_Setting::instance().Set("UUID", UUID);
+    wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
+    if (UUID == wxEmptyString)
+    {
+        UUID = wxString::Format("%s_%lld", wxPlatformInfo::Get().GetPortIdShortName(), wxGetUTCTimeMillis().ToLong());
+        Model_Setting::instance().Set("UUID", UUID);
+    }
     return UUID;
 }
 
