@@ -88,7 +88,7 @@ wxString uuid()
         return uuid->SETTINGVALUE;
     
     // TODO better logic
-    wxString UUID = wxString::Format("%s_%ld", wxPlatformInfo::Get().GetPortIdShortName(), wxGetUTCTimeMillis().ToLong());
+    wxString UUID = wxString::Format("%s_%lld", wxPlatformInfo::Get().GetPortIdShortName(), wxGetUTCTimeMillis().ToLong());
     Model_Setting::instance().Set("UUID", UUID);
     return UUID;
 }
