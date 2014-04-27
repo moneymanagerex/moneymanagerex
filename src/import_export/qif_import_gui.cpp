@@ -823,6 +823,7 @@ int mmQIFImportDialog::getOrCreateAccounts()
 
 void mmQIFImportDialog::getOrCreatePayees()
 {
+    Model_Payee::Data_Set data_set;
     for (const auto &item : m_QIFpayeeNames)
     {
         int payeeID = -1;
@@ -833,14 +834,18 @@ void mmQIFImportDialog::getOrCreatePayees()
             p->PAYEENAME = item.first;
             p->CATEGID = -1;
             p->SUBCATEGID = -1;
-            payeeID = Model_Payee::instance().save(p);
+            data_set.push_back(*p);
+            //payeeID = Model_Payee::instance().save(p);
             wxString sMsg = wxString::Format(_("Added payee: %s"), item.first);
             log_field_->AppendText(wxString() << sMsg << "\n");
         }
         else
-            payeeID = payees.begin()->PAYEEID;
+            data_set.push_back(*payees.begin());
+    }
 
-        m_QIFpayeeNames[item.first] = payeeID;
+    Model_Payee::instance().save(data_set);
+    for (const auto& entry : data_set) {
+        m_QIFpayeeNames[entry.PAYEENAME] = entry.PAYEEID;
     }
 }
 
