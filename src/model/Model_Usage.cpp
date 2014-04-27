@@ -71,8 +71,8 @@ wxString uuid();
 std::string Model_Usage::to_string() const
 {
     json::Object o;
-    o["start"] = json::String(m_start.FormatISOCombined().ToStdString());
-    o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+    o["start"] = json::String(m_start.FormatISOCombined(' ').ToStdString());
+    o["end"] = json::String(wxDateTime::Now().FormatISOCombined(' ').ToStdString());
     o["usage"] = a;
     o["cache"] = m_cache;
 
