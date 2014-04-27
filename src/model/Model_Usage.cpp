@@ -17,6 +17,11 @@
  ********************************************************/
 
 #include "Model_Usage.h"
+#include "Model_Setting.h"
+#include "util.h"
+#include "constants.h"
+#include <wx/platinfo.h>
+#include <wx/intl.h>
 
 Model_Usage::Model_Usage()
 : Model<DB_Table_USAGE_V1>()
@@ -62,7 +67,7 @@ void Model_Usage::append_cache_usage(const json::Object& o)
 {
     this->m_cache.Insert(o);
 }
-
+wxString uuid();
 std::string Model_Usage::to_string() const
 {
     json::Object o;
@@ -74,4 +79,63 @@ std::string Model_Usage::to_string() const
     std::stringstream ss;
     json::Writer::Write(o, ss);
     return ss.str();
+}
+
+wxString uuid()
+{
+    Model_Setting::Data* uuid = Model_Setting::instance().get("UUID");
+    if (uuid)
+        return uuid->SETTINGVALUE;
+    
+    // TODO better logic
+    wxString UUID = wxString::Format("%s_%ld", wxPlatformInfo::Get().GetPortIdShortName(), wxGetUTCTimeMillis().ToLong());
+    Model_Setting::instance().Set("UUID", UUID);
+    return UUID;
+}
+
+bool Model_Usage::send()
+{
+    int last_sent = Model_Setting::instance().GetIntSetting("LAST_SENT", 0);
+    for (const auto & i : Model_Usage::instance().find(USAGEID(last_sent, GREATER)))
+    {
+        if (send(i)) Model_Setting::instance().Set("LAST_SENT", i.id());
+    }
+
+    return true;
+}
+
+bool Model_Usage::send(const Data* r)
+{
+    wxString url = "http://hosting.villanet.it/MMEX_Stats/main_stats_v1.php?";
+    url += wxString::Format("User_ID=%s", uuid()); // uuid
+    url += "&";
+    url += wxString::Format("Version=%s", mmex::getProgramVersion());
+    url += "&";
+    url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdName());
+    url += "&";
+    url += wxString::Format("Language=%s", Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english"));
+    url += "&";
+    url += wxString::Format("Nation=%s", "USA"); //FIXME
+
+    std::stringstream ss;
+    ss << r->JSONCONTENT.ToStdString();
+    json::Object o;
+    json::Reader::Read(o, ss);
+
+    url += "&";
+    url += wxString::Format("Start_Time=%s", wxString(json::String(o["start"])));
+    url += "&";
+    url += wxString::Format("End_Time=%s", wxString(json::String(o["end"])));
+
+    wxLogDebug(url);
+    wxString dummy;
+    site_content(url,  dummy);
+    wxLogDebug(dummy);
+    
+    return true;
+}
+
+bool Model_Usage::send(const Data& r)
+{
+    return send(&r);
 }
