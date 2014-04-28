@@ -128,7 +128,6 @@ wxString inQuotes(wxString label, wxString& delimiter);
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
 void mmLoadColorsFromDatabase();
-void mmPlayTransactionSound();
 
 class mmColors
 {

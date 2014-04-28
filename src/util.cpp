@@ -24,7 +24,6 @@
 #include "constants.h"
 #include "singleton.h"
 #include "model/Model_Setting.h"
-#include <wx/sound.h>
 #include <wx/richtooltip.h>
 #include <wx/sstream.h>
 
@@ -213,20 +212,6 @@ int site_content(const wxString& sSite, wxString& sOutput)
         else sOutput = _("Unknown error");
     }
     return err_code;
-}
-
-void mmPlayTransactionSound()
-{
-    bool play = Model_Setting::instance().GetBoolSetting(INIDB_USE_TRANSACTION_SOUND, true);
-    if (play)
-    {
-        wxString wav_path = mmex::getPathResource(mmex::TRANS_SOUND);
-        wxLogDebug("%s", wav_path);
-        wxSound registerSound(wav_path);
-
-        if (registerSound.IsOk())
-            registerSound.Play(wxSOUND_ASYNC);
-    }
 }
 
 //* Date Functions----------------------------------------------------------*//

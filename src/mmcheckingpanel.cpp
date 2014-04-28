@@ -16,6 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include <wx/sound.h>
+#include "paths.h"
 #include "constants.h"
 #include "util.h"
 #include "mmcheckingpanel.h"
@@ -899,6 +901,19 @@ void mmCheckingPanel::DisplayAccountDetails(int accountID)
     showTips();
 }
 
+void mmCheckingPanel::mmPlayTransactionSound()
+{
+    bool play = Model_Setting::instance().GetBoolSetting(INIDB_USE_TRANSACTION_SOUND, true);
+    if (play)
+    {
+        wxString wav_path = mmex::getPathResource(mmex::TRANS_SOUND);
+        wxLogDebug("%s", wav_path);
+        wxSound registerSound(wav_path);
+
+        if (registerSound.IsOk())
+            registerSound.Play(wxSOUND_ASYNC);
+    }
+}
 //----------------------------------------------------------------------------
 
 TransactionListCtrl::TransactionListCtrl(
