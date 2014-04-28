@@ -20,6 +20,7 @@
 #include "Model_Setting.h"
 #include "util.h"
 #include "constants.h"
+#include "paths.h"
 #include <wx/platinfo.h>
 #include <wx/intl.h>
 
@@ -108,18 +109,39 @@ bool Model_Usage::send(const Data* r)
 {
     wxString url = "http://hosting.villanet.it/MMEX_Stats/main_stats_v1.php";
     url += "?";
-    url += wxString::Format("User_ID=%s", uuid()); // uuid
-    url += "&";
+
+	//UUID
+    url += wxString::Format("User_ID=%s", uuid());
+
+	//Version
+	url += "&";
     url += wxString::Format("Version=%s", mmex::getProgramVersion());
-    url += "&";
+	if (mmex::isPortableMode())
+		url += " Portable";
+
+	//Platform
+	url += "&";
     url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdShortName());
+
+	//Operating System
+	url += "&";
+	url += wxString::Format("OperatingSystem=%s", wxGetOsDescription());
+
+	//Language
     url += "&";
     url += wxString::Format("Language=%s", Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english"));
 
+	//Country
 	std::locale userLocale("");
     url += "&";
 	url += wxString::Format("Country=%s", userLocale.name());
 
+	//Resolution
+	wxSize Resolution = wxGetDisplaySize();
+	url += "&";
+	url += wxString::Format("Resolution=%ix%i", Resolution.GetX(), Resolution.GetY());
+
+	//Start & End time
     std::stringstream ss;
     ss << r->JSONCONTENT.ToStdString();
     json::Object o;
