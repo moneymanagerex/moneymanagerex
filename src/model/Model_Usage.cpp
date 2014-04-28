@@ -115,8 +115,10 @@ bool Model_Usage::send(const Data* r)
     url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdShortName());
     url += "&";
     url += wxString::Format("Language=%s", Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english"));
+
+	std::locale userLocale("");
     url += "&";
-    url += wxString::Format("Nation=%s", "USA"); //FIXME
+	url += wxString::Format("Country=%s", userLocale.name());
 
     std::stringstream ss;
     ss << r->JSONCONTENT.ToStdString();
