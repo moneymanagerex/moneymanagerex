@@ -86,7 +86,8 @@ wxString uuid()
     wxString UUID = Model_Setting::instance().GetStringSetting("UUID", wxEmptyString);
     if (UUID == wxEmptyString)
     {
-        UUID = wxString::Format("%s_%lld", wxPlatformInfo::Get().GetPortIdShortName(), wxGetUTCTimeMillis().ToLong());
+        wxDateTime now = wxDateTime::Now();
+        UUID = wxString::Format("%s_%s", wxPlatformInfo::Get().GetPortIdShortName(), now.Format("%Y%m%d%H%M%S"));
         Model_Setting::instance().Set("UUID", UUID);
     }
     return UUID;
@@ -105,12 +106,13 @@ bool Model_Usage::send()
 
 bool Model_Usage::send(const Data* r)
 {
-    wxString url = "http://hosting.villanet.it/MMEX_Stats/main_stats_v1.php?";
+    wxString url = "http://hosting.villanet.it/MMEX_Stats/main_stats_v1.php";
+    url += "?";
     url += wxString::Format("User_ID=%s", uuid()); // uuid
     url += "&";
     url += wxString::Format("Version=%s", mmex::getProgramVersion());
     url += "&";
-    url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdName());
+    url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdShortName());
     url += "&";
     url += wxString::Format("Language=%s", Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english"));
     url += "&";
