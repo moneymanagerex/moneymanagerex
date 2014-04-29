@@ -133,8 +133,11 @@ bool Model_Usage::send(const Data* r)
 
 	//Country
 	std::locale userLocale("");
+	wxString Country = userLocale.name();
+	Country = Country.SubString(Country.Find("_")+1, Country.Find(".")-1);
+
     url += "&";
-	url += wxString::Format("Country=%s", userLocale.name());
+	url += wxString::Format("Country=%s", Country);
 
 	//Resolution
 	wxSize Resolution = wxGetDisplaySize();
