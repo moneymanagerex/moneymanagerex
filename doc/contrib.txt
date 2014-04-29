@@ -1,4 +1,4 @@
-##Active Developers
+﻿##Active Developers
 Nikolay          [Nikolay]
 Lisheng          [guanlisheng]
 James            [siena123]
@@ -117,6 +117,7 @@ Eleanor Batchelder
 Pascal Fürhoff
 Panos Sapikas
 Jean-François GATEAU
+Janos Horvath
 
 2013
 CodeLathe LLC
