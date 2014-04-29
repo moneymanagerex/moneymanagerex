@@ -76,11 +76,11 @@ void mmAttachmentDialog::do_create(wxWindow* parent)
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     long style = wxCAPTION | wxCLOSE_BOX | wxRESIZE_BORDER;
 
-	wxString WindowTitle = _("Organize Attachments | ");
+	wxString WindowTitle;
 	if (m_RefId != 0)
-		WindowTitle += m_RefType + " " + wxString::Format("%i", m_RefId);
+		WindowTitle = wxString::Format(_("Organize Attachments | %s %i"), m_RefType, m_RefId);
 	else
-		WindowTitle += _("New ") + m_RefType;
+		WindowTitle = wxString::Format(_("Organize Attachments | New %s"), m_RefType);
 
 	if (!wxDialog::Create(parent, wxID_ANY, WindowTitle, wxDefaultPosition, wxDefaultSize, style))
 		return;
