@@ -107,7 +107,7 @@ bool Model_Usage::send()
 
 bool Model_Usage::send(const Data* r)
 {
-    wxString url = "http://hosting.villanet.it/MMEX_Stats/main_stats_v1.php";
+    wxString url = "http://usagestats.moneymanagerex.org/API/main_stats_v1.php";
     url += "?";
 
 	//UUID
