@@ -76,20 +76,21 @@ bool mmGUIApp::OnCmdLineParsed(wxCmdLineParser& parser)
 */
 void mmGUIApp::reportFatalException(wxDebugReport::Context ctx)
 {
-    wxDebugReportCompress rep;
+    // TODO email it or upload it
+    wxDebugReportCompress report;
 
-    if (!rep.IsOk())
+    if (!report.IsOk())
     {
         wxSafeShowMessage(mmex::getProgramName(), _("Fatal error occured.\nApplication will be terminated."));
         return;
     }
 
-    rep.AddAll(ctx);
+    report.AddAll(ctx);
 
     wxDebugReportPreviewStd preview;
 
-    if (preview.Show(rep) && rep.Process()) {
-        rep.Reset();
+    if (preview.Show(report) && report.Process()) {
+        report.Reset();
     }
 }
 /*
