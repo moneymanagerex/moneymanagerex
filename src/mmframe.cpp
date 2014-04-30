@@ -1472,7 +1472,6 @@ void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
                 {
                     json::Object o;
                     o["module"] = json::String("Stock Panel");
-                    o["accountID"] = json::Number(data) = json::Number(data);;
                     o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
                     wxSizer *sizer = cleanupHomePanel();
 
@@ -3011,7 +3010,6 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 {
     json::Object o;
     o["module"] = json::String("Checking Panel");
-    o["accountID"] = json::Number(accountID);
     o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
     if (activeCheckingAccountPage_)
     {
