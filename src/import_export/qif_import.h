@@ -68,71 +68,7 @@ public:
     wxString getFileLine(wxTextInputStream& textFile, int& lineNumber) const;
     wxString getFinancistoProject(wxString& sSubCateg) const;
 
-    qifAccountInfoType accountInfoType(const wxString& line)
-    {
-        if (line.IsEmpty())
-            return UnknownInfo;
-
-        wxChar fChar = line.GetChar(0);
-        switch (fChar)
-        {
-        case 'N':
-            return Name;
-        case 'T':
-            return AccountType;
-        case 'D':
-            return Description;
-        case 'L':
-            return CreditLimit;
-        case '/':
-            return BalanceDate;
-        case '$':
-            return Balance;
-        case '^':
-            return EOT;
-        default:
-            return UnknownInfo;
-        }
-    }
-
-    qifLineType lineType(const wxString& line)
-    {
-        if (line.IsEmpty())
-            return UnknownType;
-
-        wxChar fChar = line.GetChar(0);
-        switch (fChar)
-        {
-        case '!':
-            return AcctType;
-        case 'D':
-            return Date;
-        case 'N':
-            return TransNumber;
-        case 'P':
-            return Payee;
-        case 'A':
-            return Address;
-        case 'T':
-            return Amount;
-        case '^':
-            return EOTLT;
-        case 'M':
-            return Memo;
-        case 'L':
-            return Category;
-        case 'S':
-            return CategorySplit;
-        case 'E':
-            return MemoSplit;
-        case '$':
-            return AmountSplit;
-        case 'C':
-            return Status;
-        default:
-            return UnknownType;
-        }
-    }
-
+    qifAccountInfoType accountInfoType(const wxString& line) const;
+    qifLineType lineType(const wxString& line) const;
 };
 #endif // 
