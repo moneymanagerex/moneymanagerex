@@ -120,7 +120,7 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
 {
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
-    bool qif_record_start = false;
+    bool qif_record_end = false;
     std::vector<QIF_Line> qif_record;  // each qif_record may contains mult lines
     while (input.IsOk() && !input.Eof())
     {
@@ -128,6 +128,7 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
         QIF_Line qif_line;
         if (this->handle_line(line, qif_line))
         {
+            qif_record_end = (qif_line.first == EOTLT);
             if (qif_line.first == EOTLT) 
             {
                 // process qif_record 
@@ -144,6 +145,11 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
         {
             // TODO
         }
+    }
+
+    if (!qif_record_end)
+    {
+        // TODO incomplete file ?
     }
 
     return true;
