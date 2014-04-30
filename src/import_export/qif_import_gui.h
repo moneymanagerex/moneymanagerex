@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mmpanelbase.h"
 
 class wxDatePickerCtrl;
-class mmQIFImport;
 
 class mmQIFImportDialog : public wxDialog
 {
@@ -74,8 +73,6 @@ private:
     void getDateMask();
     void refreshTabs(int tabs = 15);
     void parseDate(const wxString &dateStr, std::map<wxString, wxString> &date_formats_temp);
-
-    mmQIFImport *m_QIFimport;
 
     //QIF paragraphs represented like maps type = data
     std::vector <std::map <int, wxString> > vQIF_trxs_;

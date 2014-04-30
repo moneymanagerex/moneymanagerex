@@ -63,12 +63,12 @@ class mmQIFImport
 public:
     mmQIFImport() {}
 
-    bool isLineOK(const wxString& line);
-    wxString getLineData(const wxString& line) const;
-    wxString getFileLine(wxTextInputStream& textFile, int& lineNumber) const;
-    wxString getFinancistoProject(wxString& sSubCateg) const;
+    static bool isLineOK(const wxString& line);
+    static wxString getLineData(const wxString& line);
+    static wxString getFileLine(wxTextInputStream& textFile, int& lineNumber);
+    static wxString getFinancistoProject(wxString& sSubCateg);
 
-    qifAccountInfoType accountInfoType(const wxString& line) const;
-    qifLineType lineType(const wxString& line) const;
+    static qifAccountInfoType accountInfoType(const wxString& line);
+    static qifLineType lineType(const wxString& line); 
 };
 #endif // 

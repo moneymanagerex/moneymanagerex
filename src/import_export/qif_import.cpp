@@ -23,12 +23,12 @@ bool mmQIFImport::isLineOK(const wxString& line)
     return wxString("!DNPAT^MLSE$C/UI").Contains(line.Left(1));
 }
 
-wxString mmQIFImport::getLineData(const wxString& line) const
+wxString mmQIFImport::getLineData(const wxString& line)
 {
     return line.substr(1, line.Length() - 1);
 }
 
-wxString mmQIFImport::getFileLine(wxTextInputStream& textFile, int& lineNumber) const
+wxString mmQIFImport::getFileLine(wxTextInputStream& textFile, int& lineNumber)
 {
     wxString textLine = textFile.ReadLine();
     lineNumber++;
@@ -37,7 +37,7 @@ wxString mmQIFImport::getFileLine(wxTextInputStream& textFile, int& lineNumber) 
     return textLine;
 }
 
-wxString mmQIFImport::getFinancistoProject(wxString& sSubCateg) const
+wxString mmQIFImport::getFinancistoProject(wxString& sSubCateg)
 {
     //Additional parsint for Financisto
     wxString sProject = "";
@@ -49,7 +49,7 @@ wxString mmQIFImport::getFinancistoProject(wxString& sSubCateg) const
     return sProject;
 }
 
-qifAccountInfoType mmQIFImport::accountInfoType(const wxString& line) const
+qifAccountInfoType mmQIFImport::accountInfoType(const wxString& line)
 {
     if (line.IsEmpty())
         return UnknownInfo;
@@ -76,7 +76,7 @@ qifAccountInfoType mmQIFImport::accountInfoType(const wxString& line) const
     }
 }
 
-qifLineType mmQIFImport::lineType(const wxString& line) const
+qifLineType mmQIFImport::lineType(const wxString& line)
 {
     if (line.IsEmpty())
         return UnknownType;

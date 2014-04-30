@@ -43,7 +43,6 @@ END_EVENT_TABLE()
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
     : m_firstReferencedAccountID(-1)
     , m_userDefinedDateMask(false)
-    , m_QIFimport(new mmQIFImport())
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
@@ -288,7 +287,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
         const wxString lineStr = text.ReadLine();
         if (lineStr.Length() == 0)
             continue;
-        const qifLineType lineType = m_QIFimport->lineType(lineStr);
+        const qifLineType lineType = mmQIFImport::lineType(lineStr);
 
         if (numLines % 100 == 0)
         {
@@ -298,7 +297,7 @@ bool mmQIFImportDialog::mmReadQIFFile()
                 break;
         }
 
-        const auto data = m_QIFimport->getLineData(lineStr);
+        const auto data = mmQIFImport::getLineData(lineStr);
         if (lineType == EOTLT)
         {
             if (trx.find(AcctType) != trx.end() && trx[AcctType] == "Account")
