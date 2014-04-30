@@ -62,8 +62,8 @@ class mmQIFImport
 {
 
 public:
-    typedef std::pair<qifLineType, wxString> Line_Value;
-    typedef std::vector<Line_Value> Record;
+    typedef std::pair<qifLineType, wxString> QIF_Line;
+    typedef std::vector<QIF_Line> QIF_Record;
 public:
     mmQIFImport() {}
 
@@ -78,7 +78,7 @@ public:
 public:
     bool handle_file(wxFileInputStream& input);
     bool handle_file(const wxString& input_file);
-    bool handle_line(const wxString& line, Line_Value& lv);
-    bool handle_record(const Record & record);
+    bool handle_line(const wxString& line, QIF_Line& lv);
+    bool handle_record(const QIF_Record & record);
 };
 #endif // 
