@@ -78,7 +78,7 @@ public:
 public:
     bool handle_file(wxFileInputStream& input);
     bool handle_file(const wxString& input_file);
-    bool handle_line(const wxString& line, QIF_Line& lv);
-    bool handle_record(const QIF_Record & record);
+    bool handle_line(const wxString& line, QIF_Line& qif_line);
+    bool handle_qif_record(const QIF_Record & qif_record);
 };
 #endif // 

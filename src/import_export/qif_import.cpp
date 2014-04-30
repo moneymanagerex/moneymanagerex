@@ -120,8 +120,8 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
 {
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
-    bool record_start = false;
-    std::vector<QIF_Line> record;  // each record may contains mult lines
+    bool qif_record_start = false;
+    std::vector<QIF_Line> qif_record;  // each qif_record may contains mult lines
     while (input.IsOk() && !input.Eof())
     {
         wxString line = text.ReadLine();
@@ -130,14 +130,14 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
         {
             if (qif_line.first == EOTLT) 
             {
-                // process record 
-                this->handle_record(record);
-                // release record
-                record.clear();
+                // process qif_record 
+                this->handle_qif_record(qif_record);
+                // release qif_record
+                qif_record.clear();
             }
             else
             {
-                record.push_back(qif_line);
+                qif_record.push_back(qif_line);
             }
         }
         else
@@ -163,9 +163,9 @@ bool mmQIFImport::handle_line(const wxString& line, QIF_Line& qif_line)
     return qif_line.first != UnknownType;
 }
 
-bool mmQIFImport::handle_record(const QIF_Record& record)
+bool mmQIFImport::handle_qif_record(const QIF_Record& qif_record)
 {
-    for (const auto& line : record)
+    for (const auto& line : qif_record)
     {
        // TODO 
     }
