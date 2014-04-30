@@ -208,7 +208,8 @@ int mmGUIApp::OnExit()
     usage->USAGEDATE = wxDate::Today().FormatISODate();
     usage->JSONCONTENT = Model_Usage::instance().to_string();
     Model_Usage::instance().save(usage);
-    Model_Usage::send();
+	if (Model_Setting::instance().GetBoolSetting("SENDUSAGESTATS", true))
+		Model_Usage::send();
 
     if (m_setting_db) delete m_setting_db;
 
