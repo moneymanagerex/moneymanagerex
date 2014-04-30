@@ -36,7 +36,9 @@ Model_Setting& Model_Setting::instance(wxSQLite3Database* db)
 {
     Model_Setting& ins = Singleton<Model_Setting>::instance();
     ins.db_ = db;
+    ins.destroy_cache();
     ins.ensure(db);
+    ins.preload();
 
     return ins;
 }

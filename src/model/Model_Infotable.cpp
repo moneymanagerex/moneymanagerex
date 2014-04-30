@@ -38,6 +38,7 @@ Model_Infotable& Model_Infotable::instance(wxSQLite3Database* db)
     ins.db_ = db;
     ins.destroy_cache();
     ins.ensure(db);
+    ins.preload();
     if (!ins.KeyExists("MMEXVERSION"))
     {
         ins.Set("MMEXVERSION", mmex::getProgramVersion());
