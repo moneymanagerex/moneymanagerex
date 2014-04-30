@@ -70,5 +70,10 @@ public:
 
     static qifAccountInfoType accountInfoType(const wxString& line);
     static qifLineType lineType(const wxString& line); 
+
+public:
+    bool handle_file(wxFileInputStream& input);
+    bool handle_file(const wxString& input_file);
+    bool handle_line(const wxString& line);
 };
 #endif // 

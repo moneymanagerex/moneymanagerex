@@ -115,3 +115,45 @@ qifLineType mmQIFImport::lineType(const wxString& line)
     }
 }
 
+bool mmQIFImport::handle_file(wxFileInputStream& input)
+{
+    wxTextInputStream text(input, "\x09", wxConvUTF8);
+
+    while (input.IsOk() && !input.Eof())
+    {
+        wxString line = text.ReadLine();
+        if (this->handle_line(line))
+        {
+            
+        }
+        else
+        {
+            // TODO
+        }
+    }
+
+    return true;
+}
+
+bool mmQIFImport::handle_file(const wxString& input_file)
+{
+    wxFileInputStream input(input_file);
+    return this->handle_file(input); 
+}
+
+bool mmQIFImport::handle_line(const wxString& line)
+{
+    switch (lineType(line))
+    {
+    case AcctType: 
+        // XXX
+        break;
+    case Date:
+        // XXX
+        break;
+    default:
+        break;
+    }
+    return true;    
+}
+
