@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define QIF_IMPORT_H
 
 #include "defs.h"
+#include <vector>
 
 enum qifLineType
 {
@@ -61,6 +62,9 @@ class mmQIFImport
 {
 
 public:
+    typedef std::pair<qifLineType, wxString> Line_Value;
+    typedef std::vector<Line_Value> Record;
+public:
     mmQIFImport() {}
 
     static bool isLineOK(const wxString& line);
@@ -74,6 +78,7 @@ public:
 public:
     bool handle_file(wxFileInputStream& input);
     bool handle_file(const wxString& input_file);
-    bool handle_line(const wxString& line);
+    bool handle_line(const wxString& line, Line_Value& lv);
+    bool handle_record(const Record & record);
 };
 #endif // 

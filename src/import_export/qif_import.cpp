@@ -17,6 +17,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "qif_import.h"
+#include <vector>
 
 bool mmQIFImport::isLineOK(const wxString& line)
 {
@@ -119,12 +120,25 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
 {
     wxTextInputStream text(input, "\x09", wxConvUTF8);
 
+    bool record_start = false;
+    std::vector<Line_Value> record;  // each record may contains mult lines
     while (input.IsOk() && !input.Eof())
     {
         wxString line = text.ReadLine();
-        if (this->handle_line(line))
+        Line_Value lv;
+        if (this->handle_line(line, lv))
         {
-            
+            if (lv.first == EOTLT) 
+            {
+                // process record 
+                this->handle_record(record);
+                // release record
+                record.clear();
+            }
+            else
+            {
+                record.push_back(lv);
+            }
         }
         else
         {
@@ -141,19 +155,20 @@ bool mmQIFImport::handle_file(const wxString& input_file)
     return this->handle_file(input); 
 }
 
-bool mmQIFImport::handle_line(const wxString& line)
+bool mmQIFImport::handle_line(const wxString& line, Line_Value& lv)
 {
-    switch (lineType(line))
+    lv.first = lineType(line);
+    lv.second = getLineData(line);
+
+    return lv.first != UnknownType;
+}
+
+bool mmQIFImport::handle_record(const Record& record)
+{
+    for (const auto& line : record)
     {
-    case AcctType: 
-        // XXX
-        break;
-    case Date:
-        // XXX
-        break;
-    default:
-        break;
+       // TODO 
     }
-    return true;    
+    return true;
 }
 
