@@ -21,6 +21,7 @@
 #include "Model_Report.h"
 #include "reports/htmlbuilder.h"
 #include "LuaGlue/LuaGlue.h"
+#include "sqlite3.h"
 
 static const wxString HTT_CONTEINER =
 "<!DOCTYPE html>\n"
@@ -110,6 +111,7 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
+    wxString out = wxEmptyString;
     mm_html_template report(r->TEMPLATECONTENT);
     r->to_template(report);
 
@@ -126,7 +128,15 @@ wxString Model_Report::get_html(const Data* r)
     }
     else
     {
-        wxSQLite3Statement stmt = this->db_->PrepareStatement(r->SQLCONTENT);
+        wxSQLite3Statement stmt;
+        try
+        {
+            stmt = this->db_->PrepareStatement(r->SQLCONTENT);
+        }
+        catch (const wxSQLite3Exception& e)
+        {
+            return e.GetMessage();
+        }
         wxLogDebug("%s", stmt.GetSQL());
 
         if (!stmt.IsReadOnly())
@@ -136,7 +146,15 @@ wxString Model_Report::get_html(const Data* r)
         }
         else
         {
-            wxSQLite3ResultSet q = stmt.ExecuteQuery();
+            wxSQLite3ResultSet q;
+            try
+            {
+                q = stmt.ExecuteQuery();
+            }
+            catch (const wxSQLite3Exception& e)
+            {
+                return e.GetMessage();
+            }
             int columnCount = q.GetColumnCount();
             std::map <std::wstring, int> colHeaders;
 
@@ -255,8 +273,6 @@ wxString Model_Report::get_html(const Data* r)
     }
     report(L"ERRORS") = errors;
 
-    
-    wxString out = wxEmptyString;
     try 
     {
         out = report.Process();
