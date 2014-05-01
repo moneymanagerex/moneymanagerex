@@ -111,7 +111,6 @@ Model_Report& Model_Report::instance(wxSQLite3Database* db)
 
 wxString Model_Report::get_html(const Data* r)
 {
-    wxString out = wxEmptyString;
     mm_html_template report(r->TEMPLATECONTENT);
     r->to_template(report);
 
@@ -273,6 +272,7 @@ wxString Model_Report::get_html(const Data* r)
     }
     report(L"ERRORS") = errors;
 
+    wxString out = wxEmptyString;
     try 
     {
         out = report.Process();
