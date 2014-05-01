@@ -63,7 +63,7 @@ Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
 
 Model_Payee::Data* Model_Payee::get(const wxString& name)
 {
-    Data* payee = this->get(PAYEENAME(name));
+    Data* payee = this->get_one(PAYEENAME(name));
     if (payee) return payee;
 
     Data_Set items = this->find(PAYEENAME(name));

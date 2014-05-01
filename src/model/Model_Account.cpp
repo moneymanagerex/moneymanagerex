@@ -100,7 +100,7 @@ wxArrayString Model_Account::all_type()
 /** Get the Data record instance in memory. */
 Model_Account::Data* Model_Account::get(const wxString& name)
 {
-    Data* account = this->get(ACCOUNTNAME(name));
+    Data* account = this->get_one(ACCOUNTNAME(name));
     if (account) return account;
 
     Data_Set items = this->find(ACCOUNTNAME(name));

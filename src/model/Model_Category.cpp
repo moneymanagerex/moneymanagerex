@@ -228,7 +228,7 @@ void Model_Category::initialize()
 
 Model_Category::Data* Model_Category::get(const wxString& name)
 {
-    Data* category = this->get(CATEGNAME(name));
+    Data* category = this->get_one(CATEGNAME(name));
     if (category) return category;
 
     Data_Set items = this->find(CATEGNAME(name));

@@ -531,7 +531,7 @@ struct DB_Table_%s : public DB_Table
         
         s += '''
     template<typename... Args>
-    Self::Data* get(const Args& ... args)
+    Self::Data* get_one(const Args& ... args)
     {
         for (auto & item : this->cache_)
         {

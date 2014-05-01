@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-04-25 08:45:02.179048.
+ *          AUTO GENERATED at 2014-05-01 21:37:32.116811.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -427,7 +427,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
     }
 
     template<typename... Args>
-    Self::Data* get(const Args& ... args)
+    Self::Data* get_one(const Args& ... args)
     {
         for (auto & item : this->cache_)
         {
