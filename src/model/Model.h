@@ -174,6 +174,7 @@ public:
         json::Object o;
         o["table"] = json::String(this->name().ToStdString());
         o["cached"] = json::Number(this->cache_.size());
+        o["index_by_id"] = json::Number(this->index_by_id_.size());
         o["hit"] = json::Number(this->hit_);
         o["miss"] = json::Number(this->miss_);
         o["skip"] = json::Number(this->skip_);
@@ -184,10 +185,11 @@ public:
 	void show_statistics() const
 	{
 		size_t cache_size = this->cache_.size();
+        size_t index_by_id_size = this->index_by_id_.size();
 #ifdef _WIN64
-        wxLogDebug("%s : (cache %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
+        wxLogDebug("%s : (cache %llu, index_by_id %llu, hit %llu, miss %llu, skip %llu)", this->name(), cache_size, index_by_id_size, this->hit_, this->miss_, this->skip_);
 #else
-        wxLogDebug("%s : (cache %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, this->hit_, this->miss_, this->skip_);
+        wxLogDebug("%s : (cache %lu, index_by_id %lu, hit %lu, miss %lu, skip %lu)", this->name(), cache_size, index_by_id_size, this->hit_, this->miss_, this->skip_);
 #endif
 	}
 };

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-01 21:37:32.116811.
+ *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -43,7 +43,9 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     };
     /** A container to hold a list of Data record pointers for the table in memory*/
     typedef std::vector<Self::Data*> Cache;
+    typedef std::map<int, Self::Data*> Index_By_Id;
     Cache cache_;
+    Index_By_Id index_by_id_;
 
     /** Destructor: clears any data records stored in memory */
     ~DB_Table_INFOTABLE_V1() 
@@ -56,6 +58,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     {
         std::for_each(cache_.begin(), cache_.end(), std::mem_fun(&Data::destroy));
         cache_.clear();
+        index_by_id_.clear(); // no memory release since it just stores pointer and the according objects are in cache
     }
 
     /** Creates the database table if the table does not exist*/
@@ -322,9 +325,14 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
                 {
                     Self::Data* e = *it;
                     if (e->id() == entity->id() && e != entity) 
+                    {
+                        index_by_id_.erase(entity->id());
                         delete e;
+                    }
                     else 
+                    {
                         c.push_back(e);
+                    }
                 }
                 cache_.clear();
                 cache_.swap(c);
@@ -358,9 +366,14 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
             {
                 Self::Data* entity = *it;
                 if (entity->id() == id) 
+                {
+                    index_by_id_.erase(entity->id());
                     delete entity;
+                }
                 else 
+                {
                     c.push_back(entity);
+                }
             }
             cache_.clear();
             cache_.swap(c);
@@ -389,8 +402,9 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     template<typename... Args>
     Self::Data* get_one(const Args& ... args)
     {
-        for (auto & item : this->cache_)
+        for (Index_By_Id::iterator it = index_by_id_.begin(); it != index_by_id_.end(); ++ it)
         {
+            Self::Data* item = it->second;
             if (item->id() > 0 && match(item, args...)) 
             {
                 ++ hit_;
@@ -414,14 +428,12 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
             ++ skip_;
             return 0;
         }
-        for(Cache::reverse_iterator it = cache_.rbegin(); it != cache_.rend(); ++ it)
+
+        Index_By_Id::iterator it = index_by_id_.find(id);
+        if (it != index_by_id_.end())
         {
-            Self::Data* entity = *it;
-            if (entity->id() == id) 
-            {
-                ++ hit_;
-                return entity;
-            }
+            ++ hit_;
+            return it->second;
         }
         
         ++ miss_;
@@ -438,6 +450,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
             {
                 entity = new Self::Data(q, this);
                 cache_.push_back(entity);
+                index_by_id_.insert(std::make_pair(id, entity));
             }
             stmt.Finalize();
         }
