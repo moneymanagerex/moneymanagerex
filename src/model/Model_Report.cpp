@@ -255,7 +255,20 @@ wxString Model_Report::get_html(const Data* r)
     }
     report(L"ERRORS") = errors;
 
-    const wxString out = wxString(report.Process());
+    
+    wxString out = wxEmptyString;
+    try 
+    {
+        out = report.Process();
+    }
+    catch (const syntax_ex& e)
+    {
+        out = e.what();
+    }
+    catch (...)
+    {
+        // TODO
+    }
 
     wxFileOutputStream index_output(mmex::GetResourceDir().GetPath() + "/" + "index.html");
     wxTextOutputStream index_file(index_output);
