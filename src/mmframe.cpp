@@ -295,6 +295,14 @@ mmGUIFrame::mmGUIFrame(const wxString& title
     // "commit" all changes made to wxAuiManager
     m_mgr.Update();
 
+	// Show license agreement at first open
+	if (Model_Setting::instance().GetStringSetting("SENDUSAGESTATS", "") == "")
+	{
+		mmAboutDialog(this, 4).ShowModal();
+		Model_Setting::instance().Set("SENDUSAGESTATS", "TRUE");
+	}
+
+	//Show appstart
     if (from_scratch || !dbpath.IsOk())
     {
         menuEnableItems(false);
@@ -2881,7 +2889,7 @@ void mmGUIFrame::OnFacebook(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
-    mmAboutDialog(this).ShowModal();
+    mmAboutDialog(this,0).ShowModal();
 }
 //----------------------------------------------------------------------------
 

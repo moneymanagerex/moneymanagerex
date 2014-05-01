@@ -32,7 +32,7 @@ class mmAboutDialog : public wxDialog
 
 public:
     mmAboutDialog() {}
-    mmAboutDialog(wxWindow* parent);
+	mmAboutDialog(wxWindow* parent, const int& TabToOpen);
 
 private:
     bool Create(wxWindow* parent
@@ -40,8 +40,9 @@ private:
         , const wxString& caption
         , const wxPoint& pos
         , const wxSize& size
-        , long style);
-    void CreateControls();
+        , long style
+		, const int& TabToOpen);
+	void CreateControls(const int& TabToOpen);
     void InitControls();
     void OnVersionHistory(wxCommandEvent& event);
     void OnContributerList(wxCommandEvent& event);
@@ -51,6 +52,7 @@ private:
     wxHtmlWindow* developers_text_;
     wxHtmlWindow* artwork_text_;
     wxHtmlWindow* sponsors_text_;
+	wxHtmlWindow* license_text_;
 
 };
 
