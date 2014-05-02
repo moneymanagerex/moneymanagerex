@@ -25,7 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 /*************************************************************************
  Revision of last commit: $Revision$
  Author of last commit:   $Author$
-
+ 
  The definition: #define _MM_EX_BUILD_TYPE_RELEASE
  is used to control the release type.
 
