@@ -8,6 +8,7 @@ Gabriele         [gabriele-v]
 =======================================
 ##What's new
 - General Report Manager replaced Custom Reports
+- Attachments management
 
 =======================================
 ##Translations

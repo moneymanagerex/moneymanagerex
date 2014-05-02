@@ -14,7 +14,7 @@
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.0.1.0"
+#define MyAppVersion "1.1.0.0"
 #define MyAppPublisher "CodeLathe, LLC"
 #define MyAppURL "http://www.codelathe.com/mmex"
 
