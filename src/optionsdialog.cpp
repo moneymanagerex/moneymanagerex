@@ -105,17 +105,17 @@ mmOptionsDialog::mmOptionsDialog(wxWindow* parent)
     Create(parent, wxID_ANY, _("New MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
 }
 
-bool mmOptionsDialog::Create(
-    wxWindow* parent, wxWindowID id,
-    const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
+bool mmOptionsDialog::Create(wxWindow* parent
+    , wxWindowID id, const wxString& caption, const wxPoint& pos, const wxSize& size, long style)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
-    wxDialog::Create( parent, id, caption, pos, size, style );
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
+    wxDialog::Create(parent, id, caption, pos, size, style);
 
     currencyId_ = Model_Infotable::instance().GetBaseCurrencyId();
     dateFormat_ = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
 
     CreateControls();
+    SetIcon(mmex::getProgramIcon());
     Centre();
     Fit();
 
@@ -151,10 +151,6 @@ wxArrayString mmOptionsDialog::viewAccountStrings(bool translated, const wxStrin
 
 void mmOptionsDialog::CreateControls()
 {
-    wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, 5).Expand();
-
     wxSize imageSize(48, 48);
     m_imageList = new wxImageList(imageSize.GetWidth(), imageSize.GetHeight());
     m_imageList->Add(wxBitmap(view_xpm));
@@ -173,14 +169,15 @@ void mmOptionsDialog::CreateControls()
     wxBoxSizer* mainDialogPanelSizer = new wxBoxSizer(wxVERTICAL);
     mainDialogPanel->SetSizer(mainDialogPanelSizer);
 
-    wxListbook* newBook = new wxListbook(mainDialogPanel, ID_DIALOG_OPTIONS_LISTBOOK, wxDefaultPosition, wxDefaultSize, wxLB_LEFT);
+    wxListbook* newBook = new wxListbook(mainDialogPanel
+        , ID_DIALOG_OPTIONS_LISTBOOK, wxDefaultPosition, wxDefaultSize, wxLB_LEFT);
 
     /*********************************************************************************************
      General Panel
     **********************************************************************************************/
     wxPanel* generalPanel = new wxPanel(newBook, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
 
-    SetMinSize(wxSize(500,600));
+    SetMinSize(wxSize(500, 600));
     wxBoxSizer* generalPanelSizer = new wxBoxSizer(wxVERTICAL);
     generalPanel->SetSizer(generalPanelSizer);
 
@@ -193,37 +190,37 @@ void mmOptionsDialog::CreateControls()
 
     wxStaticBoxSizer* headerStaticBoxSizer = new wxStaticBoxSizer(headerStaticBox, wxHORIZONTAL);
 
-    headerStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC,
-        _("User Name")), flags);
+    headerStaticBoxSizer->Add(new wxStaticText(generalPanel
+        , wxID_STATIC, _("User Name")), g_flags);
 
     wxString userName = Model_Infotable::instance().GetStringInfo("USERNAME", "");
     wxTextCtrl* userNameTextCtr = new wxTextCtrl(generalPanel, ID_DIALOG_OPTIONS_TEXTCTRL_USERNAME
         , userName, wxDefaultPosition, wxSize(200, -1));
     userNameTextCtr->SetToolTip(_("The User Name is used as a title for the database."));
-    headerStaticBoxSizer->Add(userNameTextCtr, 1, wxEXPAND|wxALL, 5);
-    generalPanelSizer->Add(headerStaticBoxSizer, flagsExpand);
+    headerStaticBoxSizer->Add(userNameTextCtr, g_flagsExpand);
+    generalPanelSizer->Add(headerStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // Language Settings
     wxStaticBox* languageStaticBox = new wxStaticBox(generalPanel, wxID_STATIC, _("Language"));
     languageStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* languageStaticBoxSizer = new wxStaticBoxSizer(languageStaticBox, wxHORIZONTAL);
-    generalPanelSizer->Add(languageStaticBoxSizer, flagsExpand);
+    generalPanelSizer->Add(languageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     currentLanguage_ = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
     wxButton* languageButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_LANGUAGE
         , currentLanguage_.Left(1).Upper() + currentLanguage_.SubString(1,currentLanguage_.Len())
         , wxDefaultPosition, wxSize(150, -1), 0);
     languageButton->SetToolTip(_("Specify the language to use"));
-    languageStaticBoxSizer->Add(languageButton, flags);
+    languageStaticBoxSizer->Add(languageButton, g_flags);
 
     // Currency Settings
     wxStaticBox* currencyStaticBox = new wxStaticBox(generalPanel, wxID_STATIC, _("Currency"));
     currencyStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* currencyStaticBoxSizer = new wxStaticBoxSizer(currencyStaticBox, wxHORIZONTAL);
     currencyStaticBox->SetFont(staticBoxFontSetting);
-    generalPanelSizer->Add(currencyStaticBoxSizer, flagsExpand);
+    generalPanelSizer->Add(currencyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    currencyStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Base Currency")), flags);
+    currencyStaticBoxSizer->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Base Currency")), g_flags);
 
     wxString currName = _("Set Currency");
     Model_Currency::Data* currency = Model_Currency::instance().get(currencyId_);
@@ -232,14 +229,14 @@ void mmOptionsDialog::CreateControls()
     wxButton* baseCurrencyButton = new wxButton(generalPanel, ID_DIALOG_OPTIONS_BUTTON_CURRENCY
         , currName, wxDefaultPosition, wxDefaultSize);
     baseCurrencyButton->SetToolTip(_("Sets the default currency for the database."));
-    currencyStaticBoxSizer->Add(baseCurrencyButton, flags);
+    currencyStaticBoxSizer->Add(baseCurrencyButton, g_flags);
 
     // Date Format Settings
     wxStaticBox* dateFormatStaticBox = new wxStaticBox(generalPanel, wxID_STATIC, _("Date Format"));
     dateFormatStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxVERTICAL);
-    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0,2,0,5);
-    generalPanelSizer->Add(dateFormatStaticBoxSizer, flagsExpand);
+    wxFlexGridSizer* flex_sizer = new wxFlexGridSizer(0, 2, 0, 5);
+    generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     dateFormatStaticBoxSizer->Add(flex_sizer);
 
     choiceDateFormat_ = new wxChoice(generalPanel, wxID_STATIC);
@@ -248,37 +245,37 @@ void mmOptionsDialog::CreateControls()
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
         if (dateFormat_ == i.first) choiceDateFormat_->SetStringSelection(i.second);
     }
-    flex_sizer->Add(choiceDateFormat_, flags);
+    flex_sizer->Add(choiceDateFormat_, g_flags);
     choiceDateFormat_->SetToolTip(_("Specify the date format for display"));
 
     wxButton* setFormatButton = new wxButton(generalPanel, wxID_APPLY, _("Set"));
-    flex_sizer->Add(setFormatButton, flags);
+    flex_sizer->Add(setFormatButton, g_flags);
 
     sampleDateText_ = new wxStaticText(generalPanel, wxID_STATIC,
         "redefined elsewhere");
     flex_sizer->Add(new wxStaticText(generalPanel, wxID_STATIC,
-        _("New date format sample:")), flags);
-    flex_sizer->Add(sampleDateText_, flags);
+        _("New date format sample:")), g_flags);
+    flex_sizer->Add(sampleDateText_, g_flags);
     sampleDateText_->SetLabel(wxDateTime::Now().Format(dateFormat_));
 
     // Financial Year Settings
     wxStaticBox* financialYearStaticBox = new wxStaticBox(generalPanel, wxID_ANY, _("Financial Year"));
     financialYearStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* financialYearStaticBoxSizer = new wxStaticBoxSizer(financialYearStaticBox, wxVERTICAL);
-    wxFlexGridSizer* financialYearStaticBoxSizerGrid = new wxFlexGridSizer(0,2,0,0);
-    generalPanelSizer->Add(financialYearStaticBoxSizer, 0, wxGROW|wxALL, 5);
+    wxFlexGridSizer* financialYearStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 0);
+    generalPanelSizer->Add(financialYearStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     financialYearStaticBoxSizer->Add(financialYearStaticBoxSizerGrid);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Start Day")), flags);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Start Day")), g_flags);
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
 
     wxSpinCtrl *textFPSDay = new wxSpinCtrl(generalPanel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_DAY,
         wxEmptyString, wxDefaultPosition, wxDefaultSize, wxSP_ARROW_KEYS, 1, 31, day);
     textFPSDay->SetToolTip(_("Specify Day for start of financial year"));
 
-    financialYearStaticBoxSizerGrid->Add(textFPSDay, flags);
+    financialYearStaticBoxSizerGrid->Add(textFPSDay, g_flags);
 
-    financialYearStaticBoxSizerGrid->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Start Month")), flags);
+    financialYearStaticBoxSizerGrid->Add(new wxStaticText(generalPanel, wxID_STATIC, _("Start Month")), g_flags);
 
     wxArrayString financialMonthsSelection;
     for (wxDateTime::Month m = wxDateTime::Jan; m <= wxDateTime::Dec; m = wxDateTime::Month(m + 1))
@@ -286,7 +283,7 @@ void mmOptionsDialog::CreateControls()
 
     monthSelection_ = new wxChoice(generalPanel, ID_DIALOG_OPTIONS_FINANCIAL_YEAR_START_MONTH
         , wxDefaultPosition, wxSize(100, -1), financialMonthsSelection);
-    financialYearStaticBoxSizerGrid->Add(monthSelection_, flags);
+    financialYearStaticBoxSizerGrid->Add(monthSelection_, g_flags);
 
     int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     monthSelection_->SetSelection(monthItem - 1);
@@ -298,12 +295,12 @@ void mmOptionsDialog::CreateControls()
     cbUseOrgDateCopyPaste_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Use Original Date when Pasting Transactions"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbUseOrgDateCopyPaste_->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_ORG_DATE_COPYPASTE, false));
     cbUseOrgDateCopyPaste_->SetToolTip(_("Select whether to use the original transaction date or current date when copying/pasting transactions"));
-    generalPanelSizer->Add(cbUseOrgDateCopyPaste_, flags);
+    generalPanelSizer->Add(cbUseOrgDateCopyPaste_, g_flags);
 
     cbUseSound_ = new wxCheckBox(generalPanel, wxID_STATIC, _("Use Transaction Sound"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbUseSound_->SetValue(GetIniDatabaseCheckboxValue(INIDB_USE_TRANSACTION_SOUND, true));
     cbUseSound_->SetToolTip(_("Select whether to use sounds when entering transactions"));
-    generalPanelSizer->Add(cbUseSound_, flags);
+    generalPanelSizer->Add(cbUseSound_, g_flags);
 
     /*********************************************************************************************
      Views Panel
@@ -317,18 +314,18 @@ void mmOptionsDialog::CreateControls()
     accountStaticBox->SetFont(staticBoxFontSetting);
 
     wxStaticBoxSizer* accountStaticBoxSizer = new wxStaticBoxSizer(accountStaticBox, wxVERTICAL);
-    viewsPanelSizer->Add(accountStaticBoxSizer, flagsExpand);
-    wxFlexGridSizer* view_sizer1 = new wxFlexGridSizer(0,2,0,5);
+    viewsPanelSizer->Add(accountStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+    wxFlexGridSizer* view_sizer1 = new wxFlexGridSizer(0, 2, 0, 5);
     accountStaticBoxSizer->Add(view_sizer1);
 
-    view_sizer1->Add(new wxStaticText(viewsPanel, wxID_STATIC, _("Accounts Visible")), flags);
+    view_sizer1->Add(new wxStaticText(viewsPanel, wxID_STATIC, _("Accounts Visible")), g_flags);
 
     int row_id_ = 0;
     wxArrayString itemChoiceViewAccountTranslatedStrings = viewAccountStrings(true, wxEmptyString, row_id_);
 
     choiceVisible_ = new wxChoice(viewsPanel, ID_DIALOG_OPTIONS_VIEW_ACCOUNTS
         , wxDefaultPosition, wxDefaultSize, itemChoiceViewAccountTranslatedStrings);
-    view_sizer1->Add(choiceVisible_, flags);
+    view_sizer1->Add(choiceVisible_, g_flags);
 
     wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     row_id_ = 0;
@@ -338,7 +335,7 @@ void mmOptionsDialog::CreateControls()
     choiceVisible_->SetToolTip(_("Specify which accounts are visible"));
 
     view_sizer1->Add(new wxStaticText(viewsPanel, wxID_STATIC,
-        _("Transactions Visible")), flags);
+        _("Transactions Visible")), g_flags);
 
     wxArrayString view_strings;
     view_strings.Add(VIEW_TRANS_ALL_STR);
@@ -357,13 +354,13 @@ void mmOptionsDialog::CreateControls()
         choiceTransVisible_->Append(wxGetTranslation(entry),
         new wxStringClientData(entry));
 
-    view_sizer1->Add(choiceTransVisible_,flags);
+    view_sizer1->Add(choiceTransVisible_, g_flags);
 
     wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
     choiceTransVisible_->SetStringSelection(wxGetTranslation(vTrans));
     choiceTransVisible_->SetToolTip(_("Specify which transactions are visible by default"));
 
-    view_sizer1->Add(new wxStaticText(viewsPanel, wxID_STATIC, _("Report Font Size")), flags);
+    view_sizer1->Add(new wxStaticText(viewsPanel, wxID_STATIC, _("Report Font Size")), g_flags);
 
     const wxString itemChoiceFontSize[] = {
         wxTRANSLATE("XSmall"),
@@ -383,125 +380,125 @@ void mmOptionsDialog::CreateControls()
     choiceFontSize_->SetSelection(vFontSize);
 
     choiceFontSize_->SetToolTip(_("Specify which font size is used on the report tables"));
-    view_sizer1->Add(choiceFontSize_, flags);
+    view_sizer1->Add(choiceFontSize_, g_flags);
 
     // Navigation Tree Expansion Options
     wxStaticBox* navTreeOptionsStaticBox = new wxStaticBox(viewsPanel
         , wxID_ANY, _("Navigation Tree Expansion Options"));
     navTreeOptionsStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* navTreeOptionsStaticBoxSizer = new wxStaticBoxSizer(navTreeOptionsStaticBox, wxHORIZONTAL);
-    viewsPanelSizer->Add(navTreeOptionsStaticBoxSizer, flagsExpand);
+    viewsPanelSizer->Add(navTreeOptionsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // Expand Bank Tree
     wxCheckBox* expandBankCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_TREE
         , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandBankCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_TREE",true));
     expandBankCheckBox->SetToolTip(_("Expand Bank Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandBankCheckBox, flags);
+    navTreeOptionsStaticBoxSizer->Add(expandBankCheckBox, g_flags);
 
     // Expand Term Tree
     wxCheckBox* expandTermCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_TREE
         , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandTermCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_TREE",false));
     expandTermCheckBox->SetToolTip(_("Expand Term Accounts in Trew View when tree is refreshed"));
-    navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, flags);
+    navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, g_flags);
 
     // Home Page Expansion Options
     wxStaticBox* homePageStaticBox = new wxStaticBox(viewsPanel, wxID_STATIC, _("Home Page Expansion Options"));
     homePageStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* homePageStaticBoxSizer = new wxStaticBoxSizer(homePageStaticBox, wxVERTICAL);
-    viewsPanelSizer->Add(homePageStaticBoxSizer, flagsExpand);
+    viewsPanelSizer->Add(homePageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     // Expand Bank Home
     wxCheckBox* expandBankHomeCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_HOME
         , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandBankHomeCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_HOME",true));
     expandBankHomeCheckBox->SetToolTip(_("Expand Bank Accounts on home page when page is refreshed"));
-    homePageStaticBoxSizer->Add(expandBankHomeCheckBox, flags);
+    homePageStaticBoxSizer->Add(expandBankHomeCheckBox, g_flags);
 
     // Expand Term Home
     wxCheckBox* itemCheckBoxExpandTermHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_HOME
         , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBoxExpandTermHome->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_HOME",false));
     itemCheckBoxExpandTermHome->SetToolTip(_("Expand Term Accounts on home page when page is refreshed"));
-    homePageStaticBoxSizer->Add(itemCheckBoxExpandTermHome, flags);
+    homePageStaticBoxSizer->Add(itemCheckBoxExpandTermHome, g_flags);
 
     // Expand Stock Home
     wxCheckBox* itemCheckBoxExpandStockHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME
         , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     itemCheckBoxExpandStockHome->SetValue(GetIniDatabaseCheckboxValue("ENABLESTOCKS",true));
     itemCheckBoxExpandStockHome->SetToolTip(_("Expand Stock Accounts on home page when page is refreshed"));
-    homePageStaticBoxSizer->Add(itemCheckBoxExpandStockHome, flags);
+    homePageStaticBoxSizer->Add(itemCheckBoxExpandStockHome, g_flags);
 
     cbBudgetFinancialYears_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetFinancialYears_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_FINANCIAL_YEARS, false));
-    viewsPanelSizer->Add(cbBudgetFinancialYears_, flags);
+    viewsPanelSizer->Add(cbBudgetFinancialYears_, g_flags);
 
     cbBudgetIncludeTransfers_ = new wxCheckBox(viewsPanel, wxID_STATIC
         , _("View Budgets with 'transfer' transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetIncludeTransfers_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_INCLUDE_TRANSFERS, false));
-    viewsPanelSizer->Add(cbBudgetIncludeTransfers_, flags);
+    viewsPanelSizer->Add(cbBudgetIncludeTransfers_, g_flags);
 
     cbBudgetSetupWithoutSummary_ = new wxCheckBox(viewsPanel, wxID_STATIC
         , _("View Budgets Setup Without Budget Summaries")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetSetupWithoutSummary_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_SETUP_WITHOUT_SUMMARY, false));
-    viewsPanelSizer->Add(cbBudgetSetupWithoutSummary_, flags);
+    viewsPanelSizer->Add(cbBudgetSetupWithoutSummary_, g_flags);
 
     cbBudgetSummaryWithoutCateg_ = new wxCheckBox(viewsPanel, wxID_STATIC
         , _("View Budget Summary Report without Categories")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetSummaryWithoutCateg_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_SUMMARY_WITHOUT_CATEG, true));
-    viewsPanelSizer->Add(cbBudgetSummaryWithoutCateg_, flags);
+    viewsPanelSizer->Add(cbBudgetSummaryWithoutCateg_, g_flags);
 
     cbIgnoreFutureTransactions_ = new wxCheckBox(viewsPanel, wxID_STATIC
         , _("View Reports without Future Transactions")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbIgnoreFutureTransactions_->SetValue(GetIniDatabaseCheckboxValue(INIDB_IGNORE_FUTURE_TRANSACTIONS, false));
-    viewsPanelSizer->Add(cbIgnoreFutureTransactions_, flags);
+    viewsPanelSizer->Add(cbIgnoreFutureTransactions_, g_flags);
 
     wxStaticBox* userColourSettingStBox = new wxStaticBox(viewsPanel, wxID_ANY, _("User Colors"));
     userColourSettingStBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
-    viewsPanelSizer->Add(userColourSettingStBoxSizer, 0, wxALL | wxCENTER, 0);
+    viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
 	int size_x = baseCurrencyButton->GetSize().GetY();
     UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11
         , _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
-    userColourSettingStBoxSizer->Add(UDFCB1_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB1_, g_flags);
 
     UDFCB2_ = new wxButton(viewsPanel, wxID_HIGHEST + 22
         , _("2"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB2_->SetBackgroundColour(mmColors::userDefColor2);
-    userColourSettingStBoxSizer->Add(UDFCB2_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB2_, g_flags);
 
     UDFCB3_ = new wxButton(viewsPanel, wxID_HIGHEST + 33
         , _("3"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB3_->SetBackgroundColour(mmColors::userDefColor3);
-    userColourSettingStBoxSizer->Add(UDFCB3_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB3_, g_flags);
 
     UDFCB4_ = new wxButton(viewsPanel, wxID_HIGHEST + 44
         , _("4"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB4_->SetBackgroundColour(mmColors::userDefColor4);
-    userColourSettingStBoxSizer->Add(UDFCB4_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB4_, g_flags);
 
     UDFCB5_ = new wxButton(viewsPanel, wxID_HIGHEST + 55
         , _("5"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB5_->SetBackgroundColour(mmColors::userDefColor5);
-    userColourSettingStBoxSizer->Add(UDFCB5_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB5_, g_flags);
 
     UDFCB6_ = new wxButton(viewsPanel, wxID_HIGHEST + 66
         , _("6"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB6_->SetBackgroundColour(mmColors::userDefColor6);
-    userColourSettingStBoxSizer->Add(UDFCB6_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB6_, g_flags);
 
     UDFCB7_ = new wxButton(viewsPanel, wxID_HIGHEST + 77
         , _("7"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB7_->SetBackgroundColour(mmColors::userDefColor7);
-    userColourSettingStBoxSizer->Add(UDFCB7_, flags);
+    userColourSettingStBoxSizer->Add(UDFCB7_, g_flags);
 
     viewsPanel->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmOptionsDialog::OnNavTreeColorChanged), NULL, this);
@@ -519,11 +516,11 @@ void mmOptionsDialog::CreateControls()
     attachmentStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* attachmentStaticBoxSizer = new wxStaticBoxSizer(attachmentStaticBox, wxVERTICAL);
 
-    attachmentPanelSizer->Add(attachmentStaticBoxSizer, flagsExpand);
+    attachmentPanelSizer->Add(attachmentStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel
         , wxID_STATIC, _("Attachment archive folder"));
-    attachmentStaticBoxSizer->Add(attachmentStaticText, flags);
+    attachmentStaticBoxSizer->Add(attachmentStaticText, g_flags);
 
     wxBoxSizer* attachRadioButtonSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -581,13 +578,13 @@ void mmOptionsDialog::CreateControls()
         textAttachment->SetToolTip(attachmentFolder);
     }
 
-    attachRadioButtonSizer->Add(attachmentRadioButton1, flags);
-    attachRadioButtonSizer->Add(attachmentRadioButton2, flags);
-    attachRadioButtonSizer->Add(attachmentRadioButton3, flags);
+    attachRadioButtonSizer->Add(attachmentRadioButton1, g_flags);
+    attachRadioButtonSizer->Add(attachmentRadioButton2, g_flags);
+    attachRadioButtonSizer->Add(attachmentRadioButton3, g_flags);
 
-    attachDefinedSizer->Add(attachmentRadioButtonU, flags);
-    attachDefinedSizer->Add(textAttachment, flags);
-    attachDefinedSizer->Add(AttachmentsFolderButton, flags);
+    attachDefinedSizer->Add(attachmentRadioButtonU, g_flags);
+    attachDefinedSizer->Add(textAttachment, g_flags);
+    attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
 
     //TODO: Add a line to separate radio from other settings
     attachmentStaticBoxSizer->AddSpacer(10);
@@ -595,12 +592,12 @@ void mmOptionsDialog::CreateControls()
     cbDeleteAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
     cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
-    attachmentStaticBoxSizer->Add(cbDeleteAttachments_, flags);
+    attachmentStaticBoxSizer->Add(cbDeleteAttachments_, g_flags);
 
     cbTrashAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC, _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbTrashAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
     cbTrashAttachments_->SetToolTip(_("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
-    attachmentStaticBoxSizer->Add(cbTrashAttachments_, flags);
+    attachmentStaticBoxSizer->Add(cbTrashAttachments_, g_flags);
 
     /*********************************************************************************************
      Others Panel
@@ -612,12 +609,12 @@ void mmOptionsDialog::CreateControls()
 
     wxStaticText* itemStaticTextURL = new wxStaticText(othersPanel, wxID_STATIC, _("Stock Quote Web Page"));
     itemStaticTextURL->SetFont(staticBoxFontSetting);
-    othersPanelSizer->Add(itemStaticTextURL, flags);
+    othersPanelSizer->Add(itemStaticTextURL, g_flags);
 
     wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
     wxTextCtrl* itemTextCtrURL = new wxTextCtrl(othersPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_STOCKURL, stockURL);
-    othersPanelSizer->Add(itemTextCtrURL, flagsExpand);
+    othersPanelSizer->Add(itemTextCtrURL, wxSizerFlags(g_flagsExpand).Proportion(0));
     itemTextCtrURL->SetToolTip(_("Clear the field to Reset the value to system default."));
     othersPanelSizer->AddSpacer(15);
 
@@ -627,7 +624,7 @@ void mmOptionsDialog::CreateControls()
     transSettingsStaticBox->SetFont(staticBoxFontSetting);
 
     wxStaticBoxSizer* transSettingsStaticBoxSizer = new wxStaticBoxSizer(transSettingsStaticBox, wxVERTICAL);
-    othersPanelSizer->Add(transSettingsStaticBoxSizer, flagsExpand);
+    othersPanelSizer->Add(transSettingsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxArrayString defaultValues_;
     defaultValues_.Add(_("None"));
@@ -659,16 +656,16 @@ void mmOptionsDialog::CreateControls()
 
     default_status->SetSelection(mmIniOptions::instance().transStatusReconciled_);
 
-    wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0,2,0,0);
+    wxFlexGridSizer* newTransflexGridSizer = new wxFlexGridSizer(0, 2, 0, 0);
     transSettingsStaticBoxSizer->Add(newTransflexGridSizer);
-    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Date:")), flags);
-    newTransflexGridSizer->Add(defaultDateChoice,    flags);
-    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Payee:")), flags);
-    newTransflexGridSizer->Add(defaultPayeeChoice,   flags);
-    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Category:")), flags);
-    newTransflexGridSizer->Add(defaultCategoryChoice,flags);
-    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Status:")), flags);
-    newTransflexGridSizer->Add(default_status,  flags);
+    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Date:")), g_flags);
+    newTransflexGridSizer->Add(defaultDateChoice, g_flags);
+    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Payee:")), g_flags);
+    newTransflexGridSizer->Add(defaultPayeeChoice, g_flags);
+    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Category:")), g_flags);
+    newTransflexGridSizer->Add(defaultCategoryChoice, g_flags);
+    newTransflexGridSizer->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Default Status:")), g_flags);
+    newTransflexGridSizer->Add(default_status, g_flags);
 
     //----------------------------------------------
     //a bit more space visual appearance
@@ -681,19 +678,19 @@ void mmOptionsDialog::CreateControls()
     wxStaticBox* backupStaticBox = new wxStaticBox(othersPanel, wxID_STATIC, _("Database Backup"));
     backupStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* backupStaticBoxSizer = new wxStaticBoxSizer(backupStaticBox, wxVERTICAL);
-    othersPanelSizer->Add(backupStaticBoxSizer, flagsExpand);
+    othersPanelSizer->Add(backupStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxCheckBox* backupCheckBox = new wxCheckBox(othersPanel, ID_DIALOG_OPTIONS_CHK_BACKUP
         , _("Create a new backup when MMEX Start"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     backupCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB",false));
     backupCheckBox->SetToolTip(_("When MMEX Starts,\ncreates the backup database: dbFile_start_YYYY-MM-DD.ext."));
-    backupStaticBoxSizer->Add(backupCheckBox, flags);
+    backupStaticBoxSizer->Add(backupCheckBox, g_flags);
 
     wxCheckBox* backupUpdateCheckBox = new wxCheckBox(othersPanel, ID_DIALOG_OPTIONS_CHK_BACKUP_UPDATE
         , _("Backup database on exit."), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     backupUpdateCheckBox->SetValue(GetIniDatabaseCheckboxValue("BACKUPDB_UPDATE",false));
     backupUpdateCheckBox->SetToolTip(_("When MMEX shuts down and changes made to database,\ncreates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."));
-    backupStaticBoxSizer->Add(backupUpdateCheckBox, flags);
+    backupStaticBoxSizer->Add(backupUpdateCheckBox, g_flags);
 
     int max = Model_Setting::instance().GetIntSetting("MAX_BACKUP_FILES", 4);
     scMax_files_ = new wxSpinCtrl(othersPanel, wxID_ANY
@@ -701,8 +698,8 @@ void mmOptionsDialog::CreateControls()
     scMax_files_->SetToolTip(_("Specify max number of backup files"));
 
     wxFlexGridSizer* flex_sizer2 = new wxFlexGridSizer(0,2,0,0);
-    flex_sizer2->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Max Files")), flags);
-    flex_sizer2->Add(scMax_files_, flags);
+    flex_sizer2->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Max Files")), g_flags);
+    flex_sizer2->Add(scMax_files_, g_flags);
     backupStaticBoxSizer->Add(flex_sizer2);
 
     //CSV Import
@@ -712,16 +709,16 @@ void mmOptionsDialog::CreateControls()
     csvStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* csvStaticBoxSizer = new wxStaticBoxSizer(csvStaticBox, wxVERTICAL);
 
-    othersPanelSizer->Add(csvStaticBoxSizer, flagsExpand);
+    othersPanelSizer->Add(csvStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
     wxFlexGridSizer* csvStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
-    csvStaticBoxSizer->Add(csvStaticBoxSizerGrid, flags);
+    csvStaticBoxSizer->Add(csvStaticBoxSizerGrid, g_flags);
 
-    csvStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Delimiter")), flags);
+    csvStaticBoxSizerGrid->Add(new wxStaticText(othersPanel, wxID_STATIC, _("Delimiter")), g_flags);
     wxTextCtrl* textDelimiter4 = new wxTextCtrl(othersPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4, delimiter);
     textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
     textDelimiter4->SetMaxLength(1);
-    csvStaticBoxSizerGrid->Add(textDelimiter4, flags);
+    csvStaticBoxSizerGrid->Add(textDelimiter4, g_flags);
 
     /*********************************************************************************************
     Network Panel
@@ -737,17 +734,17 @@ void mmOptionsDialog::CreateControls()
     WebAppStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* WebAppStaticBoxSizer = new wxStaticBoxSizer(WebAppStaticBox, wxVERTICAL);
     wxFlexGridSizer* WebAppStaticBoxSizerGrid = new wxFlexGridSizer(0, 2, 0, 10);
-    networkPanelSizer->Add(WebAppStaticBoxSizer, flagsExpand);
-    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, flagsExpand);
+    networkPanelSizer->Add(WebAppStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
+    WebAppStaticBoxSizer->Add(WebAppStaticBoxSizerGrid, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Url")), flags);
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Url")), g_flags);
     wxString WebAppURL = Model_Infotable::instance().GetStringInfo("WEBAPPURL", "");
     wxTextCtrl* WebAppURLTextCtr = new wxTextCtrl(networkPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPURL,
         WebAppURL, wxDefaultPosition, wxSize(300, -1));
     WebAppURLTextCtr->SetToolTip(_("Specify the Web App URL without final slash"));
     WebAppStaticBoxSizerGrid->Add(WebAppURLTextCtr, 1, wxEXPAND | wxALL, 5);
 
-    WebAppStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("GUID")), flags);
+    WebAppStaticBoxSizerGrid->Add(new wxStaticText(networkPanel, wxID_STATIC, _("GUID")), g_flags);
     wxString WebAppGUID = Model_Infotable::instance().GetStringInfo("WEBAPPGUID", "");
     wxTextCtrl* WebAppGUIDTextCtr = new wxTextCtrl(networkPanel, ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
         WebAppGUID, wxDefaultPosition, wxSize(300, -1));
@@ -760,7 +757,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBox* proxyStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Proxy Settings"));
     proxyStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* proxyStaticBoxSizer = new wxStaticBoxSizer(proxyStaticBox, wxVERTICAL);
-    networkPanelSizer->Add(proxyStaticBoxSizer, flagsExpand);
+    networkPanelSizer->Add(proxyStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     wxString proxyName = Model_Setting::instance().GetStringSetting("PROXYIP", "");
     wxTextCtrl* proxyNameTextCtr = new wxTextCtrl(networkPanel, ID_DIALOG_OPTIONS_TEXTCTRL_PROXY
@@ -773,12 +770,12 @@ void mmOptionsDialog::CreateControls()
     scProxyPort_->SetToolTip(_("Specify proxy port number"));
 
     wxFlexGridSizer* flex_sizer3 = new wxFlexGridSizer(0, 4, 0, 0);
-    flex_sizer3->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Proxy")), flags);
-    flex_sizer3->Add(proxyNameTextCtr, flags);
-    flex_sizer3->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), flags);
-    flex_sizer3->Add(scProxyPort_, flags);
+    flex_sizer3->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Proxy")), g_flags);
+    flex_sizer3->Add(proxyNameTextCtr, g_flags);
+    flex_sizer3->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), g_flags);
+    flex_sizer3->Add(scProxyPort_, g_flags);
 
-    proxyStaticBoxSizer->Add(flex_sizer3, flags);
+    proxyStaticBoxSizer->Add(flex_sizer3, g_flags);
 
     // Web Server Settings
     networkPanelSizer->AddSpacer(15);
@@ -786,7 +783,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBox* webserverStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Web Server"));
     webserverStaticBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* webserverStaticBoxSizer = new wxStaticBoxSizer(webserverStaticBox, wxVERTICAL);
-    networkPanelSizer->Add(webserverStaticBoxSizer, flagsExpand);
+    networkPanelSizer->Add(webserverStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
     cbWebServerCheckBox_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ENABLE_WEB_SERVER
         , _("Enable"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -799,12 +796,12 @@ void mmOptionsDialog::CreateControls()
     scWebServerPort_->SetToolTip(_("Specify web server port number"));
 
     wxFlexGridSizer* flex_sizer4 = new wxFlexGridSizer(0, 4, 0, 0);
-    flex_sizer4->Add(cbWebServerCheckBox_, flags);
+    flex_sizer4->Add(cbWebServerCheckBox_, g_flags);
     flex_sizer4->AddSpacer(45);
-    flex_sizer4->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), flags);
-    flex_sizer4->Add(scWebServerPort_, flags);
+    flex_sizer4->Add(new wxStaticText(networkPanel, wxID_STATIC, _("Port")), g_flags);
+    flex_sizer4->Add(scWebServerPort_, g_flags);
 
-    webserverStaticBoxSizer->Add(flex_sizer4, flags);
+    webserverStaticBoxSizer->Add(flex_sizer4, g_flags);
 
 	//Usage data send
 	networkPanelSizer->AddSpacer(15);
@@ -812,14 +809,14 @@ void mmOptionsDialog::CreateControls()
 	wxStaticBox* usageStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Usage statistics"));
 	usageStaticBox->SetFont(staticBoxFontSetting);
 	wxStaticBoxSizer* usageStaticBoxSizer = new wxStaticBoxSizer(usageStaticBox, wxVERTICAL);
-	networkPanelSizer->Add(usageStaticBoxSizer, flagsExpand);
+    networkPanelSizer->Add(usageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
 	cbSendData_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE
 		, _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
 	cbSendData_->SetValue(GetIniDatabaseCheckboxValue("SENDUSAGESTATS", true));
 	cbSendData_->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
-	usageStaticBoxSizer->Add(cbSendData_, flags);
+	usageStaticBoxSizer->Add(cbSendData_, g_flags);
 
     networkPanel->SetSizer(networkPanelSizer);
 
@@ -834,7 +831,7 @@ void mmOptionsDialog::CreateControls()
     newBook->InsertPage(3, networkPanel, _("Network"), false, 4);
     newBook->InsertPage(4, othersPanel, _("Others"), false, 3);
 
-    mainDialogPanelSizer->Add(newBook, 1, wxGROW|wxALL, 5);
+    mainDialogPanelSizer->Add(newBook, g_flagsExpand);
     mainDialogPanelSizer->Layout();
 
    /**********************************************************************************************
