@@ -19,7 +19,12 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //----------------------------------------------------------------------------
 #include "paths.h"
 #include "platfdep.h"
+#include "constants.h"
+#include "util.h"
 #include "../resources/mmexico.xpm"
+//----------------------------------------------------------------------------
+#include "model/Model_Setting.h"
+#include "model/Model_Infotable.h"
 //----------------------------------------------------------------------------
 #include <wx/filename.h>
 #include <wx/stdpaths.h>
@@ -181,6 +186,25 @@ wxString mmex::getPathUser(EUserFile f)
     fname.SetFullName(files[f]);
 
     return fname.GetFullPath();
+}
+//----------------------------------------------------------------------------
+
+wxString mmex::getPathAttachments()
+{
+	wxString AttachmentsFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
+	wxString LastDBPath = Model_Setting::instance().getLastDbPath();
+	wxFileName fn(LastDBPath);
+	wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
+	wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
+
+	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR)
+		AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + wxFileName::GetPathSeparator() + "MMEX_" + LastDBFileName + "_Attachments";
+	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR)
+		AttachmentsFolder = mmex::getPathUser(mmex::DIRECTORY) + "attachments_" + LastDBFileName;
+	if (AttachmentsFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR)
+		AttachmentsFolder = LastDBFolder + wxFileName::GetPathSeparator() + "Attachments_" + LastDBFileName;
+
+	return AttachmentsFolder;
 }
 //----------------------------------------------------------------------------
 

@@ -1130,7 +1130,7 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
 
     //Create attachments folder
-    wxString attachmentFolderPath = mmAttachmentManage::GetAttachmentsFolder();
+	wxString attachmentFolderPath = mmex::getPathAttachments();
 	if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
 	{
 		wxMkdir(attachmentFolderPath);
