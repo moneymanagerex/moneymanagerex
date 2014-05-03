@@ -198,6 +198,7 @@ EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
 
 EVT_MENU(MENU_GOTOACCOUNT, mmGUIFrame::OnGotoAccount)
+EVT_MENU(MENU_STOCKS, mmGUIFrame::OnGotoStocksAccount)
 
 /* Navigation Panel */
 EVT_MENU(MENU_TREEPOPUP_ACCOUNT_NEW, mmGUIFrame::OnNewAccount)
@@ -3043,6 +3044,24 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
 		checkingAccountPage_->SetSelectedTransaction(gotoTransID_);
 	}
 }
+
+void mmGUIFrame::createStocksAccountPage(int accountID)
+{
+    json::Object o;
+    o["module"] = json::String("Stock Panel");
+    o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmStocksPanel(accountID
+        , homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+    homePanel_->Layout();
+
+    o["end"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
+    Model_Usage::instance().append(o);
+}
+
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
@@ -3052,7 +3071,12 @@ void mmGUIFrame::OnGotoAccount(wxCommandEvent& WXUNUSED(event))
         createCheckingAccountPage(gotoAccountID_);
     }
 }
-//----------------------------------------------------------------------------
+
+void mmGUIFrame::OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event))
+{
+    if (gotoAccountID_ != -1)
+        createStocksAccountPage(gotoAccountID_);
+}
 
 void mmGUIFrame::OnAssets(wxCommandEvent& /*event*/)
 {

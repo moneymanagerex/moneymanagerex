@@ -174,7 +174,6 @@ private:
     mmCheckingPanel* checkingAccountPage_;
     bool activeCheckingAccountPage_;
     void createCheckingAccountPage(int accountID);
-
     void createStocksAccountPage(int accountID);
 
     mmBudgetingPanel* budgetingPage_;
