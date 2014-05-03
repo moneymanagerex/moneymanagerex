@@ -120,149 +120,135 @@ wxString Model_Report::get_html(const Data* r)
     loop_t errors;
     row_t error;
 
-    if (!this->db_->CheckSyntax(r->SQLCONTENT))
-    {
-        error(L"ERROR") = wxString("Syntax Error : ") + r->SQLCONTENT;
-        errors += error;
-    }
-    else
+    wxSQLite3ResultSet q;
+    int columnCount = 0;
+    try
     {
         wxSQLite3Statement stmt;
-        try
-        {
-            stmt = this->db_->PrepareStatement(r->SQLCONTENT);
-        }
-        catch (const wxSQLite3Exception& e)
-        {
-            return e.GetMessage();
-        }
-        wxLogDebug("%s", stmt.GetSQL());
-
+        stmt = this->db_->PrepareStatement(r->SQLCONTENT);
         if (!stmt.IsReadOnly())
         {
-            error(L"ERROR") = r->SQLCONTENT + wxString(" will modify database! aborted!");
-            errors += error;
+            return wxString::Format(_("The SQL script:\n%s \nwill modify database! aborted!"), r->SQLCONTENT);
         }
         else
         {
-            wxSQLite3ResultSet q;
-            try
-            {
-                q = stmt.ExecuteQuery();
-            }
-            catch (const wxSQLite3Exception& e)
-            {
-                return e.GetMessage();
-            }
-            int columnCount = q.GetColumnCount();
-            std::map <std::wstring, int> colHeaders;
-
-            loop_t columns;
-            for (int i = 0; i < columnCount; ++i)
-            {
-                int col_type = q.GetColumnType(i);
-                const std::wstring col_name = q.GetColumnName(i).ToStdWstring();
-                colHeaders[col_name] = col_type;
-                row_t row;
-                row(L"COLUMN") = col_name;
-                columns += row;
-            }
-            report(L"COLUMNS") = columns;
-
-            LuaGlue state;
-            state.
-                Class<Record>("Record").
-                ctor("new").
-                method("get", &Record::get).
-                method("set", &Record::set).
-                end().open().glue();
-
-            bool skip_lua = r->LUACONTENT.IsEmpty();
-            bool lua_status = state.doString(r->LUACONTENT.ToStdString());
-            if (!skip_lua && !lua_status)
-            {
-                error(L"ERROR") = wxString("failed to doString : ") + r->LUACONTENT + wxString(" err: ") + wxString(state.lastError());
-                errors += error;
-            }
-
-            while (q.NextRow())
-            {
-                Record r;
-                for (int i = 0; i < columnCount; ++ i)
-                {
-                    const wxString column_name = q.GetColumnName(i);
-                    r[column_name.ToStdWstring()] = q.GetAsString(i);
-                }
-
-                if (lua_status && !skip_lua) 
-                {
-                    try
-                    {
-                        state.invokeVoidFunction("handle_record", &r);
-                    }
-                    catch (const std::runtime_error& e)
-                    {
-                        error(L"ERROR") = wxString("failed to call handle_record : ") + wxString(e.what());
-                        errors += error;
-                    }
-                    catch (const std::exception& e)
-                    {
-                        error(L"ERROR") = wxString("failed to call handle_record : ") + wxString(e.what());
-                        errors += error;
-                    }
-                    catch (...)
-                    {
-                        error(L"ERROR") = L"failed to call handle_record ";
-                        errors += error;
-                    }
-                }
-                row_t row;
-                json::Object o;
-                for (const auto& item : r)
-                {
-                    row(item.first) = item.second;
-
-                    double v;
-                    if ((colHeaders[item.first] == WXSQLITE_INTEGER || colHeaders[item.first] == WXSQLITE_FLOAT)
-                        && wxString(item.second).ToDouble(&v))
-                    {
-                        o[wxString(item.first).ToStdString()] = json::Number(v);
-                    }
-                    else
-                        o[wxString(item.first).ToStdString()] = json::String(wxString(item.second).ToStdString());
-                }
-                contents += row;
-                jsoncontents.Insert(o);
-                
-            }
-            q.Finalize();
-
-            Record result;
-            if (lua_status && !skip_lua)
-            {
-                try
-                {
-                    state.invokeVoidFunction("complete", &result);
-                }
-                catch (const std::runtime_error& e)
-                {
-                    error(L"ERROR") = wxString("failed to call complete: ") + wxString(e.what());
-                    errors += error;
-                }
-                catch (const std::exception& e)
-                {
-                    error(L"ERROR") = wxString("failed to call complete: ") + wxString(e.what());
-                    errors += error;
-                }
-                catch (...)
-                {
-                    error(L"ERROR") = L"failed to call complete";
-                    errors += error;
-                }
-            }
-            for (const auto& item : result) report(item.first) = item.second;
+            q = stmt.ExecuteQuery();
+            columnCount = q.GetColumnCount();
         }
     }
+    catch (const wxSQLite3Exception& e)
+    {
+        return e.GetMessage();
+    }
+
+    std::map <std::wstring, int> colHeaders;
+
+    loop_t columns;
+    for (int i = 0; i < columnCount; ++i)
+    {
+        int col_type = q.GetColumnType(i);
+        const std::wstring col_name = q.GetColumnName(i).ToStdWstring();
+        colHeaders[col_name] = col_type;
+        row_t row;
+        row(L"COLUMN") = col_name;
+        columns += row;
+    }
+    report(L"COLUMNS") = columns;
+
+    LuaGlue state;
+    state.
+        Class<Record>("Record").
+        ctor("new").
+        method("get", &Record::get).
+        method("set", &Record::set).
+        end().open().glue();
+
+    bool skip_lua = r->LUACONTENT.IsEmpty();
+    bool lua_status = state.doString(r->LUACONTENT.ToStdString());
+    if (!skip_lua && !lua_status)
+    {
+        error(L"ERROR") = wxString("failed to doString : ") + r->LUACONTENT + wxString(" err: ") + wxString(state.lastError());
+        errors += error;
+    }
+
+    while (q.NextRow())
+    {
+        Record r;
+        for (int i = 0; i < columnCount; ++i)
+        {
+            const wxString column_name = q.GetColumnName(i);
+            r[column_name.ToStdWstring()] = q.GetAsString(i);
+        }
+
+        if (lua_status && !skip_lua)
+        {
+            try
+            {
+                state.invokeVoidFunction("handle_record", &r);
+            }
+            catch (const std::runtime_error& e)
+            {
+                error(L"ERROR") = wxString("failed to call handle_record : ") + wxString(e.what());
+                errors += error;
+            }
+            catch (const std::exception& e)
+            {
+                error(L"ERROR") = wxString("failed to call handle_record : ") + wxString(e.what());
+                errors += error;
+            }
+            catch (...)
+            {
+                error(L"ERROR") = L"failed to call handle_record ";
+                errors += error;
+            }
+        }
+        row_t row;
+        json::Object o;
+        for (const auto& item : r)
+        {
+            row(item.first) = item.second;
+
+            double v;
+            if ((colHeaders[item.first] == WXSQLITE_INTEGER || colHeaders[item.first] == WXSQLITE_FLOAT)
+                && wxString(item.second).ToDouble(&v))
+            {
+                o[wxString(item.first).ToStdString()] = json::Number(v);
+            }
+            else
+                o[wxString(item.first).ToStdString()] = json::String(wxString(item.second).ToStdString());
+        }
+        contents += row;
+        jsoncontents.Insert(o);
+
+    }
+    q.Finalize();
+
+    Record result;
+    if (lua_status && !skip_lua)
+    {
+        try
+        {
+            state.invokeVoidFunction("complete", &result);
+        }
+        catch (const std::runtime_error& e)
+        {
+            error(L"ERROR") = wxString("failed to call complete: ") + wxString(e.what());
+            errors += error;
+        }
+        catch (const std::exception& e)
+        {
+            error(L"ERROR") = wxString("failed to call complete: ") + wxString(e.what());
+            errors += error;
+        }
+        catch (...)
+        {
+            error(L"ERROR") = L"failed to call complete";
+            errors += error;
+        }
+    }
+
+    for (const auto& item : result)
+        report(item.first) = item.second;
 
     report(L"CONTENTS") = contents;
     {
@@ -299,19 +285,23 @@ wxString Model_Report::get_html(const Data& r)
     return get_html(&r); 
 }
 
-bool Model_Report::CheckSyntax(const wxString& sql)
-{
-    return this->db_->CheckSyntax(sql);
-}
-
 bool Model_Report::getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders)
 {
-    if (!this->db_->CheckSyntax(sql)) return false;
-    wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
-    if (!stmt.IsReadOnly()) return false;
-
-    wxSQLite3ResultSet q = stmt.ExecuteQuery();
-    int columnCount = q.GetColumnCount();
+    wxSQLite3Statement stmt;
+    wxSQLite3ResultSet q;
+    int columnCount = 0;
+    try
+    {
+        stmt = this->db_->PrepareStatement(sql);
+        if (!stmt.IsReadOnly())
+            return false;
+        q = stmt.ExecuteQuery();
+        columnCount = q.GetColumnCount();
+    }
+    catch (const wxSQLite3Exception& e)
+    {
+        return false;
+    }
 
     for (int i = 0; i < columnCount; ++i)
     {
@@ -324,32 +314,23 @@ bool Model_Report::getColumns(const wxString& sql, std::vector<std::pair<wxStrin
     return true;
 }
 
-wxString Model_Report::getTemplate(const wxString& sql)
-{
-    wxString body, header;
-    std::vector<std::pair<wxString, int> > colHeaders;
-    this->getColumns(sql, colHeaders);
-    for (const auto& col : colHeaders)
-    {
-        header += wxString::Format("        <th>%s</th>\n", col.first);
-        if (col.second == WXSQLITE_FLOAT)
-            body += wxString::Format("        <td class = \"money, text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
-        else if (col.second == WXSQLITE_INTEGER)
-            body += wxString::Format("        <td class = \"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
-        else
-            body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
-    }
-    return wxString::Format(HTT_CONTEINER, header, body);
-}
-
 bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData)
 {
-    if (!this->db_->CheckSyntax(sql)) return false;
-    wxSQLite3Statement stmt = this->db_->PrepareStatement(sql);
-    if (!stmt.IsReadOnly()) return false;
-
-    wxSQLite3ResultSet q = stmt.ExecuteQuery();
-    int columnCount = q.GetColumnCount();
+    wxSQLite3Statement stmt;
+    wxSQLite3ResultSet q;
+    int columnCount = 0;
+    try
+    {
+        stmt = this->db_->PrepareStatement(sql);
+        if (!stmt.IsReadOnly())
+            return false;
+        q = stmt.ExecuteQuery();
+        columnCount = q.GetColumnCount();
+    }
+    catch (const wxSQLite3Exception& e)
+    {
+        return false;
+    }
 
     sqlQueryData.clear();
     while (q.NextRow())
@@ -385,4 +366,22 @@ void Model_Report::getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString
 
         sqlTableInfo.push_back(std::make_pair(table_name, column_names));
     }
+}
+
+wxString Model_Report::getTemplate(const wxString& sql)
+{
+    wxString body, header;
+    std::vector<std::pair<wxString, int> > colHeaders;
+    this->getColumns(sql, colHeaders);
+    for (const auto& col : colHeaders)
+    {
+        header += wxString::Format("        <th>%s</th>\n", col.first);
+        if (col.second == WXSQLITE_FLOAT)
+            body += wxString::Format("        <td class = \"money, text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        else if (col.second == WXSQLITE_INTEGER)
+            body += wxString::Format("        <td class = \"text-right\"><TMPL_VAR \"%s\"></td>\n", col.first);
+        else
+            body += wxString::Format("        <td><TMPL_VAR \"%s\"></td>\n", col.first);
+    }
+    return wxString::Format(HTT_CONTEINER, header, body);
 }

@@ -47,7 +47,6 @@ public:
 public:
     wxString get_html(const Data* r);
     wxString get_html(const Data& r);
-    bool CheckSyntax(const wxString& sql);
     bool getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <std::vector <wxString> > &sqlQueryData);
     wxString getTemplate(const wxString& sql);
     bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);

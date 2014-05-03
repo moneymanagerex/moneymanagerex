@@ -314,38 +314,31 @@ void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
     wxStaticText* info = (wxStaticText*) FindWindow(wxID_INFO);
     const wxString &sql = sqlText->GetValue();
 
-    if (!sql.empty() && Model_Report::instance().CheckSyntax(sql))
+    wxLongLong interval = wxGetUTCTimeMillis();
+    if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
     {
         m_sqlListBox->DeleteAllColumns();
-        wxLongLong interval = wxGetUTCTimeMillis();
-        if (Model_Report::instance().getSqlQuery(sql, m_sqlQueryData))
-        {
-            interval = wxGetUTCTimeMillis() - interval;
-            info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
-                , (int) m_sqlQueryData.size(), interval.ToLong()));
+        interval = wxGetUTCTimeMillis() - interval;
+        info->SetLabel(wxString::Format(_("Row(s) returned: %i  Duration: %ld ms")
+            , (int) m_sqlQueryData.size(), interval.ToLong()));
 
-            MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
-            std::vector<std::pair<wxString, int> > colHeaders;
-            bool colsOK = Model_Report::instance().getColumns(sql, colHeaders);
-            wxButton* b = (wxButton*) FindWindow(wxID_NEW);
-            b->Enable(colsOK && templateText->GetValue().empty());
-            int pos = 0;
-            for (const auto& col : colHeaders)
-            {
-                m_sqlListBox->InsertColumn(pos++, col.first
-                    , (col.second == WXSQLITE_INTEGER || col.second == WXSQLITE_FLOAT) 
-                        ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
-                    , col.first.length() * 10 + 20);
-            }
-
-            m_sqlListBox->SetItemCount(m_sqlQueryData.size());
-            m_sqlListBox->Refresh();
-            if (m_sqlQueryData.size() > 0) m_sqlListBox->EnsureVisible(0);
-        }
-        else
+        MinimalEditor* templateText = static_cast<MinimalEditor*>(FindWindow(ID_TEMPLATE));
+        std::vector<std::pair<wxString, int> > colHeaders;
+        bool colsOK = Model_Report::instance().getColumns(sql, colHeaders);
+        wxButton* b = (wxButton*) FindWindow(wxID_NEW);
+        b->Enable(colsOK && templateText->GetValue().empty());
+        int pos = 0;
+        for (const auto& col : colHeaders)
         {
-            info->SetLabel(_("SQL Syntax Error"));
+            m_sqlListBox->InsertColumn(pos++, col.first
+                , (col.second == WXSQLITE_INTEGER || col.second == WXSQLITE_FLOAT)
+                ? wxLIST_FORMAT_RIGHT : wxLIST_FORMAT_LEFT
+                , col.first.length() * 10 + 20);
         }
+
+        m_sqlListBox->SetItemCount(m_sqlQueryData.size());
+        m_sqlListBox->Refresh();
+        if (m_sqlQueryData.size() > 0) m_sqlListBox->EnsureVisible(0);
     }
     else
     {
