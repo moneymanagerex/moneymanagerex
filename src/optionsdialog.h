@@ -61,13 +61,13 @@ private:
 
     bool GetIniDatabaseCheckboxValue(wxString dbField, bool defaultState);
 
-	void OnAttachmentSelected(wxCommandEvent& event);
-	void OnAttachmentsFolderChanged(wxCommandEvent& event);
+	void OnAttachmentsButton(wxCommandEvent& event);
 
     void SaveViewAccountOptions();
     void SaveViewTransactionOptions();
     void SaveFinancialYearStart();
     void SaveStocksUrl();
+    void OnAttachmentsMenu(wxCommandEvent& event);
 
     void SaveGeneralPanelSettings();
     void SaveViewPanelSettings();
@@ -86,13 +86,6 @@ private:
     wxChoice* monthSelection_;
 
     /// Colour Buttons.
-    wxButton* navTreeButton_;
-    wxButton* listBackgroundButton_;
-    wxButton* listRowZeroButton_;
-    wxButton* listRowOneButton_;
-    wxButton* listBorderButton_;
-    wxButton* listDetailsButton_;
-    wxButton* futureTransButton_;
     wxButton* restoreDefaultButton_;
     wxButton* UDFCB1_;
     wxButton* UDFCB2_;
@@ -135,10 +128,6 @@ private:
     {
         ID_BOOK_PANEL_EXP_IMP = wxID_HIGHEST + 100,
         ID_DIALOG_OPTIONS_TEXTCTRL_DELIMITER4,
-		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER,
-		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1,
-		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2,
-		ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3,
 		ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT,
         ID_DIALOG_OPTIONS_BUTTON_CURRENCY,
         ID_DIALOG_OPTIONS_BUTTON_LANGUAGE,

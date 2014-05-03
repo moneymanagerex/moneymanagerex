@@ -86,8 +86,8 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
-	EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsFolderChanged)
-	EVT_RADIOBUTTON(wxID_ANY, mmOptionsDialog::OnAttachmentSelected)
+	EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
+    EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
 END_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -522,67 +522,17 @@ void mmOptionsDialog::CreateControls()
         , wxID_STATIC, _("Attachment archive folder"));
     attachmentStaticBoxSizer->Add(attachmentStaticText, g_flags);
 
-    wxBoxSizer* attachRadioButtonSizer = new wxBoxSizer(wxVERTICAL);
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
-
-    attachmentStaticBoxSizer->Add(attachRadioButtonSizer);
     attachmentStaticBoxSizer->Add(attachDefinedSizer);
-    attachmentStaticBoxSizer->AddSpacer(5);
 
     wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
-    wxString LastDBPath = Model_Setting::instance().getLastDbPath();
-    wxFileName fn(LastDBPath);
-    wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
-    wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
 
-    wxRadioButton* attachmentRadioButton1 = new wxRadioButton(attachmentPanel
-        , ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1
-        , _("System documents directory"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-    attachmentRadioButton1->SetToolTip(_("Subfolder") + " 'MMEX_" + LastDBFileName + "_Attachments' " + "\n"
-        + _("into ") + wxStandardPaths::Get().GetDocumentsDir() + "\n"
-        + "\n"
-        + _("MAKE ATTENTION:") + "\n"
-        + _("It won't work if you use more than one DB with the same filename!"));
-    if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR) attachmentRadioButton1->SetValue(true);
-
-    wxRadioButton* attachmentRadioButton2 = new wxRadioButton(attachmentPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2, _("Money Manager directory"));
-    attachmentRadioButton2->SetToolTip(_("Subfolder") + " 'attachments_" + LastDBFileName + "' " + "\n"
-        + _("into ") + mmex::getPathUser(mmex::DIRECTORY) + "\n"
-        + "\n"
-        + _("MAKE ATTENTION:") + "\n"
-        + _("It won't work if you use more than one DB with the same filename!"));
-    if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR) attachmentRadioButton2->SetValue(true);
-
-    wxRadioButton* attachmentRadioButton3 = new wxRadioButton(attachmentPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3, _("Database file directory"));
-    attachmentRadioButton3->SetToolTip(_("Subfolder") + " 'Attachments_" + LastDBFileName + "' " + "\n"
-        + _("into ") + LastDBFolder);
-    if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR) attachmentRadioButton3->SetValue(true);
-
-    wxRadioButton* attachmentRadioButtonU = new wxRadioButton(attachmentPanel, ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER, _("User Defined"));
-    attachmentRadioButtonU->SetToolTip(_("Specify the folder to use when archive attachments"));
-    wxTextCtrl* textAttachment = new wxTextCtrl(attachmentPanel, ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachmentFolder, wxDefaultPosition, wxSize(225, -1), 0);
-    wxButton* AttachmentsFolderButton = new wxButton(attachmentPanel, ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
+    wxTextCtrl* textAttachment = new wxTextCtrl(attachmentPanel
+        , ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachmentFolder, wxDefaultPosition, wxSize(225, -1), 0);
+    wxButton* AttachmentsFolderButton = new wxButton(attachmentPanel
+        , ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
     AttachmentsFolderButton->SetToolTip(_("Browse for folder"));
 
-    if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
-        || attachmentFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
-        || attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR)
-    {
-        textAttachment->Enable(false);
-        AttachmentsFolderButton->Enable(false);
-    }
-    else
-    {
-        attachmentRadioButtonU->SetValue(true);
-        textAttachment->Enable(true);
-        textAttachment->SetToolTip(attachmentFolder);
-    }
-
-    attachRadioButtonSizer->Add(attachmentRadioButton1, g_flags);
-    attachRadioButtonSizer->Add(attachmentRadioButton2, g_flags);
-    attachRadioButtonSizer->Add(attachmentRadioButton3, g_flags);
-
-    attachDefinedSizer->Add(attachmentRadioButtonU, g_flags);
     attachDefinedSizer->Add(textAttachment, g_flags);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
 
@@ -918,63 +868,55 @@ bool mmOptionsDialog::GetIniDatabaseCheckboxValue(wxString dbField, bool default
     return result;
 }
 
-void mmOptionsDialog::OnAttachmentSelected(wxCommandEvent& event)
+void mmOptionsDialog::OnAttachmentsButton(wxCommandEvent& /*event*/)
 {
-    int id = event.GetId();
-    wxTextCtrl* st = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-    wxRadioButton* d = (wxRadioButton*) FindWindow(id);
-    if (d) {
-        if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_1)
-        {
-            st->SetValue(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
-            st->Enable(false);
-        }
-        else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_2)
-        {
-            st->SetValue(INIDB_ATTACHMENTS_FOLDER_MMEXDIR);
-            st->Enable(false);
-        }
-        else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_3)
-        {
-            st->SetValue(INIDB_ATTACHMENTS_FOLDER_DBDIR);
-            st->Enable(false);
-        }
-        else if (id == ID_DIALOG_OPTIONS_RADIOBUTTON_ATTACHMENT_USER)
-        {
-            const wxString attachmentFolder = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), "");
-			if (attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR
-				|| attachmentFolder == INIDB_ATTACHMENTS_FOLDER_MMEXDIR
-				|| attachmentFolder == INIDB_ATTACHMENTS_FOLDER_DBDIR)
-			st->SetValue(wxEmptyString);
-			else
-            st->SetValue(attachmentFolder);
+    wxMenu * attachmentsMenu = new wxMenu;
+    wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("System documents directory"));
+    attachmentsMenu->Append(menuItem);
+    menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 1, _("Money Manager directory"));
+    attachmentsMenu->Append(menuItem);
+    menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 2, _("Database file directory"));
+    attachmentsMenu->Append(menuItem);
+    menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 3, _("Dropbox folder"));
+    attachmentsMenu->Append(menuItem);
+    menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 4, _("User Defined"));
+    attachmentsMenu->Append(menuItem);
 
-			st->Enable(true);
-        }
-    }
+    PopupMenu(attachmentsMenu);
+    delete attachmentsMenu;
 
-	wxButton* button = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER);
-	button->Enable(true);
 }
 
-void mmOptionsDialog::OnAttachmentsFolderChanged(wxCommandEvent& /*event*/)
+void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
 {
-	wxTextCtrl* att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-	wxString attachmentFolder = att->GetValue();
+    wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+    if (!att) return;
+    wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
+    int id = event.GetId();
+    if (id == wxID_HIGHEST)
+        AttachmentsFolder = (INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
+    else if (id == wxID_HIGHEST + 1)
+        AttachmentsFolder = (INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
+    else if (id == wxID_HIGHEST + 2)
+        AttachmentsFolder = (INIDB_ATTACHMENTS_FOLDER_DBDIR);
+    else if (id == wxID_HIGHEST + 3)
+        AttachmentsFolder = (DROPBOX);
+    else
+    {
+        wxDirDialog dlg(this
+            , _("Choose folder to set as attachments archive")
+            , AttachmentsFolder
+            , wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST
+            );
 
-	wxDirDialog dlg(this
-		, _("Choose folder to set as attachments archive")
-		, attachmentFolder
-		, wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST
-		);
+        if (dlg.ShowModal() != wxID_OK)
+            return;
 
-	if (dlg.ShowModal() != wxID_OK)
-		return;
-
-	wxString AttachmentsFolder = dlg.GetPath();
-
-	att->SetValue(AttachmentsFolder);
-	att->SetToolTip(AttachmentsFolder);
+        AttachmentsFolder = dlg.GetPath();
+    }
+    att->ChangeValue(AttachmentsFolder);
+    att->UnsetToolTip();
+    att->SetToolTip(mmex::getPathAttachment(AttachmentsFolder));
 }
 
 void mmOptionsDialog::SaveViewAccountOptions()
@@ -1130,7 +1072,7 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
 
     //Create attachments folder
-	wxString attachmentFolderPath = mmex::getPathAttachments();
+    wxString attachmentFolderPath = mmex::getPathAttachment(Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), ""));
 	if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
 	{
 		wxMkdir(attachmentFolderPath);
@@ -1201,5 +1143,8 @@ void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
 
 void mmOptionsDialog::OnApply(wxCommandEvent& /*event*/)
 {
+    wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+    att->UnsetToolTip();
+    att->SetToolTip(mmex::getPathAttachment(att->GetValue()));
     // TODO save according panel setting
 }

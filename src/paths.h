@@ -46,7 +46,6 @@ wxString getPathShared(ESharedFile f);
 enum EUserFile { SETTINGS = 0, DIRECTORY, USER_FILES_MAX };
 wxString getPathUser(EUserFile f);
 
-wxString getPathAttachments();
 wxString getPathAttachment(const wxString &AttachmentsFolder);
 bool isPortableMode();
 
