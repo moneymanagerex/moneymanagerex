@@ -15,7 +15,7 @@ ARCHITECTURE="i386"
 # Specify the build version of mmex
 MMEX_VERSION="1.1.0.0"
 
-EMAIL="vomikan@mail.ru"
+EMAIL="moneymanagerex@gmail.com"
 
 cd ../../..
 PWD=`pwd`
@@ -62,7 +62,10 @@ sed -e 's%<Copyright (C) YYYY Firstname Lastname>%Copyright (C) 2005-2009 Madhan
 mv debian/copyright.tmp debian/copyright 
 #Copyright (C) 2009-2010 VaDiM, Nikolay, Wesley Ellis
 sed -e 's%<likewise for another author>%Copyright (C) 2009-2010 VaDiM, Nikolay, Wesley Ellis\
-    Copyright (C) 2010-2012 Stefano, Nikolay%g' debian/copyright > debian/copyright.tmp
+    Copyright (C) 2010-2014 Stefano, Nikolay\
+    Copyright (c) 2011-2014 Guan Lisheng (guanlisheng@gmail.com)\
+    Copyright (C) 2013-2014 James Higley\
+    Copyright (C) 2014 Gabriele-V%g' debian/copyright > debian/copyright.tmp
 mv debian/copyright.tmp debian/copyright 
 
 
