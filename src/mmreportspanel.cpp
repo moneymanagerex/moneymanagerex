@@ -96,11 +96,11 @@ mmReportsPanel::~mmReportsPanel()
         delete rb_;
 }
 
-bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
-            const wxPoint& pos, const wxSize& size, long style,
-            const wxString& name  )
+bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
+    , const wxPoint& pos, const wxSize& size, long style
+    , const wxString& name)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     CreateControls();
@@ -108,13 +108,14 @@ bool mmReportsPanel::Create( wxWindow *parent, wxWindowID winid,
     GetSizer()->SetSizeHints(this);
 
     getReportText();
-    browser_->LoadURL("file://" + mmex::GetResourceDir().GetPath() + "/" + "index.html");
+    //FIXME: ResourceDir is write protected
+    browser_->LoadURL(wxString::Format("file://%s/index.html", mmex::GetResourceDir().GetPath()));
     return TRUE;
 }
 
 wxString mmReportsPanel::getReportText()
 {
-    htmlreport_ = "coming soon...";
+    htmlreport_ = "coming soon..."; //TODO: ??
     if (rb_)
     {
         json::Object o;
@@ -141,15 +142,15 @@ void mmReportsPanel::CreateControls()
     wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer2);
 
-    wxPanel* itemPanel3 = new wxPanel( this, wxID_ANY,
-        wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+    wxPanel* itemPanel3 = new wxPanel(this, wxID_ANY
+        , wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     itemBoxSizer2->Add(itemPanel3, 0, wxGROW|wxALL, 5);
 
     wxBoxSizer* itemBoxSizerVHeader = new wxBoxSizer(wxVERTICAL);
     itemPanel3->SetSizer(itemBoxSizerVHeader);
 
-    wxStaticText* itemStaticText9 = new wxStaticText( itemPanel3, wxID_ANY,
-        _("REPORTS"));
+    wxStaticText* itemStaticText9 = new wxStaticText(itemPanel3
+        , wxID_ANY, _("REPORTS"));
     itemStaticText9->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizerVHeader->Add(itemStaticText9, 0, wxALL, 1);
 
