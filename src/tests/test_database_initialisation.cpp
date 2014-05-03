@@ -125,8 +125,8 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
     m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
 
     m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("Stocks - Acme Corporation", 0, "Share Dividends");
-    m_dbmodel->Add_Investment_Account("Acme Corporation", 0, "Shares");
+    m_dbmodel->Add_Term_Account("Stocks - ACME Corporation", 0, "Share Dividends");
+    m_dbmodel->Add_Investment_Account("ACME Corporation", 0, "Shares");
     m_dbmodel->Add_Term_Account("Stocks - ABC Corporation", 0, "Share Dividends");
     m_dbmodel->Add_Term_Account("Insurance Policies");
     m_test_db.Commit();
@@ -223,6 +223,27 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     Model_Checking::Data* personal_loan = Model_Checking::instance().get(personal_loan_id);
     personal_loan->NOTES = "Initialise $10,000 Personal loan from ANZ -Bank";
     Model_Checking::instance().save(personal_loan);
+
+    int stock_ABC_Account_id = m_dbmodel->Get_account_id("ABC Corporation");
+    int stock_ACME_Account_id = m_dbmodel->Get_account_id("ACME Corporation");
+
+    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(2)), 1000, 4.2575, 0, 0, 0, "ABC Initial Share Purchase", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2575, 0, 0, 0, "ACME Initial Share Purchase", "AMP.ax");
+
+    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 9550, 5.2575, 0, 0, 0, "ABC Suplement Purchase", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 9550, 5.2575, 0, 0, 0, "ACME Suplement Purchase", "AMP.ax");
+
+    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
+
+    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
+    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
+
+    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
+    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
+
+    m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
 
     // Create transactions for a single month. These are repeated untill current month.
     int month_count = 0;
@@ -326,8 +347,8 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 300, "Home", "Electricity");
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 400, "Home", "Gas");
 
-            m_dbmodel->Add_Trans_Deposit("Stocks - Acme Corporation", trans_date.Add(wxDateSpan::Days(7)), "ACME Corporation", 25.75, "Income", "Share Dividend");
-            m_dbmodel->Add_Trans_Transfer("Stocks - Acme Corporation", trans_date, "ANZ - Cash Manager", 25.75, "Transfer", "Share Dividend");
+            m_dbmodel->Add_Trans_Deposit("Stocks - ACME Corporation", trans_date.Add(wxDateSpan::Days(7)), "ACME Corporation", 25.75, "Income", "Share Dividend");
+            m_dbmodel->Add_Trans_Transfer("Stocks - ACME Corporation", trans_date, "ANZ - Cash Manager", 25.75, "Transfer", "Share Dividend");
             m_dbmodel->Add_Trans_Deposit("Stocks - ABC Corporation", trans_date.Add(wxDateSpan::Days(7)), "ABC Corporation", 555.25, "Income", "Share Dividend");
             m_dbmodel->Add_Trans_Transfer("Stocks - ABC Corporation", trans_date, "ANZ - Cash Manager", 555.25, "Transfer", "Share Dividend");
         }

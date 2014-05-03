@@ -131,12 +131,12 @@ void Test_Stock::Test_Stocks_Panel()
     stocks_frame->Show();
 
     int stock_Account_id = m_dbmodel->Get_account_id("AMP");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 1.2575, 0, 0, 0, "AMP Initial Share Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Months(6)), 9550, 2.2575, 0, 0, 0, "AMP Suplement Purchase", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 5, 1.2775, 0, 0, 0, "DRP", "AMP.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 10, 1.1575, 0, 0, 0, "DRP ", "amp.ax");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 1.4575, 0, 0, 0, "DRP", "AMP.AX");
-    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 1000, 1.2775, 0, 0, 0, "DRP", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(5)), 1000, 4.2575, 0, 0, 0, "AMP Initial Share Purchase", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Months(6)), 9550, 5.2575, 0, 0, 0, "AMP Suplement Purchase", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(4)), 5, 5.2775, 0, 0, 0, "DRP", "AMP.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(3)), 10, 6.1575, 0, 0, 0, "DRP ", "amp.ax");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(2)), 100, 5.4575, 0, 0, 0, "DRP", "AMP.AX");
+    m_dbmodel->Add_Stock_Entry(stock_Account_id, wxDate::Now().Subtract(wxDateSpan::Years(1)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
     
     // Create the panel under test
     mmStocksPanel* stocks_panel = new mmStocksPanel(stock_Account_id, stocks_frame);

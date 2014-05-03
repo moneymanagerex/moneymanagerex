@@ -33,7 +33,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budget.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Stock.h"
-
+#include "model/Model_Attachment.h"
 //----------------------------------------------------------------------------
 
 DB_Init_Model::DB_Init_Model()
@@ -80,6 +80,7 @@ void DB_Init_Model::Init_Model_Tables(wxSQLite3Database* test_db)
 
     Model_Asset::instance(test_db);
     Model_Stock::instance(test_db);
+    Model_Attachment::instance(test_db);
 }
 
 void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
@@ -121,6 +122,7 @@ void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)
     Model_Currency::instance(test_db);
     Model_Account::instance(test_db);
     Model_Stock::instance(test_db);
+    Model_Attachment::instance(test_db);
 }
 
 void DB_Init_Model::Init_BaseCurrency(const wxString& base_currency_symbol, const wxString& user_name)
