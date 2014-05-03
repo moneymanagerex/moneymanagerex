@@ -293,5 +293,12 @@
 
     </subproject>
 
+    <action id="dmg" cond="PLATFORM_MACOSX=='1'">
+	<command>touch mmex.app</command>
+	<command>hdiutil create tmp.dmg -ov -volname "MMEX" -fs HFS+ -srcfolder "mmex.app"</command>
+	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
+	<command>rm tmp.dmg</command>
+    </action>
+
 
 </makefile>
