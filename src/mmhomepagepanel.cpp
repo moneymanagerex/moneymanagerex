@@ -67,21 +67,25 @@ public:
         {
             long id = -1;
             sData.ToLong(&id);
-            frame->setGotoAccountID(id);
             const Model_Account::Data* account = Model_Account::instance().get(id);
-            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-            frame->GetEventHandler()->AddPendingEvent(evt);
+            if (account) {
+                frame->setGotoAccountID(id);
+                frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                frame->GetEventHandler()->AddPendingEvent(evt);
+            }
         }
         else if (uri.Upper().StartsWith("STOCK:", &sData))
         {
             long id = -1;
             sData.ToLong(&id);
-            frame->setGotoAccountID(id);
             const Model_Account::Data* account = Model_Account::instance().get(id);
-            frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-            frame->GetEventHandler()->AddPendingEvent(evt);
+            if (account) {
+                frame->setGotoAccountID(id);
+                frame->setAccountNavTreeSection(account->ACCOUNTNAME);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+                frame->GetEventHandler()->AddPendingEvent(evt);
+            }
         }
 
         return NULL;
