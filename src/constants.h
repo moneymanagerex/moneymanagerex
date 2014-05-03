@@ -78,6 +78,8 @@ extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 extern const wxString INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR;
 extern const wxString INIDB_ATTACHMENTS_FOLDER_MMEXDIR;
 extern const wxString INIDB_ATTACHMENTS_FOLDER_DBDIR;
+extern const wxString USERPROFILE;
+extern const wxString APPDATA;
 
 #endif // _MM_EX_CONSTANTS_H_
 //----------------------------------------------------------------------------

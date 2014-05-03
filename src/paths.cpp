@@ -206,6 +206,29 @@ wxString mmex::getPathAttachments()
 
 	return AttachmentsFolder;
 }
+
+wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
+{
+    wxString AttachmentsFolder = attachmentsFolder;
+    const wxString sep = wxFileName::GetPathSeparator();
+    const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
+    const wxFileName fn(LastDBPath);
+    const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
+    const wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
+    const wxString subFolder = wxString::Format("%sMMEX_%s_Attachments%s", sep, LastDBFileName, sep);
+
+    if (AttachmentsFolder.StartsWith(USERPROFILE)) {
+        AttachmentsFolder.Replace(USERPROFILE, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath());
+        AttachmentsFolder += subFolder;
+    }
+    /*else if (AttachmentsFolder.StartsWith(APPDATA)) {
+        AttachmentsFolder.Replace(USERPROFILE, 
+        AttachmentsFolder = wxStandardPaths::Get().GetDocumentsDir() + sep + AttachmentsFolder + sep + getProgramName() + sep + subFolder;
+    }*/
+
+    return AttachmentsFolder;
+}
+
 //----------------------------------------------------------------------------
 
 const wxIcon& mmex::getProgramIcon()

@@ -78,7 +78,14 @@ public:
     ~Record(){}
     /* Access functions for LuaGlue (The required conversion between char and wchar_t is done through wxString.) */
     std::string get(const char* index) { return wxString((*this)[wxString(index).ToStdWstring()]).ToStdString(); }
-    void set(const char* index, const char * val) { (*this)[wxString(index).ToStdWstring()] = wxString(val).ToStdWstring(); }
+    void set(const char* index, const char * val)
+    {
+        (*this)[wxString(index).ToStdWstring()] = wxString(val).ToStdWstring();
+    }
+    std::string GetDir(const char * val)
+    {
+        return mmex::getPathAttachment(wxString(val).ToStdWstring()).ToStdString();
+    }
 };
 
 Model_Report::Model_Report(): Model<DB_Table_REPORT_V1>()
@@ -161,6 +168,7 @@ wxString Model_Report::get_html(const Data* r)
         ctor("new").
         method("get", &Record::get).
         method("set", &Record::set).
+        method("GetDir", &Record::GetDir).
         end().open().glue();
 
     bool skip_lua = r->LUACONTENT.IsEmpty();
@@ -298,7 +306,7 @@ bool Model_Report::getColumns(const wxString& sql, std::vector<std::pair<wxStrin
         q = stmt.ExecuteQuery();
         columnCount = q.GetColumnCount();
     }
-    catch (const wxSQLite3Exception& e)
+    catch (const wxSQLite3Exception& /*e*/)
     {
         return false;
     }
@@ -327,7 +335,7 @@ bool Model_Report::getSqlQuery(/*in*/ const wxString& sql, /*out*/ std::vector <
         q = stmt.ExecuteQuery();
         columnCount = q.GetColumnCount();
     }
-    catch (const wxSQLite3Exception& e)
+    catch (const wxSQLite3Exception& /*e*/)
     {
         return false;
     }
