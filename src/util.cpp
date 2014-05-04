@@ -82,7 +82,7 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
     locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
     so I should use locale.IsLoaded(lang) also.
 */
-wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting)
+const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting)
 {
     wxString lang;
 
@@ -129,7 +129,7 @@ wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_sett
     return lang;
 }
 
-wxString inQuotes(wxString label, wxString& delimiter)
+const wxString inQuotes(wxString label, wxString& delimiter)
 {
     if (label.Contains(delimiter) || label.Contains("\""))
     {
@@ -216,7 +216,7 @@ int site_content(const wxString& sSite, wxString& sOutput)
 
 //* Date Functions----------------------------------------------------------*//
 
-wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
+const wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
 {
     wxString dateFmt = mmOptions::instance().dateFormat_;
     dateFmt.Replace("%Y%m%d", "%Y %m %d");
@@ -232,7 +232,7 @@ wxString mmGetNiceDateSimpleString(const wxDateTime &dt)
     return dateFmt;
 }
 
-wxString mmGetDateForDisplay(const wxDateTime &dt)
+const wxString mmGetDateForDisplay(const wxDateTime &dt)
 {
     return dt.Format(mmOptions::instance().dateFormat_);
 }
@@ -256,7 +256,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
     return false;
 }
 
-wxDateTime mmGetStorageStringAsDate(const wxString& str)
+const wxDateTime mmGetStorageStringAsDate(const wxString& str)
 {
     wxDateTime dt = wxDateTime::Today();
     if (!str.IsEmpty()) dt.ParseDate(str);
@@ -265,7 +265,7 @@ wxDateTime mmGetStorageStringAsDate(const wxString& str)
     return dt;
 }
 
-wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
+const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
 {
     long monthNum;
     mmOptions::instance().financialYearStartMonthString_.ToLong(&monthNum);
@@ -434,7 +434,7 @@ void mmMessagePayeeInvalid(wxComboBox *comboBox)
     tip.ShowFor((wxWindow*)comboBox);
 }
 
-wxString mmPlatformType()
+const wxString mmPlatformType()
 {
 	return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
 }

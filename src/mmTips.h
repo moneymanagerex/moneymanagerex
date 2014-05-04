@@ -1,5 +1,23 @@
+/*******************************************************
+Copyright (C) 2013 Nikolay
 
-static const wxString TIPS[] =
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+********************************************************/
+#pragma once
+
+static const wxString TIPS [] =
 {
     wxTRANSLATE("Recommendation: Always backup your .mmb database file regularly."),
     wxTRANSLATE("Recommendation: If upgrading to a new version of MMEX, make sure you backup your .mmb database file before doing so."),
@@ -24,9 +42,3 @@ static const wxString TIPS[] =
     wxTRANSLATE("Tip to get out of debt: Pay more than the minimum."),
     wxTRANSLATE("Before going to a shop and buy something: take the time making a list of what you really need. In the shop buy what is in your list.")
 };
-
-wxString getRandomTip()
-{
-    return wxGetTranslation(TIPS[rand() % sizeof(TIPS) / sizeof(wxString)]);
-}
-

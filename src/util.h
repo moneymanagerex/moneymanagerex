@@ -83,7 +83,7 @@ public:
     {
         return id_;
     }
-    wxString getString() const
+    const wxString getString() const
     {
         return stringData_;
     }
@@ -114,16 +114,16 @@ void mmMessageCategoryInvalid(wxButton *button);
 void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer = false);
 void mmMessagePayeeInvalid(wxComboBox *comboBox);
 
-wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting = true);
+const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting = true);
 
-wxDateTime mmGetStorageStringAsDate(const wxString& str);
-wxString mmGetDateForDisplay(const wxDateTime &dt);
+const wxDateTime mmGetStorageStringAsDate(const wxString& str);
+const wxString mmGetDateForDisplay(const wxDateTime &dt);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
-wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
+const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
 std::map<wxString,wxString> date_formats_map();
 std::map<wxString,wxString> date_formats_regex();
 
-wxString inQuotes(wxString label, wxString& delimiter);
+const wxString inQuotes(wxString label, wxString& delimiter);
 
 void correctEmptyFileExt(const wxString& ext, wxString & fileName );
 
@@ -151,9 +151,9 @@ public:
 
 int site_content(const wxString& site, wxString& output);
 
-wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
+const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
-wxString mmPlatformType();
+const wxString mmPlatformType();
 
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

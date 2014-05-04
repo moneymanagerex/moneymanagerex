@@ -50,7 +50,6 @@
 #include "../resources/trash.xpm"
 #include "../resources/attachment.xpm"
 
-
 //----------------------------------------------------------------------------
 
 #include <wx/srchctrl.h>
@@ -610,7 +609,7 @@ void mmCheckingPanel::updateExtraTransactionData(int selIndex)
 //----------------------------------------------------------------------------
 void mmCheckingPanel::showTips()
 {
-    info_panel_->SetLabel(getRandomTip());
+    info_panel_->SetLabel(TIPS[rand() % sizeof(TIPS) / sizeof(wxString)]);
 }
 //----------------------------------------------------------------------------
 
