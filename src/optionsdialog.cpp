@@ -529,14 +529,14 @@ void mmOptionsDialog::CreateControls()
 
     wxTextCtrl* textAttachment = new wxTextCtrl(attachmentPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachmentFolder, wxDefaultPosition, wxSize(225, -1), 0);
+	textAttachment->SetToolTip(mmex::getPathAttachment(attachmentFolder));
+
     wxButton* AttachmentsFolderButton = new wxButton(attachmentPanel
         , ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
     AttachmentsFolderButton->SetToolTip(_("Browse for folder"));
 
     attachDefinedSizer->Add(textAttachment, g_flags);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
-
-    //TODO: Add a line to separate radio from other settings
     attachmentStaticBoxSizer->AddSpacer(10);
 
     cbDeleteAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
@@ -892,6 +892,7 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
     wxTextCtrl* att = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
     if (!att) return;
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
+
     int id = event.GetId();
     if (id == wxID_HIGHEST)
         AttachmentsFolder = (ATTACHMENTS_FOLDER_DOCUMENTS);
@@ -900,7 +901,7 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
     else if (id == wxID_HIGHEST + 2)
         AttachmentsFolder = (ATTACHMENTS_FOLDER_DATABASE);
     else if (id == wxID_HIGHEST + 3)
-		AttachmentsFolder = (ATTACHMENTS_FOLDER_DROPBOX);
+		AttachmentsFolder = (ATTACHMENTS_FOLDER_USERPROFILE + "Dropbox");
     else
     {
         wxDirDialog dlg(this
@@ -1068,7 +1069,7 @@ void mmOptionsDialog::SaveViewPanelSettings()
 void mmOptionsDialog::SaveAttachmentPanelSettings()
 {
     wxTextCtrl* attTextCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
-    wxString attachmentFolder = attTextCtrl->GetValue();
+    wxString attachmentFolder = attTextCtrl->GetValue().Trim();
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
 
     //Create attachments folder

@@ -2338,6 +2338,7 @@ void mmGUIFrame::OnNew(wxCommandEvent& /*event*/)
         fileName += ".mmb";
 
     SetDatabaseFile(fileName, true);
+	Model_Setting::instance().Set("LASTFILENAME", fileName);
 }
 //----------------------------------------------------------------------------
 
@@ -3384,8 +3385,11 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
         return;
     wxString file_name = recentFiles_->GetHistoryFile(fileNum);
     wxFileName file(file_name);
-    if (file.FileExists())
-        SetDatabaseFile(file_name);
+	if (file.FileExists())
+	{
+		SetDatabaseFile(file_name);
+		saveSettings();
+	}
     else
     {
         wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK | wxICON_ERROR);

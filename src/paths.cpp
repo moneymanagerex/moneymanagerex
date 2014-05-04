@@ -191,6 +191,9 @@ wxString mmex::getPathUser(EUserFile f)
 
 wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 {
+	if (attachmentsFolder == wxEmptyString)
+		return wxEmptyString;
+
     wxString AttachmentsFolder = attachmentsFolder;
     const wxString sep = wxFileName::GetPathSeparator();
     const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
@@ -201,15 +204,13 @@ wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
     const wxString subFolder = wxString::Format("%sMMEX_%s_Attachments", sep, LastDBFileName);
 
 	if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_USERPROFILE))
-		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_USERPROFILE, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath() + sep);
+		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_USERPROFILE, wxGetHomeDir() + sep);
     else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DOCUMENTS))
         AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DOCUMENTS, wxStandardPaths::Get().GetDocumentsDir() + sep);
     else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DATABASE))
 		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DATABASE, LastDBFolder + sep);
     else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_APPDATA))
 		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_APPDATA, UserFolder + sep);
-	else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DROPBOX))
-		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DROPBOX, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath() + sep + "Dropbox" + sep);
     if (AttachmentsFolder.EndsWith(sep)) AttachmentsFolder = AttachmentsFolder.RemoveLast(1);
     AttachmentsFolder += subFolder;
     return AttachmentsFolder;

@@ -77,7 +77,6 @@ extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 
 extern const wxString ATTACHMENTS_FOLDER_DOCUMENTS;
 extern const wxString ATTACHMENTS_FOLDER_DATABASE;
-extern const wxString ATTACHMENTS_FOLDER_DROPBOX;
 extern const wxString ATTACHMENTS_FOLDER_USERPROFILE;
 extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
