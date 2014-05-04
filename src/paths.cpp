@@ -69,7 +69,7 @@ wxFileName getSettingsPathPortable()
 
         FIXME: security issue - temp files will be created on host filesystem.
 */
-wxFileName mmex::GetUserDir(bool create)
+const wxFileName mmex::GetUserDir(bool create)
 {
     static wxFileName fname;
 
@@ -97,7 +97,7 @@ wxFileName mmex::GetUserDir(bool create)
 }
 //----------------------------------------------------------------------------
 
-wxFileName mmex::GetLogDir(bool create)
+const wxFileName mmex::GetLogDir(bool create)
 {
     static wxFileName fname;
 
@@ -134,7 +134,7 @@ wxString mmex::getPathDoc(const EDocFile& f)
 
     wxASSERT(f >= 0 && f < DOC_FILES_MAX);
 
-    wxString path = GetDocDir().GetPath();
+    wxString path = GetSharedDir().GetPath();
     path += wxFileName::GetPathSeparator();
     path += files[f];
 

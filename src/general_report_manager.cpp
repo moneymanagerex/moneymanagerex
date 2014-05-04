@@ -487,14 +487,11 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
         wxNotebook* n = (wxNotebook*) FindWindow(ID_NOTEBOOK);
         n->SetSelection(ID_TAB_OUT);
         m_outputHTML->ClearBackground();
-        mmGeneralReport gr(report); //TODO: limit 500 line
 
-        const wxString index = mmex::GetResourceDir().GetPath() + "/" + "index.html";
-        wxFileOutputStream index_output(index);
-        wxTextOutputStream index_file(index_output);
-        index_file << gr.getHTMLText();
-        index_output.Close();
-        m_outputHTML->LoadURL(wxString(index).Prepend("file://"));
+        mmGeneralReport gr(report); //TODO: limit 500 line
+        gr.getHTMLText();
+        const wxString index = "file://" + mmex::GetResourceDir().GetPath() + "/" + "index.html";
+        m_outputHTML->LoadURL(index);
     }
 }
 

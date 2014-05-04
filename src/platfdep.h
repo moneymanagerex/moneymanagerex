@@ -29,21 +29,21 @@ class wxString;
 
 namespace mmex
 {
-wxFileName GetDocDir();
-wxFileName GetResourceDir();
-wxFileName GetSharedDir();
-wxFileName GetUserDir(bool create);
-wxFileName GetLogDir(bool create);
+    const wxFileName GetDocDir();
+    const wxFileName GetResourceDir();
+    const wxFileName GetSharedDir();
+    const wxFileName GetUserDir(bool create);
+    const wxFileName GetLogDir(bool create);
+    static const wxFileName GetInstallDir();
 
-/*
-    wxStandardPaths uses wxApp::GetAppName(), so you should
-    call wxApp::SetAppName(mmex::GetAppName()) in wxApp::OnInit().
+    /*
+        wxStandardPaths uses wxApp::GetAppName(), so you should
+        call wxApp::SetAppName(mmex::GetAppName()) in wxApp::OnInit().
 
-    Use mmex::getProgramName() for others purposes.
-*/
-wxString GetAppName();
+        Use mmex::getProgramName() for others purposes.
+        */
+    const wxString GetAppName();
 } // namespace mmex
 
 //----------------------------------------------------------------------------
 #endif // _MM_EX_PLATFDEP_H_
-//----------------------------------------------------------------------------
