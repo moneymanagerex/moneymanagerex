@@ -197,18 +197,19 @@ wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
     const wxFileName fn(LastDBPath);
     const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
     const wxString LastDBFolder = fn.FileName(LastDBPath).GetPath();
+	const wxString UserFolder = mmex::GetUserDir(false).GetPath();
     const wxString subFolder = wxString::Format("%sMMEX_%s_Attachments", sep, LastDBFileName);
 
-    if (AttachmentsFolder.StartsWith(USERPROFILE))
-        AttachmentsFolder.Replace(USERPROFILE, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath() + sep);
-    else if (AttachmentsFolder.StartsWith(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR))
-        AttachmentsFolder.Replace(INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR, wxStandardPaths::Get().GetDocumentsDir() + sep);
-    else if (AttachmentsFolder.StartsWith(INIDB_ATTACHMENTS_FOLDER_DBDIR))
-        AttachmentsFolder.Replace(INIDB_ATTACHMENTS_FOLDER_DBDIR, LastDBFolder + sep);
-    else if (AttachmentsFolder.StartsWith(INIDB_ATTACHMENTS_FOLDER_MMEXDIR))
-        AttachmentsFolder.Replace(INIDB_ATTACHMENTS_FOLDER_MMEXDIR, mmex::getPathUser(mmex::DIRECTORY));
-    else if (AttachmentsFolder.StartsWith(DROPBOX))
-        AttachmentsFolder.Replace(DROPBOX, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath() + sep + "Dropbox" + sep);
+	if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_USERPROFILE))
+		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_USERPROFILE, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath() + sep);
+    else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DOCUMENTS))
+        AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DOCUMENTS, wxStandardPaths::Get().GetDocumentsDir() + sep);
+    else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DATABASE))
+		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DATABASE, LastDBFolder + sep);
+    else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_APPDATA))
+		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_APPDATA, UserFolder + sep);
+	else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_DROPBOX))
+		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DROPBOX, wxFileName(wxStandardPaths::Get().GetDocumentsDir()).GetPath() + sep + "Dropbox" + sep);
     if (AttachmentsFolder.EndsWith(sep)) AttachmentsFolder = AttachmentsFolder.RemoveLast(1);
     AttachmentsFolder += subFolder;
     return AttachmentsFolder;

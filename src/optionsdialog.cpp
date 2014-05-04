@@ -872,8 +872,8 @@ void mmOptionsDialog::OnAttachmentsButton(wxCommandEvent& /*event*/)
 {
     wxMenu * attachmentsMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("System documents directory"));
-    attachmentsMenu->Append(menuItem);
-    menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 1, _("Money Manager directory"));
+	attachmentsMenu->Append(menuItem);
+	menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 1, _("Application data directory"));
     attachmentsMenu->Append(menuItem);
     menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 2, _("Database file directory"));
     attachmentsMenu->Append(menuItem);
@@ -894,13 +894,13 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
     wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
     int id = event.GetId();
     if (id == wxID_HIGHEST)
-        AttachmentsFolder = (INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
-    else if (id == wxID_HIGHEST + 1)
-        AttachmentsFolder = (INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR);
+        AttachmentsFolder = (ATTACHMENTS_FOLDER_DOCUMENTS);
+	else if (id == wxID_HIGHEST + 1)
+		AttachmentsFolder = (ATTACHMENTS_FOLDER_APPDATA);
     else if (id == wxID_HIGHEST + 2)
-        AttachmentsFolder = (INIDB_ATTACHMENTS_FOLDER_DBDIR);
+        AttachmentsFolder = (ATTACHMENTS_FOLDER_DATABASE);
     else if (id == wxID_HIGHEST + 3)
-        AttachmentsFolder = (DROPBOX);
+		AttachmentsFolder = (ATTACHMENTS_FOLDER_DROPBOX);
     else
     {
         wxDirDialog dlg(this

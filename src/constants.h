@@ -75,12 +75,11 @@ extern const wxString INIDB_BUDGET_SETUP_WITHOUT_SUMMARY;
 extern const wxString INIDB_BUDGET_SUMMARY_WITHOUT_CATEG;
 extern const wxString INIDB_IGNORE_FUTURE_TRANSACTIONS;
 
-extern const wxString INIDB_ATTACHMENTS_FOLDER_DOCUMENTSDIR;
-extern const wxString INIDB_ATTACHMENTS_FOLDER_MMEXDIR;
-extern const wxString INIDB_ATTACHMENTS_FOLDER_DBDIR;
-extern const wxString DROPBOX;
-extern const wxString USERPROFILE;
-extern const wxString APPDATA;
+extern const wxString ATTACHMENTS_FOLDER_DOCUMENTS;
+extern const wxString ATTACHMENTS_FOLDER_DATABASE;
+extern const wxString ATTACHMENTS_FOLDER_DROPBOX;
+extern const wxString ATTACHMENTS_FOLDER_USERPROFILE;
+extern const wxString ATTACHMENTS_FOLDER_APPDATA;
 
 #endif // _MM_EX_CONSTANTS_H_
 //----------------------------------------------------------------------------
