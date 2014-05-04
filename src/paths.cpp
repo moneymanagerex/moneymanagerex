@@ -211,8 +211,10 @@ wxString mmex::getPathAttachment(const wxString &attachmentsFolder)
 		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_DATABASE, LastDBFolder + sep);
     else if (AttachmentsFolder.StartsWith(ATTACHMENTS_FOLDER_APPDATA))
 		AttachmentsFolder.Replace(ATTACHMENTS_FOLDER_APPDATA, UserFolder + sep);
-    if (AttachmentsFolder.EndsWith(sep)) AttachmentsFolder = AttachmentsFolder.RemoveLast(1);
-    AttachmentsFolder += subFolder;
+    if (AttachmentsFolder.EndsWith(sep))
+		AttachmentsFolder = AttachmentsFolder.RemoveLast(1);
+	if (Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true))
+		AttachmentsFolder += subFolder;
     return AttachmentsFolder;
 }
 

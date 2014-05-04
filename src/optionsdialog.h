@@ -104,6 +104,7 @@ private:
     wxCheckBox* cbBudgetSummaryWithoutCateg_;
     wxCheckBox* cbIgnoreFutureTransactions_;
 
+	wxCheckBox* cbAttachmentsSubfolder_;
 	wxCheckBox* cbDeleteAttachments_;
 	wxCheckBox* cbTrashAttachments_;
 

@@ -518,9 +518,13 @@ void mmOptionsDialog::CreateControls()
 
     attachmentPanelSizer->Add(attachmentStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel
-        , wxID_STATIC, _("Attachment archive folder"));
+	wxString OSType = wxPlatformInfo::Get().GetOperatingSystemFamilyName();
+	wxString attachmentStaticText_desc = wxString::Format(_("Attachment archive folder for %s only:"), OSType);
+    
+	wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel
+		, wxID_STATIC, attachmentStaticText_desc);
     attachmentStaticBoxSizer->Add(attachmentStaticText, g_flags);
+	attachmentStaticText->SetToolTip(_("Every OS type (Win,Mac,Unix) has its attachment folder"));
 
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
     attachmentStaticBoxSizer->Add(attachDefinedSizer);
@@ -537,14 +541,57 @@ void mmOptionsDialog::CreateControls()
 
     attachDefinedSizer->Add(textAttachment, g_flags);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
-    attachmentStaticBoxSizer->AddSpacer(10);
 
-    cbDeleteAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC, _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+	const wxString FolderNotSet = _("Not yet set \\ Not needed");
+	const wxString attachmentFolderWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", FolderNotSet);
+	const wxString attachmentFolderMac = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Mac", FolderNotSet);
+	const wxString attachmentFolderUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Uni", FolderNotSet);
+
+	if (mmPlatformType() != "Win")
+	{
+		wxStaticText* attachmentFolderWinText = new wxStaticText(attachmentPanel
+			, wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
+		attachmentFolderWinText->SetToolTip(attachmentFolderWin);
+		attachmentStaticBoxSizer->Add(attachmentFolderWinText, g_flags);
+	}
+
+	if (mmPlatformType() != "Mac")
+	{
+		wxStaticText* attachmentFolderMacText = new wxStaticText(attachmentPanel
+			, wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
+		attachmentFolderMacText->SetToolTip(attachmentFolderMac);
+		attachmentStaticBoxSizer->Add(attachmentFolderMacText, g_flags);
+	}
+
+	if (mmPlatformType() != "Uni")
+	{
+		wxStaticText* attachmentFolderUnixText = new wxStaticText(attachmentPanel
+			, wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
+		attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
+		attachmentStaticBoxSizer->Add(attachmentFolderUnixText, g_flags);
+	}
+
+	const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
+	const wxFileName fn(LastDBPath);
+	const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
+	const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
+	const wxString cbAttachmentsSubfolder_desc = wxString::Format(_("Create and use '%s' subfolder"), subFolder);
+
+	cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
+		cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+	cbAttachmentsSubfolder_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
+	attachmentStaticBoxSizer->Add(cbAttachmentsSubfolder_, g_flags);
+
+	attachmentStaticBoxSizer->AddSpacer(20);
+
+    cbDeleteAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
+		_("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
     cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
     attachmentStaticBoxSizer->Add(cbDeleteAttachments_, g_flags);
 
-    cbTrashAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC, _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbTrashAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
+		_("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbTrashAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
     cbTrashAttachments_->SetToolTip(_("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
     attachmentStaticBoxSizer->Add(cbTrashAttachments_, g_flags);
@@ -1071,17 +1118,17 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
     wxTextCtrl* attTextCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
     wxString attachmentFolder = attTextCtrl->GetValue().Trim();
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
+	Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", cbAttachmentsSubfolder_->GetValue());
+	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
+    Model_Infotable::instance().Set("ATTACHMENTSTRASH", cbTrashAttachments_->GetValue());
 
-    //Create attachments folder
-    wxString attachmentFolderPath = mmex::getPathAttachment(Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), ""));
+	//Create attachments folder
+	wxString attachmentFolderPath = mmex::getPathAttachment(Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), ""));
 	if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
 	{
 		wxMkdir(attachmentFolderPath);
-		mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
 	}
-
-    Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
-    Model_Infotable::instance().Set("ATTACHMENTSTRASH", cbTrashAttachments_->GetValue());
+	mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
 }
 
 void mmOptionsDialog::SaveOthersPanelSettings()
