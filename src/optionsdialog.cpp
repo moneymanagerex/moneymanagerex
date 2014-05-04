@@ -535,7 +535,6 @@ void mmOptionsDialog::CreateControls()
 
     wxTextCtrl* textAttachment = new wxTextCtrl(attachmentPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachmentFolder, wxDefaultPosition, wxSize(225, -1), 0);
-    textAttachment->SetToolTip(mmex::getPathAttachment(attachmentFolder));
 
     wxButton* AttachmentsFolderButton = new wxButton(attachmentPanel
         , ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
@@ -547,7 +546,7 @@ void mmOptionsDialog::CreateControls()
 	wxStaticText* attachmentFolderCurrOSText = new wxStaticText(attachmentPanel, ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT,
 		_("Real path:") + "\n" + mmex::getPathAttachment(attachmentFolder));
     attachmentFolderCurrOSText->SetFont(this->GetFont().Smaller());
-	attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText);
+	attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText,g_flags);
 
     // Legend
 	wxStaticBox* attachmentStaticBoxLegend = new wxStaticBox(attachmentPanel, wxID_ANY, _("Legend "));
@@ -990,8 +989,8 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
         AttachmentsFolder = dlg.GetPath();
     }
     att->ChangeValue(AttachmentsFolder);
-    att->UnsetToolTip();
-    att->SetToolTip(mmex::getPathAttachment(AttachmentsFolder));
+
+	mmOptionsDialog::OnAttachmentsPathChanged(event);
 }
 
 void mmOptionsDialog::OnAttachmentsPathChanged(wxCommandEvent& event)
@@ -1001,7 +1000,7 @@ void mmOptionsDialog::OnAttachmentsPathChanged(wxCommandEvent& event)
 	wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
 	wxStaticText* text = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
-	text->SetLabel(_("Real path: ") + AttachmentsFolder);
+	text->SetLabel(_("Real path:") + "\n" + AttachmentsFolder);
 }
 
 void mmOptionsDialog::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
