@@ -1,5 +1,6 @@
 /*******************************************************
  Copyright (C) 2006 Madhan Kanagavel, Paulo Lopes
+ copyright (C) 2012 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -321,8 +322,8 @@ void mmHTMLBuilder::DisplayDateHeading(const wxDateTime& startYear, const wxDate
     {
         todaysDate << today_.todays_date << tags::BR << tags::BR
         << wxString::Format(_("From %s till %s")
-            , mmGetNiceDateSimpleString(startYear).Prepend("<b>").Append("</b> ")
-            , mmGetNiceDateSimpleString(endYear).Prepend("<b>").Append("</b> "));
+            , wxString(mmGetNiceDateSimpleString(startYear)).Prepend("<b>").Append("</b> ")
+            , wxString(mmGetNiceDateSimpleString(endYear)).Prepend("<b>").Append("</b> "));
     }
     else
     {

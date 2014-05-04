@@ -825,7 +825,6 @@ void mmQIFImportDialog::getOrCreatePayees()
     Model_Payee::Data_Set data_set;
     for (const auto &item : m_QIFpayeeNames)
     {
-        int payeeID = -1;
         Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(item.first));
         if (payees.empty())
         {
