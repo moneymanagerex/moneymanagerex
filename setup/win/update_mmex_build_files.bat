@@ -1,5 +1,11 @@
 REM --------------------------------------------------------------------------
-REM Author : Stefano Giorgio - Copyright (C) 2012, 2013
+REM Author : Stefano Giorgio [stef145g] - Copyright (C) 2012..2014
+REM 		 Updates by:
+REM          Lisheng [guanlisheng] (C) 2013
+REM          Nikolay [vomikan]     (C) 2013
+REM          James [siena123]      (c) 2014
+REM          gabriele-v            (c) 2014
+REM 
 REM Purpose: To allow the easy collection of support files required for
 REM          - testing in the msw-vc-2013e environment.
 REM          - providing a release version for others.
@@ -10,9 +16,12 @@ REM --------------------------------------------------------------------------
 @echo off
 cls
 
-REM Rename the variable: mmex_release_version to reflect the correct version.
-#set mmex_release_version=mmex_1.0.1.0
-set mmex_release_version=mmex_svn6475
+REM Set the variable: mmex_release_version
+REM to reflect the correct version.
+
+rem set mmex_release_version=mmex_1.1.0.0
+set mmex_release_version=mmex_svn6487
+
 set mmex_system_name=MoneyManagerEX
 set mmex_build_location=..\..\build\msw-vc-2013e
 set mmex_release_location=..\..\mmex_release
@@ -26,19 +35,12 @@ set mmex_build_type=release
 @echo MMEX Support Files Updating Facility
 @echo.
 
-set display_message=Update IDE Build Configurations.
-if exist %mmex_release_location% goto continue_intro
-
-@echo To collect appropriate files for a System Release, create the directory:
-@echo.
-@echo - trunk\mmex_release
-goto display_config_continue
-
-:continue_intro
 set display_message=Update IDE Build Configurations and MMEX Release Locations.
 
 REM Create a compressed version of the output file for distribution
 if exist .\mpress.219\mpress.exe goto display_config_continue
+@echo.
+@echo The program 'mpress.exe' has not been found in dir: .\mpress.219
 @echo.
 @echo To distribute compressed versions of: mmex.exe
 @echo include the package version of: mpress.219 with this batch file.
@@ -52,14 +54,6 @@ if exist .\mpress.219\mpress.exe goto display_config_continue
 pause
 cls
 
-set nmake_command_location="C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin"
-
-REM Starts with Win32 Release
-if not exist %nmake_command_location%\nmake.exe goto start_update_process
-
-rem update the language files if possible
-rem %nmake_command_location%\nmake ..\..\po\makefile.vc
-
 REM Starts with Win32 Release
 goto start_update_process
 
@@ -70,7 +64,6 @@ REM --------------------------------------------------------------------------
 :UpdateFiles
 REM Initially set the location to the mmex_release location
 set mmex_build_dir=%mmex_release_location%\%mmex_release_version%_%mmex_win_system_type%_portable\%location%
-
 if %location%==%mmex_system_name% goto UpdateFiles_Continue
 
 rem Reset the build location to the IDE Build location
@@ -78,6 +71,8 @@ set mmex_build_dir=%mmex_build_location%\%mmex_win_system_type%\%location%
 
 :UpdateFiles_Continue
 set current_location=%mmex_win_system_type%\%location%
+if %current_location% == %mmex_win_system_type%\tests\debug set current_location=tests\%mmex_win_system_type%\debug
+if %current_location% == tests\%mmex_win_system_type%\debug set mmex_build_dir=%mmex_build_location%\%current_location%
 
 if not exist %mmex_build_dir% goto skip_this_location
 @echo ------------------------------------------------------------------------
@@ -127,7 +122,7 @@ cls
 REM Work out what to do next. Continue from already processed, win32\release
 if %current_location%==%mmex_win_system_type%\release       goto update_debug
 if %current_location%==%mmex_win_system_type%\debug         goto update_tests_debug
-if %current_location%==%mmex_win_system_type%\tests\debug   goto update_release
+if %current_location%==tests\%mmex_win_system_type%\debug   goto update_release
 if %current_location%==win32\%mmex_system_name%             goto system_change_x64
 goto ScriptEnd
 REM -------------------------------------------------------------------------- 
@@ -159,8 +154,6 @@ REM Update the release
 :update_release
 REM Update the exe files first
 set location=%mmex_system_name%
-if not exist %mmex_release_location% goto UpdateFiles
-
 set mmex_release_source=%mmex_build_location%\%mmex_win_system_type%\%mmex_build_type%
 set mmex_release_destination=%mmex_release_location%\%mmex_release_version%_%mmex_win_system_type%_portable
 if not exist %mmex_release_destination% mkdir %mmex_release_destination%
