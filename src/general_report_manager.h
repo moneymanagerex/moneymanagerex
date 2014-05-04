@@ -132,53 +132,52 @@ private:
         ID_REPORT_LIST,
     };
     
-    const wxString SAMPLE_ASSETS_DESC =
-        _("Assets");
-    const wxString SAMPLE_ASSETS_LUA =
-        "local total_balance = 0\n"
-        "function handle_record(record)\n"
-        "\ttotal_balance = total_balance + record:get('VALUE');\n"
-        "end\n\n"
-        "function complete(result)\n"
-        "\tresult:set('ASSET_BALANCE', total_balance);\n"
-        "end\n";
-
-    const wxString SAMPLE_ASSETS_SQL =
-        "SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
-
-    const wxString SAMPLE_ASSETS_HTT =
-        "<!DOCTYPE html>"
-        "<h3>Assets</h3>\n"
-        "<TMPL_VAR TODAY><hr>\n"
-        "<table cellspacing=\"1\" width=\"95%\">\n"
-        "    <tr bgcolor='#d5d6de'>\n"
-        "        <td>STARTDATE</td>\n"
-        "        <td>ASSETNAME</td>\n"
-        "        <td>ASSETTYPE</td>\n"
-        "        <td>VALUE</td>\n"
-        "        <td>NOTES</td>\n"
-        "    </tr>\n"
-        "    <TMPL_LOOP NAME=CONTENTS>\n"
-        "    <TMPL_IF __ODD__>\n"
-        "        <tr>\n"
-        "    <TMPL_ELSE>\n"
-        "        <tr bgcolor='#E1EDFB'>\n"
-        "    </TMPL_IF>\n"
-        "        <td><TMPL_VAR STARTDATE></td>\n"
-        "        <td><TMPL_VAR ASSETNAME></td>\n"
-        "        <td><TMPL_VAR ASSETTYPE></td>\n"
-        "        <td nowrap align='right'><TMPL_VAR VALUE></td>\n"
-        "        <td><TMPL_VAR NOTES></td>\n"
-        "    </tr>\n"
-        "    </TMPL_LOOP>\n"
-        "    <tr>\n"
-        "        <td colspan=3>Total Assets: </td>\n"
-        "        <td nowrap align='right'><TMPL_VAR ASSET_BALANCE></td>\n"
-        "        <td></td>"
-        "    </tr>\n"
-        "</table>\n"
-        "<TMPL_LOOP ERRORS>\n"
-        "    <hr>"
-        "    <TMPL_VAR ERROR>\n"
-        "</TMPL_LOOP>";
 };
+
+static const wxString SAMPLE_ASSETS_LUA =
+"local total_balance = 0\n"
+"function handle_record(record)\n"
+"\ttotal_balance = total_balance + record:get('VALUE');\n"
+"end\n\n"
+"function complete(result)\n"
+"\tresult:set('ASSET_BALANCE', total_balance);\n"
+"end\n";
+
+static const wxString SAMPLE_ASSETS_SQL =
+"SELECT STARTDATE, ASSETNAME, ASSETTYPE, VALUE, NOTES, VALUECHANGE, VALUECHANGERATE FROM ASSETS_V1;";
+
+static const wxString SAMPLE_ASSETS_HTT =
+"<!DOCTYPE html>"
+"<h3>Assets</h3>\n"
+"<TMPL_VAR TODAY><hr>\n"
+"<table cellspacing=\"1\" width=\"95%\">\n"
+"    <tr bgcolor='#d5d6de'>\n"
+"        <td>STARTDATE</td>\n"
+"        <td>ASSETNAME</td>\n"
+"        <td>ASSETTYPE</td>\n"
+"        <td>VALUE</td>\n"
+"        <td>NOTES</td>\n"
+"    </tr>\n"
+"    <TMPL_LOOP NAME=CONTENTS>\n"
+"    <TMPL_IF __ODD__>\n"
+"        <tr>\n"
+"    <TMPL_ELSE>\n"
+"        <tr bgcolor='#E1EDFB'>\n"
+"    </TMPL_IF>\n"
+"        <td><TMPL_VAR STARTDATE></td>\n"
+"        <td><TMPL_VAR ASSETNAME></td>\n"
+"        <td><TMPL_VAR ASSETTYPE></td>\n"
+"        <td nowrap align='right'><TMPL_VAR VALUE></td>\n"
+"        <td><TMPL_VAR NOTES></td>\n"
+"    </tr>\n"
+"    </TMPL_LOOP>\n"
+"    <tr>\n"
+"        <td colspan=3>Total Assets: </td>\n"
+"        <td nowrap align='right'><TMPL_VAR ASSET_BALANCE></td>\n"
+"        <td></td>"
+"    </tr>\n"
+"</table>\n"
+"<TMPL_LOOP ERRORS>\n"
+"    <hr>"
+"    <TMPL_VAR ERROR>\n"
+"</TMPL_LOOP>";

@@ -721,7 +721,7 @@ void mmGeneralReportManager::newReport(int sample)
         sqlContent = SAMPLE_ASSETS_SQL;
         luaContent = SAMPLE_ASSETS_LUA;
         httContent = SAMPLE_ASSETS_HTT;
-        description = SAMPLE_ASSETS_DESC;
+        description = _("Assets");
         break;
     }
 
