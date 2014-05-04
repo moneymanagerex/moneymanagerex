@@ -69,6 +69,7 @@ private:
     void SaveStocksUrl();
     void OnAttachmentsMenu(wxCommandEvent& event);
 	void OnAttachmentsPathChanged(wxCommandEvent& event);
+	void OnAttachmentsSubfolderChanged(wxCommandEvent& event);
 
     void SaveGeneralPanelSettings();
     void SaveViewPanelSettings();
@@ -175,6 +176,7 @@ private:
         ID_DIALOG_OPTIONS_TEXTCTRL_WEBAPPGUID,
 		ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER,
 		ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT,
+		ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER,
         ID_DIALOG_OPTIONS_ENABLE_WEB_SERVER,
         ID_DIALOG_OPTIONS_WEB_SERVER_PORT,
 		ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE

@@ -89,6 +89,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
 	EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, mmOptionsDialog::OnAttachmentsPathChanged)
+	EVT_CHECKBOX(ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER, mmOptionsDialog::OnAttachmentsSubfolderChanged)
 END_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -601,7 +602,7 @@ void mmOptionsDialog::CreateControls()
     const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
     const wxString cbAttachmentsSubfolder_desc = wxString::Format(_("Create and use '%s' subfolder"), subFolder);
 
-    cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
+	cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, ID_DIALOG_OPTIONS_CHECKBOX_ATTACHMENTSSUBFOLDER,
         cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbAttachmentsSubfolder_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
     attachmentStaticBoxSizer->Add(cbAttachmentsSubfolder_, g_flags);
@@ -999,7 +1000,13 @@ void mmOptionsDialog::OnAttachmentsPathChanged(wxCommandEvent& event)
 	wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
 	wxStaticText* text = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
-	text->SetLabel(_("Real path: ") + mmex::getPathAttachment(AttachmentsFolder));
+	text->SetLabel(_("Real path: ") + AttachmentsFolder);
+}
+
+void mmOptionsDialog::OnAttachmentsSubfolderChanged(wxCommandEvent& event)
+{
+	Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", cbAttachmentsSubfolder_->GetValue());
+	mmOptionsDialog::OnAttachmentsPathChanged(event);
 }
 
 void mmOptionsDialog::SaveViewAccountOptions()
