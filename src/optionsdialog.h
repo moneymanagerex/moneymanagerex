@@ -68,6 +68,7 @@ private:
     void SaveFinancialYearStart();
     void SaveStocksUrl();
     void OnAttachmentsMenu(wxCommandEvent& event);
+	void OnAttachmentsPathChanged(wxCommandEvent& event);
 
     void SaveGeneralPanelSettings();
     void SaveViewPanelSettings();

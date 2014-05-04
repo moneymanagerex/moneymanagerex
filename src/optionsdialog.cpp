@@ -88,6 +88,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
+	EVT_TEXT(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, mmOptionsDialog::OnAttachmentsPathChanged)
 END_EVENT_TABLE()
 
 mmOptionsDialog::mmOptionsDialog( )
@@ -989,6 +990,13 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
     att->ChangeValue(AttachmentsFolder);
     att->UnsetToolTip();
     att->SetToolTip(mmex::getPathAttachment(AttachmentsFolder));
+}
+
+void mmOptionsDialog::OnAttachmentsPathChanged(wxCommandEvent& event)
+{
+	wxTextCtrl* att = (wxTextCtrl*)FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
+	if (!att) return;
+	wxString AttachmentsFolder = mmex::getPathAttachment(att->GetValue());
 
 	wxStaticText* text = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
 	text->SetLabel(_("Real path: ") + mmex::getPathAttachment(AttachmentsFolder));
