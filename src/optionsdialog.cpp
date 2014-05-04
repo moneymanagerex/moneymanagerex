@@ -86,7 +86,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
-	EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
+    EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
 END_EVENT_TABLE()
 
@@ -288,7 +288,7 @@ void mmOptionsDialog::CreateControls()
     int monthItem = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     monthSelection_->SetSelection(monthItem - 1);
     monthSelection_->SetToolTip(_("Specify month for start of financial year"));
-	
+    
     //a bit more space visual appearance
     generalPanelSizer->AddSpacer(15);
 
@@ -464,7 +464,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-	int size_x = baseCurrencyButton->GetSize().GetY();
+    int size_x = baseCurrencyButton->GetSize().GetY();
     UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11
         , _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
@@ -518,13 +518,13 @@ void mmOptionsDialog::CreateControls()
 
     attachmentPanelSizer->Add(attachmentStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-	wxString OSType = wxPlatformInfo::Get().GetOperatingSystemFamilyName();
-	wxString attachmentStaticText_desc = wxString::Format(_("Attachment archive folder for %s only:"), OSType);
+    wxString OSType = wxPlatformInfo::Get().GetOperatingSystemFamilyName();
+    wxString attachmentStaticText_desc = wxString::Format(_("Attachment archive folder for %s only:"), OSType);
     
-	wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel
-		, wxID_STATIC, attachmentStaticText_desc);
+    wxStaticText* attachmentStaticText = new wxStaticText(attachmentPanel
+        , wxID_STATIC, attachmentStaticText_desc);
     attachmentStaticBoxSizer->Add(attachmentStaticText, g_flags);
-	attachmentStaticText->SetToolTip(_("Every OS type (Win,Mac,Unix) has its attachment folder"));
+    attachmentStaticText->SetToolTip(_("Every OS type (Win,Mac,Unix) has its attachment folder"));
 
     wxBoxSizer* attachDefinedSizer = new wxBoxSizer(wxHORIZONTAL);
     attachmentStaticBoxSizer->Add(attachDefinedSizer);
@@ -533,7 +533,7 @@ void mmOptionsDialog::CreateControls()
 
     wxTextCtrl* textAttachment = new wxTextCtrl(attachmentPanel
         , ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT, attachmentFolder, wxDefaultPosition, wxSize(225, -1), 0);
-	textAttachment->SetToolTip(mmex::getPathAttachment(attachmentFolder));
+    textAttachment->SetToolTip(mmex::getPathAttachment(attachmentFolder));
 
     wxButton* AttachmentsFolderButton = new wxButton(attachmentPanel
         , ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, "...", wxDefaultPosition, wxSize(25, -1), 0);
@@ -542,56 +542,63 @@ void mmOptionsDialog::CreateControls()
     attachDefinedSizer->Add(textAttachment, g_flags);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
 
-	const wxString FolderNotSet = _("Not yet set \\ Not needed");
-	const wxString attachmentFolderWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", FolderNotSet);
-	const wxString attachmentFolderMac = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Mac", FolderNotSet);
-	const wxString attachmentFolderUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Uni", FolderNotSet);
+    //Info
+    wxStaticBox* attachmentStaticBoxInfo = new wxStaticBox(attachmentPanel, wxID_ANY, _("Legend"));
+    attachmentStaticBoxInfo->SetFont(this->GetFont().Italic());
+    wxStaticBoxSizer* attachmentStaticBoxSizerInfo = new wxStaticBoxSizer(attachmentStaticBoxInfo, wxVERTICAL);
+    attachmentStaticBoxSizer->Add(attachmentStaticBoxSizerInfo, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-	if (mmPlatformType() != "Win")
-	{
-		wxStaticText* attachmentFolderWinText = new wxStaticText(attachmentPanel
-			, wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
-		attachmentFolderWinText->SetToolTip(attachmentFolderWin);
-		attachmentStaticBoxSizer->Add(attachmentFolderWinText, g_flags);
-	}
+    const wxString FolderNotSet = _("Not yet set \\ Not needed");
+    const wxString attachmentFolderWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", FolderNotSet);
+    const wxString attachmentFolderMac = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Mac", FolderNotSet);
+    const wxString attachmentFolderUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Uni", FolderNotSet);
 
-	if (mmPlatformType() != "Mac")
-	{
-		wxStaticText* attachmentFolderMacText = new wxStaticText(attachmentPanel
-			, wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
-		attachmentFolderMacText->SetToolTip(attachmentFolderMac);
-		attachmentStaticBoxSizer->Add(attachmentFolderMacText, g_flags);
-	}
+    if (mmPlatformType() != "Win")
+    {
+        wxStaticText* attachmentFolderWinText = new wxStaticText(attachmentPanel
+            , wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
+        attachmentFolderWinText->SetToolTip(attachmentFolderWin);
+        attachmentStaticBoxSizerInfo->Add(attachmentFolderWinText, g_flags);
+    }
 
-	if (mmPlatformType() != "Uni")
-	{
-		wxStaticText* attachmentFolderUnixText = new wxStaticText(attachmentPanel
-			, wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
-		attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
-		attachmentStaticBoxSizer->Add(attachmentFolderUnixText, g_flags);
-	}
+    if (mmPlatformType() != "Mac")
+    {
+        wxStaticText* attachmentFolderMacText = new wxStaticText(attachmentPanel
+            , wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
+        attachmentFolderMacText->SetToolTip(attachmentFolderMac);
+        attachmentStaticBoxSizerInfo->Add(attachmentFolderMacText, g_flags);
+    }
 
-	const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
-	const wxFileName fn(LastDBPath);
-	const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
-	const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
-	const wxString cbAttachmentsSubfolder_desc = wxString::Format(_("Create and use '%s' subfolder"), subFolder);
+    if (mmPlatformType() != "Uni")
+    {
+        wxStaticText* attachmentFolderUnixText = new wxStaticText(attachmentPanel
+            , wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
+        attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
+        attachmentStaticBoxSizerInfo->Add(attachmentFolderUnixText, g_flags);
+    }
+    //
 
-	cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
-		cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-	cbAttachmentsSubfolder_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
-	attachmentStaticBoxSizer->Add(cbAttachmentsSubfolder_, g_flags);
+    const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
+    const wxFileName fn(LastDBPath);
+    const wxString LastDBFileName = fn.FileName(LastDBPath).GetName();
+    const wxString subFolder = wxString::Format("MMEX_%s_Attachments", fn.FileName(LastDBPath).GetName());
+    const wxString cbAttachmentsSubfolder_desc = wxString::Format(_("Create and use '%s' subfolder"), subFolder);
 
-	attachmentStaticBoxSizer->AddSpacer(20);
+    cbAttachmentsSubfolder_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
+        cbAttachmentsSubfolder_desc, wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbAttachmentsSubfolder_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSSUBFOLDER", true));
+    attachmentStaticBoxSizer->Add(cbAttachmentsSubfolder_, g_flags);
+
+    attachmentStaticBoxSizer->AddSpacer(20);
 
     cbDeleteAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
-		_("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        _("Delete file after import"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbDeleteAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSDELETE", false));
     cbDeleteAttachments_->SetToolTip(_("Select to delete file after import in attachments archive"));
     attachmentStaticBoxSizer->Add(cbDeleteAttachments_, g_flags);
 
     cbTrashAttachments_ = new wxCheckBox(attachmentPanel, wxID_STATIC,
-		_("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        _("When remove attachment, move file instead of delete"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbTrashAttachments_->SetValue(Model_Infotable::instance().GetBoolInfo("ATTACHMENTSTRASH", false));
     cbTrashAttachments_->SetToolTip(_("Select to don't delete file when attachment is removed, but instead move it to 'Deleted' subfolder"));
     attachmentStaticBoxSizer->Add(cbTrashAttachments_, g_flags);
@@ -800,20 +807,20 @@ void mmOptionsDialog::CreateControls()
 
     webserverStaticBoxSizer->Add(flex_sizer4, g_flags);
 
-	//Usage data send
-	networkPanelSizer->AddSpacer(15);
+    //Usage data send
+    networkPanelSizer->AddSpacer(15);
 
-	wxStaticBox* usageStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Usage statistics"));
-	usageStaticBox->SetFont(staticBoxFontSetting);
-	wxStaticBoxSizer* usageStaticBoxSizer = new wxStaticBoxSizer(usageStaticBox, wxVERTICAL);
+    wxStaticBox* usageStaticBox = new wxStaticBox(networkPanel, wxID_STATIC, _("Usage statistics"));
+    usageStaticBox->SetFont(staticBoxFontSetting);
+    wxStaticBoxSizer* usageStaticBoxSizer = new wxStaticBoxSizer(usageStaticBox, wxVERTICAL);
     networkPanelSizer->Add(usageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-	cbSendData_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE
-		, _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-	cbSendData_->SetValue(GetIniDatabaseCheckboxValue("SENDUSAGESTATS", true));
-	cbSendData_->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
+    cbSendData_ = new wxCheckBox(networkPanel, ID_DIALOG_OPTIONS_ALLOW_SEND_USAGE
+        , _("Send anonymous statistics usage data"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+    cbSendData_->SetValue(GetIniDatabaseCheckboxValue("SENDUSAGESTATS", true));
+    cbSendData_->SetToolTip(_("Enable to help us sending anonymous data about MMEX usage."));
 
-	usageStaticBoxSizer->Add(cbSendData_, g_flags);
+    usageStaticBoxSizer->Add(cbSendData_, g_flags);
 
     networkPanel->SetSizer(networkPanelSizer);
 
@@ -834,20 +841,21 @@ void mmOptionsDialog::CreateControls()
    /**********************************************************************************************
     Button Panel with OK and Cancel Buttons
     **********************************************************************************************/
-    wxStaticLine* panelSeparatorLine = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-    mainDialogSizer->Add(panelSeparatorLine,0,wxGROW|wxLEFT|wxRIGHT, 10);
+    wxStaticLine* panelSeparatorLine = new wxStaticLine(this
+        , wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+    mainDialogSizer->Add(panelSeparatorLine, 0, wxGROW | wxLEFT | wxRIGHT, 10);
 
     wxPanel* buttonPanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
     wxBoxSizer* buttonPanelSizer = new wxBoxSizer(wxHORIZONTAL);
     buttonPanel->SetSizer(buttonPanelSizer);
-    mainDialogSizer->Add(buttonPanel, 0, wxALIGN_RIGHT|wxALL, 5);
+    mainDialogSizer->Add(buttonPanel, wxSizerFlags(g_flags).Center());
 
     wxButton* itemButtonOK = new wxButton(buttonPanel, wxID_OK, _("&OK "));
     wxButton* itemButtonApply = new wxButton(buttonPanel, wxID_APPLY, _("&Apply"));
     wxButton* itemButtonCancel = new wxButton(buttonPanel, wxID_CANCEL, _("&Cancel "));
-    buttonPanelSizer->Add(itemButtonOK, 0, wxALIGN_RIGHT|wxRIGHT, 5);
-    buttonPanelSizer->Add(itemButtonApply, wxALIGN_RIGHT|wxRIGHT, 5);
-    buttonPanelSizer->Add(itemButtonCancel, 0, wxALIGN_RIGHT|wxRIGHT, 5);
+    buttonPanelSizer->Add(itemButtonOK, g_flags);
+    buttonPanelSizer->Add(itemButtonApply, g_flags);
+    buttonPanelSizer->Add(itemButtonCancel, g_flags);
     itemButtonOK->SetFocus();
 }
 
@@ -919,8 +927,8 @@ void mmOptionsDialog::OnAttachmentsButton(wxCommandEvent& /*event*/)
 {
     wxMenu * attachmentsMenu = new wxMenu;
     wxMenuItem* menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST, _("System documents directory"));
-	attachmentsMenu->Append(menuItem);
-	menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 1, _("Application data directory"));
+    attachmentsMenu->Append(menuItem);
+    menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 1, _("Application data directory"));
     attachmentsMenu->Append(menuItem);
     menuItem = new wxMenuItem(attachmentsMenu, wxID_HIGHEST + 2, _("Database file directory"));
     attachmentsMenu->Append(menuItem);
@@ -943,12 +951,12 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
     int id = event.GetId();
     if (id == wxID_HIGHEST)
         AttachmentsFolder = (ATTACHMENTS_FOLDER_DOCUMENTS);
-	else if (id == wxID_HIGHEST + 1)
-		AttachmentsFolder = (ATTACHMENTS_FOLDER_APPDATA);
+    else if (id == wxID_HIGHEST + 1)
+        AttachmentsFolder = (ATTACHMENTS_FOLDER_APPDATA);
     else if (id == wxID_HIGHEST + 2)
         AttachmentsFolder = (ATTACHMENTS_FOLDER_DATABASE);
     else if (id == wxID_HIGHEST + 3)
-		AttachmentsFolder = (ATTACHMENTS_FOLDER_USERPROFILE + "Dropbox");
+        AttachmentsFolder = (ATTACHMENTS_FOLDER_USERPROFILE + "Dropbox");
     else
     {
         wxDirDialog dlg(this
@@ -1118,17 +1126,17 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
     wxTextCtrl* attTextCtrl = (wxTextCtrl*) FindWindow(ID_DIALOG_OPTIONS_TEXTCTRL_ATTACHMENT);
     wxString attachmentFolder = attTextCtrl->GetValue().Trim();
     Model_Infotable::instance().Set("ATTACHMENTSFOLDER:" + mmPlatformType(), attachmentFolder);
-	Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", cbAttachmentsSubfolder_->GetValue());
-	Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
+    Model_Infotable::instance().Set("ATTACHMENTSSUBFOLDER", cbAttachmentsSubfolder_->GetValue());
+    Model_Infotable::instance().Set("ATTACHMENTSDELETE", cbDeleteAttachments_->GetValue());
     Model_Infotable::instance().Set("ATTACHMENTSTRASH", cbTrashAttachments_->GetValue());
 
-	//Create attachments folder
-	wxString attachmentFolderPath = mmex::getPathAttachment(Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), ""));
-	if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
-	{
-		wxMkdir(attachmentFolderPath);
-	}
-	mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
+    //Create attachments folder
+    wxString attachmentFolderPath = mmex::getPathAttachment(Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), ""));
+    if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
+    {
+        wxMkdir(attachmentFolderPath);
+    }
+    mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
 }
 
 void mmOptionsDialog::SaveOthersPanelSettings()
@@ -1180,7 +1188,7 @@ void mmOptionsDialog::SaveNetworkPanelSettings()
     Model_Setting::instance().Set("ENABLEWEBSERVER", cbWebServerCheckBox_->GetValue());
     Model_Setting::instance().Set("WEBSERVERPORT", scWebServerPort_->GetValue());
 
-	Model_Setting::instance().Set("SENDUSAGESTATS", cbSendData_->GetValue());
+    Model_Setting::instance().Set("SENDUSAGESTATS", cbSendData_->GetValue());
 }
 
 void mmOptionsDialog::OnOk(wxCommandEvent& /*event*/)
