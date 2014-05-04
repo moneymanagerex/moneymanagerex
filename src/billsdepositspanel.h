@@ -50,7 +50,7 @@ private:
     virtual wxString OnGetItemText(long item, long column) const;
     virtual int OnGetItemImage(long item) const;
 
-    void OnItemRightClick(wxListEvent& event);
+    void OnItemRightClick(wxMouseEvent& event);
     void OnListItemActivated(wxListEvent& event);
     void OnMarkTransaction(wxCommandEvent& event);
     void OnMarkAllTransactions(wxCommandEvent& event);
@@ -80,14 +80,10 @@ public:
     );
     ~mmBillsDepositsPanel();
 
-    bool Create( wxWindow *parent, wxWindowID winid,
-                 const wxPoint& pos = wxDefaultPosition,
-                 const wxSize& size = wxDefaultSize,
-                 long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-                 const wxString& name = wxPanelNameStr);
     /* Helper Functions/data */
     Model_Billsdeposits::Full_Data_Set bills_;
     void updateBottomPanelData(int selIndex);
+    void enableEditDeleteButtons(bool en);
     /* updates the Repeating transactions panel data */
     int initVirtualListControl(int id = -1);
     /* Getter for Virtual List Control */
@@ -102,6 +98,11 @@ public:
 
 private:
     void CreateControls();
+    bool Create(wxWindow *parent, wxWindowID winid,
+        const wxPoint& pos = wxDefaultPosition,
+        const wxSize& size = wxDefaultSize,
+        long style = wxTAB_TRAVERSAL | wxNO_BORDER,
+        const wxString& name = wxPanelNameStr);
 
     /* Event handlers for Buttons */
     void OnNewBDSeries(wxCommandEvent& event);
@@ -110,8 +111,6 @@ private:
 
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
-
-    void enableEditDeleteButtons(bool en);
 
     void OnViewPopupSelected(wxCommandEvent& event);
 

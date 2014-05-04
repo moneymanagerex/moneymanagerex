@@ -77,7 +77,7 @@ END_EVENT_TABLE()
 /*******************************************************/
 BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_LIST_ITEM_ACTIVATED(wxID_ANY,   billsDepositsListCtrl::OnListItemActivated)
-    EVT_LIST_ITEM_RIGHT_CLICK(wxID_ANY, billsDepositsListCtrl::OnItemRightClick)
+    EVT_RIGHT_DOWN(billsDepositsListCtrl::OnItemRightClick)
     EVT_LIST_ITEM_SELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemSelected)
     EVT_LIST_ITEM_DESELECTED(wxID_ANY,    billsDepositsListCtrl::OnListItemDeselected)
     EVT_LIST_COL_END_DRAG(wxID_ANY, billsDepositsListCtrl::OnItemResize)
@@ -288,9 +288,9 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer5->Add(itemStaticText444, 1, wxGROW|wxTOP, 12);
 
     //Infobar
-    wxStaticText* text = new wxStaticText( itemPanel12, ID_PANEL_BD_STATIC_DETAILS, "",
-    wxPoint(-1,-1), wxSize(200, -1), wxNO_BORDER|wxTE_MULTILINE|wxTE_WORDWRAP|wxST_NO_AUTORESIZE);
-    itemBoxSizer4->Add(text, 1, wxGROW|wxLEFT|wxRIGHT, 14);
+    wxStaticText* text = new wxStaticText( itemPanel12, ID_PANEL_BD_STATIC_DETAILS, ""
+        , wxPoint(-1, -1), wxSize(200, -1), wxNO_BORDER | wxTE_MULTILINE | wxTE_WORDWRAP | wxST_NO_AUTORESIZE);
+    itemBoxSizer4->Add(text, 1, wxGROW | wxLEFT | wxRIGHT, 14);
 
     mmBillsDepositsPanel::updateBottomPanelData(-1);
 }
@@ -382,10 +382,17 @@ void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
     Model_Setting::instance().Set(parameter_name, current_width);
 }
 
-void billsDepositsListCtrl::OnItemRightClick(wxListEvent& event)
+void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
 {
-    m_selected_row = event.GetIndex();
+    int Flags = wxLIST_HITTEST_ONITEM;
+    m_selected_row = HitTest(wxPoint(event.m_x, event.m_y), Flags);
 
+    if (m_selected_row >= 0)
+    {
+        SetItemState(m_selected_row, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+        SetItemState(m_selected_row, wxLIST_STATE_FOCUSED, wxLIST_STATE_FOCUSED);
+    }
+    bool item_active = (m_selected_row >= 0);
     wxMenu menu;
     menu.Append(MENU_POPUP_BD_ENTER_OCCUR, _("Enter next Occurrence..."));
     menu.AppendSeparator();
@@ -394,7 +401,15 @@ void billsDepositsListCtrl::OnItemRightClick(wxListEvent& event)
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Bills && Deposit Series..."));
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Bills && Deposit Series..."));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Bills && Deposit Series..."));
-    PopupMenu(&menu, event.GetPoint());
+    
+    menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
+    menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
+    menu.Enable(MENU_TREEPOPUP_EDIT, item_active);
+    menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
+
+    cp_->enableEditDeleteButtons(item_active);
+    PopupMenu(&menu, event.GetPosition());
+    this->SetFocus();
 }
 
 wxString mmBillsDepositsPanel::getItem(long item, long column)
@@ -618,47 +633,30 @@ void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
 void mmBillsDepositsPanel::updateBottomPanelData(int selIndex)
 {
     enableEditDeleteButtons(selIndex >= 0);
-    wxStaticText* st = (wxStaticText*)FindWindow(ID_PANEL_BD_STATIC_DETAILS);
-    wxStaticText* stm = (wxStaticText*)FindWindow(ID_PANEL_BD_STATIC_MINI);
-
-    if (selIndex !=-1)
+    if (selIndex != -1)
     {
-        wxString categoryStr = "";
-        if (Model_Billsdeposits::type(bills_[selIndex]) == Model_Billsdeposits::TRANSFER)
-        {
-            const Model_Category::Data* category = Model_Category::instance().get(bills_[selIndex].CATEGID);
-            if (category)
-                categoryStr = category->CATEGNAME;
-        }
-        wxString subcategoryStr = "";
-        if (bills_[selIndex].SUBCATEGID >= 0)
-        {
-            const Model_Subcategory::Data* subcategory = Model_Subcategory::instance().get(bills_[selIndex].SUBCATEGID);
-            if (subcategory)
-                subcategoryStr = subcategory->SUBCATEGNAME;
-        }
-        wxString addInfo;
-        addInfo << categoryStr << (subcategoryStr == "" ? "" : ":" + subcategoryStr);
-        stm->SetLabel(addInfo);
-        st ->SetLabel (bills_[selIndex].NOTES );
-    }
-    else
-    {
-        st-> SetLabel(this->tips());
-        stm-> SetLabel("");
+        wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
+        wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);
+        stm->SetLabel(Model_Category::full_name(bills_[selIndex].CATEGID, bills_[selIndex].SUBCATEGID));
+        st->SetLabel (bills_[selIndex].NOTES );
     }
 }
 
 void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
 {
-    wxButton* bE = (wxButton*)FindWindow(wxID_EDIT);
-    wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
-    wxButton* bN = (wxButton*)FindWindow(wxID_PASTE);
-    wxButton* bS = (wxButton*)FindWindow(wxID_IGNORE);
-    bE->Enable(en);
-    bD->Enable(en);
-    bN->Enable(en);
-    bS->Enable(en);
+    wxButton* bE = (wxButton*) FindWindow(wxID_EDIT);
+    wxButton* bD = (wxButton*) FindWindow(wxID_DELETE);
+    wxButton* bN = (wxButton*) FindWindow(wxID_PASTE);
+    wxButton* bS = (wxButton*) FindWindow(wxID_IGNORE);
+    if (bE) bE->Enable(en);
+    if (bD) bD->Enable(en);
+    if (bN) bN->Enable(en);
+    if (bS) bS->Enable(en);
+
+    wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
+    wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);
+    if (st) st->SetLabel(this->tips());
+    if (stm) stm->ClearBackground();
 }
 
 void mmBillsDepositsPanel::sortTable()

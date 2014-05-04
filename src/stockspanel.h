@@ -25,6 +25,11 @@
 #include "model/Model_Currency.h"
 #include "model/Model_Account.h"
 
+static const wxString STOCKTIPS[] = { 
+    _("Using MMEX it is possible to track stocks/mutual funds investments."),
+    _("To create new stocks entry the Symbol, Number of shares and Purchase prise should be entered."),
+    _("Sample of UK (HSBC HLDG) share: HSBA.L")};
+
 class wxListEvent;
 class mmStocksPanel;
 
@@ -153,7 +158,6 @@ private:
     bool StocksRefreshStatus_;
     wxDateTime LastRefreshDT_;
 
-    wxString tips_;
 };
 
 #endif

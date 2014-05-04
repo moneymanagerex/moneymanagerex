@@ -377,7 +377,6 @@ mmStocksPanel::mmStocksPanel(int accountID,
                              const wxString& name)
 : accountID_(accountID)
 , m_currency()
-, tips_(_("Using MMEX it is possible to track stocks/mutual funds investments."))
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -788,12 +787,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
 
 void mmStocksPanel::updateExtraStocksData(int selectedIndex)
 {
-    if (selectedIndex == -1)
-    {
-        stock_details_->SetLabel(this->tips_);
-        stock_details_short_->SetLabel(wxString::Format(_("Last updated %s"), strLastUpdate_));
-    }
-    else
+    enableEditDeleteButtons(selectedIndex >= 0);
+    if (selectedIndex >= 0)
     {
         const wxString additionInfo = listCtrlAccount_->getStockInfo(selectedIndex);
         stock_details_->SetLabel(additionInfo);
@@ -867,10 +862,15 @@ void mmStocksPanel::enableEditDeleteButtons(bool en)
     wxButton* bE = (wxButton*)FindWindow(wxID_EDIT);
     wxButton* bD = (wxButton*)FindWindow(wxID_DELETE);
     wxButton* bM = (wxButton*)FindWindow(wxID_MOVE_FRAME);
-    bE->Enable(en);
-    bD->Enable(en);
-    bM->Enable(en);
+    if (bE) bE->Enable(en);
+    if (bD) bD->Enable(en);
+    if (bM) bM->Enable(en);
     attachment_button_->Enable(en);
+    if (!en)
+    {
+        stock_details_->SetLabel(STOCKTIPS[rand() % sizeof(STOCKTIPS) / sizeof(wxString)]);
+        stock_details_short_->SetLabel(wxString::Format(_("Last updated %s"), strLastUpdate_));
+    }
 }
 
 void mmStocksPanel::call_dialog(int selectedIndex)
