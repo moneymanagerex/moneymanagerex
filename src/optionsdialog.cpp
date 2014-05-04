@@ -542,41 +542,57 @@ void mmOptionsDialog::CreateControls()
     attachDefinedSizer->Add(textAttachment, g_flags);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
 
-    //Info
-    wxStaticBox* attachmentStaticBoxInfo = new wxStaticBox(attachmentPanel, wxID_ANY, _("Legend"));
-    attachmentStaticBoxInfo->SetFont(this->GetFont().Italic());
-    wxStaticBoxSizer* attachmentStaticBoxSizerInfo = new wxStaticBoxSizer(attachmentStaticBoxInfo, wxVERTICAL);
-    attachmentStaticBoxSizer->Add(attachmentStaticBoxSizerInfo, wxSizerFlags(g_flagsExpand).Proportion(0));
+	wxStaticText* attachmentFolderCurrOSText = new wxStaticText(attachmentPanel, ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT,
+		_("Real path: ") + mmex::getPathAttachment(attachmentFolder));
+	attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText);
 
-    const wxString FolderNotSet = _("Not yet set \\ Not needed");
-    const wxString attachmentFolderWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", FolderNotSet);
-    const wxString attachmentFolderMac = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Mac", FolderNotSet);
-    const wxString attachmentFolderUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Uni", FolderNotSet);
+    // Legend
+	wxStaticBox* attachmentStaticBoxLegend = new wxStaticBox(attachmentPanel, wxID_ANY, _("Legend "));
+	attachmentStaticBoxLegend->SetFont(this->GetFont().Italic());
+	wxStaticBoxSizer* attachmentStaticBoxSizerLegend = new wxStaticBoxSizer(attachmentStaticBoxLegend, wxVERTICAL);
+	attachmentStaticBoxSizer->Add(attachmentStaticBoxSizerLegend, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    if (mmPlatformType() != "Win")
-    {
-        wxStaticText* attachmentFolderWinText = new wxStaticText(attachmentPanel
-            , wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
-        attachmentFolderWinText->SetToolTip(attachmentFolderWin);
-        attachmentStaticBoxSizerInfo->Add(attachmentFolderWinText, g_flags);
-    }
+	wxString legend = wxString::Format(_("%s -> User document directory\n%s -> User profile folder\n%s -> Folder of .MMB database file\n%s -> MMEX Application data folder"),
+		ATTACHMENTS_FOLDER_DOCUMENTS, ATTACHMENTS_FOLDER_USERPROFILE, ATTACHMENTS_FOLDER_DATABASE, ATTACHMENTS_FOLDER_APPDATA);
+	wxStaticText* legendStaticText = new wxStaticText(attachmentPanel, wxID_STATIC, legend);
+	attachmentStaticBoxSizerLegend->Add(legendStaticText);
+	//End legend
 
-    if (mmPlatformType() != "Mac")
-    {
-        wxStaticText* attachmentFolderMacText = new wxStaticText(attachmentPanel
-            , wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
-        attachmentFolderMacText->SetToolTip(attachmentFolderMac);
-        attachmentStaticBoxSizerInfo->Add(attachmentFolderMacText, g_flags);
-    }
+	//Other OS folders
+	wxStaticBox* attachmentStaticBoxInfo = new wxStaticBox(attachmentPanel, wxID_ANY, _("Other OS folders "));
+	attachmentStaticBoxInfo->SetFont(this->GetFont().Italic());
+	wxStaticBoxSizer* attachmentStaticBoxSizerInfo = new wxStaticBoxSizer(attachmentStaticBoxInfo, wxVERTICAL);
+	attachmentStaticBoxSizer->Add(attachmentStaticBoxSizerInfo, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    if (mmPlatformType() != "Uni")
-    {
-        wxStaticText* attachmentFolderUnixText = new wxStaticText(attachmentPanel
-            , wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
-        attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
-        attachmentStaticBoxSizerInfo->Add(attachmentFolderUnixText, g_flags);
-    }
-    //
+	const wxString FolderNotSet = _("Not yet set");
+	const wxString attachmentFolderWin = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Win", FolderNotSet);
+	const wxString attachmentFolderMac = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Mac", FolderNotSet);
+	const wxString attachmentFolderUnix = Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:Uni", FolderNotSet);
+
+	if (mmPlatformType() != "Win")
+	{
+		wxStaticText* attachmentFolderWinText = new wxStaticText(attachmentPanel
+			, wxID_STATIC, _("Windows folder -> ") + attachmentFolderWin.Left(50));
+		attachmentFolderWinText->SetToolTip(attachmentFolderWin);
+		attachmentStaticBoxSizerInfo->Add(attachmentFolderWinText);
+	}
+
+	if (mmPlatformType() != "Mac")
+	{
+		wxStaticText* attachmentFolderMacText = new wxStaticText(attachmentPanel
+			, wxID_STATIC, _("Mac folder -> ") + attachmentFolderMac.Left(50));
+		attachmentFolderMacText->SetToolTip(attachmentFolderMac);
+		attachmentStaticBoxSizerInfo->Add(attachmentFolderMacText);
+	}
+
+	if (mmPlatformType() != "Uni")
+	{
+		wxStaticText* attachmentFolderUnixText = new wxStaticText(attachmentPanel
+			, wxID_STATIC, _("Unix folder -> ") + attachmentFolderUnix.Left(50));
+		attachmentFolderUnixText->SetToolTip(attachmentFolderUnix);
+		attachmentStaticBoxSizerInfo->Add(attachmentFolderUnixText);
+	}
+	//End other OS folders
 
     const wxString LastDBPath = Model_Setting::instance().getLastDbPath();
     const wxFileName fn(LastDBPath);
@@ -973,6 +989,9 @@ void mmOptionsDialog::OnAttachmentsMenu(wxCommandEvent& event)
     att->ChangeValue(AttachmentsFolder);
     att->UnsetToolTip();
     att->SetToolTip(mmex::getPathAttachment(AttachmentsFolder));
+
+	wxStaticText* text = (wxStaticText*)FindWindow(ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT);
+	text->SetLabel(_("Real path: ") + mmex::getPathAttachment(AttachmentsFolder));
 }
 
 void mmOptionsDialog::SaveViewAccountOptions()
