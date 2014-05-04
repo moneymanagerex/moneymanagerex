@@ -545,7 +545,8 @@ void mmOptionsDialog::CreateControls()
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
 
 	wxStaticText* attachmentFolderCurrOSText = new wxStaticText(attachmentPanel, ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT,
-		_("Real path: ") + mmex::getPathAttachment(attachmentFolder));
+		_("Real path:") + "\n" + mmex::getPathAttachment(attachmentFolder));
+    attachmentFolderCurrOSText->SetFont(this->GetFont().Smaller());
 	attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText);
 
     // Legend
