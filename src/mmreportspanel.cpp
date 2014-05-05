@@ -23,6 +23,7 @@
 #include "reports/htmlbuilder.h"
 #include "mmex.h"
 #include "mmframe.h"
+#include "paths.h"
 #include "webserver.h"
 #include "model/Model_Account.h"
 #include "model/Model_Checking.h"
@@ -108,10 +109,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->SetSizeHints(this);
 
     getReportText();
-    const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
-        , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
-    const wxString index = wxString::Format("%sindex.html", tempDir);
-    browser_->LoadURL(index);
+    browser_->LoadURL(mmex::getReportIndex());
     return TRUE;
 }
 
@@ -129,10 +127,7 @@ wxString mmReportsPanel::getReportText()
         wxGetApp().m_frame->SetStatusText(rb_->version());
         htmlreport_ = rb_->getHTMLText();
 
-        const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
-            , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
-        const wxString index = wxString::Format("%sindex.html", tempDir);
-        wxFileOutputStream index_output(index);
+        wxFileOutputStream index_output(mmex::getReportIndex());
         wxTextOutputStream index_file(index_output);
         index_file << htmlreport_;
         index_output.Close();
