@@ -25,10 +25,13 @@
 #include "paths.h"
 #include "validators.h"
 #include "webapp.h"
+#include "attachmentdialog.h"
 #include <wx/valnum.h>
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 #include "model/Model_Currency.h"
+#include "model/Model_Attachment.h"
+#include "../resources/attachment.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmNewAcctDialog, wxDialog )
 
@@ -36,6 +39,7 @@ BEGIN_EVENT_TABLE( mmNewAcctDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmNewAcctDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmNewAcctDialog::OnCancel)
     EVT_BUTTON(ID_DIALOG_NEWACCT_BUTTON_CURRENCY, mmNewAcctDialog::OnCurrency)
+	EVT_BUTTON(wxID_FILE, mmNewAcctDialog::OnAttachments)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 99, mmNewAcctDialog::OnCustonImage)
 END_EVENT_TABLE()
 
@@ -265,8 +269,14 @@ void mmNewAcctDialog::CreateControls()
         , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmNewAcctDialog::OnImageButton), NULL, this);
-
     itemBoxSizer28->Add(m_bitmapButtons, g_flags);
+
+	bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE
+		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
+	bAttachments_->SetToolTip(_("Organize attachments of this stock"));
+	itemBoxSizer28->Add(bAttachments_, g_flags);
+
     itemBoxSizer28->AddSpacer(20);
 
     wxButton* itemButton29 = new wxButton(itemPanel27, wxID_OK, _("&OK "));
@@ -309,6 +319,13 @@ void mmNewAcctDialog::OnCurrency(wxCommandEvent& /*event*/)
 
         if (this->m_account) m_account->CURRENCYID = currency->CURRENCYID;
     }
+}
+
+void mmNewAcctDialog::OnAttachments(wxCommandEvent& /*event*/)
+{
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
+	mmAttachmentDialog dlg(this, RefType, m_account->ACCOUNTID);
+	dlg.ShowModal();
 }
 
 bool mmNewAcctDialog::termAccountActivated()

@@ -22,7 +22,8 @@ const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachm
 {
 	std::make_pair(Model_Attachment::TRANSACTION, "Transaction"),
 	std::make_pair(Model_Attachment::STOCK, "Stock"),
-	std::make_pair(Model_Attachment::PAYEE, "Asset"),
+	std::make_pair(Model_Attachment::ASSET, "Asset"),
+	std::make_pair(Model_Attachment::BANKACCOUNT, "BankAccount"),
 	std::make_pair(Model_Attachment::PAYEE, "Payee")
 };
 
@@ -107,6 +108,8 @@ Model_Attachment::REFTYPE Model_Attachment::reftype(const Data* attachment)
 		return STOCK;
 	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[ASSET]) == 0)
 		return ASSET;
+	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[BANKACCOUNT]) == 0)
+		return BANKACCOUNT;
 	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[PAYEE]) == 0)
 		return PAYEE;
 	else

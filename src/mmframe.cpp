@@ -28,6 +28,7 @@
 #include "accountdialog.h"
 #include "appstartdialog.h"
 #include "assetspanel.h"
+#include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
 #include "billsdepositspanel.h"
 #include "budgetingpanel.h"
@@ -164,6 +165,7 @@ EVT_MENU(MENU_CURRENCY, mmGUIFrame::OnCurrency)
 EVT_MENU(MENU_TRANSACTIONREPORT, mmGUIFrame::OnTransactionReport)
 EVT_MENU(wxID_VIEW_LIST, mmGUIFrame::OnGeneralReportManager)
 EVT_MENU(MENU_TREEPOPUP_LAUNCHWEBSITE, mmGUIFrame::OnLaunchAccountWebsite)
+EVT_MENU(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, mmGUIFrame::OnAccountAttachments)
 EVT_MENU(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbar)
 EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
 EVT_MENU(MENU_VIEW_BANKACCOUNTS, mmGUIFrame::OnViewBankAccounts)
@@ -1549,6 +1551,19 @@ void mmGUIFrame::OnLaunchAccountWebsite(wxCommandEvent& /*event*/)
 }
 //----------------------------------------------------------------------------
 
+void mmGUIFrame::OnAccountAttachments(wxCommandEvent& /*event*/)
+{
+	if (selectedItemData_)
+	{
+		int RefId = selectedItemData_->getData();
+		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT);
+
+		mmAttachmentDialog dlg(this, RefType, RefId);
+		dlg.ShowModal();
+	}
+}
+
+//----------------------------------------------------------------------------
 void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
 {
     if (selectedItemData_)
@@ -1632,6 +1647,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
                 // Enable menu item only if a website exists for the account.
                 bool webStatus = !account->WEBSITE.IsEmpty();
                 menu.Enable(MENU_TREEPOPUP_LAUNCHWEBSITE, webStatus);
+				menu.Append(MENU_TREEPOPUP_ACCOUNTATTACHMENTS, _("&Organize Attachments"));
 
                 PopupMenu(&menu, pt);
             }

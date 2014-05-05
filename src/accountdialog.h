@@ -50,6 +50,7 @@ private:
     void fillControls(void);
     void OnCustonImage(wxCommandEvent& event);
     void OnTextEntered(wxCommandEvent& event);
+	void OnAttachments(wxCommandEvent& event);
 
     void OnImageButton(wxCommandEvent& event);
     void changeFocus(wxChildFocusEvent& event);
@@ -61,6 +62,7 @@ private:
     mmTextCtrl* m_itemInitValue;
     wxImageList* m_imageList;
     wxBitmapButton* m_bitmapButtons;
+	wxBitmapButton* bAttachments_;
     wxString m_accessInfo;
     wxString m_notesLabel;
     int m_currencyID;

@@ -188,6 +188,7 @@ private:
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);
     void OnLaunchAccountWebsite(wxCommandEvent& event);
+	void OnAccountAttachments(wxCommandEvent& event);
 
     void OnNew(wxCommandEvent& event);
     void OnOpen(wxCommandEvent& event);
@@ -307,6 +308,7 @@ private:
         MENU_EXPORT_HTML,
         MENU_CURRENCY,
         MENU_TREEPOPUP_LAUNCHWEBSITE,
+		MENU_TREEPOPUP_ACCOUNTATTACHMENTS,
         MENU_IMPORT_MMNETCSV,
         MENU_IMPORT_QIF,
         MENU_ACCTEDIT,
