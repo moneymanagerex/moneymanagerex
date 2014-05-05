@@ -503,7 +503,7 @@ void mmCheckingPanel::CreateControls()
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, btnDuplicate_->GetSize().GetHeight())
-        , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB, wxDefaultValidator, _("Search"));
+        , wxTE_PROCESS_ENTER, wxDefaultValidator, _("Search"));
     searchCtrl->SetHint(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
     searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
@@ -822,7 +822,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 {
-    wxString search_string = event.GetString();
+    wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
     long last = m_listCtrlAccount->GetItemCount();
@@ -834,8 +834,8 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     while (selectedItem >= 0 && selectedItem <= last)
     {
         m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
-        const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES);
-        if (t.Lower().Matches(search_string))
+        const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES).Lower();
+        if (t.Matches(search_string))
         {
             //First of all any items should be unselected
             long cursel = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
