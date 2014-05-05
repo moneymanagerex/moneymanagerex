@@ -108,8 +108,10 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->SetSizeHints(this);
 
     getReportText();
-    //FIXME: ResourceDir is write protected
-    browser_->LoadURL(wxString::Format("file://%s/index.html", mmex::GetResourceDir().GetPath()));
+    const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
+        , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
+    const wxString index = wxString::Format("%sindex.html", tempDir);
+    browser_->LoadURL(index);
     return TRUE;
 }
 
@@ -127,7 +129,10 @@ wxString mmReportsPanel::getReportText()
         wxGetApp().m_frame->SetStatusText(rb_->version());
         htmlreport_ = rb_->getHTMLText();
 
-        wxFileOutputStream index_output(mmex::GetResourceDir().GetPath() + "/" + "index.html");
+        const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
+            , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
+        const wxString index = wxString::Format("%sindex.html", tempDir);
+        wxFileOutputStream index_output(index);
         wxTextOutputStream index_file(index_output);
         index_file << htmlreport_;
         index_output.Close();
