@@ -22,14 +22,14 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <wx/filename.h>
 //----------------------------------------------------------------------------
 
-wxFileName mmex::GetSharedDir()
+const wxFileName mmex::GetSharedDir()
 {
     static wxFileName fname(wxFileName::DirName(wxStandardPaths::Get().GetDataDir()));
     return fname;
 }
 //----------------------------------------------------------------------------
 
-wxFileName mmex::GetDocDir()
+const wxFileName mmex::GetDocDir()
 {
     static wxFileName fname;
 
@@ -43,14 +43,14 @@ wxFileName mmex::GetDocDir()
 }
 //----------------------------------------------------------------------------
 
-wxFileName mmex::GetResourceDir()
+const wxFileName mmex::GetResourceDir()
 {
     static wxFileName fname(wxFileName::DirName(wxStandardPaths::Get().GetResourcesDir()));
     return fname;
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::GetAppName()
+const wxString mmex::GetAppName()
 {
     return "MoneyManagerEx";
 }
