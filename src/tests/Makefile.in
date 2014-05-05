@@ -93,18 +93,16 @@ MMEX_TESTS_CFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
 	-I$(srcdir)/../../3rd/LuaGlue/include -I$(srcdir)/../../3rd/cgitemplate \
-	-I$(srcdir)/../../3rd/csv-parser/include \
-	-I$(srcdir)/../../3rd/wxExtension/extension/include -I$(srcdir)/../../src \
-	-DNOPCH -I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include \
-	$(WX_CFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
+	-I$(srcdir)/../../3rd/csv-parser/include -I$(srcdir)/../../src -DNOPCH \
+	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CFLAGS) \
+	$(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../../lib/wxsqlite3/include -I$(srcdir)/../../lib/lua/src \
 	-I$(srcdir)/../../lib -I$(srcdir)/../../3rd \
 	-I$(srcdir)/../../3rd/LuaGlue/include -I$(srcdir)/../../3rd/cgitemplate \
-	-I$(srcdir)/../../3rd/csv-parser/include \
-	-I$(srcdir)/../../3rd/wxExtension/extension/include -I$(srcdir)/../../src \
-	-DNOPCH -I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include \
-	$(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
+	-I$(srcdir)/../../3rd/csv-parser/include -I$(srcdir)/../../src -DNOPCH \
+	-I$(srcdir)/../../src -I$(srcdir)/../../lib/cppunit/include $(WX_CXXFLAGS) \
+	$(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -198,53 +196,6 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_html_template.o \
 	mmex_tests_mongoose.o \
 	mmex_tests_csv_parser.o \
-	mmex_tests_address.o \
-	mmex_tests_app.o \
-	mmex_tests_art.o \
-	mmex_tests_configdlg.o \
-	mmex_tests_configitem.o \
-	mmex_tests_dialog.o \
-	mmex_tests_dir.o \
-	mmex_tests_ex.o \
-	mmex_tests_file.o \
-	mmex_tests_filedlg.o \
-	mmex_tests_filename.o \
-	mmex_tests_frame.o \
-	mmex_tests_frd.o \
-	mmex_tests_grid.o \
-	mmex_tests_hexmode.o \
-	mmex_tests_indicator.o \
-	mmex_tests_lexer.o \
-	mmex_tests_lexers.o \
-	mmex_tests_link.o \
-	mmex_tests_listitem.o \
-	mmex_tests_listview.o \
-	mmex_tests_managedframe.o \
-	mmex_tests_marker.o \
-	mmex_tests_menu.o \
-	mmex_tests_notebook.o \
-	mmex_tests_otl.o \
-	mmex_tests_printing.o \
-	mmex_tests_process.o \
-	mmex_tests_property.o \
-	mmex_tests_shell.o \
-	mmex_tests_stat.o \
-	mmex_tests_statusbar.o \
-	mmex_tests_stc.o \
-	mmex_tests_stcdlg.o \
-	mmex_tests_stcfile.o \
-	mmex_tests_style.o \
-	mmex_tests_textfile.o \
-	mmex_tests_tool.o \
-	mmex_tests_toolbar.o \
-	mmex_tests_extension_src_util.o \
-	mmex_tests_variable.o \
-	mmex_tests_vcs.o \
-	mmex_tests_vcscommand.o \
-	mmex_tests_vcsentry.o \
-	mmex_tests_version.o \
-	mmex_tests_vi.o \
-	mmex_tests_vimacros.o \
 	mmex_tests_cpu_timer.o \
 	mmex_tests_db_init_model.o \
 	mmex_tests_framebase_tests.o \
@@ -702,147 +653,6 @@ mmex_tests_mongoose.o: $(srcdir)/../../3rd/mongoose/mongoose.c
 mmex_tests_csv_parser.o: $(srcdir)/../../3rd/csv-parser/csv_parser.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/csv-parser/csv_parser.cpp
 
-mmex_tests_address.o: $(srcdir)/../../3rd/wxExtension/extension/src/address.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/address.cpp
-
-mmex_tests_app.o: $(srcdir)/../../3rd/wxExtension/extension/src/app.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/app.cpp
-
-mmex_tests_art.o: $(srcdir)/../../3rd/wxExtension/extension/src/art.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/art.cpp
-
-mmex_tests_configdlg.o: $(srcdir)/../../3rd/wxExtension/extension/src/configdlg.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/configdlg.cpp
-
-mmex_tests_configitem.o: $(srcdir)/../../3rd/wxExtension/extension/src/configitem.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/configitem.cpp
-
-mmex_tests_dialog.o: $(srcdir)/../../3rd/wxExtension/extension/src/dialog.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/dialog.cpp
-
-mmex_tests_dir.o: $(srcdir)/../../3rd/wxExtension/extension/src/dir.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/dir.cpp
-
-mmex_tests_ex.o: $(srcdir)/../../3rd/wxExtension/extension/src/ex.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/ex.cpp
-
-mmex_tests_file.o: $(srcdir)/../../3rd/wxExtension/extension/src/file.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/file.cpp
-
-mmex_tests_filedlg.o: $(srcdir)/../../3rd/wxExtension/extension/src/filedlg.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/filedlg.cpp
-
-mmex_tests_filename.o: $(srcdir)/../../3rd/wxExtension/extension/src/filename.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/filename.cpp
-
-mmex_tests_frame.o: $(srcdir)/../../3rd/wxExtension/extension/src/frame.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/frame.cpp
-
-mmex_tests_frd.o: $(srcdir)/../../3rd/wxExtension/extension/src/frd.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/frd.cpp
-
-mmex_tests_grid.o: $(srcdir)/../../3rd/wxExtension/extension/src/grid.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/grid.cpp
-
-mmex_tests_hexmode.o: $(srcdir)/../../3rd/wxExtension/extension/src/hexmode.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/hexmode.cpp
-
-mmex_tests_indicator.o: $(srcdir)/../../3rd/wxExtension/extension/src/indicator.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/indicator.cpp
-
-mmex_tests_lexer.o: $(srcdir)/../../3rd/wxExtension/extension/src/lexer.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/lexer.cpp
-
-mmex_tests_lexers.o: $(srcdir)/../../3rd/wxExtension/extension/src/lexers.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/lexers.cpp
-
-mmex_tests_link.o: $(srcdir)/../../3rd/wxExtension/extension/src/link.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/link.cpp
-
-mmex_tests_listitem.o: $(srcdir)/../../3rd/wxExtension/extension/src/listitem.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/listitem.cpp
-
-mmex_tests_listview.o: $(srcdir)/../../3rd/wxExtension/extension/src/listview.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/listview.cpp
-
-mmex_tests_managedframe.o: $(srcdir)/../../3rd/wxExtension/extension/src/managedframe.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/managedframe.cpp
-
-mmex_tests_marker.o: $(srcdir)/../../3rd/wxExtension/extension/src/marker.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/marker.cpp
-
-mmex_tests_menu.o: $(srcdir)/../../3rd/wxExtension/extension/src/menu.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/menu.cpp
-
-mmex_tests_notebook.o: $(srcdir)/../../3rd/wxExtension/extension/src/notebook.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/notebook.cpp
-
-mmex_tests_otl.o: $(srcdir)/../../3rd/wxExtension/extension/src/otl.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/otl.cpp
-
-mmex_tests_printing.o: $(srcdir)/../../3rd/wxExtension/extension/src/printing.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/printing.cpp
-
-mmex_tests_process.o: $(srcdir)/../../3rd/wxExtension/extension/src/process.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/process.cpp
-
-mmex_tests_property.o: $(srcdir)/../../3rd/wxExtension/extension/src/property.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/property.cpp
-
-mmex_tests_shell.o: $(srcdir)/../../3rd/wxExtension/extension/src/shell.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/shell.cpp
-
-mmex_tests_stat.o: $(srcdir)/../../3rd/wxExtension/extension/src/stat.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/stat.cpp
-
-mmex_tests_statusbar.o: $(srcdir)/../../3rd/wxExtension/extension/src/statusbar.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/statusbar.cpp
-
-mmex_tests_stc.o: $(srcdir)/../../3rd/wxExtension/extension/src/stc.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/stc.cpp
-
-mmex_tests_stcdlg.o: $(srcdir)/../../3rd/wxExtension/extension/src/stcdlg.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/stcdlg.cpp
-
-mmex_tests_stcfile.o: $(srcdir)/../../3rd/wxExtension/extension/src/stcfile.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/stcfile.cpp
-
-mmex_tests_style.o: $(srcdir)/../../3rd/wxExtension/extension/src/style.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/style.cpp
-
-mmex_tests_textfile.o: $(srcdir)/../../3rd/wxExtension/extension/src/textfile.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/textfile.cpp
-
-mmex_tests_tool.o: $(srcdir)/../../3rd/wxExtension/extension/src/tool.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/tool.cpp
-
-mmex_tests_toolbar.o: $(srcdir)/../../3rd/wxExtension/extension/src/toolbar.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/toolbar.cpp
-
-mmex_tests_extension_src_util.o: $(srcdir)/../../3rd/wxExtension/extension/src/util.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/util.cpp
-
-mmex_tests_variable.o: $(srcdir)/../../3rd/wxExtension/extension/src/variable.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/variable.cpp
-
-mmex_tests_vcs.o: $(srcdir)/../../3rd/wxExtension/extension/src/vcs.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/vcs.cpp
-
-mmex_tests_vcscommand.o: $(srcdir)/../../3rd/wxExtension/extension/src/vcscommand.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/vcscommand.cpp
-
-mmex_tests_vcsentry.o: $(srcdir)/../../3rd/wxExtension/extension/src/vcsentry.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/vcsentry.cpp
-
-mmex_tests_version.o: $(srcdir)/../../3rd/wxExtension/extension/src/version.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/version.cpp
-
-mmex_tests_vi.o: $(srcdir)/../../3rd/wxExtension/extension/src/vi.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/vi.cpp
-
-mmex_tests_vimacros.o: $(srcdir)/../../3rd/wxExtension/extension/src/vimacros.cpp
-	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../3rd/wxExtension/extension/src/vimacros.cpp
-
 mmex_tests_cpu_timer.o: $(srcdir)/../../src/tests/cpu_timer.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/cpu_timer.cpp
 
@@ -892,7 +702,7 @@ mmex_tests_test_stocks.o: $(srcdir)/../../src/tests/test_stocks.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../../src/tests/test_stocks.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../../src/tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd --include-dir $(srcdir)/../../3rd/LuaGlue/include --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../3rd/csv-parser/include --include-dir $(srcdir)/../../3rd/wxExtension/extension/include --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../../lib/wxsqlite3/include --include-dir $(srcdir)/../../lib/lua/src --include-dir $(srcdir)/../../lib --include-dir $(srcdir)/../../3rd --include-dir $(srcdir)/../../3rd/LuaGlue/include --include-dir $(srcdir)/../../3rd/cgitemplate --include-dir $(srcdir)/../../3rd/csv-parser/include --include-dir $(srcdir)/../../src --define NOPCH --include-dir $(srcdir)/../../src --include-dir $(srcdir)/../../lib/cppunit/include
 
 
 # Include dependency info, if present:

@@ -103,9 +103,8 @@ MMEX_CFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include \
-	/I..\..\3rd\wxExtension\extension\include /I..\..\src /DNOPCH /D_WINDOWS \
-	$(CPPFLAGS) $(CFLAGS)
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_WINDOWS $(CPPFLAGS) $(CFLAGS)
 MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__WXUNICODE_DEFINE_p) $(__WXDEBUG_DEFINE_p) /D__WXMSW__ \
 	/I$(WX_DIR)$(__WXLIBPATH_FILENAMES_1)\msw$(WXLIBPOSTFIX) \
@@ -113,9 +112,8 @@ MMEX_CXXFLAGS = /MD$(__DEBUGINFO_1) /DWIN32 $(____WX_SHARED) \
 	$(__OPTIMIZEFLAG) $(__DEBUG_DEFINE_p) /D_CRT_SECURE_NO_WARNINGS \
 	/I..\..\lib\wxsqlite3\sqlite3\secure\src /I..\..\lib\wxsqlite3\include \
 	/I..\..\lib\lua\src /I..\..\lib /I..\..\3rd /I..\..\3rd\LuaGlue\include \
-	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include \
-	/I..\..\3rd\wxExtension\extension\include /I..\..\src /DNOPCH /D_WINDOWS \
-	/EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
+	/I..\..\3rd\cgitemplate /I..\..\3rd\csv-parser\include /I..\..\src /DNOPCH \
+	/D_WINDOWS /EHsc /GR $(__mmex_CL_FLAGS) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_OBJECTS =  \
 	mmex_aboutdialog.obj \
 	mmex_accountdialog.obj \
@@ -208,54 +206,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Usage.obj \
 	mmex_html_template.obj \
 	mmex_mongoose.obj \
-	mmex_csv_parser.obj \
-	mmex_address.obj \
-	mmex_app.obj \
-	mmex_art.obj \
-	mmex_configdlg.obj \
-	mmex_configitem.obj \
-	mmex_dialog.obj \
-	mmex_dir.obj \
-	mmex_ex.obj \
-	mmex_file.obj \
-	mmex_filedlg.obj \
-	mmex_filename.obj \
-	mmex_frame.obj \
-	mmex_frd.obj \
-	mmex_grid.obj \
-	mmex_hexmode.obj \
-	mmex_indicator.obj \
-	mmex_lexer.obj \
-	mmex_lexers.obj \
-	mmex_link.obj \
-	mmex_listitem.obj \
-	mmex_listview.obj \
-	mmex_managedframe.obj \
-	mmex_marker.obj \
-	mmex_menu.obj \
-	mmex_notebook.obj \
-	mmex_otl.obj \
-	mmex_printing.obj \
-	mmex_process.obj \
-	mmex_property.obj \
-	mmex_shell.obj \
-	mmex_stat.obj \
-	mmex_statusbar.obj \
-	mmex_stc.obj \
-	mmex_stcdlg.obj \
-	mmex_stcfile.obj \
-	mmex_style.obj \
-	mmex_textfile.obj \
-	mmex_tool.obj \
-	mmex_toolbar.obj \
-	mmex_extension_src_util.obj \
-	mmex_variable.obj \
-	mmex_vcs.obj \
-	mmex_vcscommand.obj \
-	mmex_vcsentry.obj \
-	mmex_version.obj \
-	mmex_vi.obj \
-	mmex_vimacros.obj
+	mmex_csv_parser.obj
 MMEX_RESOURCES =  \
 	mmex_resources_mmex.res
 
@@ -977,147 +928,6 @@ mmex_mongoose.obj: ..\..\3rd\mongoose\mongoose.c
 mmex_csv_parser.obj: ..\..\3rd\csv-parser\csv_parser.cpp
 	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\csv-parser\csv_parser.cpp
 
-mmex_address.obj: ..\..\3rd\wxExtension\extension\src\address.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\address.cpp
-
-mmex_app.obj: ..\..\3rd\wxExtension\extension\src\app.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\app.cpp
-
-mmex_art.obj: ..\..\3rd\wxExtension\extension\src\art.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\art.cpp
-
-mmex_configdlg.obj: ..\..\3rd\wxExtension\extension\src\configdlg.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\configdlg.cpp
-
-mmex_configitem.obj: ..\..\3rd\wxExtension\extension\src\configitem.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\configitem.cpp
-
-mmex_dialog.obj: ..\..\3rd\wxExtension\extension\src\dialog.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\dialog.cpp
-
-mmex_dir.obj: ..\..\3rd\wxExtension\extension\src\dir.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\dir.cpp
-
-mmex_ex.obj: ..\..\3rd\wxExtension\extension\src\ex.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\ex.cpp
-
-mmex_file.obj: ..\..\3rd\wxExtension\extension\src\file.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\file.cpp
-
-mmex_filedlg.obj: ..\..\3rd\wxExtension\extension\src\filedlg.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\filedlg.cpp
-
-mmex_filename.obj: ..\..\3rd\wxExtension\extension\src\filename.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\filename.cpp
-
-mmex_frame.obj: ..\..\3rd\wxExtension\extension\src\frame.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\frame.cpp
-
-mmex_frd.obj: ..\..\3rd\wxExtension\extension\src\frd.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\frd.cpp
-
-mmex_grid.obj: ..\..\3rd\wxExtension\extension\src\grid.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\grid.cpp
-
-mmex_hexmode.obj: ..\..\3rd\wxExtension\extension\src\hexmode.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\hexmode.cpp
-
-mmex_indicator.obj: ..\..\3rd\wxExtension\extension\src\indicator.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\indicator.cpp
-
-mmex_lexer.obj: ..\..\3rd\wxExtension\extension\src\lexer.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\lexer.cpp
-
-mmex_lexers.obj: ..\..\3rd\wxExtension\extension\src\lexers.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\lexers.cpp
-
-mmex_link.obj: ..\..\3rd\wxExtension\extension\src\link.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\link.cpp
-
-mmex_listitem.obj: ..\..\3rd\wxExtension\extension\src\listitem.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\listitem.cpp
-
-mmex_listview.obj: ..\..\3rd\wxExtension\extension\src\listview.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\listview.cpp
-
-mmex_managedframe.obj: ..\..\3rd\wxExtension\extension\src\managedframe.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\managedframe.cpp
-
-mmex_marker.obj: ..\..\3rd\wxExtension\extension\src\marker.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\marker.cpp
-
-mmex_menu.obj: ..\..\3rd\wxExtension\extension\src\menu.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\menu.cpp
-
-mmex_notebook.obj: ..\..\3rd\wxExtension\extension\src\notebook.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\notebook.cpp
-
-mmex_otl.obj: ..\..\3rd\wxExtension\extension\src\otl.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\otl.cpp
-
-mmex_printing.obj: ..\..\3rd\wxExtension\extension\src\printing.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\printing.cpp
-
-mmex_process.obj: ..\..\3rd\wxExtension\extension\src\process.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\process.cpp
-
-mmex_property.obj: ..\..\3rd\wxExtension\extension\src\property.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\property.cpp
-
-mmex_shell.obj: ..\..\3rd\wxExtension\extension\src\shell.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\shell.cpp
-
-mmex_stat.obj: ..\..\3rd\wxExtension\extension\src\stat.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\stat.cpp
-
-mmex_statusbar.obj: ..\..\3rd\wxExtension\extension\src\statusbar.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\statusbar.cpp
-
-mmex_stc.obj: ..\..\3rd\wxExtension\extension\src\stc.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\stc.cpp
-
-mmex_stcdlg.obj: ..\..\3rd\wxExtension\extension\src\stcdlg.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\stcdlg.cpp
-
-mmex_stcfile.obj: ..\..\3rd\wxExtension\extension\src\stcfile.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\stcfile.cpp
-
-mmex_style.obj: ..\..\3rd\wxExtension\extension\src\style.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\style.cpp
-
-mmex_textfile.obj: ..\..\3rd\wxExtension\extension\src\textfile.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\textfile.cpp
-
-mmex_tool.obj: ..\..\3rd\wxExtension\extension\src\tool.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\tool.cpp
-
-mmex_toolbar.obj: ..\..\3rd\wxExtension\extension\src\toolbar.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\toolbar.cpp
-
-mmex_extension_src_util.obj: ..\..\3rd\wxExtension\extension\src\util.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\util.cpp
-
-mmex_variable.obj: ..\..\3rd\wxExtension\extension\src\variable.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\variable.cpp
-
-mmex_vcs.obj: ..\..\3rd\wxExtension\extension\src\vcs.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\vcs.cpp
-
-mmex_vcscommand.obj: ..\..\3rd\wxExtension\extension\src\vcscommand.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\vcscommand.cpp
-
-mmex_vcsentry.obj: ..\..\3rd\wxExtension\extension\src\vcsentry.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\vcsentry.cpp
-
-mmex_version.obj: ..\..\3rd\wxExtension\extension\src\version.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\version.cpp
-
-mmex_vi.obj: ..\..\3rd\wxExtension\extension\src\vi.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\vi.cpp
-
-mmex_vimacros.obj: ..\..\3rd\wxExtension\extension\src\vimacros.cpp
-	$(CXX) /c /nologo /TP /Fo$@ $(MMEX_CXXFLAGS) ..\..\3rd\wxExtension\extension\src\vimacros.cpp
-
 mmex_resources_mmex.res: ..\..\resources\mmex.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\3rd\wxExtension\extension\include /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_31_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_2)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_40_p_1) $(__DEBUG_DEFINE_p_3) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\src /d NOPCH /d _WINDOWS ..\..\resources\mmex.rc
 

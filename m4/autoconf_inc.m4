@@ -18,6 +18,12 @@ dnl ### begin block 20_COND_DEPS_TRACKING_1[../../i18n/i18n.bkl,../../po/po.bkl,
         COND_DEPS_TRACKING_1=""
     fi
     AC_SUBST(COND_DEPS_TRACKING_1)
+dnl ### begin block 20_COND_PLATFORM_MACOSX_1[mmex.bkl] ###
+    COND_PLATFORM_MACOSX_1="#"
+    if test "x$PLATFORM_MACOSX" = "x1" ; then
+        COND_PLATFORM_MACOSX_1=""
+    fi
+    AC_SUBST(COND_PLATFORM_MACOSX_1)
 dnl ### begin block 20_COND_PLATFORM_MAC_0[../../src/tests/mmex_tests.bkl,mmex.bkl,mmex_tests.bkl] ###
     COND_PLATFORM_MAC_0="#"
     if test "x$PLATFORM_MAC" = "x0" ; then
