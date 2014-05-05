@@ -280,12 +280,32 @@ wxString Model_Report::get_html(const Data* r)
         // TODO
     }
 
-    wxFileOutputStream index_output(mmex::GetResourceDir().GetPath() + "/" + "index.html");
-    wxTextOutputStream index_file(index_output);
-    index_file << out;
-    index_output.Close();
-
+    prepareTempFolder(out);
     return out;
+}
+
+void Model_Report::prepareTempFolder(const wxString& str)
+{
+    //TODO: cleanup
+    const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
+        , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
+    const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
+    wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
+    wxArrayString filesArray;
+    wxDir::GetAllFiles(resDir, &filesArray);
+    for (const auto& f : filesArray) {
+        if (::wxFileExists(f)) {
+            if (!::wxCopyFile(f, tempDir + wxFileName(f).GetFullName())) {
+                wxLogError("Could not copy %s !", f);
+            }
+        }
+        wxLogDebug("Coping file: %s to %s", f, tempDir + wxFileName(f).GetFullName());
+    }
+
+    wxFileOutputStream index_output(wxString::Format("%sindex.html", tempDir));
+    wxTextOutputStream index_file(index_output);
+    index_file << str;
+    index_output.Close();
 }
 
 wxString Model_Report::get_html(const Data& r) 

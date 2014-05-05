@@ -490,7 +490,9 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 
         mmGeneralReport gr(report); //TODO: limit 500 line
         gr.getHTMLText();
-        const wxString index = "file://" + mmex::GetResourceDir().GetPath() + "/" + "index.html";
+        const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
+            , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
+        const wxString index = wxString::Format("file://%s/index.html", tempDir);
         m_outputHTML->LoadURL(index);
     }
 }
