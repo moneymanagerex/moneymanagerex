@@ -543,8 +543,9 @@ void mmOptionsDialog::CreateControls()
     attachDefinedSizer->Add(textAttachment, g_flags);
     attachDefinedSizer->Add(AttachmentsFolderButton, g_flags);
 
-	wxStaticText* attachmentFolderCurrOSText = new wxStaticText(attachmentPanel, ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT,
-		_("Real path:") + "\n" + mmex::getPathAttachment(attachmentFolder));
+	wxStaticText* attachmentFolderCurrOSText = new wxStaticText(attachmentPanel
+        , ID_DIALOG_OPTIONS_STATICTEXT_ATTACHMENTSTEXT
+		, _("Real path:") + "\n" + mmex::getPathAttachment(attachmentFolder));
     attachmentFolderCurrOSText->SetFont(this->GetFont().Smaller());
 	attachmentStaticBoxSizer->Add(attachmentFolderCurrOSText,g_flags);
 
@@ -554,8 +555,10 @@ void mmOptionsDialog::CreateControls()
 	wxStaticBoxSizer* attachmentStaticBoxSizerLegend = new wxStaticBoxSizer(attachmentStaticBoxLegend, wxVERTICAL);
 	attachmentStaticBoxSizer->Add(attachmentStaticBoxSizerLegend, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-	wxString legend = wxString::Format(_("%s -> User document directory\n%s -> User profile folder\n%s -> Folder of .MMB database file\n%s -> MMEX Application data folder"),
-		ATTACHMENTS_FOLDER_DOCUMENTS, ATTACHMENTS_FOLDER_USERPROFILE, ATTACHMENTS_FOLDER_DATABASE, ATTACHMENTS_FOLDER_APPDATA);
+    wxString legend = wxString::Format(_("%s -> User document directory"), ATTACHMENTS_FOLDER_DOCUMENTS);
+    legend += "\n" + wxString::Format(_("%s -> User profile folder"), ATTACHMENTS_FOLDER_USERPROFILE);
+    legend += "\n" + wxString::Format(_("%s -> Folder of.MMB database file"), ATTACHMENTS_FOLDER_DATABASE);
+    legend += "\n" + wxString::Format(_("%s -> MMEX Application data folder"), ATTACHMENTS_FOLDER_APPDATA);
 	wxStaticText* legendStaticText = new wxStaticText(attachmentPanel, wxID_STATIC, legend);
 	attachmentStaticBoxSizerLegend->Add(legendStaticText);
 	//End legend
