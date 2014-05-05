@@ -48,6 +48,7 @@ private:
         NENU_NEW_PAYEE,
         NENU_EDIT_PAYEE,
         MENU_DELETE_PAYEE,
+		MENU_ORGANIZE_ATTACHMENTS,
         MENU_RELOCATE_PAYEE
     };
 
@@ -71,6 +72,7 @@ private:
     void EditPayee();
     void DeletePayee();
     void DefineDefaultCategory();
+	void OnOrganizeAttachments();
     void OnPayeeRelocate();
     void OnCancel(wxCommandEvent& /*event*/);
     void OnOk(wxCommandEvent& /*event*/);

@@ -16,17 +16,21 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "payeedialog.h"
+#include "attachmentdialog.h"
 #include "categdialog.h"
-#include "relocatepayeedialog.h"
-#include "util.h"
+#include "constants.h"
 #include "mmOption.h"
 #include "paths.h"
-#include "constants.h"
+#include "payeedialog.h"
+#include "relocatepayeedialog.h"
+#include "util.h"
 #include "webapp.h"
+
+#include "model/Model_Attachment.h"
+#include "model/Model_Category.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
-#include "model/Model_Category.h"
+
 
 IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
 
@@ -284,6 +288,14 @@ void mmPayeeDialog::DefineDefaultCategory()
     fillControls();
 }
 
+void mmPayeeDialog::OnOrganizeAttachments()
+{
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::PAYEE);
+
+	mmAttachmentDialog dlg(this, RefType, m_payee_id);
+	dlg.ShowModal();
+}
+
 void mmPayeeDialog::OnPayeeRelocate()
 {
     relocatePayeeDialog dlg(this, m_payee_id);
@@ -310,6 +322,7 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
         case NENU_NEW_PAYEE: AddPayee(); break;
         case NENU_EDIT_PAYEE: EditPayee(); break;
         case MENU_DELETE_PAYEE: DeletePayee(); break;
+		case MENU_ORGANIZE_ATTACHMENTS: OnOrganizeAttachments(); break;
         case MENU_RELOCATE_PAYEE: OnPayeeRelocate(); break;
         default: break;
     }
@@ -328,14 +341,15 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->AppendSeparator();
 
     mainMenu->Append(new wxMenuItem(mainMenu, NENU_NEW_PAYEE, _("&Add ")));
-    mainMenu->AppendSeparator();
-
     mainMenu->Append(new wxMenuItem(mainMenu, NENU_EDIT_PAYEE, _("&Edit ")));
-    mainMenu->AppendSeparator();
-
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));
     if (!payee || Model_Payee::is_used(m_payee_id)) mainMenu->Enable(MENU_DELETE_PAYEE, false);
     mainMenu->AppendSeparator();
+
+	mainMenu->Append(new wxMenuItem(mainMenu, MENU_ORGANIZE_ATTACHMENTS, _("&Organize Attachments")));
+	if (!payee) mainMenu->Enable(MENU_ORGANIZE_ATTACHMENTS, false);
+	mainMenu->AppendSeparator();
+
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_RELOCATE_PAYEE, _("Relocate Payee")));
     //SetToolTip(_("Change all transactions using one Payee to another Payee"));
     if (!payee) mainMenu->Enable(MENU_RELOCATE_PAYEE, false);
