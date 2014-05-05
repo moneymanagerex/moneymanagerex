@@ -84,6 +84,7 @@
 #include "webapp.h"
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
+#include "mmHook.h"
 #include <wx/fs_mem.h>
 
 //----------------------------------------------------------------------------
@@ -123,16 +124,6 @@
 #include "../resources/user_edit.xpm"
 #include "../resources/wrench.xpm"
 
-//----------------------------------------------------------------------------
-class CommitCallbackHook : public wxSQLite3Hook
-{
-public:
-    virtual bool CommitCallback()
-    {
-        mmOptions::instance().databaseUpdated_ = true;
-        return false;
-    }
-};
 //----------------------------------------------------------------------------
 
 int REPEAT_TRANS_DELAY_TIME = 7000; // 7 seconds
