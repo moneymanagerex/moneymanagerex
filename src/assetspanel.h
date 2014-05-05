@@ -85,6 +85,7 @@ public:
 
 private:
     void enableEditDeleteButtons(bool enable);
+    void OnSearchTxtEntered(wxCommandEvent& event);
     mmAssetsListCtrl* m_listCtrlAssets;
 
     wxStaticText* itemStaticTextMainFilter_;

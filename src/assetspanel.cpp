@@ -300,6 +300,8 @@ BEGIN_EVENT_TABLE(mmAssetsPanel, wxPanel)
     EVT_BUTTON(wxID_DELETE, mmAssetsPanel::OnDeleteAsset)
 	EVT_BUTTON(wxID_FILE, mmAssetsPanel::OnOpenAttachment)
     EVT_MENU(wxID_ANY, mmAssetsPanel::OnViewPopupSelected)
+    EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
+    EVT_TEXT_ENTER(wxID_FIND, mmAssetsPanel::OnSearchTxtEntered)
 END_EVENT_TABLE()
 /*******************************************************/
 
@@ -469,7 +471,7 @@ void mmAssetsPanel::CreateControls()
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(assets_panel
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, itemButton7->GetSize().GetHeight())
-        , wxTE_PROCESS_ENTER | wxTE_PROCESS_TAB, wxDefaultValidator, _("Search"));
+        , wxTE_PROCESS_ENTER, wxDefaultValidator, _("Search"));
     searchCtrl->SetHint(_("Search"));
     itemBoxSizer5->Add(searchCtrl, 0, wxCENTER, 1);
     searchCtrl->SetToolTip(_("Enter any string to find related assets"));
@@ -669,4 +671,33 @@ void mmAssetsPanel::OnViewPopupSelected(wxCommandEvent& event)
     int trx_id = -1;
     m_listCtrlAssets->doRefreshItems(trx_id);
     updateExtraAssetData(trx_id);
+}
+
+void mmAssetsPanel::OnSearchTxtEntered(wxCommandEvent& event)
+{
+    const wxString search_string = event.GetString().Lower();
+    if (search_string.IsEmpty()) return;
+
+    long last = m_listCtrlAssets->GetItemCount();
+    long selectedItem = m_listCtrlAssets->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+    if (selectedItem < 0) //nothing selected
+        selectedItem = m_listCtrlAssets->m_asc ? last - 1 : 0;
+
+    while (selectedItem > 0 && selectedItem <= last)
+    {
+        m_listCtrlAssets->m_asc ? selectedItem-- : selectedItem++;
+        const wxString t = getItem(selectedItem, COL_NOTES).Lower();
+        if (t.Matches(search_string + "*"))
+        {
+            //First of all any items should be unselected
+            long cursel = m_listCtrlAssets->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+            if (cursel != wxNOT_FOUND)
+                m_listCtrlAssets->SetItemState(cursel, 0, wxLIST_STATE_SELECTED | wxLIST_STATE_FOCUSED);
+
+            //Then finded item will be selected
+            m_listCtrlAssets->SetItemState(selectedItem, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            m_listCtrlAssets->EnsureVisible(selectedItem);
+            break;
+        }
+    }
 }

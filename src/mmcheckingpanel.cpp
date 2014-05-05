@@ -822,7 +822,7 @@ const wxString mmCheckingPanel::getItem(long item, long column)
 
 void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
 {
-    wxString search_string = event.GetString().Lower();
+    const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
     long last = m_listCtrlAccount->GetItemCount();
@@ -830,12 +830,11 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     if (selectedItem < 0) //nothing selected
         selectedItem = m_listCtrlAccount->g_asc ? last - 1 : 0;
 
-    search_string.Append("*");
-    while (selectedItem >= 0 && selectedItem <= last)
+    while (selectedItem > 0 && selectedItem <= last)
     {
         m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
         const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES).Lower();
-        if (t.Matches(search_string))
+        if (t.Matches(search_string + "*"))
         {
             //First of all any items should be unselected
             long cursel = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
