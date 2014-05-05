@@ -434,7 +434,17 @@ void mmMessagePayeeInvalid(wxComboBox *comboBox)
     tip.ShowFor((wxWindow*)comboBox);
 }
 
+//
 const wxString mmPlatformType()
 {
 	return wxPlatformInfo::Get().GetOperatingSystemFamilyName().substr(0, 3);
+}
+
+const wxString getURL(const wxString& file)
+{
+	wxString index = file;
+#ifdef __WXGTK__
+    index.Prepend("file://");
+#endif
+    return index;
 }

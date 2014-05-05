@@ -490,7 +490,7 @@ void mmGeneralReportManager::OnRun(wxCommandEvent& /*event*/)
 
         mmGeneralReport gr(report); //TODO: limit 500 line
         gr.getHTMLText();
-        m_outputHTML->LoadURL(mmex::getReportIndex());
+        m_outputHTML->LoadURL(getURL(mmex::getReportIndex()));
     }
 }
 

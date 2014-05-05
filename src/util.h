@@ -154,6 +154,7 @@ int site_content(const wxString& site, wxString& output);
 const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
 const wxString mmPlatformType();
+const wxString getURL(const wxString& file);
 
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

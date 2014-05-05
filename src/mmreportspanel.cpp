@@ -109,7 +109,7 @@ bool mmReportsPanel::Create(wxWindow *parent, wxWindowID winid
     GetSizer()->SetSizeHints(this);
 
     getReportText();
-    browser_->LoadURL(mmex::getReportIndex());
+    browser_->LoadURL(getURL(mmex::getReportIndex()));
     return TRUE;
 }
 
