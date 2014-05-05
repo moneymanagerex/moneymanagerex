@@ -362,15 +362,15 @@ void mmAssetsPanel::CreateControls()
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader2);
 
     wxBitmap itemStaticBitmap(rightarrow_xpm);
-    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap( headerPanel, wxID_STATIC, itemStaticBitmap);
+    wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, itemStaticBitmap);
     itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
     //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), NULL, this);
     itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), NULL, this);
 
-    itemStaticTextMainFilter_ = new wxStaticText( headerPanel, wxID_STATIC, _("All"));
+    itemStaticTextMainFilter_ = new wxStaticText(headerPanel, wxID_STATIC, _("All"));
     itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);
 
-    header_text_ = new wxStaticText( headerPanel, wxID_STATIC, _("Total:"));
+    header_text_ = new wxStaticText(headerPanel, wxID_STATIC, "");
     itemBoxSizerVHeader->Add(header_text_, 0, wxALL, 1);
 
     /* ---------------------- */
@@ -541,7 +541,7 @@ int mmAssetsPanel::initVirtualListControl(int id, int col, bool asc)
 
     double balance = 0.0;
     for (const auto& asset: this->m_assets) balance += Model_Asset::value(asset); 
-    header_text_->SetLabel(Model_Currency::toCurrency(balance)); // balance
+    header_text_->SetLabel(_("Total: ") + Model_Currency::toCurrency(balance)); // balance
 
     int selected_item = 0;
     for (const auto& asset: this->m_assets)
