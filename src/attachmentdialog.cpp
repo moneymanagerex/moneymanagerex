@@ -20,8 +20,10 @@ Copyright (C) 2014 Gabriele-V
 #include "constants.h"
 #include "paths.h"
 #include "util.h"
+
 #include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
+
 #include <wx/mimetype.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmAttachmentDialog, wxDialog )
@@ -101,11 +103,11 @@ void mmAttachmentDialog::CreateControls()
     wxBoxSizer* mainBoxSizer = new wxBoxSizer(wxVERTICAL);
 
     attachmentListBox_ = new wxDataViewListCtrl( this
-        , wxID_ANY, wxDefaultPosition, wxSize(450, 500)/*, wxDV_HORIZ_RULES*/);
+        , wxID_ANY, wxDefaultPosition, wxSize(460, 500)/*, wxDV_HORIZ_RULES*/);
 
     if (debug_) attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_ID], wxDATAVIEW_CELL_INERT, 30);
 	attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
-    attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_FILENAME], wxDATAVIEW_CELL_INERT, 250);
+    attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_FILENAME], wxDATAVIEW_CELL_INERT, 300);
     mainBoxSizer->Add(attachmentListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);

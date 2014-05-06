@@ -1602,6 +1602,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             if (msgDlg.ShowModal() == wxID_YES)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);
+				mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->ACCOUNTID);
                 updateNavTreeControl();
                 wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
                 OnAccountList(evt);
@@ -3120,6 +3121,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
         if (msgDlg.ShowModal() == wxID_YES)
         {
             Model_Account::instance().remove(acctID);
+			mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), acctID);
         }
     }
     updateNavTreeControl();

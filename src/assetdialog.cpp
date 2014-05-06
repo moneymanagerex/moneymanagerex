@@ -175,7 +175,7 @@ void mmAssetDialog::CreateControls()
 		, wxBitmap(attachment_xpm), wxDefaultPosition
 		, wxSize(m_valueChange->GetSize().GetY(), m_valueChange->GetSize().GetY()));
 	itemFlexGridSizer6->Add(bAttachments_, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
-	bAttachments_->SetToolTip(_("Organize attachments of this stock"));
+	bAttachments_->SetToolTip(_("Organize attachments of this asset"));
 
     m_notes = new mmTextCtrl(this, IDC_NOTES, wxGetEmptyString(), wxDefaultPosition, wxSize(220, 170), wxTE_MULTILINE);
     m_notes->SetToolTip(_("Enter notes associated with this asset"));
