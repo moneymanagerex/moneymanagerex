@@ -60,6 +60,7 @@ private:
     void OnPayee(wxCommandEvent& event);
     void OnTo(wxCommandEvent& event);
     void OnTransTypeChanged(wxCommandEvent& event);
+	void OnAttachments(wxCommandEvent& event);
 
     void OnDateChanged(wxDateEvent& event);
     void dataToControls();
@@ -82,6 +83,7 @@ private:
     wxButton* bCategory_;
     wxButton* bPayee_;
     wxButton* bTo_;
+	wxButton* bAttachments_;
     wxCheckBox* cSplit_;
     wxCheckBox* cAdvanced_;
     bool payeeUnknown_;
@@ -112,6 +114,7 @@ private:
     double toTransAmount_;
     bool advancedToTransAmountSet_;
     bool categUpdated_;
+	bool skip_attachments_init_;
     int prevType_;
     std::vector<std::pair<wxString, wxString>> frequentNotes_;
 

@@ -17,21 +17,27 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "attachmentdialog.h"
 #include "billsdepositsdialog.h"
-#include "util.h"
+#include "categdialog.h"
+#include "constants.h"
 #include "mmOption.h"
 #include "mmsinglechoicedialog.h"
 #include "paths.h"
-#include "constants.h"
-#include "categdialog.h"
 #include "payeedialog.h"
 #include "splittransactionsdialog.h"
+#include "util.h"
 #include "validators.h"
-#include "model/Model_Payee.h"
+
 #include "model/Model_Account.h"
+#include "model/Model_Attachment.h"
 #include "model/Model_Category.h"
-#include "constants.h"
+#include "model/Model_Payee.h"
+
+#include "../resources/attachment.xpm"
+
 #include <wx/valnum.h>
+
 
 IMPLEMENT_DYNAMIC_CLASS( mmBDDialog, wxDialog )
 
@@ -41,6 +47,7 @@ BEGIN_EVENT_TABLE( mmBDDialog, wxDialog )
     EVT_BUTTON(ID_DIALOG_BD_COMBOBOX_ACCOUNTNAME, mmBDDialog::OnAccountName)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONPAYEE, mmBDDialog::OnPayee)
     EVT_BUTTON(ID_DIALOG_TRANS_BUTTONTO, mmBDDialog::OnTo)
+	EVT_BUTTON(wxID_FILE, mmBDDialog::OnAttachments)
     EVT_CHOICE(wxID_VIEW_DETAILS, mmBDDialog::OnTransTypeChanged)
     EVT_SPIN_UP(ID_DIALOG_TRANS_DATE_SPINNER,mmBDDialog::OnTransDateForward)
     EVT_SPIN_DOWN(ID_DIALOG_TRANS_DATE_SPINNER,mmBDDialog::OnTransDateBack)
@@ -80,6 +87,7 @@ mmBDDialog::mmBDDialog(wxWindow* parent, int bdID, bool edit, bool enterOccur)
     , autoExecuteUserAck_(false)
     , autoExecuteSilent_(false)
     , categUpdated_(false)
+	, skip_attachments_init_(false)
     , prevType_(-1)
 {
     long style = wxCAPTION | wxSYSTEM_MENU | wxCLOSE_BOX;
@@ -374,11 +382,20 @@ void mmBDDialog::CreateControls()
     staticTimesRepeat_ = new wxStaticText( this, wxID_STATIC, _("Times Repeated") );
     itemFlexGridSizer5->Add(staticTimesRepeat_, 0, wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 0);
 
+	wxBoxSizer* repeatTimesBoxSizer = new wxBoxSizer(wxHORIZONTAL);
+	itemFlexGridSizer5->Add(repeatTimesBoxSizer);
+
     textNumRepeats_ = new wxTextCtrl( this, ID_DIALOG_BD_TEXTCTRL_NUM_TIMES, "",
         wxDefaultPosition, wxSize(110, -1), 0, wxIntegerValidator<int>() );
-    itemFlexGridSizer5->Add(textNumRepeats_, g_flags);
+	repeatTimesBoxSizer->Add(textNumRepeats_, g_flags);
     textNumRepeats_->SetMaxLength(12);
     setRepeatDetails();
+
+	bAttachments_ = new wxBitmapButton(this, wxID_FILE
+		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, wxSize(bSetNextOccurDate_->GetSize().GetY(), bSetNextOccurDate_->GetSize().GetY()));
+	bAttachments_->SetToolTip(_("Organize attachments of this repeating transaction"));
+	repeatTimesBoxSizer->Add(bAttachments_, g_flags);
 
     /* Auto Execution Status */
     itemCheckBoxAutoExeUserAck_ = new wxCheckBox( this, ID_DIALOG_BD_CHECKBOX_AUTO_EXECUTE_USERACK,
@@ -731,6 +748,18 @@ void mmBDDialog::OnTransTypeChanged(wxCommandEvent& /*event*/)
     updateControlsForTransType();
 }
 
+void mmBDDialog::OnAttachments(wxCommandEvent& /*event*/)
+{
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+	if (!bdID_ && !skip_attachments_init_)
+	{
+		mmAttachmentManage::DeleteAllAttachments(RefType, bdID_);
+		skip_attachments_init_ = true;
+	}
+	mmAttachmentDialog dlg(this, RefType, bdID_);
+	dlg.ShowModal();
+}
+
 void mmBDDialog::updateControlsForTransType()
 {
     wxStaticText* st = (wxStaticText*)FindWindow(ID_DIALOG_TRANS_STATIC_FROM);
@@ -1006,6 +1035,9 @@ void mmBDDialog::OnOk(wxCommandEvent& /*event*/)
 
         for (auto &item : local_splits_) item.TRANSID = transID_;
         Model_Budgetsplittransaction::instance().save(local_splits_);
+
+		wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+		mmAttachmentManage::RelocateAllAttachments(RefType, 0, transID_);
     }
     else if (edit_)
     {

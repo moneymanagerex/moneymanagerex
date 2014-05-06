@@ -16,22 +16,27 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "attachmentdialog.h"
 #include "billsdepositspanel.h"
 #include "billsdepositsdialog.h"
-#include "util.h"
 #include "constants.h"
-#include "model/Model_Setting.h"
-#include "model/Model_Payee.h"
-#include "model/Model_Account.h"
-#include "model/Model_Category.h"
+#include "util.h"
 
-#include "../resources/tipicon.xpm"
-#include "../resources/rt_exec_user.xpm"
-#include "../resources/rt_exec_auto.xpm"
-#include "../resources/rightarrow.xpm"
-#include "../resources/uparrow.xpm"
+#include "model/Model_Account.h"
+#include "model/Model_Attachment.h"
+#include "model/Model_Category.h"
+#include "model/Model_Payee.h"
+#include "model/Model_Setting.h"
+
+#include "../resources/attachment.xpm"
 #include "../resources/downarrow.xpm"
 #include "../resources/error.xpm"
+#include "../resources/rightarrow.xpm"
+#include "../resources/rt_exec_auto.xpm"
+#include "../resources/rt_exec_user.xpm"
+#include "../resources/tipicon.xpm"
+#include "../resources/uparrow.xpm"
+
 
 enum
 {
@@ -40,6 +45,7 @@ enum
     MENU_TREEPOPUP_DELETE,
     MENU_POPUP_BD_ENTER_OCCUR,
     MENU_POPUP_BD_SKIP_OCCUR,
+	MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS,
     ID_PANEL_BD_STATIC_MINI,
     ID_PANEL_BD_STATIC_DETAILS
 };
@@ -73,6 +79,7 @@ BEGIN_EVENT_TABLE(mmBillsDepositsPanel, wxPanel)
     EVT_BUTTON(wxID_DELETE,      mmBillsDepositsPanel::OnDeleteBDSeries)
     EVT_BUTTON(wxID_PASTE, mmBillsDepositsPanel::OnEnterBDTransaction)
     EVT_BUTTON(wxID_IGNORE,  mmBillsDepositsPanel::OnSkipBDTransaction)
+	EVT_BUTTON(wxID_FILE, mmBillsDepositsPanel::OnOpenAttachment)
 END_EVENT_TABLE()
 /*******************************************************/
 BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
@@ -88,6 +95,7 @@ BEGIN_EVENT_TABLE(billsDepositsListCtrl, mmListCtrl)
     EVT_MENU(MENU_TREEPOPUP_DELETE,           billsDepositsListCtrl::OnDeleteBDSeries)
     EVT_MENU(MENU_POPUP_BD_ENTER_OCCUR,       billsDepositsListCtrl::OnEnterBDTransaction)
     EVT_MENU(MENU_POPUP_BD_SKIP_OCCUR,        billsDepositsListCtrl::OnSkipBDTransaction)
+	EVT_MENU(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, billsDepositsListCtrl::OnOrganizeAttachments)
 
     EVT_LIST_KEY_DOWN(wxID_ANY,   billsDepositsListCtrl::OnListKeyDown)
 END_EVENT_TABLE()
@@ -282,6 +290,13 @@ void mmBillsDepositsPanel::CreateControls()
     itemBoxSizer5->Add(buttonSkipTrans, g_flags);
     buttonSkipTrans->Enable(false);
 
+	wxBitmapButton* btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
+		, wxBitmap(attachment_xpm), wxDefaultPosition
+		, wxSize(itemButton8->GetSize().GetY(), itemButton8->GetSize().GetY()));
+	btnAttachment_->SetToolTip(_("Open attachments"));
+	itemBoxSizer5->Add(btnAttachment_, g_flags);
+	btnAttachment_->Enable(false);
+
     //Infobar-mini
     wxStaticText* itemStaticText444 = new wxStaticText(itemPanel12
         , ID_PANEL_BD_STATIC_MINI, "", wxDefaultPosition, wxDefaultSize, 0);
@@ -327,6 +342,9 @@ int mmBillsDepositsPanel::initVirtualListControl(int id)
                     r.PAYEENAME = to_account->ACCOUNTNAME;
             }
         }
+
+		if (Model_Attachment::NrAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), r.BDID))
+			r.NOTES = r.NOTES.Prepend(mmAttachmentManage::GetAttachmentNoteSign());
         bills_.push_back(r);
     }
 
@@ -373,6 +391,12 @@ void mmBillsDepositsPanel::OnSkipBDTransaction(wxCommandEvent& event)
     listCtrlAccount_->SetFocus();
 }
 
+void mmBillsDepositsPanel::OnOpenAttachment(wxCommandEvent& event)
+{
+	listCtrlAccount_->OnOpenAttachment(event);
+	listCtrlAccount_->SetFocus();
+}
+
 /*******************************************************/
 void billsDepositsListCtrl::OnItemResize(wxListEvent& event)
 {
@@ -401,11 +425,14 @@ void billsDepositsListCtrl::OnItemRightClick(wxMouseEvent& event)
     menu.Append(MENU_TREEPOPUP_NEW, _("&New Bills && Deposit Series..."));
     menu.Append(MENU_TREEPOPUP_EDIT, _("&Edit Bills && Deposit Series..."));
     menu.Append(MENU_TREEPOPUP_DELETE, _("&Delete Bills && Deposit Series..."));
+	menu.AppendSeparator();
+	menu.Append(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, _("&Organize Attachments"));
     
     menu.Enable(MENU_POPUP_BD_ENTER_OCCUR, item_active);
     menu.Enable(MENU_POPUP_BD_SKIP_OCCUR, item_active);
     menu.Enable(MENU_TREEPOPUP_EDIT, item_active);
     menu.Enable(MENU_TREEPOPUP_DELETE, item_active);
+	menu.Enable(MENU_TREEPOPUP_ORGANIZE_ATTACHMENTS, item_active);
 
     cp_->enableEditDeleteButtons(item_active);
     PopupMenu(&menu, event.GetPosition());
@@ -596,7 +623,9 @@ void billsDepositsListCtrl::OnDeleteBDSeries(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        Model_Billsdeposits::instance().remove(cp_->bills_[m_selected_row].BDID);
+		int BdId = cp_->bills_[m_selected_row].BDID;
+        Model_Billsdeposits::instance().remove(BdId);
+		mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT), BdId);
         cp_->initVirtualListControl();
         refreshVisualList(m_selected_row);
     }
@@ -619,6 +648,29 @@ void billsDepositsListCtrl::OnSkipBDTransaction(wxCommandEvent& /*event*/)
     int id = cp_->bills_[m_selected_row].BDID;
     Model_Billsdeposits::instance().completeBDInSeries(id);
     refreshVisualList(cp_->initVirtualListControl(id));
+}
+
+void billsDepositsListCtrl::OnOrganizeAttachments(wxCommandEvent& /*event*/)
+{
+	if (m_selected_row == -1) return;
+
+	int RefId = cp_->bills_[m_selected_row].BDID;
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+
+	mmAttachmentDialog dlg(this, RefType, RefId);
+	dlg.ShowModal();
+
+	refreshVisualList(cp_->initVirtualListControl(RefId));
+}
+
+void billsDepositsListCtrl::OnOpenAttachment(wxCommandEvent& event)
+{
+	if (m_selected_row == -1) return;
+	int RefId = cp_->bills_[m_selected_row].BDID;
+	wxString RefType = Model_Attachment::reftype_desc(Model_Attachment::BILLSDEPOSIT);
+
+	mmAttachmentManage::OpenAttachmentFromPanelIcon(this, RefType, RefId);
+	refreshVisualList(cp_->initVirtualListControl(RefId));
 }
 
 void billsDepositsListCtrl::OnListItemActivated(wxListEvent& /*event*/)
@@ -648,10 +700,12 @@ void mmBillsDepositsPanel::enableEditDeleteButtons(bool en)
     wxButton* bD = (wxButton*) FindWindow(wxID_DELETE);
     wxButton* bN = (wxButton*) FindWindow(wxID_PASTE);
     wxButton* bS = (wxButton*) FindWindow(wxID_IGNORE);
+	wxButton* bA = (wxButton*)FindWindow(wxID_FILE);
     if (bE) bE->Enable(en);
     if (bD) bD->Enable(en);
     if (bN) bN->Enable(en);
     if (bS) bS->Enable(en);
+	if (bA) bA->Enable(en);
 
     wxStaticText* st = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_DETAILS);
     wxStaticText* stm = (wxStaticText*) FindWindow(ID_PANEL_BD_STATIC_MINI);

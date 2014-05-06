@@ -43,6 +43,8 @@ public:
     void OnDeleteBDSeries(wxCommandEvent& event);
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
+	void OnOrganizeAttachments(wxCommandEvent& event);
     void RefreshList();
 
 private:
@@ -111,6 +113,7 @@ private:
 
     void OnEnterBDTransaction(wxCommandEvent& event);
     void OnSkipBDTransaction(wxCommandEvent& event);
+	void OnOpenAttachment(wxCommandEvent& event);
 
     void OnViewPopupSelected(wxCommandEvent& event);
 
