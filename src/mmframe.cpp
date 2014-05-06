@@ -86,6 +86,7 @@
 #include "wizard_newdb.h"
 #include "wizard_newaccount.h"
 #include "mmHook.h"
+#include "util.h"
 #include <wx/fs_mem.h>
 
 //----------------------------------------------------------------------------
@@ -2745,60 +2746,6 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 {
     helpFileIndex_ = mmex::HTML_INDEX;
     createHelpPage();
-}
-//----------------------------------------------------------------------------
-
-bool mmGUIFrame::IsUpdateAvailable(const wxString& page)
-{
-    wxStringTokenizer tkz(page, '.', wxTOKEN_RET_EMPTY_ALL);
-    if (tkz.CountTokens() != 4)
-    {
-        return true;
-
-        //wxString url = mmex::getProgramWebSite();
-        //wxLaunchDefaultBrowser(url);
-        //return false;
-    }
-
-    int maj = wxAtoi(tkz.GetNextToken());
-    int min = wxAtoi(tkz.GetNextToken());
-    int cust = wxAtoi(tkz.GetNextToken());
-    int build = wxAtoi(tkz.GetNextToken());
-
-    // get current version
-    wxString currentV = mmex::getProgramVersion();
-    currentV = currentV.SubString(0, currentV.Find("DEV") - 1).Trim();
-    wxStringTokenizer tkz1(currentV, ('.'), wxTOKEN_RET_EMPTY_ALL);
-
-    int majC = wxAtoi(tkz1.GetNextToken());
-    int minC = wxAtoi(tkz1.GetNextToken());
-    int custC = wxAtoi(tkz1.GetNextToken());
-    int buildC = wxAtoi(tkz1.GetNextToken());
-
-    bool isUpdateAvailable = false;
-    if (maj > majC)
-        isUpdateAvailable = true;
-    else if (maj == majC)
-    {
-        if (min > minC)
-        {
-            isUpdateAvailable = true;
-        }
-        else if (min == minC)
-        {
-            if (cust > custC)
-            {
-                isUpdateAvailable = true;
-            }
-            else if (cust == custC)
-            {
-                if (build > buildC)
-                    isUpdateAvailable = true;
-            }
-        }
-    }
-
-    return isUpdateAvailable;
 }
 //----------------------------------------------------------------------------
 

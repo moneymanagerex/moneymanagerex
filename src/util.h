@@ -155,6 +155,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
 const wxString mmPlatformType();
 const wxString getURL(const wxString& file);
+const bool IsUpdateAvailable(const wxString& page);
 
 #endif // _MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

@@ -259,7 +259,6 @@ private:
     void OnTreeItemExpanded(wxTreeEvent& event);
     void OnTreeItemCollapsed(wxTreeEvent& event);
 
-    bool IsUpdateAvailable(const wxString& page);
     void processPendingEvents();
 
     /* Recent Files */
