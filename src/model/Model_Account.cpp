@@ -175,7 +175,7 @@ wxDate Model_Account::last_date(const Data& r)
     return last_date(&r);
 }
 
-double Model_Account::balance(const Data* r)
+/*double Model_Account::balance(const Data* r)
 {
     double sum = r->INITIALBAL;
     for (const auto& tran: transaction(r))
@@ -188,7 +188,7 @@ double Model_Account::balance(const Data* r)
 double Model_Account::balance(const Data& r)
 {
     return balance(&r);
-}
+}*/
 
 std::pair<double, double> Model_Account::investment_balance(const Data* r)
 {

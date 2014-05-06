@@ -59,24 +59,23 @@ private:
     mmDateRange* date_range_;
     void CreateControls();
     void sortTable() {}
-    void createFrames();
-    wxString prepareTemplate(const wxString& left, const wxString& right);
-    wxString m_templateText;
     wxString vAccts_;
 
-    wxString displaySummaryHeader(const wxString& summaryTitle );
-    wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
+    wxString m_templateText;
+    void createFrames();
+    static const wxString prepareTemplate(const wxString& left, const wxString& right);
+    static const wxString displaySummaryHeader(const wxString& summaryTitle );
+    static const wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
+    static const wxString displayAssets(double& tBalance);
+    wxString displayIncomeVsExpenses();
+    wxString getStatWidget();
+    static const wxString displayGrandTotals(double& tBalance);
 
-    wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
+    const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
                              , int type = Model_Account::CHECKING);
     void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
-    wxString displayAssets(double& tBalance);
-    wxString displayIncomeVsExpenses();
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
                                 , mmDateRange* date_range) const;
-    wxString getStatWidget();
-    wxString getCalendarWidget();
-    wxString displayGrandTotals(double& tBalance);
     int countFollowUp_, total_transactions_;
 };
 

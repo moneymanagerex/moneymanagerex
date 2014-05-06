@@ -331,18 +331,18 @@ void Model_Category::getCategoryStats(
     for (const auto& account: Model_Account::instance().all())
     {
         Model_Currency::Data* currency = Model_Account::currency(account);
-        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+        acc_conv_rates[account.ACCOUNTID] = currency ? currency->BASECONVRATE : 0;
     }
     //Set std::map with zerros
     const auto &allSubcategories = Model_Subcategory::instance().all();
     double value = 0;
     int columns = group_by_month ? 12 : 1;
-    wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
+    const wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
     for (const auto& category: Model_Category::instance().all())
     {
         for (int m = 0; m < columns; m++)
         {
-            wxDateTime d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
+            const wxDateTime &d = wxDateTime(start_date).Subtract(wxDateSpan::Months(m));
             int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
             categoryStats[category.CATEGID][-1][idx] = value;
             for (const auto & sub_category : allSubcategories)
@@ -353,11 +353,12 @@ void Model_Category::getCategoryStats(
         }
     }
     //Calculations
+    const wxDate today = date_range->today();
     for (const auto& transaction: Model_Checking::instance().find(Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)))
     {
         if (ignoreFuture)
         {
-            if (Model_Checking::TRANSDATE(transaction).IsLaterThan(wxDateTime::Today()))
+            if (Model_Checking::TRANSDATE(transaction).IsLaterThan(today))
                 continue; //skip future dated transactions
         }
 
@@ -369,7 +370,7 @@ void Model_Category::getCategoryStats(
 
         // We got this far, get the currency conversion rate for this account
         double convRate = acc_conv_rates[transaction.ACCOUNTID];
-        wxDateTime d = Model_Checking::TRANSDATE(transaction);
+        const wxDateTime &d = Model_Checking::TRANSDATE(transaction);
         int idx = group_by_month ? (d.GetYear()*100 + (int)d.GetMonth()) : 0;
         int categID = transaction.CATEGID;
 

@@ -105,6 +105,8 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent
     , const wxString& name)
     : frame_(wxGetApp().m_frame)
     , countFollowUp_(0)
+    , date_range_(0)
+    , browser_(0)
 {
     Create(parent, winid, pos, size, style, name);
     frame_->setHomePageActive();
@@ -143,6 +145,87 @@ bool mmHomePagePanel::Create( wxWindow *parent,
     return TRUE;
 }
 
+void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
+{
+    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+
+    const auto &transactions = Model_Checking::instance().all();
+    this->total_transactions_ = transactions.size();
+    const wxDateTime today = date_range_->today();
+    for (const auto& trx : transactions)
+    {
+        if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(today))
+            continue; //skip future dated transactions
+
+        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
+
+        accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
+        accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
+
+        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
+        {
+            accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
+            accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
+        }
+    }
+}
+
+void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
+    , mmDateRange* date_range)const
+{
+    //Initialization
+    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+    wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
+
+    //Calculations
+    const auto &transactions = Model_Checking::instance().find(
+        Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
+        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
+        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+        , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
+        );
+
+    for (const auto& pBankTransaction : transactions)
+    {
+        if (ignoreFuture)
+        {
+            if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(wxDateTime::Today()))
+                continue; //skip future dated transactions
+        }
+
+        // We got this far, get the currency conversion rate for this account
+        Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
+        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
+
+        int idx = pBankTransaction.ACCOUNTID;
+        if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
+            incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
+        else
+            incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
+    }
+}
+
+void mmHomePagePanel::CreateControls()
+{
+    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(itemBoxSizer2);
+
+    browser_ = wxWebView::New(this, wxID_ANY);
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
+    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
+}
+
+void mmHomePagePanel::PrintPage()
+{
+    browser_->Print();
+}
+
+//------------------------------------------------------------------------------------------------------//
+//FIXME: TODO: outdated code
 void mmHomePagePanel::createFrames()
 {
 
@@ -196,18 +279,13 @@ void mmHomePagePanel::createFrames()
     browser_->SetPage(m_templateText, "");
 }
 
-wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
+const wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
 {
     mmHTMLBuilder hb;
     hb.init();
     hb.startCenter();
 
     hb.startTable("100%", "top");
-    hb.startTableRow();
-    hb.startTableCell("100%\" colspan=\"2\" valign=\"middle\" align=\"center");
-    hb.addText(getCalendarWidget());
-    hb.endTableCell();
-    hb.endTableRow();
 
     hb.startTableRow();
     hb.endTableRow();
@@ -229,7 +307,7 @@ wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& 
     return hb.getHTMLText();
 }
 
-wxString mmHomePagePanel::displaySummaryHeader(const wxString& summaryTitle)
+const wxString mmHomePagePanel::displaySummaryHeader(const wxString& summaryTitle)
 {
     mmHTMLBuilder hb;
     hb.startTableRow();
@@ -240,7 +318,7 @@ wxString mmHomePagePanel::displaySummaryHeader(const wxString& summaryTitle)
     return hb.getHTMLText();
 }
 
-wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance)
+const wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance)
 {
     mmHTMLBuilder hb;
     // format the totals for display
@@ -255,32 +333,8 @@ wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, doubl
     return hb.getHTMLText();
 }
 
-void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
-{
-    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
-
-    const auto &transactions = Model_Checking::instance().all();
-    this->total_transactions_ = transactions.size();
-    for (const auto& trx : transactions)
-    {
-        if (ignoreFuture && Model_Checking::TRANSDATE(trx).IsLaterThan(wxDateTime::Today()))
-            continue; //skip future dated transactions
-
-        if (Model_Checking::status(trx) == Model_Checking::FOLLOWUP) this->countFollowUp_++;
-
-        accountStats[trx.ACCOUNTID].first += Model_Checking::reconciled(trx, trx.ACCOUNTID);
-        accountStats[trx.ACCOUNTID].second += Model_Checking::balance(trx, trx.ACCOUNTID);
-
-        if (Model_Checking::type(trx) == Model_Checking::TRANSFER)
-        {
-            accountStats[trx.TOACCOUNTID].first += Model_Checking::reconciled(trx, trx.TOACCOUNTID);
-            accountStats[trx.TOACCOUNTID].second += Model_Checking::balance(trx, trx.TOACCOUNTID);
-        }
-    }
-}
-
 /* Accounts */
-wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
     bool type_is_bank = type == Model_Account::CHECKING;
 
@@ -335,7 +389,7 @@ wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::p
 }
 
 //* Assets *//
-wxString mmHomePagePanel::displayAssets(double& tBalance)
+const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
     mmHTMLBuilder hb;
 
@@ -352,41 +406,6 @@ wxString mmHomePagePanel::displayAssets(double& tBalance)
         tBalance += Model_Asset::instance().balance();
     }
     return hb.getHTMLinTableWraper();
-}
-
-void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-                                             , mmDateRange* date_range)const
-{
-    //Initialization
-    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
-    wxDateTime start_date = wxDateTime(date_range->end_date()).SetDay(1);
-
-    //Calculations
-    const auto &transactions = Model_Checking::instance().find(
-        Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
-        , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
-        , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
-        , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL)
-    );
-
-    for (const auto& pBankTransaction : transactions)
-    {
-        if (ignoreFuture)
-        {
-            if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(wxDateTime::Today()))
-                continue; //skip future dated transactions
-        }
-
-        // We got this far, get the currency conversion rate for this account
-        Model_Account::Data *account = Model_Account::instance().get(pBankTransaction.ACCOUNTID);
-        double convRate = (account ? Model_Account::currency(account)->BASECONVRATE : 1);
-
-        int idx = pBankTransaction.ACCOUNTID;
-        if (Model_Checking::type(pBankTransaction) == Model_Checking::DEPOSIT)
-            incomeExpensesStats[idx].first += pBankTransaction.TRANSAMOUNT * convRate;
-        else
-            incomeExpensesStats[idx].second += pBankTransaction.TRANSAMOUNT * convRate;
-    }
 }
 
 //* Income vs Expenses *//
@@ -472,45 +491,6 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
     return hb.getHTMLinTableWraper();
 }
 
-wxString mmHomePagePanel::getCalendarWidget()
-{
-    const wxDateTime &today = date_range_->today();
-    mmHTMLBuilder hb;
-    hb.startTable("100%", "left\" cellpadding=\"1\" cellspacing=\"0", "0");
-    hb.startTableRow();
-    hb.startTableCell();
-    hb.font_settings(hb.font_size());
-    hb.bold(wxGetTranslation(wxDateTime::GetEnglishMonthName(today.GetMonth())));
-    hb.font_end();
-    hb.endTableCell();
-    hb.addTableCell("");
-    wxDateTime selectedMonthDay = date_range_->start_date();
-    for (int d = 1; d <= selectedMonthDay.GetLastMonthDay().GetDay(); d++)
-    {
-        selectedMonthDay.SetDay(d);
-        wxString sColor = "", sBgColor = "";
-        if (d == today.GetDay()) sBgColor = "YELLOW";
-        hb.startTableCell(wxString::Format("0\" bgcolor=\"%s\" align=\"center", sBgColor));
-        if (wxDateTime::GetWeekDayName(selectedMonthDay.GetWeekDay())=="Sunday") sColor = "#FF0000";
-        else if (wxDateTime::GetWeekDayName(selectedMonthDay.GetWeekDay())=="Saturday") sColor = "#FF0000";
-        hb.font_settings(hb.font_size(), sColor);
-        hb.addText(wxString()<<d);
-        hb.font_end();
-
-        hb.endTableCell();
-    }
-    /*hb.addTableCell(wxString::Format(_("Week#%d")
-        , today.GetWeekOfYear())
-        , false, true, false);*/
-    hb.addTableCell("");
-    hb.addTableCell(wxString() << wxDateTime::Now().GetYear(), false, false, true);
-
-    hb.endTableRow();
-    hb.endTable();
-
-    return hb.getHTMLinTableWraper();
-}
-
 wxString mmHomePagePanel::getStatWidget()
 {
     mmHTMLBuilder hb;
@@ -535,7 +515,7 @@ wxString mmHomePagePanel::getStatWidget()
     return hb.getHTMLinTableWraper(true);
 }
 
-wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
+const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
     mmHTMLBuilder hb;
     //  Display the grand total from all sections
@@ -546,23 +526,4 @@ wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     hb.endTable();
 
     return hb.getHTMLinTableWraper();
-}
-
-void mmHomePagePanel::CreateControls()
-{
-    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(itemBoxSizer2);
-
-    browser_ = wxWebView::New(this, wxID_ANY);
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
-    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
-}
-
-void mmHomePagePanel::PrintPage()
-{
-    browser_->Print();
 }

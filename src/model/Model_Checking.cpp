@@ -221,8 +221,7 @@ double Model_Checking::deposit(const Data& r, int account_id)
 
 double Model_Checking::reconciled(const Data* r, int account_id)
 {
-    double bal = balance(r, account_id);
-    return Model_Checking::status(r) == Model_Checking::RECONCILED ? bal : 0;
+    return (Model_Checking::status(r) == Model_Checking::RECONCILED) ? balance(r, account_id) : 0;
 }
 
 double Model_Checking::reconciled(const Data& r, int account_id)
