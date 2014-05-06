@@ -128,8 +128,6 @@ private:
 
     /* Cannot process home page recursively */
     bool refreshRequested_;
-    /* trigger to avaid double initialization for HomePage on startup*/
-    bool initHomePage_;
     /* Update home page details only if it is being displayed */
     bool activeHomePage_;
 

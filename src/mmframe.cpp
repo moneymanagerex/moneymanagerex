@@ -185,9 +185,7 @@ EVT_MENU(MENU_TREEPOPUP_EDIT, mmGUIFrame::OnPopupEditAccount)
 EVT_MENU(MENU_TREEPOPUP_DELETE, mmGUIFrame::OnPopupDeleteAccount)
 
 EVT_TREE_ITEM_MENU(wxID_ANY, mmGUIFrame::OnItemMenu)
-//EVT_TREE_ITEM_RIGHT_CLICK(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
 EVT_TREE_ITEM_ACTIVATED(ID_NAVTREECTRL, mmGUIFrame::OnItemRightClick)
-EVT_TREE_SEL_CHANGED(ID_NAVTREECTRL, mmGUIFrame::OnSelChanged)
 EVT_TREE_ITEM_EXPANDED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemExpanded)
 EVT_TREE_ITEM_COLLAPSED(ID_NAVTREECTRL, mmGUIFrame::OnTreeItemCollapsed)
 
@@ -232,7 +230,6 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 , budgetingPage_(0)
 , activeBudgetingPage_(false)
 , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
-, initHomePage_(false)
 , activeHomePage_(false)
 , refreshRequested_()
 , panelCurrent_()
@@ -697,7 +694,6 @@ void mmGUIFrame::createControls()
 
 void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 {
-    navTreeCtrl_->SetEvtHandlerEnabled(false);
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
     navTreeCtrl_->DeleteAllItems();
@@ -811,7 +807,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     else
         menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(false);
 
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
+    navTreeCtrl_->Connect(wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged));
 }
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
@@ -1782,25 +1778,18 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-# if defined (__WINDOWS__)
-    /* On init for Windows system that function start twice. *
-     * First time it should be skiped                        */
-    if (initHomePage_)
-#endif
-    {
-        wxSizer *sizer = cleanupHomePanel();
-        panelCurrent_ = new mmHomePagePanel(
-            homePanel_,
-            wxID_STATIC,
-            wxDefaultPosition,
-            wxDefaultSize,
-            wxNO_BORDER | wxTAB_TRAVERSAL);
+    wxSizer *sizer = cleanupHomePanel();
+    panelCurrent_ = new mmHomePagePanel(
+        homePanel_,
+        wxID_STATIC,
+        wxDefaultPosition,
+        wxDefaultSize,
+        wxNO_BORDER | wxTAB_TRAVERSAL);
 
-        sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
-    }
+    sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
+
     homePanel_->Layout();
     refreshRequested_ = false;
-    initHomePage_ = true;
 }
 //----------------------------------------------------------------------------
 
@@ -2312,7 +2301,6 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
 
         updateNavTreeControl();
-        initHomePage_ = true;
 
         if (!refreshRequested_)
         {
