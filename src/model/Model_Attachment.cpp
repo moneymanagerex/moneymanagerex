@@ -24,6 +24,7 @@ const std::vector<std::pair<Model_Attachment::REFTYPE, wxString> > Model_Attachm
 	std::make_pair(Model_Attachment::STOCK, "Stock"),
 	std::make_pair(Model_Attachment::ASSET, "Asset"),
 	std::make_pair(Model_Attachment::BANKACCOUNT, "BankAccount"),
+	std::make_pair(Model_Attachment::BILLSDEPOSIT, "BillsDeposit"),
 	std::make_pair(Model_Attachment::PAYEE, "Payee")
 };
 
@@ -86,37 +87,10 @@ wxString Model_Attachment::LastAttachmentFileName(const wxString& RefType, const
 	return LastAttachmentFileName;
 }
 
-wxArrayString Model_Attachment::all_reftype()
-{
-	wxArrayString reftype;
-	for (const auto& item : REFTYPE_CHOICES) reftype.Add(item.second);
-	return reftype;
-}
-
+/** Return the description of the choice reftype */
 wxString Model_Attachment::reftype_desc(const int& RefTypeEnum)
 {
 	const auto& item = REFTYPE_CHOICES[RefTypeEnum];
 	wxString reftype_desc = item.second;
 	return reftype_desc;
-}
-
-Model_Attachment::REFTYPE Model_Attachment::reftype(const Data* attachment)
-{
-	if (attachment->REFTYPE.CmpNoCase(all_reftype()[TRANSACTION]) == 0)
-		return TRANSACTION;
-	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[STOCK]) == 0)
-		return STOCK;
-	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[ASSET]) == 0)
-		return ASSET;
-	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[BANKACCOUNT]) == 0)
-		return BANKACCOUNT;
-	else if (attachment->REFTYPE.CmpNoCase(all_reftype()[PAYEE]) == 0)
-		return PAYEE;
-	else
-		return PAYEE;
-}
-
-Model_Attachment::REFTYPE Model_Attachment::reftype(const Data& attachment)
-{
-	return reftype(&attachment);
 }
