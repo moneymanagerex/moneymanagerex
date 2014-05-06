@@ -807,7 +807,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     else
         menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(false);
 
-    navTreeCtrl_->Connect(wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged));
+    navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), NULL, this);
 }
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
@@ -1423,6 +1423,7 @@ void mmGUIFrame::OnTreeItemCollapsed(wxTreeEvent& event)
 
 void mmGUIFrame::OnSelChanged(wxTreeEvent& event)
 {
+    //TODO: that may be not true anymore
     /* Because Windows generates 2 events when selecting the navTree, and Linux
        does not, we need to be able to control when the event is actually executed.
        This ensures that only one event activates the account for all systems. */
