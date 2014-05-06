@@ -751,7 +751,71 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemBold(reports, true);
     navTreeCtrl_->SetItemData(reports, new mmTreeItemData("Reports"));
 
-    /* ================================================================================================= */
+    this->updateReportNavigation(reports, budgeting);
+
+    ///////////////////////////////////////////////////////////////////
+
+    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), 5, 5);
+    navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
+    navTreeCtrl_->SetItemBold(help, true);
+
+    /* Start Populating the dynamic data */
+    navTreeCtrl_->Expand(root);
+    if (expandedReportNavTree_)
+        navTreeCtrl_->Expand(reports);
+
+    if (!m_db)
+        return;
+
+    /* Load Nav Tree Control */
+
+    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
+    if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
+        vAccts = VIEW_ACCOUNTS_ALL_STR;
+
+    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+    {
+        if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+            (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
+            vAccts == "ALL"))
+            continue;
+
+        int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
+        if (Model_Account::type(account) == Model_Account::INVESTMENT)
+        {
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+        }
+        else if (Model_Account::type(account) == Model_Account::TERM)
+        {
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+        }
+        else
+        {
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+        }
+    }
+
+    if (mmIniOptions::instance().expandBankTree_)
+        navTreeCtrl_->Expand(accounts);
+
+    if (Model_Account::hasActiveTermAccount())
+    {
+        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(true);
+        if (mmIniOptions::instance().expandTermTree_ || expandTermAccounts)
+            navTreeCtrl_->Expand(termAccount);
+    }
+    else
+        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(false);
+
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
+}
+
+void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
+{
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
     wxTreeItemId categsOverTime = navTreeCtrl_->AppendItem(reports
         , _("Where the Money Goes"), 4, 4);
@@ -1332,65 +1396,6 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
 
-    ///////////////////////////////////////////////////////////////////
-
-    wxTreeItemId help = navTreeCtrl_->AppendItem(root, _("Help"), 5, 5);
-    navTreeCtrl_->SetItemData(help, new mmTreeItemData("Help"));
-    navTreeCtrl_->SetItemBold(help, true);
-
-    /* Start Populating the dynamic data */
-    navTreeCtrl_->Expand(root);
-    if (expandedReportNavTree_)
-        navTreeCtrl_->Expand(reports);
-
-    if (!m_db)
-        return;
-
-    /* Load Nav Tree Control */
-
-    wxString vAccts = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-    wxASSERT(vAccts == VIEW_ACCOUNTS_ALL_STR || vAccts == VIEW_ACCOUNTS_FAVORITES_STR || vAccts == VIEW_ACCOUNTS_OPEN_STR);
-    if (vAccts != VIEW_ACCOUNTS_ALL_STR && vAccts != VIEW_ACCOUNTS_FAVORITES_STR && vAccts != VIEW_ACCOUNTS_OPEN_STR)
-        vAccts = VIEW_ACCOUNTS_ALL_STR;
-
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
-    {
-        if (!((vAccts == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-            (vAccts == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-            vAccts == "ALL"))
-            continue;
-
-        int selectedImage = mmIniOptions::instance().account_image_id(account.ACCOUNTID);
-        if (Model_Account::type(account) == Model_Account::INVESTMENT)
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(stocks, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-        else if (Model_Account::type(account) == Model_Account::TERM)
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-        else
-        {
-            wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
-            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
-        }
-    }
-
-    if (mmIniOptions::instance().expandBankTree_)
-        navTreeCtrl_->Expand(accounts);
-
-    if (Model_Account::hasActiveTermAccount())
-    {
-        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(true);
-        if (mmIniOptions::instance().expandTermTree_ || expandTermAccounts)
-            navTreeCtrl_->Expand(termAccount);
-    }
-    else
-        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(false);
-
-    navTreeCtrl_->SetEvtHandlerEnabled(true);
 }
 //----------------------------------------------------------------------------
 
