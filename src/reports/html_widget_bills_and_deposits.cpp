@@ -96,11 +96,11 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         for (const auto& item : bd_days)
         {
-            output += "<td>" + std::get<1>(item) +"</td>"; //payee
+            output += "<tr><td>" + std::get<1>(item) +"</td>"; //payee
             //hb.addCurrencyCell(std::get<3>(item), Model_Account::currency(std::get<4>(item)));
             output += wxString::Format("<td class = \"text-right\">%s</td>"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item))); 
-            output += "<td>" + std::get<2>(item) + "</td>"; //payee
+            output += "<td>" + std::get<2>(item) + "</td></tr>"; //payee
         }
         output += "</tbody></table>";
     }
