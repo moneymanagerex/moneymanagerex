@@ -18,7 +18,6 @@
 
 #include "html_widget_top_categories.h"
 
-#include "htmlbuilder.h"
 #include "util.h"
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
@@ -41,29 +40,25 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
-    mmHTMLBuilder hb;
+    wxString output = "<table class = \"table\"><thead><tr><th>";
 
-    hb.startTable("100%");
-    hb.addTableHeaderRow(title_, 2);
-    hb.startTableRow();
-    hb.addTableCell(_("Category"), false, false, true);
-    //hb.addTableCell(_("QTY"), true, false, true);
-    hb.addTableCell(_("Summary"), true, false, true);
-    hb.endTableRow();
+    //hb.addTableHeaderRow(title_, 2);
+    output += _("Category") + "</th><th>" + _("Summary") + "</th></tr></thead><tbody>";
+
 
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
 
     for (const auto& i : topCategoryStats)
     {
-        hb.startTableRow();
-        hb.addTableCell((i.first.IsEmpty() ? "..." : i.first), false, true);
-        hb.addCurrencyCell(i.second);
-        hb.endTableRow();
+        output += "<tr>";
+        output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
+        output += wxString::Format("<td class = \"money, text-right\">%f</td>", i.second);
+        output += "</tr>";
     }
-    hb.endTable();
+    output += "</tbody></table>";
 
-    return hb.getHTMLinTableWraper(true);
+    return output;
 }
 
 void htmlWidgetTop7Categories::getTopCategoryStats(

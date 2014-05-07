@@ -18,7 +18,6 @@
 
 #include "html_widget_stocks.h"
 
-#include "htmlbuilder.h"
 #include "util.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Account.h"
@@ -39,45 +38,37 @@ htmlWidgetStocks::~htmlWidgetStocks()
 
 wxString htmlWidgetStocks::getHTMLText()
 {
-    mmHTMLBuilder hb;
-
-    hb.startTable("100%");
+    wxString output = "";
     std::map<int, std::pair<double, double> > stockStats;
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        hb.startTableRow();
-        hb.addTableHeaderCell(_("Stocks"), false);
-        hb.addTableHeaderCell(_("Gain/Loss"), true);
-        hb.addTableHeaderCell(_("Total"), true);
-        hb.endTableRow();
-
         if (enable_details_)
         {
+            output = "<table class = \"table\"><thead><tr><th>";
+            output += _("Stocks") + "</th><th>" + _("Gain/Loss") + "</th><th>" + _("Total") + "</th></tr></thead><tbody>";
             const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+            wxString body = "";
             for (const auto& account : accounts)
             {
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
                 if (Model_Account::status(account) != Model_Account::OPEN) continue;
-                Model_Currency::Data *currency = Model_Currency::instance().get(account.CURRENCYID);
-                hb.startTableRow();
-                hb.addTableCellLink(wxString::Format("STOCK:%i", account.ACCOUNTID)
-                    , account.ACCOUNTNAME, false, true);
-                hb.addTableCell(Model_Currency::toCurrency(stockStats[account.ACCOUNTID].first, currency), true);
-                hb.addTableCell(Model_Currency::toCurrency(stockStats[account.ACCOUNTID].second, currency), true);
-                hb.endTableRow();
+                body += "<tr>";
+                body += wxString::Format("<td><a href=\"STOCK:%d\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
+                body += wxString::Format("<td class = \"money, text-right\">%f</td>", stockStats[account.ACCOUNTID].first);
+                body += wxString::Format("<td class = \"money, text-right\">%f</td>", stockStats[account.ACCOUNTID].second);
+                body += "</tr>";
             }
+
+            output += body;
+            output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+            output += "<td class =\"money, text-right\">" + wxString::Format("%f", grand_gain_lost_) + "</td>";
+            output += "<td class =\"money, text-right\">" + wxString::Format("%f", grand_total_) + "</td></tr></tfoot></table>";
+            if (body.empty()) output.clear();
         }
-
-        std::vector<double> data;
-        data.push_back(grand_gain_lost_);
-        data.push_back(grand_total_);
-
-        hb.addTotalRow(_("Stocks Total:"), 3, data);
-        hb.endTable();
     }
 
-    return hb.getHTMLinTableWraper(false);
+    return output;
 }
 
 void htmlWidgetStocks::enable_detailes(bool enable)

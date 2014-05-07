@@ -1,5 +1,6 @@
 /*******************************************************
- Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2006 Madhan Kanagavel
+Copyright (C) 2014 Nikolay
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -22,8 +23,9 @@
 #include "reports/html_widget_stocks.h"
 #include "mmex.h"
 #include "mmframe.h"
+#include "paths.h"
 
-#include "reports/htmlbuilder.h"
+#include "html_template.h"
 #include "billsdepositspanel.h"
 #include "reports/mmgraphincexpensesmonth.h"
 #include <algorithm>
@@ -126,23 +128,119 @@ wxString mmHomePagePanel::GetHomePageText() const
     return m_templateText;
 }
 
-bool mmHomePagePanel::Create( wxWindow *parent,
-            wxWindowID winid,
-            const wxPoint& pos,
-            const wxSize& size,
-            long style,
-            const wxString& name  )
+bool mmHomePagePanel::Create(wxWindow *parent
+    , wxWindowID winid
+    , const wxPoint& pos
+    , const wxSize& size
+    , long style
+    , const wxString& name)
 {
-    SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
+    SetExtraStyle(GetExtraStyle() | wxWS_EX_BLOCK_EVENTS);
     wxPanel::Create(parent, winid, pos, size, style, name);
 
     CreateControls();
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
-    createFrames();
+    getTemplate();
+    getData();
+    fillData();
 
     return TRUE;
+}
+
+void mmHomePagePanel::CreateControls()
+{
+    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
+    this->SetSizer(itemBoxSizer2);
+
+    browser_ = wxWebView::New(this, wxID_ANY);
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
+    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
+}
+
+void mmHomePagePanel::PrintPage()
+{
+    browser_->Print();
+}
+
+void mmHomePagePanel::getTemplate()
+{
+    m_templateText.clear();
+    const wxString template_path = mmex::getPathResource(mmex::HOME_PAGE_TEMPLATE);
+    wxFileInputStream input(template_path);
+    wxTextInputStream text(input, wxT("\x09"), wxConvUTF8);
+    while (input.IsOk() && !input.Eof())
+    {
+        m_templateText += text.ReadLine() + "\n";
+    }
+}
+
+void mmHomePagePanel::getData()
+{
+    vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
+    if (mmIniOptions::instance().ignoreFutureTransactions_)
+        date_range_ = new mmCurrentMonthToDate;
+    else
+        date_range_ = new mmCurrentMonth;
+
+    double tBalance = 0.0;
+
+    std::map<int, std::pair<double, double> > accountStats;
+    get_account_stats(accountStats);
+
+    displayAccounts(tBalance, accountStats);
+    if (Model_Account::hasActiveTermAccount())
+    {
+        double termBalance = 0.0;
+        displayAccounts(termBalance, accountStats, Model_Account::TERM);
+        tBalance += termBalance;
+    }
+
+    //Stocks
+    wxString stocks = "";
+    htmlWidgetStocks stocks_widget;
+    stocks_widget.enable_detailes(frame_->expandedStockAccounts());
+    if (!Model_Stock::instance().all().empty())
+    {
+        stocks = stocks_widget.getHTMLText();
+    }
+    tBalance += stocks_widget.get_total();
+    m_frames["STOCKS_INFO"] = stocks;
+
+    displayAssets(tBalance);
+    displayGrandTotals(tBalance);
+
+    //
+    mmDateRange* date_range = new mmLast30Days();
+    htmlWidgetTop7Categories top_trx(date_range);
+    m_frames["TOP_CATEGORIES"] = top_trx.getHTMLText();
+
+    displayIncomeVsExpenses();
+
+    htmlWidgetBillsAndDeposits bills_and_deposits(_("Upcoming Transactions"));
+    m_frames["BILLS_AND_DEPOSITS"] = bills_and_deposits.getHTMLText();
+
+    m_frames["STATISTICS"] = getStatWidget();
+
+}
+
+void mmHomePagePanel::fillData()
+{
+    for (const auto& entry : m_frames)
+    {
+        m_templateText.Replace(wxString::Format("<TMPL_VAR \"%s\">", entry.first), entry.second);
+    }
+    wxFileOutputStream index_output(mmex::getReportIndex());
+    wxTextOutputStream index_file(index_output);
+    index_file << m_templateText;
+    index_output.Close();
+    browser_->LoadURL(getURL(mmex::getReportIndex()));
+    wxLogDebug("Loading file:%s", mmex::getReportIndex());
 }
 
 void mmHomePagePanel::get_account_stats(std::map<int, std::pair<double, double> > &accountStats)
@@ -205,166 +303,30 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     }
 }
 
-void mmHomePagePanel::CreateControls()
-{
-    wxBoxSizer* itemBoxSizer2 = new wxBoxSizer(wxVERTICAL);
-    this->SetSizer(itemBoxSizer2);
-
-    browser_ = wxWebView::New(this, wxID_ANY);
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
-    itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
-}
-
-void mmHomePagePanel::PrintPage()
-{
-    browser_->Print();
-}
-
-//------------------------------------------------------------------------------------------------------//
-//FIXME: TODO: outdated code
-void mmHomePagePanel::createFrames()
-{
-
-    if (mmIniOptions::instance().ignoreFutureTransactions_)
-        date_range_ = new mmCurrentMonthToDate;
-    else
-        date_range_ = new mmCurrentMonth;
-
-    vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-
-    double tBalance = 0.0;
-    wxString stocks="", assets="", grand_total="", top="", rightFrame="";
-
-
-    std::map<int, std::pair<double, double> > accountStats;
-    get_account_stats(accountStats);
-
-    wxString leftFrame = displayAccounts(tBalance, accountStats);
-    if (Model_Account::hasActiveTermAccount())
-    {
-        double termBalance = 0.0;
-        leftFrame += displayAccounts(termBalance, accountStats, Model_Account::TERM);
-        tBalance += termBalance;
-    }
-
-    htmlWidgetStocks stocks_widget;
-    stocks_widget.enable_detailes(frame_->expandedStockAccounts());
-    if ( !Model_Stock::instance().all().empty())
-    {
-        stocks = stocks_widget.getHTMLText();
-    }
-    tBalance += stocks_widget.get_total();
-
-    leftFrame << stocks;
-    leftFrame << displayAssets(tBalance);
-    leftFrame << displayGrandTotals(tBalance);
-
-    mmDateRange* date_range = new mmLast30Days();
-    htmlWidgetTop7Categories top_trx(date_range);
-    leftFrame += top_trx.getHTMLText();
-
-    //Also displays the Income vs Expenses graph.
-    rightFrame << displayIncomeVsExpenses();
-
-    htmlWidgetBillsAndDeposits bills_and_deposits(_("Upcoming Transactions"));
-    rightFrame += bills_and_deposits.getHTMLText();
-
-    rightFrame << getStatWidget();
-
-    m_templateText = prepareTemplate(leftFrame, rightFrame);
-    browser_->SetPage(m_templateText, "");
-}
-
-const wxString mmHomePagePanel::prepareTemplate(const wxString& left, const wxString& right)
-{
-    mmHTMLBuilder hb;
-    hb.init();
-    hb.startCenter();
-
-    hb.startTable("100%", "top");
-
-    hb.startTableRow();
-    hb.endTableRow();
-    hb.startTableRow();
-
-    hb.startTableCell("50%\" valign=\"top\" align=\"center");
-
-    hb.addText(left);
-
-    hb.endTableCell();
-    hb.startTableCell("50%\" valign=\"top\" align=\"center");
-
-    hb.addText(right);
-
-    hb.endTableCell();
-    hb.endTableRow();
-    hb.endTable();
-    hb.end();
-    return hb.getHTMLText();
-}
-
-const wxString mmHomePagePanel::displaySummaryHeader(const wxString& summaryTitle)
-{
-    mmHTMLBuilder hb;
-    hb.startTableRow();
-    hb.addTableHeaderCell(summaryTitle, false);
-    hb.addTableHeaderCell(_("Reconciled"), true);
-    hb.addTableHeaderCell(_("Balance"), true);
-    hb.endTableRow();
-    return hb.getHTMLText();
-}
-
-const wxString mmHomePagePanel::displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance)
-{
-    mmHTMLBuilder hb;
-    // format the totals for display
-
-    std::vector<double> data;
-    data.push_back(tRecBalance);
-    data.push_back(tBalance);
-
-    hb.startTableRow();
-    hb.addTotalRow(totalsTitle, 3, data);
-    hb.endTableRow();
-    return hb.getHTMLText();
-}
-
 /* Accounts */
-const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+void mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
     bool type_is_bank = type == Model_Account::CHECKING;
-
-    mmHTMLBuilder hb;
-    hb.startTable("100%");
-
-    // Only Show the account titles if we want to display Bank accounts.
-    if ( frame_->expandedBankAccounts() && type_is_bank)
-        hb.addText(displaySummaryHeader(_("Bank Account")));
-    else if (frame_->expandedTermAccounts() && !type_is_bank)
-        hb.addText(displaySummaryHeader(_("Term account")));
-
-    // Get account balances and display accounts if we want them displayed
     double tReconciled = 0;
-    for (const auto& account: Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
+
+    wxString output = "<table class = \"table\"><thead><tr><th>";
+    output += _("Bank Account") + "</th><th>" + _("Reconciled") + "</th><th>" + _("Balance") + "</th></tr></thead><tbody>";
+    wxString body = "";
+    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
-        if (Model_Account::type(account)!= type || Model_Account::status(account) == Model_Account::CLOSED) continue;
+        if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
 
         Model_Currency::Data* currency = Model_Account::currency(account);
-
-        double currency_rate = 1;
-        if (currency) currency_rate = currency->BASECONVRATE;
+        if (!currency) currency = Model_Currency::GetBaseCurrency();
+        double currency_rate = currency->BASECONVRATE;
         double bal = account.INITIALBAL + accountStats[account.ACCOUNTID].second; //Model_Account::balance(account);
         double reconciledBal = account.INITIALBAL + accountStats[account.ACCOUNTID].first;
         tBalance += bal * currency_rate;
         tReconciled += reconciledBal * currency_rate;
 
         // Display the individual account links if we want to display them
-        if ( ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts())
-            || (!frame_->expandedBankAccounts() && !frame_->expandedTermAccounts()) )
+        if (((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts())
+            || (!frame_->expandedBankAccounts() && !frame_->expandedTermAccounts()))
         {
 
             // show the actual amount in that account
@@ -373,54 +335,34 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
                 (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
                 && ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts()))
             {
-                hb.startTableRow();
-                hb.addTableCellLink(wxString::Format("ACCT:%d", account.ACCOUNTID), account.ACCOUNTNAME, false, true);
-                hb.addCurrencyCell(reconciledBal, currency);
-                hb.addCurrencyCell(bal, currency);
-                hb.endTableRow();
+                body += "<tr>";
+                body += wxString::Format("<td><a href=\"ACCT:%d\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
+                body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
+                body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(bal, currency));
+                body += "</tr>\n";
             }
         }
     }
-    const wxString totalStr = (type_is_bank) ? _("Bank Accounts Total:") : _("Term Accounts Total:");
-    hb.addText(displaySectionTotal(totalStr, tReconciled, tBalance));
-    hb.endTable();
+    output += body;
+    output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+    output += "<td class =\"money, text-right\">" + wxString::Format("%f", tReconciled) + "</td>";
+    output += "<td class =\"money, text-right\">" + wxString::Format("%f", tBalance) + "</td></tr></tfoot></table>";
+    if (body.empty()) output.clear();
 
-    return hb.getHTMLinTableWraper();
-}
-
-//* Assets *//
-const wxString mmHomePagePanel::displayAssets(double& tBalance)
-{
-    mmHTMLBuilder hb;
-
-    if (mmIniOptions::instance().enableAssets_)
-    {
-        hb.startTable("100%");
-        hb.startTableRow();
-        hb.addTableCellLink("Assets:", _("Assets"), false, true);
-        hb.addTableCell("", true);
-        hb.addCurrencyCell(Model_Asset::instance().balance());
-        hb.endTableRow();
-        hb.endTable();
-
-        tBalance += Model_Asset::instance().balance();
-    }
-    return hb.getHTMLinTableWraper();
+    m_frames[(type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO")] = output;
 }
 
 //* Income vs Expenses *//
-wxString mmHomePagePanel::displayIncomeVsExpenses()
+void mmHomePagePanel::displayIncomeVsExpenses()
 {
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
-    getExpensesIncomeStats( incomeExpensesStats
-        , date_range_
-    );
+    getExpensesIncomeStats(incomeExpensesStats, date_range_);
 
     bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
     bool show_all = (frame_->expandedBankAccounts() && frame_->expandedTermAccounts()) || show_nothing;
     bool show_bank = frame_->expandedBankAccounts();
-    for (const auto& account: Model_Account::instance().all())
+    for (const auto& account : Model_Account::instance().all())
     {
         if (!show_all)
         {
@@ -431,99 +373,55 @@ wxString mmHomePagePanel::displayIncomeVsExpenses()
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
     }
+    m_frames["EXPENCES"] = wxString::Format("%f", tExpenses);
+    m_frames["INCOME"] = wxString::Format("%f", tIncome);
+}
 
-    mmHTMLBuilder hb;
+//* Assets *//
+void mmHomePagePanel::displayAssets(double& tBalance)
+{
+    wxString output = "";
 
-    mmGraphIncExpensesMonth gg;
-    gg.init(tIncome, tExpenses);
-    gg.Generate("");
-
-        wxString monthHeading = date_range_->title();
-        hb.startTable("100%");
-        hb.addTableHeaderRow(wxString::Format(_("Income vs Expenses: %s"), monthHeading), 2);
-
-            hb.startTableRow();
-            hb.startTableCell();
-            hb.addImage(gg.getOutputFileName());
-            hb.endTableCell();
-
-            hb.startTableCell();
-
-            hb.startCenter();
-            hb.startTable();
-            hb.startTableRow();
-            hb.addTableHeaderCell(_("Type"));
-            hb.addTableHeaderCell(_("Amount"), true);
-            hb.endTableRow();
-
-            hb.startTableRow();
-            hb.addTableCell(_("Income:"), false, true);
-            hb.addCurrencyCell(tIncome);
-            hb.endTableRow();
-
-            hb.startTableRow();
-            hb.addTableCell(_("Expenses:"), false, true);
-            hb.addCurrencyCell(tExpenses);
-            hb.endTableRow();
-
-            hb.addRowSeparator(2);
-            hb.startTableRow();
-            hb.addTableCell(_("Difference:"), false, true, true);
-            hb.addCurrencyCell(tIncome - tExpenses);
-            hb.endTableRow();
-
-            if (!show_all)
-            {
-                wxString accounts_type = show_bank ? _("Bank Accounts") : _("Term Accounts");
-                hb.addRowSeparator(2);
-                hb.startTableRow();
-                hb.addTableCell(_("Accounts: "), false, true, false);
-                hb.addTableCell(accounts_type, false, true, false);
-                hb.endTableRow();
-            }
-            hb.endTable();
-            hb.endCenter();
-
-        hb.endTableCell();
-        hb.endTableRow();
-        hb.endTable();
-
-    return hb.getHTMLinTableWraper();
+    if (mmIniOptions::instance().enableAssets_)
+    {
+        double asset_balance = Model_Asset::instance().balance();
+        tBalance += asset_balance;
+        output = "<table class = \"table\"><tfoot><tr class = \"total\">";
+        output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
+        output += wxString::Format("<td class = \"money, text-right\">%f</td></tr>", asset_balance);
+        output += "</tfoot></table>";
+    }
+    m_frames["ASSETS_INFO"] = output;
 }
 
 wxString mmHomePagePanel::getStatWidget()
 {
-    mmHTMLBuilder hb;
-
-    hb.startTable("100%");
-    hb.addTableHeaderRow(_("Transaction Statistics"), 2);
+    wxString output = "<table class = \"table\"><thead><tr>";
+    output += "<th>" + _("Transaction Statistics") + "</th><th></th><tbody>";
 
     if (this->countFollowUp_ > 0)
     {
-        hb.startTableRow();
-        hb.addTableCell(_("Follow Up On Transactions: "));
-        hb.addTableCell(wxString::Format("%d", this->countFollowUp_), true, true, true);
-        hb.endTableRow();
+        output += "<tr><td>";
+        output += _("Follow Up On Transactions: ") + "</td>";
+        output += wxString::Format("<td>%i</td></tr>", this->countFollowUp_);
     }
 
-    hb.startTableRow();
-    hb.addTableCell( _("Total Transactions: "));
-    hb.addTableCell(wxString::Format("%d", this->total_transactions_), true, true, true);
-    hb.endTableRow();
-    hb.endTable();
+    output += "<tr><td>";
+    output += _("Total Transactions: ") + "</td>";
+    output += wxString::Format("<td>%d</td></tr></table>", this->total_transactions_);
 
-    return hb.getHTMLinTableWraper(true);
+    return output;
 }
 
-const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
+void mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
-    mmHTMLBuilder hb;
+    wxString output = "<table class = \"table\">";
     //  Display the grand total from all sections
     wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
-    hb.startTable("100%");
-    hb.addTotalRow(_("Grand Total:"), 2, tBalanceStr);
-    hb.endTable();
+    output += "<tfoot><tr class = \"total\"><td>" + _("Grand Total:") + "</td><td></td>";
+    output += "<td class =\"text-right\">" + tBalanceStr + "</td>";
+    output += "</tr></tfoot></table>";
 
-    return hb.getHTMLinTableWraper();
+    m_frames["GRAND_TOTAL"] = output;
 }

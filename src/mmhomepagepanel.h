@@ -62,20 +62,20 @@ private:
     wxString vAccts_;
 
     wxString m_templateText;
-    void createFrames();
-    static const wxString prepareTemplate(const wxString& left, const wxString& right);
-    static const wxString displaySummaryHeader(const wxString& summaryTitle );
-    static const wxString displaySectionTotal(const wxString& totalsTitle, double tRecBalance, double& tBalance);
-    static const wxString displayAssets(double& tBalance);
-    wxString displayIncomeVsExpenses();
+    std::map <wxString, wxString> m_frames;
+    void getTemplate();
+    void getData();
+    void fillData();
+    void displayAssets(double& tBalance);
+    void displayIncomeVsExpenses();
     wxString getStatWidget();
-    static const wxString displayGrandTotals(double& tBalance);
+    void displayGrandTotals(double& tBalance);
 
-    const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
-                             , int type = Model_Account::CHECKING);
+    void displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
+        , int type = Model_Account::CHECKING);
     void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
-                                , mmDateRange* date_range) const;
+        , mmDateRange* date_range) const;
     int countFollowUp_, total_transactions_;
 };
 

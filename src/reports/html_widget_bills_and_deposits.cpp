@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "billsdepositspanel.h"
-#include "htmlbuilder.h"
 #include "util.h"
 #include "html_widget_bills_and_deposits.h"
 #include "model/Model_Billsdeposits.h"
@@ -38,7 +37,7 @@ htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
 
 wxString htmlWidgetBillsAndDeposits::getHTMLText()
 {
-    mmHTMLBuilder hb;
+    wxString output = "";
 
     //                    days, payee, description, amount, account
     std::vector< std::tuple<int, wxString, wxString, double, Model_Account::Data*> > bd_days;
@@ -92,23 +91,18 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {
         wxString colorStr;
 
-        hb.startTable("100%");
-        hb.addTableHeaderRowLink("billsdeposits:", title_, 3);
+        output = "<table class = \"table\"><thead><tr><th>";
+        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th><th></th><th></th></tr></thead><tbody>", title_);
 
         for (const auto& item : bd_days)
         {
-            colorStr = "#9999FF";
-            if (std::get<0>(item) < 0)
-                colorStr = "#FF6600";
-
-            hb.startTableRow();
-            hb.addTableCell(std::get<1>(item), false, true); //payee
-            hb.addCurrencyCell(std::get<3>(item), Model_Account::currency(std::get<4>(item)));
-            //Draw it as numeric that mean align right
-            hb.addTableCell(std::get<2>(item), true, false, false, colorStr);
-            hb.endTableRow();
+            output += "<td>" + std::get<1>(item) +"</td>"; //payee
+            //hb.addCurrencyCell(std::get<3>(item), Model_Account::currency(std::get<4>(item)));
+            output += wxString::Format("<td class = \"text-right\">%s</td>"
+                , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item))); 
+            output += "<td>" + std::get<2>(item) + "</td>"; //payee
         }
-        hb.endTable();
+        output += "</tbody></table>";
     }
-    return hb.getHTMLinTableWraper(true);
+    return output;
 }
