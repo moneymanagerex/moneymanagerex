@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http - equiv = "Content-Type" content = "text/html" />
+    <title>Home Page</title>
+    <script src = "Chart.js"></script>
+    <link href = "master.css" rel = "stylesheet" />
+</head>
+<body>
+
+<table width="98%">
+<td width="50%" valign="top">
+<!--Accounts-->
+<table class = "table">
+<thead>
+    <tr>
+        <th>Bank Account</th>
+        <th>Balance</th>
+    </tr>
+</thead>
+<tbody>
+    <TMPL_LOOP NAME=CONTENTS>
+        <tr>
+        <!--td><a href="<TMPL_VAR "ACCOUNT_NAME_LINK">"><TMPL_VAR "ACCOUNT_NAME"></a></td-->
+        <td><TMPL_VAR "ACCOUNT_NAME"></a></td>
+        <td class = "text-right"><TMPL_VAR "Nr"></td>
+        </tr>
+    </TMPL_LOOP>
+</tbody>
+<tfoot>
+        <tr class="total">
+            <td>Total:</td>
+            <td><TMPL_VAR "ACCOUNTS_TOTAL"></td>
+        </tr>
+</tfoot>
+</table>
+
+<!--Stocks-->
+<table class = "table">
+<thead>
+    <tr>
+        <th>Stocks</th>
+        <th>Gain/Loss</th>
+        <th>Total</th>
+    </tr>
+</thead>
+<tbody>
+    <TMPL_LOOP NAME=CONTENTS>
+        <tr>
+        <!--td><a href="<TMPL_VAR "ACCOUNT_NAME_LINK">"><TMPL_VAR "ACCOUNT_NAME"></a></td-->
+        <td><TMPL_VAR "STOCKS_NAME"></a></td>
+        <td class = "text-right"><TMPL_VAR "GAIN_LOSS"></td>
+        <td class = "text-right"><TMPL_VAR "STOCKS_TOTAL"></td>
+        </tr>
+    </TMPL_LOOP>
+</tbody>
+<tfoot>
+        <tr class="total">
+            <td>Total:</td>
+            <td><TMPL_VAR "GAIN_LOSS_TOTAL"></td>
+            <td><TMPL_VAR "STOCKS_TOTAL"></td>
+        </tr>
+</tfoot>
+</table>
+
+
+<!--Top Withdrawals: Last 30 Days-->
+<table class = "table">
+<thead>
+    <tr>
+        <th>Category</th>
+        <th>Summary</th>
+    </tr>
+</thead>
+<tbody>
+    <TMPL_LOOP NAME=CONTENTS>
+        <tr>
+        <td><TMPL_VAR "CATEG_NAME"></a></td>
+        <td class = "text-right"><TMPL_VAR "SUMMARY"></td>
+        </tr>
+    </TMPL_LOOP>
+</tbody>
+</table>
+
+</td>
+<td>
+    
+<!--Income vs Expenses: Current Month-->
+
+<table class = "table">
+<tbody>
+    <tr>
+        <td><canvas id="reportChart" width="250" height="150"></canvas></td>
+        <td>
+            <table class= "table">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Income</td>
+                    <td class = "money, text-right" id="id0"></td>
+                </tr>
+                <tr>
+                    <td>Expences</td>
+                    <td class = "money, text-right" id="id1"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr class="total">
+                    <td>Difference:</td>
+                    <td class = "money, text-right" id="diff"></td>
+                </tr>                   
+            </tfoot>
+            </table>
+        </td>
+        </tr>
+</tbody>
+</table>
+
+<!--Upcoming Transactions -->
+<table class = "table">
+<thead>
+    <tr>
+        <th>Payee</th>
+        <th>Amount</th>
+        <th>Days</th>
+    </tr>
+</thead>
+<tbody id = "upcom">
+</tbody>
+</table>
+
+
+<!--Transaction Statistics -->
+<table class = "table">
+<thead>
+    <tr>
+        <th>Transaction Statistics</th>
+    </tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<table class = "table">
+<tbody id = "upcoming"></tbody>
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+
+<script>
+<!-- Chart -->
+    <!--sample data-->
+    var data = {
+    labels : ["Income/Expences"],
+    datasets : [
+        {
+            fillColor : "rgba(220,66,66,0.5)",
+            strokeColor : "rgba(220,220,220,1)",
+            data : [650],
+        },
+        {
+            fillColor : "rgba(151,187,205,0.5)",
+            strokeColor : "rgba(151,187,205,1)",
+            data : [280],
+        },
+    ]
+    };
+    var options = {
+        animationEasing: "easeOutQuint",
+        barValueSpacing : 10,
+    };
+    var ctx = document.getElementById("reportChart").getContext("2d");
+    var reportChart = new Chart(ctx).Bar(data, options);
+    
+    var cell=document.getElementById("id0");
+    cell.innerHTML = data["datasets"][0]["data"];
+    cell=document.getElementById("id1");
+    cell.innerHTML=data["datasets"][1]["data"];
+    cell=document.getElementById("diff");
+    cell.innerHTML = data["datasets"][0]["data"] - data["datasets"][1]["data"];
+
+    <!--Upcoming Transactions-->
+    var upcomings = {
+    datasets : [
+        {
+            name : "One",
+            amount : [650],
+            days : "3 days overdue!",
+        },
+        {
+            fillColor : "Two",
+            amount : [280],
+            days : "5 days overdue!",
+        }
+    ]
+    };
+
+
+    var rows = "";
+	var table=document.getElementById("upcom");
+    for(var key in upcomings) {
+	    if(typeof upcomings[key] === "object") {
+	        for(var i = 0; i < upcomings[key].length; i++) {
+				rows = rows + "<tr>";
+	            for(var property in upcomings[key][i]) {
+					//alert(property);
+					rows = rows + (property === "amount" ? "<td class = 'money, text-right'>" : "<td>") + upcomings[key][i][property] + "</td>";
+	            }
+				rows = rows + "</tr>";
+	        }
+	    }
+    }
+	table.innerHTML = rows;
+
+
+    <!--Format numbers-->
+    function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }
+    var elements = document.getElementsByClassName("money, text-right");
+    for (var i = 0; i < elements.length; i++)
+        { elements[i].innerHTML = "" + currency(elements[i].innerHTML) + "p."; }    
+    
+</script>
+</html>
