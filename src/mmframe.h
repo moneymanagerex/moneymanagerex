@@ -184,6 +184,7 @@ private:
     void updateNavTreeControl(bool expandTermAccounts = false);
     void updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting);
     void updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime);
+    void updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCategs);
     void showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt);
     void showBeginAppDialog(bool fromScratch = false);
     void SetDataBaseParameters(const wxString& fileName);

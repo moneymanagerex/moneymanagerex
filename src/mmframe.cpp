@@ -812,6 +812,8 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
 {
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
     wxTreeItemId categsOverTime = navTreeCtrl_->AppendItem(reports
         , _("Where the Money Goes"), 4, 4);
@@ -825,87 +827,8 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     navTreeCtrl_->SetItemData(posCategs
         , new mmTreeItemData("Where the Money Comes From"
         , new mmReportCategoryExpensesComes()));
-
-    wxTreeItemId posCategsCalMonth = navTreeCtrl_->AppendItem(posCategs
-        , _("Last Calendar Month"), 4, 4);
-    navTreeCtrl_->SetItemData(posCategsCalMonth
-        , new mmTreeItemData("Where the Money Comes From - Last Calendar Month"
-        , new mmReportCategoryExpensesComesLastMonth()));
-
-    if (ignoreFuture)
-    {
-        wxTreeItemId posCategsCurrentMonth = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Month to Date"), 4, 4);
-        navTreeCtrl_->SetItemData(posCategsCurrentMonth
-            , new mmTreeItemData("Where the Money Comes From - Current Month"
-            , new mmReportCategoryExpensesComesCurrentMonthToDate()));
-    }
-    else
-    {
-        wxTreeItemId posCategsCurrentMonth = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Month"), 4, 4);
-        navTreeCtrl_->SetItemData(posCategsCurrentMonth
-            , new mmTreeItemData("Where the Money Comes From - Current Month"
-            , new mmReportCategoryExpensesComesCurrentMonth()));
-    }
-
-    wxTreeItemId posCategsTimeLast30 = navTreeCtrl_->AppendItem(posCategs
-        , _("Last 30 Days"), 4, 4);
-    navTreeCtrl_->SetItemData(posCategsTimeLast30
-        , new mmTreeItemData("Where the Money Comes From - Last 30 Days"
-        , new mmReportCategoryExpensesComesLast30Days()));
-
-    wxTreeItemId posCategsTimeLastYear = navTreeCtrl_->AppendItem(posCategs
-        , _("Last Year"), 4, 4);
-    navTreeCtrl_->SetItemData(posCategsTimeLastYear
-        , new mmTreeItemData("Where the Money Comes From - Last Year"
-        , new mmReportCategoryExpensesComesLastYear()));
-
-    if (ignoreFuture)
-    {
-        wxTreeItemId posCategsTimeCurrentYear = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Year to Date"), 4, 4);
-        navTreeCtrl_->SetItemData(posCategsTimeCurrentYear
-            , new mmTreeItemData("Where the Money Comes From - Current Year"
-            , new mmReportCategoryExpensesComesCurrentYearToDate()));
-    }
-    else
-    {
-        wxTreeItemId posCategsTimeCurrentYear = navTreeCtrl_->AppendItem(posCategs
-            , _("Current Year"), 4, 4);
-        navTreeCtrl_->SetItemData(posCategsTimeCurrentYear
-            , new mmTreeItemData("Where the Money Comes From - Current Year"
-            , new mmReportCategoryExpensesComesCurrentYear()));
-    }
-
-    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
-    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
-    if (financialYearIsDifferent())
-    {
-        wxTreeItemId posCategsTimeLastFinancialYear = navTreeCtrl_->AppendItem(posCategs
-            , _("Last Financial Year"), 4, 4);
-        navTreeCtrl_->SetItemData(posCategsTimeLastFinancialYear
-            , new mmTreeItemData("Where the Money Comes From - Last Financial Year"
-            , new mmReportCategoryExpensesComesLastFinancialYear(day, month)));
-
-        if (ignoreFuture)
-        {
-            wxTreeItemId posCategsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(posCategs
-                , _("Current Financial Year to Date"), 4, 4);
-            navTreeCtrl_->SetItemData(posCategsTimeCurrentFinancialYear
-                , new mmTreeItemData("Where the Money Comes From - Current Financial Year"
-                , new mmReportCategoryExpensesComesCurrentFinancialYearToDate(day, month)));
-        }
-        else
-        {
-            wxTreeItemId posCategsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(posCategs
-                , _("Current Financial Year"), 4, 4);
-            navTreeCtrl_->SetItemData(posCategsTimeCurrentFinancialYear
-                , new mmTreeItemData("Where the Money Comes From - Current Financial Year"
-                , new mmReportCategoryExpensesComesCurrentFinancialYear(day, month)));
-        }
-    }
-    ///////////////////////////////////////////////////////////
+    
+    this->updateReportCategoryExpensesComesNavigation(posCategs);
 
     wxTreeItemId categs = navTreeCtrl_->AppendItem(reports, _("Categories"), 4, 4);
     navTreeCtrl_->SetItemData(categs
@@ -1398,6 +1321,91 @@ void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categs
             navTreeCtrl_->SetItemData(categsOverTimeCurrentFinancialYear
                 , new mmTreeItemData("Where the Money Goes - Current Financial Year"
                 , new mmReportCategoryExpensesGoesCurrentFinancialYear(day, month)));
+        }
+    }
+}
+
+void mmGUIFrame::updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCategs)
+{
+    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+
+    wxTreeItemId posCategsCalMonth = navTreeCtrl_->AppendItem(posCategs
+        , _("Last Calendar Month"), 4, 4);
+    navTreeCtrl_->SetItemData(posCategsCalMonth
+        , new mmTreeItemData("Where the Money Comes From - Last Calendar Month"
+        , new mmReportCategoryExpensesComesLastMonth()));
+
+    if (ignoreFuture)
+    {
+        wxTreeItemId posCategsCurrentMonth = navTreeCtrl_->AppendItem(posCategs
+            , _("Current Month to Date"), 4, 4);
+        navTreeCtrl_->SetItemData(posCategsCurrentMonth
+            , new mmTreeItemData("Where the Money Comes From - Current Month"
+            , new mmReportCategoryExpensesComesCurrentMonthToDate()));
+    }
+    else
+    {
+        wxTreeItemId posCategsCurrentMonth = navTreeCtrl_->AppendItem(posCategs
+            , _("Current Month"), 4, 4);
+        navTreeCtrl_->SetItemData(posCategsCurrentMonth
+            , new mmTreeItemData("Where the Money Comes From - Current Month"
+            , new mmReportCategoryExpensesComesCurrentMonth()));
+    }
+
+    wxTreeItemId posCategsTimeLast30 = navTreeCtrl_->AppendItem(posCategs
+        , _("Last 30 Days"), 4, 4);
+    navTreeCtrl_->SetItemData(posCategsTimeLast30
+        , new mmTreeItemData("Where the Money Comes From - Last 30 Days"
+        , new mmReportCategoryExpensesComesLast30Days()));
+
+    wxTreeItemId posCategsTimeLastYear = navTreeCtrl_->AppendItem(posCategs
+        , _("Last Year"), 4, 4);
+    navTreeCtrl_->SetItemData(posCategsTimeLastYear
+        , new mmTreeItemData("Where the Money Comes From - Last Year"
+        , new mmReportCategoryExpensesComesLastYear()));
+
+    if (ignoreFuture)
+    {
+        wxTreeItemId posCategsTimeCurrentYear = navTreeCtrl_->AppendItem(posCategs
+            , _("Current Year to Date"), 4, 4);
+        navTreeCtrl_->SetItemData(posCategsTimeCurrentYear
+            , new mmTreeItemData("Where the Money Comes From - Current Year"
+            , new mmReportCategoryExpensesComesCurrentYearToDate()));
+    }
+    else
+    {
+        wxTreeItemId posCategsTimeCurrentYear = navTreeCtrl_->AppendItem(posCategs
+            , _("Current Year"), 4, 4);
+        navTreeCtrl_->SetItemData(posCategsTimeCurrentYear
+            , new mmTreeItemData("Where the Money Comes From - Current Year"
+            , new mmReportCategoryExpensesComesCurrentYear()));
+    }
+
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+    if (financialYearIsDifferent())
+    {
+        wxTreeItemId posCategsTimeLastFinancialYear = navTreeCtrl_->AppendItem(posCategs
+            , _("Last Financial Year"), 4, 4);
+        navTreeCtrl_->SetItemData(posCategsTimeLastFinancialYear
+            , new mmTreeItemData("Where the Money Comes From - Last Financial Year"
+            , new mmReportCategoryExpensesComesLastFinancialYear(day, month)));
+
+        if (ignoreFuture)
+        {
+            wxTreeItemId posCategsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(posCategs
+                , _("Current Financial Year to Date"), 4, 4);
+            navTreeCtrl_->SetItemData(posCategsTimeCurrentFinancialYear
+                , new mmTreeItemData("Where the Money Comes From - Current Financial Year"
+                , new mmReportCategoryExpensesComesCurrentFinancialYearToDate(day, month)));
+        }
+        else
+        {
+            wxTreeItemId posCategsTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(posCategs
+                , _("Current Financial Year"), 4, 4);
+            navTreeCtrl_->SetItemData(posCategsTimeCurrentFinancialYear
+                , new mmTreeItemData("Where the Money Comes From - Current Financial Year"
+                , new mmReportCategoryExpensesComesCurrentFinancialYear(day, month)));
         }
     }
 }
