@@ -111,7 +111,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output = "<table class=\"table\" ><thead><tr><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th><th></th>", title_);
-        output += "<th class = \"text-right\"><a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr></thead>";
+        output += wxString::Format("<th class = \"text-right\">%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr></thead>", int(bd_days.size()));
         output += wxString::Format("<tbody id = \"%s\">", id);
 
         for (const auto& item : bd_days)
