@@ -109,19 +109,23 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         const wxString id = "BILLS_AND_DEPOSITS";
         wxString colorStr;
 
-        output = "<table class=\"table\"\n><thead><tr><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th><th></th>", title_);
-        output += wxString::Format("<th class = \"text-right\">%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr></thead>"
+        output = "<table class=\"table\"><thead><tr class='active'><th>";
+        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
+        output += wxString::Format("<th class='text-right'>%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr>\n"
             , int(bd_days.size()));
-        output += wxString::Format("<tbody id = \"%s\">", id);
+        output += "</thead>";
+
+        output += wxString::Format("<tbody id='%s'>", id);
+        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>"
+            , _("Payee"), _("Amount"), _("Days"));
 
         for (const auto& item : bd_days)
         {
-            output += wxString::Format("<tr %s\n>", std::get<0>(item) < 0 ? "class='danger'" : "");
+            output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
             output += "<td>" + std::get<1>(item) +"</td>"; //payee
             output += wxString::Format("<td class = \"text-right\">%s</td>"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item))); 
-            output += "<td  class = 'text-right'>" + std::get<2>(item) + "</td></tr>";
+            output += "<td  class = 'text-right'>" + std::get<2>(item) + "</td></tr>\n";
         }
         output += "</tbody></table>\n";
         output += wxString::Format(FUNCTION, id);

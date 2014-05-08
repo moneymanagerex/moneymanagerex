@@ -284,7 +284,7 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
     {
         if (ignoreFuture)
         {
-            if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(wxDateTime::Today()))
+            if (Model_Checking::TRANSDATE(pBankTransaction).IsLaterThan(date_range->today()))
                 continue; //skip future dated transactions
         }
 
