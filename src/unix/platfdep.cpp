@@ -103,7 +103,7 @@ wxFileName mmex::GetResourceDir()
 }
 //----------------------------------------------------------------------------
 
-wxString mmex::GetAppName()
+const wxString mmex::GetAppName()
 {
     return "mmex";
 }
