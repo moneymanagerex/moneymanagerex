@@ -66,12 +66,12 @@ private:
     void getTemplate();
     void getData();
     void fillData();
-    void displayAssets(double& tBalance);
+    const wxString displayAssets(double& tBalance);
     void displayIncomeVsExpenses();
-    wxString getStatWidget();
-    void displayGrandTotals(double& tBalance);
+    const wxString getStatWidget();
+    const wxString displayGrandTotals(double& tBalance);
 
-    void displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
+    const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
         , int type = Model_Account::CHECKING);
     void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats

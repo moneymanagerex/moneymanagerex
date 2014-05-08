@@ -193,11 +193,11 @@ void mmHomePagePanel::getData()
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
-    displayAccounts(tBalance, accountStats);
+    m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
     if (Model_Account::hasActiveTermAccount())
     {
         double termBalance = 0.0;
-        displayAccounts(termBalance, accountStats, Model_Account::TERM);
+        m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
         tBalance += termBalance;
     }
 
@@ -212,8 +212,8 @@ void mmHomePagePanel::getData()
     tBalance += stocks_widget.get_total();
     m_frames["STOCKS_INFO"] = stocks;
 
-    displayAssets(tBalance);
-    displayGrandTotals(tBalance);
+    m_frames["ASSETS_INFO"] = displayAssets(tBalance);
+    m_frames["GRAND_TOTAL"] = displayGrandTotals(tBalance);
 
     //
     mmDateRange* date_range = new mmLast30Days();
@@ -301,14 +301,14 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 }
 
 /* Accounts */
-void mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
     bool type_is_bank = type == Model_Account::CHECKING;
     double tReconciled = 0;
 
     wxString output = wxString::Format("<table class = \"table\" id = \"%s\">", (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"));
     output += "<thead><tr><th>";
-    output += _("Bank Account") + "</th><th>" + _("Reconciled") + "</th><th>" + _("Balance") + "</th></tr></thead>";
+    output += (type_is_bank ? _("Bank Account") : _("Term Account")) + "</th><th>" + _("Reconciled") + "</th><th>" + _("Balance") + "</th></tr></thead>";
     output += wxString::Format("<tbody id = \"%s\">", "");
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
@@ -348,7 +348,7 @@ void mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<
     output += "<td class =\"money, text-right\">" + wxString::Format("%f", tBalance) + "</td></tr></tfoot></table>";
     if (body.empty()) output.clear();
 
-    m_frames[(type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO")] = output;
+    return output;
 }
 
 //* Income vs Expenses *//
@@ -377,7 +377,7 @@ void mmHomePagePanel::displayIncomeVsExpenses()
 }
 
 //* Assets *//
-void mmHomePagePanel::displayAssets(double& tBalance)
+const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
     wxString output = "";
 
@@ -390,10 +390,10 @@ void mmHomePagePanel::displayAssets(double& tBalance)
         output += wxString::Format("<td class = \"money, text-right\">%f</td></tr>", asset_balance);
         output += "</tfoot></table>";
     }
-    m_frames["ASSETS_INFO"] = output;
+    return output;
 }
 
-wxString mmHomePagePanel::getStatWidget()
+const wxString mmHomePagePanel::getStatWidget()
 {
     wxString output = "<table class = \"table\"><thead><tr>";
     output += "<th>" + _("Transaction Statistics") + "</th><th></th><tbody>";
@@ -412,15 +412,15 @@ wxString mmHomePagePanel::getStatWidget()
     return output;
 }
 
-void mmHomePagePanel::displayGrandTotals(double& tBalance)
+const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
     wxString output = "<table class = \"table\">";
     //  Display the grand total from all sections
     wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
-    output += "<tfoot><tr class = \"total\"><td>" + _("Grand Total:") + "</td><td></td>";
+    output += "<tfoot><tr class = \"success\" style = \"font-weight:bold\"><td>" + _("Grand Total:") + "</td><td></td>";
     output += "<td class =\"text-right\">" + tBalanceStr + "</td>";
     output += "</tr></tfoot></table>";
 
-    m_frames["GRAND_TOTAL"] = output;
+    return output;
 }
