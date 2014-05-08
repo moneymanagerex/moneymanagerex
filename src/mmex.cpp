@@ -171,12 +171,15 @@ bool OnInitImpl(mmGUIApp* app)
     Mongoose_Service::instance().open();
 
     bool ok = app->m_frame->Show();
-
     if (isMax) app->m_frame->Maximize(true);
 
     // success: wxApp::OnRun() will be called which will enter the main message
     // loop and the application will run. If we returned FALSE here, the
     // application would exit immediately.
+    if (ok) {
+        Model_Report::prepareTempFolder();
+    }
+
     return ok;
 }
 

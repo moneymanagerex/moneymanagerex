@@ -51,8 +51,8 @@ public:
     wxString getTemplate(const wxString& sql);
     bool getColumns(const wxString& sql, std::vector<std::pair<wxString, int> > &colHeaders);
     void getSqlTableInfo(std::vector<std::pair<wxString, wxArrayString>> &sqlTableInfo);
-private:
-    static void prepareTempFolder(const wxString& str);
+    static void prepareTempFolder();
+    static void outputReportFile(const wxString& str);
 };
 
 #endif // 

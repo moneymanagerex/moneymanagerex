@@ -280,15 +280,13 @@ wxString Model_Report::get_html(const Data* r)
         // TODO
     }
 
-    prepareTempFolder(out);
+    outputReportFile(out);
     return out;
 }
 
-void Model_Report::prepareTempFolder(const wxString& str)
+void Model_Report::prepareTempFolder()
 {
-    //TODO: cleanup
-    const wxString tempDir = wxString::Format("%s%smmex_reports%s", wxStandardPaths::Get().GetTempDir()
-        , wxString(wxFILE_SEP_PATH), wxString(wxFILE_SEP_PATH));
+    const wxString tempDir = wxFileName(mmex::getReportIndex()).GetPathWithSep();
     const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
     wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
     wxArrayString filesArray;
@@ -301,8 +299,11 @@ void Model_Report::prepareTempFolder(const wxString& str)
         }
         wxLogDebug("Coping file: %s to %s", f, tempDir + wxFileName(f).GetFullName());
     }
+}
 
-    wxFileOutputStream index_output(wxString::Format("%sindex.html", tempDir));
+void Model_Report::outputReportFile(const wxString& str)
+{
+    wxFileOutputStream index_output(mmex::getReportIndex());
     wxTextOutputStream index_file(index_output);
     index_file << str;
     index_output.Close();

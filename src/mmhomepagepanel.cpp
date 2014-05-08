@@ -235,10 +235,7 @@ void mmHomePagePanel::fillData()
     {
         m_templateText.Replace(wxString::Format("<TMPL_VAR \"%s\">", entry.first), entry.second);
     }
-    wxFileOutputStream index_output(mmex::getReportIndex());
-    wxTextOutputStream index_file(index_output);
-    index_file << m_templateText;
-    index_output.Close();
+    Model_Report::outputReportFile(m_templateText);
     browser_->LoadURL(getURL(mmex::getReportIndex()));
     wxLogDebug("Loading file:%s", mmex::getReportIndex());
 }
