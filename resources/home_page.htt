@@ -8,7 +8,7 @@
     <link href = "master.css" rel = "stylesheet" />
       <style>
         table {
-        font-size: 8;
+        font-size: 100%;
         }
       </style>
 </head>
@@ -110,6 +110,8 @@
     cell.innerHTML=data["datasets"][1]["data"];
     cell=document.getElementById("diff");
     cell.innerHTML = data["datasets"][0]["data"] - data["datasets"][1]["data"];
+
+    toggleBills();
 
     <!--Format numbers-->
     function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }
