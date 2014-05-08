@@ -67,7 +67,7 @@ private:
     void getData();
     void fillData();
     const wxString displayAssets(double& tBalance);
-    void displayIncomeVsExpenses();
+    const wxString displayIncomeVsExpenses();
     const wxString getStatWidget();
     const wxString displayGrandTotals(double& tBalance);
 

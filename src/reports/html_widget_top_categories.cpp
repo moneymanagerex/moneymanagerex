@@ -40,11 +40,8 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
-    wxString output = "<table class = \"table\"><thead><tr><th>";
-
-    //hb.addTableHeaderRow(title_, 2);
-    output += _("Category") + "</th><th>" + _("Summary") + "</th></tr></thead><tbody>";
-
+    wxString output = "<table class = \"table\"><thead><tr><th>\n";
+    output += _("Category") + "</th><th class='text-right'>" + _("Summary") + "</th></tr></thead><tbody>\n";
 
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
@@ -53,7 +50,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     {
         output += "<tr>";
         output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
-        output += wxString::Format("<td class = \"money, text-right\">%f</td>", i.second);
+        output += wxString::Format("<td class='text-right'>%s</td>", Model_Currency::toCurrency(i.second));
         output += "</tr>";
     }
     output += "</tbody></table>";

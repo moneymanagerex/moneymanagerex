@@ -16,53 +16,21 @@
 
 <table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">
+<TMPL_VAR "GRAND_TOTAL">
 <!--Accounts-->
 <TMPL_VAR "ACCOUNTS_INFO">
 <TMPL_VAR "TERM_ACCOUNTS_INFO">
 
 <!--Stocks-->
 <TMPL_VAR "STOCKS_INFO">
+<!--Assets-->
 <TMPL_VAR "ASSETS_INFO">
-<TMPL_VAR "GRAND_TOTAL">
 
 </td>
 <td>
     
 <!--Income vs Expenses: Current Month-->
-
-<table class = "table">
-<tbody>
-    <tr valign="center">
-        <td><canvas id="reportChart" width="312" height="256"></canvas></td>
-        <td>
-            <table class= "table">
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Income</td>
-                    <td class = "money, text-right" id="id0"></td>
-                </tr>
-                <tr>
-                    <td>Expences</td>
-                    <td class = "money, text-right" id="id1"></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr class="total">
-                    <td>Difference:</td>
-                    <td class = "money, text-right" id="diff"></td>
-                </tr>                   
-            </tfoot>
-            </table>
-        </td>
-        </tr>
-</tbody>
-</table>
+<TMPL_VAR "INCOME_VS_EXPENSES">
 
 <!--Upcoming Transactions-->
 <TMPL_VAR "BILLS_AND_DEPOSITS">
@@ -76,48 +44,6 @@
 </td>
 </tr>
 </table>
-
+<script>toggleBills();</script>
 </body>
-
-<script>
-<!-- Chart -->
-    <!--sample data-->
-    var data = {
-    labels : ["Income/Expences"],
-    datasets : [
-        {
-            fillColor : "rgba(151,187,205,0.5)",
-            strokeColor : "rgba(151,187,205,1)",
-            data : [<TMPL_VAR "INCOME">],
-        },
-        {
-            fillColor : "rgba(220,66,66,0.5)",
-            strokeColor : "rgba(220,220,220,1)",
-            data : [<TMPL_VAR "EXPENCES">],
-        },
-    ]
-    };
-    var options = {
-        animationEasing: "easeOutQuint",
-        barValueSpacing : 10,
-    };
-    var ctx = document.getElementById("reportChart").getContext("2d");
-    var reportChart = new Chart(ctx).Bar(data, options);
-    
-    var cell=document.getElementById("id0");
-    cell.innerHTML = data["datasets"][0]["data"];
-    cell=document.getElementById("id1");
-    cell.innerHTML=data["datasets"][1]["data"];
-    cell=document.getElementById("diff");
-    cell.innerHTML = data["datasets"][0]["data"] - data["datasets"][1]["data"];
-
-    toggleBills();
-
-    <!--Format numbers-->
-    function currency(n) { n = parseFloat(n); return isNaN(n) ? 0 : n.toFixed(2); }
-    var elements = document.getElementsByClassName("money, text-right");
-    for (var i = 0; i < elements.length; i++)
-        { elements[i].innerHTML = "" + currency(elements[i].innerHTML) + "p."; }    
-    
-</script>
 </html>

@@ -46,7 +46,8 @@ wxString htmlWidgetStocks::getHTMLText()
         if (enable_details_)
         {
             output = "<table class = \"table\"><thead><tr><th>";
-            output += _("Stocks") + "</th><th>" + _("Gain/Loss") + "</th><th>" + _("Total") + "</th></tr></thead><tbody>";
+            output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
+            output += "</th><th class = 'text-right'>" + _("Total") + "</th></tr></thead><tbody>";
             const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
             wxString body = "";
             for (const auto& account : accounts)
@@ -54,16 +55,21 @@ wxString htmlWidgetStocks::getHTMLText()
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
                 if (Model_Account::status(account) != Model_Account::OPEN) continue;
                 body += "<tr>";
-                body += wxString::Format("<td><a href=\"STOCK:%d\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
-                body += wxString::Format("<td class = \"money, text-right\">%f</td>", stockStats[account.ACCOUNTID].first);
-                body += wxString::Format("<td class = \"money, text-right\">%f</td>", stockStats[account.ACCOUNTID].second);
+                body += wxString::Format("<td><a href=\"STOCK:%d\">%s</a></td>"
+                    , account.ACCOUNTID, account.ACCOUNTNAME);
+                body += wxString::Format("<td class = \"text-right\">%s</td>"
+                    , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
+                body += wxString::Format("<td class = \"text-right\">%s</td>"
+                    , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
                 body += "</tr>";
             }
 
             output += body;
             output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
-            output += "<td class =\"money, text-right\">" + wxString::Format("%f", grand_gain_lost_) + "</td>";
-            output += "<td class =\"money, text-right\">" + wxString::Format("%f", grand_total_) + "</td></tr></tfoot></table>";
+            output += wxString::Format("<td class =\"money, text-right\">%s</td>"
+                , Model_Currency::toCurrency(grand_gain_lost_));
+            output += wxString::Format("<td class =\"money, text-right\">%s</td></tr></tfoot></table>"
+                , Model_Currency::toCurrency(grand_total_));
             if (body.empty()) output.clear();
         }
     }

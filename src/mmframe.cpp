@@ -2756,6 +2756,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Check(mmIniOptions::instance().budgetSetupWithoutSummaries_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(mmIniOptions::instance().budgetSummaryWithoutCategories_);
         menuBar_->FindItem(MENU_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
+        menuBar_->Refresh();
 
         int messageIcon = wxOK | wxICON_INFORMATION;
         wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";

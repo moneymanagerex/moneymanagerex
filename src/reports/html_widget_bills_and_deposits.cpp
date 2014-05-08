@@ -91,41 +91,40 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {
         
         static const wxString FUNCTION =
-        "<script> function toggleBills()"
-        "{"
-        "    var elem = document.getElementById(\"%s\");"
-        "    var label = document.getElementById(\"bils_label\");"
-        "    var hide = elem.style.display == \"none\";"
-        "    if (hide) {"
-        "        elem.style.display = \"\";"
-        "        label.innerHTML = \"[-]\";"
-        "    }"
-        "    else {"
-        "        elem.style.display = \"none\";"
-        "        label.innerHTML = \"[+]\";"
-        "    }"
-        "}"
-        "</script>";
+        "<script> function toggleBills()\n"
+        "{\n"
+        "    var elem = document.getElementById(\"%s\");\n"
+        "    var label = document.getElementById(\"bils_label\");\n"
+        "    var hide = elem.style.display == \"none\";\n"
+        "    if (hide) {\n"
+        "        elem.style.display = \"\";\n"
+        "        label.innerHTML = \"[-]\";\n"
+        "    }\n"
+        "    else {\n"
+        "        elem.style.display = \"none\";\n"
+        "        label.innerHTML = \"[+]\";\n"
+        "    }\n"
+        "}\n"
+        "</script>\n";
         const wxString id = "BILLS_AND_DEPOSITS";
         wxString colorStr;
 
-        output = "<table class=\"table\" ><thead><tr><th>";
+        output = "<table class=\"table\"\n><thead><tr><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th><th></th>", title_);
-        output += wxString::Format("<th class = \"text-right\">%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr></thead>", int(bd_days.size()));
+        output += wxString::Format("<th class = \"text-right\">%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr></thead>"
+            , int(bd_days.size()));
         output += wxString::Format("<tbody id = \"%s\">", id);
 
         for (const auto& item : bd_days)
         {
-            output += "<tr><td>" + std::get<1>(item) +"</td>"; //payee
-            //hb.addCurrencyCell(std::get<3>(item), Model_Account::currency(std::get<4>(item)));
+            output += wxString::Format("<tr %s\n>", std::get<0>(item) < 0 ? "class='danger'" : "");
+            output += "<td>" + std::get<1>(item) +"</td>"; //payee
             output += wxString::Format("<td class = \"text-right\">%s</td>"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item))); 
-            output += "<td>" + std::get<2>(item) + "</td></tr>"; //payee
+            output += "<td  class = 'text-right'>" + std::get<2>(item) + "</td></tr>";
         }
-        output += "</tbody></table>";
-
+        output += "</tbody></table>\n";
         output += wxString::Format(FUNCTION, id);
-
     }
     return output;
 }
