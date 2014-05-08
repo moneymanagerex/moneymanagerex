@@ -89,10 +89,30 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     if (!bd_days.empty())
     {
+        
+        static const wxString FUNCTION =
+        "<script> function toggleBills()"
+        "{"
+        "    var elem = document.getElementById(\"%s\");"
+        "    var label = document.getElementById(\"bils_label\");"
+        "    var hide = elem.style.display == \"none\";"
+        "    if (hide) {"
+        "        elem.style.display = \"\";"
+        "        label.innerHTML = \"[-]\";"
+        "    }"
+        "    else {"
+        "        elem.style.display = \"none\";"
+        "        label.innerHTML = \"[+]\";"
+        "    }"
+        "}"
+        "</script>";
+        const wxString id = "BILLS_AND_DEPOSITS";
         wxString colorStr;
 
-        output = "<table class = \"table\"><thead><tr><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th><th></th><th></th></tr></thead><tbody>", title_);
+        output = "<table class=\"table\" ><thead><tr><th>";
+        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th><th></th>", title_);
+        output += "<th class = \"text-right\"><a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr></thead>";
+        output += wxString::Format("<tbody id = \"%s\">", id);
 
         for (const auto& item : bd_days)
         {
@@ -103,6 +123,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
             output += "<td>" + std::get<2>(item) + "</td></tr>"; //payee
         }
         output += "</tbody></table>";
+
+        output += wxString::Format(FUNCTION, id);
+
     }
     return output;
 }

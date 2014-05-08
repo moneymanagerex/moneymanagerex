@@ -309,8 +309,10 @@ void mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<
     bool type_is_bank = type == Model_Account::CHECKING;
     double tReconciled = 0;
 
-    wxString output = "<table class = \"table\"><thead><tr><th>";
-    output += _("Bank Account") + "</th><th>" + _("Reconciled") + "</th><th>" + _("Balance") + "</th></tr></thead><tbody>";
+    wxString output = wxString::Format("<table class = \"table\" id = \"%s\">", (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"));
+    output += "<thead><tr><th>";
+    output += _("Bank Account") + "</th><th>" + _("Reconciled") + "</th><th>" + _("Balance") + "</th></tr></thead>";
+    output += wxString::Format("<tbody id = \"%s\">", "");
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
