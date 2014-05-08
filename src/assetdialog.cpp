@@ -20,6 +20,7 @@
 #include "paths.h"
 #include "constants.h"
 #include "validators.h"
+#include "util.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Attachment.h"
 #include "../resources/attachment.xpm"
@@ -113,9 +114,11 @@ void mmAssetDialog::CreateControls()
     wxFlexGridSizer* itemFlexGridSizer6 = new wxFlexGridSizer(0, 2, 0, 0);
     itemPanel5->SetSizer(itemFlexGridSizer6);
 
-    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Name")), g_flags);
+    wxStaticText* n = new wxStaticText(itemPanel5, wxID_STATIC, _("Name"));
+    itemFlexGridSizer6->Add(n, g_flags);
+    n->SetFont(this->GetFont().Bold());
 
-    m_assetName = new mmTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString(), wxDefaultPosition, wxDefaultSize, 0);
+    m_assetName = new mmTextCtrl(itemPanel5, wxID_ANY, wxGetEmptyString());
     m_assetName->SetToolTip(_("Enter the name of the asset"));
     itemFlexGridSizer6->Add(m_assetName, g_flagsExpand);
 
@@ -137,7 +140,9 @@ void mmAssetDialog::CreateControls()
     itemFlexGridSizer6->Add(m_assetType, 0,
         wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL, 5);
 
-    itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Value")), g_flags);
+    wxStaticText* v = new wxStaticText(itemPanel5, wxID_STATIC, _("Value"));
+    itemFlexGridSizer6->Add(v, g_flags);
+    v->SetFont(this->GetFont().Bold());
 
     m_value = new mmTextCtrl(itemPanel5, IDC_VALUE, wxGetEmptyString()
         , wxDefaultPosition, wxSize(150,-1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
@@ -221,28 +226,22 @@ void mmAssetDialog::enableDisableRate(bool en)
 
 void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    double value;
+    const wxString name = m_assetName->GetValue().Trim();
+    if (name.empty()){
+        mmMessageNameInvalid(m_assetName);
+        return;
+    }
+
+    double value = 0, valueChangeRate = 0;
     if (!m_value->checkValue(value))
     {
         return;
     }
 
     int valueChangeType = m_valueChange->GetSelection();
-    wxString valueChangeRateStr = m_valueChangeRate->GetValue().Trim();
-    if (valueChangeRateStr.IsEmpty() && valueChangeType != Model_Asset::RATE_NONE)
+    if (valueChangeType != Model_Asset::RATE_NONE && !m_valueChangeRate->checkValue(valueChangeRate))
     {
-        wxMessageBox(_("Rate of Change in Value"), _("Invalid Entry"), wxOK | wxICON_ERROR);
         return;
-    }
-    double valueChangeRate = 0;
-    if (!wxNumberFormatter::FromString(valueChangeRateStr, &valueChangeRate) || valueChangeRate < 0)
-    {
-        if (valueChangeType != Model_Asset::RATE_NONE)
-        {
-            wxMessageBox(_("Invalid Value "), _("Invalid Entry"), wxOK | wxICON_ERROR);
-            return;
-        }
-        valueChangeRate = 0;
     }
 
     wxString asset_type = "";
@@ -253,7 +252,7 @@ void mmAssetDialog::OnOk(wxCommandEvent& /*event*/)
 
     m_asset->STARTDATE        = m_dpc->GetValue().FormatISODate();
     m_asset->NOTES            = m_notes->GetValue().Trim();
-    m_asset->ASSETNAME        = m_assetName->GetValue().Trim();
+    m_asset->ASSETNAME        = name;
     m_asset->VALUE            = value;
     m_asset->VALUECHANGE      = Model_Asset::all_rate()[valueChangeType];
     m_asset->VALUECHANGERATE  = valueChangeRate;

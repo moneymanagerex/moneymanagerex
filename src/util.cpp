@@ -434,6 +434,16 @@ void mmMessagePayeeInvalid(wxComboBox *comboBox)
     tip.ShowFor((wxWindow*)comboBox);
 }
 
+void mmMessageNameInvalid(wxTextCtrl *textBox)
+{
+    const wxString errorHeader = _("Invalid Name");
+    const wxString errorMessage = (_("Please type in a non empty name.")
+        + "\n");
+    wxRichToolTip tip(errorHeader, errorMessage);
+    tip.SetIcon(wxICON_WARNING);
+    tip.ShowFor((wxWindow*) textBox);
+}
+
 //
 const wxString mmPlatformType()
 {

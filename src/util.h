@@ -113,6 +113,7 @@ void mmShowErrorMessage(wxWindow *parent, const wxString &message, const wxStrin
 void mmMessageCategoryInvalid(wxButton *button);
 void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer = false);
 void mmMessagePayeeInvalid(wxComboBox *comboBox);
+void mmMessageNameInvalid(wxTextCtrl *textBox);
 
 const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting = true);
 
