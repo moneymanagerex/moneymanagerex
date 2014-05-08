@@ -842,85 +842,7 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
         , new mmTreeItemData("Payee Report"
         , new mmReportPayeeExpenses()));
 
-    wxTreeItemId payeesOverTimeCalMonth = navTreeCtrl_->AppendItem(payeesOverTime
-        , _("Last Calendar Month"), 4, 4);
-    navTreeCtrl_->SetItemData(payeesOverTimeCalMonth
-        , new mmTreeItemData("Payees - Last Calendar Month"
-        , new mmReportPayeeExpensesLastMonth()));
-
-    if (ignoreFuture)
-    {
-        wxTreeItemId payeesOverTimeCurrentMonth = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Month to Date"), 4, 4);
-        navTreeCtrl_->SetItemData(payeesOverTimeCurrentMonth
-            , new mmTreeItemData("Payees - Current Month"
-            , new mmReportPayeeExpensesCurrentMonthToDate()));
-    }
-    else
-    {
-        wxTreeItemId payeesOverTimeCurrentMonth = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Month"), 4, 4);
-        navTreeCtrl_->SetItemData(payeesOverTimeCurrentMonth
-            , new mmTreeItemData("Payees - Current Month"
-            , new mmReportPayeeExpensesCurrentMonth()));
-    }
-
-    wxTreeItemId payeesOverTimeLast30 = navTreeCtrl_->AppendItem(payeesOverTime
-        , _("Last 30 Days"), 4, 4);
-    navTreeCtrl_->SetItemData(payeesOverTimeLast30
-        , new mmTreeItemData("Payees - Last 30 Days"
-        , new mmReportPayeeExpensesLast30Days()));
-
-    wxTreeItemId payeesOverTimeLastYear = navTreeCtrl_->AppendItem(payeesOverTime
-        , _("Last Year"), 4, 4);
-    navTreeCtrl_->SetItemData(payeesOverTimeLastYear
-        , new mmTreeItemData("Payees - Last Year"
-        , new mmReportPayeeExpensesLastYear()));
-
-    if (ignoreFuture)
-    {
-        wxTreeItemId payeesOverTimeCurrentYear = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Year to Date"), 4, 4);
-        navTreeCtrl_->SetItemData(payeesOverTimeCurrentYear
-            , new mmTreeItemData("Payees - Current Year"
-            , new mmReportPayeeExpensesCurrentYearToDate()));
-    }
-    else
-    {
-        wxTreeItemId payeesOverTimeCurrentYear = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Current Year"), 4, 4);
-        navTreeCtrl_->SetItemData(payeesOverTimeCurrentYear
-            , new mmTreeItemData("Payees - Current Year"
-            , new mmReportPayeeExpensesCurrentYear()));
-    }
-
-    if (financialYearIsDifferent())
-    {
-        wxTreeItemId payeesOverTimeLastFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
-            , _("Last Financial Year"), 4, 4);
-        navTreeCtrl_->SetItemData(payeesOverTimeLastFinancialYear
-            , new mmTreeItemData("Payees - Last Financial Year"
-            , new mmReportPayeeExpensesLastFinancialYear(day, month)));
-
-        if (ignoreFuture)
-        {
-            wxTreeItemId payeesOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
-                , _("Current Financial Year to Date"), 4, 4);
-            navTreeCtrl_->SetItemData(payeesOverTimeCurrentFinancialYear
-                , new mmTreeItemData("Payees - Current Financial Year"
-                , new mmReportPayeeExpensesCurrentFinancialYearToDate(day, month)));
-        }
-        else
-        {
-            wxTreeItemId payeesOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
-                , _("Current Financial Year"), 4, 4);
-            navTreeCtrl_->SetItemData(payeesOverTimeCurrentFinancialYear
-                , new mmTreeItemData("Payees - Current Financial Year"
-                , new mmReportPayeeExpensesCurrentFinancialYear(day, month)));
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////
+    this->updateReportPayeeNavigation(payeesOverTime);
 
     wxTreeItemId incexpOverTime = navTreeCtrl_->AppendItem(reports, _("Income vs Expenses"), 4, 4);
     navTreeCtrl_->SetItemData(incexpOverTime, new mmTreeItemData("Income vs Expenses"
@@ -1163,7 +1085,6 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
             , wxGetTranslation(record.REPORTNAME), 8, 8);
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
-
 }
 
 void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime)
@@ -1418,6 +1339,90 @@ void mmGUIFrame::updateReportCategoryNavigation(wxTreeItemId& categs)
     }
 }
 
+void mmGUIFrame::updateReportPayeeNavigation(wxTreeItemId& payeesOverTime)
+{
+    int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
+    int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
+    bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
+
+    wxTreeItemId payeesOverTimeCalMonth = navTreeCtrl_->AppendItem(payeesOverTime
+        , _("Last Calendar Month"), 4, 4);
+    navTreeCtrl_->SetItemData(payeesOverTimeCalMonth
+        , new mmTreeItemData("Payees - Last Calendar Month"
+        , new mmReportPayeeExpensesLastMonth()));
+
+    if (ignoreFuture)
+    {
+        wxTreeItemId payeesOverTimeCurrentMonth = navTreeCtrl_->AppendItem(payeesOverTime
+            , _("Current Month to Date"), 4, 4);
+        navTreeCtrl_->SetItemData(payeesOverTimeCurrentMonth
+            , new mmTreeItemData("Payees - Current Month"
+            , new mmReportPayeeExpensesCurrentMonthToDate()));
+    }
+    else
+    {
+        wxTreeItemId payeesOverTimeCurrentMonth = navTreeCtrl_->AppendItem(payeesOverTime
+            , _("Current Month"), 4, 4);
+        navTreeCtrl_->SetItemData(payeesOverTimeCurrentMonth
+            , new mmTreeItemData("Payees - Current Month"
+            , new mmReportPayeeExpensesCurrentMonth()));
+    }
+
+    wxTreeItemId payeesOverTimeLast30 = navTreeCtrl_->AppendItem(payeesOverTime
+        , _("Last 30 Days"), 4, 4);
+    navTreeCtrl_->SetItemData(payeesOverTimeLast30
+        , new mmTreeItemData("Payees - Last 30 Days"
+        , new mmReportPayeeExpensesLast30Days()));
+
+    wxTreeItemId payeesOverTimeLastYear = navTreeCtrl_->AppendItem(payeesOverTime
+        , _("Last Year"), 4, 4);
+    navTreeCtrl_->SetItemData(payeesOverTimeLastYear
+        , new mmTreeItemData("Payees - Last Year"
+        , new mmReportPayeeExpensesLastYear()));
+
+    if (ignoreFuture)
+    {
+        wxTreeItemId payeesOverTimeCurrentYear = navTreeCtrl_->AppendItem(payeesOverTime
+            , _("Current Year to Date"), 4, 4);
+        navTreeCtrl_->SetItemData(payeesOverTimeCurrentYear
+            , new mmTreeItemData("Payees - Current Year"
+            , new mmReportPayeeExpensesCurrentYearToDate()));
+    }
+    else
+    {
+        wxTreeItemId payeesOverTimeCurrentYear = navTreeCtrl_->AppendItem(payeesOverTime
+            , _("Current Year"), 4, 4);
+        navTreeCtrl_->SetItemData(payeesOverTimeCurrentYear
+            , new mmTreeItemData("Payees - Current Year"
+            , new mmReportPayeeExpensesCurrentYear()));
+    }
+
+    if (financialYearIsDifferent())
+    {
+        wxTreeItemId payeesOverTimeLastFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
+            , _("Last Financial Year"), 4, 4);
+        navTreeCtrl_->SetItemData(payeesOverTimeLastFinancialYear
+            , new mmTreeItemData("Payees - Last Financial Year"
+            , new mmReportPayeeExpensesLastFinancialYear(day, month)));
+
+        if (ignoreFuture)
+        {
+            wxTreeItemId payeesOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
+                , _("Current Financial Year to Date"), 4, 4);
+            navTreeCtrl_->SetItemData(payeesOverTimeCurrentFinancialYear
+                , new mmTreeItemData("Payees - Current Financial Year"
+                , new mmReportPayeeExpensesCurrentFinancialYearToDate(day, month)));
+        }
+        else
+        {
+            wxTreeItemId payeesOverTimeCurrentFinancialYear = navTreeCtrl_->AppendItem(payeesOverTime
+                , _("Current Financial Year"), 4, 4);
+            navTreeCtrl_->SetItemData(payeesOverTimeCurrentFinancialYear
+                , new mmTreeItemData("Payees - Current Financial Year"
+                , new mmReportPayeeExpensesCurrentFinancialYear(day, month)));
+        }
+    }
+}
 
 //----------------------------------------------------------------------------
 
