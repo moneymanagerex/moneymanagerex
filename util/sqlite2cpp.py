@@ -470,24 +470,14 @@ struct DB_Table_%s : public DB_Table
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
-            if (entity->id() > 0)
+            if (entity->id() > 0) // existent
             {
-                Cache c;
                 for(Cache::iterator it = cache_.begin(); it != cache_.end(); ++ it)
                 {
                     Self::Data* e = *it;
-                    if (e->id() == entity->id() && e != entity) 
-                    {
-                        index_by_id_.erase(entity->id());
-                        delete e;
-                    }
-                    else 
-                    {
-                        c.push_back(e);
-                    }
+                    if (e->id() == entity->id()) 
+                        *e = *entity;  // in-place update
                 }
-                cache_.clear();
-                cache_.swap(c);
             }
         }
         catch(const wxSQLite3Exception &e) 
