@@ -78,30 +78,15 @@ void relocatePayeeDialog::CreateControls()
     wxStaticLine* lineTop = new wxStaticLine(this,wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
 
-    cbSourcePayee_ = new wxComboBox(this, wxID_ANY, ""
+    cbSourcePayee_ = new mmComboBox(this, wxID_ANY, ""
+        , true //payee mode
         , wxDefaultPosition, btnSize);
-    for (const auto payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
-    {
-        //wxStringClientData* data = (wxStringClientData*)payee.PAYEEID;
-        cbSourcePayee_->Append(payee.PAYEENAME/*, data*/);
-        if (payee.PAYEEID == sourcePayeeID_)
-            cbSourcePayee_->SetStringSelection(payee.PAYEENAME);
-    }
-
-    cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
-    cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), nullptr, this);
+    cbSourcePayee_->setSelection(sourcePayeeID_);
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
-        , wxDefaultPosition, btnSize);
-    for (const auto payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
-    {
-        //wxStringClientData* data = (wxStringClientData*)payee.PAYEEID;
-        cbDestPayee_->Append(payee.PAYEENAME/*, data*/);
-    }
+        , wxDefaultPosition, btnSize
+        , Model_Payee::instance().all_payee_names());
     cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
-    cbDestPayee_->Connect(wxID_NEW, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), nullptr, this);
 
     wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);
@@ -139,29 +124,28 @@ int relocatePayeeDialog::updatedPayeesCount()
 
 void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
 {
-    wxString destPayeeName, sourcePayeeName;
-    destPayeeName = cbDestPayee_->GetValue();
-    sourcePayeeName = cbSourcePayee_->GetValue();
+    const wxString destPayeeName = cbDestPayee_->GetValue();
+    const wxString sourcePayeeName = cbSourcePayee_->GetValue();
 
     Model_Payee::Data* dest_payee = Model_Payee::instance().get(destPayeeName);
-    Model_Payee::Data* source_payee = Model_Payee::instance().get(sourcePayeeName);
+    sourcePayeeID_ = cbSourcePayee_->getID();
 
-    if ( dest_payee &&  source_payee )
+    if (dest_payee &&  sourcePayeeID_ != -1)
     {
         wxString msgStr = _("Please Confirm:") ;
         msgStr << "\n\n";
         msgStr << wxString::Format( _("Changing all payees of: %s \n\n  to payee: %s"),
              sourcePayeeName, destPayeeName);
 
-        int ans = wxMessageBox(msgStr,_("Payee Relocation Confirmation"), wxOK|wxCANCEL|wxICON_QUESTION);
+        int ans = wxMessageBox(msgStr, _("Payee Relocation Confirmation"), wxOK | wxCANCEL | wxICON_QUESTION);
         if (ans == wxOK)
         {
-            auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(source_payee->PAYEEID));
+            auto transactions = Model_Checking::instance().find(Model_Checking::PAYEEID(sourcePayeeID_));
             for (auto &entry : transactions)
                 entry.PAYEEID = dest_payee->PAYEEID;
             changedRecords_ += Model_Checking::instance().save(transactions);
 
-            auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(source_payee->PAYEEID));
+            auto billsdeposits = Model_Billsdeposits::instance().find(Model_Billsdeposits::PAYEEID(sourcePayeeID_));
             for (auto &entry : billsdeposits)
                 entry.PAYEEID = dest_payee->PAYEEID;
             changedRecords_ += Model_Billsdeposits::instance().save(billsdeposits);
@@ -169,29 +153,4 @@ void relocatePayeeDialog::OnOk(wxCommandEvent& /*event*/)
             EndModal(wxID_OK);
         }
     }
-}
-
-void relocatePayeeDialog::OnPayeeUpdated(wxCommandEvent& event)
-{
-    wxWindow *w = FindFocus();
-    bool source_payee = (w && w->GetId() == wxID_NEW);
-
-    wxComboBox *cbPayeeInFocus = cbSourcePayee_;
-    if (source_payee)
-        cbPayeeInFocus = cbDestPayee_;
-
-    wxString value = cbPayeeInFocus->GetValue();
-
-    //wxStringClientData* data_obj = (wxStringClientData *)cbPayeeInFocus->GetClientObject(cbPayeeInFocus->GetSelection());
-    //if (data_obj) wxLogDebug("%s", data_obj->GetData());
-
-    Model_Payee::Data* payee = Model_Payee::instance().get(value);
-    if (payee)
-    {
-        if (source_payee)
-            sourcePayeeID_ = payee->PAYEEID;
-        else
-            destPayeeID_ = payee->PAYEEID;
-    }
-    event.Skip();
 }
