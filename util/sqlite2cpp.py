@@ -252,7 +252,7 @@ struct DB_Table_%s : public DB_Table
 ''' % (self._primay_key, self._primay_key)
         
         s += '''
-        Data(Self* view = 0) 
+        explicit Data(Self* view = 0) 
         {
             view_ = view;
         '''
@@ -272,7 +272,7 @@ struct DB_Table_%s : public DB_Table
         s += '''
         }
 
-        Data(wxSQLite3ResultSet& q, Self* view = 0)
+        explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         '''

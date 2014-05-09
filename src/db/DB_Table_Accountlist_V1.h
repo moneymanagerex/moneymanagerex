@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
+ *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -255,7 +255,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             return this->id() < r->id();
         }
 
-        Data(Self* view = 0) 
+        explicit Data(Self* view = 0) 
         {
             view_ = view;
         
@@ -264,7 +264,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             CURRENCYID = -1;
         }
 
-        Data(wxSQLite3ResultSet& q, Self* view = 0)
+        explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         

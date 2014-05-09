@@ -126,7 +126,7 @@ void mmCategDialog::fillControls()
         if (m_cbShowAll->IsChecked() || bShow)
         {
             maincat = m_treeCtrl->AppendItem(root_, category.CATEGNAME);
-            Model_Subcategory::Data subcat = 0;
+            Model_Subcategory::Data subcat;
             m_treeCtrl->SetItemData(maincat, new mmTreeItemCateg(category, subcat));
             if (!bShow) m_treeCtrl->SetItemTextColour(maincat, wxColour("GREY"));
 
@@ -266,7 +266,7 @@ void mmCategDialog::OnAdd(wxCommandEvent& /*event*/)
 		mmWebApp::MMEX_WebApp_UpdateCategory();
 
         wxTreeItemId tid = m_treeCtrl->AppendItem(selectedItemId_, text);
-        Model_Subcategory::Data subcat = 0;
+        Model_Subcategory::Data subcat;
         m_treeCtrl->SetItemData(tid, new mmTreeItemCateg(*category, subcat));
         m_treeCtrl->Expand(selectedItemId_);
 
