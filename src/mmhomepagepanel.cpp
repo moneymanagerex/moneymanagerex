@@ -53,19 +53,19 @@ public:
     {
         mmGUIFrame* frame = wxGetApp().m_frame;
         wxString sData;
-        if (uri.Upper().StartsWith("ASSETS", &sData))
+        if (uri.StartsWith("assets:", &sData))
         {
             frame->setNavTreeSection(_("Assets"));
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-            frame->GetEventHandler()->AddPendingEvent(evt);
+            //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+            //frame->GetEventHandler()->AddPendingEvent(evt);
         }
-        else if (uri.Upper().StartsWith("BILLSDEPOSITS", &sData))
+        else if (uri.StartsWith("billsdeposits:", &sData))
         {
             frame->setNavTreeSection(_("Repeating Transactions"));
-            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-            frame->GetEventHandler()->AddPendingEvent(evt);
+            //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+            //frame->GetEventHandler()->AddPendingEvent(evt);
         }
-        else if (uri.Upper().StartsWith("ACCT:", &sData))
+        else if (uri.StartsWith("acct:", &sData))
         {
             long id = -1;
             sData.ToLong(&id);
@@ -73,11 +73,11 @@ public:
             if (account) {
                 frame->setGotoAccountID(id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                frame->GetEventHandler()->AddPendingEvent(evt);
+                //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                //frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
-        else if (uri.Upper().StartsWith("STOCK:", &sData))
+        else if (uri.StartsWith("stock:", &sData))
         {
             long id = -1;
             sData.ToLong(&id);
@@ -85,8 +85,8 @@ public:
             if (account) {
                 frame->setGotoAccountID(id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-                frame->GetEventHandler()->AddPendingEvent(evt);
+                //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+                //frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
 
@@ -156,10 +156,10 @@ void mmHomePagePanel::CreateControls()
 
     browser_ = wxWebView::New(this, wxID_ANY);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "Assets")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "assets")));
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "billsdeposits")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "ACCT")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "STOCK")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "acct")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerHomePage(this, "stock")));
     itemBoxSizer2->Add(browser_, 1, wxGROW | wxALL, 0);
 }
 
@@ -336,7 +336,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
                 && ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts()))
             {
                 body += "<tr>";
-                body += wxString::Format("<td><a href=\"ACCT:%d\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
+                body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
                 body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
                 body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(bal, currency));
                 body += "</tr>\n";

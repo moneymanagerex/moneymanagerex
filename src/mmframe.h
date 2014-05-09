@@ -105,7 +105,7 @@ public:
     }
 
     void setAccountNavTreeSection(const wxString& accountName);
-    bool setNavTreeSection( wxString sectionName);
+    bool setNavTreeSection(const wxString &sectionName);
     void SetCheckingAccountPageInactive();
     void SetBudgetingPageInactive();
     void menuPrintingEnable(bool enable);

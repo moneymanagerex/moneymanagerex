@@ -55,7 +55,7 @@ wxString htmlWidgetStocks::getHTMLText()
                 if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
                 if (Model_Account::status(account) != Model_Account::OPEN) continue;
                 body += "<tr>";
-                body += wxString::Format("<td><a href=\"STOCK:%d\">%s</a></td>"
+                body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
                     , account.ACCOUNTID, account.ACCOUNTNAME);
                 body += wxString::Format("<td class = \"text-right\">%s</td>"
                     , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));

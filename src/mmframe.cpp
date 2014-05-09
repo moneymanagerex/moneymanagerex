@@ -433,7 +433,7 @@ bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString
 }
 
 //----------------------------------------------------------------------------
-bool mmGUIFrame::setNavTreeSection(wxString sectionName)
+bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 {
     bool accountNotFound = true;
     wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
@@ -450,9 +450,10 @@ bool mmGUIFrame::setNavTreeSection(wxString sectionName)
 //----------------------------------------------------------------------------
 void mmGUIFrame::setAccountNavTreeSection(const wxString& accountName)
 {
-    if (setAccountInSection(_("Bank Accounts"), accountName))
-    if (setAccountInSection(_("Term Accounts"), accountName))
-        setAccountInSection(_("Stocks"), accountName);
+    if (setAccountInSection(_("Bank Accounts"), accountName)) {
+        if (setAccountInSection(_("Term Accounts"), accountName))
+            setAccountInSection(_("Stocks"), accountName);
+    }
 }
 
 //----------------------------------------------------------------------------
@@ -2056,7 +2057,7 @@ void mmGUIFrame::createMenu()
     wxMenu *menuHelp = new wxMenu;
 
     wxMenuItem* menuItemHelp = new wxMenuItem(menuTools, wxID_HELP,
-        _("&Help\tCtrl-F1"), _("Show the Help file"));
+        _("&Help\tF1"), _("Show the Help file"));
     menuItemHelp->SetBitmap(wxBitmap(help_xpm));
     menuHelp->Append(menuItemHelp);
 
@@ -2147,7 +2148,7 @@ void mmGUIFrame::CreateToolBar()
     toolBar_->AddTool(wxID_NEW, _("New"), wxBitmap(new_transaction_xpm), _("New Transaction"));
     toolBar_->AddSeparator();
     toolBar_->AddTool(wxID_ABOUT, _("&About..."), wxBitmap(about_xpm), _("Show about dialog"));
-    toolBar_->AddTool(wxID_HELP, _("&Help\tCtrl-F1"), wxBitmap(help_xpm), _("Show the Help file"));
+    toolBar_->AddTool(wxID_HELP, _("&Help\tF1"), wxBitmap(help_xpm), _("Show the Help file"));
 
     // after adding the buttons to the toolbar, must call Realize() to reflect changes
     toolBar_->Realize();
@@ -2744,6 +2745,7 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 {
     helpFileIndex_ = mmex::HTML_INDEX;
     createHelpPage();
+    setNavTreeSection(_("Help"));
 }
 //----------------------------------------------------------------------------
 
