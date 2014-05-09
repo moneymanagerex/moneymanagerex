@@ -2315,13 +2315,11 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
 
         updateNavTreeControl();
 
-        if (!refreshRequested_)
-        {
-            refreshRequested_ = true;
-            /* Currency Options might have changed so refresh */
-            wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-            GetEventHandler()->AddPendingEvent(ev);
-        }
+        setHomePageActive(false);
+        /* Currency Options might have changed so refresh */
+        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+        GetEventHandler()->AddPendingEvent(ev);
+
     }
     else
     {
@@ -2591,13 +2589,8 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
         }
     }
 
-    if (!refreshRequested_)
-    {
-        refreshRequested_ = true;
-        /* Currency Options might have changed so refresh */
-        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-        GetEventHandler()->AddPendingEvent(ev);
-    }
+    wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+    GetEventHandler()->AddPendingEvent(ev);
 }
 //----------------------------------------------------------------------------
 
@@ -3088,12 +3081,8 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         if (dlg.ShowModal() == wxID_OK)
         {
             updateNavTreeControl();
-            if (!refreshRequested_)
-            {
-                refreshRequested_ = true;
-                wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-                GetEventHandler()->AddPendingEvent(ev);
-            }
+            wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+            GetEventHandler()->AddPendingEvent(ev);
         }
     }
 }
@@ -3355,6 +3344,8 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
         wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK | wxICON_ERROR);
         recentFiles_->RemoveFileFromHistory(fileNum);
     }
+    setHomePageActive(false);
+    createHomePage();
 }
 //----------------------------------------------------------------------------
 
