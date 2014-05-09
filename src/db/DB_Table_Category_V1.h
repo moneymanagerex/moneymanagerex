@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
+ *          AUTO GENERATED at 2014-05-09 14:36:54.178477.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -335,7 +335,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             return false;
         }
 
-        if (entity->id() <= 0) entity->id((db->GetLastRowId()).ToLong());
+        if (entity->id() <= 0)
+        {
+            entity->id((db->GetLastRowId()).ToLong());
+            index_by_id_.insert(std::make_pair(entity->id(), entity));
+        }
         return true;
     }
 

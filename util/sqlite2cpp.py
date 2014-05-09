@@ -496,7 +496,11 @@ struct DB_Table_%s : public DB_Table
             return false;
         }
 
-        if (entity->id() <= 0) entity->id((db->GetLastRowId()).ToLong());
+        if (entity->id() <= 0)
+        {
+            entity->id((db->GetLastRowId()).ToLong());
+            index_by_id_.insert(std::make_pair(entity->id(), entity));
+        }
         return true;
     }
 ''' % (len(self._fields), self._primay_key, self._table)
