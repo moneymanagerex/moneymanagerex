@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -169,6 +169,15 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         
             CATEGID = q.GetInt(0); // CATEGID
             CATEGNAME = q.GetString(1); // CATEGNAME
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            CATEGID = other.CATEGID;
+            CATEGNAME = other.CATEGNAME;
+            return *this;
         }
 
         template<typename C>

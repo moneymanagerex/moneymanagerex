@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -179,6 +179,16 @@ struct DB_Table_USAGE_V1 : public DB_Table
             USAGEID = q.GetInt(0); // USAGEID
             USAGEDATE = q.GetString(1); // USAGEDATE
             JSONCONTENT = q.GetString(2); // JSONCONTENT
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            USAGEID = other.USAGEID;
+            USAGEDATE = other.USAGEDATE;
+            JSONCONTENT = other.JSONCONTENT;
+            return *this;
         }
 
         template<typename C>

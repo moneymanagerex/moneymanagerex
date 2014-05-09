@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -180,6 +180,16 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
             SUBCATEGID = q.GetInt(0); // SUBCATEGID
             SUBCATEGNAME = q.GetString(1); // SUBCATEGNAME
             CATEGID = q.GetInt(2); // CATEGID
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            SUBCATEGID = other.SUBCATEGID;
+            SUBCATEGNAME = other.SUBCATEGNAME;
+            CATEGID = other.CATEGID;
+            return *this;
         }
 
         template<typename C>

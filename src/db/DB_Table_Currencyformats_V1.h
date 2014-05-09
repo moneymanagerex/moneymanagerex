@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -261,6 +261,24 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
             SCALE = q.GetInt(8); // SCALE
             BASECONVRATE = q.GetDouble(9); // BASECONVRATE
             CURRENCY_SYMBOL = q.GetString(10); // CURRENCY_SYMBOL
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            CURRENCYID = other.CURRENCYID;
+            CURRENCYNAME = other.CURRENCYNAME;
+            PFX_SYMBOL = other.PFX_SYMBOL;
+            SFX_SYMBOL = other.SFX_SYMBOL;
+            DECIMAL_POINT = other.DECIMAL_POINT;
+            GROUP_SEPARATOR = other.GROUP_SEPARATOR;
+            UNIT_NAME = other.UNIT_NAME;
+            CENT_NAME = other.CENT_NAME;
+            SCALE = other.SCALE;
+            BASECONVRATE = other.BASECONVRATE;
+            CURRENCY_SYMBOL = other.CURRENCY_SYMBOL;
+            return *this;
         }
 
         template<typename C>

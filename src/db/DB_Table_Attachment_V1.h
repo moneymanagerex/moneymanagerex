@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -200,6 +200,18 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
             REFID = q.GetInt(2); // REFID
             DESCRIPTION = q.GetString(3); // DESCRIPTION
             FILENAME = q.GetString(4); // FILENAME
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            ATTACHMENTID = other.ATTACHMENTID;
+            REFTYPE = other.REFTYPE;
+            REFID = other.REFID;
+            DESCRIPTION = other.DESCRIPTION;
+            FILENAME = other.FILENAME;
+            return *this;
         }
 
         template<typename C>

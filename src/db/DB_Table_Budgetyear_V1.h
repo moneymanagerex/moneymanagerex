@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -169,6 +169,15 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         
             BUDGETYEARID = q.GetInt(0); // BUDGETYEARID
             BUDGETYEARNAME = q.GetString(1); // BUDGETYEARNAME
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            BUDGETYEARID = other.BUDGETYEARID;
+            BUDGETYEARNAME = other.BUDGETYEARNAME;
+            return *this;
         }
 
         template<typename C>

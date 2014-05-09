@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -231,6 +231,21 @@ struct DB_Table_ASSETS_V1 : public DB_Table
             NOTES = q.GetString(5); // NOTES
             VALUECHANGERATE = q.GetDouble(6); // VALUECHANGERATE
             ASSETTYPE = q.GetString(7); // ASSETTYPE
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            ASSETID = other.ASSETID;
+            STARTDATE = other.STARTDATE;
+            ASSETNAME = other.ASSETNAME;
+            VALUE = other.VALUE;
+            VALUECHANGE = other.VALUECHANGE;
+            NOTES = other.NOTES;
+            VALUECHANGERATE = other.VALUECHANGERATE;
+            ASSETTYPE = other.ASSETTYPE;
+            return *this;
         }
 
         template<typename C>

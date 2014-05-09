@@ -283,6 +283,17 @@ struct DB_Table_%s : public DB_Table
 
         s += '''
         }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+'''
+        for field in self._fields:
+            s += '''
+            %s = other.%s;''' % (field['name'], field['name'])
+        s += '''
+            return *this;
+        }
 '''
         s += '''
         template<typename C>

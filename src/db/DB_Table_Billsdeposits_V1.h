@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -329,6 +329,30 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             REPEATS = q.GetInt(14); // REPEATS
             NEXTOCCURRENCEDATE = q.GetString(15); // NEXTOCCURRENCEDATE
             NUMOCCURRENCES = q.GetInt(16); // NUMOCCURRENCES
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            BDID = other.BDID;
+            ACCOUNTID = other.ACCOUNTID;
+            TOACCOUNTID = other.TOACCOUNTID;
+            PAYEEID = other.PAYEEID;
+            TRANSCODE = other.TRANSCODE;
+            TRANSAMOUNT = other.TRANSAMOUNT;
+            STATUS = other.STATUS;
+            TRANSACTIONNUMBER = other.TRANSACTIONNUMBER;
+            NOTES = other.NOTES;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            TRANSDATE = other.TRANSDATE;
+            FOLLOWUPID = other.FOLLOWUPID;
+            TOTRANSAMOUNT = other.TOTRANSAMOUNT;
+            REPEATS = other.REPEATS;
+            NEXTOCCURRENCEDATE = other.NEXTOCCURRENCEDATE;
+            NUMOCCURRENCES = other.NUMOCCURRENCES;
+            return *this;
         }
 
         template<typename C>

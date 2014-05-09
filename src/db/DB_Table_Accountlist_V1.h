@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -281,6 +281,26 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
             INITIALBAL = q.GetDouble(10); // INITIALBAL
             FAVORITEACCT = q.GetString(11); // FAVORITEACCT
             CURRENCYID = q.GetInt(12); // CURRENCYID
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            ACCOUNTID = other.ACCOUNTID;
+            ACCOUNTNAME = other.ACCOUNTNAME;
+            ACCOUNTTYPE = other.ACCOUNTTYPE;
+            ACCOUNTNUM = other.ACCOUNTNUM;
+            STATUS = other.STATUS;
+            NOTES = other.NOTES;
+            HELDAT = other.HELDAT;
+            WEBSITE = other.WEBSITE;
+            CONTACTINFO = other.CONTACTINFO;
+            ACCESSINFO = other.ACCESSINFO;
+            INITIALBAL = other.INITIALBAL;
+            FAVORITEACCT = other.FAVORITEACCT;
+            CURRENCYID = other.CURRENCYID;
+            return *this;
         }
 
         template<typename C>

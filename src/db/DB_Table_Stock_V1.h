@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -265,6 +265,24 @@ struct DB_Table_STOCK_V1 : public DB_Table
             CURRENTPRICE = q.GetDouble(8); // CURRENTPRICE
             VALUE = q.GetDouble(9); // VALUE
             COMMISSION = q.GetDouble(10); // COMMISSION
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            STOCKID = other.STOCKID;
+            HELDAT = other.HELDAT;
+            PURCHASEDATE = other.PURCHASEDATE;
+            STOCKNAME = other.STOCKNAME;
+            SYMBOL = other.SYMBOL;
+            NUMSHARES = other.NUMSHARES;
+            PURCHASEPRICE = other.PURCHASEPRICE;
+            NOTES = other.NOTES;
+            CURRENTPRICE = other.CURRENTPRICE;
+            VALUE = other.VALUE;
+            COMMISSION = other.COMMISSION;
+            return *this;
         }
 
         template<typename C>

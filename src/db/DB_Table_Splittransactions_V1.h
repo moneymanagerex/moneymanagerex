@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -203,6 +203,18 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
             CATEGID = q.GetInt(2); // CATEGID
             SUBCATEGID = q.GetInt(3); // SUBCATEGID
             SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            SPLITTRANSID = other.SPLITTRANSID;
+            TRANSID = other.TRANSID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            SPLITTRANSAMOUNT = other.SPLITTRANSAMOUNT;
+            return *this;
         }
 
         template<typename C>

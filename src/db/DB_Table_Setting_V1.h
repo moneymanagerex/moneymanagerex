@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -179,6 +179,16 @@ struct DB_Table_SETTING_V1 : public DB_Table
             SETTINGID = q.GetInt(0); // SETTINGID
             SETTINGNAME = q.GetString(1); // SETTINGNAME
             SETTINGVALUE = q.GetString(2); // SETTINGVALUE
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            SETTINGID = other.SETTINGID;
+            SETTINGNAME = other.SETTINGNAME;
+            SETTINGVALUE = other.SETTINGVALUE;
+            return *this;
         }
 
         template<typename C>

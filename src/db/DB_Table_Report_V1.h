@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -219,6 +219,20 @@ struct DB_Table_REPORT_V1 : public DB_Table
             LUACONTENT = q.GetString(4); // LUACONTENT
             TEMPLATECONTENT = q.GetString(5); // TEMPLATECONTENT
             DESCRIPTION = q.GetString(6); // DESCRIPTION
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            REPORTID = other.REPORTID;
+            REPORTNAME = other.REPORTNAME;
+            GROUPNAME = other.GROUPNAME;
+            SQLCONTENT = other.SQLCONTENT;
+            LUACONTENT = other.LUACONTENT;
+            TEMPLATECONTENT = other.TEMPLATECONTENT;
+            DESCRIPTION = other.DESCRIPTION;
+            return *this;
         }
 
         template<typename C>

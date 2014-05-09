@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -191,6 +191,17 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             PAYEENAME = q.GetString(1); // PAYEENAME
             CATEGID = q.GetInt(2); // CATEGID
             SUBCATEGID = q.GetInt(3); // SUBCATEGID
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            PAYEEID = other.PAYEEID;
+            PAYEENAME = other.PAYEENAME;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            return *this;
         }
 
         template<typename C>

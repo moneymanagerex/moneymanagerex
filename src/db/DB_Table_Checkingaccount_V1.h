@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -298,6 +298,27 @@ struct DB_Table_CHECKINGACCOUNT_V1 : public DB_Table
             TRANSDATE = q.GetString(11); // TRANSDATE
             FOLLOWUPID = q.GetInt(12); // FOLLOWUPID
             TOTRANSAMOUNT = q.GetDouble(13); // TOTRANSAMOUNT
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            TRANSID = other.TRANSID;
+            ACCOUNTID = other.ACCOUNTID;
+            TOACCOUNTID = other.TOACCOUNTID;
+            PAYEEID = other.PAYEEID;
+            TRANSCODE = other.TRANSCODE;
+            TRANSAMOUNT = other.TRANSAMOUNT;
+            STATUS = other.STATUS;
+            TRANSACTIONNUMBER = other.TRANSACTIONNUMBER;
+            NOTES = other.NOTES;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            TRANSDATE = other.TRANSDATE;
+            FOLLOWUPID = other.FOLLOWUPID;
+            TOTRANSAMOUNT = other.TOTRANSAMOUNT;
+            return *this;
         }
 
         template<typename C>

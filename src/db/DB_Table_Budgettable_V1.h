@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 13:48:54.495677.
+ *          AUTO GENERATED at 2014-05-09 14:27:53.312798.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -213,6 +213,19 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
             SUBCATEGID = q.GetInt(3); // SUBCATEGID
             PERIOD = q.GetString(4); // PERIOD
             AMOUNT = q.GetDouble(5); // AMOUNT
+        }
+
+        Data& operator=(const Data& other)
+        {
+            if (this == &other) return *this;
+
+            BUDGETENTRYID = other.BUDGETENTRYID;
+            BUDGETYEARID = other.BUDGETYEARID;
+            CATEGID = other.CATEGID;
+            SUBCATEGID = other.SUBCATEGID;
+            PERIOD = other.PERIOD;
+            AMOUNT = other.AMOUNT;
+            return *this;
         }
 
         template<typename C>
