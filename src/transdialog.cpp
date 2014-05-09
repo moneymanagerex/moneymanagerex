@@ -796,21 +796,25 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
     if (!m_transfer && event.GetId() == ID_DIALOG_TRANS_PAYEECOMBO)
     {
         wxString payeeName = event.GetString().Trim();
-        // Filtering the combobox as the user types
-        if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
-        {
-            cbPayee_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
-            cbPayee_->Clear();
-            Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
-            for (int nn=0; nn<filtd.size(); nn++) {
-                cbPayee_->Insert(filtd[nn].PAYEENAME, 0);
-            }
-            cbPayee_->SetValue(payeeName);
-            cbPayee_->SetInsertionPointEnd();
-            cbPayee_->SetEvtHandlerEnabled(true);
+
+		// Filtering the combobox as the user types because on Mac autocomplete function doesn't work
+		#if defined (__WXMAC__)
+			if (cbPayee_->GetSelection() == -1) // make sure nothing is selected (ex. user presses down arrow)
+			{
+				cbPayee_->SetEvtHandlerEnabled(false); // things will crash if events are handled during Clear
+				cbPayee_->Clear();
+				Model_Payee::Data_Set filtd = Model_Payee::instance().FilterPayees(payeeName);
+				std::sort(filtd.rbegin(), filtd.rend(), SorterByPAYEENAME());
+				for (int nn=0; nn<filtd.size(); nn++) {
+					cbPayee_->Insert(filtd[nn].PAYEENAME, 0);
+				}
+				cbPayee_->SetValue(payeeName);
+				cbPayee_->SetInsertionPointEnd();
+				cbPayee_->SetEvtHandlerEnabled(true);
         
-        }   // End of filtering
-        
+			}
+		#endif
+
         for (const auto& payee : Model_Payee::instance().all_payee_names()) {
             if (payee.CmpNoCase(payeeName) == 0)
                 payeeName = payee; 
