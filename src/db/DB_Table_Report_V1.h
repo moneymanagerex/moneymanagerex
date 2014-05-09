@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT nullptr UNIQUE, GROUPNAME TEXT COLLATE NOCASE, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATECONTENT TEXT, DESCRIPTION TEXT)");
+				db->ExecuteUpdate("CREATE TABLE REPORT_V1(REPORTID integer not null primary key, REPORTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, GROUPNAME TEXT COLLATE NOCASE, SQLCONTENT TEXT, LUACONTENT TEXT, TEMPLATECONTENT TEXT, DESCRIPTION TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,37 +100,37 @@ struct DB_Table_REPORT_V1 : public DB_Table
     struct REPORTID : public DB_Column<int>
     { 
         static wxString name() { return "REPORTID"; } 
-        REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REPORTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct REPORTNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "REPORTNAME"; } 
-        REPORTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit REPORTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct GROUPNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "GROUPNAME"; } 
-        GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit GROUPNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct SQLCONTENT : public DB_Column<wxString>
     { 
         static wxString name() { return "SQLCONTENT"; } 
-        SQLCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit SQLCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct LUACONTENT : public DB_Column<wxString>
     { 
         static wxString name() { return "LUACONTENT"; } 
-        LUACONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit LUACONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct TEMPLATECONTENT : public DB_Column<wxString>
     { 
         static wxString name() { return "TEMPLATECONTENT"; } 
-        TEMPLATECONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit TEMPLATECONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct DESCRIPTION : public DB_Column<wxString>
     { 
         static wxString name() { return "DESCRIPTION"; } 
-        DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef REPORTID PRIMARY;
     enum COLUMN

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_SETTING_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT COLLATE NOCASE NOT nullptr UNIQUE, SETTINGVALUE TEXT)");
+				db->ExecuteUpdate("CREATE TABLE SETTING_V1(SETTINGID integer not null primary key, SETTINGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, SETTINGVALUE TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,17 +100,17 @@ struct DB_Table_SETTING_V1 : public DB_Table
     struct SETTINGID : public DB_Column<int>
     { 
         static wxString name() { return "SETTINGID"; } 
-        SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SETTINGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct SETTINGNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "SETTINGNAME"; } 
-        SETTINGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit SETTINGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct SETTINGVALUE : public DB_Column<wxString>
     { 
         static wxString name() { return "SETTINGVALUE"; } 
-        SETTINGVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit SETTINGVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef SETTINGID PRIMARY;
     enum COLUMN

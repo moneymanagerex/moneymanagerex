@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT nullptr, AMOUNT numeric NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETTABLE_V1(BUDGETENTRYID integer primary key, BUDGETYEARID integer, CATEGID integer, SUBCATEGID integer, PERIOD TEXT NOT NULL, AMOUNT numeric NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,32 +100,32 @@ struct DB_Table_BUDGETTABLE_V1 : public DB_Table
     struct BUDGETENTRYID : public DB_Column<int>
     { 
         static wxString name() { return "BUDGETENTRYID"; } 
-        BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETENTRYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct BUDGETYEARID : public DB_Column<int>
     { 
         static wxString name() { return "BUDGETYEARID"; } 
-        BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
-        CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
-        SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct PERIOD : public DB_Column<wxString>
     { 
         static wxString name() { return "PERIOD"; } 
-        PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit PERIOD(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct AMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "AMOUNT"; } 
-        AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit AMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     typedef BUDGETENTRYID PRIMARY;
     enum COLUMN

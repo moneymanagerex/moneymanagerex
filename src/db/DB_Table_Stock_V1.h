@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_STOCK_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE STOCK_V1(STOCKID integer primary key, HELDAT integer , PURCHASEDATE TEXT NOT nullptr, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
+				db->ExecuteUpdate("CREATE TABLE STOCK_V1(STOCKID integer primary key, HELDAT integer , PURCHASEDATE TEXT NOT NULL, STOCKNAME TEXT COLLATE NOCASE NOT NULL, SYMBOL TEXT, NUMSHARES numeric, PURCHASEPRICE numeric NOT NULL, NOTES TEXT, CURRENTPRICE numeric NOT NULL, VALUE numeric, COMMISSION numeric)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,57 +100,57 @@ struct DB_Table_STOCK_V1 : public DB_Table
     struct STOCKID : public DB_Column<int>
     { 
         static wxString name() { return "STOCKID"; } 
-        STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct HELDAT : public DB_Column<int>
     { 
         static wxString name() { return "HELDAT"; } 
-        HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit HELDAT(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct PURCHASEDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "PURCHASEDATE"; } 
-        PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit PURCHASEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct STOCKNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "STOCKNAME"; } 
-        STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit STOCKNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "SYMBOL"; } 
-        SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct NUMSHARES : public DB_Column<double>
     { 
         static wxString name() { return "NUMSHARES"; } 
-        NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit NUMSHARES(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct PURCHASEPRICE : public DB_Column<double>
     { 
         static wxString name() { return "PURCHASEPRICE"; } 
-        PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit PURCHASEPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
-        NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct CURRENTPRICE : public DB_Column<double>
     { 
         static wxString name() { return "CURRENTPRICE"; } 
-        CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit CURRENTPRICE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
-        VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct COMMISSION : public DB_Column<double>
     { 
         static wxString name() { return "COMMISSION"; } 
-        COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit COMMISSION(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     typedef STOCKID PRIMARY;
     enum COLUMN

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ATTACHMENT_V1 (ATTACHMENTID INTEGER NOT nullptr PRIMARY KEY, REFTYPE TEXT NOT NULL, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
+				db->ExecuteUpdate("CREATE TABLE ATTACHMENT_V1 (ATTACHMENTID INTEGER NOT NULL PRIMARY KEY, REFTYPE TEXT NOT NULL, REFID INTEGER NOT NULL, DESCRIPTION TEXT COLLATE NOCASE, FILENAME TEXT NOT NULL COLLATE NOCASE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,27 +100,27 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
     struct ATTACHMENTID : public DB_Column<int>
     { 
         static wxString name() { return "ATTACHMENTID"; } 
-        ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ATTACHMENTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct REFTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "REFTYPE"; } 
-        REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit REFTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct REFID : public DB_Column<int>
     { 
         static wxString name() { return "REFID"; } 
-        REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit REFID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct DESCRIPTION : public DB_Column<wxString>
     { 
         static wxString name() { return "DESCRIPTION"; } 
-        DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit DESCRIPTION(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct FILENAME : public DB_Column<wxString>
     { 
         static wxString name() { return "FILENAME"; } 
-        FILENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit FILENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef ATTACHMENTID PRIMARY;
     enum COLUMN

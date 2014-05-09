@@ -174,7 +174,7 @@ struct DB_Table_%s : public DB_Table
     struct %s : public DB_Column<%s>
     { 
         static wxString name() { return "%s"; } 
-        %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
+        explicit %s(const %s &v, OP op = EQUAL): DB_Column<%s>(v, op) {}
     };''' % (field['name'], base_data_types_reverse[field['type']], field['name']
             , field['name'], base_data_types_reverse[field['type']], base_data_types_reverse[field['type']])
 

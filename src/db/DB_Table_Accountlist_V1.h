@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT nullptr UNIQUE, ACCOUNTTYPE TEXT NOT NULL , ACCOUNTNUM TEXT, STATUS TEXT NOT NULL, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE ACCOUNTLIST_V1(ACCOUNTID integer primary key, ACCOUNTNAME TEXT COLLATE NOCASE NOT NULL UNIQUE, ACCOUNTTYPE TEXT NOT NULL , ACCOUNTNUM TEXT, STATUS TEXT NOT NULL, NOTES TEXT , HELDAT TEXT , WEBSITE TEXT , CONTACTINFO TEXT, ACCESSINFO TEXT , INITIALBAL numeric , FAVORITEACCT TEXT NOT NULL, CURRENCYID integer NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,67 +100,67 @@ struct DB_Table_ACCOUNTLIST_V1 : public DB_Table
     struct ACCOUNTID : public DB_Column<int>
     { 
         static wxString name() { return "ACCOUNTID"; } 
-        ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ACCOUNTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct ACCOUNTNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCOUNTNAME"; } 
-        ACCOUNTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit ACCOUNTNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct ACCOUNTTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCOUNTTYPE"; } 
-        ACCOUNTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit ACCOUNTTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct ACCOUNTNUM : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCOUNTNUM"; } 
-        ACCOUNTNUM(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit ACCOUNTNUM(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct STATUS : public DB_Column<wxString>
     { 
         static wxString name() { return "STATUS"; } 
-        STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit STATUS(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
-        NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct HELDAT : public DB_Column<wxString>
     { 
         static wxString name() { return "HELDAT"; } 
-        HELDAT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit HELDAT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct WEBSITE : public DB_Column<wxString>
     { 
         static wxString name() { return "WEBSITE"; } 
-        WEBSITE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit WEBSITE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct CONTACTINFO : public DB_Column<wxString>
     { 
         static wxString name() { return "CONTACTINFO"; } 
-        CONTACTINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit CONTACTINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct ACCESSINFO : public DB_Column<wxString>
     { 
         static wxString name() { return "ACCESSINFO"; } 
-        ACCESSINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit ACCESSINFO(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct INITIALBAL : public DB_Column<double>
     { 
         static wxString name() { return "INITIALBAL"; } 
-        INITIALBAL(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit INITIALBAL(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct FAVORITEACCT : public DB_Column<wxString>
     { 
         static wxString name() { return "FAVORITEACCT"; } 
-        FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit FAVORITEACCT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct CURRENCYID : public DB_Column<int>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     typedef ACCOUNTID PRIMARY;
     enum COLUMN

@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT nullptr UNIQUE, INFOVALUE TEXT NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE INFOTABLE_V1(INFOID integer not null primary key, INFONAME TEXT COLLATE NOCASE NOT NULL UNIQUE, INFOVALUE TEXT NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,17 +100,17 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
     struct INFOID : public DB_Column<int>
     { 
         static wxString name() { return "INFOID"; } 
-        INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit INFOID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct INFONAME : public DB_Column<wxString>
     { 
         static wxString name() { return "INFONAME"; } 
-        INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit INFONAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct INFOVALUE : public DB_Column<wxString>
     { 
         static wxString name() { return "INFOVALUE"; } 
-        INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit INFOVALUE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef INFOID PRIMARY;
     enum COLUMN

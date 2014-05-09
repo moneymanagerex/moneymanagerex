@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT nullptr UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,12 +100,12 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
     struct BUDGETYEARID : public DB_Column<int>
     { 
         static wxString name() { return "BUDGETYEARID"; } 
-        BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit BUDGETYEARID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct BUDGETYEARNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "BUDGETYEARNAME"; } 
-        BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit BUDGETYEARNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef BUDGETYEARID PRIMARY;
     enum COLUMN

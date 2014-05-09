@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT nullptr, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,27 +100,27 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
     struct SPLITTRANSID : public DB_Column<int>
     { 
         static wxString name() { return "SPLITTRANSID"; } 
-        SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SPLITTRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct TRANSID : public DB_Column<int>
     { 
         static wxString name() { return "TRANSID"; } 
-        TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit TRANSID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
-        CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
-        SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct SPLITTRANSAMOUNT : public DB_Column<double>
     { 
         static wxString name() { return "SPLITTRANSAMOUNT"; } 
-        SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit SPLITTRANSAMOUNT(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     typedef SPLITTRANSID PRIMARY;
     enum COLUMN

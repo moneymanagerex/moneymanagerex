@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT nullptr PRIMARY KEY, USAGEDATE TEXT NOT NULL , JSONCONTENT TEXT NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT NULL PRIMARY KEY, USAGEDATE TEXT NOT NULL , JSONCONTENT TEXT NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,17 +100,17 @@ struct DB_Table_USAGE_V1 : public DB_Table
     struct USAGEID : public DB_Column<int>
     { 
         static wxString name() { return "USAGEID"; } 
-        USAGEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit USAGEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct USAGEDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "USAGEDATE"; } 
-        USAGEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit USAGEDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct JSONCONTENT : public DB_Column<wxString>
     { 
         static wxString name() { return "JSONCONTENT"; } 
-        JSONCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit JSONCONTENT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef USAGEID PRIMARY;
     enum COLUMN

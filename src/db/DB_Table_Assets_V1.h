@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_ASSETS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT nullptr , ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
+				db->ExecuteUpdate("CREATE TABLE ASSETS_V1(ASSETID integer primary key, STARTDATE TEXT NOT NULL , ASSETNAME TEXT COLLATE NOCASE NOT NULL, VALUE numeric, VALUECHANGE TEXT, NOTES TEXT, VALUECHANGERATE numeric, ASSETTYPE TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,42 +100,42 @@ struct DB_Table_ASSETS_V1 : public DB_Table
     struct ASSETID : public DB_Column<int>
     { 
         static wxString name() { return "ASSETID"; } 
-        ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit ASSETID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct STARTDATE : public DB_Column<wxString>
     { 
         static wxString name() { return "STARTDATE"; } 
-        STARTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit STARTDATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct ASSETNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "ASSETNAME"; } 
-        ASSETNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit ASSETNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct VALUE : public DB_Column<double>
     { 
         static wxString name() { return "VALUE"; } 
-        VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct VALUECHANGE : public DB_Column<wxString>
     { 
         static wxString name() { return "VALUECHANGE"; } 
-        VALUECHANGE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit VALUECHANGE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct NOTES : public DB_Column<wxString>
     { 
         static wxString name() { return "NOTES"; } 
-        NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit NOTES(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct VALUECHANGERATE : public DB_Column<double>
     { 
         static wxString name() { return "VALUECHANGERATE"; } 
-        VALUECHANGERATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit VALUECHANGERATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct ASSETTYPE : public DB_Column<wxString>
     { 
         static wxString name() { return "ASSETTYPE"; } 
-        ASSETTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit ASSETTYPE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef ASSETID PRIMARY;
     enum COLUMN

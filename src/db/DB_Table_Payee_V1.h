@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT nullptr UNIQUE, CATEGID integer, SUBCATEGID integer)");
+				db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,22 +100,22 @@ struct DB_Table_PAYEE_V1 : public DB_Table
     struct PAYEEID : public DB_Column<int>
     { 
         static wxString name() { return "PAYEEID"; } 
-        PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit PAYEEID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct PAYEENAME : public DB_Column<wxString>
     { 
         static wxString name() { return "PAYEENAME"; } 
-        PAYEENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit PAYEENAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct CATEGID : public DB_Column<int>
     { 
         static wxString name() { return "CATEGID"; } 
-        CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct SUBCATEGID : public DB_Column<int>
     { 
         static wxString name() { return "SUBCATEGID"; } 
-        SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SUBCATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     typedef PAYEEID PRIMARY;
     enum COLUMN

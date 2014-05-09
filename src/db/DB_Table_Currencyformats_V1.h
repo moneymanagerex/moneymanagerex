@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-02 07:03:07.427989.
+ *          AUTO GENERATED at 2014-05-09 13:43:38.172963.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS_V1(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE COLLATE NOCASE NOT nullptr UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, UNIT_NAME TEXT COLLATE NOCASE, CENT_NAME TEXT COLLATE NOCASE, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT)");
+				db->ExecuteUpdate("CREATE TABLE CURRENCYFORMATS_V1(CURRENCYID integer primary key, CURRENCYNAME TEXT COLLATE NOCASE COLLATE NOCASE NOT NULL UNIQUE, PFX_SYMBOL TEXT, SFX_SYMBOL TEXT, DECIMAL_POINT TEXT, GROUP_SEPARATOR TEXT, UNIT_NAME TEXT COLLATE NOCASE, CENT_NAME TEXT COLLATE NOCASE, SCALE integer, BASECONVRATE numeric, CURRENCY_SYMBOL TEXT)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
@@ -100,57 +100,57 @@ struct DB_Table_CURRENCYFORMATS_V1 : public DB_Table
     struct CURRENCYID : public DB_Column<int>
     { 
         static wxString name() { return "CURRENCYID"; } 
-        CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit CURRENCYID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct CURRENCYNAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCYNAME"; } 
-        CURRENCYNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit CURRENCYNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct PFX_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "PFX_SYMBOL"; } 
-        PFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit PFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct SFX_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "SFX_SYMBOL"; } 
-        SFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit SFX_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct DECIMAL_POINT : public DB_Column<wxString>
     { 
         static wxString name() { return "DECIMAL_POINT"; } 
-        DECIMAL_POINT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit DECIMAL_POINT(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct GROUP_SEPARATOR : public DB_Column<wxString>
     { 
         static wxString name() { return "GROUP_SEPARATOR"; } 
-        GROUP_SEPARATOR(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit GROUP_SEPARATOR(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct UNIT_NAME : public DB_Column<wxString>
     { 
         static wxString name() { return "UNIT_NAME"; } 
-        UNIT_NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit UNIT_NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct CENT_NAME : public DB_Column<wxString>
     { 
         static wxString name() { return "CENT_NAME"; } 
-        CENT_NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit CENT_NAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     struct SCALE : public DB_Column<int>
     { 
         static wxString name() { return "SCALE"; } 
-        SCALE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        explicit SCALE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
     struct BASECONVRATE : public DB_Column<double>
     { 
         static wxString name() { return "BASECONVRATE"; } 
-        BASECONVRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+        explicit BASECONVRATE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
     };
     struct CURRENCY_SYMBOL : public DB_Column<wxString>
     { 
         static wxString name() { return "CURRENCY_SYMBOL"; } 
-        CURRENCY_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        explicit CURRENCY_SYMBOL(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
     };
     typedef CURRENCYID PRIMARY;
     enum COLUMN
