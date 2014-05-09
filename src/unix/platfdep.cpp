@@ -49,7 +49,7 @@ void SetInstallPrefix()
     $(prefix)/share/mmex.
     Default install prefix is /usr (often /usr/local).
 */
-wxFileName mmex::GetSharedDir()
+const wxFileName mmex::GetSharedDir()
 {
     static wxFileName fname;
 
@@ -66,7 +66,7 @@ wxFileName mmex::GetSharedDir()
 /*
     $(prefix)/share/doc/mmex
 */
-wxFileName mmex::GetDocDir()
+const wxFileName mmex::GetDocDir()
 {
     static wxFileName fname;
 
@@ -89,7 +89,7 @@ wxFileName mmex::GetDocDir()
 /*
     $(prefix)/share/mmex/res
 */
-wxFileName mmex::GetResourceDir()
+const wxFileName mmex::GetResourceDir()
 {
     static wxFileName fname;
 
