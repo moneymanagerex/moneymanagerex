@@ -111,7 +111,7 @@ mmHomePagePanel::mmHomePagePanel(wxWindow *parent
     , browser_(0)
 {
     Create(parent, winid, pos, size, style, name);
-    frame_->setHomePageActive();
+    frame_->setHomePageActive(false);
     frame_->menuPrintingEnable(true);
 }
 

@@ -124,7 +124,6 @@ private:
 
     int gotoAccountID_;
     int gotoTransID_;
-    bool homePageAccountSelect_;
 
     /* Cannot process home page recursively */
     bool refreshRequested_;

@@ -48,12 +48,11 @@ public:
 
     ~mmHomePagePanel();
 
-    wxString GetHomePageText() const;
-
     wxString BuildPage() const { return GetHomePageText(); }
     void PrintPage();
 
 private:
+    wxString GetHomePageText() const;
     mmGUIFrame* frame_;
     wxWebView* browser_;
     mmDateRange* date_range_;
