@@ -176,19 +176,19 @@ void mmCategDialog::CreateControls()
     m_buttonRelocate = new wxBitmapButton(this
         , wxID_ANY, wxBitmap(relocate_categories_xpm));
     m_buttonRelocate->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), NULL, this);
+        , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
     m_buttonRelocate->SetToolTip(_("Reassign all categories to another category"));
 
     m_cbExpand = new wxCheckBox(this, wxID_ANY, _("Expand"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
     m_cbExpand->Connect(wxID_ANY, wxEVT_COMMAND_CHECKBOX_CLICKED,
-        wxCommandEventHandler(mmCategDialog::OnExpandChbClick), NULL, this);
+        wxCommandEventHandler(mmCategDialog::OnExpandChbClick), nullptr, this);
 
     m_cbShowAll = new wxCheckBox(this, wxID_SELECTALL, _("Show All"), wxDefaultPosition
         , wxDefaultSize, wxCHK_2STATE);
     m_cbShowAll->SetToolTip(_("Show all hidden categories"));
     m_cbShowAll->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED
-        , wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), NULL, this);
+        , wxCommandEventHandler(mmCategDialog::OnShowHiddenChbClick), nullptr, this);
 
     itemBoxSizer33->Add(m_buttonRelocate, g_flags);
     itemBoxSizer33->AddSpacer(10);

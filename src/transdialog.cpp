@@ -454,7 +454,7 @@ void mmTransDialog::CreateControls()
         , ID_DIALOG_TRANS_BUTTONTRANSNUM, "...", wxDefaultPosition
         , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()));
     bAuto->Connect(ID_DIALOG_TRANS_BUTTONTRANSNUM,
-        wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), NULL, this);
+        wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnAutoTransNum), nullptr, this);
     bAuto->SetToolTip(_("Populate Transaction #"));
 
     flex_sizer->Add(new wxStaticText(this, wxID_STATIC, _("Number")), g_flags);
@@ -469,7 +469,7 @@ void mmTransDialog::CreateControls()
         , "...", wxDefaultPosition
         , wxSize(cbPayee_->GetSize().GetY(), cbPayee_->GetSize().GetY()), 0);
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), NULL, this);
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmTransDialog::OnFrequentUsedNotes), nullptr, this);
 	
 	// Attachments ---------------------------------------------
 	bAttachments_ = new wxBitmapButton(this, wxID_FILE
@@ -508,17 +508,17 @@ void mmTransDialog::CreateControls()
     this->SetSizer(box_sizer1);
 
     cbPayee_->Connect(ID_DIALOG_TRANS_PAYEECOMBO, wxEVT_COMMAND_TEXT_UPDATED,
-        wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), NULL, this);
+        wxCommandEventHandler(mmTransDialog::OnAccountOrPayeeUpdated), nullptr, this);
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+        wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+        wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
     textNumber_->Connect(ID_DIALOG_TRANS_TEXTNUMBER, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmTransDialog::onTextEntered), NULL, this);
+        , wxCommandEventHandler(mmTransDialog::onTextEntered), nullptr, this);
 
 #ifdef __WXGTK__ // Workaround for bug http://trac.wxwidgets.org/ticket/11630
     dpc_->Connect(ID_DIALOG_TRANS_BUTTONDATE, wxEVT_KILL_FOCUS
-        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), NULL, this);
+        , wxFocusEventHandler(mmTransDialog::OnDpcKillFocus), nullptr, this);
 #endif
 
 }

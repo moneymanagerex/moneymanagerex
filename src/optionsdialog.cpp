@@ -503,7 +503,7 @@ void mmOptionsDialog::CreateControls()
     userColourSettingStBoxSizer->Add(UDFCB7_, g_flags);
 
     viewsPanel->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmOptionsDialog::OnNavTreeColorChanged), NULL, this);
+        , wxCommandEventHandler(mmOptionsDialog::OnNavTreeColorChanged), nullptr, this);
 
     /*********************************************************************************************
      Attachments Panel

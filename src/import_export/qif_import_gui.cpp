@@ -94,7 +94,7 @@ void mmQIFImportDialog::CreateControls()
     wxStaticText* file_name_label = new wxStaticText(this, wxID_STATIC, _("File Name:"));
     button_search_ = new wxButton(this, wxID_OPEN, _("Choose &file"));
     button_search_->Connect(wxID_OPEN, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmQIFImportDialog::OnFileSearch), NULL, this);
+        , wxCommandEventHandler(mmQIFImportDialog::OnFileSearch), nullptr, this);
 
     file_name_ctrl_ = new wxTextCtrl(this, wxID_FILE, wxEmptyString
         , wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
@@ -115,7 +115,7 @@ void mmQIFImportDialog::CreateControls()
         if (m_dateFormatStr == i.first) choiceDateFormat_->SetStringSelection(i.second);
     }
     choiceDateFormat_->Connect(wxID_ANY, wxEVT_COMMAND_COMBOBOX_SELECTED
-        , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), NULL, this);
+        , wxCommandEventHandler(mmQIFImportDialog::OnDateMaskChange), nullptr, this);
 
     flex_sizer->Add(dateFormat, g_flags);
     flex_sizer->Add(choiceDateFormat_, g_flags);
@@ -244,7 +244,7 @@ void mmQIFImportDialog::CreateControls()
     btnOK_ = new wxButton( buttons_panel, wxID_OK, _("&OK "));
     wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
     btnOK_->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmQIFImportDialog::OnOk), NULL, this);
+        , wxCommandEventHandler(mmQIFImportDialog::OnOk), nullptr, this);
 
     buttons_sizer->Add(btnOK_, g_flags);
     buttons_sizer->Add(itemButtonCancel_, g_flags);

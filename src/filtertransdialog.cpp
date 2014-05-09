@@ -193,7 +193,7 @@ void mmFilterTransactionsDialog::CreateControls()
     toDateControl_ = new wxDatePickerCtrl(itemPanel, wxID_ANY, wxDefaultDateTime
         , wxDefaultPosition, wxDefaultSize, wxDP_DROPDOWN);
     dateRangeCheckBox_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), NULL, this);
+        , wxMouseEventHandler(mmFilterTransactionsDialog::datePresetMenu), nullptr, this);
 
     wxBoxSizer* dateSizer = new wxBoxSizer(wxHORIZONTAL);
     dateSizer->Add(fromDateCtrl_, g_flagsExpand);
@@ -208,7 +208,7 @@ void mmFilterTransactionsDialog::CreateControls()
 
     cbPayee_ = new wxComboBox(itemPanel, wxID_ANY, "", wxDefaultPosition,  wxSize(220, -1));
     cbPayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), NULL, this);
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnPayeeUpdated), nullptr, this);
 
     itemPanelSizer->Add(cbPayee_, g_flagsExpand);
     //--End of Row --------------------------------------------------------
@@ -225,7 +225,7 @@ void mmFilterTransactionsDialog::CreateControls()
     btnCategory_ = new wxButton(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize);
     btnCategory_->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), NULL, this);
+        wxCommandEventHandler(mmFilterTransactionsDialog::OnCategs), nullptr, this);
     similarCategCheckBox_ = new wxCheckBox(itemPanel, wxID_ANY, _("Include Similar"),
         wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     similarCategCheckBox_->SetToolTip(_("Include all subcategories for the selected category."));
@@ -281,12 +281,12 @@ void mmFilterTransactionsDialog::CreateControls()
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     amountMinEdit_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), NULL, this);
+        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), nullptr, this);
     amountMaxEdit_ = new mmTextCtrl(itemPanel, wxID_ANY, ""
         , wxDefaultPosition, wxDefaultSize, wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     amountMaxEdit_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), NULL, this);
+        wxCommandEventHandler(mmFilterTransactionsDialog::OnTextEntered), nullptr, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(amountMinEdit_, g_flagsExpand);
@@ -319,7 +319,7 @@ void mmFilterTransactionsDialog::CreateControls()
     m_radio_box_ = new wxRadioBox(this, wxID_APPLY, ""
         , wxDefaultPosition, wxDefaultSize, num, choices, num, wxRA_SPECIFY_COLS);
     m_radio_box_->Connect(wxID_APPLY, wxEVT_COMMAND_RADIOBOX_SELECTED
-        , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), NULL, this);
+        , wxCommandEventHandler(mmFilterTransactionsDialog::OnSettingsSelected), nullptr, this);
 
     int view_no = Model_Infotable::instance().GetIntInfo("TRANSACTIONS_FILTER_VIEW_NO", 0);
     m_radio_box_->SetSelection(view_no);

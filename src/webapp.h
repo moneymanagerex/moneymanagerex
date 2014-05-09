@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef _MM_EX_WEBAPP_H_
-#define _MM_EX_WEBAPP_H_
+#ifndef MM_EX_WEBAPP_H_
+#define MM_EX_WEBAPP_H_
 
 #include "defs.h"
 #include <wx/spinctrl.h>
@@ -99,4 +99,4 @@ public:
 	static bool MMEX_WebApp_UpdateCategory();
 };
 
-#endif // _MM_EX_WEBAPP_H_
+#endif // MM_EX_WEBAPP_H_

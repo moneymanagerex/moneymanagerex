@@ -55,7 +55,7 @@ wxString mmReportIncomeExpenses::getHTMLText()
     hb.addHeader(2, this->title());
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     wxString headerMsg = _("Accounts: ");
-    if (accountArray_ == NULL)
+    if (accountArray_ == nullptr)
     {
         headerMsg << _("All Accounts");
     }
@@ -161,7 +161,7 @@ wxString mmReportIncomeExpensesMonthly::getHTMLText()
     hb.addHeader(2, this->title());
     hb.DisplayDateHeading(date_range_->start_date(), date_range_->end_date(), date_range_->is_with_date());
     wxString headerMsg = _("Accounts: ");
-    if (accountArray_ == NULL)
+    if (accountArray_ == nullptr)
     {
         headerMsg << _("All Accounts");
     }

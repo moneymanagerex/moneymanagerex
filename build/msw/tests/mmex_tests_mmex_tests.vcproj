@@ -1163,6 +1163,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\mmHook.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\mmOption.h"
 				>
 			</File>

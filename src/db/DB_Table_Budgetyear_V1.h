@@ -68,7 +68,7 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETYEAR_V1(BUDGETYEARID integer primary key, BUDGETYEARNAME TEXT NOT nullptr UNIQUE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 

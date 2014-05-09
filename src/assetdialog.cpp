@@ -150,7 +150,7 @@ void mmAssetDialog::CreateControls()
     m_value->SetToolTip(_("Enter the current value of the asset"));
     itemFlexGridSizer6->Add(m_value, g_flags);
     m_value->Connect(IDC_VALUE, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmAssetDialog::onTextEntered), NULL, this);
+        , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
 
     itemFlexGridSizer6->Add(new wxStaticText(itemPanel5, wxID_STATIC, _("Change in Value")), g_flags);
 
@@ -171,7 +171,7 @@ void mmAssetDialog::CreateControls()
     m_valueChangeRate->SetToolTip(_("Enter the rate at which the asset changes its value in % per year"));
     itemFlexGridSizer6->Add(m_valueChangeRate, g_flags);
     m_valueChangeRate->Connect(IDC_RATE, IDC_RATE
-        , wxCommandEventHandler(mmAssetDialog::onTextEntered), NULL, this);
+        , wxCommandEventHandler(mmAssetDialog::onTextEntered), nullptr, this);
     enableDisableRate(false);
 
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Notes")), g_flags);

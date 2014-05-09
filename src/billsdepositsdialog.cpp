@@ -483,14 +483,14 @@ void mmBDDialog::CreateControls()
         , mmCalcValidator());
     textAmount_->SetToolTip(amountNormalTip_);
     textAmount_->Connect(ID_DIALOG_TRANS_TEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmBDDialog::OnTextEntered), NULL, this);
+        wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
     toTextAmount_ = new mmTextCtrl(transactionPanel, ID_DIALOG_TRANS_TOTEXTAMOUNT, ""
         , wxDefaultPosition, wxSize(110, -1), wxALIGN_RIGHT|wxTE_PROCESS_ENTER
         , mmCalcValidator());
     toTextAmount_->SetToolTip(_("Specify the transfer amount in the To Account"));
     toTextAmount_->Connect(ID_DIALOG_TRANS_TOTEXTAMOUNT, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmBDDialog::OnTextEntered), NULL, this);
+        wxCommandEventHandler(mmBDDialog::OnTextEntered), nullptr, this);
 
     wxBoxSizer* amountSizer = new wxBoxSizer(wxHORIZONTAL);
     amountSizer->Add(textAmount_, g_flags);
@@ -555,7 +555,7 @@ void mmBDDialog::CreateControls()
     wxButton* bFrequentUsedNotes = new wxButton(transactionPanel, ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, "...",
         wxDefaultPosition, wxSize(40, -1));
     bFrequentUsedNotes->SetToolTip(_("Select one of the frequently used notes"));
-    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), NULL, this);
+    bFrequentUsedNotes->Connect(ID_DIALOG_TRANS_BUTTON_FREQENTNOTES, wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmBDDialog::OnFrequentUsedNotes), nullptr, this);
     transPanelSizer->Add(bFrequentUsedNotes, wxSizerFlags(g_flags).Align(wxALIGN_RIGHT));
     box_sizer1->Add(textNotes_, g_flagsExpand);
 

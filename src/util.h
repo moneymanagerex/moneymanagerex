@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_UTIL_H_
-#define _MM_EX_UTIL_H_
+#ifndef MM_EX_UTIL_H_
+#define MM_EX_UTIL_H_
 
 #include "defs.h"
 #include "reports/reportbase.h"
@@ -158,5 +158,5 @@ const wxString mmPlatformType();
 const wxString getURL(const wxString& file);
 const bool IsUpdateAvailable(const wxString& page);
 
-#endif // _MM_EX_UTIL_H_
+#endif // MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

@@ -142,7 +142,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(m_choiceItem, g_flagsExpand);
     m_choiceItem->SetSelection(DEF_FREQ_MONTHLY);
     m_choiceItem->SetToolTip(_("Specify the frequency of the expense or deposit"));
-    m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), NULL, this);
+    m_choiceItem->Connect(wxID_ANY, wxEVT_CHAR, wxKeyEventHandler(mmBudgetEntryDialog::onChoiceChar), nullptr, this);
 
     itemGridSizer2->Add(new wxStaticText(itemPanel7, wxID_STATIC, _("Amount:")), g_flags);
 
@@ -151,7 +151,7 @@ void mmBudgetEntryDialog::CreateControls()
     itemGridSizer2->Add(m_textAmount, g_flagsExpand);
     m_textAmount->SetToolTip(_("Enter the amount budgeted for this category."));
     m_textAmount->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), NULL, this);
+        , wxCommandEventHandler(mmBudgetEntryDialog::OnTextEntered), nullptr, this);
     m_textAmount->SetFocus();
     
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxHORIZONTAL);

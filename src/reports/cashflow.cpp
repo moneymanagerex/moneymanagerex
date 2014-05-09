@@ -65,7 +65,7 @@ wxString mmReportCashFlow::getHTMLText_i()
     wxString headerMsg = wxString::Format (_("Cash Flow Forecast for %d Years Ahead"), years);
     hb.addHeader(2, headerMsg );
     headerMsg = _("Accounts: ");
-    if (accountArray_ == NULL) 
+    if (accountArray_ == nullptr) 
     {
         if (activeBankAccounts_ && activeTermAccounts_)
             headerMsg << _("All Accounts");
@@ -179,14 +179,14 @@ wxString mmReportCashFlow::getHTMLText_i()
         const Model_Account::Data* account = Model_Account::instance().get(accountID);
         if (account)
         {
-            isAccountFound = !(accountArray_ != NULL && wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)); //linear search
+            isAccountFound = !(accountArray_ != nullptr && wxNOT_FOUND == accountArray_->Index(account->ACCOUNTNAME)); //linear search
         }
 
         bool isToAccountFound = false;
         const Model_Account::Data* to_account = Model_Account::instance().get(toAccountID);
         if (to_account)
         {
-            isToAccountFound = !(accountArray_ != NULL && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
+            isToAccountFound = !(accountArray_ != nullptr && wxNOT_FOUND == accountArray_->Index(to_account->ACCOUNTNAME)); //linear search
         }
 
         if (!isAccountFound && !isToAccountFound) continue; // skip account

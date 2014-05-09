@@ -159,7 +159,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(numShares_, flags);
     numShares_->SetToolTip(_("Enter number of shares held"));
     numShares_->Connect(ID_TEXTCTRL_NUMBER_SHARES, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
+        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //Purchase Price
     wxStaticText* pprice = new wxStaticText(itemPanel5, wxID_STATIC, _("Purchase Price"));
@@ -170,7 +170,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(purchasePrice_, flags);
     purchasePrice_->SetToolTip(_("Enter purchase price for each stock"));
     purchasePrice_->Connect(ID_TEXTCTRL_STOCK_PP, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
+        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Current Price")), flags);
@@ -179,7 +179,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(currentPrice_, flags);
     currentPrice_->SetToolTip(_("Enter current stock price"));
     currentPrice_->Connect(ID_TEXTCTRL_STOCK_CP, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
+        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Commission")), flags);
@@ -188,7 +188,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(commission_, flags);
     commission_->SetToolTip(_("Enter any commission paid"));
     commission_->Connect(ID_TEXTCTRL_STOCK_COMMISSION, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmStockDialog::OnTextEntered), NULL, this);
+        , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Value")), flags);
@@ -264,7 +264,7 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
         wxString stockURL = Model_Infotable::instance().GetStringInfo("STOCKURL", mmex::DEFSTOCKURL);
         //wxString paddedURL = "\"" + stockURL + "\"";
         //wxString httpString = wxString::Format(paddedURL, stockSymbol);
-        //wxExecute(_T("explorer ") + httpString, wxEXEC_ASYNC, NULL );
+        //wxExecute(_T("explorer ") + httpString, wxEXEC_ASYNC, nullptr );
 
         int yahooSite = stockURL.Find("yahoo");
         if ( yahooSite != wxNOT_FOUND )

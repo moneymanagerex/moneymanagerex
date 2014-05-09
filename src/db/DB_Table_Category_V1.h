@@ -68,7 +68,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT nullptr UNIQUE)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 

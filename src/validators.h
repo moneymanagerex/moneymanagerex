@@ -38,7 +38,7 @@ class mmDoubleValidator: public wxFloatingPointValidator<double>
 {
 public:
     mmDoubleValidator(int precision = 2, int max = 100000000)
-        : wxFloatingPointValidator<double>(precision, NULL, wxNUM_VAL_NO_TRAILING_ZEROES)
+        : wxFloatingPointValidator<double>(precision, nullptr, wxNUM_VAL_NO_TRAILING_ZEROES)
     {
         this->SetRange(0, max);
     }

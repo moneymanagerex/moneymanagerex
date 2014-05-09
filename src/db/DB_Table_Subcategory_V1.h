@@ -68,7 +68,7 @@ struct DB_Table_SUBCATEGORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT NULL, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
+				db->ExecuteUpdate("CREATE TABLE SUBCATEGORY_V1(SUBCATEGID integer primary key, SUBCATEGNAME TEXT COLLATE NOCASE NOT nullptr, CATEGID integer NOT NULL, UNIQUE(CATEGID, SUBCATEGNAME))");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 

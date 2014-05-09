@@ -32,7 +32,7 @@ wxBEGIN_EVENT_TABLE(TestFrameBase, wxFrame)
 wxEND_EVENT_TABLE()
 
 TestFrameBase::TestFrameBase(int frame_count)
-: wxFrame(NULL, wxID_ANY, "MMEX Tests: Base Frame", wxPoint(50, 380), wxSize(400, 180))
+: wxFrame(nullptr, wxID_ANY, "MMEX Tests: Base Frame", wxPoint(50, 380), wxSize(400, 180))
 {
     wxMenu *menuBase = new wxMenu;
     wxMenuBar *menuBar = new wxMenuBar;

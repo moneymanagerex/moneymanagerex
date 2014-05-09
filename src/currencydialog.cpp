@@ -98,7 +98,7 @@ bool mmCurrencyDialog::Create(wxWindow* parent, wxWindowID id
     fillControls();
 
     baseConvRate_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmCurrencyDialog::onTextEntered), NULL, this);
+        wxCommandEventHandler(mmCurrencyDialog::onTextEntered), nullptr, this);
 
     Centre();
     return TRUE;

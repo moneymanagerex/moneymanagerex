@@ -68,7 +68,7 @@ struct DB_Table_USAGE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT NULL PRIMARY KEY, USAGEDATE TEXT NOT NULL , JSONCONTENT TEXT NOT NULL)");
+				db->ExecuteUpdate("CREATE TABLE USAGE_V1 (USAGEID INTEGER NOT nullptr PRIMARY KEY, USAGEDATE TEXT NOT NULL , JSONCONTENT TEXT NOT NULL)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 

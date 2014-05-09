@@ -226,7 +226,7 @@ void mmBudgetingPanel::CreateControls()
         ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW,
         itemStaticBitmap3Bitmap, wxDefaultPosition, wxSize(16, 16), 0 );
     itemStaticBitmap3->Connect(ID_PANEL_BUDGETENTRY_STATIC_BITMAP_VIEW, wxEVT_LEFT_DOWN,
-        wxMouseEventHandler(mmBudgetingPanel::OnMouseLeftDown), NULL, this);
+        wxMouseEventHandler(mmBudgetingPanel::OnMouseLeftDown), nullptr, this);
     itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 1);
 
     wxStaticText* itemStaticText18 = new wxStaticText( itemPanel3,

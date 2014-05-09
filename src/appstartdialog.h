@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_APPSTARTDIALOG_H_
-#define _MM_EX_APPSTARTDIALOG_H_
+#ifndef MM_EX_APPSTARTDIALOG_H_
+#define MM_EX_APPSTARTDIALOG_H_
 
 #include <wx/dialog.h>
 
@@ -55,5 +55,5 @@ private:
     void OnClose(wxCloseEvent& event);
 
 };
-#endif // _MM_EX_APPSTARTDIALOG_H_
+#endif // MM_EX_APPSTARTDIALOG_H_
 

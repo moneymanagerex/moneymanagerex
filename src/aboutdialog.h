@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_ABOUTDIALOG_H_
-#define _MM_EX_ABOUTDIALOG_H_
+#ifndef MM_EX_ABOUTDIALOG_H_
+#define MM_EX_ABOUTDIALOG_H_
 
 #include <wx/dialog.h>
 #include <wx/notebook.h>
@@ -56,5 +56,5 @@ private:
 
 };
 
-#endif // _MM_EX_ABOUTDIALOG_H_
+#endif // MM_EX_ABOUTDIALOG_H_
 

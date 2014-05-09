@@ -374,9 +374,9 @@ void mmCheckingPanel::CreateControls()
         , itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, flags);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), NULL, this);
+        , wxMouseEventHandler(mmCheckingPanel::OnFilterResetToViewAll), nullptr, this);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), NULL, this);
+        , wxMouseEventHandler(mmCheckingPanel::OnMouseLeftDown), nullptr, this);
 
     stxtMainFilter_ = new wxStaticText( headerPanel, wxID_ANY, "", wxDefaultPosition, wxSize(200, -1));
     itemFlexGridSizerHHeader2->Add(stxtMainFilter_, flags);
@@ -387,9 +387,9 @@ void mmCheckingPanel::CreateControls()
         , itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapTransFilter_, flags);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
+        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
     bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
-        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), NULL, this);
+        , wxMouseEventHandler(mmCheckingPanel::OnFilterTransactions), nullptr, this);
 
     statTextTransFilter_ = new wxStaticText(headerPanel, wxID_ANY
         , _("Transaction Filter"));

@@ -300,13 +300,13 @@ bool mmWebApp::WebApp_UpdatePayee()
 	for (const auto &Payee : Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
 	{
 		const Model_Category::Data* DefCategory = Model_Category::instance().get(Payee.CATEGID);
-		if (DefCategory != NULL)
+		if (DefCategory != nullptr)
 			DefCategoryName = DefCategory->CATEGNAME;
 		else
 			DefCategoryName = "None";
 
 		const Model_Subcategory::Data* DefSubCategory = Model_Subcategory::instance().get(Payee.SUBCATEGID);
-		if (DefSubCategory != NULL)
+		if (DefSubCategory != nullptr)
 			DefSubCategoryName = DefSubCategory->SUBCATEGNAME;
 		else
 			DefSubCategoryName = "None";
@@ -429,7 +429,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	//Search Account
 	wxString AccountName = wxString(json::String(jsonTransaction["Account"]));
 	const Model_Account::Data* Account = Model_Account::instance().get(AccountName);
-	if (Account != NULL)
+	if (Account != nullptr)
 	{
 		AccountID = Account->ACCOUNTID;
 		TrStatus = wxString(json::String(jsonTransaction["Status"]));
@@ -462,7 +462,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	if (ToAccountName != "None")
 	{
 		const Model_Account::Data* ToAccount = Model_Account::instance().get(ToAccountName);
-		if (ToAccount != NULL)
+		if (ToAccount != nullptr)
 			ToAccountID = ToAccount->ACCOUNTID;
 	}
 
@@ -471,7 +471,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	if (CategoryName != "None")
 	{
 		const Model_Category::Data* Category = Model_Category::instance().get(CategoryName);
-		if (Category != NULL)
+		if (Category != nullptr)
 			CategoryID = Category->CATEGID;
 		else
 		{
@@ -487,7 +487,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	if (SubCategoryName != "None")
 	{
 		const Model_Subcategory::Data* SubCategory = Model_Subcategory::instance().get(SubCategoryName,CategoryID);
-		if (SubCategory != NULL)
+		if (SubCategory != nullptr)
 			SubCategoryID = SubCategory->SUBCATEGID;
 		else if (CategoryID != -1)
 		{
@@ -504,7 +504,7 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 	if (PayeeName != "None")
 	{
 		const Model_Payee::Data* Payee = Model_Payee::instance().get(PayeeName);
-		if (Payee != NULL)
+		if (Payee != nullptr)
 			PayeeID = Payee->PAYEEID;
 		else
 		{

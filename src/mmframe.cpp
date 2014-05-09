@@ -360,7 +360,7 @@ void mmGUIFrame::ShutdownDatabase()
 {
     if (m_db)
     {
-        m_db->SetCommitHook(NULL);
+        m_db->SetCommitHook(nullptr);
         m_db->Close();
         delete m_commit_callback_hook;
         m_db.reset();
@@ -807,7 +807,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     else
         menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(false);
 
-    navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), NULL, this);
+    navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 }
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)

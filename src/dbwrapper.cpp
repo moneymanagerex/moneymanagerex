@@ -81,12 +81,12 @@ wxSharedPtr<wxSQLite3Database> mmDBWrapper::Open(const wxString &dbpath, const w
 
     s << errStr << "\n\n" << _("Continue ?");
 
-    wxMessageDialog msgDlg(NULL, s, _("Error"), wxYES_NO|wxICON_ERROR);
+    wxMessageDialog msgDlg(nullptr, s, _("Error"), wxYES_NO|wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_NO)
     {
         exit(err);
     }
-    return db; // return a NULL database pointer
+    return db; // return a nullptr database pointer
 }
 
 //----------------------------------------------------------------------------

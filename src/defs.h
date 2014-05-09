@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_DEFS_H_
-#define _MM_EX_DEFS_H_
+#ifndef MM_EX_DEFS_H_
+#define MM_EX_DEFS_H_
 
 // For compilers that support precompilation, includes "wx/wx.h>.
 #include <wx/wxprec.h>
@@ -69,5 +69,5 @@
 #pragma warning (disable:4100)
 #endif
 
-#endif // _MM_EX_DEFS_H_
+#endif // MM_EX_DEFS_H_
 

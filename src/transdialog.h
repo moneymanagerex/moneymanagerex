@@ -17,8 +17,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_TRANSDIALOG_H_
-#define _MM_EX_TRANSDIALOG_H_
+#ifndef MM_EX_TRANSDIALOG_H_
+#define MM_EX_TRANSDIALOG_H_
 
 #include "defs.h"
 #include "model/Model_Splittransaction.h"
@@ -117,7 +117,7 @@ private:
     Model_Splittransaction::Data_Set m_local_splits;
     int accountID_; //The transaction account ID //TODO: may be Model_Account ?
     int referenceAccountID_; // used for transfer transactions
-    int transaction_id_; //The transaction ID. NULL if new transaction
+    int transaction_id_; //The transaction ID. nullptr if new transaction
     std::vector<std::pair<wxString, wxString>> frequentNotes_;
 
     bool skip_date_init_;

@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_ATTACHMENTDIALOG_H_
-#define _MM_EX_ATTACHMENTDIALOG_H_
+#ifndef MM_EX_ATTACHMENTDIALOG_H_
+#define MM_EX_ATTACHMENTDIALOG_H_
 
 #include "defs.h"
 #include <wx/dataview.h>
@@ -91,4 +91,4 @@ public:
 	static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, const int& RefId);
 };
 
-#endif // _MM_EX_ATTACHMENTDIALOG_H_
+#endif // MM_EX_ATTACHMENTDIALOG_H_

@@ -140,7 +140,7 @@ void mmAssetsListCtrl::OnListKeyDown(wxListEvent& event)
 
 void mmAssetsListCtrl::OnNewAsset(wxCommandEvent& /*event*/)
 {
-    mmAssetDialog dlg(this, (Model_Asset::Data*)NULL);
+    mmAssetDialog dlg(this, (Model_Asset::Data*)nullptr);
     if (dlg.ShowModal() == wxID_OK)
     {
         doRefreshItems(dlg.m_asset->ASSETID);
@@ -364,8 +364,8 @@ void mmAssetsPanel::CreateControls()
     wxBitmap itemStaticBitmap(rightarrow_xpm);
     wxStaticBitmap* itemStaticBitmap3 = new wxStaticBitmap(headerPanel, wxID_STATIC, itemStaticBitmap);
     itemBoxSizerHHeader2->Add(itemStaticBitmap3, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
-    //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), NULL, this);
-    itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), NULL, this);
+    //itemStaticBitmap3->Connect(ID_PANEL_CHECKING_STATIC_BITMAP_VIEW, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnFilterResetToViewAll), nullptr, this);
+    itemStaticBitmap3->Connect(wxID_STATIC, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmAssetsPanel::OnMouseLeftDown), nullptr, this);
 
     itemStaticTextMainFilter_ = new wxStaticText(headerPanel, wxID_STATIC, _("All"));
     itemBoxSizerHHeader2->Add(itemStaticTextMainFilter_, 0, wxALIGN_CENTER_VERTICAL|wxALL|wxGROW, 5);

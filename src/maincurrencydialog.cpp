@@ -135,7 +135,7 @@ void mmMainCurrencyDialog::CreateControls()
         , wxID_STATIC, wxBitmap(checkupdate_xpm));
     itemBoxSizer22->Add(update_button, g_flags);
     update_button->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), NULL, this);
+        , wxCommandEventHandler(mmMainCurrencyDialog::OnOnlineUpdateCurRate), nullptr, this);
     update_button->SetToolTip(_("Online update currency rate"));
     itemBoxSizer22->AddSpacer(4);
 
@@ -147,7 +147,7 @@ void mmMainCurrencyDialog::CreateControls()
         , wxDefaultSize, wxCHK_2STATE);
     cbShowAll_->SetToolTip(_("Show all even the unused currencies"));
     cbShowAll_->Connect(wxID_SELECTALL, wxEVT_COMMAND_CHECKBOX_CLICKED,
-        wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), NULL, this);
+        wxCommandEventHandler(mmMainCurrencyDialog::OnShowHiddenChbClick), nullptr, this);
 
     itemBoxSizer22->Add(cbShowAll_, g_flags);
 

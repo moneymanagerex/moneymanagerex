@@ -132,7 +132,7 @@ void mmUnivCSVDialog::CreateControls()
 
     //CSV fields candicate
     csvFieldCandicate_ = new wxListBox(this, ID_LISTBOX_CANDICATE,
-        wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_NEEDED_SB);
+        wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE|wxLB_NEEDED_SB);
     itemBoxSizer3->Add(csvFieldCandicate_, 1, wxGROW|wxALL, 1);
     for (const auto& it : CSVFieldName_)
         csvFieldCandicate_->Append(it.second, new mmListBoxItem(it.first, it.second));
@@ -160,7 +160,7 @@ void mmUnivCSVDialog::CreateControls()
 
     //ListBox of attribute order
     csvListBox_ = new wxListBox(this, ID_LISTBOX,
-        wxDefaultPosition, wxDefaultSize, 0, NULL, wxLB_SINGLE|wxLB_NEEDED_SB);
+        wxDefaultPosition, wxDefaultSize, 0, nullptr, wxLB_SINGLE|wxLB_NEEDED_SB);
     itemBoxSizer3->Add(csvListBox_, 1, wxGROW|wxALL, 1);
 
    //Arranger Area
@@ -209,8 +209,8 @@ void mmUnivCSVDialog::CreateControls()
 
         m_text_ctrl_ = new wxTextCtrl(itemPanel6, ID_FILE_NAME, wxEmptyString, wxDefaultPosition, wxSize(300, -1), wxTE_PROCESS_ENTER );
         itemBoxSizer7->Add(m_text_ctrl_, 1, wxALL|wxGROW, 5);
-        m_text_ctrl_->Connect(ID_FILE_NAME, wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameChanged), NULL, this);
-        m_text_ctrl_->Connect(ID_FILE_NAME, wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), NULL, this);
+        m_text_ctrl_->Connect(ID_FILE_NAME, wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameChanged), nullptr, this);
+        m_text_ctrl_->Connect(ID_FILE_NAME, wxEVT_COMMAND_TEXT_ENTER, wxCommandEventHandler(mmUnivCSVDialog::OnFileNameEntered), nullptr, this);
 
         wxButton* button_search = new wxButton(itemPanel6, wxID_SEARCH, _("&Search"));
         itemBoxSizer7->Add(button_search, flags);
@@ -261,7 +261,7 @@ void mmUnivCSVDialog::CreateControls()
     textDelimiter4->SetToolTip(_("Specify the delimiter to use when importing/exporting CSV files"));
     textDelimiter4->SetMaxLength(1);
     textDelimiter4->Disable();
-    textDelimiter4->Connect(ID_UD_DELIMIT, wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnCheckOrRadioBox), NULL, this);
+    textDelimiter4->Connect(ID_UD_DELIMIT, wxEVT_COMMAND_TEXT_UPDATED, wxCommandEventHandler(mmUnivCSVDialog::OnCheckOrRadioBox), nullptr, this);
 
     if (delimit_ == ",")
         m_radio_box_->SetSelection(0);
@@ -328,7 +328,7 @@ void mmUnivCSVDialog::CreateControls()
     wxButton* itemClearButton = new wxButton(this, wxID_CLEAR, _("Clear"));
     itemBoxSizer22->Add(itemClearButton, 0, wxALIGN_CENTER|wxALL, 5);
     itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmUnivCSVDialog::OnButtonClear), NULL, this);
+        , wxCommandEventHandler(mmUnivCSVDialog::OnButtonClear), nullptr, this);
 
 }
 
@@ -587,7 +587,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
 
             wxProgressDialog progressDlg(_("Universal CSV Import"),
                 _("Transactions imported from CSV: "), 100,
-                NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+                nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
             Model_Checking::instance().Begin();
 
             wxString line;
@@ -785,7 +785,7 @@ void mmUnivCSVDialog::OnImport2(wxCommandEvent& /*event*/)
 
             wxProgressDialog progressDlg(_("Universal CSV Import"),
                 _("Transactions imported from CSV: "), 100,
-                NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+                nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
             Model_Checking::instance().Begin();
 
             while (file_parser.has_more_rows())

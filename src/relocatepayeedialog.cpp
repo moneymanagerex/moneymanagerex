@@ -90,7 +90,7 @@ void relocatePayeeDialog::CreateControls()
 
     cbSourcePayee_->AutoComplete(Model_Payee::instance().all_payee_names());
     cbSourcePayee_->Connect(wxID_ANY, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
+        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), nullptr, this);
 
     cbDestPayee_ = new wxComboBox(this, wxID_NEW, ""
         , wxDefaultPosition, btnSize);
@@ -101,7 +101,7 @@ void relocatePayeeDialog::CreateControls()
     }
     cbDestPayee_->AutoComplete(Model_Payee::instance().all_payee_names());
     cbDestPayee_->Connect(wxID_NEW, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), NULL, this);
+        , wxCommandEventHandler(relocatePayeeDialog::OnPayeeUpdated), nullptr, this);
 
     wxStaticLine* lineBottom = new wxStaticLine(this,wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL);

@@ -453,7 +453,7 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 
 	wxMimeTypesManager manager;
 	wxFileType *filetype = manager.GetFileTypeFromExtension(FileExtension);
-	if (filetype != NULL)
+	if (filetype != nullptr)
 	{
 		wxString command = filetype->GetOpenCommand(FileToOpen);
 		wxExecute(command);

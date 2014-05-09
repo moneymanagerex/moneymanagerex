@@ -68,7 +68,7 @@ struct DB_Table_BUDGETSPLITTRANSACTIONS_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT NULL, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
+				db->ExecuteUpdate("CREATE TABLE BUDGETSPLITTRANSACTIONS_V1(SPLITTRANSID integer primary key, TRANSID integer NOT nullptr, CATEGID integer, SUBCATEGID integer, SPLITTRANSAMOUNT numeric)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 

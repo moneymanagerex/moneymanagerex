@@ -90,7 +90,7 @@ public:
             }
         }
 
-        return NULL;
+        return nullptr;
     }
 private:
     mmHomePagePanel *m_reportPanel;

@@ -74,7 +74,7 @@ bool SplitTransactionDialog::Create(wxWindow* parent
     , const wxSize& size
     , long style)
 {
-    lcSplit_ = NULL;
+    lcSplit_ = nullptr;
     SetExtraStyle(GetExtraStyle()|wxWS_EX_BLOCK_EVENTS);
     wxDialog::Create( parent, id, caption, pos, size, style );
 

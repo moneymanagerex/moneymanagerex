@@ -127,7 +127,7 @@ void mmQIFExportDialog::CreateControls()
     bSelectedAccounts_ = new wxButton(main_tab, wxID_STATIC, _("All")
         , wxDefaultPosition, wxSize(fieldWidth,-1));
     bSelectedAccounts_ -> Connect(wxID_ANY
-        , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmQIFExportDialog::OnAccountsButton), NULL, this);
+        , wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(mmQIFExportDialog::OnAccountsButton), nullptr, this);
     accountsCheckBox_->SetValue(true);
     flex_sizer->Add(accountsCheckBox_, flags);
     flex_sizer->Add(bSelectedAccounts_, flags);
@@ -159,14 +159,14 @@ void mmQIFExportDialog::CreateControls()
     file_name_label_ = new wxStaticText(main_tab, wxID_ANY, _("File Name:"));
     button_search_ = new wxButton(main_tab, wxID_SAVE, _("Choose &file"));
     button_search_->Connect(wxID_SAVE, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmQIFExportDialog::OnFileSearch), NULL, this);
+        , wxCommandEventHandler(mmQIFExportDialog::OnFileSearch), nullptr, this);
 
     m_text_ctrl_ = new wxTextCtrl(main_tab, wxID_FILE, wxEmptyString,
         wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER );
     m_text_ctrl_->Connect(wxID_FILE, wxEVT_COMMAND_TEXT_UPDATED
-        , wxCommandEventHandler(mmQIFExportDialog::OnFileNameChanged), NULL, this);
+        , wxCommandEventHandler(mmQIFExportDialog::OnFileNameChanged), nullptr, this);
     m_text_ctrl_->Connect(wxID_FILE, wxEVT_COMMAND_TEXT_ENTER
-        , wxCommandEventHandler(mmQIFExportDialog::OnFileNameEntered), NULL, this);
+        , wxCommandEventHandler(mmQIFExportDialog::OnFileNameEntered), nullptr, this);
 
     flex_sizer->Add(toFileCheckBox_, flags);
     flex_sizer->AddSpacer(1);
@@ -182,7 +182,7 @@ void mmQIFExportDialog::CreateControls()
     wxButton* itemClearButton = new wxButton(log_tab, wxID_CLEAR, _("Clear"));
     tab2_sizer->Add(itemClearButton, flags.Center());
     itemClearButton->Connect(wxID_CLEAR, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmQIFExportDialog::OnButtonClear), NULL, this);
+        , wxCommandEventHandler(mmQIFExportDialog::OnButtonClear), nullptr, this);
 
     /**********************************************************************************************
      Button Panel with OK and Cancel Buttons
@@ -196,7 +196,7 @@ void mmQIFExportDialog::CreateControls()
     wxButton* itemButtonOK = new wxButton( buttons_panel, wxID_OK, _("&OK "));
     wxButton* itemButtonCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
     itemButtonOK->Connect(wxID_OK, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmQIFExportDialog::OnOk), NULL, this);
+        , wxCommandEventHandler(mmQIFExportDialog::OnOk), nullptr, this);
 
     buttons_sizer->Add(itemButtonOK, flags.Border(wxBOTTOM|wxRIGHT, 10));
     buttons_sizer->Add(itemButtonCancel_, flags);

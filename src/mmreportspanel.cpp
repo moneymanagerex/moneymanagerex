@@ -71,7 +71,7 @@ public:
             m_reportPanel->browser_->SetPage(m_reportPanel->getReportText(), mmex::GetResourceDir().GetPath() + "/");
         }
 
-        return NULL;
+        return nullptr;
     }   
 private:
     mmReportsPanel *m_reportPanel;

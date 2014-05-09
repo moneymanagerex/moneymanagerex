@@ -18,8 +18,8 @@ Copyright (C) 2013, 2014 Nikolay
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_CHECKINGPANEL_H_
-#define _MM_EX_CHECKINGPANEL_H_
+#ifndef MM_EX_CHECKINGPANEL_H_
+#define MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
 #include "filtertransdialog.h"
 #include "mmpanelbase.h"
@@ -336,6 +336,6 @@ private:
     static void mmPlayTransactionSound();
 };
 //----------------------------------------------------------------------------
-#endif // _MM_EX_CHECKINGPANEL_H_
+#endif // MM_EX_CHECKINGPANEL_H_
 //----------------------------------------------------------------------------
 

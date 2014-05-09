@@ -17,8 +17,8 @@
  ********************************************************/
 
 //----------------------------------------------------------------------------
-#ifndef _MM_EX_DBWRAPPER_H_
-#define _MM_EX_DBWRAPPER_H_
+#ifndef MM_EX_DBWRAPPER_H_
+#define MM_EX_DBWRAPPER_H_
 //----------------------------------------------------------------------------
 #include <wx/arrstr.h>
 #include <wx/sharedptr.h>
@@ -35,5 +35,5 @@ wxSharedPtr<wxSQLite3Database> Open(const wxString &dbpath, const wxString &key 
 
 //----------------------------------------------------------------------------
 
-#endif // _MM_EX_DBWRAPPER_H_
+#endif // MM_EX_DBWRAPPER_H_
 //----------------------------------------------------------------------------

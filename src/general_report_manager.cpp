@@ -103,7 +103,7 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     wxAcceleratorTable accel(2, entries);
     SetAcceleratorTable(accel);
 
-    Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), NULL, this);
+    Connect(wxID_EXECUTE, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler(mmGeneralReportManager::OnRun), nullptr, this);
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -416,7 +416,7 @@ bool mmGeneralReportManager::openZipFile(const wxString &reportFileName
             std::auto_ptr<wxZipEntry> entry;
             wxFFileInputStream in(reportFileName);
             wxZipInputStream zip(in);
-            while (entry.reset(zip.GetNextEntry()), entry.get() != NULL)
+            while (entry.reset(zip.GetNextEntry()), entry.get() != nullptr)
             {
                 // access meta-data
                 const wxString f = entry->GetName();

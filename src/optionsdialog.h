@@ -18,8 +18,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 
-#ifndef _MM_EX_OPTIONSDIALOG_H_
-#define _MM_EX_OPTIONSDIALOG_H_
+#ifndef MM_EX_OPTIONSDIALOG_H_
+#define MM_EX_OPTIONSDIALOG_H_
 
 #include "defs.h"
 #include <wx/spinctrl.h>

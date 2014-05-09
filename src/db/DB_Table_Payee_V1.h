@@ -68,7 +68,7 @@ struct DB_Table_PAYEE_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT NULL UNIQUE, CATEGID integer, SUBCATEGID integer)");
+				db->ExecuteUpdate("CREATE TABLE PAYEE_V1(PAYEEID integer primary key, PAYEENAME TEXT COLLATE NOCASE NOT nullptr UNIQUE, CATEGID integer, SUBCATEGID integer)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 

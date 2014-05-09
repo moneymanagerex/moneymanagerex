@@ -214,8 +214,8 @@ void mmBillsDepositsPanel::CreateControls()
     wxBitmap itemStaticBitmap(rightarrow_xpm);
     bitmapTransFilter_ = new wxStaticBitmap( headerPanel, wxID_ANY, itemStaticBitmap);
     itemBoxSizerHHeader2->Add(bitmapTransFilter_, 0, wxALL, 1);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), NULL, this);
-    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), NULL, this);
+    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_LEFT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
+    bitmapTransFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN, wxMouseEventHandler(mmBillsDepositsPanel::OnFilterTransactions), nullptr, this);
 
     itemBoxSizerHHeader2->AddSpacer(5);
     wxStaticText* statTextTransFilter_ = new wxStaticText( headerPanel, wxID_ANY

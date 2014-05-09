@@ -488,7 +488,7 @@ int DB_Init_Model::BILL_End(bool autoExecuteUserAck, bool autoExecuteSilent)
 
         bill_id = Model_Billsdeposits::instance().save(m_bill_entry);
 
-        m_bill_entry = NULL;     // Reset the pointer
+        m_bill_entry = nullptr;     // Reset the pointer
         m_bill_initialised = false;
         m_bill_transaction_set = false;
     }

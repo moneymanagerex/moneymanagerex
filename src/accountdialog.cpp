@@ -62,7 +62,7 @@ mmNewAcctDialog::mmNewAcctDialog(Model_Account::Data* account, wxWindow* parent)
     Create(parent, wxID_ANY, _("New Account"), wxDefaultPosition, wxSize(550, 300), style);
 
     fillControls();
-    this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::changeFocus), NULL, this);
+    this->Connect(wxID_ANY, wxEVT_CHILD_FOCUS, wxChildFocusEventHandler(mmNewAcctDialog::changeFocus), nullptr, this);
 }
 
 mmNewAcctDialog::~mmNewAcctDialog()
@@ -182,7 +182,7 @@ void mmNewAcctDialog::CreateControls()
         , "", wxDefaultPosition, wxDefaultSize, 0, mmCalcValidator());
     grid_sizer->Add(m_itemInitValue, g_flagsExpand);
     m_itemInitValue->Connect(ID_DIALOG_NEWACCT_TEXTCTRL_INITBALANCE, wxEVT_COMMAND_TEXT_ENTER,
-        wxCommandEventHandler(mmNewAcctDialog::OnTextEntered), NULL, this);
+        wxCommandEventHandler(mmNewAcctDialog::OnTextEntered), nullptr, this);
 
     grid_sizer->Add(new wxStaticText( this, wxID_STATIC, _("Currency:")), g_flags);
 
@@ -268,7 +268,7 @@ void mmNewAcctDialog::CreateControls()
         , wxID_STATIC, wxNullBitmap, wxDefaultPosition
         , wxSize(m_textAccountName->GetSize().GetHeight(), m_textAccountName->GetSize().GetHeight()));
     m_bitmapButtons->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
-        , wxCommandEventHandler(mmNewAcctDialog::OnImageButton), NULL, this);
+        , wxCommandEventHandler(mmNewAcctDialog::OnImageButton), nullptr, this);
     itemBoxSizer28->Add(m_bitmapButtons, g_flags);
 
 	bAttachments_ = new wxBitmapButton(itemPanel27, wxID_FILE
