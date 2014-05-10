@@ -110,6 +110,7 @@ if not exist %mmex_build_dir%\res mkdir %mmex_build_dir%\res
 copy "..\..\resources\kaching.wav"     "%mmex_build_dir%\res"
 copy "..\..\resources\mmex.ico"        "%mmex_build_dir%\res"
 copy "..\..\resources\master.css"      "%mmex_build_dir%\res"
+copy "..\..\resources\home_page.htt"   "%mmex_build_dir%\res"
 copy "..\..\3rd\Chart.js\Chart.js"     "%mmex_build_dir%\res"
 @echo ------------------------------------------------------------------------
 @echo.

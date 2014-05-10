@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.0.1.0_x64_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.0.1.0_x64_setup"
+#define my_output_path "\mmex_1.1.0.0_x64_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.1.0.0_x64_setup"
 
 ;===============================================================================
 
@@ -163,6 +163,7 @@ Source: {#my_output_root}{#my_output_path}\mmexini.db3; DestDir: {app}; Flags: i
 Source: {#my_svn_path}\resources\kaching.wav; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\mmex.ico; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\resources\master.css; DestDir: {app}\res; Flags: ignoreversion; 
+Source: {#my_svn_path}\resources\home_page.htt; DestDir: {app}\res; Flags: ignoreversion; 
 Source: {#my_svn_path}\3rd\Chart.js\Chart.js; DestDir: {app}\res; Flags: ignoreversion; 
 
 ; MMEX Root files - language dependant
