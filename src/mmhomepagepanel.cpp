@@ -377,10 +377,11 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     //Type, Amount, Income, Expences, Difference:, Income/Expences, income, expemces
     static const wxString INCOME_VS_EXPENCES_HTML =
         "<table class = \"table\">\n"
+        "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
         "<tbody>\n"
         "    <tr valign=\"center\">\n"
         "        <td><canvas id=\"reportChart\" width=\"312\" height=\"256\"></canvas></td>\n"
-        "        <td>\n"
+        "        <td  style='vertical-align:middle'>\n"
         "            <table class= \"table\">\n"
         "            <thead>\n"
         "                <tr>"
@@ -436,6 +437,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
 
         "</script>\n";
     wxString output = wxString::Format(INCOME_VS_EXPENCES_HTML
+        , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
         , _("Type"), _("Amount")
         , _("Income"), Model_Currency::toCurrency(tIncome)
         , _("Expences"), Model_Currency::toCurrency(tExpenses)
@@ -464,7 +466,7 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 
 const wxString mmHomePagePanel::getStatWidget()
 {
-    wxString output = "<table class = \"table\"><thead><tr>";
+    wxString output = "<table class = \"table\"><thead><tr class = 'active'>";
     output += "<th>" + _("Transaction Statistics") + "</th><th></th><tbody>";
 
     if (this->countFollowUp_ > 0)

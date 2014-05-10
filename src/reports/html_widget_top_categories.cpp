@@ -40,8 +40,10 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
-    wxString output = "<table class = \"table\"><thead><tr><th>\n";
-    output += _("Category") + "</th><th class='text-right'>" + _("Summary") + "</th></tr></thead><tbody>\n";
+    wxString output = "<table class = \"table\"><thead><tr class='active'><th>\n";
+    output += title_ + "</th><th></th></tr></thead>\n";
+    output += "<tbody><tr style='background-color: #d8ebf0'><td>";
+    output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
 
     std::vector<std::pair<wxString, double> > topCategoryStats;
     getTopCategoryStats(topCategoryStats, date_range_);
