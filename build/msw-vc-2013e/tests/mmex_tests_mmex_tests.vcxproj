@@ -388,6 +388,7 @@
     <ClInclude Include="..\..\..\src\import_export\qif_import_gui.h" />
     <ClInclude Include="..\..\..\src\minimal_editor.h" />
     <ClInclude Include="..\..\..\src\mmframe.h" />
+    <ClInclude Include="..\..\..\src\mmHook.h" />
     <ClInclude Include="..\..\..\src\model\Model.h" />
     <ClInclude Include="..\..\..\src\model\Model_Account.h" />
     <ClInclude Include="..\..\..\src\model\Model_Asset.h" />

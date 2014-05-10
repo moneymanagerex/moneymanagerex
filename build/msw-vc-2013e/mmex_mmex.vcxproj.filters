@@ -665,6 +665,18 @@
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h">
       <Filter>Header Files\db</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\mmcombobox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\mmsinglechoicedialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\db\DB_Table_Report_V1.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\resources\mmex.rc">

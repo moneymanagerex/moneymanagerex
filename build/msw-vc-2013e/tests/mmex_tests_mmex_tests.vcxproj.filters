@@ -776,6 +776,9 @@
     <ClInclude Include="..\..\..\src\model\Model_Usage.h">
       <Filter>Header Files\Model</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\src\mmHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\src\tests\mmex_tests.rc">

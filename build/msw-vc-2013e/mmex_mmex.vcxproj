@@ -374,6 +374,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Currencyformats_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Infotable_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Payee_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Report_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Setting_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
@@ -383,7 +384,10 @@
     <ClInclude Include="..\..\src\images_list.h" />
     <ClInclude Include="..\..\src\import_export\qif_import.h" />
     <ClInclude Include="..\..\src\minimal_editor.h" />
+    <ClInclude Include="..\..\src\mmcombobox.h" />
     <ClInclude Include="..\..\src\mmframe.h" />
+    <ClInclude Include="..\..\src\mmHook.h" />
+    <ClInclude Include="..\..\src\mmsinglechoicedialog.h" />
     <ClInclude Include="..\..\src\mmTips.h" />
     <ClInclude Include="..\..\src\model\Model.h" />
     <ClInclude Include="..\..\src\model\Model_Account.h" />
