@@ -160,12 +160,12 @@ wxString mmReportCategoryExpenses::getHTMLText()
     if(CATEGORY_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Category"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_NAME), _("Category"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_NAME), _("Category"));
 
     if(CATEGORY_SORT_BY_AMOUNT == sortColumn_)
         hb.addTableHeaderCell(_("Amount"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_AMOUNT), _("Amount"), true);
 
     hb.addTableHeaderCell(_("Total"), true);
     hb.endTableRow();

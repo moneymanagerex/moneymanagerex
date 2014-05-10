@@ -45,7 +45,7 @@ public:
     {
         mmGUIFrame* frame = wxGetApp().m_frame;
         wxString sData;
-        if (uri.Upper().StartsWith("TRXID:", &sData))
+        if (uri.StartsWith("trxid:", &sData))
         {
             long transID = -1;
             sData.ToLong(&transID);
@@ -63,7 +63,7 @@ public:
                 }
             }
         }
-        else if (uri.Upper().StartsWith("SORT:", &sData))
+        else if (uri.StartsWith("sort:", &sData))
         {
             long sortColumn = -1;
             sData.ToLong(&sortColumn);
@@ -156,8 +156,8 @@ void mmReportsPanel::CreateControls()
 
     browser_ = wxWebView::New(this, wxID_ANY);
     browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new wxWebViewFSHandler("memory")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "TRXID")));
-    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "SORT")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "trxid")));
+    browser_->RegisterHandler(wxSharedPtr<wxWebViewHandler>(new WebViewHandlerReportsPage(this, "sort")));
 
     itemBoxSizer2->Add(browser_, 1, wxGROW|wxALL, 1);
 }

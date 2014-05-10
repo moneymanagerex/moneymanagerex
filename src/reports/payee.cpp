@@ -140,19 +140,19 @@ wxString mmReportPayeeExpenses::getHTMLText()
     if(PAYEE_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Payee"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_NAME), _("Payee"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_NAME), _("Payee"));
     if(PAYEE_SORT_BY_INCOME == sortColumn_)
         hb.addTableHeaderCell(_("Incomes"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
     if(PAYEE_SORT_BY_EXPENSE == sortColumn_)
         hb.addTableHeaderCell(_("Expences"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_EXPENSE), _("Expences"), true);
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_EXPENSE), _("Expences"), true);
     if(PAYEE_SORT_BY_DIFF == sortColumn_)
         hb.addTableHeaderCell(_("Difference"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_DIFF), _("Difference"), true);
     hb.endTableRow();
 
     for (const auto& entry : data_)

@@ -96,39 +96,39 @@ wxString mmReportTransactions::getHTMLText()
     if(DATE == sortColumn_)
         hb.addTableHeaderCell(_("Date"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", DATE), _("Date"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", DATE), _("Date"));
     if(ACCOUNT == sortColumn_)
         hb.addTableHeaderCell(_("Account"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", ACCOUNT), _("Account"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", ACCOUNT), _("Account"));
     if(PAYEE == sortColumn_)
         hb.addTableHeaderCell(_("Payee"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", PAYEE), _("Payee"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE), _("Payee"));
     if(STATUS == sortColumn_)
         hb.addTableHeaderCell(_("Status"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", STATUS), _("Status"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", STATUS), _("Status"));
     if(CATEGORY == sortColumn_)
         hb.addTableHeaderCell(_("Category"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY), _("Category"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY), _("Category"));
     if(TYPE == sortColumn_)
         hb.addTableHeaderCell(_("Type"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", TYPE), _("Type"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", TYPE), _("Type"));
     if(AMOUNT == sortColumn_)
         hb.addTableHeaderCell(_("Amount"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", AMOUNT), _("Amount"), true);
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", AMOUNT), _("Amount"), true);
     if(NUMBER == sortColumn_)
         hb.addTableHeaderCell(_("Number"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", NUMBER), _("Number"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", NUMBER), _("Number"));
     if(NOTE == sortColumn_)
         hb.addTableHeaderCell(_("Notes"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", NOTE), _("Notes"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", NOTE), _("Notes"));
     hb.endTableRow();
 
     // Display the data for each row
@@ -138,7 +138,7 @@ wxString mmReportTransactions::getHTMLText()
         hb.startTableRow();
         hb.addTableCell(mmGetDateForDisplay(mmGetStorageStringAsDate(transaction.TRANSDATE)));
 
-        hb.addTableCellLink(wxString::Format("TRXID:%d", transaction.TRANSID), transaction.ACCOUNTNAME);
+        hb.addTableCellLink(wxString::Format("trxid:%d", transaction.TRANSID), transaction.ACCOUNTNAME);
 
         hb.addTableCell(transaction.PAYEENAME);
 

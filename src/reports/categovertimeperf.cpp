@@ -148,7 +148,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     if(CATEGORY_SORT_BY_NAME == sortColumn_)
         hb.addTableHeaderCell(_("Category"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_NAME), _("Category"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_NAME), _("Category"));
     wxDateTime start_date = date_range_->start_date();
     for (int i = 0; i < MONTHS_IN_PERIOD; i++)
     {
@@ -158,13 +158,13 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
             hb.addTableHeaderCell(wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr))
                 + wxString::Format("<br>%i", d.GetYear()));
         else
-            hb.addTableHeaderCellLink(wxString::Format("SORT:%d", sort),
+            hb.addTableHeaderCellLink(wxString::Format("sort:%d", sort),
                 wxGetTranslation(wxDateTime::GetEnglishMonthName(d.GetMonth(), wxDateTime::Name_Abbr)) + wxString::Format("<br>%i", d.GetYear()));
     }
     if(CATEGORY_SORT_BY_OVERALL == sortColumn_)
         hb.addTableHeaderCell(_("Overall"));
     else
-        hb.addTableHeaderCellLink(wxString::Format("SORT:%d", CATEGORY_SORT_BY_OVERALL), _("Overall"));
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", CATEGORY_SORT_BY_OVERALL), _("Overall"));
     hb.endTableRow();
 
     //Begin of table
