@@ -1173,11 +1173,13 @@ void mmOptionsDialog::SaveAttachmentPanelSettings()
 
     //Create attachments folder
     wxString attachmentFolderPath = mmex::getPathAttachment(Model_Infotable::instance().GetStringInfo("ATTACHMENTSFOLDER:" + mmPlatformType(), ""));
-    if (!wxDirExists(attachmentFolderPath) && attachmentFolder != wxEmptyString)
+    if (attachmentFolder != wxEmptyString)
     {
-        wxMkdir(attachmentFolderPath);
+        if (!wxDirExists(attachmentFolderPath))
+            wxMkdir(attachmentFolderPath);
+        if (wxDirExists(attachmentFolderPath))
+            mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
     }
-    mmAttachmentManage::CreateReadmeFile(attachmentFolderPath);
 }
 
 void mmOptionsDialog::SaveOthersPanelSettings()
