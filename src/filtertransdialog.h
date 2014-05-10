@@ -95,7 +95,8 @@ private:
     double getAmountMax();
     double getAmountMin();
 
-    bool checkPayee(int payeeID);
+    bool checkPayee(const Model_Checking::Data &tran);
+    bool checkPayee(const Model_Billsdeposits::Data &tran);
     bool checkCategory(const Model_Checking::Data &tran);
     bool checkCategory(const Model_Billsdeposits::Data &tran);
 

@@ -105,7 +105,7 @@ Model_Currency::Data* Model_Currency::GetBaseCurrency()
     else if (!init_currencies_)
     {
         wxASSERT(false); //Base Currency ID is invalid
-        for (const auto c : Model_Currency::instance().all())
+        for (const auto &c : Model_Currency::instance().all())
         {
             //Get first available currency as base currency
             currency = Model_Currency::instance().get(c.CURRENCYID);

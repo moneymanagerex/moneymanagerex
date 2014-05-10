@@ -678,16 +678,30 @@ void mmFilterTransactionsDialog::OnPayeeUpdated(wxCommandEvent& event)
     event.Skip();
 }
 
-bool mmFilterTransactionsDialog::checkPayee(int payeeID)
+bool mmFilterTransactionsDialog::checkPayee(const Model_Checking::Data &tran)
 {
-    if (payeeCheckBox_->IsChecked())
+    bool ok = Model_Checking::type(tran) != Model_Checking::TRANSFER;
+    if (ok && payeeCheckBox_->IsChecked())
     {
-        const Model_Payee::Data* payee = Model_Payee::instance().get(payeeID);
+        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
         if (payee)
             return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
         return false;
     }
-    return true;
+    return ok;
+}
+
+bool mmFilterTransactionsDialog::checkPayee(const Model_Billsdeposits::Data &tran)
+{
+    bool ok = Model_Billsdeposits::type(tran) != Model_Billsdeposits::TRANSFER;
+    if (ok && payeeCheckBox_->IsChecked())
+    {
+        const Model_Payee::Data* payee = Model_Payee::instance().get(tran.PAYEEID);
+        if (payee)
+            return cbPayee_->GetValue().Lower() == (payee->PAYEENAME).Lower();
+        return false;
+    }
+    return ok;
 }
 
 bool mmFilterTransactionsDialog::checkCategory(const Model_Checking::Data &tran)
@@ -753,7 +767,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
             , getToDateControl().GetDateOnly()
         )
     ) ok = false;
-    else if (!checkPayee(tran.PAYEEID)) ok = false;
+    else if (!checkPayee(tran)) ok = false;
     else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, accountID == tran.ACCOUNTID)) ok = false;
@@ -773,7 +787,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
             , getToDateControl().GetDateOnly()
         )
     ) ok = false;
-    else if (!checkPayee(tran.PAYEEID)) ok = false;
+    else if (!checkPayee(tran)) ok = false;
     else if (!checkCategory(tran)) ok = false;
     else if (getStatusCheckBox() && !compareStatus(tran.STATUS)) ok = false;
     else if (getTypeCheckBox() && !allowType(tran.TRANSCODE, true)) ok = false;
