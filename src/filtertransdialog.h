@@ -67,6 +67,7 @@ public:
     bool getSimilarStatus() { return bSimilarCategoryStatus_; }
     int getCategId() { return categID_; }
     int getSubCategId() { return subcategID_; }
+    int getSortColumn() { return sorterDropDown_->GetSelection(); }
 
 private:
     void BuildPayeeList();
@@ -183,6 +184,7 @@ private:
     wxCheckBox* similarCategCheckBox_;
     wxCheckBox* statusCheckBox_;
     wxChoice* choiceStatus_;
+    wxChoice* sorterDropDown_;
     wxCheckBox* typeCheckBox_;
     wxCheckBox* cbTypeWithdrawal_;
     wxCheckBox* cbTypeDeposit_;
