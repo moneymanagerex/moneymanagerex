@@ -91,23 +91,22 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {
         
         static const wxString FUNCTION =
-        "<script> function toggleBills()\n"
-        "{\n"
-        "    var elem = document.getElementById(\"%s\");\n"
-        "    var label = document.getElementById(\"bils_label\");\n"
-        "    var hide = elem.style.display == \"none\";\n"
-        "    if (hide) {\n"
-        "        elem.style.display = \"\";\n"
-        "        label.innerHTML = \"[-]\";\n"
-        "    }\n"
-        "    else {\n"
-        "        elem.style.display = \"none\";\n"
-        "        label.innerHTML = \"[+]\";\n"
-        "    }\n"
-        "}\n"
-        "</script>\n";
+            "<script> function toggleBills()\n"
+            "{\n"
+            "    var elem = document.getElementById(\"%s\");\n"
+            "    var label = document.getElementById(\"bils_label\");\n"
+            "    var hide = elem.style.display == \"none\";\n"
+            "    if (hide) {\n"
+            "        elem.style.display = \"\";\n"
+            "        label.innerHTML = \"[-]\";\n"
+            "    }\n"
+            "    else {\n"
+            "        elem.style.display = \"none\";\n"
+            "        label.innerHTML = \"[+]\";\n"
+            "    }\n"
+            "}\n"
+            "</script>\n";
         const wxString id = "BILLS_AND_DEPOSITS";
-        wxString colorStr;
 
         output = "<table class=\"table\"><thead><tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
