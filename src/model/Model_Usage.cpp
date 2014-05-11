@@ -132,8 +132,11 @@ bool Model_Usage::send(const Data* r)
 	url += wxString::Format("OperatingSystem=%s", OsDescription);
 
 	//Language
+    wxString Language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
+    if (Language.IsEmpty())
+        Language = "english";
     url += "&";
-    url += wxString::Format("Language=%s", Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english"));
+    url += wxString::Format("Language=%s", Language);
 
 	//Country
 	std::locale userLocale("");
