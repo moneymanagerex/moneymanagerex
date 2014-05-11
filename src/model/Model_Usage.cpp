@@ -138,7 +138,12 @@ bool Model_Usage::send(const Data* r)
 	//Country
 	std::locale userLocale("");
 	wxString Country = userLocale.name();
-	Country = Country.SubString(Country.Find("_")+1, Country.Find(".")-1);
+    /* Above function works on Windows only:
+       for other platforms is send an empty string and country is obtained from IP Address by webservice */
+    if (wxPlatformInfo::Get().GetPortIdShortName() == "msw")
+        Country = Country.SubString(Country.Find("_") + 1, Country.Find(".") - 1);
+    else
+        Country = wxEmptyString;
 
     url += "&";
 	url += wxString::Format("Country=%s", Country);
