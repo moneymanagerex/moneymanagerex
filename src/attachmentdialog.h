@@ -54,6 +54,8 @@ private:
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_;
     wxButton* button_OK_;
+    wxString m_PathSep = wxFileName::GetPathSeparator();
+
 	wxString m_RefType;
 	int m_RefId;
 
@@ -81,6 +83,7 @@ private:
 class mmAttachmentManage
 {
 public:
+    static wxString InfotablePathSetting();
 	static wxString GetAttachmentNoteSign();
 	static bool CreateReadmeFile(const wxString& FolderPath);
 	static bool CopyAttachment(const wxString& FileToImport, const wxString& ImportedFile);
@@ -89,6 +92,8 @@ public:
 	static bool DeleteAllAttachments(const wxString& RefType, const int& RefId);
 	static bool RelocateAllAttachments(const wxString& RefType, const int& OldRefId, const int& NewRefId);
 	static void OpenAttachmentFromPanelIcon(wxWindow* parent, const wxString& RefType, const int& RefId);
+private:
+    static wxString m_PathSep;
 };
 
 #endif // MM_EX_ATTACHMENTDIALOG_H_
