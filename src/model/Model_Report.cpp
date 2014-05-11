@@ -288,16 +288,23 @@ void Model_Report::prepareTempFolder()
 {
     const wxString tempDir = wxFileName(mmex::getReportIndex()).GetPathWithSep();
     const wxString resDir = mmex::GetResourceDir().GetPathWithSep();
+    wxString tempFile;
     wxFileName::Mkdir(tempDir, 511, wxPATH_MKDIR_FULL);
     wxArrayString filesArray;
     wxDir::GetAllFiles(resDir, &filesArray);
-    for (const auto& f : filesArray) {
-        if (::wxFileExists(f)) {
-            if (!::wxCopyFile(f, tempDir + wxFileName(f).GetFullName())) {
-                wxLogError("Could not copy %s !", f);
+    for (const auto& sourceFile : filesArray)
+    {
+        tempFile = tempDir + wxFileName(sourceFile).GetFullName();
+        if (::wxFileExists(sourceFile))
+        {
+            if (!::wxFileExists(tempFile)
+                || wxFileName(sourceFile).GetModificationTime() > wxFileName(tempFile).GetModificationTime())
+            {
+                if (!::wxCopyFile(sourceFile, tempFile))
+                    wxLogError("Could not copy %s !", sourceFile);
             }
         }
-        wxLogDebug("Coping file: %s to %s", f, tempDir + wxFileName(f).GetFullName());
+        wxLogDebug("Coping file: %s to %s", sourceFile, tempFile);
     }
 }
 
