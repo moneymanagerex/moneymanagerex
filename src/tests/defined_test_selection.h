@@ -9,15 +9,15 @@ Purpose:        To enable or disable tests from a single location.
 Action:         Comment out any unwanted test.
 ******************************************************************************/
 
-#define __MMEX_TESTS__ABOUT_DIALOG
-//#define __MMEX_TESTS__ASSETS
-//#define __MMEX_TESTS__BILLS_DEPOSITS
-//#define __MMEX_TESTS__CALLBACK_HOOKS
-//#define __MMEX_TESTS__CHECKING
-//#define __MMEX_TESTS__CURRENCY
-//#define __MMEX_TESTS__FILTER_TRANS_DIALOG
-//#define __MMEX_TESTS__RELOCATE_CATEGORY
-//#define __MMEX_TESTS__RELOCATE_PAYEE
-#define __MMEX_TESTS__STOCKS
-#define __MMEX_TESTS__TEST_DATABASE_INITIALISATION
-#define __MMEX_TESTS__TEST_DATE_RANGE
+#define MMEX_TESTS_ABOUT_DIALOG
+//#define MMEX_TESTS_ASSETS
+//#define MMEX_TESTS_BILLS_DEPOSITS
+//#define MMEX_TESTS_CALLBACK_HOOKS
+//#define MMEX_TESTS_CHECKING
+//#define MMEX_TESTS_CURRENCY
+//#define MMEX_TESTS_FILTER_TRANS_DIALOG
+//#define MMEX_TESTS_RELOCATE_CATEGORY
+//#define MMEX_TESTS_RELOCATE_PAYEE
+#define MMEX_TESTS_STOCKS
+#define MMEX_TESTS_TEST_DATABASE_INITIALISATION
+#define MMEX_TESTS_TEST_DATE_RANGE

@@ -15,8 +15,8 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
-#ifndef _MM_EX_REPORTBUDGETING_H_
-#define _MM_EX_REPORTBUDGETING_H_
+#ifndef MM_EX_REPORTBUDGETING_H_
+#define MM_EX_REPORTBUDGETING_H_
 
 #include "reportbase.h"
 
@@ -58,4 +58,4 @@ public:
     virtual wxString version();
 };
 
-#endif // _MM_EX_REPORTBUDGETING_H_
+#endif // MM_EX_REPORTBUDGETING_H_

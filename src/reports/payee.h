@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_REPORTPAYEE_H_
-#define _MM_EX_REPORTPAYEE_H_
+#ifndef MM_EX_REPORTPAYEE_H_
+#define MM_EX_REPORTPAYEE_H_
 
 #include "reportbase.h"
 #include "mmDateRange.h"
@@ -132,4 +132,4 @@ public:
     {}
 };
 
-#endif //_MM_EX_REPORTPAYEE_H_
+#endif //MM_EX_REPORTPAYEE_H_

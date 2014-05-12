@@ -17,8 +17,8 @@
  ********************************************************/
 
 //----------------------------------------------------------------------------
-#ifndef _MM_EX_REPORTBASE_H_
-#define _MM_EX_REPORTBASE_H_
+#ifndef MM_EX_REPORTBASE_H_
+#define MM_EX_REPORTBASE_H_
 //----------------------------------------------------------------------------
 #include "mmOption.h"
 #include "model/Model_Report.h"
@@ -69,4 +69,4 @@ protected:
 };
 
 //----------------------------------------------------------------------------
-#endif // _MM_EX_REPORTBASE_H_
+#endif // MM_EX_REPORTBASE_H_

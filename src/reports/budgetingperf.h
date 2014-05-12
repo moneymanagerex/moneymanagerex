@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#ifndef _MM_EX_REPORTBUDGETING_PERFORMANCE_H_
-#define _MM_EX_REPORTBUDGETING_PERFORMANCE_H_
+#ifndef MM_EX_REPORTBUDGETING_PERFORMANCE_H_
+#define MM_EX_REPORTBUDGETING_PERFORMANCE_H_
 
 #include "budget.h"
 #include <map>
@@ -37,4 +37,4 @@ private:
     void DisplayActualMonths(mmHTMLBuilder& hb, double estimated, std::map<int, double>& actual);
 };
 
-#endif // _MM_EX_REPORTBUDGETING_PERFORMANCE_H_
+#endif // MM_EX_REPORTBUDGETING_PERFORMANCE_H_

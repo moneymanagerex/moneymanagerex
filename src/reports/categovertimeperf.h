@@ -17,8 +17,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 //----------------------------------------------------------------------------
-#ifndef _MM_EX_REPORTCATEGOVERTIME_H_
-#define _MM_EX_REPORTCATEGOVERTIME_H_
+#ifndef MM_EX_REPORTCATEGOVERTIME_H_
+#define MM_EX_REPORTCATEGOVERTIME_H_
 //----------------------------------------------------------------------------
 #include "reportbase.h"
 #include "mmDateRange.h"
@@ -40,6 +40,6 @@ protected:
     enum TYPE { INCOME = 0, EXPENCES, TOTAL, MAX };
 };
 //----------------------------------------------------------------------------
-#endif // _MM_EX_REPORTCATEGOVERTIME_H_
+#endif // MM_EX_REPORTCATEGOVERTIME_H_
 //----------------------------------------------------------------------------
 

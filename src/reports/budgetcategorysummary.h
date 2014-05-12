@@ -19,8 +19,8 @@
 /*************************************************************************
  Renamed after extensive modifications to original file reportbudgetsetup.cpp
 **************************************************************************/
-#ifndef _MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
-#define _MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
+#ifndef MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
+#define MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
 
 #include "budget.h"
 
@@ -38,4 +38,4 @@ private:
     wxString actualAmountColour(double amount, double actual, double estimated, bool total = false);
 };
 
-#endif // _MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_
+#endif // MM_EX_REPORTBUDGET_CATEGORYSUMMARY_H_

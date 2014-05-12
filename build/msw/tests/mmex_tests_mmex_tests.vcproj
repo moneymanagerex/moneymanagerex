@@ -1179,6 +1179,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\mmcombobox.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\mmex.h"
 				>
 			</File>
