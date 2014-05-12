@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#ifndef _FILTERTRANSDIALOG_H_
-#define _FILTERTRANSDIALOG_H_
+#ifndef FILTERTRANSDIALOG_H_
+#define FILTERTRANSDIALOG_H_
 
 #if defined(__GNUG__) && !defined(__APPLE__)
 #pragma interface "filtertransdialog.cpp"
@@ -210,4 +210,4 @@ private:
 };
 
 #endif
-// _FILTERTRANSDIALOG_H_
+// FILTERTRANSDIALOG_H_
