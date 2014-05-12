@@ -99,7 +99,10 @@ bool Model_Usage::send()
     int last_sent = Model_Setting::instance().GetIntSetting("LAST_SENT", 0);
     for (const auto & i : Model_Usage::instance().find(USAGEID(last_sent, GREATER)))
     {
-        if (send(i)) Model_Setting::instance().Set("LAST_SENT", i.id());
+        if (send(i))
+            Model_Setting::instance().Set("LAST_SENT", i.id());
+        else
+            break;
     }
 
     return true;
@@ -169,10 +172,13 @@ bool Model_Usage::send(const Data* r)
 
     wxLogDebug(url);
     wxString dummy;
-    site_content(url,  dummy);
+    int sendResult = site_content(url,  dummy);
     wxLogDebug(dummy);
     
-    return true;
+    if (sendResult == wxURL_NOERR)
+        return true;
+    else
+        return false;
 }
 
 bool Model_Usage::send(const Data& r)
