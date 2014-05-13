@@ -181,7 +181,16 @@ bool mmQIFImport::handle_qif_record(const QIF_Record& qif_record, QIF_Transactio
 
 bool mmQIFImport::handle_qif_line(const QIF_Line& qif_line, QIF_Transaction& tran)
 {
-    // TODO
+    switch (qif_line.first)
+    {
+    case Date: 
+        tran.D = qif_line.second;
+        break;
+    case Memo:
+        tran.M = qif_line.second;
+        break;
+    default:
+        return false;
+    }
     return true;
-
 }
