@@ -22,6 +22,19 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "defs.h"
 #include <vector>
 
+// http://en.wikipedia.org/wiki/QIF
+struct QIF_Transaction
+{
+    wxString D;
+    wxString T;
+    wxString M;
+    wxString C;
+    wxString N;
+    wxString A;
+    wxString L;
+    wxString F;
+};
+
 enum qifLineType
 {
     AcctType = 1, // !
@@ -79,6 +92,7 @@ public:
     bool handle_file(wxFileInputStream& input);
     bool handle_file(const wxString& input_file);
     bool handle_line(const wxString& line, QIF_Line& qif_line);
-    bool handle_qif_record(const QIF_Record & qif_record);
+    bool handle_qif_record(const QIF_Record & qif_record, QIF_Transaction& tran);
+    bool handle_qif_line(const QIF_Line& qif_line, QIF_Transaction& tran);
 };
 #endif // 

@@ -131,8 +131,9 @@ bool mmQIFImport::handle_file(wxFileInputStream& input)
             qif_record_end = (qif_line.first == EOTLT);
             if (qif_line.first == EOTLT) 
             {
+                QIF_Transaction tran;
                 // process qif_record 
-                this->handle_qif_record(qif_record);
+                this->handle_qif_record(qif_record, tran);
                 // release qif_record
                 qif_record.clear();
             }
@@ -169,12 +170,18 @@ bool mmQIFImport::handle_line(const wxString& line, QIF_Line& qif_line)
     return qif_line.first != UnknownType;
 }
 
-bool mmQIFImport::handle_qif_record(const QIF_Record& qif_record)
+bool mmQIFImport::handle_qif_record(const QIF_Record& qif_record, QIF_Transaction& tran)
 {
     for (const auto& line : qif_record)
     {
-       // TODO 
+        this->handle_qif_line(line, tran);
     }
     return true;
 }
 
+bool mmQIFImport::handle_qif_line(const QIF_Line& qif_line, QIF_Transaction& tran)
+{
+    // TODO
+    return true;
+
+}
