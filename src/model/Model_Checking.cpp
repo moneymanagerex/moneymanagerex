@@ -90,12 +90,12 @@ bool Model_Checking::remove(int id)
     return this->remove(id, db_);
 }
 
-Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data* r)
+const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data* r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r->TRANSID));
 }
 
-Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data& r)
+const Model_Splittransaction::Data_Set Model_Checking::splittransaction(const Data& r)
 {
     return Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(r.TRANSID));
 }

@@ -51,7 +51,7 @@ public:
 
 public:
 	/** Return a dataset with attachments linked to a specific object */
-	Data_Set FilterAttachments(const wxString& RefType, const int RefId);
+	const Data_Set FilterAttachments(const wxString& RefType, const int RefId);
 
 	/** Return the number of attachments linked to a specific object */
 	static int NrAttachments(const wxString& RefType, const int RefId);

@@ -162,12 +162,12 @@ DB_Table_BILLSDEPOSITS_V1::TRANSCODE Model_Billsdeposits::TRANSCODE(TYPE type, O
     return DB_Table_BILLSDEPOSITS_V1::TRANSCODE(all_type()[type], op);
 }
 
-Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data* r)
+const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data* r)
 {
     return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r->BDID));
 }
 
-Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data& r)
+const Model_Budgetsplittransaction::Data_Set Model_Billsdeposits::splittransaction(const Data& r)
 {
     return Model_Budgetsplittransaction::instance().find(Model_Budgetsplittransaction::TRANSID(r.BDID));
 }

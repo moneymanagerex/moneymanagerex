@@ -58,7 +58,7 @@ Model_Attachment& Model_Attachment::instance()
 }
 
 /** Return a dataset with attachments linked to a specific object */
-Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxString& RefType, const int RefId)
+const Model_Attachment::Data_Set Model_Attachment::FilterAttachments(const wxString& RefType, const int RefId)
 {
 	Data_Set attachments;
 	for (auto &attachment : this->all(COL_DESCRIPTION))

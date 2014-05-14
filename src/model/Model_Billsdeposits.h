@@ -131,8 +131,8 @@ public:
     static DB_Table_BILLSDEPOSITS_V1::STATUS STATUS(STATUS_ENUM status, OP op = EQUAL);
     static DB_Table_BILLSDEPOSITS_V1::TRANSCODE TRANSCODE(TYPE type, OP op = EQUAL);
 
-    static Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
-    static Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
+    static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data* r);
+    static const Model_Budgetsplittransaction::Data_Set splittransaction(const Data& r);
 
     void completeBDInSeries(int bdID);
 };

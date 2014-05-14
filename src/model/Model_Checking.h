@@ -119,8 +119,8 @@ public:
     bool remove(int id);
 
 public:
-    static Model_Splittransaction::Data_Set splittransaction(const Data* r);
-    static Model_Splittransaction::Data_Set splittransaction(const Data& r);
+    static const Model_Splittransaction::Data_Set splittransaction(const Data* r);
+    static const Model_Splittransaction::Data_Set splittransaction(const Data& r);
 
 public:
     static DB_Table_CHECKINGACCOUNT_V1::TRANSDATE TRANSDATE(const wxDate& date, OP op = EQUAL);
