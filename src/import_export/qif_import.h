@@ -24,6 +24,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 // http://en.wikipedia.org/wiki/QIF
 // http://linuxfinances.info/info/financeformats.html
+// https://metacpan.org/pod/Finance::QIF
+// https://github.com/Gnucash/gnucash/blob/master/src/import-export/qif-imp/file-format.txt
 
 struct QIF_Account
 {
