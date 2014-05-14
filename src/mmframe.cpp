@@ -81,6 +81,7 @@
 #include "model/Model_Report.h"
 #include "model/Model_Attachment.h"
 #include "model/Model_Usage.h"
+#include "search/Search.h"
 #include "transdialog.h"
 #include "webapp.h"
 #include "wizard_newdb.h"
