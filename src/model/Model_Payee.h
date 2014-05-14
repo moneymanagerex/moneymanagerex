@@ -48,7 +48,7 @@ public:
     static Model_Payee& instance();
 
 public:
-    Data_Set FilterPayees(const wxString& payee_pattern);
+    const Data_Set FilterPayees(const wxString& payee_pattern);
 
     /**
     * Return the Data record pointer for the given payee name

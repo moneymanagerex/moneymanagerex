@@ -84,7 +84,7 @@ public:
 
     typedef typename DB_TABLE::COLUMN COLUMN;
     /** Return a list of Data record addresses (Data_Set) derived directly from the database. */
-    typename DB_TABLE::Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
+    const typename DB_TABLE::Data_Set all(COLUMN col = COLUMN(0), bool asc = true)
     {
         this->ensure(this->db_);
         return all(db_, col, asc);

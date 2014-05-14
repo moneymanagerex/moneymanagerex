@@ -50,7 +50,7 @@ Model_Payee& Model_Payee::instance()
     return Singleton<Model_Payee>::instance();
 }
 
-Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
+const Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
 {
     Data_Set payees;
     for (auto &payee: this->all())
