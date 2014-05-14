@@ -221,7 +221,8 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 , const wxPoint& pos
 , const wxSize& size)
 : wxFrame(0, -1, title, pos, size)
-, m_commit_callback_hook()
+, m_commit_callback_hook(0)
+, m_update_callback_hook(0)
 , gotoAccountID_(-1)
 , gotoTransID_(-1)
 , checkingAccountPage_(0)
@@ -362,6 +363,7 @@ void mmGUIFrame::ShutdownDatabase()
         m_db->SetCommitHook(nullptr);
         m_db->Close();
         delete m_commit_callback_hook;
+        delete m_update_callback_hook;
         m_db.reset();
     }
 
@@ -2219,6 +2221,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
 
         m_commit_callback_hook = new CommitCallbackHook();
         m_db->SetCommitHook(m_commit_callback_hook);
+        m_update_callback_hook = new UpdateCallbackHook();
+        m_db->SetUpdateHook(m_update_callback_hook);
         InitializeModelTables();
 
         // we need to check the db whether it is the right version
@@ -2245,6 +2249,8 @@ bool mmGUIFrame::createDataStore(const wxString& fileName, const wxString& pwd, 
         m_db = mmDBWrapper::Open(fileName, password);
         m_commit_callback_hook = new CommitCallbackHook();
         m_db->SetCommitHook(m_commit_callback_hook);
+        m_update_callback_hook = new UpdateCallbackHook();
+        m_db->SetUpdateHook(m_update_callback_hook);
 
         password_ = password;
         InitializeModelTables();

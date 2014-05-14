@@ -15,6 +15,7 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
+#pragma once
 #include "mmOption.h"
 
 class CommitCallbackHook : public wxSQLite3Hook
@@ -24,5 +25,31 @@ public:
     {
         mmOptions::instance().databaseUpdated_ = true;
         return false;
+    }
+};
+
+class UpdateCallbackHook : public wxSQLite3Hook
+{
+public:
+    virtual void UpdateCallback (wxUpdateType type, const wxString& database, const wxString& table, wxLongLong rowid)
+    {
+        switch (type)
+        {
+        case SQLITE_DELETE:
+            wxLogDebug("SQLITE_DELETE");
+            break;
+        case SQLITE_INSERT:
+            wxLogDebug("SQLITE_INSERT");
+            break;
+        case SQLITE_UPDATE:
+            wxLogDebug("SQLITE_UPDATE");
+            break;
+        default:
+            wxLogDebug("UNKNOWN type");
+            break;
+        }
+        wxLogDebug("database: %s, table: %s, rowid: %lld", database, table, rowid);
+
+        // TODO sync search index from full text search
     }
 };

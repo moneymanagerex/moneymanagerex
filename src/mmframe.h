@@ -54,6 +54,7 @@ class mmCheckingPanel;
 class mmBudgetingPanel;
 class mmFileHistory;
 class CommitCallbackHook;
+class UpdateCallbackHook;
 class ModelBase;
 //----------------------------------------------------------------------------
 
@@ -277,6 +278,7 @@ private:
     
     // Required to prevent memory leaks.
     CommitCallbackHook* m_commit_callback_hook;
+    UpdateCallbackHook* m_update_callback_hook;
     void ShutdownDatabase();
 
     // any class wishing to process wxWindows events must use this macro
