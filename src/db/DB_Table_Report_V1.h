@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 14:50:44.487616.
+ *          AUTO GENERATED at 2014-05-14 14:38:32.438582.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -551,7 +551,7 @@ struct DB_Table_REPORT_V1 : public DB_Table
     * Return a list of Data records (Data_Set) derived directly from the database.
     * The Data_Set is sorted based on the column number.
     */
-    Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
+    const Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
         try

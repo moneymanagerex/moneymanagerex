@@ -50,7 +50,7 @@ Model_Budgetyear& Model_Budgetyear::instance()
 
 bool Model_Budgetyear::remove(int id)
 {
-    for (Model_Budget::Data& d : Model_Budget::instance().find(Model_Budget::BUDGETYEARID(id)))
+    for (const Model_Budget::Data& d : Model_Budget::instance().find(Model_Budget::BUDGETYEARID(id)))
         Model_Budget::instance().remove(d.BUDGETENTRYID);
     return this->remove(id, db_);
 }

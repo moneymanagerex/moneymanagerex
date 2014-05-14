@@ -101,7 +101,7 @@ public:
     * Returns a Data_Set containing the addresses of the items found.
     * The Data_Set is empty when nothing found.
     */
-    typename DB_TABLE::Data_Set find(const Args&... args)
+    const typename DB_TABLE::Data_Set find(const Args&... args)
     {
         return find_by(this, db_, true, args...);
     }
@@ -117,7 +117,7 @@ public:
     * Returns a Data_Set containing the addresses of the items found.
     * The Data_Set is empty when nothing found.
     */
-    typename DB_TABLE::Data_Set find_or(const Args&... args)
+    const typename DB_TABLE::Data_Set find_or(const Args&... args)
     {
         return find_by(this, db_, false, args...);
     }

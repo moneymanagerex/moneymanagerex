@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-09 14:50:44.487616.
+ *          AUTO GENERATED at 2014-05-14 14:38:32.438582.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -105,7 +105,7 @@ void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1, const Args&... 
 }
 
 template<typename TABLE, typename... Args>
-typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_and, const Args&... args)
+const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_and, const Args&... args)
 {
     typename TABLE::Data_Set result;
     try

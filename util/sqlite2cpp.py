@@ -623,7 +623,7 @@ struct DB_Table_%s : public DB_Table
     * Return a list of Data records (Data_Set) derived directly from the database.
     * The Data_Set is sorted based on the column number.
     */
-    Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
+    const Data_Set all(wxSQLite3Database* db, COLUMN col = COLUMN(0), bool asc = true)
     {
         Data_Set result;
         try
@@ -745,7 +745,7 @@ void bind(wxSQLite3Statement& stmt, int index, const Arg1& arg1, const Args&... 
 }
 
 template<typename TABLE, typename... Args>
-typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_and, const Args&... args)
+const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool op_and, const Args&... args)
 {
     typename TABLE::Data_Set result;
     try
