@@ -23,16 +23,54 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include <vector>
 
 // http://en.wikipedia.org/wiki/QIF
+// http://linuxfinances.info/info/financeformats.html
+
+struct QIF_Account
+{
+    wxString N; // Account name
+    wxString T; // Account type
+};
+
 struct QIF_Transaction
 {
-    wxString D;
-    wxString T;
-    wxString M;
-    wxString C;
-    wxString N;
-    wxString A;
-    wxString L;
-    wxString F;
+    wxString D; // Date
+    wxString T; // Amount
+    wxString C; // Cleared status
+    wxString N; // Number (check or reference)
+    wxString P; // Payee/description
+    wxString M; // Memo
+    wxString A; // Address (up to 5 lines; 6th line is an optional message)
+    wxString L; // Category/class or transfer/class
+    wxString S; // Category in split (category/class or transfer/class)
+    wxString E; // Memo in split
+    wxString DOLLOR; // Dollar amount of split
+    wxString CARET; // End of entry
+};
+
+struct QIF_Invst_Transaction
+{
+    wxString D; // Date (optional)
+    wxString N; // Action
+    wxString Y; // Security
+    wxString I; // Price
+    wxString Q; // Quantity ( of shares or split ratio)
+    wxString C; // Cleared status
+    wxString P; // 1st line text for transfers/reminders
+    wxString M; // Memo
+    wxString O; // Commission
+    wxString L; /* For MiscIncX or MiscExpX actions, Category/classtransfer/class or transfer/class
+                   For all other actions, Category/class or transfer/class */
+    wxString DOLLOR; // Amount transferred
+    wxString CARET; // End of entry (required)
+};
+
+struct QIF_Category
+{
+    wxString N; // Category name
+    wxString D; // Verbose Category name
+    wxString T; // Is this category relevant to taxes?
+    wxString E; // Expense account?
+    wxString R; // Appears to be an indicator of a "Tax Account," or something of the sort.
 };
 
 enum qifLineType
