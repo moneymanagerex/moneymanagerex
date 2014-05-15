@@ -21,7 +21,7 @@
         <include>$(SRCDIR)/$(SRC)/include</include>
       
         <headers>$(fileList( [ SRC + '/include/cppunit/*.h', SRC + '/include/cppunit/*/*.h', SRC + '/include/cppunit/ui/text/*.h' ] ))</headers>
-        <sources>$(fileList( [ SRC + '/src/cppunit/[a-ce-z]*.cpp', SRC + '/src/cppunit/d[a-km-z]*.cpp' ] ))</sources>
+        <sources>$(fileList( [ SRC + '/src/cppunit/[A-CE-Z]*.cpp', SRC + '/src/cppunit/D[a-km-z]*.cpp' ] ))</sources>
 
     </lib>
 
