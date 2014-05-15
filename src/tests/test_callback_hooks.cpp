@@ -31,7 +31,7 @@ Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
 #include "defined_test_selection.h"
 
-#ifdef __MMEX_TESTS__CALLBACK_HOOKS
+#ifdef MMEX_TESTS_CALLBACK_HOOKS
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_Callback_Hooks);
 #endif

@@ -40,7 +40,7 @@ Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
 #include "defined_test_selection.h"
 
-#ifdef __MMEX_TESTS__RELOCATE_CATEGORY
+#ifdef MMEX_TESTS_RELOCATE_CATEGORY
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION( Test_Relocate_Category );
 #endif

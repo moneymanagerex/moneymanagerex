@@ -31,7 +31,7 @@ Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
 #include "defined_test_selection.h"
 
-#ifdef __MMEX_TESTS__TEST_DATABASE_INITIALISATION
+#ifdef MMEX_TESTS_TEST_DATABASE_INITIALISATION
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_DatabaseInitialisation);
 #endif

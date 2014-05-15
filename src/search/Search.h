@@ -64,7 +64,7 @@ public:
                         o[column_name] = json::String(q.GetString(i).ToStdString());
                         break;
                     case WXSQLITE_NULL:
-                    defaut:
+                    default:
                         break;
                     }
                 }

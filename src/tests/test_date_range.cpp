@@ -30,7 +30,7 @@ Turn test ON or OFF in file: defined_test_selection.h
 *****************************************************************************/
 #include "defined_test_selection.h"
 
-#ifdef __MMEX_TESTS__TEST_DATE_RANGE
+#ifdef MMEX_TESTS_TEST_DATE_RANGE
 // Registers the fixture into the 'registry'
 CPPUNIT_TEST_SUITE_REGISTRATION(Test_Date_Range);
 #endif
