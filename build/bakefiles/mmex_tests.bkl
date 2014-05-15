@@ -10,21 +10,19 @@
 <makefile>
 
     <!-- Default root of sources is dir where output script will be created.
-         autoconf generates Makefile in trunk/mmex/src/tests but others in trunk/mmex/build/msw/tests.
+         autoconf generates Makefile in trunk/mmex/tests but others in trunk/mmex/build/msw/tests.
     -->
-
     <if cond="FORMAT=='autoconf'">
-        <set-srcdir>../..</set-srcdir>
+        <set-srcdir>..</set-srcdir>
     </if>
 
     <if cond="FORMAT!='autoconf'">
-        <set-srcdir>../../..</set-srcdir>
+        <set-srcdir>../..</set-srcdir>
     </if>
     
     
     <include file="common.bkl"/>
     <include file="cppunit.bkl"/>
-
 
     <!-- unit tests console application -->
 
@@ -43,7 +41,7 @@
 
         <!-- relative to trunk/mmex -->
 
-        <set var="SRC">src/tests</set>
+        <set var="SRC">tests</set>
 
         <headers>$(fileList(SRC + '/*.h'))</headers>
         <sources>$(fileList(SRC + '/*.cpp'))</sources>
@@ -89,6 +87,4 @@
         </command>
 
     </action>
-
-
 </makefile>

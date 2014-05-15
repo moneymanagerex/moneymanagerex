@@ -9,7 +9,7 @@
 
 <makefile>
 
-    <lib id="cppunit" template="compiler_common">
+    <lib id="cppunit" template="compiler_common,wx-lib">
 
         <cxx-exceptions>on</cxx-exceptions>
         <cxx-rtti>on</cxx-rtti>

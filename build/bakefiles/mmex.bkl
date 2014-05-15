@@ -309,7 +309,7 @@
         <target>check</target>
         <installable>no</installable>
 
-        <dir cond="FORMAT=='autoconf'">$(BUILDDIR)/src/tests</dir>
+        <dir cond="FORMAT=='autoconf'">$(BUILDDIR)/tests</dir>
         <dir cond="FORMAT!='autoconf'">tests</dir>
 
     </subproject>

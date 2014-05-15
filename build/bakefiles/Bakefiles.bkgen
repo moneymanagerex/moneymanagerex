@@ -59,7 +59,7 @@
     </add-flags>
 
     <add-flags files="mmex_tests.bkl" formats="autoconf">
-        -o../../src/tests/Makefile.in
+        -o../../tests/Makefile.in
     </add-flags>
     <add-flags files="mmex_tests.bkl" formats="mingw">
         -o../msw/tests/makefile.gcc
