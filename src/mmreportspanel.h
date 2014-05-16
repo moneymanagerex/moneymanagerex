@@ -21,7 +21,7 @@
 
 #include "mmpanelbase.h"
 #include "reports/reportbase.h"
-
+class mmGUIFrame;
 class mmReportsPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
@@ -30,6 +30,7 @@ public:
     mmReportsPanel(mmPrintableBase* rb,
                     bool cleanupReport,
                     wxWindow *parent,
+                    mmGUIFrame *frame,
                     wxWindowID winid = wxID_ANY,
                     const wxPoint& pos = wxDefaultPosition,
                     const wxSize& size = wxDefaultSize,
@@ -59,6 +60,8 @@ protected:
 private:
     bool cleanup_;
     wxString htmlreport_;
+public:
+    mmGUIFrame *m_frame;
 };
 
 #endif

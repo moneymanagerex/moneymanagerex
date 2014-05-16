@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Placeuite 330, Boston, MA  02111-1307  USA
 #include <iostream>
 //----------------------------------------------------------------------------
 
-CpuTimer::CpuTimer(const wxString msg)
+CpuTimer::CpuTimer(const wxString& msg)
 {
     m_message = msg;
 }

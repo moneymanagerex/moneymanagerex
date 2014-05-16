@@ -51,7 +51,7 @@ public:
 
     virtual wxFSFile* GetFile(const wxString &uri)
     {
-        mmGUIFrame* frame = wxGetApp().m_frame;
+        mmGUIFrame* frame = m_reportPanel->m_frame;
         wxString sData;
         if (uri.StartsWith("assets:", &sData))
         {
@@ -99,26 +99,26 @@ private:
 BEGIN_EVENT_TABLE(mmHomePagePanel, wxPanel)
 END_EVENT_TABLE()
 
-mmHomePagePanel::mmHomePagePanel(wxWindow *parent
+mmHomePagePanel::mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame
     , wxWindowID winid
     , const wxPoint& pos
     , const wxSize& size
     , long style
     , const wxString& name)
-    : frame_(wxGetApp().m_frame)
+    : m_frame(frame)
     , countFollowUp_(0)
     , date_range_(0)
     , browser_(0)
 {
     Create(parent, winid, pos, size, style, name);
-    frame_->setHomePageActive(false);
-    frame_->menuPrintingEnable(true);
+    m_frame->setHomePageActive(false);
+    m_frame->menuPrintingEnable(true);
 }
 
 mmHomePagePanel::~mmHomePagePanel()
 {
-    frame_->setHomePageActive(false);
-    frame_->menuPrintingEnable(false);
+    m_frame->setHomePageActive(false);
+    m_frame->menuPrintingEnable(false);
     if (date_range_)
         delete date_range_;
 }
@@ -204,7 +204,7 @@ void mmHomePagePanel::getData()
     //Stocks
     wxString stocks = "";
     htmlWidgetStocks stocks_widget;
-    stocks_widget.enable_detailes(frame_->expandedStockAccounts());
+    stocks_widget.enable_detailes(m_frame->expandedStockAccounts());
     if (!Model_Stock::instance().all().empty())
     {
         stocks = stocks_widget.getHTMLText();
@@ -325,15 +325,15 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         tReconciled += reconciledBal * currency_rate;
 
         // Display the individual account links if we want to display them
-        if (((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts())
-            || (!frame_->expandedBankAccounts() && !frame_->expandedTermAccounts()))
+        if (((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts())
+            || (!m_frame->expandedBankAccounts() && !m_frame->expandedTermAccounts()))
         {
 
             // show the actual amount in that account
             if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
                 (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
                 (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
-                && ((type_is_bank) ? frame_->expandedBankAccounts() : frame_->expandedTermAccounts()))
+                && ((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts()))
             {
                 body += "<tr>";
                 body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
@@ -359,15 +359,15 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats(incomeExpensesStats, date_range_);
 
-    bool show_nothing = !frame_->expandedBankAccounts() && !frame_->expandedTermAccounts();
-    bool show_all = (frame_->expandedBankAccounts() && frame_->expandedTermAccounts()) || show_nothing;
-    bool show_bank = frame_->expandedBankAccounts();
+    bool show_nothing = !m_frame->expandedBankAccounts() && !m_frame->expandedTermAccounts();
+    bool show_all = (m_frame->expandedBankAccounts() && m_frame->expandedTermAccounts()) || show_nothing;
+    bool show_bank = m_frame->expandedBankAccounts();
     for (const auto& account : Model_Account::instance().all())
     {
         if (!show_all)
         {
             if (show_bank && Model_Account::type(account) != Model_Account::CHECKING) continue;
-            if (frame_->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
+            if (m_frame->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
         }
         int idx = account.ACCOUNTID;
         tIncome += incomeExpensesStats[idx].first;

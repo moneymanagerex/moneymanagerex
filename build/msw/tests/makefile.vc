@@ -288,5 +288,5 @@ wxsqlite_sqlite3secure.obj: ..\..\lib\wxsqlite3\sqlite3\secure\src\sqlite3secure
 	$(CC) /c /nologo /TC /Fo$@ $(WXSQLITE_CFLAGS) ..\..\lib\wxsqlite3\sqlite3\secure\src\sqlite3secure.c
 
 mmex_tests_mmex_tests.res: ..\..\tests\mmex_tests.rc
-	rc /fo$@  /d WIN32 $(____WX_SHARED_47_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_3)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_56_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\src /d NOPCH /d _CONSOLE /i ..\..\src /i ..\..\lib\cppunit\include ..\..\tests\mmex_tests.rc
+	rc /fo$@  /d WIN32 $(____WX_SHARED_47_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) /d __WXMSW__ /i $(WX_DIR)$(__WXLIBPATH_FILENAMES_3)\msw$(WXLIBPOSTFIX) /i $(WX_DIR)\include $(____DEBUGINFO_56_p_1) $(__DEBUG_DEFINE_p_4) /i ..\..\lib\wxsqlite3\sqlite3\secure\src /i ..\..\lib\wxsqlite3\include /i ..\..\lib\lua\src /i ..\..\lib /i ..\..\3rd /i ..\..\3rd\LuaGlue\include /i ..\..\3rd\cgitemplate /i ..\..\3rd\csv-parser\include /i ..\..\src /d NOPCH /d _CONSOLE /i ..\..\src /i ..\..\lib\cppunit\include /d wxIMPLEMENT_WXWIN_MAIN= ..\..\tests\mmex_tests.rc
 

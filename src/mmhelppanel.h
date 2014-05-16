@@ -23,13 +23,14 @@
 #include "mmpanelbase.h"
 
 class wxWebView;
+class mmGUIFrame;
 
 class mmHelpPanel : public mmPanelBase
 {
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHelpPanel(wxWindow *parent,
+    mmHelpPanel(wxWindow *parent, mmGUIFrame* frame,
                  wxWindowID winid = wxID_ANY,
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize,
@@ -39,6 +40,8 @@ public:
     wxString BuildPage() const { return ""; }
     void PrintPage();
 
+public:
+    mmGUIFrame *m_frame;
 private:
     wxWebView* browser_;
 

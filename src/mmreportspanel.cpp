@@ -43,7 +43,7 @@ public:
 
     virtual wxFSFile* GetFile (const wxString &uri)
     {
-        mmGUIFrame* frame = wxGetApp().m_frame;
+        mmGUIFrame* frame = m_reportPanel->m_frame;
         wxString sData;
         if (uri.StartsWith("trxid:", &sData))
         {
@@ -81,12 +81,13 @@ BEGIN_EVENT_TABLE(mmReportsPanel, wxPanel)
 END_EVENT_TABLE()
 
 mmReportsPanel::mmReportsPanel(
-        mmPrintableBase* rb, bool cleanupReport, wxWindow *parent,
+        mmPrintableBase* rb, bool cleanupReport, wxWindow *parent, mmGUIFrame* frame,
         wxWindowID winid, const wxPoint& pos,
         const wxSize& size, long style,
         const wxString& name )
 : rb_(rb)
 , cleanup_(cleanupReport)
+, m_frame(frame)
 {
     Create(parent, winid, pos, size, style, name);
 }
@@ -124,7 +125,7 @@ wxString mmReportsPanel::getReportText()
         o["version"] = json::String(rb_->version().ToStdString());
         o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
 
-        wxGetApp().m_frame->SetStatusText(rb_->version());
+        m_frame->SetStatusText(rb_->version());
         htmlreport_ = rb_->getHTMLText();
 
         wxFileOutputStream index_output(mmex::getReportIndex());

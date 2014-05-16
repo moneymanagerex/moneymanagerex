@@ -144,15 +144,15 @@ MMEX_TESTS_CFLAGS = -I$(srcdir)/../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../lib -I$(srcdir)/../3rd -I$(srcdir)/../3rd/LuaGlue/include \
 	-I$(srcdir)/../3rd/cgitemplate -I$(srcdir)/../3rd/csv-parser/include \
 	-I$(srcdir)/../src -DNOPCH -I$(srcdir)/../src \
-	-I$(srcdir)/../lib/cppunit/include $(WX_CFLAGS) $(PIC_FLAG) $(CPPFLAGS) \
-	$(CFLAGS)
+	-I$(srcdir)/../lib/cppunit/include -DwxIMPLEMENT_WXWIN_MAIN= $(WX_CFLAGS) \
+	$(PIC_FLAG) $(CPPFLAGS) $(CFLAGS)
 MMEX_TESTS_CXXFLAGS = -I$(srcdir)/../lib/wxsqlite3/sqlite3/secure/src \
 	-I$(srcdir)/../lib/wxsqlite3/include -I$(srcdir)/../lib/lua/src \
 	-I$(srcdir)/../lib -I$(srcdir)/../3rd -I$(srcdir)/../3rd/LuaGlue/include \
 	-I$(srcdir)/../3rd/cgitemplate -I$(srcdir)/../3rd/csv-parser/include \
 	-I$(srcdir)/../src -DNOPCH -I$(srcdir)/../src \
-	-I$(srcdir)/../lib/cppunit/include $(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) \
-	$(CXXFLAGS)
+	-I$(srcdir)/../lib/cppunit/include -DwxIMPLEMENT_WXWIN_MAIN= \
+	$(WX_CXXFLAGS) $(PIC_FLAG) $(CPPFLAGS) $(CXXFLAGS)
 MMEX_TESTS_OBJECTS =  \
 	mmex_tests_aboutdialog.o \
 	mmex_tests_accountdialog.o \
@@ -899,7 +899,7 @@ mmex_tests_test_stocks.o: $(srcdir)/../tests/test_stocks.cpp
 	$(CXXC) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(srcdir)/../tests/test_stocks.cpp
 
 mmex_tests_mmex_tests_rc.o: $(srcdir)/../tests/mmex_tests.rc
-	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../lib/wxsqlite3/include --include-dir $(srcdir)/../lib/lua/src --include-dir $(srcdir)/../lib --include-dir $(srcdir)/../3rd --include-dir $(srcdir)/../3rd/LuaGlue/include --include-dir $(srcdir)/../3rd/cgitemplate --include-dir $(srcdir)/../3rd/csv-parser/include --include-dir $(srcdir)/../src --define NOPCH --include-dir $(srcdir)/../src --include-dir $(srcdir)/../lib/cppunit/include
+	$(WX_RESCOMP) -i$< -o$@  --include-dir $(srcdir)/../lib/wxsqlite3/sqlite3/secure/src --include-dir $(srcdir)/../lib/wxsqlite3/include --include-dir $(srcdir)/../lib/lua/src --include-dir $(srcdir)/../lib --include-dir $(srcdir)/../3rd --include-dir $(srcdir)/../3rd/LuaGlue/include --include-dir $(srcdir)/../3rd/cgitemplate --include-dir $(srcdir)/../3rd/csv-parser/include --include-dir $(srcdir)/../src --define NOPCH --include-dir $(srcdir)/../src --include-dir $(srcdir)/../lib/cppunit/include --define wxIMPLEMENT_WXWIN_MAIN=
 
 
 # Include dependency info, if present:

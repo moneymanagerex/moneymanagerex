@@ -82,12 +82,12 @@ void correctEmptyFileExt(const wxString& ext, wxString & fileName)
     locale.AddCatalog(lang) calls wxLogWarning and returns true for corrupted .mo file,
     so I should use locale.IsLoaded(lang) also.
 */
-const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting)
+const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting)
 {
     wxString lang;
 
     const wxString langPath = mmex::getPathShared(mmex::LANG_DIR);
-    wxLocale &locale = wxGetApp().getLocale();
+    wxLocale &locale = app->getLocale();
 
     if (wxDir::Exists(langPath))
     {
@@ -97,7 +97,7 @@ const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool sav
     {
         if (forced_show_dlg)
         {
-            wxMessageDialog dlg(parent
+            wxMessageDialog dlg(window
                 , wxString::Format(_("Directory of language files does not exist:\n%s"), langPath)
                 , _("Error"), wxOK | wxICON_ERROR);
             dlg.ShowModal();
@@ -116,7 +116,7 @@ const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool sav
         }
     }
 
-    lang = selectLanguageDlg(parent, langPath, forced_show_dlg);
+    lang = selectLanguageDlg(window, langPath, forced_show_dlg);
 
     if (save_setting && !lang.empty())
     {

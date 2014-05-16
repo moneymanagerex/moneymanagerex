@@ -218,10 +218,11 @@ EVT_CLOSE(mmGUIFrame::OnClose)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
-mmGUIFrame::mmGUIFrame(const wxString& title
+mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 , const wxPoint& pos
 , const wxSize& size)
 : wxFrame(0, -1, title, pos, size)
+, m_app(app)
 , m_commit_callback_hook(0)
 , m_update_callback_hook(0)
 , gotoAccountID_(-1)
@@ -250,7 +251,7 @@ mmGUIFrame::mmGUIFrame(const wxString& title
 
     // decide if we need to show app start dialog
     bool from_scratch = false;
-    wxFileName dbpath = wxGetApp().m_optParam;
+    wxFileName dbpath = m_app->m_optParam;
     if (!dbpath.IsOk())
     {
         from_scratch = Model_Setting::instance().GetBoolSetting("SHOWBEGINAPP", true);
@@ -392,9 +393,9 @@ void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
 // process all events waiting in the event queue if any.
 void mmGUIFrame::processPendingEvents()
 {
-    while (wxGetApp().Pending())
+    while (m_app->Pending())
     {
-        wxGetApp().Dispatch();
+        m_app->Dispatch();
     }
 }
 
@@ -1774,7 +1775,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
         wxSizer *sizer = cleanupHomePanel();
 
         budgetingPage_ = new mmBudgetingPanel(budgetYearID,
-            homePanel_, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
+            homePanel_, this, wxID_STATIC, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
         panelCurrent_ = budgetingPage_;
         activeBudgetingPage_ = true;
 
@@ -1793,7 +1794,7 @@ void mmGUIFrame::createHomePage()
     if (!activeHomePage_) {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(
-            homePanel_,
+            homePanel_, this,
             wxID_STATIC,
             wxDefaultPosition,
             wxDefaultSize,
@@ -1816,7 +1817,7 @@ void mmGUIFrame::createReportsPage(mmPrintableBase* rs, bool cleanup)
     wxSizer *sizer = cleanupHomePanel();
 
     rs->RefreshData();
-    panelCurrent_ = new mmReportsPanel(rs, cleanup, homePanel_, wxID_STATIC,
+    panelCurrent_ = new mmReportsPanel(rs, cleanup, homePanel_, this, wxID_STATIC,
         wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
@@ -1830,7 +1831,7 @@ void mmGUIFrame::createHelpPage()
 {
     wxSizer *sizer = cleanupHomePanel();
 
-    panelCurrent_ = new mmHelpPanel(homePanel_, wxID_STATIC
+    panelCurrent_ = new mmHelpPanel(homePanel_, this, wxID_STATIC
         , wxDefaultPosition, wxDefaultSize, wxNO_BORDER | wxTAB_TRAVERSAL);
 
     sizer->Add(panelCurrent_, 1, wxGROW | wxALL, 1);
@@ -2724,7 +2725,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 {
     if (!m_db.get()) return;
 
-    mmOptionsDialog systemOptions(this);
+    mmOptionsDialog systemOptions(this, this->m_app);
     if (systemOptions.ShowModal() == wxID_OK)
     {
         //set the View Menu Option items the same as the options saved.
@@ -2992,7 +2993,7 @@ void mmGUIFrame::createCheckingAccountPage(int accountID)
         wxSizer *sizer = cleanupHomePanel();
 
         checkingAccountPage_ = new mmCheckingPanel(
-            accountID, homePanel_);
+            accountID, homePanel_, this);
         panelCurrent_ = checkingAccountPage_;
         activeCheckingAccountPage_ = true;
 

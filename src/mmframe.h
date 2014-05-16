@@ -56,14 +56,17 @@ class mmFileHistory;
 class CommitCallbackHook;
 class UpdateCallbackHook;
 class ModelBase;
+class mmGUIApp;
 //----------------------------------------------------------------------------
 
 class mmGUIFrame : public wxFrame
 {
 public:
-    mmGUIFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
+    mmGUIFrame(mmGUIApp* m_app, const wxString& title, const wxPoint& pos, const wxSize& size);
     ~mmGUIFrame();
-
+public:
+    mmGUIApp *m_app;
+public:
     void setGotoAccountID(int account_id, long transID = -1);
     void setHomePageActive(bool active = true);
     bool expandedBankAccounts()
@@ -82,22 +85,6 @@ public:
     {
         return (mmOptions::instance().financialYearStartDayString_   != "1" ||
                 mmOptions::instance().financialYearStartMonthString_ != "1");
-    }
-    bool budgetFinancialYears()
-    {
-        return menuBar_->IsChecked(MENU_VIEW_BUDGET_FINANCIAL_YEARS);
-    }
-    bool budgetSetupWithSummary()
-    {
-        return !menuBar_->IsChecked(MENU_VIEW_BUDGET_SETUP_SUMMARY);
-    }
-    bool budgetCategoryTotal()
-    {
-        return menuBar_->IsChecked(MENU_VIEW_BUDGET_CATEGORY_SUMMARY);
-    }
-    bool budgetTransferTotal()
-    {
-        return menuBar_->IsChecked(MENU_VIEW_BUDGET_TRANSFER_TOTAL);
     }
     /// return the index (mmex::EDocFile) to return the correct file.
     int getHelpFileIndex() const

@@ -33,7 +33,7 @@ class mmHomePagePanel : public mmPanelBase
     DECLARE_EVENT_TABLE()
 
 public:
-    mmHomePagePanel(wxWindow *parent,
+    mmHomePagePanel(wxWindow *parent, mmGUIFrame *frame,
         wxWindowID winid = wxID_ANY,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
@@ -51,9 +51,10 @@ public:
     wxString BuildPage() const { return GetHomePageText(); }
     void PrintPage();
 
+public:
+    mmGUIFrame* m_frame;
 private:
     wxString GetHomePageText() const;
-    mmGUIFrame* frame_;
     wxWebView* browser_;
     mmDateRange* date_range_;
     void CreateControls();

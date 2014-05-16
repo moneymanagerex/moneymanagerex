@@ -24,6 +24,8 @@
 #include "defs.h"
 #include <wx/spinctrl.h>
 
+class mmGUIApp;
+
 class mmOptionsDialog: public wxDialog
 {
     DECLARE_DYNAMIC_CLASS( mmOptionsDialog )
@@ -31,11 +33,13 @@ class mmOptionsDialog: public wxDialog
 
 public:
     mmOptionsDialog( );
-    mmOptionsDialog(wxWindow* parent);
+    mmOptionsDialog(wxWindow* parent, mmGUIApp* app);
     ~mmOptionsDialog( );
 
+public:
     /// Saves the updated System Options to the appropriate databases.
     void SaveNewSystemSettings();
+    mmGUIApp* m_app;
 private:
     /// Dialog Creation - Used by constructor
     bool Create(wxWindow* parent, wxWindowID id,

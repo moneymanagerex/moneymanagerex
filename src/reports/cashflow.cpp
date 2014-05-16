@@ -354,7 +354,7 @@ wxString mmReportCashFlow::getHTMLText_i()
         bool addSeparator = false;
         bool addSeparatorAfter = false;
 
-        if (wxGetApp().m_frame->budgetFinancialYears())
+        if (mmIniOptions::instance().budgetFinancialYears_)
         {
             if (initialMonths && (dtEnd.GetMonth() == getUserDefinedFinancialYear().GetMonth()))
             {

@@ -30,6 +30,7 @@ Copyright (C) 2013, 2014 Nikolay
 //----------------------------------------------------------------------------
 class mmCheckingPanel;
 class mmFilterTransactionsDialog;
+class mmGUIFrame;
 //----------------------------------------------------------------------------
 
 class TransactionListCtrl : public mmListCtrl
@@ -203,7 +204,8 @@ public:
 
     mmCheckingPanel(
         int accountID,
-        wxWindow *parent
+        wxWindow *parent,
+        mmGUIFrame *frame
     );
 
     ~mmCheckingPanel();
@@ -334,6 +336,8 @@ private:
 
 private:
     static void mmPlayTransactionSound();
+private:
+    mmGUIFrame *m_frame;
 };
 //----------------------------------------------------------------------------
 #endif // MM_EX_CHECKINGPANEL_H_

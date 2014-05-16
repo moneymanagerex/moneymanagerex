@@ -38,6 +38,7 @@
         <!-- IMPLEMENT_APP(mmGUIApp) in mmex.cpp defines main() on Unixes, see wx\app.h.
              But mmex_tests.cpp also defines main(). 
         -->
+        <define>wxIMPLEMENT_WXWIN_MAIN=</define>
 
         <!-- relative to trunk/mmex -->
 

@@ -21,6 +21,7 @@
 #include "maincurrencydialog.h"
 #include "attachmentdialog.h"
 #include "util.h"
+#include "mmex.h"
 #include "mmOption.h"
 #include <wx/colordlg.h>
 #include "constants.h"
@@ -101,7 +102,7 @@ mmOptionsDialog::~mmOptionsDialog( )
     delete m_imageList;
 }
 
-mmOptionsDialog::mmOptionsDialog(wxWindow* parent)
+mmOptionsDialog::mmOptionsDialog(wxWindow* parent, mmGUIApp* app): m_app(app)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("New MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
@@ -886,7 +887,7 @@ void mmOptionsDialog::CreateControls()
 
 void mmOptionsDialog::OnLanguageChanged(wxCommandEvent& /*event*/)
 {
-    wxString lang = mmSelectLanguage(this, true, false);
+    wxString lang = mmSelectLanguage(this->m_app, this, true, false);
     if (lang.empty()) return;
 
     wxButton *btn = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
@@ -1091,7 +1092,7 @@ void mmOptionsDialog::SaveGeneralPanelSettings()
 
     wxButton *languageButton = (wxButton*)FindWindow(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE);
     Model_Setting::instance().Set(LANGUAGE_PARAMETER, languageButton->GetLabel().Lower());
-    mmSelectLanguage(this, false);
+    mmSelectLanguage(this->m_app, this, false);
 
     Model_Infotable::instance().SetBaseCurrencyID(currencyId_);
     Model_Infotable::instance().Set("DATEFORMAT", dateFormat_);

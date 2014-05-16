@@ -80,7 +80,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (wxGetApp().m_frame->budgetTransferTotal())
+    if (mmIniOptions::instance().budgetIncludeTransfers_)
     {
         evaluateTransfer = true;
     }
@@ -95,7 +95,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
     mmHTMLBuilder hb;
     hb.init();
     wxString headerStartupMsg;
-    if (wxGetApp().m_frame->budgetCategoryTotal())
+    if (mmIniOptions::instance().budgetSummaryWithoutCategories_)
         headerStartupMsg = _("Budget Categories for ");
     else
         headerStartupMsg = _("Budget Category Summary for ");
@@ -145,7 +145,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         catTotalsActual += actual;
         catTotalsEstimated += estimated;
         /***************************************************************************/
-        if (wxGetApp().m_frame->budgetCategoryTotal())
+        if (mmIniOptions::instance().budgetSummaryWithoutCategories_)
         {
             double amt = budgetAmt[category.second.first][category.second.second];
             hb.startTableRow();
@@ -164,7 +164,7 @@ wxString mmReportBudgetCategorySummary::getHTMLText()
         if (categID != category.second.first 
             || category.second.second == Model_Category::all_categories().rbegin()->second.second)
         {
-            if (wxGetApp().m_frame->budgetCategoryTotal()) {
+            if (mmIniOptions::instance().budgetSummaryWithoutCategories_) {
                 hb.addRowSeparator(6);
             }
             // Category, Sub Category, Period, Amount, Estimated, Actual

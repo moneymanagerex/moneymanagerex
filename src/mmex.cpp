@@ -141,7 +141,7 @@ bool OnInitImpl(mmGUIApp* app)
     Model_Usage::instance(app->m_setting_db);
 
     /* Force setting MMEX language parameter if it has not been set. */
-    mmSelectLanguage(0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
+    mmSelectLanguage(app, 0, !Model_Setting::instance().ContainsSetting(LANGUAGE_PARAMETER));
 
     /* Load Colors from Database */
     mmLoadColorsFromDatabase();
@@ -166,7 +166,7 @@ bool OnInitImpl(mmGUIApp* app)
     if (valx >= sys_screen_x ) valx = sys_screen_x - valw;
     if (valy >= sys_screen_y ) valy = sys_screen_y - valh;
 
-    app->m_frame = new mmGUIFrame(mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
+    app->m_frame = new mmGUIFrame(app, mmex::getProgramName(), wxPoint(valx, valy), wxSize(valw, valh));
 
     Mongoose_Service::instance().open();
 

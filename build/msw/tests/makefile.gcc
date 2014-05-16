@@ -207,7 +207,7 @@ wxsqlite_sqlite3secure.o: ../../lib/wxsqlite3/sqlite3/secure/src/sqlite3secure.c
 	$(CC) -c -o $@ $(WXSQLITE_CFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmex_tests_rc.o: ../../tests/mmex_tests.rc
-	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_27_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../src --define NOPCH --include-dir ../../src --include-dir ../../lib/cppunit/include
+	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_27_p_1) $(__WXUNICODE_DEFINE_p_3) $(__WXDEBUG_DEFINE_p_3) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_4) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../src --define NOPCH --include-dir ../../src --include-dir ../../lib/cppunit/include --define wxIMPLEMENT_WXWIN_MAIN=
 
 .PHONY: all install uninstall clean check
 

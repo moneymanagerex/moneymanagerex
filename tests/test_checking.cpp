@@ -430,7 +430,7 @@ void Test_Checking::Account_View_Savings()
 
     CpuTimer* panel_timer = new CpuTimer("Account_View: NAB - Savings");
     // Create the panel under test
-    mmCheckingPanel* account_panel = new mmCheckingPanel(account_id, account_frame);
+    mmCheckingPanel* account_panel = new mmCheckingPanel(account_id, account_frame, 0);
     account_panel->Show();
     delete panel_timer; // Kill the timer to determine speed of activation.
 
@@ -453,7 +453,7 @@ void Test_Checking::Account_View_Mary()
 
     CpuTimer* panel_timer = new CpuTimer("Account_View: Wallet - Mary");
     // Create the panel under test
-    mmCheckingPanel* account_panel = new mmCheckingPanel(account_id, account_frame);
+    mmCheckingPanel* account_panel = new mmCheckingPanel(account_id, account_frame, 0);
     account_panel->Show();
     delete panel_timer; // Kill the timer to determine speed of activation.
 

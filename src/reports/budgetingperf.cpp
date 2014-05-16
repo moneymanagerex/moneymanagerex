@@ -81,7 +81,7 @@ wxString mmReportBudgetingPerformance::getHTMLText()
     mmSpecifiedRange date_range(yearBegin, yearEnd);
 
     bool evaluateTransfer = false;
-    if (wxGetApp().m_frame->budgetTransferTotal())
+    if (mmIniOptions::instance().budgetIncludeTransfers_)
     {
         evaluateTransfer = true;
     }

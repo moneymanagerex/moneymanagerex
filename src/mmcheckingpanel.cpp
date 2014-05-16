@@ -107,14 +107,17 @@ END_EVENT_TABLE();
 //----------------------------------------------------------------------------
 
 mmCheckingPanel::mmCheckingPanel(
-    int accountID,
-    wxWindow *parent)
+    int accountID
+    , wxWindow *parent
+    , mmGUIFrame *frame
+    )
     : filteredBalance_(0.0)
     , m_listCtrlAccount()
     , m_AccountID(accountID)
     , m_account(Model_Account::instance().get(accountID))
     , m_currency(Model_Account::currency(m_account))
     , transFilterDlg_(0)
+    , m_frame(frame)
 {
     m_basecurrecyID = Model_Infotable::instance().GetBaseCurrencyId();
     long style = wxTAB_TRAVERSAL | wxNO_BORDER;
@@ -130,12 +133,7 @@ mmCheckingPanel::~mmCheckingPanel()
 {
     if (transFilterDlg_) delete transFilterDlg_;
 
-    /* Please do not remove:
-    The #ifndef _CONSOLE has been added for mmex_tests.
-    _CONSOLE is not defined in main application.*/
-    #ifndef _CONSOLE
-    wxGetApp().m_frame->SetCheckingAccountPageInactive();
-    #endif
+    m_frame->SetCheckingAccountPageInactive();
 }
 
 bool mmCheckingPanel::Create(

@@ -24,6 +24,7 @@
 #include <wx/valnum.h>
 #include <map>
 
+class mmGUIApp;
 struct ValuePair
 {
     wxString label;
@@ -115,7 +116,7 @@ void mmMessageAccountInvalid(wxComboBox *comboBox, bool transfer = false);
 void mmMessagePayeeInvalid(wxComboBox *comboBox);
 void mmMessageNameInvalid(wxTextCtrl *textBox);
 
-const wxString mmSelectLanguage(wxWindow *parent, bool forced_show_dlg, bool save_setting = true);
+const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_show_dlg, bool save_setting = true);
 
 const wxDateTime mmGetStorageStringAsDate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxDateTime &dt);
