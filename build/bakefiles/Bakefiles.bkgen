@@ -7,7 +7,6 @@
 
 <bakefile-gen xmlns="http://www.bakefile.org/schema/bakefile-gen">
 
-
     <!-- All .bkl files in mmex tree -->
 
     <input>
@@ -16,7 +15,6 @@
         ../../po/*.bkl
         ../../setup/win/*.bkl
     </input>
-
     
     <!-- Output formats to generate for all .bkl -->
 
@@ -24,35 +22,36 @@
         autoconf,mingw,msvc
     </add-formats>
 
-
     <!-- Add these formats for given .bkl -->
 
     <add-formats files="../../po/*.bkl,../../setup/win/*.bkl">
         gnu
     </add-formats>
+
     <add-formats files="mmex.bkl,mmex_tests.bkl">
         msvs2008prj
     </add-formats>
-
 
     <!-- Do not generate these formats for given .bkl -->
 
     <del-formats files="../../po/*.bkl,../../setup/win/*.bkl">
         msvs2008prj
     </del-formats>
-
     
     <!-- Directories where the files go -->
 
     <add-flags files="mmex.bkl" formats="autoconf">
         -o../../Makefile.in
     </add-flags>
+
     <add-flags files="mmex.bkl" formats="mingw">
         -o../msw/makefile.gcc
     </add-flags>
+
     <add-flags files="mmex.bkl" formats="msvc">
         -o../msw/makefile.vc
     </add-flags>
+
     <add-flags files="mmex.bkl" formats="msvs2008prj">
         -o../msw/mmex.sln
         -DMSVS_PLATFORMS=win32,win64
@@ -61,17 +60,19 @@
     <add-flags files="mmex_tests.bkl" formats="autoconf">
         -o../../tests/Makefile.in
     </add-flags>
+
     <add-flags files="mmex_tests.bkl" formats="mingw">
         -o../msw/tests/makefile.gcc
     </add-flags>
+
     <add-flags files="mmex_tests.bkl" formats="msvc">
         -o../msw/tests/makefile.vc
     </add-flags>
+
     <add-flags files="mmex_tests.bkl" formats="msvs2008prj">
         -o../msw/tests/mmex_tests.sln
         -DMSVS_PLATFORMS=win32,win64
     </add-flags>
-
 
     <!-- Format specific settings -->
 
@@ -83,12 +84,12 @@
         -DFORMAT_HAS_MAKE_INSTALL=1
     </add-flags>
 
-
     <!-- Makefile specific settings -->
 
     <add-flags files="mmex.bkl" formats="mingw">
         -DOPTIONS_FILE=config.gcc
     </add-flags>
+
     <add-flags files="mmex_tests.bkl" formats="mingw">
         -DOPTIONS_FILE=../config.gcc  -DWRITE_OPTIONS_FILE=0
     </add-flags>
@@ -96,6 +97,7 @@
     <add-flags files="mmex.bkl" formats="msvc">
         -DOPTIONS_FILE=config.vc
     </add-flags>
+
     <add-flags files="mmex_tests.bkl" formats="msvc">
         -DOPTIONS_FILE=../config.vc  -DWRITE_OPTIONS_FILE=0
     </add-flags>

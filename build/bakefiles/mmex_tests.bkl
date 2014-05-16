@@ -4,7 +4,7 @@
     MMEX build scripts.
     Copyright (C) 2009 VaDiM.
 
-    MMEX Unit Tests application.
+    MMEX Tests Application.
 -->
 
 <makefile>
@@ -51,8 +51,7 @@
 
     </exe>
 
-    
-    <!-- 
+    <!--
          make check
          All formats expect MS VisualStudio projects.
     -->
@@ -60,7 +59,7 @@
     <action id="check" cond="not FORMAT.endswith('prj')">
 
         <depends>all</depends>
-    <is-phony>on</is-phony>
+        <is-phony>on</is-phony>
 
         <!-- "&&" is "&amp;&amp;" in XML -->
 
@@ -88,4 +87,5 @@
         </command>
 
     </action>
+
 </makefile>

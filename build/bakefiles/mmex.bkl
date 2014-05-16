@@ -4,30 +4,29 @@
     MMEX build scripts.
     Copyright (C) 2009, 2010 VaDiM.
 
-    MoneyManagerEx application.
+    MoneyManagerEx Application.
 -->
 
 <makefile>
 
     <!-- Default root of sources is dir where output script will be created.
-         autoconf generates Makefile in trunk/mmex but others in trunk/mmex/build/msw.
+         autoconf generates Makefile in /trunk but others in /trunk/build/msw.
     -->
 
     <if cond="FORMAT!='autoconf'">
-    <set-srcdir>../..</set-srcdir>
+        <set-srcdir>../..</set-srcdir>
     </if>
-
 
     <include file="common.bkl"/>
 
-
-    <!-- MoneyManagerEx application -->
+    <!-- MoneyManagerEx Application -->
 
     <exe id="mmex" template="mmex_common">
 
         <if cond="FORMAT in ['msvc', 'msvs2005prj','msvs2008prj']">
             <ldflags>/SUBSYSTEM:WINDOWS,5.1</ldflags>
         </if>
+        
         <app-type>gui</app-type>
         <win32-res>resources/mmex.rc</win32-res>
 
@@ -35,7 +34,6 @@
         <install-to cond="FORMAT!='autoconf'">$(PREFIX)/mmex/bin</install-to>
 
     </exe>
-
 
     <!-- "make install" targets for all formats except VC++ IDE.
          Windows command "copy" can't copy multiple files.
@@ -251,7 +249,6 @@
             <if cond="1">$(CPU_ARCH)</if>
         </set>
 
-
         <!-- Select VC++ runtime libraries to embed into setup.
              We deploying Visual C++ library DLLs as private side-by-side assemblies.
 
@@ -301,7 +298,6 @@
 
     </subproject>
 
-
     <!-- unit tests target (not dependency of 'all'): -->
 
     <subproject id="test">
@@ -319,6 +315,5 @@
 	<command>hdiutil convert tmp.dmg -format UDZO -o MMEX.dmg</command>
 	<command>rm tmp.dmg</command>
     </action>
-
 
 </makefile>

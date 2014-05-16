@@ -12,7 +12,6 @@
     <!-- check version of Bakefile -->
     <requires version="0.2.9"/>
 
-
     <!-- define some var's for projects before calling presets -->
     <if cond="FORMAT in ['msvc6prj','msevc4prj','msvs2008prj']">
         <set var="WX_SHARED">0</set>
@@ -23,12 +22,10 @@
     <include file="presets/wx.bkl"/>
     <include file="config.bkl"/>
 
-
     <set var="CAN_CONFIG">
         <!-- condition must be the same as for <include file="wx_win32.bkl"> in presets\wx\wx.bkl -->
         <if cond="FORMAT!='autoconf' and PLATFORM_WIN32=='1'">1</if>
     </set>
-
 
     <if cond="CAN_CONFIG=='1'">
 
@@ -92,21 +89,20 @@
             <if cond="WX_DEBUG=='0'">speed</if>
         </set>
 
-    <set var="SHAREDBUILDPOSTFIX">
+        <set var="SHAREDBUILDPOSTFIX">
             <if cond="WX_SHARED=='0'">static</if>
             <if cond="WX_SHARED=='1'">shared</if>
-    </set>
+        </set>
 
-    <set var="UNICODEBUILDPOSTFIX">
+        <set var="UNICODEBUILDPOSTFIX">
             <if cond="WX_UNICODE=='1'">u</if>
-    </set>
+        </set>
 
-    <set var="DEBUGBUILDPOSTFIX">
-        <if cond="WX_DEBUG=='1'">d</if>
-    </set>
+        <set var="DEBUGBUILDPOSTFIX">
+            <if cond="WX_DEBUG=='1'">d</if>
+        </set>
 
     </if>
-
 
     <!-- generic compiler's flags -->
 
@@ -125,16 +121,14 @@
         </if>
 
         <if cond="FORMAT in ['msvc', 'msvs2005prj','msvs2008prj']">
-          <cppflags>/D_CRT_SECURE_NO_WARNINGS</cppflags>
-          <ldflags>/SAFESEH:NO</ldflags>
+            <cppflags>/D_CRT_SECURE_NO_WARNINGS</cppflags>
+            <ldflags>/SAFESEH:NO</ldflags>
         </if>
 
     </template>
 
-
     <include file="wxsqlite.bkl"/>
     <include file="lua.bkl"/>
-
 
     <!-- Prepend valid lib-path if TARGET_CPU option set.
          Template "wx" sets lib-path to x86 libs (lib\vc_lib) even if x64 libs exists (lib\vc_amd64_lib).
@@ -217,11 +211,13 @@
             <!-- /opt:ref option suppressed by using /debug linker option by default
                   but should be always enabled for release builds -->
 
-            <set var="LINK_FLAGS"><if cond="WX_DEBUG=='0'">/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF</if></set>
+            <set var="LINK_FLAGS">
+                <if cond="WX_DEBUG=='0'">/DEBUG /MAP /MAPINFO:EXPORTS /OPT:REF /OPT:ICF</if>
+            </set>
+            
             <ldflags>$(LINK_FLAGS)</ldflags>
 
         </if>
-
 
         <!-- Embed a manifest inside executable for VC++.
              By default, Visual Studio tries to embed the manifest when it builds a project from source files.
@@ -236,12 +232,11 @@
 
             <set var="TARGET_PATH">$(BUILDDIR + DIRSEP + id + EXEEXT)</set>
 
-        <postlink-command>
-            mt.exe -manifest "$(TARGET_PATH).manifest" -outputresource:"$(TARGET_PATH)";1
+            <postlink-command>
+                mt.exe -manifest "$(TARGET_PATH).manifest" -outputresource:"$(TARGET_PATH)";1
             </postlink-command>
 
-    </if>
-
+        </if>
 
         <!-- wxWidgets libs, "base" must be last -->
 
@@ -257,6 +252,5 @@
         <wx-lib>base</wx-lib>
 
     </template>
-
 
 </makefile>
