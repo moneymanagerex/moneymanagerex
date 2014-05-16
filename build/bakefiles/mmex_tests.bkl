@@ -10,7 +10,7 @@
 <makefile>
 
     <!-- Default root of sources is dir where output script will be created.
-         autoconf generates Makefile in trunk/mmex/tests but others in trunk/mmex/build/msw/tests.
+         autoconf generates Makefile in trunk/mmex/tests but others in trunk/mmex/build/msw_tests.
     -->
     <if cond="FORMAT=='autoconf'">
         <set-srcdir>..</set-srcdir>
@@ -24,7 +24,7 @@
     <include file="common.bkl"/>
     <include file="cppunit.bkl"/>
 
-    <!-- unit tests console application -->
+    <!-- MoneyManagerEx Tests Console Application -->
 
     <exe id="mmex_tests" template="mmex_common">
 
@@ -38,9 +38,12 @@
         <!-- IMPLEMENT_APP(mmGUIApp) in mmex.cpp defines main() on Unixes, see wx\app.h.
              But mmex_tests.cpp also defines main(). 
         -->
-        <define>wxIMPLEMENT_WXWIN_MAIN=</define>
 
-        <!-- relative to trunk/mmex -->
+        <if cond="FORMAT!='msvs2008prj'">
+            <define>wxIMPLEMENT_WXWIN_MAIN=</define>
+        </if>
+
+        <!-- relative to svn/trunk -->
 
         <set var="SRC">tests</set>
 

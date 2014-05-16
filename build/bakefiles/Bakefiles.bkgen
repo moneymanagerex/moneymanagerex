@@ -62,15 +62,15 @@
     </add-flags>
 
     <add-flags files="mmex_tests.bkl" formats="mingw">
-        -o../msw/tests/makefile.gcc
+        -o../msw_tests/makefile.gcc
     </add-flags>
 
     <add-flags files="mmex_tests.bkl" formats="msvc">
-        -o../msw/tests/makefile.vc
+        -o../msw_tests/makefile.vc
     </add-flags>
 
     <add-flags files="mmex_tests.bkl" formats="msvs2008prj">
-        -o../msw/tests/mmex_tests.sln
+        -o../msw_tests/mmex_tests.sln
         -DMSVS_PLATFORMS=win32,win64
     </add-flags>
 
