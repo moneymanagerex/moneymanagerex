@@ -109,8 +109,16 @@ int Model_Infotable::GetIntInfo(const wxString& key, int default_value)
 
 wxString Model_Infotable::GetStringInfo(const wxString& key, const wxString& default_value)
 {
-    Data_Set items = this->find(INFONAME(key));
-    if (!items.empty()) return items[0].INFOVALUE;
+    Data* info = this->get_one(INFONAME(key));
+    if (!info) // not cached
+    {
+        Data_Set items = this->find(INFONAME(key));
+        if (!items.empty()) return items[0].INFOVALUE;
+    }
+    else
+    {
+        return info->INFOVALUE;
+    }
 
     return default_value;
 }

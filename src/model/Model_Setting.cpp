@@ -130,8 +130,16 @@ wxColour Model_Setting::GetColourSetting(const wxString& key, const wxColour& de
 
 wxString Model_Setting::GetStringSetting(const wxString& key, const wxString& default_value)
 {
-    Data_Set items = this->find(SETTINGNAME(key));
-    if (!items.empty()) return items[0].SETTINGVALUE;
+    Data* setting = this->get_one(SETTINGNAME(key));
+    if (!setting) // not cached
+    {
+        Data_Set items = this->find(SETTINGNAME(key));
+        if (!items.empty()) return items[0].SETTINGVALUE;
+    }
+    else
+    {
+        return setting->SETTINGVALUE;
+    }
     return default_value;
 }
 
