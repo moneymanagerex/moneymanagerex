@@ -304,12 +304,11 @@
 
     <!-- unit tests target (not dependency of 'all'): -->
 
-    <subproject id="check">
-
-        <target>check</target>
+    <subproject id="test">
+        <target>all</target>
         <installable>no</installable>
 
-        <dir cond="FORMAT=='autoconf'">$(BUILDDIR)/tests</dir>
+        <dir cond="FORMAT=='autoconf'">$(SRCDIR)/tests</dir>
         <dir cond="FORMAT!='autoconf'">tests</dir>
 
     </subproject>

@@ -539,9 +539,9 @@ sub_setup: all
 	$(MAKE) -f makefile.vc $(MAKEARGS) APP_EXE_PATH="..\..\build\msw\mmex.exe" BUILD_OPTS="$(__setup_SHARED)$(__setup_UNICODE)$(__setup_DEBUG)-$(CPU_ARCH)" CPU_ARCH="$(CPU_ARCH)" CRT_DLLS="$(__setup_CRT_DLLS)" FORMAT="msvc" all
 	cd "$(MAKEDIR)"
 
-sub_check: 
+sub_test: 
 	cd tests
-	$(MAKE) -f makefile.vc $(MAKEARGS) check
+	$(MAKE) -f makefile.vc $(MAKEARGS) all
 	cd "$(MAKEDIR)"
 
 wxsqlite_wxsqlite3.obj: ..\..\lib\wxsqlite3\src\wxsqlite3.cpp

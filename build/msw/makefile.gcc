@@ -413,8 +413,8 @@ po:
 setup: all
 	$(MAKE) -C ..\..\setup\win -f makefile.gcc $(MAKEARGS) APP_EXE_PATH="..\..\build\msw\mmex.exe" BUILD_OPTS="$(__setup_SHARED)$(__setup_UNICODE)$(__setup_DEBUG)-x86" CPU_ARCH="x86" CRT_DLLS="$(MINGWDIR)\bin\libgcc_s_*.dll" FORMAT="mingw" all
 
-check: 
-	$(MAKE) -C tests -f makefile.gcc $(MAKEARGS) check
+test: 
+	$(MAKE) -C tests -f makefile.gcc $(MAKEARGS) all
 
 wxsqlite_wxsqlite3.o: ../../lib/wxsqlite3/src/wxsqlite3.cpp
 	$(CXX) -c -o $@ $(WXSQLITE_CXXFLAGS) $(CPPDEPS) $<
@@ -803,7 +803,7 @@ mmex_csv_parser.o: ../../3rd/csv-parser/csv_parser.cpp
 mmex_resources_mmex_rc.o: ../../resources/mmex.rc
 	windres --use-temp-file -i$< -o$@  --define HAVE_W32API_H $(____WX_SHARED_17_p_1) $(__WXUNICODE_DEFINE_p_2) $(__WXDEBUG_DEFINE_p_2) --define __WXMSW__ --include-dir $(WX_DIR)$(WXLIBPATH)\msw$(WXLIBPOSTFIX) --include-dir $(WX_DIR)/include $(__DEBUG_DEFINE_p_3) --include-dir ../../lib/wxsqlite3/sqlite3/secure/src --include-dir ../../lib/wxsqlite3/include --include-dir ../../lib/lua/src --include-dir ../../lib --include-dir ../../3rd --include-dir ../../3rd/LuaGlue/include --include-dir ../../3rd/cgitemplate --include-dir ../../3rd/csv-parser/include --include-dir ../../src --define NOPCH
 
-.PHONY: all install uninstall clean install_mmex uninstall_mmex po setup check
+.PHONY: all install uninstall clean install_mmex uninstall_mmex po setup test
 
 
 SHELL := $(COMSPEC)
