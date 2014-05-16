@@ -8,7 +8,7 @@ Description:    This identifies all the tests in this test environment.
 Purpose:        To enable or disable tests from a single location.
 Action:         Comment out any unwanted test.
 ******************************************************************************/
-
+#pragma once
 #define MMEX_TESTS_ABOUT_DIALOG
 #define MMEX_TESTS_ASSETS
 #define MMEX_TESTS_BILLS_DEPOSITS
