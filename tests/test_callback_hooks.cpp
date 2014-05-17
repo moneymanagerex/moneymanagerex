@@ -85,12 +85,12 @@ void Test_Callback_Hooks::test_Init_Base_Currency()
     Model_Infotable::instance(&m_test_db);
     Model_Currency currency = Model_Currency::instance(&m_test_db);
 
-    Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
+    Model_Currency::Data* au_record = currency.GetCurrencyRecord("AUD");
     int precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
 
     std::cout << "Set Base Currency: ";
-    currency.SetBaseCurrency(&au_record);
+    currency.SetBaseCurrency(au_record);
 }
 
 // Initialise some payees

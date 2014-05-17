@@ -59,7 +59,7 @@ public:
     static void SetBaseCurrency(Data* r);
 
     /** Return the currency Data record for the given symbol */
-    Model_Currency::Data GetCurrencyRecord(const wxString& currency_symbol);
+    Model_Currency::Data* GetCurrencyRecord(const wxString& currency_symbol);
 
     /** Add prefix and suffix characters to string value */
     static wxString toCurrency(double value, const Data* currency = GetBaseCurrency(), int precision = -1);

@@ -129,16 +129,13 @@ void Model_Currency::SetBaseCurrency(Data* r)
     Model_Infotable::instance().SetBaseCurrencyID(r->CURRENCYID);
 }
 
-Model_Currency::Data Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)
+Model_Currency::Data* Model_Currency::GetCurrencyRecord(const wxString& currency_symbol)
 {
-    Model_Currency::Data record;
-    for (const auto& currency_record : Model_Currency::instance().all())
-    {
-        if (currency_record.CURRENCY_SYMBOL == currency_symbol)
-        {
-            record = currency_record;
-        }
-    }
+    Model_Currency::Data* record = this->get_one(CURRENCY_SYMBOL(currency_symbol));
+    if (record) return record;
+
+    Model_Currency::Data_Set items = Model_Currency::instance().find(CURRENCY_SYMBOL(currency_symbol));
+    if (items.empty()) record = this->get(items[0].id(), this->db_);
 
     return record;
 }

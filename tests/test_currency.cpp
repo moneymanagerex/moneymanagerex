@@ -72,24 +72,24 @@ void Test_Currency::TwoDigitPrecision()
     wxString value;
     int precision;
     Model_Currency& currency = Model_Currency::instance();
-    Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
+    Model_Currency::Data* au_record = currency.GetCurrencyRecord("AUD");
 
     // Check precision is 2 digits
     precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
 
     // check database values
-    CPPUNIT_ASSERT(au_record.DECIMAL_POINT == ".");
-    CPPUNIT_ASSERT(au_record.GROUP_SEPARATOR = ",");
+    CPPUNIT_ASSERT(au_record->DECIMAL_POINT == ".");
+    CPPUNIT_ASSERT(au_record->GROUP_SEPARATOR = ",");
 
     //----------------------------------------------
     value = currency.toCurrency(12345.12345);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    value = currency.toCurrency(12345.12345, &au_record);
+    value = currency.toCurrency(12345.12345, au_record);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    value = currency.fromString2Default("12,345.1234", &au_record);
+    value = currency.fromString2Default("12,345.1234", au_record);
     CPPUNIT_ASSERT(value == "12345.1234");
 
     // Test precision regardless of currency to 2 digits
@@ -97,38 +97,38 @@ void Test_Currency::TwoDigitPrecision()
     CPPUNIT_ASSERT(value == "12,345.12");
     //----------------------------------------------
 
-    Model_Currency::Data taiwan_record = currency.GetCurrencyRecord("TWD");
+    Model_Currency::Data* taiwan_record = currency.GetCurrencyRecord("TWD");
     precision = currency.precision(taiwan_record);
     CPPUNIT_ASSERT(precision == 2);
 
-    taiwan_record.GROUP_SEPARATOR = ".";
-    taiwan_record.DECIMAL_POINT = ",";
-    taiwan_record.SFX_SYMBOL = " - MOD";
-    currency.save(&taiwan_record);
+    taiwan_record->GROUP_SEPARATOR = ".";
+    taiwan_record->DECIMAL_POINT = ",";
+    taiwan_record->SFX_SYMBOL = " - MOD";
+    currency.save(taiwan_record);
 
-    currency.SetBaseCurrency(&taiwan_record);
+    currency.SetBaseCurrency(taiwan_record);
     //----------------------------------------------
 
     value = currency.toCurrency(12345.12345);
     CPPUNIT_ASSERT(value == "NT$12.345,12 - MOD");
 
-    value = currency.fromString2Default("NT$12.345,1234 - MOD", &taiwan_record);
+    value = currency.fromString2Default("NT$12.345,1234 - MOD", taiwan_record);
     CPPUNIT_ASSERT(value == "NT$12345.1234 - MOD");
 
-    value = currency.fromString2Default("12.345,1234", &taiwan_record);
+    value = currency.fromString2Default("12.345,1234", taiwan_record);
     CPPUNIT_ASSERT(value == "12345.1234");
 
     value = currency.toString(12345.12345);
     CPPUNIT_ASSERT(value == "12.345,12");
     //----------------------------------------------
 
-    value = currency.fromString2Default("12,345.12", &au_record);
+    value = currency.fromString2Default("12,345.12", au_record);
     CPPUNIT_ASSERT(value == "12345.12");
 
-    value = currency.toCurrency(12345.12345, &au_record);
+    value = currency.toCurrency(12345.12345, au_record);
     CPPUNIT_ASSERT(value == "$12,345.12");
 
-    currency.SetBaseCurrency(&au_record);
+    currency.SetBaseCurrency(au_record);
 }
 
 void Test_Currency::FourDigitPrecision()
@@ -138,27 +138,27 @@ void Test_Currency::FourDigitPrecision()
     int precision;
 
     Model_Currency& currency = Model_Currency::instance();
-    Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
+    Model_Currency::Data* au_record = currency.GetCurrencyRecord("AUD");
 
     // check precision of currency
     precision = currency.precision(au_record);
     CPPUNIT_ASSERT(precision == 2);
 
-    CPPUNIT_ASSERT(au_record.GROUP_SEPARATOR == ",");
+    CPPUNIT_ASSERT(au_record->GROUP_SEPARATOR == ",");
 
     // Test precision regardless of currency to 4 digits
     value = currency.toString(12345.12345, 0, 4);
     CPPUNIT_ASSERT(value == "12,345.1234");
 
-    Model_Currency::Data taiwan_record = currency.GetCurrencyRecord("TWD");
+    Model_Currency::Data* taiwan_record = currency.GetCurrencyRecord("TWD");
     precision = currency.precision(taiwan_record);
     CPPUNIT_ASSERT(precision == 2);
 
     // Test precision using currency of currency to 4 digits
-    value = currency.toString(12345.12345, &taiwan_record, 4);
+    value = currency.toString(12345.12345, taiwan_record, 4);
     CPPUNIT_ASSERT(value == "12.345,1234");
 
-    value = currency.toCurrency(12345.12345, &taiwan_record, 4);
+    value = currency.toCurrency(12345.12345, taiwan_record, 4);
     CPPUNIT_ASSERT(value == "NT$12.345,1234 - MOD");
 }
 
