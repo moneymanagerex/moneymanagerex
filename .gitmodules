@@ -22,3 +22,6 @@
 [submodule "3rd/csv-parser"]
 	path = 3rd/csv-parser
 	url = https://github.com/moneymanagerex/csv-parser.git
+[submodule "lib/cppunit"]
+	path = lib/cppunit
+	url = https://github.com/moneymanagerex/cppunit.git
