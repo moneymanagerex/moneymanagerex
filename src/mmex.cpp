@@ -28,7 +28,6 @@
 #include "model/Model_Usage.h"
 #include "webserver.h"
 
-
 #include <wx/fs_mem.h>
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>
