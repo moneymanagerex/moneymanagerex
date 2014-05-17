@@ -71,8 +71,8 @@ set mmex_build_dir=%mmex_build_location%\%mmex_win_system_type%\%location%
 
 :UpdateFiles_Continue
 set current_location=%mmex_win_system_type%\%location%
-if %current_location% == %mmex_win_system_type%\tests\debug set current_location=tests\%mmex_win_system_type%\debug
-if %current_location% == tests\%mmex_win_system_type%\debug set mmex_build_dir=%mmex_build_location%\%current_location%
+if %current_location% == %mmex_win_system_type%\tests\debug set current_location=..\msw_tests-vc-2013e\%mmex_win_system_type%\debug
+if %current_location% == ..\msw_tests-vc-2013e\%mmex_win_system_type%\debug set mmex_build_dir=%mmex_build_location%\%current_location%
 
 if not exist %mmex_build_dir% goto skip_this_location
 @echo ------------------------------------------------------------------------
@@ -123,7 +123,7 @@ cls
 REM Work out what to do next. Continue from already processed, win32\release
 if %current_location%==%mmex_win_system_type%\release       goto update_debug
 if %current_location%==%mmex_win_system_type%\debug         goto update_tests_debug
-if %current_location%==tests\%mmex_win_system_type%\debug   goto update_release
+if %current_location%==..\msw_tests-vc-2013e\%mmex_win_system_type%\debug   goto update_release
 if %current_location%==win32\%mmex_system_name%             goto system_change_x64
 goto ScriptEnd
 REM -------------------------------------------------------------------------- 

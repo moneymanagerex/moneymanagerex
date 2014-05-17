@@ -42,7 +42,7 @@ Test_DatabaseInitialisation::Test_DatabaseInitialisation()
 {
     s_instance_count++;
     m_this_instance = s_instance_count;
-    m_test_db_filename = "mmex_test_database_" + wxDateTime(wxDateTime::Today()).FormatISODate() + ".mmb";
+    m_test_db_filename = "test_mmex_db_" + wxDateTime(wxDateTime::Today()).FormatISODate() + ".mmb";
     // recreate the file if run twice on same day.
     if (wxFileExists(m_test_db_filename))
     {
@@ -440,8 +440,8 @@ void Test_DatabaseInitialisation::Add_Repeat_Transaction_Entries()
 void Test_DatabaseInitialisation::Backup_Database()
 {
     wxString encryption_password = "test_db";
-    wxString target_encrypted_backup_filename = "test_db_encrypted_backup.emb";
-    wxString target_backup_filename = "test_db_non-encrypted_backup.mmb";
+    wxString target_encrypted_backup_filename = "test_mmex_db_encrypted_backup.emb";
+    wxString target_backup_filename = "test_mmex_db_non-encrypted_backup.mmb";
 
     // Backup the existing database - with and without encryption.
     m_test_db.Backup(target_encrypted_backup_filename, encryption_password);
@@ -525,7 +525,7 @@ void Test_DatabaseInitialisation::Backup_Database()
 void Test_DatabaseInitialisation::Change_Database_Password()
 {
     wxString encryption_password = "correct_password";
-    wxString encrypted_database_filename = "test_correct_encrypted_database.emb";
+    wxString encrypted_database_filename = "test_mmex_db_correct_encrypted_database.emb";
 
     // Create a backup of the main database and encrypt it
     // This ensures we have a proper database to work with.
@@ -606,7 +606,7 @@ void Test_DatabaseInitialisation::Change_Database_Password()
 void Test_DatabaseInitialisation::Failed_Password_Change_Attempt()
 {
     wxString encryption_password = "test_db";
-    wxString encrypted_database_filename = "test_db_encrypted_backup.emb";
+    wxString encrypted_database_filename = "test_mmex_db_encrypted_backup.emb";
 
     TestFrameBase base_frame(m_this_instance);
     base_frame.Show();
