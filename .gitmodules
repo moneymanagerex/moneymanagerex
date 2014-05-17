@@ -1,0 +1,3 @@
+[submodule "lib/wxsqlite3"]
+	path = lib/wxsqlite3
+	url = https://github.com/moneymanagerex/wxsqlite3.git
