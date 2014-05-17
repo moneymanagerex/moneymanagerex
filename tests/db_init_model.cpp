@@ -101,6 +101,8 @@ void DB_Init_Model::Init_Model_Assets(wxSQLite3Database* test_db)
     mmOptions::instance().LoadInfotableOptions();
 
     Model_Asset::instance(test_db);
+    Model_Currency::instance(test_db);
+    Model_Attachment::instance(test_db);
 }
 
 void DB_Init_Model::Init_Model_Stocks(wxSQLite3Database* test_db)

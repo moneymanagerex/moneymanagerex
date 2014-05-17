@@ -71,7 +71,7 @@ void Test_Currency::TwoDigitPrecision()
     CpuTimer time_this;
     wxString value;
     int precision;
-    Model_Currency currency = Model_Currency::instance();
+    Model_Currency& currency = Model_Currency::instance();
     Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
 
     // Check precision is 2 digits
@@ -137,7 +137,7 @@ void Test_Currency::FourDigitPrecision()
     wxString value;
     int precision;
 
-    Model_Currency currency = Model_Currency::instance();
+    Model_Currency& currency = Model_Currency::instance();
     Model_Currency::Data au_record = currency.GetCurrencyRecord("AUD");
 
     // check precision of currency

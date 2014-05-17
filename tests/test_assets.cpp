@@ -67,6 +67,7 @@ void Test_Asset::setUp()
 
     m_dbmodel = new DB_Init_Model();
     m_dbmodel->Init_Model_Assets(&m_test_db);
+    m_dbmodel->Init_BaseCurrency();
 }
 
 void Test_Asset::tearDown()

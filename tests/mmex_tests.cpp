@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
 #include <wx/app.h>
+#include <wx/debug.h> 
 #include <cppunit/BriefTestProgressListener.h>
 #include <cppunit/CompilerOutputter.h>
 #include <cppunit/extensions/TestFactoryRegistry.h>
@@ -46,6 +47,8 @@ int main(int /*argc*/, char const* /*argv*/[])
         std::cin.get();
         return -1;
     }
+
+    wxDisableAsserts();
 
 	// Create the event manager and test controller
 	CPPUNIT_NS::TestResult controller;
