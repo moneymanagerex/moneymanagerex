@@ -133,7 +133,8 @@ mmCheckingPanel::~mmCheckingPanel()
 {
     if (transFilterDlg_) delete transFilterDlg_;
 
-    m_frame->SetCheckingAccountPageInactive();
+    if (m_frame)
+        m_frame->SetCheckingAccountPageInactive();
 }
 
 bool mmCheckingPanel::Create(
