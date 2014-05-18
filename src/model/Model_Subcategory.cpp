@@ -53,7 +53,8 @@ Model_Subcategory& Model_Subcategory::instance()
 /** Return the Data record instance for the given subcategory name and category ID */
 Model_Subcategory::Data* Model_Subcategory::get(const wxString& name, int category_id)
 {
-    Data* category = this->get_one(CATEGID(category_id), CATEGID(category_id));
+    //FIXME: return wrong value
+    Data* category = this->get_one(SUBCATEGNAME(name), CATEGID(category_id));
     if (category) return category;
 
     Data_Set items = this->find(SUBCATEGNAME(name), CATEGID(category_id));

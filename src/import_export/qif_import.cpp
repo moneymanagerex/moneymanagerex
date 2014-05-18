@@ -40,13 +40,15 @@ wxString mmQIFImport::getFileLine(wxTextInputStream& textFile, int& lineNumber)
 
 wxString mmQIFImport::getFinancistoProject(wxString& sSubCateg)
 {
-    //Additional parsint for Financisto
+    //Additional parsing for Financisto like apps
     wxString sProject = "";
-    wxStringTokenizer cattkz(sSubCateg, "/");
+    if (sSubCateg.Contains("/")) {
+        wxStringTokenizer cattkz(sSubCateg, "/");
 
-    sSubCateg = cattkz.GetNextToken();
-    if (cattkz.HasMoreTokens())
-        sProject = cattkz.GetNextToken().Trim();
+        sSubCateg = cattkz.GetNextToken();
+        if (cattkz.HasMoreTokens())
+            sProject = cattkz.GetNextToken().Trim();
+    }
     return sProject;
 }
 

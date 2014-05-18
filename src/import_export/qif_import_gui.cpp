@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "qif_import_gui.h"
-#include "qif_import.h"
 #include "constants.h"
 #include "util.h"
 #include "paths.h"
@@ -41,8 +40,23 @@ BEGIN_EVENT_TABLE(mmQIFImportDialog, wxDialog)
 END_EVENT_TABLE()
 
 mmQIFImportDialog::mmQIFImportDialog(wxWindow* parent)
-    : m_firstReferencedAccountID(-1)
-    , m_userDefinedDateMask(false)
+: m_firstReferencedAccountID(-1)
+, m_userDefinedDateMask(false)
+, choiceDateFormat_()
+, dataListBox_()
+, accListBox_()
+, payeeListBox_()
+, categoryListBox_()
+, button_search_()
+, file_name_ctrl_()
+, log_field_()
+, dateFromCheckBox_()
+, dateToCheckBox_()
+, fromDateCtrl_()
+, toDateCtrl_()
+, accountCheckBox_()
+, accountDropDown_()
+, btnOK_()
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("QIF Import"), wxDefaultPosition, wxSize(500, 300), style);
@@ -356,6 +370,7 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
         accountName = m_accountNameStr;
     }
     trx[AccountName] = accountName;
+
     if (trx.find(Category) != trx.end())
     {
         if (trx[Category].Mid(0,1) == "[" && trx[Category].Last() == ']')
@@ -366,6 +381,12 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
             trx[TrxType] = Model_Checking::all_type()[Model_Checking::TRANSFER];
             trx[ToAccountName] = toAccName;
         }
+
+        //Cut non standard info after /
+        const wxString categ_suffix = qif_api->getFinancistoProject(trx[Category]);
+        if (!categ_suffix.empty()) trx[Memo] += (trx[Memo].empty() ? "" : "/n") + categ_suffix;
+        
+        //Add the full Category name if missing to the map with undefind category ID and Subcategory ID
         if (m_QIFcategoryNames.find(trx[Category]) == m_QIFcategoryNames.end())
             m_QIFcategoryNames[trx[Category]] = std::make_pair(-1, -1);
     }
@@ -374,7 +395,8 @@ void mmQIFImportDialog::compliteTransaction(std::map <int, wxString> &trx, const
         wxStringTokenizer token(trx[CategorySplit], "\n");
         while (token.HasMoreTokens())
         {
-            const wxString c = token.GetNextToken();
+            wxString c = token.GetNextToken();
+            c = qif_api->getFinancistoProject(c);
             if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end())
                 m_QIFcategoryNames[c] = std::make_pair(-1, -1);
         }
@@ -517,6 +539,7 @@ void mmQIFImportDialog::getDateMask()
 {
     //Check parsing results
     int i = 0;
+    wxString label = "";
     for (const auto& d : m_date_parsing_stat)
     {
         if (d.second > i)
@@ -525,11 +548,12 @@ void mmQIFImportDialog::getDateMask()
             if (!m_userDefinedDateMask)
             {
                 m_dateFormatStr = d.first;
-                choiceDateFormat_->SetStringSelection(m_dateFormatStr);
+                label = date_formats_map().at(m_dateFormatStr);
             }
         }
-        wxLogDebug("%i \t%s \t%i", i++, date_formats_map()[d.first], d.second);
+        wxLogDebug("%i \t%s \t%i", i++, date_formats_map().at(m_dateFormatStr), d.second);
     }
+    choiceDateFormat_->SetStringSelection(label);
 }
 
 void mmQIFImportDialog::OnFileSearch(wxCommandEvent& /*event*/)
@@ -715,31 +739,39 @@ bool mmQIFImportDialog::mergeTransferPair(Model_Checking::Data_Set &to, Model_Ch
 bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> &i
     , /*out*/ Model_Checking::Data* &trx)
 {
-    bool validTransaction = true;
     auto t = i;
     const wxString date = (t.find(Date) == t.end() ? "" : t[Date]);
     wxDateTime dtdt;
-    dtdt.ParseFormat(date, m_dateFormatStr, m_today);
-    trx->TRANSDATE = dtdt.FormatISODate();
+    if (dtdt.ParseFormat(date, m_dateFormatStr, m_today))
+        trx->TRANSDATE = dtdt.FormatISODate();
+    else
+        return false;
+
     wxString accountName = (t.find(AccountName) == t.end() ? m_accountNameStr : t[AccountName]);
     if (accountName.empty()) accountName = m_accountNameStr;
-    int accountID = m_QIFaccountsID.at(t[AccountName]);
-    if (accountID == -1) validTransaction = false;
+    int accountID = m_QIFaccountsID.at(accountName);
+    if (accountID == -1) return false;
     trx->ACCOUNTID = (accountID);
-    trx->TOACCOUNTID = (t.find(ToAccountName) == t.end() ? -1 : m_QIFaccountsID[t[ToAccountName]]);
+    trx->TOACCOUNTID = (t.find(ToAccountName) == t.end() ? -1 : (m_QIFaccountsID.find(t[ToAccountName]) == m_QIFaccountsID.end() ? -1 : m_QIFaccountsID[t[ToAccountName]]));
     trx->PAYEEID = (t.find(Payee) == t.end() ? -1 : m_QIFpayeeNames[t.at(Payee)]); //TODO: transfer?
     trx->TRANSACTIONNUMBER = (t.find(TransNumber) == t.end() ? "" : t[TransNumber]);
     trx->NOTES = (t.find(Memo) == t.end() ? "" : t[Memo]);
     trx->STATUS = "";
     trx->FOLLOWUPID = -1;
     double amt;
-    wxString(t.find(Amount) == t.end() ? "" : t[Amount]).ToDouble(&amt);
+    if (!wxString(t.find(Amount) == t.end() ? "" : t[Amount]).ToDouble(&amt)) return false;
     trx->TRANSAMOUNT = fabs(amt);
     trx->TOTRANSAMOUNT = amt;
+
     trx->TRANSCODE = (t.find(TrxType) == t.end() ? "" : t[TrxType]);
+    if (trx->TRANSCODE.empty()) return false;
 
     if (t.find(CategorySplit) == t.end()) {
+        const wxString categStr = (t.find(Category) == t.end() ? "" : t[Category]);
+        if (categStr.empty()) return false;
+
         trx->CATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].first);
+        if (trx->CATEGID == -1) return false;
         trx->SUBCATEGID = (t.find(Category) == t.end() ? -1 : m_QIFcategoryNames[t[Category]].second);
     }
     else
@@ -749,8 +781,10 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
         wxStringTokenizer amtToken(t.find(AmountSplit) == t.end() ? "" : t[AmountSplit], "\n");
         while (token.HasMoreTokens()) {
             const wxString c = token.GetNextToken();
+            if (m_QIFcategoryNames.find(c) == m_QIFcategoryNames.end()) return false;
             Model_Splittransaction::Data* s = Model_Splittransaction::instance().create();
             s->CATEGID = m_QIFcategoryNames[c].first;
+            if (s->CATEGID <= 0) return false;
             s->SUBCATEGID = m_QIFcategoryNames[c].second;
             double amount;
             amtToken.GetNextToken().ToDouble(&amount);
@@ -761,7 +795,7 @@ bool mmQIFImportDialog::createTransaction(/*in*/ const std::map <int, wxString> 
         trx->SUBCATEGID = m_splitDataSets.size();
         m_splitDataSets.push_back(split);
     }
-    return validTransaction;
+    return true;
 }
 
 void mmQIFImportDialog::OnCancel(wxCommandEvent& /*event*/)
@@ -849,42 +883,58 @@ void mmQIFImportDialog::getOrCreatePayees()
 
 void mmQIFImportDialog::getOrCreateCategories()
 {
-    const auto all_categs = Model_Category::all_categories();
+    Model_Category::Data_Set data_set;
+    wxArrayString temp;
+    for (const auto &item : m_QIFcategoryNames)
+    {
+        wxStringTokenizer token(item.first, ":");
+        const wxString categStr = token.GetNextToken();
+        Model_Category::Data *c = Model_Category::instance().get(categStr);
+        //if (c && std::find(data_set.begin(), data_set.end(), c) != data_set.end()) continue;
+        if (temp.Index(categStr) != wxNOT_FOUND) continue;
+
+        if (!c)
+        {
+            c = Model_Category::instance().create();
+            c->CATEGNAME = categStr;
+            c->CATEGID = -1;
+        }
+        data_set.push_back(*c);
+        temp.Add(categStr);
+    }
+    Model_Category::instance().save(data_set);
+
+    Model_Subcategory::Data_Set sub_data_set;
     for (const auto &item : m_QIFcategoryNames)
     {
         wxStringTokenizer token(item.first, ":");
         const wxString categStr = token.GetNextToken();
         const wxString subcategStr = token.GetNextToken();
-        int categID = -1;
-        int subcategID = -1;
-        if (all_categs.find(item.first) == all_categs.end())
+        if (subcategStr.empty()) continue;
+        Model_Category::Data *c = Model_Category::instance().get(categStr);
+        wxASSERT(c);
+
+        Model_Subcategory::Data *sc = Model_Subcategory::instance().get(subcategStr, c->CATEGID);
+        if (!sc)
         {
-            if (Model_Category::instance().find(Model_Category::CATEGNAME(categStr)).empty()) {
-                Model_Category::Data *c = Model_Category::instance().create();
-                c->CATEGNAME = categStr;
-                categID = Model_Category::instance().save(c);
-            }
-            else
-                categID = Model_Category::instance().find(Model_Category::CATEGNAME(categStr)).begin()->CATEGID;
-
-            if (!subcategStr.empty() && categID != -1) {
-                Model_Subcategory::Data *subcategory = Model_Subcategory::instance().create();
-                subcategory->SUBCATEGNAME = subcategStr;
-                subcategory->CATEGID = categID;
-                subcategID = Model_Subcategory::instance().save(subcategory);
-            }
-
-            const wxString sMsg = wxString::Format(_("Added category: %s = %s")
-                , item.first
-                , Model_Category::instance().full_name(categID, subcategID));
-            wxLogDebug("%s", sMsg);
-            log_field_->AppendText(wxString() << sMsg << "\n");
+            sc = Model_Subcategory::instance().create();
+            sc->SUBCATEGNAME = subcategStr;
+            sc->CATEGID = c->CATEGID;
         }
-        else {
-            categID = all_categs.at(item.first).first ;
-            subcategID = all_categs.at(item.first).second;
-        }
+        sub_data_set.push_back(*sc);
+    }
+    Model_Subcategory::instance().save(sub_data_set);
 
+    for (const auto &item : m_QIFcategoryNames) {
+        int subcategID = -1, categID = -1;
+        wxStringTokenizer token(item.first, ":");
+        const wxString categStr = token.GetNextToken();
+        const wxString subcategStr = token.GetNextToken();
+        const auto c = Model_Category::instance().get(categStr);
+        if (c) categID = c->CATEGID;
+        const auto s = Model_Subcategory::instance().get(subcategStr, categID);
+        if (s) subcategID = s->SUBCATEGID;
         m_QIFcategoryNames[item.first] = std::make_pair(categID, subcategID);
     }
+
 }

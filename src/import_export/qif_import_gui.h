@@ -23,6 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Checking.h"
 #include "model/Model_Account.h"
 #include "mmpanelbase.h"
+#include "qif_import.h"
 
 class wxDatePickerCtrl;
 
@@ -48,7 +49,7 @@ public:
     }
 
 private:
-
+    mmQIFImport* qif_api;
     void CreateControls();
     void fillControls();
     void OnFileSearch(wxCommandEvent& event);

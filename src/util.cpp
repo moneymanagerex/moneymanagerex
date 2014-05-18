@@ -243,7 +243,7 @@ bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const w
     mask.Replace("%Y%m%d", "%Y %m %d");
     if (date_formats_regex().count(mask) == 0) return false;
 
-    const wxString regex = date_formats_regex()[mask];
+    const wxString regex = date_formats_regex().at(mask);
     wxRegEx pattern(regex);
     //wxLogDebug("%s %s %i %s", sDate, mask, pattern.Matches(sDate), regex);
     //skip dot if present in pattern but not in date string 
@@ -298,7 +298,7 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired)
     return financialYear;
 }
 
-std::map<wxString,wxString> date_formats_map()
+const std::map<wxString,wxString> date_formats_map()
 {
     std::map<wxString, wxString> date_formats;
     date_formats["%Y-%m-%d"] = "YYYY-MM-DD";
@@ -326,7 +326,7 @@ std::map<wxString,wxString> date_formats_map()
     return date_formats;
 }
 
-std::map<wxString,wxString> date_formats_regex()
+const std::map<wxString,wxString> date_formats_regex()
 {
     const wxString dd = "(((0[1-9])|([1-2][0-9])|(3[0-1]))|([1-9]))";
     const wxString mm = "(((0[1-9])|(1[0-2]))|([1-9]))";

@@ -122,8 +122,8 @@ const wxDateTime mmGetStorageStringAsDate(const wxString& str);
 const wxString mmGetDateForDisplay(const wxDateTime &dt);
 bool mmParseDisplayStringToDate(wxDateTime& date, const wxString& sDate, const wxString& sDateMask);
 const wxString mmGetNiceDateSimpleString(const wxDateTime &dt);
-std::map<wxString,wxString> date_formats_map();
-std::map<wxString,wxString> date_formats_regex();
+const std::map<wxString,wxString> date_formats_map();
+const std::map<wxString,wxString> date_formats_regex();
 
 const wxString inQuotes(wxString label, wxString& delimiter);
 
