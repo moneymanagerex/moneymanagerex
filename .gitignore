@@ -38,3 +38,5 @@ makefile
 *.opensdf
 *.suo
 *.sdf
+/build/msw_tests-vc-2013e/test_mmex_db*.mmb
+/build/msw_tests-vc-2013e/test_mmex_db*.emb
