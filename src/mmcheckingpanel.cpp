@@ -83,7 +83,7 @@ BEGIN_EVENT_TABLE(TransactionListCtrl, wxListCtrl)
         , MENU_TREEPOPUP_MARKDELETE,        TransactionListCtrl::OnMarkTransaction)
 
     EVT_MENU_RANGE(MENU_TREEPOPUP_MARKRECONCILED_ALL
-        ,MENU_TREEPOPUP_DELETE_FLAGGED,     TransactionListCtrl::OnMarkAllTransactions)
+        , MENU_TREEPOPUP_DELETE_UNRECONCILED, TransactionListCtrl::OnMarkAllTransactions)
     EVT_MENU(MENU_TREEPOPUP_SHOWTRASH,      TransactionListCtrl::OnShowChbClick)
 
     EVT_MENU(MENU_TREEPOPUP_NEW2,           TransactionListCtrl::OnNewTransaction)
@@ -133,7 +133,8 @@ mmCheckingPanel::~mmCheckingPanel()
 {
     if (transFilterDlg_) delete transFilterDlg_;
 
-    m_frame->SetCheckingAccountPageInactive();
+    if (m_frame)
+        m_frame->SetCheckingAccountPageInactive();
 }
 
 bool mmCheckingPanel::Create(
@@ -733,6 +734,7 @@ void mmCheckingPanel::OnViewPopupSelected(wxCommandEvent& event)
 
 void mmCheckingPanel::DeleteViewedTransactions()
 {
+    Model_Checking::instance().Begin();
     for (const auto& tran: this->m_trans)
     {
         // remove also removes any split transactions
@@ -740,10 +742,12 @@ void mmCheckingPanel::DeleteViewedTransactions()
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::TRANSACTION), tran.TRANSID);
         if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
     }
+    Model_Checking::instance().Commit();
 }
 
 void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
 {
+    Model_Checking::instance().Begin();
     for (const auto& tran: this->m_trans)
     {
         if (tran.STATUS == status)
@@ -754,6 +758,7 @@ void mmCheckingPanel::DeleteFlaggedTransactions(const wxString& status)
             if (m_listCtrlAccount->m_selectedForCopy == tran.TRANSID) m_listCtrlAccount->m_selectedForCopy = -1;
         }
     }
+    Model_Checking::instance().Commit();
 }
 
 void mmCheckingPanel::OnFilterTransactions(wxMouseEvent& event)
@@ -1088,6 +1093,7 @@ void TransactionListCtrl::OnMouseRightClick(wxMouseEvent& event)
     subGlobalOpMenuDelete->AppendSeparator();
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_VIEWED, _("Delete all transactions in current view"));
     subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_FLAGGED, _("Delete Viewed \"Follow Up\" Trans."));
+    subGlobalOpMenuDelete->Append(MENU_TREEPOPUP_DELETE_UNRECONCILED, _("Delete Viewed \"Unreconciled\" Trans."));
     menu.Append(MENU_TREEPOPUP_DELETE2, _("&Delete "), subGlobalOpMenuDelete);
 
     menu.AppendSeparator();
@@ -1167,6 +1173,7 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
     else if (evt == MENU_TREEPOPUP_MARKDUPLICATE_ALL)          status = "D";
     else if (evt == MENU_TREEPOPUP_DELETE_VIEWED)              status = "X";
     else if (evt == MENU_TREEPOPUP_DELETE_FLAGGED)             status = "M";
+    else if (evt == MENU_TREEPOPUP_DELETE_UNRECONCILED)        status = "0";
     else  wxASSERT(false);
 
     if (status == "X")
@@ -1180,15 +1187,17 @@ void TransactionListCtrl::OnMarkAllTransactions(wxCommandEvent& event)
             m_cp->DeleteViewedTransactions();
         }
     }
-    else if (status == "M")
+    else if (status == "M" || status == "0")
     {
+        const wxString statusStr = (status == "M" ? _("Follow Up") : _("Unreconciled"));
+        const wxString shotStatusStr = (status == "M" ? "F" : "");
         wxMessageDialog msgDlg(this
-            ,_("Do you really want to delete all the \"Follow Up\" transactions shown?")
+            ,wxString::Format(_("Do you really want to delete all the \"%s\" transactions shown?"), statusStr)
             , _("Confirm Transaction Deletion")
             , wxYES_NO | wxNO_DEFAULT | wxICON_QUESTION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            m_cp->DeleteFlaggedTransactions("F");
+            m_cp->DeleteFlaggedTransactions(shotStatusStr);
         }
     }
     else
@@ -1284,7 +1293,7 @@ wxListItemAttr* TransactionListCtrl::OnGetItemAttr(long item) const
 
     if (user_colour_id != 0)
     {
-        if (user_colour_id == 1)      return (wxListItemAttr*)&m_attr11;
+        if      (user_colour_id == 1) return (wxListItemAttr*)&m_attr11;
         else if (user_colour_id == 2) return (wxListItemAttr*)&m_attr12;
         else if (user_colour_id == 3) return (wxListItemAttr*)&m_attr13;
         else if (user_colour_id == 4) return (wxListItemAttr*)&m_attr14;

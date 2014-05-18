@@ -83,7 +83,7 @@ void Test_Callback_Hooks::tearDown()
 void Test_Callback_Hooks::test_Init_Base_Currency()
 {
     Model_Infotable::instance(&m_test_db);
-    Model_Currency currency = Model_Currency::instance(&m_test_db);
+    Model_Currency& currency = Model_Currency::instance(&m_test_db);
 
     Model_Currency::Data* au_record = currency.GetCurrencyRecord("AUD");
     int precision = currency.precision(au_record);

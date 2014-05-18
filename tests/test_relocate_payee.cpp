@@ -130,7 +130,7 @@ void Test_Relocate_Payee::test_dialog()
     CPPUNIT_ASSERT(Model_Checking::instance().get(1)->PAYEEID == payee_supermarket->id());
     CPPUNIT_ASSERT(Model_Billsdeposits::instance().get(1)->PAYEEID == payee_supermarket->id());
 
-    user_request->Show_InfoBarMessage("Please relocate Supermarket to Coles\n\nUse Cancel to ignore test results.\n");
+    user_request->Show_InfoBarMessage("Please relocate Supermarket to Coles\n\nUse the keyboard arrow keys to access the payee: Supermarket\n\nUse Cancel to ignore test.\n");
     relocatePayeeDialog dlg(m_base_frame);
     if (dlg.ShowModal() == wxID_OK)
     {

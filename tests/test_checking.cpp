@@ -421,6 +421,7 @@ void Test_Checking::Account_View_Savings()
 {
     TestFrameBase* user_request = new TestFrameBase(m_base_frame);
     user_request->Show();
+    user_request->Show_InfoBarMessage("Loading data from database...\n\nPlease wait...");
 
     // Create a new frame anchored to the base frame.
     TestFrameBase* account_frame = new TestFrameBase(m_base_frame, 670, 400);
@@ -444,6 +445,7 @@ void Test_Checking::Account_View_Mary()
 {
     TestFrameBase* user_request = new TestFrameBase(m_base_frame);
     user_request->Show();
+    user_request->Show_InfoBarMessage("Loading data from database...\n\nPlease wait...");
 
     // Create a new frame anchored to the base frame.
     TestFrameBase* account_frame = new TestFrameBase(m_base_frame, 670, 400);
