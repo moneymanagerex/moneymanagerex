@@ -30,3 +30,11 @@ makefile
 *.pyc
 
 .deps
+/mmex_release
+/build/msw_tests-vc-2013e/Win32
+/build/msw_tests-vc-2013e/x64
+/build/msw-vc-2013e/Win32
+/build/msw-vc-2013e/x64
+*.opensdf
+*.suo
+*.sdf
