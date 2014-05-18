@@ -175,7 +175,7 @@ void mmCategDialog::CreateControls()
 
     m_buttonRelocate = new wxBitmapButton(this
         , wxID_ANY, wxBitmap(relocate_categories_xpm));
-    m_buttonRelocate->Connect(wxID_STATIC, wxEVT_COMMAND_BUTTON_CLICKED
+    m_buttonRelocate->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
     m_buttonRelocate->SetToolTip(_("Reassign all categories to another category"));
 
