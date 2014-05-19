@@ -1,0 +1,25 @@
+language: objective-c
+compiler:
+  - clang
+  
+before_install:
+  - brew update
+  - brew install wxwidgets
+before_script:
+  - travis_retry ./configure
+script:
+  - ./configure && make
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - moneymanagerex@googlegroups.com
+  email:
+    on_success: change
+    on_failure: always
+os:
+  - osx
+matrix:
+  allow_failures:
+    - os: osx
