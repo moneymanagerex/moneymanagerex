@@ -59,7 +59,7 @@ wxDate Model_Stock::PURCHASEDATE(const Data& stock)
 
 double Model_Stock::value(const Data* r)
 {
-    return r->NUMSHARES * r->PURCHASEPRICE - r->COMMISSION;
+    return r->NUMSHARES * r->PURCHASEPRICE + r->COMMISSION;
 }
 
 double Model_Stock::value(const Data& r)

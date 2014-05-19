@@ -392,7 +392,10 @@ bool mmStocksPanel::Create(wxWindow *parent
     this->windowsFreezeThaw();
 
     Model_Account::Data *account = Model_Account::instance().get(accountID_);
-    m_currency = Model_Account::currency(account);
+    if (account)
+        m_currency = Model_Account::currency(account);
+    else
+        m_currency = Model_Currency::GetBaseCurrency();
 
     CreateControls();
     GetSizer()->Fit(this);
@@ -432,10 +435,10 @@ void mmStocksPanel::CreateControls()
     header_total_ = new wxStaticText(headerPanel, wxID_STATIC, "");
 
     wxBoxSizer* itemBoxSizerHHeader = new wxBoxSizer(wxHORIZONTAL);
-    itemBoxSizerHHeader->Add(header_text_, 1, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+    itemBoxSizerHHeader->Add(header_text_, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     itemBoxSizerVHeader->Add(itemBoxSizerHHeader, 1, wxEXPAND, 1);
-    itemBoxSizerVHeader->Add(header_total_, 1, wxALIGN_CENTER_VERTICAL|wxALL, 1);
+    itemBoxSizerVHeader->Add(header_total_, 1, wxALIGN_CENTER_VERTICAL | wxALL, 1);
 
     /* ---------------------- */
     wxSplitterWindow* itemSplitterWindow10 = new wxSplitterWindow(this
@@ -450,7 +453,7 @@ void mmStocksPanel::CreateControls()
     itemSplitterWindow10->SplitHorizontally(listCtrlAccount_, BottomPanel);
     itemSplitterWindow10->SetMinimumPaneSize(100);
     itemSplitterWindow10->SetSashGravity(1.0);
-    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW|wxALL, 1);
+    itemBoxSizer9->Add(itemSplitterWindow10, 1, wxGROW | wxALL, 1);
 
     wxBoxSizer* BoxSizerVBottom = new wxBoxSizer(wxVERTICAL);
     BottomPanel->SetSizer(BoxSizerVBottom);
