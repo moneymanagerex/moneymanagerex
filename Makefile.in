@@ -220,7 +220,7 @@ COND_PLATFORM_OS2_1___mmex___os2_emxbindcmd = $(NM) mmex$(EXEEXT) | if grep -q \
 
 ### Targets: ###
 
-all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT) po
+all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT)
 
 install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
