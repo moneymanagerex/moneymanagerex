@@ -5,14 +5,11 @@ compiler:
 before_install:
   - brew update
   - brew install wxwidgets
-  - brew install bakefile
 before_script:
   - travis_retry bundle
   - travis_retry ./configure
 script:
-  - ./bootstrap
-  - ./configure
-  - make
+  - ./configure && make
 branches:
   only:
     - master
