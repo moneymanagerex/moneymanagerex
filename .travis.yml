@@ -1,0 +1,29 @@
+language: cpp
+compiler:
+  - clang
+  
+before_install:
+  - brew update
+  - brew install wxwidgets
+  - brew install bakefile
+before_script:
+  - travis_retry bundle
+  - travis_retry ./configure
+script:
+  - ./bootstrap
+  - ./configure
+  - make
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - moneymanagerex@googlegroups.com
+  email:
+    on_success: change
+    on_failure: always
+os:
+  - osx
+matrix:
+  allow_failures:
+    - os: osx
