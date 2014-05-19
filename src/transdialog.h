@@ -23,6 +23,7 @@
 #include "defs.h"
 #include "model/Model_Splittransaction.h"
 #include "model/Model_Checking.h"
+#include "model/Model_Payee.h"
 
 #include <wx/spinbutt.h>
 
@@ -82,6 +83,7 @@ private:
     void OnAdvanceChecked(wxCommandEvent& event);
     void activateSplitTransactionsDlg();
     void setTooltips();
+    void setCategoryForPayee(const Model_Payee::Data *payee);
 
     mmTextCtrl *textNumber_;
     mmTextCtrl *textAmount_;

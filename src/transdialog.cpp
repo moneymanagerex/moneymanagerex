@@ -28,7 +28,6 @@
 #include "validators.h"
 #include "attachmentdialog.h"
 #include "webapp.h"
-#include "model/Model_Payee.h"
 #include "model/Model_Account.h"
 #include "model/Model_Category.h"
 #include "model/Model_Subcategory.h"
@@ -686,7 +685,10 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     wxString accountName = cbAccount_->GetValue();
     for (const auto& acc : Model_Account::instance().all_checking_account_names()){
-        if (acc.CmpNoCase(accountName) == 0) accountName = acc;
+        if (acc.CmpNoCase(accountName) == 0){
+            accountName = acc;
+            break;
+        }
     }
     const Model_Account::Data* account = Model_Account::instance().get(accountName);
     if (account)
@@ -695,6 +697,7 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         accountID_ = account->ACCOUNTID;
         cbAccount_->SetValue(account->ACCOUNTNAME);
     }
+
     textAmount_->GetDouble(transaction_->TRANSAMOUNT);
     if (transaction_->TRANSAMOUNT) textAmount_->SetValue(transaction_->TRANSAMOUNT, currency);
 
@@ -704,13 +707,13 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         if (transaction_->TOTRANSAMOUNT) toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, currency);
     }
 
-    if (m_transfer)
+    if (!m_transfer)
     {
-    }
-    else
-    {
-        Model_Payee::Data * payee = Model_Payee::instance().get(transaction_->PAYEEID);
-        if (payee) cbPayee_->ChangeValue(payee->PAYEENAME);
+        Model_Payee::Data * payee = Model_Payee::instance().get(cbPayee_->GetValue());
+        if (payee) {
+            cbPayee_->ChangeValue(payee->PAYEENAME);
+            setCategoryForPayee(payee);
+        }
     }
 
     event.Skip();
@@ -808,7 +811,7 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
 				for (int nn=0; nn<filtd.size(); nn++) {
 					cbPayee_->Insert(filtd[nn].PAYEENAME, 0);
 				}
-				cbPayee_->SetValue(payeeName);
+				cbPayee_->ChangeValue(payeeName);
 				cbPayee_->SetInsertionPointEnd();
 				cbPayee_->SetEvtHandlerEnabled(true);
         
@@ -816,33 +819,42 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
 		#endif
 
         for (const auto& payee : Model_Payee::instance().all_payee_names()) {
-            if (payee.CmpNoCase(payeeName) == 0)
-                payeeName = payee; 
+            if (payee.CmpNoCase(payeeName) == 0) {
+                payeeName = payee;
+                break;
+            }
         }
         const Model_Payee::Data *payee = Model_Payee::instance().get(payeeName);
-        if (payee) transaction_->PAYEEID = payee->PAYEEID;
-
-        // Only for new transactions: if user want to autofill last category used for payee.
-        // If this is a Split Transaction, ignore displaying last category for payee
-        if (payee && mmIniOptions::instance().transCategorySelectionNone_ != 0
-            && !categUpdated_ && m_local_splits.empty() && transaction_id_ == 0)
+        if (payee)
         {
-            // if payee has memory of last category used then display last category for payee
-            Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
-            if (category)
-            {
-                Model_Subcategory::Data *subcategory = (payee->SUBCATEGID != -1 ? Model_Subcategory::instance().get(payee->SUBCATEGID) : 0);
-                wxString fullCategoryName = Model_Category::full_name(category, subcategory);
-
-                transaction_->CATEGID = payee->CATEGID;
-                transaction_->SUBCATEGID = payee->SUBCATEGID;
-                bCategory_->SetLabel(fullCategoryName);
-                wxLogDebug("Category: %s", bCategory_->GetLabel());
-            }
+            transaction_->PAYEEID = payee->PAYEEID;
+            setCategoryForPayee(payee);
         }
     }
     wxChildFocusEvent evt;
     onFocusChange(evt);
+}
+
+void mmTransDialog::setCategoryForPayee(const Model_Payee::Data *payee)
+{
+    // Only for new transactions: if user want to autofill last category used for payee.
+    // If this is a Split Transaction, ignore displaying last category for payee
+    if (mmIniOptions::instance().transCategorySelectionNone_ != 0
+        && !categUpdated_ && m_local_splits.empty() && transaction_id_ == 0)
+    {
+        // if payee has memory of last category used then display last category for payee
+        Model_Category::Data *category = Model_Category::instance().get(payee->CATEGID);
+        if (category)
+        {
+            Model_Subcategory::Data *subcategory = (payee->SUBCATEGID != -1 ? Model_Subcategory::instance().get(payee->SUBCATEGID) : 0);
+            wxString fullCategoryName = Model_Category::full_name(category, subcategory);
+
+            transaction_->CATEGID = payee->CATEGID;
+            transaction_->SUBCATEGID = payee->SUBCATEGID;
+            bCategory_->SetLabel(fullCategoryName);
+            wxLogDebug("Category: %s", bCategory_->GetLabel());
+        }
+    }
 }
 
 void mmTransDialog::OnSplitChecked(wxCommandEvent& /*event*/)
