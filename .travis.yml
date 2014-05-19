@@ -6,7 +6,6 @@ before_install:
   - brew update
   - brew install wxwidgets
 before_script:
-  - travis_retry bundle
   - travis_retry ./configure
 script:
   - ./configure && make
