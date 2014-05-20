@@ -33,10 +33,10 @@ const bool mmCalculator::is_ok(const wxString& input)
     if(!state.doString(lua_f))
     {
         printf("err: %s\n", state.lastError().c_str());
+        return false;
     }
 
     this->output_ = state.invokeFunction<double>("calc");
-
 	return ok;
 }
 

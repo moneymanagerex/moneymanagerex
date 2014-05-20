@@ -321,7 +321,6 @@ void mmTransDialog::dataToControls()
     {
         textNumber_->SetValue(transaction_->TRANSACTIONNUMBER);
         textNotes_->SetValue(transaction_->NOTES);
-        textNotes_->SetScrollWidth(200);
         skip_notes_init_ = true;
     }
     setTooltips();
@@ -481,8 +480,7 @@ void mmTransDialog::CreateControls()
 	RightAlign_sizer->Add(bAttachments_, wxSizerFlags().Border(wxRIGHT, 5));
 	RightAlign_sizer->Add(bFrequentUsedNotes, wxSizerFlags().Border(wxLEFT, 5));
 
-    textNotes_ = new MinimalEditor(this, ID_DIALOG_TRANS_TEXTNOTES);
-    textNotes_->SetSize(wxSize(-1, 120));
+    textNotes_ = new wxTextCtrl(this, ID_DIALOG_TRANS_TEXTNOTES, "", wxDefaultPosition, wxSize(-1, 120));
     box_sizer->Add(textNotes_, wxSizerFlags(g_flagsExpand).Border(wxLEFT | wxRIGHT | wxBOTTOM, 10));
 
     /**********************************************************************************************
@@ -540,18 +538,18 @@ wxString mmTransDialog::resetPayeeString(/*bool normal*/) //normal is deposits o
 
 bool mmTransDialog::validateData()
 {
+    bool bTransfer = (Model_Checking::type(transaction_) == Model_Checking::TRANSFER);
+
+    if (!textAmount_->checkValue(transaction_->TRANSAMOUNT))
+        return false;
+
     Model_Account::Data* account = Model_Account::instance().get(cbAccount_->GetValue());
-    if (account && Model_Account::type(account) != Model_Account::INVESTMENT)
-    {
-        accountID_ = account->ACCOUNTID;
-    }
-    else
+    if (!account || Model_Account::type(account) == Model_Account::INVESTMENT)
     {
         mmMessageAccountInvalid(cbAccount_);
         return false;
     }
-
-    bool bTransfer = (Model_Checking::type(transaction_) == Model_Checking::TRANSFER);
+    accountID_ = account->ACCOUNTID;
 
     transaction_->TOTRANSAMOUNT = transaction_->TRANSAMOUNT;
     if (!bTransfer)
@@ -613,19 +611,6 @@ bool mmTransDialog::validateData()
 
     if (cSplit_->IsChecked())
     {
-        transaction_->TRANSAMOUNT = Model_Splittransaction::instance().get_total(m_local_splits);
-        if (transaction_->TRANSAMOUNT < 0.0)
-        {
-            if (bTransfer) {
-                if (transaction_->TRANSAMOUNT < 0)
-                    transaction_->TRANSAMOUNT = -transaction_->TRANSAMOUNT;
-            }
-            else {
-                mmShowErrorMessageInvalid(this, _("Amount"));
-                return false;
-            }
-        }
-
         if (m_local_splits.empty())
         {
             mmMessageCategoryInvalid(bCategory_);
@@ -634,11 +619,6 @@ bool mmTransDialog::validateData()
     }
     else //non split
     {
-        if (!textAmount_->checkValue(transaction_->TRANSAMOUNT))
-        {
-            return false;
-        }
-
         Model_Category::Data *category = Model_Category::instance().get(transaction_->CATEGID);
         Model_Subcategory::Data *subcategory = Model_Subcategory::instance().get(transaction_->SUBCATEGID);
         if (!category || !(subcategory || transaction_->SUBCATEGID < 0))
@@ -698,14 +678,10 @@ void mmTransDialog::onFocusChange(wxChildFocusEvent& event)
         cbAccount_->SetValue(account->ACCOUNTNAME);
     }
 
-    textAmount_->GetDouble(transaction_->TRANSAMOUNT);
-    if (transaction_->TRANSAMOUNT) textAmount_->SetValue(transaction_->TRANSAMOUNT, currency);
+    textAmount_->Calculate(currency);
 
     if (advancedToTransAmountSet_)
-    {
-        toTextAmount_->GetDouble(transaction_->TOTRANSAMOUNT);
-        if (transaction_->TOTRANSAMOUNT) toTextAmount_->SetValue(transaction_->TOTRANSAMOUNT, currency);
-    }
+        toTextAmount_->Calculate(currency);
 
     if (!m_transfer)
     {

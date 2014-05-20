@@ -58,14 +58,18 @@ public:
         currency_ = (currency ? currency : Model_Currency::GetBaseCurrency());
         this->SetValue(value, precision > -1 ? precision : log10(currency_->SCALE));
     }
-    void Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
+    bool Calculate(const Model_Currency::Data* currency, int alt_precision = -1)
     {
-        if (!currency || this->GetValue().empty()) return;
+        if (!currency || this->GetValue().empty()) return false;
         mmCalculator calc;
         int precision = alt_precision >= 0 ? alt_precision : log10(currency->SCALE);
-        if (calc.is_ok(Model_Currency::fromString2Default(this->GetValue(), currency)))
+        const wxString str = Model_Currency::fromString2Default(this->GetValue(), currency);
+        if (calc.is_ok(str)) {
             this->SetValue(Model_Currency::toString(calc.get_result(), currency, precision));
-        this->SetInsertionPoint(this->GetValue().Len());
+            this->SetInsertionPoint(this->GetValue().Len());
+            return true;
+        }
+        return false;
     }
     wxString GetValue() const
     {

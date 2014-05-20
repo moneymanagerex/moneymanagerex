@@ -29,7 +29,6 @@
 
 class wxDatePickerCtrl;
 class mmTextCtrl;
-class MinimalEditor;
 
 class mmTransDialog : public wxDialog
 {
@@ -88,7 +87,7 @@ private:
     mmTextCtrl *textNumber_;
     mmTextCtrl *textAmount_;
     mmTextCtrl *toTextAmount_;
-    MinimalEditor* textNotes_;
+    wxTextCtrl *textNotes_;
     wxButton* bCategory_;
 	wxButton* bAttachments_;
     wxComboBox* cbAccount_;
