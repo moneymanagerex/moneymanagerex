@@ -25,3 +25,6 @@
 [submodule "lib/cppunit"]
 	path = lib/cppunit
 	url = https://github.com/moneymanagerex/cppunit.git
+[submodule "3rd/anvil"]
+	path = 3rd/anvil
+	url = https://github.com/moneymanagerex/anvil.git
