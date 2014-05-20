@@ -8,7 +8,7 @@ before_install:
 before_script:
   - travis_retry ./configure
 script:
-  - ./configure && make
+  - ./configure && make -j4
 branches:
   only:
     - master
