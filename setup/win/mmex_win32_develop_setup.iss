@@ -13,7 +13,7 @@
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion StringChange(StringChange(StringChange("1.0.0.0 $Rev$", "$", ""), ":", ""), " ", "")
+#define MyAppVersion StringChange(StringChange(StringChange("1.1.0.0 $Rev$", "$", ""), ":", ""), " ", "")
 #define MyAppPublisher "CodeLathe, LLC"
 #define MyAppURL "http://www.codelathe.com/mmex"
 
@@ -26,7 +26,7 @@
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
 #define my_output_path "..\..\build\msw-vc-2012e\vc-static-u"
-#define my_output_filename StringChange(StringChange(StringChange("mmex_0.9.9.2_$Rev$_win32_setup", "$", ""), ": ", ""), " ", "") 
+#define my_output_filename StringChange(StringChange(StringChange("mmex_1.1.0.0_$Rev$_win32_setup", "$", ""), ": ", ""), " ", "") 
 
 ;===============================================================================
 

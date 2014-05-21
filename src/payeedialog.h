@@ -53,6 +53,7 @@ private:
     };
 
     wxDataViewListCtrl* payeeListBox_;
+    wxTextCtrl* m_maskTextCtrl;
 
     int m_payee_id;
     int m_payee_rename;

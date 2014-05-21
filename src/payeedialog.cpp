@@ -50,6 +50,8 @@ END_EVENT_TABLE()
 
 mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     m_payee_id(-1)
+    , m_maskTextCtrl()
+    , payeeListBox_()
     , m_payee_rename(-1)
     , refreshRequested_(false)
 #ifdef _DEBUG
@@ -107,16 +109,16 @@ void mmPayeeDialog::CreateControls()
     buttons_panel->SetSizer(tools_sizer);
 
     wxBoxSizer* tools_sizer2 = new wxBoxSizer(wxHORIZONTAL);
-    tools_sizer->Add(tools_sizer2, g_flagsExpand);
+    tools_sizer->Add(tools_sizer2, wxSizerFlags(g_flagsExpand).Border(0));
 
     tools_sizer2->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flags);
-    wxTextCtrl* mask = new wxTextCtrl(buttons_panel, wxID_ANY);
-    tools_sizer2->Add(mask, g_flagsExpand);
-    mask->SetFocus();
+    m_maskTextCtrl = new wxTextCtrl(buttons_panel, wxID_FIND);
+    tools_sizer2->Add(m_maskTextCtrl, g_flagsExpand);
+    m_maskTextCtrl->SetFocus();
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
         , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition
-        , wxSize(mask->GetSize().GetHeight(), mask->GetSize().GetHeight()));
+        , wxSize(m_maskTextCtrl->GetSize().GetHeight(), m_maskTextCtrl->GetSize().GetHeight()));
     magicButton->SetToolTip(_("Other tools"));
     tools_sizer2->Add(magicButton, g_flags);
 
@@ -197,7 +199,7 @@ void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
 void mmPayeeDialog::AddPayee()
 {
     const wxString name = wxGetTextFromUser(_("Enter the name for the new payee:")
-        , _("Organize Payees: Add Payee"), "");
+        , _("Organize Payees: Add Payee"), m_maskTextCtrl->GetValue());
     if (name.IsEmpty()) return;
 
     Model_Payee::Data_Set payees = Model_Payee::instance().find(Model_Payee::PAYEENAME(name));
@@ -349,11 +351,12 @@ void mmPayeeDialog::OnMagicButton(wxCommandEvent& event)
 void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
 {
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
-    evt.SetEventObject( this );
+    evt.SetEventObject(this);
 
     Model_Payee::Data* payee = Model_Payee::instance().get(m_payee_id);
 
     wxMenu* mainMenu = new wxMenu;
+    if (payee) mainMenu->SetTitle(payee->PAYEENAME);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DEFINE_CATEGORY, _("Define Default Category")));
     if (!payee) mainMenu->Enable(MENU_DEFINE_CATEGORY, false);
     mainMenu->AppendSeparator();
