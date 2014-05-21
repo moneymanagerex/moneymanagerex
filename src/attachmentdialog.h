@@ -50,7 +50,6 @@ private:
     wxDataViewListCtrl* attachmentListBox_;
 
     int m_attachment_id;
-    int m_selected_index;
     std::map<int, wxString> ColName_;
     wxButton* btnCancel_;
     wxButton* button_OK_;
@@ -76,6 +75,7 @@ private:
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
 	void OnListItemActivated(wxDataViewEvent& event);
+    void OnMagicButton(wxCommandEvent& event);
 
     bool debug_;
 };
