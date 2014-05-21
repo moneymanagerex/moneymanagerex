@@ -53,7 +53,7 @@ Model_Payee& Model_Payee::instance()
 const Model_Payee::Data_Set Model_Payee::FilterPayees(const wxString& payee_pattern)
 {
     Data_Set payees;
-    for (auto &payee: this->all())
+    for (auto &payee : this->all(Model_Payee::COL_PAYEENAME))
     {
         if (payee.PAYEENAME.Lower().Matches(payee_pattern.Lower().Append("*")))
             payees.push_back(payee);

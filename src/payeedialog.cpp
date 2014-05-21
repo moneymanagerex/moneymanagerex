@@ -31,12 +31,15 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Payee.h"
 
+#include "../resources/magic_wand.xpm"
 
 IMPLEMENT_DYNAMIC_CLASS( mmPayeeDialog, wxDialog )
 
 BEGIN_EVENT_TABLE( mmPayeeDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmPayeeDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmPayeeDialog::OnOk)
+    EVT_BUTTON(wxID_APPLY, mmPayeeDialog::OnMagicButton)
+    EVT_TEXT(wxID_ANY, OnTextChanged)
     EVT_DATAVIEW_ITEM_VALUE_CHANGED(wxID_ANY, mmPayeeDialog::OnDataChanged)
     EVT_DATAVIEW_ITEM_EDITING_STARTED(wxID_ANY, mmPayeeDialog::OnDataEditStart)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmPayeeDialog::OnListItemSelected)
@@ -49,7 +52,11 @@ mmPayeeDialog::mmPayeeDialog(wxWindow *parent) :
     m_payee_id(-1)
     , m_payee_rename(-1)
     , refreshRequested_(false)
+#ifdef _DEBUG
     , debug_(true)
+#else
+    , debug_(false)
+#endif
 {
     if (debug_) ColName_[PAYEE_ID] = _("#");
     ColName_[PAYEE_NAME] = _("Name");
@@ -95,50 +102,53 @@ void mmPayeeDialog::CreateControls()
     mainBoxSizer->Add(payeeListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
-    mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flags).Center());
+    mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flagsExpand).Proportion(0));
+    wxBoxSizer*  tools_sizer = new wxBoxSizer(wxVERTICAL);
+    buttons_panel->SetSizer(tools_sizer);
+
+    wxBoxSizer* tools_sizer2 = new wxBoxSizer(wxHORIZONTAL);
+    tools_sizer->Add(tools_sizer2, g_flagsExpand);
+
+    tools_sizer2->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flags);
+    wxTextCtrl* mask = new wxTextCtrl(buttons_panel, wxID_ANY);
+    tools_sizer2->Add(mask, g_flagsExpand);
+    mask->SetFocus();
+
+    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
+        , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition
+        , wxSize(mask->GetSize().GetHeight(), mask->GetSize().GetHeight()));
+    magicButton->SetToolTip(_("Other tools"));
+    tools_sizer2->Add(magicButton, g_flags);
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
-    buttons_panel->SetSizer(buttons_sizer);
+    tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flags).Center());
+    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
 
-    button_OK_ = new wxButton( buttons_panel, wxID_OK, _("&OK ") );
-    btnCancel_ = new wxButton( buttons_panel, wxID_CANCEL, _("&Cancel "));
+    buttons_sizer->Add(buttonOK, g_flags);
+    buttons_sizer->Add(btnCancel, g_flags);
 
-    buttons_sizer->Add(button_OK_,  g_flags);
-    buttons_sizer->Add(btnCancel_,  g_flags);
-    Center();
     this->SetSizer(mainBoxSizer);
 }
 
 void mmPayeeDialog::fillControls()
 {
-    Model_Payee::Data_Set filtd = Model_Payee::instance().all(Model_Payee::COL_PAYEENAME);
+    Model_Payee::Data_Set p = Model_Payee::instance().FilterPayees(m_maskStr);
+    if (p.size() == 0) return;
 
+    int firstInTheListPayeeID = -1;
     payeeListBox_->DeleteAllItems();
-    for (const auto& payee: Model_Payee::instance().all(Model_Payee::COL_PAYEENAME))
+    for (const auto& payee : Model_Payee::instance().FilterPayees(m_maskStr))
     {
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
-        int payeeID = payee.PAYEEID;
+        if (firstInTheListPayeeID == -1) firstInTheListPayeeID = payee.PAYEEID;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", payeeID)));
+        if (debug_) data.push_back(wxVariant(wxString::Format("%i", payee.PAYEEID)));
         data.push_back(wxVariant(payee.PAYEENAME));
         data.push_back(wxVariant(full_category_name));
-        payeeListBox_->AppendItem(data, (wxUIntPtr)payeeID);
-        if (m_selected_index == payeeListBox_->GetItemCount() - 1)
-        {
-            payeeListBox_->SelectRow(m_selected_index);
-            m_payee_id = payeeID;
-        }
-        if (m_payee_id == payeeID)
-        {
-            m_selected_index = payeeListBox_->GetItemCount() - 1;
-            payeeListBox_->SelectRow(m_selected_index);
-        }
+        payeeListBox_->AppendItem(data, (wxUIntPtr)payee.PAYEEID);
     }
-
-    //Ensure that the selected item is visible. 
-    wxDataViewItem item(payeeListBox_->GetCurrentItem());
-    payeeListBox_->EnsureVisible(item);
-
+    m_payee_id = firstInTheListPayeeID;
 }
 
 void mmPayeeDialog::OnDataEditStart(wxDataViewEvent& event)
@@ -178,10 +188,9 @@ void mmPayeeDialog::OnDataChanged(wxDataViewEvent& event)
 void mmPayeeDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
-    m_selected_index = payeeListBox_->ItemToRow(item);
+    int selected_index = payeeListBox_->ItemToRow(item);
 
-
-    if (m_selected_index >= 0)
+    if (selected_index >= 0)
         m_payee_id = (int)payeeListBox_->GetItemData(item);
 }
 
@@ -198,7 +207,7 @@ void mmPayeeDialog::AddPayee()
         payee->PAYEENAME = name;
         m_payee_id = Model_Payee::instance().save(payee);
 		mmWebApp::MMEX_WebApp_UpdatePayee();
-        m_selected_index = -1;
+        m_payee_id = payee->PAYEEID;
     }
     else
     {
@@ -225,7 +234,7 @@ void mmPayeeDialog::EditPayee()
             payee->PAYEENAME = name;
             m_payee_id = Model_Payee::instance().save(payee);
 			mmWebApp::MMEX_WebApp_UpdatePayee();
-            m_selected_index = -1;
+            m_payee_id = payee->PAYEEID;
         }
         else
         {
@@ -254,7 +263,6 @@ void mmPayeeDialog::DeletePayee()
 		else
 			mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::PAYEE), m_payee_id);
         m_payee_id = -1;
-        m_selected_index--;
         fillControls();
     }
 }
@@ -310,6 +318,12 @@ void mmPayeeDialog::OnPayeeRelocate()
     }
 }
 
+void mmPayeeDialog::OnTextChanged(wxCommandEvent& event)
+{
+    m_maskStr = event.GetString();
+    fillControls();
+}
+
 void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
 {
     wxCommandEvent evt;
@@ -326,6 +340,12 @@ void mmPayeeDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
+void mmPayeeDialog::OnMagicButton(wxCommandEvent& event)
+{
+    wxDataViewEvent evt(wxEVT_NULL);
+    OnItemRightClick(evt);
+}
+
 void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
 {
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
@@ -340,6 +360,7 @@ void mmPayeeDialog::OnItemRightClick(wxDataViewEvent& event)
 
     mainMenu->Append(new wxMenuItem(mainMenu, NENU_NEW_PAYEE, _("&Add ")));
     mainMenu->Append(new wxMenuItem(mainMenu, NENU_EDIT_PAYEE, _("&Edit ")));
+    if (!payee) mainMenu->Enable(NENU_EDIT_PAYEE, false);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_PAYEE, _("&Remove ")));
     if (!payee || Model_Payee::is_used(m_payee_id)) mainMenu->Enable(MENU_DELETE_PAYEE, false);
     mainMenu->AppendSeparator();

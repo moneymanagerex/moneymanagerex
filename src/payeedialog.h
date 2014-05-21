@@ -56,11 +56,9 @@ private:
 
     int m_payee_id;
     int m_payee_rename;
-    int m_selected_index;
+    wxString m_maskStr;
     bool refreshRequested_;
     std::map<int, wxString> ColName_;
-    wxButton* btnCancel_;
-    wxButton* button_OK_;
 
     mmPayeeDialog() : m_payee_id(-1), refreshRequested_(false) {}
 
@@ -82,6 +80,8 @@ private:
     void OnDataChanged(wxDataViewEvent& event);
     void OnMenuSelected(wxCommandEvent& event);
     void OnItemRightClick(wxDataViewEvent& event);
+    void OnTextChanged(wxCommandEvent& event);
+    void OnMagicButton(wxCommandEvent& event);
 
     bool debug_;
 };
