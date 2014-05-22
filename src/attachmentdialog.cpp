@@ -24,6 +24,8 @@ Copyright (C) 2014 Gabriele-V
 #include "model/Model_Attachment.h"
 #include "model/Model_Infotable.h"
 
+#include "../resources/magic_wand.xpm"
+
 #include <wx/mimetype.h>
 
 IMPLEMENT_DYNAMIC_CLASS( mmAttachmentDialog, wxDialog )
@@ -31,6 +33,7 @@ IMPLEMENT_DYNAMIC_CLASS( mmAttachmentDialog, wxDialog )
 BEGIN_EVENT_TABLE( mmAttachmentDialog, wxDialog )
     EVT_BUTTON(wxID_CANCEL, mmAttachmentDialog::OnCancel)
     EVT_BUTTON(wxID_OK, mmAttachmentDialog::OnOk)
+    EVT_BUTTON(wxID_APPLY, mmAttachmentDialog::OnMagicButton)
     EVT_DATAVIEW_SELECTION_CHANGED(wxID_ANY, mmAttachmentDialog::OnListItemSelected)
     EVT_DATAVIEW_ITEM_CONTEXT_MENU(wxID_ANY, mmAttachmentDialog::OnItemRightClick)
 	EVT_MENU_RANGE(MENU_NEW_ATTACHMENT, MENU_DELETE_ATTACHMENT, mmAttachmentDialog::OnMenuSelected)
@@ -42,7 +45,11 @@ mmAttachmentDialog::mmAttachmentDialog (wxWindow* parent, const wxString& RefTyp
     m_attachment_id(-1)
 	, m_RefType(RefType)
 	, m_RefId(RefId)
-    , debug_(true)
+    #ifdef _DEBUG
+        , debug_(true)
+    #else
+        , debug_(false)
+    #endif
 {
     if (debug_) ColName_[ATTACHMENT_ID] = _("#");
     ColName_[ATTACHMENT_DESCRIPTION] = _("Description");
@@ -102,62 +109,55 @@ void mmAttachmentDialog::CreateControls()
         , wxID_ANY, wxDefaultPosition, wxSize(460, 500)/*, wxDV_HORIZ_RULES*/);
 
     if (debug_) attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_ID], wxDATAVIEW_CELL_INERT, 30);
-	attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
+    attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_DESCRIPTION], wxDATAVIEW_CELL_INERT, 150);
     attachmentListBox_->AppendTextColumn(ColName_[ATTACHMENT_FILENAME], wxDATAVIEW_CELL_INERT, 300);
     mainBoxSizer->Add(attachmentListBox_, wxSizerFlags(g_flagsExpand).Border(wxALL, 10));
 
     wxPanel* buttons_panel = new wxPanel(this, wxID_ANY);
     mainBoxSizer->Add(buttons_panel, wxSizerFlags(g_flags).Center());
-
     wxStdDialogButtonSizer* buttons_sizer = new wxStdDialogButtonSizer;
     buttons_panel->SetSizer(buttons_sizer);
 
-    button_OK_ = new wxButton(buttons_panel, wxID_OK, _("&OK "));
-    btnCancel_ = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    wxButton* buttonOK = new wxButton(buttons_panel, wxID_OK, _("&OK "));
+    wxButton* btnCancel = new wxButton(buttons_panel, wxID_CANCEL, _("&Cancel "));
+    buttons_sizer->Add(buttonOK, g_flags);
+    buttons_sizer->Add(btnCancel, g_flags);
 
-    buttons_sizer->Add(button_OK_, g_flags);
-    buttons_sizer->Add(btnCancel_, g_flags);
+    wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
+        , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition);
+    magicButton->SetToolTip(_("Other tools"));
+    buttons_sizer->Add(magicButton, g_flags);
+
     Center();
     this->SetSizer(mainBoxSizer);
 }
 
 void mmAttachmentDialog::fillControls()
-{
-    attachmentListBox_->DeleteAllItems();
-	
+{	
 	Model_Attachment::Data_Set attachments = Model_Attachment::instance().FilterAttachments(m_RefType, m_RefId);
+    if (attachments.size() == 0) return;
 
+    int firstInTheListAttachentID = -1;
+    attachmentListBox_->DeleteAllItems();
 	for (const auto &entry : attachments)
     {
-		int attachmentID = entry.ATTACHMENTID;
+        if (firstInTheListAttachentID == -1) firstInTheListAttachentID = entry.ATTACHMENTID;
         wxVector<wxVariant> data;
-        if (debug_) data.push_back(wxVariant(wxString::Format("%i", attachmentID)));
+        if (debug_) data.push_back(wxVariant(wxString::Format("%i", entry.ATTACHMENTID)));
 		data.push_back(wxVariant(entry.DESCRIPTION));
 		data.push_back(wxVariant(entry.REFTYPE + m_PathSep + entry.FILENAME));
-        attachmentListBox_->AppendItem(data, (wxUIntPtr)attachmentID);
-        if (m_selected_index == attachmentListBox_->GetItemCount() - 1)
-        {
-            attachmentListBox_->SelectRow(m_selected_index);
-            m_attachment_id = attachmentID;
-        }
-        if (m_attachment_id == attachmentID)
-        {
-            m_selected_index = attachmentListBox_->GetItemCount() - 1;
-            attachmentListBox_->SelectRow(m_selected_index);
-        }
+        attachmentListBox_->AppendItem(data, (wxUIntPtr)entry.ATTACHMENTID);
     }
 
-    //Ensure that the selected item is visible. 
-    wxDataViewItem item(attachmentListBox_->GetCurrentItem());
-    attachmentListBox_->EnsureVisible(item);
+    m_attachment_id = firstInTheListAttachentID;
 }
 
 void mmAttachmentDialog::OnListItemSelected(wxDataViewEvent& event)
 {
     wxDataViewItem item = event.GetItem();
-    m_selected_index = attachmentListBox_->ItemToRow(item);
+    int selected_index = attachmentListBox_->ItemToRow(item);
 
-    if (m_selected_index >= 0)
+    if (selected_index >= 0)
         m_attachment_id = (int)attachmentListBox_->GetItemData(item);
 }
 
@@ -191,7 +191,7 @@ void mmAttachmentDialog::AddAttachment()
 		NewAttachment->DESCRIPTION = attachmentDescription;
 		NewAttachment->FILENAME = importedFileName;
 		m_attachment_id = Model_Attachment::instance().save(NewAttachment);
-		m_selected_index = -1;
+        m_attachment_id = NewAttachment->ATTACHMENTID;
 	}
 
     fillControls();
@@ -219,7 +219,7 @@ void mmAttachmentDialog::EditAttachment()
 
 		attachment->DESCRIPTION = description;
 		m_attachment_id = Model_Attachment::instance().save(attachment);
-        m_selected_index = -1;
+        m_attachment_id = attachment->ATTACHMENTID;
 
         fillControls();
     }
@@ -242,7 +242,6 @@ void mmAttachmentDialog::DeleteAttachment()
 				Model_Attachment::instance().remove(m_attachment_id);
 			}
 			m_attachment_id = -1;
-			m_selected_index--;
 			fillControls();
 		}
     }
@@ -262,6 +261,12 @@ void mmAttachmentDialog::OnMenuSelected(wxCommandEvent& event)
     }
 }
 
+void mmAttachmentDialog::OnMagicButton(wxCommandEvent& event)
+{
+    wxDataViewEvent evt(wxEVT_NULL);
+    OnItemRightClick(evt);
+}
+
 void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 {
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, wxID_ANY) ;
@@ -275,6 +280,7 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
     mainMenu->AppendSeparator();
 	mainMenu->Append(new wxMenuItem(mainMenu, MENU_OPEN_ATTACHMENT, _("&Open ")));
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_EDIT_ATTACHMENT, _("&Edit ")));
+    if (!attachment) mainMenu->Enable(MENU_EDIT_ATTACHMENT, false);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_DELETE_ATTACHMENT, _("&Remove ")));
 	
 	//Disable buttons

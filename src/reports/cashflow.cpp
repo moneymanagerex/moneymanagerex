@@ -50,11 +50,6 @@ wxString mmReportCashFlow::getHTMLText()
     return this->getHTMLText_i();
 }
 
-wxString mmReportCashFlow::version()
-{
-    return "$Rev$";
-}
-
 wxString mmReportCashFlow::getHTMLText_i()
 {
     mmHTMLBuilder hb;

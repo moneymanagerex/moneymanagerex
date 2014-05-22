@@ -54,11 +54,6 @@ Model_Usage& Model_Usage::instance()
     return Singleton<Model_Usage>::instance();
 }
 
-wxString Model_Usage::version()
-{
-    return "$Rev: 6165 $";
-}
-
 void Model_Usage::append(const json::Object& o)
 {
     this->a.Insert(o);

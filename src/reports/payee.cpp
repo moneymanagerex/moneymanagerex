@@ -45,11 +45,6 @@ mmReportPayeeExpenses::~mmReportPayeeExpenses()
     if (date_range_) delete date_range_;
 }
 
-wxString mmReportPayeeExpenses::version()
-{
-    return "$Rev$";
-}
-
 void  mmReportPayeeExpenses::RefreshData()
 {
     data_.clear();

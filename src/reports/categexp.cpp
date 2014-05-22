@@ -46,11 +46,6 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
         delete date_range_;
 }
 
-wxString mmReportCategoryExpenses::version()
-{
-    return "$Rev$";
-}
-
 void  mmReportCategoryExpenses::RefreshData()
 {
     data_.clear();

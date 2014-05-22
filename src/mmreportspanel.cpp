@@ -122,10 +122,8 @@ wxString mmReportsPanel::getReportText()
         json::Object o;
         o["module"] = json::String("Report");
         o["name"] = json::String(rb_->title().ToStdString());
-        o["version"] = json::String(rb_->version().ToStdString());
         o["start"] = json::String(wxDateTime::Now().FormatISOCombined().ToStdString());
 
-        m_frame->SetStatusText(rb_->version());
         htmlreport_ = rb_->getHTMLText();
 
         wxFileOutputStream index_output(mmex::getReportIndex());

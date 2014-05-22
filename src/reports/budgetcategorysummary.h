@@ -30,7 +30,6 @@ public:
     mmReportBudgetCategorySummary(int budgetYearID);
 
     virtual wxString getHTMLText();
-    virtual wxString version();
 
 private:
     int budgetYearID_;

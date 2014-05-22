@@ -27,7 +27,6 @@ class Model_Usage : public Model<DB_Table_USAGE_V1>
 public:
     Model_Usage();
     ~Model_Usage();
-    static wxString version();
 
 public:
     /**

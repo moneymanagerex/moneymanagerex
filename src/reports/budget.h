@@ -55,7 +55,6 @@ public:
     void SetBudgetMonth(wxString budgetYearStr, wxDateTime& startDate, wxDateTime& endDate);
 
     virtual wxString getHTMLText();
-    virtual wxString version();
 };
 
 #endif // MM_EX_REPORTBUDGETING_H_
