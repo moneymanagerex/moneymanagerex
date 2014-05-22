@@ -4,7 +4,7 @@
 
 AC_PREREQ(2.53)
 m4_include([revision.m4])
-AC_INIT([MoneyManagerEx], SVN_REVISION, [madhan@sourceforge.net])
+AC_INIT([MoneyManagerEx], SVN_REVISION, [moneymanagerex@gmail.com])
 
 ##########################################################################
 
