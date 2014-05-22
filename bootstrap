@@ -1,14 +1,5 @@
 #!/bin/sh
 
-# Touch revision.m4
-if [ -f ./update_revision.sh ]; then
-    ./update_revision.sh;
-elif [ ! -f ./revision.m4 ]; then
-    echo "m4_define([SVN_REV], 0)" > ./revision.m4;
-    echo "m4_define([SVN_REVISION], trunk-r0)" >> ./revision.m4;
-    echo "m4_define([SVN_DATE], )" >> ./revision.m4;
-fi
-
 cd build/bakefiles
 bakefile_gen
 

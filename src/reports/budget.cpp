@@ -105,7 +105,3 @@ wxString mmReportBudget::getHTMLText()
     return wxEmptyString;
 }
 
-wxString mmReportBudget::version()
-{
-    return "$Rev$";
-}

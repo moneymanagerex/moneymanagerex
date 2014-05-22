@@ -31,7 +31,6 @@ public:
     ~mmReportCategoryOverTimePerformance();
 
     virtual wxString getHTMLText();
-    virtual wxString version();
 
 protected:
     mmDateRange* date_range_;

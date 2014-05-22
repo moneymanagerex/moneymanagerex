@@ -37,7 +37,6 @@ public:
 
 public:
     mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}
-    virtual wxString version() { return "$Rev$ base"; }
 
 protected:
 	int sortColumn_;

@@ -65,11 +65,6 @@ Model_Asset& Model_Asset::instance()
     return Singleton<Model_Asset>::instance();
 }
 
-wxString Model_Asset::version()
-{
-    return "$Rev$";
-}
-
 wxArrayString Model_Asset::all_rate()
 {
     wxArrayString rates;

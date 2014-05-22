@@ -36,7 +36,6 @@ public:
 public:
     Model_Asset();
     ~Model_Asset();
-    static wxString version();
 
 public:
     /**

@@ -33,7 +33,6 @@ public:
 
     virtual void RefreshData();
     virtual wxString getHTMLText();
-    virtual wxString version();
 
 protected:
     mmDateRange* date_range_;

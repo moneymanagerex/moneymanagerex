@@ -29,7 +29,6 @@ public:
     ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
-    virtual wxString version();
 
 protected:
     wxString getHTMLText_i();
