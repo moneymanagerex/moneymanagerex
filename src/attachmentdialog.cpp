@@ -275,7 +275,7 @@ void mmAttachmentDialog::OnItemRightClick(wxDataViewEvent& event)
 	Model_Attachment::Data* attachment = Model_Attachment::instance().get(m_attachment_id);
 
     wxMenu* mainMenu = new wxMenu;
-
+    if (attachment) mainMenu->SetTitle(attachment->DESCRIPTION);
     mainMenu->Append(new wxMenuItem(mainMenu, MENU_NEW_ATTACHMENT, _("&Add ")));
     mainMenu->AppendSeparator();
 	mainMenu->Append(new wxMenuItem(mainMenu, MENU_OPEN_ATTACHMENT, _("&Open ")));
