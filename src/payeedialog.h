@@ -21,6 +21,7 @@
 
 #include "defs.h"
 #include <wx/dataview.h>
+#include <wx/srchctrl.h>
 #include <map>
 
 class mmPayeeDialog : public wxDialog
@@ -53,7 +54,7 @@ private:
     };
 
     wxDataViewListCtrl* payeeListBox_;
-    wxTextCtrl* m_maskTextCtrl;
+    wxSearchCtrl* m_maskTextCtrl;
 
     int m_payee_id;
     int m_payee_rename;

@@ -117,7 +117,7 @@ void mmPayeeDialog::CreateControls()
     magicButton->SetToolTip(_("Other tools"));
     tools_sizer2->Add(magicButton, g_flags);
 
-    m_maskTextCtrl = new wxTextCtrl(buttons_panel, wxID_FIND);
+    m_maskTextCtrl = new wxSearchCtrl(buttons_panel, wxID_FIND);
     m_maskTextCtrl->SetFocus();
     tools_sizer2->Prepend(m_maskTextCtrl, g_flagsExpand);
     tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flags);
@@ -143,12 +143,14 @@ void mmPayeeDialog::fillControls()
     for (const auto& payee : Model_Payee::instance().FilterPayees(m_maskStr))
     {
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
-        if (firstInTheListPayeeID == -1) firstInTheListPayeeID = payee.PAYEEID;
+        if (firstInTheListPayeeID == -1) { firstInTheListPayeeID = payee.PAYEEID; }
         wxVector<wxVariant> data;
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", payee.PAYEEID)));
         data.push_back(wxVariant(payee.PAYEENAME));
         data.push_back(wxVariant(full_category_name));
+        wxListItem i = wxListItem(data, (wxUIntPtr) payee.PAYEEID);
         payeeListBox_->AppendItem(data, (wxUIntPtr)payee.PAYEEID);
+        payeeListBox_->Select()
     }
     m_payee_id = firstInTheListPayeeID;
 }
