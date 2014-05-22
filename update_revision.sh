@@ -41,7 +41,7 @@ fi
 
 if [ "x$REV" != "x$OLD_REV" -o ! -r $REV_FILE ]; then
 	echo "m4_define([SVN_REV], $REV)" > $REV_FILE
-	echo "m4_define([SVN_REVISION], 1.0.0.0svn$REV)" >> $REV_FILE
+	echo "m4_define([SVN_REVISION], 1.1.0.0svn$REV)" >> $REV_FILE
 	echo "m4_define([SVN_DATE], $LCD)" >> $REV_FILE
 fi
 
