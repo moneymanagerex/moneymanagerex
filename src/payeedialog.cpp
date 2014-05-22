@@ -111,16 +111,16 @@ void mmPayeeDialog::CreateControls()
     wxBoxSizer* tools_sizer2 = new wxBoxSizer(wxHORIZONTAL);
     tools_sizer->Add(tools_sizer2, wxSizerFlags(g_flagsExpand).Border(0));
 
-    tools_sizer2->Add(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flags);
-    m_maskTextCtrl = new wxTextCtrl(buttons_panel, wxID_FIND);
-    tools_sizer2->Add(m_maskTextCtrl, g_flagsExpand);
-    m_maskTextCtrl->SetFocus();
-
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
         , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition
-        , wxSize(m_maskTextCtrl->GetSize().GetHeight(), m_maskTextCtrl->GetSize().GetHeight()));
+        , wxSize(32, -1));
     magicButton->SetToolTip(_("Other tools"));
     tools_sizer2->Add(magicButton, g_flags);
+
+    m_maskTextCtrl = new wxTextCtrl(buttons_panel, wxID_FIND);
+    m_maskTextCtrl->SetFocus();
+    tools_sizer2->Prepend(m_maskTextCtrl, g_flagsExpand);
+    tools_sizer2->Prepend(new wxStaticText(buttons_panel, wxID_STATIC, _("Search:")), g_flags);
 
     wxStdDialogButtonSizer*  buttons_sizer = new wxStdDialogButtonSizer;
     tools_sizer->Add(buttons_sizer, wxSizerFlags(g_flags).Center());
