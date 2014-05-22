@@ -148,9 +148,7 @@ void mmPayeeDialog::fillControls()
         if (debug_) data.push_back(wxVariant(wxString::Format("%i", payee.PAYEEID)));
         data.push_back(wxVariant(payee.PAYEENAME));
         data.push_back(wxVariant(full_category_name));
-        wxListItem i = wxListItem(data, (wxUIntPtr) payee.PAYEEID);
         payeeListBox_->AppendItem(data, (wxUIntPtr)payee.PAYEEID);
-        payeeListBox_->Select()
     }
     m_payee_id = firstInTheListPayeeID;
 }
