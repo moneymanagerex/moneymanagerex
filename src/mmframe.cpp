@@ -320,7 +320,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 
 mmGUIFrame::~mmGUIFrame()
 {
-wxLogDebug("~mmGUIFrame()");
     try {
         cleanup();
     }
