@@ -18,9 +18,6 @@ Copyright (C) 2014 Nikolay
  ********************************************************/
 
 #include "mmhomepagepanel.h"
-#include "reports/html_widget_top_categories.h"
-#include "reports/html_widget_bills_and_deposits.h"
-#include "reports/html_widget_stocks.h"
 #include "mmex.h"
 #include "mmframe.h"
 #include "paths.h"
@@ -35,6 +32,382 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Payee.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
+
+class htmlWidgetStocks
+{
+public:
+    ~htmlWidgetStocks();
+    htmlWidgetStocks();
+    double get_total();
+    double get_total_gein_lost();
+    void enable_detailes(bool enable);
+
+    wxString getHTMLText();
+
+protected:
+
+    wxString title_;
+    bool enable_details_;
+    double grand_total_;
+    double grand_gain_lost_;
+    void calculate_stats(std::map<int, std::pair<double, double> > &stockStats);
+};
+
+htmlWidgetStocks::htmlWidgetStocks()
+: title_(_("Stocks"))
+{
+    enable_details_ = true;
+    grand_gain_lost_ = 0.0;
+    grand_total_ = 0.0;
+}
+
+htmlWidgetStocks::~htmlWidgetStocks()
+{
+}
+
+wxString htmlWidgetStocks::getHTMLText()
+{
+    wxString output = "";
+    std::map<int, std::pair<double, double> > stockStats;
+    calculate_stats(stockStats);
+    if (!stockStats.empty())
+    {
+        if (enable_details_)
+        {
+            output = "<table class = \"table\"><thead><tr><th>";
+            output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
+            output += "</th><th class = 'text-right'>" + _("Total") + "</th></tr></thead><tbody>";
+            const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+            wxString body = "";
+            for (const auto& account : accounts)
+            {
+                if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+                if (Model_Account::status(account) != Model_Account::OPEN) continue;
+                body += "<tr>";
+                body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
+                    , account.ACCOUNTID, account.ACCOUNTNAME);
+                body += wxString::Format("<td class = \"text-right\">%s</td>"
+                    , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
+                body += wxString::Format("<td class = \"text-right\">%s</td>"
+                    , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
+                body += "</tr>";
+            }
+
+            output += body;
+            output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+            output += wxString::Format("<td class =\"money, text-right\">%s</td>"
+                , Model_Currency::toCurrency(grand_gain_lost_));
+            output += wxString::Format("<td class =\"money, text-right\">%s</td></tr></tfoot></table>"
+                , Model_Currency::toCurrency(grand_total_));
+            if (body.empty()) output.clear();
+        }
+    }
+    return output;
+}
+
+void htmlWidgetStocks::enable_detailes(bool enable)
+{
+    enable_details_ = enable;
+}
+
+void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> > &stockStats)
+{
+    this->grand_total_ = 0;
+    this->grand_gain_lost_ = 0;
+    const auto &stocks = Model_Stock::instance().all();
+    for (const auto& stock : stocks)
+    {   
+        double conv_rate = 1;
+        Model_Account::Data *account = Model_Account::instance().get(stock.HELDAT);
+        if (account)
+        {   
+            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+            conv_rate = currency->BASECONVRATE;
+        }   
+        std::pair<double, double>& values = stockStats[stock.HELDAT];
+        double gain_lost = (stock.VALUE - (stock.PURCHASEPRICE * stock.NUMSHARES) - stock.COMMISSION);
+        values.first += gain_lost;
+        values.second += stock.VALUE;
+        if (account && account->STATUS == "Open")
+        {   
+            grand_total_ += stock.VALUE * conv_rate;
+            grand_gain_lost_ += gain_lost * conv_rate;
+        }   
+    }   
+}
+
+double htmlWidgetStocks::get_total()
+{
+    return grand_total_;
+}
+
+double htmlWidgetStocks::get_total_gein_lost()
+{
+    return grand_gain_lost_;
+}
+
+////////////////////////////////////////////////////////
+
+class htmlWidgetTop7Categories
+{
+public:
+    ~htmlWidgetTop7Categories();
+    htmlWidgetTop7Categories(
+        mmDateRange* date_range);
+
+    wxString getHTMLText();
+
+protected:
+    mmDateRange* date_range_;
+    wxString title_;
+    void getTopCategoryStats(
+        std::vector<std::pair<wxString, double> > &categoryStats
+        , const mmDateRange* date_range) const;
+};
+
+htmlWidgetTop7Categories::htmlWidgetTop7Categories(mmDateRange* date_range)
+    : date_range_(date_range)
+{
+    title_ = wxString::Format(_("Top Withdrawals: %s"), date_range_->title());
+}
+
+htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
+{
+    if (date_range_) delete date_range_;
+}
+
+wxString htmlWidgetTop7Categories::getHTMLText()
+{
+    static const wxString FUNCTION =
+        "<script> function toggleCategories()\n"
+        "{\n"
+        "    var elem = document.getElementById(\"%s\");\n"
+        "    var label = document.getElementById(\"categ_label\");\n"
+        "    var hide = elem.style.display == \"none\";\n"
+        "    if (hide) {\n"
+        "        elem.style.display = \"\";\n"
+        "        label.innerHTML = \"[-]\";\n"
+        "    }\n"
+        "    else {\n"
+        "        elem.style.display = \"none\";\n"
+        "        label.innerHTML = \"[+]\";\n"
+        "    }\n"
+        "}\n"
+        "</script>\n";
+    const wxString id = "TOP_CATEGORIES";
+
+    wxString output = "<table class = \"table\"><thead><tr class='active'><th>\n";
+    output += title_ + "</th><th class='text-right'><a id=\"bils_label\" onclick=\"toggleCategories(); \" href=\"#\">[-]</a></th></tr></thead>\n";
+    output += wxString::Format("<tbody id='%s'>", id);
+    output += "<tr style='background-color: #d8ebf0'><td>";
+    output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
+    std::vector<std::pair<wxString, double> > topCategoryStats;
+    getTopCategoryStats(topCategoryStats, date_range_);
+
+    for (const auto& i : topCategoryStats)
+    {
+        output += "<tr>";
+        output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
+        output += wxString::Format("<td class='text-right'>%s</td>", Model_Currency::toCurrency(i.second));
+        output += "</tr>";
+    }
+    output += "</tbody></table>\n";
+    output += wxString::Format(FUNCTION, id);
+
+    return output;
+}
+
+void htmlWidgetTop7Categories::getTopCategoryStats(
+    std::vector<std::pair<wxString, double> > &categoryStats
+    , const mmDateRange* date_range) const
+{
+    //Get base currency rates for all accounts
+    std::map<int, double> acc_conv_rates;
+    for (const auto& account: Model_Account::instance().all())
+    {
+        Model_Currency::Data* currency = Model_Account::currency(account);
+        acc_conv_rates[account.ACCOUNTID] = currency->BASECONVRATE;
+    }
+    //Temporary map
+    std::map<std::pair<int /*category*/, int /*sub category*/>, double> stat;
+
+    const auto &transactions = Model_Checking::instance().find(
+            Model_Checking::TRANSDATE(date_range->start_date(), GREATER_OR_EQUAL)
+            , Model_Checking::TRANSDATE(date_range->end_date(), LESS_OR_EQUAL)
+            , Model_Checking::STATUS(Model_Checking::VOID_, NOT_EQUAL)
+            , Model_Checking::TRANSCODE(Model_Checking::TRANSFER, NOT_EQUAL));
+
+    for (const auto &trx : transactions)
+    {
+        bool withdrawal = Model_Checking::type(trx) == Model_Checking::WITHDRAWAL;
+        if (Model_Checking::splittransaction(trx).empty())
+        {
+            std::pair<int, int> category = std::make_pair(trx.CATEGID, trx.SUBCATEGID);
+            if (withdrawal)
+                stat[category] -= trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+            else
+                stat[category] += trx.TRANSAMOUNT * (acc_conv_rates[trx.ACCOUNTID]);
+        }
+        else
+        {
+            const auto &splits = Model_Splittransaction::instance().find(Model_Splittransaction::TRANSID(trx.TRANSID));
+            for (const auto& entry : splits)
+            {
+                std::pair<int, int> category = std::make_pair(entry.CATEGID, entry.SUBCATEGID);
+                double val = entry.SPLITTRANSAMOUNT
+                    * (acc_conv_rates[trx.ACCOUNTID])
+                    * (withdrawal ? -1 : 1);
+                stat[category] += val;
+            }
+        }
+    }
+
+    categoryStats.clear();
+    for (const auto& i : stat)
+    {
+        if (i.second < 0)
+        {
+            std::pair <wxString, double> stat_pair;
+            stat_pair.first = Model_Category::full_name(i.first.first, i.first.second);
+            stat_pair.second = i.second;
+            categoryStats.push_back(stat_pair);
+        }
+    }
+
+    std::stable_sort(categoryStats.begin(), categoryStats.end()
+        , [] (const std::pair<wxString, double> x, const std::pair<wxString, double> y)
+        { return x.second < y.second; }
+    );
+
+    int counter = 0;
+    std::vector<std::pair<wxString, double> >::iterator iter;
+    for (iter = categoryStats.begin(); iter != categoryStats.end(); )
+    {
+        counter++;
+        if (counter > 7)
+            iter = categoryStats.erase(iter);
+        else
+            ++iter;
+    }
+}
+
+////////////////////////////////////////////////////////
+class htmlWidgetBillsAndDeposits : public mmPrintableBase
+{
+public:
+    ~htmlWidgetBillsAndDeposits();
+    htmlWidgetBillsAndDeposits(const wxString& title
+        , mmDateRange* date_range = new mmAllTime());
+
+    wxString getHTMLText();
+
+protected:
+    mmDateRange* date_range_;
+    wxString title_;
+};
+
+htmlWidgetBillsAndDeposits::htmlWidgetBillsAndDeposits(const wxString& title, mmDateRange* date_range)
+    : title_(title)
+    , date_range_(date_range)
+{}
+
+htmlWidgetBillsAndDeposits::~htmlWidgetBillsAndDeposits()
+{
+    if (date_range_) delete date_range_;
+}
+
+wxString htmlWidgetBillsAndDeposits::getHTMLText()
+{
+    wxString output = ""; 
+
+    //                    days, payee, description, amount, account
+    std::vector< std::tuple<int, wxString, wxString, double, Model_Account::Data*> > bd_days;
+    for (const auto& q1 : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+    {   
+        int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&q1);
+        if (daysRemaining > 14) 
+            break; // Done searching for all to include
+
+        int repeats        = q1.REPEATS;
+        // DeMultiplex the Auto Executable fields.
+        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
+            repeats -= BD_REPEATS_MULTIPLEX_BASE;
+        if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
+            repeats -= BD_REPEATS_MULTIPLEX_BASE;
+
+        wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
+        if (daysRemaining == 0)
+        {
+            if (((repeats > 10) && (repeats < 15)) && (q1.NUMOCCURRENCES < 0))
+                continue; // Inactive
+        }
+
+        wxString payeeStr = ""; 
+        if (Model_Billsdeposits::type(q1) == Model_Billsdeposits::TRANSFER)
+        {   
+            const Model_Account::Data *account = Model_Account::instance().get(q1.TOACCOUNTID);
+            if (account) payeeStr = account->ACCOUNTNAME;
+        }   
+        else
+        {   
+            const Model_Payee::Data* payee = Model_Payee::instance().get(q1.PAYEEID);
+            if (payee) payeeStr = payee->PAYEENAME;
+        }   
+        Model_Account::Data *account = Model_Account::instance().get(q1.ACCOUNTID);
+        double amount = (Model_Billsdeposits::type(q1) == Model_Billsdeposits::DEPOSIT ? q1.TRANSAMOUNT : -q1.TRANSAMOUNT);
+        bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, amount, account));
+    }   
+
+    //std::sort(bd_days.begin(), bd_days.end());
+    //std::reverse(bd_days.begin(), bd_days.end());
+    ////////////////////////////////////
+
+    if (!bd_days.empty())
+    {   
+    
+        static const wxString FUNCTION =
+            "<script> function toggleBills()\n"
+            "{\n"
+            "    var elem = document.getElementById(\"%s\");\n"
+            "    var label = document.getElementById(\"bils_label\");\n"
+            "    var hide = elem.style.display == \"none\";\n"
+            "    if (hide) {\n"
+            "        elem.style.display = \"\";\n"
+            "        label.innerHTML = \"[-]\";\n"
+            "    }\n"
+            "    else {\n"
+            "        elem.style.display = \"none\";\n"
+            "        label.innerHTML = \"[+]\";\n"
+            "    }\n"
+            "}\n"
+            "</script>\n";
+        const wxString id = "BILLS_AND_DEPOSITS";
+
+        output = "<table class=\"table\"><thead><tr class='active'><th>";
+        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
+        output += wxString::Format("<th class='text-right'>%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr>\n"
+            , int(bd_days.size()));
+        output += "</thead>";
+
+        output += wxString::Format("<tbody id='%s'>", id);
+        output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>"
+            , _("Payee"), _("Amount"), _("Days"));
+
+        for (const auto& item : bd_days)
+        {
+            output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
+            output += "<td>" + std::get<1>(item) +"</td>"; //payee
+            output += wxString::Format("<td class = \"text-right\">%s</td>"
+                , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
+            output += "<td  class = 'text-right'>" + std::get<2>(item) + "</td></tr>\n";
+        }
+        output += "</tbody></table>\n";
+        output += wxString::Format(FUNCTION, id);
+    }
+    return output;
+}
+
+////////////////////////////////////////////////////////
 
 class WebViewHandlerHomePage : public wxWebViewHandler
 {
