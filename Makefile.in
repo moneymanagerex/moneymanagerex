@@ -158,9 +158,6 @@ MMEX_OBJECTS =  \
 	mmex_categexp.o \
 	mmex_categovertimeperf.o \
 	mmex_chart.o \
-	mmex_html_widget_bills_and_deposits.o \
-	mmex_html_widget_stocks.o \
-	mmex_html_widget_top_categories.o \
 	mmex_htmlbuilder.o \
 	mmex_incexpenses.o \
 	mmex_mmDateRange.o \
@@ -592,15 +589,6 @@ mmex_categovertimeperf.o: $(srcdir)/src/reports/categovertimeperf.cpp
 
 mmex_chart.o: $(srcdir)/src/reports/chart.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/chart.cpp
-
-mmex_html_widget_bills_and_deposits.o: $(srcdir)/src/reports/html_widget_bills_and_deposits.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/html_widget_bills_and_deposits.cpp
-
-mmex_html_widget_stocks.o: $(srcdir)/src/reports/html_widget_stocks.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/html_widget_stocks.cpp
-
-mmex_html_widget_top_categories.o: $(srcdir)/src/reports/html_widget_top_categories.cpp
-	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/html_widget_top_categories.cpp
 
 mmex_htmlbuilder.o: $(srcdir)/src/reports/htmlbuilder.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/htmlbuilder.cpp

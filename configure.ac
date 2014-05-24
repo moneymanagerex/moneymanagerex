@@ -3,8 +3,7 @@
 ##########################################################################
 
 AC_PREREQ(2.53)
-m4_include([revision.m4])
-AC_INIT([MoneyManagerEx], SVN_REVISION, [moneymanagerex@gmail.com])
+AC_INIT([MoneyManagerEx], 1.1.0, [moneymanagerex@gmail.com])
 
 ##########################################################################
 

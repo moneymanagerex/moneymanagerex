@@ -32,6 +32,7 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Payee.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Billsdeposits.h"
+#include "model/Model_Category.h"
 
 class htmlWidgetStocks
 {
@@ -292,7 +293,7 @@ void htmlWidgetTop7Categories::getTopCategoryStats(
 }
 
 ////////////////////////////////////////////////////////
-class htmlWidgetBillsAndDeposits : public mmPrintableBase
+class htmlWidgetBillsAndDeposits
 {
 public:
     ~htmlWidgetBillsAndDeposits();

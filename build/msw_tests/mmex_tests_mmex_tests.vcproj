@@ -597,18 +597,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\reports\html_widget_bills_and_deposits.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\html_widget_stocks.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\html_widget_top_categories.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\src\reports\htmlbuilder.cpp"
 				>
 			</File>
@@ -1120,18 +1108,6 @@
 			</File>
 			<File
 				RelativePath="..\..\3rd\cgitemplate\html_template.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\html_widget_bills_and_deposits.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\html_widget_stocks.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\src\reports\html_widget_top_categories.h"
 				>
 			</File>
 			<File
