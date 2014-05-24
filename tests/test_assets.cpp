@@ -161,7 +161,6 @@ void Test_Asset::test_assetpanel()
 
     // Create the panel under test
     mmAssetsPanel* asset_panel = new mmAssetsPanel(asset_frame);
-    asset_frame->SetStatusText(Model_Asset::instance().version());
     asset_panel->Show();
 
     // Anchor the panel. Otherwise it will disappear.
