@@ -140,7 +140,7 @@ void mmPayeeDialog::fillControls()
 
     int firstInTheListPayeeID = -1;
     payeeListBox_->DeleteAllItems();
-    for (const auto& payee : Model_Payee::instance().FilterPayees(m_maskStr))
+    for (const auto& payee : p)
     {
         const wxString full_category_name = Model_Category::instance().full_name(payee.CATEGID, payee.SUBCATEGID);
         if (firstInTheListPayeeID == -1) { firstInTheListPayeeID = payee.PAYEEID; }
