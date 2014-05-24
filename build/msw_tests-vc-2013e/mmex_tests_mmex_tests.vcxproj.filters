@@ -321,15 +321,6 @@
     <ClCompile Include="..\..\src\reports\chart.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\reports\html_widget_bills_and_deposits.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reports\html_widget_stocks.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reports\html_widget_top_categories.cpp">
-      <Filter>Source Files\reports</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\reports\htmlbuilder.cpp">
       <Filter>Source Files\reports</Filter>
     </ClCompile>
@@ -380,6 +371,9 @@
     </ClCompile>
     <ClCompile Include="..\..\tests\framebase_tests.cpp">
       <Filter>Test Source\base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\mmframereport.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -726,15 +720,6 @@
       <Filter>Header Files\3rd</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\chart.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\html_widget_bills_and_deposits.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\html_widget_stocks.h">
-      <Filter>Header Files\reports</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\reports\html_widget_top_categories.h">
       <Filter>Header Files\reports</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reports\htmlbuilder.h">
