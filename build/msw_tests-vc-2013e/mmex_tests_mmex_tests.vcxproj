@@ -253,6 +253,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
     <ClCompile Include="..\..\src\model\Model_Attachment.cpp" />

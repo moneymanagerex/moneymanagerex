@@ -312,6 +312,9 @@
     <ClCompile Include="..\..\src\import_export\univcsvdialog.cpp">
       <Filter>Source Files\import_export</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\mmframereport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">

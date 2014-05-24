@@ -280,6 +280,7 @@
     <ClCompile Include="..\..\src\import_export\qif_import.cpp" />
     <ClCompile Include="..\..\src\minimal_editor.cpp" />
     <ClCompile Include="..\..\src\mmframe.cpp" />
+    <ClCompile Include="..\..\src\mmframereport.cpp" />
     <ClCompile Include="..\..\src\model\Model_Account.cpp" />
     <ClCompile Include="..\..\src\model\Model_Asset.cpp" />
     <ClCompile Include="..\..\src\model\Model_Attachment.cpp" />
