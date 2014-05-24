@@ -170,6 +170,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmcheckingpanel.o \
 	mmex_tests_mmex.o \
 	mmex_tests_mmframe.o \
+	mmex_tests_mmframereport.o \
 	mmex_tests_mmhelppanel.o \
 	mmex_tests_mmhomepagepanel.o \
 	mmex_tests_mmreportspanel.o \
@@ -746,6 +747,9 @@ mmex_tests_mmex.o: ../../src/mmex.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmframe.o: ../../src/mmframe.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_mmframereport.o: ../../src/mmframereport.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_mmhelppanel.o: ../../src/mmhelppanel.cpp

@@ -135,6 +135,7 @@ MMEX_OBJECTS =  \
 	mmex_mmcheckingpanel.o \
 	mmex_mmex.o \
 	mmex_mmframe.o \
+	mmex_mmframereport.o \
 	mmex_mmhelppanel.o \
 	mmex_mmhomepagepanel.o \
 	mmex_mmreportspanel.o \
@@ -597,6 +598,9 @@ mmex_mmex.o: ../../src/mmex.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmframe.o: ../../src/mmframe.cpp
+	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_mmframereport.o: ../../src/mmframereport.cpp
 	$(CXX) -c -o $@ $(MMEX_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_mmhelppanel.o: ../../src/mmhelppanel.cpp

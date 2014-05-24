@@ -645,6 +645,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\src\mmframereport.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\src\reports\mmgraphgenerator.cpp"
 				>
 			</File>
