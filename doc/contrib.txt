@@ -15,13 +15,13 @@ Gabriele         [gabriele-v]
 Brazilian Portuguese
 -- Jose Carlos
 Bulgarian
--- Ivan Gyokov
+-- Ivan Gyokov, Poltargaista
 Croatian
 -- Goran Bobanovic
 Czech
 -- Josef Remes, PepaR
 Dutch
--- Theo Kamphuis
+-- Theo Kamphuis, PeCe
 Dutch (Belgian)
 -- Rol, wimvhs
 Englsh (UK)
@@ -38,10 +38,12 @@ Greek
 -- Panagiotis Pentzeridis
 -- Polvar
 Hebrew
--- Ykpui
+-- Ykpui, Avi
 Hungarian
 -- Csaba, Zoltan Levardy [zlevardy]
 -- Toroka
+Hindy
+-- Ankur Jain
 Indonesian
 -- Dindin
 Italian
