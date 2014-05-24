@@ -15,11 +15,10 @@ branches:
 notifications:
   recipients:
     - moneymanagerex@googlegroups.com
+    - nikolay.akimov@gmail.com
+    - guanlisheng@gmail.com
   email:
     on_success: change
     on_failure: always
 os:
   - osx
-matrix:
-  allow_failures:
-    - os: osx
