@@ -1714,10 +1714,6 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         GetEventHandler()->AddPendingEvent(ev);
 
     }
-    else
-    {
-        return false;
-    }
 
     return true;
 }
