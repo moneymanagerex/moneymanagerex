@@ -124,7 +124,8 @@ void mmAttachmentDialog::CreateControls()
     buttons_sizer->Add(btnCancel, g_flags);
 
     wxBitmapButton* magicButton = new wxBitmapButton(buttons_panel
-        , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition);
+        , wxID_APPLY, wxBitmap(magic_wand_xpm), wxDefaultPosition
+        , wxSize(buttonOK->GetSize().GetY(), buttonOK->GetSize().GetY()));
     magicButton->SetToolTip(_("Other tools"));
     buttons_sizer->Add(magicButton, g_flags);
 
