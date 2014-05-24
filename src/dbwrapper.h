@@ -24,7 +24,6 @@
 #include <wx/sharedptr.h>
 
 class wxSQLite3Database;
-class wxSQLite3ResultSet;
 
 namespace mmDBWrapper
 {
