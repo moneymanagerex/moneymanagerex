@@ -62,9 +62,8 @@ BEGIN_EVENT_TABLE(mmCheckingPanel, wxPanel)
     EVT_BUTTON(wxID_REMOVE,      mmCheckingPanel::OnDeleteTransaction)
     EVT_BUTTON(wxID_DUPLICATE,    mmCheckingPanel::OnDuplicateTransaction)
     EVT_BUTTON(wxID_FILE, mmCheckingPanel::OnOpenAttachment)
-    EVT_MENU(wxID_ANY, mmCheckingPanel::OnViewPopupSelected)
+    EVT_MENU(wxID_PAGE_SETUP, mmCheckingPanel::OnViewPopupSelected)
     EVT_SEARCHCTRL_SEARCH_BTN(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
-    EVT_TEXT_ENTER(wxID_FIND, mmCheckingPanel::OnSearchTxtEntered)
 END_EVENT_TABLE()
 //----------------------------------------------------------------------------
 
@@ -342,8 +341,8 @@ void mmCheckingPanel::CreateControls()
 {
     int border = 1;
     wxSizerFlags flags, flagsExpand;
-    flags.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL).Border(wxALL, border);
-    flagsExpand.Align(wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxEXPAND).Border(wxALL, border).Proportion(1);
+    flags.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, border);
+    flagsExpand.Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, border).Proportion(1);
 
     wxBoxSizer* itemBoxSizer9 = new wxBoxSizer(wxVERTICAL);
     this->SetSizer(itemBoxSizer9);
@@ -369,7 +368,7 @@ void mmCheckingPanel::CreateControls()
     itemBoxSizerHHeader2->Add(itemFlexGridSizerHHeader2);
 
     wxBitmap itemStaticBitmap(rightarrow_xpm);
-    bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_ANY
+    bitmapMainFilter_ = new wxStaticBitmap(headerPanel, wxID_PAGE_SETUP
         , itemStaticBitmap);
     itemFlexGridSizerHHeader2->Add(bitmapMainFilter_, flags);
     bitmapMainFilter_->Connect(wxID_ANY, wxEVT_RIGHT_DOWN
@@ -502,8 +501,8 @@ void mmCheckingPanel::CreateControls()
     wxSearchCtrl* searchCtrl = new wxSearchCtrl(itemPanel12
         , wxID_FIND, wxEmptyString, wxDefaultPosition
         , wxSize(100, btnDuplicate_->GetSize().GetHeight())
-        , wxTE_PROCESS_ENTER, wxDefaultValidator, _("Search"));
-    searchCtrl->SetHint(_("Search"));
+        , wxTE_NOHIDESEL, wxDefaultValidator);
+    searchCtrl->SetDescriptiveText(_("Search"));
     itemButtonsSizer->Add(searchCtrl, 0, wxCENTER, 1);
     searchCtrl->SetToolTip(_("Enter any string to find it in the nearest transaction notes"));
 
@@ -657,6 +656,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
     wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
     int def_view_selection = menu_labels().Index(vTrans);
     currentView_ = Model_Infotable::instance().GetIntInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view_selection);
+    if (currentView_ < 0 || currentView_ >= menu_labels().size()) currentView_ = def_view_selection;
 
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
     stxtMainFilter_->SetLabel(wxGetTranslation(menu_labels()[currentView_]));
@@ -828,12 +828,12 @@ void mmCheckingPanel::OnSearchTxtEntered(wxCommandEvent& event)
     const wxString search_string = event.GetString().Lower();
     if (search_string.IsEmpty()) return;
 
-    long last = m_listCtrlAccount->GetItemCount();
+    long last = m_listCtrlAccount->GetItemCount() - 1;
     long selectedItem = m_listCtrlAccount->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    if (selectedItem < 0) //nothing selected
-        selectedItem = m_listCtrlAccount->g_asc ? last - 1 : 0;
+    if (selectedItem <= 0 || selectedItem >= last) //nothing selected
+        selectedItem = m_listCtrlAccount->g_asc ? last : 0;
 
-    while (selectedItem > 0 && selectedItem <= last)
+    while (selectedItem >= 0 && selectedItem <= last)
     {
         m_listCtrlAccount->g_asc ?  selectedItem-- : selectedItem++;
         const wxString t = getItem(selectedItem, m_listCtrlAccount->COL_NOTES).Lower();
