@@ -62,16 +62,6 @@ Model_Account& Model_Account::instance()
     return Singleton<Model_Account>::instance();
 }
 
-wxArrayString Model_Account::all_account_names()
-{
-    wxArrayString accounts;
-    for (const auto &account : this->all(COL_ACCOUNTNAME))
-    {
-        accounts.Add(account.ACCOUNTNAME);
-    }
-    return accounts;
-}
-
 wxArrayString Model_Account::all_checking_account_names()
 {
     wxArrayString accounts;

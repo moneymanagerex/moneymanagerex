@@ -64,7 +64,6 @@ public:
     bool remove(int id);
 
 public:
-    wxArrayString all_account_names();
     wxArrayString all_checking_account_names();
 
     static wxArrayString all_status();
