@@ -3074,20 +3074,10 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         return;
     }
 
-    wxArrayString as;
-    wxArrayInt arrAcctID;
-    for (const auto& account : accounts)
-    {
-        as.Add(account.ACCOUNTNAME);
-        arrAcctID.Add(account.ACCOUNTID);
-    }
-
-    mmSingleChoiceDialog scd(this, _("Choose Account to Edit"), _("Accounts"), as);
+    mmSingleChoiceDialog scd(this, _("Choose Account to Edit"), _("Accounts"), accounts);
     if (scd.ShowModal() == wxID_OK)
     {
-        int choice = scd.GetSelection();
-        int acctID = arrAcctID[choice];
-        Model_Account::Data* account = Model_Account::instance().get(acctID);
+        Model_Account::Data* account = Model_Account::instance().get(scd.GetStringSelection());
         mmNewAcctDialog dlg(account, this);
         if (dlg.ShowModal() == wxID_OK)
         {
@@ -3101,27 +3091,17 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 {
-    if (Model_Account::instance().all().empty())
+    const auto &accounts = Model_Account::instance().all();
+    if (accounts.empty())
     {
         wxMessageBox(_("No account available to delete!"), _("Accounts"), wxOK | wxICON_WARNING);
         return;
     }
 
-    wxArrayString as;
-    wxArrayInt arrAcctID;
-
-    for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
-    {
-        as.Add(account.ACCOUNTNAME);
-        arrAcctID.Add(account.ACCOUNTID);
-    }
-
-    mmSingleChoiceDialog scd(this, _("Choose Account to Delete"), _("Accounts"), as);
+    mmSingleChoiceDialog scd(this, _("Choose Account to Delete"), _("Accounts"), accounts);
     if (scd.ShowModal() == wxID_OK)
     {
-        int acctID = arrAcctID[scd.GetSelection()];
-
-        Model_Account::Data* account = Model_Account::instance().get(acctID);
+        Model_Account::Data* account = Model_Account::instance().get(scd.GetStringSelection());
         wxString deletingAccountName = wxString::Format(
             _("Are you sure you want to delete\n %s account: %s ?")
             , wxGetTranslation(account->ACCOUNTTYPE)
@@ -3130,8 +3110,8 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             wxYES_NO | wxNO_DEFAULT | wxICON_EXCLAMATION);
         if (msgDlg.ShowModal() == wxID_YES)
         {
-            Model_Account::instance().remove(acctID);
-            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), acctID);
+            Model_Account::instance().remove(account->id());
+            mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->id());
         }
     }
     updateNavTreeControl();

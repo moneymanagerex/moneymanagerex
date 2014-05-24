@@ -36,13 +36,14 @@ public:
         wxSingleChoiceDialog::Create(parent, message, caption, choices);
         fix_translation();
     }
-    mmSingleChoiceDialog(wxWindow *parent
-        , Model_Account::Data_Set accounts)
+    mmSingleChoiceDialog(wxWindow* parent
+        , const wxString& message
+        , const wxString& caption
+        , const Model_Account::Data_Set& accounts)
     {
         wxArrayString choices;
-        for (const auto& acc : accounts) choices.Add(acc.ACCOUNTNAME);
-        wxSingleChoiceDialog::Create(parent, _("Account name"), _("Select Account"), choices);
-        fix_translation();
+        for (const auto & item: accounts) choices.Add(item.ACCOUNTNAME);
+        mmSingleChoiceDialog(parent, message, caption, choices);
     }
     int ShowModal()
     {

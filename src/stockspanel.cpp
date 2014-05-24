@@ -238,19 +238,13 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
 void StocksListCtrl::OnMoveStocks(wxCommandEvent& /*event*/)
 {
     if (m_selected_row == -1) return;
-
-    wxArrayString accounts_name;
-    for (const auto& account : Model_Account::instance()
-        .find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT])))
-    {
-        //if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-        accounts_name.Add(account.ACCOUNTNAME);
-    }
-    if (accounts_name.Count() < 1) return;
+    
+    const auto& accounts = Model_Account::instance().find(Model_Account::ACCOUNTTYPE(Model_Account::all_type()[Model_Account::INVESTMENT]));
+    if (accounts.empty()) return;
 
     const Model_Account::Data* from_account = Model_Account::instance().get(stock_panel_->accountID_);
     wxString headerMsg = wxString::Format(_("Moving Transaction from %s to..."), from_account->ACCOUNTNAME);
-    mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts_name);
+    mmSingleChoiceDialog scd(this, _("Select the destination Account "), headerMsg , accounts);
 
     int toAccountID = -1;
     int error_code = scd.ShowModal();
