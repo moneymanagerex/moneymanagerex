@@ -273,7 +273,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     recentFiles_->Load();
 
     // Load perspective
-    wxString auiPerspective = Model_Setting::instance().GetStringSetting("AUIPERSPECTIVE", m_perspective);
+    wxString auiPerspective = Model_Setting::instance().GetStringSetting("AUIPERSPECTIVE", wxEmptyString);
     m_mgr.LoadPerspective(auiPerspective);
 
     // add the toolbars to the manager

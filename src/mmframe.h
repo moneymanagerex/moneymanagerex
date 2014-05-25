@@ -139,7 +139,6 @@ private:
 
     /* wxAUI */
     wxAuiManager m_mgr;
-    wxString m_perspective;
 
     /* Homepage panel logic */
 
