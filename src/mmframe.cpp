@@ -2516,19 +2516,13 @@ void mmGUIFrame::OnViewLinks(wxCommandEvent &event)
 
 void mmGUIFrame::OnViewToolbarUpdateUI(wxUpdateUIEvent &event)
 {
-    if (m_mgr.GetPane("toolbar").IsShown())
-        event.Check(true);
-    else
-        event.Check(false);
+    event.Check(m_mgr.GetPane("toolbar").IsShown());
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 {
-    if (m_mgr.GetPane("Navigation").IsShown())
-        event.Check(true);
-    else
-        event.Check(false);
+    event.Check(m_mgr.GetPane("Navigation").IsShown());
 }
 //----------------------------------------------------------------------------
 
