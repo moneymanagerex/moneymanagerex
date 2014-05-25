@@ -23,26 +23,20 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "mongoose/mongoose.h"
 
 /*************************************************************************
- Revision of last commit: $Revision$
- Author of last commit:   $Author$
- 
- The definition: #define _MM_EX_BUILD_TYPE_RELEASE
+ MMEX_VERSION
+ Update the version definition for the program as required.
+
+ The definition: #define MMEX_BUILD_TYPE_RELEASE
  is used to control the release type.
 
  Development Build:
- Remove the definition: _MM_EX_BUILD_TYPE_RELEASE
+ Remove the definition: MMEX_BUILD_TYPE_RELEASE
 
  Release Build:
- Include the definition: _MM_EX_BUILD_TYPE_RELEASE
-
- Revision ID: MMEX_REVISION_ID
- Update the revision counter to the latest SVN Revision by either
- making a change to the file and commit the changes, or
- update the counter manually. A manual change is not saved to SVN,
- but will appear on the revision heading of the build.
+ Include the definition: MMEX_BUILD_TYPE_RELEASE
  *************************************************************************/
-//#define _MM_EX_BUILD_TYPE_RELEASE
-const wxString MMEX_REVISION_ID = "$Rev$";
+const wxString MMEX_VERSION = "1.1.0.0";
+//#define MMEX_BUILD_TYPE_RELEASE
 
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
@@ -79,18 +73,13 @@ const wxString mmex::getTitleProgramVersion()
 }
 const wxString mmex::getProgramVersion()
 {
-    wxString revision(MMEX_REVISION_ID);
-    revision.Replace("$", wxEmptyString);
+    wxString revision("Development");
 
-/**************************************************
- Refer to comments in the file: constants.h
- **************************************************/
-#ifndef _MM_EX_BUILD_TYPE_RELEASE
-    revision.Replace("Rev: ", "DEV:SVN-");
-#endif
+    #ifdef MMEX_BUILD_TYPE_RELEASE
+        revision.Replace("Development", "Release");
+    #endif
 
-    revision.Trim();
-    return wxString::Format("1.1.0.0  %s", revision);
+    return wxString::Format("%s  %s", MMEX_VERSION, revision);
 }
 const wxString mmex::getProgramCopyright()
 {
