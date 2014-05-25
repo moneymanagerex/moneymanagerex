@@ -38,11 +38,11 @@ Greek
 -- Panagiotis Pentzeridis
 -- Polvar
 Hebrew
--- Ykpui, Avi
+-- Avi Markovitz
 Hungarian
 -- Csaba, Zoltan Levardy [zlevardy]
 -- Toroka
-Hindy
+Hindi
 -- Ankur Jain
 Indonesian
 -- Dindin
