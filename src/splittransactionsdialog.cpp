@@ -218,21 +218,6 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
     DataToControls();
 }
 
-const bool SplitTransactionDialog::ShowToolTips()
-{
-    return TRUE;
-}
-
-wxBitmap SplitTransactionDialog::GetBitmapResource( const wxString& /*name*/ )
-{
-    return wxNullBitmap;
-}
-
-wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
-{
-    return wxNullIcon;
-}
-
 void SplitTransactionDialog::UpdateSplitTotal()
 {
     double total = Model_Splittransaction::get_total(this->m_local_splits);

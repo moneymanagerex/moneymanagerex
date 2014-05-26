@@ -378,15 +378,6 @@ void mmFilterTransactionsDialog::CreateControls()
     buttonPanelSizer->Add(itemButtonClear, g_flags);
 }
 
-/*!
- * Should we show tooltips?
- */
-
-const bool mmFilterTransactionsDialog::ShowToolTips()
-{
-    return TRUE;
-}
-
 void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
 {
     if (event.GetId() == similarCategCheckBox_->GetId())

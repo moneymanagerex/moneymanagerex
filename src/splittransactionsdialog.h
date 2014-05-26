@@ -76,15 +76,6 @@ public:
 
     void UpdateSplitTotal();
 
-    /// Retrieves bitmap resources
-    wxBitmap GetBitmapResource( const wxString& name );
-
-    /// Retrieves icon resources
-    wxIcon GetIconResource( const wxString& name );
-
-    /// Should we show tooltips?
-    const bool ShowToolTips();
-
     wxDataViewListCtrl* lcSplit_;
     wxStaticText* transAmount_;
 

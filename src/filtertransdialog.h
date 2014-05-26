@@ -166,9 +166,6 @@ private:
     wxString to_json();
     void from_json(const wxString &data);
 
-    /// Should we show tooltips?
-    const bool ShowToolTips();
-
     wxString settings_string_;
     wxString prev_value_;
     wxTextCtrl* m_settingLabel;
