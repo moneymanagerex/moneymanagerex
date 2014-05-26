@@ -16,12 +16,12 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "payeedialog.h"
 #include "attachmentdialog.h"
 #include "categdialog.h"
 #include "constants.h"
 #include "mmOption.h"
 #include "paths.h"
-#include "payeedialog.h"
 #include "relocatepayeedialog.h"
 #include "util.h"
 #include "webapp.h"

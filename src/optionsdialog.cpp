@@ -39,6 +39,7 @@
 
 class mmSettingPanel: public wxPanel
 {
+    virtual ~mmSettingPanel() {}
     virtual void SaveSetting() = 0;
 };
 

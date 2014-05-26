@@ -15,7 +15,6 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-#include <wx/cmdline.h>
 
 #include "mmex.h"
 #include "mmframe.h"
@@ -28,6 +27,7 @@
 #include "model/Model_Usage.h"
 #include "webserver.h"
 
+#include <wx/cmdline.h>
 #include <wx/fs_mem.h>
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>

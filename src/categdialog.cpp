@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "relocatecategorydialog.h"
 #include "categdialog.h"
+#include "relocatecategorydialog.h"
 #include "util.h"
 #include "mmOption.h"
 #include "defs.h"

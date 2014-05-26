@@ -19,10 +19,12 @@
 #ifndef MM_EX_SPLITTRANSACTIONDIALOG_H_
 #define MM_EX_SPLITTRANSACTIONDIALOG_H_
 
+#include "defs.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
 
 class wxListCtrl;
+class wxStaticText;
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000

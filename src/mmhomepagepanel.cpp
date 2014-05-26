@@ -153,7 +153,7 @@ class htmlWidgetTop7Categories
 {
 public:
     ~htmlWidgetTop7Categories();
-    htmlWidgetTop7Categories(
+    explicit htmlWidgetTop7Categories(
         mmDateRange* date_range);
 
     wxString getHTMLText();
@@ -297,7 +297,7 @@ class htmlWidgetBillsAndDeposits
 {
 public:
     ~htmlWidgetBillsAndDeposits();
-    htmlWidgetBillsAndDeposits(const wxString& title
+    explicit htmlWidgetBillsAndDeposits(const wxString& title
         , mmDateRange* date_range = new mmAllTime());
 
     wxString getHTMLText();
