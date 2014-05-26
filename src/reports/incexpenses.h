@@ -25,7 +25,7 @@
 class mmReportIncomeExpenses : public mmPrintableBaseSpecificAccounts
 {
 public:
-    mmReportIncomeExpenses(mmDateRange* date_range = new mmCurrentMonth());
+    explicit mmReportIncomeExpenses(mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpenses();
     virtual wxString getHTMLText();
 
@@ -79,9 +79,10 @@ public:
 class mmReportIncomeExpensesSpecificAccounts : public mmReportIncomeExpenses
 {
 public:
-    mmReportIncomeExpensesSpecificAccounts(mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpenses(date_range)
+    explicit mmReportIncomeExpensesSpecificAccounts(mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpenses(date_range)
     {
     }
+    virtual ~mmReportIncomeExpensesSpecificAccounts() {};
     virtual wxString getHTMLText()
     {
         getSpecificAccounts();
@@ -133,9 +134,9 @@ public:
 class mmReportIncomeExpensesMonthly : public mmPrintableBaseSpecificAccounts
 {
 public:
-    mmReportIncomeExpensesMonthly(int day_ = 1
+    explicit mmReportIncomeExpensesMonthly(int day_ = 1
                                          , int month_ = 1
-                                                 , mmDateRange* date_range = new mmCurrentMonth());
+                                         , mmDateRange* date_range = new mmCurrentMonth());
     virtual ~mmReportIncomeExpensesMonthly();
     virtual wxString getHTMLText();
 protected:
@@ -204,10 +205,11 @@ public:
 class mmReportIncomeExpensesMonthlySpecificAccounts : public mmReportIncomeExpensesMonthly
 {
 public:
-    mmReportIncomeExpensesMonthlySpecificAccounts(int day = 1, int month = 1
+    explicit mmReportIncomeExpensesMonthlySpecificAccounts(int day = 1, int month = 1
         , mmDateRange* date_range = new mmCurrentMonth()) : mmReportIncomeExpensesMonthly(day, month, date_range)
     {
     }
+    virtual ~mmReportIncomeExpensesMonthlySpecificAccounts() {};
     virtual wxString getHTMLText()
     {
         getSpecificAccounts();

@@ -16,9 +16,9 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
+#include "Model_Report.h"
 #include "paths.h"
 #include "platfdep.h"
-#include "Model_Report.h"
 #include "reports/htmlbuilder.h"
 #include "LuaGlue/LuaGlue.h"
 #include "sqlite3.h"

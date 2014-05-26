@@ -30,6 +30,7 @@ protected:
 
 public:
     mmDateRange();
+    virtual ~mmDateRange();
     const virtual wxDateTime start_date() const;
     const virtual wxDateTime end_date() const;
     const virtual wxDateTime today() const;

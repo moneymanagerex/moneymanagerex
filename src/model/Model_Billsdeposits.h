@@ -66,7 +66,7 @@ public:
     {
         Full_Data(): Data(0)
         {}
-        Full_Data(const Data& r): Data(r)
+        explicit Full_Data(const Data& r): Data(r)
         {}
         wxString ACCOUNTNAME;
         wxString PAYEENAME;

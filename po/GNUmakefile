@@ -25,7 +25,7 @@
 
 ### Targets: ###
 
-all: arabic.mo bulgarian.mo chinese_chs.mo chinese_zh.mo croatian.mo czech.mo dutch.mo dutch_be.mo english-uk.mo english.mo french.mo german.mo greek.mo hebrew.mo hungarian.mo indonesian.mo italian.mo latvian.mo norwegian.mo polish.mo portuguese.mo portuguese_portugal.mo romanian.mo russian.mo serbo-croatian.mo serbian.mo slovak.mo slovenian.mo spanish.mo swedish.mo tamil.mo turkish.mo ukrainian.mo vietnamese.mo
+all: arabic.mo bulgarian.mo chinese_chs.mo chinese_zh.mo croatian.mo czech.mo dutch.mo dutch_be.mo english-uk.mo english.mo french.mo german.mo greek.mo hebrew.mo hindi.mo hungarian.mo indonesian.mo italian.mo latvian.mo norwegian.mo polish.mo portuguese.mo portuguese_portugal.mo romanian.mo russian.mo serbo-croatian.mo serbian.mo slovak.mo slovenian.mo spanish.mo swedish.mo tamil.mo turkish.mo ukrainian.mo vietnamese.mo
 
 install: 
 
@@ -48,6 +48,7 @@ clean:
 	rm -f german.mo
 	rm -f greek.mo
 	rm -f hebrew.mo
+	rm -f hindi.mo
 	rm -f hungarian.mo
 	rm -f indonesian.mo
 	rm -f italian.mo
@@ -110,6 +111,9 @@ greek.mo: greek.po
 
 hebrew.mo: hebrew.po
 	msgfmt -o hebrew.mo hebrew.po
+
+hindi.mo: hindi.po
+	msgfmt -o hindi.mo hindi.po
 
 hungarian.mo: hungarian.po
 	msgfmt -o hungarian.mo hungarian.po

@@ -27,6 +27,10 @@ mmDateRange::mmDateRange()
     title_ = "Date Range";
 }
 
+mmDateRange::~mmDateRange()
+{
+}
+
 const wxDateTime mmDateRange::start_date() const
 {
     return this->start_date_;

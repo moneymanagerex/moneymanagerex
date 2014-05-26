@@ -33,6 +33,9 @@ mmReportBudgetCategorySummary::mmReportBudgetCategorySummary(int budgetYearID)
 : budgetYearID_(budgetYearID)
 {}
 
+mmReportBudgetCategorySummary::~mmReportBudgetCategorySummary()
+{}
+
 wxString mmReportBudgetCategorySummary::actualAmountColour(double amount, double actual, double estimated, bool total)
 {
     wxString actAmtColStr = "black";

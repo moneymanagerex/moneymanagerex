@@ -39,7 +39,7 @@ public:
     struct Full_Data: public Data
     {
         Full_Data();
-        Full_Data(const Data& r);
+        explicit Full_Data(const Data& r);
         Full_Data(const Data& r
             , const std::map<int /*trans id*/
                 , Model_Splittransaction::Data_Set /*split trans*/ > & splits);

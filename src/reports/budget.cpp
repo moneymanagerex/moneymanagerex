@@ -24,6 +24,9 @@
 mmReportBudget::mmReportBudget()
 {}
 
+mmReportBudget::~mmReportBudget()
+{}
+
 void mmReportBudget::SetDateToEndOfMonth(int month, wxDateTime& date)
 {
     date.SetDay(28);

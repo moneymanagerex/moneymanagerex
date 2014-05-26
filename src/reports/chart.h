@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class ChartData
 {
 public:
-    ChartData( const wxString &aKey, float aVal = 0 );
+    explicit ChartData( const wxString &aKey, float aVal = 0 );
     ChartData( const wxString &aKey, const std::vector<float> &aSerie );
 
     wxString key;

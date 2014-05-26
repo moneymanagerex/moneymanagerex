@@ -28,8 +28,8 @@
 class mmReportPayeeExpenses : public mmPrintableBase
 {
 public:
-    mmReportPayeeExpenses(const wxString& title = _("Payee Report"), mmDateRange* date_range = new mmAllTime());
-    ~mmReportPayeeExpenses();
+    explicit mmReportPayeeExpenses(const wxString& title = _("Payee Report"), mmDateRange* date_range = new mmAllTime());
+    virtual ~mmReportPayeeExpenses();
 
     virtual void RefreshData();
     virtual wxString getHTMLText();

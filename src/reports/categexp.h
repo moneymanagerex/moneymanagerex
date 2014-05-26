@@ -54,7 +54,7 @@ private:
 class mmReportCategoryExpensesGoes: public mmReportCategoryExpenses
 {
 public:
-    mmReportCategoryExpensesGoes(mmDateRange* date_range = new mmAllTime()
+    explicit mmReportCategoryExpensesGoes(mmDateRange* date_range = new mmAllTime()
     , const wxString& title = _("Where the Money Goes"));
 };
 
@@ -121,7 +121,7 @@ public:
 class mmReportCategoryExpensesComes : public mmReportCategoryExpenses
 {
 public:
-    mmReportCategoryExpensesComes(mmDateRange* date_range = new mmAllTime()
+    explicit mmReportCategoryExpensesComes(mmDateRange* date_range = new mmAllTime()
     , const wxString& title = _("Where the Money Comes From"));
 };
 
@@ -188,7 +188,7 @@ public:
 class mmReportCategoryExpensesCategories : public mmReportCategoryExpenses
 {
 public:
-    mmReportCategoryExpensesCategories(mmDateRange* date_range = new mmAllTime()
+    explicit mmReportCategoryExpensesCategories(mmDateRange* date_range = new mmAllTime()
     , const wxString& title = _("Categories"));
 };
 
