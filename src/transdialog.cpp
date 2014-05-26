@@ -774,7 +774,7 @@ void mmTransDialog::OnAccountOrPayeeUpdated(wxCommandEvent& event)
     transaction_->PAYEEID = -1;
     if (!m_transfer && event.GetId() == ID_DIALOG_TRANS_PAYEECOMBO)
     {
-        wxString payeeName = event.GetString().Trim();
+        wxString payeeName = event.GetString();
 
 		// Filtering the combobox as the user types because on Mac autocomplete function doesn't work
 		#if defined (__WXMAC__)
