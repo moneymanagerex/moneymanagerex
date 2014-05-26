@@ -747,7 +747,9 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
     }
-
+    // Compute chart spacing and interval (chart forced to start at zero)
+    double steps = 10;
+    double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
     //Type, Amount, Income, Expences, Difference:, Income/Expences, income, expemces
     static const wxString INCOME_VS_EXPENCES_HTML =
         "<table class = \"table\">\n"
@@ -805,6 +807,10 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         "    var options = {\n"
         "        animationEasing: \"easeOutQuint\",\n"
         "        barValueSpacing : 10,\n"
+        "        scaleOverride: true,\n"
+        "        scaleStartValue: 0,\n"
+        "        scaleSteps: [%f],\n"
+        "        scaleStepWidth: [%f]\n"
         "    };\n"
         "    var ctx = document.getElementById(\"reportChart\").getContext(\"2d\");\n"
         "    var reportChart = new Chart(ctx).Bar(data, options);\n"
@@ -817,7 +823,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         , _("Expences"), Model_Currency::toCurrency(tExpenses)
         , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
         , _("Income/Expences")
-        , tIncome, tExpenses);
+        , tIncome, tExpenses, steps, stepWidth);
     return output;
 }
 
