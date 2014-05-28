@@ -54,7 +54,10 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
     }
     
     buffer << "D" << full_tran.TRANSDATE << "\n";
-    buffer << "T" << Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID)) << "\n";
+    double value = Model_Checking::balance(full_tran, (out ? full_tran.ACCOUNTID : full_tran.TOACCOUNTID));
+    int style = wxNumberFormatter::Style_None;
+    const wxString s = wxNumberFormatter::ToString(value, 2, style);
+    buffer << "T" << s << "\n";
     if (!full_tran.PAYEENAME.empty())
         buffer << "P" << full_tran.PAYEENAME << "\n";
     if (!transNum.IsEmpty())
@@ -73,7 +76,7 @@ wxString mmExportTransaction::getTransactionQIF(const Model_Checking::Full_Data&
         double value = split_entry.SPLITTRANSAMOUNT;
         if (Model_Checking::type(full_tran) == Model_Checking::WITHDRAWAL)
             value = -value;
-        const wxString split_amount = wxString() << value;
+        const wxString split_amount = wxNumberFormatter::ToString(value, 2, style);
         const wxString split_categ = Model_Category::full_name(split_entry.CATEGID, split_entry.SUBCATEGID);
         buffer << "S" << split_categ << "\n"
             << "$" << split_amount << "\n";
