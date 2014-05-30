@@ -152,8 +152,13 @@ bool OnInitImpl(mmGUIApp* app)
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
 
     //Get System screen size
+#ifdef _MSC_VER
+    int sys_screen_x = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+    int sys_screen_y = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+#else
     int sys_screen_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
     int sys_screen_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
+#endif
 
     /* Load Dimensions of Window */
     int valx = Model_Setting::instance().GetIntSetting("ORIGINX", 50);
