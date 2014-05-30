@@ -24,19 +24,33 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 /*************************************************************************
  MMEX_VERSION
- Update the version definition for the program as required.
+ Update the version definition for the program as follows:
+ Version Format = MAJOR.MINOR.PATCH, increment the:
+ 1. MAJOR version when you make incompatible API changes,
+ 2. MINOR version when you add functionality in a backwards-compatible manner, and
+ 3. PATCH version when you make backwards-compatible bug fixes.
+ Ref: http://semver.org
 
- The definition: #define MMEX_BUILD_TYPE_RELEASE
- is used to control the release type.
-
- Development Build:
- Remove the definition: MMEX_BUILD_TYPE_RELEASE
+ The definition: #define MMEX_BUILD_TYPE_RELEASE_CANDIDATE
+ is used to control the release type. This will add a suffix: -RCx
 
  Release Build:
- Include the definition: MMEX_BUILD_TYPE_RELEASE
+ Remove the definition: MMEX_BUILD_TYPE_RELEASE_CANDIDATE
+ The release candidate number is ignored.
+
+ Release Candidate Build:
+ Include the definition: MMEX_BUILD_TYPE_RELEASE_CANDIDATE
+ Increment MMEX_VERSION_DEVELOPMENT_COUNT for the release candidate version.
+
+ Internet Format for update checking: MAJOR.MINOR.PATCH.RC
+ Note: RC is optional. Examples:
+ Win: 1.1.0.2   Win Version 1.1.0-RC2   Pre Release
+ Win: 1.1.0     Win Version 1.1.0       Release superceeds 1.1.0-RC2
  *************************************************************************/
-const wxString MMEX_VERSION = "1.1.0.0";
-//#define MMEX_BUILD_TYPE_RELEASE
+const wxString MMEX_VERSION = "1.1.0";
+
+#define MMEX_BUILD_TYPE_RELEASE_CANDIDATE
+const int MMEX_VERSION_DEVELOPMENT_COUNT = 1;
 
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
@@ -73,13 +87,13 @@ const wxString mmex::getTitleProgramVersion()
 }
 const wxString mmex::getProgramVersion()
 {
-    wxString revision("Development");
-
-    #ifdef MMEX_BUILD_TYPE_RELEASE
-        revision.Replace("Development", "Release");
+    wxString release_candidate;
+    #ifdef MMEX_BUILD_TYPE_RELEASE_CANDIDATE
+        release_candidate = "-RC";
+        release_candidate << MMEX_VERSION_DEVELOPMENT_COUNT;
     #endif
 
-    return wxString::Format("%s  %s", MMEX_VERSION, revision);
+    return wxString::Format("%s%s", MMEX_VERSION, release_candidate);
 }
 const wxString mmex::getProgramCopyright()
 {

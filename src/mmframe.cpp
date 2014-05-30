@@ -2166,15 +2166,16 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
     string length = 53 characters
     **************************************************************************/
-    //  Included for future testing
-    //  Old format of counters
-    //  page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
-    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0";
+    // Included for future testing
+    // Old format of counters
+    // page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
+    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0";
 
-    //  New format to allow counters greater than 9
-    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.10.9.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
-    //  page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 0.10.9.3";
+    // New format to allow counters greater than 9
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0.12 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
+    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 2.10.19";
 
     wxStringTokenizer versionTokens(page, ("["));
     versionTokens.GetNextToken(); // ignore old counters
@@ -2190,7 +2191,7 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
     int style = wxOK | wxCANCEL;
     if (IsUpdateAvailable(page))
     {
-        versionDetails << _("New update available: ") << current_version;
+        versionDetails << _("A new version is available.");
         style = wxICON_EXCLAMATION | style;
     }
     else
