@@ -12,7 +12,22 @@
         }
       </style>
 </head>
-<body>
+  <script>
+    function toggleTable(id) {
+        var elem = document.getElementById(id)
+        var label = document.getElementById(id + "_label")
+        var hide = elem.style.display == "none"
+        if (hide) {
+            elem.style.display = ""
+            label.innerHTML = "[-]"
+        }
+        else {
+            elem.style.display = "none"
+            label.innerHTML = "[+]"
+        }
+    }
+  </script>
+  <body>
 
 <table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">
@@ -44,7 +59,7 @@
 </td>
 </tr>
 </table>
-<script>toggleBills();</script>
+<script>toggleTable('BILLS_AND_DEPOSITS');</script>
 <!--script>toggleTable('TOP_CATEGORIES');</script-->
 </body>
 </html>
