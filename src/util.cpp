@@ -460,48 +460,52 @@ const wxString getURL(const wxString& file)
 const bool IsUpdateAvailable(const wxString& page)
 {
     wxStringTokenizer tkz(page, '.', wxTOKEN_RET_EMPTY_ALL);
-    if (tkz.CountTokens() != 4)
+    if (tkz.CountTokens() < 3)
     {
         return true;
-
-        //wxString url = mmex::getProgramWebSite();
-        //wxLaunchDefaultBrowser(url);
-        //return false;
     }
 
-    int maj = wxAtoi(tkz.GetNextToken());
-    int min = wxAtoi(tkz.GetNextToken());
-    int cust = wxAtoi(tkz.GetNextToken());
-    int build = wxAtoi(tkz.GetNextToken());
+    int major = wxAtoi(tkz.GetNextToken());
+    int minor = wxAtoi(tkz.GetNextToken());
+    int patch = wxAtoi(tkz.GetNextToken());
+    int rc = wxAtoi(tkz.GetNextToken());
 
     // get current version
     wxString currentV = mmex::getProgramVersion();
-    currentV = currentV.SubString(0, currentV.Find("DEV") - 1).Trim();
+
+    // get release candidate version if it exists.
+    int rc_C = rc;
+    if (currentV.find("RC") != -1)
+    {
+        wxString rc_ver = currentV.SubString(currentV.find("RC") + 2, currentV.Length()).Trim();
+        rc_C = wxAtoi(rc_ver);
+    }
+
+    currentV = currentV.SubString(0, currentV.Find("RC") - 1).Trim();
     wxStringTokenizer tkz1(currentV, ('.'), wxTOKEN_RET_EMPTY_ALL);
 
-    int majC = wxAtoi(tkz1.GetNextToken());
-    int minC = wxAtoi(tkz1.GetNextToken());
-    int custC = wxAtoi(tkz1.GetNextToken());
-    int buildC = wxAtoi(tkz1.GetNextToken());
+    int majorC = wxAtoi(tkz1.GetNextToken());
+    int minorC = wxAtoi(tkz1.GetNextToken());
+    int patchC = wxAtoi(tkz1.GetNextToken());
 
     bool isUpdateAvailable = false;
-    if (maj > majC)
+    if (major > majorC)
         isUpdateAvailable = true;
-    else if (maj == majC)
+    else if (major == majorC)
     {
-        if (min > minC)
+        if (minor > minorC)
         {
             isUpdateAvailable = true;
         }
-        else if (min == minC)
+        else if (minor == minorC)
         {
-            if (cust > custC)
+            if (patch > patchC)
             {
                 isUpdateAvailable = true;
             }
-            else if (cust == custC)
+            else if (patch == patchC)
             {
-                if (build > buildC)
+                if ((rc == 0) || (rc > rc_C))
                     isUpdateAvailable = true;
             }
         }
