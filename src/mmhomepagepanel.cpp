@@ -180,10 +180,10 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
     static const wxString FUNCTION =
-        "<script> function toggleCategories()\n"
+        "<script> function toggleTable(id)\n"
         "{\n"
-        "    var elem = document.getElementById(\"%s\");\n"
-        "    var label = document.getElementById(\"categ_label\");\n"
+        "    var elem = document.getElementById(id);\n"
+        "    var label = document.getElementById(id + \"_label\");\n"
         "    var hide = elem.style.display == \"none\";\n"
         "    if (hide) {\n"
         "        elem.style.display = \"\";\n"
@@ -195,11 +195,11 @@ wxString htmlWidgetTop7Categories::getHTMLText()
         "    }\n"
         "}\n"
         "</script>\n";
-    const wxString id = "TOP_CATEGORIES";
+    const wxString idStr = "TOP_CATEGORIES";
 
     wxString output = "<table class = \"table\"><thead><tr class='active'><th>\n";
-    output += title_ + "</th><th class='text-right'><a id=\"bils_label\" onclick=\"toggleCategories(); \" href=\"#\">[-]</a></th></tr></thead>\n";
-    output += wxString::Format("<tbody id='%s'>", id);
+    output += title_ + wxString::Format("</th><th class='text-right'><a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a></th></tr></thead>\n", idStr, idStr);
+    output += wxString::Format("<tbody id='%s'>", idStr);
     output += "<tr style='background-color: #d8ebf0'><td>";
     output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
     std::vector<std::pair<wxString, double> > topCategoryStats;
@@ -213,7 +213,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
         output += "</tr>";
     }
     output += "</tbody></table>\n";
-    output += wxString::Format(FUNCTION, id);
+    output += FUNCTION;
 
     return output;
 }

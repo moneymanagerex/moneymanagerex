@@ -45,6 +45,6 @@
 </tr>
 </table>
 <script>toggleBills();</script>
-<!--script>toggleCategories();</script-->
+<!--script>toggleTable('TOP_CATEGORIES');</script-->
 </body>
 </html>
