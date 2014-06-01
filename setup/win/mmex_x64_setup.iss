@@ -14,7 +14,7 @@
 
 #define MyAppName "MoneyManagerEX"
 #define MyAppExeName "mmex.exe"
-#define MyAppVersion "1.1.0.0"
+#define MyAppVersion "1.1.0-rc1"
 #define MyAppPublisher "CodeLathe, LLC"
 #define MyAppURL "http://www.codelathe.com/mmex"
 
@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.1.0.0_x64_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.1.0.0_x64_setup"
+#define my_output_path "\mmex_1.1.0-rc1_x64_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.1.0-rc1_x64_setup"
 
 ;===============================================================================
 
@@ -64,7 +64,7 @@ ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl; 
-Name: russian; MessagesFile: compiler:Languages\Russian.isl; InfoBeforeFile: {#my_svn_path}\README.RU; 
+Name: russian; MessagesFile: compiler:Languages\Russian.isl;
 Name: brazilianportuguese; MessagesFile: compiler:Languages\BrazilianPortuguese.isl; 
 Name: catalan; MessagesFile: compiler:Languages\Catalan.isl; 
 Name: czech; MessagesFile: compiler:Languages\Czech.isl; 
@@ -114,6 +114,7 @@ Name: lang\french; Description: French; Types: full;
 Name: lang\german; Description: German; Types: full; 
 Name: lang\greek; Description: Greek; Types: full; 
 Name: lang\hebrew; Description: Hebrew; Types: full; 
+Name: lang\hindi; Description: Hindi; Types: full; 
 Name: lang\hungarian; Description: Hungarian; Types: full; 
 Name: lang\indonesian; Description: Indonesian; Types: full; 
 Name: lang\italian; Description: Italian; Types: full; 
@@ -168,7 +169,6 @@ Source: {#my_svn_path}\3rd\Chart.js\Chart.js; DestDir: {app}\res; Flags: ignorev
 
 ; MMEX Root files - language dependant
 Source: {#my_svn_path}\README.TXT; DestDir: {app}; Flags: ignoreversion; Components: program; Languages: english; 
-Source: {#my_svn_path}\README.RU; DestDir: {app}; Flags: ignoreversion; Languages: russian; DestName: README.TXT; 
 
 ; MMEX Language Files - Determined by Component
 Source: {#my_svn_path}\po\arabic.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\arabic; 
@@ -185,6 +185,7 @@ Source: {#my_svn_path}\po\french.mo; DestDir: {app}\po\en; Flags: ignoreversion;
 Source: {#my_svn_path}\po\german.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\german; 
 Source: {#my_svn_path}\po\greek.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\greek; 
 Source: {#my_svn_path}\po\hebrew.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hebrew; 
+Source: {#my_svn_path}\po\hindi.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hindi; 
 Source: {#my_svn_path}\po\hungarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hungarian; 
 Source: {#my_svn_path}\po\indonesian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\indonesian; 
 Source: {#my_svn_path}\po\italian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\italian; 
@@ -208,7 +209,8 @@ Source: {#my_svn_path}\po\vietnamese.mo; DestDir: {app}\po\en; Flags: ignorevers
 
 ; MMEX Help - Root Help files 
 Source: {#my_svn_path}\doc\help\*.html; DestDir: {app}\help; Flags: ignoreversion; Components: help;
-Source: {#my_svn_path}\doc\help\*.png; DestDir: {app}\help; Flags: ignoreversion; Components: help; 
+Source: {#my_svn_path}\doc\help\*.png; DestDir: {app}\help; Flags: ignoreversion; Components: help;
+Source: {#my_svn_path}\doc\help\*.gif; DestDir: {app}\help; Flags: ignoreversion; Components: help; 
  
 ; MMEX Help - Help Directories - Language dependant
 Source: {#my_svn_path}\doc\help\french\*; DestDir: {app}\help\french; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\french; 
