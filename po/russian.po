@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-30 15:08+0400\n"
-"PO-Revision-Date: 2014-05-30 15:08+0400\n"
-"Last-Translator: Nikolay <vomikan@mail.ru>\n"
+"PO-Revision-Date: 2014-06-01 12:43+0400\n"
+"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr "О программе"
 
 #: src/aboutdialog.cpp:44
 msgid "License agreement"
-msgstr ""
+msgstr "Лицензионное соглашение"
 
 #: src/aboutdialog.cpp:86 src/mmframe.cpp:1485
 msgid "Visit us on Facebook"
@@ -63,7 +63,7 @@ msgstr "Спонсоры"
 
 #: src/aboutdialog.cpp:194
 msgid "License"
-msgstr ""
+msgstr "Лицензия"
 
 #: src/aboutdialog.cpp:230 src/accountdialog.cpp:282
 #: src/appstartdialog.cpp:139 src/assetdialog.cpp:195
@@ -371,7 +371,6 @@ msgid "% Rate"
 msgstr "% изменения"
 
 #: src/assetdialog.cpp:171
-#, fuzzy, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
 msgstr "Введите ежегодное изменение стоимости имущества в %"
 
@@ -403,9 +402,8 @@ msgstr "Удалить актив"
 #: src/assetspanel.cpp:89 src/billsdepositspanel.cpp:429
 #: src/mmcheckingpanel.cpp:1081 src/mmframe.cpp:1047 src/payeedialog.cpp:371
 #: src/stockspanel.cpp:132
-#, fuzzy
 msgid "&Organize Attachments"
-msgstr "Редактор получателей"
+msgstr "Редактор вложений"
 
 #: src/assetspanel.cpp:178
 msgid "Do you really want to delete the Asset?"
@@ -520,21 +518,22 @@ msgid "Description"
 msgstr "Медикаменты"
 
 #: src/attachmentdialog.cpp:56
-#, fuzzy
 msgid "File"
-msgstr "&Файл"
+msgstr "Файл"
 
 #: src/attachmentdialog.cpp:64
 msgid "Attachment folder not defined."
-msgstr ""
+msgstr "Не указана папка с файлами."
 
 #: src/attachmentdialog.cpp:65
 msgid "Please set it in Tools -> Options -> Attachments"
-msgstr ""
+msgstr "Пожалуйста, задайте путь через -> Опции -> Вложения"
 
+# FIXME:
+# Attachments folder not found
 #: src/attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
-msgstr ""
+msgstr "Папка для вложений не определена"
 
 #: src/attachmentdialog.cpp:70
 #, fuzzy
@@ -543,11 +542,11 @@ msgstr "Невозможно сохранить файл."
 
 #: src/attachmentdialog.cpp:73
 msgid "Please verify that above path is correct"
-msgstr ""
+msgstr "Пожалуйста проверьте, что путь правильный"
 
 #: src/attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr ""
+msgstr "Папка для вложений не определена"
 
 #: src/attachmentdialog.cpp:85
 #, fuzzy, c-format
@@ -560,9 +559,8 @@ msgid "Organize Attachments | New %s"
 msgstr "Редактор получателей"
 
 #: src/attachmentdialog.cpp:129 src/payeedialog.cpp:117
-#, fuzzy
 msgid "Other tools"
-msgstr "Прочее"
+msgstr "Прочие команды"
 
 #: src/attachmentdialog.cpp:168
 #, fuzzy
@@ -590,14 +588,12 @@ msgid "Organize Attachments: Edit Attachment"
 msgstr "Редактор получателей: Редактировать получателя"
 
 #: src/attachmentdialog.cpp:236
-#, fuzzy
 msgid "Do you really want to delete this attachment?"
-msgstr "Вы действительно хотите удалить счёт?"
+msgstr "Вы действительно хотите удалить это вложение?"
 
 #: src/attachmentdialog.cpp:237
-#, fuzzy
 msgid "Confirm Attachment Deletion"
-msgstr "Подтверждение удаления счёта"
+msgstr "Подтверждение удаление вложения"
 
 #: src/attachmentdialog.cpp:281 src/categdialog.cpp:222
 #: src/import_export/univcsvdialog.cpp:149 src/maincurrencydialog.cpp:176
@@ -606,7 +602,6 @@ msgid "&Add "
 msgstr "&Добавить"
 
 #: src/attachmentdialog.cpp:283
-#, fuzzy
 msgid "&Open "
 msgstr "&Открыть"
 
@@ -618,83 +613,79 @@ msgstr "Удалить"
 
 #: src/attachmentdialog.cpp:337
 msgid "Att."
-msgstr ""
+msgstr "Влож."
 
 #: src/attachmentdialog.cpp:344
 msgid ""
 "This directory and its files are automatically managed by Money Manager EX "
 "software."
 msgstr ""
+"Эта директория и все файлы в ней автоматически управляются приложением Money "
+"Manager EX."
 
 #: src/attachmentdialog.cpp:346
 msgid "Please do not remove, rename or modify manually directories and files."
-msgstr ""
+msgstr "Пожалуйста, не удаляйте и не перемещайте фалы вручную."
 
 #: src/attachmentdialog.cpp:380 src/attachmentdialog.cpp:388
-#, fuzzy
 msgid "Destination file already exist:"
-msgstr "Бюджет на этот год уже существует"
+msgstr "Файл назначения уже существует:"
 
 #: src/attachmentdialog.cpp:383
 msgid "File not found in attachments. Please delete or rename it."
-msgstr ""
+msgstr "Файл не найден во вложениях. Пожалуйста удалите или переименуйте его."
 
 #: src/attachmentdialog.cpp:384 src/attachmentdialog.cpp:392
-#, fuzzy
 msgid "Destination file already exist"
-msgstr "Бюджет на этот год уже существует"
+msgstr "Файл назначения уже существует"
 
 #: src/attachmentdialog.cpp:391
 msgid "File already found in attachments"
-msgstr ""
+msgstr "Файл уже есть во вложениях"
 
 #: src/attachmentdialog.cpp:434
 msgid "Attachment not found:"
-msgstr ""
+msgstr "Вложение не найдено:"
 
 #: src/attachmentdialog.cpp:437
-#, fuzzy
 msgid "Do you want to continue and delete attachment on database?"
-msgstr "Удалить и SQL файл тоже?"
+msgstr "Хотите продолжить и удалить файл вложение тоже?"
 
 #: src/attachmentdialog.cpp:438
-#, fuzzy
 msgid "Delete attachment failed"
-msgstr "Удалить название запроса:"
+msgstr "Ошибка удаления вложения"
 
 #: src/attachmentdialog.cpp:453
-#, fuzzy
 msgid "Unable to open file:"
-msgstr "Невозможно открыть файл."
+msgstr "Невозможно открыть файл:"
 
 #: src/attachmentdialog.cpp:456
 msgid "Please verify that file exists and user has rights to read it."
 msgstr ""
+"Пожалуйста, проверьте, что файл существует и пользователь может читать его."
 
 #: src/attachmentdialog.cpp:457 src/attachmentdialog.cpp:474
 msgid "Open attachment failed"
-msgstr ""
+msgstr "Вложение не открыть"
 
+# FIXME: .
 #: src/attachmentdialog.cpp:471
 msgid "No software found for file extension ."
-msgstr ""
+msgstr "Не сопоставлено приложение файлу во вложении."
 
 #: src/attachmentdialog.cpp:473
 msgid "Please verify that operatin system is able to handle this type of file."
 msgstr ""
 
 #: src/billsdepositsdialog.cpp:95
-#, fuzzy
 msgid "New Repeating Transaction"
-msgstr "Редактор запланированной транзакции"
+msgstr "Новая запланированная транзакция"
 
 #: src/billsdepositsdialog.cpp:119
-#, fuzzy
 msgid " Edit Repeating Transaction"
-msgstr "Редактор запланированной транзакции"
+msgstr " Редактор запланированной транзакции"
 
 #: src/billsdepositsdialog.cpp:124
-#, fuzzy
 msgid " Enter Repeating Transaction"
 msgstr "Планирование"
 
@@ -887,7 +878,6 @@ msgid "Specify the type of transactions to be created."
 msgstr "Выберите тип новой проводки."
 
 #: src/billsdepositsdialog.cpp:463 src/transdialog.cpp:385
-#, fuzzy
 msgid "&Advanced"
 msgstr "Доп."
 
@@ -1293,9 +1283,8 @@ msgid "View Non-Zero Budget Categories"
 msgstr "Показать ненулевые категории бюджета"
 
 #: src/budgetingpanel.cpp:122 src/budgetingpanel.cpp:154
-#, fuzzy
 msgid "View Planned Budget Categories"
-msgstr "Показать все категории бюджета"
+msgstr "Показать запланированные категории бюджета"
 
 #: src/budgetingpanel.cpp:124 src/budgetingpanel.cpp:156
 msgid "View Income Budget Categories"
@@ -1836,7 +1825,7 @@ msgstr "Диапазон цен"
 
 #: src/filtertransdialog.cpp:313
 msgid "Sort by"
-msgstr ""
+msgstr "Сортировать по"
 
 #: src/filtertransdialog.cpp:367
 msgid "&Clear "
@@ -1847,7 +1836,6 @@ msgid "Filtering Details: "
 msgstr "Детали фильтра: "
 
 #: src/general_report_manager.cpp:82 src/general_report_manager.cpp:448
-#, fuzzy
 msgid "General Reports Manager"
 msgstr "Менеджер отчётов"
 
@@ -1872,30 +1860,27 @@ msgstr "&Экспорт"
 
 #: src/general_report_manager.cpp:213
 msgid "Export the report to a new file."
-msgstr ""
+msgstr "Выгрузить отчёт в новый файл."
 
 #: src/general_report_manager.cpp:216
-#, fuzzy
 msgid "&Save "
 msgstr "&Сохранить"
 
 #: src/general_report_manager.cpp:218
-#, fuzzy
 msgid "Save changes."
-msgstr "Сохранить все изменения"
+msgstr "Сохранить все изменения."
 
 #: src/general_report_manager.cpp:220
 msgid "&Run"
 msgstr "&Выполнить"
 
 #: src/general_report_manager.cpp:222
-#, fuzzy
 msgid "Run selected report."
-msgstr "Не выбран счёт, нечего выгружать"
+msgstr "Запустить выбранный отчёт."
 
 #: src/general_report_manager.cpp:234
 msgid "Output"
-msgstr ""
+msgstr "Вывод"
 
 #: src/general_report_manager.cpp:246
 msgid "SQL"
@@ -1906,90 +1891,82 @@ msgid "Lua"
 msgstr "Lua"
 
 #: src/general_report_manager.cpp:248
-#, fuzzy
 msgid "Template"
-msgstr "Загрузить шаблон"
+msgstr "Шаблон"
 
 #: src/general_report_manager.cpp:278
 msgid "&Test"
-msgstr ""
+msgstr "Проверка"
 
 #: src/general_report_manager.cpp:279
-#, fuzzy
 msgid "Create Template"
 msgstr "Сохранить шаблон"
 
 #: src/general_report_manager.cpp:322
 #, c-format
 msgid "Row(s) returned: %i  Duration: %ld ms"
-msgstr ""
+msgstr "Выбрано строк: %i за %ld мс"
 
 #: src/general_report_manager.cpp:345
 msgid "SQL Syntax Error"
-msgstr ""
+msgstr "Ошибка синтаксиса SQL"
 
 #: src/general_report_manager.cpp:374
-#, fuzzy
 msgid "Load report file:"
-msgstr "Заголовок отчёта:"
+msgstr "Загрузить файл отчёта:"
 
 #: src/general_report_manager.cpp:387
-#, fuzzy
 msgid "Report with same name exists"
-msgstr "Категория с таким названием существует"
+msgstr "Отчёт с таким названием существует"
 
 #: src/general_report_manager.cpp:387 src/general_report_manager.cpp:617
 #: src/general_report_manager.cpp:677 src/mmframe.cpp:1424
 #: src/mmframe.cpp:1531
-#, fuzzy
 msgid "General Report Manager"
 msgstr "Менеджер отчётов"
 
 #: src/general_report_manager.cpp:447
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Unable to open file:\n"
 "%s\n"
 "\n"
-msgstr "Невозможно открыть файл."
+msgstr ""
+"Невозможно открыть файл:\n"
+"%s\n"
+"\n"
 
 #: src/general_report_manager.cpp:510
-#, fuzzy
 msgid "New Empty Report"
-msgstr "Новый SQL отчёт"
+msgstr "Новый отчёт"
 
 #: src/general_report_manager.cpp:511
-#, fuzzy
 msgid "New Sample Report"
-msgstr "Новый SQL отчёт"
+msgstr "Новый пример отчёта"
 
 #: src/general_report_manager.cpp:513
 msgid "Change Group"
-msgstr ""
+msgstr "Изменить группу"
 
 #: src/general_report_manager.cpp:514
 msgid "UnGroup"
-msgstr ""
+msgstr "Разгруппировать"
 
 #: src/general_report_manager.cpp:515
-#, fuzzy
 msgid "Rename Report"
-msgstr "Отчёт по получателям"
+msgstr "Переименовать отчёт"
 
 #: src/general_report_manager.cpp:517
-#, fuzzy
 msgid "Delete Report"
 msgstr "Удалить отчёт"
 
 #: src/general_report_manager.cpp:616
-#, fuzzy
 msgid "Enter the name for the report"
-msgstr "Введите название актива"
+msgstr "Введите название отчёта"
 
 #: src/general_report_manager.cpp:635
-#, fuzzy
 msgid "Delete the Report Title:"
-msgstr "Удалить название запроса:"
+msgstr "Удалить отчёт:"
 
 #: src/general_report_manager.cpp:676 src/general_report_manager.cpp:701
 #, fuzzy
@@ -1998,17 +1975,16 @@ msgstr "Введите имя новой категории:"
 
 #: src/general_report_manager.cpp:702
 msgid "Add Report Group"
-msgstr ""
+msgstr "Добавить группу"
 
 #: src/general_report_manager.cpp:710 src/general_report_manager.cpp:717
-#, fuzzy
 msgid "New Report"
-msgstr "Отчёт"
+msgstr "Новый отчёт"
 
 #: src/general_report_manager.cpp:712
-#, fuzzy, c-format
+#, c-format
 msgid "New Report %i"
-msgstr "Отчёт по получателям"
+msgstr "Новый отчёт %i"
 
 #: src/general_report_manager.cpp:748
 #, fuzzy
@@ -2149,27 +2125,26 @@ msgid "Date Format"
 msgstr "Формат даты"
 
 #: src/import_export/qif_import_gui.cpp:152
-#, fuzzy
 msgid "Filtering Details:"
 msgstr "Детали фильтра: "
 
 #: src/import_export/qif_import_gui.cpp:189
 msgid "Data"
-msgstr ""
+msgstr "Данные"
 
 #: src/import_export/qif_import_gui.cpp:289
 msgid "Scanning"
 msgstr "Сканирую"
 
 #: src/import_export/qif_import_gui.cpp:309
-#, fuzzy, c-format
+#, c-format
 msgid "Reading line %i, %ld ms"
-msgstr "Читаю строку %i из %i"
+msgstr "Читаю строку %i, %ld мс"
 
 #: src/import_export/qif_import_gui.cpp:339
-#, fuzzy, c-format
+#, c-format
 msgid "Line %i \t %s\n"
-msgstr "Строка %i"
+msgstr "Строка %i \t %s\n"
 
 #: src/import_export/qif_import_gui.cpp:356
 #, fuzzy, c-format
@@ -2187,15 +2162,14 @@ msgid "OK"
 msgstr "OK"
 
 #: src/import_export/qif_import_gui.cpp:475
-#, fuzzy
 msgid "Warning"
-msgstr "Сканирую"
+msgstr "Внимание"
 
+# отсутсвует что?
 #: src/import_export/qif_import_gui.cpp:478
 #: src/import_export/qif_import_gui.cpp:492
-#, fuzzy
 msgid "Missing"
-msgstr "Отсутствующие счета"
+msgstr "Отсутствует"
 
 #: src/import_export/qif_import_gui.cpp:565
 msgid "Choose QIF data file to Import"
@@ -2218,19 +2192,16 @@ msgid "Importing"
 msgstr "Импортирую"
 
 #: src/import_export/qif_import_gui.cpp:622
-#, fuzzy
 msgid "Importing Accounts"
-msgstr "Тип импортированного счёта: %s"
+msgstr "Импортирую счета"
 
 #: src/import_export/qif_import_gui.cpp:629
-#, fuzzy
 msgid "Importing Payees"
-msgstr "Импортирую"
+msgstr "Импортирую получателей"
 
 #: src/import_export/qif_import_gui.cpp:632
-#, fuzzy
 msgid "Importing Categories"
-msgstr "Редактор категорий"
+msgstr "Импортирую категории"
 
 #: src/import_export/qif_import_gui.cpp:647
 #, c-format
@@ -2238,14 +2209,12 @@ msgid "Importing transaction %i of %i"
 msgstr "Импортировано проводок %i из %i"
 
 #: src/import_export/qif_import_gui.cpp:663
-#, fuzzy
 msgid "Importing Transfers"
-msgstr "Импортирую"
+msgstr "Импортирую переводы"
 
 #: src/import_export/qif_import_gui.cpp:667
-#, fuzzy
 msgid "Importing Split transactions"
-msgstr "Экспортирую транзакцию %i"
+msgstr "Импортирую составные транзакции"
 
 #: src/import_export/qif_import_gui.cpp:671
 msgid "Import finished successfully"
@@ -2371,7 +2340,7 @@ msgstr "CSV разделитель"
 
 #: src/import_export/univcsvdialog.cpp:287
 msgid "Preview"
-msgstr ""
+msgstr "Просмотр"
 
 #: src/import_export/univcsvdialog.cpp:306
 msgid "Import File"
@@ -2750,12 +2719,10 @@ msgid "Confirm Transaction Deletion"
 msgstr "Подтверждение удаления проводки"
 
 #: src/mmcheckingpanel.cpp:1192
-#, fuzzy
 msgid "Follow Up"
 msgstr "Отслеживать"
 
 #: src/mmcheckingpanel.cpp:1192
-#, fuzzy
 msgid "Unreconciled"
 msgstr "Не выверено"
 
@@ -2809,19 +2776,16 @@ msgid "Stocks"
 msgstr "Акции"
 
 #: src/mmframe.cpp:481
-#, fuzzy
 msgid "New transactions found on web app"
-msgstr "Просмотр проводок за сегодня"
+msgstr "Новая транзакция найдена на WebApp"
 
 #: src/mmframe.cpp:482
-#, fuzzy
 msgid "Do you want to downlaod them?"
-msgstr "Хотите открыть другой файл?"
+msgstr "Хотите загрузить другой файл?"
 
 #: src/mmframe.cpp:483
-#, fuzzy
 msgid "Download WebApp new transaction"
-msgstr "Отследить транзакций:"
+msgstr "Загрузить новую транзакцию с WebApp"
 
 #: src/mmframe.cpp:499
 #, fuzzy
@@ -2829,13 +2793,12 @@ msgid "Unable to insert transaction in MMEX database"
 msgstr "Включить переводы в итоги бюджета"
 
 #: src/mmframe.cpp:500 src/mmframe.cpp:506
-#, fuzzy
 msgid "WebApp communication error"
-msgstr "Ошибка соединения"
+msgstr "Ошибка соединения WebApp"
 
 #: src/mmframe.cpp:505
 msgid "Unable to download new transaction from WebApp"
-msgstr ""
+msgstr "Не могу загрузить новую транзакцию с WebApp"
 
 #: src/mmframe.cpp:532
 msgid " Auto Repeat Transactions"
@@ -2969,7 +2932,6 @@ msgid "&Print..."
 msgstr "&Печать..."
 
 #: src/mmframe.cpp:1276
-#, fuzzy
 msgid "Print current view"
 msgstr "Печатать текущий отчёт"
 
@@ -3138,7 +3100,6 @@ msgid "Transaction Report Filter"
 msgstr "Отчёт по критериям"
 
 #: src/mmframe.cpp:1424
-#, fuzzy
 msgid "&General Report Manager..."
 msgstr "Менеджер отчётов"
 
@@ -3159,7 +3120,6 @@ msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "Преобразовать шифрованную базу данных в не зашифрованную"
 
 #: src/mmframe.cpp:1447 src/mmframe.cpp:1538
-#, fuzzy
 msgid "&Help\tF1"
 msgstr "&Помощь"
 
@@ -3265,7 +3225,6 @@ msgid ""
 msgstr "Извините. Версия базы данных устаревшая или пароль неверен."
 
 #: src/mmframe.cpp:1649
-#, fuzzy
 msgid "&Next ->"
 msgstr "Следующий"
 
@@ -3363,7 +3322,7 @@ msgstr "Проверка системной информации"
 
 #: src/mmframe.cpp:2194
 msgid "A new version is available."
-msgstr ""
+msgstr "Новая версия доступна."
 
 #: src/mmframe.cpp:2199
 msgid "You have the latest version installed!"
@@ -3374,9 +3333,8 @@ msgid "Proceed to website: "
 msgstr "Перейти на Web-сайт: "
 
 #: src/mmframe.cpp:2284
-#, fuzzy
 msgid "Choose HTML file to Export"
-msgstr "Выберите файл данный CSV для экспорта"
+msgstr "Выберите файл HTML для экспорта"
 
 #: src/mmframe.cpp:2453
 msgid "No account available to edit!"
@@ -3593,7 +3551,6 @@ msgid "Summary"
 msgstr "Сводка"
 
 #: src/mmhomepagepanel.cpp:361
-#, fuzzy
 msgid "Days"
 msgstr "Дней"
 
@@ -3606,7 +3563,6 @@ msgid "Bank Account"
 msgstr "Банковский счёт"
 
 #: src/mmhomepagepanel.cpp:650
-#, fuzzy
 msgid "Term Account"
 msgstr "Счета вкладов"
 
@@ -3626,7 +3582,6 @@ msgid "Difference:"
 msgstr "Баланс:"
 
 #: src/mmhomepagepanel.cpp:784
-#, fuzzy
 msgid "Income/Expences"
 msgstr "Доходы/Расходы"
 
@@ -4136,9 +4091,8 @@ msgid "7"
 msgstr "7"
 
 #: src/optionsdialog.cpp:518
-#, fuzzy
 msgid "Attachments Settings"
-msgstr "Общие настройки"
+msgstr "Настройки вложений"
 
 #: src/optionsdialog.cpp:525
 #, c-format
@@ -4155,10 +4109,9 @@ msgstr ""
 
 #: src/optionsdialog.cpp:553 src/optionsdialog.cpp:1011
 msgid "Real path:"
-msgstr ""
+msgstr "Путь:"
 
 #: src/optionsdialog.cpp:558
-#, fuzzy
 msgid "Legend "
 msgstr "     Легенда:"
 
@@ -4180,27 +4133,27 @@ msgstr ""
 #: src/optionsdialog.cpp:566
 #, c-format
 msgid "%s -> MMEX Application data folder"
-msgstr ""
+msgstr "%s -> MMEX папка с данными"
 
 #: src/optionsdialog.cpp:572
 msgid "Other OS folders "
-msgstr ""
+msgstr "Папка для других ОС"
 
 #: src/optionsdialog.cpp:577
 msgid "Not yet set"
-msgstr ""
+msgstr "Не задано"
 
 #: src/optionsdialog.cpp:585
 msgid "Windows folder -> "
-msgstr ""
+msgstr "Windows папка -> "
 
 #: src/optionsdialog.cpp:593
 msgid "Mac folder -> "
-msgstr ""
+msgstr "Mac папка -> "
 
 #: src/optionsdialog.cpp:601
 msgid "Unix folder -> "
-msgstr ""
+msgstr "Unix папка -> "
 
 #: src/optionsdialog.cpp:611
 #, c-format
@@ -4208,9 +4161,8 @@ msgid "Create and use '%s' subfolder"
 msgstr ""
 
 #: src/optionsdialog.cpp:621
-#, fuzzy
 msgid "Delete file after import"
-msgstr "Удалить отчёт"
+msgstr "Удалять файл после импорта"
 
 #: src/optionsdialog.cpp:623
 msgid "Select to delete file after import in attachments archive"
@@ -4300,23 +4252,20 @@ msgid "Max Files"
 msgstr "Лимит файлов"
 
 #: src/optionsdialog.cpp:738
-#, fuzzy
 msgid "CSV Settings"
-msgstr "Параметры просмотра"
+msgstr "Параметры CSV"
 
 #: src/optionsdialog.cpp:746
-#, fuzzy
 msgid "Delimiter"
-msgstr "CSV разделитель"
+msgstr "Разделитель"
 
 #: src/optionsdialog.cpp:763
-#, fuzzy
 msgid "WebApp Settings"
-msgstr "Параметры просмотра"
+msgstr "WebApp Settings параметры"
 
 #: src/optionsdialog.cpp:770
 msgid "Url"
-msgstr ""
+msgstr "Url"
 
 #: src/optionsdialog.cpp:774
 msgid "Specify the Web App URL without final slash"
@@ -4324,11 +4273,11 @@ msgstr ""
 
 #: src/optionsdialog.cpp:777
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: src/optionsdialog.cpp:781
 msgid "Specify the Web App GUID"
-msgstr ""
+msgstr "Задайте Web App GUID"
 
 #: src/optionsdialog.cpp:787
 msgid "Proxy Settings"
@@ -4351,27 +4300,24 @@ msgid "Port"
 msgstr "Порт"
 
 #: src/optionsdialog.cpp:813
-#, fuzzy
 msgid "Web Server"
-msgstr "Yahoo сервер"
+msgstr "Web Server"
 
 #: src/optionsdialog.cpp:819
 msgid "Enable"
-msgstr ""
+msgstr "Доступно"
 
 #: src/optionsdialog.cpp:821
 msgid "Enable internal web server when MMEX Starts."
 msgstr ""
 
 #: src/optionsdialog.cpp:826
-#, fuzzy
 msgid "Specify web server port number"
-msgstr "Задайте номер порта"
+msgstr "Задайте номер порта web сервера"
 
 #: src/optionsdialog.cpp:839
-#, fuzzy
 msgid "Usage statistics"
-msgstr "Статистика транзакций"
+msgstr "Статистика использования"
 
 #: src/optionsdialog.cpp:845
 msgid "Send anonymous statistics usage data"
@@ -4386,14 +4332,12 @@ msgid "General"
 msgstr "Основные"
 
 #: src/optionsdialog.cpp:860
-#, fuzzy
 msgid "Attachments"
-msgstr "Открыть "
+msgstr "Вложения"
 
 #: src/optionsdialog.cpp:861
-#, fuzzy
 msgid "Network"
-msgstr "Графика"
+msgstr "Сеть"
 
 #: src/optionsdialog.cpp:909
 msgid "Remember to update currency rate"
@@ -4412,9 +4356,8 @@ msgid "Application data directory"
 msgstr ""
 
 #: src/optionsdialog.cpp:959
-#, fuzzy
 msgid "Database file directory"
-msgstr "файл базы данных"
+msgstr "Папка базы данных"
 
 #: src/optionsdialog.cpp:961
 msgid "Dropbox folder"
@@ -4429,9 +4372,8 @@ msgid "Default Category"
 msgstr "Категория по умолчанию"
 
 #: src/payeedialog.cpp:123
-#, fuzzy
 msgid "Search:"
-msgstr "Поиск"
+msgstr "Поиск:"
 
 #: src/payeedialog.cpp:184 src/payeedialog.cpp:216 src/payeedialog.cpp:243
 msgid "Payee with same name exists"
@@ -4673,14 +4615,12 @@ msgid "Category Total: "
 msgstr "Всего по категории:"
 
 #: src/reports/categexp.cpp:197
-#, fuzzy
 msgid "Total Expences: "
-msgstr "Реальный расход:"
+msgstr "Суммарный расход:"
 
 #: src/reports/categexp.cpp:198
-#, fuzzy
 msgid "Total Income: "
-msgstr "Реальный доход:"
+msgstr "Суммарный доход:"
 
 #: src/reports/categexp.cpp:200
 msgid "Grand Total: "
@@ -4885,9 +4825,8 @@ msgid "Enter any commission paid"
 msgstr "Введите сумму комиссионного сбора"
 
 #: src/stockdialog.cpp:204
-#, fuzzy
 msgid "Organize attachments of this stock"
-msgstr "Введите сумму для данной проводки"
+msgstr "Менеджер воложений для инвестиций"
 
 #: src/stockdialog.cpp:209
 msgid "Enter notes associated with this investment"
@@ -4958,9 +4897,8 @@ msgid "Move selected transaction to another account"
 msgstr "Переместить выделенную транзакцию в другой счёт"
 
 #: src/stockspanel.cpp:486
-#, fuzzy
 msgid "Refresh"
-msgstr "&Обновить"
+msgstr "Обновить"
 
 #: src/stockspanel.cpp:487
 msgid "Refresh Stock Prices from Yahoo"
@@ -4972,7 +4910,6 @@ msgid "Stock Investments: %s"
 msgstr "Инвестиции: %s"
 
 #: src/stockspanel.cpp:613
-#, fuzzy
 msgid "Total Shares: "
 msgstr "Всего по активам: "
 
@@ -5028,9 +4965,8 @@ msgid "Populate Transaction #"
 msgstr "Присвоить номер"
 
 #: src/transdialog.cpp:476
-#, fuzzy
 msgid "Organize attachments of this transaction"
-msgstr "Введите сумму для данной проводки"
+msgstr "Менеджер вложений"
 
 #: src/transdialog.cpp:573
 #, c-format
@@ -5046,19 +4982,16 @@ msgid "Confirm to add new payee"
 msgstr "Подтвердите добавление нового получателя"
 
 #: src/transdialog.cpp:1100
-#, fuzzy
 msgid "Specify account the money is taken from"
 msgstr "Определите счёт откуда будет произведено перечисление"
 
 #: src/transdialog.cpp:1101
-#, fuzzy
 msgid "Specify account the money is moved to"
 msgstr "Укажите счёт куда будет произведено перечисление"
 
 #: src/transdialog.cpp:1102
-#, fuzzy
 msgid "Specify the transfer amount in the From Account."
-msgstr "Определите сумму которая будет переведена на другой счёт"
+msgstr "Определите сумму которая будет переведена на другой счёт."
 
 #: src/transdialog.cpp:1112
 msgid "Specify account for the transaction"
@@ -5251,9 +5184,8 @@ msgid "Invalid Entry"
 msgstr "Неверная запись."
 
 #: src/util.cpp:398
-#, fuzzy
 msgid "Invalid Category"
-msgstr "Введена неверная категория"
+msgstr "Неверная категория"
 
 #: src/util.cpp:399
 msgid ""
@@ -5262,28 +5194,24 @@ msgid ""
 msgstr ""
 
 #: src/util.cpp:407
-#, fuzzy
 msgid "Invalid Account"
-msgstr "Введена неправильная сумма"
+msgstr "Неверный счёт"
 
 #: src/util.cpp:411
-#, fuzzy
 msgid "Please select the account for this transaction."
-msgstr "Введите сумму для данной проводки"
+msgstr "Пожалуйста, выберите счёт для данной транзакции."
 
 #: src/util.cpp:415
-#, fuzzy
 msgid "Please specify which account the transfer is going to."
-msgstr "Укажите счёт куда будет произведено перечисление"
+msgstr "Укажите счёт куда будет произведено перечисление."
 
 #: src/util.cpp:417
 msgid "Selection can be made by using the dropdown button."
 msgstr ""
 
 #: src/util.cpp:427 src/mmcombobox.h:77
-#, fuzzy
 msgid "Invalid Payee"
-msgstr "Неверное значение"
+msgstr "Неверный получатель"
 
 #: src/util.cpp:428
 msgid ""
@@ -5292,9 +5220,8 @@ msgid ""
 msgstr ""
 
 #: src/util.cpp:437
-#, fuzzy
 msgid "Invalid Name"
-msgstr "Неверное значение"
+msgstr "Неверное название"
 
 #: src/util.cpp:438
 msgid "Please type in a non empty name."
@@ -5313,18 +5240,16 @@ msgid "Wrong WebApp settings"
 msgstr ""
 
 #: src/webapp.cpp:168
-#, fuzzy
 msgid "Unable to connect to WebApp:"
-msgstr "Нет связи!"
+msgstr "Нет связи с WebApp:"
 
 #: src/webapp.cpp:169
 msgid "please check settings and / or internet connection."
 msgstr ""
 
 #: src/webapp.cpp:170
-#, fuzzy
 msgid "WebApp connection error"
-msgstr "Ошибка соединения"
+msgstr "Ошибка соединения WebApp"
 
 #: src/webapp.cpp:180
 msgid "Wrong WebApp API version:"
@@ -5351,7 +5276,6 @@ msgid "The client failed to connect the server"
 msgstr ""
 
 #: src/webapp.cpp:228
-#, fuzzy
 msgid "Invalid value"
 msgstr "Неверное значение"
 
@@ -5360,7 +5284,6 @@ msgid "The remote file doesn't exist"
 msgstr ""
 
 #: src/webapp.cpp:230
-#, fuzzy
 msgid "An error occurred during reconnection"
 msgstr "Произошла ошибка во время установки соединения"
 
@@ -5369,33 +5292,30 @@ msgid "Someone tried to send a command during a transfer"
 msgstr ""
 
 #: src/webapp.cpp:232
-#, fuzzy
 msgid "Cannot get data from website"
-msgstr "Не могу получить данные из сети!"
+msgstr "Не могу получить данные из сети"
 
+# FIXME:
 #: src/webapp.cpp:453
-#, fuzzy
 msgid "Account '"
-msgstr "Счет: "
+msgstr "Account '"
 
+# FIXME:
 #: src/webapp.cpp:453
-#, fuzzy
 msgid "' not found!"
-msgstr "Файл %s не найден"
+msgstr "'s не найден!"
 
 #: src/webapp.cpp:455
-#, fuzzy
 msgid "Transaction will be inserted with the first bank account:"
-msgstr "Проводки сохранены в счёт: "
+msgstr "Проводки сохранены в первый счёт: "
 
 #: src/webapp.cpp:456
 msgid "' and marked as  Follow Up"
 msgstr ""
 
 #: src/webapp.cpp:457
-#, fuzzy
 msgid "Wrong WebApp account"
-msgstr "Со счёта"
+msgstr "Не верный WebApp счёт"
 
 #: src/wizard_newaccount.cpp:25
 msgid "Add Account Wizard"
@@ -5560,7 +5480,6 @@ msgstr ""
 "резервное копирование .mmb файла базы данных, прежде чем продолжать.."
 
 #: src/mmTips.h:24
-#, fuzzy
 msgid ""
 "Recommendation: Use copy (Ctrl+C) and paste (Ctrl+V) for frequently used "
 "transactions."
@@ -5652,7 +5571,6 @@ msgstr ""
 "клавиша О переключит между Отель, Отдых, Одежда и т.д."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
@@ -5700,9 +5618,8 @@ msgid ""
 msgstr ""
 
 #: src/mmtextctrl.h:89
-#, fuzzy
 msgid "Invalid Amount."
-msgstr "Введена неправильная сумма"
+msgstr "Неверное значение."
 
 #: src/mmtextctrl.h:90
 msgid "Please enter a positive or calculated value."
