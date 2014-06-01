@@ -20,6 +20,7 @@
 #include "webserver.h"
 #include "defs.h"
 #include "platfdep.h"
+#include "paths.h"
 #include "mongoose/mongoose.h"
 #include "singleton.h"
 #include "model/Model_Account.h"
@@ -84,10 +85,10 @@ wxThread::ExitCode WebServerThread::Entry()
     // Create and configure the server
     struct mg_server *server = mg_create_server(nullptr, ev_handler);
     mg_set_option(server, "listening_port", strPort.mb_str());
-    mg_set_option(server, "document_root", mmex::GetResourceDir().GetPath().mb_str());
+    mg_set_option(server, "document_root", wxFileName(mmex::getReportIndex()).GetPath().mb_str());
     chdir(mg_get_option(server, "document_root"));
 
-    // Serve requests
+    // Serve requests 
     while (IsAlive())
     {
         mg_poll_server(server, 1000);
