@@ -50,14 +50,7 @@ void mmOptions::LoadInfotableOptions()
 
 //----------------------------------------------------------------------------
 mmIniOptions::mmIniOptions()
-: enableAssets_(true)
-, enableBudget_(true)
-, enableRepeatingTransactions_(true)
-, enableCheckForUpdates_(true)
-, enableReportIssues_ (true)
-, enableBeNotifiedForNewReleases_(true)
-, enableVisitWebsite_(true)
-, html_font_size_(3)
+: html_font_size_(3)
 , expandBankHome_(true)
 , expandTermHome_(false)
 , expandStocksHome_(true)
@@ -81,14 +74,11 @@ mmIniOptions& mmIniOptions::instance()
 
 void mmIniOptions::loadOptions()
 {
-    expandStocksHome_ = Model_Setting::instance().GetBoolSetting("ENABLESTOCKS", true);
-    enableAssets_     = Model_Setting::instance().GetBoolSetting("ENABLEASSETS", true);
-    enableBudget_     = Model_Setting::instance().GetBoolSetting("ENABLEBUDGET", true);
-
     html_font_size_   = Model_Setting::instance().GetIntSetting("HTMLFONTSIZE", 3);
 
     expandBankHome_   = Model_Setting::instance().GetBoolSetting("EXPAND_BANK_HOME", true);
     expandTermHome_   = Model_Setting::instance().GetBoolSetting("EXPAND_TERM_HOME", false);
+    expandStocksHome_ = Model_Setting::instance().GetBoolSetting("ENABLESTOCKS", true);
     expandBankTree_   = Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", true);
     expandTermTree_   = Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false);
 

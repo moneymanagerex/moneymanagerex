@@ -379,7 +379,7 @@ static const wxString gDaysInWeek[7] =
     , wxTRANSLATE("Saturday")
 };
 
-/* Error Mesaages --------------------------------------------------------*/
+/* Error Messages --------------------------------------------------------*/
 void mmShowErrorMessage(wxWindow *parent
     , const wxString &message, const wxString &messageheader)
 {

@@ -639,13 +639,10 @@ void mmGUIFrame::menuEnableItems(bool enable)
     menuBar_->FindItem(MENU_IMPORT)->Enable(enable);
     menuBar_->FindItem(wxID_PRINT)->Enable(enable);
     menuBar_->FindItem(wxID_PREFERENCES)->Enable(enable);
-    if (mmIniOptions::instance().enableRepeatingTransactions_)
-        menuBar_->FindItem(MENU_BILLSDEPOSITS)->Enable(enable);
+    menuBar_->FindItem(MENU_BILLSDEPOSITS)->Enable(enable);
     menuBar_->FindItem(MENU_CURRENCY)->Enable(enable);
-    if (mmIniOptions::instance().enableAssets_)
-        menuBar_->FindItem(MENU_ASSETS)->Enable(enable);
-    if (mmIniOptions::instance().enableBudget_)
-        menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
+    menuBar_->FindItem(MENU_ASSETS)->Enable(enable);
+    menuBar_->FindItem(MENU_BUDGETSETUPDIALOG)->Enable(enable);
     menuBar_->FindItem(MENU_TRANSACTIONREPORT)->Enable(enable);
 
     toolBar_->EnableTool(MENU_NEWACCT, enable);
@@ -720,27 +717,20 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemData(stocks, new mmTreeItemData("Stocks"));
     navTreeCtrl_->SetItemBold(stocks, true);
 
-    if (mmIniOptions::instance().enableAssets_)
-    {
-        wxTreeItemId assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
-        navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
-        navTreeCtrl_->SetItemBold(assets, true);
-    }
+    wxTreeItemId assets;
+    assets = navTreeCtrl_->AppendItem(root, _("Assets"), 7, 7);
+    navTreeCtrl_->SetItemData(assets, new mmTreeItemData("Assets"));
+    navTreeCtrl_->SetItemBold(assets, true);
 
-    if (mmIniOptions::instance().enableRepeatingTransactions_)
-    {
-        wxTreeItemId bills = navTreeCtrl_->AppendItem(root, _("Repeating Transactions"), 2, 2);
-        navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
-        navTreeCtrl_->SetItemBold(bills, true);
-    }
+    wxTreeItemId bills;
+    bills = navTreeCtrl_->AppendItem(root, _("Repeating Transactions"), 2, 2);
+    navTreeCtrl_->SetItemData(bills, new mmTreeItemData("Bills & Deposits"));
+    navTreeCtrl_->SetItemBold(bills, true);
 
     wxTreeItemId budgeting;
-    if (mmIniOptions::instance().enableBudget_)
-    {
-        budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), 3, 3);
-        navTreeCtrl_->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
-        navTreeCtrl_->SetItemBold(budgeting, true);
-    }
+    budgeting = navTreeCtrl_->AppendItem(root, _("Budget Setup"), 3, 3);
+    navTreeCtrl_->SetItemData(budgeting, new mmTreeItemData("Budgeting"));
+    navTreeCtrl_->SetItemBold(budgeting, true);
 
     wxTreeItemId reports = navTreeCtrl_->AppendItem(root, _("Reports"), 4, 4);
     navTreeCtrl_->SetItemBold(reports, true);
@@ -1387,29 +1377,20 @@ void mmGUIFrame::createMenu()
 
     menuTools->AppendSeparator();
 
-    if (mmIniOptions::instance().enableBudget_)
-    {
-        wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
-            , _("&Budget Setup"), _("Budget Setup"));
-        menuItemBudgeting->SetBitmap(wxBitmap(calendar_xpm));
-        menuTools->Append(menuItemBudgeting);
-    }
+    wxMenuItem* menuItemBudgeting = new wxMenuItem(menuTools, MENU_BUDGETSETUPDIALOG
+        , _("&Budget Setup"), _("Budget Setup"));
+    menuItemBudgeting->SetBitmap(wxBitmap(calendar_xpm));
+    menuTools->Append(menuItemBudgeting);
 
-    if (mmIniOptions::instance().enableRepeatingTransactions_)
-    {
-        wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
-            , _("&Repeating Transactions"), _("Bills && Deposits"));
-        menuItemBillsDeposits->SetBitmap(wxBitmap(clock_xpm));
-        menuTools->Append(menuItemBillsDeposits);
-    }
+    wxMenuItem* menuItemBillsDeposits = new wxMenuItem(menuTools, MENU_BILLSDEPOSITS
+        , _("&Repeating Transactions"), _("Bills && Deposits"));
+    menuItemBillsDeposits->SetBitmap(wxBitmap(clock_xpm));
+    menuTools->Append(menuItemBillsDeposits);
 
-    if (mmIniOptions::instance().enableAssets_)
-    {
-        wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
-            , _("&Assets"), _("Assets"));
-        menuItemAssets->SetBitmap(wxBitmap(car_xpm));
-        menuTools->Append(menuItemAssets);
-    }
+    wxMenuItem* menuItemAssets = new wxMenuItem(menuTools, MENU_ASSETS
+        , _("&Assets"), _("Assets"));
+    menuItemAssets->SetBitmap(wxBitmap(car_xpm));
+    menuTools->Append(menuItemAssets);
 
     menuTools->AppendSeparator();
 
@@ -1455,31 +1436,22 @@ void mmGUIFrame::createMenu()
 
     menuHelp->AppendSeparator();
 
-    if (mmIniOptions::instance().enableCheckForUpdates_)
-    {
-        wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE
-            , _("Check for &Updates"), _("Check For Updates"));
-        menuItemCheck->SetBitmap(wxBitmap(checkupdate_xpm));
-        menuHelp->Append(menuItemCheck);
-    }
+    wxMenuItem* menuItemCheck = new wxMenuItem(menuTools, MENU_CHECKUPDATE
+        , _("Check for &Updates"), _("Check For Updates"));
+    menuItemCheck->SetBitmap(wxBitmap(checkupdate_xpm));
+    menuHelp->Append(menuItemCheck);
 
-    if (mmIniOptions::instance().enableReportIssues_)
-    {
-        wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
-            , _("Visit MMEX Forum")
-            , _("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
-        menuItemReportIssues->SetBitmap(wxBitmap(issues_xpm));
-        menuHelp->Append(menuItemReportIssues);
-    }
+    wxMenuItem* menuItemReportIssues = new wxMenuItem(menuTools, MENU_REPORTISSUES
+        , _("Visit MMEX Forum")
+        , _("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
+    menuItemReportIssues->SetBitmap(wxBitmap(issues_xpm));
+    menuHelp->Append(menuItemReportIssues);
 
-    if (mmIniOptions::instance().enableBeNotifiedForNewReleases_)
-    {
-        wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
-            , _("Register/View Release &Notifications.")
-            , _("Sign up to Notification Mailing List or View existing announcements."));
-        menuItemNotify->SetBitmap(wxBitmap(notify_xpm));
-        menuHelp->Append(menuItemNotify);
-    }
+    wxMenuItem* menuItemNotify = new wxMenuItem(menuTools, MENU_ANNOUNCEMENTMAILING
+        , _("Register/View Release &Notifications")
+        , _("Sign up to Notification Mailing List or View existing announcements."));
+    menuItemNotify->SetBitmap(wxBitmap(notify_xpm));
+    menuHelp->Append(menuItemNotify);
 
     wxMenuItem* menuItemFacebook = new wxMenuItem(menuTools, MENU_FACEBOOK
         , _("Visit us on Facebook"), _("Visit us on Facebook"));
@@ -2216,17 +2188,14 @@ void mmGUIFrame::OnReportIssues(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
-    // New site location
-    //  wxString url = "http://groups.google.com/group/mmlist";
-    wxString url = "https://groups.google.com/forum/?fromgroups#!forum/mmlist";
-
+    wxString url = mmex::getProgramWebSite()+"/news";
     wxLaunchDefaultBrowser(url);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnFacebook(wxCommandEvent& /*event*/)
 {
-    wxString url = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
+    wxString url = mmex::getProgramFacebookSite();
     wxLaunchDefaultBrowser(url);
 }
 

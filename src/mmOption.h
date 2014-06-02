@@ -48,17 +48,9 @@ public:
     mmIniOptions();
     static mmIniOptions& instance();
     void loadOptions();
-    int account_image_id(int account_id);
 
-    bool enableAssets_;
-    bool enableBudget_;
-    bool enableRepeatingTransactions_;
-    bool enableCheckForUpdates_;
-    bool enableReportIssues_;
-    bool enableBeNotifiedForNewReleases_;
-    bool enableVisitWebsite_;
+    int account_image_id(int account_id);
     int html_font_size_;
-//    wxString aboutCompanyName_;
 
     bool expandBankHome_;
     bool expandTermHome_;

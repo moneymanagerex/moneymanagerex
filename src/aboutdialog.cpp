@@ -82,24 +82,26 @@ void mmAboutDialog::InitControls()
     hb.addHeader(3, "Money Manager Ex");
     hb.addParaText(html);
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramFacebookSite()
-        , _("Visit us on Facebook"));
+    hb.addTableCellLink(mmex::getProgramWebSite()
+        , _("Website"));
     hb.addLineBreak();
     hb.addTableCellLink(mmex::getProgramForum()
-        , _("Visit MMEX Forum"));
-    //hb.addText(_("Visit the MMEX forum. See existing user comments, or report new issues with the software."));
+        , _("Forum"));
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramTwitterSite()
-        , _("Visit MMEX Twitter"));
+    hb.addTableCellLink(mmex::getProgramWiki()
+        , _("Wiki page"));
     hb.addLineBreak();
-    hb.addTableCellLink("https://sourceforge.net/p/moneymanagerex/wiki/mmex/"
-        , _("wiki page"));
-    hb.addLineBreak();
-    hb.addTableCellLink("https://sourceforge.net/p/moneymanagerex/bugs/"
+    hb.addTableCellLink(mmex::getProgramBugReport()
         , _("Bug reports"));
     hb.addLineBreak();
-    //https://sourceforge.net/p/moneymanagerex/bugs/
-    hb.addTableCellLink(mmex::getProgramDanateSite()
+    hb.addLineBreak();
+    hb.addTableCellLink(mmex::getProgramFacebookSite()
+        , _("Follow MMEX on Facebook"));
+    hb.addLineBreak();
+    hb.addTableCellLink(mmex::getProgramTwitterSite()
+        , _("Follow MMEX on Twitter"));
+    hb.addLineBreak();
+    hb.addTableCellLink(mmex::getProgramDonateSite()
         , _("Donate"));
     hb.addLineBreak();
 
