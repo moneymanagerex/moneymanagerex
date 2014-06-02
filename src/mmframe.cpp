@@ -296,6 +296,9 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
         Model_Setting::instance().Set("SENDUSAGESTATS", "TRUE");
     }
 
+    //Check for new version at startup
+    checkUpdates(true);
+
     //Show appstart
     if (from_scratch || !dbpath.IsOk())
     {
@@ -2111,71 +2114,7 @@ void mmGUIFrame::OnHelp(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 {
-    // Set up system information
-    wxString versionDetails = wxString()
-        << mmex::getTitleProgramVersion() << "\n\n"
-        << mmex::getProgramDescription() << "\n"
-        << "\n";
-
-    // Access current version details page
-    wxString site = mmex::getProgramWebSite() + "/version.html";
-
-    wxString page;
-    int err_code = site_content(site, page);
-    if (err_code != wxURL_NOERR)
-    {
-        versionDetails << page;
-        wxMessageBox(versionDetails, _("MMEX System Information Check"));
-        return;
-    }
-
-    /*************************************************************************
-    Note: To allow larger digit counters and maintain backward compatability,
-    the leading counters before the character [ is ignored by the version
-    checking routines.
-
-    Expected string format from the internet up to Version: 0.9.9.0
-    page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
-    string length = 53 characters
-    **************************************************************************/
-    // Included for future testing
-    // Old format of counters
-    // page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
-    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0";
-
-    // New format to allow counters greater than 9
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0.12 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 2.10.19";
-
-    wxStringTokenizer versionTokens(page, ("["));
-    versionTokens.GetNextToken(); // ignore old counters
-    page = versionTokens.GetNextToken(); // substrtute new counters
-
-    page = page.SubString(page.find(mmPlatformType()), 53);
-    wxString current_version = page;
-    wxStringTokenizer mySysToken(page, ":");
-    mySysToken.GetNextToken().Trim(false).Trim();           // skip Operating System. Already accounted for.
-    page = mySysToken.GetNextToken().Trim(false).Trim();    // Get version for OS
-
-    // set up display information.
-    int style = wxOK | wxCANCEL;
-    if (IsUpdateAvailable(page))
-    {
-        versionDetails << _("A new version is available.");
-        style = wxICON_EXCLAMATION | style;
-    }
-    else
-    {
-        versionDetails << _("You have the latest version installed!");
-        style = wxICON_INFORMATION | style;
-    }
-
-    wxString urlString = mmex::getProgramWebSite();
-    versionDetails << "\n\n" << _("Proceed to website: ") << urlString;
-    if (wxMessageBox(versionDetails, _("MMEX System Information Check"), style) == wxOK)
-        wxLaunchDefaultBrowser(urlString);
+    checkUpdates(false);
 }
 //----------------------------------------------------------------------------
 
