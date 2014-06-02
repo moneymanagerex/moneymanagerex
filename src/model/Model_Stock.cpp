@@ -67,13 +67,3 @@ double Model_Stock::value(const Data& r)
     return value(&r);
 }
 
-double Model_Stock::NUMSHARES(const Data* stock)
-{
-    double numShares = stock->NUMSHARES;
-    return numShares;
-}
-
-double Model_Stock::NUMSHARES(const Data& stock)
-{
-    return NUMSHARES(&stock);
-}

@@ -36,7 +36,7 @@ public:
     virtual wxString title() const { return "mmPrintableBase"; }
 
 public:
-    mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}
+    explicit mmPrintableBase(int sort_column = 0): sortColumn_(sort_column) {}
 
 protected:
 	int sortColumn_;
@@ -45,7 +45,7 @@ protected:
 class mmGeneralReport : public mmPrintableBase
 {
 public:
-    mmGeneralReport(const Model_Report::Data* report);
+    explicit mmGeneralReport(const Model_Report::Data* report);
 
 public:
     wxString getHTMLText();
@@ -57,7 +57,7 @@ private:
 class mmPrintableBaseSpecificAccounts : public mmPrintableBase
 {
 public:
-    mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column = 0);
+    explicit mmPrintableBaseSpecificAccounts(const wxString& report_name, int sort_column = 0);
     virtual ~mmPrintableBaseSpecificAccounts();
 
 protected:

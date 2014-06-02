@@ -153,7 +153,7 @@ class htmlWidgetTop7Categories
 {
 public:
     ~htmlWidgetTop7Categories();
-    htmlWidgetTop7Categories(
+    explicit htmlWidgetTop7Categories(
         mmDateRange* date_range);
 
     wxString getHTMLText();
@@ -179,27 +179,11 @@ htmlWidgetTop7Categories::~htmlWidgetTop7Categories()
 
 wxString htmlWidgetTop7Categories::getHTMLText()
 {
-    static const wxString FUNCTION =
-        "<script> function toggleCategories()\n"
-        "{\n"
-        "    var elem = document.getElementById(\"%s\");\n"
-        "    var label = document.getElementById(\"categ_label\");\n"
-        "    var hide = elem.style.display == \"none\";\n"
-        "    if (hide) {\n"
-        "        elem.style.display = \"\";\n"
-        "        label.innerHTML = \"[-]\";\n"
-        "    }\n"
-        "    else {\n"
-        "        elem.style.display = \"none\";\n"
-        "        label.innerHTML = \"[+]\";\n"
-        "    }\n"
-        "}\n"
-        "</script>\n";
-    const wxString id = "TOP_CATEGORIES";
+    const wxString idStr = "TOP_CATEGORIES";
 
     wxString output = "<table class = \"table\"><thead><tr class='active'><th>\n";
-    output += title_ + "</th><th class='text-right'><a id=\"bils_label\" onclick=\"toggleCategories(); \" href=\"#\">[-]</a></th></tr></thead>\n";
-    output += wxString::Format("<tbody id='%s'>", id);
+    output += title_ + wxString::Format("</th><th class='text-right'><a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a></th></tr></thead>\n", idStr, idStr);
+    output += wxString::Format("<tbody id='%s'>", idStr);
     output += "<tr style='background-color: #d8ebf0'><td>";
     output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
     std::vector<std::pair<wxString, double> > topCategoryStats;
@@ -213,7 +197,6 @@ wxString htmlWidgetTop7Categories::getHTMLText()
         output += "</tr>";
     }
     output += "</tbody></table>\n";
-    output += wxString::Format(FUNCTION, id);
 
     return output;
 }
@@ -297,7 +280,7 @@ class htmlWidgetBillsAndDeposits
 {
 public:
     ~htmlWidgetBillsAndDeposits();
-    htmlWidgetBillsAndDeposits(const wxString& title
+    explicit htmlWidgetBillsAndDeposits(const wxString& title
         , mmDateRange* date_range = new mmAllTime());
 
     wxString getHTMLText();
@@ -365,32 +348,15 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
     if (!bd_days.empty())
     {   
-    
-        static const wxString FUNCTION =
-            "<script> function toggleBills()\n"
-            "{\n"
-            "    var elem = document.getElementById(\"%s\");\n"
-            "    var label = document.getElementById(\"bils_label\");\n"
-            "    var hide = elem.style.display == \"none\";\n"
-            "    if (hide) {\n"
-            "        elem.style.display = \"\";\n"
-            "        label.innerHTML = \"[-]\";\n"
-            "    }\n"
-            "    else {\n"
-            "        elem.style.display = \"none\";\n"
-            "        label.innerHTML = \"[+]\";\n"
-            "    }\n"
-            "}\n"
-            "</script>\n";
-        const wxString id = "BILLS_AND_DEPOSITS";
+        const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = "<table class=\"table\"><thead><tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
-        output += wxString::Format("<th class='text-right'>%i <a id=\"bils_label\" onclick=\"toggleBills(); \" href=\"#\">[-]</a></th></tr>\n"
-            , int(bd_days.size()));
+        output += wxString::Format("<th class='text-right'>%i <a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a></th></tr>\n"
+            , int(bd_days.size()), idStr, idStr);
         output += "</thead>";
 
-        output += wxString::Format("<tbody id='%s'>", id);
+        output += wxString::Format("<tbody id='%s'>", idStr);
         output += wxString::Format("<tr style='background-color: #d8ebf0'><th>%s</th><th class='text-right'>%s</th><th class='text-right'>%s</th></tr>"
             , _("Payee"), _("Amount"), _("Days"));
 
@@ -403,7 +369,6 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
             output += "<td  class = 'text-right'>" + std::get<2>(item) + "</td></tr>\n";
         }
         output += "</tbody></table>\n";
-        output += wxString::Format(FUNCTION, id);
     }
     return output;
 }

@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "relocatecategorydialog.h"
 #include "categdialog.h"
+#include "relocatecategorydialog.h"
 #include "util.h"
 #include "mmOption.h"
 #include "defs.h"
@@ -174,8 +174,8 @@ void mmCategDialog::CreateControls()
     itemBoxSizer3->Add(itemBoxSizer33);
 
     m_buttonRelocate = new wxBitmapButton(this
-        , wxID_ANY, wxBitmap(relocate_categories_xpm));
-    m_buttonRelocate->Connect(wxID_ANY, wxEVT_COMMAND_BUTTON_CLICKED
+        , wxID_REPLACE_ALL, wxBitmap(relocate_categories_xpm));
+    m_buttonRelocate->Connect(wxID_REPLACE_ALL, wxEVT_COMMAND_BUTTON_CLICKED
         , wxCommandEventHandler(mmCategDialog::OnCategoryRelocation), nullptr, this);
     m_buttonRelocate->SetToolTip(_("Reassign all categories to another category"));
 

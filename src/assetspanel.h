@@ -40,7 +40,7 @@ public:
     void doRefreshItems(int trx_id = -1);
 
 private:
-    mmAssetsPanel* ap_;
+    mmAssetsPanel* m_panel;
 
     /* required overrides for virtual style list control */
     virtual wxString OnGetItemText(long item, long column) const;

@@ -147,8 +147,8 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_NAME)         return m_stocks[item].STOCKNAME;
     if (column == COL_NUMBER)
     {
-        int precision = Model_Stock::NUMSHARES(m_stocks[item]) == floor(Model_Stock::NUMSHARES(m_stocks[item])) ? 0 : 4;
-        return Model_Currency::toString(Model_Stock::NUMSHARES(m_stocks[item]), stock_panel_->m_currency, precision);
+        int precision = m_stocks[item].NUMSHARES == floor(m_stocks[item].NUMSHARES) ? 0 : 4;
+        return Model_Currency::toString(m_stocks[item].NUMSHARES, stock_panel_->m_currency, precision);
     }
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
     if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
@@ -805,7 +805,7 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
     }
     stockavgPurchasePrice /= stocktotalnumShares;
 
-    double sNumShares = Model_Stock::NUMSHARES(m_stocks[selectedIndex]);
+    double sNumShares = m_stocks[selectedIndex].NUMSHARES;
     wxString sTotalNumShares;
     if ((stocktotalnumShares - static_cast<long>(stocktotalnumShares)) != 0.0)
         sTotalNumShares = wxString::Format("%.4f", stocktotalnumShares);

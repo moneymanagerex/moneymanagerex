@@ -378,15 +378,6 @@ void mmFilterTransactionsDialog::CreateControls()
     buttonPanelSizer->Add(itemButtonClear, g_flags);
 }
 
-/*!
- * Should we show tooltips?
- */
-
-const bool mmFilterTransactionsDialog::ShowToolTips()
-{
-    return TRUE;
-}
-
 void mmFilterTransactionsDialog::OnCheckboxClick( wxCommandEvent& event )
 {
     if (event.GetId() == similarCategCheckBox_->GetId())
@@ -796,7 +787,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Checking::Data &tran, cons
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Matches(getNotes())) ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Matches(getNotes().Lower())) ok = false;
     return ok;
 }
 bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
@@ -816,7 +807,7 @@ bool mmFilterTransactionsDialog::checkAll(const Model_Billsdeposits::Data &tran)
     else if (getAmountRangeCheckBoxMin() && getAmountMin() > tran.TRANSAMOUNT) ok = false;
     else if (getAmountRangeCheckBoxMax() && getAmountMax() < tran.TRANSAMOUNT) ok = false;
     else if (getNumberCheckBox() && getNumber() != tran.TRANSACTIONNUMBER) ok = false;
-    else if (getNotesCheckBox() && !tran.NOTES.Matches(getNotes())) ok = false;
+    else if (getNotesCheckBox() && !tran.NOTES.Lower().Matches(getNotes().Lower())) ok = false;
     return ok;
 }
 

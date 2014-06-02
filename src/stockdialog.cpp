@@ -87,8 +87,8 @@ void mmStockDialog::dataToControls()
     notes_->SetValue(m_stock->NOTES);
     dpc_->SetValue(Model_Stock::PURCHASEDATE(m_stock));
 
-    int precision = Model_Stock::NUMSHARES(m_stock) == floor(Model_Stock::NUMSHARES(m_stock)) ? 0 : 4;
-    numShares_->SetValue(Model_Stock::NUMSHARES(m_stock), precision);
+    int precision = m_stock->NUMSHARES == floor(m_stock->NUMSHARES) ? 0 : 4;
+    numShares_->SetValue(m_stock->NUMSHARES, precision);
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     valueInvestment_->SetLabel(Model_Account::toCurrency(m_stock->VALUE, account));
     purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account, 4);

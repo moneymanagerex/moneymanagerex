@@ -27,7 +27,8 @@
 class mmReportBudgetCategorySummary : public mmReportBudget
 {
 public:
-    mmReportBudgetCategorySummary(int budgetYearID);
+    explicit mmReportBudgetCategorySummary(int budgetYearID);
+    virtual ~mmReportBudgetCategorySummary();
 
     virtual wxString getHTMLText();
 

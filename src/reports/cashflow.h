@@ -25,8 +25,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class mmReportCashFlow : public mmPrintableBaseSpecificAccounts
 {
 public:
-    mmReportCashFlow(int cashflowreporttype);
-    ~mmReportCashFlow();
+    explicit mmReportCashFlow(int cashflowreporttype);
+    virtual ~mmReportCashFlow();
 
     virtual wxString getHTMLText();
 
@@ -72,7 +72,7 @@ class mmReportCashFlowSpecificAccounts: public mmReportCashFlow
 {
 public:
     mmReportCashFlowSpecificAccounts();
-    virtual wxString getHTMLText();
+    wxString getHTMLText();
 };
 
 class mmReportDailyCashFlowSpecificAccounts: public mmReportCashFlowSpecificAccounts

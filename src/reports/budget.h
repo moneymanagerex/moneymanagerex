@@ -31,6 +31,7 @@ class mmReportBudget : public mmPrintableBase
 {
 public:
     mmReportBudget();
+    virtual ~mmReportBudget();
 
     /// Returns correct values for day and month, adjusted to financial year if required.
     void AdjustYearValues(int& day, int& month, wxDateTime& year);

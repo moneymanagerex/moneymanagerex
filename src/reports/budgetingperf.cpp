@@ -30,6 +30,9 @@ mmReportBudgetingPerformance::mmReportBudgetingPerformance(int budgetYearID)
 : budgetYearID_(budgetYearID)
 {}
 
+mmReportBudgetingPerformance::~mmReportBudgetingPerformance()
+{}
+
 void mmReportBudgetingPerformance::DisplayEstimateMonths(mmHTMLBuilder& hb, double estimated)
 {
     for (int yidx = 0; yidx < 12; yidx++)

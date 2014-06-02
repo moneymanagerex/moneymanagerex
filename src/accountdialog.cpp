@@ -16,8 +16,8 @@
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
 
-#include "constants.h"
 #include "accountdialog.h"
+#include "constants.h"
 #include "maincurrencydialog.h"
 #include "images_list.h"
 #include "util.h"

@@ -27,10 +27,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class mmReportCategoryOverTimePerformance : public mmPrintableBase
 {
 public:
-    mmReportCategoryOverTimePerformance(mmDateRange* date_range = new mmLast12Months());
+    explicit mmReportCategoryOverTimePerformance(mmDateRange* date_range = new mmLast12Months());
     ~mmReportCategoryOverTimePerformance();
 
-    virtual wxString getHTMLText();
+    wxString getHTMLText();
 
 protected:
     mmDateRange* date_range_;

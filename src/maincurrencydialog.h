@@ -69,7 +69,6 @@ private:
     void OnValueChanged(wxDataViewEvent& event);
     void fillControls();
     void OnShowHiddenChbClick(wxCommandEvent& event);
-    const bool ShowToolTips() { return TRUE;}
 
     void OnOnlineUpdateCurRate(wxCommandEvent& event);
     bool onlineUpdateCurRate(int curr_id = -1);

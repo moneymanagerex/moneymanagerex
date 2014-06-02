@@ -19,10 +19,12 @@
 #ifndef MM_EX_SPLITTRANSACTIONDIALOG_H_
 #define MM_EX_SPLITTRANSACTIONDIALOG_H_
 
+#include "defs.h"
 #include "model/Model_Checking.h"
 #include <wx/dataview.h>
 
 class wxListCtrl;
+class wxStaticText;
 
 #ifndef wxCLOSE_BOX
 #define wxCLOSE_BOX 0x1000
@@ -73,15 +75,6 @@ public:
     void OnOk( wxCommandEvent& event );
 
     void UpdateSplitTotal();
-
-    /// Retrieves bitmap resources
-    wxBitmap GetBitmapResource( const wxString& name );
-
-    /// Retrieves icon resources
-    wxIcon GetIconResource( const wxString& name );
-
-    /// Should we show tooltips?
-    const bool ShowToolTips();
 
     wxDataViewListCtrl* lcSplit_;
     wxStaticText* transAmount_;

@@ -198,20 +198,6 @@ void SplitDetailDialog::OnButtonOKClick( wxCommandEvent& /*event*/ )
     EndModal(wxID_OK);
 }
 
-const bool SplitDetailDialog::ShowToolTips()
-{
-    return TRUE;
-}
-
-wxBitmap SplitDetailDialog::GetBitmapResource( const wxString& /*name*/ )
-{
-    return wxNullBitmap;
-}
-
-wxIcon SplitDetailDialog::GetIconResource( const wxString& /*name*/ )
-{
-    return wxNullIcon;
-}
 void SplitDetailDialog::OnCancel(wxCommandEvent& /*event*/)
 {
     EndModal(wxID_CANCEL);

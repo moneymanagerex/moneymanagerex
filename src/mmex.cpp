@@ -15,7 +15,6 @@
  along with this program; if not, write to the Free Software
  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ********************************************************/
-#include <wx/cmdline.h>
 
 #include "mmex.h"
 #include "mmframe.h"
@@ -28,6 +27,7 @@
 #include "model/Model_Usage.h"
 #include "webserver.h"
 
+#include <wx/cmdline.h>
 #include <wx/fs_mem.h>
 #include <wx/fs_arc.h>
 #include <wx/fs_filter.h>
@@ -152,8 +152,13 @@ bool OnInitImpl(mmGUIApp* app)
     bool isMax = Model_Setting::instance().GetBoolSetting("ISMAXIMIZED", false);
 
     //Get System screen size
+#ifdef _MSC_VER
+    int sys_screen_x = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+    int sys_screen_y = GetSystemMetrics(SM_CYVIRTUALSCREEN);
+#else
     int sys_screen_x = wxSystemSettings::GetMetric(wxSYS_SCREEN_X);
     int sys_screen_y = wxSystemSettings::GetMetric(wxSYS_SCREEN_Y);
+#endif
 
     /* Load Dimensions of Window */
     int valx = Model_Setting::instance().GetIntSetting("ORIGINX", 50);

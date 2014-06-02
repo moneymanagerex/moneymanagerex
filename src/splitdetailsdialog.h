@@ -57,13 +57,6 @@ private:
     void onTextEntered(wxCommandEvent& event);
     void OnCancel(wxCommandEvent& /*event*/);
 
-    /// Retrieves bitmap resources
-    wxBitmap GetBitmapResource( const wxString& name );
-    /// Retrieves icon resources
-    wxIcon GetIconResource( const wxString& name );
-    /// Should we show tooltips?
-    const bool ShowToolTips();
-
     Model_Splittransaction::Data* split_;
 
     int transType_;

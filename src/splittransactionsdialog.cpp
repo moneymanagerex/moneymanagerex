@@ -16,8 +16,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
-#include "constants.h"
 #include "splittransactionsdialog.h"
+#include "constants.h"
 #include "splitdetailsdialog.h"
 #include "util.h"
 #include <wx/statline.h>
@@ -216,21 +216,6 @@ void SplitTransactionDialog::OnButtonRemoveClick( wxCommandEvent& event )
     selectedIndex_ = -1;
     items_changed_ = true;
     DataToControls();
-}
-
-const bool SplitTransactionDialog::ShowToolTips()
-{
-    return TRUE;
-}
-
-wxBitmap SplitTransactionDialog::GetBitmapResource( const wxString& /*name*/ )
-{
-    return wxNullBitmap;
-}
-
-wxIcon SplitTransactionDialog::GetIconResource( const wxString& /*name*/ )
-{
-    return wxNullIcon;
 }
 
 void SplitTransactionDialog::UpdateSplitTotal()

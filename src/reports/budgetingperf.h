@@ -25,7 +25,8 @@
 class mmReportBudgetingPerformance : public mmReportBudget
 {
 public:
-    mmReportBudgetingPerformance(int budgetYearID);
+    explicit mmReportBudgetingPerformance(int budgetYearID);
+    virtual ~mmReportBudgetingPerformance();
 
     virtual wxString getHTMLText();
 

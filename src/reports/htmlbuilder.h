@@ -36,7 +36,7 @@ public:
     void init();
 
     /** Clears the current HTML document */
-    virtual void clear()
+    void clear()
     {
         html_.clear();
     }
@@ -156,7 +156,7 @@ private:
 class mm_html_template: public html_template
 {
 public:
-    mm_html_template(const wxString & arg_template);
+    explicit mm_html_template(const wxString & arg_template);
 
 private:
     void load_context();
