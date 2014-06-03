@@ -312,21 +312,21 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         if (daysRemaining > 14) 
             break; // Done searching for all to include
 
-        int repeats        = q1.REPEATS;
+        int repeats = q1.REPEATS;
         // DeMultiplex the Auto Executable fields.
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-        wxString daysRemainingStr = wxString::Format(_("%d days remaining"), daysRemaining);
-        if (daysRemaining == 0)
-        {
-            if (((repeats > 10) && (repeats < 15)) && (q1.NUMOCCURRENCES < 0))
-                continue; // Inactive
+        if (daysRemaining == 0 && repeats > 10 && repeats < 15 && q1.NUMOCCURRENCES < 0) {
+            continue; // Inactive
         }
 
-        wxString payeeStr = ""; 
+        wxString daysRemainingStr = daysRemaining > 0 
+            ? wxString::Format(_("%d days remaining"), daysRemaining) 
+            : wxString::Format(_("%d days overdue!"), abs(daysRemaining));
+        wxString payeeStr = "";
         if (Model_Billsdeposits::type(q1) == Model_Billsdeposits::TRANSFER)
         {   
             const Model_Account::Data *account = Model_Account::instance().get(q1.TOACCOUNTID);
