@@ -101,23 +101,31 @@ const wxString mmex::getProgramCopyright()
 }
 const wxString mmex::getProgramWebSite()
 {
-    return "http://www.codelathe.com/mmex";
+    return "http://www.moneymanagerex.org";
 }
 const wxString mmex::getProgramForum()
 {
     return "http://www.codelathe.com/forum";
 }
-const wxString mmex::getProgramFacebookSite()
+const wxString mmex::getProgramWiki()
 {
-    return "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
+    return "https://sourceforge.net/p/moneymanagerex/wiki/mmex/";
 }
-const wxString mmex::getProgramDanateSite()
+const wxString mmex::getProgramBugReport()
+{
+    return "https://sourceforge.net/p/moneymanagerex/bugs/";
+}
+const wxString mmex::getProgramDonateSite()
 {
     return "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 }
 const wxString mmex::getProgramTwitterSite()
 {
     return "https://twitter.com/MoneyManagerEx";
+}
+const wxString mmex::getProgramFacebookSite()
+{
+    return "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
 }
 const wxString mmex::getProgramDescription()
 {

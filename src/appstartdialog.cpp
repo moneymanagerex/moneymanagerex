@@ -110,15 +110,11 @@ void mmAppStartDialog::CreateControls()
     itemButton8->SetToolTip(_("Read the user manual"));
     itemBoxSizer5->Add(itemButton8, 0, wxGROW | wxALL, 5);
 
-    if (mmIniOptions::instance().enableVisitWebsite_)
-    {
-        wxButton* itemButton9 = new wxButton(this, wxID_INDEX, _("Visit Website for more information"));
-        wxString s = _("Open the %s website for latest news, updates etc");
-        s = wxString::Format(s, mmex::getProgramName());
-
-        itemButton9->SetToolTip(s);
-        itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
-    }
+    wxButton* itemButton9 = new wxButton(this, wxID_INDEX, _("Visit Website for more information"));
+    wxString s = _("Open the %s website for latest news, updates etc");
+    s = wxString::Format(s, mmex::getProgramName());
+    itemButton9->SetToolTip(s);
+    itemBoxSizer5->Add(itemButton9, 0, wxGROW | wxALL, 5);
 
     wxBoxSizer* itemBoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
     itemBoxSizer2->Add(itemBoxSizer10, 0, wxALIGN_LEFT | wxALL, 5);

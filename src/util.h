@@ -157,7 +157,11 @@ const wxDateTime getUserDefinedFinancialYear(bool prevDayRequired = false);
 
 const wxString mmPlatformType();
 const wxString getURL(const wxString& file);
-const bool IsUpdateAvailable(const wxString& page);
+const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion);
+
+/*  Checks for new updates and return message boxes.
+    Set bSilent to false to don't show messages for version already updated */
+void checkUpdates(const bool& bSilent);
 
 #endif // MM_EX_UTIL_H_
 //----------------------------------------------------------------------------

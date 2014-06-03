@@ -224,45 +224,41 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
     }
 
     //////////////////////////////////////////////////////////////////
+    wxTreeItemId budgetPerformance;
+    wxTreeItemId budgetSetupPerformance;
 
-    if (m_db && mmIniOptions::instance().enableBudget_)
+    size_t i = 0;
+    for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
     {
-        wxTreeItemId budgetPerformance;
-        wxTreeItemId budgetSetupPerformance;
+        if (!i)
+        { // first loop only
+            budgetPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Performance"), 4, 4);
+            navTreeCtrl_->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
 
-        size_t i = 0;
-        for (const auto& e : Model_Budgetyear::instance().all(Model_Budgetyear::COL_BUDGETYEARNAME))
-        {
-            if (!i)
-            { // first loop only
-                budgetPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Performance"), 4, 4);
-                navTreeCtrl_->SetItemData(budgetPerformance, new mmTreeItemData("Budget Performance"));
-
-                budgetSetupPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Category Summary"), 4, 4);
-                navTreeCtrl_->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"));
-            }
-
-            int id = e.BUDGETYEARID;
-            const wxString& name = e.BUDGETYEARNAME;
-
-            wxTreeItemId bYear = navTreeCtrl_->AppendItem(budgeting, name, 3, 3);
-            navTreeCtrl_->SetItemData(bYear, new mmTreeItemData(id, true));
-
-            // Only add YEARS for Budget Performance
-            if (name.length() < 5)
-            {
-                wxTreeItemId bYearData = navTreeCtrl_->AppendItem(budgetPerformance, name, 4, 4);
-                navTreeCtrl_->SetItemData(bYearData, new mmTreeItemData(id, true));
-            }
-            wxTreeItemId bYearSetupData = navTreeCtrl_->AppendItem(budgetSetupPerformance, name, 4, 4);
-            navTreeCtrl_->SetItemData(bYearSetupData, new mmTreeItemData(id, true));
-            ++i;
+            budgetSetupPerformance = navTreeCtrl_->AppendItem(reports, _("Budget Category Summary"), 4, 4);
+            navTreeCtrl_->SetItemData(budgetSetupPerformance, new mmTreeItemData("Budget Setup Performance"));
         }
 
-        //TODO: Set up as a permanent user option
-        if (expandedBudgetingNavTree_)
-            navTreeCtrl_->Expand(budgeting);
+        int id = e.BUDGETYEARID;
+        const wxString& name = e.BUDGETYEARNAME;
+
+        wxTreeItemId bYear = navTreeCtrl_->AppendItem(budgeting, name, 3, 3);
+        navTreeCtrl_->SetItemData(bYear, new mmTreeItemData(id, true));
+
+        // Only add YEARS for Budget Performance
+        if (name.length() < 5)
+        {
+            wxTreeItemId bYearData = navTreeCtrl_->AppendItem(budgetPerformance, name, 4, 4);
+            navTreeCtrl_->SetItemData(bYearData, new mmTreeItemData(id, true));
+        }
+        wxTreeItemId bYearSetupData = navTreeCtrl_->AppendItem(budgetSetupPerformance, name, 4, 4);
+        navTreeCtrl_->SetItemData(bYearSetupData, new mmTreeItemData(id, true));
+        ++i;
     }
+
+    //TODO: Set up as a permanent user option
+    if (expandedBudgetingNavTree_)
+        navTreeCtrl_->Expand(budgeting);
 
     ///////////////////////////////////////////////////////////////////
     wxTreeItemId cashFlow = navTreeCtrl_->AppendItem(reports, _("Cash Flow"), 4, 4);
