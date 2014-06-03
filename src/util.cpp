@@ -457,13 +457,57 @@ const wxString getURL(const wxString& file)
     return index;
 }
 
-const bool IsUpdateAvailable(const wxString& page)
+const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 {
+    bool isUpdateAvailable = false;
+    NewVersion = "error";
+
+    // Access current version details page
+    wxString site = mmex::getProgramWebSite() + "/version.html";
+
+    wxString page;
+    int err_code = site_content(site, page);
+    if (err_code != wxURL_NOERR && !bSilent)
+    {
+        wxString msgStr = wxString() << _("Unable to check for updates!") << "\n\n"
+            << _("Error code:") << "\n"
+            << page;
+        wxMessageBox(msgStr, _("MMEX Update Check"));
+        return false;
+    }
+
+    /*************************************************************************
+    Note: To allow larger digit counters and maintain backward compatability,
+    the leading counters before the character [ is ignored by the version
+    checking routines.
+
+    Expected string format from the internet up to Version: 0.9.9.0
+    page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
+    string length = 53 characters
+    **************************************************************************/
+    // Included for future testing
+    // Old format of counters
+    // page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
+    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0";
+
+    // New format to allow counters greater than 9
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0.12 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
+    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 2.10.19";
+
+    wxStringTokenizer versionTokens(page, ("["));
+    versionTokens.GetNextToken(); // ignore old counters
+    page = versionTokens.GetNextToken(); // substrtute new counters
+
+    page = page.SubString(page.find(mmPlatformType()), 53);
+    wxStringTokenizer mySysToken(page, ":");
+    mySysToken.GetNextToken().Trim(false).Trim();           // skip Operating System. Already accounted for.
+    page = mySysToken.GetNextToken().Trim(false).Trim();    // Get version for OS
+
     wxStringTokenizer tkz(page, '.', wxTOKEN_RET_EMPTY_ALL);
     if (tkz.CountTokens() < 3)
-    {
         return true;
-    }
 
     int major = wxAtoi(tkz.GetNextToken());
     int minor = wxAtoi(tkz.GetNextToken());
@@ -488,7 +532,6 @@ const bool IsUpdateAvailable(const wxString& page)
     int minorC = wxAtoi(tkz1.GetNextToken());
     int patchC = wxAtoi(tkz1.GetNextToken());
 
-    bool isUpdateAvailable = false;
     if (major > majorC)
         isUpdateAvailable = true;
     else if (major == majorC)
@@ -511,5 +554,33 @@ const bool IsUpdateAvailable(const wxString& page)
         }
     }
 
+    // define new version
+    NewVersion = wxString() << major << "." << minor << "." << patch;
+    if (rc > 0)
+        NewVersion << "-RC" << rc;
+
     return isUpdateAvailable;
+}
+
+void checkUpdates(const bool& bSilent)
+{
+    wxString NewVersion = wxEmptyString;
+
+    if (IsUpdateAvailable(false, NewVersion))
+    {
+        wxString urlDownload = mmex::getProgramWebSite() + "/download";
+        wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"
+            << _("Your current version is: ") << mmex::getProgramVersion() << "\n"
+            << _("New version is: ") << NewVersion << "\n\n"
+            << _("Would you like to download it now ?");
+        int DowloadResponse = wxMessageBox(msgStr,
+            _("MMEX Update Check"), wxICON_EXCLAMATION | wxYES | wxNO);
+        if (DowloadResponse == wxYES)
+            wxLaunchDefaultBrowser(urlDownload);
+    }
+    else if (!bSilent && NewVersion != "error")
+    {
+        wxString msgStr = wxString() << _("You already have the latest version") << " " << NewVersion;
+        wxMessageBox(msgStr, _("MMEX Update Check"), wxICON_INFORMATION);
+    }
 }
