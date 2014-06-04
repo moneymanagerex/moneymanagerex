@@ -52,7 +52,7 @@
     <data-files>
             <install-to>$(respath)</install-to>
         <srcdir>$(SRCDIR)/resources</srcdir>
-        <files>kaching.wav mmex.ico master.css</files>
+        <files>kaching.wav mmex.ico master.css home_page.htt</files>
     </data-files>
 
 	<data-files>
@@ -65,6 +65,12 @@
 	    <install-to>$(DATADIR)/..</install-to>
         <srcdir>$(SRCDIR)/resources</srcdir>
         <files>Info.plist</files>
+    </data-files>
+    
+    <data-files cond="PLATFORM_MACOSX=='1'">
+	    <install-to>$(DATADIR)</install-to>
+        <srcdir>$(SRCDIR)/doc</srcdir>
+        <files>version.txt contrib.txt license.txt</files>
     </data-files>
 
 	<data-files cond="PLATFORM_MACOSX=='1'">
