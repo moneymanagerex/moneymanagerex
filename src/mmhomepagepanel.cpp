@@ -41,14 +41,12 @@ public:
     htmlWidgetStocks();
     double get_total();
     double get_total_gein_lost();
-    void enable_detailes(bool enable);
 
     wxString getHTMLText();
 
 protected:
 
     wxString title_;
-    bool enable_details_;
     double grand_total_;
     double grand_gain_lost_;
     void calculate_stats(std::map<int, std::pair<double, double> > &stockStats);
@@ -57,7 +55,6 @@ protected:
 htmlWidgetStocks::htmlWidgetStocks()
 : title_(_("Stocks"))
 {
-    enable_details_ = true;
     grand_gain_lost_ = 0.0;
     grand_total_ = 0.0;
 }
@@ -73,42 +70,34 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        if (enable_details_)
+        output = "<table class ='table'><thead><tr class='active'><th>";
+        output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
+        output += "</th><th class = 'text-right'>" + _("Total") + "</th></tr></thead><tbody id='INVEST'>";
+        const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
+        wxString body = "";
+        for (const auto& account : accounts)
         {
-            output = "<table class = \"table\"><thead><tr><th>";
-            output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-            output += "</th><th class = 'text-right'>" + _("Total") + "</th></tr></thead><tbody>";
-            const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
-            wxString body = "";
-            for (const auto& account : accounts)
-            {
-                if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
-                if (Model_Account::status(account) != Model_Account::OPEN) continue;
-                body += "<tr>";
-                body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
-                    , account.ACCOUNTID, account.ACCOUNTNAME);
-                body += wxString::Format("<td class = \"text-right\">%s</td>"
-                    , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
-                body += wxString::Format("<td class = \"text-right\">%s</td>"
-                    , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
-                body += "</tr>";
-            }
-
-            output += body;
-            output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
-            output += wxString::Format("<td class =\"money, text-right\">%s</td>"
-                , Model_Currency::toCurrency(grand_gain_lost_));
-            output += wxString::Format("<td class =\"money, text-right\">%s</td></tr></tfoot></table>"
-                , Model_Currency::toCurrency(grand_total_));
-            if (body.empty()) output.clear();
+            if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
+            if (Model_Account::status(account) != Model_Account::OPEN) continue;
+            body += "<tr>";
+            body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
+                , account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class = \"text-right\">%s</td>"
+                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
+            body += wxString::Format("<td class = \"text-right\">%s</td>"
+                , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
+            body += "</tr>";
         }
+
+        output += body;
+        output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+        output += wxString::Format("<td class =\"money, text-right\">%s</td>"
+            , Model_Currency::toCurrency(grand_gain_lost_));
+        output += wxString::Format("<td class =\"money, text-right\">%s</td></tr></tfoot></table>"
+            , Model_Currency::toCurrency(grand_total_));
+        if (body.empty()) output.clear();
     }
     return output;
-}
-
-void htmlWidgetStocks::enable_detailes(bool enable)
-{
-    enable_details_ = enable;
 }
 
 void htmlWidgetStocks::calculate_stats(std::map<int, std::pair<double, double> > &stockStats)
@@ -305,40 +294,40 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     wxString output = ""; 
 
     //                    days, payee, description, amount, account
-    std::vector< std::tuple<int, wxString, wxString, double, Model_Account::Data*> > bd_days;
-    for (const auto& q1 : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
+    std::vector< std::tuple<int, wxString, wxString, double, const Model_Account::Data*> > bd_days;
+    for (const auto& entry : Model_Billsdeposits::instance().all(Model_Billsdeposits::COL_NEXTOCCURRENCEDATE))
     {   
-        int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&q1);
+        int daysRemaining = Model_Billsdeposits::instance().daysRemaining(&entry);
         if (daysRemaining > 14) 
             break; // Done searching for all to include
 
-        int repeats = q1.REPEATS;
+        int repeats = entry.REPEATS;
         // DeMultiplex the Auto Executable fields.
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute User Acknowlegement required
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
         if (repeats >= BD_REPEATS_MULTIPLEX_BASE)    // Auto Execute Silent mode
             repeats -= BD_REPEATS_MULTIPLEX_BASE;
 
-        if (daysRemaining == 0 && repeats > 10 && repeats < 15 && q1.NUMOCCURRENCES < 0) {
+        if (daysRemaining == 0 && repeats > 10 && repeats < 15 && entry.NUMOCCURRENCES < 0) {
             continue; // Inactive
         }
 
-        wxString daysRemainingStr = daysRemaining > 0 
+        wxString daysRemainingStr = (daysRemaining > 0 
             ? wxString::Format(_("%d days remaining"), daysRemaining) 
-            : wxString::Format(_("%d days overdue!"), abs(daysRemaining));
+            : wxString::Format(_("%d days overdue!"), abs(daysRemaining)));
         wxString payeeStr = "";
-        if (Model_Billsdeposits::type(q1) == Model_Billsdeposits::TRANSFER)
+        if (Model_Billsdeposits::type(entry) == Model_Billsdeposits::TRANSFER)
         {   
-            const Model_Account::Data *account = Model_Account::instance().get(q1.TOACCOUNTID);
+            const Model_Account::Data *account = Model_Account::instance().get(entry.TOACCOUNTID);
             if (account) payeeStr = account->ACCOUNTNAME;
         }   
         else
         {   
-            const Model_Payee::Data* payee = Model_Payee::instance().get(q1.PAYEEID);
+            const Model_Payee::Data* payee = Model_Payee::instance().get(entry.PAYEEID);
             if (payee) payeeStr = payee->PAYEENAME;
         }   
-        Model_Account::Data *account = Model_Account::instance().get(q1.ACCOUNTID);
-        double amount = (Model_Billsdeposits::type(q1) == Model_Billsdeposits::DEPOSIT ? q1.TRANSAMOUNT : -q1.TRANSAMOUNT);
+        const auto *account = Model_Account::instance().get(entry.ACCOUNTID);
+        double amount = (Model_Billsdeposits::type(entry) == Model_Billsdeposits::DEPOSIT ? entry.TRANSAMOUNT : -entry.TRANSAMOUNT);
         bd_days.push_back(std::make_tuple(daysRemaining, payeeStr, daysRemainingStr, amount, account));
     }   
 
@@ -543,7 +532,6 @@ void mmHomePagePanel::getData()
     //Stocks
     wxString stocks = "";
     htmlWidgetStocks stocks_widget;
-    stocks_widget.enable_detailes(m_frame->expandedStockAccounts());
     if (!Model_Stock::instance().all().empty())
     {
         stocks = stocks_widget.getHTMLText();
@@ -565,7 +553,19 @@ void mmHomePagePanel::getData()
     m_frames["TOP_CATEGORIES"] = top_trx.getHTMLText();
 
     m_frames["STATISTICS"] = getStatWidget();
+    m_frames["TOGGLES"] = getToggles();
 
+}
+const wxString mmHomePagePanel::getToggles()
+{
+    wxString output = "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
+    if (!m_frame->expandedBankAccounts())
+        output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
+    if (!m_frame->expandedTermAccounts())
+        output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
+    if (!m_frame->expandedStockAccounts())
+        output += "<script>toggleTable('INVEST'); </script>\n";
+    return output;
 }
 
 void mmHomePagePanel::fillData()
@@ -645,11 +645,11 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     bool type_is_bank = type == Model_Account::CHECKING;
     double tReconciled = 0;
 
-    wxString output = wxString::Format("<table class = \"table\" id = \"%s\">", (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"));
+    wxString output = "<table class = 'table'>";
     output += "<thead><tr><th>";
     output += (type_is_bank ? _("Bank Account") : _("Term Account"));
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th><th class = 'text-right'>" + _("Balance") + "</th></tr></thead>";
-    output += wxString::Format("<tbody id = \"%s\">", "");
+    output += wxString::Format("<tbody id = '%s'>", (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"));
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -663,23 +663,17 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         tBalance += bal * currency_rate;
         tReconciled += reconciledBal * currency_rate;
 
-        // Display the individual account links if we want to display them
-        if (((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts())
-            || (!m_frame->expandedBankAccounts() && !m_frame->expandedTermAccounts()))
+        // show the actual amount in that account
+        if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
+            (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
+            (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
+            && ((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts()))
         {
-
-            // show the actual amount in that account
-            if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
-                (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-                (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
-                && ((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts()))
-            {
-                body += "<tr>";
-                body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
-                body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
-                body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(bal, currency));
-                body += "</tr>\n";
-            }
+            body += "<tr>";
+            body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(bal, currency));
+            body += "</tr>\n";
         }
     }
     output += body;
@@ -834,7 +828,12 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 
     output += "<tfoot><tr class = \"success\" style = \"font-weight:bold\"><td>" + _("Grand Total:") + "</td>";
     output += "<td class ='text-right'>" + tBalanceStr + "</td>";
-    output += "<td class ='text-right'>[-] [-] [-]</td>";
+    output += "<td class='text-right'>";
+    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "ACCOUNTS_INFO", "ACCOUNTS_INFO");
+    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "TERM_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO");
+    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "INVEST", "INVEST");
+    output += "</td>\n";
+    //output += "<td class ='text-right'>[-] [-] [-]</td>";
     output += "</tfoot></table>";
 
     return output;

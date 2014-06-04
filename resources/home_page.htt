@@ -59,7 +59,6 @@
 </td>
 </tr>
 </table>
-<script>toggleTable('BILLS_AND_DEPOSITS');</script>
-<!--script>toggleTable('TOP_CATEGORIES');</script-->
+    <TMPL_VAR "TOGGLES">
 </body>
 </html>

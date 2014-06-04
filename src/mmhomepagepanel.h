@@ -69,6 +69,7 @@ private:
     const wxString displayAssets(double& tBalance);
     const wxString displayIncomeVsExpenses();
     const wxString getStatWidget();
+    const wxString getToggles();
     const wxString displayGrandTotals(double& tBalance);
 
     const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
