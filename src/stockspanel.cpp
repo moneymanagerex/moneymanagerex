@@ -576,7 +576,7 @@ wxString mmStocksPanel::BuildPage() const
     return listCtrlAccount_->BuildPage((account ? GetPanelTitle(*account) : ""));
 }
 
-double mmStocksPanel::Total_Shares()
+const wxString mmStocksPanel::Total_Shares()
 {
     double total_shares = 0;
     for (const auto& stock : Model_Stock::instance().find(Model_Stock::HELDAT(accountID_)))
@@ -584,7 +584,8 @@ double mmStocksPanel::Total_Shares()
         total_shares += stock.NUMSHARES;
     }
 
-    return total_shares;
+    int precision = (total_shares - static_cast<int>(total_shares) != 0) ? 2 : 0;
+    return Model_Currency::toString(total_shares, m_currency, precision);
 }
 
 void mmStocksPanel::updateHeader()
@@ -619,11 +620,12 @@ void mmStocksPanel::updateHeader()
         else
             lbl << "     " << _("Loss: ");
         double diffPercents = (total > originalVal ? total/originalVal*100.0-100.0 : -(total/originalVal*100.0-100.0));
-        lbl << diffStr << "  ( " << wxNumberFormatter::ToString(diffPercents, 2) << " %)";
+        lbl << diffStr << "  ( " << Model_Currency::toString(diffPercents, m_currency, 2) << " %)";
     }
 
     header_total_->SetLabel(lbl);
 }
+
 void mmStocksPanel::OnDeleteStocks(wxCommandEvent& event)
 {
     listCtrlAccount_->OnDeleteStocks(event);
@@ -775,8 +777,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     StocksRefreshStatus_ = true;
     refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_green_xpm).Scale(16,16)));
 
-    strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime(),
-                             LastRefreshDT_.FormatDate());
+    strLastUpdate_.Printf(_("%s on %s"), LastRefreshDT_.FormatTime()
+        , LastRefreshDT_.FormatDate());
     Model_Infotable::instance().Set("STOCKS_LAST_REFRESH_DATETIME", strLastUpdate_);
 
     return true;
@@ -819,8 +821,8 @@ wxString StocksListCtrl::getStockInfo(int selectedIndex) const
 
     double stocktotalDifference = stockCurrentPrice - stockavgPurchasePrice;
     //Commision don't calculates here
-    double stockPercentage = (stockCurrentPrice/stockPurchasePrice-1.0)*100.0;
-    double stocktotalPercentage = (stockCurrentPrice/stockavgPurchasePrice-1.0)*100.0;
+    double stockPercentage = (stockCurrentPrice / stockPurchasePrice - 1.0)*100.0;
+    double stocktotalPercentage = (stockCurrentPrice / stockavgPurchasePrice - 1.0)*100.0;
     double stocktotalgainloss = stocktotalDifference * stocktotalnumShares;
 
     wxString sPurchasePrice = Model_Currency::toCurrency(stockPurchasePrice);
