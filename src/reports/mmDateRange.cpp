@@ -212,3 +212,10 @@ mmSpecifiedRange::mmSpecifiedRange(wxDateTime& start, wxDateTime& end)
     this->start_date_ = start;
     this->end_date_ = end;
 }
+
+mmLast365Days::mmLast365Days() : mmDateRange()
+{
+    this->start_date_ = wxDateTime(end_date_).Subtract(wxDateSpan::Months(12)).Add(wxDateSpan::Days(1));
+    // no change to end_date_
+    this->title_ = _("Last 365 Days");
+}

@@ -30,11 +30,18 @@
 #include "reports/htmlbuilder.h"
 #include "reports/payee.h"
 #include "reports/transactions.h"
+#include "reports/summary.h"
+#include "reports/summarystocks.h"
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Report.h"
 
 void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting)
 {
+
+    wxTreeItemId reportsSummary = navTreeCtrl_->AppendItem(reports, _("Monthly Summary of Accounts"), 4, 4);
+    navTreeCtrl_->SetItemData(reportsSummary, new mmTreeItemData("Monthly Summary of Accounts"
+        , new mmReportSummaryByDate(this, 0)));
+
     int day = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_DAY", 1);
     int month = Model_Infotable::instance().GetIntInfo("FINANCIAL_YEAR_START_MONTH", 7);
     bool ignoreFuture = mmIniOptions::instance().ignoreFutureTransactions_;
@@ -304,6 +311,35 @@ void mmGUIFrame::updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& bud
             , wxGetTranslation(record.REPORTNAME), 8, 8);
         navTreeCtrl_->SetItemData(item, new mmTreeItemData(r->REPORTNAME, new mmGeneralReport(r)));
     }
+
+    //////////////////////////////////////////////////////////////////
+
+    wxTreeItemId stocksReportSummary = navTreeCtrl_->AppendItem(reports, _("Stocks Report"), 4, 4);
+    navTreeCtrl_->SetItemData(stocksReportSummary, new mmTreeItemData("Summary of Stocks"
+        , new mmReportSummaryStocks()));
+
+    wxTreeItemId stocksReportLast30 = navTreeCtrl_->AppendItem(stocksReportSummary, _("Last 30 Days"), 4, 4);
+    navTreeCtrl_->SetItemData(stocksReportLast30, new mmTreeItemData("Stocks Report - 30 Days",
+        new mmReportChartStocks(new mmLast30Days())));
+
+    wxTreeItemId stocksReport = navTreeCtrl_->AppendItem(stocksReportSummary, _("Last 365 Days"), 4, 4);
+    navTreeCtrl_->SetItemData(stocksReport, new mmTreeItemData("Stocks Report",
+        new mmReportChartStocks(new mmLast365Days())));
+
+    wxTreeItemId stocksReportLastYear = navTreeCtrl_->AppendItem(stocksReportSummary, _("Last Year"), 4, 4);
+    navTreeCtrl_->SetItemData(stocksReportLastYear, new mmTreeItemData("Stocks Report - Last Year",
+        new mmReportChartStocks(new mmLastYear)));
+
+    wxTreeItemId stocksReportCurrentYear = navTreeCtrl_->AppendItem(stocksReportSummary, _("Current Year"), 4, 4);
+    navTreeCtrl_->SetItemData(stocksReportCurrentYear, new mmTreeItemData("Stocks Report - Current Year",
+        new mmReportChartStocks(new mmCurrentYear)));
+
+    wxTreeItemId stocksReportAllTime = navTreeCtrl_->AppendItem(stocksReportSummary, _("All Time"), 4, 4);
+    navTreeCtrl_->SetItemData(stocksReportAllTime, new mmTreeItemData("Stocks Report - All Time",
+        new mmReportChartStocks()));
+
+    //////////////////////////////////////////////////////////////////
+
 }
 
 void mmGUIFrame::updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime)

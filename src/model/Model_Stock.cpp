@@ -67,3 +67,104 @@ double Model_Stock::value(const Data& r)
     return value(&r);
 }
 
+/**
+Returns the last price date of a given stock
+*/
+wxString Model_Stock::lastPriceDate(Self::Data* entity)
+{
+    wxString dtStr = entity->PURCHASEDATE;
+    wxString strSql = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%ld ORDER BY DATE DESC", entity->id());
+    wxSQLite3Statement std = db_->PrepareStatement(strSql);
+    wxSQLite3ResultSet qd = std.ExecuteQuery();
+    if (qd.NextRow())
+        dtStr = qd.GetString("DATE");
+
+    return dtStr;
+}
+
+/**
+Returns the total stock balance at a given date
+*/
+double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, wxDate date)
+{
+    int                         stockID;
+    double                      value, precValue, nextValue, balance = 0.0;
+    wxString                    strWhere, strSQL;
+    wxDateTime                  valueDate, precValueDate, nextValueDate;
+    std::map<int, double>        totBalance, mapNumShares, mapPurchPrize;
+    std::map<int, wxDateTime>    mapPurchDate;
+
+    strSQL = wxString::Format("SELECT * FROM STOCK_V1 WHERE HELDAT=%d", account->id());
+    wxSQLite3Statement  st0 = db_->PrepareStatement(strSQL);
+    wxSQLite3ResultSet  q0 = st0.ExecuteQuery();
+    while (q0.NextRow())
+    {
+        if (!strWhere.IsEmpty())
+            strWhere += " OR ";
+        stockID = q0.GetInt("STOCKID");
+        strWhere += "STOCKID=" + wxString::Format("%d", stockID);
+        totBalance[stockID] = 0.0;
+        mapNumShares[stockID] = q0.GetDouble("NUMSHARES");
+        mapPurchPrize[stockID] = q0.GetDouble("PURCHASEPRICE");
+        mapPurchDate[stockID] = q0.GetDate("PURCHASEDATE");
+    }
+
+    if (!strWhere.IsEmpty())
+    {
+        strSQL = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE (%s) AND DATE='%s' ORDER BY STOCKID", strWhere, date.FormatISODate());
+        wxSQLite3Statement  st1 = db_->PrepareStatement(strSQL);
+        wxSQLite3ResultSet  q1 = st1.ExecuteQuery();
+        while (q1.NextRow())
+        {
+            stockID = q1.GetInt("STOCKID");
+            value = q1.GetDouble("VALUE");
+            totBalance[stockID] += mapNumShares[stockID] * value;
+        }
+
+        for (const auto& it : totBalance)
+        {
+            if (it.second != 0.0)
+                continue;
+            precValue = nextValue = 0.0;
+            //  searching of the next and previous price at the given date
+            strSQL = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%d AND DATE<='%s' ORDER BY DATE DESC", it.first, date.FormatISODate());
+            wxSQLite3Statement  st2 = db_->PrepareStatement(strSQL);
+            wxSQLite3ResultSet  q2 = st2.ExecuteQuery();
+            if (q2.NextRow())
+            {
+                precValue = q2.GetDouble("VALUE");
+                precValueDate = q2.GetDate("DATE");
+            }
+            //  if not found but if the given date is after purchase date, takes purchase price
+            else if (date >= mapPurchDate[it.first])
+            {
+                precValue = mapPurchPrize[it.first];
+                precValueDate = mapPurchDate[it.first];
+            }
+            //  searching of the first price next the given date
+            strSQL = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%d AND DATE>'%s' ORDER BY DATE", it.first, date.FormatISODate());
+            st2 = db_->PrepareStatement(strSQL);
+            q2 = st2.ExecuteQuery();
+            if (q2.NextRow())
+            {
+                nextValue = q2.GetDouble("VALUE");
+                nextValueDate = q2.GetDate("DATE");
+            }
+            //  if not found and the accoung is open, takes previous date
+            else if (account->STATUS.CmpNoCase(Model_Account::all_status()[Model_Account::OPEN]) == 0)
+            {
+                nextValue = precValue;
+                nextValueDate = precValueDate;
+            }
+            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= mapPurchDate[it.first] && nextValueDate >= mapPurchDate[it.first])
+                totBalance[it.first] += mapNumShares[it.first] * precValue;
+            st2.Finalize();
+        }
+        st1.Finalize();
+    }
+
+    for (const auto& it : totBalance)
+        balance += it.second;
+
+    return balance;
+}

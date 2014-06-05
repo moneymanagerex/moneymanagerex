@@ -118,6 +118,21 @@ private:
     int mode;
 };
 //----------------------------------------------------------------------------
+
+
+class GraphChart : public AbstractChart
+{
+public:
+    GraphChart( int aWidth, int aHeight );
+
+    void Init( int aChartsize, int indColor=0 );
+    bool Render( const wxString& title = wxGetEmptyString() );
+
+private:
+    int csize;
+    int indCol;
+};
+//----------------------------------------------------------------------------
 #endif // MM_EX_CHART_H_
 //----------------------------------------------------------------------------
 

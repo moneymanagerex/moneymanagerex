@@ -21,6 +21,7 @@
 
 #include "Model.h"
 #include "db/DB_Table_Stock_V1.h"
+#include "Model_Account.h"
 
 class Model_Stock : public Model<DB_Table_STOCK_V1>
 {
@@ -49,6 +50,17 @@ public:
 
     static double value(const Data* r);
     static double value(const Data& r);
+
+public:
+    /**
+    Returns the last price date of a given stock
+    */
+    wxString lastPriceDate(Self::Data* entity);
+
+    /**
+    Returns the total stock balance at a given date
+    */
+    double getDailyBalanceAt(const Model_Account::Data *account, wxDate date);
 };
 
 #endif // 

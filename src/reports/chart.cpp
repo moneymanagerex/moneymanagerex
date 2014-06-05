@@ -18,6 +18,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 //----------------------------------------------------------------------------
 #include "chart.h"
+#include "../util.h"
 //----------------------------------------------------------------------------
 #include <limits>
 #include <algorithm> // min, max
@@ -716,6 +717,179 @@ bool BarChart::Render( const wxString& title )
                 }
             }
         }
+    }
+
+    return true;
+}
+//----------------------------------------------------------------------------
+
+GraphChart::GraphChart( int aWidth, int aHeight ) : AbstractChart( aWidth, aHeight )
+{
+    palete[4] = palete[PAL_MAX-1];
+}
+//----------------------------------------------------------------------------
+
+void GraphChart::Init( int aChartsize, int indColor/*=0*/ )
+{
+    csize = aChartsize;
+    indCol = indColor % PAL_MAX;
+
+    SetBackground( *wxWHITE );
+}
+//----------------------------------------------------------------------------
+
+bool GraphChart::Render( const wxString& title )
+{
+    if ( data.empty() ) return false;
+
+    // calculate min/max value (boundaries)
+    float min = FLT_MAX;
+    float max = -FLT_MAX;
+    float diff, mult;
+    wxString fmt;
+    wxDateTime dtDate, dtBegin, dtEnd;
+
+    for ( size_t i = 0; i < data.size(); ++i ) 
+    {
+        min = std::min( min, data[i].aval );
+        max = std::max( max, data[i].aval );
+        dtDate = mmGetStorageStringAsDate(data[i].key);
+        if (!dtBegin.IsValid() || dtDate < dtBegin)
+            dtBegin = dtDate;
+        if (!dtEnd.IsValid() || dtDate > dtEnd)
+            dtEnd = dtDate;
+    }
+
+    if (min == FLT_MAX || max == -FLT_MAX)
+        return false;
+
+    diff = max - min;
+    min -= diff * 0.1;
+    max += diff * 0.1;
+
+    float freq = getFrequency( max - min );
+    if (freq == 1.0 && (max-min) < 3.0 )
+        freq = (max - min) / 4;
+
+    wxTimeSpan dtDay;
+    wxTimeSpan dtDiff = dtEnd - dtBegin;
+
+    if ( !title.empty() ) 
+    {
+        SetStrokeColour( *wxBLACK );
+        ClearFillColour();
+
+        dc_.SetFont( boldFont );
+        dc_.DrawText( title, 10, 20 - dc_.GetTextExtent( title ).GetHeight() );
+    }
+
+    // where to start drawing from
+    int originLeft = 1, yoffset = 0;
+
+    SetStrokeColour( *wxBLACK );
+    ClearFillColour();
+
+    // draw axis
+    dc_.DrawLine( originLeft - 3, height_ - 25, width_ - 5, height_ - 25 );
+    dc_.DrawLine( originLeft, height_ - 22, originLeft, 22 );
+
+    dc_.SetFont( plainFont );
+
+    if (dtDiff.GetDays() == 0 )
+        return false;
+
+    // draw the graph
+    int zero = ( int ) ( min * ( height_ - 50 ) / ( max - min ) );
+    wxSize szText;
+    wxRect rcLast;
+    wxCoord x1, x2, y1, y2;
+    wxString label;
+
+    // horiz axis labels
+    for ( size_t i = 0; i < data.size(); ++i ) 
+    {
+        wxString key = data[i].key;
+        if (key.IsEmpty())
+            continue;
+        dtDate = mmGetStorageStringAsDate(key);
+        dtDay = dtDate - dtBegin;
+        x1 = static_cast<int>( dtDay.GetDays() * ( width_ - 10 ) / dtDiff.GetDays() );
+        szText = dc_.GetTextExtent(key);
+        if (x1 - (szText.GetWidth() / 2) > rcLast.x + rcLast.width + 10)
+        {
+            key = mmGetDateForDisplay(dtDate);
+            dc_.DrawText(key, x1 - (szText.GetWidth() / 2), height_ - 10 - szText.GetHeight());
+            rcLast.x = x1 - (szText.GetWidth() / 2);
+            rcLast.y = height_ - 10 - szText.GetHeight();
+            rcLast.width = szText.GetWidth();
+            rcLast.height = szText.GetHeight();
+            dc_.DrawLine( x1, height_ - 25, x1, height_ - 30 );
+        }
+    }
+
+    // vertical axis labels
+    for ( float fi = min; fi <= max; fi += freq ) 
+    {
+        // draw the label
+        ClearFillColour();
+        SetStrokeColour( *wxBLACK );
+
+        if (freq < 0.01)
+        {
+            mult = 1000.0;
+            fmt = "%.3f";
+        }
+        else if (freq < 0.1)
+        {
+            mult = 100.0;
+            fmt = "%.2f";
+        }
+        else if (freq < 1.0)
+        {
+            mult = 10.0;
+            fmt = "%.1f";
+        }
+        else
+        {
+            mult = 1.0;
+            fmt = "%.0f";
+        }
+        diff = ( fi * mult ) - static_cast<int>( fi * mult );
+        fi = static_cast<int>( fi * mult );
+        if( diff > 0.5 )
+            fi += 1.0;
+        fi /= mult;
+        label = wxString::Format( fmt, fi );
+        y1 = ( height_ - 25 ) + zero - static_cast<int>( fi * ( height_ - 50 ) / ( max - min ) ) - yoffset;
+        dc_.DrawText( label, 3, y1 - dc_.GetTextExtent( label ).GetHeight() );
+
+        // 1st entry skip grid, otherwise axis is overriden
+        if ( fi > min && fi < max ) 
+        {
+            // draw grid
+            ClearFillColour();
+            SetStrokeColour( *wxLIGHT_GREY );
+
+            dc_.DrawLine( originLeft + 3, y1, width_ - 8, y1 );
+        }
+    }
+
+    SetStrokeColour( palete[indCol], 2 );
+    ClearFillColour();
+
+    for ( size_t k = 0; k < data.size(); ++k ) 
+    {
+        dtDate = mmGetStorageStringAsDate(data[k].key);
+        dtDay = dtDate - dtBegin;
+        x2 = static_cast<int>( dtDay.GetDays() * ( width_ - 10 ) / dtDiff.GetDays() );
+        y2 = ( height_ - 25 ) + zero - static_cast<int>( data[k].aval * ( height_ - 50 ) / ( max - min ) ) - yoffset;
+
+        if (k > 0)
+        {
+            dc_.DrawLine(x1, y1, x2, y2);
+        }
+        x1 = x2;
+        y1 = y2;
     }
 
     return true;
