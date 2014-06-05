@@ -15,15 +15,15 @@
  */
 //=============================================================================
 
-#ifndef DB_TABLE_CATEGORY_V1_H
-#define DB_TABLE_CATEGORY_V1_H
+#ifndef DB_TABLE_STOCKHISTORY_V1_H
+#define DB_TABLE_STOCKHISTORY_V1_H
 
 #include "DB_Table.h"
 
-struct DB_Table_CATEGORY_V1 : public DB_Table
+struct DB_Table_STOCKHISTORY_V1 : public DB_Table
 {
     struct Data;
-    typedef DB_Table_CATEGORY_V1 Self;
+    typedef DB_Table_STOCKHISTORY_V1 Self;
     /** A container to hold list of Data records for the table*/
     struct Data_Set : public std::vector<Self::Data>
     {
@@ -48,7 +48,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     Index_By_Id index_by_id_;
 
     /** Destructor: clears any data records stored in memory */
-    ~DB_Table_CATEGORY_V1() 
+    ~DB_Table_STOCKHISTORY_V1() 
     {
         destroy_cache();
     }
@@ -68,11 +68,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE CATEGORY_V1(CATEGID integer primary key, CATEGNAME TEXT COLLATE NOCASE NOT NULL UNIQUE)");
+				db->ExecuteUpdate("CREATE TABLE STOCKHISTORY_V1(HISTID integer primary key, STOCKID integer , DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer)");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
-				wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+				wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
 				return false;
 			}
 		}
@@ -86,32 +86,50 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         try
         {
-            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_CATEGORY_CATEGNAME ON CATEGORY_V1(CATEGNAME)");
+            db->ExecuteUpdate("CREATE INDEX IF NOT EXISTS IDX_STOCKHISTORY_STOCKID ON STOCKHISTORY_V1(STOCKID)");
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 
         return true;
     }
 
-    struct CATEGID : public DB_Column<int>
+    struct HISTID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGID"; } 
-        explicit CATEGID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+        static wxString name() { return "HISTID"; } 
+        explicit HISTID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    struct CATEGNAME : public DB_Column<wxString>
+    struct STOCKID : public DB_Column<int>
     { 
-        static wxString name() { return "CATEGNAME"; } 
-        explicit CATEGNAME(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+        static wxString name() { return "STOCKID"; } 
+        explicit STOCKID(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
     };
-    typedef CATEGID PRIMARY;
+    struct DATE : public DB_Column<wxString>
+    { 
+        static wxString name() { return "DATE"; } 
+        explicit DATE(const wxString &v, OP op = EQUAL): DB_Column<wxString>(v, op) {}
+    };
+    struct VALUE : public DB_Column<double>
+    { 
+        static wxString name() { return "VALUE"; } 
+        explicit VALUE(const double &v, OP op = EQUAL): DB_Column<double>(v, op) {}
+    };
+    struct UPDTYPE : public DB_Column<int>
+    { 
+        static wxString name() { return "UPDTYPE"; } 
+        explicit UPDTYPE(const int &v, OP op = EQUAL): DB_Column<int>(v, op) {}
+    };
+    typedef HISTID PRIMARY;
     enum COLUMN
     {
-        COL_CATEGID = 0
-        , COL_CATEGNAME = 1
+        COL_HISTID = 0
+        , COL_STOCKID = 1
+        , COL_DATE = 2
+        , COL_VALUE = 3
+        , COL_UPDTYPE = 4
     };
 
     /** Returns the column name as a string*/
@@ -119,8 +137,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     {
         switch(col)
         {
-            case COL_CATEGID: return "CATEGID";
-            case COL_CATEGNAME: return "CATEGNAME";
+            case COL_HISTID: return "HISTID";
+            case COL_STOCKID: return "STOCKID";
+            case COL_DATE: return "DATE";
+            case COL_VALUE: return "VALUE";
+            case COL_UPDTYPE: return "UPDTYPE";
             default: break;
         }
         
@@ -130,8 +151,11 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Returns the comumn number from the given column name*/
     static COLUMN name_to_column(const wxString& name)
     {
-        if ("CATEGID" == name) return COL_CATEGID;
-        else if ("CATEGNAME" == name) return COL_CATEGNAME;
+        if ("HISTID" == name) return COL_HISTID;
+        else if ("STOCKID" == name) return COL_STOCKID;
+        else if ("DATE" == name) return COL_DATE;
+        else if ("VALUE" == name) return COL_VALUE;
+        else if ("UPDTYPE" == name) return COL_UPDTYPE;
 
         return COLUMN(-1);
     }
@@ -139,14 +163,17 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
     /** Data is a single record in the database table*/
     struct Data
     {
-        friend struct DB_Table_CATEGORY_V1;
+        friend struct DB_Table_STOCKHISTORY_V1;
         /** This is a instance pointer to itself in memory. */
         Self* view_;
     
-        int CATEGID;//  primay key
-        wxString CATEGNAME;
-        int id() const { return CATEGID; }
-        void id(int id) { CATEGID = id; }
+        int HISTID;//  primay key
+        int STOCKID;
+        wxString DATE;
+        double VALUE;
+        int UPDTYPE;
+        int id() const { return HISTID; }
+        void id(int id) { HISTID = id; }
         bool operator < (const Data& r) const
         {
             return this->id() < r.id();
@@ -160,23 +187,32 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            CATEGID = -1;
+            HISTID = -1;
+            STOCKID = -1;
+            VALUE = 0.0;
+            UPDTYPE = -1;
         }
 
         explicit Data(wxSQLite3ResultSet& q, Self* view = 0)
         {
             view_ = view;
         
-            CATEGID = q.GetInt(0); // CATEGID
-            CATEGNAME = q.GetString(1); // CATEGNAME
+            HISTID = q.GetInt(0); // HISTID
+            STOCKID = q.GetInt(1); // STOCKID
+            DATE = q.GetString(2); // DATE
+            VALUE = q.GetDouble(3); // VALUE
+            UPDTYPE = q.GetInt(4); // UPDTYPE
         }
 
         Data& operator=(const Data& other)
         {
             if (this == &other) return *this;
 
-            CATEGID = other.CATEGID;
-            CATEGNAME = other.CATEGNAME;
+            HISTID = other.HISTID;
+            STOCKID = other.STOCKID;
+            DATE = other.DATE;
+            VALUE = other.VALUE;
+            UPDTYPE = other.UPDTYPE;
             return *this;
         }
 
@@ -185,13 +221,25 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             return false;
         }
-        bool match(const Self::CATEGID &in) const
+        bool match(const Self::HISTID &in) const
         {
-            return this->CATEGID == in.v_;
+            return this->HISTID == in.v_;
         }
-        bool match(const Self::CATEGNAME &in) const
+        bool match(const Self::STOCKID &in) const
         {
-            return this->CATEGNAME.CmpNoCase(in.v_) == 0;
+            return this->STOCKID == in.v_;
+        }
+        bool match(const Self::DATE &in) const
+        {
+            return this->DATE.CmpNoCase(in.v_) == 0;
+        }
+        bool match(const Self::VALUE &in) const
+        {
+            return this->VALUE == in.v_;
+        }
+        bool match(const Self::UPDTYPE &in) const
+        {
+            return this->UPDTYPE == in.v_;
         }
         wxString to_json() const
         {
@@ -204,21 +252,30 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         
         int to_json(json::Object& o) const
         {
-            o["CATEGID"] = json::Number(this->CATEGID);
-            o["CATEGNAME"] = json::String(this->CATEGNAME.ToStdString());
+            o["HISTID"] = json::Number(this->HISTID);
+            o["STOCKID"] = json::Number(this->STOCKID);
+            o["DATE"] = json::String(this->DATE.ToStdString());
+            o["VALUE"] = json::Number(this->VALUE);
+            o["UPDTYPE"] = json::Number(this->UPDTYPE);
             return 0;
         }
         row_t to_row_t() const
         {
             row_t row;
-            row(L"CATEGID") = CATEGID;
-            row(L"CATEGNAME") = CATEGNAME;
+            row(L"HISTID") = HISTID;
+            row(L"STOCKID") = STOCKID;
+            row(L"DATE") = DATE;
+            row(L"VALUE") = VALUE;
+            row(L"UPDTYPE") = UPDTYPE;
             return row;
         }
         void to_template(html_template& t) const
         {
-            t(L"CATEGID") = CATEGID;
-            t(L"CATEGNAME") = CATEGNAME;
+            t(L"HISTID") = HISTID;
+            t(L"STOCKID") = STOCKID;
+            t(L"DATE") = DATE;
+            t(L"VALUE") = VALUE;
+            t(L"UPDTYPE") = UPDTYPE;
         }
 
         /** Save the record instance in memory to the database. */
@@ -226,7 +283,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not save CATEGORY_V1");
+                wxLogError("can not save STOCKHISTORY_V1");
                 return false;
             }
 
@@ -238,7 +295,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             if (!view_ || !db) 
             {
-                wxLogError("can not remove CATEGORY_V1");
+                wxLogError("can not remove STOCKHISTORY_V1");
                 return false;
             }
             
@@ -250,17 +307,17 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
 
     enum
     {
-        NUM_COLUMNS = 2
+        NUM_COLUMNS = 5
     };
 
     size_t num_columns() const { return NUM_COLUMNS; }
 
     /** Name of the table*/    
-    wxString name() const { return "CATEGORY_V1"; }
+    wxString name() const { return "STOCKHISTORY_V1"; }
 
-    DB_Table_CATEGORY_V1() 
+    DB_Table_STOCKHISTORY_V1() 
     {
-        query_ = "SELECT * FROM CATEGORY_V1 ";
+        query_ = "SELECT * FROM STOCKHISTORY_V1 ";
     }
 
     /** Create a new Data record and add to memory table (cache)*/
@@ -290,20 +347,23 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         wxString sql = wxEmptyString;
         if (entity->id() <= 0) //  new & insert
         {
-            sql = "INSERT INTO CATEGORY_V1(CATEGNAME) VALUES(?)";
+            sql = "INSERT INTO STOCKHISTORY_V1(STOCKID, DATE, VALUE, UPDTYPE) VALUES(?, ?, ?, ?)";
         }
         else
         {
-            sql = "UPDATE CATEGORY_V1 SET CATEGNAME = ? WHERE CATEGID = ?";
+            sql = "UPDATE STOCKHISTORY_V1 SET STOCKID = ?, DATE = ?, VALUE = ?, UPDTYPE = ? WHERE HISTID = ?";
         }
 
         try
         {
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
 
-            stmt.Bind(1, entity->CATEGNAME);
+            stmt.Bind(1, entity->STOCKID);
+            stmt.Bind(2, entity->DATE);
+            stmt.Bind(3, entity->VALUE);
+            stmt.Bind(4, entity->UPDTYPE);
             if (entity->id() > 0)
-                stmt.Bind(2, entity->CATEGID);
+                stmt.Bind(5, entity->HISTID);
 
             //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
@@ -321,7 +381,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
+            wxLogError("STOCKHISTORY_V1: Exception %s, %s", e.GetMessage().c_str(), entity->to_json());
             return false;
         }
 
@@ -339,7 +399,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         if (id <= 0) return false;
         try
         {
-            wxString sql = "DELETE FROM CATEGORY_V1 WHERE CATEGID = ?";
+            wxString sql = "DELETE FROM STOCKHISTORY_V1 WHERE HISTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
             //wxLogDebug(stmt.GetSQL());
@@ -365,7 +425,7 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         }
         catch(const wxSQLite3Exception &e) 
         { 
-            wxLogError("CATEGORY_V1: Exception %s", e.GetMessage().c_str());
+            wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
             return false;
         }
 

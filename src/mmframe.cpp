@@ -67,6 +67,7 @@
 #include "import_export/univcsvdialog.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Stock.h"
+#include "model/Model_StockHistory.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Setting.h"
 #include "model/Model_Budgetyear.h"
@@ -1522,6 +1523,7 @@ void mmGUIFrame::InitializeModelTables()
     m_all_models.push_back(&Model_Infotable::instance(m_db.get()));
     m_all_models.push_back(&Model_Asset::instance(m_db.get()));
     m_all_models.push_back(&Model_Stock::instance(m_db.get()));
+    m_all_models.push_back(&Model_StockHistory::instance(m_db.get()));
     m_all_models.push_back(&Model_Account::instance(m_db.get()));
     m_all_models.push_back(&Model_Payee::instance(m_db.get()));
     m_all_models.push_back(&Model_Checking::instance(m_db.get()));

@@ -1,0 +1,129 @@
+/*******************************************************
+Copyright (C) 2013,2014 Guan Lisheng (guanlisheng@gmail.com)
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+********************************************************/
+
+#include "Model_StockHistory.h"
+
+Model_StockHistory::Model_StockHistory()
+: Model<DB_Table_STOCKHISTORY_V1>()
+{
+};
+
+Model_StockHistory::~Model_StockHistory()
+{
+};
+
+/**
+* Initialize the global Model_StockHistory table.
+* Reset the Model_StockHistory table or create the table if it does not exist.
+*/
+Model_StockHistory& Model_StockHistory::instance(wxSQLite3Database* db)
+{
+    Model_StockHistory& ins = Singleton<Model_StockHistory>::instance();
+    ins.db_ = db;
+    ins.ensure(db);
+
+    return ins;
+}
+
+/** Return the static instance of Model_StockHistory table */
+Model_StockHistory& Model_StockHistory::instance()
+{
+    return Singleton<Model_StockHistory>::instance();
+}
+
+/**
+Lists all stock history items for a given stock
+* Return the data set
+*/
+Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* = false*/, int limit/* = 0*/, wxDate startDate/* = wxDefaultDateTime*/, wxDate endDate/* = wxDefaultDateTime*/)
+{
+    Data_Set result;
+    wxString strSql;
+    try
+    {
+        strSql = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%ld", stockId);
+        if (startDate.IsValid() && endDate.IsValid())
+            strSql += wxString::Format(" AND DATE>='%s' AND DATE <='%s'", startDate.FormatISODate(), endDate.FormatISODate());
+        strSql += " ORDER BY DATE";
+        if (!asc)
+            strSql += " DESC";
+        wxSQLite3Statement st = this->db_->PrepareStatement(strSql);
+        wxSQLite3ResultSet q = st.ExecuteQuery();
+        while (q.NextRow() && (limit == 0 || (int)result.size()<limit))
+        {
+            Self::Data entity(q, this);
+            result.push_back(entity);
+        }
+        q.Finalize();
+    }
+    catch (const wxSQLite3Exception &e)
+    {
+        wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+    }
+
+    return result;
+}
+
+/**
+Returns the last price date of a given stock
+*/
+wxDate Model_StockHistory::lastPriceDate(int stockId)
+{
+    wxDate lastPriceDate;
+    wxString strSql;
+    try
+    {
+        strSql = wxString::Format("SELECT MAX(STOCKHISTORY_V1.DATE) AS LASTPRICEDATE FROM STOCKHISTORY_V1 WHERE STOCKID=%ld", stockId);
+        wxSQLite3Statement st = this->db_->PrepareStatement(strSql);
+        wxSQLite3ResultSet q = st.ExecuteQuery();
+        while (q.NextRow())
+        {
+            lastPriceDate = q.GetDate("LASTPRICEDATE");
+        }
+        q.Finalize();
+    }
+    catch (const wxSQLite3Exception &e)
+    {
+        wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+    }
+    return lastPriceDate;
+}
+
+/**
+Deletes all stock histor for a given stock
+*/
+void Model_StockHistory::deleteAllHistory(int stockId)
+{
+    wxString strSql;
+    try
+    {
+        wxSQLite3Statement st = this->db_->PrepareStatement("DELETE FROM STOCKHISTORY_V1 where STOCKID = ?");
+        st.Bind(1, stockId);
+        st.ExecuteUpdate();
+        st.Finalize();
+    }
+    catch (const wxSQLite3Exception &e)
+    {
+        wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+    }
+}
+
+wxDate Model_StockHistory::DATE(const Data& hist)
+{
+    return Model::to_date(hist.DATE);
+}
