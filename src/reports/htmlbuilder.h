@@ -76,9 +76,9 @@ public:
     /** Add a Table header row with link */
     void addTableHeaderRowLink(const wxString& href, const wxString& value, int cols = 0);
 
-    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency());
-    void addMoneyCell(double amount, bool color = true);
-    void addMoneyCell(double amount, const wxString& color);
+    void addCurrencyCell(double amount, const Model_Currency::Data *currency = Model_Currency::instance().GetBaseCurrency(), int width=-1, int precision=-1);
+    void addMoneyCell(double amount, bool color = true, int width=-1, int precision=-1);
+    void addMoneyCell(double amount, const wxString& color, int width=-1, int precision=-1);
     void addTableCellMonth(int month);
 
     /** Add a Cell value */
@@ -87,14 +87,16 @@ public:
                       , const bool& numeric = false
                               , const bool& italic = false
                                       , const bool& bold = false
-                                              , const wxString& fontColor = "");
+                                              , const wxString& fontColor = ""
+                                                      , int width=-1);
 
     /** Add a Cell value */
     void addTableCellLink(const wxString& href, const wxString& value
                           , const bool& numeric = false
                                   , const bool& italic = false
                                           , const bool& bold = false
-                                                  , const wxString& fontColor = "");
+                                                  , const wxString& fontColor = ""
+                                                         , int width=-1);
 
     void end();
     void endTable();

@@ -243,26 +243,34 @@ void mmHTMLBuilder::addTableHeaderCell(const wxString& value, const bool& numeri
     color_.bgswitch = false;
 }
 
-void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency)
+void mmHTMLBuilder::addCurrencyCell(double amount, const Model_Currency::Data* currency, int width, int precision)
 {
-    wxString balance = Model_Currency::toCurrency(amount, currency);
-    this->addTableCell(balance, true, true, true, (amount < 0) ? "RED" : "");
+    if (precision == -1 )
+        precision = Model_Currency::precision(currency);
+    wxString balance = Model_Currency::toCurrency(amount, currency, precision);
+    this->addTableCell(balance, true, true, true, (amount < 0) ? "RED" : "", width);
 }
-void mmHTMLBuilder::addMoneyCell(double amount, bool color)
+void mmHTMLBuilder::addMoneyCell(double amount, bool color, int width, int precision)
 {
     wxString balance = "";
     const Model_Currency::Data* currency = Model_Currency::GetBaseCurrency();
     if (currency)
-        balance = Model_Currency::toString(amount, currency);
+    {
+        if (precision == -1 )
+            precision = Model_Currency::precision(currency);
+        balance = Model_Currency::toString(amount, currency, precision);
+    }
     else
         balance = Model_Currency::toString(amount);
-    this->addTableCell(balance, true, true, true, (amount < 0 && color) ? "RED": "");
+    this->addTableCell(balance, true, true, true, (amount < 0 && color) ? "RED": "", width);
 }
 
-void mmHTMLBuilder::addMoneyCell(double amount, const wxString& color)
+void mmHTMLBuilder::addMoneyCell(double amount, const wxString& color, int width, int precision)
 {
-    wxString balance = Model_Currency::toCurrency(amount);
-    this->addTableCell(balance, true, true, true, color);
+    if (precision == -1)
+        precision = Model_Currency::precision(Model_Currency::GetBaseCurrency());
+    wxString balance = Model_Currency::toCurrency(amount, Model_Currency::GetBaseCurrency(), precision);
+    this->addTableCell(balance, true, true, true, color, width);
 }
 
 void mmHTMLBuilder::addTableCell(const wxDateTime& date)
@@ -272,9 +280,12 @@ void mmHTMLBuilder::addTableCell(const wxDateTime& date)
 }
 
 void mmHTMLBuilder::addTableCell(const wxString& value
-    , const bool& numeric, const bool& italic, const bool& bold, const wxString& fontColor)
+    , const bool& numeric, const bool& italic, const bool& bold, const wxString& fontColor, int width)
 {
-    html_<< wxString::Format(tags::TABLE_CELL , (numeric ? "0%\" align=\"right" : "0%"));
+    if (width == -1)
+        html_<< wxString::Format(tags::TABLE_CELL , (numeric ? "0%\" align=\"right" : "0%"));
+    else
+        html_<< wxString::Format(tags::TABLE_CELL , (numeric ? wxString::Format("%d%%\" align=\"right", width) : wxString::Format("%d%%", width)));
 
     this->font_settings(font_size_, fontColor);
 
@@ -297,10 +308,10 @@ void mmHTMLBuilder::addTableCellMonth(int month)
 
 void mmHTMLBuilder::addTableCellLink(const wxString& href
     , const wxString& value, const bool& numeric
-    , const bool& italic, const bool& bold, const wxString& fontColor)
+    , const bool& italic, const bool& bold, const wxString& fontColor, int width)
 {
     addTableCell(wxString::Format(tags::TABLE_CELL_LINK, href, value )
-        , numeric, italic, bold, fontColor);
+        , numeric, italic, bold, fontColor, width);
 }
 
 void mmHTMLBuilder::addTableHeaderCellLink(const wxString& href, const wxString& value, const bool& numeric)
