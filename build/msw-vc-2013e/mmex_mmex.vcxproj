@@ -297,6 +297,7 @@
     <ClCompile Include="..\..\src\model\Model_Setting.cpp" />
     <ClCompile Include="..\..\src\model\Model_Splittransaction.cpp" />
     <ClCompile Include="..\..\src\model\Model_Stock.cpp" />
+    <ClCompile Include="..\..\src\model\Model_StockHistory.cpp" />
     <ClCompile Include="..\..\src\model\Model_Subcategory.cpp" />
     <ClCompile Include="..\..\src\model\Model_Usage.cpp" />
     <ClCompile Include="..\..\src\reports\budget.cpp" />
@@ -337,6 +338,8 @@
     <ClCompile Include="..\..\src\reports\payee.cpp" />
     <ClCompile Include="..\..\src\payeedialog.cpp" />
     <ClCompile Include="..\..\src\webapp.cpp" />
+    <ClCompile Include="..\..\src\reports\summary.cpp" />
+    <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\src\webserver.cpp" />
     <ClCompile Include="..\..\src\win\platfdep.cpp" />
     <ClCompile Include="..\..\src\import_export\qif_export.cpp" />
@@ -375,6 +378,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Report_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Setting_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Stockhistory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
@@ -404,6 +408,7 @@
     <ClInclude Include="..\..\src\model\Model_Setting.h" />
     <ClInclude Include="..\..\src\model\Model_Splittransaction.h" />
     <ClInclude Include="..\..\src\model\Model_Stock.h" />
+    <ClInclude Include="..\..\src\model\Model_StockHistory.h" />
     <ClInclude Include="..\..\src\model\Model_Subcategory.h" />
     <ClInclude Include="..\..\src\aboutdialog.h" />
     <ClInclude Include="..\..\src\accountdialog.h" />
@@ -461,6 +466,8 @@
     <ClInclude Include="..\..\src\relocatecategorydialog.h" />
     <ClInclude Include="..\..\src\relocatepayeedialog.h" />
     <ClInclude Include="..\..\src\reports\reportbase.h" />
+    <ClInclude Include="..\..\src\reports\summary.h" />
+    <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\src\resource.h" />
     <ClInclude Include="..\..\src\singleton.h" />
     <ClInclude Include="..\..\src\splitdetailsdialog.h" />
