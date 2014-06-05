@@ -88,8 +88,8 @@ public:
     static std::pair<double, double> investment_balance(const Data& r);
     static wxString toCurrency(double value, const Data* r);
 
-    static wxString toString(double value, const Data* r);
-    static wxString toString(double value, const Data& r);
+    static wxString toString(double value, const Data* r, int precision = 2);
+    static wxString toString(double value, const Data& r, int precision = 2);
 
     static STATUS status(const Data* account);
     static STATUS status(const Data& account);

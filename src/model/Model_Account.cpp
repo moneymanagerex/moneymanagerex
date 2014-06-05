@@ -201,14 +201,14 @@ wxString Model_Account::toCurrency(double value, const Data* r)
     return Model_Currency::toCurrency(value, currency(r));
 }    
 
-wxString Model_Account::toString(double value, const Data* r)
+wxString Model_Account::toString(double value, const Data* r, int precision)
 {
-    return Model_Currency::toString(value, currency(r));
+    return Model_Currency::toString(value, currency(r), precision);
 }
 
-wxString Model_Account::toString(double value, const Data& r)
+wxString Model_Account::toString(double value, const Data& r, int precision)
 {
-    return toString(value, &r);
+    return toString(value, &r, precision);
 }
 
 Model_Account::STATUS Model_Account::status(const Data* account)
