@@ -305,7 +305,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
     else
         sizer->Add(templateText, g_flagsExpand);
 
-    panel->SetSizerAndFit(sizer);
+    panel->SetSizer(sizer);
+    panel->Layout();
 }
 
 void mmGeneralReportManager::OnSqlTest(wxCommandEvent& event)
