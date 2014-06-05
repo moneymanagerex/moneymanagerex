@@ -70,7 +70,7 @@ double Model_Stock::value(const Data& r)
 /**
 Returns the last price date of a given stock
 */
-wxString Model_Stock::lastPriceDate(Self::Data* entity)
+wxString Model_Stock::lastPriceDate(const Self::Data* entity)
 {
     wxString dtStr = entity->PURCHASEDATE;
     wxString strSql = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%ld ORDER BY DATE DESC", entity->id());

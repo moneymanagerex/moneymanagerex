@@ -155,7 +155,7 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
     if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
     if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency, 4);
-    if (column == COL_PRICEDATE)    return mmGetDateForDisplay(Model_StockHistory::instance().lastPriceDate(m_stocks[item].STOCKID));
+    if (column == COL_PRICEDATE)    return mmGetDateForDisplay(mmGetStorageStringAsDate(Model_Stock::instance().lastPriceDate(&m_stocks[item])));
     if (column == COL_NOTES)
     {
         wxString full_notes = m_stocks[item].NOTES;

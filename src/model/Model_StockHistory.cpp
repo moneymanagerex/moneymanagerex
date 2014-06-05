@@ -82,9 +82,9 @@ Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* 
 /**
 Returns the last price date of a given stock
 */
-wxDate Model_StockHistory::lastPriceDate(int stockId)
+/*wxDate Model_StockHistory::lastPriceDate(int stockId)
 {
-    wxDate lastPriceDate;
+    wxDate lastPriceDate = wxDate::Today();
     wxString strSql;
     try
     {
@@ -102,7 +102,7 @@ wxDate Model_StockHistory::lastPriceDate(int stockId)
         wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
     }
     return lastPriceDate;
-}
+}*/
 
 /**
 Deletes all stock histor for a given stock

@@ -55,7 +55,7 @@ public:
     /**
     Returns the last price date of a given stock
     */
-    wxDate lastPriceDate(int stockId);
+    //wxDate lastPriceDate(int stockId);
 
     /**
     Deletes all stock histor for a given stock
