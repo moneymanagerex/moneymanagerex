@@ -27,16 +27,27 @@
 #include "model/Model_Infotable.h"
 #include "model/Model_Account.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_StockHistory.h"
 #include "../resources/update_currency.xpm"
 #include "../resources/attachment.xpm"
+#include"../resources/uparrow.xpm"
+#include "import_export/univcsvdialog.h"
 
-IMPLEMENT_DYNAMIC_CLASS( mmStockDialog, wxDialog )
+#define wxID_IMPORT 10106
+#define wxID_UPDATE 10107
+
+IMPLEMENT_DYNAMIC_CLASS(mmStockDialog, wxDialog)
 
 BEGIN_EVENT_TABLE( mmStockDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmStockDialog::OnOk)
     EVT_BUTTON(wxID_CANCEL, mmStockDialog::OnCancel)
     EVT_BUTTON(wxID_INDEX, mmStockDialog::OnStockPriceButton)
     EVT_BUTTON(wxID_FILE, mmStockDialog::OnAttachments)
+    EVT_BUTTON(wxID_IMPORT, mmStockDialog::OnHistoryImportButton)
+    EVT_BUTTON(wxID_UPDATE, mmStockDialog::OnHistoryUpdateButton)
+    EVT_BUTTON(wxID_DELETE, mmStockDialog::OnHistoryDeleteButton)
+
+    EVT_LIST_ITEM_SELECTED(wxID_ANY, mmStockDialog::OnListItemSelected)
 END_EVENT_TABLE()
 
 mmStockDialog::mmStockDialog( )
@@ -94,6 +105,7 @@ void mmStockDialog::dataToControls()
     purchasePrice_->SetValue(m_stock->PURCHASEPRICE, account, 4);
     currentPrice_->SetValue(m_stock->CURRENTPRICE, account, 4);
     commission_->SetValue(m_stock->COMMISSION, account, 4);
+    showStockHistory();
 }
 
 void mmStockDialog::fillControls()
@@ -182,6 +194,13 @@ void mmStockDialog::CreateControls()
         , wxCommandEventHandler(mmStockDialog::OnTextEntered), nullptr, this);
 
     //
+    itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Price Date")), flags);
+
+    priceDate_ = new wxDatePickerCtrl( itemPanel5, ID_DPC_CP_PDATE,
+        wxDefaultDateTime, wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+    itemFlexGridSizer6->Add(priceDate_, flags);
+    priceDate_->SetToolTip(_("Specify the stock price date"));
+
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Commission")), flags);
     commission_ = new mmTextCtrl( itemPanel5, ID_TEXTCTRL_STOCK_COMMISSION, "0"
         , wxDefaultPosition, wxSize(150, -1), wxALIGN_RIGHT | wxTE_PROCESS_ENTER, mmCalcValidator());
@@ -214,8 +233,8 @@ void mmStockDialog::CreateControls()
     wxBoxSizer* itemBoxSizer28 = new wxBoxSizer(wxHORIZONTAL);
     itemPanel27->SetSizer(itemBoxSizer28);
 
-    wxButton* itemButtonOK = new wxButton( itemPanel27, wxID_OK);
-    wxButton* itemButton30 = new wxButton( itemPanel27, wxID_CANCEL);
+    wxButton* itemButtonOK = new wxButton(itemPanel27, wxID_OK);
+    wxButton* itemButton30 = new wxButton(itemPanel27, wxID_CANCEL, _("&Cancel "));
     wxBitmapButton* itemButton31 = new wxBitmapButton(itemPanel27, wxID_INDEX, wxNullBitmap
         , wxDefaultPosition, wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
     itemButton31->SetToolTip(_("Will display the web page for the specified Stock symbol"));
@@ -228,6 +247,50 @@ void mmStockDialog::CreateControls()
     itemBoxSizer28->Add(itemButtonOK, flags);
     itemBoxSizer28->Add(itemButton30, flags);
 
+    wxPanel* itemPanel32 = new wxPanel( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+    itemBoxSizer3->Add(itemPanel32, flags.Right());
+
+    wxBoxSizer* itemBoxSizer33 = new wxBoxSizer(wxHORIZONTAL);
+    itemPanel32->SetSizer(itemBoxSizer33);
+
+    //Import CSV
+    wxBitmapButton* itemButtonImport = new wxBitmapButton(itemPanel32, wxID_IMPORT, wxNullBitmap,
+        wxDefaultPosition, wxSize(itemButtonOK->GetSize().GetHeight(), itemButtonOK->GetSize().GetHeight()));
+    itemButtonImport->SetToolTip(_("Import Stock Price history (CSV Format)"));
+    itemButtonImport->SetBitmapLabel(/*update_currency_xpm*/uparrow_xpm);
+    //delete
+    wxButton* itemButtonDel = new wxButton(itemPanel32, wxID_DELETE, _("&Delete "));
+    //update
+    wxButton* itemButtonUpd = new wxButton(itemPanel32, wxID_UPDATE, _("&Update"));
+    itemBoxSizer33->Add(itemButtonImport, flags);
+    itemBoxSizer33->Add(itemButtonDel, flags);
+    itemBoxSizer33->Add(itemButtonUpd, flags);
+
+    priceListBox_ = new wxListCtrl( this, wxID_ANY, wxDefaultPosition, wxSize(250, 200),
+        wxLC_REPORT);
+    itemBoxSizer2->Add(priceListBox_, 1, wxGROW|wxALL, 5);
+    priceListBox_->SetToolTip(_("Stock Price History"));
+
+    // Add first column
+    wxListItem col0;
+    col0.SetId(0);
+    col0.SetText( _("Date") );
+    col0.SetWidth(90);
+    priceListBox_->InsertColumn(0, col0);
+
+    // Add second column
+    wxListItem col1;
+    col1.SetId(1);
+    col1.SetText( _("Price") );
+    col1.SetWidth(80);
+    priceListBox_->InsertColumn(1, col1);
+
+    // Add third column
+    wxListItem col2;
+    col2.SetId(2);
+    col2.SetText( _("Diff.") );
+    col2.SetWidth(50);
+    priceListBox_->InsertColumn(2, col2);
 }
 
 
@@ -284,12 +347,25 @@ void mmStockDialog::OnStockPriceButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 {
+    if (priceListBox_->GetItemCount())
+    {
+        for (long i=0; i<priceListBox_->GetItemCount(); i++)
+        {
+            if (priceListBox_->GetItemState(0, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+            {
+                priceListBox_->SetItemState(0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+                break;
+            }
+        }
+    }
+
     Model_Account::Data* account = Model_Account::instance().get(accountID_);
     if (!account)
     {
         mmShowErrorMessageInvalid(this, _("Held At"));
         return;
     }
+    Model_Currency::Data *currency = Model_Account::currency(account);
     wxString pdate = dpc_->GetValue().FormatISODate();
     wxString heldAt = account->ACCOUNTNAME; 
 
@@ -299,13 +375,11 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
 
     wxString numSharesStr = numShares_->GetValue().Trim();
     double numShares = 0;
-    if (!wxNumberFormatter::FromString(numSharesStr, &numShares) || numShares < 0)
+	if (!Model_Currency::fromString(numSharesStr, numShares, currency) || numShares < 0)
     {
         mmShowErrorMessage(this, _("Invalid number of shares entered "), _("Error"));
         return;
     }
-
-    Model_Currency::Data *currency = Model_Account::currency(account);
 
     wxString pPriceStr = purchasePrice_->GetValue().Trim();
     double pPrice;
@@ -358,6 +432,14 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
     else
         transID_ = stockID_;
 
+    // update stock history table
+    Model_StockHistory::Data *stockHist = Model_StockHistory::instance().create();
+    stockHist->STOCKID = transID_;
+    stockHist->DATE = priceDate_->GetValue().FormatISODate();
+    stockHist->VALUE = cPrice;
+    stockHist->UPDTYPE = 2;
+    Model_StockHistory::instance().save(stockHist);
+
     EndModal(wxID_OK);
 }
 
@@ -382,5 +464,235 @@ void mmStockDialog::OnTextEntered(wxCommandEvent& event)
     else if (event.GetId() == commission_->GetId())
     {
         commission_->Calculate(currency, 4);
+    }
+}
+
+void mmStockDialog::OnListItemSelected(wxListEvent& event)
+{
+    long selectedIndex = event.GetIndex();
+    long histId = priceListBox_->GetItemData(selectedIndex);
+    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+    Model_StockHistory::Data *histData = Model_StockHistory::instance().get(histId);
+
+    if (histData->HISTID > 0)
+    {
+        priceDate_->SetValue(Model_StockHistory::DATE(*histData));
+        currentPrice_->SetValue(Model_Account::toString(histData->VALUE, account, 4));
+    }
+}
+
+void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
+{
+    bool canceledbyuser = false;
+    wxString fileName = wxFileSelector(_("Choose CSV data file to import"), 
+                wxEmptyString, wxEmptyString, wxEmptyString, "*.csv", wxFD_FILE_MUST_EXIST);
+    Model_Account::Data *account = Model_Account::instance().get(m_stock->HELDAT);
+    Model_Currency::Data *currency = Model_Account::currency(account);
+
+    if (!fileName.IsEmpty())
+    {
+        wxFileName csv_file(fileName);
+        if (fileName.IsEmpty() || !csv_file.FileExists())
+            return;
+        wxTextFile tFile(fileName);
+        if (!tFile.Open())
+            return;
+        wxProgressDialog* progressDlg = new wxProgressDialog(_("Stock History CSV Import"),
+            _("Quotes imported from CSV: "), tFile.GetLineCount(),
+            NULL, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+        long countNumTotal = 0;
+        long countImported = 0;
+        double price;
+        wxDateTime dt;
+        wxString dateStr, priceStr;
+        Model_StockHistory::Data *data;
+        Model_StockHistory::Cache stockData;
+
+        wxString line;
+        std::vector<wxString> rows;
+        for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
+        {
+            wxString progressMsg;
+            progressMsg << _("Quotes imported from CSV: ") << countImported;
+            if (!progressDlg->Update(countImported, progressMsg))
+            {
+                canceledbyuser = true;
+                break; // abort processing
+            }
+
+            if (!line.IsEmpty())
+                ++countNumTotal;
+            else
+                continue;
+
+            dateStr.clear();
+            priceStr.clear();
+
+            wxString delimiter = Model_Infotable::instance().GetStringInfo("DELIMITER", mmex::DEFDELIMTER);
+            mmUnivCSVDialog::csv2tab_separated_values(line, delimiter);
+            wxStringTokenizer tkz(line, "\t", wxTOKEN_RET_EMPTY_ALL);  
+            if ((int)tkz.CountTokens() < 2)
+                continue;
+            
+            std::vector<wxString> tokens;
+            while (tkz.HasMoreTokens())
+            {
+                wxString token = tkz.GetNextToken();
+                tokens.push_back(token);
+            }
+
+            // date
+            dateStr = tokens[0];
+            mmParseDisplayStringToDate(dt, dateStr, mmOptions::instance().dateFormat_);
+            dateStr = dt.FormatISODate();
+            // price
+            priceStr = tokens[1];
+            priceStr.Replace(" ", wxEmptyString);
+            if (!Model_Currency::fromString(priceStr, price, currency) || price <= 0.0)
+                continue;
+
+            data = Model_StockHistory::instance().create();
+            data->STOCKID = m_stock->id();
+            data->DATE = dateStr;
+            data->VALUE = price;
+            data->UPDTYPE = 2;
+            stockData.push_back(data);
+
+            if (rows.size()<10)
+            {
+                dateStr <<  wxT ("  ") << priceStr;
+                rows.push_back(dateStr);
+            }
+            countImported++;
+        }
+
+        progressDlg->Destroy();       
+
+        wxString msg = wxString::Format(_("Total Lines : %d"), countNumTotal); 
+        msg << wxT ("\n");
+        msg << wxString::Format(_("Total Imported : %d"), countImported); 
+        msg << wxT ("\n");
+        msg << wxT ("Date") << wxT ("              ") << wxT ("Price");
+        msg << wxT ("\n");
+        for (std::vector<wxString>::const_iterator d = rows.begin(); d != rows.end(); ++d)
+            msg << *d << wxT ("\n");
+        wxString confirmMsg = msg + _("Please confirm saving...");
+        if (!canceledbyuser && wxMessageBox(confirmMsg, _("Importing CSV"), wxOK|wxCANCEL|wxICON_INFORMATION) == wxCANCEL)
+            canceledbyuser = true;
+ 
+        // Since all database transactions are only in memory,
+        if (!canceledbyuser)
+        {
+            // we need to save them to the database. 
+            for (auto &d : stockData)
+                Model_StockHistory::instance().save(d);
+            // show the data
+            showStockHistory();
+        }
+        else 
+        {
+            // and discard the database changes.
+        }
+    }
+}
+
+void mmStockDialog::OnHistoryUpdateButton(wxCommandEvent& /*event*/)
+{
+    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+	Model_Currency::Data* currency = Model_Account::currency(account);
+	Model_StockHistory::Data *hist = Model_StockHistory::instance().create();
+    wxString currentPriceStr = currentPrice_->GetValue().Trim();
+    if (!Model_Currency::fromString(currentPriceStr, hist->VALUE, currency) || (hist->VALUE < 0.0))
+        return;
+    hist->STOCKID = m_stock->id();
+    hist->DATE = priceDate_->GetValue().FormatISODate();
+    hist->UPDTYPE = 2;
+    wxString listStr;
+    wxDateTime dt;
+    long i, histID;
+    Model_StockHistory::instance().save(hist);
+    histID = hist->HISTID;
+    for (i=0; i<priceListBox_->GetItemCount(); i++)
+    {
+        listStr = priceListBox_->GetItemText(i, 0);
+        mmParseDisplayStringToDate(dt, listStr, mmOptions::instance().dateFormat_);
+        if (dt.FormatISODate() == hist->DATE)
+            break;
+    }
+    if (i == priceListBox_->GetItemCount())
+    {
+        //add
+        for (i=0; i<priceListBox_->GetItemCount(); i++)
+        {
+            listStr = priceListBox_->GetItemText(i, 0);
+            mmParseDisplayStringToDate(dt, listStr, mmOptions::instance().dateFormat_);
+            if (dt.FormatISODate() < hist->DATE)
+                break;
+        }
+        wxListItem item;
+        item.SetId(i);
+        item.SetData(histID);
+        priceListBox_->InsertItem( item );
+    }
+    if (i != priceListBox_->GetItemCount())
+    {
+        listStr = Model_Account::toString(hist->VALUE, account, 4);
+        priceListBox_->SetItem(i, 0, mmGetDateForDisplay(priceDate_->GetValue()));
+        priceListBox_->SetItem(i, 1, listStr);
+        listStr = Model_Account::toString(hist->VALUE - m_stock->PURCHASEPRICE, account, 4);
+        priceListBox_->SetItem(i, 2, listStr);
+    }
+}
+
+void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
+{
+    if (priceListBox_->GetSelectedItemCount() <= 0)
+        return;
+
+    for (long i=0; i<priceListBox_->GetItemCount(); i++)
+    {
+        if (priceListBox_->GetItemState(i, wxLIST_STATE_SELECTED) == wxLIST_STATE_SELECTED)
+        {
+            Model_StockHistory::instance().remove((int)priceListBox_->GetItemData(i));
+            priceListBox_->DeleteItem(i);
+            if (priceListBox_->GetItemCount())
+                priceListBox_->SetItemState(0, wxLIST_STATE_SELECTED, wxLIST_STATE_SELECTED);
+            break;
+        }
+    }
+}
+
+void mmStockDialog::showStockHistory()
+{
+    wxString dateString, dispAmount, strSql;
+    wxDateTime dtdt;
+    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+    Model_StockHistory::Data_Set histData;
+    priceListBox_->DeleteAllItems();
+    histData = Model_StockHistory::instance().search(stockID_, false, 300);
+    if (histData.size()>0)
+    {
+        int idx=0;
+        for (const auto &d : histData)
+        {
+            wxListItem item;
+            item.SetId(idx);
+            item.SetData(d.HISTID);
+            priceListBox_->InsertItem( item );
+            dateString = d.DATE;
+            dtdt = Model_StockHistory::DATE(d);
+            dispAmount = Model_Account::toString(d.VALUE, account, 4);
+            priceListBox_->SetItem(idx, 0, mmGetDateForDisplay(dtdt));
+            priceListBox_->SetItem(idx, 1, dispAmount);
+            if (idx==0)
+            {
+                priceDate_->SetValue(dtdt);
+                currentPrice_->SetValue(dispAmount);
+            }
+            dispAmount = Model_Account::toString(d.VALUE-m_stock->PURCHASEPRICE, account, 4);
+            priceListBox_->SetItem(idx, 2, dispAmount);
+            idx++;
+        }
+        priceListBox_->RefreshItems(0, --idx);
     }
 }

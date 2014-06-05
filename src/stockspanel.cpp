@@ -26,6 +26,7 @@
 #include "model/Model_Setting.h"
 #include "model/Model_Infotable.h"
 #include "model/Model_Attachment.h"
+#include "model/Model_StockHistory.h"
 
 #include "../resources/uparrow.xpm"
 #include "../resources/downarrow_red.xpm"
@@ -73,6 +74,7 @@ StocksListCtrl::StocksListCtrl(mmStocksPanel* cp, wxWindow *parent, wxWindowID w
     ColName_[COL_VALUE]     = _("Value");
     ColName_[COL_GAIN_LOSS] = _("Gain/Loss");
     ColName_[COL_CURRENT]   = _("Current");
+    ColName_[COL_PRICEDATE] = _("Price Date");
     ColName_[COL_NOTES]     = _("Notes");
 
     wxSize imageSize(16, 16);
@@ -152,7 +154,8 @@ wxString StocksListCtrl::OnGetItemText(long item, long column) const
     }
     if (column == COL_GAIN_LOSS)    return Model_Currency::toString(getGainLoss(item), stock_panel_->m_currency /*, 4*/);
     if (column == COL_VALUE)        return Model_Currency::toString(m_stocks[item].VALUE, stock_panel_->m_currency);
-    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency);
+    if (column == COL_CURRENT)      return Model_Currency::toString(m_stocks[item].CURRENTPRICE, stock_panel_->m_currency, 4);
+    if (column == COL_PRICEDATE)    return mmGetDateForDisplay(Model_StockHistory::instance().lastPriceDate(m_stocks[item].STOCKID));
     if (column == COL_NOTES)
     {
         wxString full_notes = m_stocks[item].NOTES;
@@ -228,6 +231,7 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
+        Model_StockHistory::instance().deleteAllHistory(m_stocks[m_selected_row].STOCKID);
         Model_Stock::instance().remove(m_stocks[m_selected_row].STOCKID);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::STOCK), m_stocks[m_selected_row].STOCKID);
         DeleteItem(m_selected_row);
@@ -455,16 +459,16 @@ void mmStocksPanel::CreateControls()
     wxBoxSizer* BoxSizerHBottom = new wxBoxSizer(wxHORIZONTAL);
     BoxSizerVBottom->Add(BoxSizerHBottom, wxSizerFlags(g_flagsExpand).Border(0));
 
-    wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW);
+    wxButton* itemButton6 = new wxButton(BottomPanel, wxID_NEW, _("&New "));
     itemButton6->SetToolTip(_("New Stock Investment"));
     BoxSizerHBottom->Add(itemButton6, g_flags);
 
-    wxButton* itemButton81 = new wxButton(BottomPanel, wxID_EDIT);
+    wxButton* itemButton81 = new wxButton(BottomPanel, wxID_EDIT, _("&Edit "));
     itemButton81->SetToolTip(_("Edit Stock Investment"));
     BoxSizerHBottom->Add(itemButton81, g_flags);
     itemButton81->Enable(false);
 
-    wxButton* itemButton7 = new wxButton(BottomPanel, wxID_DELETE);
+    wxButton* itemButton7 = new wxButton(BottomPanel, wxID_DELETE, _("&Delete "));
     itemButton7->SetToolTip(_("Delete Stock Investment"));
     BoxSizerHBottom->Add(itemButton7, g_flags);
     itemButton7->Enable(false);
@@ -764,6 +768,12 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         s.VALUE = dPrice * s.NUMSHARES;
         if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
         Model_Stock::instance().save(&s);
+        Model_StockHistory::Data *hist = Model_StockHistory::instance().create();
+        hist->STOCKID = s.id();
+        hist->DATE = wxDateTime::Now().FormatISODate();
+        hist->VALUE = dPrice;
+        hist->UPDTYPE = 1;
+        Model_StockHistory::instance().save(hist);
     }
 
     // Now refresh the display

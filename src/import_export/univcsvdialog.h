@@ -77,6 +77,7 @@ public:
     {
         return fromAccountID_;
     }
+    static void csv2tab_separated_values(wxString& line, const wxString& delimit);
 
 private:
     enum EUnivCvs
@@ -169,7 +170,5 @@ private:
     wxBitmap GetBitmapResource(const wxString& name);
     wxIcon GetIconResource(const wxString& name);
     const bool ShowToolTips();
-private:
-    void csv2tab_separated_values(wxString& line, const wxString& delimit);
 };
 #endif
