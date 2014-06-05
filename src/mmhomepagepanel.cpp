@@ -516,12 +516,14 @@ void mmHomePagePanel::getData()
     else
         date_range_ = new mmCurrentMonth;
 
-    double tBalance = 0.0;
+    double tBalance = 0.0, cardBalance = 0.0;
 
     std::map<int, std::pair<double, double> > accountStats;
     get_account_stats(accountStats);
 
     m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
+    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CHECKING, true);
+    tBalance += cardBalance;
     if (Model_Account::hasActiveTermAccount())
     {
         double termBalance = 0.0;
@@ -561,6 +563,8 @@ const wxString mmHomePagePanel::getToggles()
     wxString output = "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
     if (!m_frame->expandedBankAccounts())
         output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
+    if (!m_frame->expandedBankAccounts())
+        output += "<script>toggleTable('CARD_ACCOUNTS_INFO'); </script>\n";
     if (!m_frame->expandedTermAccounts())
         output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
     if (!m_frame->expandedStockAccounts())
@@ -640,20 +644,26 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 }
 
 /* Accounts */
-const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
+const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type, bool credit_card)
 {
     bool type_is_bank = type == Model_Account::CHECKING;
     double tReconciled = 0;
 
     wxString output = "<table class = 'table'>";
     output += "<thead><tr><th>";
-    output += (type_is_bank ? _("Bank Account") : _("Term Account"));
+    if (type_is_bank && !credit_card)
+        output += _("Bank Account");
+    else if (type_is_bank && credit_card)
+        output += _("Credit Card Account");
+    else if (!type_is_bank)
+        output += _("Term account");
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th><th class = 'text-right'>" + _("Balance") + "</th></tr></thead>";
-    output += wxString::Format("<tbody id = '%s'>", (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"));
+    output += wxString::Format("<tbody id = '%s'>", (type_is_bank ? (credit_card?"CARD_ACCOUNTS_INFO":"ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO"));
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
+        if ((credit_card && account.CONTACTINFO != "Credit Card") || (!credit_card && account.CONTACTINFO == "Credit Card")) continue;
 
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
@@ -830,6 +840,7 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     output += "<td class ='text-right'>" + tBalanceStr + "</td>";
     output += "<td class='text-right'>";
     output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "ACCOUNTS_INFO", "ACCOUNTS_INFO");
+    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "CARD_ACCOUNTS_INFO", "CARD_ACCOUNTS_INFO");
     output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "TERM_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO");
     output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "INVEST", "INVEST");
     output += "</td>\n";
