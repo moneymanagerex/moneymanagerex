@@ -435,11 +435,8 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
     // update stock history table
     Model_StockHistory::Data *stockHist = Model_StockHistory::instance().create();
     DB_Table_STOCKHISTORY_V1::Data_Set histData = Model_StockHistory::instance().search(transID_, false, 0, priceDate_->GetValue(), priceDate_->GetValue());
-    for (const auto& hist : histData)
-    {
-        *stockHist = hist;
-        break;
-    }
+    if (histData.size())
+        *stockHist = *histData.begin();
     stockHist->STOCKID = transID_;
     stockHist->DATE = priceDate_->GetValue().FormatISODate();
     stockHist->VALUE = cPrice;

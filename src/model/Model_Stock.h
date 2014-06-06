@@ -55,7 +55,7 @@ public:
     /**
     Returns the last price date of a given stock
     */
-    wxString lastPriceDate(Self::Data* entity);
+    wxString lastPriceDate(const Self::Data* entity);
 
     /**
     Returns the total stock balance at a given date
