@@ -105,15 +105,15 @@ const wxString mmex::getProgramWebSite()
 }
 const wxString mmex::getProgramForum()
 {
-    return "http://www.codelathe.com/forum";
+    return "http://forum.moneymanagerex.org";
 }
 const wxString mmex::getProgramWiki()
 {
-    return "https://sourceforge.net/p/moneymanagerex/wiki/mmex/";
+    return "http://wiki.moneymanagerex.org";
 }
 const wxString mmex::getProgramBugReport()
 {
-    return "https://sourceforge.net/p/moneymanagerex/bugs/";
+    return "http://report.moneymanagerex.org";
 }
 const wxString mmex::getProgramDonateSite()
 {
