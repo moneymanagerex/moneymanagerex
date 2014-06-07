@@ -125,6 +125,8 @@ public:
         double commission = 0, double current_price = 0, double value = 0,
         const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
 
+    int Add_StockHistory_Entry(int stock_id, const wxDateTime& date, double value, int upd_type = 1);
+
     void ShowMessage(wxString msg);
 
 private:

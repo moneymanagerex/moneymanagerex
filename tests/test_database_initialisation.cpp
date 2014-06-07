@@ -125,10 +125,13 @@ void Test_DatabaseInitialisation::Add_Account_Entries()
     m_dbmodel->Add_Bank_Account("Wallet - Mary", 0, "Cash Money - Daily Expenses");
 
     m_dbmodel->Add_Investment_Account("ABC Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("Stocks - ACME Corporation", 0, "Share Dividends");
+    m_dbmodel->Add_Term_Account("ACME Corporation Shares", 0, "Share Dividends");
     m_dbmodel->Add_Investment_Account("ACME Corporation", 0, "Shares");
-    m_dbmodel->Add_Term_Account("Stocks - ABC Corporation", 0, "Share Dividends");
+    m_dbmodel->Add_Term_Account("ABC Corporation Shares", 0, "Share Dividends");
     m_dbmodel->Add_Term_Account("Insurance Policies");
+
+    m_dbmodel->Add_Investment_Account("Yahoo Finance", 0, "Stocks");
+
     m_test_db.Commit();
 }
 
@@ -226,6 +229,7 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
 
     int stock_ABC_Account_id = m_dbmodel->Get_account_id("ABC Corporation");
     int stock_ACME_Account_id = m_dbmodel->Get_account_id("ACME Corporation");
+    int stock_Yahoo_Finance_id = m_dbmodel->Get_account_id("Yahoo Finance");
 
     m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(2)), 1000, 4.2575, 0, 0, 0, "ABC Initial Share Purchase", "AMP.ax");
     m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2575, 0, 0, 0, "ACME Initial Share Purchase", "AMP.ax");
@@ -244,6 +248,38 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
 
     m_dbmodel->Add_Stock_Entry(stock_ABC_Account_id, trans_date.Add(wxDateSpan::Months(6)), 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
     m_dbmodel->Add_Stock_Entry(stock_ACME_Account_id, trans_date, 1000, 4.2775, 0, 0, 0, "DRP", "AMP.ax");
+
+    trans_date = wxDateTime::Today().Subtract(wxDateSpan::Days(100));
+    int stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "Telstra", "tls.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "AMP", "amp.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "IAG", "iag.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * 2.25);
+
+    trans_date.Add(wxDateSpan::Days(30));
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "Telstra", "tls.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1100 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "AMP", "amp.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1100 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "IAG", "iag.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1100 * 2.25);
+
+    trans_date.Add(wxDateSpan::Days(30));
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "Telstra", "tls.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1200 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "AMP", "amp.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1200 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "IAG", "iag.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1200 * 2.25);
+
+    trans_date.Add(wxDateSpan::Days(30));
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "Telstra", "tls.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1300 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "AMP", "amp.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1300 * 2.25);
+    stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "IAG", "iag.ax");
+    m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1300 * 2.25);
 
     // Create transactions for a single month. These are repeated untill current month.
     int month_count = 0;
@@ -347,10 +383,10 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date.Add(wxDateSpan::Days(14)), "Utility Provider", 300, "Home", "Electricity");
             m_dbmodel->Add_Trans_Withdrawal("ANZ - Mastercard", trans_date, "Utility Provider", 400, "Home", "Gas");
 
-            m_dbmodel->Add_Trans_Deposit("Stocks - ACME Corporation", trans_date.Add(wxDateSpan::Days(7)), "ACME Corporation", 25.75, "Income", "Share Dividend");
-            m_dbmodel->Add_Trans_Transfer("Stocks - ACME Corporation", trans_date, "ANZ - Cash Manager", 25.75, "Transfer", "Share Dividend");
-            m_dbmodel->Add_Trans_Deposit("Stocks - ABC Corporation", trans_date.Add(wxDateSpan::Days(7)), "ABC Corporation", 555.25, "Income", "Share Dividend");
-            m_dbmodel->Add_Trans_Transfer("Stocks - ABC Corporation", trans_date, "ANZ - Cash Manager", 555.25, "Transfer", "Share Dividend");
+            m_dbmodel->Add_Trans_Deposit("ACME Corporation Shares", trans_date.Add(wxDateSpan::Days(7)), "ACME Corporation", 25.75, "Income", "Share Dividend");
+            m_dbmodel->Add_Trans_Transfer("ACME Corporation Shares", trans_date, "ANZ - Cash Manager", 25.75, "Transfer", "Share Dividend");
+            m_dbmodel->Add_Trans_Deposit("ABC Corporation Shares", trans_date.Add(wxDateSpan::Days(7)), "ABC Corporation", 555.25, "Income", "Share Dividend");
+            m_dbmodel->Add_Trans_Transfer("ABC Corporation Shares", trans_date, "ANZ - Cash Manager", 555.25, "Transfer", "Share Dividend");
         }
         //--------------------------------------------------------------------
 

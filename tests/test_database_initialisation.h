@@ -35,7 +35,7 @@ class Test_DatabaseInitialisation : public CPPUNIT_NS::TestFixture
     CPPUNIT_TEST(Add_Repeat_Transaction_Entries);
     CPPUNIT_TEST(Backup_Database);
     CPPUNIT_TEST(Change_Database_Password);
-    CPPUNIT_TEST(Failed_Password_Change_Attempt);
+    //CPPUNIT_TEST(Failed_Password_Change_Attempt);
     CPPUNIT_TEST_SUITE_END();
 
 public:
