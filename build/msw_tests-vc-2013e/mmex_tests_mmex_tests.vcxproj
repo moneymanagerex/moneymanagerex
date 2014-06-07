@@ -270,6 +270,7 @@
     <ClCompile Include="..\..\src\model\Model_Setting.cpp" />
     <ClCompile Include="..\..\src\model\Model_Splittransaction.cpp" />
     <ClCompile Include="..\..\src\model\Model_Stock.cpp" />
+    <ClCompile Include="..\..\src\model\Model_StockHistory.cpp" />
     <ClCompile Include="..\..\src\model\Model_Subcategory.cpp" />
     <ClCompile Include="..\..\src\model\Model_Usage.cpp" />
     <ClCompile Include="..\..\src\aboutdialog.cpp" />
@@ -293,6 +294,8 @@
     <ClCompile Include="..\..\src\reports\categovertimeperf.cpp" />
     <ClCompile Include="..\..\src\reports\chart.cpp" />
     <ClCompile Include="..\..\src\constants.cpp" />
+    <ClCompile Include="..\..\src\reports\summary.cpp" />
+    <ClCompile Include="..\..\src\reports\summarystocks.cpp" />
     <ClCompile Include="..\..\tests\cpu_timer.cpp" />
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\src\currencydialog.cpp" />
@@ -377,6 +380,7 @@
     <ClInclude Include="..\..\src\db\DB_Table_Report_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Setting_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Splittransactions_V1.h" />
+    <ClInclude Include="..\..\src\db\DB_Table_Stockhistory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Stock_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Subcategory_V1.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Usage_V1.h" />
@@ -397,6 +401,7 @@
     <ClInclude Include="..\..\src\model\Model_Setting.h" />
     <ClInclude Include="..\..\src\model\Model_Splittransaction.h" />
     <ClInclude Include="..\..\src\model\Model_Stock.h" />
+    <ClInclude Include="..\..\src\model\Model_StockHistory.h" />
     <ClInclude Include="..\..\src\model\Model_Subcategory.h" />
     <ClInclude Include="..\..\src\model\Model_Usage.h" />
     <ClInclude Include="..\..\src\aboutdialog.h" />
@@ -420,6 +425,8 @@
     <ClInclude Include="..\..\src\reports\categovertimeperf.h" />
     <ClInclude Include="..\..\src\reports\chart.h" />
     <ClInclude Include="..\..\src\constants.h" />
+    <ClInclude Include="..\..\src\reports\summary.h" />
+    <ClInclude Include="..\..\src\reports\summarystocks.h" />
     <ClInclude Include="..\..\tests\cpu_timer.h" />
     <ClInclude Include="..\..\src\currencydialog.h" />
     <ClInclude Include="..\..\tests\db_init_model.h" />

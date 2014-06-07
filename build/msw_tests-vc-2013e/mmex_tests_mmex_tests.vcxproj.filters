@@ -375,6 +375,15 @@
     <ClCompile Include="..\..\src\mmframereport.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\model\Model_StockHistory.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\summary.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reports\summarystocks.cpp">
+      <Filter>Source Files\reports</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -784,6 +793,18 @@
     </ClInclude>
     <ClInclude Include="..\..\src\import_export\univcsvdialog.h">
       <Filter>Header Files\import_export</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\db\DB_Table_Stockhistory_V1.h">
+      <Filter>Header Files\db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\model\Model_StockHistory.h">
+      <Filter>Header Files\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\summary.h">
+      <Filter>Header Files\reports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reports\summarystocks.h">
+      <Filter>Header Files\reports</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
