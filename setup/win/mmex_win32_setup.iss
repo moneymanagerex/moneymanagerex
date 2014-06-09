@@ -26,8 +26,8 @@
 ; Local definitions specifically designed for my setup 
 #define my_svn_path "..\.."
 #define my_output_root "..\..\mmex_release"
-#define my_output_path "\mmex_1.1.0-rc1_win32_portable\MoneyManagerEx"
-#define my_output_filename "mmex_1.1.0-rc1_win32_setup"
+#define my_output_path "\mmex_1.1.0-rc2_win32_portable\MoneyManagerEx"
+#define my_output_filename "mmex_1.1.0-rc2_win32_setup"
 
 ;===============================================================================
 
@@ -183,7 +183,7 @@ Source: {#my_svn_path}\po\french.mo; DestDir: {app}\po\en; Flags: ignoreversion;
 Source: {#my_svn_path}\po\german.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\german; 
 Source: {#my_svn_path}\po\greek.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\greek; 
 Source: {#my_svn_path}\po\hebrew.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hebrew;
-Source: {#my_svn_path}\po\hindi.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hindi;  
+Source: {#my_svn_path}\po\hindi.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hindi;
 Source: {#my_svn_path}\po\hungarian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\hungarian; 
 Source: {#my_svn_path}\po\indonesian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\indonesian; 
 Source: {#my_svn_path}\po\italian.mo; DestDir: {app}\po\en; Flags: ignoreversion; Components: lang\italian; 
@@ -208,7 +208,7 @@ Source: {#my_svn_path}\po\vietnamese.mo; DestDir: {app}\po\en; Flags: ignorevers
 ; MMEX Help - Root Help files 
 Source: {#my_svn_path}\doc\help\*.html; DestDir: {app}\help; Flags: ignoreversion; Components: help;
 Source: {#my_svn_path}\doc\help\*.png; DestDir: {app}\help; Flags: ignoreversion; Components: help;
-Source: {#my_svn_path}\doc\help\*.gif; DestDir: {app}\help; Flags: ignoreversion; Components: help;  
+Source: {#my_svn_path}\doc\help\*.gif; DestDir: {app}\help; Flags: ignoreversion; Components: help;
  
 ; MMEX Help - Help Directories - Language dependant
 Source: {#my_svn_path}\doc\help\french\*; DestDir: {app}\help\french; Flags: ignoreversion recursesubdirs createallsubdirs; Components: lang\french; 

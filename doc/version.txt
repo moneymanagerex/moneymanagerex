@@ -1,6 +1,6 @@
 Version History of Money Manager Ex
 
-1.1.0.0 (TBA)
+1.1.0-RC2 (June 15, 2014)
 - Reports
 - Web Server
 - Attachments
