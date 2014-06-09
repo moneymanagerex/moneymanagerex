@@ -2,7 +2,9 @@ Version History of Money Manager Ex
 
 1.1.0.0 (TBA)
 - Reports
+- Web Server
 - Attachments
+- Anonymous usage statistics
 
 1.0.0.3 (March 23, 2014)
 - Include images in HTML export
@@ -418,7 +420,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Add "Load/Save" buttons for the Universal CSV importer dialog to save often used CSV configurations
 - Improve Universal CSV importer dialog (Thanks to Patch submitted by Stuart)
 - Add Kaching sound when entering transactions (can be turned off)
-- Added Hungarian Translation (Thanks Tarjányi Csaba)
+- Added Hungarian Translation (Thanks Tarjanyi Csaba)
 - Add Focused Item fix in account view screen when deleting items (Patch by Stuart)
 - Add optional argument to MMEX that specifies where it should find the data directory
 
@@ -449,7 +451,7 @@ or via the Bills Deposits entries. This could cause wierd behavior. (Lucky Arthu
 - Fixed Bug 1634984: Payee List should be sorted
 - Fixed Bug 1631030: Account Balance Issue when viewing 30 days/3 months
 - Fixed Bug 1582380: Clicking Home Page tree doesn't work after navigating using home page link
-- Added Norwegian translation (Thanks Fredrik Strand & Torbjørn Kvande)
+- Added Norwegian translation (Thanks Fredrik Strand & Torbjorn Kvande)
 
 0.8.0.2 (Jan 09, 2007)
 - Fixed SQLITE Error when creating accounts
