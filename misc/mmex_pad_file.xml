@@ -70,9 +70,9 @@
 			<Keywords>Money Manager, Personal Finance, Accounts, Bank, Currency</Keywords>
 			<Char_Desc_45>Personal Money Management Software</Char_Desc_45>
 			<Char_Desc_80>free, open-source, cross-platform, easy-to-use personal finance software</Char_Desc_80>
-			<Char_Desc_250>Money Manager Ex is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. </Char_Desc_250>
-			<Char_Desc_450> Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. It is also a great tool to get a bird's eye view of your financial worth. Money Manager includes all the basic features that 90% of users would want to see in a personal finance application. </Char_Desc_450>
-			<Char_Desc_2000> Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. It is also a great tool to get a bird's eye view of your financial worth.
+			<Char_Desc_250>Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes.</Char_Desc_250>
+			<Char_Desc_450>Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. It is also a great tool to get a bird's eye view of your financial worth.</Char_Desc_450>
+			<Char_Desc_2000>Money Manager Ex© is a free, open-source, cross-platform, easy-to-use personal finance software. It primarily helps organize one's finances and keeps track of where, when and how the money goes. It is also a great tool to get a bird's eye view of your financial worth.
 
 Money Manager includes all the basic features that 90% of users would want to see in a personal finance application. The design goals are to concentrate on simplicity and user-friendliness - something one can use everyday.
 
@@ -86,7 +86,7 @@ Main Features
     * Reminders for recurring Bills and Deposits
     * Simple one click reporting
     * Cash Flow Forecasting
-    * Graphs, Piecharts
+    * Graphs, Pie-charts
     * Does not require an install. Can run from a USB key.
     * International language support (Available in 24 languages)
     * Import data from any CSV format, QIF [ Microsoft Money ]
