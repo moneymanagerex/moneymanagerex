@@ -288,7 +288,8 @@ void mmGeneralReportManager::createEditorTab(wxNotebook* editors_notebook, int t
         m_sqlListBox = new sqlListCtrl(this, panel, wxID_ANY);
         box_sizer1->Add(box_sizer2, wxSizerFlags(g_flagsExpand).Proportion(0));
         box_sizer1->Add(m_sqlListBox, g_flagsExpand);
-        sizer->Add(box_sizer1, wxSizerFlags(g_flagsExpand).Border(0));
+        sizer->Add(box_sizer1, wxSizerFlags(g_flagsExpand).Border(0).Proportion(0));
+        box_sizer1->SetMinSize(wxSize(-1, 100));
 
         // Populate database view
         std::vector<std::pair<wxString, wxArrayString>> sqlTableInfo;
