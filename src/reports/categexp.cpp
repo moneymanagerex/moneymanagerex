@@ -119,7 +119,6 @@ wxString mmReportCategoryExpenses::getHTMLText()
     std::map <int, double> group_total;
     for (const auto& entry : sortedData)
     {
-        wxLogDebug("%s %s %s", entry.name, wxString() << entry.categs, wxString() << entry.amount);
         group_counter[entry.categs]++;
         group_total[entry.categs] += entry.amount;
         group_total[-1] += entry.amount < 0 ? entry.amount : 0;
@@ -165,22 +164,10 @@ wxString mmReportCategoryExpenses::getHTMLText()
     hb.addTableHeaderCell(_("Total"), true);
     hb.endTableRow();
 
-    int group = 1;
+    int group = 0;
     for (const auto& entry : sortedData)
     {
-        if (group != entry.categs)
-        {
-            if (group_counter[group] > 1)
-            {
-                hb.startTableRow();
-                hb.addTableCell(_("Category Total: "), false, true, true, "GRAY");
-                hb.addTableCell("");
-                hb.addMoneyCell(group_total[group], "GRAY");
-                hb.endTableRow();
-            }
-            hb.addRowSeparator(3);
-        }
-        group = entry.categs;
+        group++;
         hb.startTableRow();
         hb.addTableCell(entry.name, false, true);
         hb.addMoneyCell(entry.amount);
@@ -189,9 +176,22 @@ wxString mmReportCategoryExpenses::getHTMLText()
         else
             hb.addMoneyCell(entry.amount);
         hb.endTableRow();
+
+        if (group_counter[entry.categs] == group && group_counter[entry.categs] > 1)
+        {
+            group = 0;
+            hb.startTableRow();
+            hb.addTableCell(_("Category Total: "), false, true, true, "GRAY");
+            hb.addTableCell("");
+            hb.addMoneyCell(group_total[entry.categs], "GRAY");
+            hb.endTableRow();
+        }
+        if (group_counter[entry.categs] == 1 || group == 0) {
+            hb.addRowSeparator(3);
+			group = 0;
+		}
     }
 
-    hb.addRowSeparator(3);
     if (type_ == NONE)
     {
         hb.addTotalRow(_("Total Expences: "), 3, group_total[-1]);
