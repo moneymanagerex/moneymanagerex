@@ -25,6 +25,9 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class Model_StockHistory : public Model<DB_Table_STOCKHISTORY_V1>
 {
 public:
+    enum UPDTYPE { ONLINE = 1, MANUAL };
+
+public:
     Model_StockHistory();
     ~Model_StockHistory();
 
@@ -58,9 +61,14 @@ public:
     //wxDate lastPriceDate(int stockId);
 
     /**
-    Deletes all stock histor for a given stock
+    Deletes all stock history for a given stock
     */
     void deleteAllHistory(int stockId);
+
+    /**
+    Adds or updates an element in stock history
+    */
+    int addUpdate(int stockId, wxDate date, double price, UPDTYPE type);
 };
 
 #endif // 

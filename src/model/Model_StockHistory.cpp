@@ -127,3 +127,18 @@ wxDate Model_StockHistory::DATE(const Data& hist)
 {
     return Model::to_date(hist.DATE);
 }
+
+/**
+Adds or updates an element in stock history
+*/
+int Model_StockHistory::addUpdate(int stockId, wxDate date, double price, UPDTYPE type)
+{
+    Data *stockHist = NULL;
+    Data_Set histData = search(stockId, false, 0, date, date);
+    stockHist = histData.size() ? &(*histData.begin()) : create();
+    stockHist->STOCKID = stockId;
+    stockHist->DATE = date.FormatISODate();
+    stockHist->VALUE = price;
+    stockHist->UPDTYPE = type;
+    return save(stockHist);
+}
