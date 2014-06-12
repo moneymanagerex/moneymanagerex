@@ -56,11 +56,6 @@ public:
     Data_Set search(int stockId, bool asc = false, int limit = 0, wxDate startDate = wxDefaultDateTime, wxDate endDate = wxDefaultDateTime);
 
     /**
-    Returns the last price date of a given stock
-    */
-    //wxDate lastPriceDate(int stockId);
-
-    /**
     Deletes all stock history for a given stock
     */
     void deleteAllHistory(int stockId);
