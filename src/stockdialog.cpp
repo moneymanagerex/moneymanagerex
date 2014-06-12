@@ -433,15 +433,7 @@ void mmStockDialog::OnOk(wxCommandEvent& /*event*/)
         transID_ = stockID_;
 
     // update stock history table
-    Model_StockHistory::Data *stockHist = Model_StockHistory::instance().create();
-    DB_Table_STOCKHISTORY_V1::Data_Set histData = Model_StockHistory::instance().search(transID_, false, 0, priceDate_->GetValue(), priceDate_->GetValue());
-    if (histData.size())
-        *stockHist = *histData.begin();
-    stockHist->STOCKID = transID_;
-    stockHist->DATE = priceDate_->GetValue().FormatISODate();
-    stockHist->VALUE = cPrice;
-    stockHist->UPDTYPE = 2;
-    Model_StockHistory::instance().save(stockHist);
+    Model_StockHistory::instance().addUpdate(transID_, priceDate_->GetValue(), cPrice, Model_StockHistory::MANUAL);
 
     EndModal(wxID_OK);
 }
@@ -601,25 +593,22 @@ void mmStockDialog::OnHistoryImportButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::OnHistoryUpdateButton(wxCommandEvent& /*event*/)
 {
-    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-	Model_Currency::Data* currency = Model_Account::currency(account);
-	Model_StockHistory::Data *hist = Model_StockHistory::instance().create();
-    wxString currentPriceStr = currentPrice_->GetValue().Trim();
-    if (!Model_Currency::fromString(currentPriceStr, hist->VALUE, currency) || (hist->VALUE < 0.0))
-        return;
-    hist->STOCKID = m_stock->id();
-    hist->DATE = priceDate_->GetValue().FormatISODate();
-    hist->UPDTYPE = 2;
     wxString listStr;
     wxDateTime dt;
     long i, histID;
-    Model_StockHistory::instance().save(hist);
-    histID = hist->HISTID;
+    double dPrice = 0.0;
+    Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
+	Model_Currency::Data* currency = Model_Account::currency(account);
+    wxString currentPriceStr = currentPrice_->GetValue().Trim();
+    if (!Model_Currency::fromString(currentPriceStr, dPrice, currency) || (dPrice < 0.0))
+        return;
+    histID = Model_StockHistory::instance().addUpdate(m_stock->id(), priceDate_->GetValue(), dPrice, Model_StockHistory::MANUAL);
+
     for (i=0; i<priceListBox_->GetItemCount(); i++)
     {
         listStr = priceListBox_->GetItemText(i, 0);
         mmParseDisplayStringToDate(dt, listStr, mmOptions::instance().dateFormat_);
-        if (dt.FormatISODate() == hist->DATE)
+        if (dt.FormatISODate() == priceDate_->GetValue().FormatISODate())
             break;
     }
     if (i == priceListBox_->GetItemCount())
@@ -629,7 +618,7 @@ void mmStockDialog::OnHistoryUpdateButton(wxCommandEvent& /*event*/)
         {
             listStr = priceListBox_->GetItemText(i, 0);
             mmParseDisplayStringToDate(dt, listStr, mmOptions::instance().dateFormat_);
-            if (dt.FormatISODate() < hist->DATE)
+            if (dt.FormatISODate() < priceDate_->GetValue().FormatISODate())
                 break;
         }
         wxListItem item;
@@ -639,10 +628,10 @@ void mmStockDialog::OnHistoryUpdateButton(wxCommandEvent& /*event*/)
     }
     if (i != priceListBox_->GetItemCount())
     {
-        listStr = Model_Account::toString(hist->VALUE, account, 4);
+        listStr = Model_Account::toString(dPrice, account, 4);
         priceListBox_->SetItem(i, 0, mmGetDateForDisplay(priceDate_->GetValue()));
         priceListBox_->SetItem(i, 1, listStr);
-        listStr = Model_Account::toString(hist->VALUE - m_stock->PURCHASEPRICE, account, 4);
+        listStr = Model_Account::toString(dPrice - m_stock->PURCHASEPRICE, account, 4);
         priceListBox_->SetItem(i, 2, listStr);
     }
 }

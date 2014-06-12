@@ -53,77 +53,74 @@ Lists all stock history items for a given stock
 Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* = false*/, int limit/* = 0*/, wxDate startDate/* = wxDefaultDateTime*/, wxDate endDate/* = wxDefaultDateTime*/)
 {
     Data_Set result;
-    wxString strSql;
-    try
+
+    if (startDate.IsValid() && !endDate.IsValid())
+        result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId), DB_Table_STOCKHISTORY_V1::DATE(startDate.FormatISODate()));
+    else
+        result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId));
+
+    if (result.size())
     {
-        strSql = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%ld", stockId);
-        if (startDate.IsValid() && endDate.IsValid())
-            strSql += wxString::Format(" AND DATE>='%s' AND DATE <='%s'", startDate.FormatISODate(), endDate.FormatISODate());
-        strSql += " ORDER BY DATE";
+        std::stable_sort(result.begin(), result.end(), SorterByDATE());
         if (!asc)
-            strSql += " DESC";
-        wxSQLite3Statement st = this->db_->PrepareStatement(strSql);
-        wxSQLite3ResultSet q = st.ExecuteQuery();
-        while (q.NextRow() && (limit == 0 || (int)result.size()<limit))
+            std::reverse(result.begin(), result.end());
+
+        // limit results: by date...
+        if (startDate.IsValid() && endDate.IsValid())
         {
-            Self::Data entity(q, this);
-            result.push_back(entity);
+            int ind = 0, start = -2, end = -2;
+            wxString strStartDate = startDate.FormatISODate(), strEndDate = endDate.FormatISODate();
+            for (const auto &d : result)
+            {
+                if (start == -2 && d.DATE >= strStartDate)
+                    start = ind;
+                if (end == -2 && d.DATE > strEndDate)
+                    end = ind;
+                ind++;
+            }
+            // remove tail elements first
+            if (end >= 0)
+                result.erase(result.begin() + end, result.end());
+            // then head elements
+            if (start >= 0)
+                result.erase(result.begin(), result.begin() + start);
         }
-        q.Finalize();
-    }
-    catch (const wxSQLite3Exception &e)
-    {
-        wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
+        // ... then by number of records
+        if (limit > 0 && (int)result.size() > limit)
+            result.resize(limit);
+
+        result.shrink_to_fit();
     }
 
     return result;
 }
 
 /**
-Returns the last price date of a given stock
-*/
-/*wxDate Model_StockHistory::lastPriceDate(int stockId)
-{
-    wxDate lastPriceDate = wxDate::Today();
-    wxString strSql;
-    try
-    {
-        strSql = wxString::Format("SELECT MAX(STOCKHISTORY_V1.DATE) AS LASTPRICEDATE FROM STOCKHISTORY_V1 WHERE STOCKID=%ld", stockId);
-        wxSQLite3Statement st = this->db_->PrepareStatement(strSql);
-        wxSQLite3ResultSet q = st.ExecuteQuery();
-        while (q.NextRow())
-        {
-            lastPriceDate = q.GetDate("LASTPRICEDATE");
-        }
-        q.Finalize();
-    }
-    catch (const wxSQLite3Exception &e)
-    {
-        wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
-    }
-    return lastPriceDate;
-}*/
-
-/**
 Deletes all stock histor for a given stock
 */
 void Model_StockHistory::deleteAllHistory(int stockId)
 {
-    wxString strSql;
-    try
-    {
-        wxSQLite3Statement st = this->db_->PrepareStatement("DELETE FROM STOCKHISTORY_V1 where STOCKID = ?");
-        st.Bind(1, stockId);
-        st.ExecuteUpdate();
-        st.Finalize();
-    }
-    catch (const wxSQLite3Exception &e)
-    {
-        wxLogError("STOCKHISTORY_V1: Exception %s", e.GetMessage().c_str());
-    }
+    Data_Set result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId));
+    for (const auto &d : result)
+        remove(d.id());
 }
 
 wxDate Model_StockHistory::DATE(const Data& hist)
 {
     return Model::to_date(hist.DATE);
+}
+
+/**
+Adds or updates an element in stock history
+*/
+int Model_StockHistory::addUpdate(int stockId, const wxDate date, double price, UPDTYPE type)
+{
+    Data *stockHist = NULL;
+    Data_Set histData = search(stockId, false, 0, date);
+    stockHist = histData.size() ? &(*histData.begin()) : create();
+    stockHist->STOCKID = stockId;
+    stockHist->DATE = date.FormatISODate();
+    stockHist->VALUE = price;
+    stockHist->UPDTYPE = type;
+    return save(stockHist);
 }

@@ -768,15 +768,8 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
         s.VALUE = dPrice * s.NUMSHARES;
         if (s.STOCKNAME.empty()) s.STOCKNAME = it->second.second;
         Model_Stock::instance().save(&s);
-        Model_StockHistory::Data *stockHist = Model_StockHistory::instance().create();
-        DB_Table_STOCKHISTORY_V1::Data_Set histData = Model_StockHistory::instance().search(s.id(), false, 0, wxDate::Now(), wxDate::Now());
-        if (histData.size())
-            *stockHist = *histData.begin();
-        stockHist->STOCKID = s.id();
-        stockHist->DATE = wxDateTime::Now().FormatISODate();
-        stockHist->VALUE = dPrice;
-        stockHist->UPDTYPE = 1;
-        Model_StockHistory::instance().save(stockHist);
+
+        Model_StockHistory::instance().addUpdate(s.id(), wxDate::Now(), dPrice, Model_StockHistory::ONLINE);
     }
 
     // Now refresh the display
