@@ -63,7 +63,7 @@ public:
     /**
     Adds or updates an element in stock history
     */
-    int addUpdate(int stockId, wxDate date, double price, UPDTYPE type);
+    int addUpdate(int stockId, const wxDate date, double price, UPDTYPE type);
 };
 
 #endif // 

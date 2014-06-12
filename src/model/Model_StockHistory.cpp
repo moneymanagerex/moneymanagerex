@@ -17,7 +17,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ********************************************************/
 
 #include "Model_StockHistory.h"
-#include "..\db\DB_Table.h"
 
 Model_StockHistory::Model_StockHistory()
 : Model<DB_Table_STOCKHISTORY_V1>()
@@ -114,7 +113,7 @@ wxDate Model_StockHistory::DATE(const Data& hist)
 /**
 Adds or updates an element in stock history
 */
-int Model_StockHistory::addUpdate(int stockId, wxDate date, double price, UPDTYPE type)
+int Model_StockHistory::addUpdate(int stockId, const wxDate date, double price, UPDTYPE type)
 {
     Data *stockHist = NULL;
     Data_Set histData = search(stockId, false, 0, date);
