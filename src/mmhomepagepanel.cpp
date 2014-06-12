@@ -522,7 +522,7 @@ void mmHomePagePanel::getData()
     get_account_stats(accountStats);
 
     m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
-    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CHECKING, true);
+    m_frames["CARD_ACCOUNTS_INFO"] = displayAccounts(cardBalance, accountStats, Model_Account::CREDIT_CARD);
     tBalance += cardBalance;
     if (Model_Account::hasActiveTermAccount())
     {
@@ -644,9 +644,10 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 }
 
 /* Accounts */
-const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type, bool credit_card)
+const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_is_bank = type == Model_Account::CHECKING;
+    bool type_is_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD,
+         credit_card = type == Model_Account::CREDIT_CARD;
     double tReconciled = 0;
 
     wxString output = "<table class = 'table'>";
@@ -663,7 +664,6 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
         if (Model_Account::type(account) != type || Model_Account::status(account) == Model_Account::CLOSED) continue;
-        if ((credit_card && account.CONTACTINFO != "Credit Card") || (!credit_card && account.CONTACTINFO == "Credit Card")) continue;
 
         Model_Currency::Data* currency = Model_Account::currency(account);
         if (!currency) currency = Model_Currency::GetBaseCurrency();
@@ -709,7 +709,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     {
         if (!show_all)
         {
-            if (show_bank && Model_Account::type(account) != Model_Account::CHECKING) continue;
+            if (show_bank && Model_Account::type(account) != Model_Account::CHECKING && Model_Account::type(account) != Model_Account::CREDIT_CARD) continue;
             if (m_frame->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
         }
         int idx = account.ACCOUNTID;
