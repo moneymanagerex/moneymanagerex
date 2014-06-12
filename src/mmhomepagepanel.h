@@ -73,7 +73,7 @@ private:
     const wxString displayGrandTotals(double& tBalance);
 
     const wxString displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats
-        , int type = Model_Account::CHECKING, bool credit_card = false);
+        , int type = Model_Account::CHECKING);
     void get_account_stats(std::map<int, std::pair<double, double> > &accountStats);
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
         , mmDateRange* date_range) const;

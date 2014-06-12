@@ -707,6 +707,10 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
 
+    wxTreeItemId cardAccounts = navTreeCtrl_->AppendItem(root, _("Credit Card Accounts"), 9, 9);
+    navTreeCtrl_->SetItemData(cardAccounts, new mmTreeItemData("Credit Card Accounts"));
+    navTreeCtrl_->SetItemBold(cardAccounts, true);
+
     wxTreeItemId termAccount;
     if (Model_Account::hasActiveTermAccount())
     {
@@ -781,6 +785,11 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
             wxTreeItemId tacct = navTreeCtrl_->AppendItem(termAccount, account.ACCOUNTNAME, selectedImage, selectedImage);
             navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
         }
+        else if (Model_Account::type(account) == Model_Account::CREDIT_CARD)
+        {
+            wxTreeItemId tacct = navTreeCtrl_->AppendItem(cardAccounts, account.ACCOUNTNAME, selectedImage, selectedImage);
+            navTreeCtrl_->SetItemData(tacct, new mmTreeItemData(account.ACCOUNTID, false));
+        }
         else
         {
             wxTreeItemId tacct = navTreeCtrl_->AppendItem(accounts, account.ACCOUNTNAME, selectedImage, selectedImage);
@@ -789,7 +798,10 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     }
 
     if (mmIniOptions::instance().expandBankTree_)
+    {
         navTreeCtrl_->Expand(accounts);
+        navTreeCtrl_->Expand(cardAccounts);
+    }
 
     if (Model_Account::hasActiveTermAccount())
     {
@@ -1054,9 +1066,10 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
         else
         if (iData->getString() == "item@Bank Accounts" ||
             iData->getString() == "item@Term Accounts" ||
+            iData->getString() == "item@Credit Card Accounts" ||
             iData->getString() == "item@Stocks")
         {
-            // Create for Bank Term & Stock Accounts
+            // Create for Bank Credit Card Term & Stock Accounts
             wxMenu menu;
             menu.Append(MENU_TREEPOPUP_ACCOUNT_NEW, _("New &Account"));
             menu.Append(MENU_TREEPOPUP_ACCOUNT_DELETE, _("&Delete Account"));
@@ -1064,7 +1077,7 @@ void mmGUIFrame::showTreePopupMenu(const wxTreeItemId& id, const wxPoint& pt)
             menu.Append(MENU_TREEPOPUP_ACCOUNT_LIST, _("Account &List (Home)"));
             menu.AppendSeparator();
 
-            // Create only for Bank Accounts
+            // Create only for Bank & Credit Card Accounts
             if ((iData->getString() != "item@Term Accounts") && (iData->getString() != "item@Stocks"))
             {
                 wxMenu *exportTo = new wxMenu;

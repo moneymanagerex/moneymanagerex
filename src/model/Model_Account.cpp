@@ -29,7 +29,8 @@ const std::vector<std::pair<Model_Account::TYPE, wxString> > Model_Account::TYPE
 {
     std::make_pair(Model_Account::CHECKING, wxTRANSLATE("Checking")),
     std::make_pair(Model_Account::TERM, wxTRANSLATE("Term")),
-    std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE("Investment"))
+    std::make_pair(Model_Account::INVESTMENT, wxTRANSLATE("Investment")),
+    std::make_pair(Model_Account::CREDIT_CARD, wxTRANSLATE("Credit Card"))
 };
 
 Model_Account::Model_Account()
@@ -229,6 +230,8 @@ Model_Account::TYPE Model_Account::type(const Data* account)
         return CHECKING;
     else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[TERM]) == 0)
         return TERM;
+    else if (account->ACCOUNTTYPE.CmpNoCase(all_type()[CREDIT_CARD]) == 0)
+        return CREDIT_CARD;
     else
         return INVESTMENT;
 }
