@@ -659,8 +659,9 @@ void mmCalcValidator::OnChar(wxKeyEvent& event)
         }
         if (str != decChar)
         {
-            keybd_event(VkKeyScan(decChar),0xb3,0 , 0);
-            keybd_event(VkKeyScan(decChar),0xb3, KEYEVENTF_KEYUP,0);
+            BYTE vk = decChar == '.' ? 0x6e : 0xbc;
+            keybd_event(vk,0xb3,0 , 0);
+            keybd_event(vk,0xb3, KEYEVENTF_KEYUP,0);
             return;
         }
     }
