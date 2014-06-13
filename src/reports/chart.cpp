@@ -743,8 +743,8 @@ bool GraphChart::Render( const wxString& title )
     if ( data.empty() ) return false;
 
     // calculate min/max value (boundaries)
-    float min = FLT_MAX;
-    float max = -FLT_MAX;
+    float min = std::numeric_limits<float>::max();
+    float max = -std::numeric_limits<float>::max();
     float diff, mult;
     wxString fmt;
     wxDateTime dtDate, dtBegin, dtEnd;
@@ -760,7 +760,7 @@ bool GraphChart::Render( const wxString& title )
             dtEnd = dtDate;
     }
 
-    if (min == FLT_MAX || max == -FLT_MAX)
+    if (min == std::numeric_limits<float>::max() || max == -std::numeric_limits<float>::max())
         return false;
 
     diff = max - min;
