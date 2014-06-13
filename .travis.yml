@@ -12,6 +12,7 @@ script:
 branches:
   only:
     - master
+    - develop
 notifications:
   recipients:
     - moneymanagerex@googlegroups.com
