@@ -50,7 +50,7 @@ Model_StockHistory& Model_StockHistory::instance()
 Lists all stock history items for a given stock
 * Return the data set
 */
-Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* = false*/, int limit/* = 0*/, wxDate startDate/* = wxDefaultDateTime*/, wxDate endDate/* = wxDefaultDateTime*/)
+Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* = false*/, int limit/* = 0*/, const wxDate& startDate/* = wxDefaultDateTime*/, const wxDate& endDate/* = wxDefaultDateTime*/)
 {
     Data_Set result;
 
@@ -113,7 +113,7 @@ wxDate Model_StockHistory::DATE(const Data& hist)
 /**
 Adds or updates an element in stock history
 */
-int Model_StockHistory::addUpdate(int stockId, const wxDate date, double price, UPDTYPE type)
+int Model_StockHistory::addUpdate(int stockId, const wxDate& date, double price, UPDTYPE type)
 {
     Data *stockHist = NULL;
     Data_Set histData = search(stockId, false, 0, date);

@@ -53,7 +53,7 @@ public:
     Lists all stock history items for a given stock
     * Return the data set
     */
-    Data_Set search(int stockId, bool asc = false, int limit = 0, wxDate startDate = wxDefaultDateTime, wxDate endDate = wxDefaultDateTime);
+    Data_Set search(int stockId, bool asc = false, int limit = 0, const wxDate& startDate = wxDefaultDateTime, const wxDate& endDate = wxDefaultDateTime);
 
     /**
     Deletes all stock history for a given stock
@@ -63,7 +63,7 @@ public:
     /**
     Adds or updates an element in stock history
     */
-    int addUpdate(int stockId, const wxDate date, double price, UPDTYPE type);
+    int addUpdate(int stockId, const wxDate& date, double price, UPDTYPE type);
 };
 
 #endif // 

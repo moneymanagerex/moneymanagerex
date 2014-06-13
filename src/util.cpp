@@ -28,7 +28,7 @@
 #include <wx/sstream.h>
 
 #include "validators.h"
-#include "model\Model_Currency.h"
+#include "model/Model_Currency.h"
 //----------------------------------------------------------------------------
 
 int CaseInsensitiveCmp(const wxString &s1, const wxString &s2)

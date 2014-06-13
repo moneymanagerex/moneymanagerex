@@ -21,9 +21,9 @@
 
 #include "reportbase.h"
 #include <vector>
-#include "..\mmex.h"
-#include "model\Model.h"
-#include "model\Model_Account.h"
+#include "mmex.h"
+#include "model/Model.h"
+#include "model/Model_Account.h"
 
 #if 0
 // structure for sorting of data
