@@ -168,6 +168,8 @@ MMEX_OBJECTS =  \
 	mmex_mmgraphtopcategories.o \
 	mmex_payee.o \
 	mmex_reportbase.o \
+	mmex_summary.o \
+	mmex_summarystocks.o \
 	mmex_transactions.o \
 	mmex_platfdep.o \
 	mmex_export.o \
@@ -191,6 +193,7 @@ MMEX_OBJECTS =  \
 	mmex_Model_Setting.o \
 	mmex_Model_Splittransaction.o \
 	mmex_Model_Stock.o \
+	mmex_Model_StockHistory.o \
 	mmex_Model_Subcategory.o \
 	mmex_Model_Usage.o \
 	mmex_html_template.o \
@@ -621,6 +624,12 @@ mmex_payee.o: $(srcdir)/src/reports/payee.cpp
 mmex_reportbase.o: $(srcdir)/src/reports/reportbase.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/reportbase.cpp
 
+mmex_summary.o: $(srcdir)/src/reports/summary.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/summary.cpp
+
+mmex_summarystocks.o: $(srcdir)/src/reports/summarystocks.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/summarystocks.cpp
+
 mmex_transactions.o: $(srcdir)/src/reports/transactions.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/reports/transactions.cpp
 
@@ -689,6 +698,9 @@ mmex_Model_Splittransaction.o: $(srcdir)/src/model/Model_Splittransaction.cpp
 
 mmex_Model_Stock.o: $(srcdir)/src/model/Model_Stock.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Stock.cpp
+
+mmex_Model_StockHistory.o: $(srcdir)/src/model/Model_StockHistory.cpp
+	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_StockHistory.cpp
 
 mmex_Model_Subcategory.o: $(srcdir)/src/model/Model_Subcategory.cpp
 	$(CXXC) -c -o $@ $(MMEX_CXXFLAGS) $(srcdir)/src/model/Model_Subcategory.cpp

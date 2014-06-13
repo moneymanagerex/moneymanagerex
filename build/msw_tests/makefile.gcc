@@ -206,6 +206,8 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_mmgraphtopcategories.o \
 	mmex_tests_payee.o \
 	mmex_tests_reportbase.o \
+	mmex_tests_summary.o \
+	mmex_tests_summarystocks.o \
 	mmex_tests_transactions.o \
 	mmex_tests_platfdep.o \
 	mmex_tests_export.o \
@@ -229,6 +231,7 @@ MMEX_TESTS_OBJECTS =  \
 	mmex_tests_Model_Setting.o \
 	mmex_tests_Model_Splittransaction.o \
 	mmex_tests_Model_Stock.o \
+	mmex_tests_Model_StockHistory.o \
 	mmex_tests_Model_Subcategory.o \
 	mmex_tests_Model_Usage.o \
 	mmex_tests_html_template.o \
@@ -857,6 +860,12 @@ mmex_tests_payee.o: ../../src/reports/payee.cpp
 mmex_tests_reportbase.o: ../../src/reports/reportbase.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
+mmex_tests_summary.o: ../../src/reports/summary.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_summarystocks.o: ../../src/reports/summarystocks.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
 mmex_tests_transactions.o: ../../src/reports/transactions.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
@@ -924,6 +933,9 @@ mmex_tests_Model_Splittransaction.o: ../../src/model/Model_Splittransaction.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_Model_Stock.o: ../../src/model/Model_Stock.cpp
+	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
+
+mmex_tests_Model_StockHistory.o: ../../src/model/Model_StockHistory.cpp
 	$(CXX) -c -o $@ $(MMEX_TESTS_CXXFLAGS) $(CPPDEPS) $<
 
 mmex_tests_Model_Subcategory.o: ../../src/model/Model_Subcategory.cpp
