@@ -60,7 +60,7 @@ public:
     /**
     Returns the total stock balance at a given date
     */
-    double getDailyBalanceAt(const Model_Account::Data *account, wxDate date);
+    double getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date);
 };
 
 #endif // 
