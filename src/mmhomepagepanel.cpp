@@ -170,8 +170,8 @@ wxString htmlWidgetTop7Categories::getHTMLText()
 {
     const wxString idStr = "TOP_CATEGORIES";
 
-    wxString output = "<table class = \"table\"><thead><tr class='active'><th>\n";
-    output += title_ + wxString::Format("</th><th class='text-right'><a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a></th></tr></thead>\n", idStr, idStr);
+    wxString output = "<table class = 'table'><thead><tr class='active'><th>\n";
+    output += title_ + wxString::Format("</th><th class='text-right'><a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr></thead>\n", idStr, idStr);
     output += wxString::Format("<tbody id='%s'>", idStr);
     output += "<tr style='background-color: #d8ebf0'><td>";
     output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
@@ -339,9 +339,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
     {   
         const wxString idStr = "BILLS_AND_DEPOSITS";
 
-        output = "<table class=\"table\"><thead><tr class='active'><th>";
+        output = "<table class='table'><thead><tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
-        output += wxString::Format("<th class='text-right'>%i <a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a></th></tr>\n"
+        output += wxString::Format("<th class='text-right'>%i <a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
         output += "</thead>";
 
@@ -353,9 +353,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         {
             output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
             output += "<td>" + std::get<1>(item) +"</td>"; //payee
-            output += wxString::Format("<td class = \"text-right\">%s</td>"
+            output += wxString::Format("<td class='text-right'>%s</td>"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
-            output += "<td  class = 'text-right'>" + std::get<2>(item) + "</td></tr>\n";
+            output += "<td  class='text-right'>" + std::get<2>(item) + "</td></tr>\n";
         }
         output += "</tbody></table>\n";
     }
@@ -687,7 +687,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         }
     }
     output += body;
-    output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+    output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>";
     output += "<td class =\"money, text-right\">" + Model_Currency::toCurrency(tReconciled) + "</td>";
     output += "<td class =\"money, text-right\">" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>";
     if (body.empty()) output.clear();
@@ -721,13 +721,13 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
     //Type, Amount, Income, Expences, Difference:, Income/Expences, income, expemces
     static const wxString INCOME_VS_EXPENCES_HTML =
-        "<table class = \"table\">\n"
+        "<table class = 'table'>\n"
         "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
         "<tbody>\n"
         "    <tr valign=\"center\">\n"
         "        <td><canvas id=\"reportChart\" width=\"312\" height=\"256\"></canvas></td>\n"
         "        <td  style='vertical-align:middle'>\n"
-        "            <table class= \"table\">\n"
+        "            <table class= 'table'>\n"
         "            <thead>\n"
         "                <tr>"
         "                    <th>%s</th>"
@@ -803,7 +803,7 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
-    output = "<table class = \"table\"><tfoot><tr class = \"total\">";
+    output = "<table class = 'table'><tfoot><tr class = \"total\">";
     output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
     output += wxString::Format("<td class = \"text-right\">%s</td></tr>", Model_Currency::toCurrency(asset_balance));
     output += "</tfoot></table>";
@@ -813,7 +813,7 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 
 const wxString mmHomePagePanel::getStatWidget()
 {
-    wxString output = "<table class = \"table\"><thead><tr class = 'active'>";
+    wxString output = "<table class = 'table'><thead><tr class = 'active'>";
     output += "<th>" + _("Transaction Statistics") + "</th><th></th><tbody>";
 
     if (this->countFollowUp_ > 0)
@@ -832,19 +832,21 @@ const wxString mmHomePagePanel::getStatWidget()
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
-    wxString output = "<table class = \"table\">";
+    wxString output = "<table class ='table'>";
     //  Display the grand total from all sections
     wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
-    output += "<tfoot><tr class = \"success\" style = \"font-weight:bold\"><td>" + _("Grand Total:") + "</td>";
+    output += "<tfoot><tr class ='success' style ='font-weight:bold'><td>" + _("Grand Total:") + "</td>";
     output += "<td class ='text-right'>" + tBalanceStr + "</td>";
     output += "<td class='text-right'>";
-    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "ACCOUNTS_INFO", "ACCOUNTS_INFO");
-    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "CARD_ACCOUNTS_INFO", "CARD_ACCOUNTS_INFO");
-    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "TERM_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO");
-    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href=\"#\">[-]</a>", "INVEST", "INVEST");
+    output += wxString::Format("<a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+        , "ACCOUNTS_INFO", "ACCOUNTS_INFO");
+    if (Model_Account::hasActiveTermAccount())
+        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+        , "TERM_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO");
+    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+        , "INVEST", "INVEST");
     output += "</td>\n";
-    //output += "<td class ='text-right'>[-] [-] [-]</td>";
     output += "</tfoot></table>";
 
     return output;

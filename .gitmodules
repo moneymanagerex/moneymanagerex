@@ -4,9 +4,6 @@
 [submodule "3rd/mongoose"]
 	path = 3rd/mongoose
 	url = https://github.com/moneymanagerex/mongoose.git
-[submodule "3rd/wxExtension"]
-	path = 3rd/wxExtension
-	url = https://github.com/moneymanagerex/wxExtension.git
 [submodule "3rd/LuaGlue"]
 	path = 3rd/LuaGlue
 	url = https://github.com/moneymanagerex/LuaGlue.git

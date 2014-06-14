@@ -656,7 +656,7 @@ void mmCheckingPanel::initViewTransactionsHeader()
     wxString vTrans = Model_Setting::instance().GetStringSetting("VIEWTRANSACTIONS", VIEW_TRANS_ALL_STR);
     int def_view_selection = menu_labels().Index(vTrans);
     currentView_ = Model_Infotable::instance().GetIntInfo(wxString::Format("CHECK_FILTER_ID_%d", m_AccountID), def_view_selection);
-    if (currentView_ < 0 || currentView_ >= menu_labels().size()) currentView_ = def_view_selection;
+    if (currentView_ < 0 || currentView_ >= (int)menu_labels().size()) currentView_ = def_view_selection;
 
     SetTransactionFilterState(currentView_ == VIEW_TRANS_ALL_STR);
     stxtMainFilter_->SetLabel(wxGetTranslation(menu_labels()[currentView_]));

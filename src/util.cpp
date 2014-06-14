@@ -559,9 +559,9 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     }
 
     // define new version
-    NewVersion = wxString() << major << "." << minor << "." << patch;
+    NewVersion = wxString() << majorC << "." << minorC << "." << patchC;
     if (rc > 0)
-        NewVersion << "-RC" << rc;
+        NewVersion << "-RC" << rc_C;
 
     return isUpdateAvailable;
 }

@@ -50,7 +50,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 const wxString MMEX_VERSION = "1.1.0";
 
 #define MMEX_BUILD_TYPE_RELEASE_CANDIDATE
-const int MMEX_VERSION_DEVELOPMENT_COUNT = 1;
+const int MMEX_VERSION_DEVELOPMENT_COUNT = 2;
 
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
 const wxSizerFlags g_flagsExpand = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxEXPAND).Border(wxALL, 5).Proportion(1);
@@ -105,15 +105,15 @@ const wxString mmex::getProgramWebSite()
 }
 const wxString mmex::getProgramForum()
 {
-    return "http://www.codelathe.com/forum";
+    return "http://forum.moneymanagerex.org";
 }
 const wxString mmex::getProgramWiki()
 {
-    return "https://sourceforge.net/p/moneymanagerex/wiki/mmex/";
+    return "http://wiki.moneymanagerex.org";
 }
 const wxString mmex::getProgramBugReport()
 {
-    return "https://sourceforge.net/p/moneymanagerex/bugs/";
+    return "http://report.moneymanagerex.org";
 }
 const wxString mmex::getProgramDonateSite()
 {
