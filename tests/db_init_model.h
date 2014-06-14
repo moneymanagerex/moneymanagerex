@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 #include "model/Model_Account.h"
 #include "model/Model_Asset.h"
+#include "model/Model_StockHistory.h"
 
 class Model_Checking;
 
@@ -125,7 +126,8 @@ public:
         double commission = 0, double current_price = 0, double value = 0,
         const wxString& stock_name = "", const wxString& stock_symbol = "", const wxString& notes = "");
 
-    int Add_StockHistory_Entry(int stock_id, const wxDateTime& date, double value, int upd_type = 1);
+    /** upd_type: ONLINE/MANUAL */ 
+    int Add_StockHistory_Entry(int stock_id, const wxDateTime& date, double value, int upd_type = Model_StockHistory::ONLINE);
 
     void ShowMessage(wxString msg);
 
