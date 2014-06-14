@@ -789,7 +789,7 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
         return false; // Short-circuit evaluation
 }
 '''
-    for field in fields:
+    for field in sorted(fields):
         code += '''
 struct SorterBy%s
 { 

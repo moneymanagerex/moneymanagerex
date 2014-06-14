@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-03 12:09:37.648783.
+ *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -68,7 +68,7 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
 		{
 			try
 			{
-				db->ExecuteUpdate("CREATE TABLE STOCKHISTORY_V1(HISTID integer primary key, STOCKID integer , DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer)");
+				db->ExecuteUpdate("CREATE TABLE STOCKHISTORY_V1(HISTID integer primary key, STOCKID integer , DATE TEXT NOT NULL, VALUE numeric NOT NULL, UPDTYPE integer, UNIQUE(STOCKID, DATE))");
 			}
 			catch(const wxSQLite3Exception &e) 
 			{ 
