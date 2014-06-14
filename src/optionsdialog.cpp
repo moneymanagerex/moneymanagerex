@@ -105,7 +105,7 @@ mmOptionsDialog::~mmOptionsDialog( )
 mmOptionsDialog::mmOptionsDialog(wxWindow* parent, mmGUIApp* app): m_app(app)
 {
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
-    Create(parent, wxID_ANY, _("New MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
+    Create(parent, wxID_ANY, _("MMEX Options"), wxDefaultPosition, wxSize(500, 400), style);
 }
 
 bool mmOptionsDialog::Create(wxWindow* parent
@@ -387,52 +387,30 @@ void mmOptionsDialog::CreateControls()
 
     // Navigation Tree Expansion Options
     wxStaticBox* navTreeOptionsStaticBox = new wxStaticBox(viewsPanel
-        , wxID_ANY, _("Navigation Tree Expansion Options"));
+        , wxID_STATIC, _("Navigation Tree Expansion Options"));
     navTreeOptionsStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* navTreeOptionsStaticBoxSizer = new wxStaticBoxSizer(navTreeOptionsStaticBox, wxHORIZONTAL);
+    wxStaticBoxSizer* navTreeOptionsStaticBoxSizer = new wxStaticBoxSizer(navTreeOptionsStaticBox, wxVERTICAL);
     viewsPanelSizer->Add(navTreeOptionsStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    // Expand Bank Tree
     wxCheckBox* expandBankCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_TREE
         , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandBankCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_TREE",true));
     expandBankCheckBox->SetToolTip(_("Expand Bank Accounts in Trew View when tree is refreshed"));
     navTreeOptionsStaticBoxSizer->Add(expandBankCheckBox, g_flags);
 
-    // Expand Term Tree
     wxCheckBox* expandTermCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_TREE
         , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandTermCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_TREE",false));
     expandTermCheckBox->SetToolTip(_("Expand Term Accounts in Trew View when tree is refreshed"));
     navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, g_flags);
 
-    // Home Page Expansion Options
-    wxStaticBox* homePageStaticBox = new wxStaticBox(viewsPanel, wxID_STATIC, _("Home Page Expansion Options"));
-    homePageStaticBox->SetFont(staticBoxFontSetting);
-    wxStaticBoxSizer* homePageStaticBoxSizer = new wxStaticBoxSizer(homePageStaticBox, wxVERTICAL);
-    viewsPanelSizer->Add(homePageStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
-
-    // Expand Bank Home
-    wxCheckBox* expandBankHomeCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_BANK_HOME
-        , _("Bank Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    expandBankHomeCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_BANK_HOME",true));
-    expandBankHomeCheckBox->SetToolTip(_("Expand Bank Accounts on home page when page is refreshed"));
-    homePageStaticBoxSizer->Add(expandBankHomeCheckBox, g_flags);
-
-    // Expand Term Home
-    wxCheckBox* itemCheckBoxExpandTermHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_TERM_HOME
+    wxCheckBox* expandStocksCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE
         , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemCheckBoxExpandTermHome->SetValue(GetIniDatabaseCheckboxValue("EXPAND_TERM_HOME",false));
-    itemCheckBoxExpandTermHome->SetToolTip(_("Expand Term Accounts on home page when page is refreshed"));
-    homePageStaticBoxSizer->Add(itemCheckBoxExpandTermHome, g_flags);
+    expandStocksCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_STOCK_TREE", false));
+    expandStocksCheckBox->SetToolTip(_("Expand Stocks Accounts in Trew View when tree is refreshed"));
+    navTreeOptionsStaticBoxSizer->Add(expandStocksCheckBox, g_flags);
 
-    // Expand Stock Home
-    wxCheckBox* itemCheckBoxExpandStockHome = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME
-        , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
-    itemCheckBoxExpandStockHome->SetValue(GetIniDatabaseCheckboxValue("ENABLESTOCKS",true));
-    itemCheckBoxExpandStockHome->SetToolTip(_("Expand Stock Accounts on home page when page is refreshed"));
-    homePageStaticBoxSizer->Add(itemCheckBoxExpandStockHome, g_flags);
-
+    // Budget options
     cbBudgetFinancialYears_ = new wxCheckBox(viewsPanel, wxID_STATIC, _("View Budgets as Financial Years")
         , wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     cbBudgetFinancialYears_->SetValue(GetIniDatabaseCheckboxValue(INIDB_BUDGET_FINANCIAL_YEARS, false));
@@ -462,6 +440,7 @@ void mmOptionsDialog::CreateControls()
     cbIgnoreFutureTransactions_->SetValue(GetIniDatabaseCheckboxValue(INIDB_IGNORE_FUTURE_TRANSACTIONS, false));
     viewsPanelSizer->Add(cbIgnoreFutureTransactions_, g_flags);
 
+    // Colours settings
     wxStaticBox* userColourSettingStBox = new wxStaticBox(viewsPanel, wxID_ANY, _("User Colors"));
     userColourSettingStBox->SetFont(staticBoxFontSetting);
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
@@ -1119,17 +1098,9 @@ void mmOptionsDialog::SaveViewPanelSettings()
     mmIniOptions::instance().expandTermTree_ = itemCheckBox->GetValue();
     Model_Setting::instance().Set("EXPAND_TERM_TREE", itemCheckBox->GetValue() );
 
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_BANK_HOME);
-    mmIniOptions::instance().expandBankHome_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_BANK_HOME", itemCheckBox->GetValue() );
-
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_TERM_HOME);
-    mmIniOptions::instance().expandTermHome_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("EXPAND_TERM_HOME", itemCheckBox->GetValue() );
-
-    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_STOCK_HOME);
-    mmIniOptions::instance().expandStocksHome_ = itemCheckBox->GetValue();
-    Model_Setting::instance().Set("ENABLESTOCKS", itemCheckBox->GetValue() );
+    itemCheckBox = (wxCheckBox*)FindWindow(ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE);
+    mmIniOptions::instance().expandStocksTree_ = itemCheckBox->GetValue();
+    Model_Setting::instance().Set("EXPAND_STOCKS_TREE", itemCheckBox->GetValue());
 
     mmIniOptions::instance().budgetFinancialYears_ = cbBudgetFinancialYears_->GetValue();
     Model_Setting::instance().Set(INIDB_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
