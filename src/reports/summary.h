@@ -35,7 +35,6 @@ public:
     mmReportSummary();
     virtual void RefreshData();
     virtual wxString getHTMLText();
-    virtual wxString version();
 
 private:
     std::vector<summary_data_holder> dataChecking_;

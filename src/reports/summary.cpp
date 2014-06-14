@@ -45,11 +45,6 @@ bool mmSummarySortBalance(const summary_data_holder& x, const summary_data_holde
     else return x.name < y.name;
 }
 
-wxString mmReportSummary::version()
-{
-    return "$Rev: 6082 $";
-}
-
 void  mmReportSummary::RefreshData()
 {
     dataChecking_.clear();

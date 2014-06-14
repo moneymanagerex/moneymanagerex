@@ -33,7 +33,6 @@ public:
     mmReportSummaryStocks();
     virtual void RefreshData();
     virtual wxString getHTMLText();
-    virtual wxString version();
 
 private:
     void display_header(mmHTMLBuilder& hb);

@@ -46,11 +46,6 @@ mmReportSummaryStocks::mmReportSummaryStocks()
 {
 }
 
-wxString mmReportSummaryStocks::version()
-{
-    return "$Rev: 5579 $";
-}
-
 void  mmReportSummaryStocks::RefreshData()
 {
     stocks_.clear();
