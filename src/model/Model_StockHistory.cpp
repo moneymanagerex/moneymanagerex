@@ -59,7 +59,7 @@ Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* 
     else
         result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId));
 
-    if (result.size())
+    if (!result.empty())
     {
         std::stable_sort(result.begin(), result.end(), SorterByDATE());
         if (!asc)

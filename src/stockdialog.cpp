@@ -656,13 +656,10 @@ void mmStockDialog::OnHistoryDeleteButton(wxCommandEvent& /*event*/)
 
 void mmStockDialog::showStockHistory()
 {
-    wxString dateString, dispAmount, strSql;
-    wxDateTime dtdt;
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
-    Model_StockHistory::Data_Set histData;
     priceListBox_->DeleteAllItems();
-    histData = Model_StockHistory::instance().search(stockID_, false, 300);
-    if (histData.size()>0)
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().search(stockID_, false, 300);
+    if (!histData.empty())
     {
         int idx=0;
         for (const auto &d : histData)
@@ -671,9 +668,9 @@ void mmStockDialog::showStockHistory()
             item.SetId(idx);
             item.SetData(d.HISTID);
             priceListBox_->InsertItem( item );
-            dateString = d.DATE;
-            dtdt = Model_StockHistory::DATE(d);
-            dispAmount = Model_Account::toString(d.VALUE, account, 4);
+            wxString dateString = d.DATE;
+            wxDate dtdt = Model_StockHistory::DATE(d);
+            wxString dispAmount = Model_Account::toString(d.VALUE, account, 4);
             priceListBox_->SetItem(idx, 0, mmGetDateForDisplay(dtdt));
             priceListBox_->SetItem(idx, 1, dispAmount);
             if (idx==0)
