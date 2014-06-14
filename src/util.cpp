@@ -467,8 +467,11 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 
     wxString page;
     int err_code = site_content(site, page);
-    if (err_code != wxURL_NOERR && !bSilent)
+    if (!bSilent && (err_code != wxURL_NOERR || page.Find("Unix:") == wxNOT_FOUND))
     {
+        if (page == wxEmptyString)
+            page = "Page not found";
+
         wxString msgStr = wxString() << _("Unable to check for updates!") << "\n\n"
             << _("Error code:") << "\n"
             << page;
@@ -566,7 +569,7 @@ void checkUpdates(const bool& bSilent)
 {
     wxString NewVersion = wxEmptyString;
 
-    if (IsUpdateAvailable(false, NewVersion))
+    if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")
     {
         wxString urlDownload = mmex::getProgramWebSite() + "/download";
         wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"
