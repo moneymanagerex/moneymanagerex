@@ -34,7 +34,6 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #include "model/Model_Budgetyear.h"
 #include "model/Model_Stock.h"
 #include "model/Model_Attachment.h"
-#include "model/Model_StockHistory.h"
 //----------------------------------------------------------------------------
 
 DB_Init_Model::DB_Init_Model()
