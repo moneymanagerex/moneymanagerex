@@ -231,7 +231,6 @@ void StocksListCtrl::OnDeleteStocks(wxCommandEvent& /*event*/)
         , wxYES_NO | wxNO_DEFAULT | wxICON_ERROR);
     if (msgDlg.ShowModal() == wxID_YES)
     {
-        Model_StockHistory::instance().deleteAllHistory(m_stocks[m_selected_row].STOCKID);
         Model_Stock::instance().remove(m_stocks[m_selected_row].STOCKID);
         mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::STOCK), m_stocks[m_selected_row].STOCKID);
         DeleteItem(m_selected_row);

@@ -26,6 +26,7 @@
 class Model_Stock : public Model<DB_Table_STOCK_V1>
 {
 public:
+    using Model<DB_Table_STOCK_V1>::remove;
     Model_Stock();
     ~Model_Stock();
 
@@ -52,6 +53,9 @@ public:
     static double value(const Data& r);
 
 public:
+    /** Remove the Data record from memory and the database. */
+    bool remove(int id);
+
     /**
     Returns the last price date of a given stock
     */

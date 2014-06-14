@@ -68,6 +68,19 @@ double Model_Stock::value(const Data& r)
     return value(&r);
 }
 
+/** Remove the Data record from memory and the database. */
+bool Model_Stock::remove(int id)
+{
+    this->Begin();
+    for (const auto& r: Model_StockHistory::instance().find(Model_StockHistory::STOCKID(id)))
+        Model_StockHistory::instance().remove(r.id());
+    for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
+        Model_Billsdeposits::instance().remove(r.BDID);
+    this->Commit();
+
+    return this->remove(id, db_);
+}
+
 /**
 Returns the last price date of a given stock
 */
