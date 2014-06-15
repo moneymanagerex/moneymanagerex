@@ -161,8 +161,7 @@ void mmAboutDialog::CreateControls(const int& TabToOpen)
 
     wxStaticText* versionStaticText = new wxStaticText( this, wxID_STATIC
 		, "Money Manager EX - " + mmex::getTitleProgramVersion());
-    int font_size = this->GetFont().GetPointSize() + 2;
-    versionStaticText->SetFont(wxFont(wxFontInfo(font_size).Bold()));
+    versionStaticText->SetFont(this->GetFont().Larger().Bold());
     itemBoxSizer->Add(versionStaticText, flags);
 
     wxStaticText* itemStaticText88 = new wxStaticText(this
