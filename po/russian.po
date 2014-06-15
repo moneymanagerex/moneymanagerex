@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-15 13:01+0400\n"
-"PO-Revision-Date: 2014-06-15 13:01+0400\n"
+"POT-Creation-Date: 2014-06-15 15:07+0400\n"
+"PO-Revision-Date: 2014-06-15 15:08+0400\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -529,8 +529,6 @@ msgstr "Не указана папка с файлами."
 msgid "Please set it in Tools -> Options -> Attachments"
 msgstr "Пожалуйста, задайте путь через -> Опции -> Вложения"
 
-# FIXME:
-# Attachments folder not found
 #: src/attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
 msgstr "Папка для вложений не определена"
@@ -662,14 +660,13 @@ msgstr ""
 msgid "Open attachment failed"
 msgstr "Вложение не открыть"
 
-# FIXME: .
 #: src/attachmentdialog.cpp:471
-msgid "No software found for file extension ."
+msgid "No software found for file extension."
 msgstr "Не сопоставлено приложение файлу во вложении."
 
-# FIXME:
 #: src/attachmentdialog.cpp:473
-msgid "Please verify that operatin system is able to handle this type of file."
+msgid ""
+"Please verify that operation system is able to handle this type of file."
 msgstr "Пожалуйста убедитесь, что ОС умеет отображать данный тип файлов."
 
 #: src/billsdepositsdialog.cpp:95
@@ -4293,7 +4290,7 @@ msgstr "Доступно"
 
 #: src/optionsdialog.cpp:821
 msgid "Enable internal web server when MMEX Starts."
-msgstr ""
+msgstr "Встроенный web сервер активен при старте MMEX."
 
 #: src/optionsdialog.cpp:826
 msgid "Specify web server port number"
@@ -4305,7 +4302,7 @@ msgstr "Статистика использования"
 
 #: src/optionsdialog.cpp:845
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Отправлять анонимную статистику"
 
 #: src/optionsdialog.cpp:847
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -4337,7 +4334,7 @@ msgstr "Системный каталог документов"
 
 #: src/optionsdialog.cpp:957
 msgid "Application data directory"
-msgstr ""
+msgstr "Каталог данных приложения"
 
 #: src/optionsdialog.cpp:959
 msgid "Database file directory"
@@ -4564,8 +4561,8 @@ msgstr "%"
 
 #: src/reports/cashflow.cpp:60
 #, c-format
-msgid "Cash Flow Forecast for %d Years Ahead"
-msgstr "Прогноз денежного потока на %d лет"
+msgid "Cash Flow Forecast for %i Years Ahead"
+msgstr "Прогноз денежного потока на %i лет"
 
 #: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
 #: src/reports/incexpenses.cpp:158
@@ -5267,21 +5264,24 @@ msgstr ""
 msgid "WebApp connection error"
 msgstr "Ошибка соединения WebApp"
 
+# Wrong WebApp API version used as well
 #: src/webapp.cpp:180
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "Не правильная WebApp API версия:"
 
 #: src/webapp.cpp:181
-msgid "WebApp   API version -> "
-msgstr ""
+#, c-format
+msgid "WebApp   API version -> %s"
+msgstr "WebApp   API версия -> %s"
 
 #: src/webapp.cpp:182
-msgid "Expected API version -> "
-msgstr ""
+#, c-format
+msgid "Expected API version -> %s"
+msgstr "WebApp   API версия -> %s"
 
 #: src/webapp.cpp:183
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "Не правильная WebApp API версия"
 
 #: src/webapp.cpp:225
 msgid "A generic network error occurred"
@@ -5305,13 +5305,12 @@ msgstr "Произошла ошибка во время установки со�
 
 #: src/webapp.cpp:231
 msgid "Someone tried to send a command during a transfer"
-msgstr ""
+msgstr "Кто-то пытается отдать команду во время отправки"
 
 #: src/webapp.cpp:232
 msgid "Cannot get data from website"
 msgstr "Не могу получить данные из сети"
 
-# FIXME:
 #: src/webapp.cpp:453
 #, c-format
 msgid "Account '%s' not found!"
