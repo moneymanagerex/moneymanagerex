@@ -113,7 +113,7 @@ const wxString mmex::getProgramWiki()
 }
 const wxString mmex::getProgramBugReport()
 {
-    return "http://report.moneymanagerex.org";
+    return "http://bugreport.moneymanagerex.org";
 }
 const wxString mmex::getProgramDonateSite()
 {

@@ -72,7 +72,10 @@ wxString htmlWidgetStocks::getHTMLText()
     {
         output = "<table class ='table'><thead><tr class='active'><th>";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-        output += "</th><th class = 'text-right'>" + _("Total") + "</th></tr></thead><tbody id='INVEST'>";
+        output += "</th><th class = 'text-right'>" + _("Total");
+        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+            , "INVEST", "INVEST");
+        output += "</th></tr></thead><tbody id='INVEST'>";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         wxString body = "";
         for (const auto& account : accounts)
@@ -639,14 +642,18 @@ void mmHomePagePanel::getExpensesIncomeStats(std::map<int, std::pair<double, dou
 /* Accounts */
 const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, std::pair<double, double> > &accountStats, int type)
 {
-    bool type_is_bank = type == Model_Account::CHECKING;
+    bool type_is_bank = (type == Model_Account::CHECKING);
     double tReconciled = 0;
-
+    const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'table'>";
     output += "<thead><tr><th>";
     output += (type_is_bank ? _("Bank Account") : _("Term Account"));
-    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th><th class = 'text-right'>" + _("Balance") + "</th></tr></thead>";
-    output += wxString::Format("<tbody id = '%s'>", (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO"));
+    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>";
+    output += "<th class = 'text-right'>" + _("Balance");
+    output += wxString::Format("<a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+        , idStr, idStr);
+    output += "</th></tr></thead>";
+    output += wxString::Format("<tbody id = '%s'>", idStr);
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -816,15 +823,6 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 
     output += "<tfoot><tr class ='success' style ='font-weight:bold'><td>" + _("Grand Total:") + "</td>";
     output += "<td class ='text-right'>" + tBalanceStr + "</td>";
-    output += "<td class='text-right'>";
-    output += wxString::Format("<a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
-        , "ACCOUNTS_INFO", "ACCOUNTS_INFO");
-    if (Model_Account::hasActiveTermAccount())
-        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
-        , "TERM_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO");
-    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
-        , "INVEST", "INVEST");
-    output += "</td>\n";
     output += "</tfoot></table>";
 
     return output;
