@@ -1028,7 +1028,7 @@ void mmTransDialog::OnOk(wxCommandEvent& event)
 		mmAttachmentManage::RelocateAllAttachments(RefType, old_transaction_id, transaction_id_);
 	}
 
-    wxLogDebug(transaction_->to_json());
+    //wxLogDebug(transaction_->to_json());      //Commented because cause debug crash if note contains % sign
     EndModal(wxID_OK);
 }
 
