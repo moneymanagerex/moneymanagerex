@@ -531,7 +531,6 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 
     // get current version
     wxString currentV = mmex::getProgramVersion();
-    wxStringTokenizer currentV_tokens(currentV, ('-'), wxTOKEN_RET_EMPTY_ALL);
 
     // get release candidate version if it exists.
     int rc_C = rc;
@@ -571,17 +570,15 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     }
 
     // define new version
-    if ((major < majorC) || (minor < minorC) || (patch < patchC))
+    if (isUpdateAvailable)
     {
-        NewVersion = wxString() << majorC << "." << minorC << "." << patchC;
-        if ((rc > 0) && (currentV_tokens.CountTokens() == 2))
-            NewVersion << "-RC" << rc_C;
+        NewVersion = wxString() << major << "." << minor << "." << patch;
+        if (rc > 0)
+            NewVersion << "-RC" << rc;
     }
     else
     {
-        NewVersion = wxString() << major << "." << minor << "." << patch;
-        if ((rc > 0) && (currentV_tokens.CountTokens() == 2))
-            NewVersion << "-RC" << rc;
+        NewVersion = mmex::getProgramVersion();
     }
 
     return isUpdateAvailable;
