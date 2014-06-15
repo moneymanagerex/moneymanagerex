@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-30 15:06+0400\n"
-"PO-Revision-Date: 2014-05-30 15:06+0400\n"
+"POT-Creation-Date: 2014-06-14 20:57+0100\n"
+"PO-Revision-Date: 2014-06-14 20:57+0100\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: en_US\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#: src/aboutdialog.cpp:42 src/aboutdialog.cpp:174
+#: src/aboutdialog.cpp:42 src/aboutdialog.cpp:176
 #, fuzzy
 msgid "About"
 msgstr "Tentang"
@@ -26,68 +26,74 @@ msgstr "Tentang"
 msgid "License agreement"
 msgstr ""
 
-#: src/aboutdialog.cpp:86 src/mmframe.cpp:1485
-msgid "Visit us on Facebook"
-msgstr "Kunjungi kita di Facebook"
+#: src/aboutdialog.cpp:86
+#, fuzzy
+msgid "Website"
+msgstr "Alamat Website"
 
-#: src/aboutdialog.cpp:89 src/mmframe.cpp:1469
-msgid "Visit MMEX Forum"
+#: src/aboutdialog.cpp:89
+msgid "Forum"
 msgstr ""
 
-#: src/aboutdialog.cpp:93
-msgid "Visit MMEX Twitter"
+#: src/aboutdialog.cpp:92
+msgid "Wiki page"
 msgstr ""
 
-#: src/aboutdialog.cpp:96
-msgid "wiki page"
-msgstr ""
-
-#: src/aboutdialog.cpp:99
+#: src/aboutdialog.cpp:95
 #, fuzzy
 msgid "Bug reports"
 msgstr "Laporan"
 
-#: src/aboutdialog.cpp:103
+#: src/aboutdialog.cpp:99
+#, fuzzy
+msgid "Follow MMEX on Facebook"
+msgstr "Kunjungi kita di Facebook"
+
+#: src/aboutdialog.cpp:102
+msgid "Follow MMEX on Twitter"
+msgstr ""
+
+#: src/aboutdialog.cpp:105
 msgid "Donate"
 msgstr ""
 
-#: src/aboutdialog.cpp:179
+#: src/aboutdialog.cpp:181
 msgid "Developers"
 msgstr ""
 
-#: src/aboutdialog.cpp:184
+#: src/aboutdialog.cpp:186
 msgid "Artwork"
 msgstr ""
 
-#: src/aboutdialog.cpp:189
+#: src/aboutdialog.cpp:191
 msgid "Sponsors"
 msgstr ""
 
-#: src/aboutdialog.cpp:194
+#: src/aboutdialog.cpp:196
 msgid "License"
 msgstr ""
 
-#: src/aboutdialog.cpp:230 src/accountdialog.cpp:282
-#: src/appstartdialog.cpp:139 src/assetdialog.cpp:195
+#: src/aboutdialog.cpp:232 src/accountdialog.cpp:282
+#: src/appstartdialog.cpp:135 src/assetdialog.cpp:195
 #: src/attachmentdialog.cpp:121 src/billsdepositsdialog.cpp:571
 #: src/budgetentrydialog.cpp:160 src/budgetyeardialog.cpp:117
 #: src/budgetyearentrydialog.cpp:123 src/filtertransdialog.cpp:362
 #: src/import_export/qif_export.cpp:196 src/import_export/qif_export.cpp:220
-#: src/import_export/qif_import_gui.cpp:258 src/optionsdialog.cpp:879
+#: src/import_export/qif_import_gui.cpp:258 src/optionsdialog.cpp:858
 #: src/payeedialog.cpp:127 src/relocatecategorydialog.cpp:116
 #: src/relocatepayeedialog.cpp:111 src/reports/reportbase.cpp:59
 #: src/splitdetailsdialog.cpp:143 src/splittransactionsdialog.cpp:170
-#: src/transdialog.cpp:495 src/mmsinglechoicedialog.h:56
+#: src/transdialog.cpp:496 src/mmsinglechoicedialog.h:56
 msgid "&OK "
 msgstr ""
 
-#: src/accountdialog.cpp:62 src/mmframe.cpp:1336 src/mmframe.cpp:1522
+#: src/accountdialog.cpp:62 src/mmframe.cpp:1326 src/mmframe.cpp:1494
 #: src/wizard_newaccount.cpp:70 src/wizard_newaccount.cpp:77
 #: src/wizard_newaccount.cpp:144
 msgid "New Account"
 msgstr "Rekening Baru"
 
-#: src/accountdialog.cpp:98 src/mmframe.cpp:1345
+#: src/accountdialog.cpp:98 src/mmframe.cpp:1335
 msgid "Edit Account"
 msgstr "Ubah Rekening"
 
@@ -133,7 +139,7 @@ msgstr "Catatan"
 
 #: src/accountdialog.cpp:220 src/model/Model_Category.cpp:111
 #: src/model/Model_Category.cpp:121 src/model/Model_Category.cpp:165
-#: src/optionsdialog.cpp:862
+#: src/optionsdialog.cpp:841
 msgid "Others"
 msgstr "Lainnya"
 
@@ -170,10 +176,10 @@ msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 #: src/import_export/qif_export.cpp:222
 #: src/import_export/qif_import_gui.cpp:259
 #: src/import_export/univcsvdialog.cpp:316 src/maincurrencydialog.cpp:199
-#: src/optionsdialog.cpp:881 src/payeedialog.cpp:128
+#: src/optionsdialog.cpp:860 src/payeedialog.cpp:128
 #: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
 #: src/reports/reportbase.cpp:61 src/splitdetailsdialog.cpp:146
-#: src/splittransactionsdialog.cpp:171 src/transdialog.cpp:496
+#: src/splittransactionsdialog.cpp:171 src/transdialog.cpp:497
 #: src/mmsinglechoicedialog.h:58
 #, fuzzy
 msgid "&Cancel "
@@ -293,28 +299,28 @@ msgstr "Baca Dokumentasi"
 msgid "Read the user manual"
 msgstr "Baca manua penggunaan program"
 
-#: src/appstartdialog.cpp:115
+#: src/appstartdialog.cpp:113
 msgid "Visit Website for more information"
 msgstr "Kunjungi Website Money Manager"
 
-#: src/appstartdialog.cpp:116
+#: src/appstartdialog.cpp:114
 #, fuzzy, c-format
 msgid "Open the %s website for latest news, updates etc"
 msgstr ""
 "Buka website Money Manager untuk memperoleh informasi terbaru, update dan "
 "lainnya"
 
-#: src/appstartdialog.cpp:126
+#: src/appstartdialog.cpp:122
 #, fuzzy, c-format
 msgid "Show this window next time %s starts"
 msgstr "Perlihatkan kotak dialog ini lain waktu "
 
-#: src/appstartdialog.cpp:140
+#: src/appstartdialog.cpp:136
 #, fuzzy
 msgid "&Exit "
 msgstr "Keluar"
 
-#: src/appstartdialog.cpp:156
+#: src/appstartdialog.cpp:152
 #, fuzzy, c-format
 msgid "Open the previously opened database : %s"
 msgstr "Buka data keuangan sebelumnya :"
@@ -328,7 +334,7 @@ msgid "Asset Details"
 msgstr "Rincian Aset"
 
 #: src/assetdialog.cpp:117 src/assetspanel.cpp:397
-#: src/general_report_manager.cpp:566 src/import_export/qif_import_gui.cpp:214
+#: src/general_report_manager.cpp:568 src/import_export/qif_import_gui.cpp:214
 #: src/import_export/qif_import_gui.cpp:227
 #: src/import_export/qif_import_gui.cpp:238 src/maincurrencydialog.cpp:59
 #: src/payeedialog.cpp:64
@@ -416,7 +422,7 @@ msgid "&Delete Asset"
 msgstr "&Hapus Data Aset"
 
 #: src/assetspanel.cpp:89 src/billsdepositspanel.cpp:429
-#: src/mmcheckingpanel.cpp:1081 src/mmframe.cpp:1047 src/payeedialog.cpp:371
+#: src/mmcheckingpanel.cpp:1081 src/mmframe.cpp:1038 src/payeedialog.cpp:371
 #: src/stockspanel.cpp:132
 #, fuzzy
 msgid "&Organize Attachments"
@@ -442,16 +448,16 @@ msgstr ""
 "tertentu per tahun, dengan tingkat depresiasi tertentu per tahun, atau tidak "
 "berubah nilai. Total aset ditambahkan ke nilai total keuangan Anda."
 
-#: src/assetspanel.cpp:357 src/general_report_manager.cpp:507
-#: src/general_report_manager.cpp:723 src/mmframe.cpp:725 src/mmframe.cpp:1409
-#: src/mmhomepagepanel.cpp:397 src/mmhomepagepanel.cpp:799
+#: src/assetspanel.cpp:357 src/general_report_manager.cpp:509
+#: src/general_report_manager.cpp:725 src/mmframe.cpp:725 src/mmframe.cpp:1391
+#: src/mmhomepagepanel.cpp:386 src/mmhomepagepanel.cpp:785
 #: src/assetspanel.h:84
 msgid "Assets"
 msgstr "Aset"
 
 #: src/assetspanel.cpp:370 src/assetspanel.cpp:645 src/assetspanel.cpp:662
 #: src/import_export/qif_export.cpp:62 src/import_export/qif_export.cpp:63
-#: src/import_export/qif_export.cpp:127 src/mmframe.cpp:1088
+#: src/import_export/qif_export.cpp:127 src/mmframe.cpp:1079
 #: src/optionsdialog.cpp:133
 msgid "All"
 msgstr "Semua"
@@ -459,7 +465,7 @@ msgstr "Semua"
 #: src/assetspanel.cpp:402 src/billsdepositsdialog.cpp:472
 #: src/billsdepositspanel.cpp:146 src/filtertransdialog.cpp:251
 #: src/filtertransdialog.cpp:320 src/import_export/qif_import_gui.cpp:81
-#: src/mmhomepagepanel.cpp:780 src/reports/budgetingperf.cpp:130
+#: src/mmhomepagepanel.cpp:768 src/reports/budgetingperf.cpp:130
 #: src/reports/incexpenses.cpp:113 src/reports/transactions.cpp:117
 #: src/reports/transactions.cpp:119 src/splitdetailsdialog.cpp:105
 #: src/transdialog.cpp:390
@@ -526,7 +532,7 @@ msgid "Enter any string to find related assets"
 msgstr ""
 "Masukkan string apapun untuk menemukannya dalam catatan transaksi terdekat"
 
-#: src/assetspanel.cpp:544 src/stockspanel.cpp:613
+#: src/assetspanel.cpp:544 src/stockspanel.cpp:614
 #, fuzzy
 msgid "Total: "
 msgstr "Total :"
@@ -537,7 +543,7 @@ msgid "#"
 msgstr "#"
 
 #: src/attachmentdialog.cpp:55 src/general_report_manager.cpp:249
-#: src/general_report_manager.cpp:566
+#: src/general_report_manager.cpp:568
 #, fuzzy
 msgid "Description"
 msgstr "Transaksi"
@@ -729,7 +735,7 @@ msgstr "Rinci Kategori"
 #: src/billsdepositsdialog.cpp:254 src/billsdepositspanel.cpp:55
 #: src/filtertransdialog.cpp:49 src/model/Model_Asset.cpp:23
 #: src/model/Model_Billsdeposits.cpp:31 src/model/Model_Budget.cpp:54
-#: src/model/Model_Checking.cpp:33 src/optionsdialog.cpp:660
+#: src/model/Model_Checking.cpp:33 src/optionsdialog.cpp:639
 msgid "None"
 msgstr "Nihil"
 
@@ -888,17 +894,17 @@ msgstr "Set 'Otomatis Eksekusi' tanpa sepengetahuan pengguna."
 msgid "Automatic Execution will occur without user interaction"
 msgstr "Eksekusi otomatis akan dilaksanakan tanpa interaksi user"
 
-#: src/billsdepositsdialog.cpp:427 src/transdialog.cpp:1125
+#: src/billsdepositsdialog.cpp:427 src/transdialog.cpp:1126
 msgid "Specify the date of the transaction"
 msgstr "Isi dengan tanggal transaksi"
 
-#: src/billsdepositsdialog.cpp:430 src/transdialog.cpp:1126
+#: src/billsdepositsdialog.cpp:430 src/transdialog.cpp:1127
 #, fuzzy
 msgid "Retard or advance the date of the transaction"
 msgstr "Isi dengan tanggal transaksi"
 
 #: src/billsdepositsdialog.cpp:446 src/filtertransdialog.cpp:248
-#: src/transdialog.cpp:1127
+#: src/transdialog.cpp:1128
 msgid "Specify the status for the transaction"
 msgstr "Tentukan status transaksi"
 
@@ -912,7 +918,7 @@ msgid "Status"
 msgstr "Status"
 
 #: src/billsdepositsdialog.cpp:462 src/splitdetailsdialog.cpp:117
-#: src/transdialog.cpp:1128
+#: src/transdialog.cpp:1129
 msgid "Specify the type of transactions to be created."
 msgstr "Isi dengan tipe transaksi yang dibuat"
 
@@ -921,13 +927,13 @@ msgstr "Isi dengan tipe transaksi yang dibuat"
 msgid "&Advanced"
 msgstr "Advanced"
 
-#: src/billsdepositsdialog.cpp:466 src/transdialog.cpp:1132
+#: src/billsdepositsdialog.cpp:466 src/transdialog.cpp:1133
 #, fuzzy
 msgid "Allows the setting of different amounts in the FROM and TO accounts."
 msgstr "Pilih rekening tujuan"
 
 #: src/billsdepositsdialog.cpp:476 src/billsdepositsdialog.cpp:735
-#: src/transdialog.cpp:1111
+#: src/transdialog.cpp:1112
 msgid "Specify the amount for this transaction"
 msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
@@ -938,16 +944,16 @@ msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
 #: src/billsdepositsdialog.cpp:479 src/billsdepositsdialog.cpp:908
 #: src/billsdepositspanel.cpp:147 src/budgetingpanel.cpp:284
-#: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:361
-#: src/mmhomepagepanel.cpp:780 src/reports/budgetcategorysummary.cpp:111
-#: src/reports/categexp.cpp:161 src/reports/categexp.cpp:163
+#: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:350
+#: src/mmhomepagepanel.cpp:768 src/reports/budgetcategorysummary.cpp:111
+#: src/reports/categexp.cpp:160 src/reports/categexp.cpp:162
 #: src/reports/incexpenses.cpp:114 src/reports/transactions.cpp:121
 #: src/reports/transactions.cpp:123 src/splitdetailsdialog.cpp:120
 #: src/splittransactionsdialog.cpp:128 src/transdialog.cpp:408
 msgid "Amount"
 msgstr "Jumlah (Rp.)"
 
-#: src/billsdepositsdialog.cpp:491 src/transdialog.cpp:1106
+#: src/billsdepositsdialog.cpp:491 src/transdialog.cpp:1107
 #, fuzzy
 msgid "Specify the transfer amount in the To Account"
 msgstr "Pilih rekening tujuan"
@@ -958,7 +964,7 @@ msgstr "Pilih rekening tujuan"
 #: src/import_export/qif_import_gui.cpp:80
 #: src/import_export/qif_import_gui.cpp:221
 #: src/import_export/univcsvdialog.cpp:71 src/mmcheckingpanel.cpp:977
-#: src/mmhomepagepanel.cpp:361 src/reports/payee.cpp:136
+#: src/mmhomepagepanel.cpp:350 src/reports/payee.cpp:136
 #: src/reports/payee.cpp:138 src/reports/transactions.cpp:105
 #: src/reports/transactions.cpp:107 src/transdialog.cpp:246
 #: src/transdialog.cpp:420
@@ -974,7 +980,7 @@ msgstr "Pilih nama, institusi atau lainnya"
 msgid "Specify where the transaction is going to"
 msgstr "Pilih dari siapa atau kepada siapa transaksi dilakukan"
 
-#: src/billsdepositsdialog.cpp:508 src/transdialog.cpp:1116
+#: src/billsdepositsdialog.cpp:508 src/transdialog.cpp:1117
 #, fuzzy
 msgid "Specify where the transaction is coming from"
 msgstr "Pilih dari siapa atau kepada siapa transaksi dilakukan"
@@ -992,7 +998,7 @@ msgstr "Tentukan rekening yang akan dipindahbukukan"
 msgid "Split"
 msgstr "Rinci"
 
-#: src/billsdepositsdialog.cpp:527 src/transdialog.cpp:1129
+#: src/billsdepositsdialog.cpp:527 src/transdialog.cpp:1130
 #, fuzzy
 msgid "Use split Categories"
 msgstr "Rinci Kategori"
@@ -1003,9 +1009,9 @@ msgstr "Rinci Kategori"
 #: src/import_export/qif_import_gui.cpp:82
 #: src/import_export/qif_import_gui.cpp:233
 #: src/import_export/univcsvdialog.cpp:73 src/mmcheckingpanel.cpp:981
-#: src/mmhomepagepanel.cpp:188 src/reports/budgetcategorysummary.cpp:109
-#: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:156
-#: src/reports/categexp.cpp:158 src/reports/categovertimeperf.cpp:144
+#: src/mmhomepagepanel.cpp:177 src/reports/budgetcategorysummary.cpp:109
+#: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:155
+#: src/reports/categexp.cpp:157 src/reports/categovertimeperf.cpp:144
 #: src/reports/categovertimeperf.cpp:146 src/reports/transactions.cpp:113
 #: src/reports/transactions.cpp:115 src/splitdetailsdialog.cpp:128
 #: src/splittransactionsdialog.cpp:127 src/transdialog.cpp:443
@@ -1017,7 +1023,7 @@ msgstr "Kategori"
 msgid "Select Category"
 msgstr "Pilih Kategori"
 
-#: src/billsdepositsdialog.cpp:544 src/transdialog.cpp:1130
+#: src/billsdepositsdialog.cpp:544 src/transdialog.cpp:1131
 msgid "Specify any associated check number or transaction number"
 msgstr "Isi dengan nomor cek/giro atau nomor transaksi"
 
@@ -1029,7 +1035,7 @@ msgstr "Isi dengan nomor cek/giro atau nomor transaksi"
 msgid "Number"
 msgstr "Nomor"
 
-#: src/billsdepositsdialog.cpp:552 src/transdialog.cpp:1131
+#: src/billsdepositsdialog.cpp:552 src/transdialog.cpp:1132
 msgid "Specify any text notes you want to add to this transaction."
 msgstr "Isi dengan keterangan yang diinginkan untuk transaksi ini"
 
@@ -1105,9 +1111,9 @@ msgstr "Pemindahbukuan dari rekening satu ke lainnya tidak boleh sama"
 #: src/billsdepositsdialog.cpp:949 src/budgetentrydialog.cpp:176
 #: src/dbwrapper.cpp:77 src/dbwrapper.cpp:84 src/filtertransdialog.cpp:445
 #: src/filtertransdialog.cpp:455 src/maincurrencydialog.cpp:431
-#: src/mmframe.cpp:2709 src/splittransactionsdialog.cpp:201
+#: src/mmframe.cpp:2594 src/splittransactionsdialog.cpp:201
 #: src/stockdialog.cpp:304 src/stockdialog.cpp:314 src/stockdialog.cpp:330
-#: src/stockspanel.cpp:667 src/stockspanel.cpp:668 src/util.cpp:100
+#: src/stockspanel.cpp:669 src/stockspanel.cpp:670 src/util.cpp:100
 msgid "Error"
 msgstr "Error / Terjadi Kesalahan"
 
@@ -1198,8 +1204,8 @@ msgstr ""
 "Tip: Transaksi ini dapat diaktivasi - untuk mengijinkan user dapat merubah "
 "setiap nilai pada saat jatuh tempo."
 
-#: src/billsdepositspanel.cpp:207 src/mmframe.cpp:732
-#: src/mmhomepagepanel.cpp:403 src/billsdepositspanel.h:99
+#: src/billsdepositspanel.cpp:207 src/mmframe.cpp:730
+#: src/mmhomepagepanel.cpp:392 src/billsdepositspanel.h:99
 msgid "Repeating Transactions"
 msgstr "Pengelolaan Transaksi Rutin"
 
@@ -1263,7 +1269,7 @@ msgid "&Delete Bills && Deposit Series..."
 msgstr "&Hapus grup penerimaan && pengeluaran..."
 
 #: src/billsdepositspanel.cpp:507 src/billsdepositspanel.cpp:559
-#: src/mmhomepagepanel.cpp:322
+#: src/mmhomepagepanel.cpp:316
 #, fuzzy, c-format
 msgid "%d days remaining"
 msgstr " hari lagi"
@@ -1275,6 +1281,7 @@ msgid "Inactive"
 msgstr "Tidak aktif"
 
 #: src/billsdepositspanel.cpp:517 src/billsdepositspanel.cpp:569
+#: src/mmhomepagepanel.cpp:317
 #, fuzzy, c-format
 msgid "%d days overdue!"
 msgstr " hari melebihi jatuh tempo"
@@ -1318,7 +1325,7 @@ msgstr "Tipe :"
 msgid "Expense"
 msgstr "Pengeluaran"
 
-#: src/budgetentrydialog.cpp:130 src/mmhomepagepanel.cpp:781
+#: src/budgetentrydialog.cpp:130 src/mmhomepagepanel.cpp:769
 #: src/model/Model_Category.cpp:191 src/reports/incexpenses.cpp:189
 #: src/reports/mmgraphincexpensesmonth.cpp:38
 msgid "Income"
@@ -1509,17 +1516,17 @@ msgstr "Isi dengan tahun anggaran yang akan digunakan"
 msgid "Budget Year already exists"
 msgstr "Tahun anggran sudah ada"
 
-#: src/categdialog.cpp:88 src/mmframe.cpp:1360 src/mmframe.cpp:1525
+#: src/categdialog.cpp:88 src/mmframe.cpp:1350 src/mmframe.cpp:1497
 msgid "Organize Categories"
 msgstr "Pengelolaan Kategori"
 
 #: src/categdialog.cpp:113 src/import_export/qif_export.cpp:119
-#: src/mmframereport.cpp:56 src/reports/categexp.cpp:142
+#: src/mmframereport.cpp:56 src/reports/categexp.cpp:141
 #: src/transdialog.cpp:300 src/reports/categexp.h:192
 msgid "Categories"
 msgstr "Kategori"
 
-#: src/categdialog.cpp:180 src/mmframe.cpp:1377
+#: src/categdialog.cpp:180 src/mmframe.cpp:1367
 msgid "Reassign all categories to another category"
 msgstr "Mengirimkan ulang semua kategori ke kategori yang lain"
 
@@ -1651,18 +1658,18 @@ msgstr "Rinci Kategori"
 msgid "Organise Categories: Editing Error"
 msgstr "Pengelolaan Kategori"
 
-#: src/categdialog.cpp:564 src/mmframe.cpp:2593
+#: src/categdialog.cpp:564 src/mmframe.cpp:2479
 #, fuzzy
 msgid "Category Relocation Completed."
 msgstr "Kategori tidak boleh dikosongkan"
 
-#: src/categdialog.cpp:565 src/mmframe.cpp:2594 src/mmframe.cpp:2610
+#: src/categdialog.cpp:565 src/mmframe.cpp:2480 src/mmframe.cpp:2496
 #: src/payeedialog.cpp:315
 #, fuzzy, c-format
 msgid "Records have been updated in the database: %i"
 msgstr "perubahan data telah disimpan di data keuangan."
 
-#: src/categdialog.cpp:567 src/mmframe.cpp:2596
+#: src/categdialog.cpp:567 src/mmframe.cpp:2482
 #, fuzzy
 msgid "Category Relocation Result"
 msgstr "Kategori tidak boleh dikosongkan"
@@ -1687,44 +1694,44 @@ msgstr "Setting"
 msgid "Version: "
 msgstr "Riwayat Versi Software"
 
-#: src/constants.cpp:125
+#: src/constants.cpp:133
 msgid "MMEX is using the following support products"
 msgstr ""
 
-#: src/constants.cpp:147 src/mmcheckingpanel.h:251
+#: src/constants.cpp:155 src/mmcheckingpanel.h:251
 msgid "View All Transactions"
 msgstr "Tampilkan semua transaksi"
 
-#: src/constants.cpp:148 src/mmcheckingpanel.h:252
+#: src/constants.cpp:156 src/mmcheckingpanel.h:252
 msgid "View Today"
 msgstr "Lihat Hari Ini"
 
-#: src/constants.cpp:149 src/mmcheckingpanel.h:253
+#: src/constants.cpp:157 src/mmcheckingpanel.h:253
 msgid "View Current Month"
 msgstr "Bulan ini"
 
-#: src/constants.cpp:150 src/mmcheckingpanel.h:254
+#: src/constants.cpp:158 src/mmcheckingpanel.h:254
 msgid "View Last 30 days"
 msgstr "Lihat 30 Hari terakhir "
 
-#: src/constants.cpp:151 src/mmcheckingpanel.h:255
+#: src/constants.cpp:159 src/mmcheckingpanel.h:255
 msgid "View Last 90 days"
 msgstr "Lihat 90 Hari terakhir "
 
-#: src/constants.cpp:152 src/mmcheckingpanel.h:256
+#: src/constants.cpp:160 src/mmcheckingpanel.h:256
 msgid "View Last Month"
 msgstr "Bulan lalu"
 
-#: src/constants.cpp:153 src/mmcheckingpanel.h:257
+#: src/constants.cpp:161 src/mmcheckingpanel.h:257
 msgid "View Last 3 Months"
 msgstr "Lihat 3 Bulan terakhir "
 
-#: src/constants.cpp:154 src/mmcheckingpanel.h:258
+#: src/constants.cpp:162 src/mmcheckingpanel.h:258
 #, fuzzy
 msgid "View Last 12 Months"
 msgstr "Lihat 3 Bulan terakhir "
 
-#: src/constants.cpp:155 src/mmcheckingpanel.h:259
+#: src/constants.cpp:163 src/mmcheckingpanel.h:259
 #, fuzzy
 msgid "View Current Year"
 msgstr "Tahun Ini"
@@ -1863,7 +1870,7 @@ msgstr "Tidak ada data yang dibuka"
 msgid "Continue ?"
 msgstr "Dilanjutkan ?"
 
-#: src/filtertransdialog.cpp:50 src/mmhomepagepanel.cpp:651
+#: src/filtertransdialog.cpp:50 src/mmhomepagepanel.cpp:648
 #: src/model/Model_Billsdeposits.cpp:32 src/model/Model_Checking.cpp:34
 msgid "Reconciled"
 msgstr "Rekonsiliasi"
@@ -1955,17 +1962,17 @@ msgstr "&Bersihkan"
 msgid "Filtering Details: "
 msgstr "Penerima / Penyetor"
 
-#: src/general_report_manager.cpp:82 src/general_report_manager.cpp:448
+#: src/general_report_manager.cpp:82 src/general_report_manager.cpp:450
 #, fuzzy
 msgid "General Reports Manager"
 msgstr "Laporan SQL Query"
 
-#: src/general_report_manager.cpp:124 src/mmframe.cpp:745
+#: src/general_report_manager.cpp:124 src/mmframe.cpp:739
 msgid "Reports"
 msgstr "Laporan"
 
 #: src/general_report_manager.cpp:207 src/import_export/univcsvdialog.cpp:303
-#: src/mmframe.cpp:1083 src/mmframe.cpp:1271
+#: src/mmframe.cpp:1074 src/mmframe.cpp:1261
 msgid "&Import"
 msgstr "&Impor"
 
@@ -1975,7 +1982,7 @@ msgid "Locate and load a report file."
 msgstr "Temukan dan muat sebuah file naskah SQL kedalam area naskah."
 
 #: src/general_report_manager.cpp:211 src/import_export/univcsvdialog.cpp:310
-#: src/mmframe.cpp:1079 src/mmframe.cpp:1265
+#: src/mmframe.cpp:1070 src/mmframe.cpp:1255
 msgid "&Export"
 msgstr "&Ekspor"
 
@@ -2028,33 +2035,33 @@ msgstr ""
 msgid "Create Template"
 msgstr "Simpan Template Sebagai"
 
-#: src/general_report_manager.cpp:322
+#: src/general_report_manager.cpp:324
 #, c-format
 msgid "Row(s) returned: %i  Duration: %ld ms"
 msgstr ""
 
-#: src/general_report_manager.cpp:345
+#: src/general_report_manager.cpp:347
 msgid "SQL Syntax Error"
 msgstr ""
 
-#: src/general_report_manager.cpp:374
+#: src/general_report_manager.cpp:376
 #, fuzzy
 msgid "Load report file:"
 msgstr "Judul Laporan:"
 
-#: src/general_report_manager.cpp:387
+#: src/general_report_manager.cpp:389
 #, fuzzy
 msgid "Report with same name exists"
 msgstr "Kategori dengan nama yang sama telah ada"
 
-#: src/general_report_manager.cpp:387 src/general_report_manager.cpp:617
-#: src/general_report_manager.cpp:677 src/mmframe.cpp:1424
-#: src/mmframe.cpp:1531
+#: src/general_report_manager.cpp:389 src/general_report_manager.cpp:619
+#: src/general_report_manager.cpp:679 src/mmframe.cpp:1405
+#: src/mmframe.cpp:1503
 #, fuzzy
 msgid "General Report Manager"
 msgstr "Laporan SQL Query"
 
-#: src/general_report_manager.cpp:447
+#: src/general_report_manager.cpp:449
 #, fuzzy, c-format
 msgid ""
 "Unable to open file:\n"
@@ -2062,64 +2069,64 @@ msgid ""
 "\n"
 msgstr "Tidak bisa membuka file"
 
-#: src/general_report_manager.cpp:510
+#: src/general_report_manager.cpp:512
 #, fuzzy
 msgid "New Empty Report"
 msgstr "Laporan SQL Fleksibel"
 
-#: src/general_report_manager.cpp:511
+#: src/general_report_manager.cpp:513
 #, fuzzy
 msgid "New Sample Report"
 msgstr "Laporan SQL Fleksibel"
 
-#: src/general_report_manager.cpp:513
+#: src/general_report_manager.cpp:515
 msgid "Change Group"
 msgstr ""
 
-#: src/general_report_manager.cpp:514
+#: src/general_report_manager.cpp:516
 msgid "UnGroup"
 msgstr ""
 
-#: src/general_report_manager.cpp:515
+#: src/general_report_manager.cpp:517
 #, fuzzy
 msgid "Rename Report"
 msgstr "Laporan Penerima"
 
-#: src/general_report_manager.cpp:517
+#: src/general_report_manager.cpp:519
 #, fuzzy
 msgid "Delete Report"
 msgstr "Laporan SQL Fleksibel"
 
-#: src/general_report_manager.cpp:616
+#: src/general_report_manager.cpp:618
 #, fuzzy
 msgid "Enter the name for the report"
 msgstr "Isi dengan nama aset"
 
-#: src/general_report_manager.cpp:635
+#: src/general_report_manager.cpp:637
 #, fuzzy
 msgid "Delete the Report Title:"
 msgstr "Hapus Judul Laporan Custom:"
 
-#: src/general_report_manager.cpp:676 src/general_report_manager.cpp:701
+#: src/general_report_manager.cpp:678 src/general_report_manager.cpp:703
 #, fuzzy
 msgid "Enter the name for the new report group"
 msgstr "Masukkan nama penerima pembayaran yang baru:"
 
-#: src/general_report_manager.cpp:702
+#: src/general_report_manager.cpp:704
 msgid "Add Report Group"
 msgstr ""
 
-#: src/general_report_manager.cpp:710 src/general_report_manager.cpp:717
+#: src/general_report_manager.cpp:712 src/general_report_manager.cpp:719
 #, fuzzy
 msgid "New Report"
 msgstr "Laporan"
 
-#: src/general_report_manager.cpp:712
+#: src/general_report_manager.cpp:714
 #, fuzzy, c-format
 msgid "New Report %i"
 msgstr "Laporan Penerima"
 
-#: src/general_report_manager.cpp:748
+#: src/general_report_manager.cpp:750
 #, fuzzy
 msgid "Choose file to Save As Report"
 msgstr "Pilih file QIF yang akan diimpor"
@@ -2148,8 +2155,8 @@ msgstr ""
 msgid "CSV"
 msgstr ""
 
-#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2453
-#: src/mmframe.cpp:2457 src/mmframe.cpp:2477 src/mmframe.cpp:2481
+#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2356
+#: src/mmframe.cpp:2360 src/mmframe.cpp:2380 src/mmframe.cpp:2384
 msgid "Accounts"
 msgstr "Rekening"
 
@@ -2258,7 +2265,7 @@ msgstr "Transaksi yang akan datang"
 msgid "Number of transactions exported: %ld"
 msgstr ""
 
-#: src/import_export/qif_export.cpp:458 src/mmframe.cpp:1263
+#: src/import_export/qif_export.cpp:458 src/mmframe.cpp:1253
 #, fuzzy
 msgid "Export to QIF"
 msgstr "Ekspor Data ke File CSV"
@@ -2413,7 +2420,7 @@ msgid "To/From(+/-)"
 msgstr ""
 
 #: src/import_export/univcsvdialog.cpp:81 src/mmcheckingpanel.cpp:987
-#: src/mmhomepagepanel.cpp:651
+#: src/mmhomepagepanel.cpp:648
 msgid "Balance"
 msgstr "Saldo"
 
@@ -2491,11 +2498,11 @@ msgstr "Titik koma"
 msgid "TAB"
 msgstr "TAB"
 
-#: src/import_export/univcsvdialog.cpp:254 src/optionsdialog.cpp:963
+#: src/import_export/univcsvdialog.cpp:254 src/optionsdialog.cpp:942
 msgid "User Defined"
 msgstr "Pengguna yang menentukan"
 
-#: src/import_export/univcsvdialog.cpp:261 src/optionsdialog.cpp:749
+#: src/import_export/univcsvdialog.cpp:261 src/optionsdialog.cpp:728
 msgid "Specify the delimiter to use when importing/exporting CSV files"
 msgstr "Isi dengan karakter pemisah saat meng-ekspor/impor file CSV"
 
@@ -2540,7 +2547,7 @@ msgstr "Tidak bisa membuka file"
 #: src/import_export/univcsvdialog.cpp:588
 #: src/import_export/univcsvdialog.cpp:746
 #: src/import_export/univcsvdialog.cpp:786
-#: src/import_export/univcsvdialog.cpp:1074 src/mmframe.cpp:1916
+#: src/import_export/univcsvdialog.cpp:1074 src/mmframe.cpp:1887
 #, fuzzy
 msgid "Universal CSV Import"
 msgstr "Impor CSV Universal"
@@ -2657,7 +2664,7 @@ msgstr "Transaksi disimpan ke data keuangan pada rekening:"
 msgid "Transactions exported: %ld"
 msgstr "Laporan Transaksi"
 
-#: src/import_export/univcsvdialog.cpp:1038 src/mmframe.cpp:1262
+#: src/import_export/univcsvdialog.cpp:1038 src/mmframe.cpp:1252
 msgid "Export to CSV"
 msgstr "Ekspor Data ke File CSV"
 
@@ -2756,7 +2763,7 @@ msgstr "Rekonsiliasi bal:"
 msgid "Diff: "
 msgstr "Selisih:"
 
-#: src/mmcheckingpanel.cpp:476 src/mmframe.cpp:1535 src/transdialog.cpp:163
+#: src/mmcheckingpanel.cpp:476 src/mmframe.cpp:1507 src/transdialog.cpp:163
 msgid "New Transaction"
 msgstr "Transaksi Baru"
 
@@ -2949,410 +2956,416 @@ msgstr ""
 "Terjadi fatal error.\n"
 "Aplikasi akan dihentikan."
 
-#: src/mmframe.cpp:281
+#: src/mmframe.cpp:282
 #, fuzzy
 msgid "Toolbar"
 msgstr "&Toolbar"
 
-#: src/mmframe.cpp:456 src/mmframe.cpp:705 src/optionsdialog.cpp:397
-#: src/optionsdialog.cpp:417
+#: src/mmframe.cpp:460 src/mmframe.cpp:706 src/optionsdialog.cpp:396
 msgid "Bank Accounts"
 msgstr "Rekening"
 
-#: src/mmframe.cpp:457 src/mmframe.cpp:713 src/optionsdialog.cpp:404
-#: src/optionsdialog.cpp:424
+#: src/mmframe.cpp:461 src/mmframe.cpp:714 src/optionsdialog.cpp:402
+#: src/optionsdialog.cpp:408
 #, fuzzy
 msgid "Term Accounts"
 msgstr "Dari Rekening"
 
-#: src/mmframe.cpp:458 src/mmframe.cpp:719 src/mmhomepagepanel.cpp:58
-#: src/mmhomepagepanel.cpp:79
+#: src/mmframe.cpp:462 src/mmframe.cpp:720 src/mmhomepagepanel.cpp:56
+#: src/mmhomepagepanel.cpp:74
 msgid "Stocks"
 msgstr "Saham"
 
-#: src/mmframe.cpp:481
+#: src/mmframe.cpp:485
 #, fuzzy
 msgid "New transactions found on web app"
 msgstr "Menampilkan transaksi 30 hari terakhir"
 
-#: src/mmframe.cpp:482
+#: src/mmframe.cpp:486
 #, fuzzy
 msgid "Do you want to downlaod them?"
 msgstr ""
 "Tidak dapat menemukan lokasi file .mmb.\n"
 "Apakah lokasi file akan dicari ?"
 
-#: src/mmframe.cpp:483
+#: src/mmframe.cpp:487
 #, fuzzy
 msgid "Download WebApp new transaction"
 msgstr "Transaksi yang akan datang"
 
-#: src/mmframe.cpp:499
+#: src/mmframe.cpp:503
 #, fuzzy
 msgid "Unable to insert transaction in MMEX database"
 msgstr "transaksi pemindahbukuan tidak di-impor"
 
-#: src/mmframe.cpp:500 src/mmframe.cpp:506
+#: src/mmframe.cpp:504 src/mmframe.cpp:510
 msgid "WebApp communication error"
 msgstr ""
 
-#: src/mmframe.cpp:505
+#: src/mmframe.cpp:509
 msgid "Unable to download new transaction from WebApp"
 msgstr ""
 
-#: src/mmframe.cpp:532
+#: src/mmframe.cpp:536
 #, fuzzy
 msgid " Auto Repeat Transactions"
 msgstr "Pengelolaan Transaksi Rutin"
 
-#: src/mmframe.cpp:684
+#: src/mmframe.cpp:685
 msgid "Navigation"
 msgstr "Navigasi"
 
-#: src/mmframe.cpp:700
+#: src/mmframe.cpp:701
 msgid "Home Page"
 msgstr "Halaman Depan"
 
-#: src/mmframe.cpp:740 src/mmframe.cpp:1393
+#: src/mmframe.cpp:735 src/mmframe.cpp:1381
 msgid "Budget Setup"
 msgstr "Pengelolaan Anggaran"
 
-#: src/mmframe.cpp:753 src/mmframe.cpp:2136
+#: src/mmframe.cpp:747 src/mmframe.cpp:2106
 msgid "Help"
 msgstr "Bantuan"
 
-#: src/mmframe.cpp:992
+#: src/mmframe.cpp:983
 msgid "Do you really want to delete the account?"
 msgstr "Apakah rekening ini akan dihapus ?"
 
-#: src/mmframe.cpp:993 src/mmframe.cpp:2489
+#: src/mmframe.cpp:984 src/mmframe.cpp:2392
 msgid "Confirm Account Deletion"
 msgstr "Konfirmasi penghapusan account"
 
-#: src/mmframe.cpp:1014
+#: src/mmframe.cpp:1005
 msgid "MMEX has been opened without an active database."
 msgstr "MMEX telah dibuka tanpa data keuangan yang aktif"
 
-#: src/mmframe.cpp:1014
+#: src/mmframe.cpp:1005
 #, fuzzy
 msgid "MMEX: Menu Popup Error"
 msgstr "MMEX: Menu Popup Error"
 
-#: src/mmframe.cpp:1040 src/mmframe.cpp:1069 src/mmframe.cpp:1345
+#: src/mmframe.cpp:1031 src/mmframe.cpp:1060 src/mmframe.cpp:1335
 msgid "&Edit Account"
 msgstr "&Ubah rekening"
 
-#: src/mmframe.cpp:1041 src/mmframe.cpp:1068 src/mmframe.cpp:1349
+#: src/mmframe.cpp:1032 src/mmframe.cpp:1059 src/mmframe.cpp:1339
 msgid "&Delete Account"
 msgstr "&Hapus rekening"
 
-#: src/mmframe.cpp:1043
+#: src/mmframe.cpp:1034
 msgid "&Launch Account Website"
 msgstr "&Buka website rekening"
 
-#: src/mmframe.cpp:1067 src/mmframe.cpp:1336
+#: src/mmframe.cpp:1058 src/mmframe.cpp:1326
 msgid "New &Account"
 msgstr "&Rekening Baru"
 
-#: src/mmframe.cpp:1070
+#: src/mmframe.cpp:1061
 msgid "Account &List (Home)"
 msgstr "Daftar Rekening"
 
-#: src/mmframe.cpp:1077 src/mmframe.cpp:1081 src/mmframe.cpp:1262
-#: src/mmframe.cpp:1268
+#: src/mmframe.cpp:1068 src/mmframe.cpp:1072 src/mmframe.cpp:1252
+#: src/mmframe.cpp:1258
 msgid "&CSV Files..."
 msgstr "&File CSV..."
 
-#: src/mmframe.cpp:1078 src/mmframe.cpp:1082 src/mmframe.cpp:1263
-#: src/mmframe.cpp:1270
+#: src/mmframe.cpp:1069 src/mmframe.cpp:1073 src/mmframe.cpp:1253
+#: src/mmframe.cpp:1260
 msgid "&QIF Files..."
 msgstr "&File QIF..."
 
-#: src/mmframe.cpp:1089 src/mmframe.cpp:1520 src/model/Model_Account.cpp:24
+#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/model/Model_Account.cpp:24
 #: src/optionsdialog.cpp:134
 msgid "Open"
 msgstr "Aktif"
 
-#: src/mmframe.cpp:1090 src/optionsdialog.cpp:135
+#: src/mmframe.cpp:1081 src/optionsdialog.cpp:135
 msgid "Favorites"
 msgstr "Favorit"
 
-#: src/mmframe.cpp:1091 src/optionsdialog.cpp:324
+#: src/mmframe.cpp:1082 src/optionsdialog.cpp:324
 msgid "Accounts Visible"
 msgstr "Rekening yang ditampilkan"
 
-#: src/mmframe.cpp:1243
+#: src/mmframe.cpp:1233
 msgid "&New Database\tCtrl-N"
 msgstr "&Data Keuangan Baru\tCtrl-N"
 
-#: src/mmframe.cpp:1243 src/mmframe.cpp:1519 src/wizard_newdb.cpp:157
+#: src/mmframe.cpp:1233 src/mmframe.cpp:1491 src/wizard_newdb.cpp:157
 msgid "New Database"
 msgstr "Buat Data Keuangan Baru"
 
-#: src/mmframe.cpp:1245
+#: src/mmframe.cpp:1235
 msgid "&Open Database\tCtrl-O"
 msgstr "&Buka Data Keuangan\tCtrl-O"
 
-#: src/mmframe.cpp:1245 src/mmframe.cpp:1520
+#: src/mmframe.cpp:1235 src/mmframe.cpp:1492
 msgid "Open Database"
 msgstr "Buka Data Keuangan"
 
-#: src/mmframe.cpp:1247
+#: src/mmframe.cpp:1237
 msgid "Save Database &As"
 msgstr "Simpan Data Keuangan &Sebagai"
 
-#: src/mmframe.cpp:1247
+#: src/mmframe.cpp:1237
 msgid "Save Database As"
 msgstr "Simpan Data Keuangan Sebagai"
 
-#: src/mmframe.cpp:1255
+#: src/mmframe.cpp:1245
 msgid "&Recent Files..."
 msgstr "&File Sekarang..."
 
-#: src/mmframe.cpp:1256
+#: src/mmframe.cpp:1246
 msgid "&Clear Recent Files"
 msgstr "&Bersihkan File yang ada"
 
-#: src/mmframe.cpp:1264
+#: src/mmframe.cpp:1254
 msgid "&Report to HTML"
 msgstr "&Tampilkan Laporan Dalam Format HTML"
 
-#: src/mmframe.cpp:1264
+#: src/mmframe.cpp:1254
 msgid "Export to HTML"
 msgstr "Ekspor Data ke File HTML"
 
-#: src/mmframe.cpp:1269
+#: src/mmframe.cpp:1259
 msgid "Import from any CSV file"
 msgstr "Impor dari File CSV"
 
-#: src/mmframe.cpp:1270
+#: src/mmframe.cpp:1260
 msgid "Import from QIF"
 msgstr "Impor dari file QIF"
 
-#: src/mmframe.cpp:1276
+#: src/mmframe.cpp:1266
 msgid "&Print..."
 msgstr "&Cetak..."
 
-#: src/mmframe.cpp:1276
+#: src/mmframe.cpp:1266
 #, fuzzy
 msgid "Print current view"
 msgstr "Cetak Laporan ini"
 
-#: src/mmframe.cpp:1282
+#: src/mmframe.cpp:1272
 msgid "E&xit\tAlt-X"
 msgstr "K&eluar\tAlt-x"
 
-#: src/mmframe.cpp:1282
+#: src/mmframe.cpp:1272
 msgid "Quit this program"
 msgstr "Keluar dari Money Manager Ex"
 
-#: src/mmframe.cpp:1289
+#: src/mmframe.cpp:1279
 msgid "&Toolbar"
 msgstr "&Toolbar"
 
-#: src/mmframe.cpp:1289
+#: src/mmframe.cpp:1279
 msgid "Show/Hide the toolbar"
 msgstr "Perlihatkan/sembunyikan toolbar"
 
-#: src/mmframe.cpp:1291
+#: src/mmframe.cpp:1281
 msgid "&Navigation"
 msgstr "&Navigasi"
 
-#: src/mmframe.cpp:1291
+#: src/mmframe.cpp:1281
 msgid "Show/Hide the Navigation tree control"
 msgstr "Perlihatkan/sembunyikan navigasi tree control"
 
-#: src/mmframe.cpp:1293
+#: src/mmframe.cpp:1283
 msgid "&Bank Accounts"
 msgstr "&Rekening Bank"
 
-#: src/mmframe.cpp:1293
-msgid "Show/Hide Bank Accounts on Summary page"
-msgstr "Tampilkan/Sembunyikan Rekening Bank di halaman Ringkasan"
+#: src/mmframe.cpp:1283
+#, fuzzy
+msgid "Expand Bank Accounts on navigation tree"
+msgstr "Rekening"
 
-#: src/mmframe.cpp:1295
+#: src/mmframe.cpp:1285
 msgid "Term &Accounts"
 msgstr "Berjangka &Rekening"
 
-#: src/mmframe.cpp:1295
-msgid "Show/Hide Term Accounts on Summary page"
-msgstr "Tampilkan/Sembunyikan Rekening Berjangka di halaman Ringkasan"
+#: src/mmframe.cpp:1285
+#, fuzzy
+msgid "Expand Term Accounts on navigation tree"
+msgstr "Rekening"
 
-#: src/mmframe.cpp:1297
+#: src/mmframe.cpp:1287
 msgid "&Stock Accounts"
 msgstr "&Rekening Saham"
 
-#: src/mmframe.cpp:1297
-msgid "Show/Hide Stock Accounts on Summary page"
-msgstr "Tampilkan/Sembunyikan Rekening Saham di halaman Ringkasan"
+#: src/mmframe.cpp:1287
+#, fuzzy
+msgid "Expand Stock Accounts on navigation tree"
+msgstr "Memperlihatkan Rekening Saham di home page ketika halaman di refresh"
 
-#: src/mmframe.cpp:1299
+#: src/mmframe.cpp:1289
 msgid "Budgets: As &Financial Years"
 msgstr "Anggaran: Sebagai &Tahun Finansial "
 
-#: src/mmframe.cpp:1299
+#: src/mmframe.cpp:1289
 msgid "Display Budgets in Financial Year Format"
 msgstr "Tampilkan Anggaran dalam Format Tahun Finansial"
 
-#: src/mmframe.cpp:1301
+#: src/mmframe.cpp:1291
 #, fuzzy
 msgid "Budgets: &Include Transfers in Totals"
 msgstr "Anggaran: &Sertakan Total Transfer "
 
-#: src/mmframe.cpp:1301
+#: src/mmframe.cpp:1291
 #, fuzzy
 msgid "Include the transfer transactions in the Budget Totals"
 msgstr "transaksi pemindahbukuan tidak di-impor"
 
-#: src/mmframe.cpp:1303
+#: src/mmframe.cpp:1293
 msgid "Budget Setup: &Without Summaries"
 msgstr "Set Anggaran Untuk: &Tanpa Ringkasan"
 
-#: src/mmframe.cpp:1303
+#: src/mmframe.cpp:1293
 msgid "Display the Budget Setup without category summaries"
 msgstr "Menampilkan Penyusunan Aggaran tanpa ringkasan kategori"
 
-#: src/mmframe.cpp:1305
+#: src/mmframe.cpp:1295
 msgid "Budget Summary: Include &Categories"
 msgstr "Ringkasan Anggaran: Sertakan &Kategori"
 
-#: src/mmframe.cpp:1305
+#: src/mmframe.cpp:1295
 msgid "Include the categories in the Budget Category Summary"
 msgstr "Sertakan kategori kedalamRingkasan Kategori Anggaran"
 
-#: src/mmframe.cpp:1307
+#: src/mmframe.cpp:1297
 msgid "Ignore F&uture Transactions"
 msgstr "Abaikan T&ransaksi yang akan datang"
 
-#: src/mmframe.cpp:1307
+#: src/mmframe.cpp:1297
 #, fuzzy
 msgid "Ignore Future transactions"
 msgstr "Transaksi yang akan datang"
 
-#: src/mmframe.cpp:1341
+#: src/mmframe.cpp:1331
 msgid "Account &List"
 msgstr "&Daftar Rekening"
 
-#: src/mmframe.cpp:1341 src/mmframe.cpp:1523
+#: src/mmframe.cpp:1331 src/mmframe.cpp:1495
 msgid "Show Account List"
 msgstr "Tampilkan Daftar Rekening"
 
-#: src/mmframe.cpp:1349
+#: src/mmframe.cpp:1339
 msgid "Delete Account from database"
 msgstr "Hapus Rekening dari Data Keuangan"
 
-#: src/mmframe.cpp:1360
+#: src/mmframe.cpp:1350
 msgid "Organize &Categories..."
 msgstr "Pengelolaan &Kategori..."
 
-#: src/mmframe.cpp:1365
+#: src/mmframe.cpp:1355
 msgid "Organize &Payees..."
 msgstr "Pengelolaan &Penerima/Penyetor..."
 
-#: src/mmframe.cpp:1365 src/mmframe.cpp:1526 src/payeedialog.cpp:75
+#: src/mmframe.cpp:1355 src/mmframe.cpp:1498 src/payeedialog.cpp:75
 msgid "Organize Payees"
 msgstr "Pengelolaan Penerima/Penyetor"
 
-#: src/mmframe.cpp:1370
+#: src/mmframe.cpp:1360
 msgid "Organize Currency..."
 msgstr "Pengelolaan Mata Uang..."
 
-#: src/mmframe.cpp:1370 src/mmframe.cpp:1527
+#: src/mmframe.cpp:1360 src/mmframe.cpp:1499
 msgid "Organize Currency"
 msgstr "Pengelolaan Mata Uang"
 
-#: src/mmframe.cpp:1376
+#: src/mmframe.cpp:1366
 msgid "&Categories..."
 msgstr "&Kategori..."
 
-#: src/mmframe.cpp:1380
+#: src/mmframe.cpp:1370
 msgid "&Payees..."
 msgstr "&Penerima..."
 
-#: src/mmframe.cpp:1381
+#: src/mmframe.cpp:1371
 msgid "Reassign all payees to another payee"
 msgstr "Mengirimkan ulang semua penerima dana ke penerima dana yang lain"
 
-#: src/mmframe.cpp:1385
+#: src/mmframe.cpp:1375
 msgid "Relocation of..."
 msgstr "Perpindahan dari..."
 
-#: src/mmframe.cpp:1386
+#: src/mmframe.cpp:1376
 #, fuzzy
 msgid "Relocate Categories && Payees"
 msgstr "Kategori Utama Dalam 30 Hari Terakhir"
 
-#: src/mmframe.cpp:1393
+#: src/mmframe.cpp:1381
 msgid "&Budget Setup"
 msgstr "&Pengelolaan Anggaran"
 
-#: src/mmframe.cpp:1401
+#: src/mmframe.cpp:1386
 msgid "&Repeating Transactions"
 msgstr "&Pengelolaan Transaksi Rutin"
 
-#: src/mmframe.cpp:1401
+#: src/mmframe.cpp:1386
 msgid "Bills && Deposits"
 msgstr "Penerimaan && Pengeluaran"
 
-#: src/mmframe.cpp:1409
+#: src/mmframe.cpp:1391
 msgid "&Assets"
 msgstr "&Aset"
 
-#: src/mmframe.cpp:1417
+#: src/mmframe.cpp:1398
 msgid "&Transaction Report Filter..."
 msgstr "&Seleksi Transaksi..."
 
-#: src/mmframe.cpp:1417 src/mmframe.cpp:1529
+#: src/mmframe.cpp:1398 src/mmframe.cpp:1501
 msgid "Transaction Report Filter"
 msgstr "Filter Laporan Transaksi"
 
-#: src/mmframe.cpp:1424
+#: src/mmframe.cpp:1405
 #, fuzzy
 msgid "&General Report Manager..."
 msgstr "Laporan SQL Query"
 
-#: src/mmframe.cpp:1431 src/mmframe.cpp:1533
+#: src/mmframe.cpp:1412 src/mmframe.cpp:1505
 msgid "&Options..."
 msgstr "&Pilihan..."
 
-#: src/mmframe.cpp:1431 src/mmframe.cpp:1533
+#: src/mmframe.cpp:1412 src/mmframe.cpp:1505
 msgid "Show the Options Dialog"
 msgstr "Menampilkan kotak dialog pilihan"
 
-#: src/mmframe.cpp:1438
+#: src/mmframe.cpp:1419
 msgid "Convert Encrypted &DB"
 msgstr "Konversi terenkripsi &DB"
 
-#: src/mmframe.cpp:1439
+#: src/mmframe.cpp:1420
 msgid "Convert Encrypted DB to Non-Encrypted DB"
 msgstr "Konversi Enkripsi DB ke Non-Enkripsi DB"
 
-#: src/mmframe.cpp:1447 src/mmframe.cpp:1538
+#: src/mmframe.cpp:1428 src/mmframe.cpp:1510
 #, fuzzy
 msgid "&Help\tF1"
 msgstr "&Bantuan"
 
-#: src/mmframe.cpp:1447 src/mmframe.cpp:1538
+#: src/mmframe.cpp:1428 src/mmframe.cpp:1510
 msgid "Show the Help file"
 msgstr "Tampilkan file bantuan"
 
-#: src/mmframe.cpp:1452
+#: src/mmframe.cpp:1433
 msgid "&Show App Start Dialog"
 msgstr "&Tampilkan Kotak Dialog Awal"
 
-#: src/mmframe.cpp:1452
+#: src/mmframe.cpp:1433
 msgid "App Start Dialog"
 msgstr "Kotak Dialog Awal"
 
-#: src/mmframe.cpp:1461
+#: src/mmframe.cpp:1440
 msgid "Check for &Updates"
 msgstr "Cek &Update Program"
 
-#: src/mmframe.cpp:1461
+#: src/mmframe.cpp:1440
 msgid "Check For Updates"
 msgstr "Cek Update Program"
 
-#: src/mmframe.cpp:1470
+#: src/mmframe.cpp:1445
+msgid "Visit MMEX Forum"
+msgstr ""
+
+#: src/mmframe.cpp:1446
 #, fuzzy
 msgid ""
 "Visit the MMEX forum. See existing user comments, or report new issues with "
@@ -3360,77 +3373,82 @@ msgid ""
 msgstr ""
 "Kirimkan email ke mailing list untuk melaporkan isu mengenai software ini."
 
-#: src/mmframe.cpp:1478
-msgid "Register/View Release &Notifications."
+#: src/mmframe.cpp:1451
+#, fuzzy
+msgid "Register/View Release &Notifications"
 msgstr "Mendaftar/Melihat Rilis  &Notifikasi."
 
-#: src/mmframe.cpp:1479
+#: src/mmframe.cpp:1452
 #, fuzzy
 msgid "Sign up to Notification Mailing List or View existing announcements."
 msgstr "Mendaftar ke Mailing List Notifikasi atau Melihat pengumuman yang ada."
 
-#: src/mmframe.cpp:1490 src/mmframe.cpp:1537
+#: src/mmframe.cpp:1457
+msgid "Visit us on Facebook"
+msgstr "Kunjungi kita di Facebook"
+
+#: src/mmframe.cpp:1462 src/mmframe.cpp:1509
 msgid "&About..."
 msgstr "&Tentang Money Manager Ex..."
 
-#: src/mmframe.cpp:1490 src/mmframe.cpp:1537
+#: src/mmframe.cpp:1462 src/mmframe.cpp:1509
 msgid "Show about dialog"
 msgstr "Tampilkan kotak dialog mengenai program"
 
-#: src/mmframe.cpp:1495
+#: src/mmframe.cpp:1467
 msgid "&File"
 msgstr "&File"
 
-#: src/mmframe.cpp:1496
+#: src/mmframe.cpp:1468
 msgid "&Accounts"
 msgstr "&Rekening"
 
-#: src/mmframe.cpp:1497
+#: src/mmframe.cpp:1469
 msgid "&Tools"
 msgstr "&Pengelolaan Dasar"
 
-#: src/mmframe.cpp:1498
+#: src/mmframe.cpp:1470
 msgid "&View"
 msgstr "&Tampilkan"
 
-#: src/mmframe.cpp:1499
+#: src/mmframe.cpp:1471
 msgid "&Help"
 msgstr "&Bantuan"
 
-#: src/mmframe.cpp:1519 src/mmframe.cpp:1535
+#: src/mmframe.cpp:1491 src/mmframe.cpp:1507
 msgid "New"
 msgstr "Data Baru"
 
-#: src/mmframe.cpp:1523
+#: src/mmframe.cpp:1495
 msgid "Account List"
 msgstr "Daftar Rekening"
 
-#: src/mmframe.cpp:1525
+#: src/mmframe.cpp:1497
 msgid "Show Organize Categories Dialog"
 msgstr "Tampilkan pengelolaan kategori"
 
-#: src/mmframe.cpp:1526
+#: src/mmframe.cpp:1498
 msgid "Show Organize Payees Dialog"
 msgstr "Tampilkan pengelolaan penerima/penyetor"
 
-#: src/mmframe.cpp:1527
+#: src/mmframe.cpp:1499
 msgid "Show Organize Currency Dialog"
 msgstr "Tampilkan pengelolaan mata uang"
 
-#: src/mmframe.cpp:1584
+#: src/mmframe.cpp:1556
 msgid "Enter database's password"
 msgstr "Masukkan password data keuangan"
 
-#: src/mmframe.cpp:1589
+#: src/mmframe.cpp:1561
 #, fuzzy
 msgid "Opening MMEX Database - Error"
 msgstr "Buka Data Keuangan Yang Ada"
 
-#: src/mmframe.cpp:1616 src/mmframe.cpp:1658
+#: src/mmframe.cpp:1588 src/mmframe.cpp:1630
 msgid " - No File opened "
 msgstr " - Tidak ada file yang dibuka"
 
-#: src/mmframe.cpp:1618
+#: src/mmframe.cpp:1590
 #, fuzzy
 msgid ""
 "Sorry. The Database version is too old or Database password is incorrect"
@@ -3438,82 +3456,82 @@ msgstr ""
 "Maaf, data keuangan masih menggunakan versi lama atau                  "
 "Password data salah"
 
-#: src/mmframe.cpp:1649
+#: src/mmframe.cpp:1621
 #, fuzzy
 msgid "&Next ->"
 msgstr "Berikut"
 
-#: src/mmframe.cpp:1661
+#: src/mmframe.cpp:1633
 #, fuzzy
 msgid "Cannot locate previously opened database.\n"
 msgstr "Buka data keuangan sebelumnya :"
 
-#: src/mmframe.cpp:1663
+#: src/mmframe.cpp:1635
 msgid "Password not entered for encrypted Database.\n"
 msgstr "Password tidak dimasukkan untuk enkrispsi data keuangan.\n"
 
-#: src/mmframe.cpp:1681
+#: src/mmframe.cpp:1653
 msgid "portable mode"
 msgstr "mode portabel"
 
-#: src/mmframe.cpp:1725
+#: src/mmframe.cpp:1697
 #, fuzzy
 msgid "Choose database file to create"
 msgstr "Pilih file QIF yang akan diimpor"
 
-#: src/mmframe.cpp:1748
+#: src/mmframe.cpp:1720
 #, fuzzy
 msgid "Choose database file to open"
 msgstr "Pilih file QIF yang akan diimpor"
 
-#: src/mmframe.cpp:1765
+#: src/mmframe.cpp:1737
 #, fuzzy
 msgid "Choose Encrypted database file to open"
 msgstr "Pilih file QIF yang akan diimpor"
 
-#: src/mmframe.cpp:1775
+#: src/mmframe.cpp:1747
 #, fuzzy
 msgid "Enter password for database"
 msgstr "Tidak bisa membuka data keuangan"
 
-#: src/mmframe.cpp:1780
+#: src/mmframe.cpp:1752
 #, fuzzy
 msgid "Choose database file to Save As"
 msgstr "Pilih file QIF yang akan diimpor"
 
-#: src/mmframe.cpp:1802
+#: src/mmframe.cpp:1774
 msgid "Converted DB!"
 msgstr "DB dikonversi!"
 
-#: src/mmframe.cpp:1802
+#: src/mmframe.cpp:1774
 msgid "MMEX message"
 msgstr "MMEX pesan"
 
-#: src/mmframe.cpp:1817 src/mmframe.cpp:1838
+#: src/mmframe.cpp:1789 src/mmframe.cpp:1810
 #, fuzzy
 msgid "Save database file as"
 msgstr "Simpan Data Keuangan Sebagai"
 
-#: src/mmframe.cpp:1838
+#: src/mmframe.cpp:1810
 #, fuzzy
 msgid "Can't copy file to itself"
 msgstr "Tidak dapat menyalin ke file yang sama"
 
-#: src/mmframe.cpp:1851
+#: src/mmframe.cpp:1823
 #, fuzzy
 msgid "Enter password for new database"
 msgstr "Tidak bisa membuka data keuangan"
 
-#: src/mmframe.cpp:1916
+#: src/mmframe.cpp:1887
 #, fuzzy
 msgid "No account available to import"
 msgstr "Rekening tidak ada ! Proses ekspor tidak bisa dilakukan !"
 
-#: src/mmframe.cpp:1967
+#: src/mmframe.cpp:1938
 msgid "Term Account views have been temporarly turned on."
 msgstr "Tamiplan Rekening Berjangka telah dihidupkan sementara."
 
-#: src/mmframe.cpp:1968
+#: src/mmframe.cpp:1939
 msgid ""
 "To maintain this view, change the defaults by using:\n"
 "\n"
@@ -3525,81 +3543,64 @@ msgstr ""
 "Pengelolaan Dasar -> Pilihan\n"
 "Lihat Pilihan"
 
-#: src/mmframe.cpp:1970
+#: src/mmframe.cpp:1941
 msgid "This message will not be displayed in future."
 msgstr "Pesan ini tidak akan ditampilkan di masa akan datang."
 
-#: src/mmframe.cpp:1971
+#: src/mmframe.cpp:1942
 #, fuzzy
 msgid "Initial Term Account Activation"
 msgstr "Konfirmasi penghapusan account"
 
-#: src/mmframe.cpp:2122
+#: src/mmframe.cpp:2092
 msgid "MMEX Options have been updated."
 msgstr "Pilihan MMEX sudah dirubah."
 
-#: src/mmframe.cpp:2123 src/optionsdialog.cpp:108
+#: src/mmframe.cpp:2093
 #, fuzzy
 msgid "New MMEX Options"
 msgstr "Pilihan Tampilan"
 
-#: src/mmframe.cpp:2156 src/mmframe.cpp:2205
-msgid "MMEX System Information Check"
-msgstr "MMEX Sistem Pemeriksa Informasi"
-
-#: src/mmframe.cpp:2194
-msgid "A new version is available."
-msgstr ""
-
-#: src/mmframe.cpp:2199
-msgid "You have the latest version installed!"
-msgstr "Anda telah mempunyai program versi terbaru"
-
-#: src/mmframe.cpp:2204
-#, fuzzy
-msgid "Proceed to website: "
-msgstr "Meneruskan ke situs web:"
-
-#: src/mmframe.cpp:2284
+#: src/mmframe.cpp:2187
 #, fuzzy
 msgid "Choose HTML file to Export"
 msgstr "Pilih file QIF yang akan diimpor"
 
-#: src/mmframe.cpp:2453
+#: src/mmframe.cpp:2356
 #, fuzzy
 msgid "No account available to edit!"
 msgstr "Rekening tidak ada"
 
-#: src/mmframe.cpp:2457
+#: src/mmframe.cpp:2360
 msgid "Choose Account to Edit"
 msgstr "Pilih rekening yang akan diubah"
 
-#: src/mmframe.cpp:2477
+#: src/mmframe.cpp:2380
 #, fuzzy
 msgid "No account available to delete!"
 msgstr "Rekening tidak ada"
 
-#: src/mmframe.cpp:2481
+#: src/mmframe.cpp:2384
 msgid "Choose Account to Delete"
 msgstr "Pilih rekening yang akan dihapus"
 
-#: src/mmframe.cpp:2486
+#: src/mmframe.cpp:2389
 #, fuzzy, c-format
 msgid ""
 "Are you sure you want to delete\n"
 " %s account: %s ?"
 msgstr "Apakah data aset benar-benar akan dihapus ?"
 
-#: src/mmframe.cpp:2609 src/payeedialog.cpp:314
+#: src/mmframe.cpp:2495 src/payeedialog.cpp:314
 #, fuzzy
 msgid "Payee Relocation Completed."
 msgstr "Kategori tidak boleh dikosongkan"
 
-#: src/mmframe.cpp:2613 src/payeedialog.cpp:318
+#: src/mmframe.cpp:2499 src/payeedialog.cpp:318
 msgid "Payee Relocation Result"
 msgstr "Hasil Perpindahan Penerima:"
 
-#: src/mmframe.cpp:2709
+#: src/mmframe.cpp:2594
 #, c-format
 msgid "File %s not found"
 msgstr ""
@@ -3622,14 +3623,14 @@ msgid "Income vs Expenses"
 msgstr "Penerimaan vs Pengeluaran"
 
 #: src/mmframereport.cpp:74 src/mmframereport.cpp:153
-#: src/mmframereport.cpp:318 src/mmframereport.cpp:402
-#: src/mmframereport.cpp:489 src/mmframereport.cpp:572
+#: src/mmframereport.cpp:314 src/mmframereport.cpp:398
+#: src/mmframereport.cpp:485 src/mmframereport.cpp:568
 msgid "Last Calendar Month"
 msgstr "Bulan Lalu"
 
 #: src/mmframereport.cpp:82 src/mmframereport.cpp:161
-#: src/mmframereport.cpp:326 src/mmframereport.cpp:410
-#: src/mmframereport.cpp:497 src/mmframereport.cpp:580
+#: src/mmframereport.cpp:322 src/mmframereport.cpp:406
+#: src/mmframereport.cpp:493 src/mmframereport.cpp:576
 #: src/reports/categexp.cpp:223 src/reports/categexp.cpp:287
 #: src/reports/categexp.cpp:352 src/reports/mmDateRange.cpp:80
 #: src/reports/payee.h:66
@@ -3637,8 +3638,8 @@ msgid "Current Month to Date"
 msgstr "Bulan Ini Sampai Hari Ini"
 
 #: src/mmframereport.cpp:90 src/mmframereport.cpp:169
-#: src/mmframereport.cpp:334 src/mmframereport.cpp:418
-#: src/mmframereport.cpp:505 src/mmframereport.cpp:588
+#: src/mmframereport.cpp:330 src/mmframereport.cpp:414
+#: src/mmframereport.cpp:501 src/mmframereport.cpp:584
 #: src/reports/categexp.cpp:217 src/reports/categexp.cpp:281
 #: src/reports/categexp.cpp:346 src/reports/mmDateRange.cpp:64
 #: src/reports/payee.h:58
@@ -3646,8 +3647,8 @@ msgid "Current Month"
 msgstr "Bulan Ini"
 
 #: src/mmframereport.cpp:96 src/mmframereport.cpp:175
-#: src/mmframereport.cpp:341 src/mmframereport.cpp:425
-#: src/mmframereport.cpp:511 src/mmframereport.cpp:595
+#: src/mmframereport.cpp:337 src/mmframereport.cpp:421
+#: src/mmframereport.cpp:507 src/mmframereport.cpp:591
 #: src/reports/categexp.cpp:235 src/reports/categexp.cpp:299
 #: src/reports/categexp.cpp:363 src/reports/mmDateRange.cpp:98
 #: src/reports/payee.h:82
@@ -3655,8 +3656,8 @@ msgid "Last 30 Days"
 msgstr "30 Hari Terakhir"
 
 #: src/mmframereport.cpp:101 src/mmframereport.cpp:180
-#: src/mmframereport.cpp:346 src/mmframereport.cpp:431
-#: src/mmframereport.cpp:516 src/mmframereport.cpp:601
+#: src/mmframereport.cpp:342 src/mmframereport.cpp:427
+#: src/mmframereport.cpp:512 src/mmframereport.cpp:597
 #: src/reports/categexp.cpp:241 src/reports/categexp.cpp:305
 #: src/reports/categexp.cpp:368 src/reports/mmDateRange.cpp:152
 #: src/reports/payee.h:90
@@ -3664,8 +3665,8 @@ msgid "Last Year"
 msgstr "Tahun Lalu"
 
 #: src/mmframereport.cpp:108 src/mmframereport.cpp:187
-#: src/mmframereport.cpp:354 src/mmframereport.cpp:439
-#: src/mmframereport.cpp:524 src/mmframereport.cpp:609
+#: src/mmframereport.cpp:350 src/mmframereport.cpp:435
+#: src/mmframereport.cpp:520 src/mmframereport.cpp:605
 #: src/reports/categexp.cpp:252 src/reports/categexp.cpp:317
 #: src/reports/categexp.cpp:380 src/reports/mmDateRange.cpp:144
 #: src/reports/payee.h:106
@@ -3674,8 +3675,8 @@ msgid "Current Year to Date"
 msgstr "Bulan Ini Sampai Hari Ini"
 
 #: src/mmframereport.cpp:115 src/mmframereport.cpp:194
-#: src/mmframereport.cpp:362 src/mmframereport.cpp:447
-#: src/mmframereport.cpp:532 src/mmframereport.cpp:617
+#: src/mmframereport.cpp:358 src/mmframereport.cpp:443
+#: src/mmframereport.cpp:528 src/mmframereport.cpp:613
 #: src/reports/categexp.cpp:246 src/reports/categexp.cpp:311
 #: src/reports/categexp.cpp:374 src/reports/mmDateRange.cpp:136
 #: src/reports/payee.h:98
@@ -3683,8 +3684,8 @@ msgid "Current Year"
 msgstr "Tahun Ini"
 
 #: src/mmframereport.cpp:124 src/mmframereport.cpp:203
-#: src/mmframereport.cpp:373 src/mmframereport.cpp:458
-#: src/mmframereport.cpp:541 src/mmframereport.cpp:626
+#: src/mmframereport.cpp:369 src/mmframereport.cpp:454
+#: src/mmframereport.cpp:537 src/mmframereport.cpp:622
 #: src/reports/categexp.cpp:258 src/reports/categexp.cpp:323
 #: src/reports/categexp.cpp:386 src/reports/mmDateRange.cpp:192
 #: src/reports/payee.h:114
@@ -3692,8 +3693,8 @@ msgid "Last Financial Year"
 msgstr "Tahun Finansial Terakhir"
 
 #: src/mmframereport.cpp:132 src/mmframereport.cpp:211
-#: src/mmframereport.cpp:381 src/mmframereport.cpp:466
-#: src/mmframereport.cpp:549 src/mmframereport.cpp:634
+#: src/mmframereport.cpp:377 src/mmframereport.cpp:462
+#: src/mmframereport.cpp:545 src/mmframereport.cpp:630
 #: src/reports/categexp.cpp:270 src/reports/categexp.cpp:335
 #: src/reports/categexp.cpp:398 src/reports/mmDateRange.cpp:182
 #: src/reports/payee.h:130
@@ -3702,8 +3703,8 @@ msgid "Current Financial Year to Date"
 msgstr "Tahun Finansial Sekarang"
 
 #: src/mmframereport.cpp:140 src/mmframereport.cpp:219
-#: src/mmframereport.cpp:389 src/mmframereport.cpp:474
-#: src/mmframereport.cpp:557 src/mmframereport.cpp:642
+#: src/mmframereport.cpp:385 src/mmframereport.cpp:470
+#: src/mmframereport.cpp:553 src/mmframereport.cpp:638
 #: src/reports/categexp.cpp:264 src/reports/categexp.cpp:329
 #: src/reports/categexp.cpp:392 src/reports/mmDateRange.cpp:172
 #: src/reports/payee.h:122
@@ -3715,38 +3716,38 @@ msgstr "Tahun Finansial Sekarang"
 msgid "Income vs Expenses - Specific Accounts"
 msgstr "Penerimaan Vs Pengeluaran - Bulan Ini"
 
-#: src/mmframereport.cpp:238
+#: src/mmframereport.cpp:235
 msgid "Budget Performance"
 msgstr "Performa Anggaran"
 
-#: src/mmframereport.cpp:241
+#: src/mmframereport.cpp:238
 #, fuzzy
 msgid "Budget Category Summary"
 msgstr "Pengisian Anggaran Tahunan"
 
-#: src/mmframereport.cpp:268 src/reports/cashflow.cpp:28
+#: src/mmframereport.cpp:264 src/reports/cashflow.cpp:28
 msgid "Cash Flow"
 msgstr "Arus Kas"
 
-#: src/mmframereport.cpp:271
+#: src/mmframereport.cpp:267
 msgid "Cash Flow - With Bank Accounts"
 msgstr "Arus Kas - Per Rekening Bank"
 
-#: src/mmframereport.cpp:276
+#: src/mmframereport.cpp:272
 #, fuzzy
 msgid "Cash Flow - With Term Accounts"
 msgstr "Arus Kas - Per Rekening"
 
-#: src/mmframereport.cpp:280
+#: src/mmframereport.cpp:276
 msgid "Cash Flow - Specific Accounts"
 msgstr "Arus Kas - Per Rekening"
 
-#: src/mmframereport.cpp:284
+#: src/mmframereport.cpp:280
 #, fuzzy
 msgid "Daily Cash Flow - Specific Accounts"
 msgstr "Arus Kas - Per Rekening"
 
-#: src/mmframereport.cpp:289
+#: src/mmframereport.cpp:285
 msgid "Transaction Report"
 msgstr "Laporan Transaksi"
 
@@ -3763,84 +3764,84 @@ msgstr "&Meneruskan"
 msgid " Help"
 msgstr " Halaman bantuan"
 
-#: src/mmhomepagepanel.cpp:79 src/stockspanel.cpp:74
+#: src/mmhomepagepanel.cpp:74 src/stockspanel.cpp:74
 msgid "Gain/Loss"
 msgstr "Rugi-Laba"
 
-#: src/mmhomepagepanel.cpp:80 src/reports/cashflow.cpp:104
-#: src/reports/categexp.cpp:165 src/reports/categovertimeperf.cpp:180
+#: src/mmhomepagepanel.cpp:75 src/reports/cashflow.cpp:104
+#: src/reports/categexp.cpp:164 src/reports/categovertimeperf.cpp:180
 msgid "Total"
 msgstr "Total"
 
-#: src/mmhomepagepanel.cpp:98 src/mmhomepagepanel.cpp:686
+#: src/mmhomepagepanel.cpp:93 src/mmhomepagepanel.cpp:676
 #: src/reports/incexpenses.cpp:240 src/reports/payee.cpp:168
-#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:838
+#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 msgid "Total:"
 msgstr "Total :"
 
-#: src/mmhomepagepanel.cpp:172
+#: src/mmhomepagepanel.cpp:161
 #, fuzzy, c-format
 msgid "Top Withdrawals: %s"
 msgstr "Pengeluaran"
 
-#: src/mmhomepagepanel.cpp:188
+#: src/mmhomepagepanel.cpp:177
 msgid "Summary"
 msgstr "Ringkasan"
 
-#: src/mmhomepagepanel.cpp:361
+#: src/mmhomepagepanel.cpp:350
 #, fuzzy
 msgid "Days"
 msgstr "Hari"
 
-#: src/mmhomepagepanel.cpp:560
+#: src/mmhomepagepanel.cpp:548
 msgid "Upcoming Transactions"
 msgstr "Transaksi yang akan datang"
 
-#: src/mmhomepagepanel.cpp:650
+#: src/mmhomepagepanel.cpp:647
 msgid "Bank Account"
 msgstr "Rekening Bank"
 
-#: src/mmhomepagepanel.cpp:650
+#: src/mmhomepagepanel.cpp:647
 #, fuzzy
 msgid "Term Account"
 msgstr "Dari Rekening"
 
-#: src/mmhomepagepanel.cpp:779 src/reports/incexpenses.cpp:31
+#: src/mmhomepagepanel.cpp:767 src/reports/incexpenses.cpp:31
 #: src/reports/incexpenses.cpp:141
 #, fuzzy, c-format
 msgid "Income vs Expenses: %s"
 msgstr "Penerimaan vs Pengeluaran:"
 
-#: src/mmhomepagepanel.cpp:782 src/reports/categovertimeperf.cpp:179
+#: src/mmhomepagepanel.cpp:770 src/reports/categovertimeperf.cpp:179
 #: src/reports/payee.cpp:144 src/reports/payee.cpp:146
 #, fuzzy
 msgid "Expences"
 msgstr "Pengeluaran"
 
-#: src/mmhomepagepanel.cpp:783 src/reports/incexpenses.cpp:122
+#: src/mmhomepagepanel.cpp:771 src/reports/incexpenses.cpp:122
 msgid "Difference:"
 msgstr "Selisih :"
 
-#: src/mmhomepagepanel.cpp:784
+#: src/mmhomepagepanel.cpp:772
 #, fuzzy
 msgid "Income/Expences"
 msgstr "Penerimaan vs Pengeluaran"
 
-#: src/mmhomepagepanel.cpp:809
+#: src/mmhomepagepanel.cpp:795
 msgid "Transaction Statistics"
 msgstr "Statistik Transaksi"
 
-#: src/mmhomepagepanel.cpp:814
+#: src/mmhomepagepanel.cpp:800
 #, fuzzy
 msgid "Follow Up On Transactions: "
 msgstr "Transaksi yang akan datang"
 
-#: src/mmhomepagepanel.cpp:819
+#: src/mmhomepagepanel.cpp:805
 #, fuzzy
 msgid "Total Transactions: "
 msgstr "Total Transaksi"
 
-#: src/mmhomepagepanel.cpp:831
+#: src/mmhomepagepanel.cpp:817
 msgid "Grand Total:"
 msgstr "Total Keseluruhan:"
 
@@ -4141,6 +4142,11 @@ msgid ""
 "will modify database! aborted!"
 msgstr ""
 
+#: src/optionsdialog.cpp:108
+#, fuzzy
+msgid "MMEX Options"
+msgstr "Pilihan Tampilan"
+
 #: src/optionsdialog.cpp:188
 #, fuzzy
 msgid "Display Heading"
@@ -4231,7 +4237,7 @@ msgstr "Gunakan Bunyi Transaksi"
 msgid "Select whether to use sounds when entering transactions"
 msgstr "Pilih apakah akan menggunakan nada informasi saat memasukkan transaksi"
 
-#: src/optionsdialog.cpp:316 src/optionsdialog.cpp:859
+#: src/optionsdialog.cpp:316 src/optionsdialog.cpp:838
 msgid "View Options"
 msgstr "Pilihan Tampilan"
 
@@ -4288,12 +4294,12 @@ msgstr "Pilih ukuran huruf yang akan digunakan dalam tampilan laporan"
 msgid "Navigation Tree Expansion Options"
 msgstr "Pilihan Perluasan Navigasi Tree"
 
-#: src/optionsdialog.cpp:399
+#: src/optionsdialog.cpp:398
 #, fuzzy
 msgid "Expand Bank Accounts in Trew View when tree is refreshed"
 msgstr "Memperlihatkan Rekening Bank di Tree View ketika halaman di refresh"
 
-#: src/optionsdialog.cpp:406
+#: src/optionsdialog.cpp:404
 #, fuzzy
 msgid "Expand Term Accounts in Trew View when tree is refreshed"
 msgstr ""
@@ -4301,230 +4307,209 @@ msgstr ""
 
 #: src/optionsdialog.cpp:410
 #, fuzzy
-msgid "Home Page Expansion Options"
-msgstr "Halaman Depan"
+msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
+msgstr "Memperlihatkan Rekening Bank di Tree View ketika halaman di refresh"
 
-#: src/optionsdialog.cpp:419
-#, fuzzy
-msgid "Expand Bank Accounts on home page when page is refreshed"
-msgstr "Memperlihatkan Rekening Bank di home page ketika halaman di refresh"
-
-#: src/optionsdialog.cpp:426
-#, fuzzy
-msgid "Expand Term Accounts on home page when page is refreshed"
-msgstr ""
-"Memperlihatkan Rekening Berjangka di home page ketika halaman di refresh"
-
-#: src/optionsdialog.cpp:431
-#, fuzzy
-msgid "Stock Accounts"
-msgstr "Rekening"
-
-#: src/optionsdialog.cpp:433
-#, fuzzy
-msgid "Expand Stock Accounts on home page when page is refreshed"
-msgstr "Memperlihatkan Rekening Saham di home page ketika halaman di refresh"
-
-#: src/optionsdialog.cpp:436
+#: src/optionsdialog.cpp:414
 #, fuzzy
 msgid "View Budgets as Financial Years"
 msgstr "Kategori Utama Dalam 30 Hari Terakhir"
 
-#: src/optionsdialog.cpp:442
+#: src/optionsdialog.cpp:420
 #, fuzzy
 msgid "View Budgets with 'transfer' transactions"
 msgstr "Menampilkan transaksi rangkap"
 
-#: src/optionsdialog.cpp:448
+#: src/optionsdialog.cpp:426
 msgid "View Budgets Setup Without Budget Summaries"
 msgstr "Melihat Penyusunan Anggaran Tanpa Ringkasan Anggaran "
 
-#: src/optionsdialog.cpp:454
+#: src/optionsdialog.cpp:432
 #, fuzzy
 msgid "View Budget Summary Report without Categories"
 msgstr "Tampilkan semua kategori anggaran"
 
-#: src/optionsdialog.cpp:460
+#: src/optionsdialog.cpp:438
 #, fuzzy
 msgid "View Reports without Future Transactions"
 msgstr "Tampilkan transaksi yang telah di-rekonsiliasi"
 
-#: src/optionsdialog.cpp:465
+#: src/optionsdialog.cpp:444
 #, fuzzy
 msgid "User Colors"
 msgstr "Warna"
 
-#: src/optionsdialog.cpp:472
+#: src/optionsdialog.cpp:451
 msgid "1"
 msgstr ""
 
-#: src/optionsdialog.cpp:477
+#: src/optionsdialog.cpp:456
 msgid "2"
 msgstr ""
 
-#: src/optionsdialog.cpp:482
+#: src/optionsdialog.cpp:461
 msgid "3"
 msgstr ""
 
-#: src/optionsdialog.cpp:487
+#: src/optionsdialog.cpp:466
 msgid "4"
 msgstr ""
 
-#: src/optionsdialog.cpp:492
+#: src/optionsdialog.cpp:471
 msgid "5"
 msgstr ""
 
-#: src/optionsdialog.cpp:497
+#: src/optionsdialog.cpp:476
 msgid "6"
 msgstr ""
 
-#: src/optionsdialog.cpp:502
+#: src/optionsdialog.cpp:481
 msgid "7"
 msgstr ""
 
-#: src/optionsdialog.cpp:518
+#: src/optionsdialog.cpp:497
 #, fuzzy
 msgid "Attachments Settings"
 msgstr "Setting Umum"
 
-#: src/optionsdialog.cpp:525
+#: src/optionsdialog.cpp:504
 #, c-format
 msgid "Attachment archive folder for %s only:"
 msgstr ""
 
-#: src/optionsdialog.cpp:530
+#: src/optionsdialog.cpp:509
 msgid "Every OS type (Win,Mac,Unix) has its attachment folder"
 msgstr ""
 
-#: src/optionsdialog.cpp:546
+#: src/optionsdialog.cpp:525
 msgid "Browse for folder"
 msgstr ""
 
-#: src/optionsdialog.cpp:553 src/optionsdialog.cpp:1011
+#: src/optionsdialog.cpp:532 src/optionsdialog.cpp:990
 msgid "Real path:"
 msgstr ""
 
-#: src/optionsdialog.cpp:558
+#: src/optionsdialog.cpp:537
 #, fuzzy
 msgid "Legend "
 msgstr "Keterangan :"
 
-#: src/optionsdialog.cpp:563
+#: src/optionsdialog.cpp:542
 #, c-format
 msgid "%s -> User document directory"
 msgstr ""
 
-#: src/optionsdialog.cpp:564
+#: src/optionsdialog.cpp:543
 #, c-format
 msgid "%s -> User profile folder"
 msgstr ""
 
-#: src/optionsdialog.cpp:565
+#: src/optionsdialog.cpp:544
 #, c-format
 msgid "%s -> Folder of.MMB database file"
 msgstr ""
 
-#: src/optionsdialog.cpp:566
+#: src/optionsdialog.cpp:545
 #, c-format
 msgid "%s -> MMEX Application data folder"
 msgstr ""
 
-#: src/optionsdialog.cpp:572
+#: src/optionsdialog.cpp:551
 msgid "Other OS folders "
 msgstr ""
 
-#: src/optionsdialog.cpp:577
+#: src/optionsdialog.cpp:556
 msgid "Not yet set"
 msgstr ""
 
-#: src/optionsdialog.cpp:585
+#: src/optionsdialog.cpp:564
 msgid "Windows folder -> "
 msgstr ""
 
-#: src/optionsdialog.cpp:593
+#: src/optionsdialog.cpp:572
 msgid "Mac folder -> "
 msgstr ""
 
-#: src/optionsdialog.cpp:601
+#: src/optionsdialog.cpp:580
 msgid "Unix folder -> "
 msgstr ""
 
-#: src/optionsdialog.cpp:611
+#: src/optionsdialog.cpp:590
 #, c-format
 msgid "Create and use '%s' subfolder"
 msgstr ""
 
-#: src/optionsdialog.cpp:621
+#: src/optionsdialog.cpp:600
 msgid "Delete file after import"
 msgstr ""
 
-#: src/optionsdialog.cpp:623
+#: src/optionsdialog.cpp:602
 msgid "Select to delete file after import in attachments archive"
 msgstr ""
 
-#: src/optionsdialog.cpp:627
+#: src/optionsdialog.cpp:606
 msgid "When remove attachment, move file instead of delete"
 msgstr ""
 
-#: src/optionsdialog.cpp:629
+#: src/optionsdialog.cpp:608
 msgid ""
 "Select to don't delete file when attachment is removed, but instead move it "
 "to 'Deleted' subfolder"
 msgstr ""
 
-#: src/optionsdialog.cpp:640
+#: src/optionsdialog.cpp:619
 msgid "Stock Quote Web Page"
 msgstr "Webpage ringkasan saham"
 
-#: src/optionsdialog.cpp:648
+#: src/optionsdialog.cpp:627
 msgid "Clear the field to Reset the value to system default."
 msgstr "Hapus nilai field untuk mereset nilai kembali ke default sistem."
 
-#: src/optionsdialog.cpp:653
+#: src/optionsdialog.cpp:632
 #, fuzzy
 msgid "New Transaction Dialog Settings"
 msgstr "Rincian Transaksi"
 
-#: src/optionsdialog.cpp:661
+#: src/optionsdialog.cpp:640
 #, fuzzy
 msgid "Last Used"
 msgstr "Tahun Lalu"
 
-#: src/optionsdialog.cpp:673
+#: src/optionsdialog.cpp:652
 msgid "Last used for payee"
 msgstr "Terakhir digunakan untuk penerima pembayaran"
 
-#: src/optionsdialog.cpp:691
+#: src/optionsdialog.cpp:670
 #, fuzzy
 msgid "Default Date:"
 msgstr "Pilih nama, institusi atau lainnya"
 
-#: src/optionsdialog.cpp:693
+#: src/optionsdialog.cpp:672
 #, fuzzy
 msgid "Default Payee:"
 msgstr "Pilih nama, institusi atau lainnya"
 
-#: src/optionsdialog.cpp:695
+#: src/optionsdialog.cpp:674
 #, fuzzy
 msgid "Default Category:"
 msgstr "Pilih Kategori"
 
-#: src/optionsdialog.cpp:697
+#: src/optionsdialog.cpp:676
 #, fuzzy
 msgid "Default Status:"
 msgstr "Status Rekening"
 
-#: src/optionsdialog.cpp:708
+#: src/optionsdialog.cpp:687
 #, fuzzy
 msgid "Database Backup"
 msgstr "Tidak ada data yang dibuka"
 
-#: src/optionsdialog.cpp:714
+#: src/optionsdialog.cpp:693
 #, fuzzy
 msgid "Create a new backup when MMEX Start"
 msgstr "Buat data keuangan baru untuk memulai mengelola keuangan"
 
-#: src/optionsdialog.cpp:716
+#: src/optionsdialog.cpp:695
 msgid ""
 "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
@@ -4532,11 +4517,11 @@ msgstr ""
 "Ketika MMEX dihidupkan,\n"
 "membuat data keuangan cadangan: dbFile_start_YYYY-MM-DD.ext."
 
-#: src/optionsdialog.cpp:720
+#: src/optionsdialog.cpp:699
 msgid "Backup database on exit."
 msgstr ""
 
-#: src/optionsdialog.cpp:722
+#: src/optionsdialog.cpp:701
 msgid ""
 "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
@@ -4544,140 +4529,140 @@ msgstr ""
 "Ketika MMEX dimatikan dan perubahan disimpan di data keuangan,\n"
 "membuat atau merubah data keuangan cadangan: dbFile_update_YYYY-MM-DD.ext."
 
-#: src/optionsdialog.cpp:728
+#: src/optionsdialog.cpp:707
 msgid "Specify max number of backup files"
 msgstr ""
 
-#: src/optionsdialog.cpp:731
+#: src/optionsdialog.cpp:710
 #, fuzzy
 msgid "Max Files"
 msgstr "File QIF"
 
-#: src/optionsdialog.cpp:738
+#: src/optionsdialog.cpp:717
 #, fuzzy
 msgid "CSV Settings"
 msgstr "Setting"
 
-#: src/optionsdialog.cpp:746
+#: src/optionsdialog.cpp:725
 #, fuzzy
 msgid "Delimiter"
 msgstr "Pemisah CSV"
 
-#: src/optionsdialog.cpp:763
+#: src/optionsdialog.cpp:742
 #, fuzzy
 msgid "WebApp Settings"
 msgstr "Setting"
 
-#: src/optionsdialog.cpp:770
+#: src/optionsdialog.cpp:749
 msgid "Url"
 msgstr ""
 
-#: src/optionsdialog.cpp:774
+#: src/optionsdialog.cpp:753
 msgid "Specify the Web App URL without final slash"
 msgstr ""
 
-#: src/optionsdialog.cpp:777
+#: src/optionsdialog.cpp:756
 msgid "GUID"
 msgstr ""
 
-#: src/optionsdialog.cpp:781
+#: src/optionsdialog.cpp:760
 msgid "Specify the Web App GUID"
 msgstr ""
 
-#: src/optionsdialog.cpp:787
+#: src/optionsdialog.cpp:766
 #, fuzzy
 msgid "Proxy Settings"
 msgstr "Setting"
 
-#: src/optionsdialog.cpp:795
+#: src/optionsdialog.cpp:774
 #, fuzzy
 msgid "Specify the proxy IP address"
 msgstr "Isi dengan nama pengguna"
 
-#: src/optionsdialog.cpp:800
+#: src/optionsdialog.cpp:779
 #, fuzzy
 msgid "Specify proxy port number"
 msgstr "Nomor"
 
-#: src/optionsdialog.cpp:803
+#: src/optionsdialog.cpp:782
 msgid "Proxy"
 msgstr ""
 
-#: src/optionsdialog.cpp:805 src/optionsdialog.cpp:831
+#: src/optionsdialog.cpp:784 src/optionsdialog.cpp:810
 msgid "Port"
 msgstr ""
 
-#: src/optionsdialog.cpp:813
+#: src/optionsdialog.cpp:792
 #, fuzzy
 msgid "Web Server"
 msgstr "Server Yahoo"
 
-#: src/optionsdialog.cpp:819
+#: src/optionsdialog.cpp:798
 msgid "Enable"
 msgstr ""
 
-#: src/optionsdialog.cpp:821
+#: src/optionsdialog.cpp:800
 msgid "Enable internal web server when MMEX Starts."
 msgstr ""
 
-#: src/optionsdialog.cpp:826
+#: src/optionsdialog.cpp:805
 #, fuzzy
 msgid "Specify web server port number"
 msgstr "Nomor"
 
-#: src/optionsdialog.cpp:839
+#: src/optionsdialog.cpp:818
 #, fuzzy
 msgid "Usage statistics"
 msgstr "Statistik Transaksi"
 
-#: src/optionsdialog.cpp:845
+#: src/optionsdialog.cpp:824
 msgid "Send anonymous statistics usage data"
 msgstr ""
 
-#: src/optionsdialog.cpp:847
+#: src/optionsdialog.cpp:826
 msgid "Enable to help us sending anonymous data about MMEX usage."
 msgstr ""
 
-#: src/optionsdialog.cpp:858
+#: src/optionsdialog.cpp:837
 msgid "General"
 msgstr "Umum"
 
-#: src/optionsdialog.cpp:860
+#: src/optionsdialog.cpp:839
 msgid "Attachments"
 msgstr ""
 
-#: src/optionsdialog.cpp:861
+#: src/optionsdialog.cpp:840
 msgid "Network"
 msgstr ""
 
-#: src/optionsdialog.cpp:909
+#: src/optionsdialog.cpp:888
 #, fuzzy
 msgid "Remember to update currency rate"
 msgstr "Mata uang belum dipilih"
 
-#: src/optionsdialog.cpp:909
+#: src/optionsdialog.cpp:888
 #, fuzzy
 msgid "Important note"
 msgstr "Impor Files"
 
-#: src/optionsdialog.cpp:955
+#: src/optionsdialog.cpp:934
 msgid "System documents directory"
 msgstr ""
 
-#: src/optionsdialog.cpp:957
+#: src/optionsdialog.cpp:936
 msgid "Application data directory"
 msgstr ""
 
-#: src/optionsdialog.cpp:959
+#: src/optionsdialog.cpp:938
 #, fuzzy
 msgid "Database file directory"
 msgstr "Simpan Data Keuangan Sebagai"
 
-#: src/optionsdialog.cpp:961
+#: src/optionsdialog.cpp:940
 msgid "Dropbox folder"
 msgstr ""
 
-#: src/optionsdialog.cpp:989
+#: src/optionsdialog.cpp:968
 msgid "Choose folder to set as attachments archive"
 msgstr ""
 
@@ -4943,12 +4928,12 @@ msgstr "Dari Rekening"
 msgid "Difference"
 msgstr "Selisih"
 
-#: src/reports/categexp.cpp:148
+#: src/reports/categexp.cpp:147
 #, fuzzy
 msgid "Subcategories"
 msgstr "Sub Kategori"
 
-#: src/reports/categexp.cpp:176
+#: src/reports/categexp.cpp:184
 #, fuzzy
 msgid "Category Total: "
 msgstr "Kategori"
@@ -5266,53 +5251,53 @@ msgstr "Refresh harga saham dari Yahoo"
 msgid "Stock Investments: %s"
 msgstr "Investasi Saham : "
 
-#: src/stockspanel.cpp:613
+#: src/stockspanel.cpp:614
 #, fuzzy
 msgid "Total Shares: "
 msgstr "Total Aset :"
 
-#: src/stockspanel.cpp:613
+#: src/stockspanel.cpp:614
 #, fuzzy
 msgid "Invested: "
 msgstr "Investasi Saham/Sejenis"
 
-#: src/stockspanel.cpp:618
+#: src/stockspanel.cpp:619
 #, fuzzy
 msgid "Gain: "
 msgstr "Rugi-Laba"
 
-#: src/stockspanel.cpp:620
+#: src/stockspanel.cpp:621
 msgid "Loss: "
 msgstr "Kehilangan:"
 
-#: src/stockspanel.cpp:657
+#: src/stockspanel.cpp:659
 msgid "Stock prices successfully updated"
 msgstr ""
 
-#: src/stockspanel.cpp:659 src/stockspanel.cpp:869
+#: src/stockspanel.cpp:661 src/stockspanel.cpp:871
 #, c-format
 msgid "Last updated %s"
 msgstr ""
 
-#: src/stockspanel.cpp:677
+#: src/stockspanel.cpp:679
 msgid "Nothing to update"
 msgstr ""
 
-#: src/stockspanel.cpp:704
+#: src/stockspanel.cpp:706
 msgid "Connecting..."
 msgstr ""
 
-#: src/stockspanel.cpp:750
+#: src/stockspanel.cpp:752
 #, c-format
 msgid "%s\t -> %s\n"
 msgstr ""
 
-#: src/stockspanel.cpp:778
+#: src/stockspanel.cpp:780
 #, fuzzy, c-format
 msgid "%s on %s"
 msgstr "%s di %s"
 
-#: src/stockspanel.cpp:837
+#: src/stockspanel.cpp:839
 #, fuzzy
 msgid "Symbol: "
 msgstr "Simbol"
@@ -5325,52 +5310,52 @@ msgstr "Ubah Transaksi"
 msgid "Populate Transaction #"
 msgstr "Buat nomor transaksi otomatis"
 
-#: src/transdialog.cpp:476
+#: src/transdialog.cpp:477
 #, fuzzy
 msgid "Organize attachments of this transaction"
 msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
-#: src/transdialog.cpp:573
+#: src/transdialog.cpp:574
 #, fuzzy, c-format
 msgid ""
 "Do you want to add new payee: \n"
 "%s?"
 msgstr "Apakah yakin grup ini akan dihapus ?"
 
-#: src/transdialog.cpp:574
+#: src/transdialog.cpp:575
 msgid "Confirm to add new payee"
 msgstr ""
 
-#: src/transdialog.cpp:1100
+#: src/transdialog.cpp:1101
 #, fuzzy
 msgid "Specify account the money is taken from"
 msgstr "Tentukan rekening yang akan dipindahbukukan"
 
-#: src/transdialog.cpp:1101
+#: src/transdialog.cpp:1102
 #, fuzzy
 msgid "Specify account the money is moved to"
 msgstr "Tentukan rekening yang akan dipindahbukukan"
 
-#: src/transdialog.cpp:1102
+#: src/transdialog.cpp:1103
 #, fuzzy
 msgid "Specify the transfer amount in the From Account."
 msgstr "Pilih rekening tujuan"
 
-#: src/transdialog.cpp:1112
+#: src/transdialog.cpp:1113
 #, fuzzy
 msgid "Specify account for the transaction"
 msgstr "Isi dengan jumlah (Rp.) untuk transaksi ini"
 
-#: src/transdialog.cpp:1114
+#: src/transdialog.cpp:1115
 #, fuzzy
 msgid "Specify to whom the transaction is going to"
 msgstr "Pilih dari siapa atau kepada siapa transaksi dilakukan"
 
-#: src/transdialog.cpp:1120
+#: src/transdialog.cpp:1121
 msgid "Specify the category for this transaction"
 msgstr "Pilih kategori untuk transaksi ini"
 
-#: src/transdialog.cpp:1122
+#: src/transdialog.cpp:1123
 #, fuzzy
 msgid "Specify categories for this transaction"
 msgstr "Pilih kategori untuk transaksi ini"
@@ -5598,6 +5583,45 @@ msgstr "Nilai tidak benar"
 #: src/util.cpp:438
 msgid "Please type in a non empty name."
 msgstr ""
+
+#: src/util.cpp:475
+#, fuzzy
+msgid "Unable to check for updates!"
+msgstr "Cek &Update Program"
+
+#: src/util.cpp:476
+#, fuzzy
+msgid "Error code:"
+msgstr "Error / Terjadi Kesalahan"
+
+#: src/util.cpp:478 src/util.cpp:580 src/util.cpp:587
+msgid "MMEX Update Check"
+msgstr ""
+
+#: src/util.cpp:575
+msgid "New version of MMEX is available"
+msgstr ""
+
+#: src/util.cpp:576
+msgid "Your current version is: "
+msgstr ""
+
+#: src/util.cpp:577
+#, fuzzy
+msgid "New version is: "
+msgstr "Riwayat Versi Software"
+
+#: src/util.cpp:578
+#, fuzzy
+msgid "Would you like to download it now ?"
+msgstr ""
+"Tidak dapat menemukan lokasi file .mmb.\n"
+"Apakah lokasi file akan dicari ?"
+
+#: src/util.cpp:586
+#, fuzzy
+msgid "You already have the latest version"
+msgstr "Anda telah mempunyai program versi terbaru"
 
 #: src/webapp.cpp:161
 msgid "Wrong WebApp GUID:"
@@ -6055,6 +6079,39 @@ msgstr ""
 #: src/stockspanel.h:32
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr ""
+
+#~ msgid "Show/Hide Bank Accounts on Summary page"
+#~ msgstr "Tampilkan/Sembunyikan Rekening Bank di halaman Ringkasan"
+
+#~ msgid "Show/Hide Term Accounts on Summary page"
+#~ msgstr "Tampilkan/Sembunyikan Rekening Berjangka di halaman Ringkasan"
+
+#~ msgid "Show/Hide Stock Accounts on Summary page"
+#~ msgstr "Tampilkan/Sembunyikan Rekening Saham di halaman Ringkasan"
+
+#~ msgid "MMEX System Information Check"
+#~ msgstr "MMEX Sistem Pemeriksa Informasi"
+
+#, fuzzy
+#~ msgid "Proceed to website: "
+#~ msgstr "Meneruskan ke situs web:"
+
+#, fuzzy
+#~ msgid "Home Page Expansion Options"
+#~ msgstr "Halaman Depan"
+
+#, fuzzy
+#~ msgid "Expand Bank Accounts on home page when page is refreshed"
+#~ msgstr "Memperlihatkan Rekening Bank di home page ketika halaman di refresh"
+
+#, fuzzy
+#~ msgid "Expand Term Accounts on home page when page is refreshed"
+#~ msgstr ""
+#~ "Memperlihatkan Rekening Berjangka di home page ketika halaman di refresh"
+
+#, fuzzy
+#~ msgid "Stock Accounts"
+#~ msgstr "Rekening"
 
 #~ msgid "Rate of Change in Value"
 #~ msgstr "Nilai / Tarif Perubahan (Rp.)"
@@ -7796,14 +7853,6 @@ msgstr ""
 
 #~ msgid "Follow Up On "
 #~ msgstr "Tindaklanjut "
-
-#, fuzzy
-#~ msgid "Expand Bank Accounts"
-#~ msgstr "Rekening"
-
-#, fuzzy
-#~ msgid "Expand Term Accounts"
-#~ msgstr "Rekening"
 
 #, fuzzy
 #~ msgid "Total: %s Invested: %s Gain: %s "
