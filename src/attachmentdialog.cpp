@@ -468,9 +468,9 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 	}
 	else
 	{
-		wxString msgStr = wxString() << _("No software found for file extension .") << FileExtension <<"\n"
+        wxString msgStr = wxString() << wxString::Format(_("No software found for file extension .%s"), FileExtension) << "\n"
 			<< "\n"
-			<< _("Please verify that operatin system is able to handle this type of file.") << "\n";
+			<< _("Please verify that operating system is able to handle this type of file.") << "\n";
 		wxMessageBox(msgStr, _("Open attachment failed"), wxICON_ERROR);
 	}
 	return true;
