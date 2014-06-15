@@ -495,9 +495,21 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 
     // New format to allow counters greater than 9
     // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0.12 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 2.10.19";
+
+    // Old Release version: 1.0.0.3             - Update available
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.0.0.3 - Unix: 1.0.0.3 - Mac: 1.0.0.3";
+
+    // Pre Release version: 1.1.0-RC2           - You have latest
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0.2 - Unix: 1.1.0.2 - Mac: 1.1.0.2";
+
+    // Release version: 1.1.0                   - Update available
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0 - Unix: 1.1.0 - Mac: 1.1.0";
+
+    // Future Pre Release version: 1.2.0-RC1    - Update Available
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.2.0.1 - Unix: 1.2.0.1 - Mac: 1.2.0.1";
+
+    // Future Release version: 1.2.0            - Update Available
+    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.2.0 - Unix: 1.2.0 - Mac: 1.2.0";
 
     wxStringTokenizer versionTokens(page, ("["));
     versionTokens.GetNextToken(); // ignore old counters
@@ -528,7 +540,7 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
         rc_C = wxAtoi(rc_ver);
     }
 
-    currentV = currentV.SubString(0, currentV.Find("RC") - 1).Trim();
+    currentV = currentV.SubString(0, currentV.Find("-RC") - 1).Trim();
     wxStringTokenizer tkz1(currentV, ('.'), wxTOKEN_RET_EMPTY_ALL);
 
     int majorC = wxAtoi(tkz1.GetNextToken());
@@ -558,9 +570,16 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     }
 
     // define new version
-    NewVersion = wxString() << major << "." << minor << "." << patch;
-    if (rc > 0)
-        NewVersion << "-RC" << rc;
+    if (isUpdateAvailable)
+    {
+        NewVersion = wxString() << major << "." << minor << "." << patch;
+        if (rc > 0)
+            NewVersion << "-RC" << rc;
+    }
+    else
+    {
+        NewVersion = mmex::getProgramVersion();
+    }
 
     return isUpdateAvailable;
 }
