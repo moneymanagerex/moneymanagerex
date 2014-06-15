@@ -503,7 +503,7 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 
     json::Object jsonVersion;
     std::stringstream jsonVersionStream;
-    std::string platform = mmPlatformType();
+    std::string platform = mmPlatformType().ToStdString();
     std::string ReleaseType = "Stable";
     wxString currentV = mmex::getProgramVersion();
     int rc = 0;
