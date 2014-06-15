@@ -177,9 +177,9 @@ bool mmWebApp::WebApp_CheckApiVersion()
 {
 	if (mmWebApp::WebApp_getApiVersion() != mmWebApp::getApiExpectedVersion())
 	{
-		wxString msgStr = wxString() << _("Wrong WebApp API version:") << "\n" <<
-			_("WebApp   API version -> ") << mmWebApp::WebApp_getApiVersion() << "\n" <<
-			_("Expected API version -> ") << mmWebApp::getApiExpectedVersion() << "\n";
+        wxString msgStr = _("Wrong WebApp API version:") + "\n"
+            + wxString::Format(_("WebApp   API version -> %s"), mmWebApp::WebApp_getApiVersion()) + "\n"
+            + wxString::Format(_("Expected API version -> %s"), mmWebApp::getApiExpectedVersion()) + "\n";
 		wxMessageBox(msgStr, _("Wrong WebApp API version"), wxICON_ERROR);
 		return false;
 	}
@@ -450,10 +450,10 @@ int mmWebApp::MMEX_InsertNewTransaction(wxString& NewTransactionJSON)
 			}
 		}
 
-		wxString msgStr = wxString() << _("Account '") << AccountName << _("' not found!") << "\n"
-			<< "\n"
-			<< _("Transaction will be inserted with the first bank account:") << "\n"
-			<< "'" << FistAccountName <<_("' and marked as  Follow Up") << "\n";
+        wxString msgStr = wxString::Format(_("Account '%s' not found!"), AccountName)
+            << "\n\n"
+            << wxString::Format(_("Transaction will be inserted with the first bank account:\n'%s' and marked as  'Follow Up'")
+            , FistAccountName) << "\n";
 		wxMessageBox(msgStr, _("Wrong WebApp account"), wxICON_ERROR);
 	}
 
