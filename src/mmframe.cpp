@@ -173,12 +173,14 @@ EVT_MENU(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinks)
 EVT_MENU(MENU_VIEW_BANKACCOUNTS, mmGUIFrame::OnViewBankAccounts)
 EVT_MENU(MENU_VIEW_TERMACCOUNTS, mmGUIFrame::OnViewTermAccounts)
 EVT_MENU(MENU_VIEW_STOCKACCOUNTS, mmGUIFrame::OnViewStockAccounts)
+EVT_MENU(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmGUIFrame::OnViewBudgetFinancialYears)
+EVT_MENU(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmGUIFrame::OnViewBudgetTransferTotal)
+EVT_MENU(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmGUIFrame::OnViewBudgetSetupSummary)
+EVT_MENU(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmGUIFrame::OnViewBudgetCategorySummary)
+EVT_MENU(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, mmGUIFrame::OnViewIgnoreFutureTransactions)
+
 EVT_MENU(MENU_CATEGORY_RELOCATION, mmGUIFrame::OnCategoryRelocation)
 EVT_MENU(MENU_PAYEE_RELOCATION, mmGUIFrame::OnPayeeRelocation)
-
-// Added for easier ability to test new feature.
-// May be taken out in future after being added to Options Dialog.
-EVT_MENU(MENU_IGNORE_FUTURE_TRANSACTIONS, mmGUIFrame::OnIgnoreFutureTransactions)
 
 EVT_UPDATE_UI(MENU_VIEW_TOOLBAR, mmGUIFrame::OnViewToolbarUpdateUI)
 EVT_UPDATE_UI(MENU_VIEW_LINKS, mmGUIFrame::OnViewLinksUpdateUI)
@@ -233,7 +235,6 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
 , activeBudgetingPage_(false)
 , autoRepeatTransactionsTimer_(this, AUTO_REPEAT_TRANSACTIONS_TIMER_ID)
 , activeHomePage_(false)
-, refreshRequested_()
 , panelCurrent_()
 , homePanel_()
 , navTreeCtrl_()
@@ -790,14 +791,11 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     if (mmIniOptions::instance().expandBankTree_)
         navTreeCtrl_->Expand(accounts);
 
-    if (Model_Account::hasActiveTermAccount())
-    {
-        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(true);
-        if (mmIniOptions::instance().expandTermTree_ || expandTermAccounts)
-            navTreeCtrl_->Expand(termAccount);
-    }
-    else
-        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Enable(false);
+    if (mmIniOptions::instance().expandTermTree_)
+        navTreeCtrl_->Expand(termAccount);
+
+    if (mmIniOptions::instance().expandStocksTree_)
+        navTreeCtrl_->Expand(stocks);
 
     navTreeCtrl_->Connect(wxID_ANY, wxEVT_TREE_SEL_CHANGED, wxTreeEventHandler(mmGUIFrame::OnSelChanged), nullptr, this);
 }
@@ -1166,7 +1164,6 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-    refreshRequested_ = true;
     if (!activeHomePage_) {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(
@@ -1283,11 +1280,11 @@ void mmGUIFrame::createMenu()
     wxMenuItem* menuItemLinks = new wxMenuItem(menuView, MENU_VIEW_LINKS,
         _("&Navigation"), _("Show/Hide the Navigation tree control"), wxITEM_CHECK);
     wxMenuItem* menuItemBankAccount = new wxMenuItem(menuView, MENU_VIEW_BANKACCOUNTS,
-        _("&Bank Accounts"), _("Show/Hide Bank Accounts on Summary page"), wxITEM_CHECK);
+        _("&Bank Accounts"), _("Expand Bank Accounts on navigation tree"), wxITEM_CHECK);
     wxMenuItem* menuItemTermAccount = new wxMenuItem(menuView, MENU_VIEW_TERMACCOUNTS,
-        _("Term &Accounts"), _("Show/Hide Term Accounts on Summary page"), wxITEM_CHECK);
+        _("Term &Accounts"), _("Expand Term Accounts on navigation tree"), wxITEM_CHECK);
     wxMenuItem* menuItemStockAccount = new wxMenuItem(menuView, MENU_VIEW_STOCKACCOUNTS,
-        _("&Stock Accounts"), _("Show/Hide Stock Accounts on Summary page"), wxITEM_CHECK);
+        _("&Stock Accounts"), _("Expand Stock Accounts on navigation tree"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetFinancialYears = new wxMenuItem(menuView, MENU_VIEW_BUDGET_FINANCIAL_YEARS,
         _("Budgets: As &Financial Years"), _("Display Budgets in Financial Year Format"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetTransferTotal = new wxMenuItem(menuView, MENU_VIEW_BUDGET_TRANSFER_TOTAL,
@@ -1296,7 +1293,7 @@ void mmGUIFrame::createMenu()
         _("Budget Setup: &Without Summaries"), _("Display the Budget Setup without category summaries"), wxITEM_CHECK);
     wxMenuItem* menuItemBudgetCategorySummary = new wxMenuItem(menuView, MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
         _("Budget Summary: Include &Categories"), _("Include the categories in the Budget Category Summary"), wxITEM_CHECK);
-    wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_IGNORE_FUTURE_TRANSACTIONS,
+    wxMenuItem* menuItemIgnoreFutureTransactions = new wxMenuItem(menuView, MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
         _("Ignore F&uture Transactions"), _("Ignore Future transactions"), wxITEM_CHECK);
 
     //Add the menu items to the menu bar
@@ -1475,14 +1472,14 @@ void mmGUIFrame::createMenu()
 
     SetMenuBar(menuBar_);
 
-    menuBar_->Check(MENU_VIEW_BANKACCOUNTS, mmIniOptions::instance().expandBankHome_);
-    menuBar_->Check(MENU_VIEW_TERMACCOUNTS, mmIniOptions::instance().expandTermHome_);
-    menuBar_->Check(MENU_VIEW_STOCKACCOUNTS, mmIniOptions::instance().expandStocksHome_);
+    menuBar_->Check(MENU_VIEW_BANKACCOUNTS, mmIniOptions::instance().expandBankTree_);
+    menuBar_->Check(MENU_VIEW_TERMACCOUNTS, mmIniOptions::instance().expandTermTree_);
+    menuBar_->Check(MENU_VIEW_STOCKACCOUNTS, mmIniOptions::instance().expandStocksTree_);
     menuBar_->Check(MENU_VIEW_BUDGET_FINANCIAL_YEARS, mmIniOptions::instance().budgetFinancialYears_);
     menuBar_->Check(MENU_VIEW_BUDGET_TRANSFER_TOTAL, mmIniOptions::instance().budgetIncludeTransfers_);
     menuBar_->Check(MENU_VIEW_BUDGET_SETUP_SUMMARY, mmIniOptions::instance().budgetSetupWithoutSummaries_);
     menuBar_->Check(MENU_VIEW_BUDGET_CATEGORY_SUMMARY, mmIniOptions::instance().budgetSummaryWithoutCategories_);
-    menuBar_->Check(MENU_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
+    menuBar_->Check(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS, mmIniOptions::instance().ignoreFutureTransactions_);
 }
 //----------------------------------------------------------------------------
 
@@ -1871,7 +1868,6 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     mmQIFImportDialog dlg(this);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
-    refreshRequested_ = true;
     updateNavTreeControl();
     if (account_id > 0)
     {
@@ -2024,7 +2020,6 @@ void mmGUIFrame::OnNewTransaction(wxCommandEvent& /*event*/)
         {
             gotoAccountID_ = dlg.getAccountID();
             gotoTransID_ = dlg.getTransactionID();
-            refreshRequested_ = true;
             Model_Account::Data * account = Model_Account::instance().get(gotoAccountID_);
             if (account)
             {
@@ -2083,14 +2078,14 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
     if (systemOptions.ShowModal() == wxID_OK)
     {
         //set the View Menu Option items the same as the options saved.
-        menuBar_->FindItem(MENU_VIEW_BANKACCOUNTS)->Check(mmIniOptions::instance().expandBankHome_);
-        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Check(mmIniOptions::instance().expandTermHome_);
-        menuBar_->FindItem(MENU_VIEW_STOCKACCOUNTS)->Check(mmIniOptions::instance().expandStocksHome_);
+        menuBar_->FindItem(MENU_VIEW_BANKACCOUNTS)->Check(mmIniOptions::instance().expandBankTree_);
+        menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Check(mmIniOptions::instance().expandTermTree_);
+        menuBar_->FindItem(MENU_VIEW_STOCKACCOUNTS)->Check(mmIniOptions::instance().expandStocksTree_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_FINANCIAL_YEARS)->Check(mmIniOptions::instance().budgetFinancialYears_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_TRANSFER_TOTAL)->Check(mmIniOptions::instance().budgetIncludeTransfers_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_SETUP_SUMMARY)->Check(mmIniOptions::instance().budgetSetupWithoutSummaries_);
         menuBar_->FindItem(MENU_VIEW_BUDGET_CATEGORY_SUMMARY)->Check(mmIniOptions::instance().budgetSummaryWithoutCategories_);
-        menuBar_->FindItem(MENU_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
+        menuBar_->FindItem(MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS)->Check(mmIniOptions::instance().ignoreFutureTransactions_);
         menuBar_->Refresh();
 
         int messageIcon = wxOK | wxICON_INFORMATION;
@@ -2414,81 +2409,64 @@ void mmGUIFrame::OnViewToolbar(wxCommandEvent &event)
     m_mgr.Update();
     Model_Setting::instance().Set("SHOWTOOLBAR", event.IsChecked());
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewLinks(wxCommandEvent &event)
 {
     m_mgr.GetPane("Navigation").Show(event.IsChecked());
     m_mgr.Update();
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewToolbarUpdateUI(wxUpdateUIEvent &event)
 {
     event.Check(m_mgr.GetPane("toolbar").IsShown());
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 {
     event.Check(m_mgr.GetPane("Navigation").IsShown());
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
 {
-    m_mgr.GetPane("item@Bank Accounts").Show(event.IsChecked());
-    m_mgr.Update();
-
-    if (!refreshRequested_)
-    {
-        refreshRequested_ = true;
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-        OnAccountList(evt);
-    }
+    mmIniOptions::instance().expandBankTree_ = !mmIniOptions::instance().expandBankTree_;
+    updateNavTreeControl();
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
 {
-    m_mgr.GetPane("item@Term Accounts").Show(event.IsChecked());
-    m_mgr.Update();
-
-    if (!refreshRequested_)
-    {
-        refreshRequested_ = true;
-        updateNavTreeControl(menuBar_->IsChecked(MENU_VIEW_TERMACCOUNTS));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-        OnAccountList(evt);
-    }
+    mmIniOptions::instance().expandTermTree_ = !mmIniOptions::instance().expandTermTree_;
+    updateNavTreeControl();
 }
-//----------------------------------------------------------------------------
 
 void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
 {
-    m_mgr.GetPane("item@Stock Accounts").Show(event.IsChecked());
-    m_mgr.Update();
-
-    if (!refreshRequested_)
-    {
-        refreshRequested_ = true;
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-        OnAccountList(evt);
-    }
+    mmIniOptions::instance().expandStocksTree_ = !mmIniOptions::instance().expandStocksTree_;
+    updateNavTreeControl();
 }
-//----------------------------------------------------------------------------
 
-void mmGUIFrame::OnIgnoreFutureTransactions(wxCommandEvent &event)
+void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
 {
-    m_mgr.GetPane("Ignore Future Transactions").Show(event.IsChecked());
+    mmIniOptions::instance().budgetFinancialYears_ = !mmIniOptions::instance().budgetFinancialYears_;
+}
+
+void mmGUIFrame::OnViewBudgetTransferTotal(wxCommandEvent &event)
+{
+    mmIniOptions::instance().budgetIncludeTransfers_ = !mmIniOptions::instance().budgetIncludeTransfers_;
+}
+
+void mmGUIFrame::OnViewBudgetSetupSummary(wxCommandEvent &event)
+{
+    mmIniOptions::instance().budgetSetupWithoutSummaries_ = !mmIniOptions::instance().budgetSetupWithoutSummaries_;
+}
+
+void mmGUIFrame::OnViewBudgetCategorySummary(wxCommandEvent &event)
+{
+    mmIniOptions::instance().budgetSummaryWithoutCategories_ = !mmIniOptions::instance().budgetSummaryWithoutCategories_;
+}
+
+void mmGUIFrame::OnViewIgnoreFutureTransactions(wxCommandEvent &event)
+{
     mmIniOptions::instance().ignoreFutureTransactions_ = !mmIniOptions::instance().ignoreFutureTransactions_;
-    if (!refreshRequested_)
-    {
-        refreshRequested_ = true;
-        updateNavTreeControl(menuBar_->IsChecked(MENU_VIEW_TERMACCOUNTS));
-        wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
-        OnAccountList(evt);
-    }
 }
 //----------------------------------------------------------------------------
 
@@ -2544,7 +2522,6 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
     // Ensure database is in a steady state first
     if (m_db && !activeHomePage_)
     {
-        refreshRequested_ = true;
         createHomePage();
     }
 

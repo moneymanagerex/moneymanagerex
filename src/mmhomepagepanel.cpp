@@ -559,12 +559,9 @@ void mmHomePagePanel::getData()
 const wxString mmHomePagePanel::getToggles()
 {
     wxString output = "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
-    if (!m_frame->expandedBankAccounts())
-        output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
-    if (!m_frame->expandedTermAccounts())
-        output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
-    if (!m_frame->expandedStockAccounts())
-        output += "<script>toggleTable('INVEST'); </script>\n";
+        //output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
+        //output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
+        //output += "<script>toggleTable('INVEST'); </script>\n";
     return output;
 }
 
@@ -666,8 +663,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         // show the actual amount in that account
         if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
             (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-            (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
-            && ((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts()))
+            (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
             body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
@@ -692,16 +688,8 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats(incomeExpensesStats, date_range_);
 
-    bool show_nothing = !m_frame->expandedBankAccounts() && !m_frame->expandedTermAccounts();
-    bool show_all = (m_frame->expandedBankAccounts() && m_frame->expandedTermAccounts()) || show_nothing;
-    bool show_bank = m_frame->expandedBankAccounts();
     for (const auto& account : Model_Account::instance().all())
     {
-        if (!show_all)
-        {
-            if (show_bank && Model_Account::type(account) != Model_Account::CHECKING) continue;
-            if (m_frame->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
-        }
         int idx = account.ACCOUNTID;
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;

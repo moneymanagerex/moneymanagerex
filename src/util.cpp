@@ -467,8 +467,11 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
 
     wxString page;
     int err_code = site_content(site, page);
-    if (err_code != wxURL_NOERR && !bSilent)
+    if (!bSilent && (err_code != wxURL_NOERR || page.Find("Unix:") == wxNOT_FOUND))
     {
+        if (page == wxEmptyString)
+            page = "Page not found";
+
         wxString msgStr = wxString() << _("Unable to check for updates!") << "\n\n"
             << _("Error code:") << "\n"
             << page;
@@ -548,16 +551,16 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
             }
             else if (patch == patchC)
             {
-                if ((rc == 0) || (rc > rc_C))
+                if (rc_C != 0 && ((rc == 0) || (rc > rc_C)))
                     isUpdateAvailable = true;
             }
         }
     }
 
     // define new version
-    NewVersion = wxString() << majorC << "." << minorC << "." << patchC;
+    NewVersion = wxString() << major << "." << minor << "." << patch;
     if (rc > 0)
-        NewVersion << "-RC" << rc_C;
+        NewVersion << "-RC" << rc;
 
     return isUpdateAvailable;
 }
@@ -566,7 +569,7 @@ void checkUpdates(const bool& bSilent)
 {
     wxString NewVersion = wxEmptyString;
 
-    if (IsUpdateAvailable(false, NewVersion))
+    if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")
     {
         wxString urlDownload = mmex::getProgramWebSite() + "/download";
         wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"

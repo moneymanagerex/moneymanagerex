@@ -42,6 +42,7 @@ enum
     MENU_VIEW_BUDGET_SETUP_SUMMARY,
     MENU_VIEW_BUDGET_CATEGORY_SUMMARY,
     MENU_VIEW_BUDGET_TRANSFER_TOTAL,
+    MENU_VIEW_IGNORE_FUTURE_TRANSACTIONS,
     ID_MMEX_MAX,
 };
 
@@ -69,18 +70,6 @@ public:
 public:
     void setGotoAccountID(int account_id, long transID = -1);
     void setHomePageActive(bool active = true);
-    bool expandedBankAccounts()
-    {
-        return menuBar_->IsChecked(MENU_VIEW_BANKACCOUNTS);
-    }
-    bool expandedTermAccounts()
-    {
-        return menuBar_->IsChecked(MENU_VIEW_TERMACCOUNTS);
-    }
-    bool expandedStockAccounts()
-    {
-        return menuBar_->IsChecked(MENU_VIEW_STOCKACCOUNTS);
-    }
     bool financialYearIsDifferent()
     {
         return (mmOptions::instance().financialYearStartDayString_   != "1" ||
@@ -113,8 +102,6 @@ private:
     int gotoAccountID_;
     int gotoTransID_;
 
-    /* Cannot process home page recursively */
-    bool refreshRequested_;
     /* Update home page details only if it is being displayed */
     bool activeHomePage_;
 
@@ -195,22 +182,25 @@ private:
     void OnAssets(wxCommandEvent& event);
     void OnGotoAccount(wxCommandEvent& WXUNUSED(event));
     void OnGotoStocksAccount(wxCommandEvent& WXUNUSED(event));
+
     void OnViewToolbar(wxCommandEvent &event);
     void OnViewStatusbar(wxCommandEvent &event);
     void OnViewLinks(wxCommandEvent &event);
     void OnViewBankAccounts(wxCommandEvent &event);
     void OnViewTermAccounts(wxCommandEvent &event);
     void OnViewStockAccounts(wxCommandEvent &event);
+    void OnViewBudgetFinancialYears(wxCommandEvent &event);
+    void OnViewBudgetTransferTotal(wxCommandEvent &event);
+    void OnViewBudgetSetupSummary(wxCommandEvent &event);
+    void OnViewBudgetCategorySummary(wxCommandEvent &event);
+    void OnViewIgnoreFutureTransactions(wxCommandEvent &event);
     void OnViewToolbarUpdateUI(wxUpdateUIEvent &event);
-    void OnViewStatusbarUpdateUI(wxUpdateUIEvent &event);
     void OnViewLinksUpdateUI(wxUpdateUIEvent &event);
+
     void OnNewAccount(wxCommandEvent& event);
     void OnAccountList(wxCommandEvent& event);
     void OnEditAccount(wxCommandEvent& event);
     void OnDeleteAccount(wxCommandEvent& event);
-
-    // new item - may be taken out in future
-    void OnIgnoreFutureTransactions(wxCommandEvent &event);
 
     void OnOrgCategories(wxCommandEvent& event);
     void OnOrgPayees(wxCommandEvent& event);
@@ -309,7 +299,6 @@ private:
         MENU_PAYEE_RELOCATION,
         MENU_CONVERT_ENC_DB,
         MENU_ONLINE_UPD_CURRENCY_RATE,
-        MENU_IGNORE_FUTURE_TRANSACTIONS,
 
         //
         MENU_TREEPOPUP_NEW,
