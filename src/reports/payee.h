@@ -40,11 +40,11 @@ protected:
         , mmDateRange* date_range, bool ignoreFuture) const;
 
     wxString title_;
-    enum TYPE {INCOME = 0, EXPENCES, MAX};
+    enum TYPE {INCOME = 0, EXPENSES, MAX};
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; double incomes; double expences; };
+    struct data_holder { wxString name; double incomes; double expenses; };
     std::vector<data_holder> data_;
     std::vector<ValuePair> valueList_;
     double positiveTotal_;

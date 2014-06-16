@@ -704,8 +704,8 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10;
     double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
-    //Type, Amount, Income, Expences, Difference:, Income/Expences, income, expemces
-    static const wxString INCOME_VS_EXPENCES_HTML =
+    //Type, Amount, Income, Expenses, Difference:, Income/Expenses, income, expemces
+    static const wxString INCOME_VS_EXPENSES_HTML =
         "<table class = 'table'>\n"
         "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
         "<tbody>\n"
@@ -770,13 +770,13 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         "    var reportChart = new Chart(ctx).Bar(data, options);\n"
 
         "</script>\n";
-    wxString output = wxString::Format(INCOME_VS_EXPENCES_HTML
+    wxString output = wxString::Format(INCOME_VS_EXPENSES_HTML
         , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
         , _("Type"), _("Amount")
         , _("Income"), Model_Currency::toCurrency(tIncome)
-        , _("Expences"), Model_Currency::toCurrency(tExpenses)
+        , _("Expenses"), Model_Currency::toCurrency(tExpenses)
         , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
-        , _("Income/Expences")
+        , _("Income/Expenses")
         , tIncome, tExpenses, steps, stepWidth);
     return output;
 }
