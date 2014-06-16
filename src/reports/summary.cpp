@@ -222,7 +222,7 @@ wxString mmReportSummaryByDate::getHTMLText()
     hb.startTableRow();
     hb.addTableHeaderCell(_("Date"));
     hb.addTableHeaderCell(_("Bank Account"), true);
-    hb.addTableHeaderCell(_("Credit Card Account"), true);
+    hb.addTableHeaderCell(_("Credit Card Accounts"), true);
     hb.addTableHeaderCell(_("Term Accounts"), true);
     hb.addTableHeaderCell(_("Stocks"), true);
     hb.addTableHeaderCell(_("Balance"), true);

@@ -655,7 +655,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     if (type_is_bank && !credit_card)
         output += _("Bank Account");
     else if (type_is_bank && credit_card)
-        output += _("Credit Card Account");
+        output += _("Credit Card Accounts");
     else if (!type_is_bank)
         output += _("Term account");
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th><th class = 'text-right'>" + _("Balance") + "</th></tr></thead>";
