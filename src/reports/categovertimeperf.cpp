@@ -176,7 +176,7 @@ wxString mmReportCategoryOverTimePerformance::getHTMLText()
     //Totals
     std::map<int, wxString> totalLabels;
     totalLabels[INCOME] = _("Incomes");
-    totalLabels[EXPENCES] = _("Expences");
+    totalLabels[EXPENSES] = _("Expenses");
     totalLabels[TOTAL] = _("Total");
     for (const auto& print_totals : totals)
     {
