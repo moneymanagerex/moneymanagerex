@@ -87,11 +87,9 @@ Returns the last price date of a given stock
 wxString Model_Stock::lastPriceDate(const Self::Data* entity)
 {
     wxString dtStr = entity->PURCHASEDATE;
-    wxString strSql = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%ld ORDER BY DATE DESC", entity->id());
-    wxSQLite3Statement std = db_->PrepareStatement(strSql);
-    wxSQLite3ResultSet qd = std.ExecuteQuery();
-    if (qd.NextRow())
-        dtStr = qd.GetString("DATE");
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().search(entity->id());
+    if (!histData.empty())
+        dtStr = histData.begin()->DATE;
 
     return dtStr;
 }
@@ -101,9 +99,10 @@ Returns the total stock balance at a given date
 */
 double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
-    wxDateTime                  precValueDate, nextValueDate;
-    std::map<int, double>        totBalance, mapNumShares, mapPurchPrize;
-    std::map<int, wxDateTime>    mapPurchDate;
+    double                      valueAtDate, precValue, nextValue;
+    wxString                    precValueDate, nextValueDate;
+    std::map<int, double>       totBalance, mapNumShares, mapPurchPrize;
+    std::map<int, wxDateTime>   mapPurchDate;
 
     Data_Set stocks = this->instance().find(HELDAT(account->id()));
     for (const auto & stock : stocks)
@@ -112,59 +111,55 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         mapPurchPrize[stock.id()] = stock.PURCHASEPRICE;
         mapPurchDate[stock.id()] = PURCHASEDATE(stock);
 
-        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stock.id())
-                , DB_Table_STOCKHISTORY_V1::DATE(date.FormatISODate()));
+        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().search(stock.id());
+
+        valueAtDate = precValue = 0.0, nextValue = 0.0;
 
         for (const auto & hist : stock_hist)
         {
-            totBalance[hist.STOCKID] += hist.VALUE;
+            // test for the date requested
+            if (hist.DATE == date.FormatISODate())
+            {
+                valueAtDate = hist.VALUE;
+                break;
+            }
+            // if not found, search for previous and next date
+            if (precValue == 0.0 && hist.DATE < date.FormatISODate())
+            {
+                precValue = hist.VALUE;
+                precValueDate = hist.DATE;
+            }
+            if (hist.DATE > date.FormatISODate())
+            {
+                nextValue = hist.VALUE;
+                nextValueDate = hist.DATE;
+            }
+            // end conditions: prec value assigned and price date < requested date
+            if (precValue != 0.0 && hist.DATE < date.FormatISODate())
+                break;
         }
-    }
-
-    if (1)
-    {
-        for (const auto& it : totBalance)
+        if (valueAtDate == 0.0)
         {
-            if (it.second != 0.0)
-                continue;
-            double precValue = 0.0, nextValue = 0.0;
-            //  searching of the next and previous price at the given date
-            wxString strSQL = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%d AND DATE<='%s' ORDER BY DATE DESC", it.first, date.FormatISODate());
-            wxSQLite3Statement  st2 = db_->PrepareStatement(strSQL);
-            wxSQLite3ResultSet  q2 = st2.ExecuteQuery();
-            if (q2.NextRow())
+            //  if previous not found but if the given date is after purchase date, takes purchase price
+            if (precValue == 0.0 && date >= mapPurchDate[stock.id()])
             {
-                precValue = q2.GetDouble("VALUE");
-                precValueDate = q2.GetDate("DATE");
+                precValue = mapPurchPrize[stock.id()];
+                precValueDate = mapPurchDate[stock.id()].FormatISODate();
             }
-            //  if not found but if the given date is after purchase date, takes purchase price
-            else if (date >= mapPurchDate[it.first])
-            {
-                precValue = mapPurchPrize[it.first];
-                precValueDate = mapPurchDate[it.first];
-            }
-            //  searching of the first price next the given date
-            strSQL = wxString::Format("SELECT * FROM STOCKHISTORY_V1 WHERE STOCKID=%d AND DATE>'%s' ORDER BY DATE", it.first, date.FormatISODate());
-            st2 = db_->PrepareStatement(strSQL);
-            q2 = st2.ExecuteQuery();
-            if (q2.NextRow())
-            {
-                nextValue = q2.GetDouble("VALUE");
-                nextValueDate = q2.GetDate("DATE");
-            }
-            //  if not found and the accoung is open, takes previous date
-            else if (account->STATUS.CmpNoCase(Model_Account::all_status()[Model_Account::OPEN]) == 0)
+            //  if next not found and the accoung is open, takes previous date
+            if (nextValue == 0.0 && account->STATUS.CmpNoCase(Model_Account::all_status()[Model_Account::OPEN]) == 0)
             {
                 nextValue = precValue;
                 nextValueDate = precValueDate;
             }
-            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= mapPurchDate[it.first] && nextValueDate >= mapPurchDate[it.first])
-                totBalance[it.first] += mapNumShares[it.first] * precValue;
-            st2.Finalize();
+            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= mapPurchDate[stock.id()].FormatISODate() && nextValueDate >= mapPurchDate[stock.id()].FormatISODate())
+                valueAtDate = precValue;
         }
+
+        totBalance[stock.id()] += mapNumShares[stock.id()] * valueAtDate;
     }
 
-    double balance = 0;
+    double balance = 0.0;
     for (const auto& it : totBalance)
         balance += it.second;
 
