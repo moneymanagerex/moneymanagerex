@@ -244,7 +244,8 @@ const std::map<wxString, std::pair<int, int> > Model_Category::all_categories()
         full_categs[c.CATEGNAME] = std::make_pair(c.CATEGID, -1);
         for (const auto& s : Model_Subcategory::instance().find(Model_Subcategory::CATEGID(c.CATEGID)))
         {
-            full_categs[instance().full_name(c.CATEGID, s.SUBCATEGID)] = std::make_pair(c.CATEGID, s.SUBCATEGID);
+            const wxString nameStr = instance().full_name(c.CATEGID, s.SUBCATEGID);
+            full_categs[nameStr] = std::make_pair(c.CATEGID, s.SUBCATEGID);
         }
     }
     return full_categs;
