@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-18 18:07:20.408263.
+ *          AUTO GENERATED at 2014-06-17 11:39:25.245209.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -254,17 +254,17 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             view_ = view;
         
-            STOCKID = q.GetInt(0); // STOCKID
-            HELDAT = q.GetInt(1); // HELDAT
-            PURCHASEDATE = q.GetString(2); // PURCHASEDATE
-            STOCKNAME = q.GetString(3); // STOCKNAME
-            SYMBOL = q.GetString(4); // SYMBOL
-            NUMSHARES = q.GetDouble(5); // NUMSHARES
-            PURCHASEPRICE = q.GetDouble(6); // PURCHASEPRICE
-            NOTES = q.GetString(7); // NOTES
-            CURRENTPRICE = q.GetDouble(8); // CURRENTPRICE
-            VALUE = q.GetDouble(9); // VALUE
-            COMMISSION = q.GetDouble(10); // COMMISSION
+            STOCKID = q.GetInt("STOCKID");
+            HELDAT = q.GetInt("HELDAT");
+            PURCHASEDATE = q.GetString("PURCHASEDATE");
+            STOCKNAME = q.GetString("STOCKNAME");
+            SYMBOL = q.GetString("SYMBOL");
+            NUMSHARES = q.GetDouble("NUMSHARES");
+            PURCHASEPRICE = q.GetDouble("PURCHASEPRICE");
+            NOTES = q.GetString("NOTES");
+            CURRENTPRICE = q.GetDouble("CURRENTPRICE");
+            VALUE = q.GetDouble("VALUE");
+            COMMISSION = q.GetDouble("COMMISSION");
         }
 
         Data& operator=(const Data& other)
@@ -640,7 +640,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

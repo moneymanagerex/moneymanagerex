@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-05-18 18:07:20.408263.
+ *          AUTO GENERATED at 2014-06-17 11:39:25.245209.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -167,8 +167,8 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             view_ = view;
         
-            BUDGETYEARID = q.GetInt(0); // BUDGETYEARID
-            BUDGETYEARNAME = q.GetString(1); // BUDGETYEARNAME
+            BUDGETYEARID = q.GetInt("BUDGETYEARID");
+            BUDGETYEARNAME = q.GetString("BUDGETYEARNAME");
         }
 
         Data& operator=(const Data& other)
@@ -463,7 +463,6 @@ struct DB_Table_BUDGETYEAR_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

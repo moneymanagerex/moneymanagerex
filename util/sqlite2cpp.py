@@ -279,7 +279,7 @@ struct DB_Table_%s : public DB_Table
         for field in self._fields:
             func = base_data_types_function[field['type']]
             s += '''
-            %s = q.%s(%d); // %s''' % (field['name'], func, field['cid'], field['name'])
+            %s = q.%s("%s");''' % (field['name'], func, field['name'])
 
         s += '''
         }
@@ -630,7 +630,6 @@ struct DB_Table_%s : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
@@ -755,7 +754,6 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
         wxSQLite3Statement stmt = db->PrepareStatement(query);
         bind(stmt, 1, args...);
 
-        //wxLogDebug(stmt.GetSQL());
         wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
         while(q.NextRow())
@@ -789,7 +787,7 @@ bool match(const DATA* data, const Arg1& arg1, const Args&... args)
         return false; // Short-circuit evaluation
 }
 '''
-    for field in fields:
+    for field in sorted(fields):
         code += '''
 struct SorterBy%s
 { 
