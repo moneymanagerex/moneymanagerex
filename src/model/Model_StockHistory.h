@@ -51,12 +51,7 @@ public:
     Data* get(int stock_id, const wxDate& date);
     static wxDate DATE(const Data& hist);
 
-    /**
-    Lists all stock history items for a given stock
-    * Return the data set
-    */
-    Data_Set search(int stockId, bool asc = false, int limit = 0, const wxDate& startDate = wxDefaultDateTime, const wxDate& endDate = wxDefaultDateTime);
-
+    static DB_Table_STOCKHISTORY_V1::DATE DATE(const wxDate& date, OP op = EQUAL);
     /**
     Adds or updates an element in stock history
     */
