@@ -118,10 +118,12 @@ bool mmOptionsDialog::Create(wxWindow* parent
     dateFormat_ = Model_Infotable::instance().GetStringInfo("DATEFORMAT", mmex::DEFDATEFORMAT);
 
     CreateControls();
-    SetIcon(mmex::getProgramIcon());
-    Centre();
-    Fit();
+    GetSizer()->Fit(this);
+    GetSizer()->SetSizeHints(this);
 
+    SetIcon(mmex::getProgramIcon());
+
+    Centre();
     return TRUE;
 }
 
