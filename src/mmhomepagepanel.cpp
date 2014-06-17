@@ -562,9 +562,12 @@ void mmHomePagePanel::getData()
 const wxString mmHomePagePanel::getToggles()
 {
     wxString output = "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
-        //output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
-        //output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
-        //output += "<script>toggleTable('INVEST'); </script>\n";
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false))
+        output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false))
+        output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCK_TREE", false))
+        output += "<script>toggleTable('INVEST'); </script>\n";
     return output;
 }
 
