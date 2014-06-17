@@ -658,7 +658,10 @@ void mmStockDialog::showStockHistory()
 {
     Model_Account::Data* account = Model_Account::instance().get(m_stock->HELDAT);
     priceListBox_->DeleteAllItems();
-    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().search(stockID_, false, 300);
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stockID_));
+    std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
+    std::reverse(histData.begin(), histData.end());
+    histData.resize(300);
     if (!histData.empty())
     {
         int idx=0;
@@ -668,7 +671,6 @@ void mmStockDialog::showStockHistory()
             item.SetId(idx);
             item.SetData(d.HISTID);
             priceListBox_->InsertItem( item );
-            wxString dateString = d.DATE;
             wxDate dtdt = Model_StockHistory::DATE(d);
             wxString dispAmount = Model_Account::toString(d.VALUE, account, 4);
             priceListBox_->SetItem(idx, 0, mmGetDateForDisplay(dtdt));

@@ -46,55 +46,6 @@ Model_StockHistory& Model_StockHistory::instance()
     return Singleton<Model_StockHistory>::instance();
 }
 
-/**
-Lists all stock history items for a given stock
-* Return the data set
-*/
-Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* = false*/, int limit/* = 0*/, const wxDate& startDate/* = wxDefaultDateTime*/, const wxDate& endDate/* = wxDefaultDateTime*/)
-{
-    Data_Set result;
-
-    if (startDate.IsValid() && !endDate.IsValid())
-        result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId), DB_Table_STOCKHISTORY_V1::DATE(startDate.FormatISODate()));
-    else
-        result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId));
-
-    if (!result.empty())
-    {
-        std::stable_sort(result.begin(), result.end(), SorterByDATE());
-        if (!asc)
-            std::reverse(result.begin(), result.end());
-
-        // limit results: by date...
-        if (startDate.IsValid() && endDate.IsValid())
-        {
-            int ind = 0, start = -2, end = -2;
-            wxString strStartDate = startDate.FormatISODate(), strEndDate = endDate.FormatISODate();
-            for (const auto &d : result)
-            {
-                if (start == -2 && d.DATE >= strStartDate)
-                    start = ind;
-                if (end == -2 && d.DATE > strEndDate)
-                    end = ind;
-                ind++;
-            }
-            // remove tail elements first
-            if (end >= 0)
-                result.erase(result.begin() + end, result.end());
-            // then head elements
-            if (start >= 0)
-                result.erase(result.begin(), result.begin() + start);
-        }
-        // ... then by number of records
-        if (limit > 0 && (int)result.size() > limit)
-            result.resize(limit);
-
-        result.shrink_to_fit();
-    }
-
-    return result;
-}
-
 Model_StockHistory::Data* Model_StockHistory::get(int stock_id, const wxDate& date)
 {
     Data* hist = this->get_one(STOCKID(stock_id), DB_Table_STOCKHISTORY_V1::DATE(date.FormatISODate()));
@@ -108,6 +59,11 @@ Model_StockHistory::Data* Model_StockHistory::get(int stock_id, const wxDate& da
 wxDate Model_StockHistory::DATE(const Data& hist)
 {
     return Model::to_date(hist.DATE);
+}
+
+DB_Table_STOCKHISTORY_V1::DATE Model_StockHistory::DATE(const wxDate& date, OP op)
+{
+    return DB_Table_STOCKHISTORY_V1::DATE(date.FormatISODate(), op);
 }
 
 /**

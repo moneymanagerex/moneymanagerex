@@ -279,7 +279,7 @@ wxString mmReportChartStocks::getHTMLText()
     int index = 0, heldAt = -1;
     wxString dateStr, strSql;
     wxTimeSpan dist;
-    wxDateTime dateDt, prevDt, lastInsDt;
+    wxDateTime dateDt, prevDt;
     std::vector<ChartData> aData;
     for (const auto& stock: Model_Stock::instance().all(Model_Stock::COL_HELDAT))
     {
@@ -290,47 +290,13 @@ wxString mmReportChartStocks::getHTMLText()
                 hb.addHeaderItalic(4, account->ACCOUNTNAME);
         }
 
-        prevDt = lastInsDt = wxInvalidDateTime;
-        Model_StockHistory::Data_Set histData;
-        histData = Model_StockHistory::instance().search(stock.id(), true, 0, dtRange_->start_date(), dtRange_->end_date());
+        prevDt = wxInvalidDateTime;
+        Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stock.id()),
+                                                    Model_StockHistory::DATE(dtRange_->start_date(), GREATER_OR_EQUAL),
+                                                    Model_StockHistory::DATE(dtRange_->end_date(), LESS_OR_EQUAL));
+        std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
         for (const auto& hist : histData)
         {
-#if 0
-            dateDt = mmGetStorageStringAsDate(dateStr);
-            dateStr.Empty();
-            if (prevDt.IsValid())
-            {
-                if (dtDiff.GetDays() <= 30)         // very low: every 5 days
-                {
-                    dist = dateDt - lastInsDt;
-                    if (dist.GetDays() >= 5)
-                        dateStr = dateDt.Format(wxS("%d/%m"));
-                }
-                else if (dtDiff.GetDays() <= 60)    // low: every 10 days
-                {
-                    dist = dateDt - lastInsDt;
-                    if (dist.GetDays() >= 10)
-                        dateStr = dateDt.Format(wxS("%d/%m"));
-                }
-                else if (dtDiff.GetDays() > 366)    // very high: every year
-                {
-                    if (prevDt.GetYear() != dateDt.GetYear())
-                        dateStr = dateDt.Format(wxS("%Y"));
-                }
-                else                                // high: every month
-                {
-                    if (prevDt.GetMonth() != dateDt.GetMonth())
-                        dateStr = dateDt.Format(wxS("%m/%Y"));
-                }
-                if (!dateStr.IsEmpty())
-                    lastInsDt = dateDt;
-            }
-            else
-            {
-                dtDiff = dtEnd_ - dateDt;
-                lastInsDt = dateDt;
-            }
-#endif
             aData.push_back(ChartData(hist.DATE, hist.VALUE));
             prevDt = dateDt;
         }
