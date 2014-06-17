@@ -95,14 +95,14 @@ Model_StockHistory::Data_Set Model_StockHistory::search(int stockId, bool asc/* 
     return result;
 }
 
-/**
-Deletes all stock histor for a given stock
-*/
-void Model_StockHistory::deleteAllHistory(int stockId)
+Model_StockHistory::Data* Model_StockHistory::get(int stock_id, const wxDate& date)
 {
-    Data_Set result = find(DB_Table_STOCKHISTORY_V1::STOCKID(stockId));
-    for (const auto &d : result)
-        remove(d.id());
+    Data* hist = this->get_one(STOCKID(stock_id), DB_Table_STOCKHISTORY_V1::DATE(date.FormatISODate()));
+    if (hist) return hist;
+
+    Data_Set items = this->find(STOCKID(stock_id), DB_Table_STOCKHISTORY_V1::DATE(date.FormatISODate()));
+    if (!items.empty()) hist = this->get(items[0].id(), this->db_);
+    return hist;
 }
 
 wxDate Model_StockHistory::DATE(const Data& hist)
@@ -115,9 +115,9 @@ Adds or updates an element in stock history
 */
 int Model_StockHistory::addUpdate(int stockId, const wxDate& date, double price, UPDTYPE type)
 {
-    Data *stockHist = NULL;
-    Data_Set histData = search(stockId, false, 0, date);
-    stockHist = histData.size() ? &(*histData.begin()) : create();
+    Data *stockHist = this->get(stockId, date);
+    if (!stockHist) stockHist = this->create();
+
     stockHist->STOCKID = stockId;
     stockHist->DATE = date.FormatISODate();
     stockHist->VALUE = price;

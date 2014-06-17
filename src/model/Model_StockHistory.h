@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 class Model_StockHistory : public Model<DB_Table_STOCKHISTORY_V1>
 {
 public:
+    using Model<DB_Table_STOCKHISTORY_V1>::get;
     enum UPDTYPE { ONLINE = 1, MANUAL };
 
 public:
@@ -47,6 +48,7 @@ public:
     static Model_StockHistory& instance();
 
 public:
+    Data* get(int stock_id, const wxDate& date);
     static wxDate DATE(const Data& hist);
 
     /**
@@ -54,11 +56,6 @@ public:
     * Return the data set
     */
     Data_Set search(int stockId, bool asc = false, int limit = 0, const wxDate& startDate = wxDefaultDateTime, const wxDate& endDate = wxDefaultDateTime);
-
-    /**
-    Deletes all stock history for a given stock
-    */
-    void deleteAllHistory(int stockId);
 
     /**
     Adds or updates an element in stock history

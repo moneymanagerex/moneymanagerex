@@ -74,8 +74,6 @@ bool Model_Stock::remove(int id)
     this->Begin();
     for (const auto& r: Model_StockHistory::instance().find(Model_StockHistory::STOCKID(id)))
         Model_StockHistory::instance().remove(r.id());
-    for (const auto& r: Model_Billsdeposits::instance().find_or(Model_Billsdeposits::ACCOUNTID(id), Model_Billsdeposits::TOACCOUNTID(id)))
-        Model_Billsdeposits::instance().remove(r.BDID);
     this->Commit();
 
     return this->remove(id, db_);
@@ -87,9 +85,11 @@ Returns the last price date of a given stock
 wxString Model_Stock::lastPriceDate(const Self::Data* entity)
 {
     wxString dtStr = entity->PURCHASEDATE;
-    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().search(entity->id());
+    Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(STOCKID(entity->id()));
+
+    std::sort(histData.begin(), histData.end(), SorterByDATE());
     if (!histData.empty())
-        dtStr = histData.begin()->DATE;
+        dtStr = histData.back().DATE;
 
     return dtStr;
 }
@@ -99,21 +99,17 @@ Returns the total stock balance at a given date
 */
 double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const wxDate& date)
 {
-    double                      valueAtDate, precValue, nextValue;
-    wxString                    precValueDate, nextValueDate;
-    std::map<int, double>       totBalance, mapNumShares, mapPurchPrize;
-    std::map<int, wxDateTime>   mapPurchDate;
+    std::map<int, double> totBalance;
 
     Data_Set stocks = this->instance().find(HELDAT(account->id()));
     for (const auto & stock : stocks)
     {
-        mapNumShares[stock.id()] = stock.NUMSHARES;
-        mapPurchPrize[stock.id()] = stock.PURCHASEPRICE;
-        mapPurchDate[stock.id()] = PURCHASEDATE(stock);
+        wxString precValueDate, nextValueDate;
+        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().find(STOCKID(stock.id()));
+        std::stable_sort(stock_hist.begin(), stock_hist.end(), SorterByDATE());
+        std::reverse(stock_hist.begin(), stock_hist.end());
 
-        Model_StockHistory::Data_Set stock_hist = Model_StockHistory::instance().search(stock.id());
-
-        valueAtDate = precValue = 0.0, nextValue = 0.0;
+        double valueAtDate = 0.0,  precValue = 0.0, nextValue = 0.0;
 
         for (const auto & hist : stock_hist)
         {
@@ -141,22 +137,22 @@ double Model_Stock::getDailyBalanceAt(const Model_Account::Data *account, const 
         if (valueAtDate == 0.0)
         {
             //  if previous not found but if the given date is after purchase date, takes purchase price
-            if (precValue == 0.0 && date >= mapPurchDate[stock.id()])
+            if (precValue == 0.0 && date >= PURCHASEDATE(stock))
             {
-                precValue = mapPurchPrize[stock.id()];
-                precValueDate = mapPurchDate[stock.id()].FormatISODate();
+                precValue = stock.PURCHASEPRICE;
+                precValueDate = stock.PURCHASEDATE;
             }
             //  if next not found and the accoung is open, takes previous date
-            if (nextValue == 0.0 && account->STATUS.CmpNoCase(Model_Account::all_status()[Model_Account::OPEN]) == 0)
+            if (nextValue == 0.0 && Model_Account::status(account) == Model_Account::OPEN)
             {
                 nextValue = precValue;
                 nextValueDate = precValueDate;
             }
-            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= mapPurchDate[stock.id()].FormatISODate() && nextValueDate >= mapPurchDate[stock.id()].FormatISODate())
+            if (precValue > 0.0 && nextValue > 0.0 && precValueDate >= stock.PURCHASEDATE && nextValueDate >= stock.PURCHASEDATE)
                 valueAtDate = precValue;
         }
 
-        totBalance[stock.id()] += mapNumShares[stock.id()] * valueAtDate;
+        totBalance[stock.id()] += stock.NUMSHARES * valueAtDate;
     }
 
     double balance = 0.0;
