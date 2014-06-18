@@ -446,8 +446,6 @@ bool mmAttachmentManage::DeleteAttachment(const wxString& FileToDelete)
 
 bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 {
-	const wxString FileExtension = wxFileName(FileToOpen).GetExt();
-
 	if (!wxFileExists(FileToOpen))
 	{
 		wxString msgStr = wxString() << _("Unable to open file:") << "\n"
@@ -455,24 +453,10 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
 			<< "\n"
 			<< _("Please verify that file exists and user has rights to read it.") << "\n";
 		wxMessageBox(msgStr, _("Open attachment failed"), wxICON_ERROR);
-		return false;
+        return false;
 	}
 
-	wxMimeTypesManager manager;
-	wxFileType *filetype = manager.GetFileTypeFromExtension(FileExtension);
-	if (filetype != nullptr)
-	{
-		wxString command = filetype->GetOpenCommand(FileToOpen);
-		wxExecute(command);
-		delete filetype;
-	}
-	else
-	{
-        wxString msgStr = wxString() << wxString::Format(_("No software found for file extension .%s"), FileExtension) << "\n"
-			<< "\n"
-			<< _("Please verify that operating system is able to handle this type of file.") << "\n";
-		wxMessageBox(msgStr, _("Open attachment failed"), wxICON_ERROR);
-	}
+    wxLaunchDefaultApplication(FileToOpen);
 	return true;
 }
 
