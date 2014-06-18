@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mmex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-14 21:02+0100\n"
-"PO-Revision-Date: 2014-06-14 21:02+0100\n"
+"POT-Creation-Date: 2014-06-17 14:29+0400\n"
+"PO-Revision-Date: 2014-06-17 14:54+0400\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#: src/aboutdialog.cpp:42 src/aboutdialog.cpp:176
+#: src/aboutdialog.cpp:42 src/aboutdialog.cpp:175
 msgid "About"
 msgstr "О программе"
 
@@ -26,16 +26,14 @@ msgid "License agreement"
 msgstr "Лицензионное соглашение"
 
 #: src/aboutdialog.cpp:86
-#, fuzzy
 msgid "Website"
-msgstr "Web-сайт:"
+msgstr "Web-сайт"
 
 #: src/aboutdialog.cpp:89
 msgid "Forum"
-msgstr ""
+msgstr "Форум"
 
 #: src/aboutdialog.cpp:92
-#, fuzzy
 msgid "Wiki page"
 msgstr "wiki страница"
 
@@ -44,12 +42,10 @@ msgid "Bug reports"
 msgstr "Отчёты об ошибках"
 
 #: src/aboutdialog.cpp:99
-#, fuzzy
 msgid "Follow MMEX on Facebook"
 msgstr "Посетите нас на Facebook"
 
 #: src/aboutdialog.cpp:102
-#, fuzzy
 msgid "Follow MMEX on Twitter"
 msgstr "Посетите MMEX Twitter"
 
@@ -57,23 +53,23 @@ msgstr "Посетите MMEX Twitter"
 msgid "Donate"
 msgstr "Вклад в развитие"
 
-#: src/aboutdialog.cpp:181
+#: src/aboutdialog.cpp:180
 msgid "Developers"
 msgstr "Разработка"
 
-#: src/aboutdialog.cpp:186
+#: src/aboutdialog.cpp:185
 msgid "Artwork"
 msgstr "Графика"
 
-#: src/aboutdialog.cpp:191
+#: src/aboutdialog.cpp:190
 msgid "Sponsors"
 msgstr "Спонсоры"
 
-#: src/aboutdialog.cpp:196
+#: src/aboutdialog.cpp:195
 msgid "License"
 msgstr "Лицензия"
 
-#: src/aboutdialog.cpp:232 src/accountdialog.cpp:282
+#: src/aboutdialog.cpp:231 src/accountdialog.cpp:282
 #: src/appstartdialog.cpp:135 src/assetdialog.cpp:195
 #: src/attachmentdialog.cpp:121 src/billsdepositsdialog.cpp:571
 #: src/budgetentrydialog.cpp:160 src/budgetyeardialog.cpp:117
@@ -434,7 +430,7 @@ msgstr ""
 
 #: src/assetspanel.cpp:357 src/general_report_manager.cpp:509
 #: src/general_report_manager.cpp:725 src/mmframe.cpp:725 src/mmframe.cpp:1391
-#: src/mmhomepagepanel.cpp:386 src/mmhomepagepanel.cpp:785
+#: src/mmhomepagepanel.cpp:389 src/mmhomepagepanel.cpp:792
 #: src/assetspanel.h:84
 msgid "Assets"
 msgstr "Активы"
@@ -449,7 +445,7 @@ msgstr "Все"
 #: src/assetspanel.cpp:402 src/billsdepositsdialog.cpp:472
 #: src/billsdepositspanel.cpp:146 src/filtertransdialog.cpp:251
 #: src/filtertransdialog.cpp:320 src/import_export/qif_import_gui.cpp:81
-#: src/mmhomepagepanel.cpp:768 src/reports/budgetingperf.cpp:130
+#: src/mmhomepagepanel.cpp:775 src/reports/budgetingperf.cpp:130
 #: src/reports/incexpenses.cpp:113 src/reports/transactions.cpp:117
 #: src/reports/transactions.cpp:119 src/splitdetailsdialog.cpp:105
 #: src/transdialog.cpp:390
@@ -533,8 +529,6 @@ msgstr "Не указана папка с файлами."
 msgid "Please set it in Tools -> Options -> Attachments"
 msgstr "Пожалуйста, задайте путь через -> Опции -> Вложения"
 
-# FIXME:
-# Attachments folder not found
 #: src/attachmentdialog.cpp:66
 msgid "Attachment folder not defined"
 msgstr "Папка для вложений не определена"
@@ -549,7 +543,7 @@ msgstr "Пожалуйста проверьте, что путь правиль�
 
 #: src/attachmentdialog.cpp:74
 msgid "Attachments folder not found"
-msgstr "Папка для вложений не определена"
+msgstr "Папка для вложений не найдена"
 
 #: src/attachmentdialog.cpp:85
 #, c-format
@@ -666,14 +660,15 @@ msgstr ""
 msgid "Open attachment failed"
 msgstr "Вложение не открыть"
 
-# FIXME: .
 #: src/attachmentdialog.cpp:471
-msgid "No software found for file extension ."
+#, fuzzy, c-format
+msgid "No software found for file extension .%s"
 msgstr "Не сопоставлено приложение файлу во вложении."
 
-# FIXME:
 #: src/attachmentdialog.cpp:473
-msgid "Please verify that operatin system is able to handle this type of file."
+#, fuzzy
+msgid ""
+"Please verify that operating system is able to handle this type of file."
 msgstr "Пожалуйста убедитесь, что ОС умеет отображать данный тип файлов."
 
 #: src/billsdepositsdialog.cpp:95
@@ -894,8 +889,8 @@ msgstr "Сумма, которая попадет на счёт-получате
 
 #: src/billsdepositsdialog.cpp:479 src/billsdepositsdialog.cpp:908
 #: src/billsdepositspanel.cpp:147 src/budgetingpanel.cpp:284
-#: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:350
-#: src/mmhomepagepanel.cpp:768 src/reports/budgetcategorysummary.cpp:111
+#: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:353
+#: src/mmhomepagepanel.cpp:775 src/reports/budgetcategorysummary.cpp:111
 #: src/reports/categexp.cpp:160 src/reports/categexp.cpp:162
 #: src/reports/incexpenses.cpp:114 src/reports/transactions.cpp:121
 #: src/reports/transactions.cpp:123 src/splitdetailsdialog.cpp:120
@@ -913,7 +908,7 @@ msgstr "Задайте сумму для счёта в который произ
 #: src/import_export/qif_import_gui.cpp:80
 #: src/import_export/qif_import_gui.cpp:221
 #: src/import_export/univcsvdialog.cpp:71 src/mmcheckingpanel.cpp:977
-#: src/mmhomepagepanel.cpp:350 src/reports/payee.cpp:136
+#: src/mmhomepagepanel.cpp:353 src/reports/payee.cpp:136
 #: src/reports/payee.cpp:138 src/reports/transactions.cpp:105
 #: src/reports/transactions.cpp:107 src/transdialog.cpp:246
 #: src/transdialog.cpp:420
@@ -954,7 +949,7 @@ msgstr "Разделить по категориям"
 #: src/import_export/qif_import_gui.cpp:82
 #: src/import_export/qif_import_gui.cpp:233
 #: src/import_export/univcsvdialog.cpp:73 src/mmcheckingpanel.cpp:981
-#: src/mmhomepagepanel.cpp:177 src/reports/budgetcategorysummary.cpp:109
+#: src/mmhomepagepanel.cpp:180 src/reports/budgetcategorysummary.cpp:109
 #: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:155
 #: src/reports/categexp.cpp:157 src/reports/categovertimeperf.cpp:144
 #: src/reports/categovertimeperf.cpp:146 src/reports/transactions.cpp:113
@@ -1131,7 +1126,7 @@ msgstr ""
 "позволяя пользователю настроить любые значения в срок."
 
 #: src/billsdepositspanel.cpp:207 src/mmframe.cpp:730
-#: src/mmhomepagepanel.cpp:392 src/billsdepositspanel.h:99
+#: src/mmhomepagepanel.cpp:395 src/billsdepositspanel.h:99
 msgid "Repeating Transactions"
 msgstr "Планирование"
 
@@ -1189,7 +1184,7 @@ msgid "&Delete Bills && Deposit Series..."
 msgstr "Удалить запланированную транзакцию..."
 
 #: src/billsdepositspanel.cpp:507 src/billsdepositspanel.cpp:559
-#: src/mmhomepagepanel.cpp:316
+#: src/mmhomepagepanel.cpp:319
 #, c-format
 msgid "%d days remaining"
 msgstr "%d дней осталось"
@@ -1201,7 +1196,7 @@ msgid "Inactive"
 msgstr " не используется"
 
 #: src/billsdepositspanel.cpp:517 src/billsdepositspanel.cpp:569
-#: src/mmhomepagepanel.cpp:317
+#: src/mmhomepagepanel.cpp:320
 #, c-format
 msgid "%d days overdue!"
 msgstr "%d дней просрочено!"
@@ -1242,7 +1237,7 @@ msgstr "Тип:"
 msgid "Expense"
 msgstr "Расход"
 
-#: src/budgetentrydialog.cpp:130 src/mmhomepagepanel.cpp:769
+#: src/budgetentrydialog.cpp:130 src/mmhomepagepanel.cpp:776
 #: src/model/Model_Category.cpp:191 src/reports/incexpenses.cpp:189
 #: src/reports/mmgraphincexpensesmonth.cpp:38
 msgid "Income"
@@ -1579,47 +1574,47 @@ msgstr "Не скрывать категорию"
 msgid "Clear Settings"
 msgstr "Очистить настройки"
 
-#: src/constants.cpp:86
+#: src/constants.cpp:83
 msgid "Version: "
 msgstr "Версия: "
 
-#: src/constants.cpp:133
+#: src/constants.cpp:134
 msgid "MMEX is using the following support products"
 msgstr "MMEX использует следующие компоненты"
 
-#: src/constants.cpp:155 src/mmcheckingpanel.h:251
+#: src/constants.cpp:156 src/mmcheckingpanel.h:251
 msgid "View All Transactions"
 msgstr "Показать все"
 
-#: src/constants.cpp:156 src/mmcheckingpanel.h:252
+#: src/constants.cpp:157 src/mmcheckingpanel.h:252
 msgid "View Today"
 msgstr "Показать сегодня"
 
-#: src/constants.cpp:157 src/mmcheckingpanel.h:253
+#: src/constants.cpp:158 src/mmcheckingpanel.h:253
 msgid "View Current Month"
 msgstr "Показать текущий месяц"
 
-#: src/constants.cpp:158 src/mmcheckingpanel.h:254
+#: src/constants.cpp:159 src/mmcheckingpanel.h:254
 msgid "View Last 30 days"
 msgstr "Показать последние 30 дней"
 
-#: src/constants.cpp:159 src/mmcheckingpanel.h:255
+#: src/constants.cpp:160 src/mmcheckingpanel.h:255
 msgid "View Last 90 days"
 msgstr "Показать последние 90 дней"
 
-#: src/constants.cpp:160 src/mmcheckingpanel.h:256
+#: src/constants.cpp:161 src/mmcheckingpanel.h:256
 msgid "View Last Month"
 msgstr "Показать прошлый месяц"
 
-#: src/constants.cpp:161 src/mmcheckingpanel.h:257
+#: src/constants.cpp:162 src/mmcheckingpanel.h:257
 msgid "View Last 3 Months"
 msgstr "Показать последние 3 месяца"
 
-#: src/constants.cpp:162 src/mmcheckingpanel.h:258
+#: src/constants.cpp:163 src/mmcheckingpanel.h:258
 msgid "View Last 12 Months"
 msgstr "Показать последние 12 месяцев"
 
-#: src/constants.cpp:163 src/mmcheckingpanel.h:259
+#: src/constants.cpp:164 src/mmcheckingpanel.h:259
 msgid "View Current Year"
 msgstr "Показать текущий год"
 
@@ -1752,7 +1747,7 @@ msgstr "База данных::открытие: %s"
 msgid "Continue ?"
 msgstr "Продолжить?"
 
-#: src/filtertransdialog.cpp:50 src/mmhomepagepanel.cpp:648
+#: src/filtertransdialog.cpp:50 src/mmhomepagepanel.cpp:651
 #: src/model/Model_Billsdeposits.cpp:32 src/model/Model_Checking.cpp:34
 msgid "Reconciled"
 msgstr "Выверено"
@@ -2249,7 +2244,7 @@ msgid "To/From(+/-)"
 msgstr "Из/В(+/-)"
 
 #: src/import_export/univcsvdialog.cpp:81 src/mmcheckingpanel.cpp:987
-#: src/mmhomepagepanel.cpp:648
+#: src/mmhomepagepanel.cpp:652
 msgid "Balance"
 msgstr "Баланс"
 
@@ -3151,9 +3146,8 @@ msgstr ""
 "сообщение о проблемах с программой."
 
 #: src/mmframe.cpp:1451
-#, fuzzy
 msgid "Register/View Release &Notifications"
-msgstr "Просмотр информации о новых версиях."
+msgstr "Просмотр информации о новых версиях"
 
 #: src/mmframe.cpp:1452
 msgid "Sign up to Notification Mailing List or View existing announcements."
@@ -3523,69 +3517,69 @@ msgstr "Прибыль"
 msgid "Total"
 msgstr "Сумма"
 
-#: src/mmhomepagepanel.cpp:93 src/mmhomepagepanel.cpp:676
+#: src/mmhomepagepanel.cpp:96 src/mmhomepagepanel.cpp:683
 #: src/reports/incexpenses.cpp:240 src/reports/payee.cpp:168
 #: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 msgid "Total:"
 msgstr "Всего:"
 
-#: src/mmhomepagepanel.cpp:161
+#: src/mmhomepagepanel.cpp:164
 #, c-format
 msgid "Top Withdrawals: %s"
 msgstr "Самые расходные: %s"
 
-#: src/mmhomepagepanel.cpp:177
+#: src/mmhomepagepanel.cpp:180
 msgid "Summary"
 msgstr "Сводка"
 
-#: src/mmhomepagepanel.cpp:350
+#: src/mmhomepagepanel.cpp:353
 msgid "Days"
 msgstr "Дней"
 
-#: src/mmhomepagepanel.cpp:548
+#: src/mmhomepagepanel.cpp:551
 msgid "Upcoming Transactions"
 msgstr "Предстоящие транзакции"
 
-#: src/mmhomepagepanel.cpp:647
+#: src/mmhomepagepanel.cpp:650
 msgid "Bank Account"
 msgstr "Банковский счёт"
 
-#: src/mmhomepagepanel.cpp:647
+#: src/mmhomepagepanel.cpp:650
 msgid "Term Account"
 msgstr "Счета вкладов"
 
-#: src/mmhomepagepanel.cpp:767 src/reports/incexpenses.cpp:31
+#: src/mmhomepagepanel.cpp:774 src/reports/incexpenses.cpp:31
 #: src/reports/incexpenses.cpp:141
 #, c-format
 msgid "Income vs Expenses: %s"
 msgstr "Доходы/Расходы: %s"
 
-#: src/mmhomepagepanel.cpp:770 src/reports/categovertimeperf.cpp:179
+#: src/mmhomepagepanel.cpp:777 src/reports/categovertimeperf.cpp:179
 #: src/reports/payee.cpp:144 src/reports/payee.cpp:146
 msgid "Expences"
 msgstr "Расходы"
 
-#: src/mmhomepagepanel.cpp:771 src/reports/incexpenses.cpp:122
+#: src/mmhomepagepanel.cpp:778 src/reports/incexpenses.cpp:122
 msgid "Difference:"
 msgstr "Баланс:"
 
-#: src/mmhomepagepanel.cpp:772
+#: src/mmhomepagepanel.cpp:779
 msgid "Income/Expences"
 msgstr "Доходы/Расходы"
 
-#: src/mmhomepagepanel.cpp:795
+#: src/mmhomepagepanel.cpp:802
 msgid "Transaction Statistics"
 msgstr "Статистика транзакций"
 
-#: src/mmhomepagepanel.cpp:800
+#: src/mmhomepagepanel.cpp:807
 msgid "Follow Up On Transactions: "
 msgstr "Отследить транзакций:"
 
-#: src/mmhomepagepanel.cpp:805
+#: src/mmhomepagepanel.cpp:812
 msgid "Total Transactions: "
 msgstr "Транзакций всего: "
 
-#: src/mmhomepagepanel.cpp:817
+#: src/mmhomepagepanel.cpp:824
 msgid "Grand Total:"
 msgstr "Всего:"
 
@@ -3846,7 +3840,7 @@ msgstr "Прочие доходы"
 msgid "Other Expenses"
 msgstr "Прочие расходы"
 
-#: src/model/Model_Currency.cpp:117 src/wizard_newdb.cpp:157
+#: src/model/Model_Currency.cpp:107 src/wizard_newdb.cpp:157
 msgid "Base Currency Not Set"
 msgstr "Основная валюта не установлена"
 
@@ -4290,7 +4284,7 @@ msgstr "Доступно"
 
 #: src/optionsdialog.cpp:800
 msgid "Enable internal web server when MMEX Starts."
-msgstr ""
+msgstr "Встроенный web сервер активен при старте MMEX."
 
 #: src/optionsdialog.cpp:805
 msgid "Specify web server port number"
@@ -4302,7 +4296,7 @@ msgstr "Статистика использования"
 
 #: src/optionsdialog.cpp:824
 msgid "Send anonymous statistics usage data"
-msgstr ""
+msgstr "Отправлять анонимную статистику"
 
 #: src/optionsdialog.cpp:826
 msgid "Enable to help us sending anonymous data about MMEX usage."
@@ -4334,7 +4328,7 @@ msgstr "Системный каталог документов"
 
 #: src/optionsdialog.cpp:936
 msgid "Application data directory"
-msgstr ""
+msgstr "Каталог данных приложения"
 
 #: src/optionsdialog.cpp:938
 msgid "Database file directory"
@@ -4561,8 +4555,8 @@ msgstr "%"
 
 #: src/reports/cashflow.cpp:60
 #, c-format
-msgid "Cash Flow Forecast for %d Years Ahead"
-msgstr "Прогноз денежного потока на %d лет"
+msgid "Cash Flow Forecast for %i Years Ahead"
+msgstr "Прогноз денежного потока на %i лет"
 
 #: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
 #: src/reports/incexpenses.cpp:158
@@ -5206,57 +5200,51 @@ msgstr "Неверное название"
 
 #: src/util.cpp:438
 msgid "Please type in a non empty name."
-msgstr ""
-
-#: src/util.cpp:475
-#, fuzzy
-msgid "Unable to check for updates!"
-msgstr "Невозможно сохранить файл."
+msgstr "Пожалуйста введите не пустое имя."
 
 #: src/util.cpp:476
-#, fuzzy
+msgid "Unable to check for updates!"
+msgstr "Невозможно проверить обновления!"
+
+#: src/util.cpp:477
 msgid "Error code:"
-msgstr "Ошибка"
+msgstr "Код ошибки:"
 
-#: src/util.cpp:478 src/util.cpp:580 src/util.cpp:587
+#: src/util.cpp:479 src/util.cpp:588 src/util.cpp:595
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "MMEX проверка версии"
 
-#: src/util.cpp:575
-#, fuzzy
+#: src/util.cpp:583
 msgid "New version of MMEX is available"
-msgstr "Новая версия доступна."
+msgstr "Новая версия доступна"
 
-#: src/util.cpp:576
+#: src/util.cpp:584
 msgid "Your current version is: "
-msgstr ""
+msgstr "Ваша версия:"
 
-#: src/util.cpp:577
-#, fuzzy
+#: src/util.cpp:585
 msgid "New version is: "
-msgstr "Новая версия доступна."
-
-#: src/util.cpp:578
-#, fuzzy
-msgid "Would you like to download it now ?"
-msgstr "Хотите загрузить другой файл?"
+msgstr "Новая версия:"
 
 #: src/util.cpp:586
-#, fuzzy
+msgid "Would you like to download it now ?"
+msgstr "Хотите загрузить сейчас?"
+
+#: src/util.cpp:594
 msgid "You already have the latest version"
-msgstr "У вас установлена новейшая версия!"
+msgstr "У вас установлена новейшая версия"
 
 #: src/webapp.cpp:161
 msgid "Wrong WebApp GUID:"
-msgstr ""
+msgstr "Неверный WebApp GUID:"
 
 #: src/webapp.cpp:162
 msgid "please check it in network options."
-msgstr ""
+msgstr "пожалуйста проверьте это в опциях сети."
 
 #: src/webapp.cpp:163
 msgid "Wrong WebApp settings"
-msgstr ""
+msgstr "Не верные настройки WebApp"
 
 #: src/webapp.cpp:168
 msgid "Unable to connect to WebApp:"
@@ -5264,35 +5252,38 @@ msgstr "Нет связи с WebApp:"
 
 #: src/webapp.cpp:169
 msgid "please check settings and / or internet connection."
-msgstr ""
+msgstr "пожалуйста проверьте настройки и / или интернет соединение."
 
 #: src/webapp.cpp:170
 msgid "WebApp connection error"
 msgstr "Ошибка соединения WebApp"
 
+# Wrong WebApp API version used as well
 #: src/webapp.cpp:180
 msgid "Wrong WebApp API version:"
-msgstr ""
+msgstr "Не правильная WebApp API версия:"
 
 #: src/webapp.cpp:181
-msgid "WebApp   API version -> "
-msgstr ""
+#, c-format
+msgid "WebApp   API version -> %s"
+msgstr "WebApp   API версия -> %s"
 
 #: src/webapp.cpp:182
-msgid "Expected API version -> "
-msgstr ""
+#, c-format
+msgid "Expected API version -> %s"
+msgstr "WebApp   API версия -> %s"
 
 #: src/webapp.cpp:183
 msgid "Wrong WebApp API version"
-msgstr ""
+msgstr "Не правильная WebApp API версия"
 
 #: src/webapp.cpp:225
 msgid "A generic network error occurred"
-msgstr ""
+msgstr "Произошла общая ошибка сети"
 
 #: src/webapp.cpp:227
 msgid "The client failed to connect the server"
-msgstr ""
+msgstr "Не удалось подключиться к серверу"
 
 #: src/webapp.cpp:228
 msgid "Invalid value"
@@ -5300,7 +5291,7 @@ msgstr "Неверное значение"
 
 #: src/webapp.cpp:229
 msgid "The remote file doesn't exist"
-msgstr ""
+msgstr "Файл не существует"
 
 #: src/webapp.cpp:230
 msgid "An error occurred during reconnection"
@@ -5308,30 +5299,25 @@ msgstr "Произошла ошибка во время установки со�
 
 #: src/webapp.cpp:231
 msgid "Someone tried to send a command during a transfer"
-msgstr ""
+msgstr "Кто-то пытается отдать команду во время отправки"
 
 #: src/webapp.cpp:232
 msgid "Cannot get data from website"
 msgstr "Не могу получить данные из сети"
 
-# FIXME:
 #: src/webapp.cpp:453
-msgid "Account '"
-msgstr "Account '"
-
-# FIXME:
-#: src/webapp.cpp:453
-msgid "' not found!"
-msgstr "'s не найден!"
+#, c-format
+msgid "Account '%s' not found!"
+msgstr "Счёт '%s' не найден!"
 
 #: src/webapp.cpp:455
-msgid "Transaction will be inserted with the first bank account:"
-msgstr "Проводки сохранены в первый счёт: "
-
-# FIXME:
-#: src/webapp.cpp:456
-msgid "' and marked as  Follow Up"
+#, c-format
+msgid ""
+"Transaction will be inserted with the first bank account:\n"
+"'%s' and marked as  'Follow Up'"
 msgstr ""
+"Транзакция будет сохранена в первый счёт:\n"
+"'%s' и отмечена как 'Отслеживать'"
 
 #: src/webapp.cpp:457
 msgid "Wrong WebApp account"
@@ -5644,7 +5630,7 @@ msgstr "Неверное значение."
 
 #: src/mmtextctrl.h:90
 msgid "Please enter a positive or calculated value."
-msgstr ""
+msgstr "Пожалуйста введите положительное число или арифметическое выражение."
 
 #: src/mmtextctrl.h:92
 msgid ""
@@ -5674,7 +5660,7 @@ msgstr ""
 msgid ""
 "To create new stocks entry the Symbol, Number of shares and Purchase prise "
 "should be entered."
-msgstr ""
+msgstr "Для создания нового "
 
 #: src/stockspanel.h:31
 msgid "Sample of UK (HSBC HLDG) share: HSBA.L"
@@ -5693,12 +5679,6 @@ msgstr ""
 #~ msgid "Show/Hide Stock Accounts on Summary page"
 #~ msgstr "Показать/скрыть инвестиционные счета в сводке"
 
-#~ msgid "MMEX System Information Check"
-#~ msgstr "Проверка системной информации"
-
-#~ msgid "Proceed to website: "
-#~ msgstr "Перейти на Web-сайт: "
-
 #~ msgid "Home Page Expansion Options"
 #~ msgstr "Параметры начальной страницы"
 
@@ -5710,6 +5690,16 @@ msgstr ""
 
 #~ msgid "Stock Accounts"
 #~ msgstr "Инвестиционные счета "
+
+# FIXME:
+#~ msgid "Account '"
+#~ msgstr "Account '"
+
+#~ msgid "MMEX System Information Check"
+#~ msgstr "Проверка системной информации"
+
+#~ msgid "Proceed to website: "
+#~ msgstr "Перейти на Web-сайт: "
 
 #~ msgid "Rate of Change in Value"
 #~ msgstr "Оценить изменения в стоимости"
