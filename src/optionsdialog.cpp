@@ -407,7 +407,7 @@ void mmOptionsDialog::CreateControls()
     navTreeOptionsStaticBoxSizer->Add(expandTermCheckBox, g_flags);
 
     wxCheckBox* expandStocksCheckBox = new wxCheckBox(viewsPanel, ID_DIALOG_OPTIONS_EXPAND_STOCKS_TREE
-        , _("Term Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
+        , _("Stock Accounts"), wxDefaultPosition, wxDefaultSize, wxCHK_2STATE);
     expandStocksCheckBox->SetValue(GetIniDatabaseCheckboxValue("EXPAND_STOCK_TREE", false));
     expandStocksCheckBox->SetToolTip(_("Expand Stocks Accounts in Trew View when tree is refreshed"));
     navTreeOptionsStaticBoxSizer->Add(expandStocksCheckBox, g_flags);
