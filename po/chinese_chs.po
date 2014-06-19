@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-19 22:24+0800\n"
-"PO-Revision-Date: 2014-06-14 20:54+0100\n"
-"Last-Translator: Nikolay <vomikan@mail.ru>\n"
+"PO-Revision-Date: 2014-06-19 22:51+0800\n"
+"Last-Translator: Money Manager Ex <moneymanagerex@gmail.com>\n"
 "Language-Team: TheZeal Software <Kyosuketam>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.5.7\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -33,7 +33,7 @@ msgstr "网站："
 
 #: src/aboutdialog.cpp:89
 msgid "Forum"
-msgstr ""
+msgstr "论坛"
 
 #: src/aboutdialog.cpp:92
 msgid "Wiki page"
@@ -54,11 +54,11 @@ msgstr ""
 
 #: src/aboutdialog.cpp:105
 msgid "Donate"
-msgstr ""
+msgstr "捐赠"
 
 #: src/aboutdialog.cpp:180
 msgid "Developers"
-msgstr ""
+msgstr "开发者"
 
 #: src/aboutdialog.cpp:185
 msgid "Artwork"
@@ -5429,9 +5429,8 @@ msgid "Month: "
 msgstr "月份"
 
 #: src/reports/budgetcategorysummary.cpp:97
-#, fuzzy
 msgid "Budget Categories for "
-msgstr "预算分类摘要"
+msgstr "预算分类"
 
 #: src/reports/budgetcategorysummary.cpp:99
 #, fuzzy
@@ -5444,14 +5443,12 @@ msgid "( Estimated Vs Actual )"
 msgstr "（预计对比实际）"
 
 #: src/reports/budgetcategorysummary.cpp:199
-#, fuzzy
 msgid "Estimated Income:"
-msgstr "估计收入：实际收入："
+msgstr "估计收入："
 
 #: src/reports/budgetcategorysummary.cpp:201
-#, fuzzy
 msgid "Actual Income:"
-msgstr "收入："
+msgstr "实际收入："
 
 #: src/reports/budgetcategorysummary.cpp:203
 #, fuzzy
@@ -5626,19 +5623,16 @@ msgid "Today"
 msgstr "查看今天"
 
 #: src/reports/mmDateRange.cpp:108
-#, fuzzy
 msgid "Last 90 Days"
-msgstr "最近30天"
+msgstr "最近90天"
 
 #: src/reports/mmDateRange.cpp:118
-#, fuzzy
 msgid "Last 3 Months"
-msgstr "查看最后一月"
+msgstr "查看最近三个月"
 
 #: src/reports/mmDateRange.cpp:128
-#, fuzzy
 msgid "Last 12 Months"
-msgstr "查看最后一月"
+msgstr "查看最近十二个月"
 
 #: src/reports/mmgraphpie.cpp:49
 #, fuzzy
