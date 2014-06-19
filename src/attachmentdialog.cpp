@@ -456,8 +456,7 @@ bool mmAttachmentManage::OpenAttachment(const wxString& FileToOpen)
         return false;
 	}
 
-    wxLaunchDefaultApplication(FileToOpen);
-	return true;
+    return wxLaunchDefaultApplication(FileToOpen);;
 }
 
 bool mmAttachmentManage::DeleteAllAttachments(const wxString& RefType, const int& RefId)
