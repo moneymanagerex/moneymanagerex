@@ -19,7 +19,7 @@ cls
 REM Set the variable: mmex_release_version
 REM to reflect the correct version.
 
-rem set mmex_release_version=mmex_1.1.0.0
+rem set mmex_release_version=mmex_1.1.0
 set mmex_release_version=mmex_1.1.0-rc2
 
 set mmex_system_name=MoneyManagerEX
