@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-19 22:24+0800\n"
+"POT-Creation-Date: 2014-06-19 22:56+0800\n"
 "PO-Revision-Date: 2014-06-14 20:56+0100\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -79,13 +79,12 @@ msgstr ""
 #: src/attachmentdialog.cpp:121 src/billsdepositsdialog.cpp:571
 #: src/budgetentrydialog.cpp:160 src/budgetyeardialog.cpp:117
 #: src/budgetyearentrydialog.cpp:123 src/filtertransdialog.cpp:362
-#: src/optionsdialog.cpp:860 src/payeedialog.cpp:127
-#: src/relocatecategorydialog.cpp:116 src/relocatepayeedialog.cpp:111
+#: src/import_export/qif_export.cpp:196 src/import_export/qif_export.cpp:220
+#: src/import_export/qif_import_gui.cpp:258 src/optionsdialog.cpp:860
+#: src/payeedialog.cpp:127 src/relocatecategorydialog.cpp:116
+#: src/relocatepayeedialog.cpp:111 src/reports/reportbase.cpp:59
 #: src/splitdetailsdialog.cpp:143 src/splittransactionsdialog.cpp:170
-#: src/transdialog.cpp:496 src/import_export/qif_export.cpp:196
-#: src/import_export/qif_export.cpp:220
-#: src/import_export/qif_import_gui.cpp:258 src/reports/reportbase.cpp:59
-#: src/mmsinglechoicedialog.h:56
+#: src/transdialog.cpp:496 src/mmsinglechoicedialog.h:56
 msgid "&OK "
 msgstr ""
 
@@ -131,17 +130,17 @@ msgstr "Αγαπημένος λογαριασμός"
 #: src/accountdialog.cpp:210 src/assetdialog.cpp:177 src/assetspanel.cpp:418
 #: src/billsdepositsdialog.cpp:554 src/billsdepositspanel.cpp:151
 #: src/filtertransdialog.cpp:306 src/filtertransdialog.cpp:323
-#: src/mmcheckingpanel.cpp:990 src/stockdialog.cpp:199 src/stockspanel.cpp:76
-#: src/transdialog.cpp:465 src/import_export/qif_import_gui.cpp:84
+#: src/import_export/qif_import_gui.cpp:84
 #: src/import_export/univcsvdialog.cpp:76
-#: src/import_export/univcsvdialog.cpp:1055 src/reports/transactions.cpp:129
-#: src/reports/transactions.cpp:131
+#: src/import_export/univcsvdialog.cpp:1055 src/mmcheckingpanel.cpp:990
+#: src/reports/transactions.cpp:129 src/reports/transactions.cpp:131
+#: src/stockdialog.cpp:199 src/stockspanel.cpp:76 src/transdialog.cpp:465
 msgid "Notes"
 msgstr "Σημειώσεις"
 
-#: src/accountdialog.cpp:220 src/optionsdialog.cpp:843
-#: src/model/Model_Category.cpp:111 src/model/Model_Category.cpp:121
-#: src/model/Model_Category.cpp:165
+#: src/accountdialog.cpp:220 src/model/Model_Category.cpp:111
+#: src/model/Model_Category.cpp:121 src/model/Model_Category.cpp:165
+#: src/optionsdialog.cpp:843
 msgid "Others"
 msgstr "Άλλα"
 
@@ -174,14 +173,14 @@ msgstr "Δηλώστε το ποσό της συναλλαγής"
 #: src/attachmentdialog.cpp:122 src/billsdepositsdialog.cpp:574
 #: src/budgetentrydialog.cpp:163 src/budgetyeardialog.cpp:120
 #: src/budgetyearentrydialog.cpp:126 src/categdialog.cpp:242
-#: src/filtertransdialog.cpp:364 src/maincurrencydialog.cpp:199
-#: src/optionsdialog.cpp:862 src/payeedialog.cpp:128
-#: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
-#: src/splitdetailsdialog.cpp:146 src/splittransactionsdialog.cpp:171
-#: src/transdialog.cpp:497 src/import_export/qif_export.cpp:197
+#: src/filtertransdialog.cpp:364 src/import_export/qif_export.cpp:197
 #: src/import_export/qif_export.cpp:222
 #: src/import_export/qif_import_gui.cpp:259
-#: src/import_export/univcsvdialog.cpp:316 src/reports/reportbase.cpp:61
+#: src/import_export/univcsvdialog.cpp:316 src/maincurrencydialog.cpp:199
+#: src/optionsdialog.cpp:862 src/payeedialog.cpp:128
+#: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
+#: src/reports/reportbase.cpp:61 src/splitdetailsdialog.cpp:146
+#: src/splittransactionsdialog.cpp:171 src/transdialog.cpp:497
 #: src/mmsinglechoicedialog.h:58
 #, fuzzy
 msgid "&Cancel "
@@ -257,8 +256,8 @@ msgstr ""
 msgid "Account Name "
 msgstr "Όνομα λογαριασμού"
 
-#: src/accountdialog.cpp:347 src/optionsdialog.cpp:222
-#: src/import_export/qif_import_gui.cpp:215
+#: src/accountdialog.cpp:347 src/import_export/qif_import_gui.cpp:215
+#: src/optionsdialog.cpp:222
 msgid "Currency"
 msgstr "Νόμισμα"
 
@@ -333,10 +332,10 @@ msgid "Asset Details"
 msgstr "Λεπτομέρειες περιουσιακού στοιχείου"
 
 #: src/assetdialog.cpp:117 src/assetspanel.cpp:397
-#: src/general_report_manager.cpp:570 src/maincurrencydialog.cpp:59
-#: src/payeedialog.cpp:64 src/import_export/qif_import_gui.cpp:214
+#: src/general_report_manager.cpp:570 src/import_export/qif_import_gui.cpp:214
 #: src/import_export/qif_import_gui.cpp:227
-#: src/import_export/qif_import_gui.cpp:238
+#: src/import_export/qif_import_gui.cpp:238 src/maincurrencydialog.cpp:59
+#: src/payeedialog.cpp:64
 msgid "Name"
 msgstr "Όνομα"
 
@@ -346,11 +345,12 @@ msgstr "Εισάγετε το όνομα του περιουσιακού στο�
 
 #: src/assetdialog.cpp:125 src/assetspanel.cpp:414
 #: src/billsdepositsdialog.cpp:436 src/filtertransdialog.cpp:315
-#: src/mmcheckingpanel.cpp:974 src/stockdialog.cpp:135 src/transdialog.cpp:357
 #: src/import_export/qif_import_gui.cpp:78
 #: src/import_export/univcsvdialog.cpp:70
-#: src/import_export/univcsvdialog.cpp:1057 src/reports/cashflow.cpp:103
-#: src/reports/transactions.cpp:97 src/reports/transactions.cpp:99
+#: src/import_export/univcsvdialog.cpp:1057 src/mmcheckingpanel.cpp:974
+#: src/reports/cashflow.cpp:103 src/reports/transactions.cpp:97
+#: src/reports/transactions.cpp:99 src/stockdialog.cpp:135
+#: src/transdialog.cpp:357
 msgid "Date"
 msgstr "Ημερομηνία"
 
@@ -366,8 +366,8 @@ msgstr "Τύπος περιουσιακού στοιχείου"
 msgid "Select type of asset"
 msgstr "Επιλέξτε τύπο περιουσιακού στοιχείου"
 
-#: src/assetdialog.cpp:143 src/stockdialog.cpp:194 src/stockspanel.cpp:73
-#: src/import_export/qif_import_gui.cpp:83
+#: src/assetdialog.cpp:143 src/import_export/qif_import_gui.cpp:83
+#: src/stockdialog.cpp:194 src/stockspanel.cpp:73
 msgid "Value"
 msgstr "Αξία"
 
@@ -457,19 +457,19 @@ msgid "Assets"
 msgstr "Περιουσιακά στοιχεία"
 
 #: src/assetspanel.cpp:370 src/assetspanel.cpp:645 src/assetspanel.cpp:662
-#: src/mmframe.cpp:1079 src/optionsdialog.cpp:135
 #: src/import_export/qif_export.cpp:62 src/import_export/qif_export.cpp:63
-#: src/import_export/qif_export.cpp:127
+#: src/import_export/qif_export.cpp:127 src/mmframe.cpp:1079
+#: src/optionsdialog.cpp:135
 msgid "All"
 msgstr "Όλοι"
 
 #: src/assetspanel.cpp:402 src/billsdepositsdialog.cpp:472
 #: src/billsdepositspanel.cpp:146 src/filtertransdialog.cpp:251
-#: src/filtertransdialog.cpp:320 src/mmhomepagepanel.cpp:778
-#: src/splitdetailsdialog.cpp:105 src/transdialog.cpp:390
-#: src/import_export/qif_import_gui.cpp:81 src/reports/budgetingperf.cpp:130
+#: src/filtertransdialog.cpp:320 src/import_export/qif_import_gui.cpp:81
+#: src/mmhomepagepanel.cpp:778 src/reports/budgetingperf.cpp:130
 #: src/reports/incexpenses.cpp:113 src/reports/transactions.cpp:117
-#: src/reports/transactions.cpp:119
+#: src/reports/transactions.cpp:119 src/splitdetailsdialog.cpp:105
+#: src/transdialog.cpp:390
 msgid "Type"
 msgstr "Τύπος"
 
@@ -537,9 +537,8 @@ msgstr ""
 msgid "Total: "
 msgstr "Σύνολο: "
 
-#: src/attachmentdialog.cpp:54 src/payeedialog.cpp:63
-#: src/import_export/qif_import_gui.cpp:76
-#: src/import_export/univcsvdialog.cpp:1046
+#: src/attachmentdialog.cpp:54 src/import_export/qif_import_gui.cpp:76
+#: src/import_export/univcsvdialog.cpp:1046 src/payeedialog.cpp:63
 msgid "#"
 msgstr "#"
 
@@ -630,8 +629,8 @@ msgid "Confirm Attachment Deletion"
 msgstr "Επιβεβαιώστε τη διαγραφή του λογαριασμού"
 
 #: src/attachmentdialog.cpp:281 src/categdialog.cpp:222
-#: src/maincurrencydialog.cpp:176 src/payeedialog.cpp:364
-#: src/splittransactionsdialog.cpp:163 src/import_export/univcsvdialog.cpp:149
+#: src/import_export/univcsvdialog.cpp:149 src/maincurrencydialog.cpp:176
+#: src/payeedialog.cpp:364 src/splittransactionsdialog.cpp:163
 #, fuzzy
 msgid "&Add "
 msgstr "&Προσθήκη έτους"
@@ -641,9 +640,9 @@ msgstr "&Προσθήκη έτους"
 msgid "&Open "
 msgstr "&Άνοιγμα"
 
-#: src/attachmentdialog.cpp:286 src/maincurrencydialog.cpp:183
-#: src/payeedialog.cpp:367 src/splittransactionsdialog.cpp:165
-#: src/import_export/univcsvdialog.cpp:153
+#: src/attachmentdialog.cpp:286 src/import_export/univcsvdialog.cpp:153
+#: src/maincurrencydialog.cpp:183 src/payeedialog.cpp:367
+#: src/splittransactionsdialog.cpp:165
 #, fuzzy
 msgid "&Remove "
 msgstr "Αφαίρεση"
@@ -726,9 +725,9 @@ msgid "Split Category"
 msgstr "Διαίρεση κατηγορίας"
 
 #: src/billsdepositsdialog.cpp:254 src/billsdepositspanel.cpp:55
-#: src/filtertransdialog.cpp:49 src/optionsdialog.cpp:641
-#: src/model/Model_Asset.cpp:23 src/model/Model_Billsdeposits.cpp:31
-#: src/model/Model_Budget.cpp:54 src/model/Model_Checking.cpp:33
+#: src/filtertransdialog.cpp:49 src/model/Model_Asset.cpp:23
+#: src/model/Model_Billsdeposits.cpp:31 src/model/Model_Budget.cpp:54
+#: src/model/Model_Checking.cpp:33 src/optionsdialog.cpp:641
 msgid "None"
 msgstr "Τίποτα"
 
@@ -897,11 +896,11 @@ msgid "Specify the status for the transaction"
 msgstr "Δηλώστε την κατάσταση της συναλλαγής"
 
 #: src/billsdepositsdialog.cpp:448 src/filtertransdialog.cpp:238
-#: src/filtertransdialog.cpp:318 src/mmcheckingpanel.cpp:980
-#: src/transdialog.cpp:371 src/import_export/qif_import_gui.cpp:216
+#: src/filtertransdialog.cpp:318 src/import_export/qif_import_gui.cpp:216
 #: src/import_export/qif_import_gui.cpp:228
-#: src/import_export/qif_import_gui.cpp:239 src/reports/transactions.cpp:109
-#: src/reports/transactions.cpp:111
+#: src/import_export/qif_import_gui.cpp:239 src/mmcheckingpanel.cpp:980
+#: src/reports/transactions.cpp:109 src/reports/transactions.cpp:111
+#: src/transdialog.cpp:371
 msgid "Status"
 msgstr "Κατάσταση"
 
@@ -932,11 +931,11 @@ msgstr "Δηλώστε το ποσό που θα μεταφερθεί"
 #: src/billsdepositsdialog.cpp:479 src/billsdepositsdialog.cpp:908
 #: src/billsdepositspanel.cpp:147 src/budgetingpanel.cpp:284
 #: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:353
-#: src/mmhomepagepanel.cpp:778 src/splitdetailsdialog.cpp:120
+#: src/mmhomepagepanel.cpp:778 src/reports/budgetcategorysummary.cpp:111
+#: src/reports/categexp.cpp:160 src/reports/categexp.cpp:162
+#: src/reports/incexpenses.cpp:114 src/reports/transactions.cpp:121
+#: src/reports/transactions.cpp:123 src/splitdetailsdialog.cpp:120
 #: src/splittransactionsdialog.cpp:128 src/transdialog.cpp:408
-#: src/reports/budgetcategorysummary.cpp:111 src/reports/categexp.cpp:160
-#: src/reports/categexp.cpp:162 src/reports/incexpenses.cpp:114
-#: src/reports/transactions.cpp:121 src/reports/transactions.cpp:123
 msgid "Amount"
 msgstr "Ποσό"
 
@@ -947,13 +946,13 @@ msgstr "Καθορίστε το ποσό της μεταφοράς στον λο
 #: src/billsdepositsdialog.cpp:503 src/billsdepositsdialog.cpp:772
 #: src/billsdepositsdialog.cpp:875 src/billsdepositspanel.cpp:144
 #: src/filtertransdialog.cpp:205 src/filtertransdialog.cpp:317
-#: src/mmcheckingpanel.cpp:978 src/mmhomepagepanel.cpp:353
-#: src/transdialog.cpp:246 src/transdialog.cpp:420
 #: src/import_export/qif_import_gui.cpp:80
 #: src/import_export/qif_import_gui.cpp:221
-#: src/import_export/univcsvdialog.cpp:71 src/reports/payee.cpp:136
+#: src/import_export/univcsvdialog.cpp:71 src/mmcheckingpanel.cpp:978
+#: src/mmhomepagepanel.cpp:353 src/reports/payee.cpp:136
 #: src/reports/payee.cpp:138 src/reports/transactions.cpp:105
-#: src/reports/transactions.cpp:107
+#: src/reports/transactions.cpp:107 src/transdialog.cpp:246
+#: src/transdialog.cpp:420
 msgid "Payee"
 msgstr "Δικαιούχος"
 
@@ -988,15 +987,15 @@ msgstr "Χρησιμοποιήστε την διαίρεση κατηγοριώ�
 #: src/billsdepositsdialog.cpp:533 src/billsdepositsdialog.cpp:885
 #: src/billsdepositsdialog.cpp:893 src/budgetingpanel.cpp:281
 #: src/filtertransdialog.cpp:216 src/filtertransdialog.cpp:319
-#: src/mmcheckingpanel.cpp:982 src/mmhomepagepanel.cpp:180
-#: src/splitdetailsdialog.cpp:128 src/splittransactionsdialog.cpp:127
-#: src/transdialog.cpp:443 src/import_export/qif_import_gui.cpp:82
+#: src/import_export/qif_import_gui.cpp:82
 #: src/import_export/qif_import_gui.cpp:233
-#: src/import_export/univcsvdialog.cpp:73
-#: src/reports/budgetcategorysummary.cpp:109 src/reports/budgetingperf.cpp:129
-#: src/reports/categexp.cpp:155 src/reports/categexp.cpp:157
-#: src/reports/categovertimeperf.cpp:144 src/reports/categovertimeperf.cpp:146
-#: src/reports/transactions.cpp:113 src/reports/transactions.cpp:115
+#: src/import_export/univcsvdialog.cpp:73 src/mmcheckingpanel.cpp:982
+#: src/mmhomepagepanel.cpp:180 src/reports/budgetcategorysummary.cpp:109
+#: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:155
+#: src/reports/categexp.cpp:157 src/reports/categovertimeperf.cpp:144
+#: src/reports/categovertimeperf.cpp:146 src/reports/transactions.cpp:113
+#: src/reports/transactions.cpp:115 src/splitdetailsdialog.cpp:128
+#: src/splittransactionsdialog.cpp:127 src/transdialog.cpp:443
 msgid "Category"
 msgstr "Κατηγορία"
 
@@ -1010,10 +1009,10 @@ msgid "Specify any associated check number or transaction number"
 msgstr "Δηλώστε ένα συνδεόμενο αριθμό επιταγής ή ένα αριθμό συναλλαγής"
 
 #: src/billsdepositsdialog.cpp:546 src/filtertransdialog.cpp:298
-#: src/filtertransdialog.cpp:322 src/mmcheckingpanel.cpp:976
-#: src/transdialog.cpp:458 src/import_export/qif_import_gui.cpp:79
-#: src/import_export/univcsvdialog.cpp:75 src/reports/transactions.cpp:125
-#: src/reports/transactions.cpp:127
+#: src/filtertransdialog.cpp:322 src/import_export/qif_import_gui.cpp:79
+#: src/import_export/univcsvdialog.cpp:75 src/mmcheckingpanel.cpp:976
+#: src/reports/transactions.cpp:125 src/reports/transactions.cpp:127
+#: src/transdialog.cpp:458
 msgid "Number"
 msgstr "Αριθμός"
 
@@ -1070,12 +1069,12 @@ msgstr "Από λογαριασμό "
 
 #: src/billsdepositsdialog.cpp:933 src/billsdepositspanel.cpp:145
 #: src/filtertransdialog.cpp:176 src/filtertransdialog.cpp:316
-#: src/transdialog.cpp:250 src/transdialog.cpp:415
 #: src/import_export/qif_import_gui.cpp:77
 #: src/import_export/qif_import_gui.cpp:138
 #: src/import_export/qif_import_gui.cpp:208
 #: src/import_export/qif_import_gui.cpp:625 src/reports/transactions.cpp:101
-#: src/reports/transactions.cpp:103
+#: src/reports/transactions.cpp:103 src/transdialog.cpp:250
+#: src/transdialog.cpp:415
 msgid "Account"
 msgstr "Λογαριασμός"
 
@@ -1469,9 +1468,9 @@ msgstr "Το έτος προϋπολογισμού ήδη υπάρχει"
 msgid "Organize Categories"
 msgstr "Οργάνωση των κατηγοριών"
 
-#: src/categdialog.cpp:113 src/mmframereport.cpp:56 src/transdialog.cpp:300
-#: src/import_export/qif_export.cpp:119 src/reports/categexp.cpp:141
-#: src/reports/categexp.h:192
+#: src/categdialog.cpp:113 src/import_export/qif_export.cpp:119
+#: src/mmframereport.cpp:56 src/reports/categexp.cpp:141
+#: src/transdialog.cpp:300 src/reports/categexp.h:192
 msgid "Categories"
 msgstr "Κατηγορίες"
 
@@ -1864,17 +1863,17 @@ msgstr ""
 msgid "Include all subcategories for the selected category."
 msgstr "Μετατόπιση όλων των κατηγοριών προέλευσης στην κατηγορία προορισμού"
 
-#: src/filtertransdialog.cpp:257 src/mmcheckingpanel.cpp:984
-#: src/splitdetailsdialog.cpp:110 src/splittransactionsdialog.cpp:137
-#: src/import_export/univcsvdialog.cpp:78 src/model/Model_Billsdeposits.cpp:24
-#: src/model/Model_Checking.cpp:26
+#: src/filtertransdialog.cpp:257 src/import_export/univcsvdialog.cpp:78
+#: src/mmcheckingpanel.cpp:984 src/model/Model_Billsdeposits.cpp:24
+#: src/model/Model_Checking.cpp:26 src/splitdetailsdialog.cpp:110
+#: src/splittransactionsdialog.cpp:137
 msgid "Withdrawal"
 msgstr "Ανάληψη"
 
-#: src/filtertransdialog.cpp:259 src/mmcheckingpanel.cpp:986
-#: src/splitdetailsdialog.cpp:111 src/splittransactionsdialog.cpp:142
-#: src/import_export/univcsvdialog.cpp:79 src/model/Model_Billsdeposits.cpp:25
-#: src/model/Model_Checking.cpp:27
+#: src/filtertransdialog.cpp:259 src/import_export/univcsvdialog.cpp:79
+#: src/mmcheckingpanel.cpp:986 src/model/Model_Billsdeposits.cpp:25
+#: src/model/Model_Checking.cpp:27 src/splitdetailsdialog.cpp:111
+#: src/splittransactionsdialog.cpp:142
 msgid "Deposit"
 msgstr "Κατάθεση"
 
@@ -1915,8 +1914,8 @@ msgstr "Διαχείριση προσαρμοσμένων εκθέσεων SQL"
 msgid "Reports"
 msgstr "Εκθέσεις"
 
-#: src/general_report_manager.cpp:209 src/mmframe.cpp:1074
-#: src/mmframe.cpp:1261 src/import_export/univcsvdialog.cpp:303
+#: src/general_report_manager.cpp:209 src/import_export/univcsvdialog.cpp:303
+#: src/mmframe.cpp:1074 src/mmframe.cpp:1261
 msgid "&Import"
 msgstr "&Εισαγωγή"
 
@@ -1926,8 +1925,8 @@ msgid "Locate and load a report file."
 msgstr ""
 "Εντοπισμός και φόρτωση ενός αρχείου σεναρίου SQL στην περιοχή σεναρίου."
 
-#: src/general_report_manager.cpp:213 src/mmframe.cpp:1070
-#: src/mmframe.cpp:1255 src/import_export/univcsvdialog.cpp:310
+#: src/general_report_manager.cpp:213 src/import_export/univcsvdialog.cpp:310
+#: src/mmframe.cpp:1070 src/mmframe.cpp:1255
 msgid "&Export"
 msgstr "&Εξαγωγή"
 
@@ -2076,6 +2075,535 @@ msgstr "Έκθεση δικαιούχου"
 msgid "Choose file to Save As Report"
 msgstr "Επιλέξτε βάση δεδομένων για αποθήκευση ως"
 
+#: src/import_export/qif_export.cpp:39 src/import_export/qif_export.cpp:218
+#: src/import_export/qif_export.cpp:303
+msgid "QIF Export"
+msgstr "Εξαγωγή QIF"
+
+#: src/import_export/qif_export.cpp:96
+#, fuzzy
+msgid "Parameters"
+msgstr "Δικαιούχοι"
+
+#: src/import_export/qif_export.cpp:101
+#: src/import_export/qif_import_gui.cpp:180
+#, fuzzy
+msgid "Log"
+msgstr "Διαμονή"
+
+#: src/import_export/qif_export.cpp:108
+msgid "QIF"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:108
+msgid "CSV"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2356
+#: src/mmframe.cpp:2360 src/mmframe.cpp:2380 src/mmframe.cpp:2384
+msgid "Accounts"
+msgstr "Λογαριασμοί"
+
+#: src/import_export/qif_export.cpp:136
+#: src/import_export/qif_import_gui.cpp:158
+#, fuzzy
+msgid "From Date"
+msgstr "Από "
+
+#: src/import_export/qif_export.cpp:145
+#: src/import_export/qif_import_gui.cpp:167
+#, fuzzy
+msgid "To Date"
+msgstr "Ημερομηνία"
+
+#: src/import_export/qif_export.cpp:156
+msgid "Write to File"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:159
+#: src/import_export/qif_import_gui.cpp:108
+#: src/import_export/univcsvdialog.cpp:206
+msgid "File Name:"
+msgstr "Όνομα αρχείου:"
+
+#: src/import_export/qif_export.cpp:160
+#: src/import_export/qif_import_gui.cpp:109
+msgid "Choose &file"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:182
+#: src/import_export/univcsvdialog.cpp:328
+#, fuzzy
+msgid "Clear"
+msgstr "&Καθαρισμός"
+
+#: src/import_export/qif_export.cpp:217
+msgid "Choose Account to Export from:"
+msgstr "Επιλέξτε λογαριασμό από τον οποίο θα γίνει εξαγωγή:"
+
+#: src/import_export/qif_export.cpp:263
+#: src/import_export/qif_import_gui.cpp:564
+msgid "QIF Files"
+msgstr "Αρχεία QIF"
+
+#: src/import_export/qif_export.cpp:263
+#: src/import_export/univcsvdialog.cpp:917
+msgid "CSV Files"
+msgstr "CSV αρχεία"
+
+#: src/import_export/qif_export.cpp:266
+msgid "Choose QIF data file to Export"
+msgstr "Επιλέξτε ένα αρχείο δεδομένων QIF προς εξαγωγή"
+
+#: src/import_export/qif_export.cpp:267
+#: src/import_export/univcsvdialog.cpp:918
+msgid "Choose CSV data file to Export"
+msgstr "Επιλέξτε ένα αρχείο CSV για εξαγωγή"
+
+#: src/import_export/qif_export.cpp:283
+msgid "No Account available for export"
+msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγωγή"
+
+#: src/import_export/qif_export.cpp:287
+#, fuzzy
+msgid "No Accounts selected for export"
+msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγωγή"
+
+#: src/import_export/qif_export.cpp:291
+#, fuzzy
+msgid "File name is empty"
+msgstr "Η ημερομηνία είναι κενή, "
+
+#: src/import_export/qif_export.cpp:295
+msgid "To Date less than From Date"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:377
+#, fuzzy
+msgid "Categories exported"
+msgstr "Έκθεση κατηγορίας"
+
+#: src/import_export/qif_export.cpp:385
+#: src/import_export/qif_import_gui.cpp:289
+#: src/import_export/qif_import_gui.cpp:620
+#, fuzzy
+msgid "Please wait"
+msgstr "Παρακαλούμε περιμένετε"
+
+#: src/import_export/qif_export.cpp:385
+#, fuzzy
+msgid "Exporting"
+msgstr "&Εξαγωγή"
+
+#: src/import_export/qif_export.cpp:406
+#, fuzzy, c-format
+msgid "Exporting transaction %i"
+msgstr "Επερχόμενες συναλλαγές"
+
+#: src/import_export/qif_export.cpp:457
+#, fuzzy, c-format
+msgid "Number of transactions exported: %ld"
+msgstr "Έκθεση των συναλλαγών"
+
+#: src/import_export/qif_export.cpp:458 src/mmframe.cpp:1253
+msgid "Export to QIF"
+msgstr "Εξαγωγή σε QIF"
+
+#: src/import_export/qif_import_gui.cpp:62
+#: src/import_export/qif_import_gui.cpp:680
+msgid "QIF Import"
+msgstr "Εισαγωγή QIF"
+
+#: src/import_export/qif_import_gui.cpp:124 src/optionsdialog.cpp:240
+msgid "Date Format"
+msgstr "Μορφή ημερομηνίας"
+
+#: src/import_export/qif_import_gui.cpp:152
+#, fuzzy
+msgid "Filtering Details:"
+msgstr "Λεπτομέρειες φιλτραρίσματος: "
+
+#: src/import_export/qif_import_gui.cpp:189
+msgid "Data"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:289
+#, fuzzy
+msgid "Scanning"
+msgstr "Προειδοποίηση"
+
+#: src/import_export/qif_import_gui.cpp:309
+#, c-format
+msgid "Reading line %i, %ld ms"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:339
+#, fuzzy, c-format
+msgid "Line %i \t %s\n"
+msgstr "Γραμμή: "
+
+#: src/import_export/qif_import_gui.cpp:356
+#, fuzzy, c-format
+msgid "Number of lines read from QIF file: %i in %ld ms"
+msgstr "Έκθεση των συναλλαγών"
+
+#: src/import_export/qif_import_gui.cpp:359
+msgid "Press OK Button to continue"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:473
+#: src/import_export/qif_import_gui.cpp:492
+#: src/import_export/qif_import_gui.cpp:509
+msgid "OK"
+msgstr "OK"
+
+#: src/import_export/qif_import_gui.cpp:475
+#, fuzzy
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+#: src/import_export/qif_import_gui.cpp:478
+#: src/import_export/qif_import_gui.cpp:492
+#, fuzzy
+msgid "Missing"
+msgstr "Τραπεζικοί λογαριασμοί"
+
+#: src/import_export/qif_import_gui.cpp:565
+#, fuzzy
+msgid "Choose QIF data file to Import"
+msgstr "Επιλέξτε αρχείο QIF προς εισαγωγή"
+
+#: src/import_export/qif_import_gui.cpp:613
+#, fuzzy
+msgid "Do you want to import all transaction ?"
+msgstr "Θέλετε πραγματικά να διαγράψετε όλες τις εμφανιζόμενες συναλλαγές;"
+
+#: src/import_export/qif_import_gui.cpp:614
+msgid "All missing account, payees and categories will be created."
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:615
+#, fuzzy
+msgid "Confirm Import"
+msgstr "Εισαγωγή"
+
+#: src/import_export/qif_import_gui.cpp:620
+#, fuzzy
+msgid "Importing"
+msgstr "Εισάγεται CSV"
+
+#: src/import_export/qif_import_gui.cpp:622
+#, fuzzy
+msgid "Importing Accounts"
+msgstr "Εισάγεται τύπος λογαριασμού: "
+
+#: src/import_export/qif_import_gui.cpp:629
+#, fuzzy
+msgid "Importing Payees"
+msgstr "Εισάγεται CSV"
+
+#: src/import_export/qif_import_gui.cpp:632
+#, fuzzy
+msgid "Importing Categories"
+msgstr "Οργάνωση των κατηγοριών"
+
+#: src/import_export/qif_import_gui.cpp:647
+#, fuzzy, c-format
+msgid "Importing transaction %i of %i"
+msgstr "Μετακινείται η συναλλαγή από "
+
+#: src/import_export/qif_import_gui.cpp:663
+#, fuzzy
+msgid "Importing Transfers"
+msgstr "Εισάγεται CSV"
+
+#: src/import_export/qif_import_gui.cpp:667
+#, fuzzy
+msgid "Importing Split transactions"
+msgstr "Επερχόμενες συναλλαγές"
+
+#: src/import_export/qif_import_gui.cpp:671
+msgid "Import finished successfully"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:678
+#: src/import_export/univcsvdialog.cpp:725
+#: src/import_export/univcsvdialog.cpp:895
+msgid "Imported transactions discarded by user!"
+msgstr "Οι εισηγμένες συναλλαγές απορρίφθηκαν από το χρήστη!"
+
+#: src/import_export/qif_import_gui.cpp:838
+#, fuzzy, c-format
+msgid "Added account: %s"
+msgstr " λογαριασμό: "
+
+#: src/import_export/qif_import_gui.cpp:871
+#, fuzzy, c-format
+msgid "Added payee: %s"
+msgstr "Κατηγορία"
+
+#: src/import_export/univcsvdialog.cpp:72
+msgid "Amount(+/-)"
+msgstr "Ποσό(+/-)"
+
+#: src/import_export/univcsvdialog.cpp:74
+msgid "SubCategory"
+msgstr "Υποκατηγορία"
+
+#: src/import_export/univcsvdialog.cpp:77
+msgid "Don't Care"
+msgstr "Αδιάφορο"
+
+#: src/import_export/univcsvdialog.cpp:80
+msgid "To/From(+/-)"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:81 src/mmcheckingpanel.cpp:988
+#: src/mmhomepagepanel.cpp:655
+msgid "Balance"
+msgstr "Υπόλοιπο"
+
+#: src/import_export/univcsvdialog.cpp:126
+msgid "Specify the order of fields in the CSV file"
+msgstr "Καθορίστε την σειρά των πεδίων στο αρχείο CSV"
+
+#: src/import_export/univcsvdialog.cpp:157
+msgid "&MMEX format"
+msgstr "Μορφή &MMEX"
+
+#: src/import_export/univcsvdialog.cpp:159
+msgid "MMEX standard format"
+msgstr "Κανονική μορφή MMEX"
+
+#: src/import_export/univcsvdialog.cpp:175
+msgid "&Up"
+msgstr "&Επάνω"
+
+#: src/import_export/univcsvdialog.cpp:177
+msgid "Move Up"
+msgstr "Μετακίνηση επάνω"
+
+#: src/import_export/univcsvdialog.cpp:180
+msgid "&Down"
+msgstr "&Κάτω"
+
+#: src/import_export/univcsvdialog.cpp:182
+msgid "Move &Down"
+msgstr "Μετακίνηση &κάτω"
+
+#: src/import_export/univcsvdialog.cpp:185
+msgid "&Open"
+msgstr "&Άνοιγμα"
+
+#: src/import_export/univcsvdialog.cpp:187
+msgid "Load Template"
+msgstr "Φόρτωση προτύπου"
+
+#: src/import_export/univcsvdialog.cpp:190
+msgid "Save As..."
+msgstr "Αποθήκευση ως..."
+
+#: src/import_export/univcsvdialog.cpp:192
+msgid "Save Template"
+msgstr "Αποθήκευση προτύπου"
+
+#: src/import_export/univcsvdialog.cpp:215
+msgid "&Search"
+msgstr "&Αναζήτηση"
+
+#: src/import_export/univcsvdialog.cpp:226
+msgid "Account: "
+msgstr "Λογαριασμός: "
+
+#: src/import_export/univcsvdialog.cpp:238
+#, fuzzy
+msgid "Date Format: "
+msgstr "Μορφή ημερομηνίας"
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "Comma"
+msgstr "Κόμμα"
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "Semicolon"
+msgstr "Άνω τελεία"
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "TAB"
+msgstr "TAB"
+
+#: src/import_export/univcsvdialog.cpp:254 src/optionsdialog.cpp:944
+msgid "User Defined"
+msgstr "Καθορισμένο από το χρήστη"
+
+#: src/import_export/univcsvdialog.cpp:261 src/optionsdialog.cpp:730
+msgid "Specify the delimiter to use when importing/exporting CSV files"
+msgstr ""
+"Καθορίστε το διαχωριστικό προς χρήση κατά την εισαγωγή/εξαγωγή αρχείων CSV"
+
+#: src/import_export/univcsvdialog.cpp:277
+msgid "CSV Delimiter"
+msgstr "Διαχωριστικό CSV"
+
+#: src/import_export/univcsvdialog.cpp:287
+msgid "Preview"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:306
+msgid "Import File"
+msgstr "Εισαγωγή αρχείου"
+
+#: src/import_export/univcsvdialog.cpp:313
+msgid "Export File"
+msgstr "Εξαγωγή αρχείου"
+
+#: src/import_export/univcsvdialog.cpp:464
+msgid "Unknown"
+msgstr "Άγνωστο"
+
+#: src/import_export/univcsvdialog.cpp:469
+msgid "Choose Universal CSV format file to load"
+msgstr "Επιλέξτε αρχείο γενικής μορφής CSV για φόρτωση"
+
+#: src/import_export/univcsvdialog.cpp:476
+#: src/import_export/univcsvdialog.cpp:572
+#: src/import_export/univcsvdialog.cpp:1074
+#: src/import_export/univcsvdialog.cpp:1323
+msgid "Unable to open file."
+msgstr "Αδυναμία ανοίγματος αρχείου."
+
+#: src/import_export/univcsvdialog.cpp:476
+#: src/import_export/univcsvdialog.cpp:523
+#: src/import_export/univcsvdialog.cpp:550
+#: src/import_export/univcsvdialog.cpp:572
+#: src/import_export/univcsvdialog.cpp:588
+#: src/import_export/univcsvdialog.cpp:746
+#: src/import_export/univcsvdialog.cpp:786
+#: src/import_export/univcsvdialog.cpp:1074 src/mmframe.cpp:1887
+msgid "Universal CSV Import"
+msgstr "Εισαγωγή γενικής μορφής CSV"
+
+#: src/import_export/univcsvdialog.cpp:512
+msgid "Choose Universal CSV format file to save"
+msgstr "Επιλέξτε αρχείο γενικής μορφής CSV για αποθήκευση"
+
+#: src/import_export/univcsvdialog.cpp:523
+msgid "Unable to write to file."
+msgstr "Αδυναμία εγγραφής στο αρχείο."
+
+#: src/import_export/univcsvdialog.cpp:549
+#: src/import_export/univcsvdialog.cpp:745
+msgid ""
+"Incorrect fields specified for CSV import! Requires at least Date, Amount "
+"and Payee."
+msgstr ""
+"Καθορίστηκαν λανθασμένα πεδία για εισαγωγή από CSV. Χρειάζονται τουλάχιστον "
+"τα Ημερομηνία, Ποσό και Δικαιούχος."
+
+#: src/import_export/univcsvdialog.cpp:589
+#: src/import_export/univcsvdialog.cpp:787
+msgid "Transactions imported from CSV: "
+msgstr "Συναλλαγές που εισήχθησαν από CSV: "
+
+#: src/import_export/univcsvdialog.cpp:597
+#, fuzzy, c-format
+msgid ""
+"Transactions imported from CSV\n"
+"to account %s : %i"
+msgstr ""
+"Συναλλαγές που εισήχθησαν από CSV\n"
+"στο λογαριασμό "
+
+#: src/import_export/univcsvdialog.cpp:627
+#: src/import_export/univcsvdialog.cpp:629
+#: src/import_export/univcsvdialog.cpp:652
+#: src/import_export/univcsvdialog.cpp:654
+#: src/import_export/univcsvdialog.cpp:809
+#: src/import_export/univcsvdialog.cpp:811
+#: src/import_export/univcsvdialog.cpp:824
+#: src/import_export/univcsvdialog.cpp:826
+#, fuzzy, c-format
+msgid "Line: %i"
+msgstr "Γραμμή: "
+
+#: src/import_export/univcsvdialog.cpp:628
+#: src/import_export/univcsvdialog.cpp:630
+#: src/import_export/univcsvdialog.cpp:810
+#: src/import_export/univcsvdialog.cpp:812
+msgid " file contains insufficient number of tokens"
+msgstr " το αρχείο περιέχει μη επαρκή αριθμό συμβόλων"
+
+#: src/import_export/univcsvdialog.cpp:653
+#: src/import_export/univcsvdialog.cpp:655
+#: src/import_export/univcsvdialog.cpp:825
+#: src/import_export/univcsvdialog.cpp:827
+msgid ""
+" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
+msgstr ""
+"Ένα από τα επόμενα πεδία: Ημερομηνία, δικαιούχος, ποσό, τύπος, λείπει, "
+"παραλείπεται"
+
+#: src/import_export/univcsvdialog.cpp:689
+#: src/import_export/univcsvdialog.cpp:690
+#: src/import_export/univcsvdialog.cpp:861
+#: src/import_export/univcsvdialog.cpp:862
+#, fuzzy, c-format
+msgid "Line : %i imported OK."
+msgstr " εισήχθησαν OK"
+
+#: src/import_export/univcsvdialog.cpp:695
+#: src/import_export/univcsvdialog.cpp:865
+#, fuzzy, c-format
+msgid "Total Lines : %i"
+msgstr "Σύνολο γραμμών : %d"
+
+#: src/import_export/univcsvdialog.cpp:697
+#: src/import_export/univcsvdialog.cpp:867
+#, fuzzy, c-format
+msgid "Total Imported : %ld"
+msgstr "Σύνολο εισηγμένων : %d"
+
+#: src/import_export/univcsvdialog.cpp:699
+#: src/import_export/univcsvdialog.cpp:869
+#, c-format
+msgid "Log file written to : %s"
+msgstr "Το αρχείο καταγραφής εγγράφηκε στο: %s"
+
+#: src/import_export/univcsvdialog.cpp:702
+#: src/import_export/univcsvdialog.cpp:872
+msgid "Please confirm saving..."
+msgstr "Παρακαλούμε επιβεβαιώστε την αποθήκευση..."
+
+#: src/import_export/univcsvdialog.cpp:704
+#: src/import_export/univcsvdialog.cpp:874
+msgid "Importing CSV"
+msgstr "Εισάγεται CSV"
+
+#: src/import_export/univcsvdialog.cpp:708
+#: src/import_export/univcsvdialog.cpp:878
+msgid "Imported transactions have been flagged so you can review them."
+msgstr ""
+"Οι κινήσεις που εισήχθησαν έχουν μαρκαριστεί ώστε να μπορέσετε να τις "
+"ελέγξετε."
+
+#: src/import_export/univcsvdialog.cpp:719
+#: src/import_export/univcsvdialog.cpp:889
+msgid "Transactions saved to database in account: "
+msgstr "Οι συναλλαγές αποθηκεύτηκαν στη βάση δεδομένων στο λογαριασμό: "
+
+#: src/import_export/univcsvdialog.cpp:1037
+#, fuzzy, c-format
+msgid "Transactions exported: %ld"
+msgstr "Έκθεση των συναλλαγών"
+
+#: src/import_export/univcsvdialog.cpp:1038 src/mmframe.cpp:1252
+msgid "Export to CSV"
+msgstr "Εξαγωγή σε CSV"
+
+#: src/import_export/univcsvdialog.cpp:1313
+msgid "Choose CSV data file to import"
+msgstr "Επιλέξτε ένα αρχείο δεδομένων CSV για εισαγωγή"
+
 #: src/maincurrencydialog.cpp:58 src/stockdialog.cpp:144
 msgid "Symbol"
 msgstr "Σύμβολο"
@@ -2200,11 +2728,6 @@ msgstr "Εμφάνιση λογαριασμού : "
 #, fuzzy
 msgid "Select account used in transfer transactions"
 msgstr "Δηλώστε το ποσό της συναλλαγής"
-
-#: src/mmcheckingpanel.cpp:988 src/mmhomepagepanel.cpp:655
-#: src/import_export/univcsvdialog.cpp:81
-msgid "Balance"
-msgstr "Υπόλοιπο"
 
 #: src/mmcheckingpanel.cpp:1057
 msgid "&New Transaction"
@@ -2468,8 +2991,8 @@ msgstr "&CSV αρχεία..."
 msgid "&QIF Files..."
 msgstr "&QIF αρχεία..."
 
-#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/optionsdialog.cpp:136
-#: src/model/Model_Account.cpp:24
+#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/model/Model_Account.cpp:24
+#: src/optionsdialog.cpp:136
 msgid "Open"
 msgstr "Ανοικτοί"
 
@@ -2512,14 +3035,6 @@ msgstr "&Πρόσφατα αρχεία..."
 #: src/mmframe.cpp:1246
 msgid "&Clear Recent Files"
 msgstr "&Καθαρισμός πρόσφατων αρχείων"
-
-#: src/mmframe.cpp:1252 src/import_export/univcsvdialog.cpp:1038
-msgid "Export to CSV"
-msgstr "Εξαγωγή σε CSV"
-
-#: src/mmframe.cpp:1253 src/import_export/qif_export.cpp:458
-msgid "Export to QIF"
-msgstr "Εξαγωγή σε QIF"
 
 #: src/mmframe.cpp:1254
 msgid "&Report to HTML"
@@ -2917,17 +3432,6 @@ msgstr "Εισάγετε τον κωδικό πρόσβασης για τη νέ
 msgid "No account available to import"
 msgstr "Κανείς λογαριασμός διαθέσιμος προς εισαγωγή"
 
-#: src/mmframe.cpp:1887 src/import_export/univcsvdialog.cpp:476
-#: src/import_export/univcsvdialog.cpp:523
-#: src/import_export/univcsvdialog.cpp:550
-#: src/import_export/univcsvdialog.cpp:572
-#: src/import_export/univcsvdialog.cpp:588
-#: src/import_export/univcsvdialog.cpp:746
-#: src/import_export/univcsvdialog.cpp:786
-#: src/import_export/univcsvdialog.cpp:1074
-msgid "Universal CSV Import"
-msgstr "Εισαγωγή γενικής μορφής CSV"
-
 #: src/mmframe.cpp:1938
 msgid "Term Account views have been temporarly turned on."
 msgstr "Η εμφάνιση των προθεσμιακών λογαριασμών έχει προσωρινά ενεργοποιηθεί."
@@ -2970,11 +3474,6 @@ msgstr "Επιλέξτε ένα αρχείο δεδομένων QIF προς ε�
 #: src/mmframe.cpp:2356
 msgid "No account available to edit!"
 msgstr "Κανείς λογαριασμός διαθέσιμος για επεξεργασία!"
-
-#: src/mmframe.cpp:2356 src/mmframe.cpp:2360 src/mmframe.cpp:2380
-#: src/mmframe.cpp:2384 src/import_export/qif_export.cpp:125
-msgid "Accounts"
-msgstr "Λογαριασμοί"
 
 #: src/mmframe.cpp:2360
 msgid "Choose Account to Edit"
@@ -3174,8 +3673,8 @@ msgid "Total"
 msgstr "Σύνολο"
 
 #: src/mmhomepagepanel.cpp:96 src/mmhomepagepanel.cpp:686
-#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 #: src/reports/incexpenses.cpp:240 src/reports/payee.cpp:168
+#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 msgid "Total:"
 msgstr "Σύνολο:"
 
@@ -3247,6 +3746,271 @@ msgstr "Γενικό σύνολο:"
 msgid "REPORTS"
 msgstr "ΕΚΘΕΣΕΙΣ"
 
+#: src/model/Model_Account.cpp:25
+msgid "Closed"
+msgstr "Κλειστός"
+
+#: src/model/Model_Account.cpp:30
+msgid "Checking"
+msgstr "Τρεχούμενος"
+
+#: src/model/Model_Account.cpp:31
+msgid "Term"
+msgstr "Προθεσμιακοί"
+
+#: src/model/Model_Account.cpp:32
+msgid "Investment"
+msgstr "Επένδυση"
+
+#: src/model/Model_Asset.cpp:24
+msgid "Appreciates"
+msgstr "Ανατιμήσεις"
+
+#: src/model/Model_Asset.cpp:25
+msgid "Depreciates"
+msgstr "Υποτιμήσεις"
+
+#: src/model/Model_Asset.cpp:30
+msgid "Property"
+msgstr "Περιουσία"
+
+#: src/model/Model_Asset.cpp:31 src/model/Model_Category.cpp:103
+msgid "Automobile"
+msgstr "Αυτοκίνητο"
+
+#: src/model/Model_Asset.cpp:32
+msgid "Household Object"
+msgstr "Οικιακό αντικείμενο"
+
+#: src/model/Model_Asset.cpp:33
+msgid "Art"
+msgstr "Τέχνη"
+
+#: src/model/Model_Asset.cpp:34
+msgid "Jewellery"
+msgstr "Κοσμήματα"
+
+#: src/model/Model_Asset.cpp:35
+msgid "Cash"
+msgstr "Μετρητά"
+
+#: src/model/Model_Asset.cpp:36
+msgid "Other"
+msgstr "Άλλο"
+
+#: src/model/Model_Billsdeposits.cpp:26 src/model/Model_Category.cpp:209
+#: src/model/Model_Checking.cpp:28
+msgid "Transfer"
+msgstr "Μεταφορά"
+
+#: src/model/Model_Category.cpp:65
+msgid "Telephone"
+msgstr "Τηλέφωνο"
+
+#: src/model/Model_Category.cpp:66
+msgid "Electricity"
+msgstr "Ηλεκτρισμός"
+
+#: src/model/Model_Category.cpp:67 src/model/Model_Category.cpp:99
+msgid "Gas"
+msgstr "Καύσιμα"
+
+#: src/model/Model_Category.cpp:68
+msgid "Internet"
+msgstr "Διαδίκτυο"
+
+#: src/model/Model_Category.cpp:69
+msgid "Rent"
+msgstr "Ενοικίαση"
+
+#: src/model/Model_Category.cpp:70
+msgid "Cable TV"
+msgstr "Καλωδιακή TV"
+
+#: src/model/Model_Category.cpp:71
+msgid "Water"
+msgstr "Νερό"
+
+#: src/model/Model_Category.cpp:73
+msgid "Bills"
+msgstr "Πληρωμές"
+
+#: src/model/Model_Category.cpp:79
+msgid "Groceries"
+msgstr "Μπακαλική"
+
+#: src/model/Model_Category.cpp:80
+msgid "Dining out"
+msgstr "Φαγητό έξω"
+
+#: src/model/Model_Category.cpp:82
+msgid "Food"
+msgstr "Τρόφιμα"
+
+#: src/model/Model_Category.cpp:88
+msgid "Movies"
+msgstr "Ταινίες"
+
+#: src/model/Model_Category.cpp:89
+msgid "Video Rental"
+msgstr "Ενοικίαση βίντεο"
+
+#: src/model/Model_Category.cpp:90
+msgid "Magazines"
+msgstr "Περιοδικά"
+
+#: src/model/Model_Category.cpp:92
+msgid "Leisure"
+msgstr "Ελεύθερος χρόνος"
+
+#: src/model/Model_Category.cpp:98
+msgid "Maintenance"
+msgstr "Συντήρηση"
+
+#: src/model/Model_Category.cpp:100
+msgid "Parking"
+msgstr "Στάθμευση"
+
+#: src/model/Model_Category.cpp:101
+msgid "Registration"
+msgstr "Εγγραφή"
+
+#: src/model/Model_Category.cpp:109
+msgid "Books"
+msgstr "Βιβλία"
+
+#: src/model/Model_Category.cpp:110
+msgid "Tuition"
+msgstr "Δίδακτρα"
+
+#: src/model/Model_Category.cpp:113
+msgid "Education"
+msgstr "Μόρφωση"
+
+#: src/model/Model_Category.cpp:119
+msgid "Clothing"
+msgstr "Ρουχισμός"
+
+#: src/model/Model_Category.cpp:120
+msgid "Furnishing"
+msgstr "Επίπλωση"
+
+#: src/model/Model_Category.cpp:123
+msgid "Homeneeds"
+msgstr "Ανάγκες σπιτιού"
+
+#: src/model/Model_Category.cpp:129 src/model/Model_Category.cpp:144
+msgid "Health"
+msgstr "Υγεία"
+
+#: src/model/Model_Category.cpp:130
+msgid "Dental"
+msgstr "Οδοντιατρικά"
+
+#: src/model/Model_Category.cpp:131
+msgid "Eyecare"
+msgstr "Φροντίδα ματιών"
+
+#: src/model/Model_Category.cpp:132
+msgid "Physician"
+msgstr "Ιατροί"
+
+#: src/model/Model_Category.cpp:133
+msgid "Prescriptions"
+msgstr "Συνταγές φαρμάκων"
+
+#: src/model/Model_Category.cpp:135
+msgid "Healthcare"
+msgstr "Φροντίδα υγείας"
+
+#: src/model/Model_Category.cpp:141
+msgid "Auto"
+msgstr "Αυτοκίνητο"
+
+#: src/model/Model_Category.cpp:142
+msgid "Life"
+msgstr "Ζωή"
+
+#: src/model/Model_Category.cpp:143
+msgid "Home"
+msgstr "Κατοικία"
+
+#: src/model/Model_Category.cpp:146
+msgid "Insurance"
+msgstr "Ασφάλεια"
+
+#: src/model/Model_Category.cpp:152
+msgid "Travel"
+msgstr "Ταξίδια"
+
+#: src/model/Model_Category.cpp:153
+msgid "Lodging"
+msgstr "Διαμονή"
+
+#: src/model/Model_Category.cpp:154
+msgid "Sightseeing"
+msgstr "Περιήγηση σε αξιοθέατα"
+
+#: src/model/Model_Category.cpp:156
+msgid "Vacation"
+msgstr "Διακοπές"
+
+#: src/model/Model_Category.cpp:162
+msgid "Income Tax"
+msgstr "Φόρος εισοδήματος"
+
+#: src/model/Model_Category.cpp:163
+msgid "House Tax"
+msgstr "Φόρος οικίας"
+
+#: src/model/Model_Category.cpp:164
+msgid "Water Tax"
+msgstr "Φόρος νερού"
+
+#: src/model/Model_Category.cpp:167
+msgid "Taxes"
+msgstr "Φόροι"
+
+#: src/model/Model_Category.cpp:174
+msgid "Miscellaneous"
+msgstr "Διάφορα"
+
+#: src/model/Model_Category.cpp:181
+msgid "Gifts"
+msgstr "Δώρα"
+
+#: src/model/Model_Category.cpp:187
+msgid "Salary"
+msgstr "Μισθός"
+
+#: src/model/Model_Category.cpp:188
+msgid "Reimbursement/Refunds"
+msgstr "Αποζημίωση/Επιστροφές"
+
+#: src/model/Model_Category.cpp:189
+msgid "Investment Income"
+msgstr "Εισόδημα από επενδύσεις"
+
+#: src/model/Model_Category.cpp:197
+msgid "Other Income"
+msgstr "Άλλα έσοδα"
+
+#: src/model/Model_Category.cpp:203
+msgid "Other Expenses"
+msgstr "Άλλα έξοδα"
+
+#: src/model/Model_Currency.cpp:107 src/wizard_newdb.cpp:157
+msgid "Base Currency Not Set"
+msgstr "Δεν ορίστηκε το βασικό νόμισμα"
+
+#: src/model/Model_Report.cpp:138
+#, c-format
+msgid ""
+"The SQL script:\n"
+"%s \n"
+"will modify database! aborted!"
+msgstr ""
+
 #: src/optionsdialog.cpp:190
 msgid "Display Heading"
 msgstr "Τίτλος της εμφάνισης"
@@ -3278,10 +4042,6 @@ msgstr "Ορίστε νόμισμα"
 #: src/optionsdialog.cpp:236
 msgid "Sets the default currency for the database."
 msgstr "Ορίζει το προεπιλεγμένο νόμισμα για τη βάση δεδομένων."
-
-#: src/optionsdialog.cpp:240 src/import_export/qif_import_gui.cpp:124
-msgid "Date Format"
-msgstr "Μορφή ημερομηνίας"
 
 #: src/optionsdialog.cpp:254
 msgid "Specify the date format for display"
@@ -3648,11 +4408,6 @@ msgstr "Ρυθμίσεις χρωμάτων"
 msgid "Delimiter"
 msgstr "Διαχωριστικό CSV"
 
-#: src/optionsdialog.cpp:730 src/import_export/univcsvdialog.cpp:261
-msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr ""
-"Καθορίστε το διαχωριστικό προς χρήση κατά την εισαγωγή/εξαγωγή αρχείων CSV"
-
 #: src/optionsdialog.cpp:744
 #, fuzzy
 msgid "WebApp Settings"
@@ -3765,10 +4520,6 @@ msgstr "Αποθήκευση βάσης δεδομένων ως"
 #: src/optionsdialog.cpp:942
 msgid "Dropbox folder"
 msgstr ""
-
-#: src/optionsdialog.cpp:944 src/import_export/univcsvdialog.cpp:254
-msgid "User Defined"
-msgstr "Καθορισμένο από το χρήστη"
 
 #: src/optionsdialog.cpp:970
 msgid "Choose folder to set as attachments archive"
@@ -3924,6 +4675,245 @@ msgstr "Αλλάζουν όλοι οι δικαιούχοι του: "
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
 msgstr "Επιβεβαίωση μετατόπισης δικαιούχου"
+
+#: src/reports/budget.cpp:78
+msgid "Financial Year: "
+msgstr "Οικονομικό έτος:"
+
+#: src/reports/budget.cpp:80
+msgid "Year: "
+msgstr "Έτος:"
+
+#: src/reports/budget.cpp:82
+msgid "Month: "
+msgstr "Μήνας:"
+
+#: src/reports/budgetcategorysummary.cpp:97
+msgid "Budget Categories for "
+msgstr "Κατηγορίες προϋπολογισμού για "
+
+#: src/reports/budgetcategorysummary.cpp:99
+msgid "Budget Category Summary for "
+msgstr "Περίληψη κατηγοριών προϋπολογισμού για "
+
+#: src/reports/budgetcategorysummary.cpp:100
+msgid "( Estimated Vs Actual )"
+msgstr "(Εκτιμώμενα προς πραγματικά)"
+
+#: src/reports/budgetcategorysummary.cpp:199
+#, fuzzy
+msgid "Estimated Income:"
+msgstr "Εκτιμώμενα έσοδα: "
+
+#: src/reports/budgetcategorysummary.cpp:201
+#, fuzzy
+msgid "Actual Income:"
+msgstr "Πραγματικά έσοδα: "
+
+#: src/reports/budgetcategorysummary.cpp:203
+#, fuzzy
+msgid "Difference Income:"
+msgstr "Διαφορά εσόδων: "
+
+#: src/reports/budgetcategorysummary.cpp:208
+#, fuzzy
+msgid "Estimated Expenses:"
+msgstr "Εκτιμώμενα έξοδα: "
+
+#: src/reports/budgetcategorysummary.cpp:210
+#, fuzzy
+msgid "Actual Expenses:"
+msgstr "Πραγματικά έξοδα: "
+
+#: src/reports/budgetcategorysummary.cpp:212
+#, fuzzy
+msgid "Difference Expenses:"
+msgstr "Διαφορά εξόδων: "
+
+#: src/reports/budgetingperf.cpp:122
+msgid "Budget Performance for "
+msgstr "Εκτέλεση Προϋπολογισμού του "
+
+#: src/reports/budgetingperf.cpp:138 src/reports/categovertimeperf.cpp:160
+#: src/reports/categovertimeperf.cpp:162
+msgid "Overall"
+msgstr "Συνολικά"
+
+#: src/reports/budgetingperf.cpp:139
+msgid "%"
+msgstr "%"
+
+#: src/reports/cashflow.cpp:60
+#, fuzzy, c-format
+msgid "Cash Flow Forecast for %i Years Ahead"
+msgstr "Πρόβλεψη χρηματικής ροής για %d χρόνια μπροστά"
+
+#: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
+#: src/reports/incexpenses.cpp:158
+msgid "Accounts: "
+msgstr "Λογαριασμοί: "
+
+#: src/reports/cashflow.cpp:66 src/reports/incexpenses.cpp:55
+#: src/reports/incexpenses.cpp:161
+msgid "All Accounts"
+msgstr "Όλοι οι λογαριασμοί"
+
+#: src/reports/cashflow.cpp:68
+msgid "All Bank Accounts"
+msgstr "Όλοι οι τραπεζικοί λογαριασμοί"
+
+#: src/reports/cashflow.cpp:70
+msgid "All Term Accounts"
+msgstr "Όλοι οι προθεσμιακοί λογαριασμοί"
+
+#: src/reports/cashflow.cpp:105 src/reports/incexpenses.cpp:191
+#: src/reports/payee.cpp:148 src/reports/payee.cpp:150
+msgid "Difference"
+msgstr "Διαφορά"
+
+#: src/reports/categexp.cpp:147
+#, fuzzy
+msgid "Subcategories"
+msgstr "Υποκατηγορία"
+
+#: src/reports/categexp.cpp:184
+msgid "Category Total: "
+msgstr "Σύνολο κατηγορίας: "
+
+#: src/reports/categexp.cpp:197
+#, fuzzy
+msgid "Total Expenses: "
+msgstr "Πραγματικά έξοδα: "
+
+#: src/reports/categexp.cpp:198
+#, fuzzy
+msgid "Total Income: "
+msgstr "Πραγματικά έσοδα: "
+
+#: src/reports/categexp.cpp:200
+msgid "Grand Total: "
+msgstr "Γενικό σύνολο: "
+
+#: src/reports/categexp.cpp:217 src/reports/categexp.cpp:223
+#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:235
+#: src/reports/categexp.cpp:241 src/reports/categexp.cpp:246
+#: src/reports/categexp.cpp:252 src/reports/categexp.cpp:258
+#: src/reports/categexp.cpp:264 src/reports/categexp.cpp:270
+#, fuzzy, c-format
+msgid "Where the Money Goes - %s"
+msgstr "Πού πηγαίνουν τα χρήματα"
+
+#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:293
+#: src/reports/categexp.cpp:357 src/reports/mmDateRange.cpp:88
+#: src/reports/payee.h:74
+#, fuzzy
+msgid "Last Month"
+msgstr "Εμφάνιση προηγούμενου μήνα"
+
+#: src/reports/categexp.cpp:281 src/reports/categexp.cpp:287
+#: src/reports/categexp.cpp:293 src/reports/categexp.cpp:299
+#: src/reports/categexp.cpp:305 src/reports/categexp.cpp:311
+#: src/reports/categexp.cpp:317 src/reports/categexp.cpp:323
+#: src/reports/categexp.cpp:329 src/reports/categexp.cpp:335
+#, fuzzy, c-format
+msgid "Where the Money Comes From - %s"
+msgstr "Από πού έρχονται τα χρήματα"
+
+#: src/reports/categexp.cpp:346 src/reports/categexp.cpp:352
+#: src/reports/categexp.cpp:357 src/reports/categexp.cpp:363
+#: src/reports/categexp.cpp:368 src/reports/categexp.cpp:374
+#: src/reports/categexp.cpp:380 src/reports/categexp.cpp:386
+#: src/reports/categexp.cpp:392 src/reports/categexp.cpp:398
+#, fuzzy, c-format
+msgid "Categories - %s"
+msgstr "Κατηγορίες - Προηγούμενες 30 ημέρες"
+
+#: src/reports/categovertimeperf.cpp:36
+#, fuzzy, c-format
+msgid "Category Income/Expenses: %s"
+msgstr "Έσοδα/έξοδα κατηγορίας κατά τους τελευταίους %d μήνες"
+
+#: src/reports/categovertimeperf.cpp:178 src/reports/payee.cpp:140
+#: src/reports/payee.cpp:142
+#, fuzzy
+msgid "Incomes"
+msgstr "Έσοδα"
+
+#: src/reports/chart.cpp:255 src/reports/chart.cpp:455
+msgid "Legend:"
+msgstr "Υπόμνημα:"
+
+#: src/reports/htmlbuilder.cpp:83
+#, fuzzy, c-format
+msgid "Today's Date: %s"
+msgstr "Σημερινή ημερομηνία: "
+
+#: src/reports/htmlbuilder.cpp:324
+#, fuzzy, c-format
+msgid "From %s till %s"
+msgstr "%s σε %s"
+
+#: src/reports/htmlbuilder.cpp:330 src/reports/mmDateRange.cpp:198
+msgid "Over Time"
+msgstr ""
+
+#: src/reports/incexpenses.cpp:118
+msgid "Income:"
+msgstr "Έσοδα:"
+
+#: src/reports/incexpenses.cpp:119
+msgid "Expenses:"
+msgstr "Έξοδα:"
+
+#: src/reports/incexpenses.cpp:187
+msgid "Year"
+msgstr "Έτος"
+
+#: src/reports/incexpenses.cpp:188
+msgid "Month"
+msgstr "Μήνας"
+
+#: src/reports/mmDateRange.cpp:72
+#, fuzzy
+msgid "Today"
+msgstr "Εμφάνιση σημερινής ημερομηνίας"
+
+#: src/reports/mmDateRange.cpp:108
+#, fuzzy
+msgid "Last 90 Days"
+msgstr "Τελευταίες 30 ημέρες"
+
+#: src/reports/mmDateRange.cpp:118
+#, fuzzy
+msgid "Last 3 Months"
+msgstr "Εμφάνιση προηγούμενων 3 μηνών"
+
+#: src/reports/mmDateRange.cpp:128
+#, fuzzy
+msgid "Last 12 Months"
+msgstr "Εμφάνιση προηγούμενων 3 μηνών"
+
+#: src/reports/mmgraphpie.cpp:49
+#, fuzzy
+msgid "All Others"
+msgstr "Άλλα"
+
+#: src/reports/reportbase.cpp:57
+msgid "Choose Accounts"
+msgstr "Επιλέξτε λογαριασμούς"
+
+#: src/reports/transactions.cpp:81
+msgid "Transaction List "
+msgstr "Λίστα συναλλαγών"
+
+#: src/reports/transactions.cpp:84
+#, fuzzy, c-format
+msgid "Transaction List for Account: %s"
+msgstr "Λίστα συναλλαγών"
+
+#: src/reports/transactions.cpp:173
+msgid "Total Amount: "
+msgstr "Συνολικό ποσό: "
 
 #: src/splitdetailsdialog.cpp:66
 msgid "Split Detail Dialog"
@@ -4704,1017 +5694,9 @@ msgstr ""
 "Χρησιμοποιήθηκε ως τίτλος της βάσης δεδομένων για εμφανισθείσες και "
 "τυπωθείσες εκθέσεις."
 
-#: src/wizard_newdb.cpp:157 src/model/Model_Currency.cpp:107
-msgid "Base Currency Not Set"
-msgstr "Δεν ορίστηκε το βασικό νόμισμα"
-
-#: src/import_export/qif_export.cpp:39 src/import_export/qif_export.cpp:218
-#: src/import_export/qif_export.cpp:303
-msgid "QIF Export"
-msgstr "Εξαγωγή QIF"
-
-#: src/import_export/qif_export.cpp:96
-#, fuzzy
-msgid "Parameters"
-msgstr "Δικαιούχοι"
-
-#: src/import_export/qif_export.cpp:101
-#: src/import_export/qif_import_gui.cpp:180
-#, fuzzy
-msgid "Log"
-msgstr "Διαμονή"
-
-#: src/import_export/qif_export.cpp:108
-msgid "QIF"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:108
-msgid "CSV"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:136
-#: src/import_export/qif_import_gui.cpp:158
-#, fuzzy
-msgid "From Date"
-msgstr "Από "
-
-#: src/import_export/qif_export.cpp:145
-#: src/import_export/qif_import_gui.cpp:167
-#, fuzzy
-msgid "To Date"
-msgstr "Ημερομηνία"
-
-#: src/import_export/qif_export.cpp:156
-msgid "Write to File"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:159
-#: src/import_export/qif_import_gui.cpp:108
-#: src/import_export/univcsvdialog.cpp:206
-msgid "File Name:"
-msgstr "Όνομα αρχείου:"
-
-#: src/import_export/qif_export.cpp:160
-#: src/import_export/qif_import_gui.cpp:109
-msgid "Choose &file"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:182
-#: src/import_export/univcsvdialog.cpp:328
-#, fuzzy
-msgid "Clear"
-msgstr "&Καθαρισμός"
-
-#: src/import_export/qif_export.cpp:217
-msgid "Choose Account to Export from:"
-msgstr "Επιλέξτε λογαριασμό από τον οποίο θα γίνει εξαγωγή:"
-
-#: src/import_export/qif_export.cpp:263
-#: src/import_export/qif_import_gui.cpp:564
-msgid "QIF Files"
-msgstr "Αρχεία QIF"
-
-#: src/import_export/qif_export.cpp:263
-#: src/import_export/univcsvdialog.cpp:917
-msgid "CSV Files"
-msgstr "CSV αρχεία"
-
-#: src/import_export/qif_export.cpp:266
-msgid "Choose QIF data file to Export"
-msgstr "Επιλέξτε ένα αρχείο δεδομένων QIF προς εξαγωγή"
-
-#: src/import_export/qif_export.cpp:267
-#: src/import_export/univcsvdialog.cpp:918
-msgid "Choose CSV data file to Export"
-msgstr "Επιλέξτε ένα αρχείο CSV για εξαγωγή"
-
-#: src/import_export/qif_export.cpp:283
-msgid "No Account available for export"
-msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγωγή"
-
-#: src/import_export/qif_export.cpp:287
-#, fuzzy
-msgid "No Accounts selected for export"
-msgstr "Κανείς λογαριασμός διαθέσιμος για εξαγωγή"
-
-#: src/import_export/qif_export.cpp:291
-#, fuzzy
-msgid "File name is empty"
-msgstr "Η ημερομηνία είναι κενή, "
-
-#: src/import_export/qif_export.cpp:295
-msgid "To Date less than From Date"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:377
-#, fuzzy
-msgid "Categories exported"
-msgstr "Έκθεση κατηγορίας"
-
-#: src/import_export/qif_export.cpp:385
-#: src/import_export/qif_import_gui.cpp:289
-#: src/import_export/qif_import_gui.cpp:620
-#, fuzzy
-msgid "Please wait"
-msgstr "Παρακαλούμε περιμένετε"
-
-#: src/import_export/qif_export.cpp:385
-#, fuzzy
-msgid "Exporting"
-msgstr "&Εξαγωγή"
-
-#: src/import_export/qif_export.cpp:406
-#, fuzzy, c-format
-msgid "Exporting transaction %i"
-msgstr "Επερχόμενες συναλλαγές"
-
-#: src/import_export/qif_export.cpp:457
-#, fuzzy, c-format
-msgid "Number of transactions exported: %ld"
-msgstr "Έκθεση των συναλλαγών"
-
-#: src/import_export/qif_import_gui.cpp:62
-#: src/import_export/qif_import_gui.cpp:680
-msgid "QIF Import"
-msgstr "Εισαγωγή QIF"
-
-#: src/import_export/qif_import_gui.cpp:152
-#, fuzzy
-msgid "Filtering Details:"
-msgstr "Λεπτομέρειες φιλτραρίσματος: "
-
-#: src/import_export/qif_import_gui.cpp:189
-msgid "Data"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:289
-#, fuzzy
-msgid "Scanning"
-msgstr "Προειδοποίηση"
-
-#: src/import_export/qif_import_gui.cpp:309
-#, c-format
-msgid "Reading line %i, %ld ms"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:339
-#, fuzzy, c-format
-msgid "Line %i \t %s\n"
-msgstr "Γραμμή: "
-
-#: src/import_export/qif_import_gui.cpp:356
-#, fuzzy, c-format
-msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr "Έκθεση των συναλλαγών"
-
-#: src/import_export/qif_import_gui.cpp:359
-msgid "Press OK Button to continue"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:473
-#: src/import_export/qif_import_gui.cpp:492
-#: src/import_export/qif_import_gui.cpp:509
-msgid "OK"
-msgstr "OK"
-
-#: src/import_export/qif_import_gui.cpp:475
-#, fuzzy
-msgid "Warning"
-msgstr "Προειδοποίηση"
-
-#: src/import_export/qif_import_gui.cpp:478
-#: src/import_export/qif_import_gui.cpp:492
-#, fuzzy
-msgid "Missing"
-msgstr "Τραπεζικοί λογαριασμοί"
-
-#: src/import_export/qif_import_gui.cpp:565
-#, fuzzy
-msgid "Choose QIF data file to Import"
-msgstr "Επιλέξτε αρχείο QIF προς εισαγωγή"
-
-#: src/import_export/qif_import_gui.cpp:613
-#, fuzzy
-msgid "Do you want to import all transaction ?"
-msgstr "Θέλετε πραγματικά να διαγράψετε όλες τις εμφανιζόμενες συναλλαγές;"
-
-#: src/import_export/qif_import_gui.cpp:614
-msgid "All missing account, payees and categories will be created."
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:615
-#, fuzzy
-msgid "Confirm Import"
-msgstr "Εισαγωγή"
-
-#: src/import_export/qif_import_gui.cpp:620
-#, fuzzy
-msgid "Importing"
-msgstr "Εισάγεται CSV"
-
-#: src/import_export/qif_import_gui.cpp:622
-#, fuzzy
-msgid "Importing Accounts"
-msgstr "Εισάγεται τύπος λογαριασμού: "
-
-#: src/import_export/qif_import_gui.cpp:629
-#, fuzzy
-msgid "Importing Payees"
-msgstr "Εισάγεται CSV"
-
-#: src/import_export/qif_import_gui.cpp:632
-#, fuzzy
-msgid "Importing Categories"
-msgstr "Οργάνωση των κατηγοριών"
-
-#: src/import_export/qif_import_gui.cpp:647
-#, fuzzy, c-format
-msgid "Importing transaction %i of %i"
-msgstr "Μετακινείται η συναλλαγή από "
-
-#: src/import_export/qif_import_gui.cpp:663
-#, fuzzy
-msgid "Importing Transfers"
-msgstr "Εισάγεται CSV"
-
-#: src/import_export/qif_import_gui.cpp:667
-#, fuzzy
-msgid "Importing Split transactions"
-msgstr "Επερχόμενες συναλλαγές"
-
-#: src/import_export/qif_import_gui.cpp:671
-msgid "Import finished successfully"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:678
-#: src/import_export/univcsvdialog.cpp:725
-#: src/import_export/univcsvdialog.cpp:895
-msgid "Imported transactions discarded by user!"
-msgstr "Οι εισηγμένες συναλλαγές απορρίφθηκαν από το χρήστη!"
-
-#: src/import_export/qif_import_gui.cpp:838
-#, fuzzy, c-format
-msgid "Added account: %s"
-msgstr " λογαριασμό: "
-
-#: src/import_export/qif_import_gui.cpp:871
-#, fuzzy, c-format
-msgid "Added payee: %s"
-msgstr "Κατηγορία"
-
-#: src/import_export/univcsvdialog.cpp:72
-msgid "Amount(+/-)"
-msgstr "Ποσό(+/-)"
-
-#: src/import_export/univcsvdialog.cpp:74
-msgid "SubCategory"
-msgstr "Υποκατηγορία"
-
-#: src/import_export/univcsvdialog.cpp:77
-msgid "Don't Care"
-msgstr "Αδιάφορο"
-
-#: src/import_export/univcsvdialog.cpp:80
-msgid "To/From(+/-)"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:126
-msgid "Specify the order of fields in the CSV file"
-msgstr "Καθορίστε την σειρά των πεδίων στο αρχείο CSV"
-
-#: src/import_export/univcsvdialog.cpp:157
-msgid "&MMEX format"
-msgstr "Μορφή &MMEX"
-
-#: src/import_export/univcsvdialog.cpp:159
-msgid "MMEX standard format"
-msgstr "Κανονική μορφή MMEX"
-
-#: src/import_export/univcsvdialog.cpp:175
-msgid "&Up"
-msgstr "&Επάνω"
-
-#: src/import_export/univcsvdialog.cpp:177
-msgid "Move Up"
-msgstr "Μετακίνηση επάνω"
-
-#: src/import_export/univcsvdialog.cpp:180
-msgid "&Down"
-msgstr "&Κάτω"
-
-#: src/import_export/univcsvdialog.cpp:182
-msgid "Move &Down"
-msgstr "Μετακίνηση &κάτω"
-
-#: src/import_export/univcsvdialog.cpp:185
-msgid "&Open"
-msgstr "&Άνοιγμα"
-
-#: src/import_export/univcsvdialog.cpp:187
-msgid "Load Template"
-msgstr "Φόρτωση προτύπου"
-
-#: src/import_export/univcsvdialog.cpp:190
-msgid "Save As..."
-msgstr "Αποθήκευση ως..."
-
-#: src/import_export/univcsvdialog.cpp:192
-msgid "Save Template"
-msgstr "Αποθήκευση προτύπου"
-
-#: src/import_export/univcsvdialog.cpp:215
-msgid "&Search"
-msgstr "&Αναζήτηση"
-
-#: src/import_export/univcsvdialog.cpp:226
-msgid "Account: "
-msgstr "Λογαριασμός: "
-
-#: src/import_export/univcsvdialog.cpp:238
-#, fuzzy
-msgid "Date Format: "
-msgstr "Μορφή ημερομηνίας"
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "Comma"
-msgstr "Κόμμα"
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "Semicolon"
-msgstr "Άνω τελεία"
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "TAB"
-msgstr "TAB"
-
-#: src/import_export/univcsvdialog.cpp:277
-msgid "CSV Delimiter"
-msgstr "Διαχωριστικό CSV"
-
-#: src/import_export/univcsvdialog.cpp:287
-msgid "Preview"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:306
-msgid "Import File"
-msgstr "Εισαγωγή αρχείου"
-
-#: src/import_export/univcsvdialog.cpp:313
-msgid "Export File"
-msgstr "Εξαγωγή αρχείου"
-
-#: src/import_export/univcsvdialog.cpp:464
-msgid "Unknown"
-msgstr "Άγνωστο"
-
-#: src/import_export/univcsvdialog.cpp:469
-msgid "Choose Universal CSV format file to load"
-msgstr "Επιλέξτε αρχείο γενικής μορφής CSV για φόρτωση"
-
-#: src/import_export/univcsvdialog.cpp:476
-#: src/import_export/univcsvdialog.cpp:572
-#: src/import_export/univcsvdialog.cpp:1074
-#: src/import_export/univcsvdialog.cpp:1323
-msgid "Unable to open file."
-msgstr "Αδυναμία ανοίγματος αρχείου."
-
-#: src/import_export/univcsvdialog.cpp:512
-msgid "Choose Universal CSV format file to save"
-msgstr "Επιλέξτε αρχείο γενικής μορφής CSV για αποθήκευση"
-
-#: src/import_export/univcsvdialog.cpp:523
-msgid "Unable to write to file."
-msgstr "Αδυναμία εγγραφής στο αρχείο."
-
-#: src/import_export/univcsvdialog.cpp:549
-#: src/import_export/univcsvdialog.cpp:745
-msgid ""
-"Incorrect fields specified for CSV import! Requires at least Date, Amount "
-"and Payee."
-msgstr ""
-"Καθορίστηκαν λανθασμένα πεδία για εισαγωγή από CSV. Χρειάζονται τουλάχιστον "
-"τα Ημερομηνία, Ποσό και Δικαιούχος."
-
-#: src/import_export/univcsvdialog.cpp:589
-#: src/import_export/univcsvdialog.cpp:787
-msgid "Transactions imported from CSV: "
-msgstr "Συναλλαγές που εισήχθησαν από CSV: "
-
-#: src/import_export/univcsvdialog.cpp:597
-#, fuzzy, c-format
-msgid ""
-"Transactions imported from CSV\n"
-"to account %s : %i"
-msgstr ""
-"Συναλλαγές που εισήχθησαν από CSV\n"
-"στο λογαριασμό "
-
-#: src/import_export/univcsvdialog.cpp:627
-#: src/import_export/univcsvdialog.cpp:629
-#: src/import_export/univcsvdialog.cpp:652
-#: src/import_export/univcsvdialog.cpp:654
-#: src/import_export/univcsvdialog.cpp:809
-#: src/import_export/univcsvdialog.cpp:811
-#: src/import_export/univcsvdialog.cpp:824
-#: src/import_export/univcsvdialog.cpp:826
-#, fuzzy, c-format
-msgid "Line: %i"
-msgstr "Γραμμή: "
-
-#: src/import_export/univcsvdialog.cpp:628
-#: src/import_export/univcsvdialog.cpp:630
-#: src/import_export/univcsvdialog.cpp:810
-#: src/import_export/univcsvdialog.cpp:812
-msgid " file contains insufficient number of tokens"
-msgstr " το αρχείο περιέχει μη επαρκή αριθμό συμβόλων"
-
-#: src/import_export/univcsvdialog.cpp:653
-#: src/import_export/univcsvdialog.cpp:655
-#: src/import_export/univcsvdialog.cpp:825
-#: src/import_export/univcsvdialog.cpp:827
-msgid ""
-" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
-msgstr ""
-"Ένα από τα επόμενα πεδία: Ημερομηνία, δικαιούχος, ποσό, τύπος, λείπει, "
-"παραλείπεται"
-
-#: src/import_export/univcsvdialog.cpp:689
-#: src/import_export/univcsvdialog.cpp:690
-#: src/import_export/univcsvdialog.cpp:861
-#: src/import_export/univcsvdialog.cpp:862
-#, fuzzy, c-format
-msgid "Line : %i imported OK."
-msgstr " εισήχθησαν OK"
-
-#: src/import_export/univcsvdialog.cpp:695
-#: src/import_export/univcsvdialog.cpp:865
-#, fuzzy, c-format
-msgid "Total Lines : %i"
-msgstr "Σύνολο γραμμών : %d"
-
-#: src/import_export/univcsvdialog.cpp:697
-#: src/import_export/univcsvdialog.cpp:867
-#, fuzzy, c-format
-msgid "Total Imported : %ld"
-msgstr "Σύνολο εισηγμένων : %d"
-
-#: src/import_export/univcsvdialog.cpp:699
-#: src/import_export/univcsvdialog.cpp:869
-#, c-format
-msgid "Log file written to : %s"
-msgstr "Το αρχείο καταγραφής εγγράφηκε στο: %s"
-
-#: src/import_export/univcsvdialog.cpp:702
-#: src/import_export/univcsvdialog.cpp:872
-msgid "Please confirm saving..."
-msgstr "Παρακαλούμε επιβεβαιώστε την αποθήκευση..."
-
-#: src/import_export/univcsvdialog.cpp:704
-#: src/import_export/univcsvdialog.cpp:874
-msgid "Importing CSV"
-msgstr "Εισάγεται CSV"
-
-#: src/import_export/univcsvdialog.cpp:708
-#: src/import_export/univcsvdialog.cpp:878
-msgid "Imported transactions have been flagged so you can review them."
-msgstr ""
-"Οι κινήσεις που εισήχθησαν έχουν μαρκαριστεί ώστε να μπορέσετε να τις "
-"ελέγξετε."
-
-#: src/import_export/univcsvdialog.cpp:719
-#: src/import_export/univcsvdialog.cpp:889
-msgid "Transactions saved to database in account: "
-msgstr "Οι συναλλαγές αποθηκεύτηκαν στη βάση δεδομένων στο λογαριασμό: "
-
-#: src/import_export/univcsvdialog.cpp:1037
-#, fuzzy, c-format
-msgid "Transactions exported: %ld"
-msgstr "Έκθεση των συναλλαγών"
-
-#: src/import_export/univcsvdialog.cpp:1313
-msgid "Choose CSV data file to import"
-msgstr "Επιλέξτε ένα αρχείο δεδομένων CSV για εισαγωγή"
-
-#: src/model/Model_Account.cpp:25
-msgid "Closed"
-msgstr "Κλειστός"
-
-#: src/model/Model_Account.cpp:30
-msgid "Checking"
-msgstr "Τρεχούμενος"
-
-#: src/model/Model_Account.cpp:31
-msgid "Term"
-msgstr "Προθεσμιακοί"
-
-#: src/model/Model_Account.cpp:32
-msgid "Investment"
-msgstr "Επένδυση"
-
-#: src/model/Model_Asset.cpp:24
-msgid "Appreciates"
-msgstr "Ανατιμήσεις"
-
-#: src/model/Model_Asset.cpp:25
-msgid "Depreciates"
-msgstr "Υποτιμήσεις"
-
-#: src/model/Model_Asset.cpp:30
-msgid "Property"
-msgstr "Περιουσία"
-
-#: src/model/Model_Asset.cpp:31 src/model/Model_Category.cpp:103
-msgid "Automobile"
-msgstr "Αυτοκίνητο"
-
-#: src/model/Model_Asset.cpp:32
-msgid "Household Object"
-msgstr "Οικιακό αντικείμενο"
-
-#: src/model/Model_Asset.cpp:33
-msgid "Art"
-msgstr "Τέχνη"
-
-#: src/model/Model_Asset.cpp:34
-msgid "Jewellery"
-msgstr "Κοσμήματα"
-
-#: src/model/Model_Asset.cpp:35
-msgid "Cash"
-msgstr "Μετρητά"
-
-#: src/model/Model_Asset.cpp:36
-msgid "Other"
-msgstr "Άλλο"
-
-#: src/model/Model_Billsdeposits.cpp:26 src/model/Model_Category.cpp:209
-#: src/model/Model_Checking.cpp:28
-msgid "Transfer"
-msgstr "Μεταφορά"
-
-#: src/model/Model_Category.cpp:65
-msgid "Telephone"
-msgstr "Τηλέφωνο"
-
-#: src/model/Model_Category.cpp:66
-msgid "Electricity"
-msgstr "Ηλεκτρισμός"
-
-#: src/model/Model_Category.cpp:67 src/model/Model_Category.cpp:99
-msgid "Gas"
-msgstr "Καύσιμα"
-
-#: src/model/Model_Category.cpp:68
-msgid "Internet"
-msgstr "Διαδίκτυο"
-
-#: src/model/Model_Category.cpp:69
-msgid "Rent"
-msgstr "Ενοικίαση"
-
-#: src/model/Model_Category.cpp:70
-msgid "Cable TV"
-msgstr "Καλωδιακή TV"
-
-#: src/model/Model_Category.cpp:71
-msgid "Water"
-msgstr "Νερό"
-
-#: src/model/Model_Category.cpp:73
-msgid "Bills"
-msgstr "Πληρωμές"
-
-#: src/model/Model_Category.cpp:79
-msgid "Groceries"
-msgstr "Μπακαλική"
-
-#: src/model/Model_Category.cpp:80
-msgid "Dining out"
-msgstr "Φαγητό έξω"
-
-#: src/model/Model_Category.cpp:82
-msgid "Food"
-msgstr "Τρόφιμα"
-
-#: src/model/Model_Category.cpp:88
-msgid "Movies"
-msgstr "Ταινίες"
-
-#: src/model/Model_Category.cpp:89
-msgid "Video Rental"
-msgstr "Ενοικίαση βίντεο"
-
-#: src/model/Model_Category.cpp:90
-msgid "Magazines"
-msgstr "Περιοδικά"
-
-#: src/model/Model_Category.cpp:92
-msgid "Leisure"
-msgstr "Ελεύθερος χρόνος"
-
-#: src/model/Model_Category.cpp:98
-msgid "Maintenance"
-msgstr "Συντήρηση"
-
-#: src/model/Model_Category.cpp:100
-msgid "Parking"
-msgstr "Στάθμευση"
-
-#: src/model/Model_Category.cpp:101
-msgid "Registration"
-msgstr "Εγγραφή"
-
-#: src/model/Model_Category.cpp:109
-msgid "Books"
-msgstr "Βιβλία"
-
-#: src/model/Model_Category.cpp:110
-msgid "Tuition"
-msgstr "Δίδακτρα"
-
-#: src/model/Model_Category.cpp:113
-msgid "Education"
-msgstr "Μόρφωση"
-
-#: src/model/Model_Category.cpp:119
-msgid "Clothing"
-msgstr "Ρουχισμός"
-
-#: src/model/Model_Category.cpp:120
-msgid "Furnishing"
-msgstr "Επίπλωση"
-
-#: src/model/Model_Category.cpp:123
-msgid "Homeneeds"
-msgstr "Ανάγκες σπιτιού"
-
-#: src/model/Model_Category.cpp:129 src/model/Model_Category.cpp:144
-msgid "Health"
-msgstr "Υγεία"
-
-#: src/model/Model_Category.cpp:130
-msgid "Dental"
-msgstr "Οδοντιατρικά"
-
-#: src/model/Model_Category.cpp:131
-msgid "Eyecare"
-msgstr "Φροντίδα ματιών"
-
-#: src/model/Model_Category.cpp:132
-msgid "Physician"
-msgstr "Ιατροί"
-
-#: src/model/Model_Category.cpp:133
-msgid "Prescriptions"
-msgstr "Συνταγές φαρμάκων"
-
-#: src/model/Model_Category.cpp:135
-msgid "Healthcare"
-msgstr "Φροντίδα υγείας"
-
-#: src/model/Model_Category.cpp:141
-msgid "Auto"
-msgstr "Αυτοκίνητο"
-
-#: src/model/Model_Category.cpp:142
-msgid "Life"
-msgstr "Ζωή"
-
-#: src/model/Model_Category.cpp:143
-msgid "Home"
-msgstr "Κατοικία"
-
-#: src/model/Model_Category.cpp:146
-msgid "Insurance"
-msgstr "Ασφάλεια"
-
-#: src/model/Model_Category.cpp:152
-msgid "Travel"
-msgstr "Ταξίδια"
-
-#: src/model/Model_Category.cpp:153
-msgid "Lodging"
-msgstr "Διαμονή"
-
-#: src/model/Model_Category.cpp:154
-msgid "Sightseeing"
-msgstr "Περιήγηση σε αξιοθέατα"
-
-#: src/model/Model_Category.cpp:156
-msgid "Vacation"
-msgstr "Διακοπές"
-
-#: src/model/Model_Category.cpp:162
-msgid "Income Tax"
-msgstr "Φόρος εισοδήματος"
-
-#: src/model/Model_Category.cpp:163
-msgid "House Tax"
-msgstr "Φόρος οικίας"
-
-#: src/model/Model_Category.cpp:164
-msgid "Water Tax"
-msgstr "Φόρος νερού"
-
-#: src/model/Model_Category.cpp:167
-msgid "Taxes"
-msgstr "Φόροι"
-
-#: src/model/Model_Category.cpp:174
-msgid "Miscellaneous"
-msgstr "Διάφορα"
-
-#: src/model/Model_Category.cpp:181
-msgid "Gifts"
-msgstr "Δώρα"
-
-#: src/model/Model_Category.cpp:187
-msgid "Salary"
-msgstr "Μισθός"
-
-#: src/model/Model_Category.cpp:188
-msgid "Reimbursement/Refunds"
-msgstr "Αποζημίωση/Επιστροφές"
-
-#: src/model/Model_Category.cpp:189
-msgid "Investment Income"
-msgstr "Εισόδημα από επενδύσεις"
-
-#: src/model/Model_Category.cpp:197
-msgid "Other Income"
-msgstr "Άλλα έσοδα"
-
-#: src/model/Model_Category.cpp:203
-msgid "Other Expenses"
-msgstr "Άλλα έξοδα"
-
-#: src/model/Model_Report.cpp:138
-#, c-format
-msgid ""
-"The SQL script:\n"
-"%s \n"
-"will modify database! aborted!"
-msgstr ""
-
-#: src/reports/budget.cpp:78
-msgid "Financial Year: "
-msgstr "Οικονομικό έτος:"
-
-#: src/reports/budget.cpp:80
-msgid "Year: "
-msgstr "Έτος:"
-
-#: src/reports/budget.cpp:82
-msgid "Month: "
-msgstr "Μήνας:"
-
-#: src/reports/budgetcategorysummary.cpp:97
-msgid "Budget Categories for "
-msgstr "Κατηγορίες προϋπολογισμού για "
-
-#: src/reports/budgetcategorysummary.cpp:99
-msgid "Budget Category Summary for "
-msgstr "Περίληψη κατηγοριών προϋπολογισμού για "
-
-#: src/reports/budgetcategorysummary.cpp:100
-msgid "( Estimated Vs Actual )"
-msgstr "(Εκτιμώμενα προς πραγματικά)"
-
-#: src/reports/budgetcategorysummary.cpp:199
-#, fuzzy
-msgid "Estimated Income:"
-msgstr "Εκτιμώμενα έσοδα: "
-
-#: src/reports/budgetcategorysummary.cpp:201
-#, fuzzy
-msgid "Actual Income:"
-msgstr "Πραγματικά έσοδα: "
-
-#: src/reports/budgetcategorysummary.cpp:203
-#, fuzzy
-msgid "Difference Income:"
-msgstr "Διαφορά εσόδων: "
-
-#: src/reports/budgetcategorysummary.cpp:208
-#, fuzzy
-msgid "Estimated Expenses:"
-msgstr "Εκτιμώμενα έξοδα: "
-
-#: src/reports/budgetcategorysummary.cpp:210
-#, fuzzy
-msgid "Actual Expenses:"
-msgstr "Πραγματικά έξοδα: "
-
-#: src/reports/budgetcategorysummary.cpp:212
-#, fuzzy
-msgid "Difference Expenses:"
-msgstr "Διαφορά εξόδων: "
-
-#: src/reports/budgetingperf.cpp:122
-msgid "Budget Performance for "
-msgstr "Εκτέλεση Προϋπολογισμού του "
-
-#: src/reports/budgetingperf.cpp:138 src/reports/categovertimeperf.cpp:160
-#: src/reports/categovertimeperf.cpp:162
-msgid "Overall"
-msgstr "Συνολικά"
-
-#: src/reports/budgetingperf.cpp:139
-msgid "%"
-msgstr "%"
-
-#: src/reports/cashflow.cpp:60
-#, fuzzy, c-format
-msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr "Πρόβλεψη χρηματικής ροής για %d χρόνια μπροστά"
-
-#: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
-#: src/reports/incexpenses.cpp:158
-msgid "Accounts: "
-msgstr "Λογαριασμοί: "
-
-#: src/reports/cashflow.cpp:66 src/reports/incexpenses.cpp:55
-#: src/reports/incexpenses.cpp:161
-msgid "All Accounts"
-msgstr "Όλοι οι λογαριασμοί"
-
-#: src/reports/cashflow.cpp:68
-msgid "All Bank Accounts"
-msgstr "Όλοι οι τραπεζικοί λογαριασμοί"
-
-#: src/reports/cashflow.cpp:70
-msgid "All Term Accounts"
-msgstr "Όλοι οι προθεσμιακοί λογαριασμοί"
-
-#: src/reports/cashflow.cpp:105 src/reports/incexpenses.cpp:191
-#: src/reports/payee.cpp:148 src/reports/payee.cpp:150
-msgid "Difference"
-msgstr "Διαφορά"
-
-#: src/reports/categexp.cpp:147
-#, fuzzy
-msgid "Subcategories"
-msgstr "Υποκατηγορία"
-
-#: src/reports/categexp.cpp:184
-msgid "Category Total: "
-msgstr "Σύνολο κατηγορίας: "
-
-#: src/reports/categexp.cpp:197
-#, fuzzy
-msgid "Total Expenses: "
-msgstr "Πραγματικά έξοδα: "
-
-#: src/reports/categexp.cpp:198
-#, fuzzy
-msgid "Total Income: "
-msgstr "Πραγματικά έσοδα: "
-
-#: src/reports/categexp.cpp:200
-msgid "Grand Total: "
-msgstr "Γενικό σύνολο: "
-
-#: src/reports/categexp.cpp:217 src/reports/categexp.cpp:223
-#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:235
-#: src/reports/categexp.cpp:241 src/reports/categexp.cpp:246
-#: src/reports/categexp.cpp:252 src/reports/categexp.cpp:258
-#: src/reports/categexp.cpp:264 src/reports/categexp.cpp:270
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Πού πηγαίνουν τα χρήματα"
-
-#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:293
-#: src/reports/categexp.cpp:357 src/reports/mmDateRange.cpp:88
-#: src/reports/payee.h:74
-#, fuzzy
-msgid "Last Month"
-msgstr "Εμφάνιση προηγούμενου μήνα"
-
-#: src/reports/categexp.cpp:281 src/reports/categexp.cpp:287
-#: src/reports/categexp.cpp:293 src/reports/categexp.cpp:299
-#: src/reports/categexp.cpp:305 src/reports/categexp.cpp:311
-#: src/reports/categexp.cpp:317 src/reports/categexp.cpp:323
-#: src/reports/categexp.cpp:329 src/reports/categexp.cpp:335
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Από πού έρχονται τα χρήματα"
-
-#: src/reports/categexp.cpp:346 src/reports/categexp.cpp:352
-#: src/reports/categexp.cpp:357 src/reports/categexp.cpp:363
-#: src/reports/categexp.cpp:368 src/reports/categexp.cpp:374
-#: src/reports/categexp.cpp:380 src/reports/categexp.cpp:386
-#: src/reports/categexp.cpp:392 src/reports/categexp.cpp:398
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Κατηγορίες - Προηγούμενες 30 ημέρες"
-
-#: src/reports/categovertimeperf.cpp:36
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
-msgstr "Έσοδα/έξοδα κατηγορίας κατά τους τελευταίους %d μήνες"
-
-#: src/reports/categovertimeperf.cpp:178 src/reports/payee.cpp:140
-#: src/reports/payee.cpp:142
-#, fuzzy
-msgid "Incomes"
-msgstr "Έσοδα"
-
-#: src/reports/chart.cpp:255 src/reports/chart.cpp:455
-msgid "Legend:"
-msgstr "Υπόμνημα:"
-
-#: src/reports/htmlbuilder.cpp:83
-#, fuzzy, c-format
-msgid "Today's Date: %s"
-msgstr "Σημερινή ημερομηνία: "
-
-#: src/reports/htmlbuilder.cpp:324
-#, fuzzy, c-format
-msgid "From %s till %s"
-msgstr "%s σε %s"
-
-#: src/reports/htmlbuilder.cpp:330 src/reports/mmDateRange.cpp:198
-msgid "Over Time"
-msgstr ""
-
-#: src/reports/incexpenses.cpp:118
-msgid "Income:"
-msgstr "Έσοδα:"
-
-#: src/reports/incexpenses.cpp:119
-msgid "Expenses:"
-msgstr "Έξοδα:"
-
-#: src/reports/incexpenses.cpp:187
-msgid "Year"
-msgstr "Έτος"
-
-#: src/reports/incexpenses.cpp:188
-msgid "Month"
-msgstr "Μήνας"
-
-#: src/reports/mmDateRange.cpp:72
-#, fuzzy
-msgid "Today"
-msgstr "Εμφάνιση σημερινής ημερομηνίας"
-
-#: src/reports/mmDateRange.cpp:108
-#, fuzzy
-msgid "Last 90 Days"
-msgstr "Τελευταίες 30 ημέρες"
-
-#: src/reports/mmDateRange.cpp:118
-#, fuzzy
-msgid "Last 3 Months"
-msgstr "Εμφάνιση προηγούμενων 3 μηνών"
-
-#: src/reports/mmDateRange.cpp:128
-#, fuzzy
-msgid "Last 12 Months"
-msgstr "Εμφάνιση προηγούμενων 3 μηνών"
-
-#: src/reports/mmgraphpie.cpp:49
-#, fuzzy
-msgid "All Others"
-msgstr "Άλλα"
-
-#: src/reports/reportbase.cpp:57
-msgid "Choose Accounts"
-msgstr "Επιλέξτε λογαριασμούς"
-
-#: src/reports/transactions.cpp:81
-msgid "Transaction List "
-msgstr "Λίστα συναλλαγών"
-
-#: src/reports/transactions.cpp:84
-#, fuzzy, c-format
-msgid "Transaction List for Account: %s"
-msgstr "Λίστα συναλλαγών"
-
-#: src/reports/transactions.cpp:173
-msgid "Total Amount: "
-msgstr "Συνολικό ποσό: "
-
-#: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
-"or make a selection using the dropdown button."
-msgstr ""
-
-#: src/mmtextctrl.h:89
-#, fuzzy
-msgid "Invalid Amount."
-msgstr "Εισαγωγή Μη έγκυρου Ποσού Σε"
-
-#: src/mmtextctrl.h:90
-msgid "Please enter a positive or calculated value."
-msgstr ""
-
-#: src/mmtextctrl.h:92
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
-"Calculations will be evaluated and the result used as the entry."
-msgstr ""
+#: src/import_export/univcsvdialog.h:28
+msgid "Universal CSV Dialog"
+msgstr "Παράθυρο γενικής μορφής CSV"
 
 #: src/mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -5881,6 +5863,39 @@ msgstr ""
 "μια λίστα του τι πραγματικά χρειάζεστε. Στο κατάστημα να αγοράζετε αυτά που "
 "είναι στη λίστα σας."
 
+#: src/mmcombobox.h:78
+msgid ""
+"Please type in an exiting payee name,\n"
+"or make a selection using the dropdown button."
+msgstr ""
+
+#: src/mmtextctrl.h:89
+#, fuzzy
+msgid "Invalid Amount."
+msgstr "Εισαγωγή Μη έγκυρου Ποσού Σε"
+
+#: src/mmtextctrl.h:90
+msgid "Please enter a positive or calculated value."
+msgstr ""
+
+#: src/mmtextctrl.h:92
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+"Calculations will be evaluated and the result used as the entry."
+msgstr ""
+
+#: src/reports/payee.h:31
+msgid "Payee Report"
+msgstr "Έκθεση δικαιούχου"
+
+#: src/reports/payee.h:58 src/reports/payee.h:66 src/reports/payee.h:74
+#: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
+#: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
+#: src/reports/payee.h:130
+#, fuzzy, c-format
+msgid "Payee Report - %s"
+msgstr "Έκθεση δικαιούχου"
+
 #: src/stockspanel.h:29
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
@@ -5900,22 +5915,6 @@ msgstr ""
 #: src/stockspanel.h:32
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr ""
-
-#: src/import_export/univcsvdialog.h:28
-msgid "Universal CSV Dialog"
-msgstr "Παράθυρο γενικής μορφής CSV"
-
-#: src/reports/payee.h:31
-msgid "Payee Report"
-msgstr "Έκθεση δικαιούχου"
-
-#: src/reports/payee.h:58 src/reports/payee.h:66 src/reports/payee.h:74
-#: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
-#: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
-#: src/reports/payee.h:130
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Έκθεση δικαιούχου"
 
 #~ msgid "New MMEX Options"
 #~ msgstr "Επιλογές νέου MMEX"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-19 22:24+0800\n"
+"POT-Creation-Date: 2014-06-19 22:56+0800\n"
 "PO-Revision-Date: 2014-06-14 21:03+0100\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
@@ -77,13 +77,12 @@ msgstr ""
 #: src/attachmentdialog.cpp:121 src/billsdepositsdialog.cpp:571
 #: src/budgetentrydialog.cpp:160 src/budgetyeardialog.cpp:117
 #: src/budgetyearentrydialog.cpp:123 src/filtertransdialog.cpp:362
-#: src/optionsdialog.cpp:860 src/payeedialog.cpp:127
-#: src/relocatecategorydialog.cpp:116 src/relocatepayeedialog.cpp:111
+#: src/import_export/qif_export.cpp:196 src/import_export/qif_export.cpp:220
+#: src/import_export/qif_import_gui.cpp:258 src/optionsdialog.cpp:860
+#: src/payeedialog.cpp:127 src/relocatecategorydialog.cpp:116
+#: src/relocatepayeedialog.cpp:111 src/reports/reportbase.cpp:59
 #: src/splitdetailsdialog.cpp:143 src/splittransactionsdialog.cpp:170
-#: src/transdialog.cpp:496 src/import_export/qif_export.cpp:196
-#: src/import_export/qif_export.cpp:220
-#: src/import_export/qif_import_gui.cpp:258 src/reports/reportbase.cpp:59
-#: src/mmsinglechoicedialog.h:56
+#: src/transdialog.cpp:496 src/mmsinglechoicedialog.h:56
 msgid "&OK "
 msgstr ""
 
@@ -129,17 +128,17 @@ msgstr "Sık Kullanılan Hesap"
 #: src/accountdialog.cpp:210 src/assetdialog.cpp:177 src/assetspanel.cpp:418
 #: src/billsdepositsdialog.cpp:554 src/billsdepositspanel.cpp:151
 #: src/filtertransdialog.cpp:306 src/filtertransdialog.cpp:323
-#: src/mmcheckingpanel.cpp:990 src/stockdialog.cpp:199 src/stockspanel.cpp:76
-#: src/transdialog.cpp:465 src/import_export/qif_import_gui.cpp:84
+#: src/import_export/qif_import_gui.cpp:84
 #: src/import_export/univcsvdialog.cpp:76
-#: src/import_export/univcsvdialog.cpp:1055 src/reports/transactions.cpp:129
-#: src/reports/transactions.cpp:131
+#: src/import_export/univcsvdialog.cpp:1055 src/mmcheckingpanel.cpp:990
+#: src/reports/transactions.cpp:129 src/reports/transactions.cpp:131
+#: src/stockdialog.cpp:199 src/stockspanel.cpp:76 src/transdialog.cpp:465
 msgid "Notes"
 msgstr "Not"
 
-#: src/accountdialog.cpp:220 src/optionsdialog.cpp:843
-#: src/model/Model_Category.cpp:111 src/model/Model_Category.cpp:121
-#: src/model/Model_Category.cpp:165
+#: src/accountdialog.cpp:220 src/model/Model_Category.cpp:111
+#: src/model/Model_Category.cpp:121 src/model/Model_Category.cpp:165
+#: src/optionsdialog.cpp:843
 msgid "Others"
 msgstr "Diğerleri"
 
@@ -172,14 +171,14 @@ msgstr "Bu işlemin tutarını belirtiniz"
 #: src/attachmentdialog.cpp:122 src/billsdepositsdialog.cpp:574
 #: src/budgetentrydialog.cpp:163 src/budgetyeardialog.cpp:120
 #: src/budgetyearentrydialog.cpp:126 src/categdialog.cpp:242
-#: src/filtertransdialog.cpp:364 src/maincurrencydialog.cpp:199
-#: src/optionsdialog.cpp:862 src/payeedialog.cpp:128
-#: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
-#: src/splitdetailsdialog.cpp:146 src/splittransactionsdialog.cpp:171
-#: src/transdialog.cpp:497 src/import_export/qif_export.cpp:197
+#: src/filtertransdialog.cpp:364 src/import_export/qif_export.cpp:197
 #: src/import_export/qif_export.cpp:222
 #: src/import_export/qif_import_gui.cpp:259
-#: src/import_export/univcsvdialog.cpp:316 src/reports/reportbase.cpp:61
+#: src/import_export/univcsvdialog.cpp:316 src/maincurrencydialog.cpp:199
+#: src/optionsdialog.cpp:862 src/payeedialog.cpp:128
+#: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
+#: src/reports/reportbase.cpp:61 src/splitdetailsdialog.cpp:146
+#: src/splittransactionsdialog.cpp:171 src/transdialog.cpp:497
 #: src/mmsinglechoicedialog.h:58
 #, fuzzy
 msgid "&Cancel "
@@ -250,8 +249,8 @@ msgstr ""
 msgid "Account Name "
 msgstr "Hesap Adı"
 
-#: src/accountdialog.cpp:347 src/optionsdialog.cpp:222
-#: src/import_export/qif_import_gui.cpp:215
+#: src/accountdialog.cpp:347 src/import_export/qif_import_gui.cpp:215
+#: src/optionsdialog.cpp:222
 msgid "Currency"
 msgstr "Para Birimi"
 
@@ -327,10 +326,10 @@ msgid "Asset Details"
 msgstr "Varlık Detayları"
 
 #: src/assetdialog.cpp:117 src/assetspanel.cpp:397
-#: src/general_report_manager.cpp:570 src/maincurrencydialog.cpp:59
-#: src/payeedialog.cpp:64 src/import_export/qif_import_gui.cpp:214
+#: src/general_report_manager.cpp:570 src/import_export/qif_import_gui.cpp:214
 #: src/import_export/qif_import_gui.cpp:227
-#: src/import_export/qif_import_gui.cpp:238
+#: src/import_export/qif_import_gui.cpp:238 src/maincurrencydialog.cpp:59
+#: src/payeedialog.cpp:64
 msgid "Name"
 msgstr "Ad"
 
@@ -340,11 +339,12 @@ msgstr "Varlık adını giriniz"
 
 #: src/assetdialog.cpp:125 src/assetspanel.cpp:414
 #: src/billsdepositsdialog.cpp:436 src/filtertransdialog.cpp:315
-#: src/mmcheckingpanel.cpp:974 src/stockdialog.cpp:135 src/transdialog.cpp:357
 #: src/import_export/qif_import_gui.cpp:78
 #: src/import_export/univcsvdialog.cpp:70
-#: src/import_export/univcsvdialog.cpp:1057 src/reports/cashflow.cpp:103
-#: src/reports/transactions.cpp:97 src/reports/transactions.cpp:99
+#: src/import_export/univcsvdialog.cpp:1057 src/mmcheckingpanel.cpp:974
+#: src/reports/cashflow.cpp:103 src/reports/transactions.cpp:97
+#: src/reports/transactions.cpp:99 src/stockdialog.cpp:135
+#: src/transdialog.cpp:357
 msgid "Date"
 msgstr "Tarih"
 
@@ -360,8 +360,8 @@ msgstr "Varlık Tipi"
 msgid "Select type of asset"
 msgstr "Varlık tipini seçiniz"
 
-#: src/assetdialog.cpp:143 src/stockdialog.cpp:194 src/stockspanel.cpp:73
-#: src/import_export/qif_import_gui.cpp:83
+#: src/assetdialog.cpp:143 src/import_export/qif_import_gui.cpp:83
+#: src/stockdialog.cpp:194 src/stockspanel.cpp:73
 msgid "Value"
 msgstr "Değer"
 
@@ -444,19 +444,19 @@ msgid "Assets"
 msgstr "Varlıklar"
 
 #: src/assetspanel.cpp:370 src/assetspanel.cpp:645 src/assetspanel.cpp:662
-#: src/mmframe.cpp:1079 src/optionsdialog.cpp:135
 #: src/import_export/qif_export.cpp:62 src/import_export/qif_export.cpp:63
-#: src/import_export/qif_export.cpp:127
+#: src/import_export/qif_export.cpp:127 src/mmframe.cpp:1079
+#: src/optionsdialog.cpp:135
 msgid "All"
 msgstr "Hepsi"
 
 #: src/assetspanel.cpp:402 src/billsdepositsdialog.cpp:472
 #: src/billsdepositspanel.cpp:146 src/filtertransdialog.cpp:251
-#: src/filtertransdialog.cpp:320 src/mmhomepagepanel.cpp:778
-#: src/splitdetailsdialog.cpp:105 src/transdialog.cpp:390
-#: src/import_export/qif_import_gui.cpp:81 src/reports/budgetingperf.cpp:130
+#: src/filtertransdialog.cpp:320 src/import_export/qif_import_gui.cpp:81
+#: src/mmhomepagepanel.cpp:778 src/reports/budgetingperf.cpp:130
 #: src/reports/incexpenses.cpp:113 src/reports/transactions.cpp:117
-#: src/reports/transactions.cpp:119
+#: src/reports/transactions.cpp:119 src/splitdetailsdialog.cpp:105
+#: src/transdialog.cpp:390
 msgid "Type"
 msgstr "Tip"
 
@@ -524,9 +524,8 @@ msgstr "Varlık adını giriniz"
 msgid "Total: "
 msgstr "Toplam:"
 
-#: src/attachmentdialog.cpp:54 src/payeedialog.cpp:63
-#: src/import_export/qif_import_gui.cpp:76
-#: src/import_export/univcsvdialog.cpp:1046
+#: src/attachmentdialog.cpp:54 src/import_export/qif_import_gui.cpp:76
+#: src/import_export/univcsvdialog.cpp:1046 src/payeedialog.cpp:63
 msgid "#"
 msgstr ""
 
@@ -617,8 +616,8 @@ msgid "Confirm Attachment Deletion"
 msgstr "Hesap Sil"
 
 #: src/attachmentdialog.cpp:281 src/categdialog.cpp:222
-#: src/maincurrencydialog.cpp:176 src/payeedialog.cpp:364
-#: src/splittransactionsdialog.cpp:163 src/import_export/univcsvdialog.cpp:149
+#: src/import_export/univcsvdialog.cpp:149 src/maincurrencydialog.cpp:176
+#: src/payeedialog.cpp:364 src/splittransactionsdialog.cpp:163
 #, fuzzy
 msgid "&Add "
 msgstr "Bütçe Yılı Ekle"
@@ -628,9 +627,9 @@ msgstr "Bütçe Yılı Ekle"
 msgid "&Open "
 msgstr "Açık"
 
-#: src/attachmentdialog.cpp:286 src/maincurrencydialog.cpp:183
-#: src/payeedialog.cpp:367 src/splittransactionsdialog.cpp:165
-#: src/import_export/univcsvdialog.cpp:153
+#: src/attachmentdialog.cpp:286 src/import_export/univcsvdialog.cpp:153
+#: src/maincurrencydialog.cpp:183 src/payeedialog.cpp:367
+#: src/splittransactionsdialog.cpp:165
 #, fuzzy
 msgid "&Remove "
 msgstr "Kaldır"
@@ -713,9 +712,9 @@ msgid "Split Category"
 msgstr "Parçalı Kategori"
 
 #: src/billsdepositsdialog.cpp:254 src/billsdepositspanel.cpp:55
-#: src/filtertransdialog.cpp:49 src/optionsdialog.cpp:641
-#: src/model/Model_Asset.cpp:23 src/model/Model_Billsdeposits.cpp:31
-#: src/model/Model_Budget.cpp:54 src/model/Model_Checking.cpp:33
+#: src/filtertransdialog.cpp:49 src/model/Model_Asset.cpp:23
+#: src/model/Model_Billsdeposits.cpp:31 src/model/Model_Budget.cpp:54
+#: src/model/Model_Checking.cpp:33 src/optionsdialog.cpp:641
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -885,11 +884,11 @@ msgid "Specify the status for the transaction"
 msgstr "İşlemin durumunu belirtiniz"
 
 #: src/billsdepositsdialog.cpp:448 src/filtertransdialog.cpp:238
-#: src/filtertransdialog.cpp:318 src/mmcheckingpanel.cpp:980
-#: src/transdialog.cpp:371 src/import_export/qif_import_gui.cpp:216
+#: src/filtertransdialog.cpp:318 src/import_export/qif_import_gui.cpp:216
 #: src/import_export/qif_import_gui.cpp:228
-#: src/import_export/qif_import_gui.cpp:239 src/reports/transactions.cpp:109
-#: src/reports/transactions.cpp:111
+#: src/import_export/qif_import_gui.cpp:239 src/mmcheckingpanel.cpp:980
+#: src/reports/transactions.cpp:109 src/reports/transactions.cpp:111
+#: src/transdialog.cpp:371
 msgid "Status"
 msgstr "Durum"
 
@@ -921,11 +920,11 @@ msgstr "Bu işlemin tutarını belirtiniz"
 #: src/billsdepositsdialog.cpp:479 src/billsdepositsdialog.cpp:908
 #: src/billsdepositspanel.cpp:147 src/budgetingpanel.cpp:284
 #: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:353
-#: src/mmhomepagepanel.cpp:778 src/splitdetailsdialog.cpp:120
+#: src/mmhomepagepanel.cpp:778 src/reports/budgetcategorysummary.cpp:111
+#: src/reports/categexp.cpp:160 src/reports/categexp.cpp:162
+#: src/reports/incexpenses.cpp:114 src/reports/transactions.cpp:121
+#: src/reports/transactions.cpp:123 src/splitdetailsdialog.cpp:120
 #: src/splittransactionsdialog.cpp:128 src/transdialog.cpp:408
-#: src/reports/budgetcategorysummary.cpp:111 src/reports/categexp.cpp:160
-#: src/reports/categexp.cpp:162 src/reports/incexpenses.cpp:114
-#: src/reports/transactions.cpp:121 src/reports/transactions.cpp:123
 msgid "Amount"
 msgstr "Tutar"
 
@@ -937,13 +936,13 @@ msgstr "Havale tutarını belirtiniz"
 #: src/billsdepositsdialog.cpp:503 src/billsdepositsdialog.cpp:772
 #: src/billsdepositsdialog.cpp:875 src/billsdepositspanel.cpp:144
 #: src/filtertransdialog.cpp:205 src/filtertransdialog.cpp:317
-#: src/mmcheckingpanel.cpp:978 src/mmhomepagepanel.cpp:353
-#: src/transdialog.cpp:246 src/transdialog.cpp:420
 #: src/import_export/qif_import_gui.cpp:80
 #: src/import_export/qif_import_gui.cpp:221
-#: src/import_export/univcsvdialog.cpp:71 src/reports/payee.cpp:136
+#: src/import_export/univcsvdialog.cpp:71 src/mmcheckingpanel.cpp:978
+#: src/mmhomepagepanel.cpp:353 src/reports/payee.cpp:136
 #: src/reports/payee.cpp:138 src/reports/transactions.cpp:105
-#: src/reports/transactions.cpp:107
+#: src/reports/transactions.cpp:107 src/transdialog.cpp:246
+#: src/transdialog.cpp:420
 msgid "Payee"
 msgstr "Alacaklı"
 
@@ -982,15 +981,15 @@ msgstr "Parçalı Kategori"
 #: src/billsdepositsdialog.cpp:533 src/billsdepositsdialog.cpp:885
 #: src/billsdepositsdialog.cpp:893 src/budgetingpanel.cpp:281
 #: src/filtertransdialog.cpp:216 src/filtertransdialog.cpp:319
-#: src/mmcheckingpanel.cpp:982 src/mmhomepagepanel.cpp:180
-#: src/splitdetailsdialog.cpp:128 src/splittransactionsdialog.cpp:127
-#: src/transdialog.cpp:443 src/import_export/qif_import_gui.cpp:82
+#: src/import_export/qif_import_gui.cpp:82
 #: src/import_export/qif_import_gui.cpp:233
-#: src/import_export/univcsvdialog.cpp:73
-#: src/reports/budgetcategorysummary.cpp:109 src/reports/budgetingperf.cpp:129
-#: src/reports/categexp.cpp:155 src/reports/categexp.cpp:157
-#: src/reports/categovertimeperf.cpp:144 src/reports/categovertimeperf.cpp:146
-#: src/reports/transactions.cpp:113 src/reports/transactions.cpp:115
+#: src/import_export/univcsvdialog.cpp:73 src/mmcheckingpanel.cpp:982
+#: src/mmhomepagepanel.cpp:180 src/reports/budgetcategorysummary.cpp:109
+#: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:155
+#: src/reports/categexp.cpp:157 src/reports/categovertimeperf.cpp:144
+#: src/reports/categovertimeperf.cpp:146 src/reports/transactions.cpp:113
+#: src/reports/transactions.cpp:115 src/splitdetailsdialog.cpp:128
+#: src/splittransactionsdialog.cpp:127 src/transdialog.cpp:443
 msgid "Category"
 msgstr "Kategori"
 
@@ -1004,10 +1003,10 @@ msgid "Specify any associated check number or transaction number"
 msgstr "Varsa işlem veya dekont no belirtiniz"
 
 #: src/billsdepositsdialog.cpp:546 src/filtertransdialog.cpp:298
-#: src/filtertransdialog.cpp:322 src/mmcheckingpanel.cpp:976
-#: src/transdialog.cpp:458 src/import_export/qif_import_gui.cpp:79
-#: src/import_export/univcsvdialog.cpp:75 src/reports/transactions.cpp:125
-#: src/reports/transactions.cpp:127
+#: src/filtertransdialog.cpp:322 src/import_export/qif_import_gui.cpp:79
+#: src/import_export/univcsvdialog.cpp:75 src/mmcheckingpanel.cpp:976
+#: src/reports/transactions.cpp:125 src/reports/transactions.cpp:127
+#: src/transdialog.cpp:458
 msgid "Number"
 msgstr "No"
 
@@ -1066,12 +1065,12 @@ msgstr "Aktarıldığı Hesap"
 
 #: src/billsdepositsdialog.cpp:933 src/billsdepositspanel.cpp:145
 #: src/filtertransdialog.cpp:176 src/filtertransdialog.cpp:316
-#: src/transdialog.cpp:250 src/transdialog.cpp:415
 #: src/import_export/qif_import_gui.cpp:77
 #: src/import_export/qif_import_gui.cpp:138
 #: src/import_export/qif_import_gui.cpp:208
 #: src/import_export/qif_import_gui.cpp:625 src/reports/transactions.cpp:101
-#: src/reports/transactions.cpp:103
+#: src/reports/transactions.cpp:103 src/transdialog.cpp:250
+#: src/transdialog.cpp:415
 msgid "Account"
 msgstr "Hesap"
 
@@ -1489,9 +1488,9 @@ msgstr "Bütçe Yılı tanımlı"
 msgid "Organize Categories"
 msgstr "Kategoriler"
 
-#: src/categdialog.cpp:113 src/mmframereport.cpp:56 src/transdialog.cpp:300
-#: src/import_export/qif_export.cpp:119 src/reports/categexp.cpp:141
-#: src/reports/categexp.h:192
+#: src/categdialog.cpp:113 src/import_export/qif_export.cpp:119
+#: src/mmframereport.cpp:56 src/reports/categexp.cpp:141
+#: src/transdialog.cpp:300 src/reports/categexp.h:192
 msgid "Categories"
 msgstr "Kategoriler"
 
@@ -1882,17 +1881,17 @@ msgstr ""
 msgid "Include all subcategories for the selected category."
 msgstr ""
 
-#: src/filtertransdialog.cpp:257 src/mmcheckingpanel.cpp:984
-#: src/splitdetailsdialog.cpp:110 src/splittransactionsdialog.cpp:137
-#: src/import_export/univcsvdialog.cpp:78 src/model/Model_Billsdeposits.cpp:24
-#: src/model/Model_Checking.cpp:26
+#: src/filtertransdialog.cpp:257 src/import_export/univcsvdialog.cpp:78
+#: src/mmcheckingpanel.cpp:984 src/model/Model_Billsdeposits.cpp:24
+#: src/model/Model_Checking.cpp:26 src/splitdetailsdialog.cpp:110
+#: src/splittransactionsdialog.cpp:137
 msgid "Withdrawal"
 msgstr "Çıkış"
 
-#: src/filtertransdialog.cpp:259 src/mmcheckingpanel.cpp:986
-#: src/splitdetailsdialog.cpp:111 src/splittransactionsdialog.cpp:142
-#: src/import_export/univcsvdialog.cpp:79 src/model/Model_Billsdeposits.cpp:25
-#: src/model/Model_Checking.cpp:27
+#: src/filtertransdialog.cpp:259 src/import_export/univcsvdialog.cpp:79
+#: src/mmcheckingpanel.cpp:986 src/model/Model_Billsdeposits.cpp:25
+#: src/model/Model_Checking.cpp:27 src/splitdetailsdialog.cpp:111
+#: src/splittransactionsdialog.cpp:142
 msgid "Deposit"
 msgstr "Giriş"
 
@@ -1933,8 +1932,8 @@ msgstr "Özel SQL Raporu"
 msgid "Reports"
 msgstr "Raporlar"
 
-#: src/general_report_manager.cpp:209 src/mmframe.cpp:1074
-#: src/mmframe.cpp:1261 src/import_export/univcsvdialog.cpp:303
+#: src/general_report_manager.cpp:209 src/import_export/univcsvdialog.cpp:303
+#: src/mmframe.cpp:1074 src/mmframe.cpp:1261
 #, fuzzy
 msgid "&Import"
 msgstr "İçeri Aktar"
@@ -1943,8 +1942,8 @@ msgstr "İçeri Aktar"
 msgid "Locate and load a report file."
 msgstr ""
 
-#: src/general_report_manager.cpp:213 src/mmframe.cpp:1070
-#: src/mmframe.cpp:1255 src/import_export/univcsvdialog.cpp:310
+#: src/general_report_manager.cpp:213 src/import_export/univcsvdialog.cpp:310
+#: src/mmframe.cpp:1070 src/mmframe.cpp:1255
 msgid "&Export"
 msgstr "&Dışarı Aktar"
 
@@ -2093,6 +2092,559 @@ msgstr "Alacaklı "
 msgid "Choose file to Save As Report"
 msgstr "Açılacak şifrelenmiş veritabanını seçiniz"
 
+#: src/import_export/qif_export.cpp:39 src/import_export/qif_export.cpp:218
+#: src/import_export/qif_export.cpp:303
+#, fuzzy
+msgid "QIF Export"
+msgstr "QIF'ten"
+
+#: src/import_export/qif_export.cpp:96
+#, fuzzy
+msgid "Parameters"
+msgstr "Alacaklı"
+
+#: src/import_export/qif_export.cpp:101
+#: src/import_export/qif_import_gui.cpp:180
+#, fuzzy
+msgid "Log"
+msgstr "Bütçelendirme"
+
+#: src/import_export/qif_export.cpp:108
+msgid "QIF"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:108
+msgid "CSV"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2356
+#: src/mmframe.cpp:2360 src/mmframe.cpp:2380 src/mmframe.cpp:2384
+msgid "Accounts"
+msgstr "Hesaplar"
+
+#: src/import_export/qif_export.cpp:136
+#: src/import_export/qif_import_gui.cpp:158
+#, fuzzy
+msgid "From Date"
+msgstr "Başlangıç:"
+
+#: src/import_export/qif_export.cpp:145
+#: src/import_export/qif_import_gui.cpp:167
+#, fuzzy
+msgid "To Date"
+msgstr "Tarih"
+
+#: src/import_export/qif_export.cpp:156
+msgid "Write to File"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:159
+#: src/import_export/qif_import_gui.cpp:108
+#: src/import_export/univcsvdialog.cpp:206
+#, fuzzy
+msgid "File Name:"
+msgstr "Yüzdelik Birim Adı"
+
+#: src/import_export/qif_export.cpp:160
+#: src/import_export/qif_import_gui.cpp:109
+msgid "Choose &file"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:182
+#: src/import_export/univcsvdialog.cpp:328
+msgid "Clear"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:217
+msgid "Choose Account to Export from:"
+msgstr "Dışarı Aktarılacak Hesabı Seçiniz:"
+
+#: src/import_export/qif_export.cpp:263
+#: src/import_export/qif_import_gui.cpp:564
+#, fuzzy
+msgid "QIF Files"
+msgstr "&QIF"
+
+#: src/import_export/qif_export.cpp:263
+#: src/import_export/univcsvdialog.cpp:917
+#, fuzzy
+msgid "CSV Files"
+msgstr "&CSV"
+
+#: src/import_export/qif_export.cpp:266
+#, fuzzy
+msgid "Choose QIF data file to Export"
+msgstr "Aktarılacak QIF dosyasını seçiniz"
+
+#: src/import_export/qif_export.cpp:267
+#: src/import_export/univcsvdialog.cpp:918
+msgid "Choose CSV data file to Export"
+msgstr "Aktarmak için CSV dosyası seçiniz"
+
+#: src/import_export/qif_export.cpp:283
+#, fuzzy
+msgid "No Account available for export"
+msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
+
+#: src/import_export/qif_export.cpp:287
+#, fuzzy
+msgid "No Accounts selected for export"
+msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
+
+#: src/import_export/qif_export.cpp:291
+#, fuzzy
+msgid "File name is empty"
+msgstr "Tarih boş, "
+
+#: src/import_export/qif_export.cpp:295
+msgid "To Date less than From Date"
+msgstr ""
+
+#: src/import_export/qif_export.cpp:377
+#, fuzzy
+msgid "Categories exported"
+msgstr "Kategori"
+
+#: src/import_export/qif_export.cpp:385
+#: src/import_export/qif_import_gui.cpp:289
+#: src/import_export/qif_import_gui.cpp:620
+#, fuzzy
+msgid "Please wait"
+msgstr "Lütfen Bekleyiniz"
+
+#: src/import_export/qif_export.cpp:385
+#, fuzzy
+msgid "Exporting"
+msgstr "&Dışarı Aktar"
+
+#: src/import_export/qif_export.cpp:406
+#, fuzzy, c-format
+msgid "Exporting transaction %i"
+msgstr "Vadesi Yaklaşan İşlemler"
+
+#: src/import_export/qif_export.cpp:457
+#, fuzzy, c-format
+msgid "Number of transactions exported: %ld"
+msgstr "İşlem Raporu"
+
+#: src/import_export/qif_export.cpp:458 src/mmframe.cpp:1253
+#, fuzzy
+msgid "Export to QIF"
+msgstr "CVS'e"
+
+#: src/import_export/qif_import_gui.cpp:62
+#: src/import_export/qif_import_gui.cpp:680
+msgid "QIF Import"
+msgstr "QIF'ten"
+
+#: src/import_export/qif_import_gui.cpp:124 src/optionsdialog.cpp:240
+msgid "Date Format"
+msgstr "Tarih Formatı"
+
+#: src/import_export/qif_import_gui.cpp:152
+#, fuzzy
+msgid "Filtering Details:"
+msgstr "Alacaklı "
+
+#: src/import_export/qif_import_gui.cpp:189
+msgid "Data"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:289
+#, fuzzy
+msgid "Scanning"
+msgstr "Uyarı"
+
+#: src/import_export/qif_import_gui.cpp:309
+#, c-format
+msgid "Reading line %i, %ld ms"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:339
+#, fuzzy, c-format
+msgid "Line %i \t %s\n"
+msgstr "Satır : "
+
+#: src/import_export/qif_import_gui.cpp:356
+#, fuzzy, c-format
+msgid "Number of lines read from QIF file: %i in %ld ms"
+msgstr "İşlem Raporu"
+
+#: src/import_export/qif_import_gui.cpp:359
+msgid "Press OK Button to continue"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:473
+#: src/import_export/qif_import_gui.cpp:492
+#: src/import_export/qif_import_gui.cpp:509
+msgid "OK"
+msgstr "Tamam"
+
+#: src/import_export/qif_import_gui.cpp:475
+#, fuzzy
+msgid "Warning"
+msgstr "Uyarı"
+
+#: src/import_export/qif_import_gui.cpp:478
+#: src/import_export/qif_import_gui.cpp:492
+#, fuzzy
+msgid "Missing"
+msgstr "Hesaplarım"
+
+#: src/import_export/qif_import_gui.cpp:565
+#, fuzzy
+msgid "Choose QIF data file to Import"
+msgstr "Aktarılacak QIF dosyasını seçiniz"
+
+#: src/import_export/qif_import_gui.cpp:613
+#, fuzzy
+msgid "Do you want to import all transaction ?"
+msgstr "Listedeki işlemleri silmek istediğinizden emin misiniz?"
+
+#: src/import_export/qif_import_gui.cpp:614
+msgid "All missing account, payees and categories will be created."
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:615
+#, fuzzy
+msgid "Confirm Import"
+msgstr "QIF'ten Aktarım"
+
+#: src/import_export/qif_import_gui.cpp:620
+#, fuzzy
+msgid "Importing"
+msgstr "CVS'ten"
+
+#: src/import_export/qif_import_gui.cpp:622
+#, fuzzy
+msgid "Importing Accounts"
+msgstr "Hesap Tipi :"
+
+#: src/import_export/qif_import_gui.cpp:629
+#, fuzzy
+msgid "Importing Payees"
+msgstr "CVS'ten"
+
+#: src/import_export/qif_import_gui.cpp:632
+#, fuzzy
+msgid "Importing Categories"
+msgstr "Kategoriler"
+
+#: src/import_export/qif_import_gui.cpp:647
+#, fuzzy, c-format
+msgid "Importing transaction %i of %i"
+msgstr "Son 30 gün"
+
+#: src/import_export/qif_import_gui.cpp:663
+#, fuzzy
+msgid "Importing Transfers"
+msgstr "CVS'ten"
+
+#: src/import_export/qif_import_gui.cpp:667
+#, fuzzy
+msgid "Importing Split transactions"
+msgstr "Vadesi Yaklaşan İşlemler"
+
+#: src/import_export/qif_import_gui.cpp:671
+msgid "Import finished successfully"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:678
+#: src/import_export/univcsvdialog.cpp:725
+#: src/import_export/univcsvdialog.cpp:895
+msgid "Imported transactions discarded by user!"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:838
+#, fuzzy, c-format
+msgid "Added account: %s"
+msgstr " tutar "
+
+#: src/import_export/qif_import_gui.cpp:871
+#, fuzzy, c-format
+msgid "Added payee: %s"
+msgstr "Kategori"
+
+#: src/import_export/univcsvdialog.cpp:72
+msgid "Amount(+/-)"
+msgstr "Tutar(+/-)"
+
+#: src/import_export/univcsvdialog.cpp:74
+msgid "SubCategory"
+msgstr "AltKategori"
+
+#: src/import_export/univcsvdialog.cpp:77
+msgid "Don't Care"
+msgstr "Dikkate Alma"
+
+#: src/import_export/univcsvdialog.cpp:80
+msgid "To/From(+/-)"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:81 src/mmcheckingpanel.cpp:988
+#: src/mmhomepagepanel.cpp:655
+msgid "Balance"
+msgstr "Bakiye"
+
+#: src/import_export/univcsvdialog.cpp:126
+msgid "Specify the order of fields in the CSV file"
+msgstr "CSV dosya içerisindeki alanların sırasını belirtiniz"
+
+#: src/import_export/univcsvdialog.cpp:157
+msgid "&MMEX format"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:159
+msgid "MMEX standard format"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:175
+#, fuzzy
+msgid "&Up"
+msgstr "Güncelle"
+
+#: src/import_export/univcsvdialog.cpp:177
+#, fuzzy
+msgid "Move Up"
+msgstr "Yukarı Taşı"
+
+#: src/import_export/univcsvdialog.cpp:180
+#, fuzzy
+msgid "&Down"
+msgstr "Aşağı Taşı"
+
+#: src/import_export/univcsvdialog.cpp:182
+#, fuzzy
+msgid "Move &Down"
+msgstr "Aşağı Taşı"
+
+#: src/import_export/univcsvdialog.cpp:185
+#, fuzzy
+msgid "&Open"
+msgstr "Açık"
+
+#: src/import_export/univcsvdialog.cpp:187
+#, fuzzy
+msgid "Load Template"
+msgstr "Şablon Çağır"
+
+#: src/import_export/univcsvdialog.cpp:190
+#, fuzzy
+msgid "Save As..."
+msgstr "Alacaklı"
+
+#: src/import_export/univcsvdialog.cpp:192
+#, fuzzy
+msgid "Save Template"
+msgstr "Şablon Olarak Kaydet"
+
+#: src/import_export/univcsvdialog.cpp:215
+#, fuzzy
+msgid "&Search"
+msgstr "Mart"
+
+#: src/import_export/univcsvdialog.cpp:226
+#, fuzzy
+msgid "Account: "
+msgstr "Hesaplar"
+
+#: src/import_export/univcsvdialog.cpp:238
+#, fuzzy
+msgid "Date Format: "
+msgstr "Tarih Formatı"
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "Comma"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "Semicolon"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "TAB"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:254 src/optionsdialog.cpp:944
+msgid "User Defined"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:261 src/optionsdialog.cpp:730
+msgid "Specify the delimiter to use when importing/exporting CSV files"
+msgstr "CVS dosyalarında kullanılacak ayraç"
+
+#: src/import_export/univcsvdialog.cpp:277
+msgid "CSV Delimiter"
+msgstr "CSV Ayracı"
+
+#: src/import_export/univcsvdialog.cpp:287
+msgid "Preview"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:306
+#, fuzzy
+msgid "Import File"
+msgstr "İçeri Aktar"
+
+#: src/import_export/univcsvdialog.cpp:313
+#, fuzzy
+msgid "Export File"
+msgstr "İçeri Aktar"
+
+#: src/import_export/univcsvdialog.cpp:464
+msgid "Unknown"
+msgstr "Bilinmiyor"
+
+#: src/import_export/univcsvdialog.cpp:469
+#, fuzzy
+msgid "Choose Universal CSV format file to load"
+msgstr "Aktarmak için CSV dosyası seçiniz"
+
+#: src/import_export/univcsvdialog.cpp:476
+#: src/import_export/univcsvdialog.cpp:572
+#: src/import_export/univcsvdialog.cpp:1074
+#: src/import_export/univcsvdialog.cpp:1323
+msgid "Unable to open file."
+msgstr "Dosya açılamadı."
+
+#: src/import_export/univcsvdialog.cpp:476
+#: src/import_export/univcsvdialog.cpp:523
+#: src/import_export/univcsvdialog.cpp:550
+#: src/import_export/univcsvdialog.cpp:572
+#: src/import_export/univcsvdialog.cpp:588
+#: src/import_export/univcsvdialog.cpp:746
+#: src/import_export/univcsvdialog.cpp:786
+#: src/import_export/univcsvdialog.cpp:1074 src/mmframe.cpp:1887
+#, fuzzy
+msgid "Universal CSV Import"
+msgstr "Evrensel CSV "
+
+#: src/import_export/univcsvdialog.cpp:512
+#, fuzzy
+msgid "Choose Universal CSV format file to save"
+msgstr "Aktarmak için CSV dosyası seçiniz"
+
+#: src/import_export/univcsvdialog.cpp:523
+msgid "Unable to write to file."
+msgstr "Dosyaya yazılamadı."
+
+#: src/import_export/univcsvdialog.cpp:549
+#: src/import_export/univcsvdialog.cpp:745
+msgid ""
+"Incorrect fields specified for CSV import! Requires at least Date, Amount "
+"and Payee."
+msgstr ""
+"CVS aktarımı için hatalı alanlar belirtilmiş! En azından Tarih, Tutar ve "
+"Alacaklı olmalı"
+
+#: src/import_export/univcsvdialog.cpp:589
+#: src/import_export/univcsvdialog.cpp:787
+#, fuzzy
+msgid "Transactions imported from CSV: "
+msgstr "QIF'ten aktarılan işlemler"
+
+#: src/import_export/univcsvdialog.cpp:597
+#, fuzzy, c-format
+msgid ""
+"Transactions imported from CSV\n"
+"to account %s : %i"
+msgstr "QIF'ten aktarılan işlemler"
+
+#: src/import_export/univcsvdialog.cpp:627
+#: src/import_export/univcsvdialog.cpp:629
+#: src/import_export/univcsvdialog.cpp:652
+#: src/import_export/univcsvdialog.cpp:654
+#: src/import_export/univcsvdialog.cpp:809
+#: src/import_export/univcsvdialog.cpp:811
+#: src/import_export/univcsvdialog.cpp:824
+#: src/import_export/univcsvdialog.cpp:826
+#, fuzzy, c-format
+msgid "Line: %i"
+msgstr "Satır : "
+
+#: src/import_export/univcsvdialog.cpp:628
+#: src/import_export/univcsvdialog.cpp:630
+#: src/import_export/univcsvdialog.cpp:810
+#: src/import_export/univcsvdialog.cpp:812
+msgid " file contains insufficient number of tokens"
+msgstr " dosya yetersiz sayıda bilgi içeriyor"
+
+#: src/import_export/univcsvdialog.cpp:653
+#: src/import_export/univcsvdialog.cpp:655
+#: src/import_export/univcsvdialog.cpp:825
+#: src/import_export/univcsvdialog.cpp:827
+msgid ""
+" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
+msgstr "Tarih, Alacaklı, Tutar veya Tip eksik, yok sayılıyor"
+
+#: src/import_export/univcsvdialog.cpp:689
+#: src/import_export/univcsvdialog.cpp:690
+#: src/import_export/univcsvdialog.cpp:861
+#: src/import_export/univcsvdialog.cpp:862
+#, fuzzy, c-format
+msgid "Line : %i imported OK."
+msgstr " Aktarım Tamalandı."
+
+#: src/import_export/univcsvdialog.cpp:695
+#: src/import_export/univcsvdialog.cpp:865
+#, fuzzy, c-format
+msgid "Total Lines : %i"
+msgstr "Toplam Varlıklar:"
+
+#: src/import_export/univcsvdialog.cpp:697
+#: src/import_export/univcsvdialog.cpp:867
+#, fuzzy, c-format
+msgid "Total Imported : %ld"
+msgstr "Toplam Tutar: "
+
+#: src/import_export/univcsvdialog.cpp:699
+#: src/import_export/univcsvdialog.cpp:869
+#, c-format
+msgid "Log file written to : %s"
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:702
+#: src/import_export/univcsvdialog.cpp:872
+#, fuzzy
+msgid "Please confirm saving..."
+msgstr "Lütfen Bekleyiniz"
+
+#: src/import_export/univcsvdialog.cpp:704
+#: src/import_export/univcsvdialog.cpp:874
+#, fuzzy
+msgid "Importing CSV"
+msgstr "CVS'ten"
+
+#: src/import_export/univcsvdialog.cpp:708
+#: src/import_export/univcsvdialog.cpp:878
+#, fuzzy
+msgid "Imported transactions have been flagged so you can review them."
+msgstr ""
+"Toplam Satır : %d.\n"
+"Aktarılan : %d\n"
+"Log Dosyası : %s.\n"
+"\n"
+"Aktarılan hareketler işaretlendi, bu sayede inceleyebilirsiniz."
+
+#: src/import_export/univcsvdialog.cpp:719
+#: src/import_export/univcsvdialog.cpp:889
+msgid "Transactions saved to database in account: "
+msgstr ""
+
+#: src/import_export/univcsvdialog.cpp:1037
+#, fuzzy, c-format
+msgid "Transactions exported: %ld"
+msgstr "İşlem Raporu"
+
+#: src/import_export/univcsvdialog.cpp:1038 src/mmframe.cpp:1252
+msgid "Export to CSV"
+msgstr "CVS'e"
+
+#: src/import_export/univcsvdialog.cpp:1313
+#, fuzzy
+msgid "Choose CSV data file to import"
+msgstr "Aktarmak için CSV dosyası seçiniz"
+
 #: src/maincurrencydialog.cpp:58 src/stockdialog.cpp:144
 msgid "Symbol"
 msgstr "Sembol"
@@ -2220,11 +2772,6 @@ msgstr "Hesap  : "
 #, fuzzy
 msgid "Select account used in transfer transactions"
 msgstr "Bu işlemin tutarını belirtiniz"
-
-#: src/mmcheckingpanel.cpp:988 src/mmhomepagepanel.cpp:655
-#: src/import_export/univcsvdialog.cpp:81
-msgid "Balance"
-msgstr "Bakiye"
 
 #: src/mmcheckingpanel.cpp:1057
 msgid "&New Transaction"
@@ -2499,8 +3046,8 @@ msgstr "&CSV"
 msgid "&QIF Files..."
 msgstr "&QIF"
 
-#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/optionsdialog.cpp:136
-#: src/model/Model_Account.cpp:24
+#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/model/Model_Account.cpp:24
+#: src/optionsdialog.cpp:136
 msgid "Open"
 msgstr "Açık"
 
@@ -2543,15 +3090,6 @@ msgstr ""
 #: src/mmframe.cpp:1246
 msgid "&Clear Recent Files"
 msgstr ""
-
-#: src/mmframe.cpp:1252 src/import_export/univcsvdialog.cpp:1038
-msgid "Export to CSV"
-msgstr "CVS'e"
-
-#: src/mmframe.cpp:1253 src/import_export/qif_export.cpp:458
-#, fuzzy
-msgid "Export to QIF"
-msgstr "CVS'e"
 
 #: src/mmframe.cpp:1254
 msgid "&Report to HTML"
@@ -2972,18 +3510,6 @@ msgstr "Money Manager Ex: Veritabanı için şifre giriniz ..."
 msgid "No account available to import"
 msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
 
-#: src/mmframe.cpp:1887 src/import_export/univcsvdialog.cpp:476
-#: src/import_export/univcsvdialog.cpp:523
-#: src/import_export/univcsvdialog.cpp:550
-#: src/import_export/univcsvdialog.cpp:572
-#: src/import_export/univcsvdialog.cpp:588
-#: src/import_export/univcsvdialog.cpp:746
-#: src/import_export/univcsvdialog.cpp:786
-#: src/import_export/univcsvdialog.cpp:1074
-#, fuzzy
-msgid "Universal CSV Import"
-msgstr "Evrensel CSV "
-
 #: src/mmframe.cpp:1938
 msgid "Term Account views have been temporarly turned on."
 msgstr ""
@@ -3023,11 +3549,6 @@ msgstr "Aktarılacak QIF dosyasını seçiniz"
 #, fuzzy
 msgid "No account available to edit!"
 msgstr "Kullanılabilir Hesap Yok"
-
-#: src/mmframe.cpp:2356 src/mmframe.cpp:2360 src/mmframe.cpp:2380
-#: src/mmframe.cpp:2384 src/import_export/qif_export.cpp:125
-msgid "Accounts"
-msgstr "Hesaplar"
 
 #: src/mmframe.cpp:2360
 msgid "Choose Account to Edit"
@@ -3236,8 +3757,8 @@ msgid "Total"
 msgstr "Toplam"
 
 #: src/mmhomepagepanel.cpp:96 src/mmhomepagepanel.cpp:686
-#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 #: src/reports/incexpenses.cpp:240 src/reports/payee.cpp:168
+#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 msgid "Total:"
 msgstr "Toplam:"
 
@@ -3312,6 +3833,289 @@ msgstr "Toplam:"
 msgid "REPORTS"
 msgstr "RAPORLAR"
 
+#: src/model/Model_Account.cpp:25
+msgid "Closed"
+msgstr "Kapalı"
+
+#: src/model/Model_Account.cpp:30
+msgid "Checking"
+msgstr "Kontrol Ediliyor"
+
+#: src/model/Model_Account.cpp:31
+msgid "Term"
+msgstr ""
+
+#: src/model/Model_Account.cpp:32
+msgid "Investment"
+msgstr "Yatırım"
+
+#: src/model/Model_Asset.cpp:24
+msgid "Appreciates"
+msgstr "Fiyat yükselişi"
+
+#: src/model/Model_Asset.cpp:25
+msgid "Depreciates"
+msgstr "Fiyat düşüşü"
+
+#: src/model/Model_Asset.cpp:30
+msgid "Property"
+msgstr "Özellik"
+
+#: src/model/Model_Asset.cpp:31 src/model/Model_Category.cpp:103
+msgid "Automobile"
+msgstr "Otomobil"
+
+#: src/model/Model_Asset.cpp:32
+msgid "Household Object"
+msgstr "Eve Ait Eşya/Obje"
+
+#: src/model/Model_Asset.cpp:33
+msgid "Art"
+msgstr "Sanat"
+
+#: src/model/Model_Asset.cpp:34
+msgid "Jewellery"
+msgstr "Mücevherat"
+
+#: src/model/Model_Asset.cpp:35
+msgid "Cash"
+msgstr "Nakit"
+
+#: src/model/Model_Asset.cpp:36
+msgid "Other"
+msgstr "Diğer"
+
+#: src/model/Model_Billsdeposits.cpp:26 src/model/Model_Category.cpp:209
+#: src/model/Model_Checking.cpp:28
+msgid "Transfer"
+msgstr "Havale"
+
+#: src/model/Model_Category.cpp:65
+msgid "Telephone"
+msgstr ""
+
+#: src/model/Model_Category.cpp:66
+msgid "Electricity"
+msgstr ""
+
+#: src/model/Model_Category.cpp:67 src/model/Model_Category.cpp:99
+msgid "Gas"
+msgstr ""
+
+#: src/model/Model_Category.cpp:68
+#, fuzzy
+msgid "Internet"
+msgstr "Yatırım"
+
+#: src/model/Model_Category.cpp:69
+#, fuzzy
+msgid "Rent"
+msgstr "Rapor"
+
+#: src/model/Model_Category.cpp:70
+msgid "Cable TV"
+msgstr ""
+
+#: src/model/Model_Category.cpp:71
+#, fuzzy
+msgid "Water"
+msgstr "Tarih"
+
+#: src/model/Model_Category.cpp:73
+msgid "Bills"
+msgstr ""
+
+#: src/model/Model_Category.cpp:79
+msgid "Groceries"
+msgstr ""
+
+#: src/model/Model_Category.cpp:80
+msgid "Dining out"
+msgstr ""
+
+#: src/model/Model_Category.cpp:82
+msgid "Food"
+msgstr ""
+
+#: src/model/Model_Category.cpp:88
+#, fuzzy
+msgid "Movies"
+msgstr "Yukarı Taşı"
+
+#: src/model/Model_Category.cpp:89
+msgid "Video Rental"
+msgstr ""
+
+#: src/model/Model_Category.cpp:90
+msgid "Magazines"
+msgstr ""
+
+#: src/model/Model_Category.cpp:92
+msgid "Leisure"
+msgstr ""
+
+#: src/model/Model_Category.cpp:98
+msgid "Maintenance"
+msgstr ""
+
+#: src/model/Model_Category.cpp:100
+#, fuzzy
+msgid "Parking"
+msgstr "Uyarı"
+
+#: src/model/Model_Category.cpp:101
+msgid "Registration"
+msgstr ""
+
+#: src/model/Model_Category.cpp:109
+msgid "Books"
+msgstr ""
+
+#: src/model/Model_Category.cpp:110
+msgid "Tuition"
+msgstr ""
+
+#: src/model/Model_Category.cpp:113
+msgid "Education"
+msgstr ""
+
+#: src/model/Model_Category.cpp:119
+#, fuzzy
+msgid "Clothing"
+msgstr "Kontrol Ediliyor"
+
+#: src/model/Model_Category.cpp:120
+msgid "Furnishing"
+msgstr ""
+
+#: src/model/Model_Category.cpp:123
+msgid "Homeneeds"
+msgstr ""
+
+#: src/model/Model_Category.cpp:129 src/model/Model_Category.cpp:144
+#, fuzzy
+msgid "Health"
+msgstr "Hesap"
+
+#: src/model/Model_Category.cpp:130
+#, fuzzy
+msgid "Dental"
+msgstr "Genel"
+
+#: src/model/Model_Category.cpp:131
+msgid "Eyecare"
+msgstr ""
+
+#: src/model/Model_Category.cpp:132
+msgid "Physician"
+msgstr ""
+
+#: src/model/Model_Category.cpp:133
+#, fuzzy
+msgid "Prescriptions"
+msgstr "İşlemler"
+
+#: src/model/Model_Category.cpp:135
+msgid "Healthcare"
+msgstr ""
+
+#: src/model/Model_Category.cpp:141
+#, fuzzy
+msgid "Auto"
+msgstr "e"
+
+#: src/model/Model_Category.cpp:142
+msgid "Life"
+msgstr ""
+
+#: src/model/Model_Category.cpp:143
+#, fuzzy
+msgid "Home"
+msgstr "Ana Sayfa"
+
+#: src/model/Model_Category.cpp:146
+msgid "Insurance"
+msgstr ""
+
+#: src/model/Model_Category.cpp:152
+msgid "Travel"
+msgstr ""
+
+#: src/model/Model_Category.cpp:153
+#, fuzzy
+msgid "Lodging"
+msgstr "Bütçelendirme"
+
+#: src/model/Model_Category.cpp:154
+msgid "Sightseeing"
+msgstr ""
+
+#: src/model/Model_Category.cpp:156
+#, fuzzy
+msgid "Vacation"
+msgstr "Menü"
+
+#: src/model/Model_Category.cpp:162
+#, fuzzy
+msgid "Income Tax"
+msgstr "Gelir"
+
+#: src/model/Model_Category.cpp:163
+msgid "House Tax"
+msgstr ""
+
+#: src/model/Model_Category.cpp:164
+msgid "Water Tax"
+msgstr ""
+
+#: src/model/Model_Category.cpp:167
+msgid "Taxes"
+msgstr ""
+
+#: src/model/Model_Category.cpp:174
+msgid "Miscellaneous"
+msgstr ""
+
+#: src/model/Model_Category.cpp:181
+msgid "Gifts"
+msgstr ""
+
+#: src/model/Model_Category.cpp:187
+#, fuzzy
+msgid "Salary"
+msgstr "Bakiye"
+
+#: src/model/Model_Category.cpp:188
+msgid "Reimbursement/Refunds"
+msgstr ""
+
+#: src/model/Model_Category.cpp:189
+#, fuzzy
+msgid "Investment Income"
+msgstr "Yatırım"
+
+#: src/model/Model_Category.cpp:197
+#, fuzzy
+msgid "Other Income"
+msgstr "Gelir"
+
+#: src/model/Model_Category.cpp:203
+#, fuzzy
+msgid "Other Expenses"
+msgstr "Gider"
+
+#: src/model/Model_Currency.cpp:107 src/wizard_newdb.cpp:157
+msgid "Base Currency Not Set"
+msgstr "Yerel Para Birimi Belirtilmedi"
+
+#: src/model/Model_Report.cpp:138
+#, c-format
+msgid ""
+"The SQL script:\n"
+"%s \n"
+"will modify database! aborted!"
+msgstr ""
+
 #: src/optionsdialog.cpp:190
 #, fuzzy
 msgid "Display Heading"
@@ -3345,10 +4149,6 @@ msgstr "Para Birimini Seçiniz"
 #, fuzzy
 msgid "Sets the default currency for the database."
 msgstr "Bu hesapta kullanılacak para birimini belirtiniz."
-
-#: src/optionsdialog.cpp:240 src/import_export/qif_import_gui.cpp:124
-msgid "Date Format"
-msgstr "Tarih Formatı"
 
 #: src/optionsdialog.cpp:254
 msgid "Specify the date format for display"
@@ -3713,10 +4513,6 @@ msgstr "Ayarlar"
 msgid "Delimiter"
 msgstr "CSV Ayracı"
 
-#: src/optionsdialog.cpp:730 src/import_export/univcsvdialog.cpp:261
-msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr "CVS dosyalarında kullanılacak ayraç"
-
 #: src/optionsdialog.cpp:744
 #, fuzzy
 msgid "WebApp Settings"
@@ -3829,10 +4625,6 @@ msgstr "Veritabanını Farklı Kaydet"
 
 #: src/optionsdialog.cpp:942
 msgid "Dropbox folder"
-msgstr ""
-
-#: src/optionsdialog.cpp:944 src/import_export/univcsvdialog.cpp:254
-msgid "User Defined"
 msgstr ""
 
 #: src/optionsdialog.cpp:970
@@ -3997,6 +4789,260 @@ msgstr ""
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
 msgstr ""
+
+#: src/reports/budget.cpp:78
+#, fuzzy
+msgid "Financial Year: "
+msgstr "Son Takvim Yılı"
+
+#: src/reports/budget.cpp:80
+#, fuzzy
+msgid "Year: "
+msgstr "Yıllık"
+
+#: src/reports/budget.cpp:82
+#, fuzzy
+msgid "Month: "
+msgstr "Ay"
+
+#: src/reports/budgetcategorysummary.cpp:97
+#, fuzzy
+msgid "Budget Categories for "
+msgstr "Tüm Bütçe Kategorilerini Görüntüle"
+
+#: src/reports/budgetcategorysummary.cpp:99
+#, fuzzy
+msgid "Budget Category Summary for "
+msgstr "Bütçe Yap"
+
+#: src/reports/budgetcategorysummary.cpp:100
+#, fuzzy
+msgid "( Estimated Vs Actual )"
+msgstr " (Tahmini Vs Gerçekleşen)"
+
+#: src/reports/budgetcategorysummary.cpp:199
+#, fuzzy
+msgid "Estimated Income:"
+msgstr "Tahmini Gelir:  Gerçek Gelir: "
+
+#: src/reports/budgetcategorysummary.cpp:201
+#, fuzzy
+msgid "Actual Income:"
+msgstr "Gelir:"
+
+#: src/reports/budgetcategorysummary.cpp:203
+#, fuzzy
+msgid "Difference Income:"
+msgstr "Fark:"
+
+#: src/reports/budgetcategorysummary.cpp:208
+#, fuzzy
+msgid "Estimated Expenses:"
+msgstr "Tahmini Giderler:  Gerçek Giderler"
+
+#: src/reports/budgetcategorysummary.cpp:210
+#, fuzzy
+msgid "Actual Expenses:"
+msgstr "Gider: "
+
+#: src/reports/budgetcategorysummary.cpp:212
+#, fuzzy
+msgid "Difference Expenses:"
+msgstr "Gider"
+
+#: src/reports/budgetingperf.cpp:122
+#, fuzzy
+msgid "Budget Performance for "
+msgstr "Bütçe Performansı"
+
+#: src/reports/budgetingperf.cpp:138 src/reports/categovertimeperf.cpp:160
+#: src/reports/categovertimeperf.cpp:162
+msgid "Overall"
+msgstr "Tümü"
+
+#: src/reports/budgetingperf.cpp:139
+msgid "%"
+msgstr "%"
+
+#: src/reports/cashflow.cpp:60
+#, fuzzy, c-format
+msgid "Cash Flow Forecast for %i Years Ahead"
+msgstr "Tüm Hesaplar İçin Nakit Akışı Tahmini - Önümüzdeki 1 Yıl"
+
+#: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
+#: src/reports/incexpenses.cpp:158
+#, fuzzy
+msgid "Accounts: "
+msgstr "Hesaplar"
+
+#: src/reports/cashflow.cpp:66 src/reports/incexpenses.cpp:55
+#: src/reports/incexpenses.cpp:161
+#, fuzzy
+msgid "All Accounts"
+msgstr "Hesaplar"
+
+#: src/reports/cashflow.cpp:68
+#, fuzzy
+msgid "All Bank Accounts"
+msgstr "Hesaplarım"
+
+#: src/reports/cashflow.cpp:70
+#, fuzzy
+msgid "All Term Accounts"
+msgstr "Aktarıldığı Hesap"
+
+#: src/reports/cashflow.cpp:105 src/reports/incexpenses.cpp:191
+#: src/reports/payee.cpp:148 src/reports/payee.cpp:150
+msgid "Difference"
+msgstr "Fark"
+
+#: src/reports/categexp.cpp:147
+#, fuzzy
+msgid "Subcategories"
+msgstr "AltKategori"
+
+#: src/reports/categexp.cpp:184
+#, fuzzy
+msgid "Category Total: "
+msgstr "Kategori "
+
+#: src/reports/categexp.cpp:197
+#, fuzzy
+msgid "Total Expenses: "
+msgstr "Gider: "
+
+#: src/reports/categexp.cpp:198
+#, fuzzy
+msgid "Total Income: "
+msgstr "Gelir:"
+
+#: src/reports/categexp.cpp:200
+#, fuzzy
+msgid "Grand Total: "
+msgstr "Toplam: %s"
+
+#: src/reports/categexp.cpp:217 src/reports/categexp.cpp:223
+#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:235
+#: src/reports/categexp.cpp:241 src/reports/categexp.cpp:246
+#: src/reports/categexp.cpp:252 src/reports/categexp.cpp:258
+#: src/reports/categexp.cpp:264 src/reports/categexp.cpp:270
+#, fuzzy, c-format
+msgid "Where the Money Goes - %s"
+msgstr "Param Nereye Gidiyor"
+
+#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:293
+#: src/reports/categexp.cpp:357 src/reports/mmDateRange.cpp:88
+#: src/reports/payee.h:74
+#, fuzzy
+msgid "Last Month"
+msgstr "Son Ayı Görüntüle"
+
+#: src/reports/categexp.cpp:281 src/reports/categexp.cpp:287
+#: src/reports/categexp.cpp:293 src/reports/categexp.cpp:299
+#: src/reports/categexp.cpp:305 src/reports/categexp.cpp:311
+#: src/reports/categexp.cpp:317 src/reports/categexp.cpp:323
+#: src/reports/categexp.cpp:329 src/reports/categexp.cpp:335
+#, fuzzy, c-format
+msgid "Where the Money Comes From - %s"
+msgstr "Para Nereden Akıyor"
+
+#: src/reports/categexp.cpp:346 src/reports/categexp.cpp:352
+#: src/reports/categexp.cpp:357 src/reports/categexp.cpp:363
+#: src/reports/categexp.cpp:368 src/reports/categexp.cpp:374
+#: src/reports/categexp.cpp:380 src/reports/categexp.cpp:386
+#: src/reports/categexp.cpp:392 src/reports/categexp.cpp:398
+#, fuzzy, c-format
+msgid "Categories - %s"
+msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
+
+#: src/reports/categovertimeperf.cpp:36
+#, fuzzy, c-format
+msgid "Category Income/Expenses: %s"
+msgstr "Kategori Bazında Gelir / Gider (Son 12 Ay)"
+
+#: src/reports/categovertimeperf.cpp:178 src/reports/payee.cpp:140
+#: src/reports/payee.cpp:142
+#, fuzzy
+msgid "Incomes"
+msgstr "Gelir"
+
+#: src/reports/chart.cpp:255 src/reports/chart.cpp:455
+msgid "Legend:"
+msgstr "Gösterge:"
+
+#: src/reports/htmlbuilder.cpp:83
+#, fuzzy, c-format
+msgid "Today's Date: %s"
+msgstr "Tarih : "
+
+#: src/reports/htmlbuilder.cpp:324
+#, fuzzy, c-format
+msgid "From %s till %s"
+msgstr "%s on %s"
+
+#: src/reports/htmlbuilder.cpp:330 src/reports/mmDateRange.cpp:198
+msgid "Over Time"
+msgstr ""
+
+#: src/reports/incexpenses.cpp:118
+msgid "Income:"
+msgstr "Gelir:"
+
+#: src/reports/incexpenses.cpp:119
+msgid "Expenses:"
+msgstr "Gider: "
+
+#: src/reports/incexpenses.cpp:187
+#, fuzzy
+msgid "Year"
+msgstr "Yıllık"
+
+#: src/reports/incexpenses.cpp:188
+msgid "Month"
+msgstr "Ay"
+
+#: src/reports/mmDateRange.cpp:72
+#, fuzzy
+msgid "Today"
+msgstr "30 Günü Görüntüle"
+
+#: src/reports/mmDateRange.cpp:108
+#, fuzzy
+msgid "Last 90 Days"
+msgstr "Son 30 Gün"
+
+#: src/reports/mmDateRange.cpp:118
+#, fuzzy
+msgid "Last 3 Months"
+msgstr "Son Ayı Görüntüle"
+
+#: src/reports/mmDateRange.cpp:128
+#, fuzzy
+msgid "Last 12 Months"
+msgstr "Son Ayı Görüntüle"
+
+#: src/reports/mmgraphpie.cpp:49
+#, fuzzy
+msgid "All Others"
+msgstr "Diğerleri"
+
+#: src/reports/reportbase.cpp:57
+msgid "Choose Accounts"
+msgstr "Hesap Seç"
+
+#: src/reports/transactions.cpp:81
+#, fuzzy
+msgid "Transaction List "
+msgstr "İşlem Listesi"
+
+#: src/reports/transactions.cpp:84
+#, fuzzy, c-format
+msgid "Transaction List for Account: %s"
+msgstr "İşlem Listesi"
+
+#: src/reports/transactions.cpp:173
+msgid "Total Amount: "
+msgstr "Toplam Tutar: "
 
 #: src/splitdetailsdialog.cpp:66
 msgid "Split Detail Dialog"
@@ -4781,1073 +5827,10 @@ msgstr ""
 msgid "Used as a database title for displayed and printed reports."
 msgstr ""
 
-#: src/wizard_newdb.cpp:157 src/model/Model_Currency.cpp:107
-msgid "Base Currency Not Set"
-msgstr "Yerel Para Birimi Belirtilmedi"
-
-#: src/import_export/qif_export.cpp:39 src/import_export/qif_export.cpp:218
-#: src/import_export/qif_export.cpp:303
+#: src/import_export/univcsvdialog.h:28
 #, fuzzy
-msgid "QIF Export"
-msgstr "QIF'ten"
-
-#: src/import_export/qif_export.cpp:96
-#, fuzzy
-msgid "Parameters"
-msgstr "Alacaklı"
-
-#: src/import_export/qif_export.cpp:101
-#: src/import_export/qif_import_gui.cpp:180
-#, fuzzy
-msgid "Log"
-msgstr "Bütçelendirme"
-
-#: src/import_export/qif_export.cpp:108
-msgid "QIF"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:108
-msgid "CSV"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:136
-#: src/import_export/qif_import_gui.cpp:158
-#, fuzzy
-msgid "From Date"
-msgstr "Başlangıç:"
-
-#: src/import_export/qif_export.cpp:145
-#: src/import_export/qif_import_gui.cpp:167
-#, fuzzy
-msgid "To Date"
-msgstr "Tarih"
-
-#: src/import_export/qif_export.cpp:156
-msgid "Write to File"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:159
-#: src/import_export/qif_import_gui.cpp:108
-#: src/import_export/univcsvdialog.cpp:206
-#, fuzzy
-msgid "File Name:"
-msgstr "Yüzdelik Birim Adı"
-
-#: src/import_export/qif_export.cpp:160
-#: src/import_export/qif_import_gui.cpp:109
-msgid "Choose &file"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:182
-#: src/import_export/univcsvdialog.cpp:328
-msgid "Clear"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:217
-msgid "Choose Account to Export from:"
-msgstr "Dışarı Aktarılacak Hesabı Seçiniz:"
-
-#: src/import_export/qif_export.cpp:263
-#: src/import_export/qif_import_gui.cpp:564
-#, fuzzy
-msgid "QIF Files"
-msgstr "&QIF"
-
-#: src/import_export/qif_export.cpp:263
-#: src/import_export/univcsvdialog.cpp:917
-#, fuzzy
-msgid "CSV Files"
-msgstr "&CSV"
-
-#: src/import_export/qif_export.cpp:266
-#, fuzzy
-msgid "Choose QIF data file to Export"
-msgstr "Aktarılacak QIF dosyasını seçiniz"
-
-#: src/import_export/qif_export.cpp:267
-#: src/import_export/univcsvdialog.cpp:918
-msgid "Choose CSV data file to Export"
-msgstr "Aktarmak için CSV dosyası seçiniz"
-
-#: src/import_export/qif_export.cpp:283
-#, fuzzy
-msgid "No Account available for export"
-msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
-
-#: src/import_export/qif_export.cpp:287
-#, fuzzy
-msgid "No Accounts selected for export"
-msgstr "Kullanılabilir Hiçbir Hesap Yok! Dışarı Aktarım Gerçekleştirilemez!"
-
-#: src/import_export/qif_export.cpp:291
-#, fuzzy
-msgid "File name is empty"
-msgstr "Tarih boş, "
-
-#: src/import_export/qif_export.cpp:295
-msgid "To Date less than From Date"
-msgstr ""
-
-#: src/import_export/qif_export.cpp:377
-#, fuzzy
-msgid "Categories exported"
-msgstr "Kategori"
-
-#: src/import_export/qif_export.cpp:385
-#: src/import_export/qif_import_gui.cpp:289
-#: src/import_export/qif_import_gui.cpp:620
-#, fuzzy
-msgid "Please wait"
-msgstr "Lütfen Bekleyiniz"
-
-#: src/import_export/qif_export.cpp:385
-#, fuzzy
-msgid "Exporting"
-msgstr "&Dışarı Aktar"
-
-#: src/import_export/qif_export.cpp:406
-#, fuzzy, c-format
-msgid "Exporting transaction %i"
-msgstr "Vadesi Yaklaşan İşlemler"
-
-#: src/import_export/qif_export.cpp:457
-#, fuzzy, c-format
-msgid "Number of transactions exported: %ld"
-msgstr "İşlem Raporu"
-
-#: src/import_export/qif_import_gui.cpp:62
-#: src/import_export/qif_import_gui.cpp:680
-msgid "QIF Import"
-msgstr "QIF'ten"
-
-#: src/import_export/qif_import_gui.cpp:152
-#, fuzzy
-msgid "Filtering Details:"
-msgstr "Alacaklı "
-
-#: src/import_export/qif_import_gui.cpp:189
-msgid "Data"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:289
-#, fuzzy
-msgid "Scanning"
-msgstr "Uyarı"
-
-#: src/import_export/qif_import_gui.cpp:309
-#, c-format
-msgid "Reading line %i, %ld ms"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:339
-#, fuzzy, c-format
-msgid "Line %i \t %s\n"
-msgstr "Satır : "
-
-#: src/import_export/qif_import_gui.cpp:356
-#, fuzzy, c-format
-msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr "İşlem Raporu"
-
-#: src/import_export/qif_import_gui.cpp:359
-msgid "Press OK Button to continue"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:473
-#: src/import_export/qif_import_gui.cpp:492
-#: src/import_export/qif_import_gui.cpp:509
-msgid "OK"
-msgstr "Tamam"
-
-#: src/import_export/qif_import_gui.cpp:475
-#, fuzzy
-msgid "Warning"
-msgstr "Uyarı"
-
-#: src/import_export/qif_import_gui.cpp:478
-#: src/import_export/qif_import_gui.cpp:492
-#, fuzzy
-msgid "Missing"
-msgstr "Hesaplarım"
-
-#: src/import_export/qif_import_gui.cpp:565
-#, fuzzy
-msgid "Choose QIF data file to Import"
-msgstr "Aktarılacak QIF dosyasını seçiniz"
-
-#: src/import_export/qif_import_gui.cpp:613
-#, fuzzy
-msgid "Do you want to import all transaction ?"
-msgstr "Listedeki işlemleri silmek istediğinizden emin misiniz?"
-
-#: src/import_export/qif_import_gui.cpp:614
-msgid "All missing account, payees and categories will be created."
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:615
-#, fuzzy
-msgid "Confirm Import"
-msgstr "QIF'ten Aktarım"
-
-#: src/import_export/qif_import_gui.cpp:620
-#, fuzzy
-msgid "Importing"
-msgstr "CVS'ten"
-
-#: src/import_export/qif_import_gui.cpp:622
-#, fuzzy
-msgid "Importing Accounts"
-msgstr "Hesap Tipi :"
-
-#: src/import_export/qif_import_gui.cpp:629
-#, fuzzy
-msgid "Importing Payees"
-msgstr "CVS'ten"
-
-#: src/import_export/qif_import_gui.cpp:632
-#, fuzzy
-msgid "Importing Categories"
-msgstr "Kategoriler"
-
-#: src/import_export/qif_import_gui.cpp:647
-#, fuzzy, c-format
-msgid "Importing transaction %i of %i"
-msgstr "Son 30 gün"
-
-#: src/import_export/qif_import_gui.cpp:663
-#, fuzzy
-msgid "Importing Transfers"
-msgstr "CVS'ten"
-
-#: src/import_export/qif_import_gui.cpp:667
-#, fuzzy
-msgid "Importing Split transactions"
-msgstr "Vadesi Yaklaşan İşlemler"
-
-#: src/import_export/qif_import_gui.cpp:671
-msgid "Import finished successfully"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:678
-#: src/import_export/univcsvdialog.cpp:725
-#: src/import_export/univcsvdialog.cpp:895
-msgid "Imported transactions discarded by user!"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:838
-#, fuzzy, c-format
-msgid "Added account: %s"
-msgstr " tutar "
-
-#: src/import_export/qif_import_gui.cpp:871
-#, fuzzy, c-format
-msgid "Added payee: %s"
-msgstr "Kategori"
-
-#: src/import_export/univcsvdialog.cpp:72
-msgid "Amount(+/-)"
-msgstr "Tutar(+/-)"
-
-#: src/import_export/univcsvdialog.cpp:74
-msgid "SubCategory"
-msgstr "AltKategori"
-
-#: src/import_export/univcsvdialog.cpp:77
-msgid "Don't Care"
-msgstr "Dikkate Alma"
-
-#: src/import_export/univcsvdialog.cpp:80
-msgid "To/From(+/-)"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:126
-msgid "Specify the order of fields in the CSV file"
-msgstr "CSV dosya içerisindeki alanların sırasını belirtiniz"
-
-#: src/import_export/univcsvdialog.cpp:157
-msgid "&MMEX format"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:159
-msgid "MMEX standard format"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:175
-#, fuzzy
-msgid "&Up"
-msgstr "Güncelle"
-
-#: src/import_export/univcsvdialog.cpp:177
-#, fuzzy
-msgid "Move Up"
-msgstr "Yukarı Taşı"
-
-#: src/import_export/univcsvdialog.cpp:180
-#, fuzzy
-msgid "&Down"
-msgstr "Aşağı Taşı"
-
-#: src/import_export/univcsvdialog.cpp:182
-#, fuzzy
-msgid "Move &Down"
-msgstr "Aşağı Taşı"
-
-#: src/import_export/univcsvdialog.cpp:185
-#, fuzzy
-msgid "&Open"
-msgstr "Açık"
-
-#: src/import_export/univcsvdialog.cpp:187
-#, fuzzy
-msgid "Load Template"
-msgstr "Şablon Çağır"
-
-#: src/import_export/univcsvdialog.cpp:190
-#, fuzzy
-msgid "Save As..."
-msgstr "Alacaklı"
-
-#: src/import_export/univcsvdialog.cpp:192
-#, fuzzy
-msgid "Save Template"
-msgstr "Şablon Olarak Kaydet"
-
-#: src/import_export/univcsvdialog.cpp:215
-#, fuzzy
-msgid "&Search"
-msgstr "Mart"
-
-#: src/import_export/univcsvdialog.cpp:226
-#, fuzzy
-msgid "Account: "
-msgstr "Hesaplar"
-
-#: src/import_export/univcsvdialog.cpp:238
-#, fuzzy
-msgid "Date Format: "
-msgstr "Tarih Formatı"
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "Comma"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "Semicolon"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "TAB"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:277
-msgid "CSV Delimiter"
-msgstr "CSV Ayracı"
-
-#: src/import_export/univcsvdialog.cpp:287
-msgid "Preview"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:306
-#, fuzzy
-msgid "Import File"
-msgstr "İçeri Aktar"
-
-#: src/import_export/univcsvdialog.cpp:313
-#, fuzzy
-msgid "Export File"
-msgstr "İçeri Aktar"
-
-#: src/import_export/univcsvdialog.cpp:464
-msgid "Unknown"
-msgstr "Bilinmiyor"
-
-#: src/import_export/univcsvdialog.cpp:469
-#, fuzzy
-msgid "Choose Universal CSV format file to load"
-msgstr "Aktarmak için CSV dosyası seçiniz"
-
-#: src/import_export/univcsvdialog.cpp:476
-#: src/import_export/univcsvdialog.cpp:572
-#: src/import_export/univcsvdialog.cpp:1074
-#: src/import_export/univcsvdialog.cpp:1323
-msgid "Unable to open file."
-msgstr "Dosya açılamadı."
-
-#: src/import_export/univcsvdialog.cpp:512
-#, fuzzy
-msgid "Choose Universal CSV format file to save"
-msgstr "Aktarmak için CSV dosyası seçiniz"
-
-#: src/import_export/univcsvdialog.cpp:523
-msgid "Unable to write to file."
-msgstr "Dosyaya yazılamadı."
-
-#: src/import_export/univcsvdialog.cpp:549
-#: src/import_export/univcsvdialog.cpp:745
-msgid ""
-"Incorrect fields specified for CSV import! Requires at least Date, Amount "
-"and Payee."
-msgstr ""
-"CVS aktarımı için hatalı alanlar belirtilmiş! En azından Tarih, Tutar ve "
-"Alacaklı olmalı"
-
-#: src/import_export/univcsvdialog.cpp:589
-#: src/import_export/univcsvdialog.cpp:787
-#, fuzzy
-msgid "Transactions imported from CSV: "
-msgstr "QIF'ten aktarılan işlemler"
-
-#: src/import_export/univcsvdialog.cpp:597
-#, fuzzy, c-format
-msgid ""
-"Transactions imported from CSV\n"
-"to account %s : %i"
-msgstr "QIF'ten aktarılan işlemler"
-
-#: src/import_export/univcsvdialog.cpp:627
-#: src/import_export/univcsvdialog.cpp:629
-#: src/import_export/univcsvdialog.cpp:652
-#: src/import_export/univcsvdialog.cpp:654
-#: src/import_export/univcsvdialog.cpp:809
-#: src/import_export/univcsvdialog.cpp:811
-#: src/import_export/univcsvdialog.cpp:824
-#: src/import_export/univcsvdialog.cpp:826
-#, fuzzy, c-format
-msgid "Line: %i"
-msgstr "Satır : "
-
-#: src/import_export/univcsvdialog.cpp:628
-#: src/import_export/univcsvdialog.cpp:630
-#: src/import_export/univcsvdialog.cpp:810
-#: src/import_export/univcsvdialog.cpp:812
-msgid " file contains insufficient number of tokens"
-msgstr " dosya yetersiz sayıda bilgi içeriyor"
-
-#: src/import_export/univcsvdialog.cpp:653
-#: src/import_export/univcsvdialog.cpp:655
-#: src/import_export/univcsvdialog.cpp:825
-#: src/import_export/univcsvdialog.cpp:827
-msgid ""
-" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
-msgstr "Tarih, Alacaklı, Tutar veya Tip eksik, yok sayılıyor"
-
-#: src/import_export/univcsvdialog.cpp:689
-#: src/import_export/univcsvdialog.cpp:690
-#: src/import_export/univcsvdialog.cpp:861
-#: src/import_export/univcsvdialog.cpp:862
-#, fuzzy, c-format
-msgid "Line : %i imported OK."
-msgstr " Aktarım Tamalandı."
-
-#: src/import_export/univcsvdialog.cpp:695
-#: src/import_export/univcsvdialog.cpp:865
-#, fuzzy, c-format
-msgid "Total Lines : %i"
-msgstr "Toplam Varlıklar:"
-
-#: src/import_export/univcsvdialog.cpp:697
-#: src/import_export/univcsvdialog.cpp:867
-#, fuzzy, c-format
-msgid "Total Imported : %ld"
-msgstr "Toplam Tutar: "
-
-#: src/import_export/univcsvdialog.cpp:699
-#: src/import_export/univcsvdialog.cpp:869
-#, c-format
-msgid "Log file written to : %s"
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:702
-#: src/import_export/univcsvdialog.cpp:872
-#, fuzzy
-msgid "Please confirm saving..."
-msgstr "Lütfen Bekleyiniz"
-
-#: src/import_export/univcsvdialog.cpp:704
-#: src/import_export/univcsvdialog.cpp:874
-#, fuzzy
-msgid "Importing CSV"
-msgstr "CVS'ten"
-
-#: src/import_export/univcsvdialog.cpp:708
-#: src/import_export/univcsvdialog.cpp:878
-#, fuzzy
-msgid "Imported transactions have been flagged so you can review them."
-msgstr ""
-"Toplam Satır : %d.\n"
-"Aktarılan : %d\n"
-"Log Dosyası : %s.\n"
-"\n"
-"Aktarılan hareketler işaretlendi, bu sayede inceleyebilirsiniz."
-
-#: src/import_export/univcsvdialog.cpp:719
-#: src/import_export/univcsvdialog.cpp:889
-msgid "Transactions saved to database in account: "
-msgstr ""
-
-#: src/import_export/univcsvdialog.cpp:1037
-#, fuzzy, c-format
-msgid "Transactions exported: %ld"
-msgstr "İşlem Raporu"
-
-#: src/import_export/univcsvdialog.cpp:1313
-#, fuzzy
-msgid "Choose CSV data file to import"
-msgstr "Aktarmak için CSV dosyası seçiniz"
-
-#: src/model/Model_Account.cpp:25
-msgid "Closed"
-msgstr "Kapalı"
-
-#: src/model/Model_Account.cpp:30
-msgid "Checking"
-msgstr "Kontrol Ediliyor"
-
-#: src/model/Model_Account.cpp:31
-msgid "Term"
-msgstr ""
-
-#: src/model/Model_Account.cpp:32
-msgid "Investment"
-msgstr "Yatırım"
-
-#: src/model/Model_Asset.cpp:24
-msgid "Appreciates"
-msgstr "Fiyat yükselişi"
-
-#: src/model/Model_Asset.cpp:25
-msgid "Depreciates"
-msgstr "Fiyat düşüşü"
-
-#: src/model/Model_Asset.cpp:30
-msgid "Property"
-msgstr "Özellik"
-
-#: src/model/Model_Asset.cpp:31 src/model/Model_Category.cpp:103
-msgid "Automobile"
-msgstr "Otomobil"
-
-#: src/model/Model_Asset.cpp:32
-msgid "Household Object"
-msgstr "Eve Ait Eşya/Obje"
-
-#: src/model/Model_Asset.cpp:33
-msgid "Art"
-msgstr "Sanat"
-
-#: src/model/Model_Asset.cpp:34
-msgid "Jewellery"
-msgstr "Mücevherat"
-
-#: src/model/Model_Asset.cpp:35
-msgid "Cash"
-msgstr "Nakit"
-
-#: src/model/Model_Asset.cpp:36
-msgid "Other"
-msgstr "Diğer"
-
-#: src/model/Model_Billsdeposits.cpp:26 src/model/Model_Category.cpp:209
-#: src/model/Model_Checking.cpp:28
-msgid "Transfer"
-msgstr "Havale"
-
-#: src/model/Model_Category.cpp:65
-msgid "Telephone"
-msgstr ""
-
-#: src/model/Model_Category.cpp:66
-msgid "Electricity"
-msgstr ""
-
-#: src/model/Model_Category.cpp:67 src/model/Model_Category.cpp:99
-msgid "Gas"
-msgstr ""
-
-#: src/model/Model_Category.cpp:68
-#, fuzzy
-msgid "Internet"
-msgstr "Yatırım"
-
-#: src/model/Model_Category.cpp:69
-#, fuzzy
-msgid "Rent"
-msgstr "Rapor"
-
-#: src/model/Model_Category.cpp:70
-msgid "Cable TV"
-msgstr ""
-
-#: src/model/Model_Category.cpp:71
-#, fuzzy
-msgid "Water"
-msgstr "Tarih"
-
-#: src/model/Model_Category.cpp:73
-msgid "Bills"
-msgstr ""
-
-#: src/model/Model_Category.cpp:79
-msgid "Groceries"
-msgstr ""
-
-#: src/model/Model_Category.cpp:80
-msgid "Dining out"
-msgstr ""
-
-#: src/model/Model_Category.cpp:82
-msgid "Food"
-msgstr ""
-
-#: src/model/Model_Category.cpp:88
-#, fuzzy
-msgid "Movies"
-msgstr "Yukarı Taşı"
-
-#: src/model/Model_Category.cpp:89
-msgid "Video Rental"
-msgstr ""
-
-#: src/model/Model_Category.cpp:90
-msgid "Magazines"
-msgstr ""
-
-#: src/model/Model_Category.cpp:92
-msgid "Leisure"
-msgstr ""
-
-#: src/model/Model_Category.cpp:98
-msgid "Maintenance"
-msgstr ""
-
-#: src/model/Model_Category.cpp:100
-#, fuzzy
-msgid "Parking"
-msgstr "Uyarı"
-
-#: src/model/Model_Category.cpp:101
-msgid "Registration"
-msgstr ""
-
-#: src/model/Model_Category.cpp:109
-msgid "Books"
-msgstr ""
-
-#: src/model/Model_Category.cpp:110
-msgid "Tuition"
-msgstr ""
-
-#: src/model/Model_Category.cpp:113
-msgid "Education"
-msgstr ""
-
-#: src/model/Model_Category.cpp:119
-#, fuzzy
-msgid "Clothing"
-msgstr "Kontrol Ediliyor"
-
-#: src/model/Model_Category.cpp:120
-msgid "Furnishing"
-msgstr ""
-
-#: src/model/Model_Category.cpp:123
-msgid "Homeneeds"
-msgstr ""
-
-#: src/model/Model_Category.cpp:129 src/model/Model_Category.cpp:144
-#, fuzzy
-msgid "Health"
-msgstr "Hesap"
-
-#: src/model/Model_Category.cpp:130
-#, fuzzy
-msgid "Dental"
-msgstr "Genel"
-
-#: src/model/Model_Category.cpp:131
-msgid "Eyecare"
-msgstr ""
-
-#: src/model/Model_Category.cpp:132
-msgid "Physician"
-msgstr ""
-
-#: src/model/Model_Category.cpp:133
-#, fuzzy
-msgid "Prescriptions"
-msgstr "İşlemler"
-
-#: src/model/Model_Category.cpp:135
-msgid "Healthcare"
-msgstr ""
-
-#: src/model/Model_Category.cpp:141
-#, fuzzy
-msgid "Auto"
-msgstr "e"
-
-#: src/model/Model_Category.cpp:142
-msgid "Life"
-msgstr ""
-
-#: src/model/Model_Category.cpp:143
-#, fuzzy
-msgid "Home"
-msgstr "Ana Sayfa"
-
-#: src/model/Model_Category.cpp:146
-msgid "Insurance"
-msgstr ""
-
-#: src/model/Model_Category.cpp:152
-msgid "Travel"
-msgstr ""
-
-#: src/model/Model_Category.cpp:153
-#, fuzzy
-msgid "Lodging"
-msgstr "Bütçelendirme"
-
-#: src/model/Model_Category.cpp:154
-msgid "Sightseeing"
-msgstr ""
-
-#: src/model/Model_Category.cpp:156
-#, fuzzy
-msgid "Vacation"
-msgstr "Menü"
-
-#: src/model/Model_Category.cpp:162
-#, fuzzy
-msgid "Income Tax"
-msgstr "Gelir"
-
-#: src/model/Model_Category.cpp:163
-msgid "House Tax"
-msgstr ""
-
-#: src/model/Model_Category.cpp:164
-msgid "Water Tax"
-msgstr ""
-
-#: src/model/Model_Category.cpp:167
-msgid "Taxes"
-msgstr ""
-
-#: src/model/Model_Category.cpp:174
-msgid "Miscellaneous"
-msgstr ""
-
-#: src/model/Model_Category.cpp:181
-msgid "Gifts"
-msgstr ""
-
-#: src/model/Model_Category.cpp:187
-#, fuzzy
-msgid "Salary"
-msgstr "Bakiye"
-
-#: src/model/Model_Category.cpp:188
-msgid "Reimbursement/Refunds"
-msgstr ""
-
-#: src/model/Model_Category.cpp:189
-#, fuzzy
-msgid "Investment Income"
-msgstr "Yatırım"
-
-#: src/model/Model_Category.cpp:197
-#, fuzzy
-msgid "Other Income"
-msgstr "Gelir"
-
-#: src/model/Model_Category.cpp:203
-#, fuzzy
-msgid "Other Expenses"
-msgstr "Gider"
-
-#: src/model/Model_Report.cpp:138
-#, c-format
-msgid ""
-"The SQL script:\n"
-"%s \n"
-"will modify database! aborted!"
-msgstr ""
-
-#: src/reports/budget.cpp:78
-#, fuzzy
-msgid "Financial Year: "
-msgstr "Son Takvim Yılı"
-
-#: src/reports/budget.cpp:80
-#, fuzzy
-msgid "Year: "
-msgstr "Yıllık"
-
-#: src/reports/budget.cpp:82
-#, fuzzy
-msgid "Month: "
-msgstr "Ay"
-
-#: src/reports/budgetcategorysummary.cpp:97
-#, fuzzy
-msgid "Budget Categories for "
-msgstr "Tüm Bütçe Kategorilerini Görüntüle"
-
-#: src/reports/budgetcategorysummary.cpp:99
-#, fuzzy
-msgid "Budget Category Summary for "
-msgstr "Bütçe Yap"
-
-#: src/reports/budgetcategorysummary.cpp:100
-#, fuzzy
-msgid "( Estimated Vs Actual )"
-msgstr " (Tahmini Vs Gerçekleşen)"
-
-#: src/reports/budgetcategorysummary.cpp:199
-#, fuzzy
-msgid "Estimated Income:"
-msgstr "Tahmini Gelir:  Gerçek Gelir: "
-
-#: src/reports/budgetcategorysummary.cpp:201
-#, fuzzy
-msgid "Actual Income:"
-msgstr "Gelir:"
-
-#: src/reports/budgetcategorysummary.cpp:203
-#, fuzzy
-msgid "Difference Income:"
-msgstr "Fark:"
-
-#: src/reports/budgetcategorysummary.cpp:208
-#, fuzzy
-msgid "Estimated Expenses:"
-msgstr "Tahmini Giderler:  Gerçek Giderler"
-
-#: src/reports/budgetcategorysummary.cpp:210
-#, fuzzy
-msgid "Actual Expenses:"
-msgstr "Gider: "
-
-#: src/reports/budgetcategorysummary.cpp:212
-#, fuzzy
-msgid "Difference Expenses:"
-msgstr "Gider"
-
-#: src/reports/budgetingperf.cpp:122
-#, fuzzy
-msgid "Budget Performance for "
-msgstr "Bütçe Performansı"
-
-#: src/reports/budgetingperf.cpp:138 src/reports/categovertimeperf.cpp:160
-#: src/reports/categovertimeperf.cpp:162
-msgid "Overall"
-msgstr "Tümü"
-
-#: src/reports/budgetingperf.cpp:139
-msgid "%"
-msgstr "%"
-
-#: src/reports/cashflow.cpp:60
-#, fuzzy, c-format
-msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr "Tüm Hesaplar İçin Nakit Akışı Tahmini - Önümüzdeki 1 Yıl"
-
-#: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
-#: src/reports/incexpenses.cpp:158
-#, fuzzy
-msgid "Accounts: "
-msgstr "Hesaplar"
-
-#: src/reports/cashflow.cpp:66 src/reports/incexpenses.cpp:55
-#: src/reports/incexpenses.cpp:161
-#, fuzzy
-msgid "All Accounts"
-msgstr "Hesaplar"
-
-#: src/reports/cashflow.cpp:68
-#, fuzzy
-msgid "All Bank Accounts"
-msgstr "Hesaplarım"
-
-#: src/reports/cashflow.cpp:70
-#, fuzzy
-msgid "All Term Accounts"
-msgstr "Aktarıldığı Hesap"
-
-#: src/reports/cashflow.cpp:105 src/reports/incexpenses.cpp:191
-#: src/reports/payee.cpp:148 src/reports/payee.cpp:150
-msgid "Difference"
-msgstr "Fark"
-
-#: src/reports/categexp.cpp:147
-#, fuzzy
-msgid "Subcategories"
-msgstr "AltKategori"
-
-#: src/reports/categexp.cpp:184
-#, fuzzy
-msgid "Category Total: "
-msgstr "Kategori "
-
-#: src/reports/categexp.cpp:197
-#, fuzzy
-msgid "Total Expenses: "
-msgstr "Gider: "
-
-#: src/reports/categexp.cpp:198
-#, fuzzy
-msgid "Total Income: "
-msgstr "Gelir:"
-
-#: src/reports/categexp.cpp:200
-#, fuzzy
-msgid "Grand Total: "
-msgstr "Toplam: %s"
-
-#: src/reports/categexp.cpp:217 src/reports/categexp.cpp:223
-#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:235
-#: src/reports/categexp.cpp:241 src/reports/categexp.cpp:246
-#: src/reports/categexp.cpp:252 src/reports/categexp.cpp:258
-#: src/reports/categexp.cpp:264 src/reports/categexp.cpp:270
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Param Nereye Gidiyor"
-
-#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:293
-#: src/reports/categexp.cpp:357 src/reports/mmDateRange.cpp:88
-#: src/reports/payee.h:74
-#, fuzzy
-msgid "Last Month"
-msgstr "Son Ayı Görüntüle"
-
-#: src/reports/categexp.cpp:281 src/reports/categexp.cpp:287
-#: src/reports/categexp.cpp:293 src/reports/categexp.cpp:299
-#: src/reports/categexp.cpp:305 src/reports/categexp.cpp:311
-#: src/reports/categexp.cpp:317 src/reports/categexp.cpp:323
-#: src/reports/categexp.cpp:329 src/reports/categexp.cpp:335
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Para Nereden Akıyor"
-
-#: src/reports/categexp.cpp:346 src/reports/categexp.cpp:352
-#: src/reports/categexp.cpp:357 src/reports/categexp.cpp:363
-#: src/reports/categexp.cpp:368 src/reports/categexp.cpp:374
-#: src/reports/categexp.cpp:380 src/reports/categexp.cpp:386
-#: src/reports/categexp.cpp:392 src/reports/categexp.cpp:398
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Yüksek Tutarlı İşlemler (Son 30 Gün)"
-
-#: src/reports/categovertimeperf.cpp:36
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
-msgstr "Kategori Bazında Gelir / Gider (Son 12 Ay)"
-
-#: src/reports/categovertimeperf.cpp:178 src/reports/payee.cpp:140
-#: src/reports/payee.cpp:142
-#, fuzzy
-msgid "Incomes"
-msgstr "Gelir"
-
-#: src/reports/chart.cpp:255 src/reports/chart.cpp:455
-msgid "Legend:"
-msgstr "Gösterge:"
-
-#: src/reports/htmlbuilder.cpp:83
-#, fuzzy, c-format
-msgid "Today's Date: %s"
-msgstr "Tarih : "
-
-#: src/reports/htmlbuilder.cpp:324
-#, fuzzy, c-format
-msgid "From %s till %s"
-msgstr "%s on %s"
-
-#: src/reports/htmlbuilder.cpp:330 src/reports/mmDateRange.cpp:198
-msgid "Over Time"
-msgstr ""
-
-#: src/reports/incexpenses.cpp:118
-msgid "Income:"
-msgstr "Gelir:"
-
-#: src/reports/incexpenses.cpp:119
-msgid "Expenses:"
-msgstr "Gider: "
-
-#: src/reports/incexpenses.cpp:187
-#, fuzzy
-msgid "Year"
-msgstr "Yıllık"
-
-#: src/reports/incexpenses.cpp:188
-msgid "Month"
-msgstr "Ay"
-
-#: src/reports/mmDateRange.cpp:72
-#, fuzzy
-msgid "Today"
-msgstr "30 Günü Görüntüle"
-
-#: src/reports/mmDateRange.cpp:108
-#, fuzzy
-msgid "Last 90 Days"
-msgstr "Son 30 Gün"
-
-#: src/reports/mmDateRange.cpp:118
-#, fuzzy
-msgid "Last 3 Months"
-msgstr "Son Ayı Görüntüle"
-
-#: src/reports/mmDateRange.cpp:128
-#, fuzzy
-msgid "Last 12 Months"
-msgstr "Son Ayı Görüntüle"
-
-#: src/reports/mmgraphpie.cpp:49
-#, fuzzy
-msgid "All Others"
-msgstr "Diğerleri"
-
-#: src/reports/reportbase.cpp:57
-msgid "Choose Accounts"
-msgstr "Hesap Seç"
-
-#: src/reports/transactions.cpp:81
-#, fuzzy
-msgid "Transaction List "
-msgstr "İşlem Listesi"
-
-#: src/reports/transactions.cpp:84
-#, fuzzy, c-format
-msgid "Transaction List for Account: %s"
-msgstr "İşlem Listesi"
-
-#: src/reports/transactions.cpp:173
-msgid "Total Amount: "
-msgstr "Toplam Tutar: "
-
-#: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
-"or make a selection using the dropdown button."
-msgstr ""
-
-#: src/mmtextctrl.h:89
-#, fuzzy
-msgid "Invalid Amount."
-msgstr "Geçersiz Tutar Girdiniz"
-
-#: src/mmtextctrl.h:90
-msgid "Please enter a positive or calculated value."
-msgstr ""
-
-#: src/mmtextctrl.h:92
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
-"Calculations will be evaluated and the result used as the entry."
-msgstr ""
+msgid "Universal CSV Dialog"
+msgstr "Evrensel CSV "
 
 #: src/mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -5963,6 +5946,40 @@ msgid ""
 "what you really need. In the shop buy what is in your list."
 msgstr ""
 
+#: src/mmcombobox.h:78
+msgid ""
+"Please type in an exiting payee name,\n"
+"or make a selection using the dropdown button."
+msgstr ""
+
+#: src/mmtextctrl.h:89
+#, fuzzy
+msgid "Invalid Amount."
+msgstr "Geçersiz Tutar Girdiniz"
+
+#: src/mmtextctrl.h:90
+msgid "Please enter a positive or calculated value."
+msgstr ""
+
+#: src/mmtextctrl.h:92
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+"Calculations will be evaluated and the result used as the entry."
+msgstr ""
+
+#: src/reports/payee.h:31
+#, fuzzy
+msgid "Payee Report"
+msgstr "Alacaklı "
+
+#: src/reports/payee.h:58 src/reports/payee.h:66 src/reports/payee.h:74
+#: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
+#: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
+#: src/reports/payee.h:130
+#, fuzzy, c-format
+msgid "Payee Report - %s"
+msgstr "Alacaklı "
+
 #: src/stockspanel.h:29
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
@@ -5980,24 +5997,6 @@ msgstr ""
 #: src/stockspanel.h:32
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr ""
-
-#: src/import_export/univcsvdialog.h:28
-#, fuzzy
-msgid "Universal CSV Dialog"
-msgstr "Evrensel CSV "
-
-#: src/reports/payee.h:31
-#, fuzzy
-msgid "Payee Report"
-msgstr "Alacaklı "
-
-#: src/reports/payee.h:58 src/reports/payee.h:66 src/reports/payee.h:74
-#: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
-#: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
-#: src/reports/payee.h:130
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "Alacaklı "
 
 #, fuzzy
 #~ msgid "New MMEX Options"

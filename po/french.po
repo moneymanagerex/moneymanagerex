@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-19 22:24+0800\n"
+"POT-Creation-Date: 2014-06-19 22:56+0800\n"
 "PO-Revision-Date: 2014-06-14 20:56+0100\n"
 "Last-Translator: Nikolay <vomikan@mail.ru>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
@@ -81,13 +81,12 @@ msgstr ""
 #: src/attachmentdialog.cpp:121 src/billsdepositsdialog.cpp:571
 #: src/budgetentrydialog.cpp:160 src/budgetyeardialog.cpp:117
 #: src/budgetyearentrydialog.cpp:123 src/filtertransdialog.cpp:362
-#: src/optionsdialog.cpp:860 src/payeedialog.cpp:127
-#: src/relocatecategorydialog.cpp:116 src/relocatepayeedialog.cpp:111
+#: src/import_export/qif_export.cpp:196 src/import_export/qif_export.cpp:220
+#: src/import_export/qif_import_gui.cpp:258 src/optionsdialog.cpp:860
+#: src/payeedialog.cpp:127 src/relocatecategorydialog.cpp:116
+#: src/relocatepayeedialog.cpp:111 src/reports/reportbase.cpp:59
 #: src/splitdetailsdialog.cpp:143 src/splittransactionsdialog.cpp:170
-#: src/transdialog.cpp:496 src/import_export/qif_export.cpp:196
-#: src/import_export/qif_export.cpp:220
-#: src/import_export/qif_import_gui.cpp:258 src/reports/reportbase.cpp:59
-#: src/mmsinglechoicedialog.h:56
+#: src/transdialog.cpp:496 src/mmsinglechoicedialog.h:56
 msgid "&OK "
 msgstr ""
 
@@ -133,17 +132,17 @@ msgstr "Compte favoris"
 #: src/accountdialog.cpp:210 src/assetdialog.cpp:177 src/assetspanel.cpp:418
 #: src/billsdepositsdialog.cpp:554 src/billsdepositspanel.cpp:151
 #: src/filtertransdialog.cpp:306 src/filtertransdialog.cpp:323
-#: src/mmcheckingpanel.cpp:990 src/stockdialog.cpp:199 src/stockspanel.cpp:76
-#: src/transdialog.cpp:465 src/import_export/qif_import_gui.cpp:84
+#: src/import_export/qif_import_gui.cpp:84
 #: src/import_export/univcsvdialog.cpp:76
-#: src/import_export/univcsvdialog.cpp:1055 src/reports/transactions.cpp:129
-#: src/reports/transactions.cpp:131
+#: src/import_export/univcsvdialog.cpp:1055 src/mmcheckingpanel.cpp:990
+#: src/reports/transactions.cpp:129 src/reports/transactions.cpp:131
+#: src/stockdialog.cpp:199 src/stockspanel.cpp:76 src/transdialog.cpp:465
 msgid "Notes"
 msgstr "Note"
 
-#: src/accountdialog.cpp:220 src/optionsdialog.cpp:843
-#: src/model/Model_Category.cpp:111 src/model/Model_Category.cpp:121
-#: src/model/Model_Category.cpp:165
+#: src/accountdialog.cpp:220 src/model/Model_Category.cpp:111
+#: src/model/Model_Category.cpp:121 src/model/Model_Category.cpp:165
+#: src/optionsdialog.cpp:843
 msgid "Others"
 msgstr "Divers"
 
@@ -176,14 +175,14 @@ msgstr "Introduire le montant de l'opération"
 #: src/attachmentdialog.cpp:122 src/billsdepositsdialog.cpp:574
 #: src/budgetentrydialog.cpp:163 src/budgetyeardialog.cpp:120
 #: src/budgetyearentrydialog.cpp:126 src/categdialog.cpp:242
-#: src/filtertransdialog.cpp:364 src/maincurrencydialog.cpp:199
-#: src/optionsdialog.cpp:862 src/payeedialog.cpp:128
-#: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
-#: src/splitdetailsdialog.cpp:146 src/splittransactionsdialog.cpp:171
-#: src/transdialog.cpp:497 src/import_export/qif_export.cpp:197
+#: src/filtertransdialog.cpp:364 src/import_export/qif_export.cpp:197
 #: src/import_export/qif_export.cpp:222
 #: src/import_export/qif_import_gui.cpp:259
-#: src/import_export/univcsvdialog.cpp:316 src/reports/reportbase.cpp:61
+#: src/import_export/univcsvdialog.cpp:316 src/maincurrencydialog.cpp:199
+#: src/optionsdialog.cpp:862 src/payeedialog.cpp:128
+#: src/relocatecategorydialog.cpp:117 src/relocatepayeedialog.cpp:112
+#: src/reports/reportbase.cpp:61 src/splitdetailsdialog.cpp:146
+#: src/splittransactionsdialog.cpp:171 src/transdialog.cpp:497
 #: src/mmsinglechoicedialog.h:58
 #, fuzzy
 msgid "&Cancel "
@@ -254,8 +253,8 @@ msgstr ""
 msgid "Account Name "
 msgstr "Nom du compte "
 
-#: src/accountdialog.cpp:347 src/optionsdialog.cpp:222
-#: src/import_export/qif_import_gui.cpp:215
+#: src/accountdialog.cpp:347 src/import_export/qif_import_gui.cpp:215
+#: src/optionsdialog.cpp:222
 msgid "Currency"
 msgstr "Devise"
 
@@ -330,10 +329,10 @@ msgid "Asset Details"
 msgstr "Détails de l'actif"
 
 #: src/assetdialog.cpp:117 src/assetspanel.cpp:397
-#: src/general_report_manager.cpp:570 src/maincurrencydialog.cpp:59
-#: src/payeedialog.cpp:64 src/import_export/qif_import_gui.cpp:214
+#: src/general_report_manager.cpp:570 src/import_export/qif_import_gui.cpp:214
 #: src/import_export/qif_import_gui.cpp:227
-#: src/import_export/qif_import_gui.cpp:238
+#: src/import_export/qif_import_gui.cpp:238 src/maincurrencydialog.cpp:59
+#: src/payeedialog.cpp:64
 msgid "Name"
 msgstr "Nom du bien"
 
@@ -343,11 +342,12 @@ msgstr "Introduire le nom du bien"
 
 #: src/assetdialog.cpp:125 src/assetspanel.cpp:414
 #: src/billsdepositsdialog.cpp:436 src/filtertransdialog.cpp:315
-#: src/mmcheckingpanel.cpp:974 src/stockdialog.cpp:135 src/transdialog.cpp:357
 #: src/import_export/qif_import_gui.cpp:78
 #: src/import_export/univcsvdialog.cpp:70
-#: src/import_export/univcsvdialog.cpp:1057 src/reports/cashflow.cpp:103
-#: src/reports/transactions.cpp:97 src/reports/transactions.cpp:99
+#: src/import_export/univcsvdialog.cpp:1057 src/mmcheckingpanel.cpp:974
+#: src/reports/cashflow.cpp:103 src/reports/transactions.cpp:97
+#: src/reports/transactions.cpp:99 src/stockdialog.cpp:135
+#: src/transdialog.cpp:357
 msgid "Date"
 msgstr "Date"
 
@@ -363,8 +363,8 @@ msgstr "Type de bien"
 msgid "Select type of asset"
 msgstr "Choisir le genre de bien"
 
-#: src/assetdialog.cpp:143 src/stockdialog.cpp:194 src/stockspanel.cpp:73
-#: src/import_export/qif_import_gui.cpp:83
+#: src/assetdialog.cpp:143 src/import_export/qif_import_gui.cpp:83
+#: src/stockdialog.cpp:194 src/stockspanel.cpp:73
 msgid "Value"
 msgstr "Valeur"
 
@@ -451,19 +451,19 @@ msgid "Assets"
 msgstr "Biens"
 
 #: src/assetspanel.cpp:370 src/assetspanel.cpp:645 src/assetspanel.cpp:662
-#: src/mmframe.cpp:1079 src/optionsdialog.cpp:135
 #: src/import_export/qif_export.cpp:62 src/import_export/qif_export.cpp:63
-#: src/import_export/qif_export.cpp:127
+#: src/import_export/qif_export.cpp:127 src/mmframe.cpp:1079
+#: src/optionsdialog.cpp:135
 msgid "All"
 msgstr "Tous"
 
 #: src/assetspanel.cpp:402 src/billsdepositsdialog.cpp:472
 #: src/billsdepositspanel.cpp:146 src/filtertransdialog.cpp:251
-#: src/filtertransdialog.cpp:320 src/mmhomepagepanel.cpp:778
-#: src/splitdetailsdialog.cpp:105 src/transdialog.cpp:390
-#: src/import_export/qif_import_gui.cpp:81 src/reports/budgetingperf.cpp:130
+#: src/filtertransdialog.cpp:320 src/import_export/qif_import_gui.cpp:81
+#: src/mmhomepagepanel.cpp:778 src/reports/budgetingperf.cpp:130
 #: src/reports/incexpenses.cpp:113 src/reports/transactions.cpp:117
-#: src/reports/transactions.cpp:119
+#: src/reports/transactions.cpp:119 src/splitdetailsdialog.cpp:105
+#: src/transdialog.cpp:390
 msgid "Type"
 msgstr "Type"
 
@@ -528,9 +528,8 @@ msgstr "Entrer une chaine à trouver dans les dernies notes de mouvements"
 msgid "Total: "
 msgstr "Total : "
 
-#: src/attachmentdialog.cpp:54 src/payeedialog.cpp:63
-#: src/import_export/qif_import_gui.cpp:76
-#: src/import_export/univcsvdialog.cpp:1046
+#: src/attachmentdialog.cpp:54 src/import_export/qif_import_gui.cpp:76
+#: src/import_export/univcsvdialog.cpp:1046 src/payeedialog.cpp:63
 msgid "#"
 msgstr "#"
 
@@ -622,8 +621,8 @@ msgid "Confirm Attachment Deletion"
 msgstr "Confirmez la suppression du bien"
 
 #: src/attachmentdialog.cpp:281 src/categdialog.cpp:222
-#: src/maincurrencydialog.cpp:176 src/payeedialog.cpp:364
-#: src/splittransactionsdialog.cpp:163 src/import_export/univcsvdialog.cpp:149
+#: src/import_export/univcsvdialog.cpp:149 src/maincurrencydialog.cpp:176
+#: src/payeedialog.cpp:364 src/splittransactionsdialog.cpp:163
 #, fuzzy
 msgid "&Add "
 msgstr "Ajouter une année"
@@ -633,9 +632,9 @@ msgstr "Ajouter une année"
 msgid "&Open "
 msgstr "_Ouvrir"
 
-#: src/attachmentdialog.cpp:286 src/maincurrencydialog.cpp:183
-#: src/payeedialog.cpp:367 src/splittransactionsdialog.cpp:165
-#: src/import_export/univcsvdialog.cpp:153
+#: src/attachmentdialog.cpp:286 src/import_export/univcsvdialog.cpp:153
+#: src/maincurrencydialog.cpp:183 src/payeedialog.cpp:367
+#: src/splittransactionsdialog.cpp:165
 #, fuzzy
 msgid "&Remove "
 msgstr "Effacer les _marqueurs"
@@ -722,9 +721,9 @@ msgstr "Catégorie de répartition"
 
 # "Stable" précédente version
 #: src/billsdepositsdialog.cpp:254 src/billsdepositspanel.cpp:55
-#: src/filtertransdialog.cpp:49 src/optionsdialog.cpp:641
-#: src/model/Model_Asset.cpp:23 src/model/Model_Billsdeposits.cpp:31
-#: src/model/Model_Budget.cpp:54 src/model/Model_Checking.cpp:33
+#: src/filtertransdialog.cpp:49 src/model/Model_Asset.cpp:23
+#: src/model/Model_Billsdeposits.cpp:31 src/model/Model_Budget.cpp:54
+#: src/model/Model_Checking.cpp:33 src/optionsdialog.cpp:641
 msgid "None"
 msgstr "Stable"
 
@@ -894,11 +893,11 @@ msgid "Specify the status for the transaction"
 msgstr "Préciser le statut de l'opération"
 
 #: src/billsdepositsdialog.cpp:448 src/filtertransdialog.cpp:238
-#: src/filtertransdialog.cpp:318 src/mmcheckingpanel.cpp:980
-#: src/transdialog.cpp:371 src/import_export/qif_import_gui.cpp:216
+#: src/filtertransdialog.cpp:318 src/import_export/qif_import_gui.cpp:216
 #: src/import_export/qif_import_gui.cpp:228
-#: src/import_export/qif_import_gui.cpp:239 src/reports/transactions.cpp:109
-#: src/reports/transactions.cpp:111
+#: src/import_export/qif_import_gui.cpp:239 src/mmcheckingpanel.cpp:980
+#: src/reports/transactions.cpp:109 src/reports/transactions.cpp:111
+#: src/transdialog.cpp:371
 msgid "Status"
 msgstr "Statut"
 
@@ -930,11 +929,11 @@ msgstr "Préciser le montant à transfèrer"
 #: src/billsdepositsdialog.cpp:479 src/billsdepositsdialog.cpp:908
 #: src/billsdepositspanel.cpp:147 src/budgetingpanel.cpp:284
 #: src/filtertransdialog.cpp:321 src/mmhomepagepanel.cpp:353
-#: src/mmhomepagepanel.cpp:778 src/splitdetailsdialog.cpp:120
+#: src/mmhomepagepanel.cpp:778 src/reports/budgetcategorysummary.cpp:111
+#: src/reports/categexp.cpp:160 src/reports/categexp.cpp:162
+#: src/reports/incexpenses.cpp:114 src/reports/transactions.cpp:121
+#: src/reports/transactions.cpp:123 src/splitdetailsdialog.cpp:120
 #: src/splittransactionsdialog.cpp:128 src/transdialog.cpp:408
-#: src/reports/budgetcategorysummary.cpp:111 src/reports/categexp.cpp:160
-#: src/reports/categexp.cpp:162 src/reports/incexpenses.cpp:114
-#: src/reports/transactions.cpp:121 src/reports/transactions.cpp:123
 msgid "Amount"
 msgstr "Montant"
 
@@ -945,13 +944,13 @@ msgstr "Préciser le montant dans le champ VERS"
 #: src/billsdepositsdialog.cpp:503 src/billsdepositsdialog.cpp:772
 #: src/billsdepositsdialog.cpp:875 src/billsdepositspanel.cpp:144
 #: src/filtertransdialog.cpp:205 src/filtertransdialog.cpp:317
-#: src/mmcheckingpanel.cpp:978 src/mmhomepagepanel.cpp:353
-#: src/transdialog.cpp:246 src/transdialog.cpp:420
 #: src/import_export/qif_import_gui.cpp:80
 #: src/import_export/qif_import_gui.cpp:221
-#: src/import_export/univcsvdialog.cpp:71 src/reports/payee.cpp:136
+#: src/import_export/univcsvdialog.cpp:71 src/mmcheckingpanel.cpp:978
+#: src/mmhomepagepanel.cpp:353 src/reports/payee.cpp:136
 #: src/reports/payee.cpp:138 src/reports/transactions.cpp:105
-#: src/reports/transactions.cpp:107
+#: src/reports/transactions.cpp:107 src/transdialog.cpp:246
+#: src/transdialog.cpp:420
 msgid "Payee"
 msgstr "Tiers"
 
@@ -986,15 +985,15 @@ msgstr "Utilisez diviser les catégories"
 #: src/billsdepositsdialog.cpp:533 src/billsdepositsdialog.cpp:885
 #: src/billsdepositsdialog.cpp:893 src/budgetingpanel.cpp:281
 #: src/filtertransdialog.cpp:216 src/filtertransdialog.cpp:319
-#: src/mmcheckingpanel.cpp:982 src/mmhomepagepanel.cpp:180
-#: src/splitdetailsdialog.cpp:128 src/splittransactionsdialog.cpp:127
-#: src/transdialog.cpp:443 src/import_export/qif_import_gui.cpp:82
+#: src/import_export/qif_import_gui.cpp:82
 #: src/import_export/qif_import_gui.cpp:233
-#: src/import_export/univcsvdialog.cpp:73
-#: src/reports/budgetcategorysummary.cpp:109 src/reports/budgetingperf.cpp:129
-#: src/reports/categexp.cpp:155 src/reports/categexp.cpp:157
-#: src/reports/categovertimeperf.cpp:144 src/reports/categovertimeperf.cpp:146
-#: src/reports/transactions.cpp:113 src/reports/transactions.cpp:115
+#: src/import_export/univcsvdialog.cpp:73 src/mmcheckingpanel.cpp:982
+#: src/mmhomepagepanel.cpp:180 src/reports/budgetcategorysummary.cpp:109
+#: src/reports/budgetingperf.cpp:129 src/reports/categexp.cpp:155
+#: src/reports/categexp.cpp:157 src/reports/categovertimeperf.cpp:144
+#: src/reports/categovertimeperf.cpp:146 src/reports/transactions.cpp:113
+#: src/reports/transactions.cpp:115 src/splitdetailsdialog.cpp:128
+#: src/splittransactionsdialog.cpp:127 src/transdialog.cpp:443
 msgid "Category"
 msgstr "Catégorie"
 
@@ -1008,10 +1007,10 @@ msgid "Specify any associated check number or transaction number"
 msgstr "Préciser un numéro du chèque ou d'opération"
 
 #: src/billsdepositsdialog.cpp:546 src/filtertransdialog.cpp:298
-#: src/filtertransdialog.cpp:322 src/mmcheckingpanel.cpp:976
-#: src/transdialog.cpp:458 src/import_export/qif_import_gui.cpp:79
-#: src/import_export/univcsvdialog.cpp:75 src/reports/transactions.cpp:125
-#: src/reports/transactions.cpp:127
+#: src/filtertransdialog.cpp:322 src/import_export/qif_import_gui.cpp:79
+#: src/import_export/univcsvdialog.cpp:75 src/mmcheckingpanel.cpp:976
+#: src/reports/transactions.cpp:125 src/reports/transactions.cpp:127
+#: src/transdialog.cpp:458
 msgid "Number"
 msgstr "Numéro"
 
@@ -1066,12 +1065,12 @@ msgstr "Compte de l'expéditeur"
 
 #: src/billsdepositsdialog.cpp:933 src/billsdepositspanel.cpp:145
 #: src/filtertransdialog.cpp:176 src/filtertransdialog.cpp:316
-#: src/transdialog.cpp:250 src/transdialog.cpp:415
 #: src/import_export/qif_import_gui.cpp:77
 #: src/import_export/qif_import_gui.cpp:138
 #: src/import_export/qif_import_gui.cpp:208
 #: src/import_export/qif_import_gui.cpp:625 src/reports/transactions.cpp:101
-#: src/reports/transactions.cpp:103
+#: src/reports/transactions.cpp:103 src/transdialog.cpp:250
+#: src/transdialog.cpp:415
 msgid "Account"
 msgstr "Compte"
 
@@ -1463,9 +1462,9 @@ msgstr "Le budget annuel existe déjà"
 msgid "Organize Categories"
 msgstr "Gestion des catégories"
 
-#: src/categdialog.cpp:113 src/mmframereport.cpp:56 src/transdialog.cpp:300
-#: src/import_export/qif_export.cpp:119 src/reports/categexp.cpp:141
-#: src/reports/categexp.h:192
+#: src/categdialog.cpp:113 src/import_export/qif_export.cpp:119
+#: src/mmframereport.cpp:56 src/reports/categexp.cpp:141
+#: src/transdialog.cpp:300 src/reports/categexp.h:192
 msgid "Categories"
 msgstr "Catégories"
 
@@ -1844,17 +1843,17 @@ msgstr "_Insérer \"include <...>\""
 msgid "Include all subcategories for the selected category."
 msgstr "Réattribution de toutes les catégories vers la catégorie cible"
 
-#: src/filtertransdialog.cpp:257 src/mmcheckingpanel.cpp:984
-#: src/splitdetailsdialog.cpp:110 src/splittransactionsdialog.cpp:137
-#: src/import_export/univcsvdialog.cpp:78 src/model/Model_Billsdeposits.cpp:24
-#: src/model/Model_Checking.cpp:26
+#: src/filtertransdialog.cpp:257 src/import_export/univcsvdialog.cpp:78
+#: src/mmcheckingpanel.cpp:984 src/model/Model_Billsdeposits.cpp:24
+#: src/model/Model_Checking.cpp:26 src/splitdetailsdialog.cpp:110
+#: src/splittransactionsdialog.cpp:137
 msgid "Withdrawal"
 msgstr "Débit"
 
-#: src/filtertransdialog.cpp:259 src/mmcheckingpanel.cpp:986
-#: src/splitdetailsdialog.cpp:111 src/splittransactionsdialog.cpp:142
-#: src/import_export/univcsvdialog.cpp:79 src/model/Model_Billsdeposits.cpp:25
-#: src/model/Model_Checking.cpp:27
+#: src/filtertransdialog.cpp:259 src/import_export/univcsvdialog.cpp:79
+#: src/mmcheckingpanel.cpp:986 src/model/Model_Billsdeposits.cpp:25
+#: src/model/Model_Checking.cpp:27 src/splitdetailsdialog.cpp:111
+#: src/splittransactionsdialog.cpp:142
 msgid "Deposit"
 msgstr "Crédit"
 
@@ -1894,8 +1893,8 @@ msgstr "Voir les rapports sans les mouvements futurs"
 msgid "Reports"
 msgstr "Rapports"
 
-#: src/general_report_manager.cpp:209 src/mmframe.cpp:1074
-#: src/mmframe.cpp:1261 src/import_export/univcsvdialog.cpp:303
+#: src/general_report_manager.cpp:209 src/import_export/univcsvdialog.cpp:303
+#: src/mmframe.cpp:1074 src/mmframe.cpp:1261
 msgid "&Import"
 msgstr "Importer"
 
@@ -1904,8 +1903,8 @@ msgstr "Importer"
 msgid "Locate and load a report file."
 msgstr "Rechercher et charger le fichier de script dans la zone de script."
 
-#: src/general_report_manager.cpp:213 src/mmframe.cpp:1070
-#: src/mmframe.cpp:1255 src/import_export/univcsvdialog.cpp:310
+#: src/general_report_manager.cpp:213 src/import_export/univcsvdialog.cpp:310
+#: src/mmframe.cpp:1070 src/mmframe.cpp:1255
 msgid "&Export"
 msgstr "&Exporter"
 
@@ -2059,6 +2058,526 @@ msgstr "Rapporter un _bug"
 msgid "Choose file to Save As Report"
 msgstr "Sélectionner la base de données à enregistrer sous"
 
+#: src/import_export/qif_export.cpp:39 src/import_export/qif_export.cpp:218
+#: src/import_export/qif_export.cpp:303
+msgid "QIF Export"
+msgstr "Exporter un fichier QIF"
+
+#: src/import_export/qif_export.cpp:96
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: src/import_export/qif_export.cpp:101
+#: src/import_export/qif_import_gui.cpp:180
+msgid "Log"
+msgstr "Historique"
+
+#: src/import_export/qif_export.cpp:108
+msgid "QIF"
+msgstr "QIF"
+
+#: src/import_export/qif_export.cpp:108
+msgid "CSV"
+msgstr "CSV"
+
+#: src/import_export/qif_export.cpp:125 src/mmframe.cpp:2356
+#: src/mmframe.cpp:2360 src/mmframe.cpp:2380 src/mmframe.cpp:2384
+msgid "Accounts"
+msgstr "Comptes"
+
+#: src/import_export/qif_export.cpp:136
+#: src/import_export/qif_import_gui.cpp:158
+msgid "From Date"
+msgstr "Du"
+
+#: src/import_export/qif_export.cpp:145
+#: src/import_export/qif_import_gui.cpp:167
+msgid "To Date"
+msgstr "Jusqu'a la date"
+
+#: src/import_export/qif_export.cpp:156
+msgid "Write to File"
+msgstr "Enregistrer dans un fichier"
+
+#: src/import_export/qif_export.cpp:159
+#: src/import_export/qif_import_gui.cpp:108
+#: src/import_export/univcsvdialog.cpp:206
+msgid "File Name:"
+msgstr "Nom du fichier:"
+
+#: src/import_export/qif_export.cpp:160
+#: src/import_export/qif_import_gui.cpp:109
+msgid "Choose &file"
+msgstr "Choisir  &file"
+
+#: src/import_export/qif_export.cpp:182
+#: src/import_export/univcsvdialog.cpp:328
+msgid "Clear"
+msgstr "Effacer"
+
+#: src/import_export/qif_export.cpp:217
+msgid "Choose Account to Export from:"
+msgstr "Sélectionner le compte d'origine :"
+
+#: src/import_export/qif_export.cpp:263
+#: src/import_export/qif_import_gui.cpp:564
+msgid "QIF Files"
+msgstr "Fichier QIF"
+
+#: src/import_export/qif_export.cpp:263
+#: src/import_export/univcsvdialog.cpp:917
+msgid "CSV Files"
+msgstr "Fichiers CSV"
+
+#: src/import_export/qif_export.cpp:266
+msgid "Choose QIF data file to Export"
+msgstr "Sélectionner le fichier QIF à exporter"
+
+#: src/import_export/qif_export.cpp:267
+#: src/import_export/univcsvdialog.cpp:918
+msgid "Choose CSV data file to Export"
+msgstr "Sélectionner un fichier CSV à exporter"
+
+#: src/import_export/qif_export.cpp:283
+msgid "No Account available for export"
+msgstr "Pas de Compte valable! Impossible d'exporter!"
+
+#: src/import_export/qif_export.cpp:287
+msgid "No Accounts selected for export"
+msgstr "Pas de comptes sélectionnés pour l'exportation."
+
+#: src/import_export/qif_export.cpp:291
+msgid "File name is empty"
+msgstr "Le nom du fichier est vide."
+
+#: src/import_export/qif_export.cpp:295
+msgid "To Date less than From Date"
+msgstr "Date de fin inférieure à la date de début"
+
+#: src/import_export/qif_export.cpp:377
+msgid "Categories exported"
+msgstr "Catégories exportées"
+
+#: src/import_export/qif_export.cpp:385
+#: src/import_export/qif_import_gui.cpp:289
+#: src/import_export/qif_import_gui.cpp:620
+#, fuzzy
+msgid "Please wait"
+msgstr "confirmez svp:"
+
+#: src/import_export/qif_export.cpp:385
+#, fuzzy
+msgid "Exporting"
+msgstr "&Exporter"
+
+#: src/import_export/qif_export.cpp:406
+#, fuzzy, c-format
+msgid "Exporting transaction %i"
+msgstr "Détails de l'opération"
+
+#: src/import_export/qif_export.cpp:457
+#, c-format
+msgid "Number of transactions exported: %ld"
+msgstr "Nombre d'opérations exportées: %ld"
+
+#: src/import_export/qif_export.cpp:458 src/mmframe.cpp:1253
+msgid "Export to QIF"
+msgstr "Exporter un fichier en QIF"
+
+#: src/import_export/qif_import_gui.cpp:62
+#: src/import_export/qif_import_gui.cpp:680
+msgid "QIF Import"
+msgstr "Importer un fichier QIF"
+
+#: src/import_export/qif_import_gui.cpp:124 src/optionsdialog.cpp:240
+msgid "Date Format"
+msgstr "Format de la date"
+
+#: src/import_export/qif_import_gui.cpp:152
+#, fuzzy
+msgid "Filtering Details:"
+msgstr "Détail du Filtre: "
+
+#: src/import_export/qif_import_gui.cpp:189
+msgid "Data"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:289
+#, fuzzy
+msgid "Scanning"
+msgstr "Attention"
+
+#: src/import_export/qif_import_gui.cpp:309
+#, fuzzy, c-format
+msgid "Reading line %i, %ld ms"
+msgstr "Renvoi à la ligne"
+
+#: src/import_export/qif_import_gui.cpp:339
+#, fuzzy, c-format
+msgid "Line %i \t %s\n"
+msgstr "Ligne"
+
+#: src/import_export/qif_import_gui.cpp:356
+#, fuzzy, c-format
+msgid "Number of lines read from QIF file: %i in %ld ms"
+msgstr "Nombre d'opérations exportées: %ld"
+
+#: src/import_export/qif_import_gui.cpp:359
+msgid "Press OK Button to continue"
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:473
+#: src/import_export/qif_import_gui.cpp:492
+#: src/import_export/qif_import_gui.cpp:509
+msgid "OK"
+msgstr "OK"
+
+#: src/import_export/qif_import_gui.cpp:475
+#, fuzzy
+msgid "Warning"
+msgstr "Attention"
+
+#: src/import_export/qif_import_gui.cpp:478
+#: src/import_export/qif_import_gui.cpp:492
+#, fuzzy
+msgid "Missing"
+msgstr "Compte Manquants"
+
+#: src/import_export/qif_import_gui.cpp:565
+msgid "Choose QIF data file to Import"
+msgstr "Choisir un fichier QIF à importer."
+
+#: src/import_export/qif_import_gui.cpp:613
+#, fuzzy
+msgid "Do you want to import all transaction ?"
+msgstr "Souhaitez-vous réellement supprimer l'opération?"
+
+#: src/import_export/qif_import_gui.cpp:614
+msgid "All missing account, payees and categories will be created."
+msgstr ""
+
+#: src/import_export/qif_import_gui.cpp:615
+#, fuzzy
+msgid "Confirm Import"
+msgstr "Importer/Exporter"
+
+#: src/import_export/qif_import_gui.cpp:620
+#, fuzzy
+msgid "Importing"
+msgstr "Importer un fichier CSV"
+
+#: src/import_export/qif_import_gui.cpp:622
+#, fuzzy
+msgid "Importing Accounts"
+msgstr "Import du type de compte: %s"
+
+#: src/import_export/qif_import_gui.cpp:629
+#, fuzzy
+msgid "Importing Payees"
+msgstr "Importer un fichier CSV"
+
+#: src/import_export/qif_import_gui.cpp:632
+#, fuzzy
+msgid "Importing Categories"
+msgstr "Gestion des catégories"
+
+#: src/import_export/qif_import_gui.cpp:647
+#, fuzzy, c-format
+msgid "Importing transaction %i of %i"
+msgstr "Détails de l'opération"
+
+#: src/import_export/qif_import_gui.cpp:663
+#, fuzzy
+msgid "Importing Transfers"
+msgstr "Importer un fichier CSV"
+
+#: src/import_export/qif_import_gui.cpp:667
+#, fuzzy
+msgid "Importing Split transactions"
+msgstr "Détails de l'opération"
+
+#: src/import_export/qif_import_gui.cpp:671
+msgid "Import finished successfully"
+msgstr "Importation terminée correctement."
+
+#: src/import_export/qif_import_gui.cpp:678
+#: src/import_export/univcsvdialog.cpp:725
+#: src/import_export/univcsvdialog.cpp:895
+msgid "Imported transactions discarded by user!"
+msgstr "Import des opération annulée par l'opérateur."
+
+#: src/import_export/qif_import_gui.cpp:838
+#, fuzzy, c-format
+msgid "Added account: %s"
+msgstr "Nouveau compte"
+
+#: src/import_export/qif_import_gui.cpp:871
+#, fuzzy, c-format
+msgid "Added payee: %s"
+msgstr "Choisir le tiers"
+
+#: src/import_export/univcsvdialog.cpp:72
+msgid "Amount(+/-)"
+msgstr "Montant(+/-)"
+
+#: src/import_export/univcsvdialog.cpp:74
+msgid "SubCategory"
+msgstr "Sous-catégorie"
+
+#: src/import_export/univcsvdialog.cpp:77
+msgid "Don't Care"
+msgstr "Ne pas s'inquiéter"
+
+#: src/import_export/univcsvdialog.cpp:80
+msgid "To/From(+/-)"
+msgstr "A/De(+/-)"
+
+#: src/import_export/univcsvdialog.cpp:81 src/mmcheckingpanel.cpp:988
+#: src/mmhomepagepanel.cpp:655
+msgid "Balance"
+msgstr "Solde"
+
+#: src/import_export/univcsvdialog.cpp:126
+msgid "Specify the order of fields in the CSV file"
+msgstr "Indiquer l'ordre des champs du fichier CSV"
+
+#: src/import_export/univcsvdialog.cpp:157
+msgid "&MMEX format"
+msgstr "Format &MMEX"
+
+#: src/import_export/univcsvdialog.cpp:159
+msgid "MMEX standard format"
+msgstr "Format Standart MMEX"
+
+#: src/import_export/univcsvdialog.cpp:175
+msgid "&Up"
+msgstr "Vers le ha&ut"
+
+#: src/import_export/univcsvdialog.cpp:177
+msgid "Move Up"
+msgstr "Déplacer vers le haut"
+
+#: src/import_export/univcsvdialog.cpp:180
+msgid "&Down"
+msgstr "&Descendre"
+
+#: src/import_export/univcsvdialog.cpp:182
+msgid "Move &Down"
+msgstr "Descendre"
+
+#: src/import_export/univcsvdialog.cpp:185
+msgid "&Open"
+msgstr "&ouvrir"
+
+#: src/import_export/univcsvdialog.cpp:187
+msgid "Load Template"
+msgstr "Charger un modèle"
+
+#: src/import_export/univcsvdialog.cpp:190
+msgid "Save As..."
+msgstr "Enregistrer sous…"
+
+#: src/import_export/univcsvdialog.cpp:192
+msgid "Save Template"
+msgstr "Sauvegarder le modèle"
+
+#: src/import_export/univcsvdialog.cpp:215
+msgid "&Search"
+msgstr "Recherche"
+
+#: src/import_export/univcsvdialog.cpp:226
+msgid "Account: "
+msgstr "Compte : "
+
+#: src/import_export/univcsvdialog.cpp:238
+msgid "Date Format: "
+msgstr "Format de date: "
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "Comma"
+msgstr "Virgule"
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "Semicolon"
+msgstr "Point-virgule"
+
+#: src/import_export/univcsvdialog.cpp:254
+msgid "TAB"
+msgstr "Tabulation"
+
+#: src/import_export/univcsvdialog.cpp:254 src/optionsdialog.cpp:944
+msgid "User Defined"
+msgstr "Défini par l'utilisateur"
+
+#: src/import_export/univcsvdialog.cpp:261 src/optionsdialog.cpp:730
+msgid "Specify the delimiter to use when importing/exporting CSV files"
+msgstr ""
+"Préciser le marqueur à utiliser lors de l'Importation/exportation de "
+"fichiers CSV"
+
+#: src/import_export/univcsvdialog.cpp:277
+msgid "CSV Delimiter"
+msgstr "marqueur CSV"
+
+#: src/import_export/univcsvdialog.cpp:287
+#, fuzzy
+msgid "Preview"
+msgstr "Prévisualiser le rapport courant"
+
+#: src/import_export/univcsvdialog.cpp:306
+msgid "Import File"
+msgstr "Import du fichier"
+
+#: src/import_export/univcsvdialog.cpp:313
+msgid "Export File"
+msgstr "Exporter le fichier"
+
+#: src/import_export/univcsvdialog.cpp:464
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: src/import_export/univcsvdialog.cpp:469
+msgid "Choose Universal CSV format file to load"
+msgstr "Sélectionner un fichier CSV à charger"
+
+#: src/import_export/univcsvdialog.cpp:476
+#: src/import_export/univcsvdialog.cpp:572
+#: src/import_export/univcsvdialog.cpp:1074
+#: src/import_export/univcsvdialog.cpp:1323
+msgid "Unable to open file."
+msgstr "Impossible d'ouvrir le fichier."
+
+#: src/import_export/univcsvdialog.cpp:476
+#: src/import_export/univcsvdialog.cpp:523
+#: src/import_export/univcsvdialog.cpp:550
+#: src/import_export/univcsvdialog.cpp:572
+#: src/import_export/univcsvdialog.cpp:588
+#: src/import_export/univcsvdialog.cpp:746
+#: src/import_export/univcsvdialog.cpp:786
+#: src/import_export/univcsvdialog.cpp:1074 src/mmframe.cpp:1887
+msgid "Universal CSV Import"
+msgstr "Importer un fichier CSV universel"
+
+#: src/import_export/univcsvdialog.cpp:512
+msgid "Choose Universal CSV format file to save"
+msgstr "Sélectionner un fichier CSV à exporter"
+
+#: src/import_export/univcsvdialog.cpp:523
+msgid "Unable to write to file."
+msgstr "Impossible d'écrire dans le fichier."
+
+#: src/import_export/univcsvdialog.cpp:549
+#: src/import_export/univcsvdialog.cpp:745
+msgid ""
+"Incorrect fields specified for CSV import! Requires at least Date, Amount "
+"and Payee."
+msgstr ""
+"Champs incorrects pour l'importation CSV! La date, le montant,et le tiers "
+"sont le minimum requis."
+
+#: src/import_export/univcsvdialog.cpp:589
+#: src/import_export/univcsvdialog.cpp:787
+msgid "Transactions imported from CSV: "
+msgstr "opérations importées d'un CSV: "
+
+#: src/import_export/univcsvdialog.cpp:597
+#, fuzzy, c-format
+msgid ""
+"Transactions imported from CSV\n"
+"to account %s : %i"
+msgstr ""
+"opérations importées d'un CSV\n"
+"vers un compte "
+
+#: src/import_export/univcsvdialog.cpp:627
+#: src/import_export/univcsvdialog.cpp:629
+#: src/import_export/univcsvdialog.cpp:652
+#: src/import_export/univcsvdialog.cpp:654
+#: src/import_export/univcsvdialog.cpp:809
+#: src/import_export/univcsvdialog.cpp:811
+#: src/import_export/univcsvdialog.cpp:824
+#: src/import_export/univcsvdialog.cpp:826
+#, fuzzy, c-format
+msgid "Line: %i"
+msgstr "Ligne"
+
+#: src/import_export/univcsvdialog.cpp:628
+#: src/import_export/univcsvdialog.cpp:630
+#: src/import_export/univcsvdialog.cpp:810
+#: src/import_export/univcsvdialog.cpp:812
+msgid " file contains insufficient number of tokens"
+msgstr " le fichier contient un nombre insuffisant de jetons"
+
+#: src/import_export/univcsvdialog.cpp:653
+#: src/import_export/univcsvdialog.cpp:655
+#: src/import_export/univcsvdialog.cpp:825
+#: src/import_export/univcsvdialog.cpp:827
+msgid ""
+" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
+msgstr ""
+" Un des champs suivants: Date, Tiers, Montant, Type est manquant, sauter."
+
+#: src/import_export/univcsvdialog.cpp:689
+#: src/import_export/univcsvdialog.cpp:690
+#: src/import_export/univcsvdialog.cpp:861
+#: src/import_export/univcsvdialog.cpp:862
+#, fuzzy, c-format
+msgid "Line : %i imported OK."
+msgstr "Colonne de retour à la ligne :"
+
+#: src/import_export/univcsvdialog.cpp:695
+#: src/import_export/univcsvdialog.cpp:865
+#, fuzzy, c-format
+msgid "Total Lines : %i"
+msgstr "Lignes d'historique :"
+
+#: src/import_export/univcsvdialog.cpp:697
+#: src/import_export/univcsvdialog.cpp:867
+#, fuzzy, c-format
+msgid "Total Imported : %ld"
+msgstr "Opérations exportées: %ld"
+
+#: src/import_export/univcsvdialog.cpp:699
+#: src/import_export/univcsvdialog.cpp:869
+#, c-format
+msgid "Log file written to : %s"
+msgstr "Logfile enregistré sous: %s"
+
+#: src/import_export/univcsvdialog.cpp:702
+#: src/import_export/univcsvdialog.cpp:872
+msgid "Please confirm saving..."
+msgstr "Merci de confirmer la sauvegarde..."
+
+#: src/import_export/univcsvdialog.cpp:704
+#: src/import_export/univcsvdialog.cpp:874
+msgid "Importing CSV"
+msgstr "Importer un fichier CSV"
+
+#: src/import_export/univcsvdialog.cpp:708
+#: src/import_export/univcsvdialog.cpp:878
+msgid "Imported transactions have been flagged so you can review them."
+msgstr ""
+"les transactions Importées  ont été marqués afin que vous puissiez les "
+"examiner."
+
+#: src/import_export/univcsvdialog.cpp:719
+#: src/import_export/univcsvdialog.cpp:889
+msgid "Transactions saved to database in account: "
+msgstr "Transactions sauvegardées dans le compte: "
+
+#: src/import_export/univcsvdialog.cpp:1037
+#, c-format
+msgid "Transactions exported: %ld"
+msgstr "Opérations exportées: %ld"
+
+#: src/import_export/univcsvdialog.cpp:1038 src/mmframe.cpp:1252
+msgid "Export to CSV"
+msgstr "Exporter un fichier en CSV"
+
+#: src/import_export/univcsvdialog.cpp:1313
+msgid "Choose CSV data file to import"
+msgstr "Choisir un fichier de données QIF à importer"
+
 #: src/maincurrencydialog.cpp:58 src/stockdialog.cpp:144
 msgid "Symbol"
 msgstr "Symbole"
@@ -2178,11 +2697,6 @@ msgstr "Vue du compte : %s"
 #, fuzzy
 msgid "Select account used in transfer transactions"
 msgstr "Introduire le montant de l'opération"
-
-#: src/mmcheckingpanel.cpp:988 src/mmhomepagepanel.cpp:655
-#: src/import_export/univcsvdialog.cpp:81
-msgid "Balance"
-msgstr "Solde"
 
 #: src/mmcheckingpanel.cpp:1057
 msgid "&New Transaction"
@@ -2445,8 +2959,8 @@ msgstr "Fichier &CSV"
 msgid "&QIF Files..."
 msgstr "Fichiers  &QIF"
 
-#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/optionsdialog.cpp:136
-#: src/model/Model_Account.cpp:24
+#: src/mmframe.cpp:1080 src/mmframe.cpp:1492 src/model/Model_Account.cpp:24
+#: src/optionsdialog.cpp:136
 msgid "Open"
 msgstr "Ouverts"
 
@@ -2489,14 +3003,6 @@ msgstr "Dernier fichiers utilisés"
 #: src/mmframe.cpp:1246
 msgid "&Clear Recent Files"
 msgstr "Effacer les derniers fichiers utilisés"
-
-#: src/mmframe.cpp:1252 src/import_export/univcsvdialog.cpp:1038
-msgid "Export to CSV"
-msgstr "Exporter un fichier en CSV"
-
-#: src/mmframe.cpp:1253 src/import_export/qif_export.cpp:458
-msgid "Export to QIF"
-msgstr "Exporter un fichier en QIF"
 
 #: src/mmframe.cpp:1254
 msgid "&Report to HTML"
@@ -2897,17 +3403,6 @@ msgstr "Entrez le mot de passe de la nouvelle base de données"
 msgid "No account available to import"
 msgstr "PAs de compte disponible pour l'import"
 
-#: src/mmframe.cpp:1887 src/import_export/univcsvdialog.cpp:476
-#: src/import_export/univcsvdialog.cpp:523
-#: src/import_export/univcsvdialog.cpp:550
-#: src/import_export/univcsvdialog.cpp:572
-#: src/import_export/univcsvdialog.cpp:588
-#: src/import_export/univcsvdialog.cpp:746
-#: src/import_export/univcsvdialog.cpp:786
-#: src/import_export/univcsvdialog.cpp:1074
-msgid "Universal CSV Import"
-msgstr "Importer un fichier CSV universel"
-
 #: src/mmframe.cpp:1938
 msgid "Term Account views have been temporarly turned on."
 msgstr "La vue  comptes à terme a été temporairement activée."
@@ -2949,11 +3444,6 @@ msgstr "Sélectionner le fichier QIF à exporter"
 #: src/mmframe.cpp:2356
 msgid "No account available to edit!"
 msgstr "Aucun compte valable!"
-
-#: src/mmframe.cpp:2356 src/mmframe.cpp:2360 src/mmframe.cpp:2380
-#: src/mmframe.cpp:2384 src/import_export/qif_export.cpp:125
-msgid "Accounts"
-msgstr "Comptes"
 
 #: src/mmframe.cpp:2360
 msgid "Choose Account to Edit"
@@ -3152,8 +3642,8 @@ msgid "Total"
 msgstr "Total"
 
 #: src/mmhomepagepanel.cpp:96 src/mmhomepagepanel.cpp:686
-#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 #: src/reports/incexpenses.cpp:240 src/reports/payee.cpp:168
+#: src/splittransactionsdialog.cpp:133 src/stockspanel.cpp:840
 msgid "Total:"
 msgstr "Total :"
 
@@ -3224,6 +3714,272 @@ msgstr "Grand Total :"
 msgid "REPORTS"
 msgstr "RAPPORTS"
 
+#: src/model/Model_Account.cpp:25
+msgid "Closed"
+msgstr "Fermé"
+
+#: src/model/Model_Account.cpp:30
+msgid "Checking"
+msgstr "Vérification"
+
+#: src/model/Model_Account.cpp:31
+msgid "Term"
+msgstr "Terme"
+
+#: src/model/Model_Account.cpp:32
+msgid "Investment"
+msgstr "Titres"
+
+#: src/model/Model_Asset.cpp:24
+msgid "Appreciates"
+msgstr "Augmentation"
+
+#: src/model/Model_Asset.cpp:25
+msgid "Depreciates"
+msgstr "Diminution"
+
+#: src/model/Model_Asset.cpp:30
+msgid "Property"
+msgstr "Immobilier"
+
+#: src/model/Model_Asset.cpp:31 src/model/Model_Category.cpp:103
+msgid "Automobile"
+msgstr "Automobile"
+
+#: src/model/Model_Asset.cpp:32
+msgid "Household Object"
+msgstr "Biens ménagers"
+
+#: src/model/Model_Asset.cpp:33
+msgid "Art"
+msgstr "Collection"
+
+#: src/model/Model_Asset.cpp:34
+msgid "Jewellery"
+msgstr "Bijoux"
+
+# Autre traduction: "Argent liquide" ?
+#: src/model/Model_Asset.cpp:35
+msgid "Cash"
+msgstr "Liquidités"
+
+#: src/model/Model_Asset.cpp:36
+msgid "Other"
+msgstr "Autre"
+
+#: src/model/Model_Billsdeposits.cpp:26 src/model/Model_Category.cpp:209
+#: src/model/Model_Checking.cpp:28
+msgid "Transfer"
+msgstr "Virement"
+
+#: src/model/Model_Category.cpp:65
+msgid "Telephone"
+msgstr "Téléphone"
+
+#: src/model/Model_Category.cpp:66
+msgid "Electricity"
+msgstr "Electricité"
+
+#: src/model/Model_Category.cpp:67 src/model/Model_Category.cpp:99
+msgid "Gas"
+msgstr "Gaz"
+
+#: src/model/Model_Category.cpp:68
+msgid "Internet"
+msgstr "Internet"
+
+#: src/model/Model_Category.cpp:69
+msgid "Rent"
+msgstr "Location"
+
+#: src/model/Model_Category.cpp:70
+msgid "Cable TV"
+msgstr "TV par Câble."
+
+#: src/model/Model_Category.cpp:71
+msgid "Water"
+msgstr "Eau"
+
+#: src/model/Model_Category.cpp:73
+msgid "Bills"
+msgstr "Factures"
+
+#: src/model/Model_Category.cpp:79
+msgid "Groceries"
+msgstr "Alimentation"
+
+#: src/model/Model_Category.cpp:80
+msgid "Dining out"
+msgstr "Restaurant"
+
+#: src/model/Model_Category.cpp:82
+msgid "Food"
+msgstr "Nourriture"
+
+#: src/model/Model_Category.cpp:88
+msgid "Movies"
+msgstr "Films"
+
+#: src/model/Model_Category.cpp:89
+msgid "Video Rental"
+msgstr "Location vidéo"
+
+#: src/model/Model_Category.cpp:90
+msgid "Magazines"
+msgstr "Magazines"
+
+#: src/model/Model_Category.cpp:92
+msgid "Leisure"
+msgstr "Loisir"
+
+#: src/model/Model_Category.cpp:98
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: src/model/Model_Category.cpp:100
+msgid "Parking"
+msgstr "Stationnement"
+
+#: src/model/Model_Category.cpp:101
+msgid "Registration"
+msgstr "Inscription"
+
+#: src/model/Model_Category.cpp:109
+msgid "Books"
+msgstr "Livres"
+
+#: src/model/Model_Category.cpp:110
+msgid "Tuition"
+msgstr "Frais de Scolarité"
+
+#: src/model/Model_Category.cpp:113
+msgid "Education"
+msgstr "Education"
+
+#: src/model/Model_Category.cpp:119
+msgid "Clothing"
+msgstr "Habillement"
+
+#: src/model/Model_Category.cpp:120
+msgid "Furnishing"
+msgstr "Ameublement"
+
+#: src/model/Model_Category.cpp:123
+msgid "Homeneeds"
+msgstr "Besoins domestiques"
+
+#: src/model/Model_Category.cpp:129 src/model/Model_Category.cpp:144
+msgid "Health"
+msgstr "Santé"
+
+#: src/model/Model_Category.cpp:130
+msgid "Dental"
+msgstr "Dentaire"
+
+#: src/model/Model_Category.cpp:131
+msgid "Eyecare"
+msgstr "Opticien"
+
+#: src/model/Model_Category.cpp:132
+msgid "Physician"
+msgstr "Médecin"
+
+#: src/model/Model_Category.cpp:133
+msgid "Prescriptions"
+msgstr "Médicaments"
+
+#: src/model/Model_Category.cpp:135
+msgid "Healthcare"
+msgstr "Santé et soins"
+
+#: src/model/Model_Category.cpp:141
+msgid "Auto"
+msgstr "Automobile"
+
+#: src/model/Model_Category.cpp:142
+msgid "Life"
+msgstr "Vie"
+
+#: src/model/Model_Category.cpp:143
+msgid "Home"
+msgstr "Accueil"
+
+#: src/model/Model_Category.cpp:146
+msgid "Insurance"
+msgstr "Assurances"
+
+#: src/model/Model_Category.cpp:152
+msgid "Travel"
+msgstr "Voyages"
+
+#: src/model/Model_Category.cpp:153
+msgid "Lodging"
+msgstr "Logement"
+
+#: src/model/Model_Category.cpp:154
+msgid "Sightseeing"
+msgstr "Visites touristiques"
+
+#: src/model/Model_Category.cpp:156
+msgid "Vacation"
+msgstr "Vacances"
+
+#: src/model/Model_Category.cpp:162
+msgid "Income Tax"
+msgstr "Impôts sur les revenus"
+
+#: src/model/Model_Category.cpp:163
+msgid "House Tax"
+msgstr "Taxe Domicile"
+
+#: src/model/Model_Category.cpp:164
+msgid "Water Tax"
+msgstr "Eau"
+
+#: src/model/Model_Category.cpp:167
+msgid "Taxes"
+msgstr "Taxes"
+
+#: src/model/Model_Category.cpp:174
+msgid "Miscellaneous"
+msgstr "Divers"
+
+#: src/model/Model_Category.cpp:181
+msgid "Gifts"
+msgstr "Cadeaux"
+
+#: src/model/Model_Category.cpp:187
+msgid "Salary"
+msgstr "Salaire"
+
+#: src/model/Model_Category.cpp:188
+msgid "Reimbursement/Refunds"
+msgstr "Remboursements"
+
+#: src/model/Model_Category.cpp:189
+msgid "Investment Income"
+msgstr "Revenus de placements"
+
+#: src/model/Model_Category.cpp:197
+msgid "Other Income"
+msgstr "Autres revenus"
+
+#: src/model/Model_Category.cpp:203
+msgid "Other Expenses"
+msgstr "Autres dépenses"
+
+#: src/model/Model_Currency.cpp:107 src/wizard_newdb.cpp:157
+msgid "Base Currency Not Set"
+msgstr "Devise principale non définie"
+
+#: src/model/Model_Report.cpp:138
+#, c-format
+msgid ""
+"The SQL script:\n"
+"%s \n"
+"will modify database! aborted!"
+msgstr ""
+
 #: src/optionsdialog.cpp:190
 msgid "Display Heading"
 msgstr "Montrer les entêtes"
@@ -3255,10 +4011,6 @@ msgstr "Choisir la devise"
 #: src/optionsdialog.cpp:236
 msgid "Sets the default currency for the database."
 msgstr "Utilise la monnaie par défaut pour la base de données."
-
-#: src/optionsdialog.cpp:240 src/import_export/qif_import_gui.cpp:124
-msgid "Date Format"
-msgstr "Format de la date"
 
 #: src/optionsdialog.cpp:254
 msgid "Specify the date format for display"
@@ -3619,12 +4371,6 @@ msgstr "Effacer les configuration"
 msgid "Delimiter"
 msgstr "marqueur CSV"
 
-#: src/optionsdialog.cpp:730 src/import_export/univcsvdialog.cpp:261
-msgid "Specify the delimiter to use when importing/exporting CSV files"
-msgstr ""
-"Préciser le marqueur à utiliser lors de l'Importation/exportation de "
-"fichiers CSV"
-
 #: src/optionsdialog.cpp:744
 #, fuzzy
 msgid "WebApp Settings"
@@ -3740,10 +4486,6 @@ msgstr "A l'ouverture de la base de données:"
 #, fuzzy
 msgid "Dropbox folder"
 msgstr "Choisir un dossier"
-
-#: src/optionsdialog.cpp:944 src/import_export/univcsvdialog.cpp:254
-msgid "User Defined"
-msgstr "Défini par l'utilisateur"
 
 #: src/optionsdialog.cpp:970
 msgid "Choose folder to set as attachments archive"
@@ -3903,6 +4645,247 @@ msgstr ""
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
 msgstr "confirmation de la réaffectation"
+
+#: src/reports/budget.cpp:78
+msgid "Financial Year: "
+msgstr "Année Fiscale: "
+
+#: src/reports/budget.cpp:80
+msgid "Year: "
+msgstr "Année : "
+
+#: src/reports/budget.cpp:82
+msgid "Month: "
+msgstr "Mois : "
+
+#: src/reports/budgetcategorysummary.cpp:97
+msgid "Budget Categories for "
+msgstr "Catégories de budget pour "
+
+#: src/reports/budgetcategorysummary.cpp:99
+msgid "Budget Category Summary for "
+msgstr "Résumé du budget de catégorie pour "
+
+#: src/reports/budgetcategorysummary.cpp:100
+msgid "( Estimated Vs Actual )"
+msgstr "Estimé / Réel"
+
+#: src/reports/budgetcategorysummary.cpp:199
+#, fuzzy
+msgid "Estimated Income:"
+msgstr "Impôts sur les revenus"
+
+#: src/reports/budgetcategorysummary.cpp:201
+#, fuzzy
+msgid "Actual Income:"
+msgstr "Impôts sur les revenus"
+
+#: src/reports/budgetcategorysummary.cpp:203
+#, fuzzy
+msgid "Difference Income:"
+msgstr "Impôts sur les revenus"
+
+#: src/reports/budgetcategorysummary.cpp:208
+#, fuzzy
+msgid "Estimated Expenses:"
+msgstr "Autres dépenses"
+
+#: src/reports/budgetcategorysummary.cpp:210
+#, fuzzy
+msgid "Actual Expenses:"
+msgstr "Autres dépenses"
+
+#: src/reports/budgetcategorysummary.cpp:212
+#, fuzzy
+msgid "Difference Expenses:"
+msgstr "Autres dépenses"
+
+#: src/reports/budgetingperf.cpp:122
+msgid "Budget Performance for "
+msgstr "Performance Budgétaire pour: "
+
+#: src/reports/budgetingperf.cpp:138 src/reports/categovertimeperf.cpp:160
+#: src/reports/categovertimeperf.cpp:162
+msgid "Overall"
+msgstr "Globalement"
+
+#: src/reports/budgetingperf.cpp:139
+msgid "%"
+msgstr "%"
+
+#: src/reports/cashflow.cpp:60
+#, fuzzy, c-format
+msgid "Cash Flow Forecast for %i Years Ahead"
+msgstr ""
+"Prévisions de la trésorerie pour le(s) compte(s) sélectionné(s) sur les %d "
+"prochaines années"
+
+#: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
+#: src/reports/incexpenses.cpp:158
+msgid "Accounts: "
+msgstr "Comptes: "
+
+#: src/reports/cashflow.cpp:66 src/reports/incexpenses.cpp:55
+#: src/reports/incexpenses.cpp:161
+msgid "All Accounts"
+msgstr "Tous les Comptes"
+
+#: src/reports/cashflow.cpp:68
+msgid "All Bank Accounts"
+msgstr "Tous les Comptes bancaires"
+
+#: src/reports/cashflow.cpp:70
+msgid "All Term Accounts"
+msgstr "Tous les comptes à terme"
+
+#: src/reports/cashflow.cpp:105 src/reports/incexpenses.cpp:191
+#: src/reports/payee.cpp:148 src/reports/payee.cpp:150
+msgid "Difference"
+msgstr "Différence"
+
+#: src/reports/categexp.cpp:147
+#, fuzzy
+msgid "Subcategories"
+msgstr "Sous-catégorie :"
+
+#: src/reports/categexp.cpp:184
+msgid "Category Total: "
+msgstr "Total pour la Catégorie: "
+
+#: src/reports/categexp.cpp:197
+#, fuzzy
+msgid "Total Expenses: "
+msgstr "opérations au totalTotal des opérations "
+
+#: src/reports/categexp.cpp:198
+#, fuzzy
+msgid "Total Income: "
+msgstr "Impôts sur les revenus"
+
+#: src/reports/categexp.cpp:200
+msgid "Grand Total: "
+msgstr "Grand Total : "
+
+#: src/reports/categexp.cpp:217 src/reports/categexp.cpp:223
+#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:235
+#: src/reports/categexp.cpp:241 src/reports/categexp.cpp:246
+#: src/reports/categexp.cpp:252 src/reports/categexp.cpp:258
+#: src/reports/categexp.cpp:264 src/reports/categexp.cpp:270
+#, fuzzy, c-format
+msgid "Where the Money Goes - %s"
+msgstr "Détail des Dépenses"
+
+#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:293
+#: src/reports/categexp.cpp:357 src/reports/mmDateRange.cpp:88
+#: src/reports/payee.h:74
+#, fuzzy
+msgid "Last Month"
+msgstr "Mois dernier"
+
+#: src/reports/categexp.cpp:281 src/reports/categexp.cpp:287
+#: src/reports/categexp.cpp:293 src/reports/categexp.cpp:299
+#: src/reports/categexp.cpp:305 src/reports/categexp.cpp:311
+#: src/reports/categexp.cpp:317 src/reports/categexp.cpp:323
+#: src/reports/categexp.cpp:329 src/reports/categexp.cpp:335
+#, fuzzy, c-format
+msgid "Where the Money Comes From - %s"
+msgstr "Détail des Revenus"
+
+#: src/reports/categexp.cpp:346 src/reports/categexp.cpp:352
+#: src/reports/categexp.cpp:357 src/reports/categexp.cpp:363
+#: src/reports/categexp.cpp:368 src/reports/categexp.cpp:374
+#: src/reports/categexp.cpp:380 src/reports/categexp.cpp:386
+#: src/reports/categexp.cpp:392 src/reports/categexp.cpp:398
+#, fuzzy, c-format
+msgid "Categories - %s"
+msgstr "Catégories"
+
+#: src/reports/categovertimeperf.cpp:36
+#, fuzzy, c-format
+msgid "Category Income/Expenses: %s"
+msgstr "Balance des revenus et dépenses"
+
+#: src/reports/categovertimeperf.cpp:178 src/reports/payee.cpp:140
+#: src/reports/payee.cpp:142
+#, fuzzy
+msgid "Incomes"
+msgstr "Revenus"
+
+#: src/reports/chart.cpp:255 src/reports/chart.cpp:455
+msgid "Legend:"
+msgstr "Légende :"
+
+#: src/reports/htmlbuilder.cpp:83
+#, c-format
+msgid "Today's Date: %s"
+msgstr "La date d'aujourd'hui: %s"
+
+#: src/reports/htmlbuilder.cpp:324
+#, c-format
+msgid "From %s till %s"
+msgstr "De %s à %s"
+
+#: src/reports/htmlbuilder.cpp:330 src/reports/mmDateRange.cpp:198
+#, fuzzy
+msgid "Over Time"
+msgstr "Date et heure :"
+
+#: src/reports/incexpenses.cpp:118
+msgid "Income:"
+msgstr "Revenus :"
+
+#: src/reports/incexpenses.cpp:119
+msgid "Expenses:"
+msgstr "Dépenses :"
+
+#: src/reports/incexpenses.cpp:187
+msgid "Year"
+msgstr "Année"
+
+#: src/reports/incexpenses.cpp:188
+msgid "Month"
+msgstr "Mois"
+
+#: src/reports/mmDateRange.cpp:72
+#, fuzzy
+msgid "Today"
+msgstr "La date d'aujourd'hui: %s"
+
+#: src/reports/mmDateRange.cpp:108
+#, fuzzy
+msgid "Last 90 Days"
+msgstr "Voir les 90 derniers jours"
+
+#: src/reports/mmDateRange.cpp:118
+#, fuzzy
+msgid "Last 3 Months"
+msgstr "Voir les 3 derniers mois."
+
+#: src/reports/mmDateRange.cpp:128
+#, fuzzy
+msgid "Last 12 Months"
+msgstr "Voir les 3 derniers mois."
+
+#: src/reports/mmgraphpie.cpp:49
+msgid "All Others"
+msgstr "Tous les autres"
+
+#: src/reports/reportbase.cpp:57
+msgid "Choose Accounts"
+msgstr "Sélectionner le(s) compte(s)"
+
+#: src/reports/transactions.cpp:81
+msgid "Transaction List "
+msgstr "Liste des opérations "
+
+#: src/reports/transactions.cpp:84
+#, c-format
+msgid "Transaction List for Account: %s"
+msgstr "Liste d'opérations pour le compte  %s"
+
+#: src/reports/transactions.cpp:173
+msgid "Total Amount: "
+msgstr "Montant total : "
 
 #: src/splitdetailsdialog.cpp:66
 msgid "Split Detail Dialog"
@@ -4691,1010 +5674,9 @@ msgstr ""
 "Utilisé en tant que titre de la base de donnée pour la visualisation et "
 "l'impression des rapports."
 
-#: src/wizard_newdb.cpp:157 src/model/Model_Currency.cpp:107
-msgid "Base Currency Not Set"
-msgstr "Devise principale non définie"
-
-#: src/import_export/qif_export.cpp:39 src/import_export/qif_export.cpp:218
-#: src/import_export/qif_export.cpp:303
-msgid "QIF Export"
-msgstr "Exporter un fichier QIF"
-
-#: src/import_export/qif_export.cpp:96
-msgid "Parameters"
-msgstr "Paramètres"
-
-#: src/import_export/qif_export.cpp:101
-#: src/import_export/qif_import_gui.cpp:180
-msgid "Log"
-msgstr "Historique"
-
-#: src/import_export/qif_export.cpp:108
-msgid "QIF"
-msgstr "QIF"
-
-#: src/import_export/qif_export.cpp:108
-msgid "CSV"
-msgstr "CSV"
-
-#: src/import_export/qif_export.cpp:136
-#: src/import_export/qif_import_gui.cpp:158
-msgid "From Date"
-msgstr "Du"
-
-#: src/import_export/qif_export.cpp:145
-#: src/import_export/qif_import_gui.cpp:167
-msgid "To Date"
-msgstr "Jusqu'a la date"
-
-#: src/import_export/qif_export.cpp:156
-msgid "Write to File"
-msgstr "Enregistrer dans un fichier"
-
-#: src/import_export/qif_export.cpp:159
-#: src/import_export/qif_import_gui.cpp:108
-#: src/import_export/univcsvdialog.cpp:206
-msgid "File Name:"
-msgstr "Nom du fichier:"
-
-#: src/import_export/qif_export.cpp:160
-#: src/import_export/qif_import_gui.cpp:109
-msgid "Choose &file"
-msgstr "Choisir  &file"
-
-#: src/import_export/qif_export.cpp:182
-#: src/import_export/univcsvdialog.cpp:328
-msgid "Clear"
-msgstr "Effacer"
-
-#: src/import_export/qif_export.cpp:217
-msgid "Choose Account to Export from:"
-msgstr "Sélectionner le compte d'origine :"
-
-#: src/import_export/qif_export.cpp:263
-#: src/import_export/qif_import_gui.cpp:564
-msgid "QIF Files"
-msgstr "Fichier QIF"
-
-#: src/import_export/qif_export.cpp:263
-#: src/import_export/univcsvdialog.cpp:917
-msgid "CSV Files"
-msgstr "Fichiers CSV"
-
-#: src/import_export/qif_export.cpp:266
-msgid "Choose QIF data file to Export"
-msgstr "Sélectionner le fichier QIF à exporter"
-
-#: src/import_export/qif_export.cpp:267
-#: src/import_export/univcsvdialog.cpp:918
-msgid "Choose CSV data file to Export"
-msgstr "Sélectionner un fichier CSV à exporter"
-
-#: src/import_export/qif_export.cpp:283
-msgid "No Account available for export"
-msgstr "Pas de Compte valable! Impossible d'exporter!"
-
-#: src/import_export/qif_export.cpp:287
-msgid "No Accounts selected for export"
-msgstr "Pas de comptes sélectionnés pour l'exportation."
-
-#: src/import_export/qif_export.cpp:291
-msgid "File name is empty"
-msgstr "Le nom du fichier est vide."
-
-#: src/import_export/qif_export.cpp:295
-msgid "To Date less than From Date"
-msgstr "Date de fin inférieure à la date de début"
-
-#: src/import_export/qif_export.cpp:377
-msgid "Categories exported"
-msgstr "Catégories exportées"
-
-#: src/import_export/qif_export.cpp:385
-#: src/import_export/qif_import_gui.cpp:289
-#: src/import_export/qif_import_gui.cpp:620
-#, fuzzy
-msgid "Please wait"
-msgstr "confirmez svp:"
-
-#: src/import_export/qif_export.cpp:385
-#, fuzzy
-msgid "Exporting"
-msgstr "&Exporter"
-
-#: src/import_export/qif_export.cpp:406
-#, fuzzy, c-format
-msgid "Exporting transaction %i"
-msgstr "Détails de l'opération"
-
-#: src/import_export/qif_export.cpp:457
-#, c-format
-msgid "Number of transactions exported: %ld"
-msgstr "Nombre d'opérations exportées: %ld"
-
-#: src/import_export/qif_import_gui.cpp:62
-#: src/import_export/qif_import_gui.cpp:680
-msgid "QIF Import"
-msgstr "Importer un fichier QIF"
-
-#: src/import_export/qif_import_gui.cpp:152
-#, fuzzy
-msgid "Filtering Details:"
-msgstr "Détail du Filtre: "
-
-#: src/import_export/qif_import_gui.cpp:189
-msgid "Data"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:289
-#, fuzzy
-msgid "Scanning"
-msgstr "Attention"
-
-#: src/import_export/qif_import_gui.cpp:309
-#, fuzzy, c-format
-msgid "Reading line %i, %ld ms"
-msgstr "Renvoi à la ligne"
-
-#: src/import_export/qif_import_gui.cpp:339
-#, fuzzy, c-format
-msgid "Line %i \t %s\n"
-msgstr "Ligne"
-
-#: src/import_export/qif_import_gui.cpp:356
-#, fuzzy, c-format
-msgid "Number of lines read from QIF file: %i in %ld ms"
-msgstr "Nombre d'opérations exportées: %ld"
-
-#: src/import_export/qif_import_gui.cpp:359
-msgid "Press OK Button to continue"
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:473
-#: src/import_export/qif_import_gui.cpp:492
-#: src/import_export/qif_import_gui.cpp:509
-msgid "OK"
-msgstr "OK"
-
-#: src/import_export/qif_import_gui.cpp:475
-#, fuzzy
-msgid "Warning"
-msgstr "Attention"
-
-#: src/import_export/qif_import_gui.cpp:478
-#: src/import_export/qif_import_gui.cpp:492
-#, fuzzy
-msgid "Missing"
-msgstr "Compte Manquants"
-
-#: src/import_export/qif_import_gui.cpp:565
-msgid "Choose QIF data file to Import"
-msgstr "Choisir un fichier QIF à importer."
-
-#: src/import_export/qif_import_gui.cpp:613
-#, fuzzy
-msgid "Do you want to import all transaction ?"
-msgstr "Souhaitez-vous réellement supprimer l'opération?"
-
-#: src/import_export/qif_import_gui.cpp:614
-msgid "All missing account, payees and categories will be created."
-msgstr ""
-
-#: src/import_export/qif_import_gui.cpp:615
-#, fuzzy
-msgid "Confirm Import"
-msgstr "Importer/Exporter"
-
-#: src/import_export/qif_import_gui.cpp:620
-#, fuzzy
-msgid "Importing"
-msgstr "Importer un fichier CSV"
-
-#: src/import_export/qif_import_gui.cpp:622
-#, fuzzy
-msgid "Importing Accounts"
-msgstr "Import du type de compte: %s"
-
-#: src/import_export/qif_import_gui.cpp:629
-#, fuzzy
-msgid "Importing Payees"
-msgstr "Importer un fichier CSV"
-
-#: src/import_export/qif_import_gui.cpp:632
-#, fuzzy
-msgid "Importing Categories"
-msgstr "Gestion des catégories"
-
-#: src/import_export/qif_import_gui.cpp:647
-#, fuzzy, c-format
-msgid "Importing transaction %i of %i"
-msgstr "Détails de l'opération"
-
-#: src/import_export/qif_import_gui.cpp:663
-#, fuzzy
-msgid "Importing Transfers"
-msgstr "Importer un fichier CSV"
-
-#: src/import_export/qif_import_gui.cpp:667
-#, fuzzy
-msgid "Importing Split transactions"
-msgstr "Détails de l'opération"
-
-#: src/import_export/qif_import_gui.cpp:671
-msgid "Import finished successfully"
-msgstr "Importation terminée correctement."
-
-#: src/import_export/qif_import_gui.cpp:678
-#: src/import_export/univcsvdialog.cpp:725
-#: src/import_export/univcsvdialog.cpp:895
-msgid "Imported transactions discarded by user!"
-msgstr "Import des opération annulée par l'opérateur."
-
-#: src/import_export/qif_import_gui.cpp:838
-#, fuzzy, c-format
-msgid "Added account: %s"
-msgstr "Nouveau compte"
-
-#: src/import_export/qif_import_gui.cpp:871
-#, fuzzy, c-format
-msgid "Added payee: %s"
-msgstr "Choisir le tiers"
-
-#: src/import_export/univcsvdialog.cpp:72
-msgid "Amount(+/-)"
-msgstr "Montant(+/-)"
-
-#: src/import_export/univcsvdialog.cpp:74
-msgid "SubCategory"
-msgstr "Sous-catégorie"
-
-#: src/import_export/univcsvdialog.cpp:77
-msgid "Don't Care"
-msgstr "Ne pas s'inquiéter"
-
-#: src/import_export/univcsvdialog.cpp:80
-msgid "To/From(+/-)"
-msgstr "A/De(+/-)"
-
-#: src/import_export/univcsvdialog.cpp:126
-msgid "Specify the order of fields in the CSV file"
-msgstr "Indiquer l'ordre des champs du fichier CSV"
-
-#: src/import_export/univcsvdialog.cpp:157
-msgid "&MMEX format"
-msgstr "Format &MMEX"
-
-#: src/import_export/univcsvdialog.cpp:159
-msgid "MMEX standard format"
-msgstr "Format Standart MMEX"
-
-#: src/import_export/univcsvdialog.cpp:175
-msgid "&Up"
-msgstr "Vers le ha&ut"
-
-#: src/import_export/univcsvdialog.cpp:177
-msgid "Move Up"
-msgstr "Déplacer vers le haut"
-
-#: src/import_export/univcsvdialog.cpp:180
-msgid "&Down"
-msgstr "&Descendre"
-
-#: src/import_export/univcsvdialog.cpp:182
-msgid "Move &Down"
-msgstr "Descendre"
-
-#: src/import_export/univcsvdialog.cpp:185
-msgid "&Open"
-msgstr "&ouvrir"
-
-#: src/import_export/univcsvdialog.cpp:187
-msgid "Load Template"
-msgstr "Charger un modèle"
-
-#: src/import_export/univcsvdialog.cpp:190
-msgid "Save As..."
-msgstr "Enregistrer sous…"
-
-#: src/import_export/univcsvdialog.cpp:192
-msgid "Save Template"
-msgstr "Sauvegarder le modèle"
-
-#: src/import_export/univcsvdialog.cpp:215
-msgid "&Search"
-msgstr "Recherche"
-
-#: src/import_export/univcsvdialog.cpp:226
-msgid "Account: "
-msgstr "Compte : "
-
-#: src/import_export/univcsvdialog.cpp:238
-msgid "Date Format: "
-msgstr "Format de date: "
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "Comma"
-msgstr "Virgule"
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "Semicolon"
-msgstr "Point-virgule"
-
-#: src/import_export/univcsvdialog.cpp:254
-msgid "TAB"
-msgstr "Tabulation"
-
-#: src/import_export/univcsvdialog.cpp:277
-msgid "CSV Delimiter"
-msgstr "marqueur CSV"
-
-#: src/import_export/univcsvdialog.cpp:287
-#, fuzzy
-msgid "Preview"
-msgstr "Prévisualiser le rapport courant"
-
-#: src/import_export/univcsvdialog.cpp:306
-msgid "Import File"
-msgstr "Import du fichier"
-
-#: src/import_export/univcsvdialog.cpp:313
-msgid "Export File"
-msgstr "Exporter le fichier"
-
-#: src/import_export/univcsvdialog.cpp:464
-msgid "Unknown"
-msgstr "Inconnu"
-
-#: src/import_export/univcsvdialog.cpp:469
-msgid "Choose Universal CSV format file to load"
-msgstr "Sélectionner un fichier CSV à charger"
-
-#: src/import_export/univcsvdialog.cpp:476
-#: src/import_export/univcsvdialog.cpp:572
-#: src/import_export/univcsvdialog.cpp:1074
-#: src/import_export/univcsvdialog.cpp:1323
-msgid "Unable to open file."
-msgstr "Impossible d'ouvrir le fichier."
-
-#: src/import_export/univcsvdialog.cpp:512
-msgid "Choose Universal CSV format file to save"
-msgstr "Sélectionner un fichier CSV à exporter"
-
-#: src/import_export/univcsvdialog.cpp:523
-msgid "Unable to write to file."
-msgstr "Impossible d'écrire dans le fichier."
-
-#: src/import_export/univcsvdialog.cpp:549
-#: src/import_export/univcsvdialog.cpp:745
-msgid ""
-"Incorrect fields specified for CSV import! Requires at least Date, Amount "
-"and Payee."
-msgstr ""
-"Champs incorrects pour l'importation CSV! La date, le montant,et le tiers "
-"sont le minimum requis."
-
-#: src/import_export/univcsvdialog.cpp:589
-#: src/import_export/univcsvdialog.cpp:787
-msgid "Transactions imported from CSV: "
-msgstr "opérations importées d'un CSV: "
-
-#: src/import_export/univcsvdialog.cpp:597
-#, fuzzy, c-format
-msgid ""
-"Transactions imported from CSV\n"
-"to account %s : %i"
-msgstr ""
-"opérations importées d'un CSV\n"
-"vers un compte "
-
-#: src/import_export/univcsvdialog.cpp:627
-#: src/import_export/univcsvdialog.cpp:629
-#: src/import_export/univcsvdialog.cpp:652
-#: src/import_export/univcsvdialog.cpp:654
-#: src/import_export/univcsvdialog.cpp:809
-#: src/import_export/univcsvdialog.cpp:811
-#: src/import_export/univcsvdialog.cpp:824
-#: src/import_export/univcsvdialog.cpp:826
-#, fuzzy, c-format
-msgid "Line: %i"
-msgstr "Ligne"
-
-#: src/import_export/univcsvdialog.cpp:628
-#: src/import_export/univcsvdialog.cpp:630
-#: src/import_export/univcsvdialog.cpp:810
-#: src/import_export/univcsvdialog.cpp:812
-msgid " file contains insufficient number of tokens"
-msgstr " le fichier contient un nombre insuffisant de jetons"
-
-#: src/import_export/univcsvdialog.cpp:653
-#: src/import_export/univcsvdialog.cpp:655
-#: src/import_export/univcsvdialog.cpp:825
-#: src/import_export/univcsvdialog.cpp:827
-msgid ""
-" One of the following fields: Date, Payee, Amount, Type is missing, skipping"
-msgstr ""
-" Un des champs suivants: Date, Tiers, Montant, Type est manquant, sauter."
-
-#: src/import_export/univcsvdialog.cpp:689
-#: src/import_export/univcsvdialog.cpp:690
-#: src/import_export/univcsvdialog.cpp:861
-#: src/import_export/univcsvdialog.cpp:862
-#, fuzzy, c-format
-msgid "Line : %i imported OK."
-msgstr "Colonne de retour à la ligne :"
-
-#: src/import_export/univcsvdialog.cpp:695
-#: src/import_export/univcsvdialog.cpp:865
-#, fuzzy, c-format
-msgid "Total Lines : %i"
-msgstr "Lignes d'historique :"
-
-#: src/import_export/univcsvdialog.cpp:697
-#: src/import_export/univcsvdialog.cpp:867
-#, fuzzy, c-format
-msgid "Total Imported : %ld"
-msgstr "Opérations exportées: %ld"
-
-#: src/import_export/univcsvdialog.cpp:699
-#: src/import_export/univcsvdialog.cpp:869
-#, c-format
-msgid "Log file written to : %s"
-msgstr "Logfile enregistré sous: %s"
-
-#: src/import_export/univcsvdialog.cpp:702
-#: src/import_export/univcsvdialog.cpp:872
-msgid "Please confirm saving..."
-msgstr "Merci de confirmer la sauvegarde..."
-
-#: src/import_export/univcsvdialog.cpp:704
-#: src/import_export/univcsvdialog.cpp:874
-msgid "Importing CSV"
-msgstr "Importer un fichier CSV"
-
-#: src/import_export/univcsvdialog.cpp:708
-#: src/import_export/univcsvdialog.cpp:878
-msgid "Imported transactions have been flagged so you can review them."
-msgstr ""
-"les transactions Importées  ont été marqués afin que vous puissiez les "
-"examiner."
-
-#: src/import_export/univcsvdialog.cpp:719
-#: src/import_export/univcsvdialog.cpp:889
-msgid "Transactions saved to database in account: "
-msgstr "Transactions sauvegardées dans le compte: "
-
-#: src/import_export/univcsvdialog.cpp:1037
-#, c-format
-msgid "Transactions exported: %ld"
-msgstr "Opérations exportées: %ld"
-
-#: src/import_export/univcsvdialog.cpp:1313
-msgid "Choose CSV data file to import"
-msgstr "Choisir un fichier de données QIF à importer"
-
-#: src/model/Model_Account.cpp:25
-msgid "Closed"
-msgstr "Fermé"
-
-#: src/model/Model_Account.cpp:30
-msgid "Checking"
-msgstr "Vérification"
-
-#: src/model/Model_Account.cpp:31
-msgid "Term"
-msgstr "Terme"
-
-#: src/model/Model_Account.cpp:32
-msgid "Investment"
-msgstr "Titres"
-
-#: src/model/Model_Asset.cpp:24
-msgid "Appreciates"
-msgstr "Augmentation"
-
-#: src/model/Model_Asset.cpp:25
-msgid "Depreciates"
-msgstr "Diminution"
-
-#: src/model/Model_Asset.cpp:30
-msgid "Property"
-msgstr "Immobilier"
-
-#: src/model/Model_Asset.cpp:31 src/model/Model_Category.cpp:103
-msgid "Automobile"
-msgstr "Automobile"
-
-#: src/model/Model_Asset.cpp:32
-msgid "Household Object"
-msgstr "Biens ménagers"
-
-#: src/model/Model_Asset.cpp:33
-msgid "Art"
-msgstr "Collection"
-
-#: src/model/Model_Asset.cpp:34
-msgid "Jewellery"
-msgstr "Bijoux"
-
-# Autre traduction: "Argent liquide" ?
-#: src/model/Model_Asset.cpp:35
-msgid "Cash"
-msgstr "Liquidités"
-
-#: src/model/Model_Asset.cpp:36
-msgid "Other"
-msgstr "Autre"
-
-#: src/model/Model_Billsdeposits.cpp:26 src/model/Model_Category.cpp:209
-#: src/model/Model_Checking.cpp:28
-msgid "Transfer"
-msgstr "Virement"
-
-#: src/model/Model_Category.cpp:65
-msgid "Telephone"
-msgstr "Téléphone"
-
-#: src/model/Model_Category.cpp:66
-msgid "Electricity"
-msgstr "Electricité"
-
-#: src/model/Model_Category.cpp:67 src/model/Model_Category.cpp:99
-msgid "Gas"
-msgstr "Gaz"
-
-#: src/model/Model_Category.cpp:68
-msgid "Internet"
-msgstr "Internet"
-
-#: src/model/Model_Category.cpp:69
-msgid "Rent"
-msgstr "Location"
-
-#: src/model/Model_Category.cpp:70
-msgid "Cable TV"
-msgstr "TV par Câble."
-
-#: src/model/Model_Category.cpp:71
-msgid "Water"
-msgstr "Eau"
-
-#: src/model/Model_Category.cpp:73
-msgid "Bills"
-msgstr "Factures"
-
-#: src/model/Model_Category.cpp:79
-msgid "Groceries"
-msgstr "Alimentation"
-
-#: src/model/Model_Category.cpp:80
-msgid "Dining out"
-msgstr "Restaurant"
-
-#: src/model/Model_Category.cpp:82
-msgid "Food"
-msgstr "Nourriture"
-
-#: src/model/Model_Category.cpp:88
-msgid "Movies"
-msgstr "Films"
-
-#: src/model/Model_Category.cpp:89
-msgid "Video Rental"
-msgstr "Location vidéo"
-
-#: src/model/Model_Category.cpp:90
-msgid "Magazines"
-msgstr "Magazines"
-
-#: src/model/Model_Category.cpp:92
-msgid "Leisure"
-msgstr "Loisir"
-
-#: src/model/Model_Category.cpp:98
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#: src/model/Model_Category.cpp:100
-msgid "Parking"
-msgstr "Stationnement"
-
-#: src/model/Model_Category.cpp:101
-msgid "Registration"
-msgstr "Inscription"
-
-#: src/model/Model_Category.cpp:109
-msgid "Books"
-msgstr "Livres"
-
-#: src/model/Model_Category.cpp:110
-msgid "Tuition"
-msgstr "Frais de Scolarité"
-
-#: src/model/Model_Category.cpp:113
-msgid "Education"
-msgstr "Education"
-
-#: src/model/Model_Category.cpp:119
-msgid "Clothing"
-msgstr "Habillement"
-
-#: src/model/Model_Category.cpp:120
-msgid "Furnishing"
-msgstr "Ameublement"
-
-#: src/model/Model_Category.cpp:123
-msgid "Homeneeds"
-msgstr "Besoins domestiques"
-
-#: src/model/Model_Category.cpp:129 src/model/Model_Category.cpp:144
-msgid "Health"
-msgstr "Santé"
-
-#: src/model/Model_Category.cpp:130
-msgid "Dental"
-msgstr "Dentaire"
-
-#: src/model/Model_Category.cpp:131
-msgid "Eyecare"
-msgstr "Opticien"
-
-#: src/model/Model_Category.cpp:132
-msgid "Physician"
-msgstr "Médecin"
-
-#: src/model/Model_Category.cpp:133
-msgid "Prescriptions"
-msgstr "Médicaments"
-
-#: src/model/Model_Category.cpp:135
-msgid "Healthcare"
-msgstr "Santé et soins"
-
-#: src/model/Model_Category.cpp:141
-msgid "Auto"
-msgstr "Automobile"
-
-#: src/model/Model_Category.cpp:142
-msgid "Life"
-msgstr "Vie"
-
-#: src/model/Model_Category.cpp:143
-msgid "Home"
-msgstr "Accueil"
-
-#: src/model/Model_Category.cpp:146
-msgid "Insurance"
-msgstr "Assurances"
-
-#: src/model/Model_Category.cpp:152
-msgid "Travel"
-msgstr "Voyages"
-
-#: src/model/Model_Category.cpp:153
-msgid "Lodging"
-msgstr "Logement"
-
-#: src/model/Model_Category.cpp:154
-msgid "Sightseeing"
-msgstr "Visites touristiques"
-
-#: src/model/Model_Category.cpp:156
-msgid "Vacation"
-msgstr "Vacances"
-
-#: src/model/Model_Category.cpp:162
-msgid "Income Tax"
-msgstr "Impôts sur les revenus"
-
-#: src/model/Model_Category.cpp:163
-msgid "House Tax"
-msgstr "Taxe Domicile"
-
-#: src/model/Model_Category.cpp:164
-msgid "Water Tax"
-msgstr "Eau"
-
-#: src/model/Model_Category.cpp:167
-msgid "Taxes"
-msgstr "Taxes"
-
-#: src/model/Model_Category.cpp:174
-msgid "Miscellaneous"
-msgstr "Divers"
-
-#: src/model/Model_Category.cpp:181
-msgid "Gifts"
-msgstr "Cadeaux"
-
-#: src/model/Model_Category.cpp:187
-msgid "Salary"
-msgstr "Salaire"
-
-#: src/model/Model_Category.cpp:188
-msgid "Reimbursement/Refunds"
-msgstr "Remboursements"
-
-#: src/model/Model_Category.cpp:189
-msgid "Investment Income"
-msgstr "Revenus de placements"
-
-#: src/model/Model_Category.cpp:197
-msgid "Other Income"
-msgstr "Autres revenus"
-
-#: src/model/Model_Category.cpp:203
-msgid "Other Expenses"
-msgstr "Autres dépenses"
-
-#: src/model/Model_Report.cpp:138
-#, c-format
-msgid ""
-"The SQL script:\n"
-"%s \n"
-"will modify database! aborted!"
-msgstr ""
-
-#: src/reports/budget.cpp:78
-msgid "Financial Year: "
-msgstr "Année Fiscale: "
-
-#: src/reports/budget.cpp:80
-msgid "Year: "
-msgstr "Année : "
-
-#: src/reports/budget.cpp:82
-msgid "Month: "
-msgstr "Mois : "
-
-#: src/reports/budgetcategorysummary.cpp:97
-msgid "Budget Categories for "
-msgstr "Catégories de budget pour "
-
-#: src/reports/budgetcategorysummary.cpp:99
-msgid "Budget Category Summary for "
-msgstr "Résumé du budget de catégorie pour "
-
-#: src/reports/budgetcategorysummary.cpp:100
-msgid "( Estimated Vs Actual )"
-msgstr "Estimé / Réel"
-
-#: src/reports/budgetcategorysummary.cpp:199
-#, fuzzy
-msgid "Estimated Income:"
-msgstr "Impôts sur les revenus"
-
-#: src/reports/budgetcategorysummary.cpp:201
-#, fuzzy
-msgid "Actual Income:"
-msgstr "Impôts sur les revenus"
-
-#: src/reports/budgetcategorysummary.cpp:203
-#, fuzzy
-msgid "Difference Income:"
-msgstr "Impôts sur les revenus"
-
-#: src/reports/budgetcategorysummary.cpp:208
-#, fuzzy
-msgid "Estimated Expenses:"
-msgstr "Autres dépenses"
-
-#: src/reports/budgetcategorysummary.cpp:210
-#, fuzzy
-msgid "Actual Expenses:"
-msgstr "Autres dépenses"
-
-#: src/reports/budgetcategorysummary.cpp:212
-#, fuzzy
-msgid "Difference Expenses:"
-msgstr "Autres dépenses"
-
-#: src/reports/budgetingperf.cpp:122
-msgid "Budget Performance for "
-msgstr "Performance Budgétaire pour: "
-
-#: src/reports/budgetingperf.cpp:138 src/reports/categovertimeperf.cpp:160
-#: src/reports/categovertimeperf.cpp:162
-msgid "Overall"
-msgstr "Globalement"
-
-#: src/reports/budgetingperf.cpp:139
-msgid "%"
-msgstr "%"
-
-#: src/reports/cashflow.cpp:60
-#, fuzzy, c-format
-msgid "Cash Flow Forecast for %i Years Ahead"
-msgstr ""
-"Prévisions de la trésorerie pour le(s) compte(s) sélectionné(s) sur les %d "
-"prochaines années"
-
-#: src/reports/cashflow.cpp:62 src/reports/incexpenses.cpp:52
-#: src/reports/incexpenses.cpp:158
-msgid "Accounts: "
-msgstr "Comptes: "
-
-#: src/reports/cashflow.cpp:66 src/reports/incexpenses.cpp:55
-#: src/reports/incexpenses.cpp:161
-msgid "All Accounts"
-msgstr "Tous les Comptes"
-
-#: src/reports/cashflow.cpp:68
-msgid "All Bank Accounts"
-msgstr "Tous les Comptes bancaires"
-
-#: src/reports/cashflow.cpp:70
-msgid "All Term Accounts"
-msgstr "Tous les comptes à terme"
-
-#: src/reports/cashflow.cpp:105 src/reports/incexpenses.cpp:191
-#: src/reports/payee.cpp:148 src/reports/payee.cpp:150
-msgid "Difference"
-msgstr "Différence"
-
-#: src/reports/categexp.cpp:147
-#, fuzzy
-msgid "Subcategories"
-msgstr "Sous-catégorie :"
-
-#: src/reports/categexp.cpp:184
-msgid "Category Total: "
-msgstr "Total pour la Catégorie: "
-
-#: src/reports/categexp.cpp:197
-#, fuzzy
-msgid "Total Expenses: "
-msgstr "opérations au totalTotal des opérations "
-
-#: src/reports/categexp.cpp:198
-#, fuzzy
-msgid "Total Income: "
-msgstr "Impôts sur les revenus"
-
-#: src/reports/categexp.cpp:200
-msgid "Grand Total: "
-msgstr "Grand Total : "
-
-#: src/reports/categexp.cpp:217 src/reports/categexp.cpp:223
-#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:235
-#: src/reports/categexp.cpp:241 src/reports/categexp.cpp:246
-#: src/reports/categexp.cpp:252 src/reports/categexp.cpp:258
-#: src/reports/categexp.cpp:264 src/reports/categexp.cpp:270
-#, fuzzy, c-format
-msgid "Where the Money Goes - %s"
-msgstr "Détail des Dépenses"
-
-#: src/reports/categexp.cpp:229 src/reports/categexp.cpp:293
-#: src/reports/categexp.cpp:357 src/reports/mmDateRange.cpp:88
-#: src/reports/payee.h:74
-#, fuzzy
-msgid "Last Month"
-msgstr "Mois dernier"
-
-#: src/reports/categexp.cpp:281 src/reports/categexp.cpp:287
-#: src/reports/categexp.cpp:293 src/reports/categexp.cpp:299
-#: src/reports/categexp.cpp:305 src/reports/categexp.cpp:311
-#: src/reports/categexp.cpp:317 src/reports/categexp.cpp:323
-#: src/reports/categexp.cpp:329 src/reports/categexp.cpp:335
-#, fuzzy, c-format
-msgid "Where the Money Comes From - %s"
-msgstr "Détail des Revenus"
-
-#: src/reports/categexp.cpp:346 src/reports/categexp.cpp:352
-#: src/reports/categexp.cpp:357 src/reports/categexp.cpp:363
-#: src/reports/categexp.cpp:368 src/reports/categexp.cpp:374
-#: src/reports/categexp.cpp:380 src/reports/categexp.cpp:386
-#: src/reports/categexp.cpp:392 src/reports/categexp.cpp:398
-#, fuzzy, c-format
-msgid "Categories - %s"
-msgstr "Catégories"
-
-#: src/reports/categovertimeperf.cpp:36
-#, fuzzy, c-format
-msgid "Category Income/Expenses: %s"
-msgstr "Balance des revenus et dépenses"
-
-#: src/reports/categovertimeperf.cpp:178 src/reports/payee.cpp:140
-#: src/reports/payee.cpp:142
-#, fuzzy
-msgid "Incomes"
-msgstr "Revenus"
-
-#: src/reports/chart.cpp:255 src/reports/chart.cpp:455
-msgid "Legend:"
-msgstr "Légende :"
-
-#: src/reports/htmlbuilder.cpp:83
-#, c-format
-msgid "Today's Date: %s"
-msgstr "La date d'aujourd'hui: %s"
-
-#: src/reports/htmlbuilder.cpp:324
-#, c-format
-msgid "From %s till %s"
-msgstr "De %s à %s"
-
-#: src/reports/htmlbuilder.cpp:330 src/reports/mmDateRange.cpp:198
-#, fuzzy
-msgid "Over Time"
-msgstr "Date et heure :"
-
-#: src/reports/incexpenses.cpp:118
-msgid "Income:"
-msgstr "Revenus :"
-
-#: src/reports/incexpenses.cpp:119
-msgid "Expenses:"
-msgstr "Dépenses :"
-
-#: src/reports/incexpenses.cpp:187
-msgid "Year"
-msgstr "Année"
-
-#: src/reports/incexpenses.cpp:188
-msgid "Month"
-msgstr "Mois"
-
-#: src/reports/mmDateRange.cpp:72
-#, fuzzy
-msgid "Today"
-msgstr "La date d'aujourd'hui: %s"
-
-#: src/reports/mmDateRange.cpp:108
-#, fuzzy
-msgid "Last 90 Days"
-msgstr "Voir les 90 derniers jours"
-
-#: src/reports/mmDateRange.cpp:118
-#, fuzzy
-msgid "Last 3 Months"
-msgstr "Voir les 3 derniers mois."
-
-#: src/reports/mmDateRange.cpp:128
-#, fuzzy
-msgid "Last 12 Months"
-msgstr "Voir les 3 derniers mois."
-
-#: src/reports/mmgraphpie.cpp:49
-msgid "All Others"
-msgstr "Tous les autres"
-
-#: src/reports/reportbase.cpp:57
-msgid "Choose Accounts"
-msgstr "Sélectionner le(s) compte(s)"
-
-#: src/reports/transactions.cpp:81
-msgid "Transaction List "
-msgstr "Liste des opérations "
-
-#: src/reports/transactions.cpp:84
-#, c-format
-msgid "Transaction List for Account: %s"
-msgstr "Liste d'opérations pour le compte  %s"
-
-#: src/reports/transactions.cpp:173
-msgid "Total Amount: "
-msgstr "Montant total : "
-
-#: src/mmcombobox.h:78
-msgid ""
-"Please type in an exiting payee name,\n"
-"or make a selection using the dropdown button."
-msgstr ""
-
-#: src/mmtextctrl.h:89
-#, fuzzy
-msgid "Invalid Amount."
-msgstr "Montant non valable "
-
-#: src/mmtextctrl.h:90
-msgid "Please enter a positive or calculated value."
-msgstr ""
-
-#: src/mmtextctrl.h:92
-msgid ""
-"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
-"Calculations will be evaluated and the result used as the entry."
-msgstr ""
+#: src/import_export/univcsvdialog.h:28
+msgid "Universal CSV Dialog"
+msgstr "Dialogue pour le CSV universel."
 
 #: src/mmTips.h:22
 msgid "Recommendation: Always backup your .mmb database file regularly."
@@ -5855,6 +5837,39 @@ msgstr ""
 "faire une liste de dont vous avez vraiment besoin. Dans la boutique, ne "
 "prenez que ce qui est dans votre liste."
 
+#: src/mmcombobox.h:78
+msgid ""
+"Please type in an exiting payee name,\n"
+"or make a selection using the dropdown button."
+msgstr ""
+
+#: src/mmtextctrl.h:89
+#, fuzzy
+msgid "Invalid Amount."
+msgstr "Montant non valable "
+
+#: src/mmtextctrl.h:90
+msgid "Please enter a positive or calculated value."
+msgstr ""
+
+#: src/mmtextctrl.h:92
+msgid ""
+"Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
+"Calculations will be evaluated and the result used as the entry."
+msgstr ""
+
+#: src/reports/payee.h:31
+msgid "Payee Report"
+msgstr "apport sur Tiers"
+
+#: src/reports/payee.h:58 src/reports/payee.h:66 src/reports/payee.h:74
+#: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
+#: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
+#: src/reports/payee.h:130
+#, fuzzy, c-format
+msgid "Payee Report - %s"
+msgstr "apport sur Tiers"
+
 #: src/stockspanel.h:29
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
 msgstr ""
@@ -5874,22 +5889,6 @@ msgstr ""
 #: src/stockspanel.h:32
 msgid "If the Stock Name field is empty it will be filed when prices updated"
 msgstr ""
-
-#: src/import_export/univcsvdialog.h:28
-msgid "Universal CSV Dialog"
-msgstr "Dialogue pour le CSV universel."
-
-#: src/reports/payee.h:31
-msgid "Payee Report"
-msgstr "apport sur Tiers"
-
-#: src/reports/payee.h:58 src/reports/payee.h:66 src/reports/payee.h:74
-#: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
-#: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
-#: src/reports/payee.h:130
-#, fuzzy, c-format
-msgid "Payee Report - %s"
-msgstr "apport sur Tiers"
 
 #~ msgid "New MMEX Options"
 #~ msgstr "Nouvelles options MMEX."
