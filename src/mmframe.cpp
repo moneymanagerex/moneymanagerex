@@ -2090,7 +2090,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
 
         int messageIcon = wxOK | wxICON_INFORMATION;
         wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";
-        wxMessageBox(sysMsg, _("New MMEX Options"), messageIcon);
+        wxMessageBox(sysMsg, _("MMEX Options"), messageIcon);
 
         updateNavTreeControl();
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
