@@ -1107,10 +1107,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\src\guiid.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\3rd\cgitemplate\html_template.h"
 				>
 			</File>

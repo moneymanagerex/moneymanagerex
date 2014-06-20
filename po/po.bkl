@@ -92,6 +92,6 @@ SUFFIXES: .po
     <msgfmt id="turkish.mo"/>
     <msgfmt id="ukrainian.mo"/>
     <msgfmt id="vietnamese.mo"/>
-
+    <msgfmt id="portuguese_br.mo"/>
 
 </makefile>
