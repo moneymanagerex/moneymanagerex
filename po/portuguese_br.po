@@ -789,7 +789,7 @@ msgstr "Especifique a data da próxima fatura ou depósito"
 
 #: src/billsdepositsdialog.cpp:348
 msgid "Retard or advance the date of the 'next occurrence"
-msgstr "Retardar ou antecipar a data da "próxima ocorrência"
+msgstr "Retardar ou antecipar a data da \"próxima ocorrência"
 
 #: src/billsdepositsdialog.cpp:354
 msgid "Next Occurrence"
@@ -1369,7 +1369,7 @@ msgstr "Ano Orçamento:"
 msgid ""
 "Specify the required year.\n"
 "Use Spin buttons to increase or decrease the year."
-msgstr "Especifique o ano necessário. \ NUse botões de rotação para aumentar ou diminuir o ano."
+msgstr "Especifique o ano necessário. \n Use botões de rotação para aumentar ou diminuir o ano."
 
 #: src/budgetyearentrydialog.cpp:84
 msgid "Budget Month:"
@@ -1379,7 +1379,7 @@ msgstr "Mês Orçamento:"
 msgid ""
 "Specify the required month.\n"
 "Use Spin buttons to increase or decrease the month."
-msgstr "Especifique o mês requerido. \ NUse botões de rotação para aumentar ou diminuir o mês."
+msgstr "Especifique o mês requerido. \n Use botões de rotação para aumentar ou diminuir o mês."
 
 #: src/budgetyearentrydialog.cpp:98
 msgid "Base Budget On:"
@@ -1463,7 +1463,7 @@ msgstr "Categoria com mesmo nome"
 msgid ""
 "Tip: If category added now, check bottom of list.\n"
 "Category will be in sorted order next time dialog appears"
-msgstr "Dica:. Se categoria adicionada agora, verifique fundo da lista \ nCategory estará em ordem de classificação aparece de diálogo tempo próximo"
+msgstr "Dica:. Se categoria adicionada agora, verifique fundo da lista \n Category estará em ordem de classificação aparece de diálogo tempo próximo"
 
 #: src/categdialog.cpp:260 src/categdialog.cpp:285 src/categdialog.cpp:302
 msgid "Organise Categories: Adding Error"
@@ -1481,13 +1481,13 @@ msgstr "Inválido Categoria Parent. Escolha Root ou nó principal categoria."
 msgid ""
 "Tip: Change all transactions using this Category to\n"
 "another Category using the relocate command:"
-msgstr "Dica: Mude todas as transações que utilizam esta categoria para \ Nanother Categoria usando o comando Mudar de lugar:"
+msgstr "Dica: Mude todas as transações que utilizam esta categoria para \n another Categoria usando o comando Mudar de lugar:"
 
 #: src/categdialog.cpp:312
 msgid ""
 "Tip: Change all transactions using this Sub-Category to\n"
 "another Sub-Category using the relocate command:"
-msgstr "Dica: Mude todas as transações usando esta sub-categoria de \ Nanother Sub-Categoria usando o comando Mudar de lugar:"
+msgstr "Dica: Mude todas as transações usando esta sub-categoria de \n another Sub-Categoria usando o comando Mudar de lugar:"
 
 #: src/categdialog.cpp:314
 msgid "Tools -> Relocation of -> Categories"
@@ -1640,8 +1640,7 @@ msgstr "Agrupamento de Char"
 
 #: src/currencydialog.cpp:201
 msgid "Scale"
-msgstr "Escala
-"
+msgstr "Escala"
 
 #: src/currencydialog.cpp:206
 msgid "Conversion to Base Rate"
@@ -1702,7 +1701,7 @@ msgid ""
 "or \n"
 "\n"
 " Attempt to open a File that is not a database file \n"
-msgstr "Uma senha incorreta dada para um arquivo criptografado \ n \ nem \ n \ n tentar abrir um arquivo que não é um arquivo de banco de dados \ n"
+msgstr "Uma senha incorreta dada para um arquivo criptografado \n \n em \n \n tentar abrir um arquivo que não é um arquivo de banco de dados \n"
 
 #: src/dbwrapper.cpp:80
 #, c-format
@@ -1890,7 +1889,7 @@ msgid ""
 "Unable to open file:\n"
 "%s\n"
 "\n"
-msgstr "Não é possível abrir arquivo: \ n %s \ n \ n"
+msgstr "Não é possível abrir arquivo: \n %s \n \n"
 
 #: src/general_report_manager.cpp:512
 msgid "New Empty Report"
@@ -2098,7 +2097,7 @@ msgstr "Ms Leitura linha% i,% ld"
 #: src/import_export/qif_import_gui.cpp:339
 #, c-format
 msgid "Line %i \t %s\n"
-msgstr "Linha% i \ t% s \ n"
+msgstr "Linha% i \t %s \n"
 
 #: src/import_export/qif_import_gui.cpp:356
 #, c-format
@@ -2353,7 +2352,7 @@ msgstr "Transações importadas de CSV: "
 msgid ""
 "Transactions imported from CSV\n"
 "to account %s : %i"
-msgstr "Transações importadas de CSV \ nto conta %s :% i"
+msgstr "Transações importadas de CSV \n to conta %s : %i"
 
 #: src/import_export/univcsvdialog.cpp:627
 #: src/import_export/univcsvdialog.cpp:629
@@ -2470,7 +2469,7 @@ msgstr "Mostrar todos mesmo as moedas não utilizadas"
 msgid ""
 "Attempt to delete a currency being used by an account\n"
 " or as the base currency."
-msgstr "Tentativa de excluir uma moeda que está sendo usado por uma conta \ n ou como moeda base."
+msgstr "Tentativa de excluir uma moeda que está sendo usado por uma conta \n  ou como moeda base."
 
 #: src/maincurrencydialog.cpp:247
 msgid "Do you really want to delete the selected Currency?"
@@ -2487,12 +2486,12 @@ msgstr "Taxa de câmbio atualizada"
 #: src/maincurrencydialog.cpp:409
 #, c-format
 msgid "%s\t: %0.4f -> %0.4f\n"
-msgstr "%s \ t:% 0.4f ->% 0.4f \ n"
+msgstr "%s \t:%0.4f ->%0.4f \n"
 
 #: src/maincurrencydialog.cpp:418
 #, c-format
 msgid "%s\t: %s\n"
-msgstr "%s \ t: %s \ n"
+msgstr "%s \t: %s \n"
 
 #: src/maincurrencydialog.cpp:418
 msgid "Invalid Value "
@@ -2601,11 +2600,11 @@ msgstr "Excluir todas as operações, tendo em vista atual"
 
 #: src/mmcheckingpanel.cpp:1095
 msgid "Delete Viewed \"Follow Up\" Trans."
-msgstr "Excluir viram \ "Follow Up \" Trans."
+msgstr "Excluir viram \"Follow Up\" Trans."
 
 #: src/mmcheckingpanel.cpp:1096
 msgid "Delete Viewed \"Unreconciled\" Trans."
-msgstr "Excluir viram \ "Unreconciled \" Trans."
+msgstr "Excluir viram \"Unreconciled\" Trans."
 
 #: src/mmcheckingpanel.cpp:1101
 msgid "Mark As &Reconciled"
@@ -2671,7 +2670,7 @@ msgstr "Unreconciled"
 #: src/mmcheckingpanel.cpp:1195
 #, c-format
 msgid "Do you really want to delete all the \"%s\" transactions shown?"
-msgstr "Você realmente quer apagar todos os \ " %s \ "transações mostrado?"
+msgstr "Você realmente quer apagar todos os \"%s\" transações mostrado?"
 
 #: src/mmcheckingpanel.cpp:1464
 msgid "Do you really want to delete the selected transaction?"
@@ -2694,7 +2693,7 @@ msgstr "arquivo de banco de dados"
 msgid ""
 "Fatal error occured.\n"
 "Application will be terminated."
-msgstr "Erro fatal ocorreu. \ NApplication será encerrado."
+msgstr "Erro fatal ocorreu. \n Application será encerrado."
 
 #: src/mmframe.cpp:282
 msgid "Toolbar"
@@ -2748,8 +2747,7 @@ msgstr "Navegação"
 
 #: src/mmframe.cpp:701
 msgid "Home Page"
-msgstr "
-Página Inicial"
+msgstr "Página Inicial"
 
 #: src/mmframe.cpp:735 src/mmframe.cpp:1381
 msgid "Budget Setup"
@@ -2820,7 +2818,7 @@ msgstr "Contas visíveis"
 
 #: src/mmframe.cpp:1233
 msgid "&New Database\tCtrl-N"
-msgstr "& New Database \ tCtrl-N"
+msgstr "New Database \tCtrl-N"
 
 #: src/mmframe.cpp:1233 src/mmframe.cpp:1491 src/wizard_newdb.cpp:157
 msgid "New Database"
@@ -2828,7 +2826,7 @@ msgstr "Novo Banco de Dados"
 
 #: src/mmframe.cpp:1235
 msgid "&Open Database\tCtrl-O"
-msgstr "E Open Database \ tCtrl-O"
+msgstr "Open Database \tCtrl-O"
 
 #: src/mmframe.cpp:1235 src/mmframe.cpp:1492
 msgid "Open Database"
@@ -2876,7 +2874,7 @@ msgstr "Imprimir visão atual"
 
 #: src/mmframe.cpp:1272
 msgid "E&xit\tAlt-X"
-msgstr "& Sair \ tAlt-X"
+msgstr "Sair \tAlt-X"
 
 #: src/mmframe.cpp:1272
 msgid "Quit this program"
@@ -3060,7 +3058,7 @@ msgstr "Converta criptografados DB para não-criptografada DB"
 
 #: src/mmframe.cpp:1428 src/mmframe.cpp:1510
 msgid "&Help\tF1"
-msgstr "& Help \ tF1"
+msgstr "Help \tF1"
 
 #: src/mmframe.cpp:1428 src/mmframe.cpp:1510
 msgid "Show the Help file"
@@ -3175,11 +3173,11 @@ msgstr "& Next ->"
 
 #: src/mmframe.cpp:1633
 msgid "Cannot locate previously opened database.\n"
-msgstr "Não é possível localizar anteriormente banco de dados aberto. \ N"
+msgstr "Não é possível localizar anteriormente banco de dados aberto. \n"
 
 #: src/mmframe.cpp:1635
 msgid "Password not entered for encrypted Database.\n"
-msgstr "A senha não entrou para banco de dados criptografado. \ N"
+msgstr "A senha não entrou para banco de dados criptografado. \n"
 
 #: src/mmframe.cpp:1653
 msgid "portable mode"
@@ -3239,7 +3237,7 @@ msgid ""
 "\n"
 "Tools -> Options\n"
 "View Options"
-msgstr "Para manter essa visão, alterar os padrões usando: \ n \ nTools -> Opções \ Opções nView"
+msgstr "Para manter essa visão, alterar os padrões usando: \n \nTools -> Opções pções nView"
 
 #: src/mmframe.cpp:1941
 msgid "This message will not be displayed in future."
@@ -3282,7 +3280,7 @@ msgstr "Escolha Conta para Excluir"
 msgid ""
 "Are you sure you want to delete\n"
 " %s account: %s ?"
-msgstr "Tem certeza de que deseja excluir \ n %s conta: %s ?"
+msgstr "Tem certeza de que deseja excluir \n %s conta: %s ?"
 
 #: src/mmframe.cpp:2495 src/payeedialog.cpp:314
 msgid "Payee Relocation Completed."
@@ -3791,7 +3789,7 @@ msgid ""
 "The SQL script:\n"
 "%s \n"
 "will modify database! aborted!"
-msgstr "O script SQL: \ n %s \ Nwill modificar banco de dados! abortada!"
+msgstr "O script SQL: \n %s \n will modificar banco de dados! abortada!"
 
 #: src/optionsdialog.cpp:108
 msgid "MMEX Options"
@@ -3835,8 +3833,7 @@ msgstr "Especifique o formato de data para exibição"
 
 #: src/optionsdialog.cpp:254
 msgid "Set"
-msgstr "Ajustar
-"
+msgstr "Ajustar"
 
 #: src/optionsdialog.cpp:260
 msgid "New date format sample:"
@@ -3954,7 +3951,7 @@ msgstr "Exibir Orçamentos como Exercícios"
 
 #: src/optionsdialog.cpp:420
 msgid "View Budgets with 'transfer' transactions"
-msgstr "Visualização de Orçamentos com transações "transferência""
+msgstr "Visualização de Orçamentos com transações \"transferência\""
 
 #: src/optionsdialog.cpp:426
 msgid "View Budgets Setup Without Budget Summaries"
@@ -4136,7 +4133,7 @@ msgstr "Criar um novo backup quando MMEX Iniciar"
 msgid ""
 "When MMEX Starts,\n"
 "creates the backup database: dbFile_start_YYYY-MM-DD.ext."
-msgstr "Quando MMEX Inicia, \ ncreates o banco de dados de backup: dbFile_start_YYYY-MM-DD.ext."
+msgstr "Quando MMEX Inicia, \n creates o banco de dados de backup: dbFile_start_YYYY-MM-DD.ext."
 
 #: src/optionsdialog.cpp:699
 msgid "Backup database on exit."
@@ -4146,7 +4143,7 @@ msgstr "Banco de dados de backup na saída."
 msgid ""
 "When MMEX shuts down and changes made to database,\n"
 "creates or updates the backup database: dbFile_update_YYYY-MM-DD.ext."
-msgstr "Quando MMEX desliga e as alterações feitas no banco de dados, \ ncreates ou atualiza o banco de dados de backup: dbFile_update_YYYY-MM-DD.ext."
+msgstr "Quando MMEX desliga e as alterações feitas no banco de dados, \n creates ou atualiza o banco de dados de backup: dbFile_update_YYYY-MM-DD.ext."
 
 #: src/optionsdialog.cpp:707
 msgid "Specify max number of backup files"
@@ -4308,7 +4305,7 @@ msgstr "Favorecido em uso."
 msgid ""
 "Tip: Change all transactions using this Payee to another Payee\n"
 "using the relocate command:"
-msgstr "Dica: Mude todas as transações usando este beneficiário para outro beneficiário \ nusing o comando Mudar de lugar:"
+msgstr "Dica: Mude todas as transações usando este beneficiário para outro beneficiário \n using o comando Mudar de lugar:"
 
 #: src/payeedialog.cpp:261
 msgid "Tools -> Relocation of -> Payees"
@@ -4389,7 +4386,7 @@ msgstr "Registros encontrados no orçamento:% i"
 msgid ""
 "Changing all categories of: \n"
 "%s to category: %s"
-msgstr "Alterar todas as categorias de: \ n %s à categoria: %s"
+msgstr "Alterar todas as categorias de: \n  %s à categoria: %s"
 
 #: src/relocatecategorydialog.cpp:197
 msgid "Category Relocation Confirmation"
@@ -4409,7 +4406,7 @@ msgid ""
 "Changing all payees of: %s \n"
 "\n"
 "  to payee: %s"
-msgstr "Alterar todos os beneficiários de: %s \ n \ n ao beneficiário: %s"
+msgstr "Alterar todos os beneficiários de: %s \n \n ao beneficiário: %s"
 
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
@@ -4843,7 +4840,7 @@ msgstr "Conectando..."
 #: src/stockspanel.cpp:752
 #, c-format
 msgid "%s\t -> %s\n"
-msgstr "%s \ t -> %s \ n"
+msgstr "%s \t -> %s \n"
 
 #: src/stockspanel.cpp:780
 #, c-format
@@ -4871,7 +4868,7 @@ msgstr "Organize os anexos desta operação"
 msgid ""
 "Do you want to add new payee: \n"
 "%s?"
-msgstr "Você quer adicionar novo beneficiário: \ n %s ?"
+msgstr "Você quer adicionar novo beneficiário: \n %s ?"
 
 #: src/transdialog.cpp:575
 msgid "Confirm to add new payee"
@@ -4910,7 +4907,7 @@ msgstr "Especificar categorias para esta transação"
 msgid ""
 "Directory of language files does not exist:\n"
 "%s"
-msgstr "Diretório de arquivos de idioma não existe: \ n %s"
+msgstr "Diretório de arquivos de idioma não existe: \n %s"
 
 #: src/util.cpp:203
 msgid "Syntax error in the URL string"
@@ -5085,7 +5082,7 @@ msgstr "Inválido Categoria"
 msgid ""
 "Please use this button for category selection\n"
 "or use the 'Split' checkbox for multiple categories."
-msgstr "Utilize este botão para seleccionar categoria \ nem usar a opção 'Split' para várias categorias."
+msgstr "Utilize este botão para seleccionar categoria \n em usar a opção 'Split' para várias categorias."
 
 #: src/util.cpp:407
 msgid "Invalid Account"
@@ -5111,7 +5108,7 @@ msgstr "Beneficiário inválido"
 msgid ""
 "Please type in a new payee,\n"
 "or make a selection using the dropdown button."
-msgstr "Por favor, digite um novo beneficiário, \ nem fazer uma seleção com o botão suspenso."
+msgstr "Por favor, digite um novo beneficiário, \n em fazer uma seleção com o botão suspenso."
 
 #: src/util.cpp:437
 msgid "Invalid Name"
@@ -5253,7 +5250,7 @@ msgid ""
 "\n"
 "To help you get started, begin by making a list of all\n"
 "financial institutions where you hold an account."
-msgstr " modelos de todas as transações como pertencente às contas. \ n \ nOs páginas seguintes o ajudarão a criar uma nova conta. \ n \ nPara ajudar você a começar, começar por fazer uma lista de todas as instituições \ nfinancial onde possuem uma conta."
+msgstr " modelos de todas as transações como pertencente às contas. \n  \n Os páginas seguintes o ajudarão a criar uma nova conta. \n  \n Para ajudar você a começar, começar por fazer uma lista de todas as instituições \n financial onde possuem uma conta."
 
 #: src/wizard_newaccount.cpp:70
 msgid "Account Name Invalid"
@@ -5275,7 +5272,7 @@ msgstr "Especifique um nome descritivo para a conta."
 msgid ""
 "This is generally the name of a financial institution\n"
 "where the account is held. For example: 'ABC Bank'."
-msgstr "Este é geralmente o nome de uma instituição financeira \ Nwhere a conta é mantida. Por exemplo: 'ABC Banco'."
+msgstr "Este é geralmente o nome de uma instituição financeira \n where a conta é mantida. Por exemplo: 'ABC Banco'."
 
 #: src/wizard_newaccount.cpp:115
 msgid "Type of Account"
@@ -5289,13 +5286,13 @@ msgstr "Selecione o tipo de conta que você deseja criar:"
 msgid ""
 "General bank accounts cover a wide variety of account\n"
 "types like Checking, Savings and Credit card type accounts."
-msgstr "Contas bancárias Gerais cobrem uma ampla variedade de conta \ ntypes como corrente, poupança e contas de cartão de crédito Tipo."
+msgstr "Contas bancárias Gerais cobrem uma ampla variedade de conta \n types como corrente, poupança e contas de cartão de crédito Tipo."
 
 #: src/wizard_newaccount.cpp:125
 msgid ""
 "Investment accounts are specialized accounts that only\n"
 "have stock/mutual fund investments associated with them."
-msgstr "Contas de investimento são contas especializados que apenas \ Nhave investimentos estoque / fundos mútuos associados a eles."
+msgstr "Contas de investimento são contas especializados que apenas \n have investimentos estoque / fundos mútuos associados a eles."
 
 #: src/wizard_newaccount.cpp:129
 msgid ""
@@ -5303,7 +5300,7 @@ msgid ""
 "type accounts such as Term Deposits and Bonds. These accounts\n"
 "can have regular money coming in and out, being outside the\n"
 "general income stream."
-msgstr "Contas a prazo são contas bancárias especializadas. Destina-se a contas de ativos \ nType tais como depósitos e obrigações a prazo. Estas contas \ Ncan tem dinheiro regularmente entrando e saindo, estando fora do fluxo de renda ngeneral \."
+msgstr "Contas a prazo são contas bancárias especializadas. Destina-se a contas de ativos \n Type tais como depósitos e obrigações a prazo. Estas contas \n can tem dinheiro regularmente entrando e saindo, estando fora do fluxo de renda ngeneral."
 
 #: src/wizard_newaccount.cpp:142
 msgid "Base Account Currency Not set."
@@ -5331,14 +5328,14 @@ msgid ""
 "we recommended creating daily backups with the Options\n"
 "setting: 'Backup before opening', and store your backups\n"
 "in a separate location."
-msgstr "Como este arquivo contém informações financeiras importantes, \ nwe recomendou a criação de backups diários com as opções \ nsetting: 'Backup antes da abertura ", e armazenar seus backups \ nNa um local separado."
+msgstr "Como este arquivo contém informações financeiras importantes, \n we recomendou a criação de backups diários com as opções \n setting: 'Backup antes da abertura \", e armazenar seus backups \n Na um local separado."
 
 #: src/wizard_newdb.cpp:53
 msgid ""
 "The database can later be encrypted if required, by\n"
 "using the option: 'Save database as' and changing the\n"
 "file type before saving."
-msgstr "O banco de dados mais tarde pode ser criptografado, se necessário, por \ nusing a opção: "Salvar banco de dados como 'e mudar o tipo \ nfile antes de salvar."
+msgstr "O banco de dados mais tarde pode ser criptografado, se necessário, por \n using a opção: \"Salvar banco de dados como 'e mudar o tipo \n file antes de salvar."
 
 #: src/wizard_newdb.cpp:120
 msgid "Base Currency for account"
@@ -5350,7 +5347,7 @@ msgid ""
 "database. The base currency can later be changed by using\n"
 "the options dialog. New accounts, will use this currency by\n"
 "default, and can be changed when editing account details."
-msgstr "Especifique a base (ou por defeito) moeda a ser utilizada para a \ ndatabase. A moeda de referência mais tarde pode ser alterado usando as opções de diálogo \ nOs. Novas contas, vai usar essa moeda por \ ndefault, e pode ser alterado ao editar detalhes da conta."
+msgstr "Especifique a base (ou por defeito) moeda a ser utilizada para a \n database. A moeda de referência mais tarde pode ser alterado usando as opções de diálogo \n Os. Novas contas, vai usar essa moeda por \n default, e pode ser alterado ao editar detalhes da conta."
 
 #: src/wizard_newdb.cpp:145
 msgid "(Optional) Specify a title or your name."
@@ -5482,7 +5479,7 @@ msgstr "Antes de ir a uma loja e comprar alguma coisa: ter tempo de fazer uma li
 msgid ""
 "Please type in an exiting payee name,\n"
 "or make a selection using the dropdown button."
-msgstr "Por favor, digite um nome do beneficiário sair, \ nem fazer uma seleção com o botão suspenso."
+msgstr "Por favor, digite um nome do beneficiário sair, \n em fazer uma seleção com o botão suspenso."
 
 #: src/mmtextctrl.h:89
 msgid "Invalid Amount."
@@ -5496,7 +5493,7 @@ msgstr "Por favor insira um valor positivo ou calculado."
 msgid ""
 "Tip: For calculations, enter expressions like (2+2)*(2+2)\n"
 "Calculations will be evaluated and the result used as the entry."
-msgstr "Dica: Para os cálculos, insira expressões como (2 +2) * (2 +2) \ nCalculations serão avaliados eo resultado usado como entrada."
+msgstr "Dica: Para os cálculos, insira expressões como (2 +2) * (2 +2) \n Calculations serão avaliados eo resultado usado como entrada."
 
 #: src/reports/payee.h:31
 msgid "Payee Report"
