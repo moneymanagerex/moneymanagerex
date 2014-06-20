@@ -103,6 +103,10 @@ const wxString mmex::getProgramWebSite()
 {
     return "http://www.moneymanagerex.org";
 }
+const wxString mmex::getProgramWebSiteRSS()
+{
+    return "http://www.moneymanagerex.org/news?format=feed";
+}
 const wxString mmex::getProgramForum()
 {
     return "http://forum.moneymanagerex.org";

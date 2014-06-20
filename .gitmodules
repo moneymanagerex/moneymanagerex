@@ -25,3 +25,6 @@
 [submodule "3rd/anvil"]
 	path = 3rd/anvil
 	url = https://github.com/moneymanagerex/anvil.git
+[submodule "3rd/tinyxml2"]
+	path = 3rd/tinyxml2
+	url = https://github.com/leethomason/tinyxml2

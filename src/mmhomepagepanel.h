@@ -78,6 +78,16 @@ private:
     void getExpensesIncomeStats(std::map<int, std::pair<double, double> > &incomeExpensesStats
         , mmDateRange* date_range) const;
     int countFollowUp_, total_transactions_;
+
+    struct WebsiteNews
+    {
+        wxString Date;
+        wxString Title;
+        wxString Link;
+        wxString Description;
+    };
+    typedef std::vector<WebsiteNews> WebisteNewsList;
+    const bool getNewsRSS();
 };
 
 #endif

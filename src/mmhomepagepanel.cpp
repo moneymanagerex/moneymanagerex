@@ -27,6 +27,10 @@ Copyright (C) 2014 Nikolay
 #include "reports/mmgraphincexpensesmonth.h"
 #include <algorithm>
 
+#include "constants.h"
+#include "util.h"
+#include "tinyxml2/tinyxml2.h"
+
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
@@ -850,4 +854,39 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     output += "</tfoot></table>";
 
     return output;
+}
+
+const bool mmHomePagePanel::getNewsRSS()
+{
+    wxString RssContentWX;
+    if (site_content(mmex::getProgramWebSiteRSS(), RssContentWX) != wxURL_NOERR)
+        return false;
+    const char * RssContent = RssContentWX.mb_str();
+
+    tinyxml2::XMLDocument RssDocument;
+    if (RssDocument.Parse((const char*)RssContent) != tinyxml2::XML_NO_ERROR)
+        return false;
+
+    int NewsNr = 0;
+    tinyxml2::XMLHandle RssDocumentHandle(&RssDocument);
+    tinyxml2::XMLElement* RssElement;
+    tinyxml2::XMLHandle RssDocumentRootHandle(0);
+
+    RssElement = RssDocumentHandle.FirstChildElement("rss").FirstChildElement("channel").ToElement();
+    if (!RssElement)
+        return false;
+
+    std::vector<WebsiteNews> WebisteNewsList;
+    RssDocumentRootHandle = tinyxml2::XMLHandle(RssElement);
+    RssElement = RssDocumentRootHandle.FirstChildElement("item").ToElement();
+    for (RssElement; RssElement; RssElement = RssElement->NextSiblingElement())
+    {
+        WebsiteNews website_news;
+        website_news.Date = RssElement->FirstChildElement("pubDate")->GetText();
+        website_news.Title = RssElement->FirstChildElement("title")->GetText();
+        website_news.Link = RssElement->FirstChildElement("link")->GetText();
+        website_news.Description = RssElement->FirstChildElement("description")->GetText();
+        WebisteNewsList.push_back(website_news);
+    }
+    return true;
 }

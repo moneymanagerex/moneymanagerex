@@ -44,6 +44,7 @@ const wxString getTitleProgramVersion();
 const wxString getProgramVersion();
 const wxString getProgramCopyright();
 const wxString getProgramWebSite();
+const wxString getProgramWebSiteRSS();
 const wxString getProgramForum();
 const wxString getProgramWiki();
 const wxString getProgramBugReport();
