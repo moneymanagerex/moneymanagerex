@@ -55,7 +55,7 @@ Polish
 -- Damian_pl
 -- Andrzej 
 Portuguese (Portugal)
--- Fatela
+-- Fatela, Daniel Cunha de Almeida
 Romanian
 -- Munteanu & Florin
 Russian
