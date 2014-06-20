@@ -70,7 +70,7 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><thead><tr class='active'><th>";
+        output = "<table class ='table'><col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\"><thead><tr class='active'><th>";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th><th class = 'text-right'>" + _("Total");
         output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
@@ -649,6 +649,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     double tReconciled = 0;
     const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'table'>";
+    output += "<col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\">";
     output += "<thead><tr><th>";
     output += (type_is_bank ? _("Bank Account") : _("Term Account"));
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>";
