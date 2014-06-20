@@ -867,7 +867,6 @@ const bool mmHomePagePanel::getNewsRSS()
     if (RssDocument.Parse((const char*)RssContent) != tinyxml2::XML_NO_ERROR)
         return false;
 
-    int NewsNr = 0;
     tinyxml2::XMLHandle RssDocumentHandle(&RssDocument);
     tinyxml2::XMLElement* RssElement;
     tinyxml2::XMLHandle RssDocumentRootHandle(0);
