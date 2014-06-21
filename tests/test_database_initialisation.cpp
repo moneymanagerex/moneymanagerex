@@ -252,56 +252,57 @@ void Test_DatabaseInitialisation::Add_Transaction_Entries()
     // Setting up a stock portfolio
     int stock_Yahoo_Finance_id = m_dbmodel->Get_account_id("Yahoo Finance");
 
-    // Setting up history for Telstra
-    trans_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
+    // Setting up history for Telstra at start of a financial year
+    trans_date = starting_date;
     int stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 4.25, 0, 4.25, 0, "Telstra", "tls.ax");
-    trans_date = wxDateTime::Today().Subtract(wxDateSpan::Days(90));
+    trans_date.Add(wxDateSpan::Days(10));
 
     double share_value = 4.75;
     double share_dif = 0.25;
     int share_cycle = 0;
-    for (int i = 0; i < 45; ++i)
+    for (int i = 0; trans_date < wxDateTime::Today(); ++i)
     {
         m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * share_value, Model_StockHistory::MANUAL);
-        if (share_cycle <= 5)
+        if (share_cycle <= 15)
         {
             share_value += share_dif;
             ++share_cycle;
-            if (share_cycle == 5) share_cycle = 10;
+            if (share_cycle == 15) share_cycle = 35;
         }
         else
         {
             share_value -= share_dif;
             --share_cycle;
-            if (share_cycle == 5) share_cycle = 0;
+            if (share_cycle == 25) share_cycle = 0;
         }
-        trans_date.Add(wxDateSpan::Days(2));
+        trans_date.Add(wxDateSpan::Days(7));
     }
 
-    // Setting up history for AMP
-    trans_date = wxDateTime::Today().Subtract(wxDateSpan::Year());
+    // Setting up history for AMP at start of a year
+    trans_date = starting_date;
+    trans_date.Add(wxDateSpan::Months(6));
     stock_entry_id = m_dbmodel->Add_Stock_Entry(stock_Yahoo_Finance_id, trans_date, 1000, 2.25, 0, 2.25, 0, "AMP", "amp.ax");
-    trans_date = wxDateTime::Today().Subtract(wxDateSpan::Days(90));
+    trans_date.Add(wxDateSpan::Days(15));
 
     share_value = 2.75;
     share_dif = 0.25;
     share_cycle = 0;
-    for (int i = 0; i < 45; ++i)
+    for (int i = 0; trans_date < wxDateTime::Today(); ++i)
     {
         m_dbmodel->Add_StockHistory_Entry(stock_entry_id, trans_date, 1000 * share_value, Model_StockHistory::MANUAL);
-        if (share_cycle <= 5)
+        if (share_cycle <= 10)
         {
             share_value += share_dif;
             ++share_cycle;
-            if (share_cycle == 5) share_cycle = 10;
+            if (share_cycle == 10) share_cycle = 25;
         }
         else
         {
             share_value -= share_dif;
             --share_cycle;
-            if (share_cycle == 5) share_cycle = 0;
+            if (share_cycle == 20) share_cycle = 0;
         }
-        trans_date.Add(wxDateSpan::Days(2));
+        trans_date.Add(wxDateSpan::Days(3));
     }
 
     // Setting up history for IAG
