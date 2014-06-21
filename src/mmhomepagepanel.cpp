@@ -27,6 +27,10 @@ Copyright (C) 2014 Nikolay
 #include "reports/mmgraphincexpensesmonth.h"
 #include <algorithm>
 
+#include "constants.h"
+#include "util.h"
+#include <wx/xml/xml.h>
+
 #include "model/Model_Setting.h"
 #include "model/Model_Asset.h"
 #include "model/Model_Payee.h"
@@ -850,4 +854,56 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     output += "</tfoot></table>";
 
     return output;
+}
+
+const bool mmHomePagePanel::getNewsRSS()
+{
+    wxString RssContent;
+    if (site_content(mmex::getProgramWebSiteRSS(), RssContent) != wxURL_NOERR)
+        return false;
+
+    wxStringInputStream RssContentStream(RssContent);
+    wxXmlDocument RssDocument;
+    if (!RssDocument.Load(RssContentStream))
+        return false;
+
+    if (RssDocument.GetRoot()->GetName() != "rss")
+        return false;
+
+    wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
+    while (RssRoot)
+    {
+        std::vector<WebsiteNews> WebsiteNewsList;
+        if (RssRoot->GetName() == "item")
+        {
+            WebsiteNews website_news;
+            wxXmlNode* News = RssRoot->GetChildren();
+            while(News)
+            {
+                wxString ElementName = News->GetName();
+
+                if (ElementName == "title")
+                    website_news.Title = News->GetChildren()->GetContent();
+                else if (ElementName == "link")
+                    website_news.Link = News->GetChildren()->GetContent();
+                else if (ElementName == "description")
+                    website_news.Description = News->GetChildren()->GetContent();
+                else if (ElementName == "pubDate")
+                {
+                    wxDateTime Date = wxDateTime::Today();
+                    wxString DateString = News->GetChildren()->GetContent();
+                    if (!DateString.IsEmpty())
+                        Date.ParseDate(DateString);
+                    if (!Date.IsValid())
+                        Date = wxDateTime::Today();
+                    website_news.Date = Date;
+                }
+                News = News->GetNext();
+            }
+            WebsiteNewsList.push_back(website_news);
+        }
+        RssRoot = RssRoot->GetNext();
+    }
+
+    return true;
 }
