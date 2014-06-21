@@ -34,6 +34,10 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Category.h"
 
+#if defined (__WXMSW__)
+    #include <wx/msw/registry.h>
+#endif
+
 class htmlWidgetStocks
 {
 public:
@@ -473,6 +477,7 @@ bool mmHomePagePanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
+    WindowsUpdateRegistry();
     getTemplate();
     getData();
     fillData();
@@ -569,6 +574,19 @@ const wxString mmHomePagePanel::getToggles()
     if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCK_TREE", false))
         output += "<script>toggleTable('INVEST'); </script>\n";
     return output;
+}
+
+const bool mmHomePagePanel::WindowsUpdateRegistry()
+{
+    #if defined (__WXMSW__)
+        wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
+        if (Key.Create(true) && Key.SetValue("mmex.exe", 9000))
+            return true;
+        else
+            return false;
+    #else
+        return true;
+    #endif 
 }
 
 void mmHomePagePanel::fillData()
