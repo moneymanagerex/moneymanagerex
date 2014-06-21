@@ -81,7 +81,7 @@ private:
 
     struct WebsiteNews
     {
-        wxString Date;
+        wxDateTime Date;
         wxString Title;
         wxString Link;
         wxString Description;

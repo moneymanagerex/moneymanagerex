@@ -267,7 +267,6 @@
   <ItemGroup>
     <ClCompile Include="..\..\3rd\csv-parser\csv_parser.cpp" />
     <ClCompile Include="..\..\3rd\mongoose\mongoose.c" />
-    <ClCompile Include="..\..\3rd\tinyxml2\tinyxml2.cpp" />
     <ClCompile Include="..\..\src\aboutdialog.cpp" />
     <ClCompile Include="..\..\src\accountdialog.cpp" />
     <ClCompile Include="..\..\src\appstartdialog.cpp" />
@@ -362,7 +361,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3rd\mongoose\mongoose.h" />
-    <ClInclude Include="..\..\3rd\tinyxml2\tinyxml2.h" />
     <ClInclude Include="..\..\src\attachmentdialog.h" />
     <ClInclude Include="..\..\src\db\DB_Table.h" />
     <ClInclude Include="..\..\src\db\DB_Table_Accountlist_V1.h" />

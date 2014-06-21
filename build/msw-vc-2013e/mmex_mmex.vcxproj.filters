@@ -324,9 +324,6 @@
     <ClCompile Include="..\..\src\model\Model_StockHistory.cpp">
       <Filter>Source Files\Model</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\3rd\tinyxml2\tinyxml2.cpp">
-      <Filter>Source Files\3d</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\aboutdialog.h">
@@ -697,9 +694,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\model\Model_StockHistory.h">
       <Filter>Header Files\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\3rd\tinyxml2\tinyxml2.h">
-      <Filter>Header Files\3d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
