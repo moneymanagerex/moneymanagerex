@@ -66,6 +66,7 @@ private:
     void getTemplate();
     void getData();
     void fillData();
+    const wxString displayWebsiteNews();
     const wxString displayAssets(double& tBalance);
     const wxString displayIncomeVsExpenses();
     const wxString getStatWidget();
@@ -86,8 +87,7 @@ private:
         wxString Link;
         wxString Description;
     };
-    typedef std::vector<WebsiteNews> WebisteNewsList;
-    const bool getNewsRSS();
+    const bool getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList);
 };
 
 #endif

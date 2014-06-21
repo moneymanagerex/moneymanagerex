@@ -28,6 +28,7 @@ Copyright (C) 2014 Nikolay
 #include <algorithm>
 
 #include "constants.h"
+#include "mmOption.h"
 #include "util.h"
 #include <wx/xml/xml.h>
 
@@ -514,6 +515,8 @@ void mmHomePagePanel::getTemplate()
 
 void mmHomePagePanel::getData()
 {
+    m_frames["WEBSITE_NEWS"] = displayWebsiteNews();
+
     vAccts_ = Model_Setting::instance().GetStringSetting("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
     if (mmIniOptions::instance().ignoreFutureTransactions_)
         date_range_ = new mmCurrentMonthToDate;
@@ -855,8 +858,40 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 
     return output;
 }
+/* Website News*/
+const wxString mmHomePagePanel::displayWebsiteNews()
+{
+    wxString output = wxEmptyString;
 
-const bool mmHomePagePanel::getNewsRSS()
+    std::vector<WebsiteNews> WebsiteNewsList;
+    if (!mmHomePagePanel::getNewsRSS(WebsiteNewsList))
+        return output;
+    else
+    {
+        output += "<table class = 'table-bordered' width='98%'><table class ='table'>";
+        output += "<tr class ='success'><td style ='font-weight:bold; text-align:center'>Money Manager EX News</td>";
+        output += "<tr class ='success'><td style ='text-align:center'>";
+        int NewsNr = 0;
+        int NewsMax = 5;
+        for (auto &News : WebsiteNewsList)
+        {
+            NewsNr++;
+            if (NewsNr == NewsMax + 1)
+                break;
+            if (NewsNr == 1)
+                output += "|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            output += "<a href = \"" + News.Link + "\">";
+            output += News.Date.Format(mmOptions::instance().dateFormat_) +": " + News.Title;
+            output += "</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+        }
+        output += "</td></tr></table></table>";
+        output += "<br/>";
+    }
+
+    return output;
+}
+
+const bool mmHomePagePanel::getNewsRSS(std::vector<WebsiteNews>& WebsiteNewsList)
 {
     wxString RssContent;
     if (site_content(mmex::getProgramWebSiteRSS(), RssContent) != wxURL_NOERR)
@@ -873,7 +908,6 @@ const bool mmHomePagePanel::getNewsRSS()
     wxXmlNode* RssRoot = RssDocument.GetRoot()->GetChildren()->GetChildren();
     while (RssRoot)
     {
-        std::vector<WebsiteNews> WebsiteNewsList;
         if (RssRoot->GetName() == "item")
         {
             WebsiteNews website_news;
@@ -904,6 +938,9 @@ const bool mmHomePagePanel::getNewsRSS()
         }
         RssRoot = RssRoot->GetNext();
     }
+
+    if (WebsiteNewsList.size() == 0)
+        return false;
 
     return true;
 }
