@@ -66,6 +66,7 @@ private:
     void getTemplate();
     void getData();
     void fillData();
+    const bool WindowsUpdateRegistry();
     const wxString displayAssets(double& tBalance);
     const wxString displayIncomeVsExpenses();
     const wxString getStatWidget();
