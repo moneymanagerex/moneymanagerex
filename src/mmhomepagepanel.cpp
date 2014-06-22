@@ -94,18 +94,18 @@ wxString htmlWidgetStocks::getHTMLText()
             body += "<tr>";
             body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
                 , account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = \"text-right\">%s</td>"
+            body += wxString::Format("<td class = 'money'>%s</td>"
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
-            body += wxString::Format("<td class = \"text-right\">%s</td>"
+            body += wxString::Format("<td class = 'money'>%s</td>"
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].second, &account));
             body += "</tr>";
         }
 
         output += body;
         output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
-        output += wxString::Format("<td class =\"money, text-right\">%s</td>"
+        output += wxString::Format("<td class ='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
-        output += wxString::Format("<td class =\"money, text-right\">%s</td></tr></tfoot></table>"
+        output += wxString::Format("<td class ='money'>%s</td></tr></tfoot></table>"
             , Model_Currency::toCurrency(grand_total_));
         if (body.empty()) output.clear();
     }
@@ -194,7 +194,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     {
         output += "<tr>";
         output += wxString::Format("<td>%s</td>", (i.first.IsEmpty() ? "..." : i.first));
-        output += wxString::Format("<td class='text-right'>%s</td>", Model_Currency::toCurrency(i.second));
+        output += wxString::Format("<td class='money'>%s</td>", Model_Currency::toCurrency(i.second));
         output += "</tr>";
     }
     output += "</tbody></table>\n";
@@ -365,9 +365,9 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         {
             output += wxString::Format("<tr %s>\n", std::get<0>(item) < 0 ? "class='danger'" : "");
             output += "<td>" + std::get<1>(item) +"</td>"; //payee
-            output += wxString::Format("<td class='text-right'>%s</td>"
+            output += wxString::Format("<td class='money'>%s</td>"
                 , Model_Account::toCurrency(std::get<3>(item), std::get<4>(item)));
-            output += "<td  class='text-right'>" + std::get<2>(item) + "</td></tr>\n";
+            output += "<td  class='money'>" + std::get<2>(item) + "</td></tr>\n";
         }
         output += "</tbody></table>\n";
     }
@@ -708,15 +708,15 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         {
             body += "<tr>";
             body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
-            body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
-            body += wxString::Format("<td class = \"text-right\">%s</td>", Model_Currency::toCurrency(bal, currency));
+            body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
+            body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
         }
     }
     output += body;
     output += "</tbody><tfoot><tr class ='total'><td>" + _("Total:") + "</td>";
-    output += "<td class =\"money, text-right\">" + Model_Currency::toCurrency(tReconciled) + "</td>";
-    output += "<td class =\"money, text-right\">" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>";
+    output += "<td class ='money'>" + Model_Currency::toCurrency(tReconciled) + "</td>";
+    output += "<td class ='money'>" + Model_Currency::toCurrency(tBalance) + "</td></tr></tfoot></table>";
     if (body.empty()) output.clear();
 
     return output;
@@ -756,17 +756,17 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         "            <tbody>"
         "                <tr>"
         "                    <td>%s</td>"
-        "                    <td class = \"text-right\">%s</td>"
+        "                    <td class = 'money'>%s</td>"
         "                </tr>"
         "                <tr>"
         "                    <td>%s</td>"
-        "                    <td class = \"text-right\">%s</td>"
+        "                    <td class = 'money'>%s</td>"
         "                </tr>"
         "            </tbody>\n"
         "            <tfoot>"
         "                <tr class=\"total\">"
         "                    <td>%s</td>"
-        "                    <td class = \"text-right\">%s</td>"
+        "                    <td class = 'money'>%s</td>"
         "                </tr>"
         "            </tfoot>"
         "            </table>"
@@ -824,7 +824,7 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
     tBalance += asset_balance;
     output = "<table class = 'table'><tfoot><tr class = \"total\">";
     output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
-    output += wxString::Format("<td class = \"text-right\">%s</td></tr>", Model_Currency::toCurrency(asset_balance));
+    output += wxString::Format("<td class = 'money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
     output += "</tfoot></table>";
 
     return output;
@@ -856,7 +856,7 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
     wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
 
     output += "<tfoot><tr class ='success' style ='font-weight:bold'><td>" + _("Grand Total:") + "</td>";
-    output += "<td class ='text-right'>" + tBalanceStr + "</td>";
+    output += "<td class ='money'>" + tBalanceStr + "</td>";
     output += "</tfoot></table>";
 
     return output;
