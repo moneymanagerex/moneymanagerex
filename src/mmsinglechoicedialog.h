@@ -43,7 +43,8 @@ public:
     {
         wxArrayString choices;
         for (const auto & item: accounts) choices.Add(item.ACCOUNTNAME);
-        mmSingleChoiceDialog(parent, message, caption, choices);
+        wxSingleChoiceDialog::Create(parent, message, caption, choices);
+        fix_translation();
     }
     int ShowModal()
     {
