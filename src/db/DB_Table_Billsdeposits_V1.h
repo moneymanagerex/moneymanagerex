@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -312,23 +312,23 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         {
             view_ = view;
         
-            BDID = q.GetInt(0); // BDID
-            ACCOUNTID = q.GetInt(1); // ACCOUNTID
-            TOACCOUNTID = q.GetInt(2); // TOACCOUNTID
-            PAYEEID = q.GetInt(3); // PAYEEID
-            TRANSCODE = q.GetString(4); // TRANSCODE
-            TRANSAMOUNT = q.GetDouble(5); // TRANSAMOUNT
-            STATUS = q.GetString(6); // STATUS
-            TRANSACTIONNUMBER = q.GetString(7); // TRANSACTIONNUMBER
-            NOTES = q.GetString(8); // NOTES
-            CATEGID = q.GetInt(9); // CATEGID
-            SUBCATEGID = q.GetInt(10); // SUBCATEGID
-            TRANSDATE = q.GetString(11); // TRANSDATE
-            FOLLOWUPID = q.GetInt(12); // FOLLOWUPID
-            TOTRANSAMOUNT = q.GetDouble(13); // TOTRANSAMOUNT
-            REPEATS = q.GetInt(14); // REPEATS
-            NEXTOCCURRENCEDATE = q.GetString(15); // NEXTOCCURRENCEDATE
-            NUMOCCURRENCES = q.GetInt(16); // NUMOCCURRENCES
+            BDID = q.GetInt("BDID");
+            ACCOUNTID = q.GetInt("ACCOUNTID");
+            TOACCOUNTID = q.GetInt("TOACCOUNTID");
+            PAYEEID = q.GetInt("PAYEEID");
+            TRANSCODE = q.GetString("TRANSCODE");
+            TRANSAMOUNT = q.GetDouble("TRANSAMOUNT");
+            STATUS = q.GetString("STATUS");
+            TRANSACTIONNUMBER = q.GetString("TRANSACTIONNUMBER");
+            NOTES = q.GetString("NOTES");
+            CATEGID = q.GetInt("CATEGID");
+            SUBCATEGID = q.GetInt("SUBCATEGID");
+            TRANSDATE = q.GetString("TRANSDATE");
+            FOLLOWUPID = q.GetInt("FOLLOWUPID");
+            TOTRANSAMOUNT = q.GetDouble("TOTRANSAMOUNT");
+            REPEATS = q.GetInt("REPEATS");
+            NEXTOCCURRENCEDATE = q.GetString("NEXTOCCURRENCEDATE");
+            NUMOCCURRENCES = q.GetInt("NUMOCCURRENCES");
         }
 
         Data& operator=(const Data& other)
@@ -600,7 +600,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(17, entity->BDID);
 
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -637,7 +636,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             wxString sql = "DELETE FROM BILLSDEPOSITS_V1 WHERE BDID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -724,7 +722,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -758,7 +755,6 @@ struct DB_Table_BILLSDEPOSITS_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

@@ -466,70 +466,72 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     bool isUpdateAvailable = false;
     NewVersion = "error";
 
-    // Access current version details page
-    wxString site = mmex::getProgramWebSite() + "/version.html";
-
     wxString page;
-    int err_code = site_content(site, page);
-    if (err_code != wxURL_NOERR && !bSilent)
+    int err_code = site_content(mmex::getProgramUpdateWebSite(), page);
+    if (err_code != wxURL_NOERR || page.Find("Unstable") == wxNOT_FOUND)
     {
-        wxString msgStr = wxString() << _("Unable to check for updates!") << "\n\n"
-            << _("Error code:") << "\n"
-            << page;
-        wxMessageBox(msgStr, _("MMEX Update Check"));
-        return false;
+        if (bSilent)
+            return false;
+        else
+        {
+            if (page == wxEmptyString)
+                page = "Page not found";
+
+            wxString msgStr = wxString() << _("Unable to check for updates!") << "\n\n"
+                << _("Error code:") << "\n"
+                << page;
+            wxMessageBox(msgStr, _("MMEX Update Check"));
+            return false;
+        }
     }
 
     /*************************************************************************
-    Note: To allow larger digit counters and maintain backward compatability,
-    the leading counters before the character [ is ignored by the version
-    checking routines.
+    Sample JSON:
+        {
+            "Stable": {
+                "Win": {"Major": 1, "Minor": 2, "Patch": 0},
+                "Uni": {"Major": 1, "Minor": 2, "Patch": 0},
+                "Mac": {"Major": 1, "Minor": 2, "Patch": 0}
+            },
+            "Unstable": {
+            "Win": {"Major": 1, "Minor": 3, "Patch": 0, "RC": 1},
+            "Uni": {"Major": 1, "Minor": 3, "Patch": 0, "RC": 1},
+            "Mac": {"Major": 1, "Minor": 3, "Patch": 0, "RC": 1}
+            }
+        }
 
-    Expected string format from the internet up to Version: 0.9.9.0
-    page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
-    string length = 53 characters
+    ************
+    When a stable is released an no unstable is available yet,
+    insert in unstable the same vrsion number of stable with RC = 0
     **************************************************************************/
-    // Included for future testing
-    // Old format of counters
-    // page = "x.x.x.x - Win: w.w.w.w - Unix: u.u.u.u - Mac: m.m.m.m";
-    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0";
 
-    // New format to allow counters greater than 9
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0.12 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Win: 1.1.0 - Unix: 0.9.10.0 - Mac: 0.9.9.10";
-    // page = "9.9.9.9 - Win: 0.9.9.0 - Unix: 0.9.9.0 - Mac: 0.9.9.0 -[ Win: 0.9.9.2 - Unix: 0.9.9.2 - Mac: 0.9.9.2";
-    // page = "9.9.9.9 - Win: 9.9.9.9 - Unix: 9.9.9.9 - Mac: 9.9.9.9 -[ Mac: 0.9.9.3 - Unix: 0.9.9.3 - Win: 2.10.19";
-
-    wxStringTokenizer versionTokens(page, ("["));
-    versionTokens.GetNextToken(); // ignore old counters
-    page = versionTokens.GetNextToken(); // substrtute new counters
-
-    page = page.SubString(page.find(mmPlatformType()), 53);
-    wxStringTokenizer mySysToken(page, ":");
-    mySysToken.GetNextToken().Trim(false).Trim();           // skip Operating System. Already accounted for.
-    page = mySysToken.GetNextToken().Trim(false).Trim();    // Get version for OS
-
-    wxStringTokenizer tkz(page, '.', wxTOKEN_RET_EMPTY_ALL);
-    if (tkz.CountTokens() < 3)
-        return true;
-
-    int major = wxAtoi(tkz.GetNextToken());
-    int minor = wxAtoi(tkz.GetNextToken());
-    int patch = wxAtoi(tkz.GetNextToken());
-    int rc = wxAtoi(tkz.GetNextToken());
-
-    // get current version
+    json::Object jsonVersion;
+    std::stringstream jsonVersionStream;
+    std::string platform = mmPlatformType().ToStdString();
+    std::string ReleaseType = "Stable";
     wxString currentV = mmex::getProgramVersion();
+    int rc = 0;
+    int rc_C = 0;
 
-    // get release candidate version if it exists.
-    int rc_C = rc;
+    if (!(page.StartsWith("{") && page.EndsWith("}"))) page = "{}";
+    jsonVersionStream << page.ToStdString();
+    json::Reader::Read(jsonVersion, jsonVersionStream);
+
     if (currentV.find("RC") != -1)
     {
+        ReleaseType = "Unstable";
+        rc = int(json::Number(jsonVersion[ReleaseType][platform]["RC"]));
+
         wxString rc_ver = currentV.SubString(currentV.find("RC") + 2, currentV.Length()).Trim();
         rc_C = wxAtoi(rc_ver);
     }
 
-    currentV = currentV.SubString(0, currentV.Find("RC") - 1).Trim();
+    int major = int(json::Number(jsonVersion[ReleaseType][platform]["Major"]));
+    int minor = int(json::Number(jsonVersion[ReleaseType][platform]["Minor"]));
+    int patch = int(json::Number(jsonVersion[ReleaseType][platform]["Patch"]));
+
+    // get current version
+    currentV = currentV.SubString(0, currentV.Find("-RC") - 1).Trim();
     wxStringTokenizer tkz1(currentV, ('.'), wxTOKEN_RET_EMPTY_ALL);
 
     int majorC = wxAtoi(tkz1.GetNextToken());
@@ -550,18 +552,27 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
             {
                 isUpdateAvailable = true;
             }
-            else if (patch == patchC)
+            else if (patch == patchC && ReleaseType == "Unstable")
             {
-                if ((rc == 0) || (rc > rc_C))
+                if (rc_C != 0 && ((rc == 0) || (rc > rc_C)))
                     isUpdateAvailable = true;
             }
         }
     }
 
     // define new version
-    NewVersion = wxString() << majorC << "." << minorC << "." << patchC;
-    if (rc > 0)
-        NewVersion << "-RC" << rc_C;
+    if (isUpdateAvailable)
+    {
+        NewVersion = wxString() << major << "." << minor << "." << patch;
+        if (rc > 0)
+            NewVersion << "-RC" << rc;
+        else if (ReleaseType == "Unstable")
+            NewVersion << " Stable";
+    }
+    else
+    {
+        NewVersion = mmex::getProgramVersion();
+    }
 
     return isUpdateAvailable;
 }
@@ -570,7 +581,7 @@ void checkUpdates(const bool& bSilent)
 {
     wxString NewVersion = wxEmptyString;
 
-    if (IsUpdateAvailable(false, NewVersion))
+    if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")
     {
         wxString urlDownload = mmex::getProgramWebSite() + "/download";
         wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"

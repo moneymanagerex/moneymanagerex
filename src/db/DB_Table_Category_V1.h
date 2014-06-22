@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -167,8 +167,8 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             view_ = view;
         
-            CATEGID = q.GetInt(0); // CATEGID
-            CATEGNAME = q.GetString(1); // CATEGNAME
+            CATEGID = q.GetInt("CATEGID");
+            CATEGNAME = q.GetString("CATEGNAME");
         }
 
         Data& operator=(const Data& other)
@@ -305,7 +305,6 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(2, entity->CATEGID);
 
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -342,7 +341,6 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             wxString sql = "DELETE FROM CATEGORY_V1 WHERE CATEGID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -429,7 +427,6 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -463,7 +460,6 @@ struct DB_Table_CATEGORY_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

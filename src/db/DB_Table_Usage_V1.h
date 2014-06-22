@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,9 +176,9 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             view_ = view;
         
-            USAGEID = q.GetInt(0); // USAGEID
-            USAGEDATE = q.GetString(1); // USAGEDATE
-            JSONCONTENT = q.GetString(2); // JSONCONTENT
+            USAGEID = q.GetInt("USAGEID");
+            USAGEDATE = q.GetString("USAGEDATE");
+            JSONCONTENT = q.GetString("JSONCONTENT");
         }
 
         Data& operator=(const Data& other)
@@ -324,7 +324,6 @@ struct DB_Table_USAGE_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(3, entity->USAGEID);
 
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -361,7 +360,6 @@ struct DB_Table_USAGE_V1 : public DB_Table
             wxString sql = "DELETE FROM USAGE_V1 WHERE USAGEID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -448,7 +446,6 @@ struct DB_Table_USAGE_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -482,7 +479,6 @@ struct DB_Table_USAGE_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

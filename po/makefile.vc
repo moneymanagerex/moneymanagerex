@@ -31,7 +31,7 @@ EXEC_PREFIX = C:\opt\bin
 
 ### Targets: ###
 
-all: arabic.mo bulgarian.mo chinese_chs.mo chinese_zh.mo croatian.mo czech.mo dutch.mo dutch_be.mo english-uk.mo english.mo french.mo german.mo greek.mo hebrew.mo hindi.mo hungarian.mo indonesian.mo italian.mo latvian.mo norwegian.mo polish.mo portuguese.mo portuguese_portugal.mo romanian.mo russian.mo serbo-croatian.mo serbian.mo slovak.mo slovenian.mo spanish.mo swedish.mo tamil.mo turkish.mo ukrainian.mo vietnamese.mo
+all: arabic.mo bulgarian.mo chinese_chs.mo chinese_zh.mo croatian.mo czech.mo dutch.mo dutch_be.mo english-uk.mo english.mo french.mo german.mo greek.mo hebrew.mo hindi.mo hungarian.mo indonesian.mo italian.mo latvian.mo norwegian.mo polish.mo portuguese.mo portuguese_portugal.mo romanian.mo russian.mo serbo-croatian.mo serbian.mo slovak.mo slovenian.mo spanish.mo swedish.mo tamil.mo turkish.mo ukrainian.mo vietnamese.mo portuguese_br.mo
 
 install: 
 
@@ -76,6 +76,7 @@ clean:
 	-if exist turkish.mo del turkish.mo
 	-if exist ukrainian.mo del ukrainian.mo
 	-if exist vietnamese.mo del vietnamese.mo
+	-if exist portuguese_br.mo del portuguese_br.mo
 
 arabic.mo: arabic.po
 	msgfmt -o arabic.mo arabic.po
@@ -181,4 +182,7 @@ ukrainian.mo: ukrainian.po
 
 vietnamese.mo: vietnamese.po
 	msgfmt -o vietnamese.mo vietnamese.po
+
+portuguese_br.mo: portuguese_br.po
+	msgfmt -o portuguese_br.mo portuguese_br.po
 

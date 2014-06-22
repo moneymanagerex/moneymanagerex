@@ -42,10 +42,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  Include the definition: MMEX_BUILD_TYPE_RELEASE_CANDIDATE
  Increment MMEX_VERSION_DEVELOPMENT_COUNT for the release candidate version.
 
- Internet Format for update checking: MAJOR.MINOR.PATCH.RC
- Note: RC is optional. Examples:
- Win: 1.1.0.2   Win Version 1.1.0-RC2   Pre Release
- Win: 1.1.0     Win Version 1.1.0       Release superceeds 1.1.0-RC2
+ For Internet Format for update checking read in util.cpp
  *************************************************************************/
 const wxString MMEX_VERSION = "1.1.0";
 
@@ -107,6 +104,10 @@ const wxString mmex::getProgramWebSiteRSS()
 {
     return "http://www.moneymanagerex.org/news?format=feed";
 }
+const wxString mmex::getProgramUpdateWebSite()
+{
+    return "http://www.moneymanagerex.org/version.html";
+}
 const wxString mmex::getProgramForum()
 {
     return "http://forum.moneymanagerex.org";
@@ -117,7 +118,7 @@ const wxString mmex::getProgramWiki()
 }
 const wxString mmex::getProgramBugReport()
 {
-    return "http://report.moneymanagerex.org";
+    return "http://bugreport.moneymanagerex.org";
 }
 const wxString mmex::getProgramDonateSite()
 {

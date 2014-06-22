@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -195,11 +195,11 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         {
             view_ = view;
         
-            ATTACHMENTID = q.GetInt(0); // ATTACHMENTID
-            REFTYPE = q.GetString(1); // REFTYPE
-            REFID = q.GetInt(2); // REFID
-            DESCRIPTION = q.GetString(3); // DESCRIPTION
-            FILENAME = q.GetString(4); // FILENAME
+            ATTACHMENTID = q.GetInt("ATTACHMENTID");
+            REFTYPE = q.GetString("REFTYPE");
+            REFID = q.GetInt("REFID");
+            DESCRIPTION = q.GetString("DESCRIPTION");
+            FILENAME = q.GetString("FILENAME");
         }
 
         Data& operator=(const Data& other)
@@ -363,7 +363,6 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(5, entity->ATTACHMENTID);
 
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -400,7 +399,6 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
             wxString sql = "DELETE FROM ATTACHMENT_V1 WHERE ATTACHMENTID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -487,7 +485,6 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -521,7 +518,6 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

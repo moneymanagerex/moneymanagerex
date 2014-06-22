@@ -81,6 +81,7 @@ mmGeneralReportManager::mmGeneralReportManager(wxWindow* parent)
     long style = wxCAPTION | wxRESIZE_BORDER | wxSYSTEM_MENU | wxCLOSE_BOX;
     Create(parent, wxID_ANY, _("General Reports Manager"), wxDefaultPosition, wxDefaultSize, style);
     SetClientSize(wxSize(940, 576));
+    Centre();
 }
 
 mmGeneralReportManager::~mmGeneralReportManager()
@@ -110,9 +111,10 @@ bool mmGeneralReportManager::Create(wxWindow* parent
     GetSizer()->SetSizeHints(this);
 
     SetIcon(mmex::getProgramIcon());
-    Centre();
 
     fillControls();
+
+    Centre();
     return TRUE;
 }
 

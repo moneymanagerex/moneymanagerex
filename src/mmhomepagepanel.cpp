@@ -39,6 +39,10 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Category.h"
 
+#if defined (__WXMSW__)
+    #include <wx/msw/registry.h>
+#endif
+
 class htmlWidgetStocks
 {
 public:
@@ -75,9 +79,12 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><thead><tr class='active'><th>";
+        output = "<table class ='table'><col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\"><thead><tr class='active'><th>";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
-        output += "</th><th class = 'text-right'>" + _("Total") + "</th></tr></thead><tbody id='INVEST'>";
+        output += "</th><th class = 'text-right'>" + _("Total");
+        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+            , "INVEST", "INVEST");
+        output += "</th></tr></thead><tbody id='INVEST'>";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
         wxString body = "";
         for (const auto& account : accounts)
@@ -475,6 +482,7 @@ bool mmHomePagePanel::Create(wxWindow *parent
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);
 
+    WindowsUpdateRegistry();
     getTemplate();
     getData();
     fillData();
@@ -568,15 +576,26 @@ void mmHomePagePanel::getData()
 const wxString mmHomePagePanel::getToggles()
 {
     wxString output = "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
-    if (!m_frame->expandedBankAccounts())
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false))
         output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
-    if (!m_frame->expandedBankAccounts())
-        output += "<script>toggleTable('CARD_ACCOUNTS_INFO'); </script>\n";
-    if (!m_frame->expandedTermAccounts())
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false))
         output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
-    if (!m_frame->expandedStockAccounts())
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCK_TREE", false))
         output += "<script>toggleTable('INVEST'); </script>\n";
     return output;
+}
+
+const bool mmHomePagePanel::WindowsUpdateRegistry()
+{
+    #if defined (__WXMSW__)
+        wxRegKey Key(wxRegKey::HKCU, "Software\\Microsoft\\Internet Explorer\\Main\\FeatureControl\\FEATURE_BROWSER_EMULATION");
+        if (Key.Create(true) && Key.SetValue("mmex.exe", 9000))
+            return true;
+        else
+            return false;
+    #else
+        return true;
+    #endif 
 }
 
 void mmHomePagePanel::fillData()
@@ -656,8 +675,9 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     bool type_is_bank = type == Model_Account::CHECKING || type == Model_Account::CREDIT_CARD,
          credit_card = type == Model_Account::CREDIT_CARD;
     double tReconciled = 0;
-
+    const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'table'>";
+    output += "<col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\">";
     output += "<thead><tr><th>";
     if (type_is_bank && !credit_card)
         output += _("Bank Account");
@@ -667,6 +687,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         output += _("Term account");
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th><th class = 'text-right'>" + _("Balance") + "</th></tr></thead>";
     output += wxString::Format("<tbody id = '%s'>", (type_is_bank ? (credit_card?"CARD_ACCOUNTS_INFO":"ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO"));
+
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
     {
@@ -683,8 +704,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         // show the actual amount in that account
         if (((vAccts_ == "Open" && Model_Account::status(account) == Model_Account::OPEN) ||
             (vAccts_ == "Favorites" && Model_Account::FAVORITEACCT(account)) ||
-            (vAccts_ == VIEW_ACCOUNTS_ALL_STR))
-            && ((type_is_bank) ? m_frame->expandedBankAccounts() : m_frame->expandedTermAccounts()))
+            (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
             body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
@@ -709,16 +729,8 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats(incomeExpensesStats, date_range_);
 
-    bool show_nothing = !m_frame->expandedBankAccounts() && !m_frame->expandedTermAccounts();
-    bool show_all = (m_frame->expandedBankAccounts() && m_frame->expandedTermAccounts()) || show_nothing;
-    bool show_bank = m_frame->expandedBankAccounts();
     for (const auto& account : Model_Account::instance().all())
     {
-        if (!show_all)
-        {
-            if (show_bank && Model_Account::type(account) != Model_Account::CHECKING && Model_Account::type(account) != Model_Account::CREDIT_CARD) continue;
-            if (m_frame->expandedTermAccounts() && Model_Account::type(account) == Model_Account::TERM) continue;
-        }
         int idx = account.ACCOUNTID;
         tIncome += incomeExpensesStats[idx].first;
         tExpenses += incomeExpensesStats[idx].second;
@@ -726,8 +738,8 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10;
     double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
-    //Type, Amount, Income, Expences, Difference:, Income/Expences, income, expemces
-    static const wxString INCOME_VS_EXPENCES_HTML =
+    //Type, Amount, Income, Expenses, Difference:, Income/Expenses, income, expemces
+    static const wxString INCOME_VS_EXPENSES_HTML =
         "<table class = 'table'>\n"
         "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
         "<tbody>\n"
@@ -792,13 +804,13 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         "    var reportChart = new Chart(ctx).Bar(data, options);\n"
 
         "</script>\n";
-    wxString output = wxString::Format(INCOME_VS_EXPENCES_HTML
+    wxString output = wxString::Format(INCOME_VS_EXPENSES_HTML
         , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
         , _("Type"), _("Amount")
         , _("Income"), Model_Currency::toCurrency(tIncome)
-        , _("Expences"), Model_Currency::toCurrency(tExpenses)
+        , _("Expenses"), Model_Currency::toCurrency(tExpenses)
         , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
-        , _("Income/Expences")
+        , _("Income/Expenses")
         , tIncome, tExpenses, steps, stepWidth);
     return output;
 }
@@ -845,15 +857,6 @@ const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 
     output += "<tfoot><tr class ='success' style ='font-weight:bold'><td>" + _("Grand Total:") + "</td>";
     output += "<td class ='text-right'>" + tBalanceStr + "</td>";
-    output += "<td class='text-right'>";
-    output += wxString::Format("<a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
-        , "ACCOUNTS_INFO", "ACCOUNTS_INFO");
-    if (Model_Account::hasActiveTermAccount())
-        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
-        , "TERM_ACCOUNTS_INFO", "TERM_ACCOUNTS_INFO");
-    output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
-        , "INVEST", "INVEST");
-    output += "</td>\n";
     output += "</tfoot></table>";
 
     return output;

@@ -66,14 +66,14 @@ void  mmReportPayeeExpenses::RefreshData()
         if (payee)
             line.name = payee->PAYEENAME;
         line.incomes = entry.second.first;
-        line.expences = entry.second.second;
+        line.expenses = entry.second.second;
         data_.push_back(line);
 
-        if (line.incomes + line.expences < 0)
+        if (line.incomes + line.expenses < 0)
         {
             ValuePair vp;
             vp.label = line.name;
-            vp.amount = line.incomes + line.expences;
+            vp.amount = line.incomes + line.expenses;
             valueList_.push_back(vp);
         }
     }
@@ -104,7 +104,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         std::stable_sort(data_.begin(), data_.end()
             , [] (const data_holder& x, const data_holder& y)
             {
-                if (x.expences != y.expences) return x.expences < y.expences;
+                if (x.expenses != y.expenses) return x.expenses < y.expenses;
                 else return x.name < y.name;
             }
         );
@@ -114,7 +114,7 @@ wxString mmReportPayeeExpenses::getHTMLText()
         std::stable_sort(data_.begin(), data_.end()
             , [] (const data_holder& x, const data_holder& y)
             {
-                if (x.expences+x.incomes != y.expences+y.incomes) return x.expences+x.incomes < y.expences+y.incomes;
+                if (x.expenses+x.incomes != y.expenses+y.incomes) return x.expenses+x.incomes < y.expenses+y.incomes;
                 else return x.name < y.name;
             }
         );
@@ -141,9 +141,9 @@ wxString mmReportPayeeExpenses::getHTMLText()
     else
         hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_INCOME), _("Incomes"), true);
     if(PAYEE_SORT_BY_EXPENSE == sortColumn_)
-        hb.addTableHeaderCell(_("Expences"), true);
+        hb.addTableHeaderCell(_("Expenses"), true);
     else
-        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_EXPENSE), _("Expences"), true);
+        hb.addTableHeaderCellLink(wxString::Format("sort:%d", PAYEE_SORT_BY_EXPENSE), _("Expenses"), true);
     if(PAYEE_SORT_BY_DIFF == sortColumn_)
         hb.addTableHeaderCell(_("Difference"), true);
     else
@@ -155,8 +155,8 @@ wxString mmReportPayeeExpenses::getHTMLText()
         hb.startTableRow();
         hb.addTableCell(entry.name);
         hb.addMoneyCell(entry.incomes);
-        hb.addMoneyCell(entry.expences);
-        hb.addMoneyCell(entry.incomes + entry.expences);
+        hb.addMoneyCell(entry.expenses);
+        hb.addMoneyCell(entry.incomes + entry.expenses);
         hb.endTableRow();
     }
 

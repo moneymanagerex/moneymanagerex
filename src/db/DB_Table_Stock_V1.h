@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -254,17 +254,17 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             view_ = view;
         
-            STOCKID = q.GetInt(0); // STOCKID
-            HELDAT = q.GetInt(1); // HELDAT
-            PURCHASEDATE = q.GetString(2); // PURCHASEDATE
-            STOCKNAME = q.GetString(3); // STOCKNAME
-            SYMBOL = q.GetString(4); // SYMBOL
-            NUMSHARES = q.GetDouble(5); // NUMSHARES
-            PURCHASEPRICE = q.GetDouble(6); // PURCHASEPRICE
-            NOTES = q.GetString(7); // NOTES
-            CURRENTPRICE = q.GetDouble(8); // CURRENTPRICE
-            VALUE = q.GetDouble(9); // VALUE
-            COMMISSION = q.GetDouble(10); // COMMISSION
+            STOCKID = q.GetInt("STOCKID");
+            HELDAT = q.GetInt("HELDAT");
+            PURCHASEDATE = q.GetString("PURCHASEDATE");
+            STOCKNAME = q.GetString("STOCKNAME");
+            SYMBOL = q.GetString("SYMBOL");
+            NUMSHARES = q.GetDouble("NUMSHARES");
+            PURCHASEPRICE = q.GetDouble("PURCHASEPRICE");
+            NOTES = q.GetString("NOTES");
+            CURRENTPRICE = q.GetDouble("CURRENTPRICE");
+            VALUE = q.GetDouble("VALUE");
+            COMMISSION = q.GetDouble("COMMISSION");
         }
 
         Data& operator=(const Data& other)
@@ -482,7 +482,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(11, entity->STOCKID);
 
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -519,7 +518,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
             wxString sql = "DELETE FROM STOCK_V1 WHERE STOCKID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -606,7 +604,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -640,7 +637,6 @@ struct DB_Table_STOCK_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

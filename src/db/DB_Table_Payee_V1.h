@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:17:50.893692.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -187,10 +187,10 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             view_ = view;
         
-            PAYEEID = q.GetInt(0); // PAYEEID
-            PAYEENAME = q.GetString(1); // PAYEENAME
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
+            PAYEEID = q.GetInt("PAYEEID");
+            PAYEENAME = q.GetString("PAYEENAME");
+            CATEGID = q.GetInt("CATEGID");
+            SUBCATEGID = q.GetInt("SUBCATEGID");
         }
 
         Data& operator=(const Data& other)
@@ -345,7 +345,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             if (entity->id() > 0)
                 stmt.Bind(4, entity->PAYEEID);
 
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -382,7 +381,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             wxString sql = "DELETE FROM PAYEE_V1 WHERE PAYEEID = ?";
             wxSQLite3Statement stmt = db->PrepareStatement(sql);
             stmt.Bind(1, id);
-            //wxLogDebug(stmt.GetSQL());
             stmt.ExecuteUpdate();
             stmt.Finalize();
 
@@ -469,7 +467,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
             wxSQLite3Statement stmt = db->PrepareStatement(this->query() + where);
             stmt.Bind(1, id);
 
-            //wxLogDebug(stmt.GetSQL());
             wxSQLite3ResultSet q = stmt.ExecuteQuery();
             if(q.NextRow())
             {
@@ -503,7 +500,6 @@ struct DB_Table_PAYEE_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
