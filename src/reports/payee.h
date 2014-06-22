@@ -40,11 +40,11 @@ protected:
         , mmDateRange* date_range, bool ignoreFuture) const;
 
     wxString title_;
-    enum TYPE {INCOME = 0, EXPENCES, MAX};
+    enum TYPE {INCOME = 0, EXPENSES, MAX};
 
 private:
     // structure for sorting of data
-    struct data_holder { wxString name; double incomes; double expences; };
+    struct data_holder { wxString name; double incomes; double expenses; };
     std::vector<data_holder> data_;
     std::vector<ValuePair> valueList_;
     double positiveTotal_;
@@ -55,7 +55,7 @@ class mmReportPayeeExpensesCurrentMonth: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesCurrentMonth(): mmReportPayeeExpenses(
-        wxString::Format(_("Payee report - %s"), _("Current Month")), new mmCurrentMonth())
+        wxString::Format(_("Payee Report - %s"), _("Current Month")), new mmCurrentMonth())
     {}
 };
 
@@ -63,7 +63,7 @@ class mmReportPayeeExpensesCurrentMonthToDate: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesCurrentMonthToDate(): mmReportPayeeExpenses(
-        wxString::Format(_("Payee report - %s"), _("Current Month to Date")), new mmCurrentMonthToDate())
+        wxString::Format(_("Payee Report - %s"), _("Current Month to Date")), new mmCurrentMonthToDate())
     {}
 };
 
@@ -71,7 +71,7 @@ class mmReportPayeeExpensesLastMonth: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesLastMonth(): mmReportPayeeExpenses(
-        wxString::Format(_("Payee report - %s"), _("Last Month")), new mmLastMonth())
+        wxString::Format(_("Payee Report - %s"), _("Last Month")), new mmLastMonth())
     {}
 };
 
@@ -79,7 +79,7 @@ class mmReportPayeeExpensesLast30Days: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesLast30Days(): mmReportPayeeExpenses(
-       wxString::Format(_("Payee report - %s"), _("Last 30 Days")), new mmLast30Days())
+       wxString::Format(_("Payee Report - %s"), _("Last 30 Days")), new mmLast30Days())
     {}
 };
 
@@ -87,7 +87,7 @@ class mmReportPayeeExpensesLastYear: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesLastYear(): mmReportPayeeExpenses(
-       wxString::Format(_("Payee report - %s"), _("Last Year")), new mmLastYear())
+       wxString::Format(_("Payee Report - %s"), _("Last Year")), new mmLastYear())
     {}
 };
 
@@ -95,7 +95,7 @@ class mmReportPayeeExpensesCurrentYear: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesCurrentYear(): mmReportPayeeExpenses(
-       wxString::Format(_("Payee report - %s"), _("Current Year")), new mmCurrentYear())
+       wxString::Format(_("Payee Report - %s"), _("Current Year")), new mmCurrentYear())
     {}
 };
 
@@ -103,7 +103,7 @@ class mmReportPayeeExpensesCurrentYearToDate : public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesCurrentYearToDate() : mmReportPayeeExpenses(
-        wxString::Format(_("Payee report - %s"), _("Current Year to Date")), new mmCurrentYearToDate())
+        wxString::Format(_("Payee Report - %s"), _("Current Year to Date")), new mmCurrentYearToDate())
     {}
 };
 
@@ -111,7 +111,7 @@ class mmReportPayeeExpensesLastFinancialYear : public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesLastFinancialYear(int day, int month): mmReportPayeeExpenses(
-       wxString::Format(_("Payee report - %s"), _("Last Financial Year")), new mmLastFinancialYear(day, month))
+       wxString::Format(_("Payee Report - %s"), _("Last Financial Year")), new mmLastFinancialYear(day, month))
     {}
 };
 
@@ -119,7 +119,7 @@ class mmReportPayeeExpensesCurrentFinancialYear: public mmReportPayeeExpenses
 {
 public:
     mmReportPayeeExpensesCurrentFinancialYear(int day, int month): mmReportPayeeExpenses(
-        wxString::Format(_("Payee report - %s"), _("Current Financial Year")), new mmCurrentFinancialYear(day, month))
+        wxString::Format(_("Payee Report - %s"), _("Current Financial Year")), new mmCurrentFinancialYear(day, month))
     {}
 };
 
@@ -127,7 +127,7 @@ class mmReportPayeeExpensesCurrentFinancialYearToDate : public mmReportPayeeExpe
 {
 public:
     mmReportPayeeExpensesCurrentFinancialYearToDate(int day, int month) : mmReportPayeeExpenses(
-        wxString::Format(_("Payee report - %s"), _("Current Financial Year to Date")), new mmCurrentFinancialYearToDate(day, month))
+        wxString::Format(_("Payee Report - %s"), _("Current Financial Year to Date")), new mmCurrentFinancialYearToDate(day, month))
     {}
 };
 

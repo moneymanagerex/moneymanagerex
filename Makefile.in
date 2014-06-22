@@ -225,11 +225,13 @@ all: $(LIBPREFIX)wxsqlite$(LIBEXT) $(LIBPREFIX)lua$(LIBEXT) mmex$(EXEEXT)
 
 install: install_mmex
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
-	(cd $(srcdir)/resources ; $(INSTALL_DATA)  kaching.wav mmex.ico master.css $(DESTDIR)$(respath))
+	(cd $(srcdir)/resources ; $(INSTALL_DATA)  kaching.wav mmex.ico master.css home_page.htt $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(respath)
 	(cd $(srcdir)/3rd/Chart.js ; $(INSTALL_DATA)  Chart.js $(DESTDIR)$(respath))
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/..
 	(cd $(srcdir)/resources ; $(INSTALL_DATA)  Info.plist $(DESTDIR)$(datadir)/..)
+	$(INSTALL_DIR) $(DESTDIR)$(datadir)
+	(cd $(srcdir)/doc ; $(INSTALL_DATA)  version.txt contrib.txt license.txt $(DESTDIR)$(datadir))
 	$(INSTALL_DIR) $(DESTDIR)$(datadir)/../Resources
 	(cd $(srcdir)/graphics ; $(INSTALL_DATA)  mmex.icns mmdb.icns $(DESTDIR)$(datadir)/../Resources)
 	$(INSTALL_DIR) $(DESTDIR)$(popath)
@@ -260,9 +262,10 @@ install: install_mmex
 	(cd $(srcdir)/doc ; $(INSTALL_DATA)  mmex.1.gz $(DESTDIR)$(datadir)/man/man1)
 
 uninstall: uninstall_mmex
-	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css)
+	(cd $(DESTDIR)$(respath) ; rm -f kaching.wav mmex.ico master.css home_page.htt)
 	(cd $(DESTDIR)$(respath) ; rm -f Chart.js)
 	(cd $(DESTDIR)$(datadir)/.. ; rm -f Info.plist)
+	(cd $(DESTDIR)$(datadir) ; rm -f version.txt contrib.txt license.txt)
 	(cd $(DESTDIR)$(datadir)/../Resources ; rm -f mmex.icns mmdb.icns)
 	(cd $(DESTDIR)$(popath) ; rm -f *.mo)
 	(cd $(DESTDIR)$(datadir)/doc/mmex ; rm -f *.txt)

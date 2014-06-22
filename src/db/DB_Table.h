@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -115,7 +115,6 @@ const typename TABLE::Data_Set find_by(TABLE* table, wxSQLite3Database* db, bool
         wxSQLite3Statement stmt = db->PrepareStatement(query);
         bind(stmt, 1, args...);
 
-        //wxLogDebug(stmt.GetSQL());
         wxSQLite3ResultSet q = stmt.ExecuteQuery();
 
         while(q.NextRow())

@@ -9500,7 +9500,14 @@ $as_echo "disabled" >&6; }
 
         if test "x$GCC" = "xyes"; then
             DEPSMODE=gcc
-            DEPSFLAG="-MMD"
+            case "${BAKEFILE_HOST}" in
+                *-*-darwin* )
+                                                            DEPSFLAG="-MMD"
+                ;;
+                * )
+                    DEPSFLAG="-MMD"
+                ;;
+            esac
             { $as_echo "$as_me:${as_lineno-$LINENO}: result: gcc" >&5
 $as_echo "gcc" >&6; }
         elif test "x$MWCC" = "xyes"; then

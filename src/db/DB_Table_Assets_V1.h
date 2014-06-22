@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -223,14 +223,14 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             view_ = view;
         
-            ASSETID = q.GetInt(0); // ASSETID
-            STARTDATE = q.GetString(1); // STARTDATE
-            ASSETNAME = q.GetString(2); // ASSETNAME
-            VALUE = q.GetDouble(3); // VALUE
-            VALUECHANGE = q.GetString(4); // VALUECHANGE
-            NOTES = q.GetString(5); // NOTES
-            VALUECHANGERATE = q.GetDouble(6); // VALUECHANGERATE
-            ASSETTYPE = q.GetString(7); // ASSETTYPE
+            ASSETID = q.GetInt("ASSETID");
+            STARTDATE = q.GetString("STARTDATE");
+            ASSETNAME = q.GetString("ASSETNAME");
+            VALUE = q.GetDouble("VALUE");
+            VALUECHANGE = q.GetString("VALUECHANGE");
+            NOTES = q.GetString("NOTES");
+            VALUECHANGERATE = q.GetDouble("VALUECHANGERATE");
+            ASSETTYPE = q.GetString("ASSETTYPE");
         }
 
         Data& operator=(const Data& other)
@@ -579,7 +579,6 @@ struct DB_Table_ASSETS_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

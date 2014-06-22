@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -198,11 +198,11 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             view_ = view;
         
-            SPLITTRANSID = q.GetInt(0); // SPLITTRANSID
-            TRANSID = q.GetInt(1); // TRANSID
-            CATEGID = q.GetInt(2); // CATEGID
-            SUBCATEGID = q.GetInt(3); // SUBCATEGID
-            SPLITTRANSAMOUNT = q.GetDouble(4); // SPLITTRANSAMOUNT
+            SPLITTRANSID = q.GetInt("SPLITTRANSID");
+            TRANSID = q.GetInt("TRANSID");
+            CATEGID = q.GetInt("CATEGID");
+            SUBCATEGID = q.GetInt("SUBCATEGID");
+            SPLITTRANSAMOUNT = q.GetDouble("SPLITTRANSAMOUNT");
         }
 
         Data& operator=(const Data& other)
@@ -524,7 +524,6 @@ struct DB_Table_SPLITTRANSACTIONS_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

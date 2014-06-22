@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -176,9 +176,9 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             view_ = view;
         
-            INFOID = q.GetInt(0); // INFOID
-            INFONAME = q.GetString(1); // INFONAME
-            INFOVALUE = q.GetString(2); // INFOVALUE
+            INFOID = q.GetInt("INFOID");
+            INFONAME = q.GetString("INFONAME");
+            INFOVALUE = q.GetString("INFOVALUE");
         }
 
         Data& operator=(const Data& other)
@@ -482,7 +482,6 @@ struct DB_Table_INFOTABLE_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

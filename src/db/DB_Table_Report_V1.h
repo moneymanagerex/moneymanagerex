@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -212,13 +212,13 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             view_ = view;
         
-            REPORTID = q.GetInt(0); // REPORTID
-            REPORTNAME = q.GetString(1); // REPORTNAME
-            GROUPNAME = q.GetString(2); // GROUPNAME
-            SQLCONTENT = q.GetString(3); // SQLCONTENT
-            LUACONTENT = q.GetString(4); // LUACONTENT
-            TEMPLATECONTENT = q.GetString(5); // TEMPLATECONTENT
-            DESCRIPTION = q.GetString(6); // DESCRIPTION
+            REPORTID = q.GetInt("REPORTID");
+            REPORTNAME = q.GetString("REPORTNAME");
+            GROUPNAME = q.GetString("GROUPNAME");
+            SQLCONTENT = q.GetString("SQLCONTENT");
+            LUACONTENT = q.GetString("LUACONTENT");
+            TEMPLATECONTENT = q.GetString("TEMPLATECONTENT");
+            DESCRIPTION = q.GetString("DESCRIPTION");
         }
 
         Data& operator=(const Data& other)
@@ -558,7 +558,6 @@ struct DB_Table_REPORT_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

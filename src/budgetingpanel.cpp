@@ -244,11 +244,11 @@ void mmBudgetingPanel::CreateControls()
     income_diff_ = new wxStaticText( itemPanel3,
         ID_DIALOG_BUDGETENTRY_SUMMARY_INCOME_DIF, "$");
 
-    expences_estimated_ = new wxStaticText( itemPanel3,
+    expenses_estimated_ = new wxStaticText( itemPanel3,
         ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_EST, "$", wxDefaultPosition, wxSize(120, -1));
-    expences_actual_ = new wxStaticText( itemPanel3,
+    expenses_actual_ = new wxStaticText( itemPanel3,
         ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_ACT, "$", wxDefaultPosition, wxSize(120, -1));
-    expences_diff_ = new wxStaticText( itemPanel3,
+    expenses_diff_ = new wxStaticText( itemPanel3,
         ID_DIALOG_BUDGETENTRY_SUMMARY_EXPENSES_DIF, "$");
 
     itemIncomeSizer->Add(new wxStaticText( itemPanel3, wxID_STATIC, _("Income: ")));
@@ -261,11 +261,11 @@ void mmBudgetingPanel::CreateControls()
 
     itemIncomeSizer->Add(new wxStaticText( itemPanel3, wxID_STATIC, _("Expenses: ")));
     itemIncomeSizer->Add(new wxStaticText( itemPanel3, wxID_STATIC, _("Estimated: ")));
-    itemIncomeSizer->Add(expences_estimated_);
+    itemIncomeSizer->Add(expenses_estimated_);
     itemIncomeSizer->Add(new wxStaticText( itemPanel3, wxID_STATIC, _("Actual: ")));
-    itemIncomeSizer->Add(expences_actual_);
+    itemIncomeSizer->Add(expenses_actual_);
     itemIncomeSizer->Add(new wxStaticText( itemPanel3, wxID_STATIC, _("Difference: ")));
-    itemIncomeSizer->Add(expences_diff_);
+    itemIncomeSizer->Add(expenses_diff_);
     /* ---------------------- */
 
     wxSize imageSize(16, 16);
@@ -472,9 +472,9 @@ void mmBudgetingPanel::initVirtualListControl()
     act_amount = Model_Currency::toCurrency(actExpenses);
     diff_amount = Model_Currency::toCurrency(estExpenses - actExpenses);
 
-    expences_estimated_->SetLabel(est_amount);
-    expences_actual_->SetLabel(act_amount);
-    expences_diff_->SetLabel(diff_amount);
+    expenses_estimated_->SetLabel(est_amount);
+    expenses_actual_->SetLabel(act_amount);
+    expenses_diff_->SetLabel(diff_amount);
     UpdateBudgetHeading();
 }
 

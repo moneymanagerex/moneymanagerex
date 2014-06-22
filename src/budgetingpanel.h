@@ -114,9 +114,9 @@ private:
     wxStaticText* income_estimated_;
     wxStaticText* income_actual_;
     wxStaticText* income_diff_;
-    wxStaticText* expences_estimated_;
-    wxStaticText* expences_actual_;
-    wxStaticText* expences_diff_;
+    wxStaticText* expenses_estimated_;
+    wxStaticText* expenses_actual_;
+    wxStaticText* expenses_diff_;
 
     bool Create( wxWindow *parent, wxWindowID winid,
                  const wxPoint& pos = wxDefaultPosition,

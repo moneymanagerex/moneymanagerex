@@ -194,7 +194,7 @@ wxString mmReportCategoryExpenses::getHTMLText()
 
     if (type_ == NONE)
     {
-        hb.addTotalRow(_("Total Expences: "), 3, group_total[-1]);
+        hb.addTotalRow(_("Total Expenses: "), 3, group_total[-1]);
         hb.addTotalRow(_("Total Income: "), 3, group_total[-2]);
     }
     hb.addTotalRow(_("Grand Total: "), 3, group_total[-1] + group_total[-2]);

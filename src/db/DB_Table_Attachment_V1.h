@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -195,11 +195,11 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         {
             view_ = view;
         
-            ATTACHMENTID = q.GetInt(0); // ATTACHMENTID
-            REFTYPE = q.GetString(1); // REFTYPE
-            REFID = q.GetInt(2); // REFID
-            DESCRIPTION = q.GetString(3); // DESCRIPTION
-            FILENAME = q.GetString(4); // FILENAME
+            ATTACHMENTID = q.GetInt("ATTACHMENTID");
+            REFTYPE = q.GetString("REFTYPE");
+            REFID = q.GetInt("REFID");
+            DESCRIPTION = q.GetString("DESCRIPTION");
+            FILENAME = q.GetString("FILENAME");
         }
 
         Data& operator=(const Data& other)
@@ -521,7 +521,6 @@ struct DB_Table_ATTACHMENT_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);

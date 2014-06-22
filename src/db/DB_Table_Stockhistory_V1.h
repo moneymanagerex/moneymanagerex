@@ -10,7 +10,7 @@
  *      @brief
  *
  *      Revision History:
- *          AUTO GENERATED at 2014-06-14 21:30:12.928505.
+ *          AUTO GENERATED at 2014-06-22 10:05:08.408033.
  *          DO NOT EDIT!
  */
 //=============================================================================
@@ -197,11 +197,11 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             view_ = view;
         
-            HISTID = q.GetInt(0); // HISTID
-            STOCKID = q.GetInt(1); // STOCKID
-            DATE = q.GetString(2); // DATE
-            VALUE = q.GetDouble(3); // VALUE
-            UPDTYPE = q.GetInt(4); // UPDTYPE
+            HISTID = q.GetInt("HISTID");
+            STOCKID = q.GetInt("STOCKID");
+            DATE = q.GetString("DATE");
+            VALUE = q.GetDouble("VALUE");
+            UPDTYPE = q.GetInt("UPDTYPE");
         }
 
         Data& operator=(const Data& other)
@@ -523,7 +523,6 @@ struct DB_Table_STOCKHISTORY_V1 : public DB_Table
         {
             wxSQLite3ResultSet q = db->ExecuteQuery(col == COLUMN(0) ? this->query() : this->query() + " ORDER BY " + column_to_name(col) + " COLLATE NOCASE " + (asc ? " ASC " : " DESC "));
 
-            //wxLogDebug(q.GetSQL());
             while(q.NextRow())
             {
                 Self::Data entity(q, this);
