@@ -122,12 +122,8 @@ bool Model_Usage::send(const Data* r)
     url += wxString::Format("Platform=%s", wxPlatformInfo::Get().GetPortIdShortName());
 
 	//Operating System
-	//Workaround to recognize also OS not present in wxWidgets 3.0.0 stable
-	wxString OsDescription = wxGetOsDescription();
-	OsDescription.Replace("Windows NT 6.2", "Windows 8");
-
 	url += "&";
-	url += wxString::Format("OperatingSystem=%s", OsDescription);
+    url += wxString::Format("OperatingSystem=%s", wxGetOsDescription());
 
 	//Language
     wxString Language = Model_Setting::instance().GetStringSetting(LANGUAGE_PARAMETER, "english");
