@@ -4,15 +4,15 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-22 09:24+0400\n"
-"PO-Revision-Date: 2014-06-22 09:26+0400\n"
-"Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
+"PO-Revision-Date: 2014-06-22 21:48+0100\n"
+"Last-Translator: Phiilippe Rasquinet <philippe@plumes-et-calames.be>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2013-03-24 12:20+0000\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
@@ -32,7 +32,7 @@ msgstr "Site Web"
 
 #: src/aboutdialog.cpp:89
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: src/aboutdialog.cpp:92
 msgid "Wiki page"
@@ -43,12 +43,10 @@ msgid "Bug reports"
 msgstr "Rapports de bugs"
 
 #: src/aboutdialog.cpp:99
-#, fuzzy
 msgid "Follow MMEX on Facebook"
-msgstr "rejoignez-nous sur Facebook"
+msgstr "Rejoignez-nous sur Facebook"
 
 #: src/aboutdialog.cpp:102
-#, fuzzy
 msgid "Follow MMEX on Twitter"
 msgstr "compte Twitter MMEX"
 
@@ -2960,33 +2958,24 @@ msgid "&Bank Accounts"
 msgstr "Comptes bancaires"
 
 #: src/mmframe.cpp:1283
-#, fuzzy
 msgid "Expand Bank Accounts on navigation tree"
-msgstr ""
-"Etendre les comptes bancaires sur la page d'accueil quand la page est "
-"rafraichie"
+msgstr "Etendre les comptes bancaires "
 
 #: src/mmframe.cpp:1285
 msgid "Term &Accounts"
 msgstr "Termes et comptes"
 
 #: src/mmframe.cpp:1285
-#, fuzzy
 msgid "Expand Term Accounts on navigation tree"
-msgstr ""
-"Etendre les comptes à terme sur la page d'accueil quand la page est "
-"rafraichie"
+msgstr "Etendre les comptes à terme "
 
 #: src/mmframe.cpp:1287
 msgid "&Stock Accounts"
 msgstr "Compte&S d'actions"
 
 #: src/mmframe.cpp:1287
-#, fuzzy
 msgid "Expand Stock Accounts on navigation tree"
-msgstr ""
-"Etendre les comptes d'actions sur la page d'accueil quand la page est "
-"rafraichie"
+msgstr "Etendre les comptes-titres"
 
 #: src/mmframe.cpp:1289
 msgid "Budgets: As &Financial Years"
@@ -3162,9 +3151,8 @@ msgstr ""
 "de problème avec le logiciel"
 
 #: src/mmframe.cpp:1451
-#, fuzzy
 msgid "Register/View Release &Notifications"
-msgstr "Registre/Voir les Réalisations et les Notifications"
+msgstr "Enregistrer/Voir les Révisions  et les Notifications"
 
 #: src/mmframe.cpp:1452
 msgid "Sign up to Notification Mailing List or View existing announcements."
@@ -3330,9 +3318,8 @@ msgid "MMEX Options have been updated."
 msgstr "Les options de MMEX ont été mises à jour."
 
 #: src/mmframe.cpp:2093 src/optionsdialog.cpp:108
-#, fuzzy
 msgid "MMEX Options"
-msgstr "Nouvelles options MMEX."
+msgstr "Options MMEX."
 
 #: src/mmframe.cpp:2187
 msgid "Choose HTML file to Export"
@@ -3585,7 +3572,6 @@ msgid "Difference:"
 msgstr "Différence :"
 
 #: src/mmhomepagepanel.cpp:782
-#, fuzzy
 msgid "Income/Expenses"
 msgstr "Balance des revenus et dépenses"
 
@@ -4035,11 +4021,8 @@ msgid "Stock Accounts"
 msgstr "Comptes d'action"
 
 #: src/optionsdialog.cpp:412
-#, fuzzy
 msgid "Expand Stocks Accounts in Trew View when tree is refreshed"
-msgstr ""
-"Etendre le comptes bancaires en arborescence quand l'arborescence est "
-"rafraîchie"
+msgstr "Etendre les comptes-titres quand l'arborescence est rafraîchie"
 
 #: src/optionsdialog.cpp:416
 msgid "View Budgets as Financial Years"
@@ -4591,7 +4574,7 @@ msgid "%"
 msgstr "%"
 
 #: src/reports/cashflow.cpp:60
-#, fuzzy, c-format
+#, c-format
 msgid "Cash Flow Forecast for %i Years Ahead"
 msgstr ""
 "Prévisions de la trésorerie pour le(s) compte(s) sélectionné(s) sur les %d "
@@ -4629,7 +4612,6 @@ msgid "Category Total: "
 msgstr "Total pour la Catégorie: "
 
 #: src/reports/categexp.cpp:197
-#, fuzzy
 msgid "Total Expenses: "
 msgstr "Total des dépenses"
 
@@ -4675,7 +4657,7 @@ msgid "Categories - %s"
 msgstr "Catégories - %s"
 
 #: src/reports/categovertimeperf.cpp:36
-#, fuzzy, c-format
+#, c-format
 msgid "Category Income/Expenses: %s"
 msgstr " revenus et dépenses par catégorie: %s"
 
@@ -5243,40 +5225,34 @@ msgid "Please type in a non empty name."
 msgstr "Merci d'encoder un nom"
 
 #: src/util.cpp:476
-#, fuzzy
 msgid "Unable to check for updates!"
-msgstr "Impossible d'ouvrir le fichier."
+msgstr "Recheche des mises à jour impossible!"
 
 #: src/util.cpp:477
-#, fuzzy
 msgid "Error code:"
 msgstr "Erreur"
 
 #: src/util.cpp:479 src/util.cpp:588 src/util.cpp:595
 msgid "MMEX Update Check"
-msgstr ""
+msgstr "Vérification des mises à jour."
 
 #: src/util.cpp:583
-#, fuzzy
 msgid "New version of MMEX is available"
 msgstr "Une nouvelle version est disponible."
 
 #: src/util.cpp:584
 msgid "Your current version is: "
-msgstr ""
+msgstr "Votre version actuelle est: "
 
 #: src/util.cpp:585
-#, fuzzy
 msgid "New version is: "
-msgstr "Une nouvelle version est disponible."
+msgstr "La  nouvelle version est:"
 
 #: src/util.cpp:586
-#, fuzzy
 msgid "Would you like to download it now ?"
-msgstr "Voulez-vous réellement les télécharger ?"
+msgstr "Voulez-vous   télécharger Maintenant ?"
 
 #: src/util.cpp:594
-#, fuzzy
 msgid "You already have the latest version"
 msgstr "Vous utilisez la dernière version disponible!"
 
@@ -5351,16 +5327,18 @@ msgid "Cannot get data from website"
 msgstr "Impossible d'obtenir les données depuis le site"
 
 #: src/webapp.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Account '%s' not found!"
-msgstr "' non trouvé!"
+msgstr "Compte'%s' non trouvé!"
 
 #: src/webapp.cpp:455
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "Opération  sauvegardées dans le premier compte en banque: "
+msgstr ""
+"L'opération  sera inérée dans le premier compte en banque: \n"
+"'%s' et marquer en tant que 'suivi'"
 
 #: src/webapp.cpp:457
 msgid "Wrong WebApp account"
@@ -5716,7 +5694,7 @@ msgstr "apport sur Tiers"
 #: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
 #: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
 #: src/reports/payee.h:130
-#, fuzzy, c-format
+#, c-format
 msgid "Payee Report - %s"
 msgstr "Raport sur Tiers -%s"
 
