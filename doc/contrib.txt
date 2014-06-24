@@ -121,6 +121,8 @@ Pascal Fürhoff
 Panos Sapikas
 Jean-François GATEAU
 Janos Horvath
+Sasa Mrvos
+Douglas Taylor
 
 2013
 CodeLathe LLC
