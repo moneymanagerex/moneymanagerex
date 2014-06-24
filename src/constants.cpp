@@ -57,22 +57,7 @@ const int mmex::MIN_DATAVERSION = 2;
 const wxString mmex::DATAVERSION = "2";
 const wxString mmex::DEFDATEFORMAT =  "%Y-%m-%d"; //ISO 8601
 const wxString mmex::DEFDELIMTER = ",";
-
-// Using google: To specify the exchange, use exch:code
-// Using yahoo: To specify the exchange, use code.exch
-
-// const wxChar *const mmex::DEFSTOCKURL = "http://www.google.com/finance?q=%s";
-
-// Will display the stock page when using Looks up the current value
-const wxString mmex::DEFSTOCKURL = "http://finance.yahoo.com/echarts?s=%s";
-
-// Looks up the current value
-// const wxChar *const mmex::DEFSTOCKURL = "http://finance.yahoo.com/lookup?s=%s";
-
-//US Dollar (USD) in Euro (EUR) Chart
-//http://www.google.com/finance?q=CURRENCY%3AUSD
-
-//----------------------------------------------------------------------------
+const wxString mmex::DEFSTOCKURL = mmex::weblink::DefStockUrl;
 
 const wxString mmex::getProgramName()
 {
@@ -96,58 +81,54 @@ const wxString mmex::getProgramCopyright()
 {
     return "(c) 2005-2014 Madhan Kanagavel";
 }
-const wxString mmex::getProgramWebSite()
-{
-    return "http://www.moneymanagerex.org";
-}
-const wxString mmex::getProgramUpdateWebSite()
-{
-    return "http://www.moneymanagerex.org/version.html";
-}
-const wxString mmex::getProgramForum()
-{
-    return "http://forum.moneymanagerex.org";
-}
-const wxString mmex::getProgramWiki()
-{
-    return "http://wiki.moneymanagerex.org";
-}
-const wxString mmex::getProgramBugReport()
-{
-    return "http://bugreport.moneymanagerex.org";
-}
-const wxString mmex::getProgramDonateSite()
-{
-    return "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
-}
-const wxString mmex::getProgramTwitterSite()
-{
-    return "https://twitter.com/MoneyManagerEx";
-}
-const wxString mmex::getProgramFacebookSite()
-{
-    return "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
-}
 const wxString mmex::getProgramDescription()
 {
     wxString description;
     description << _("MMEX is using the following support products") << ":\n"
-                << "======================================\n"
-                << wxVERSION_STRING << "\n"
-                << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
-                << wxSQLITE3_VERSION_STRING << "\n"
-                << "Mongoose " << MONGOOSE_VERSION << "\n"
-                << LUA_VERSION << "\n";
-    #if defined(_MSC_VER)
-        description << "Microsoft Visual Studio " <<_MSC_VER;
-    #elif defined(__clang__)
-        description << "Clang/LLVM " <<__VERSION__;
-    #elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
-        description << "GNU GCC/G++ " << __VERSION__;
-    #endif
+        << "======================================\n"
+        << wxVERSION_STRING << "\n"
+        << "SQLite3 " << wxSQLite3Database::GetVersion() << "\n"
+        << wxSQLITE3_VERSION_STRING << "\n"
+        << "Mongoose " << MONGOOSE_VERSION << "\n"
+        << LUA_VERSION << "\n";
+#if defined(_MSC_VER)
+    description << "Microsoft Visual Studio " << _MSC_VER;
+#elif defined(__clang__)
+    description << "Clang/LLVM " << __VERSION__;
+#elif (defined(__GNUC__) || defined(__GNUG__)) && !(defined(__clang__) || defined(__INTEL_COMPILER))
+    description << "GNU GCC/G++ " << __VERSION__;
+#endif
 
     return description;
 }
+
+/* Namespace weblink */
+const wxString mmex::weblink::WebSite = "http://www.moneymanagerex.org";
+const wxString mmex::weblink::Update = "http://www.moneymanagerex.org/version.html";
+const wxString mmex::weblink::UsageStats = "http://usagestats.moneymanagerex.org/API/main_stats_v1.php";
+const wxString mmex::weblink::Download = "http://www.moneymanagerex.org/download";
+const wxString mmex::weblink::News = "http://www.moneymanagerex.org/news";
+const wxString mmex::weblink::Forum = "http://forum.moneymanagerex.org";
+const wxString mmex::weblink::Wiki = "http://wiki.moneymanagerex.org";
+const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
+const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
+const wxString mmex::weblink::Twitter = "https://twitter.com/MoneyManagerEx";
+const wxString mmex::weblink::Facebook = "http://www.facebook.com/pages/Money-Manager-Ex/242286559144586";
+const wxString mmex::weblink::YahooQuotes = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv";
+
+// Will display the stock page when using Looks up the current value
+const wxString mmex::weblink::DefStockUrl = "http://finance.yahoo.com/echarts?s=%s";
+// Looks up the current value
+// const wxChar *const mmex::DEFSTOCKURL = "http://finance.yahoo.com/lookup?s=%s";
+
+// Using google: To specify the exchange, use exch:code
+// Using yahoo: To specify the exchange, use code.exch
+// const wxChar *const mmex::DEFSTOCKURL = "http://www.google.com/finance?q=%s";
+
+//US Dollar (USD) in Euro (EUR) Chart
+//http://www.google.com/finance?q=CURRENCY%3AUSD
+
+/* End namespace weblink */
 
 const wxString LANGUAGE_PARAMETER = "LANGUAGE";
 const wxString INIDB_USE_TRANSACTION_SOUND = "USETRANSSOUND";

@@ -82,27 +82,20 @@ void mmAboutDialog::InitControls()
     hb.addHeader(3, "Money Manager Ex");
     hb.addParaText(html);
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramWebSite()
-        , _("Website"));
+    hb.addTableCellLink(mmex::weblink::WebSite, _("Website"));
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramForum()
-        , _("Forum"));
+    hb.addTableCellLink(mmex::weblink::Forum, _("Forum"));
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramWiki()
-        , _("Wiki page"));
+    hb.addTableCellLink(mmex::weblink::Wiki, _("Wiki page"));
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramBugReport()
-        , _("Bug reports"));
+    hb.addTableCellLink(mmex::weblink::BugReport, _("Bug reports"));
     hb.addLineBreak();
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramFacebookSite()
-        , _("Follow MMEX on Facebook"));
+    hb.addTableCellLink(mmex::weblink::Facebook, _("Follow MMEX on Facebook"));
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramTwitterSite()
-        , _("Follow MMEX on Twitter"));
+    hb.addTableCellLink(mmex::weblink::Twitter, _("Follow MMEX on Twitter"));
     hb.addLineBreak();
-    hb.addTableCellLink(mmex::getProgramDonateSite()
-        , _("Donate"));
+    hb.addTableCellLink(mmex::weblink::Donate, _("Donate"));
     hb.addLineBreak();
 
     hb.end();

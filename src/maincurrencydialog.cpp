@@ -337,7 +337,7 @@ bool mmMainCurrencyDialog::onlineUpdateCurRate(int curr_id)
 {
     wxString base_symbol = "";
     wxString msg = "";
-    wxString site = "http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv";
+    wxString site = mmex::weblink::YahooQuotes;
     bool ok = true;
 
     Model_Currency::Data * base_currency = Model_Currency::GetBaseCurrency();
