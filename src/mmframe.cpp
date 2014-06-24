@@ -2347,7 +2347,7 @@ void mmGUIFrame::OnCurrency(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 {
-    const auto &accounts = Model_Account::instance().all();
+    const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     if (accounts.empty())
     {
         wxMessageBox(_("No account available to edit!"), _("Accounts"), wxOK | wxICON_WARNING);
@@ -2371,7 +2371,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
 {
-    const auto &accounts = Model_Account::instance().all();
+    const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
     if (accounts.empty())
     {
         wxMessageBox(_("No account available to delete!"), _("Accounts"), wxOK | wxICON_WARNING);
