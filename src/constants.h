@@ -43,15 +43,24 @@ const wxString getProgramName();
 const wxString getTitleProgramVersion();
 const wxString getProgramVersion();
 const wxString getProgramCopyright();
-const wxString getProgramWebSite();
-const wxString getProgramUpdateWebSite();
-const wxString getProgramForum();
-const wxString getProgramWiki();
-const wxString getProgramBugReport();
-const wxString getProgramDonateSite();
-const wxString getProgramTwitterSite();
-const wxString getProgramFacebookSite();
 const wxString getProgramDescription();
+
+namespace weblink
+{
+    extern const wxString WebSite;
+    extern const wxString Update;
+    extern const wxString UsageStats;
+    extern const wxString Download;
+    extern const wxString News;
+    extern const wxString Forum;
+    extern const wxString Wiki;
+    extern const wxString BugReport;
+    extern const wxString Donate;
+    extern const wxString Twitter;
+    extern const wxString Facebook;
+    extern const wxString YahooQuotes;
+    extern const wxString DefStockUrl;
+} // namespace weblink
 } // namespace mmex
 
 extern const wxString VIEW_TRANS_ALL_STR;            

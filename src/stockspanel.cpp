@@ -699,8 +699,7 @@ bool mmStocksPanel::onlineQuoteRefresh(wxString& sError)
     if (site.Right(1).Contains("+")) site.RemoveLast(1);
 
     //Sample : http://finance.yahoo.com/d/quotes.csv?s=SBER.ME+GAZP.ME&f=sl1n&e=.csv
-    site = wxString::Format("http://download.finance.yahoo.com/d/quotes.csv?s=%s&f=sl1n&e=.csv"
-        , site);
+    site = wxString::Format(mmex::weblink::YahooQuotes, site);
 
     refresh_button_->SetBitmapLabel(wxBitmap(wxImage(led_yellow_xpm).Scale(16,16)));
     stock_details_->SetLabel(_("Connecting..."));

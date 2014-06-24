@@ -463,7 +463,7 @@ const bool IsUpdateAvailable(const bool& bSilent, wxString& NewVersion)
     NewVersion = "error";
 
     wxString page;
-    int err_code = site_content(mmex::getProgramUpdateWebSite(), page);
+    int err_code = site_content(mmex::weblink::Update, page);
     if (err_code != wxURL_NOERR || page.Find("Unstable") == wxNOT_FOUND)
     {
         if (bSilent)
@@ -579,7 +579,6 @@ void checkUpdates(const bool& bSilent)
 
     if (IsUpdateAvailable(bSilent, NewVersion) && NewVersion != "error")
     {
-        wxString urlDownload = mmex::getProgramWebSite() + "/download";
         wxString msgStr = wxString() << _("New version of MMEX is available") << "\n\n"
             << _("Your current version is: ") << mmex::getProgramVersion() << "\n"
             << _("New version is: ") << NewVersion << "\n\n"
@@ -587,7 +586,7 @@ void checkUpdates(const bool& bSilent)
         int DowloadResponse = wxMessageBox(msgStr,
             _("MMEX Update Check"), wxICON_EXCLAMATION | wxYES | wxNO);
         if (DowloadResponse == wxYES)
-            wxLaunchDefaultBrowser(urlDownload);
+            wxLaunchDefaultBrowser(mmex::weblink::Download);
     }
     else if (!bSilent && NewVersion != "error")
     {

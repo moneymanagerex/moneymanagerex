@@ -2115,22 +2115,19 @@ void mmGUIFrame::OnCheckUpdate(wxCommandEvent& /*event*/)
 
 void mmGUIFrame::OnReportIssues(wxCommandEvent& /*event*/)
 {
-    wxString url = mmex::getProgramForum();
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::Forum);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnBeNotified(wxCommandEvent& /*event*/)
 {
-    wxString url = mmex::getProgramWebSite()+"/news";
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::News);
 }
 //----------------------------------------------------------------------------
 
 void mmGUIFrame::OnFacebook(wxCommandEvent& /*event*/)
 {
-    wxString url = mmex::getProgramFacebookSite();
-    wxLaunchDefaultBrowser(url);
+    wxLaunchDefaultBrowser(mmex::weblink::Facebook);
 }
 
 //----------------------------------------------------------------------------
