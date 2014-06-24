@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Money Manager Ex\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-06-23 09:34+0400\n"
-"PO-Revision-Date: 2014-06-23 09:35+0400\n"
+"PO-Revision-Date: 2014-06-24 07:04+0100\n"
 "Last-Translator: Nikolay Akimov <vomikan@mail.ru>\n"
 "Language-Team: TheZeal Software\n"
 "Language: hu_HU\n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Basepath: ..\n"
 "X-Launchpad-Export-Date: 2011-10-25 16:24+0000\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: wxTRANSLATE;_\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -374,9 +374,8 @@ msgid "% Rate"
 msgstr " % arány"
 
 #: src/assetdialog.cpp:171
-#, fuzzy, c-format
 msgid "Enter the rate at which the asset changes its value in % per year"
-msgstr "Add meg a vagyontárgy éves értékváltozását %-ban"
+msgstr "Add meg a vagyontárgy éves értékváltozását %-ban "
 
 #: src/assetdialog.cpp:183
 msgid "Organize attachments of this asset"
@@ -1885,9 +1884,9 @@ msgid "Create Template"
 msgstr "Sablon készítése"
 
 #: src/general_report_manager.cpp:326
-#, fuzzy, c-format
+#, c-format
 msgid "Row(s) returned: %i  Duration: %ld ms"
-msgstr "Talált sor(ok):  %i Időtartam: %ld ms"
+msgstr "Talált sor(ok):  %i Időtartam: %ld ms "
 
 #: src/general_report_manager.cpp:349
 msgid "SQL Syntax Error"
@@ -3548,9 +3547,8 @@ msgid "Difference:"
 msgstr "Különbözet: "
 
 #: src/mmhomepagepanel.cpp:782
-#, fuzzy
 msgid "Income/Expenses"
-msgstr "Bevétel/Kiadások"
+msgstr "Bevétel/Kiadások "
 
 #: src/mmhomepagepanel.cpp:805
 msgid "Transaction Statistics"
@@ -4470,7 +4468,7 @@ msgid "Relocate all source payees to the destination payee"
 msgstr "Valamennyi forrás áthelyezése a kijelölt kedvezményezetthez."
 
 #: src/relocatepayeedialog.cpp:137
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Changing all payees of: %s \n"
 "\n"
@@ -4478,7 +4476,7 @@ msgid ""
 msgstr ""
 "%s kedvezményezetteinek változtatása \n"
 "\n"
-" erre: %s "
+" erre: %s"
 
 #: src/relocatepayeedialog.cpp:140
 msgid "Payee Relocation Confirmation"
@@ -4582,9 +4580,8 @@ msgid "Category Total: "
 msgstr "Kategória összes: "
 
 #: src/reports/categexp.cpp:197
-#, fuzzy
 msgid "Total Expenses: "
-msgstr "Összes költség: "
+msgstr "Összes kiadás: "
 
 #: src/reports/categexp.cpp:198
 msgid "Total Income: "
@@ -5300,16 +5297,18 @@ msgid "Cannot get data from website"
 msgstr "Az internetoldalról nem jönnek adatok"
 
 #: src/webapp.cpp:453
-#, fuzzy, c-format
+#, c-format
 msgid "Account '%s' not found!"
-msgstr "' nem található!"
+msgstr "A(z) '%s' számla nem található!"
 
 #: src/webapp.cpp:455
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Transaction will be inserted with the first bank account:\n"
 "'%s' and marked as  'Follow Up'"
-msgstr "A tranzakció az adatbázisban az első számlára illesztem be: "
+msgstr ""
+"A tranzakció az adatbázisban az első számlára illesztem be:\n"
+"'%s' és 'Egyeztetendő' jelzést kap"
 
 #: src/webapp.cpp:457
 msgid "Wrong WebApp account"
@@ -5574,17 +5573,16 @@ msgstr ""
 "\"Homeneeds\", \"Home\" stb. között léptet."
 
 #: src/mmTips.h:37
-#, fuzzy, c-format
 msgid ""
 "Tip to get out of debt: Pay yourself 10% first. Put this into an account "
 "that is hard to touch. Make sure it is a chore to get the money out (you "
 "have to drive to the bank), so you will only tap it consciously and for "
 "major expenses."
 msgstr ""
-"Tipp adósságból kilábaláshoz: előbb tegyen be magának 10%-ot nehezen "
-"elérhető számlára. Gondoskodjon arról, hogy az adott számláról pénzt kivenni "
+"Tipp adósságból kilábaláshoz: előbb tegyél félre magadnak 10%-ot nehezen "
+"elérhető számlára. Gondoskodj arról, hogy az adott számláról pénzt kivenni "
 "csak nehezen lehessen (be kell menni a bankba), vagyis nekikészülődés és "
-"költségek árán juthat hozzá."
+"költségek árán juthatsz hozzá."
 
 #: src/mmTips.h:38
 msgid "Tip to get out of debt: Establish an emergency fund."
@@ -5646,9 +5644,9 @@ msgstr "Kedvezményezett kimutatás"
 #: src/reports/payee.h:82 src/reports/payee.h:90 src/reports/payee.h:98
 #: src/reports/payee.h:106 src/reports/payee.h:114 src/reports/payee.h:122
 #: src/reports/payee.h:130
-#, fuzzy, c-format
+#, c-format
 msgid "Payee Report - %s"
-msgstr "Kedvezményezett kimutatás - %s"
+msgstr "Kedvezményezett kimutatás - %s "
 
 #: src/stockspanel.h:29
 msgid "Using MMEX it is possible to track stocks/mutual funds investments."
