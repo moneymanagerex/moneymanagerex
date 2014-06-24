@@ -112,6 +112,7 @@ http://www.famfamfam.com/lab/icons/silk
 ---------------------------------------
 ##Sponsors
 2014
+CodeLathe LLC
 Geoff Mulhall
 Fabio Toffolo	
 Bruce McLendon
@@ -122,7 +123,7 @@ Panos Sapikas
 Jean-François GATEAU
 Janos Horvath
 Sasa Mrvos
-Douglas Taylor
+Douglas R Taylor
 
 2013
 CodeLathe LLC
