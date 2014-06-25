@@ -585,16 +585,16 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
             int countNumTotal = 0;
             int countImported = 0;
 
-            wxProgressDialog progressDlg(_("Universal CSV Import"),
-                _("Transactions imported from CSV: "), 100,
-                nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
+            wxProgressDialog progressDlg(_("Universal CSV Import")
+                , _("Transactions imported from CSV: "), 100
+                , nullptr, wxPD_AUTO_HIDE | wxPD_APP_MODAL | wxPD_SMOOTH | wxPD_CAN_ABORT);
             Model_Checking::instance().Begin();
 
             wxString line;
             for (line = tFile.GetFirstLine(); !tFile.Eof(); line = tFile.GetNextLine())
             {
-                wxString progressMsg;
-                progressMsg << wxString::Format(_("Transactions imported from CSV\nto account %s : %i"), acctName, countImported);
+                const wxString progressMsg = wxString::Format(_("Transactions imported from CSV\nto account %s : %i")
+                    , "'" + acctName + "'", countImported);
                 if (!progressDlg.Pulse(progressMsg))
                 {
                     canceledbyuser = true;
@@ -690,6 +690,7 @@ void mmUnivCSVDialog::OnImport(wxCommandEvent& /*event*/)
                *log_field_ << wxString::Format(_("Line : %i imported OK."), countNumTotal) << "\n";
             }
 
+            progressDlg.Update(100);
             progressDlg.Destroy();
 
             wxString msg = wxString::Format(_("Total Lines : %i"), countNumTotal);
