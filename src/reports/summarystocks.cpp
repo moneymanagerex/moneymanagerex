@@ -266,6 +266,7 @@ void mmReportSummaryStocks::display_header(mmHTMLBuilder& hb)
 
 wxString mmReportChartStocks::getHTMLText()
 {
+#if 0
     mmHTMLBuilder hb;
     hb.init();
 
@@ -324,6 +325,116 @@ wxString mmReportChartStocks::getHTMLText()
     hb.end();
 
     return hb.getHTMLText();
+#else
+    wxString colors[10] = { "0,121,234", "238,42,0", "247,151,49", "189,127,174", "232,193,69", "102,174,63", "187,127,184", "100,145,170", "220,220,220", "151,187,205" };
+    wxString STOCK_REPORTS_HTML_TBODY = "\
+        <thead><tr class='active'><th>%s (%s) - %s</th><th></th></tr></thead>\n\
+        <tbody>\n\
+            <tr valign=\"center\">\n\
+                <td><canvas id=\"canvas%d\" width=\"1000\" height=\"400\"></canvas></td>\n\
+            </tr>\n\
+        </tbody>\n";
+    wxString STOCK_REPORTS_HTML_SCRIPT = "\
+        // line chart data\n\
+        var data%d = {\n\
+            labels:[%s],\n\
+            datasets : [\n\
+            {\n\
+                fillColor: \"rgba(%s,0.2)\",\n\
+                strokeColor : \"rgba(%s,1)\",\n\
+                pointColor : \"rgba(%s,1)\",\n\
+                pointStrokeColor :\"#fff\",\n\
+                data : [%s]\n\
+            }\n]\n\
+        }\n\
+        var options%d = { \n\
+            scaleShowGridLines: %s,\n\
+            pointDot: %s\n\
+        };\n\
+        // get line chart canvas\n\
+        var ctx%d = document.getElementById('canvas%d').getContext('2d');\n\
+        // draw line chart\n\
+        new Chart(ctx%d).Line(data%d, options%d);\n";
+    wxString STOCK_REPORTS_HTML = "\
+<!DOCTYPE html>\n\
+<html>\n\
+    <head>\n\
+        <meta charset = \"UTF-8\"/>\n\
+        <meta http - equiv = \"Content-Type\" content = \"text/html\"/>\n\
+        <title>Stock Reports</title>\n\
+        <script src = \"Chart.js\"></script>\n\
+    </head>\n\
+    <table class = 'table' align = 'center'>\n\
+        %s\n\
+    </table>\n\
+    \n\
+    <script>\n\
+        %s\n\
+    </script>\n\
+</html>\n";
+
+    //hb.addHeader(2, _("Stocks Performance Charts"));
+
+    wxTimeSpan dtDiff = dtRange_->end_date() - dtRange_->start_date();
+    //if (dtRange_->is_with_date() && dtDiff.GetDays() <= 366)
+    //    hb.DisplayDateHeading(dtRange_->start_date(), dtRange_->end_date(), true);
+
+    int count = 0, heldAt = -1;
+    wxString strTmp, html, tbody, scripts, gridLines = "false", pointDot = "false";
+    wxTimeSpan dist;
+    wxDate dateDt, precDateDt = wxInvalidDateTime;
+    for (const auto& stock : Model_Stock::instance().all(Model_Stock::COL_HELDAT))
+    {
+        Model_Account::Data* account = Model_Account::instance().get(stock.HELDAT);
+        if (heldAt != stock.HELDAT)
+        {
+            //if (account)
+            //    hb.addHeaderItalic(4, account->ACCOUNTNAME);
+        }
+
+        wxString labels, data;
+        Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stock.id()),
+            Model_StockHistory::DATE(dtRange_->start_date(), GREATER_OR_EQUAL),
+            Model_StockHistory::DATE(dtRange_->end_date(), LESS_OR_EQUAL));
+        std::stable_sort(histData.begin(), histData.end(), SorterByDATE());
+        if (histData.size() <= 30)
+            gridLines = pointDot = "true";
+        else if (histData.size() <= 366)
+            gridLines = "true";
+        for (const auto& hist : histData)
+        {
+            if (!labels.empty())
+                labels += ", ";
+            dateDt = Model_StockHistory::DATE(hist);
+            if (histData.size() <= 30)
+                strTmp = wxString::Format("\"%s\"", mmGetDateForDisplay(dateDt));
+            else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
+                strTmp = wxString::Format("\"%s\"", dateDt.GetMonthName(dateDt.GetMonth()));
+            else
+                strTmp = "\"\"";
+            labels += strTmp;
+            if (!data.empty())
+                data += ", ";
+            data += wxString::Format("%g", hist.VALUE);
+            precDateDt = dateDt;
+        }
+        if (!data.IsEmpty())
+        {
+            tbody += wxString::Format(STOCK_REPORTS_HTML_TBODY, stock.STOCKNAME, account->ACCOUNTNAME, dtRange_->title(), count);
+            scripts += wxString::Format(STOCK_REPORTS_HTML_SCRIPT, count, labels, colors[count % 10], colors[count % 10], colors[count % 10], data, count, gridLines, pointDot,
+                count, count, count, count, count);
+        }
+
+        //hb.addHeader(1, stock.STOCKNAME);
+
+        heldAt = stock.HELDAT;
+        //break;
+        count++;
+    }
+    html = wxString::Format(STOCK_REPORTS_HTML, tbody, scripts);
+
+    return html;
+#endif
 }
 
 mmGraphHistoryStocks::mmGraphHistoryStocks() : 
