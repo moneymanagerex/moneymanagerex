@@ -638,7 +638,7 @@ void mmQIFImportDialog::OnOk(wxCommandEvent& /*event*/)
         Model_Checking::Data_Set transfer_from_data_set;
         int count = 0;
         m_today = wxDateTime::Today();
-        const wxString transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
+        const wxString &transferStr = Model_Checking::all_type()[Model_Checking::TRANSFER];
         for (const auto& entry : vQIF_trxs_)
         {
             if (count % 100 == 0 || count == numTransactions)

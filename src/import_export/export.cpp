@@ -159,29 +159,33 @@ wxString mmExportTransaction::getAccountHeaderQIF()
     wxString account_name = "";
     wxString currency_symbol = "";
     double dInitBalance = 0;
-    Model_Account::Data *account = Model_Account::instance().get(m_account_id);
-    if (account)
+    Model_Checking::Data_Set enties = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_account_id), Model_Checking::TOACCOUNTID(m_account_id));
+    if (!enties.empty())
     {
-        account_name = account->ACCOUNTNAME;
-        dInitBalance = account->INITIALBAL;
-        Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
-        if (currency)
+        Model_Account::Data *account = Model_Account::instance().get(m_account_id);
+        if (account)
         {
-            currency_symbol = currency->CURRENCY_SYMBOL;
+            account_name = account->ACCOUNTNAME;
+            dInitBalance = account->INITIALBAL;
+            Model_Currency::Data *currency = Model_Currency::instance().get(account->CURRENCYID);
+            if (currency)
+            {
+                currency_symbol = currency->CURRENCY_SYMBOL;
+            }
         }
+
+        wxString currency_code = "[" + currency_symbol + "]";
+
+        const wxString sInitBalance = wxString::Format("%f", dInitBalance);
+
+        buffer = wxString("!Account") << "\n"
+            << "N" << account_name << "\n"
+            << "TBank" << "\n"
+            << "D" << currency_code << "\n"
+            << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
+            << "^" << "\n"
+            << "!Type:Cash" << "\n";
     }
-
-    wxString currency_code = "[" + currency_symbol + "]";
-
-    const wxString sInitBalance = wxString::Format("%f", dInitBalance);
-
-    buffer = wxString("!Account") << "\n"
-        << "N" << account_name <<  "\n"
-        << "TBank" << "\n"
-        << "D" << currency_code << "\n"
-        << (dInitBalance != 0 ? wxString("$") << sInitBalance << "\n" : "")
-        << "^" <<  "\n"
-        << "!Type:Cash" << "\n";
 
     return buffer;
 }
