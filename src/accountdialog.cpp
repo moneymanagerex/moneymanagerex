@@ -226,7 +226,7 @@ void mmNewAcctDialog::CreateControls()
     others_sizer->Add(grid_sizer2, g_flagsExpand);
 
     grid_sizer2->Add(new wxStaticText(others_tab, wxID_STATIC,
-        _("Account Number:")), g_flags);
+        (Model_Account::type(m_account) == Model_Account::CREDIT_CARD ? _("Card Number:"):_("Account Number:"))), g_flags);
 
     wxTextCtrl* itemTextCtrl6 = new wxTextCtrl(others_tab
         , ID_ACCTNUMBER, "", wxDefaultPosition, wxDefaultSize);
