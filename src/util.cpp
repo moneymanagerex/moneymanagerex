@@ -127,8 +127,9 @@ const wxString mmSelectLanguage(mmGUIApp *app, wxWindow* window, bool forced_sho
     return lang;
 }
 
-const wxString inQuotes(wxString label, wxString& delimiter)
+const wxString inQuotes(const wxString& l, const wxString& delimiter)
 {
+    wxString label = l;
     if (label.Contains(delimiter) || label.Contains("\""))
     {
         label.Replace("\"","\"\"", true);
