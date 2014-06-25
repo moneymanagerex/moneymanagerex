@@ -159,7 +159,7 @@ wxString mmExportTransaction::getAccountHeaderQIF()
     wxString account_name = "";
     wxString currency_symbol = "";
     double dInitBalance = 0;
-    Model_Checking::Data_Set enties = Model_Checking::instance().find(Model_Checking::ACCOUNTID(m_account_id));
+    Model_Checking::Data_Set enties = Model_Checking::instance().find_or(Model_Checking::ACCOUNTID(m_account_id), Model_Checking::TOACCOUNTID(m_account_id));
     if (!enties.empty())
     {
         Model_Account::Data *account = Model_Account::instance().get(m_account_id);
