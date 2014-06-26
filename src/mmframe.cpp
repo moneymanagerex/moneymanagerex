@@ -791,7 +791,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     if (mmIniOptions::instance().expandBankTree_)
         navTreeCtrl_->Expand(accounts);
 
-    if (mmIniOptions::instance().expandTermTree_)
+    if (mmIniOptions::instance().expandTermTree_ && Model_Account::hasActiveTermAccount())
         navTreeCtrl_->Expand(termAccount);
 
     if (mmIniOptions::instance().expandStocksTree_)
