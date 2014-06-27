@@ -308,8 +308,18 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     }
     else
     {
-        if (!openFile(dbpath.GetFullPath(), false))
+        if (openFile(dbpath.GetFullPath(), false))
+        {
+            updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+            setHomePageActive(false);
+            createHomePage();
+        }
+        else
+        {
+            resetNavTreeControl();
+            cleanupHomePanel();
             showBeginAppDialog(true);
+        }
     }
 
     const wxAcceleratorEntry entries [] =
@@ -371,7 +381,13 @@ void mmGUIFrame::ShutdownDatabase()
         delete m_update_callback_hook;
         m_db.reset();
     }
+}
 
+void mmGUIFrame::resetNavTreeControl()
+{
+    wxTreeItemId root = navTreeCtrl_->GetRootItem();
+    cleanupNavTreeControl(root);
+    navTreeCtrl_->DeleteAllItems();
 }
 
 void mmGUIFrame::cleanupNavTreeControl(wxTreeItemId& item)
@@ -962,7 +978,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
-                updateNavTreeControl();
+                updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
                 wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
                 OnAccountList(evt);
             }
@@ -987,7 +1003,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->ACCOUNTID);
-                updateNavTreeControl();
+                updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
                 wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
                 OnAccountList(evt);
             }
@@ -1093,7 +1109,7 @@ void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 
     //Set view ALL & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-    mmGUIFrame::updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1108,7 +1124,7 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 
     //Set view Favorites & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_FAVORITES_STR);
-    mmGUIFrame::updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1122,7 +1138,7 @@ void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 
     //Set view Open & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_OPEN_STR);
-    mmGUIFrame::updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1676,15 +1692,8 @@ bool mmGUIFrame::openFile(const wxString& fileName, bool openingNew, const wxStr
         menuEnableItems(true);
         menuPrintingEnable(false);
         autoRepeatTransactionsTimer_.Start(REPEAT_TRANS_DELAY_TIME, wxTIMER_ONE_SHOT);
-
-        updateNavTreeControl();
-
-        setHomePageActive(false);
-        /* Currency Options might have changed so refresh */
-        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
-        GetEventHandler()->AddPendingEvent(ev);
-
     }
+    else return false;
 
     return true;
 }
@@ -1845,7 +1854,15 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     }
 
     password_.clear();
-    openFile(newFileName.GetFullPath(), false, new_password);
+    if (openFile(newFileName.GetFullPath(), false, new_password))
+    {
+        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        setHomePageActive(false);
+
+        /* Create the home page, and set navigation to root item */
+        wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
+        GetEventHandler()->AddPendingEvent(ev);
+    }
 }
 //----------------------------------------------------------------------------
 
@@ -1868,7 +1885,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     mmQIFImportDialog dlg(this);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
     if (account_id > 0)
     {
         setGotoAccountID(account_id, -1);
@@ -2003,7 +2020,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
     {
         refreshPanelData(false);
     }
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }
@@ -2036,7 +2053,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
     if (m_db)
     {
         mmBudgetYearDialog(this).ShowModal();
-        updateNavTreeControl();
+        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
         OnAccountList(evt);
     }
@@ -2063,7 +2080,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
 
     mmGeneralReportManager dlg(this);
     dlg.ShowModal();
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }
@@ -2092,7 +2109,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";
         wxMessageBox(sysMsg, _("MMEX Options"), messageIcon);
 
-        updateNavTreeControl();
+        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
         OnAccountList(evt);
     }
@@ -2361,7 +2378,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         mmNewAcctDialog dlg(account, this);
         if (dlg.ShowModal() == wxID_OK)
         {
-            updateNavTreeControl();
+            updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
             wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
             GetEventHandler()->AddPendingEvent(ev);
         }
@@ -2394,7 +2411,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->id());
         }
     }
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }
@@ -2426,19 +2443,19 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
 {
     mmIniOptions::instance().expandBankTree_ = !mmIniOptions::instance().expandBankTree_;
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
 }
 
 void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
 {
     mmIniOptions::instance().expandTermTree_ = !mmIniOptions::instance().expandTermTree_;
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
 }
 
 void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
 {
     mmIniOptions::instance().expandStocksTree_ = !mmIniOptions::instance().expandStocksTree_;
-    updateNavTreeControl();
+    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
 }
 
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
@@ -2504,7 +2521,11 @@ wxSizer* mmGUIFrame::cleanupHomePanel(bool new_sizer)
 {
     wxASSERT(homePanel_);
 
-    if (panelCurrent_) delete panelCurrent_;
+    if (panelCurrent_)
+    {
+        delete panelCurrent_;
+        panelCurrent_ = nullptr;
+    }
     homePanel_->DestroyChildren();
     homePanel_->SetSizer(new_sizer ? new wxBoxSizer(wxHORIZONTAL) : 0);
 
@@ -2517,15 +2538,21 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
     autoRepeatTransactionsTimer_.Stop();
 
     // Ensure database is in a steady state first
-    if (m_db && !activeHomePage_)
+    //if (m_db && !activeHomePage_)
+    //{
+    //    createHomePage();
+    //}
+
+    if (openFile(dbFileName, newDatabase))
     {
+        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        setHomePageActive(false);
         createHomePage();
     }
-
-    if (!openFile(dbFileName, newDatabase))
+    else
     {
-        createHomePage();
-        updateNavTreeControl();
+        resetNavTreeControl();
+        cleanupHomePanel();
         showBeginAppDialog(true);
     }
 }
@@ -2591,8 +2618,6 @@ void mmGUIFrame::OnRecentFiles(wxCommandEvent& event)
         wxMessageBox(wxString::Format(_("File %s not found"), file_name), _("Error"), wxOK | wxICON_ERROR);
         recentFiles_->RemoveFileFromHistory(fileNum);
     }
-    setHomePageActive(false);
-    createHomePage();
 }
 //----------------------------------------------------------------------------
 
