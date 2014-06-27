@@ -310,7 +310,7 @@ mmGUIFrame::mmGUIFrame(mmGUIApp* app, const wxString& title
     {
         if (openFile(dbpath.GetFullPath(), false))
         {
-            updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+            updateNavTreeControl();
             setHomePageActive(false);
             createHomePage();
         }
@@ -708,7 +708,7 @@ void mmGUIFrame::createControls()
 }
 //----------------------------------------------------------------------------
 
-void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
+void mmGUIFrame::updateNavTreeControl()
 {
     wxTreeItemId root = navTreeCtrl_->GetRootItem();
     cleanupNavTreeControl(root);
@@ -723,14 +723,9 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     navTreeCtrl_->SetItemData(accounts, new mmTreeItemData("Bank Accounts"));
     navTreeCtrl_->SetItemBold(accounts, true);
 
-    wxTreeItemId termAccount;
-    if (Model_Account::hasActiveTermAccount())
-    {
-        //  Positioning for new type of accounts: Term Accounts
-        termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
-        navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
-        navTreeCtrl_->SetItemBold(termAccount, true);
-    }
+    wxTreeItemId termAccount = navTreeCtrl_->AppendItem(root, _("Term Accounts"), 12, 12);
+    navTreeCtrl_->SetItemData(termAccount, new mmTreeItemData("Term Accounts"));
+    navTreeCtrl_->SetItemBold(termAccount, true);
 
     wxTreeItemId stocks;
     stocks = navTreeCtrl_->AppendItem(root, _("Stocks"), 15, 15);
@@ -807,7 +802,7 @@ void mmGUIFrame::updateNavTreeControl(bool expandTermAccounts)
     if (mmIniOptions::instance().expandBankTree_)
         navTreeCtrl_->Expand(accounts);
 
-    if (mmIniOptions::instance().expandTermTree_ && Model_Account::hasActiveTermAccount())
+    if (mmIniOptions::instance().expandTermTree_)
         navTreeCtrl_->Expand(termAccount);
 
     if (mmIniOptions::instance().expandStocksTree_)
@@ -978,7 +973,7 @@ void mmGUIFrame::OnPopupEditAccount(wxCommandEvent& /*event*/)
             mmNewAcctDialog dlg(account, this);
             if (dlg.ShowModal() == wxID_OK)
             {
-                updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+                updateNavTreeControl();
                 wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
                 OnAccountList(evt);
             }
@@ -1003,7 +998,7 @@ void mmGUIFrame::OnPopupDeleteAccount(wxCommandEvent& /*event*/)
             {
                 Model_Account::instance().remove(account->ACCOUNTID);
                 mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->ACCOUNTID);
-                updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+                updateNavTreeControl();
                 wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
                 OnAccountList(evt);
             }
@@ -1109,7 +1104,7 @@ void mmGUIFrame::OnViewAllAccounts(wxCommandEvent&)
 
     //Set view ALL & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_ALL_STR);
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1124,7 +1119,7 @@ void mmGUIFrame::OnViewFavoriteAccounts(wxCommandEvent&)
 
     //Set view Favorites & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_FAVORITES_STR);
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1138,7 +1133,7 @@ void mmGUIFrame::OnViewOpenAccounts(wxCommandEvent&)
 
     //Set view Open & Refresh Navigation Panel
     Model_Setting::instance().Set("VIEWACCOUNTS", VIEW_ACCOUNTS_OPEN_STR);
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
 
     //Restore settings
     Model_Setting::instance().Set("VIEWACCOUNTS", vAccts);
@@ -1856,7 +1851,7 @@ void mmGUIFrame::OnSaveAs(wxCommandEvent& /*event*/)
     password_.clear();
     if (openFile(newFileName.GetFullPath(), false, new_password))
     {
-        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        updateNavTreeControl();
         setHomePageActive(false);
 
         /* Create the home page, and set navigation to root item */
@@ -1885,7 +1880,7 @@ void mmGUIFrame::OnImportQIF(wxCommandEvent& /*event*/)
     mmQIFImportDialog dlg(this);
     dlg.ShowModal();
     int account_id = dlg.get_last_imported_acc();
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
     if (account_id > 0)
     {
         setGotoAccountID(account_id, -1);
@@ -1932,37 +1927,10 @@ void mmGUIFrame::OnNewAccount(wxCommandEvent& /*event*/)
 
     if (wizard->acctID_ != -1)
     {
-        bool firstTermAccount = !Model_Account::hasActiveTermAccount();
         Model_Account::Data* account = Model_Account::instance().get(wizard->acctID_);
         mmNewAcctDialog dlg(account, this);
         dlg.ShowModal();
-        if (dlg.termAccountActivated())
-        {
-            updateNavTreeControl(true);
-            menuBar_->FindItem(MENU_VIEW_TERMACCOUNTS)->Check(true);
-            if (firstTermAccount)
-            {
-                /***************Message to display *************************
-                    Term Account views have been temporarly turned on.
-                    To maintain this view, change the defaults by using:
-
-                    Tools -> Options
-                    View Options
-
-                    This message will not be displayed in future.
-                    ************************************************************/
-                wxString msgStr;
-                msgStr << _("Term Account views have been temporarly turned on.") << "\n"
-                    << _("To maintain this view, change the defaults by using:\n\nTools -> Options\nView Options")
-                    << "\n\n"
-                    << _("This message will not be displayed in future.");
-                wxMessageBox(msgStr, _("Initial Term Account Activation"), wxOK | wxICON_INFORMATION);
-            }
-        }
-        else
-        {
-            updateNavTreeControl();
-        }
+        updateNavTreeControl();
     }
 
     wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
@@ -2020,7 +1988,7 @@ void mmGUIFrame::OnOrgPayees(wxCommandEvent& /*event*/)
     {
         refreshPanelData(false);
     }
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }
@@ -2053,7 +2021,7 @@ void mmGUIFrame::OnBudgetSetupDialog(wxCommandEvent& /*event*/)
     if (m_db)
     {
         mmBudgetYearDialog(this).ShowModal();
-        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        updateNavTreeControl();
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
         OnAccountList(evt);
     }
@@ -2080,7 +2048,7 @@ void mmGUIFrame::OnGeneralReportManager(wxCommandEvent& /*event*/)
 
     mmGeneralReportManager dlg(this);
     dlg.ShowModal();
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }
@@ -2109,7 +2077,7 @@ void mmGUIFrame::OnOptions(wxCommandEvent& /*event*/)
         wxString sysMsg = wxString() << _("MMEX Options have been updated.") << "\n\n";
         wxMessageBox(sysMsg, _("MMEX Options"), messageIcon);
 
-        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        updateNavTreeControl();
         wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
         OnAccountList(evt);
     }
@@ -2378,7 +2346,7 @@ void mmGUIFrame::OnEditAccount(wxCommandEvent& /*event*/)
         mmNewAcctDialog dlg(account, this);
         if (dlg.ShowModal() == wxID_OK)
         {
-            updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+            updateNavTreeControl();
             wxCommandEvent ev(wxEVT_COMMAND_MENU_SELECTED, MENU_ACCTLIST);
             GetEventHandler()->AddPendingEvent(ev);
         }
@@ -2411,7 +2379,7 @@ void mmGUIFrame::OnDeleteAccount(wxCommandEvent& /*event*/)
             mmAttachmentManage::DeleteAllAttachments(Model_Attachment::reftype_desc(Model_Attachment::BANKACCOUNT), account->id());
         }
     }
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
     wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_TREEPOPUP_ACCOUNT_LIST);
     OnAccountList(evt);
 }
@@ -2443,19 +2411,19 @@ void mmGUIFrame::OnViewLinksUpdateUI(wxUpdateUIEvent &event)
 void mmGUIFrame::OnViewBankAccounts(wxCommandEvent &event)
 {
     mmIniOptions::instance().expandBankTree_ = !mmIniOptions::instance().expandBankTree_;
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
 }
 
 void mmGUIFrame::OnViewTermAccounts(wxCommandEvent &event)
 {
     mmIniOptions::instance().expandTermTree_ = !mmIniOptions::instance().expandTermTree_;
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
 }
 
 void mmGUIFrame::OnViewStockAccounts(wxCommandEvent &event)
 {
     mmIniOptions::instance().expandStocksTree_ = !mmIniOptions::instance().expandStocksTree_;
-    updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+    updateNavTreeControl();
 }
 
 void mmGUIFrame::OnViewBudgetFinancialYears(wxCommandEvent &event)
@@ -2545,7 +2513,7 @@ void mmGUIFrame::SetDatabaseFile(const wxString& dbFileName, bool newDatabase)
 
     if (openFile(dbFileName, newDatabase))
     {
-        updateNavTreeControl(mmIniOptions::instance().expandTermTree_);
+        updateNavTreeControl();
         setHomePageActive(false);
         createHomePage();
     }

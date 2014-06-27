@@ -104,7 +104,6 @@ public:
     static bool is_used(const Model_Currency::Data& c);
 
     static int checking_account_num();
-    static bool hasActiveTermAccount();
 };
 
 #endif // 
