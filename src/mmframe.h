@@ -155,7 +155,7 @@ private:
     void createControls();
     void saveSettings();
     void menuEnableItems(bool enable);
-    void updateNavTreeControl(bool expandTermAccounts = false);
+    void updateNavTreeControl();
     void updateReportNavigation(wxTreeItemId& reports, wxTreeItemId& budgeting);
     void updateReportCategoryExpensesGoesNavigation(wxTreeItemId& categsOverTime);
     void updateReportCategoryExpensesComesNavigation(wxTreeItemId& posCategs);

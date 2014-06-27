@@ -38,7 +38,6 @@ public:
         , const wxPoint& pos
         , const wxSize& size
         , long style);
-    bool termAccountActivated();
 
 private:
     void CreateControls();
@@ -66,7 +65,6 @@ private:
     wxString m_accessInfo;
     wxString m_notesLabel;
     int m_currencyID;
-    bool m_termAccount;
     bool m_accessChanged;
 
     enum {

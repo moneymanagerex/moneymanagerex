@@ -530,12 +530,10 @@ void mmHomePagePanel::getData()
     get_account_stats(accountStats);
 
     m_frames["ACCOUNTS_INFO"] = displayAccounts(tBalance, accountStats);
-    if (Model_Account::hasActiveTermAccount())
-    {
-        double termBalance = 0.0;
-        m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
-        tBalance += termBalance;
-    }
+    
+    double termBalance = 0.0;
+    m_frames["TERM_ACCOUNTS_INFO"] = displayAccounts(termBalance, accountStats, Model_Account::TERM);
+    tBalance += termBalance;
 
     //Stocks
     wxString stocks = "";

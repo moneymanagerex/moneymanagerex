@@ -263,9 +263,3 @@ int Model_Account::checking_account_num()
 {
     return Model_Account::instance().find(ACCOUNTTYPE(all_type()[CHECKING])).size();
 }
-
-bool Model_Account::hasActiveTermAccount()
-{
-    return !Model_Account::instance().find(ACCOUNTTYPE(all_type()[TERM])
-        , DB_Table_ACCOUNTLIST_V1::STATUS(all_status()[OPEN])).empty(); 
-}
