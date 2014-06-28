@@ -1175,7 +1175,7 @@ void mmGUIFrame::createBudgetingPage(int budgetYearID)
 
 void mmGUIFrame::createHomePage()
 {
-    if (!activeHomePage_) {
+    if (!activeHomePage_ || 1 == 1) {
         wxSizer *sizer = cleanupHomePanel();
         panelCurrent_ = new mmHomePagePanel(
             homePanel_, this,
@@ -1188,7 +1188,7 @@ void mmGUIFrame::createHomePage()
     }
     else
     {
-        //TODO: refresh html only
+        //TODO: refresh html only and remove 1=1 in IF
         //panelCurrent_->BuildPage();
     }
     homePanel_->Layout();
