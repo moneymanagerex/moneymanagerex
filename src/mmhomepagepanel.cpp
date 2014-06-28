@@ -737,80 +737,22 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     }
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10;
-    double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
-    //Type, Amount, Income, Expenses, Difference:, Income/Expenses, income, expemces
-    static const wxString INCOME_VS_EXPENSES_HTML =
-        "<table class = 'table'>\n"
-        "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
-        "<tbody>\n"
-        "    <tr valign=\"center\">\n"
-        "        <td><canvas id=\"reportChart\" width=\"312\" height=\"256\"></canvas></td>\n"
-        "        <td  style='vertical-align:middle'>\n"
-        "            <table class= 'table'>\n"
-        "            <thead>\n"
-        "                <tr>"
-        "                    <th>%s</th>"
-        "                    <th class = \"text-right\">%s</th>"
-        "                </tr>"
-        "            </thead>\n"
-        "            <tbody>"
-        "                <tr>"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "                <tr>"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "            </tbody>\n"
-        "            <tfoot>"
-        "                <tr class=\"total\">"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "            </tfoot>"
-        "            </table>"
-        "        </td>"
-        "        </tr>"
-        "</tbody>"
-        "</table>\n"
-        "\n"
-        "<script>\n"
-        "    <!-- Chart -->\n"
-        "    var data = {\n"
-        "    labels : [\"%s\"],\n"
-        "    datasets : [\n"
-        "        {\n"
-        "            fillColor : \"rgba(151,187,205,0.5)\",\n"
-        "            strokeColor : \"rgba(151,187,205,1)\",\n"
-        "            data : [%f],\n"
-        "        },\n"
-        "        {\n"
-        "            fillColor : \"rgba(220,66,66,0.5)\",\n"
-        "            strokeColor : \"rgba(220,220,220,1)\",\n"
-        "            data : [%f],\n"
-        "        },\n"
-        "    ]\n"
-        "    };\n"
-        "    var options = {\n"
-        "        animationEasing: \"easeOutQuint\",\n"
-        "        barValueSpacing : 10,\n"
-        "        scaleOverride: true,\n"
-        "        scaleStartValue: 0,\n"
-        "        scaleSteps: [%f],\n"
-        "        scaleStepWidth: [%f]\n"
-        "    };\n"
-        "    var ctx = document.getElementById(\"reportChart\").getContext(\"2d\");\n"
-        "    var reportChart = new Chart(ctx).Bar(data, options);\n"
+    double stepWidth = ceil(std::max(tIncome, tExpenses)*1.1 / steps);
 
-        "</script>\n";
-    wxString output = wxString::Format(INCOME_VS_EXPENSES_HTML
+    //TODO:use json functions here
+    static const wxString INCOME_VS_EXPENSES_JSON = "{"
+        "'0':'%s', '2':'%s','3':'%s','4':'%s','5':'%s',"
+        "'6':'%s','7':'%s','8':'%s','9':'%s','10':'%s', '11':'%s',"
+        "'12':'%.2f', '13':'%.2f', '14':'%f', '15':'%f'"
+        "}";
+    wxString output = wxString::Format(INCOME_VS_EXPENSES_JSON
         , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
+        , _("Income vs Expenses")
         , _("Type"), _("Amount")
         , _("Income"), Model_Currency::toCurrency(tIncome)
         , _("Expenses"), Model_Currency::toCurrency(tExpenses)
         , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
-        , _("Income/Expenses")
+        , _("Income/Expenses") //11
         , tIncome, tExpenses, steps, stepWidth);
     return output;
 }
