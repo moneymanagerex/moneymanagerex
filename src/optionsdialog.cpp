@@ -85,7 +85,7 @@ BEGIN_EVENT_TABLE( mmOptionsDialog, wxDialog )
     EVT_BUTTON(wxID_OK, mmOptionsDialog::OnOk)
     EVT_BUTTON(wxID_APPLY, mmOptionsDialog::OnApply)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_CURRENCY, mmOptionsDialog::OnCurrency)
-    EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_LANGUAGE, mmOptionsDialog::OnDateFormatChanged)
+    EVT_CHOICE(ID_DIALOG_OPTIONS_WXCHOICE_DATE, mmOptionsDialog::OnDateFormatChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_LANGUAGE, mmOptionsDialog::OnLanguageChanged)
     EVT_BUTTON(ID_DIALOG_OPTIONS_BUTTON_ATTACHMENTSFOLDER, mmOptionsDialog::OnAttachmentsButton)
     EVT_MENU_RANGE(wxID_HIGHEST, wxID_HIGHEST + 9, mmOptionsDialog::OnAttachmentsMenu)
@@ -242,7 +242,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* dateFormatStaticBoxSizer = new wxStaticBoxSizer(dateFormatStaticBox, wxHORIZONTAL);
     generalPanelSizer->Add(dateFormatStaticBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    choiceDateFormat_ = new wxChoice(generalPanel, ID_DIALOG_OPTIONS_WXCHOICE_LANGUAGE);
+    choiceDateFormat_ = new wxChoice(generalPanel, ID_DIALOG_OPTIONS_WXCHOICE_DATE);
     for (const auto& i : date_formats_map())
     {
         choiceDateFormat_->Append(i.second, new wxStringClientData(i.first));
