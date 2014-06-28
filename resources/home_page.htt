@@ -59,7 +59,7 @@
 </td>
 </tr>
 </table>
-    <!--TMPL_VAR "TOGGLES"-->
+    <TMPL_VAR "TOGGLES">
 </body>
   
 <script type="text/javascript">
