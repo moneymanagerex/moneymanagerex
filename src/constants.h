@@ -47,6 +47,7 @@ const wxString getProgramDescription();
 
 namespace weblink
 {
+    const wxString addReferralToURL(const wxString& BaseURL, const wxString& CampSource);
     extern const wxString WebSite;
     extern const wxString Update;
     extern const wxString UsageStats;

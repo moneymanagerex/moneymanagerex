@@ -103,12 +103,35 @@ const wxString mmex::getProgramDescription()
 }
 
 /* Namespace weblink */
-const wxString mmex::weblink::WebSite = "http://www.moneymanagerex.org";
+const wxString mmex::weblink::addReferralToURL(const wxString& BaseURL, const wxString& CampSource)
+{
+    /*
+    With Google analytics it's possible to send some data in URL
+    to divide direct access from access through desktop app links
+    https://support.google.com/analytics/answer/1033867?hl=en
+    */
+    wxString url = BaseURL;
+    if (BaseURL.find("/",true) > 5)
+        url += "/";
+    
+    url += "?";
+    url += "utm_campaign=Application_Desktop";
+
+    url += "&";
+    url += "utm_source=" + CampSource;
+
+    url += "&";
+    url += "utm_medium=MMEX_v" + mmex::getProgramVersion();
+
+    return url;
+}
+
+const wxString mmex::weblink::WebSite = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org", "Website");
 const wxString mmex::weblink::Update = "http://www.moneymanagerex.org/version.html";
 const wxString mmex::weblink::UsageStats = "http://usagestats.moneymanagerex.org/API/main_stats_v1.php";
-const wxString mmex::weblink::Download = "http://www.moneymanagerex.org/download";
-const wxString mmex::weblink::News = "http://www.moneymanagerex.org/news";
-const wxString mmex::weblink::Forum = "http://forum.moneymanagerex.org";
+const wxString mmex::weblink::Download = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/download", "Download");
+const wxString mmex::weblink::News = mmex::weblink::addReferralToURL("http://www.moneymanagerex.org/news", "News");
+const wxString mmex::weblink::Forum = mmex::weblink::addReferralToURL("http://forum.moneymanagerex.org", "Forum");
 const wxString mmex::weblink::Wiki = "http://wiki.moneymanagerex.org";
 const wxString mmex::weblink::BugReport = "http://bugreport.moneymanagerex.org";
 const wxString mmex::weblink::Donate = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=moneymanagerex%40gmail%2ecom&lc=US&item_name=MoneyManagerEx&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
