@@ -46,7 +46,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************/
 const wxString MMEX_VERSION = "1.1.0";
 
-#define MMEX_BUILD_TYPE_RELEASE_CANDIDATE
+//#define MMEX_BUILD_TYPE_RELEASE_CANDIDATE
 const int MMEX_VERSION_DEVELOPMENT_COUNT = 2;
 
 const wxSizerFlags g_flags = wxSizerFlags().Align(wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL).Border(wxALL, 5);
