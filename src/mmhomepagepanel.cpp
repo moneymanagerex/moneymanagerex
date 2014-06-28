@@ -570,7 +570,7 @@ const wxString mmHomePagePanel::getToggles()
         output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
     if (!Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false))
         output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCK_TREE", false))
+    if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false))
         output += "<script>toggleTable('INVEST'); </script>\n";
     return output;
 }
