@@ -463,7 +463,7 @@ void mmAssetsPanel::CreateControls()
 
 	wxBitmapButton* attachment_button_ = new wxBitmapButton(assets_panel
 		, wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition,
-		wxSize(itemButton7->GetSize().GetY(), itemButton7->GetSize().GetY()));
+		wxSize(30, itemButton7->GetSize().GetY()));
 	attachment_button_->SetToolTip(_("Open attachments"));
 	itemBoxSizer5->Add(attachment_button_, 0, wxALIGN_CENTER_VERTICAL | wxALL, 4);
 	attachment_button_->Enable(false);
