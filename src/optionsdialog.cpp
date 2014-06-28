@@ -448,7 +448,7 @@ void mmOptionsDialog::CreateControls()
     wxStaticBoxSizer* userColourSettingStBoxSizer = new wxStaticBoxSizer(userColourSettingStBox, wxHORIZONTAL);
     viewsPanelSizer->Add(userColourSettingStBoxSizer, wxSizerFlags(g_flagsExpand).Proportion(0));
 
-    int size_x = baseCurrencyButton->GetSize().GetY();
+    int size_x = 30;
     UDFCB1_ = new wxButton(viewsPanel, wxID_HIGHEST + 11
         , _("1"), wxDefaultPosition, wxSize(size_x, -1), 0);
     UDFCB1_->SetBackgroundColour(mmColors::userDefColor1);
