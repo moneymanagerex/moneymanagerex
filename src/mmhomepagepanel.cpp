@@ -74,7 +74,7 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\"><thead><tr class='active'><th>";
+        output = "<table class ='table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th><th class = 'text-right'>" + _("Total");
         output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
@@ -87,7 +87,7 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
+            body += wxString::Format("<td><a href='stock:%i'>%s</a></td>"
                 , account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class = 'money'>%s</td>"
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
@@ -97,7 +97,7 @@ wxString htmlWidgetStocks::getHTMLText()
         }
 
         output += body;
-        output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+        output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
         output += wxString::Format("<td class ='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
         output += wxString::Format("<td class ='money'>%s</td></tr></tfoot></table>"
@@ -347,8 +347,8 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
         const wxString idStr = "BILLS_AND_DEPOSITS";
 
         output = "<table class='table'><thead><tr class='active'><th>";
-        output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
-        output += wxString::Format("<th class='text-right'>%i <a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
+        output += wxString::Format("<a href = 'billsdeposits:'>%s</a></th>\n<th></th>", title_);
+        output += wxString::Format("<th class='text-right'>%i <a id='%s_label' onclick='toggleTable(\"%s\"); ' href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
         output += "</thead>";
 
@@ -593,7 +593,7 @@ void mmHomePagePanel::fillData()
 {
     for (const auto& entry : m_frames)
     {
-        m_templateText.Replace(wxString::Format("<TMPL_VAR \"%s\">", entry.first), entry.second);
+        m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
     Model_Report::outputReportFile(m_templateText);
     browser_->LoadURL(getURL(mmex::getReportIndex()));
@@ -667,12 +667,12 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     double tReconciled = 0;
     const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'table'>";
-    output += "<col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\">";
+    output += "<col style='width:50%'><col style='width:25%'><col style='width:25%'>";
     output += "<thead><tr><th>";
     output += (type_is_bank ? _("Bank Account") : _("Term Account"));
     output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>";
     output += "<th class = 'text-right'>" + _("Balance");
-    output += wxString::Format("<a id='%s_label' onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+    output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\"); ' href='#'>[-]</a>"
         , idStr, idStr);
     output += "</th></tr></thead>";
     output += wxString::Format("<tbody id = '%s'>", idStr);
@@ -695,7 +695,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
             (vAccts_ == VIEW_ACCOUNTS_ALL_STR)))
         {
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"acct:%i\">%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
+            body += wxString::Format("<td><a href='acct:%i'>%s</a></td>", account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(reconciledBal, currency));
             body += wxString::Format("<td class = 'money'>%s</td>", Model_Currency::toCurrency(bal, currency));
             body += "</tr>\n";
@@ -724,98 +724,36 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         tExpenses += incomeExpensesStats[idx].second;
     }
     // Compute chart spacing and interval (chart forced to start at zero)
-    double steps = 10;
-    double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
-    //Type, Amount, Income, Expenses, Difference:, Income/Expenses, income, expemces
-    static const wxString INCOME_VS_EXPENSES_HTML =
-        "<table class = 'table'>\n"
-        "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
-        "<tbody>\n"
-        "    <tr valign=\"center\">\n"
-        "        <td><canvas id=\"reportChart\" width=\"312\" height=\"256\"></canvas></td>\n"
-        "        <td  style='vertical-align:middle'>\n"
-        "            <table class= 'table'>\n"
-        "            <thead>\n"
-        "                <tr>"
-        "                    <th>%s</th>"
-        "                    <th class = \"text-right\">%s</th>"
-        "                </tr>"
-        "            </thead>\n"
-        "            <tbody>"
-        "                <tr>"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "                <tr>"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "            </tbody>\n"
-        "            <tfoot>"
-        "                <tr class=\"total\">"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "            </tfoot>"
-        "            </table>"
-        "        </td>"
-        "        </tr>"
-        "</tbody>"
-        "</table>\n"
-        "\n"
-        "<script>\n"
-        "    <!-- Chart -->\n"
-        "    var data = {\n"
-        "    labels : [\"%s\"],\n"
-        "    datasets : [\n"
-        "        {\n"
-        "            fillColor : \"rgba(151,187,205,0.5)\",\n"
-        "            strokeColor : \"rgba(151,187,205,1)\",\n"
-        "            data : [%f],\n"
-        "        },\n"
-        "        {\n"
-        "            fillColor : \"rgba(220,66,66,0.5)\",\n"
-        "            strokeColor : \"rgba(220,220,220,1)\",\n"
-        "            data : [%f],\n"
-        "        },\n"
-        "    ]\n"
-        "    };\n"
-        "    var options = {\n"
-        "        animationEasing: \"easeOutQuint\",\n"
-        "        barValueSpacing : 10,\n"
-        "        scaleOverride: true,\n"
-        "        scaleStartValue: 0,\n"
-        "        scaleSteps: [%f],\n"
-        "        scaleStepWidth: [%f]\n"
-        "    };\n"
-        "    var ctx = document.getElementById(\"reportChart\").getContext(\"2d\");\n"
-        "    var reportChart = new Chart(ctx).Bar(data, options);\n"
+    double stepWidth = ceil(std::max(tIncome, tExpenses)/10);
 
-        "</script>\n";
-    wxString output = wxString::Format(INCOME_VS_EXPENSES_HTML
+    //TODO:use json functions here
+    static const wxString INCOME_VS_EXPENSES_JSON = "{"
+            "'0':'%s', '1':'%s', '2':'%s', '3':'%s', '4':'%s',"
+            "'5':'%s', '6':'%s', '7':'%s', '8':'%s', '9':'%s',"
+            "'10':'%.2f', '11':'%.2f', '12':'%f'"
+        "}";
+    wxString output = wxString::Format(INCOME_VS_EXPENSES_JSON
         , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
         , _("Type"), _("Amount")
         , _("Income"), Model_Currency::toCurrency(tIncome)
         , _("Expenses"), Model_Currency::toCurrency(tExpenses)
         , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
-        , _("Income/Expenses")
-        , tIncome, tExpenses, steps, stepWidth);
+        , _("Income/Expenses") //10
+        , tIncome, tExpenses, stepWidth);
     return output;
 }
 
 //* Assets *//
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
-    wxString output = "";
-
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
-    output = "<table class = 'table'><tfoot><tr class = \"total\">";
-    output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
-    output += wxString::Format("<td class = 'money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
-    output += "</tfoot></table>";
 
-    return output;
+    wxString assets_json = wxString::Format("{'0':'%s', '1':'%s'}"
+        , _("Assets")
+        , Model_Currency::toCurrency(asset_balance));
+
+    return assets_json;
 }
 
 const wxString mmHomePagePanel::getStatWidget()
@@ -832,7 +770,7 @@ const wxString mmHomePagePanel::getStatWidget()
 
     output += "<tr><td>";
     output += _("Total Transactions: ") + "</td>";
-    output += wxString::Format("<td class = 'text-right'>%d</td></tr></table>", this->total_transactions_);
+    output += wxString::Format("<td class = 'text-right'>%i</td></tr></table>", this->total_transactions_);
 
     return output;
 }
