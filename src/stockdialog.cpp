@@ -135,7 +135,7 @@ void mmStockDialog::CreateControls()
     itemFlexGridSizer6->Add(new wxStaticText( itemPanel5, wxID_STATIC, _("Date")), flags);
 
     dpc_ = new wxDatePickerCtrl( itemPanel5, ID_DPC_STOCK_PDATE,
-        wxDefaultDateTime, wxDefaultPosition, wxSize(120, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
+        wxDefaultDateTime, wxDefaultPosition, wxSize(150, -1), wxDP_DROPDOWN | wxDP_SHOWCENTURY);
     itemFlexGridSizer6->Add(dpc_, flags);
     dpc_->SetToolTip(_("Specify the purchase date of the stock investment"));
     //
