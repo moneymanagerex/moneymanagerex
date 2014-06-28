@@ -494,7 +494,7 @@ void mmCheckingPanel::CreateControls()
 
     btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
         , wxBitmap(attachment_xpm), wxDefaultPosition
-        , wxSize(btnDuplicate_->GetSize().GetY(), btnDuplicate_->GetSize().GetY()));
+        , wxSize(30, btnDuplicate_->GetSize().GetY()));
     btnAttachment_->SetToolTip(_("Open attachments"));
     itemButtonsSizer->Add(btnAttachment_, 0, wxRIGHT, 5);
 	btnAttachment_->Enable(false);
