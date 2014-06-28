@@ -1,10 +1,13 @@
 Version History of Money Manager Ex
 
-1.1.0-RC2 (June 15, 2014)
+1.1.0 (July 1, 2014)
 - Reports
 - Web Server
 - Attachments
 - Anonymous usage statistics
+- Updated Home Page Layout 
+- Fix crash with wrong password on encrypted file
+	
 
 1.0.0.3 (March 23, 2014)
 - Include images in HTML export
