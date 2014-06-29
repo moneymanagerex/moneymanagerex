@@ -391,14 +391,14 @@ public:
         if (uri.StartsWith("assets:", &sData))
         {
             frame->setNavTreeSection(_("Assets"));
-            //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
-            //frame->GetEventHandler()->AddPendingEvent(evt);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_ASSETS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
         }
         else if (uri.StartsWith("billsdeposits:", &sData))
         {
             frame->setNavTreeSection(_("Repeating Transactions"));
-            //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
-            //frame->GetEventHandler()->AddPendingEvent(evt);
+            wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_BILLSDEPOSITS);
+            frame->GetEventHandler()->AddPendingEvent(evt);
         }
         else if (uri.StartsWith("acct:", &sData))
         {
@@ -408,8 +408,8 @@ public:
             if (account) {
                 frame->setGotoAccountID(id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
-                //frame->GetEventHandler()->AddPendingEvent(evt);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_GOTOACCOUNT);
+                frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
         else if (uri.StartsWith("stock:", &sData))
@@ -420,8 +420,8 @@ public:
             if (account) {
                 frame->setGotoAccountID(id);
                 frame->setAccountNavTreeSection(account->ACCOUNTNAME);
-                //wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
-                //frame->GetEventHandler()->AddPendingEvent(evt);
+                wxCommandEvent evt(wxEVT_COMMAND_MENU_SELECTED, MENU_STOCKS);
+                frame->GetEventHandler()->AddPendingEvent(evt);
             }
         }
 

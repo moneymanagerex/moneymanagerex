@@ -438,6 +438,7 @@ wxTreeItemId mmGUIFrame::getTreeItemfor(const wxTreeItemId& itemID, const wxStri
 //----------------------------------------------------------------------------
 bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString& accountName)
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
     wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
     if (rootItem.IsOk() && navTreeCtrl_->ItemHasChildren(rootItem))
@@ -448,25 +449,28 @@ bool mmGUIFrame::setAccountInSection(const wxString& sectionName, const wxString
         {
             // Set the NavTreeCtrl and prevent any event code being executed for now.
             navTreeCtrl_->SelectItem(accountItem);
-            processPendingEvents();
+            //processPendingEvents();
             accountNotFound = false;
         }
     }
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
     return accountNotFound;
 }
 
 //----------------------------------------------------------------------------
 bool mmGUIFrame::setNavTreeSection(const wxString &sectionName)
 {
+    navTreeCtrl_->SetEvtHandlerEnabled(false);
     bool accountNotFound = true;
     wxTreeItemId rootItem = getTreeItemfor(navTreeCtrl_->GetRootItem(), sectionName);
     if (rootItem.IsOk())
     {
         // Set the NavTreeCtrl and prevent any event code being executed for now.
         navTreeCtrl_->SelectItem(rootItem);
-        processPendingEvents();
+        //processPendingEvents();
         accountNotFound = false;
     }
+    navTreeCtrl_->SetEvtHandlerEnabled(true);
     return accountNotFound;
 }
 
@@ -2039,6 +2043,7 @@ void mmGUIFrame::OnTransactionReport(wxCommandEvent& /*event*/)
         mmReportTransactions* rs = new mmReportTransactions(dlg->getAccountID(), dlg);
         rs->setSortColumn(dlg->getSortColumn());
         createReportsPage(rs, true);
+        setNavTreeSection(_("Reports"));
     }
 }
 
