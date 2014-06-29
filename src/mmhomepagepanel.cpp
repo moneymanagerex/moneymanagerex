@@ -575,14 +575,11 @@ void mmHomePagePanel::getData()
 }
 const wxString mmHomePagePanel::getToggles()
 {
-    wxString output = "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false))
-        output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false))
-        output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCK_TREE", false))
-        output += "<script>toggleTable('INVEST'); </script>\n";
-    return output;
+    const wxString json = wxString::Format("{'ACCOUNTS_INFO':%i, 'TERM_ACCOUNTS_INFO':%i, 'INVEST':%i}"
+        , !Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false)
+        , !Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false)
+        , !Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false));
+    return json;
 }
 
 const bool mmHomePagePanel::WindowsUpdateRegistry()
@@ -602,7 +599,7 @@ void mmHomePagePanel::fillData()
 {
     for (const auto& entry : m_frames)
     {
-        m_templateText.Replace(wxString::Format("<TMPL_VAR \"%s\">", entry.first), entry.second);
+        m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
     Model_Report::outputReportFile(m_templateText);
     browser_->LoadURL(getURL(mmex::getReportIndex()));
@@ -677,7 +674,7 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
     double tReconciled = 0;
     const wxString idStr = (type_is_bank ? "ACCOUNTS_INFO" : "TERM_ACCOUNTS_INFO");
     wxString output = "<table class = 'table'>";
-    output += "<col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\">";
+    output += "<col style='width:50%'><col style='width:25%'><col style='width:25%'>";
     output += "<thead><tr><th>";
     if (type_is_bank && !credit_card)
         output += _("Bank Account");
@@ -685,8 +682,13 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
         output += _("Credit Card Accounts");
     else if (!type_is_bank)
         output += _("Term account");
-    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th><th class = 'text-right'>" + _("Balance") + "</th></tr></thead>";
-    output += wxString::Format("<tbody id = '%s'>", (type_is_bank ? (credit_card?"CARD_ACCOUNTS_INFO":"ACCOUNTS_INFO") : "TERM_ACCOUNTS_INFO"));
+
+    output += "</th><th class = 'text-right'>" + _("Reconciled") + "</th>";
+    output += "<th class = 'text-right'>" + _("Balance");
+    output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\");' href='#' title='Toggle the table'>[-]</a>"
+        , idStr, idStr);
+    output += "</th></tr></thead>";
+    output += wxString::Format("<tbody id = '%s'>", idStr);
 
     wxString body = "";
     for (const auto& account : Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME))
