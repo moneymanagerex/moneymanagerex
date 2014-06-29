@@ -21,6 +21,17 @@
             label.innerHTML = "[+]"
         }
     }
+    function createTableRowContent(rowObject, data, cellType){
+      var rowContent = document.createElement(cellType);
+      var cell = document.createTextNode(data);
+
+      rowContent.appendChild(cell);
+      rowObject.appendChild(rowContent);
+    }
+    function createTableData(rowObject, data){
+      createTableRowContent(rowObject, data, 'td');
+    }
+
   </script>
   <body>
 <!--Website News-->
@@ -87,27 +98,27 @@
           var ive_json = <TMPL_VAR INCOME_VS_EXPENSES>;
 
           document.getElementById('ive_name').innerHTML=ive_json[0];
-          document.getElementById('ive_type').innerHTML=ive_json['3'];
-          document.getElementById('ive_amount').innerHTML=ive_json['4'];
-          document.getElementById('ive_income_l').innerHTML=ive_json['5'];
-          document.getElementById('ive_income').innerHTML=ive_json['6'];
-          document.getElementById('ive_expenses_l').innerHTML=ive_json['7'];
-          document.getElementById('ive_expenses').innerHTML=ive_json['8'];
-          document.getElementById('ive_difference_l').innerHTML=ive_json['9'];
-          document.getElementById('ive_difference').innerHTML=ive_json['10'];
+          document.getElementById('ive_type').innerHTML=ive_json['1'];
+          document.getElementById('ive_amount').innerHTML=ive_json['2'];
+          document.getElementById('ive_income_l').innerHTML=ive_json['3'];
+          document.getElementById('ive_income').innerHTML=ive_json['4'];
+          document.getElementById('ive_expenses_l').innerHTML=ive_json['5'];
+          document.getElementById('ive_expenses').innerHTML=ive_json['6'];
+          document.getElementById('ive_difference_l').innerHTML=ive_json['7'];
+          document.getElementById('ive_difference').innerHTML=ive_json['8'];
             <!-- Chart -->
             var data = {
-            labels : [ive_json[11]],
+            labels : [ive_json[9]],
             datasets : [
                 {
                     fillColor : "rgba(151,187,205,0.5)",
                     strokeColor : "rgba(151,187,205,1)",
-                    data : [ive_json[12]],
+                    data : [ive_json[10]],
                 },
                 {
                     fillColor : "rgba(220,66,66,0.5)",
                     strokeColor : "rgba(220,220,220,1)",
-                    data : [ive_json[13]],
+                    data : [ive_json[11]],
                 },
             ]
             };
@@ -116,8 +127,8 @@
                 barValueSpacing : 10,
                 scaleOverride: true,
                 scaleStartValue: 0,
-                scaleSteps: [ive_json[14]],
-                scaleStepWidth: [ive_json[15]]
+                scaleSteps: [ive_json[12]],
+                scaleStepWidth: [ive_json[13]]
             };
             var ctx = document.getElementById("reportChart").getContext("2d");
             var reportChart = new Chart(ctx).Bar(data, options);
@@ -131,7 +142,32 @@
 <TMPL_VAR TOP_CATEGORIES>
 
 <!--Transaction Statistics -->
-<TMPL_VAR STATISTICS>
+  <table class = 'table'>
+    <thead>
+      <tr class = 'active'>
+        <th id='stat_name'>Transaction Statistics</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id ='stats'>  
+    </tbody>
+  </table>
+<script>
+  var stats_json = <TMPL_VAR STATISTICS>;
+  var tbody = document.getElementById('stats');
+  tbody.innerHTML = "";
+  for(var obj in stats_json){
+    if (obj != 'NAME') {
+    var row = document.createElement('tr');
+    createTableData(row, obj);
+    createTableData(row, stats_json[obj]);
+    tbody.appendChild(row);  
+    }else{
+      document.getElementById('stat_name').innerHTML = stats_json[obj];
+    }
+  }
+</script>
+<!--Transaction Statistics end-->
 
 </td>
 </tr>

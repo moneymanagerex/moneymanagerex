@@ -39,6 +39,10 @@ Copyright (C) 2014 Nikolay
 #include "model/Model_Billsdeposits.h"
 #include "model/Model_Category.h"
 
+#include "cajun/json/elements.h"
+#include "cajun/json/reader.h"
+#include "cajun/json/writer.h"
+
 #if defined (__WXMSW__)
     #include <wx/msw/registry.h>
 #endif
@@ -727,6 +731,10 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 //* Income vs Expenses *//
 const wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
+    json::Object o;
+    o.Clear();
+    std::stringstream ss;
+
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats(incomeExpensesStats, date_range_);
@@ -739,24 +747,25 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     }
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10;
-    double stepWidth = ceil(std::max(tIncome, tExpenses)*1.1 / steps);
+    double stepWidth = ceil(std::max(tIncome, tExpenses) / steps);
 
-    //TODO:use json functions here
-    static const wxString INCOME_VS_EXPENSES_JSON = "{"
-        "'0':'%s', '2':'%s','3':'%s','4':'%s','5':'%s',"
-        "'6':'%s','7':'%s','8':'%s','9':'%s','10':'%s', '11':'%s',"
-        "'12':'%.2f', '13':'%.2f', '14':'%f', '15':'%f'"
-        "}";
-    wxString output = wxString::Format(INCOME_VS_EXPENSES_JSON
-        , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
-        , _("Income vs Expenses")
-        , _("Type"), _("Amount")
-        , _("Income"), Model_Currency::toCurrency(tIncome)
-        , _("Expenses"), Model_Currency::toCurrency(tExpenses)
-        , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
-        , _("Income/Expenses") //11
-        , tIncome, tExpenses, steps, stepWidth);
-    return output;
+    o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
+    o["1"] = json::String(_("Type").ToStdString());
+    o["2"] = json::String(_("Amount").ToStdString());
+    o["3"] = json::String(_("Income").ToStdString());
+    o["4"] = json::String(Model_Currency::toCurrency(tIncome).ToStdString());
+    o["5"] = json::String(_("Expenses").ToStdString());
+    o["6"] = json::String(Model_Currency::toCurrency(tExpenses).ToStdString());
+    o["7"] = json::String(_("Difference:").ToStdString());
+    o["8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdString());
+    o["9"] = json::String(_("Income/Expenses").ToStdString());
+    o["10"] = json::Number(tIncome);
+    o["11"] = json::Number(tExpenses);
+    o["12"] = json::Number(steps);
+    o["13"] = json::Number(stepWidth);
+
+    json::Writer::Write(o, ss);
+    return ss.str();
 }
 
 //* Assets *//
@@ -776,21 +785,19 @@ const wxString mmHomePagePanel::displayAssets(double& tBalance)
 
 const wxString mmHomePagePanel::getStatWidget()
 {
-    wxString output = "<table class = 'table'><thead><tr class = 'active'>";
-    output += "<th>" + _("Transaction Statistics") + "</th><th></th><tbody>";
+    json::Object o;
+    o.Clear();
+    std::stringstream ss;
 
+    o["NAME"] = json::String(_("Transaction Statistics").ToStdString());
     if (this->countFollowUp_ > 0)
     {
-        output += "<tr><td>";
-        output += _("Follow Up On Transactions: ") + "</td>";
-        output += wxString::Format("<td class = 'text-right'>%i</td></tr>", this->countFollowUp_);
+        o[json::String(_("Follow Up On Transactions: ").ToStdString())] = json::Number(this->countFollowUp_);
     }
+    o[json::String(_("Total Transactions: ").ToStdString())] = json::Number(this->total_transactions_);
 
-    output += "<tr><td>";
-    output += _("Total Transactions: ") + "</td>";
-    output += wxString::Format("<td class = 'text-right'>%d</td></tr></table>", this->total_transactions_);
-
-    return output;
+    json::Writer::Write(o, ss);
+    return ss.str();
 }
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
