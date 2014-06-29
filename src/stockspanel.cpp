@@ -476,13 +476,13 @@ void mmStocksPanel::CreateControls()
 
     attachment_button_ = new wxBitmapButton(BottomPanel
         , wxID_FILE, wxBitmap(attachment_xpm), wxDefaultPosition
-        , wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+        , wxSize(30, bMove->GetSize().GetY()));
     attachment_button_->SetToolTip(_("Open attachments"));
     BoxSizerHBottom->Add(attachment_button_, g_flags);
     attachment_button_->Enable(false);
 
     refresh_button_ = new wxBitmapButton(BottomPanel
-        , wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(bMove->GetSize().GetY(), bMove->GetSize().GetY()));
+        , wxID_REFRESH, wxBitmap (led_off_xpm), wxDefaultPosition, wxSize(30, bMove->GetSize().GetY()));
     refresh_button_->SetLabelText(_("Refresh"));
     refresh_button_->SetToolTip(_("Refresh Stock Prices from Yahoo"));
     BoxSizerHBottom->Add(refresh_button_, g_flags);

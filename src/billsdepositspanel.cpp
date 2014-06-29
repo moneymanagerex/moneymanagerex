@@ -292,7 +292,7 @@ void mmBillsDepositsPanel::CreateControls()
 
 	wxBitmapButton* btnAttachment_ = new wxBitmapButton(itemPanel12, wxID_FILE
 		, wxBitmap(attachment_xpm), wxDefaultPosition
-		, wxSize(itemButton8->GetSize().GetY(), itemButton8->GetSize().GetY()));
+		, wxSize(30, itemButton8->GetSize().GetY()));
 	btnAttachment_->SetToolTip(_("Open attachments"));
 	itemBoxSizer5->Add(btnAttachment_, g_flags);
 	btnAttachment_->Enable(false);
