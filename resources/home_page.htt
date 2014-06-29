@@ -39,7 +39,19 @@
 
 <table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">
-<TMPL_VAR GRAND_TOTAL>
+  <table class ='table'>
+    <tfoot>
+      <tr class ='success' style ='font-weight:bold'>
+        <td id='grand_name'>Grand Total:</td>
+        <td class ='money' id='grand_value'></td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    var grand_json = <TMPL_VAR GRAND_TOTAL>;
+      document.getElementById('grand_name').innerHTML=grand_json['NAME'];
+      document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
+  </script>
 <!--Accounts-->
 <TMPL_VAR ACCOUNTS_INFO>
 <TMPL_VAR CARD_ACCOUNTS_INFO>
@@ -48,7 +60,21 @@
 <!--Stocks-->
 <TMPL_VAR STOCKS_INFO>
 <!--Assets-->
-<TMPL_VAR ASSETS_INFO>
+  <table class = 'table'>
+    <tfoot>
+      <tr class = 'total'>
+        <td>
+          <a href = 'Assets:' id='assets_name'></a>
+        </td>
+        <td class = 'money' id='assets_value'></td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    var assets_json = <TMPL_VAR ASSETS_INFO>;
+    document.getElementById('assets_name').innerHTML=assets_json['NAME'];
+    document.getElementById('assets_value').innerHTML=assets_json['VALUE'];
+  </script>
 
 </td>
 <td>

@@ -83,10 +83,10 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><col style=\"width:50\%\"><col style=\"width:25\%\"><col style=\"width:25\%\"><thead><tr class='active'><th>";
+        output = "<table class ='table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th><th class = 'text-right'>" + _("Total");
-        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+        output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\"); ' href='#'>[-]</a>"
             , "INVEST", "INVEST");
         output += "</th></tr></thead><tbody id='INVEST'>";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
@@ -106,7 +106,7 @@ wxString htmlWidgetStocks::getHTMLText()
         }
 
         output += body;
-        output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+        output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
         output += wxString::Format("<td class ='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
         output += wxString::Format("<td class ='money'>%s</td></tr></tfoot></table>"
@@ -187,7 +187,7 @@ wxString htmlWidgetTop7Categories::getHTMLText()
     const wxString idStr = "TOP_CATEGORIES";
 
     wxString output = "<table class = 'table'><thead><tr class='active'><th>\n";
-    output += title_ + wxString::Format("</th><th class='text-right'><a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr></thead>\n", idStr, idStr);
+    output += title_ + wxString::Format("</th><th class='text-right'><a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a></th></tr></thead>\n", idStr, idStr);
     output += wxString::Format("<tbody id='%s'>", idStr);
     output += "<tr style='background-color: #d8ebf0'><td>";
     output += _("Category") + "</td><td class='text-right'>" + _("Summary") + "</td></tr>";
@@ -357,7 +357,7 @@ wxString htmlWidgetBillsAndDeposits::getHTMLText()
 
         output = "<table class='table'><thead><tr class='active'><th>";
         output += wxString::Format("<a href=\"billsdeposits:\">%s</a></th>\n<th></th>", title_);
-        output += wxString::Format("<th class='text-right'>%i <a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a></th></tr>\n"
+        output += wxString::Format("<th class='text-right'>%i <a id='%s_label' onclick='toggleTable(\"%s\"); ' href='#'>[-]</a></th></tr>\n"
             , int(bd_days.size()), idStr, idStr);
         output += "</thead>";
 
@@ -771,16 +771,18 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
 //* Assets *//
 const wxString mmHomePagePanel::displayAssets(double& tBalance)
 {
-    wxString output = "";
+    json::Object o;
+    o.Clear();
+    std::stringstream ss;
 
     double asset_balance = Model_Asset::instance().balance();
     tBalance += asset_balance;
-    output = "<table class = 'table'><tfoot><tr class = \"total\">";
-    output += wxString::Format("<td><a href = \"Assets:\">%s</a></td>", _("Assets"));
-    output += wxString::Format("<td class = 'money'>%s</td></tr>", Model_Currency::toCurrency(asset_balance));
-    output += "</tfoot></table>";
 
-    return output;
+    o["NAME"] = json::String(_("Assets").ToStdString());
+    o["VALUE"] = json::String(Model_Currency::toCurrency(asset_balance).ToStdString());
+
+    json::Writer::Write(o, ss);
+    return ss.str();
 }
 
 const wxString mmHomePagePanel::getStatWidget()
@@ -802,15 +804,19 @@ const wxString mmHomePagePanel::getStatWidget()
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
-    wxString output = "<table class ='table'>";
-    //  Display the grand total from all sections
-    wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
+    json::Object o;
+    o.Clear();
+    std::stringstream ss;
 
-    output += "<tfoot><tr class ='success' style ='font-weight:bold'><td>" + _("Grand Total:") + "</td>";
-    output += "<td class ='money'>" + tBalanceStr + "</td>";
-    output += "</tfoot></table>";
+    const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
+    double asset_balance = Model_Asset::instance().balance();
+    tBalance += asset_balance;
 
-    return output;
+    o["NAME"] = json::String(_("Grand Total:").ToStdString());
+    o["VALUE"] = json::String(tBalanceStr.ToStdString());
+
+    json::Writer::Write(o, ss);
+    return ss.str();
 }
 /* Website News*/
 const wxString mmHomePagePanel::displayWebsiteNews()
