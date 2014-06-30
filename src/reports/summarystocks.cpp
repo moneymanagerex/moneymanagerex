@@ -392,6 +392,7 @@ wxString mmReportChartStocks::getHTMLText()
             //    hb.addHeaderItalic(4, account->ACCOUNTNAME);
         }
 
+        int dataCount = 0, freq = 1;
         wxString labels, data;
         Model_StockHistory::Data_Set histData = Model_StockHistory::instance().find(Model_StockHistory::STOCKID(stock.id()),
             Model_StockHistory::DATE(dtRange_->start_date(), GREATER_OR_EQUAL),
@@ -401,22 +402,28 @@ wxString mmReportChartStocks::getHTMLText()
             gridLines = pointDot = "true";
         else if (histData.size() <= 366)
             gridLines = "true";
+        else
+            freq = histData.size() / 366;
         for (const auto& hist : histData)
         {
-            if (!labels.empty())
-                labels += ", ";
-            dateDt = Model_StockHistory::DATE(hist);
-            if (histData.size() <= 30)
-                strTmp = wxString::Format("\"%s\"", mmGetDateForDisplay(dateDt));
-            else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
-                strTmp = wxString::Format("\"%s\"", dateDt.GetMonthName(dateDt.GetMonth()));
-            else
-                strTmp = "\"\"";
-            labels += strTmp;
-            if (!data.empty())
-                data += ", ";
-            data += wxString::Format("%g", hist.VALUE);
-            precDateDt = dateDt;
+            if (dataCount % freq == 0)
+            {
+                if (!labels.empty())
+                    labels += ", ";
+                dateDt = Model_StockHistory::DATE(hist);
+                if (histData.size() <= 30)
+                    strTmp = wxString::Format("\"%s\"", mmGetDateForDisplay(dateDt));
+                else if (precDateDt.IsValid() && dateDt.GetMonth() != precDateDt.GetMonth())
+                    strTmp = wxString::Format("\"%s\"", dateDt.GetMonthName(dateDt.GetMonth()));
+                else
+                    strTmp = "\"\"";
+                labels += strTmp;
+                if (!data.empty())
+                    data += ", ";
+                data += wxString::Format("%g", hist.VALUE);
+                precDateDt = dateDt;
+            }
+            dataCount++;
         }
         if (!data.IsEmpty())
         {
