@@ -725,7 +725,6 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10.0;
     double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
-    double t = ceil(log10(scaleStepWidth));
     double s = (pow(10, ceil(log10(scaleStepWidth)) - 1));
     if (s >= 0.1)
         scaleStepWidth = ceil(scaleStepWidth / s)*s;
