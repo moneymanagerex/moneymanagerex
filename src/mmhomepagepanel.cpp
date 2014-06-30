@@ -564,15 +564,11 @@ void mmHomePagePanel::getData()
 }
 const wxString mmHomePagePanel::getToggles()
 {
-    wxString output = "";
-    //output += "<script>toggleTable('BILLS_AND_DEPOSITS'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false))
-        output += "<script>toggleTable('ACCOUNTS_INFO'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false))
-        output += "<script>toggleTable('TERM_ACCOUNTS_INFO'); </script>\n";
-    if (!Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false))
-        output += "<script>toggleTable('INVEST'); </script>\n";
-    return output;
+    const wxString json = wxString::Format("{'ACCOUNTS_INFO':%i, 'TERM_ACCOUNTS_INFO':%i, 'INVEST':%i}"
+        , !Model_Setting::instance().GetBoolSetting("EXPAND_BANK_TREE", false)
+        , !Model_Setting::instance().GetBoolSetting("EXPAND_TERM_TREE", false)
+        , !Model_Setting::instance().GetBoolSetting("EXPAND_STOCKS_TREE", false));
+    return json;
 }
 
 const bool mmHomePagePanel::WindowsUpdateRegistry()
@@ -592,7 +588,7 @@ void mmHomePagePanel::fillData()
 {
     for (const auto& entry : m_frames)
     {
-        m_templateText.Replace(wxString::Format("<TMPL_VAR \"%s\">", entry.first), entry.second);
+        m_templateText.Replace(wxString::Format("<TMPL_VAR %s>", entry.first), entry.second);
     }
     Model_Report::outputReportFile(m_templateText);
     browser_->LoadURL(getURL(mmex::getReportIndex()));
@@ -712,6 +708,10 @@ const wxString mmHomePagePanel::displayAccounts(double& tBalance, std::map<int, 
 //* Income vs Expenses *//
 const wxString mmHomePagePanel::displayIncomeVsExpenses()
 {
+    json::Object o;
+    o.Clear();
+    std::stringstream ss;
+
     double tIncome = 0.0, tExpenses = 0.0;
     std::map<int, std::pair<double, double> > incomeExpensesStats;
     getExpensesIncomeStats(incomeExpensesStats, date_range_);
@@ -724,82 +724,27 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     }
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10;
-    double stepWidth = ceil(std::max(tIncome,tExpenses)*1.1/steps);
-    //Type, Amount, Income, Expenses, Difference:, Income/Expenses, income, expemces
-    static const wxString INCOME_VS_EXPENSES_HTML =
-        "<table class = 'table'>\n"
-        "<thead><tr class='active'><th>%s</th><th></th></tr></thead>"
-        "<tbody>\n"
-        "    <tr valign=\"center\">\n"
-        "        <td><canvas id=\"reportChart\" width=\"312\" height=\"256\"></canvas></td>\n"
-        "        <td  style='vertical-align:middle'>\n"
-        "            <table class= 'table'>\n"
-        "            <thead>\n"
-        "                <tr>"
-        "                    <th>%s</th>"
-        "                    <th class = \"text-right\">%s</th>"
-        "                </tr>"
-        "            </thead>\n"
-        "            <tbody>"
-        "                <tr>"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "                <tr>"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "            </tbody>\n"
-        "            <tfoot>"
-        "                <tr class=\"total\">"
-        "                    <td>%s</td>"
-        "                    <td class = 'money'>%s</td>"
-        "                </tr>"
-        "            </tfoot>"
-        "            </table>"
-        "        </td>"
-        "        </tr>"
-        "</tbody>"
-        "</table>\n"
-        "\n"
-        "<script>\n"
-        "    <!-- Chart -->\n"
-        "    var data = {\n"
-        "    labels : [\"%s\"],\n"
-        "    datasets : [\n"
-        "        {\n"
-        "            fillColor : \"rgba(151,187,205,0.5)\",\n"
-        "            strokeColor : \"rgba(151,187,205,1)\",\n"
-        "            data : [%f],\n"
-        "        },\n"
-        "        {\n"
-        "            fillColor : \"rgba(220,66,66,0.5)\",\n"
-        "            strokeColor : \"rgba(220,220,220,1)\",\n"
-        "            data : [%f],\n"
-        "        },\n"
-        "    ]\n"
-        "    };\n"
-        "    var options = {\n"
-        "        animationEasing: \"easeOutQuint\",\n"
-        "        barValueSpacing : 10,\n"
-        "        scaleOverride: true,\n"
-        "        scaleStartValue: 0,\n"
-        "        scaleSteps: [%f],\n"
-        "        scaleStepWidth: [%f]\n"
-        "    };\n"
-        "    var ctx = document.getElementById(\"reportChart\").getContext(\"2d\");\n"
-        "    var reportChart = new Chart(ctx).Bar(data, options);\n"
+    double amount = std::max(tIncome, tExpenses) / steps;
+    double s = pow(10, ceil(log10(amount)) - 1);
+    double stepWidth = ceil(amount / s)*s;
 
-        "</script>\n";
-    wxString output = wxString::Format(INCOME_VS_EXPENSES_HTML
-        , wxString::Format(_("Income vs Expenses: %s"), date_range_->title())
-        , _("Type"), _("Amount")
-        , _("Income"), Model_Currency::toCurrency(tIncome)
-        , _("Expenses"), Model_Currency::toCurrency(tExpenses)
-        , _("Difference:"), Model_Currency::toCurrency(tIncome - tExpenses)
-        , _("Income/Expenses")
-        , tIncome, tExpenses, steps, stepWidth);
-    return output;
+    o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
+    o["1"] = json::String(_("Type").ToStdString());
+    o["2"] = json::String(_("Amount").ToStdString());
+    o["3"] = json::String(_("Income").ToStdString());
+    o["4"] = json::String(Model_Currency::toCurrency(tIncome).ToStdString());
+    o["5"] = json::String(_("Expenses").ToStdString());
+    o["6"] = json::String(Model_Currency::toCurrency(tExpenses).ToStdString());
+    o["7"] = json::String(_("Difference:").ToStdString());
+    o["8"] = json::String(Model_Currency::toCurrency(tIncome - tExpenses).ToStdString());
+    o["9"] = json::String(_("Income/Expenses").ToStdString());
+    o["10"] = json::Number(tIncome);
+    o["11"] = json::Number(tExpenses);
+    o["12"] = json::Number(steps);
+    o["13"] = json::Number(stepWidth);
+
+    json::Writer::Write(o, ss);
+    return ss.str();
 }
 
 //* Assets *//
@@ -838,13 +783,18 @@ const wxString mmHomePagePanel::getStatWidget()
 
 const wxString mmHomePagePanel::displayGrandTotals(double& tBalance)
 {
-    wxString output = "<table class ='table'>";
-    //  Display the grand total from all sections
-    wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
+    json::Object o;
+    o.Clear();
+    std::stringstream ss;
 
-    output += "<tfoot><tr class ='success' style ='font-weight:bold'><td>" + _("Grand Total:") + "</td>";
-    output += "<td class ='money'>" + tBalanceStr + "</td>";
-    output += "</tfoot></table>";
+    const wxString tBalanceStr = Model_Currency::toCurrency(tBalance);
+    double asset_balance = Model_Asset::instance().balance();
+    tBalance += asset_balance;
 
-    return output;
+    o["NAME"] = json::String(_("Grand Total:").ToStdString());
+    o["VALUE"] = json::String(tBalanceStr.ToStdString());
+
+    json::Writer::Write(o, ss);
+    return ss.str();
 }
+
