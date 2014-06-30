@@ -125,6 +125,8 @@ bool OnInitImpl(mmGUIApp* app)
     /* Setting Locale causes unexpected problems, so default to English Locale */
     app->getLocale().Init(wxLANGUAGE_ENGLISH);
 
+    Model_Report::prepareTempFolder();
+
     /* Initialize Image Handlers */
     wxInitAllImageHandlers();
 
@@ -180,9 +182,6 @@ bool OnInitImpl(mmGUIApp* app)
     // success: wxApp::OnRun() will be called which will enter the main message
     // loop and the application will run. If we returned FALSE here, the
     // application would exit immediately.
-    if (ok) {
-        Model_Report::prepareTempFolder();
-    }
 
     return ok;
 }
