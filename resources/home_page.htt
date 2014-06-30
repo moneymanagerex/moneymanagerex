@@ -31,37 +31,140 @@
 
 <table class = "table-bordered" width="98%">
 <tr valign="top"><td width="50%">
-<TMPL_VAR "GRAND_TOTAL">
+  <!-- GRAND_TOTAL -->
+  <table class ='table'>
+    <tfoot>
+      <tr class ='success' style ='font-weight:bold'>
+        <td id='grand_name'>Grand Total:</td>
+        <td class ='money' id='grand_value'></td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    var grand_json = <TMPL_VAR GRAND_TOTAL>;
+      document.getElementById('grand_name').innerHTML=grand_json['NAME'];
+      document.getElementById('grand_value').innerHTML=grand_json['VALUE'];
+  </script>
+ 
 <!--Accounts-->
-<TMPL_VAR "ACCOUNTS_INFO">
-<TMPL_VAR "TERM_ACCOUNTS_INFO">
+<TMPL_VAR ACCOUNTS_INFO>
+<TMPL_VAR TERM_ACCOUNTS_INFO>
 
 <!--Stocks-->
-<TMPL_VAR "STOCKS_INFO">
+<TMPL_VAR STOCKS_INFO>
 <!--Assets-->
-<TMPL_VAR "ASSETS_INFO">
+<TMPL_VAR ASSETS_INFO>
 
 </td>
 <td>
     
 <!--Income vs Expenses: Current Month-->
-<TMPL_VAR "INCOME_VS_EXPENSES">
+  <table class = 'table'>
+    <thead>
+      <tr class='active'>
+          <th id="ive_name">Income vs Expenses</th>
+          <th></th>
+        </tr>
+      </thead>
+         <tbody>
+            <tr valign='center'>
+                <td><canvas id="reportChart" width="312" height="256"></canvas></td>
+                <td  style='vertical-align:middle'>
+                    <table class= 'table'>
+                    <thead>
+                        <tr>
+                            <th id='ive_type'>Type</th>
+                            <th id='ive_amount' class = "text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id='ive_income_l'>Income</td>
+                            <td id = 'ive_income' class = 'money'></td>
+                        </tr>
+                        <tr>
+                            <td id ='ive_expenses_l'>Expenses</td>
+                            <td id ='ive_expenses' class = 'money'></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total">
+                            <td id ='ive_difference_l'>Difference:</td>
+                            <td id ='ive_difference' class = 'money'></td>
+                        </tr>
+                    </tfoot>
+                    </table>
+                </td>
+                </tr>
+        </tbody>
+        </table>
+        
+        <script>
+          var ive_json = <TMPL_VAR INCOME_VS_EXPENSES>;
+
+          document.getElementById('ive_name').innerHTML=ive_json[0];
+          document.getElementById('ive_type').innerHTML=ive_json['1'];
+          document.getElementById('ive_amount').innerHTML=ive_json['2'];
+          document.getElementById('ive_income_l').innerHTML=ive_json['3'];
+          document.getElementById('ive_income').innerHTML=ive_json['4'];
+          document.getElementById('ive_expenses_l').innerHTML=ive_json['5'];
+          document.getElementById('ive_expenses').innerHTML=ive_json['6'];
+          document.getElementById('ive_difference_l').innerHTML=ive_json['7'];
+          document.getElementById('ive_difference').innerHTML=ive_json['8'];
+            <!-- Chart -->
+            var data = {
+            labels : [ive_json[9]],
+            datasets : [
+                {
+                    fillColor : "rgba(151,187,205,0.5)",
+                    strokeColor : "rgba(151,187,205,1)",
+                    data : [ive_json[10]],
+                },
+                {
+                    fillColor : "rgba(220,66,66,0.5)",
+                    strokeColor : "rgba(220,220,220,1)",
+                    data : [ive_json[11]],
+                },
+            ]
+            };
+            var options = {
+                animationEasing: "easeOutQuint",
+                barValueSpacing : 10,
+                scaleOverride: true,
+                scaleStartValue: 0,
+                scaleSteps: [ive_json[12]],
+                scaleStepWidth: [ive_json[13]]
+            };
+            var ctx = document.getElementById("reportChart").getContext("2d");
+            var reportChart = new Chart(ctx).Bar(data, options);
+
+        </script>
 
 <!--Upcoming Transactions-->
-<TMPL_VAR "BILLS_AND_DEPOSITS">
+<TMPL_VAR BILLS_AND_DEPOSITS>
 
 <!--Top Withdrawals: Last 30 Days-->
-<TMPL_VAR "TOP_CATEGORIES">
+<TMPL_VAR TOP_CATEGORIES>
 
 <!--Transaction Statistics -->
-<TMPL_VAR "STATISTICS">
+<TMPL_VAR STATISTICS>
 
 </td>
 </tr>
 </table>
-    <TMPL_VAR "TOGGLES">
 </body>
-  
+
+  <script>
+    var toggle_json = <TMPL_VAR TOGGLES>;
+      toggleTable('BILLS_AND_DEPOSITS');
+      if (toggle_json['ACCOUNTS_INFO'] && document.getElementById('ACCOUNTS_INFO'))
+        {toggleTable('ACCOUNTS_INFO')};
+      if (toggle_json['TERM_ACCOUNTS_INFO'] && document.getElementById('TERM_ACCOUNTS_INFO'))
+        {toggleTable('TERM_ACCOUNTS_INFO')};
+      if (toggle_json['INVEST'] && document.getElementById('INVEST'))
+        {toggleTable('INVEST')};
+    </script>
+ 
 <script type="text/javascript">
     var elements= document.getElementsByClassName("money");
     for (var i = 0; i < elements.length; i++) {
