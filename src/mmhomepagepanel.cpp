@@ -74,10 +74,10 @@ wxString htmlWidgetStocks::getHTMLText()
     calculate_stats(stockStats);
     if (!stockStats.empty())
     {
-        output = "<table class ='table'><col style=\"width:50%\"><col style=\"width:25%\"><col style=\"width:25%\"><thead><tr class='active'><th>";
+        output = "<table class ='table'><col style='width:50%'><col style='width:25%'><col style='width:25%'><thead><tr class='active'><th>";
         output += _("Stocks") + "</th><th class = 'text-right'>" + _("Gain/Loss");
         output += "</th><th class = 'text-right'>" + _("Total");
-        output += wxString::Format("<a id=\"%s_label\" onclick=\"toggleTable('%s'); \" href='#'>[-]</a>"
+        output += wxString::Format("<a id='%s_label' onclick='toggleTable(\"%s\");' href='#'>[-]</a>"
             , "INVEST", "INVEST");
         output += "</th></tr></thead><tbody id='INVEST'>";
         const auto &accounts = Model_Account::instance().all(Model_Account::COL_ACCOUNTNAME);
@@ -87,7 +87,7 @@ wxString htmlWidgetStocks::getHTMLText()
             if (Model_Account::type(account) != Model_Account::INVESTMENT) continue;
             if (Model_Account::status(account) != Model_Account::OPEN) continue;
             body += "<tr>";
-            body += wxString::Format("<td><a href=\"stock:%d\">%s</a></td>"
+            body += wxString::Format("<td><a href='stock:%i'>%s</a></td>"
                 , account.ACCOUNTID, account.ACCOUNTNAME);
             body += wxString::Format("<td class = 'money'>%s</td>"
                 , Model_Account::toCurrency(stockStats[account.ACCOUNTID].first, &account));
@@ -97,7 +97,7 @@ wxString htmlWidgetStocks::getHTMLText()
         }
 
         output += body;
-        output += "</tbody><tfoot><tr class = \"total\"><td>" + _("Total:") + "</td>";
+        output += "</tbody><tfoot><tr class = 'total'><td>" + _("Total:") + "</td>";
         output += wxString::Format("<td class ='money'>%s</td>"
             , Model_Currency::toCurrency(grand_gain_lost_));
         output += wxString::Format("<td class ='money'>%s</td></tr></tfoot></table>"
@@ -723,11 +723,12 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
         tExpenses += incomeExpensesStats[idx].second;
     }
     // Compute chart spacing and interval (chart forced to start at zero)
-    double steps = 10, stepWidth = 0.1;
-    double amount = std::max(tIncome, tExpenses) / steps;
-    double s = pow(10, ceil(log10(amount)) - 1);
-    if (s >= 1)
-        stepWidth = ceil(amount / s)*s;
+    double steps = 10.0;
+    double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
+    double t = ceil(log10(scaleStepWidth));
+    double s = (pow(10, ceil(log10(scaleStepWidth)) - 1));
+    if (s >= 0.1)
+        scaleStepWidth = ceil(scaleStepWidth / s)*s;
 
     o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
     o["1"] = json::String(_("Type").ToStdString());
@@ -742,7 +743,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     o["10"] = json::Number(tIncome);
     o["11"] = json::Number(tExpenses);
     o["12"] = json::Number(steps);
-    o["13"] = json::Number(stepWidth);
+    o["13"] = json::Number(scaleStepWidth);
 
     json::Writer::Write(o, ss);
     return ss.str();
