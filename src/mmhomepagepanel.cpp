@@ -766,7 +766,7 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     o["10"] = json::Number(tIncome);
     o["11"] = json::Number(tExpenses);
     o["12"] = json::Number(steps);
-    o["13"] = json::Number(stepWidth);
+    o["13"] = json::Number(scaleStepWidth);
 
     json::Writer::Write(o, ss);
     return ss.str();
