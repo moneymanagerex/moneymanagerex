@@ -26,6 +26,7 @@ Copyright (C) 2014 Nikolay
 #include "billsdepositspanel.h"
 #include "reports/mmgraphincexpensesmonth.h"
 #include <algorithm>
+#include <cmath>
 
 #include "constants.h"
 #include "mmOption.h"
@@ -747,7 +748,9 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     }
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10;
-    double stepWidth = ceil(std::max(tIncome, tExpenses) / steps);
+    double amount = std::max(tIncome, tExpenses) / steps;
+    double s = pow(10, ceil(log10(amount)) - 1);
+    double stepWidth = ceil(amount / s)*s;
 
     o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
     o["1"] = json::String(_("Type").ToStdString());
