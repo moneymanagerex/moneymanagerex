@@ -725,9 +725,12 @@ const wxString mmHomePagePanel::displayIncomeVsExpenses()
     // Compute chart spacing and interval (chart forced to start at zero)
     double steps = 10.0;
     double scaleStepWidth = ceil(std::max(tIncome, tExpenses) / steps);
-    double s = (pow(10, ceil(log10(scaleStepWidth)) - 1));
-    if (s >= 0.1)
-        scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    if (scaleStepWidth <= 1.0)
+        scaleStepWidth = 1.0;
+    else {
+        double s = (pow(10, ceil(log10(scaleStepWidth)) - 1.0));
+        if (s > 0) scaleStepWidth = ceil(scaleStepWidth / s)*s;
+    }
 
     o["0"] = json::String(wxString::Format(_("Income vs Expenses: %s"), date_range_->title()).ToStdString());
     o["1"] = json::String(_("Type").ToStdString());
