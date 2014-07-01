@@ -155,15 +155,15 @@ mmLastYear::mmLastYear()
 mmCurrentFinancialYear::mmCurrentFinancialYear(const int day, const int month)
 : mmDateRange()
 {
-    // Set date to the beginning of a financial year.
     int this_month = this->start_date_.GetMonth() + 1;
-    if (this_month > month)
+    wxDateTime finDate = wxDateTime(this->start_date_).SetMonth(wxDateTime::Month(month - 1)).SetDay(day);
+    if (finDate.IsLaterThan(this->start_date_))
     {
-        this->start_date_.Subtract(wxDateSpan::Months(this_month - month));
+        this->start_date_.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(month - this_month));
     }
     else
     {
-        this->start_date_.Subtract(wxDateSpan::Year()).Add(wxDateSpan::Months(month - this_month));
+        this->start_date_.Subtract(wxDateSpan::Months(this_month - month));
     }
     this->start_date_.Subtract(wxDateSpan::Days(this->start_date_.GetDay() - 1)).Add(wxDateSpan::Days(day - 1));
     
