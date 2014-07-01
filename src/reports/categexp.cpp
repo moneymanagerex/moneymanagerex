@@ -49,6 +49,8 @@ mmReportCategoryExpenses::~mmReportCategoryExpenses()
 void  mmReportCategoryExpenses::RefreshData()
 {
     data_.clear();
+    valueList_.clear();
+    valueListTotals_.clear();
     std::map<int, std::map<int, std::map<int, double> > > categoryStats;
     Model_Category::instance().getCategoryStats(categoryStats
         , date_range_
